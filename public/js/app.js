@@ -2144,35 +2144,35 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
 
 
- // import VueFilterDateFormat from "@vuejs-community/vue-filter-date-format";
+
+
+function sleep(ms) {
+  return new Promise(function (resolve) {
+    return setTimeout(resolve, ms);
+  });
+} // import VueFilterDateFormat from "@vuejs-community/vue-filter-date-format";
 // import VueFilterDateParse from "@vuejs-community/vue-filter-date-parse";
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      loading: true,
-      search: "",
-      fetching_ids: false,
-      fetching_names: false,
-      fetching_systems: false,
-      saving: false,
-      info: [],
-      response: null,
+      timer_data: [],
       all_alliance_ids: [],
       all_system_ids: [],
       system_fetch_ids: [],
       system_fetch: [],
       alliance_fetch: [],
       alliance_data: [],
-      systems: [],
+      count: null,
+      new_alliance_ids: [],
+      url: null,
+      loop: 0,
       system_data: [],
       system_data_length: 0,
-      alliance_response: null,
-      systems_response: null,
+      check: null,
       headers: [{
         text: "Designation",
         value: "name",
@@ -2202,24 +2202,34 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              _this.loading = true; // await this.getLatest();
-              // await this.getSystems();
-
-              _context.next = 3;
+              _context.next = 2;
               return _this.getAlliancesIDs();
 
-            case 3:
-              _context.next = 5;
+            case 2:
+              _context.next = 4;
               return _this.saveAlliancesID();
 
-            case 5:
-              // await this.getSystemIDs();
-              // await this.getSystemNames();
-              // await this.setStructureTypes();
-              // await this.matchLatesttoNames();
-              _this.loading = false;
+            case 4:
+              _context.next = 6;
+              return _this.getNewAllianceIDs();
 
             case 6:
+              _context.next = 8;
+              return _this.getNewAlliacneData();
+
+            case 8:
+              _context.next = 10;
+              return _this.saveNewAlliacneData();
+
+            case 10:
+              _context.next = 12;
+              return _this.getTimers();
+
+            case 12:
+              _context.next = 14;
+              return _this.sameTimers();
+
+            case 14:
             case "end":
               return _context.stop();
           }
@@ -2241,8 +2251,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 _context2.next = 3;
                 return axios.get("https://esi.evetech.net/dev/alliances/?datasource=tranquility").then(function (res) {
                   if (res.status == 200) {
-                    _this2.alliance_response = "pull";
-
                     for (var i = 0; i < res.data.length; i++) {
                       _this2.all_alliance_ids.push(res.data[i]);
                     }
@@ -2269,26 +2277,212 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context3.prev = _context3.next) {
               case 0:
-                // const emptyAlliancesTable = await axios.post("/emptyAlliancesTable");
-                // this.saving_alliance_data = true;
-                _this3.system_data = "hiefhie";
-                _context3.next = 3;
+                _context3.next = 2;
                 return axios.post("/saveAllianceIDs", _this3.all_alliance_ids);
 
-              case 3:
+              case 2:
                 alliance_data = _context3.sent;
 
-              case 4:
+              case 3:
               case "end":
                 return _context3.stop();
             }
           }
         }, _callee3);
       }))();
+    },
+    getNewAllianceIDs: function getNewAllianceIDs() {
+      var _this4 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
+        var res;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
+          while (1) {
+            switch (_context4.prev = _context4.next) {
+              case 0:
+                _this4.new_alliance_ids = [];
+                _context4.next = 3;
+                return axios.get("/getNewAllianceIDs").then(function (res) {
+                  if (res.status == 200) {
+                    for (var i = 0; i < res.data.length; i++) {
+                      _this4.new_alliance_ids.push(res.data[i]);
+                    }
+                  }
+                });
+
+              case 3:
+                res = _context4.sent;
+
+              case 4:
+              case "end":
+                return _context4.stop();
+            }
+          }
+        }, _callee4);
+      }))();
+    },
+    getNewAlliacneData: function getNewAlliacneData() {
+      var _this5 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee5() {
+        var count, loop, p, c, i, res, left;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee5$(_context5) {
+          while (1) {
+            switch (_context5.prev = _context5.next) {
+              case 0:
+                count = 0;
+                _this5.alliance_data = [];
+                loop = Math.ceil(_this5.new_alliance_ids.length / 200);
+
+                if (_this5.new_alliance_ids.length < 201) {
+                  count = _this5.new_alliance_ids.length;
+                } else {
+                  count = 200;
+                }
+
+                p = 0;
+                c = 0;
+
+              case 6:
+                if (!(c < loop)) {
+                  _context5.next = 23;
+                  break;
+                }
+
+                i = 0;
+
+              case 8:
+                if (!(i < count)) {
+                  _context5.next = 16;
+                  break;
+                }
+
+                _this5.url = "https://esi.evetech.net/latest/alliances/" + _this5.new_alliance_ids[p] + "/?datasource=tranquility";
+                _context5.next = 12;
+                return axios.get(_this5.url).then(function (res) {
+                  if (res.status == 200) {
+                    res.data.id = _this5.new_alliance_ids[p];
+
+                    _this5.alliance_data.push(res.data);
+
+                    p++;
+                  }
+                });
+
+              case 12:
+                res = _context5.sent;
+
+              case 13:
+                i++;
+                _context5.next = 8;
+                break;
+
+              case 16:
+                left = _this5.new_alliance_ids.length - _this5.p;
+
+                if (left < 201) {
+                  count = _this5.new_alliance_ids.length - 1;
+                }
+
+                _context5.next = 20;
+                return sleep(5000);
+
+              case 20:
+                c++;
+                _context5.next = 6;
+                break;
+
+              case 23:
+              case "end":
+                return _context5.stop();
+            }
+          }
+        }, _callee5);
+      }))();
+    },
+    saveNewAlliacneData: function saveNewAlliacneData() {
+      var _this6 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee6() {
+        var all_alliance_ids;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee6$(_context6) {
+          while (1) {
+            switch (_context6.prev = _context6.next) {
+              case 0:
+                _context6.next = 2;
+                return axios.post("/saveAllianceData", _this6.alliance_data);
+
+              case 2:
+                all_alliance_ids = _context6.sent;
+
+              case 3:
+              case "end":
+                return _context6.stop();
+            }
+          }
+        }, _callee6);
+      }))();
+    },
+    getTimers: function getTimers() {
+      var _this7 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee7() {
+        var res;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee7$(_context7) {
+          while (1) {
+            switch (_context7.prev = _context7.next) {
+              case 0:
+                _this7.timer_data = [];
+                _context7.next = 3;
+                return axios.get("https://esi.evetech.net/latest/sovereignty/structures/?datasource=tranquility").then(function (res) {
+                  if (res.status == 200) {
+                    for (var i = 0; i < res.data.length; i++) {
+                      _this7.timer_data.push(res.data[i]);
+                    }
+                  }
+                });
+
+              case 3:
+                res = _context7.sent;
+
+              case 4:
+              case "end":
+                return _context7.stop();
+            }
+          }
+        }, _callee7);
+      }))();
+    },
+    sameTimers: function sameTimers() {
+      var _this8 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee8() {
+        var alliance_data;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee8$(_context8) {
+          while (1) {
+            switch (_context8.prev = _context8.next) {
+              case 0:
+                _this8.check = "sameTimers"; // const emptyAlliancesTable = await axios.post("/emptyAlliancesTable");
+                // this.saving_alliance_data = true;
+
+                _context8.next = 3;
+                return axios.post("/saveTimers", _this8.timer_data);
+
+              case 3:
+                alliance_data = _context8.sent;
+
+              case 4:
+              case "end":
+                return _context8.stop();
+            }
+          }
+        }, _callee8);
+      }))();
     }
-  },
-  computed: {}
+  }
 });
+
+computed: {}
 
 /***/ }),
 
@@ -61248,7 +61442,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [_vm._v("\n  Some stuff\n")])
+  return _c("div", [_vm._v("Some stuff")])
 }
 var staticRenderFns = []
 render._withStripped = true

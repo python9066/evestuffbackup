@@ -15,12 +15,12 @@ class CreateStructuresTable extends Migration
     {
         Schema::create('structures', function (Blueprint $table) {
             $table->foreignId('alliance_id');
-            $table->foreignId('solar_system_id');
+            $table->foreignId('system_id');
             $table->foreignId('structure_id');
             $table->foreignId('structure_type_id');
             $table->float('amd');
-            $table->timestamp('vulnerable_end_time',);
-            $table->timestamp('vulnerable_start_time',);
+            $table->dateTimeTz('vulnerable_end_time',);
+            $table->dateTimeTz('vulnerable_start_time',);
             $table->timestamps();
         });
     }
