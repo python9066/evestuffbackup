@@ -21,8 +21,8 @@ class CreateSystemsTable extends Migration
             $table->timestamps();
 
             $table->index('id');
-            $table->foreignId('region_id');
-            $table->foreignId('constellation_id');
+            $table->index('region_id');
+            $table->index('constellation_id');
 
         });
     }

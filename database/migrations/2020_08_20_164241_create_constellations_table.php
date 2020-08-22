@@ -20,7 +20,7 @@ class CreateConstellationsTable extends Migration
             $table->timestamps();
 
             $table->index('id');
-            $table->foreignId('region_id');
+            $table->index('region_id');
         });
     }
 
