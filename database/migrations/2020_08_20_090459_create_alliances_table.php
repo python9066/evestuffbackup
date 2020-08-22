@@ -14,7 +14,7 @@ class CreateAlliancesTable extends Migration
     public function up()
     {
         Schema::create('alliances', function (Blueprint $table) {
-            $table->integer('id');
+            $table->id('id');
             $table->integer('creator_corporation_id')->nullable();
             $table->integer('creator_id')->nullable();
             $table->dateTime('date_founded')->nullable();

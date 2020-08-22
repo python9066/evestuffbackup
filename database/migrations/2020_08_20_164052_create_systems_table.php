@@ -16,9 +16,13 @@ class CreateSystemsTable extends Migration
         Schema::create('systems', function (Blueprint $table) {
             $table->foreignId('region_id');
             $table->foreignId('constellation_id');
-            $table->integer('id')->unique();
+            $table->id('id');
             $table->string('system_name');
             $table->timestamps();
+
+            $table->index('id');
+            $table->foreignId('region_id');
+            $table->foreignId('constellation_id');
 
         });
     }

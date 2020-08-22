@@ -15,9 +15,12 @@ class CreateConstellationsTable extends Migration
     {
         Schema::create('constellations', function (Blueprint $table) {
             $table->foreignId('region_id');
-            $table->integer('id')->unique();
+            $table->id('id');
             $table->string('constellation_name');
             $table->timestamps();
+
+            $table->index('id');
+            $table->foreignId('region_id');
         });
     }
 
