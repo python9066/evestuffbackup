@@ -10,12 +10,12 @@ class System extends Model
 
     public function region()
     {
-        return $this->belongsTO(Region::class);
+        return $this->belongsTo(Region::class);
     }
 
     public function constellation()
     {
-        return $this->belongsTO(Constellation::class);
+        return $this->belongsTo(Constellation::class);
     }
 
 }

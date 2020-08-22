@@ -8,13 +8,13 @@ class Region extends Model
 {
     protected $guarded =[];
 
-    public function system()
+    public function systems()
     {
         return $this->hasMany(System::class);
     }
 
-    public function constellation()
+    public function constellations()
     {
-        return $this->hasMany(constellation::class);
+        return $this->hasMany(Constellation::class);
     }
 }

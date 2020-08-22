@@ -8,12 +8,7 @@ class Constellation extends Model
 {
     protected $guarded =[];
 
-    public function system()
-    {
-        return $this->hasMany(System::class);
-    }
-
-    public function region()
+        public function region()
     {
         return $this->belongsTO(Region::class);
     }

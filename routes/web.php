@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Auth::routes();
+Route::post('/saveAllianceIDs', 'AllianceController@saveAllianceIDs');
 Route::get('/test', 'AppController@test');
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/{any}', 'AppController@index')->where('any', '.*');
