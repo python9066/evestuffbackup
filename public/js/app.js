@@ -2332,12 +2332,12 @@ function sleep(ms) {
               case 0:
                 count = 0;
                 _this5.alliance_data = [];
-                loop = Math.ceil(_this5.new_alliance_ids.length / 200);
+                loop = Math.ceil(_this5.new_alliance_ids.length / 100);
 
-                if (_this5.new_alliance_ids.length < 201) {
+                if (_this5.new_alliance_ids.length < 101) {
                   count = _this5.new_alliance_ids.length;
                 } else {
-                  count = 200;
+                  count = 100;
                 }
 
                 p = 0;
@@ -2380,13 +2380,13 @@ function sleep(ms) {
               case 16:
                 left = _this5.new_alliance_ids.length - _this5.p;
 
-                if (left < 201) {
+                if (left < 101) {
                   count = _this5.new_alliance_ids.length;
                   count--;
                 }
 
                 _context5.next = 20;
-                return sleep(500);
+                return sleep(2500);
 
               case 20:
                 c++;

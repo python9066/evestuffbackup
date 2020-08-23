@@ -96,11 +96,11 @@ export default {
     async getNewAlliacneData() {
       var count = 0;
       this.alliance_data = [];
-      var loop = Math.ceil(this.new_alliance_ids.length / 200);
-      if (this.new_alliance_ids.length < 201) {
+      var loop = Math.ceil(this.new_alliance_ids.length / 100);
+      if (this.new_alliance_ids.length < 101) {
         count = this.new_alliance_ids.length;
       } else {
-        count = 200;
+        count = 100;
       }
       var p = 0;
       for (var c = 0; c < loop; c++) {
@@ -119,12 +119,12 @@ export default {
         }
 
         var left = this.new_alliance_ids.length - this.p;
-        if (left < 201) {
+        if (left < 101) {
           count = this.new_alliance_ids.length;
           count--;
         }
 
-        await sleep(500);
+        await sleep(2500);
       }
     },
 

@@ -21,6 +21,7 @@ class CreateStructuresTable extends Migration
             $table->float('amd')->nullable();
             $table->dateTime('vulnerable_end_time',)->nullable();
             $table->dateTime('vulnerable_start_time',)->nullable();
+            $table->string('status')->nullable();
             $table->timestamps();
         });
     }
