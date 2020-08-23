@@ -17,10 +17,12 @@ Auth::routes();
 Route::post('/saveAllianceIDs', 'AllianceController@saveAllianceIDs');
 Route::post('/saveAllianceData','AllianceController@saveAllianceData');
 Route::post('/saveTimers','AllianceController@saveTimers');
+Route::get('/getTimerData','TimerController@getTimerData');
 Route::get('/test', 'AppController@test');
 //Route::get('/test2', 'AllianceController@getnewAllianceIDs');
 Route::get('/getNewAllianceIDs', 'AllianceController@getnewAllianceIDs');
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/timers', 'HomeController@index');
 Route::get('/{any}', 'AppController@index')->where('any', '.*');
 
 

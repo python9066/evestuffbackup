@@ -22,12 +22,9 @@ class AllianceController extends Controller
 
     public function getnewAllianceIDs()
     {
-        // $data=[
-        //     'id' => Alliance::where('creator_id',null)->pluck('id'),
-        // ];
 
         $data = Alliance::where('name', null)->pluck('id');
-        //dd($data);
+
 
         return $data;
     }

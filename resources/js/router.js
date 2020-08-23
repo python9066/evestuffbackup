@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home'
 import Updates from './views/Updates'
+import Timers from './views/Timers'
 
 Vue.use(Router)
 
@@ -24,6 +25,11 @@ export default new Router({
       name: 'home',
       component: Home
     },
+    {
+        path: '/timers',
+        name: 'timers',
+        component: Timers
+      },
     {
         path: '/updates',
         name: 'updates',

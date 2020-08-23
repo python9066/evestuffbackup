@@ -49,19 +49,19 @@
 			<!-- <v-app-bar app clipped-left flat hide-on-scroll scroll-threshold="500" class="top-border--teal"> -->
 			<v-app-bar-nav-icon @click.stop="navdrawer = !navdrawer"></v-app-bar-nav-icon>
 			<v-toolbar-title class="pl-15" >
-				<span class>Eve App</span>
+				<span class>Eve Appppp</span>
 				<v-avatar :size="avatarsize" tile class="">
 					<v-icon color="">fa fa-rocket fa-sm</v-icon>
 				</v-avatar>
 			</v-toolbar-title>
 			<v-spacer></v-spacer>
 
-			<v-btn text class="mr-2" v-if="this.$vuetify.breakpoint.mdAndUp" to="/">
-				<v-icon class="mr-2 grey--text lighten-1">fa fa-rocket</v-icon>Home
+			<v-btn text class="mr-2" v-if="this.$vuetify.breakpoint.mdAndUp" to="/timers">
+				<v-icon class="mr-2 grey--text lighten-1">fa fa-rocket</v-icon>Timers
 			</v-btn>
 
 			<v-btn text class="mr-2" v-if="this.$vuetify.breakpoint.mdAndUp" to="/updates">
-				<v-icon class="mr-2 grey--text lighten-1">fa fa-satellite-dish</v-icon>Updates
+				<v-icon class="mr-2 grey--text lighten-1">fa fa-satellite-dish</v-icon>Update
 			</v-btn>
 
 			<v-menu :nudge-width="200" offset-y>
