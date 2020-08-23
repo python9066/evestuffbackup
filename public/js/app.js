@@ -2367,6 +2367,14 @@ function sleep(ms) {
 
                     p++;
                   }
+                })["catch"](function (res) {
+                  if (res.status == 500) {
+                    for (var w = 0; w < 10000; w++) {}
+
+                    return;
+                  } else if (res.status = 502) {
+                    return;
+                  }
                 });
 
               case 12:

@@ -109,12 +109,23 @@ export default {
             "https://esi.evetech.net/latest/alliances/" +
             this.new_alliance_ids[p] +
             "/?datasource=tranquility";
-          const res = await axios.get(this.url).then((res) => {
+          const res = await axios
+          .get(this.url)
+          .then((res) => {
             if (res.status == 200) {
               res.data.id = this.new_alliance_ids[p];
               this.alliance_data.push(res.data);
               p++;
             }
+          })
+          .catch((res) => {
+            if(res.status ==500) {
+               for (var w=0; w < 10000;w++){}
+              return;
+            } else if (res.status=502){
+              return;
+            }
+
           });
         }
 
