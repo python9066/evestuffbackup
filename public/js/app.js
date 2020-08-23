@@ -2381,11 +2381,12 @@ function sleep(ms) {
                 left = _this5.new_alliance_ids.length - _this5.p;
 
                 if (left < 201) {
-                  count = _this5.new_alliance_ids.length - 1;
+                  count = _this5.new_alliance_ids.length;
+                  count--;
                 }
 
                 _context5.next = 20;
-                return sleep(5000);
+                return sleep(500);
 
               case 20:
                 c++;

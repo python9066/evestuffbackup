@@ -120,10 +120,11 @@ export default {
 
         var left = this.new_alliance_ids.length - this.p;
         if (left < 201) {
-          count = this.new_alliance_ids.length - 1;
+          count = this.new_alliance_ids.length;
+          count--;
         }
 
-        await sleep(5000);
+        await sleep(500);
       }
     },
 

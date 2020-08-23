@@ -14,9 +14,10 @@ class CreateAlliancesTable extends Migration
     public function up()
     {
         Schema::create('alliances', function (Blueprint $table) {
-            $table->id();
+            $table->id('id');
             $table->string('name',)->nullable();
             $table->string('ticker',)->nullable();
+            $table->boolean('active')->nullable();
             $table->timestamps();
 
             $table->index('id');

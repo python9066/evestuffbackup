@@ -18,4 +18,9 @@ class System extends Model
         return $this->belongsTo(Constellation::class);
     }
 
+    public function timers()
+    {
+        return $this->hasMany(Structure::class);
+    }
+
 }

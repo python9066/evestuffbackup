@@ -14,13 +14,13 @@ class CreateStructuresTable extends Migration
     public function up()
     {
         Schema::create('structures', function (Blueprint $table) {
+            $table->id('id');
             $table->foreignId('alliance_id');
             $table->foreignId('system_id');
-            $table->foreignId('structure_id');
-            $table->foreignId('structure_type_id');
-            $table->float('amd');
-            $table->dateTimeTz('vulnerable_end_time',);
-            $table->dateTimeTz('vulnerable_start_time',);
+            $table->foreignId('item_id');
+            $table->float('amd')->nullable();
+            $table->dateTime('vulnerable_end_time',)->nullable();
+            $table->dateTime('vulnerable_start_time',)->nullable();
             $table->timestamps();
         });
     }

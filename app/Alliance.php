@@ -12,5 +12,7 @@ class Alliance extends Model
     {
         return $this->hasMany(Post::class)->orderBy('created_at','DESC');
     }
+    public $incrementing = false;
+    protected $primaryKey = 'id';
 
 }
