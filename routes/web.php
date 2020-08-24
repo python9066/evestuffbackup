@@ -23,6 +23,7 @@ Route::get('/test', 'AppController@test');
 Route::get('/getNewAllianceIDs', 'AllianceController@getnewAllianceIDs');
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/timers', 'HomeController@index');
+Route::get('/auth', 'HomeController@auth');
 Route::get('/{any}', 'AppController@index')->where('any', '.*');
 
 

@@ -2352,8 +2352,75 @@ module.exports = {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vue_click_outside__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-click-outside */ "./node_modules/vue-click-outside/index.js");
-/* harmony import */ var vue_click_outside__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue_click_outside__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _event_bus__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../event-bus */ "./resources/js/event-bus.js");
+/* harmony import */ var vue_click_outside__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-click-outside */ "./node_modules/vue-click-outside/index.js");
+/* harmony import */ var vue_click_outside__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vue_click_outside__WEBPACK_IMPORTED_MODULE_1__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -2485,9 +2552,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
+      loading2: false,
       navdrawer: null
     };
   },
@@ -2497,8 +2566,11 @@ __webpack_require__.r(__webpack_exports__);
     gotoCovid: function gotoCovid() {
       this.$router.push("/covid");
     },
+    updatebutton: function updatebutton() {
+      this.loading2 = true;
+    },
     logout: function logout() {
-      console.log('logout');
+      console.log("logout");
       axios.post("/logout").then(function () {
         window.location.href = "/login";
       })["catch"](function (error) {
@@ -2619,6 +2691,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
 
 
 
@@ -2638,6 +2714,7 @@ function sleep(ms) {
       check: "not here",
       loading: true,
       endcount: "",
+      componentKey: 0,
       headers: [{
         text: "Region",
         value: "region"
@@ -2664,7 +2741,7 @@ function sleep(ms) {
         value: "end"
       }, {
         text: "Countdown",
-        value: "countdown"
+        value: "count"
       } // { text: "Vulernable End Time", value: "vulnerable_end_time" }
       ]
     };
@@ -2722,9 +2799,7 @@ function sleep(ms) {
             value = _ref2[1];
 
         // Adds leading zero
-        var digits = value < 10 ? "0".concat(value) : value; // uses singular form when the value is less than 2
-
-        var word = value < 2 ? key.replace(/s$/, '') : key;
+        var digits = value < 10 ? "0".concat(value) : value;
         props[key] = "".concat(digits);
       });
       return props;
@@ -2743,6 +2818,9 @@ function sleep(ms) {
     },
     fromNowEnd: function fromNowEnd(item) {
       return moment__WEBPACK_IMPORTED_MODULE_2___default()(item.end);
+    },
+    handleCountdownEnd: function handleCountdownEnd() {
+      this.componentKey += 1;
     }
   }
 });
@@ -2768,6 +2846,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var querystring__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! querystring */ "./node_modules/querystring-es3/index.js");
 /* harmony import */ var querystring__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(querystring__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _event_bus__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../event-bus */ "./resources/js/event-bus.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -2775,8 +2854,7 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 //
-//
-//
+
 
 
 
@@ -2795,6 +2873,7 @@ function sleep(ms) {
       timer_data: [],
       all_alliance_ids: [],
       all_system_ids: [],
+      loading2: null,
       system_fetch_ids: [],
       system_fetch: [],
       alliance_fetch: [],
@@ -2880,8 +2959,12 @@ function sleep(ms) {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
+                _this2.loading2 = true;
+
+                _this2.$emit('updatebutton');
+
                 _this2.all_alliance_ids = [];
-                _context2.next = 3;
+                _context2.next = 5;
                 return axios.get("https://esi.evetech.net/dev/alliances/?datasource=tranquility").then(function (res) {
                   if (res.status == 200) {
                     for (var i = 0; i < res.data.length; i++) {
@@ -2890,10 +2973,10 @@ function sleep(ms) {
                   }
                 });
 
-              case 3:
+              case 5:
                 res = _context2.sent;
 
-              case 4:
+              case 6:
               case "end":
                 return _context2.stop();
             }
@@ -3112,8 +3195,12 @@ function sleep(ms) {
 
               case 3:
                 alliance_data = _context8.sent;
+                // this.saving_alliance_data = false;
+                _this8.loading2 = false;
 
-              case 4:
+                _this8.$emit('updatebutton', _this8.loading2);
+
+              case 6:
               case "end":
                 return _context8.stop();
             }
@@ -61706,7 +61793,7 @@ var render = function() {
               _vm._v(" "),
               _c(
                 "v-list-item",
-                { attrs: { link: "" } },
+                { attrs: { link: "", to: "/systems" } },
                 [
                   _c(
                     "v-list-item-action",
@@ -61722,7 +61809,7 @@ var render = function() {
                     "v-list-item-content",
                     [
                       _c("v-list-item-title", { staticClass: "grey--text" }, [
-                        _vm._v("Menu")
+                        _vm._v("Systems")
                       ])
                     ],
                     1
@@ -61767,7 +61854,7 @@ var render = function() {
       _c(
         "v-app-bar",
         {
-          staticClass: "top-border--teal",
+          staticClass: "top-border--orange",
           attrs: {
             height: "100px",
             app: "",
@@ -61789,7 +61876,7 @@ var render = function() {
             "v-toolbar-title",
             { staticClass: "pl-15" },
             [
-              _c("span", {}, [_vm._v("Eve Appppp")]),
+              _c("span", {}, [_vm._v("Eve App")]),
               _vm._v(" "),
               _c(
                 "v-avatar",
@@ -61810,12 +61897,12 @@ var render = function() {
           this.$vuetify.breakpoint.mdAndUp
             ? _c(
                 "v-btn",
-                { staticClass: "mr-2", attrs: { text: "", to: "/timers" } },
+                { staticClass: "mr-2", attrs: { text: "", to: "/" } },
                 [
                   _c("v-icon", { staticClass: "mr-2 grey--text lighten-1" }, [
                     _vm._v("fa fa-rocket")
                   ]),
-                  _vm._v("Timers\n\t\t")
+                  _vm._v("Home\n        ")
                 ],
                 1
               )
@@ -61824,12 +61911,16 @@ var render = function() {
           this.$vuetify.breakpoint.mdAndUp
             ? _c(
                 "v-btn",
-                { staticClass: "mr-2", attrs: { text: "", to: "/updates" } },
+                {
+                  staticClass: "mr-2",
+                  attrs: { text: "", loading: _vm.loading2, to: "/updates" },
+                  on: { updatebutton: _vm.updatebutton }
+                },
                 [
                   _c("v-icon", { staticClass: "mr-2 grey--text lighten-1" }, [
                     _vm._v("fa fa-satellite-dish")
                   ]),
-                  _vm._v("Update\n\t\t")
+                  _vm._v("Updates\n        ")
                 ],
                 1
               )
@@ -61912,7 +62003,7 @@ var render = function() {
                                 { staticClass: "mr-2 grey--text lighten-2" },
                                 [_vm._v("far fa-check-circle")]
                               ),
-                              _vm._v("Menu choice\n\t\t\t\t\t\t")
+                              _vm._v("Menu choice\n                        ")
                             ],
                             1
                           )
@@ -61931,7 +62022,7 @@ var render = function() {
                                 { staticClass: "mr-2 grey--text lighten-2" },
                                 [_vm._v("far fa-check-circle")]
                               ),
-                              _vm._v("Menu choice\n\t\t\t\t\t\t")
+                              _vm._v("Menu choice\n                        ")
                             ],
                             1
                           )
@@ -61950,7 +62041,7 @@ var render = function() {
                                 { staticClass: "mr-2 grey--text lighten-2" },
                                 [_vm._v("far fa-check-circle")]
                               ),
-                              _vm._v("Menu choice\n\t\t\t\t\t\t")
+                              _vm._v("Menu choice\n                        ")
                             ],
                             1
                           )
@@ -61968,6 +62059,8 @@ var render = function() {
                     [
                       _c("v-spacer"),
                       _vm._v(" "),
+                      _c("hi", { on: { updatebutton: _vm.updatebutton } }),
+                      _vm._v(" "),
                       _c(
                         "v-btn",
                         {
@@ -61983,7 +62076,7 @@ var render = function() {
                           _c("v-icon", { staticClass: "mr-2" }, [
                             _vm._v("fa-sign-out-alt")
                           ]),
-                          _vm._v("Log Out\n\t\t\t\t\t")
+                          _vm._v("Log Out\n                    ")
                         ],
                         1
                       )
@@ -62002,7 +62095,7 @@ var render = function() {
       _vm._v(" "),
       _c(
         "v-main",
-        { staticClass: "pb-0" },
+        { staticClass: "pb-10" },
         [
           _c(
             "v-fade-transition",
@@ -62086,6 +62179,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
+    { staticClass: " pr-16 pl-16" },
     [
       _c("v-card-title", [_vm._v("Vulnerability Windows ")]),
       _vm._v(" "),
@@ -62096,24 +62190,31 @@ var render = function() {
           items: _vm.timers,
           "item-key": "id",
           loading: _vm.loading,
-          "items-per-page": 200,
+          "items-per-page": 5,
           "sort-by": ["end", "region", "alliance"],
           "sort-desc": [false, true],
           "multi-sort": ""
         },
         scopedSlots: _vm._u([
           {
-            key: "item.countdown",
+            key: "item.count",
             fn: function(ref) {
               var item = ref.item
               return [
                 _vm.endCounterDown(item) > 0
                   ? _c("countdown", {
+                      key: _vm.componentKey,
+                      ref: "countdown",
                       staticClass: "red--text",
                       attrs: {
                         time: _vm.endCounterDown(item),
                         "auto-start": "",
                         transform: _vm.transform
+                      },
+                      on: {
+                        end: function($event) {
+                          return _vm.handleCountdownEnd()
+                        }
                       },
                       scopedSlots: _vm._u(
                         [
@@ -62138,7 +62239,9 @@ var render = function() {
                         true
                       )
                     })
-                  : _vm._e()
+                  : _c("div", { attrs: { id: "closed" } }, [
+                      _vm._v(" WINDOW CLOSED ")
+                    ])
               ]
             }
           }
@@ -62170,7 +62273,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [_vm._v("Some stuff")])
+  return _c("div")
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -122844,6 +122947,23 @@ window.axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js")
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     forceTLS: true
 // });
+
+/***/ }),
+
+/***/ "./resources/js/event-bus.js":
+/*!***********************************!*\
+  !*** ./resources/js/event-bus.js ***!
+  \***********************************/
+/*! exports provided: EventBus */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "EventBus", function() { return EventBus; });
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
+
+var EventBus = new vue__WEBPACK_IMPORTED_MODULE_0___default.a();
 
 /***/ }),
 

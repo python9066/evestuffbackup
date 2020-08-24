@@ -11,9 +11,7 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
-    <style type="text/css">
-        body { background: #121212 !important; } /* Adding !important forces the browser to overwrite the default style applied by Bootstrap */
-     </style>
+
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">

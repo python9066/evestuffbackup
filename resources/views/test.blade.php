@@ -6,7 +6,7 @@
 {{-- @foreach ($system as $system)
 <div>{{$system->region->region_name}} - {{$system->constellation->constellation_name}}  - {{$system->system_name}}</div>
 @endforeach --}}
-
+{{$code}}
 </div>
 </div>
 @endsection

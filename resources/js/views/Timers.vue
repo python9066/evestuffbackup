@@ -1,29 +1,33 @@
 <template>
-    <div>
+    <div class=" pr-16 pl-16">
         <v-card-title>Vulnerability Windows </v-card-title>
         <v-data-table
             :headers="headers"
             :items="timers"
             item-key="id"
             :loading="loading"
-            :items-per-page="200"
+            :items-per-page="5"
             :sort-by="['end', 'region', 'alliance']"
             :sort-desc="[false, true]"
             multi-sort
             class="elevation-1"
         >
-<template v-slot:item.countdown="{ item }">
+<template v-slot:item.count="{ item }">
  <countdown
+                            :key="componentKey"
+                            ref="countdown"
 							v-if="endCounterDown(item) > 0"
 							:time="endCounterDown(item)"
 							auto-start
-							class="red--text"
+                            class="red--text"
+                            @end="handleCountdownEnd()"
                             :transform="transform"
 						>
 							<template slot-scope="props">
 								{{ props.hours }}:{{ props.minutes }}:{{ props.seconds }}
 							</template>
 						</countdown>
+                        <div id="closed" v-else> WINDOW CLOSED </div>
             </template>
         </v-data-table>
     </div>
@@ -48,6 +52,7 @@ export default {
             check: "not here",
             loading: true,
             endcount:"",
+            componentKey: 0,
 
             headers: [
                 { text: "Region", value: "region" },
@@ -58,7 +63,7 @@ export default {
                 { text: "Structure", value: "type" },
                 { text: "ADM", value: "adm" },
                 { text: "End", value: "end" },
-                { text: "Countdown", value: "countdown" }
+                { text: "Countdown", value: "count" }
 
                 // { text: "Vulernable End Time", value: "vulnerable_end_time" }
             ]
@@ -94,10 +99,6 @@ export default {
       Object.entries(props).forEach(([key, value]) => {
         // Adds leading zero
         const digits = value < 10 ? `0${value}` : value;
-
-        // uses singular form when the value is less than 2
-        const word = value < 2 ? key.replace(/s$/, '') : key;
-
         props[key] = `${digits}`;
       });
 
@@ -128,7 +129,15 @@ export default {
         },
         fromNowEnd(item) {
             return moment(item.end);
+        },
+
+        handleCountdownEnd() {
+          this.componentKey += 1;
         }
+
+
+
+
     }
 };
 
