@@ -1,26 +1,36 @@
 <template>
-    <div>Timer
-
-<v-data-table dense
-    :headers="headers"
-    :items="timers"
-    item-key="id"
-    :loading="loading"
-    :items-per-page="200"
-    :sort-by="['end','region','alliance']"
-    :sort-desc="[false, true]"
-    multi-sort
-    class="elevation-1"
-  ></v-data-table>
-
-
-<!-- <template>
-  <v-data-table item-key="name" class="elevation-1" loading loading-text="Loading... Please wait"></v-data-table>
-</template> -->
-
-
+    <div>
+        <v-card-title>Vulnerability Windows </v-card-title>
+        <v-data-table
+            :headers="headers"
+            :items="timers"
+            item-key="id"
+            :loading="loading"
+            :items-per-page="200"
+            :sort-by="['end', 'region', 'alliance']"
+            :sort-desc="[false, true]"
+            multi-sort
+            class="elevation-1"
+        >
+<template v-slot:item.countdown="{ item }">
+ <countdown
+							v-if="endCounterDown(item) > 0"
+							:time="endCounterDown(item)"
+							auto-start
+							class="red--text"
+                            :transform="transform"
+						>
+							<template slot-scope="props">
+								{{ props.hours }}:{{ props.minutes }}:{{ props.seconds }}
+							</template>
+						</countdown>
+            </template>
+        </v-data-table>
     </div>
 
+    <!-- <template>
+  <v-data-table item-key="name" class="elevation-1" loading loading-text="Loading... Please wait"></v-data-table>
+</template> -->
 </template>
 <script>
 import Axios from "axios";
@@ -35,8 +45,9 @@ export default {
     data() {
         return {
             timers: [],
-            check:"not here",
-            loading:true,
+            check: "not here",
+            loading: true,
+            endcount:"",
 
             headers: [
                 { text: "Region", value: "region" },
@@ -47,6 +58,7 @@ export default {
                 { text: "Structure", value: "type" },
                 { text: "ADM", value: "adm" },
                 { text: "End", value: "end" },
+                { text: "Countdown", value: "countdown" }
 
                 // { text: "Vulernable End Time", value: "vulnerable_end_time" }
             ]
@@ -66,15 +78,57 @@ export default {
         // await this.matchLatesttoNames();
     },
     methods: {
+
+
         async getTimerData() {
-			this.loading = true;
-			await axios.get("/getTimerData").then(res => {
-				if (res.status == 200) {
-					this.timers = res.data.timers;
-				}
-				this.loading = false;
-			});
-		},
+            this.loading = true;
+            await axios.get("/getTimerData").then(res => {
+                if (res.status == 200) {
+                    this.timers = res.data.timers;
+                }
+                this.loading = false;
+            });
+        },
+
+        transform(props) {
+      Object.entries(props).forEach(([key, value]) => {
+        // Adds leading zero
+        const digits = value < 10 ? `0${value}` : value;
+
+        // uses singular form when the value is less than 2
+        const word = value < 2 ? key.replace(/s$/, '') : key;
+
+        props[key] = `${digits}`;
+      });
+
+      return props;
+    },
+
+        endCounterDown(item) {
+            var today = new Date();
+            var date =
+                today.getUTCFullYear() +
+                "-" +
+                (today.getUTCMonth() + 1) +
+                "-" +
+                today.getUTCDate();
+            var time =
+                today.getUTCHours() +
+                ":" +
+                today.getUTCMinutes() +
+                ":" +
+                today.getUTCSeconds();
+            var dateTime = date + " " + time;
+            var a = moment(item.end);
+            var b = moment(dateTime);
+            return a.diff(b);
+        },
+        fromNowStart(item) {
+            return moment(item.start);
+        },
+        fromNowEnd(item) {
+            return moment(item.end);
+        }
     }
 };
 

@@ -12,6 +12,10 @@ import router from "./router";
 import store from "./store";
 import App from "./views/App";
 import colors from "vuetify/lib/util/colors";
+import VueCountdown from '@chenfengyuan/vue-countdown';
+
+Vue.component(VueCountdown.name, VueCountdown);
+
 
 
 /**
