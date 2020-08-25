@@ -9,7 +9,7 @@ use App\Auth;
 use App\Structure;
 use GuzzleHttp\Client;
 use App\Http\Controllers\AuthController;
-
+//hierhere
 class AllianceController extends Controller
 {
     public function saveAllianceIDs(Request $request)
