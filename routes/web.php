@@ -22,10 +22,11 @@ Route::get('/getTimerData','TimerController@getTimerData');
 Route::get('/timers', 'HomeController@index');
 
 Route::get('/getAuthCheck', 'AuthController@authcheck');
-Route::get('//getAuthURL', 'AuthController@authURL');
+Route::get('/AuthURL', 'AuthController@authURL');
 
 
 Route::get('/getNewAllianceIDs', 'AllianceController@getnewAllianceIDs');
+Route::get('/party', 'HomeController@party');
 
 
 Route::get('/home', 'HomeController@index')->name('home');

@@ -15,7 +15,7 @@ class CreateAuthsTable extends Migration
     {
         Schema::create('auths', function (Blueprint $table) {
             $table->id();
-            $table->string("access_token");
+            $table->string("access_token",1000);
             $table->string("refresh_token");
             $table->dateTime('expire_date');
         });
