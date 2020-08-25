@@ -1,45 +1,51 @@
 <template>
     <div class=" pr-16 pl-16">
         <div class=" d-flex align-items-center">
-        <v-card-title>Vulnerability Windows </v-card-title>
-        <v-btn
-        :loading="loading3"
-        :disabled="loading3"
-        color="primary"
-        class="ma-2 white--text"
-        @click="loading3 = true; getTimerData()"
-      >
-        Update
-        <v-icon right dark>fas fa-sync-alt fa-xs</v-icon>
-      </v-btn>
+            <v-card-title>Vulnerability Windows fefefe </v-card-title>
+            <v-btn
+                :loading="loading3"
+                :disabled="loading3"
+                color="primary"
+                class="ma-2 white--text"
+                @click="
+                    loading3 = true;
+                    getTimerData();
+                "
+            >
+                Update
+                <v-icon right dark>fas fa-sync-alt fa-xs</v-icon>
+            </v-btn>
         </div>
         <v-data-table
             :headers="headers"
             :items="timers"
             item-key="id"
             :loading="loading"
-            :items-per-page="5"
+            :items-per-page="25"
             :sort-by="['end', 'region', 'alliance']"
             :sort-desc="[false, true]"
             multi-sort
             class="elevation-1"
         >
-<template v-slot:item.count="{ item }">
- <countdown
-                            :key="componentKey"
-                            ref="countdown"
-							v-if="endCounterDown(item) > 0"
-							:time="endCounterDown(item)"
-							auto-start
-                            class="red--text"
-                            @end="handleCountdownEnd()"
-                            :transform="transform"
-						>
-							<template slot-scope="props">
-								{{ props.hours }}:{{ props.minutes }}:{{ props.seconds }}
-							</template>
-						</countdown>
-                        <div id="closed" v-else> WINDOW CLOSED </div>
+
+            <template v-slot:item.count="{ item }">
+                <countdown
+                    :key="componentKey"
+                    ref="countdown"
+                    v-if="endCounterDown(item) > 0"
+                    :time="endCounterDown(item)"
+                    auto-start
+                    class="red--text"
+                    @end="handleCountdownEnd()"
+                    :transform="transform"
+                >
+                    <template slot-scope="props">
+                        {{ props.hours }}:{{ props.minutes }}:{{
+                            props.seconds
+                        }}
+                    </template>
+                </countdown>
+                <div id="closed" v-else>WINDOW CLOSED</div>
             </template>
         </v-data-table>
     </div>
@@ -64,7 +70,7 @@ export default {
             check: "not here",
             loading: true,
             loading3: true,
-            endcount:"",
+            endcount: "",
             componentKey: 0,
 
             headers: [
@@ -96,8 +102,6 @@ export default {
         // await this.matchLatesttoNames();
     },
     methods: {
-
-
         async getTimerData() {
             this.loading = true;
             await axios.get("/getTimerData").then(res => {
@@ -110,14 +114,14 @@ export default {
         },
 
         transform(props) {
-      Object.entries(props).forEach(([key, value]) => {
-        // Adds leading zero
-        const digits = value < 10 ? `0${value}` : value;
-        props[key] = `${digits}`;
-      });
+            Object.entries(props).forEach(([key, value]) => {
+                // Adds leading zero
+                const digits = value < 10 ? `0${value}` : value;
+                props[key] = `${digits}`;
+            });
 
-      return props;
-    },
+            return props;
+        },
 
         endCounterDown(item) {
             var today = new Date();
@@ -146,12 +150,8 @@ export default {
         },
 
         handleCountdownEnd() {
-          this.componentKey += 1;
+            this.componentKey += 1;
         }
-
-
-
-
     }
 };
 

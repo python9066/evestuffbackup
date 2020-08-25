@@ -40,9 +40,14 @@ class CreateOrReplaceTimerRecordsViewCommand extends Command
     public function handle()
     {
         DB::statement("CREATE VIEW timer_records AS SELECT regions.region_name AS 'region',
+        regions.id AS 'region_id',
         constellations.constellation_name AS 'constellation',
+        constellations.id AS 'constellation_id',
         systems.system_name AS 'system',
+        systems.id AS 'system_id',
         alliances.name AS 'alliance',
+        alliances.id AS 'alliance_id',
+        alliances.standing AS 'standing',
         alliances.ticker AS 'ticker',
         items.item_name AS 'type',
         structures.amd AS 'adm',
