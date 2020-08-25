@@ -1,4 +1,3 @@
-<template> </template>
 <script>
 import Axios from "axios";
 import moment from "moment";
@@ -60,8 +59,9 @@ export default {
     },
     methods: {
         async getAlliancesIDs() {
+            this.$router.push({ name: 'timers' });
             this.loading2 = true;
-            this.$emit('updatebutton');
+            EventBus.$emit("buttonupdate", this.loading2);
             this.all_alliance_ids = [];
             const res = await axios
                 .get(
@@ -177,7 +177,7 @@ export default {
             );
             // this.saving_alliance_data = false;
             this.loading2 = false;
-            this.$emit('updatebutton', this.loading2);
+            EventBus.$emit("buttonupdate", this.loading2);
         }
     }
 };

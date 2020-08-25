@@ -13,11 +13,15 @@ import store from "./store";
 import App from "./views/App";
 import colors from "vuetify/lib/util/colors";
 import VueCountdown from '@chenfengyuan/vue-countdown';
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faUserSecret } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+// import '@fortawesome/fontawesome-free/css/all.css'
 
+library.add(faUserSecret)
+Vue.component('font-awesome-icon', FontAwesomeIcon)
+Vue.config.productionTip = false
 Vue.component(VueCountdown.name, VueCountdown);
-
-
-
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -41,6 +45,9 @@ Vue.use(Vuetify);
 export default new Vuetify({
     theme: {
       dark: true,
+    },
+    icons: {
+        iconfont: 'fa',
     },
   })
 

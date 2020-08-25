@@ -1,5 +1,6 @@
 <template>
     <v-app id="teamfcat">
+        <font-awesome-icon icon="user-secret" />
         <v-navigation-drawer
             stateless
             v-model="navdrawer"
@@ -12,7 +13,7 @@
                 <v-list-item link to="/">
                     <v-list-item-action>
                         <v-icon class="grey--icon grey--text"
-                            >mdi-view-dashboard</v-icon
+                            >fas fa-arrow-right fa-xs</v-icon
                         >
                     </v-list-item-action>
                     <v-list-item-content>
@@ -24,7 +25,7 @@
                 <v-list-item link to="/updates">
                     <v-list-item-action>
                         <v-icon class="grey--icon grey--text"
-                            >mdi-view-dashboard</v-icon
+                            >fas fa-arrow-right fa-xs</v-icon
                         >
                     </v-list-item-action>
                     <v-list-item-content>
@@ -36,7 +37,7 @@
                 <v-list-item link to="/alliances">
                     <v-list-item-action>
                         <v-icon class="grey--icon grey--text"
-                            >mdi-view-dashboard</v-icon
+                            >fas fa-arrow-right fa-xs</v-icon
                         >
                     </v-list-item-action>
                     <v-list-item-content>
@@ -48,7 +49,7 @@
                 <v-list-item link to="/systems">
                     <v-list-item-action>
                         <v-icon class="grey--icon grey--text"
-                            >mdi-view-dashboard</v-icon
+                            >fas fa-arrow-right fa-xs</v-icon
                         >
                     </v-list-item-action>
                     <v-list-item-content>
@@ -60,7 +61,7 @@
                 <v-list-item link>
                     <v-list-item-action>
                         <v-icon class="grey--icon grey--text"
-                            >mdi-view-dashboard</v-icon
+                            >fas fa-arrow-right fa-xs</v-icon
                         >
                     </v-list-item-action>
                     <v-list-item-content>
@@ -77,7 +78,7 @@
             app
             clipped-left
             elevate-on-scroll
-            class="top-border--orange"
+            class="top-border--orange  align-items-baseline"
         >
             <!-- <v-app-bar app clipped-left flat hide-on-scroll scroll-threshold="500" class="top-border--teal"> -->
             <v-app-bar-nav-icon
@@ -105,21 +106,19 @@
             <v-btn
                 text
                 class="mr-2"
-
-                @updatebutton="updatebutton"
                 :loading="loading2"
                 v-if="this.$vuetify.breakpoint.mdAndUp"
                 to="/updates"
             >
                 <v-icon class="mr-2 grey--text lighten-1"
-                    >fa fa-satellite-dish</v-icon
+                    >fas fa-sync-alt"</v-icon
                 >Updates
             </v-btn>
 
             <v-menu :nudge-width="200" offset-y>
                 <template v-slot:activator="{ on }">
                     <v-btn icon v-on="on">
-                        <v-icon>mdi-dots-vertical</v-icon>
+                        <v-icon>fas fa-ellipsis-v</v-icon>
                     </v-btn>
                 </template>
 
@@ -170,7 +169,7 @@
                     <v-divider></v-divider>
                     <v-card-actions>
                         <v-spacer></v-spacer>
-                        <hi @updatebutton="updatebutton" ></hi>
+
                         <v-btn small text @click.prevent="logout()">
                             <v-icon class="mr-2">fa-sign-out-alt</v-icon>Log Out
                         </v-btn>
@@ -206,17 +205,16 @@ export default {
         navdrawer: null
     }),
     created() {
-        // this.$vuetify.theme.dark = false;
+        EventBus.$on('buttonupdate', payload => {
+  this.loading2 = payload;
+});
     },
     methods: {
         gotoCovid() {
             this.$router.push("/covid");
         },
 
-        updatebutton(){
 
-            this.loading2=true
-        },
 
         logout() {
             console.log("logout");

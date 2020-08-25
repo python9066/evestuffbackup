@@ -1,6 +1,18 @@
 <template>
     <div class=" pr-16 pl-16">
+        <div class=" d-flex align-items-center">
         <v-card-title>Vulnerability Windows </v-card-title>
+        <v-btn
+        :loading="loading3"
+        :disabled="loading3"
+        color="primary"
+        class="ma-2 white--text"
+        @click="loading3 = true; getTimerData()"
+      >
+        Update
+        <v-icon right dark>fas fa-sync-alt fa-xs</v-icon>
+      </v-btn>
+        </div>
         <v-data-table
             :headers="headers"
             :items="timers"
@@ -51,6 +63,7 @@ export default {
             timers: [],
             check: "not here",
             loading: true,
+            loading3: true,
             endcount:"",
             componentKey: 0,
 
@@ -92,6 +105,7 @@ export default {
                     this.timers = res.data.timers;
                 }
                 this.loading = false;
+                this.loading3 = false;
             });
         },
 

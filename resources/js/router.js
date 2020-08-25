@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Home from './views/Home'
 import Updates from './views/Updates'
 import Timers from './views/Timers'
+import Buttonupdate from  './views/Buttonupdate'
 
 Vue.use(Router)
 
@@ -29,6 +30,11 @@ export default new Router({
         path: '/timers',
         name: 'timers',
         component: Timers
+      },
+      {
+        path: '/auth',
+        name: 'buttonupdate',
+        component: Buttonupdate
       },
     {
         path: '/updates',
