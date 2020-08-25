@@ -28,7 +28,7 @@ Route::get('/AuthURL', 'AuthController@authURL');
 Route::get('/getNewAllianceIDs', 'AllianceController@getnewAllianceIDs');
 Route::get('/party', 'HomeController@party');
 
-
+Route::get('/getAllianceStanding', 'AllianceController@getAllianceStanding');
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/test', 'AppController@test');
 Route::get('/{any}', 'AppController@index')->where('any', '.*');

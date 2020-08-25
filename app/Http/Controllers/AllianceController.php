@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Alliance;
+use App\Auth;
 use App\Structure;
+use GuzzleHttp\Client;
 
 class AllianceController extends Controller
 {
@@ -24,6 +26,28 @@ class AllianceController extends Controller
     {
 
         $data = Alliance::where('name', null)->pluck('id');
+
+
+        return $data;
+    }
+
+    public function getAllianceStanding()
+    {
+        $token = Auth::first();
+        $client= new Client();
+        $headers = [
+            'Authorization' => 'Bearer ' . $token->access_token,
+        ];
+        $response = $client->request('GET', 'https://esi.evetech.net/latest/alliances/1354830081/contacts/?datasource=tranquility',[
+            'headers' => $headers
+        ]);
+        $data = json_decode($response->getBody(), true);
+
+        foreach ($data as $var){
+                if($var['contact_type'] = 'alliance'){
+                    Alliance::where('id',$var['contact_id'])->update(['standing' => $var['standing']]);
+                };
+        };
 
 
         return $data;
