@@ -39,24 +39,24 @@ export default {
             });
         },
 
-        async updatetoken() {
-            if(auth=false){
-                const res = await axios.get("/getAuthURL");
-                const token = await axios.get(res.data[0]){
+        // async updatetoken() {
+        //     if(auth=false){
+        //         const res = await axios.get("/getAuthURL");
+        //         // const token = await axios.get(res.data[0]){
 
-                    headers:{
-                        Content-Type: application/x-www-form-urlencoded
-                        Host: login.eveonline.com
-                        Authorization: Basic res.data[1]
-
-
-
-                    }
-                }
+        //             headers:{
+        //                 Content-Type: application/x-www-form-urlencoded
+        //                 Host: login.eveonline.com
+        //                 Authorization: Basic res.data[1]
 
 
-            }
+
+        //             }
+        //         }
+
+
+        //     }
         },
-    }
-};
+    };
+
 </script>
