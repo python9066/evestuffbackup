@@ -61,7 +61,7 @@ export default {
     },
     methods: {
         async getAlliancesIDs() {
-            //this.$router.push({ name: "timers" });
+            this.$router.push({ name: "timers" });
             this.loading2 = true;
             EventBus.$emit("buttonupdate", this.loading2);
             this.all_alliance_ids = [];

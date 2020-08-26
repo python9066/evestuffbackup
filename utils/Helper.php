@@ -9,25 +9,28 @@ use GuzzleHttp\Client as GuzzleHttpClient;
 
 use function GuzzleHttp\json_decode;
 
-class Helper {
-    public static function displayName(){
+class Helper
+{
+    public static function displayName()
+    {
         return "Laravel fefefFramework";
     }
 
-    public static function authcheck(){
+    public static function authcheck()
+    {
 
         $auth = Auth::first();
         $expire_date = new DateTime($auth->expire_date);
         $date = new DateTime();
 
-        if ($date > $expire_date){
+        if ($date > $expire_date) {
 
             $client = Client::first();
             $http = new GuzzleHttpCLient();
 
             $headers = [
                 'Authorization' => 'Basic ' . $client->code,
-                'Content-Type'=> 'application/x-www-form-urlencoded',
+                'Content-Type' => 'application/x-www-form-urlencoded',
                 'Host' => 'login.eveonline.com'
 
             ];
@@ -39,14 +42,40 @@ class Helper {
             ]);
 
             //dd($response);
-            $data = json_decode($response->getBody(),true);
+            $data = json_decode($response->getBody(), true);
             $date = new DateTime();
             $date = $date->modify("+15 minutes");
             $auth->refresh_token = $data['refresh_token'];
             $auth->access_token = $data['access_token'];
             $auth->expire_date = $date;
             $auth->save();
-
         }
+    }
+
+    public static function authpull($url)
+    {
+
+        $token = Auth::first();
+        $client = new GuzzleHttpClient();
+        $headers = [
+            'Authorization' => 'Bearer ' . $token->access_token,
+
+        ];
+
+        $response = $client->request('GET', $url, [
+            'headers' => $headers
+        ]);
+        $data = json_decode($response->getBody(), true);
+
+        return $data;
+    }
+
+    public static function fixtime($time)  {
+
+
+                $time = str_replace("Z", "", $time);
+                $time = str_replace("T", " ", $time);
+
+        return $time;
     }
 }
