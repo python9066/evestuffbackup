@@ -9,20 +9,30 @@
                 class="ma-2 white--text"
                 @click="
                     loading3 = true;
-                    getTimerData();
+                    getTimerDataAll();
+                    getTimerDataBlue();
+                    getTimerDataRed();
                 "
             >
                 Update
                 <v-icon right dark>fas fa-sync-alt fa-xs</v-icon>
             </v-btn>
+             <v-text-field
+        v-model="search"
+        append-icon="mdi-magnify"
+        label="Search"
+        single-line
+        hide-details
+      ></v-text-field>
         </div>
         <v-data-table
             :headers="headers"
-            :items="timers"
+            :items="timersAll"
             item-key="id"
             :loading="loading"
-            :items-per-page="25"
+            :items-per-page="15"
             :sort-by="['end', 'region', 'alliance']"
+            :search="search"
             :sort-desc="[false, true]"
             multi-sort
             class="elevation-1"
@@ -75,12 +85,18 @@ function sleep(ms) {
 export default {
     data() {
         return {
-            timers: [],
+            timersAll: [],
+            timersRed: [],
+            timersBlue: [],
             check: "not here",
             loading: true,
             loading3: true,
             endcount: "",
+            search: '',
             componentKey: 0,
+            item:"timersAll",
+
+
 
             headers: [
                 { text: "Region", value: "region" },
@@ -100,7 +116,9 @@ export default {
     async mounted() {
         // await this.getLatest();
         // await this.getSystems();
-        await this.getTimerData();
+        await this.getTimerDataAll();
+        await this.getTimerDataBlue();
+        await this.getTimerDataRed();
         // await this.saveAlliancesID();
         // await this.getNewAllianceIDs();
         // await this.getNewAlliacneData();
@@ -111,11 +129,31 @@ export default {
         // await this.matchLatesttoNames();
     },
     methods: {
-        async getTimerData() {
+        async getTimerDataAll() {
             this.loading = true;
-            await axios.get("/getTimerData").then(res => {
+            await axios.get("/getTimerData?s=all").then(res => {
                 if (res.status == 200) {
-                    this.timers = res.data.timers;
+                    this.timersAll = res.data.timers;
+                }
+
+            });
+        },
+
+        async getTimerDataBlue() {
+            this.loading = true;
+            await axios.get("/getTimerData?s=blue").then(res => {
+                if (res.status == 200) {
+                    this.timersBlue = res.data.timers;
+                }
+
+            });
+        },
+
+        async getTimerDataRed() {
+            this.loading = true;
+            await axios.get("/getTimerData?s=red").then(res => {
+                if (res.status == 200) {
+                    this.timersRed = res.data.timers;
                 }
                 this.loading = false;
                 this.loading3 = false;
@@ -167,5 +205,7 @@ export default {
 };
 
 computed: {
+
+
 }
 </script>
