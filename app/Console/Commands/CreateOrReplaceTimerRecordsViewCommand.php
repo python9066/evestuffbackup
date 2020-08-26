@@ -49,6 +49,7 @@ class CreateOrReplaceTimerRecordsViewCommand extends Command
         alliances.id AS 'alliance_id',
         alliances.standing AS 'standing',
         alliances.ticker AS 'ticker',
+        alliances.url AS 'url',
         items.item_name AS 'type',
         structures.amd AS 'adm',
         structures.vulnerable_start_time AS 'start',

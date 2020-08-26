@@ -1,7 +1,7 @@
 <template>
     <div class=" pr-16 pl-16">
         <div class=" d-flex align-items-center">
-            <v-card-title>Vulnerability Windows fefefe </v-card-title>
+            <v-card-title>Vulnerability Windows fefefefefe </v-card-title>
             <v-btn
                 :loading="loading3"
                 :disabled="loading3"
@@ -27,6 +27,15 @@
             multi-sort
             class="elevation-1"
         >
+        	<template v-slot:item.alliance="{item}">
+
+                       <!-- <v-img src="https://images.evetech.net/Alliance/1354830081_64.png"  style="height: inherit"></v-img> -->
+                       <v-avatar size="35"><img :src= item.url ></v-avatar>
+						<span v-if="item.standing > 0" class=" blue--text pl-3" >{{item.alliance}} </span>
+                        <span v-else-if="item.standing < 0" class="red--text pl-3" >{{item.alliance}} </span>
+                        <span v-else class="pl-3">{{item.alliance}} k {{item.standing}} </span>
+
+					</template>
 
             <template v-slot:item.count="{ item }">
                 <countdown
@@ -112,6 +121,8 @@ export default {
                 this.loading3 = false;
             });
         },
+
+
 
         transform(props) {
             Object.entries(props).forEach(([key, value]) => {

@@ -19,6 +19,7 @@ class CreateAlliancesTable extends Migration
             $table->string('ticker',)->nullable();
             $table->float('standing')->nullable()->default(0.0);
             $table->boolean('active')->nullable();
+            $table->string('url',)->nullable();
             $table->timestamps();
 
             $table->index('id');

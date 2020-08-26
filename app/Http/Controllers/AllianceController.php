@@ -34,7 +34,7 @@ class AllianceController extends Controller
 
     public function getAllianceStanding()
     {
-        AuthURL();
+
         $token = Auth::first();
         $client= new Client();
         $headers = [
@@ -51,6 +51,7 @@ class AllianceController extends Controller
                 };
         };
 
+        Alliance::where('id','1354830081')->update(['standing' => 10]);
 
         return $data;
     }
@@ -65,12 +66,14 @@ class AllianceController extends Controller
             $id = $var['id'];
             $name  = $var['name'];
             $ticker  = $var['ticker'];
+            $url = "https://images.evetech.net/Alliance/".$id."_64.png";
             // 'created_at' => now(),
             // 'updated_at' => now()
 
             $new = Alliance::where('id', $id)->update([
                 'name' => $name,
-                'ticker' => $ticker
+                'ticker' => $ticker,
+                'url' => $url
             ]);
         }
     }
