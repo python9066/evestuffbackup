@@ -9,6 +9,7 @@ use App\Auth;
 use App\Structure;
 use GuzzleHttp\Client;
 use App\Http\Controllers\AuthController;
+use utils\Helper\Helper;
 //hierhere
 class AllianceController extends Controller
 {
@@ -34,7 +35,7 @@ class AllianceController extends Controller
 
     public function getAllianceStanding()
     {
-
+        Helper::authcheck();
         $token = Auth::first();
         $client= new Client();
         $headers = [

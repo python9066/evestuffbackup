@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+use utils\Helper\Helper;
 
 Auth::routes();
 Route::post('/saveAllianceIDs', 'AllianceController@saveAllianceIDs');
@@ -33,6 +34,9 @@ Route::get('/party', 'HomeController@party');
 Route::get('/getAllianceStanding', 'AllianceController@getAllianceStanding');
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/test', 'AppController@test');
+Route::get('/helper', function () {
+    return Helper::displayName();
+});
 Route::get('/{any}', 'AppController@index')->where('any', '.*');
 
 
