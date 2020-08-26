@@ -23,8 +23,8 @@ Route::get('/getTimerData','TimerController@getTimerData');
 // Route::get('/getTimerData?s=red','TimerController@getTimerData');
 Route::get('/timers', 'HomeController@index');
 
-Route::get('/getAuthCheck', 'AuthController@authcheck');
-Route::get('/AuthURL', 'AuthController@authURL');
+
+Route::get('/AuthURL', 'AuthController@authcheck');
 
 
 Route::get('/getNewAllianceIDs', 'AllianceController@getnewAllianceIDs');
