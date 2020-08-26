@@ -39,8 +39,14 @@ class AllianceController extends Controller
         $url = 'https://esi.evetech.net/latest/alliances/1354830081/contacts/?datasource=tranquility';
         $data = Helper::authpull($url);
         foreach ($data as $var) {
+            if($var['standing'] >0){
+                $color = 2;
+            }else{
+                $color = 1;
+            }
             if ($var['contact_type'] = 'alliance') {
                 Alliance::where('id', $var['contact_id'])->update(['standing' => $var['standing']]);
+                Alliance::where('id', $var['contact_id'])->update(['color' => $color]);
             };
         };
 

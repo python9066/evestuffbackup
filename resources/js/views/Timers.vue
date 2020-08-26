@@ -1,7 +1,7 @@
 <template>
     <div class=" pr-16 pl-16">
         <div class=" d-flex align-items-center">
-            <v-card-title>Vulnerability Windows fefefefefe </v-card-title>
+            <v-card-title>Vulnerability Windows</v-card-title>
             <v-btn
                 :loading="loading3"
                 :disabled="loading3"
@@ -9,10 +9,7 @@
                 class="ma-2 white--text"
                 @click="
                     loading3 = true;
-                    getTimerDataAll();
-                    getTimerDataBlue();
-                    getTimerDataRed();
-                "
+                    getTimerDataAll()                "
             >
                 Update
                 <v-icon right dark>fas fa-sync-alt fa-xs</v-icon>
@@ -24,14 +21,48 @@
         single-line
         hide-details
       ></v-text-field>
+
+      <v-btn-toggle
+        v-model="toggle_exclusive"
+        mandatory
+        :value="1">
+        <v-btn
+        :loading="loading3"
+        :disabled="loading3"
+        @click="buttonAll()"
+        >
+            All
+        </v-btn>
+        <v-btn
+        :loading="loading3"
+        :disabled="loading3"
+        @click="buttonGoon()"
+        >
+            Goons
+        </v-btn>
+        <v-btn
+        :loading="loading3"
+        :disabled="loading3"
+        @click="buttonFriendly()"
+        >
+            Friendly
+        </v-btn>
+        <v-btn
+        :loading="loading3"
+        :disabled="loading3"
+        @click="buttonHostile()"
+        >
+            Hostile
+        </v-btn>
+      </v-btn-toggle>
         </div>
         <v-data-table
             :headers="headers"
-            :items="timersAll"
+            :items="filteredItems"
             item-key="id"
             :loading="loading"
             :items-per-page="15"
-            :sort-by="['end', 'region', 'alliance']"
+            :sort-by="['end']"
             :search="search"
             :sort-desc="[false, true]"
             multi-sort
@@ -94,20 +125,23 @@ export default {
             endcount: "",
             search: '',
             componentKey: 0,
-            item:"timersAll",
+            f1:3,
+            f2:3,
+            f3:3,
+            toggle_exclusive: 1,
 
 
 
             headers: [
-                { text: "Region", value: "region" },
+                { text: "Region", value: "region", width: "10%"},
                 { text: "Constellation", value: "constellation" },
                 { text: "System", value: "system" },
-                { text: "Alliance", value: "alliance" },
+                { text: "Alliance", value: "alliance", width: "30%" },
                 { text: "Ticker", value: "ticker" },
                 { text: "Structure", value: "type" },
                 { text: "ADM", value: "adm" },
                 { text: "End", value: "end" },
-                { text: "Countdown", value: "count" }
+                { text: "Countdown", value: "count", sortable: false },
 
                 // { text: "Vulernable End Time", value: "vulnerable_end_time" }
             ]
@@ -117,8 +151,6 @@ export default {
         // await this.getLatest();
         // await this.getSystems();
         await this.getTimerDataAll();
-        await this.getTimerDataBlue();
-        await this.getTimerDataRed();
         // await this.saveAlliancesID();
         // await this.getNewAllianceIDs();
         // await this.getNewAlliacneData();
@@ -135,31 +167,11 @@ export default {
                 if (res.status == 200) {
                     this.timersAll = res.data.timers;
                 }
+            this.loading = false;
+            this.loading3 = false;
 
             });
         },
-
-        async getTimerDataBlue() {
-            this.loading = true;
-            await axios.get("/getTimerData?s=blue").then(res => {
-                if (res.status == 200) {
-                    this.timersBlue = res.data.timers;
-                }
-
-            });
-        },
-
-        async getTimerDataRed() {
-            this.loading = true;
-            await axios.get("/getTimerData?s=red").then(res => {
-                if (res.status == 200) {
-                    this.timersRed = res.data.timers;
-                }
-                this.loading = false;
-                this.loading3 = false;
-            });
-        },
-
 
 
         transform(props) {
@@ -200,12 +212,44 @@ export default {
 
         handleCountdownEnd() {
             this.componentKey += 1;
+        },
+
+        buttonAll(){
+            this.f1=1;
+            this.f2=2;
+            this.f3=3
+        },
+        buttonFriendly(){
+            this.f1=2;
+            this.f2=3;
+            this.f3=2;
+        },
+        buttonHostile(){
+            this.f1=1;
+            this.f2=1;
+            this.f3=1;
+        },
+        buttonGoon(){
+            this.f1=3;
+            this.f2=3;
+            this.f3=3;
         }
-    }
+
+    },
+    computed: {
+
+        filteredItems() {
+           return this.timersAll.filter(timerAll => timerAll.color == this.f1 || timerAll.color == this.f2 ||timerAll.color == this.f3 )
+           },
+
+    },
+
+
+
+
+
+
 };
 
-computed: {
 
-
-}
 </script>
