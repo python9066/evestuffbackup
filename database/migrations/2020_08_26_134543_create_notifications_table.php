@@ -17,9 +17,9 @@ class CreateNotificationsTable extends Migration
             $table->id();
             $table->foreignId('system_id');
             $table->foreignId('item_id');
-            $table->foreignId('type_id');
+            $table->foreignId('notification_type_id');
             $table->integer('status_id')->default(1);
-            $table->dateTime('timestap');
+            $table->dateTime('timestamp');
             $table->timestamps();
         });
     }

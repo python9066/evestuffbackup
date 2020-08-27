@@ -19,9 +19,9 @@ class Notification extends Model
        return $this->belongsTo(Item::class);
    }
 
-   public function type()
+   public function notification_type()
    {
-       return $this->belongsTo(Type::class);
+       return $this->belongsTo(Notification_type::class);
    }
 
    public function status()

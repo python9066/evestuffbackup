@@ -163,7 +163,7 @@ export default {
     methods: {
         async getTimerDataAll() {
             this.loading = true;
-            await axios.get("/getTimerData?s=all").then(res => {
+            await axios.get("/getTimerData").then(res => {
                 if (res.status == 200) {
                     this.timersAll = res.data.timers;
                 }

@@ -30,6 +30,7 @@ Route::get('/AuthURL', 'AuthController@authcheck');
 
 Route::get('/getNewAllianceIDs', 'AllianceController@getnewAllianceIDs');
 Route::get('/party', 'HomeController@party');
+Route::get('/party2', 'HomeController@party2');
 
 Route::get('/getAllianceStanding', 'AllianceController@getAllianceStanding');
 Route::get('/home', 'HomeController@index')->name('home');
