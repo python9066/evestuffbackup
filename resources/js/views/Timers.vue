@@ -9,7 +9,7 @@
                 class="ma-2 white--text"
                 @click="
                     loading3 = true;
-                    getTimerDataAll()                "
+                    getTimerDataAll()"
             >
                 Update
                 <v-icon right dark>fas fa-sync-alt fa-xs</v-icon>
@@ -29,28 +29,28 @@
         <v-btn
         :loading="loading3"
         :disabled="loading3"
-        @click="buttonAll()"
+        @click="colorflag = 4"
         >
             All
         </v-btn>
         <v-btn
         :loading="loading3"
         :disabled="loading3"
-        @click="buttonGoon()"
+        @click="colorflag = 3"
         >
             Goons
         </v-btn>
         <v-btn
         :loading="loading3"
         :disabled="loading3"
-        @click="buttonFriendly()"
+        @click="colorflag = 2"
         >
             Friendly
         </v-btn>
         <v-btn
         :loading="loading3"
         :disabled="loading3"
-        @click="buttonHostile()"
+        @click="colorflag = 1"
         >
             Hostile
         </v-btn>
@@ -125,10 +125,8 @@ export default {
             endcount: "",
             search: '',
             componentKey: 0,
-            f1:3,
-            f2:3,
-            f3:3,
             toggle_exclusive: 1,
+            colorflag:3,
 
 
 
@@ -214,32 +212,29 @@ export default {
             this.componentKey += 1;
         },
 
-        buttonAll(){
-            this.f1=1;
-            this.f2=2;
-            this.f3=3
-        },
-        buttonFriendly(){
-            this.f1=2;
-            this.f2=3;
-            this.f3=2;
-        },
-        buttonHostile(){
-            this.f1=1;
-            this.f2=1;
-            this.f3=1;
-        },
-        buttonGoon(){
-            this.f1=3;
-            this.f2=3;
-            this.f3=3;
-        }
+
 
     },
     computed: {
 
         filteredItems() {
-           return this.timersAll.filter(timerAll => timerAll.color == this.f1 || timerAll.color == this.f2 ||timerAll.color == this.f3 )
+            if(this.colorflag == 1){
+
+                return this.timersAll.filter(timerAll => timerAll.color == 1)
+
+            }else if (this.colorflag == 2 ){
+
+                return this.timersAll.filter(timerAll => timerAll.color > 1 )
+
+            }else if (this.colorflag == 3){
+
+                return this.timersAll.filter(timerAll => timerAll.color == 3 )
+
+            }else {
+
+                return this.timersAll
+
+            }
            },
 
     },
