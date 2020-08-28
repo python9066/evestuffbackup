@@ -196,10 +196,16 @@
 <script>
 import { EventBus } from "../event-bus";
 import ClickOutside from "vue-click-outside";
+import { mapState } from 'vuex';
 
 
 
 export default {
+    mounted(){
+
+
+
+    },
     data: () => ({
         loading2: false,
         navdrawer: null

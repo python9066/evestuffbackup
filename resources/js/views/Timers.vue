@@ -9,7 +9,7 @@
                 class="ma-2 white--text"
                 @click="
                     loading3 = true;
-                    getTimerDataAll()"
+                    loadtimers()"
             >
                 Update
                 <v-icon right dark>fas fa-sync-alt fa-xs</v-icon>
@@ -79,14 +79,16 @@
 					</template>
 
             <template v-slot:item.count="{ item }">
+
                 <countdown
                     :key="componentKey"
                     ref="countdown"
                     v-if="endCounterDown(item) > 0"
                     :time="endCounterDown(item)"
+                    :emit-events = true
                     auto-start
+                    @end="item.status=1, handleCountdownEnd(item)"
                     class="red--text"
-                    @end="handleCountdownEnd()"
                     :transform="transform"
                 >
                     <template slot-scope="props">
@@ -97,6 +99,9 @@
                 </countdown>
                 <div id="closed" v-else>WINDOW CLOSED</div>
             </template>
+            <v-data-footer
+            items-per-page-options = [25,50,100]
+            ></v-data-footer>
         </v-data-table>
     </div>
 
@@ -116,9 +121,7 @@ function sleep(ms) {
 export default {
     data() {
         return {
-            timersAll: [],
-            timersRed: [],
-            timersBlue: [],
+            //timersAll: [],
             check: "not here",
             loading: true,
             loading3: true,
@@ -147,8 +150,9 @@ export default {
     },
     async mounted() {
         // await this.getLatest();
+        this.loadtimers();
         // await this.getSystems();
-        await this.getTimerDataAll();
+        //await this.getTimerDataAll();
         // await this.saveAlliancesID();
         // await this.getNewAllianceIDs();
         // await this.getNewAlliacneData();
@@ -157,18 +161,27 @@ export default {
         // await this.sameTimers();
         // await this.setStructureTypes();
         // await this.matchLatesttoNames();
+
     },
     methods: {
-        async getTimerDataAll() {
-            this.loading = true;
-            await axios.get("/getTimerData").then(res => {
-                if (res.status == 200) {
-                    this.timersAll = res.data.timers;
-                }
-            this.loading = false;
-            this.loading3 = false;
+        // async getTimerDataAll() {
+        //     this.loading = true;
+        //     await axios.get("/getTimerData").then(res => {
+        //         if (res.status == 200) {
+        //             this.timersAll = res.data.timers;
+        //         }
+        //     this.loading = false;
+        //     this.loading3 = false;
 
-            });
+        //     });
+        // },
+
+      async  loadtimers ()
+        {
+          await  this.$store.dispatch('getTimerDataAll');
+            this.loading3 = false
+            this.loading = false
+
         },
 
 
@@ -209,33 +222,42 @@ export default {
         },
 
         handleCountdownEnd() {
-            this.componentKey += 1;
+            console.log("hi");
         },
+        // handleCountdownEnd(item) {
+        //     this.$store.dispatch('markOver',item);
+        // },
 
 
 
     },
     computed: {
 
+        // timersAll() {
+        //     return this.$store.state.timers
+        //     },
+
         filteredItems() {
             if(this.colorflag == 1){
 
-                return this.timersAll.filter(timerAll => timerAll.color == 1)
+                return this.$store.state.timers.filter((i) => i.color == 1 && i.status !== 1 )
 
             }else if (this.colorflag == 2 ){
 
-                return this.timersAll.filter(timerAll => timerAll.color > 1 )
+                return this.$store.state.timers.filter((i) => i.color > 1 && i.status !== 1)
 
             }else if (this.colorflag == 3){
 
-                return this.timersAll.filter(timerAll => timerAll.color == 3 )
+                return this.$store.state.timers.filter((i) => i.color == 3 && i.status !== 1)
 
             }else {
 
-                return this.timersAll
+                return this.$store.state.timers.filter((i) => i.status !== 1)
 
             }
            },
+
+
 
     },
 

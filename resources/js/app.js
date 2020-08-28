@@ -22,6 +22,7 @@ library.add(faUserSecret)
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 Vue.config.productionTip = false
 Vue.component(VueCountdown.name, VueCountdown);
+
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -44,6 +45,12 @@ Vue.use(Vuetify);
 
 export default new Vuetify({
     theme: {
+        light: {
+          a: colors.teal,
+          primary: colors.teal,
+          warning: "#F57C00",
+          "dark-orange": "#F57C00"
+        },
       dark: true,
     },
     icons: {

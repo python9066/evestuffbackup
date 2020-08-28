@@ -19,11 +19,11 @@ class TimerController extends Controller
 
 
 
-        $data = ['timers' => TimersRecord::all(),];
+        return [ 'timers' => TimersRecord::all()];
 
         //dd($query);
 
 
-        return $data;
+        //  $data->json();
     }
 }
