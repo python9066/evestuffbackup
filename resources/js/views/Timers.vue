@@ -233,10 +233,6 @@ export default {
     },
     computed: {
 
-        // timersAll() {
-        //     return this.$store.state.timers
-        //     },
-
         filteredItems() {
             if(this.colorflag == 1){
 
