@@ -19,6 +19,8 @@ class CreateTempNotifcationsTable extends Migration
             $table->foreignId('system_id');
             $table->foreignId('notification_type_id');
             $table->dateTime('timestamp');
+            $table->bigInteger('es_id');
+            $table->integer('status')->default(0);
             $table->timestamps();
         });
     }
