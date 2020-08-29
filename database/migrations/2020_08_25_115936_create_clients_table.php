@@ -18,6 +18,7 @@ class CreateClientsTable extends Migration
             $table->string('Client ID');
             $table->string ('Secret Key');
             $table->string ('code');
+            $table->timestamps();
         });
     }
 

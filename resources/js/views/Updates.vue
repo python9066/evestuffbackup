@@ -14,7 +14,7 @@ export default {
             timer_data: [],
             all_alliance_ids: [],
             all_system_ids: [],
-            loading2:null,
+            loading2: null,
             system_fetch_ids: [],
             system_fetch: [],
             alliance_fetch: [],
@@ -26,6 +26,8 @@ export default {
             system_data: [],
             system_data_length: 0,
             check: null,
+            limt:100,
+            limtTime:100,
 
             headers: [
                 { text: "Designation", value: "name", width: "35%" },
@@ -59,7 +61,7 @@ export default {
     },
     methods: {
         async getAlliancesIDs() {
-            this.$router.push({ name: 'timers' });
+            this.$router.push({ name: "timers" });
             this.loading2 = true;
             EventBus.$emit("buttonupdate", this.loading2);
             this.all_alliance_ids = [];
@@ -98,47 +100,36 @@ export default {
         },
 
         async getNewAlliacneData() {
-            var count = 0;
             this.alliance_data = [];
-            var loop = Math.ceil(this.new_alliance_ids.length / 100);
-            if (this.new_alliance_ids.length < 101) {
-                count = this.new_alliance_ids.length;
-            } else {
-                count = 100;
-            }
-            var p = 0;
-            for (var c = 0; c < loop; c++) {
-                for (var i = 0; i < count; i++) {
-                    this.url =
-                        "https://esi.evetech.net/latest/alliances/" +
-                        this.new_alliance_ids[p] +
-                        "/?datasource=tranquility";
-                    const res = await axios
-                        .get(this.url)
-                        .then(res => {
-                            if (res.status == 200) {
-                                res.data.id = this.new_alliance_ids[p];
-                                this.alliance_data.push(res.data);
-                                p++;
-                            }
-                        })
-                        .catch(res => {
-                            if (res.status == 500) {
-                                for (var w = 0; w < 10000; w++) {}
+            for (var i = 0; i < this.new_alliance_ids.length; i++) {
+                this.url =
+                    "https://esi.evetech.net/latest/alliances/" +
+                    this.new_alliance_ids[i] +
+                    "/?datasource=tranquility";
+                const res = await axios.get(this.url).then(res => {
+                    if (res.status == 200) {
+                        res.data.id = this.new_alliance_ids[i];
+                        this.alliance_data.push(res.data);
+                        this.limit = res.headers["x-esi-error-limit-remain"];
+                        this.limitTime =res.headers["x-esi-error-limit-reset"]*1000+5000;
+                        console.log(this.limit);
+                        console.log(this.limitTime);
+                    }
+                })
+                .catch(res => {
+
+                    if (res.status == 502 || res.status == 429 || res.status == 500) {
+                                i--
+
                                 return;
-                            } else if ((res.status = 502)) {
-                                return;
-                            }
-                        });
+                            };
+
+                });
+                if(this.limit < 50){
+                await sleep(this.limitTime);
+
                 }
 
-                var left = this.new_alliance_ids.length - this.p;
-                if (left < 101) {
-                    count = this.new_alliance_ids.length;
-                    count--;
-                }
-
-                await sleep(2500);
             }
         },
 

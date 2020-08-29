@@ -50,10 +50,14 @@ class CreateOrReplaceTimerRecordsViewCommand extends Command
         alliances.standing AS 'standing',
         alliances.ticker AS 'ticker',
         alliances.url AS 'url',
+        alliances.color AS 'color',
         items.item_name AS 'type',
         structures.amd AS 'adm',
         structures.vulnerable_start_time AS 'start',
-        structures.vulnerable_end_time as 'end'
+        structures.vulnerable_end_time as 'end',
+        structures.status as 'status',
+        structures.id as 'id'
+
         FROM structures
         JOIN alliances ON alliances.id = structures.alliance_id
         JOIN systems ON systems.id = structures.system_id

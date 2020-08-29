@@ -20,6 +20,7 @@ class CreateAlliancesTable extends Migration
             $table->float('standing')->nullable()->default(0.0);
             $table->boolean('active')->nullable();
             $table->string('url',)->nullable();
+            $table->integer('color')->nullable()->default(1);
             $table->timestamps();
 
             $table->index('id');

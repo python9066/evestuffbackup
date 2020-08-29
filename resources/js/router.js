@@ -40,7 +40,7 @@ export default new Router({
         path: '/updates',
         name: 'updates',
         component: Updates
-      }
+      },
 
   ],
   // scrollBehavior(to, from, savedPosition) {
