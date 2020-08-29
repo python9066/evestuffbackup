@@ -48,11 +48,6 @@ class HomeController extends Controller
                 $time=Helper::fixtime($time);
                 $result=array();
                 $data=array();
-                $data=array(
-                    'id' => $var['notification_id'],
-                    'timestamp' => $time,
-                    'notification_type_id' => 1
-                );
                 $text = $var['text'];
                 $text = explode("\n", $text);
                 $text= str_replace("solarSystemID","system_id",$text);
@@ -71,9 +66,16 @@ class HomeController extends Controller
                     $result[$keys[0]] = $item[0];
 
                 };
+                $si_id = $result['system_id'] . $result['item_id'];
 
-                //dd($result);
+                $data=array(
+                    'id' => $var['notification_id'],
+                    'timestamp' => $time,
+                    'notification_type_id' => 1,
+                    'si_id' => $si_id = (int)$si_id
+                );
                 $data2 = array_merge($data,$result);
+                // dd($data2);
                 Notification::firstOrCreate($data2);
                 // dd( $result,$data,$data2,$time2);
 
@@ -118,7 +120,7 @@ class HomeController extends Controller
 
         public function party2()
         {
-            $test = TimersRecord::all();
+            $test = Notification::all()->unique('brand');
             $test2 = $test->toJson();
             $data = ['timers' => $test,];
             $test3 = [$test];
