@@ -1,7 +1,23 @@
 <template>
     <div class=" pr-16 pl-16">
+    <template>
+    <vue-countdown-timer
+      @start_callback="startCallBack('event started')"
+      @end_callback="endCallBack('event ended')"
+      :start-time="'2020-08-29 09:00:00 UTC'"
+      :end-time="'2020-08-29 09:54:12 UTC'"
+      :interval="1000"
+      >
+      <template slot="countdown" slot-scope="scope">
+        <span class="red--text pl-3">{{scope.props.hours}}:{{scope.props.minutes}}:{{scope.props.seconds}}</span>
+      </template>
+    </vue-countdown-timer>  {{today}}
+ </template>
         <div class=" d-flex align-items-center">
-            <v-card-title>Vulnerability Windows</v-card-title>
+            <v-card-title>Vulnerability Windows  </v-card-title>
+
+
+
             <v-btn
                 :loading="loading3"
                 :disabled="loading3"
@@ -9,99 +25,93 @@
                 class="ma-2 white--text"
                 @click="
                     loading3 = true;
-                    loadtimers()"
+                    loadtimers();
+                "
             >
                 Update
                 <v-icon right dark>fas fa-sync-alt fa-xs</v-icon>
             </v-btn>
-             <v-text-field
-        v-model="search"
-        append-icon="mdi-magnify"
-        label="Search"
-        single-line
-        hide-details
-      ></v-text-field>
+            <v-text-field
+                v-model="search"
+                append-icon="mdi-magnify"
+                label="Search"
+                single-line
+                hide-details
+            ></v-text-field>
 
-      <v-btn-toggle
-        v-model="toggle_exclusive"
-        mandatory
-        :value="1">
-        <v-btn
-        :loading="loading3"
-        :disabled="loading3"
-        @click="colorflag = 4"
-        >
-            All
-        </v-btn>
-        <v-btn
-        :loading="loading3"
-        :disabled="loading3"
-        @click="colorflag = 3"
-        >
-            Goons
-        </v-btn>
-        <v-btn
-        :loading="loading3"
-        :disabled="loading3"
-        @click="colorflag = 2"
-        >
-            Friendly
-        </v-btn>
-        <v-btn
-        :loading="loading3"
-        :disabled="loading3"
-        @click="colorflag = 1"
-        >
-            Hostile
-        </v-btn>
-      </v-btn-toggle>
+            <v-btn-toggle v-model="toggle_exclusive" mandatory :value="1">
+                <v-btn
+                    :loading="loading3"
+                    :disabled="loading3"
+                    @click="colorflag = 4"
+                >
+                    All
+                </v-btn>
+                <v-btn
+                    :loading="loading3"
+                    :disabled="loading3"
+                    @click="colorflag = 3"
+                >
+                    Goons
+                </v-btn>
+                <v-btn
+                    :loading="loading3"
+                    :disabled="loading3"
+                    @click="colorflag = 2"
+                >
+                    Friendly
+                </v-btn>
+                <v-btn
+                    :loading="loading3"
+                    :disabled="loading3"
+                    @click="colorflag = 1"
+                >
+                    Hostile
+                </v-btn>
+            </v-btn-toggle>
         </div>
         <v-data-table
             :headers="headers"
             :items="filteredItems"
             item-key="id"
             :loading="loading"
-            :items-per-page="15"
+            :items-per-page="25"
             :sort-by="['end']"
             :search="search"
             :sort-desc="[false, true]"
             multi-sort
             class="elevation-1"
         >
-        	<template v-slot:item.alliance="{item}">
-
-                       <!-- <v-img src="https://images.evetech.net/Alliance/1354830081_64.png"  style="height: inherit"></v-img> -->
-                       <v-avatar size="35"><img :src= item.url ></v-avatar>
-						<span v-if="item.standing > 0" class=" blue--text pl-3" >{{item.alliance}} </span>
-                        <span v-else-if="item.standing < 0" class="red--text pl-3" >{{item.alliance}} </span>
-                        <span v-else class="pl-3">{{item.alliance}}</span>
-
-					</template>
+            <template v-slot:item.alliance="{ item }">
+                <!-- <v-img src="https://images.evetech.net/Alliance/1354830081_64.png"  style="height: inherit"></v-img> -->
+                <v-avatar size="35"><img :src="item.url"/></v-avatar>
+                <span v-if="item.standing > 0" class=" blue--text pl-3"
+                    >{{ item.alliance }}
+                </span>
+                <span v-else-if="item.standing < 0" class="red--text pl-3"
+                    >{{ item.alliance }}
+                </span>
+                <span v-else class="pl-3">{{ item.alliance }}</span>
+            </template>
 
             <template v-slot:item.count="{ item }">
+                <template>
+                    <vue-countdown-timer
+                        @start_callback="startCallBack('event started')"
+                        @end_callback="item.status=1,item.ticker='xxx',handleCountdownEnd(item)"
+                        :start-time="item.start + ' UTC'"
+                        :end-time="item.end +' UTC'"
+                        :end-text="'Window Closed'"
+                        :interval="1000"
+                    >
+                    <template slot="countdown" slot-scope="scope">
+        <span class="red--text pl-3">{{scope.props.hours}}:{{scope.props.minutes}}:{{scope.props.seconds}}</span>
+      </template>
 
-                <countdown
-                    :key="componentKey"
-                    ref="countdown"
-                    v-if="endCounterDown(item) > 0"
-                    :time="endCounterDown(item)"
-                    :emit-events = true
-                    auto-start
-                    @end="item.status=1, handleCountdownEnd(item)"
-                    class="red--text"
-                    :transform="transform"
-                >
-                    <template slot-scope="props">
-                        {{ props.hours }}:{{ props.minutes }}:{{
-                            props.seconds
-                        }}
-                    </template>
-                </countdown>
-                <div id="closed" v-else>WINDOW CLOSED</div>
+                    </vue-countdown-timer>
+                </template>
             </template>
-            <v-data-footer
-            items-per-page-options = [25,50,100]
-            ></v-data-footer>
+            <v-data-footer items-per-page-options="[25,50,100]"></v-data-footer>
         </v-data-table>
     </div>
 
@@ -126,15 +136,16 @@ export default {
             loading: true,
             loading3: true,
             endcount: "",
-            search: '',
+            search: "",
             componentKey: 0,
             toggle_exclusive: 1,
-            colorflag:3,
-
+            colorflag: 3,
+            today: moment(),
+            name: 'Timer',
 
 
             headers: [
-                { text: "Region", value: "region", width: "10%"},
+                { text: "Region", value: "region", width: "10%" },
                 { text: "Constellation", value: "constellation" },
                 { text: "System", value: "system" },
                 { text: "Alliance", value: "alliance", width: "30%" },
@@ -142,7 +153,7 @@ export default {
                 { text: "Structure", value: "type" },
                 { text: "ADM", value: "adm" },
                 { text: "End", value: "end" },
-                { text: "Countdown", value: "count", sortable: false },
+                { text: "Countdown", value: "count", sortable: false }
 
                 // { text: "Vulernable End Time", value: "vulnerable_end_time" }
             ]
@@ -161,9 +172,15 @@ export default {
         // await this.sameTimers();
         // await this.setStructureTypes();
         // await this.matchLatesttoNames();
-
     },
     methods: {
+
+        startCallBack: function (x) {
+        console.log(x)
+      },
+      endCallBack: function (x) {
+        console.log(x)
+      },
         // async getTimerDataAll() {
         //     this.loading = true;
         //     await axios.get("/getTimerData").then(res => {
@@ -176,14 +193,11 @@ export default {
         //     });
         // },
 
-      async  loadtimers ()
-        {
-          await  this.$store.dispatch('getTimerDataAll');
-            this.loading3 = false
-            this.loading = false
-
+        async loadtimers() {
+           await this.$store.dispatch("getTimerDataAll");
+            this.loading3 = false;
+            this.loading = false;
         },
-
 
         transform(props) {
             Object.entries(props).forEach(([key, value]) => {
@@ -195,74 +209,58 @@ export default {
             return props;
         },
 
-        endCounterDown(item) {
-            var today = new Date();
-            var date =
-                today.getUTCFullYear() +
-                "-" +
-                (today.getUTCMonth() + 1) +
-                "-" +
-                today.getUTCDate();
-            var time =
-                today.getUTCHours() +
-                ":" +
-                today.getUTCMinutes() +
-                ":" +
-                today.getUTCSeconds();
-            var dateTime = date + " " + time;
-            var a = moment(item.end);
-            var b = moment(dateTime);
-            return a.diff(b);
-        },
-        fromNowStart(item) {
-            return moment(item.start);
-        },
-        fromNowEnd(item) {
-            return moment(item.end);
-        },
-
-        handleCountdownEnd() {
-            console.log("hi");
-        },
-        // handleCountdownEnd(item) {
-        //     this.$store.dispatch('markOver',item);
+        // endCounterDown(item) {
+        //     var today = new Date();
+        //     var date =
+        //         today.getUTCFullYear() +
+        //         "-" +
+        //         (today.getUTCMonth() + 1) +
+        //         "-" +
+        //         today.getUTCDate();
+        //     var time =
+        //         today.getUTCHours() +
+        //         ":" +
+        //         today.getUTCMinutes() +
+        //         ":" +
+        //         today.getUTCSeconds();
+        //     var dateTime = date + " " + time;
+        //     var a = moment(item.end);
+        //     var b = moment(dateTime);
+        //     var data = a.diff(b);
+        //     console.log(data);
+        //     return data;
+        // },
+        // fromNowStart(item) {
+        //     return moment(item.start);
+        // },
+        // fromNowEnd(item) {
+        //     return moment(item.end);
         // },
 
-
-
+        // handleCountdownEnd() {
+        //     console.log("hi");
+        // }
+        handleCountdownEnd(item) {
+            console.log('hi')
+            this.$store.dispatch('markOver',item);
+        },
     },
     computed: {
-
         filteredItems() {
-            if(this.colorflag == 1){
-
-                return this.$store.state.timers.filter((i) => i.color == 1 && i.status !== 1 )
-
-            }else if (this.colorflag == 2 ){
-
-                return this.$store.state.timers.filter((i) => i.color > 1 && i.status !== 1)
-
-            }else if (this.colorflag == 3){
-
-                return this.$store.state.timers.filter((i) => i.color == 3 && i.status !== 1)
-
-            }else {
-
-                return this.$store.state.timers.filter((i) => i.status !== 1)
-
+            var timers = this.$store.state.timers;
+            if (this.colorflag == 1){
+                return timers.filter(timers => timers.color == 1 && timers.status == 0)
             }
-           },
-
-
-
-    },
-
-
-
-
-
-
+            if (this.colorflag == 2){
+                return timers.filter(timers => timers.color > 1  && timers.status == 0)
+            }
+            if (this.colorflag == 3){
+                return timers.filter(timers => timers.color == 3 && timers.status == 0)
+            }
+            else{
+                return timers.filter(timers => timers.status == 0)
+            }
+        }
+    }
 };
-
-
 </script>

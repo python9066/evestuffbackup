@@ -36,7 +36,7 @@ class HomeController extends Controller
         Helper::authcheck();
         $url = 'https://esi.evetech.net/latest/characters/717568371/notifications/';
         $data = Helper::authpull($url);
-         dd($data);
+         //dd($data);
         foreach ($data as $var){
 
 
