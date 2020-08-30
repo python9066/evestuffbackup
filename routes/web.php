@@ -20,12 +20,9 @@ Route::post('/saveAllianceData','AllianceController@saveAllianceData');
 Route::post('/saveTimers','AllianceController@saveTimers');
 
 Route::get('/getTimerData','TimerController@getTimerData');
-// Route::get('/getTimerData?s=blue','TimerController@getTimerData');
-// Route::get('/getTimerData?s=red','TimerController@getTimerData');
 Route::get('/timers', 'HomeController@index');
 
 
-Route::get('/AuthURL', 'AuthController@authcheck');
 
 
 Route::get('/getNewAllianceIDs', 'AllianceController@getnewAllianceIDs');

@@ -5,7 +5,8 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-      timers: []
+      timers: [],
+      notifications: []
 
   },
   mutations: {
@@ -13,12 +14,16 @@ export default new Vuex.Store({
         state.timers = timers;
     },
 
+
     MARK_TIMER_OVER(state, timer){
         const item = state.timers.find(item => item.id === timer.id);
         Object.assign(item,timer);
 
-    }
+    },
 
+    SET_NOTIFICATIONS(state, notifications){
+        state.notifications = notifications;
+    },
 
   },
   actions: {
@@ -26,6 +31,12 @@ export default new Vuex.Store({
 
         let res = await axios.get("/api/timers");
         commit('SET_TIMERS', res.data.timers)
+    },
+
+    async getNotifications({commit}) {
+
+        let res = await axios.get("/api/notifications");
+        commit('SET_NOTIFICATIONS', res.data.notifications)
     },
 
     markOver({commit}, timer) {
