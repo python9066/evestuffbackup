@@ -31,7 +31,7 @@ export default {
 
 
         async test(){
-           var $data = await ApiL().get('/timers');
+           var $data = await ApiL().get('/notifications');
             console.log($data);
 
 
