@@ -1,18 +1,5 @@
 <template>
     <div class=" pr-16 pl-16">
-    <template>
-    <vue-countdown-timer
-      @start_callback="startCallBack('event started')"
-      @end_callback="endCallBack('event ended')"
-      :start-time="'2020-08-29 09:00:00 UTC'"
-      :end-time="'2020-08-29 09:54:12 UTC'"
-      :interval="1000"
-      >
-      <template slot="countdown" slot-scope="scope">
-        <span class="red--text pl-3">{{scope.props.hours}}:{{scope.props.minutes}}:{{scope.props.seconds}}</span>
-      </template>
-    </vue-countdown-timer>  {{today}}
- </template>
         <div class=" d-flex align-items-center">
             <v-card-title>Vulnerability Windows  </v-card-title>
 
@@ -123,6 +110,7 @@
 import Axios from "axios";
 import moment from "moment";
 import { stringify } from "querystring";
+import { mapState } from 'vuex';
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
@@ -246,19 +234,21 @@ export default {
         },
     },
     computed: {
+
+        ...mapState(['timers']),
         filteredItems() {
-            var timers = this.$store.state.timers;
+            // var timers = this.$store.state.timers;
             if (this.colorflag == 1){
-                return timers.filter(timers => timers.color == 1 && timers.status == 0)
+                return this.timers.filter(timers => timers.color == 1 && timers.status == 0)
             }
             if (this.colorflag == 2){
-                return timers.filter(timers => timers.color > 1  && timers.status == 0)
+                return this.timers.filter(timers => timers.color > 1  && timers.status == 0)
             }
             if (this.colorflag == 3){
-                return timers.filter(timers => timers.color == 3 && timers.status == 0)
+                return this.timers.filter(timers => timers.color == 3 && timers.status == 0)
             }
             else{
-                return timers.filter(timers => timers.status == 0)
+                return this.timers.filter(timers => timers.status == 0)
             }
         }
     }

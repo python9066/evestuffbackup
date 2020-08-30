@@ -9,35 +9,44 @@
 <script>
 import Axios from "axios";
 import { EventBus } from "../event-bus";
+import ApiL from '../service/apil';
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 export default {
     data() {
         return {
-            loading2: null,
-            auth:null,
+            // loading2: null,
+            // auth:null,
         };
     },
    async mounted() {
 
-  await this.checktoken();
-  await this.updatetoken();
+   await this.test();
+//   await this.updatetoken();
 
 
     },
     methods: {
 
-      async checktoken() {
-            this.auth=null;
-            const res = await axios.get("/getAuthCheck").then(res => {
-                if (res.status == 200) {
-                    console.log(res);
-                     console.log("hi");
-                this.auth = res.data[0];
-                }
-            });
-        },
+
+        async test(){
+           var $data = await ApiL().get('/timers');
+            console.log($data);
+
+
+        }
+
+    //   async checktoken() {
+    //         this.auth=null;
+    //         const res = await axios.get("/getAuthCheck").then(res => {
+    //             if (res.status == 200) {
+    //                 console.log(res);
+    //                  console.log("hi");
+    //             this.auth = res.data[0];
+    //             }
+    //         });
+    //     },
 
         // async updatetoken() {
         //     if(auth=false){
