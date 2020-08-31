@@ -1,8 +1,20 @@
 <template>
     <div class=" pr-16 pl-16">
         <div class=" d-flex align-items-center">
-            <v-card-title>Notifications </v-card-title>
-            <timeago :datetime= today :auto-update="1"></timeago>
+            <v-card-title>Notifications
+
+                 <VueCountUptimer
+                        :start-time="'2020-08-31 09:25:00 UTC'"
+                        :end-text="'Window Closed'"
+                        :interval="1000"
+                    >
+                    <template slot="countup" slot-scope="scope">
+        <span class="red--text pl-3">{{scope.props.hours}}:{{scope.props.minutes}}:{{scope.props.seconds}}</span>
+      </template>
+
+                    </VueCountUptimer>
+            </v-card-title>
+
 
 
 
@@ -66,7 +78,7 @@
             :items-per-page="25"
             :sort-by="['timestamp']"
             :search="search"
-            :sort-desc="[false, true]"
+            :sort-desc="[true, false]"
             multi-sort
             class="elevation-1"
 
@@ -74,21 +86,17 @@
 
 
             <template v-slot:item.count="{ item }">
-                <template>
-                    <vue-countdown-timer
-                        @start_callback="startCallBack('event started')"
-                        @end_callback="item.status=1,item.ticker='xxx',handleCountdownEnd(item)"
-                        :start-time="item.start + ' UTC'"
-                        :end-time="item.end +' UTC'"
+                <VueCountUptimer
+                        :start-time="item.timestamp + ' UTC'"
                         :end-text="'Window Closed'"
                         :interval="1000"
                     >
-                    <template slot="countdown" slot-scope="scope">
+                    <template slot="countup" slot-scope="scope">
         <span class="red--text pl-3">{{scope.props.hours}}:{{scope.props.minutes}}:{{scope.props.seconds}}</span>
       </template>
 
-                    </vue-countdown-timer>
-                </template>
+                    </VueCountUptimer>
+
             </template>
             <v-data-footer items-per-page-options="[25,50,100]"></v-data-footer>
         </v-data-table>
@@ -122,6 +130,9 @@ export default {
             colorflag: 3,
             today: moment(),
             name: 'Timer',
+            atime: null,
+            diff: 0,
+
 
 
             headers: [
@@ -139,7 +150,8 @@ export default {
     },
     async mounted() {
         // await this.getLatest();
-        this.loadtimers();
+        await this.loadtimers();
+        //this.startInterval();
         // await this.getSystems();
         // await this.getTimerDataAll();
         // await this.saveAlliancesID();
@@ -176,6 +188,17 @@ export default {
             this.loading3 = false;
             this.loading = false;
         },
+
+        sec (item){
+             var a = moment.utc();
+            var b = moment(item.timestamp);
+            this.diff = a.diff(b)
+            console.log(a.diff(b))
+            return this.diff
+        },
+
+
+
 
         // transform(props) {
         //     Object.entries(props).forEach(([key, value]) => {
@@ -224,6 +247,8 @@ export default {
         // },
     },
     computed: {
+
+
 
         ...mapState(['notifications']),
         filteredItems() {

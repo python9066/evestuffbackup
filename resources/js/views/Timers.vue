@@ -85,7 +85,7 @@
                 <template>
                     <vue-countdown-timer
                         @start_callback="startCallBack('event started')"
-                        @end_callback="item.status=1,item.ticker='xxx',handleCountdownEnd(item)"
+                        @end_callback="item.status=1,handleCountdownEnd(item)"
                         :start-time="item.start + ' UTC'"
                         :end-time="item.end +' UTC'"
                         :end-text="'Window Closed'"

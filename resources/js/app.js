@@ -18,11 +18,14 @@ import { faUserSecret } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import moment from 'moment'
 import VueCountdownTimer from 'vuejs-countdown-timer'
+import VueCountupTimer from './components/countup/index'
+
 
 Vue.prototype.moment = moment
 // import '@fortawesome/fontawesome-free/css/all.css'
 
 Vue.use(VueCountdownTimer)
+Vue.use(VueCountupTimer)
 library.add(faUserSecret)
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 Vue.config.productionTip = false
