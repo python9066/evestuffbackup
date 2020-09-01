@@ -399,9 +399,6 @@ export default {
         // },
 
         async loadtimers() {
-            this.delve = 0
-            this.querious = 0
-            this.periodbasis = 0
             await this.$store.dispatch("getNotifications");
             this.loading3 = false;
             this.loading = false;

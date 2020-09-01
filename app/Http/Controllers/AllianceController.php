@@ -4,76 +4,21 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\Alliance;
-use App\Auth;
 use App\Structure;
-use GuzzleHttp\Client;
-use App\Http\Controllers\AuthController;
 use App\System;
+use utils\Alliancehelper\Alliancehelper;
 use utils\Helper\Helper;
+
+
 //hierhere
 class AllianceController extends Controller
 {
-    public function saveAllianceIDs(Request $request)
+
+
+    public function updateAlliances()
+
     {
-        Alliance::whereNotNull('id')->update(['active' => 0]);
-        $someArray = $request->json()->all();
-        foreach ($someArray as $var) {
-            DB::table('alliances')->updateOrInsert(['id' => $var], ['active' => '1']);
-        };
-        Alliance::where('active', 0)->delete();
-    }
-
-    public function getnewAllianceIDs()
-    {
-
-        $data = Alliance::where('name', null)->pluck('id');
-
-
-        return $data;
-    }
-
-    public function getAllianceStanding()
-    {
-        $type = "standing";
-        Helper::authcheck();
-        $data = Helper::authpull($type);
-        // dd($data);
-        foreach ($data as $var) {
-            if ($var['standing'] > 0) {
-                $color = 2;
-            } else {
-                $color = 1;
-            }
-            if ($var['contact_type'] = 'alliance') {
-                Alliance::where('id', $var['contact_id'])->update([
-                    'standing' => $var['standing'],
-                    'color' => $color
-                ]);
-                // Alliance::where('id', $var['contact_id'])->update(['color' => $color]);
-            };
-        };
-
-        Alliance::where('color', '0')->update(['color' => 1]);
-        Alliance::where('id', '1354830081')->update(['standing' => 10, 'color' => 3]);
-    }
-    public function saveAllianceData(Request $request)
-    {
-
-        $id = array();
-        $someArray = $request->json()->all();
-
-        foreach ($someArray as $var) {
-            $id = $var['id'];
-            $name  = $var['name'];
-            $ticker  = $var['ticker'];
-            $url = "https://images.evetech.net/Alliance/" . $id . "_64.png";
-            Alliance::where('id', $id)->update([
-                'name' => $name,
-                'ticker' => $ticker,
-                'url' => $url
-            ]);
-        }
+        Alliancehelper::updateAlliances();
     }
 
     public function saveTimers(Request $request)
@@ -113,7 +58,7 @@ class AllianceController extends Controller
             array_push($data, $data1);
         }
         DB::table('structures')->insertOrIgnore($data);
-        $system = Structure::where('amd','>',0)->select('system_id', 'amd')->get();
+        $system = Structure::where('amd', '>', 0)->select('system_id', 'amd')->get();
         $system = $system->unique('system_id');
         System::where('id', '>', 0)->update(['adm' => 0]);
         foreach ($system as $system) {
