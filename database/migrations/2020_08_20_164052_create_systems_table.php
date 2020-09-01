@@ -18,6 +18,7 @@ class CreateSystemsTable extends Migration
             $table->foreignId('constellation_id');
             $table->id('id');
             $table->string('system_name');
+            $table->float('adm')->default(0.0);
             $table->timestamps();
 
             $table->index('id');

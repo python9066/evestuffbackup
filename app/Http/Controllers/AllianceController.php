@@ -9,6 +9,7 @@ use App\Auth;
 use App\Structure;
 use GuzzleHttp\Client;
 use App\Http\Controllers\AuthController;
+use App\System;
 use utils\Helper\Helper;
 //hierhere
 class AllianceController extends Controller
@@ -34,27 +35,27 @@ class AllianceController extends Controller
 
     public function getAllianceStanding()
     {
+        $type = "standing";
         Helper::authcheck();
-        $url = 'https://esi.evetech.net/latest/alliances/1354830081/contacts/?datasource=tranquility';
-        $data = Helper::authpull($url);
+        $data = Helper::authpull($type);
         // dd($data);
         foreach ($data as $var) {
-            if($var['standing'] >0){
+            if ($var['standing'] > 0) {
                 $color = 2;
-            }else{
+            } else {
                 $color = 1;
             }
             if ($var['contact_type'] = 'alliance') {
                 Alliance::where('id', $var['contact_id'])->update([
                     'standing' => $var['standing'],
                     'color' => $color
-                    ]);
+                ]);
                 // Alliance::where('id', $var['contact_id'])->update(['color' => $color]);
             };
         };
 
-        Alliance::where('color', '0') ->update(['color' =>1]);
-        Alliance::where('id', '1354830081')->update(['standing' => 10,'color' => 3]);
+        Alliance::where('color', '0')->update(['color' => 1]);
+        Alliance::where('id', '1354830081')->update(['standing' => 10, 'color' => 3]);
     }
     public function saveAllianceData(Request $request)
     {
@@ -112,5 +113,11 @@ class AllianceController extends Controller
             array_push($data, $data1);
         }
         DB::table('structures')->insertOrIgnore($data);
+        $system = Structure::where('amd','>',0)->select('system_id', 'amd')->get();
+        $system = $system->unique('system_id');
+        System::where('id', '>', 0)->update(['adm' => 0]);
+        foreach ($system as $system) {
+            System::where('id', $system->system_id)->update(['adm' => $system->amd]);
+        }
     }
 }

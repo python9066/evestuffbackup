@@ -20,50 +20,80 @@ class Helper
 
     public static function authcheck()
     {
+        $auth = Auth::all();
+        foreach ($auth as $auth) {
 
-        $auth = Auth::first();
-        $expire_date = new DateTime($auth->expire_date);
-        $date = new DateTime();
 
-        if ($date > $expire_date) {
-
-            $client = Client::first();
-            $http = new GuzzleHttpCLient();
-
-            $headers = [
-                'Authorization' => 'Basic ' . $client->code,
-                'Content-Type' => 'application/x-www-form-urlencoded',
-                'Host' => 'login.eveonline.com'
-
-            ];
-            $body = 'grant_type=refresh_token&refresh_token=' . $auth->refresh_token;
-
-            $response = $http->request('POST', 'https://login.eveonline.com/v2/oauth/token', [
-                'headers' => $headers,
-                'body' => $body
-            ]);
-
-            //dd($response);
-            $data = json_decode($response->getBody(), true);
+            $expire_date = new DateTime($auth->expire_date);
             $date = new DateTime();
-            $date = $date->modify("+15 minutes");
-            $auth->refresh_token = $data['refresh_token'];
-            $auth->access_token = $data['access_token'];
-            $auth->expire_date = $date;
-            $auth->save();
+
+            if ($date > $expire_date) {
+
+                $client = Client::first();
+                $http = new GuzzleHttpCLient();
+
+                $headers = [
+                    'Authorization' => 'Basic ' . $client->code,
+                    'Content-Type' => 'application/x-www-form-urlencoded',
+                    'Host' => 'login.eveonline.com'
+
+                ];
+                $body = 'grant_type=refresh_token&refresh_token=' . $auth->refresh_token;
+
+                $response = $http->request('POST', 'https://login.eveonline.com/v2/oauth/token', [
+                    'headers' => $headers,
+                    'body' => $body
+                ]);
+
+                //dd($response);
+                $data = json_decode($response->getBody(), true);
+                $date = new DateTime();
+                $date = $date->modify("+15 minutes");
+                $auth->refresh_token = $data['refresh_token'];
+                $auth->access_token = $data['access_token'];
+                $auth->expire_date = $date;
+                $auth->save();
+            }
         }
     }
 
-    public static function authpull($url)
+    public static function authpull($type)
     {
+        $type = $type;
 
-        $token = Auth::first();
+        if ( $type == "standing") {
+            $token = Auth::where('flag_standing', 0)->first();
+            // $count = $token->count();
+
+            if ($token == null) {
+                Auth::where('flag_standing', 1)->update(['flag_standing' => 0]);
+                $token = Auth::where('flag_standing', 0)->first();
+                $token->update(['flag_note' => 1]);
+                $url = 'https://esi.evetech.net/latest/alliances/1354830081/contacts/?datasource=tranquility';
+            } else {
+                $token->update(['flag_standing' => 1]);
+                $url = 'https://esi.evetech.net/latest/alliances/1354830081/contacts/?datasource=tranquility';
+            }
+        } else {
+            $token = Auth::where('flag_note', 0)->first();
+
+            if ($token == null) {
+                Auth::where('flag_note', 1)->update(['flag_note' => 0]);
+                $token = Auth::where('flag_note', 0)->first();
+                $token->update(['flag_note' => 1]);
+                $url = "https://esi.evetech.net/latest/characters/" . $token->char_id . "/notifications/";
+                // dd($url);
+            } else {
+                $token->update(['flag_note' => 1]);
+                $url = "https://esi.evetech.net/latest/characters/" . $token->char_id . "/notifications/";
+                // dd($url);
+            }
+        }
         $client = new GuzzleHttpClient();
         $headers = [
             'Authorization' => 'Bearer ' . $token->access_token,
 
         ];
-
         $response = $client->request('GET', $url, [
             'headers' => $headers
         ]);
@@ -72,11 +102,12 @@ class Helper
         return $data;
     }
 
-    public static function fixtime($time)  {
+    public static function fixtime($time)
+    {
 
 
-                $time = str_replace("Z", "", $time);
-                $time = str_replace("T", " ", $time);
+        $time = str_replace("Z", "", $time);
+        $time = str_replace("T", " ", $time);
 
         return $time;
     }
@@ -196,14 +227,14 @@ class Helper
 
             // dd($note->system_id);
             $check = Notification::where('system_id', $note->system_id)
-            ->where('item_id', $stype)->get();
+                ->where('item_id', $stype)->get();
             if ($check->count() == 1) {
 
                 $check = $check->toArray();
                 if ($note->timestamp > $check[0]['timestamp']) {
 
                     Notification::where('system_id', $note->system_id)
-                    ->where('item_id', $stype)->update(['status_id' => 2]);
+                        ->where('item_id', $stype)->update(['status_id' => 2]);
                 }
                 Temp_notifcation::where('id', $note->id)->update(['status' => 1]);
             } else {

@@ -28,10 +28,11 @@ Route::get('/timers', 'HomeController@index');
 Route::get('/getNewAllianceIDs', 'AllianceController@getnewAllianceIDs');
 Route::get('/party', 'HomeController@party');
 Route::get('/party2', 'HomeController@party2');
+Route::get('/updateNotifications', 'NotificationController@getNotifications');
 
 Route::get('/getAllianceStanding', 'AllianceController@getAllianceStanding');
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/test', 'AppController@test');
+Route::get('/test', 'AllianceController@test');
 Route::get('/helper', function () {
     return Helper::displayName();
 });

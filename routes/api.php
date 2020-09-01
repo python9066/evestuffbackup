@@ -19,4 +19,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('/timers','TimerController@getTimerData');
+
+
 Route::get('/notifications','NotificationRecordsController@index');
+Route::get('/notifications/{region_id}', 'NotificationRecordsController@regionLink');
+Route::put('notifications/{id}', 'NotificationRecordsController@update');

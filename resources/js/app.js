@@ -55,9 +55,9 @@ export default new Vuetify({
     theme: {
         light: {
           a: colors.teal,
-          primary: colors.teal,
-          warning: "#F57C00",
-          "dark-orange": "#F57C00"
+            warning: "#F57C00",
+            secondary:"#65F5FC",
+            "dark-orange": "#F57C00"
         },
       dark: true,
     },

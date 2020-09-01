@@ -10,9 +10,9 @@ class NotificationController extends Controller
 
     public function getNotifications()
     {
+        $type = "note";
         Helper::authcheck();
-        $url = 'https://esi.evetech.net/latest/characters/717568371/notifications/';
-        $data = Helper::authpull($url);
+        $data = Helper::authpull($type);
         Helper::notifications($data);
 
     }

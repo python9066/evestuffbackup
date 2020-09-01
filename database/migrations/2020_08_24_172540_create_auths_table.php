@@ -15,9 +15,12 @@ class CreateAuthsTable extends Migration
     {
         Schema::create('auths', function (Blueprint $table) {
             $table->id();
+            $table->integer('char_id');
             $table->string("access_token",1000);
             $table->string("refresh_token");
             $table->dateTime('expire_date');
+            $table->integer('flag_note');
+            $table->integer('flag_standing');
             $table->timestamps();
         });
     }
