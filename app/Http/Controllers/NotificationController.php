@@ -3,18 +3,18 @@
 namespace App\Http\Controllers;
 
 use utils\Helper\Helper;
-use utils\Notifications\Notifications;
-
-use Illuminate\Http\Request;
+use utils\Notificationhelper\Notifications;
 
 class NotificationController extends Controller
 {
 
     public function getNotifications()
     {
+
         $type = "note";
         Helper::authcheck();
         $data = Helper::authpull($type);
-        Notifications::notifications($data);
+        Notifications::update($data);
+
     }
 }

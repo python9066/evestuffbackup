@@ -8,6 +8,7 @@
             fixed
             clipped
             floating
+            :background-color = c93535
         >
             <v-list dense nav shaped>
                 <v-list-item link to="/">
@@ -92,7 +93,26 @@
                 </v-avatar>
             </v-toolbar-title>
             <v-spacer></v-spacer>
+            <div>
+            <v-tabs v-model="tab"
+                    entered
+                    centered
+                    icons-and-text
+                    align-with-title>
+                <v-tabs-slider></v-tabs-slider>
 
+                <v-tab link to="/timers">
+                    Timers
+                    <v-icon>mdi-phone</v-icon>
+                </v-tab>
+
+                <v-tab link to="/notifications">
+                    Notifications
+                    <v-icon>mdi-heart</v-icon>
+                </v-tab>
+            </v-tabs>
+            </div>
+<v-spacer></v-spacer>
             <v-btn
                 text
                 class="mr-2"
@@ -196,31 +216,23 @@
 <script>
 import { EventBus } from "../event-bus";
 import ClickOutside from "vue-click-outside";
-import { mapState } from 'vuex';
-
-
+import { mapState } from "vuex";
 
 export default {
-    mounted(){
-
-
-
-    },
+    mounted() {},
     data: () => ({
         loading2: false,
         navdrawer: null
     }),
     created() {
-        EventBus.$on('buttonupdate', payload => {
-  this.loading2 = payload;
-});
+        EventBus.$on("buttonupdate", payload => {
+            this.loading2 = payload;
+        });
     },
     methods: {
         gotoCovid() {
             this.$router.push("/covid");
         },
-
-
 
         logout() {
             console.log("logout");

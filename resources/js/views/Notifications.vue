@@ -4,146 +4,138 @@
             <v-card-title>Notifications </v-card-title>
 
             <v-btn
-                :loading="loading3"
-                :disabled="loading3"
+                :loading="loadingr"
+                :disabled="loadingr"
                 color="primary"
                 class="ma-2 white--text"
                 @click="
-                    loading3 = true;
                     loadtimers();
                 "
             >
                 Update
                 <v-icon right dark>fas fa-sync-alt fa-xs</v-icon>
             </v-btn>
-        <div>
-            <v-btn-toggle
-               v-model="icon"
-               borderless
-               group
+            <div>
+                <v-btn-toggle v-model="icon" borderless group>
+                    <v-dialog
+                        v-model="dialog1"
+                        fullscreen
+                        hide-overlay
+                        transition="dialog-bottom-transition"
+                    >
+                        <template v-slot:activator="{ on, attrs }">
+                            <template>
+                                <v-btn
+                                    v-show="delvecheck == 1"
+                                    color="primary"
+                                    class="ma-2 white--text"
+                                    v-bind="attrs"
+                                    v-on="on"
+                                    @click="dialog1 = true"
+                                >
+                                    Delve
+                                    <v-icon right dark>fas fa-map fa-xs</v-icon>
+                                </v-btn>
+                            </template>
+                        </template>
+                        <v-card>
+                            <v-toolbar dark color="primary">
+                                <v-btn icon dark @click="dialog1 = false">
+                                    <v-icon>fas fa-times-circle</v-icon>
+                                </v-btn>
+                                <v-toolbar-title>Delve</v-toolbar-title>
+                                <v-spacer></v-spacer>
+                            </v-toolbar>
+                            <div
+                                style="position: absolute; top: 64px; right: 0px; bottom: 0px; left: 0px;"
+                            >
+                                <iframe
+                                    :src="delveLink"
+                                    style="left:0; bottom:0; right:0; width:100%; height:100%; border:none; margin:0; padding:0; overflow:hidden; z-index:999999;"
+                                >
+                                </iframe>
+                            </div>
+                        </v-card>
+                    </v-dialog>
 
-        >
-            <v-dialog
-                v-model="dialog1"
-                fullscreen
-                hide-overlay
-                transition="dialog-bottom-transition"
-            >
-                <template v-slot:activator="{ on, attrs }">
-                    <template
-
+                    <v-dialog
+                        v-model="dialog2"
+                        fullscreen
+                        hide-overlay
+                        transition="dialog-bottom-transition"
                     >
-                    <v-btn
-                        v-show="delve == 1"
-                        color="primary"
-                        class="ma-2 white--text"
-                        v-bind="attrs"
-                        v-on="on"
-                        @click="dialog1 = true"
+                        <template v-slot:activator="{ on, attrs }">
+                            <v-btn
+                                v-show="queriousCheck == 1"
+                                color="primary"
+                                class="ma-2 white--text"
+                                v-bind="attrs"
+                                v-on="on"
+                                @click="dialog2 = true"
+                            >
+                                Querious
+                                <v-icon right dark>fas fa-map fa-xs</v-icon>
+                            </v-btn>
+                        </template>
+                        <v-card>
+                            <v-toolbar dark color="primary">
+                                <v-btn icon dark @click="dialog2 = false">
+                                    <v-icon>fas fa-times-circle</v-icon>
+                                </v-btn>
+                                <v-toolbar-title>Querious</v-toolbar-title>
+                                <v-spacer></v-spacer>
+                            </v-toolbar>
+                            <div
+                                style="position: absolute; top: 64px; right: 0px; bottom: 0px; left: 0px;"
+                            >
+                                <iframe
+                                    :src="queriousLink"
+                                    style="left:0; bottom:0; right:0; width:100%; height:100%; border:none; margin:0; padding:0; overflow:hidden; z-index:999999;"
+                                >
+                                </iframe>
+                            </div>
+                        </v-card>
+                    </v-dialog>
+                    <v-dialog
+                        v-model="dialog3"
+                        fullscreen
+                        hide-overlay
+                        transition="dialog-bottom-transition"
                     >
-                        Delve
-                        <v-icon right dark>fas fa-map fa-xs</v-icon>
-                    </v-btn>
-                    </template>
-                </template>
-                <v-card>
-                    <v-toolbar dark color="primary">
-                        <v-btn icon dark @click="dialog1 = false">
-                            <v-icon>fas fa-times-circle</v-icon>
-                        </v-btn>
-                        <v-toolbar-title>Delve</v-toolbar-title>
-                        <v-spacer></v-spacer>
-                    </v-toolbar>
-                    <div
-                        style="position: absolute; top: 64px; right: 0px; bottom: 0px; left: 0px;"
-                    >
-                        <iframe
-                            :src="delveLink"
-                            style="left:0; bottom:0; right:0; width:100%; height:100%; border:none; margin:0; padding:0; overflow:hidden; z-index:999999;"
-                        >
-                        </iframe>
-                    </div>
-                </v-card>
-            </v-dialog>
-
-            <v-dialog
-                v-model="dialog2"
-                fullscreen
-                hide-overlay
-                transition="dialog-bottom-transition"
-            >
-                <template v-slot:activator="{ on, attrs }">
-                    <v-btn
-                        v-show="querious == 1"
-                        color="primary"
-                        class="ma-2 white--text"
-                        v-bind="attrs"
-                        v-on="on"
-                        @click="dialog2 = true"
-                    >
-                        Querious
-                        <v-icon right dark>fas fa-map fa-xs</v-icon>
-                    </v-btn>
-                </template>
-                <v-card>
-                    <v-toolbar dark color="primary">
-                        <v-btn icon dark @click="dialog2 = false">
-                            <v-icon>fas fa-times-circle</v-icon>
-                        </v-btn>
-                        <v-toolbar-title>Querious</v-toolbar-title>
-                        <v-spacer></v-spacer>
-                    </v-toolbar>
-                    <div
-                        style="position: absolute; top: 64px; right: 0px; bottom: 0px; left: 0px;"
-                    >
-                        <iframe
-                            :src="queriousLink"
-                            style="left:0; bottom:0; right:0; width:100%; height:100%; border:none; margin:0; padding:0; overflow:hidden; z-index:999999;"
-                        >
-                        </iframe>
-                    </div>
-                </v-card>
-            </v-dialog>
-            <v-dialog
-                v-model="dialog3"
-                fullscreen
-                hide-overlay
-                transition="dialog-bottom-transition"
-            >
-                <template v-slot:activator="{ on, attrs }">
-                    <v-btn
-                        v-show="periodbasis == 1"
-                        color="primary"
-                        class="ma-2 white--text"
-                        v-bind="attrs"
-                        v-on="on"
-                        @click="dialog3 = true"
-                    >
-                        Period Basis
-                        <v-icon right dark>fas fa-map fa-xs</v-icon>
-                    </v-btn>
-                </template>
-                <v-card>
-                    <v-toolbar dark color="primary">
-                        <v-btn icon dark @click="dialog3 = false">
-                            <v-icon>fas fa-times-circle</v-icon>
-                        </v-btn>
-                        <v-toolbar-title>Period Basis</v-toolbar-title>
-                        <v-spacer></v-spacer>
-                    </v-toolbar>
-                    <div
-                        style="position: absolute; top: 64px; right: 0px; bottom: 0px; left: 0px;"
-                    >
-                        <iframe
-                            :src="periodbasisLink"
-                            style="left:0; bottom:0; right:0; width:100%; height:100%; border:none; margin:0; padding:0; overflow:hidden; z-index:999999;"
-                        >
-                        </iframe>
-                    </div>
-                </v-card>
-            </v-dialog>
-            </v-btn-toggle>
-        </div>
+                        <template v-slot:activator="{ on, attrs }">
+                            <v-btn
+                                v-show="periodbasisCheck == 1"
+                                color="primary"
+                                class="ma-2 white--text"
+                                v-bind="attrs"
+                                v-on="on"
+                                @click="dialog3 = true"
+                            >
+                                Period Basis
+                                <v-icon right dark>fas fa-map fa-xs</v-icon>
+                            </v-btn>
+                        </template>
+                        <v-card>
+                            <v-toolbar dark color="primary">
+                                <v-btn icon dark @click="dialog3 = false">
+                                    <v-icon>fas fa-times-circle</v-icon>
+                                </v-btn>
+                                <v-toolbar-title>Period Basis</v-toolbar-title>
+                                <v-spacer></v-spacer>
+                            </v-toolbar>
+                            <div
+                                style="position: absolute; top: 64px; right: 0px; bottom: 0px; left: 0px;"
+                            >
+                                <iframe
+                                    :src="periodbasisLink"
+                                    style="left:0; bottom:0; right:0; width:100%; height:100%; border:none; margin:0; padding:0; overflow:hidden; z-index:999999;"
+                                >
+                                </iframe>
+                            </div>
+                        </v-card>
+                    </v-dialog>
+                </v-btn-toggle>
+            </div>
 
             <v-text-field
                 v-model="search"
@@ -155,29 +147,29 @@
 
             <v-btn-toggle v-model="toggle_exclusive" mandatory :value="0">
                 <v-btn
-                    :loading="loading3"
-                    :disabled="loading3"
+                    :loading="loadingf"
+                    :disabled="loadingf"
                     @click="statusflag = 4"
                 >
                     All
                 </v-btn>
                 <v-btn
-                    :loading="loading3"
-                    :disabled="loading3"
+                    :loading="loadingf"
+                    :disabled="loadingf"
                     @click="statusflag = 1"
                 >
                     New
                 </v-btn>
                 <v-btn
-                    :loading="loading3"
-                    :disabled="loading3"
+                    :loading="loadingf"
+                    :disabled="loadingf"
                     @click="statusflag = 3"
                 >
                     Repairing
                 </v-btn>
                 <v-btn
-                    :loading="loading3"
-                    :disabled="loading3"
+                    :loading="loadingf"
+                    :disabled="loadingf"
                     @click="statusflag = 5"
                 >
                     Contested
@@ -188,7 +180,7 @@
             :headers="headers"
             :items="filteredItems"
             item-key="id"
-            :loading="loading"
+            :loading="loadingt"
             :items-per-page="25"
             :sort-by="['timestamp']"
             :search="search"
@@ -286,7 +278,11 @@
                         <v-list-item
                             v-for="(list, index) in dropdown_edit"
                             :key="index"
-                            @click="item.status_id = list.value, item.status_name = list.title, click(item)"
+                            @click="
+                                (item.status_id = list.value),
+                                    (item.status_name = list.title),
+                                    click(item)
+                            "
                         >
                             <v-list-item-title>{{
                                 list.title
@@ -315,7 +311,7 @@ import Axios from "axios";
 import moment from "moment";
 import { stringify } from "querystring";
 import { mapState } from "vuex";
-import ApiL from '../service/apil'
+import ApiL from "../service/apil";
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
@@ -326,9 +322,10 @@ export default {
         return {
             //timersAll: [],
             check: "not here",
-            loading: true,
-            loading3: true,
-            loading4: true,
+            loadingt:true,
+            loadingf:true,
+            loadingr:true,
+            // loading3: true,
             endcount: "",
             search: "",
             componentKey: 0,
@@ -345,16 +342,14 @@ export default {
             dialog1: false,
             dialog2: false,
             dialog3: false,
-            text: 'center',
-            icon: 'justify',
+            text: "center",
+            icon: "justify",
             toggle_none: null,
-            delve:0,
-            periodbasis:0,
-            querious:0,
-
+            delve: 0,
+            periodbasis: 0,
+            querious: 0,
 
             dropdown_edit: [
-
                 { title: "Reffed", value: 2 },
                 { title: "Repairing", value: 3 },
                 { title: "Saved", value: 4 },
@@ -375,9 +370,29 @@ export default {
             ]
         };
     },
+
+    created() {},
+
     async mounted() {
         // await this.getLatest();
-        await this.loadtimers();
+        // await this.loadtimers();
+        this.$store.dispatch("getNotifications").then(() => {
+            this.loadingt = false;
+            this.loadingf = false;
+            this.loadingr = false;
+        });
+        this.$store.dispatch("getqueriousLink");
+        this.$store.dispatch("getdelveLink");
+        this.$store.dispatch("getperiodbasisLink");
+        window.setInterval(() => {
+            this.loadingr = true;
+            this.$store.dispatch("getNotifications").then(() => {
+                this.loadingr = false;
+            });
+            this.$store.dispatch("getqueriousLink");
+            this.$store.dispatch("getdelveLink");
+            this.$store.dispatch("getperiodbasisLink");
+        }, 30000);
     },
     methods: {
         //     startCallBack: function (x) {
@@ -398,15 +413,15 @@ export default {
         //     });
         // },
 
-        async loadtimers() {
-            await this.$store.dispatch("getNotifications");
-            this.loading3 = false;
-            this.loading = false;
-            await this.$store.dispatch("getqueriousLink");
-            await this.$store.dispatch("getdelveLink");
-            await this.$store.dispatch("getperiodbasisLink");
-
-
+        loadtimers() {
+            this.loadingr = true;
+            this.$store.dispatch("getNotifications").then(() => {
+                this.loadingr = false;
+            });
+            this.$store.dispatch("getqueriousLink");
+            this.$store.dispatch("getdelveLink");
+            this.$store.dispatch("getperiodbasisLink");
+            console.log("30secs");
         },
 
         save() {
@@ -428,13 +443,13 @@ export default {
             console.log("Dialog closed");
         },
 
-        click(item){
+        click(item) {
             console.log("Dialog clicked");
             console.log(item);
             var request = {
-                "status_id" : item.status_id
+                status_id: item.status_id
             };
-            ApiL().put("notifications/"+item.id,request);
+            ApiL().put("notifications/" + item.id, request);
         },
 
         sec(item) {
@@ -443,8 +458,7 @@ export default {
             this.diff = a.diff(b);
             console.log(a.diff(b));
             return this.diff;
-        },
-
+        }
 
         // handleCountdownEnd() {
         //     console.log("hi");
@@ -456,7 +470,12 @@ export default {
     },
 
     computed: {
-        ...mapState(["notifications", "delveLink", "queriousLink","periodbasisLink"]),
+        ...mapState([
+            "notifications",
+            "delveLink",
+            "queriousLink",
+            "periodbasisLink"
+        ]),
 
         filteredItems() {
             // var timers = this.$store.state.timers;
@@ -479,79 +498,35 @@ export default {
             }
         },
 
-        delvecheck(){
-
-            if (this.delveLink == ""){
-                this.delve = 0
+        delvecheck() {
+            if (this.delveLink === "") {
+                return 0;
+            } else if (this.delveLink === "nope") {
+                return 0;
+            } else {
+                return 1;
             }
-            else if (this.delveLink == "nope"){
-                this.delve = 0
-            }
-            else {
-                this.delve = 1
-            }
-
         },
 
-        periodbasisCheck(){
-
-            if (this.periodbasisLink == ""){
-                this.periodbasis = 0
+        periodbasisCheck() {
+            if (this.periodbasisLink === "") {
+                return 0;
+            } else if (this.periodbasisLink === "nope") {
+                return 0;
+            } else {
+                return 1;
             }
-            else if (this.periodbasisLink == "nope"){
-                this.periodbasis = 0
-            }
-            else {
-                this.periodbasis = 1
-            }
-
         },
 
-        queriousCheck(){
-
-            if (this.queriousLink == ""){
-                this.querious = 0
+        queriousCheck() {
+            if (this.queriousLink === "") {
+                return 0;
+            } else if (this.queriousLink === "nope") {
+                return 0;
+            } else {
+                return 1;
             }
-            else if (this.queriousLink == "nope"){
-                this.querious = 0
-            }
-            else {
-                this.querious = 1
-            }
-
-        },
-
-
-
-        // periodbasis(){
-
-        //     if (this.queriousLink == ""){
-        //         return this.periodbasis = 0
-        //     }
-        //     else if (this.queriousLink == "nope"){
-        //         return this.periodbasis = 0
-        //     }
-        //     else {
-        //         return this.periodbasis = 1
-        //     }
-
-        // },
-
-        // querious(){
-
-        //     if (this.queriousLink == ""){
-        //         return this.querious = 0
-        //     }
-        //     else if (this.queriousLink == "nope"){
-        //         return this.querious = 0
-        //     }
-        //     else {
-        //         return this.querious = 1
-        //     }
-
-        // }
-
-
+        }
     },
     beforeDestory: clearInterval()
 };

@@ -46,7 +46,10 @@
             "database/factories"
         ],
         "files": [
-            "utils/Helper.php"
+            "utils/Helper.php",
+            "utils/Alliancehelper.php",
+            "utils/Notificationhelper.php",
+            "utils/Timerhelper.php"
         ]
     },
     "autoload-dev": {
