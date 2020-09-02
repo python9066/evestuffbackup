@@ -15,24 +15,23 @@ use Illuminate\Support\Facades\Route;
 use utils\Helper\Helper;
 
 Auth::routes();
-Route::post('/saveAllianceIDs', 'AllianceController@saveAllianceIDs');
-Route::post('/saveAllianceData','AllianceController@saveAllianceData');
-Route::post('/saveTimers','AllianceController@saveTimers');
+
+
 
 Route::get('/getTimerData','TimerController@getTimerData');
 Route::get('/timers', 'HomeController@index');
+Route::get('/updateTimerData','TimerController@updateTimerData');
 
 
 
 
-Route::get('/getNewAllianceIDs', 'AllianceController@getnewAllianceIDs');
 Route::get('/party', 'HomeController@party');
 Route::get('/party2', 'HomeController@party2');
 Route::get('/updateNotifications', 'NotificationController@getNotifications');
 
-Route::get('/getAllianceStanding', 'AllianceController@getAllianceStanding');
+
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/test', 'AllianceController@test');
+Route::get('updateAlliances', 'AllianceController@updateAlliances');
 Route::get('/helper', function () {
     return Helper::displayName();
 });

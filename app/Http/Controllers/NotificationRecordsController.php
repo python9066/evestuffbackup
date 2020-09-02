@@ -30,7 +30,7 @@ class NotificationRecordsController extends Controller
     {
         //
     }
-    //https://evemaps.dotlan.net/map/Querious/Q2-N6W,L-6BE1,GOP-GE#adm
+
     public function regionLink($region_id)
     {
         $http = "https://evemaps.dotlan.net/map/";

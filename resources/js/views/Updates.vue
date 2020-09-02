@@ -49,99 +49,99 @@ export default {
     async mounted() {
         // await this.getLatest();
         // await this.getSystems();
-        await this.getAlliancesIDs();
-        await this.saveAlliancesID();
-        await this.getNewAllianceIDs();
-        await this.getNewAlliacneData();
-        await this.saveNewAlliacneData();
+        // await this.getAlliancesIDs();
+        // await this.saveAlliancesID();
+        // await this.getNewAllianceIDs();
+        // await this.getNewAlliacneData();
+        // await this.saveNewAlliacneData();
         await this.getTimers();
         await this.sameTimers();
         // await this.setStructureTypes();
         // await this.matchLatesttoNames();
     },
     methods: {
-        async getAlliancesIDs() {
-            this.$router.push({ name: "timers" });
-            this.loading2 = true;
-            EventBus.$emit("buttonupdate", this.loading2);
-            this.all_alliance_ids = [];
-            const res = await axios
-                .get(
-                    "https://esi.evetech.net/dev/alliances/?datasource=tranquility"
-                )
-                .then(res => {
-                    if (res.status == 200) {
-                        for (var i = 0; i < res.data.length; i++) {
-                            this.all_alliance_ids.push(res.data[i]);
-                        }
-                    }
-                });
-        },
+        // async getAlliancesIDs() {
+        //     this.$router.push({ name: "timers" });
+        //     this.loading2 = true;
+        //     EventBus.$emit("buttonupdate", this.loading2);
+        //     this.all_alliance_ids = [];
+        //     const res = await axios
+        //         .get(
+        //             "https://esi.evetech.net/dev/alliances/?datasource=tranquility"
+        //         )
+        //         .then(res => {
+        //             if (res.status == 200) {
+        //                 for (var i = 0; i < res.data.length; i++) {
+        //                     this.all_alliance_ids.push(res.data[i]);
+        //                 }
+        //             }
+        //         });
+        // },
 
-        async saveAlliancesID() {
-            // const emptyAlliancesTable = await axios.post("/emptyAlliancesTable");
-            // this.saving_alliance_data = true;
-            const alliance_data = await axios.post(
-                "/saveAllianceIDs",
-                this.all_alliance_ids
-            );
-            // this.saving_alliance_data = false;
-        },
+        // async saveAlliancesID() {
+        //     // const emptyAlliancesTable = await axios.post("/emptyAlliancesTable");
+        //     // this.saving_alliance_data = true;
+        //     const alliance_data = await axios.post(
+        //         "/saveAllianceIDs",
+        //         this.all_alliance_ids
+        //     );
+        //     // this.saving_alliance_data = false;
+        // },
 
-        async getNewAllianceIDs() {
-            this.new_alliance_ids = [];
-            const res = await axios.get("/getNewAllianceIDs").then(res => {
-                if (res.status == 200) {
-                    for (var i = 0; i < res.data.length; i++) {
-                        this.new_alliance_ids.push(res.data[i]);
-                    }
-                }
-            });
-        },
+        // async getNewAllianceIDs() {
+        //     this.new_alliance_ids = [];
+        //     const res = await axios.get("/getNewAllianceIDs").then(res => {
+        //         if (res.status == 200) {
+        //             for (var i = 0; i < res.data.length; i++) {
+        //                 this.new_alliance_ids.push(res.data[i]);
+        //             }
+        //         }
+        //     });
+        // },
 
-        async getNewAlliacneData() {
-            this.alliance_data = [];
-            for (var i = 0; i < this.new_alliance_ids.length; i++) {
-                this.url =
-                    "https://esi.evetech.net/latest/alliances/" +
-                    this.new_alliance_ids[i] +
-                    "/?datasource=tranquility";
-                const res = await axios.get(this.url).then(res => {
-                    if (res.status == 200) {
-                        res.data.id = this.new_alliance_ids[i];
-                        this.alliance_data.push(res.data);
-                        this.limit = res.headers["x-esi-error-limit-remain"];
-                        this.limitTime =res.headers["x-esi-error-limit-reset"]*1000+5000;
-                        console.log(this.limit);
-                        console.log(this.limitTime);
-                    }
-                })
-                .catch(res => {
+        // async getNewAlliacneData() {
+        //     this.alliance_data = [];
+        //     for (var i = 0; i < this.new_alliance_ids.length; i++) {
+        //         this.url =
+        //             "https://esi.evetech.net/latest/alliances/" +
+        //             this.new_alliance_ids[i] +
+        //             "/?datasource=tranquility";
+        //         const res = await axios.get(this.url).then(res => {
+        //             if (res.status == 200) {
+        //                 res.data.id = this.new_alliance_ids[i];
+        //                 this.alliance_data.push(res.data);
+        //                 this.limit = res.headers["x-esi-error-limit-remain"];
+        //                 this.limitTime =res.headers["x-esi-error-limit-reset"]*1000+5000;
+        //                 console.log(this.limit);
+        //                 console.log(this.limitTime);
+        //             }
+        //         })
+        //         .catch(res => {
 
-                    if (res.status == 502 || res.status == 429 || res.status == 500) {
-                                i--
+        //             if (res.status == 502 || res.status == 429 || res.status == 500) {
+        //                         i--
 
-                                return;
-                            };
+        //                         return;
+        //                     };
 
-                });
-                if(this.limit < 50){
-                await sleep(this.limitTime);
+        //         });
+        //         if(this.limit < 50){
+        //         await sleep(this.limitTime);
 
-                }
+        //         }
 
-            }
-        },
+        //     }
+        // },
 
-        async saveNewAlliacneData() {
-            // const emptyAlliancesTable = await axios.post("/emptyAlliancesTable");
-            // this.saving_alliance_data = true;
-            const all_alliance_ids = await axios.post(
-                "/saveAllianceData",
-                this.alliance_data
-            );
-            // this.saving_alliance_data = false;
-        },
+        // async saveNewAlliacneData() {
+        //     // const emptyAlliancesTable = await axios.post("/emptyAlliancesTable");
+        //     // this.saving_alliance_data = true;
+        //     const all_alliance_ids = await axios.post(
+        //         "/saveAllianceData",
+        //         this.alliance_data
+        //     );
+        //     // this.saving_alliance_data = false;
+        // },
 
         async getTimers() {
             this.timer_data = [];
