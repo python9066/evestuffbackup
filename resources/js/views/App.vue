@@ -1,7 +1,7 @@
 <template>
     <v-app id="teamfcat">
         <font-awesome-icon icon="user-secret" />
-        <v-navigation-drawer
+        <!-- <v-navigation-drawer
             stateless
             v-model="navdrawer"
             app
@@ -72,7 +72,7 @@
                     </v-list-item-content>
                 </v-list-item>
             </v-list>
-        </v-navigation-drawer>
+        </v-navigation-drawer> -->
 
         <v-app-bar
             height="100px"

@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 use utils\Helper\Helper;
 
-Auth::routes();
+// Auth::routes();
 
 
 

@@ -19,29 +19,25 @@ export default new Router({
     // },
     {
       path: '/',
-      name: 'base',
-      component: Home
+      name: 'notifications',
+        component: Notifications
     },
-    {
-      path: '/home',
-      name: 'home',
-      component: Home
-    },
+    // {
+    //   path: '/home',
+    //   name: 'home',
+    //   component: Home
+    // },
     {
         path: '/timers',
         name: 'timers',
         component: Timers
       },
-      {
-        path: '/auth',
-        name: 'buttonupdate',
-        component: Buttonupdate
-      },
-    {
-        path: '/updates',
-        name: 'updates',
-        component: Updates
-      },
+    //   {
+    //     path: '/auth',
+    //     name: 'buttonupdate',
+    //     component: Buttonupdate
+    //   },
+
 
       {
         path: '/notifications',
