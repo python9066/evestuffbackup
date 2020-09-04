@@ -229,7 +229,6 @@ export default {
         //     console.log("hi");
         // }
         handleCountdownEnd(item) {
-            console.log('hi')
             this.$store.dispatch('markOver',item);
         },
     },

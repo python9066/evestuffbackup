@@ -79,14 +79,14 @@
             app
             clipped-left
             elevate-on-scroll
-            class="top-border--orange  align-items-baseline"
+            class="align-items-baseline"
         >
             <!-- <v-app-bar app clipped-left flat hide-on-scroll scroll-threshold="500" class="top-border--teal"> -->
-            <v-app-bar-nav-icon
+            <!-- <v-app-bar-nav-icon
                 @click.stop="navdrawer = !navdrawer"
-            ></v-app-bar-nav-icon>
+            ></v-app-bar-nav-icon> -->
             <v-toolbar-title class="pl-15">
-                <span class>Eve App</span>
+                <span class>Eve App - {{this.username}}</span>
 
                 <v-avatar :size="avatarsize" tile class="">
                     <v-icon color="">fa fa-rocket fa-sm</v-icon>
@@ -94,9 +94,10 @@
             </v-toolbar-title>
             <v-spacer></v-spacer>
             <div>
-            <v-tabs v-model="tab"
+            <v-tabs
                     entered
                     centered
+                    background-color="#272727"
                     icons-and-text
                     align-with-title>
                 <v-tabs-slider></v-tabs-slider>
@@ -219,6 +220,7 @@ import ClickOutside from "vue-click-outside";
 import { mapState } from "vuex";
 
 export default {
+    props: ['username'],
     mounted() {},
     data: () => ({
         loading2: false,
@@ -228,6 +230,7 @@ export default {
         EventBus.$on("buttonupdate", payload => {
             this.loading2 = payload;
         });
+        // console.log(this.username)
     },
     methods: {
         gotoCovid() {

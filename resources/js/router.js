@@ -17,11 +17,11 @@ export default new Router({
     //   component: LandingPage,
     //   props: true
     // },
-    // {
-    //   path: '/',
-    //   name: 'notifications',
-    //     component: Notifications
-    // },
+    {
+      path: '/',
+      name: 'notifications',
+        component: Notifications
+    },
     // {
     //   path: '/home',
     //   name: 'home',
