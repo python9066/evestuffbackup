@@ -29,5 +29,9 @@ return [
         'secret' => env('AWS_SECRET_ACCESS_KEY'),
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
-
+    'gice' => [
+        'client_id' => env('GOON_CLIENT_ID'),
+        'client_secret' => env('GOON_CLIENT_SECRET'),
+        'redirect' => 'http://eve.test/oauth/callback',
+    ],
 ];

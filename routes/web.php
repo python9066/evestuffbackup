@@ -16,13 +16,17 @@ use utils\Helper\Helper;
 
 // Auth::routes();
 
+// Route::get('profile', function(){
 
+// })->middleware('auth.basic');
 
-Route::get('/getTimerData','TimerController@getTimerData');
 Route::get('/timers', 'HomeController@index');
+Route::get('/getTimerData','TimerController@getTimerData');
 Route::get('/updateTimerData','TimerController@updateTimerData');
+Route::get('/test', 'AuthController@test');
 
-
+Route::get('/oauth/login', 'AuthController@redirectToProvider');
+Route::get('/oauth/callback', 'AuthController@handleProviderCallback');
 
 
 Route::get('/party', 'HomeController@party');

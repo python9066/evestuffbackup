@@ -17,11 +17,11 @@ export default new Router({
     //   component: LandingPage,
     //   props: true
     // },
-    {
-      path: '/',
-      name: 'notifications',
-        component: Notifications
-    },
+    // {
+    //   path: '/',
+    //   name: 'notifications',
+    //     component: Notifications
+    // },
     // {
     //   path: '/home',
     //   name: 'home',
@@ -32,11 +32,11 @@ export default new Router({
         name: 'timers',
         component: Timers
       },
-    //   {
-    //     path: '/auth',
-    //     name: 'buttonupdate',
-    //     component: Buttonupdate
-    //   },
+      {
+        path: '/',
+        name: 'buttonupdate',
+        component: Buttonupdate
+      },
 
 
       {
