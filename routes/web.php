@@ -18,7 +18,7 @@ use utils\Helper\Helper;
 Auth::routes();
 
 
-
+Route::get('/dances2','testController@index');
 Route::get('/timers', 'HomeController@index');
 Route::get('/getTimerData','TimerController@getTimerData');
 Route::get('/updateTimerData','TimerController@updateTimerData');
