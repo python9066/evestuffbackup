@@ -26,17 +26,14 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')->hourly();
         $schedule->command('update:timers')
-        ->everyThreeMinutes()
-            ->runInBackground();
+        ->everyThreeHours()
+        ->withoutOverlapping();
         $schedule->command('update:notifications')
-            ->everyThreeMinutes()
-            ->runInBackground()
-            ->withoutOverlapping();
-
-
+        ->everyThreeMinute()
+        ->withoutOverlapping();
         $schedule->command('update:alliances')
-        ->everyThreeMinutes()
-            ->runInBackground();
+        ->everyThreeMinute()
+        ->withoutOverlapping();
     }
 
     /**
