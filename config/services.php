@@ -32,6 +32,8 @@ return [
     'gice' => [
         'client_id' => env('GOON_CLIENT_ID'),
         'client_secret' => env('GOON_CLIENT_SECRET'),
-        'redirect' => 'http://eve.test/oauth/callback',
+        'redirect' => env('GOON_REDIRECT_URL'),
+
+
     ],
 ];

@@ -7,6 +7,6 @@
     :token="{{ json_encode(Auth::user()->api_token) }}"
     ></app>
 @else
-YOU ARE NOT LOGGED IN
+<script>window.location = "/login";</script>
 @endif
 @endsection
