@@ -80,17 +80,18 @@ class AuthController extends Controller
     $client = new Client();
     $headers = [
         'Authorization' => 'Basic YzgwMDUzNWU3YzUyNDlkYTgxMDdkN2FjYzEzMWMzYjA6Q0lva1NHOG9BUUoybHZiTzJTVjJwNUV5NG5rbjZxaXc=',
-        'Content-Type' => 'application/json'
+        'Content-Type' => 'application/json',
+        'Accept' => "application/json",
     ];
 
     $reponse = $client->request('PATCH', 'https://gice.goonfleet.com/Api/Oauth/Application/',[
         'headers' => $headers,
         'body' => $body
     ]);
-    // $body = $reponse->getBody();
-    // // $body1 = json_decode($body, true);
-    // echo $body;
-    // dd($reponse, $body);
+    $body = $reponse->getBody();
+    // $body1 = json_decode($body, true);
+    echo $body;
+    dd($reponse, $body);
 
     }
 }

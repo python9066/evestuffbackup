@@ -52,9 +52,18 @@ export default new Vuex.Store({
 
     },
     actions: {
-        async getTimerDataAll({ commit }) {
+        async getTimerDataAll({ commit, state }) {
 
-            let res = await ApiL().get("/timers");
+            let res = await axios({
+                method: 'get',
+                url: '/api/timers',
+                headers: {
+                    Authorization: 'Bearer ' + state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json",
+                }
+
+            })
             commit('SET_TIMERS', res.data.timers)
         },
 
@@ -64,11 +73,15 @@ export default new Vuex.Store({
         //     commit('SET_NOTIFICATIONS', res.data.notifications)
         // },
 
+        markOver({ commit }, timer) {
+            commit('MARK_TIMER_OVER', timer)
+
+        },
 
         async getNotifications({ commit, state }) {
             let res = await axios({
                 method: 'get', //you can set what request you want to be
-                url: '/api/notifiations',
+                url: '/api/notifications',
                 // data: {id: varID},
                 headers: {
                     Authorization: 'Bearer ' + state.token,
@@ -79,22 +92,14 @@ export default new Vuex.Store({
             commit('SET_NOTIFICATIONS', res.data.notifications)
         },
 
-        markOver({ commit }, timer) {
-            commit('MARK_TIMER_OVER', timer)
 
-        },
-
-        setToken({ commit }, token) {
-            commit('SET_TOKEN', token)
-
-        },
 
         async getdelveLink({ commit, state }) {
 
             console.log('Bearer ' + state.token)
             let res = await axios({
                 method: 'get', //you can set what request you want to be
-                url: 'notifications/10000060',
+                url: '/api/notifications/10000060',
                 headers: {
                     Authorization: 'Bearer ' + state.token,
                     Accept: "application/json",
@@ -110,7 +115,7 @@ export default new Vuex.Store({
 
             let res = await axios({
                 method: 'get', //you can set what request you want to be
-                url: 'notifications/10000050',
+                url: '/api/notifications/10000050',
                 headers: {
                     Authorization: 'Bearer ' + state.token,
                     Accept: "application/json",
@@ -125,7 +130,7 @@ export default new Vuex.Store({
 
             let res = await axios({
                 method: 'get', //you can set what request you want to be
-                url: 'notifications/10000063',
+                url: '/api/notifications/10000063',
                 headers: {
                     Authorization: 'Bearer ' + state.token,
                     Accept: "application/json",
@@ -133,8 +138,12 @@ export default new Vuex.Store({
                 }
             })
             commit('SET_PERIOD_BASIS_LINK', res.data.link)
-        }
+        },
 
+        setToken({ commit }, token) {
+            commit('SET_TOKEN', token)
+
+        },
 
 
 

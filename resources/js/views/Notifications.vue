@@ -454,7 +454,18 @@ export default {
             var request = {
                 status_id: item.status_id
             };
-            ApiL().put("notifications/" + item.id, request);
+            axios({
+                method: 'put', //you can set what request you want to be
+                url: "api/notifications/" + item.id,
+                data: request,
+                headers: {
+                    Authorization: 'Bearer ' + this.$store.state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json",
+                }
+            })
+            console.log(request);
+            // ApiL().put("notifications/" + item.id, request);
         },
 
         sec(item) {
