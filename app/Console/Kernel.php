@@ -25,15 +25,9 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         // $schedule->command('inspire')->hourly();
-        $schedule->command('update:timers')
-        ->everyThreeHours()
-        ->withoutOverlapping();
-        $schedule->command('update:notifications')
-        ->everyThreeMinute()
-        ->withoutOverlapping();
-        $schedule->command('update:alliances')
-        ->everyThreeMinute()
-        ->withoutOverlapping();
+        $schedule->command('update:timers')->everyFourHours()->withoutOverlapping();
+        $schedule->command('update:notifications')->everyTwoMinutes()->withoutOverlapping();
+        $schedule->command('update:alliances')->twiceDaily(1,13)->withoutOverlapping();
     }
 
     /**

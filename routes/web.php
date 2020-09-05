@@ -24,6 +24,9 @@ Route::get('/timers', 'HomeController@index');
 Route::get('/getTimerData','TimerController@getTimerData');
 Route::get('/updateTimerData','TimerController@updateTimerData');
 Route::get('/test', 'AuthController@test');
+Route::get('/login', function() {
+    return view('auth.login');
+});
 
 Route::get('/oauth/login', 'AuthController@redirectToProvider');
 Route::get('/oauth/callback', 'AuthController@handleProviderCallback');
@@ -42,14 +45,29 @@ Route::get('/helper', function () {
 Route::get('/helper2', function () {
     return Auth::user()->name;
 });
+
+
+
 Route::get('/367448c2da9ee714f64d0bce9dfd219fabf03dbccb1948969afea0d814c7e8d144/66cedf66cf26e0061eb2ca8ea6472c0c169f66', function () {
-   Artisan::call('schedule:run');
+   Artisan::call('update:notification');
+   return Helper::displayName();
 });
 
-Route::get('/corn/test', function () {
+Route::get('/367448c2da9ee714f64d0bce9dfd219fabf8969afea0d814c7e8d144/66cedf66cf2a6472c0c169f66', function () {
     Artisan::call('update:timers');
     return Helper::displayName();
  });
+
+ Route::get('/3714f64d0bce9dfd219fabf03dbccb1948969afea0d814c7e8d144/66cedf66cf26e006172c0c169f66', function () {
+    Artisan::call('update:alliances');
+    return Helper::displayName();
+ });
+
+Route::get('/corn/test', function () {
+    // Artisan::call('update:timers');
+    return Helper::displayName();
+ });
+
 
 
 
