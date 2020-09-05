@@ -7,6 +7,8 @@ use utils\Timerhelper\Timerhelper;
 
 class TimerController extends Controller
 {
+
+
     public function getTimerData()
     {
         return ['timers' => TimersRecord::all()];

@@ -348,6 +348,7 @@ export default {
             delve: 0,
             periodbasis: 0,
             querious: 0,
+            poll: null,
 
             dropdown_edit: [
                 { title: "Reffed", value: 2 },
@@ -381,10 +382,14 @@ export default {
             this.loadingf = false;
             this.loadingr = false;
         });
+
+
         this.$store.dispatch("getqueriousLink");
         this.$store.dispatch("getdelveLink");
         this.$store.dispatch("getperiodbasisLink");
-        window.setInterval(() => {
+
+
+       this.poll = setInterval(() => {
             this.loadingr = true;
             this.$store.dispatch("getNotifications").then(() => {
                 this.loadingr = false;
@@ -528,6 +533,15 @@ export default {
             }
         }
     },
-    beforeDestory: clearInterval()
+    beforeDestroy() {
+
+        clearInterval(this.poll);
+        console.log('KILL THEM ALL');
+
+    },
+
+
+
+
 };
 </script>

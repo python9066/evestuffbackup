@@ -10,6 +10,12 @@ use utils\Alliancehelper\Alliancehelper;
 class AllianceController extends Controller
 {
 
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+
 
     public function updateAlliances()
 

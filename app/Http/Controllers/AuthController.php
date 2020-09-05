@@ -8,9 +8,13 @@ use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use App\Providers\RouteServiceProvider;
+use GuzzleHttp\Client;
+use Illuminate\Support\Str;
 use Illuminate\Foundation\Auth\User as AuthUser;
 
 use function GuzzleHttp\json_decode;
+use function GuzzleHttp\json_encode;
+
 class AuthController extends Controller
 {
     use AuthenticatesUsers;
@@ -23,7 +27,7 @@ class AuthController extends Controller
     {
 
         $userGice = Socialite::with('gice')->user();
-        User::updateOrCreate(['id' => $userGice->id],['name' =>$userGice->name , 'token' =>$userGice->token , 'pri_grp' =>$userGice->user['pri_grp']]);
+        User::updateOrCreate(['id' => $userGice->id],['name' =>$userGice->name , 'token' =>$userGice->token , 'pri_grp' =>$userGice->user['pri_grp'], 'api_token' => Str::random(60)]);
         $user = User::where('id',$userGice->id)->first();
         Auth::login($user,true);
 
@@ -41,21 +45,52 @@ class AuthController extends Controller
     }
 
     public function test(){
-        $token = "8jugStvBH05tBdWvy6bqX2KZ95wZcA-rWSqwzTCp9Ls";
-        $user = Socialite::with('gice')->userFromToken($token);
-        // dd($user);
 
-    // $client = new GuzzleHttpClient();
+        // dd($user);
+    // $body = array(
+    //     "displayName"=> "Eve Stuff",
+    //     "redirectUris"=> [ "http://eve.test/oauth/callback", "http://evestuff.online/oauth/callback" ]
+    // );
+
+    // $body = json_encode($body);
+    // // echo $body;
+    // // dd($body);
+
+    // $client = new Client();
     // $headers = [
-    //     'Authorization' => 'Bearer hawMqlMyB9rD7Nr53xgy-MmThCaJCKMAfTLM7wnELiI',
+    //     'Authorization' => 'Basic YzgwMDUzNWU3YzUyNDlkYTgxMDdkN2FjYzEzMWMzYjA6Q0lva1NHOG9BUUoybHZiTzJTVjJwNUV5NG5rbjZxaXc=',
     //     'Content-Type' => 'application/json'
     // ];
 
-    // $reponse = $client->request('POST', 'https://esi.goonfleet.com/oauth/token',[
-    //     'headers' => $headers
+    // $reponse = $client->request('PATCH', 'https://gice.goonfleet.com/Api/Oauth/Application/',[
+    //     'headers' => $headers,
+    //     'body' => $body
     // ]);
 
-    // dd($reponse);
+
+    $body = array(
+        "displayName"=> "Eve Stuff",
+        "redirectUris"=> [ "http://eve.test/oauth/callback", "http://evestuff.online/oauth/callback" ]
+    );
+
+    $body = json_encode($body);
+    // echo $body;
+    // dd($body);
+
+    $client = new Client();
+    $headers = [
+        'Authorization' => 'Basic YzgwMDUzNWU3YzUyNDlkYTgxMDdkN2FjYzEzMWMzYjA6Q0lva1NHOG9BUUoybHZiTzJTVjJwNUV5NG5rbjZxaXc=',
+        'Content-Type' => 'application/json'
+    ];
+
+    $reponse = $client->request('PATCH', 'https://gice.goonfleet.com/Api/Oauth/Application/',[
+        'headers' => $headers,
+        'body' => $body
+    ]);
+    // $body = $reponse->getBody();
+    // // $body1 = json_decode($body, true);
+    // echo $body;
+    // dd($reponse, $body);
 
     }
 }

@@ -1,5 +1,6 @@
 <?php
 
+use GuzzleHttp\Middleware;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -18,9 +19,19 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/timers','TimerController@getTimerData');
+// Route::get('/timers','TimerController@getTimerData');
+
+// Route::middleware('auth:api')->get('/notifications', function (Request $request) {
+//     return $request->notifications();
+// });
+// Route::get('/notifications','NotificationRecordsController@index');
+
+Route::middleware('auth:api')->group(function(){
+    Route::get('/notifications/{region_id}', 'NotificationRecordsController@regionLink');
+    Route::put('/notifications/{id}', 'NotificationRecordsController@update');
+    Route::get('/notifications','NotificationRecordsController@index');
+    Route::get('/timers','TimerController@getTimerData');
 
 
-Route::get('/notifications','NotificationRecordsController@index');
-Route::get('/notifications/{region_id}', 'NotificationRecordsController@regionLink');
-Route::put('notifications/{id}', 'NotificationRecordsController@update');
+
+});

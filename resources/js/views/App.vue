@@ -118,23 +118,13 @@
                 text
                 class="mr-2"
                 v-if="this.$vuetify.breakpoint.mdAndUp"
-                to="/"
+                @click.prevent="logout()"
             >
                 <v-icon class="mr-2 grey--text lighten-1">fa fa-rocket</v-icon
-                >Home
+                >Logout
             </v-btn>
 
-            <v-btn
-                text
-                class="mr-2"
-                :loading="loading2"
-                v-if="this.$vuetify.breakpoint.mdAndUp"
-                to="/updates"
-            >
-                <v-icon class="mr-2 grey--text lighten-1"
-                    >fas fa-sync-alt"</v-icon
-                >Updates
-            </v-btn>
+
 
             <v-menu :nudge-width="200" offset-y>
                 <template v-slot:activator="{ on }">
@@ -215,22 +205,26 @@
     </v-app>
 </template>
 <script>
-import { EventBus } from "../event-bus";
+// import { EventBus } from "../event-bus";
 import ClickOutside from "vue-click-outside";
 import { mapState } from "vuex";
 
 export default {
-    props: ['username'],
+    props: ['username','token'],
     mounted() {},
     data: () => ({
         loading2: false,
         navdrawer: null
     }),
     created() {
-        EventBus.$on("buttonupdate", payload => {
-            this.loading2 = payload;
-        });
+        // EventBus.$on("buttonupdate", payload => {
+        //     this.loading2 = payload;
+        // });
         // console.log(this.username)
+
+
+    this.$store.dispatch('setToken',this.token);
+
     },
     methods: {
         gotoCovid() {
