@@ -18,9 +18,9 @@ class NotificationRecordsController extends Controller
      */
     public function index()
     {
-        return ['notifications' => NotificationRecords::all()];
-        // $now = Now('-2 hours');
-        // return [ 'notifications' => NotificationRecords::where('timestamp','>=',$now)->get()];
+        // return ['notifications' => NotificationRecords::all()];
+        $now = Now('-2 hours');
+        return [ 'notifications' => NotificationRecords::where('timestamp','>=',$now)->get()];
     }
 
     /**
