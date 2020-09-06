@@ -64,7 +64,6 @@ class CreateOrReplaceTimerRecordsViewCommand extends Command
         JOIN regions ON regions.id = systems.region_id
         JOIN items ON items.id = structures.item_id
         JOIN constellations ON constellations.id = systems.constellation_id
-        WHERE structures.vulnerable_start_time < UTC_TIMESTAMP AND structures.vulnerable_end_time > UTC_TIMESTAMP
-ORDER BY `start` DESC");
+        WHERE structures.vulnerable_start_time < UTC_TIMESTAMP AND structures.vulnerable_end_time > UTC_TIMESTAMP");
     }
 }
