@@ -14,7 +14,7 @@ class CreateConstellationsTable extends Migration
     public function up()
     {
         Schema::create('constellations', function (Blueprint $table) {
-            $table->foreignId('region_id');
+            $table->foreignId('region_id')->references('id')->on('regions');
             $table->id('id');
             $table->string('constellation_name');
             $table->timestamps();

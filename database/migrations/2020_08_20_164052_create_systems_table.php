@@ -14,8 +14,8 @@ class CreateSystemsTable extends Migration
     public function up()
     {
         Schema::create('systems', function (Blueprint $table) {
-            $table->foreignId('region_id');
-            $table->foreignId('constellation_id');
+            $table->foreignId('region_id')->references('id')->on('regions');
+            $table->foreignId('constellation_id')->references('id')->on('constellations');
             $table->id('id');
             $table->string('system_name');
             $table->float('adm')->default(0.0);

@@ -15,9 +15,9 @@ class CreateStructuresTable extends Migration
     {
         Schema::create('structures', function (Blueprint $table) {
             $table->id('id');
-            $table->foreignId('alliance_id');
-            $table->foreignId('system_id');
-            $table->foreignId('item_id');
+            $table->foreignId('alliance_id')->references('id')->on('alliances');
+            $table->foreignId('system_id')->references('id')->on('systems');
+            $table->foreignId('item_id')->references('id')->on('items');
             $table->float('adm')->nullable();
             $table->dateTime('vulnerable_end_time',)->nullable();
             $table->dateTime('vulnerable_start_time',)->nullable();

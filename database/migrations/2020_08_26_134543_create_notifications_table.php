@@ -15,9 +15,9 @@ class CreateNotificationsTable extends Migration
     {
         Schema::create('notifications', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('system_id');
-            $table->foreignId('item_id');
-            $table->foreignId('notification_type_id');
+            $table->foreignId('system_id')->references('id')->on('systems');
+            $table->foreignId('item_id')->references('id')->on('items');
+            $table->foreignId('notification_type_id')->references('id')->on('notification_types');
             $table->integer('status_id')->default(1);
             $table->dateTime('timestamp');
             $table->bigInteger('si_id');
