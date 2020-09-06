@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
+use utils\Helper\Helper;
 use utils\Timerhelper\Timerhelper;
 
 class UpdateTimers extends Command
@@ -38,6 +39,9 @@ class UpdateTimers extends Command
      */
     public function handle()
     {
+        $status = Helper::checkeve();
+        if ($status == 1){
         Timerhelper::update();
+        }
     }
 }

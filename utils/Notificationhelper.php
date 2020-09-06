@@ -13,12 +13,14 @@ class Notifications
     {
         echo "yo yo yo";
 
-    }
+    }#
 
 
 
     public static function update($data)
     {
+
+
         $notenumber = Notification::max('id');
         $tempnumber = Temp_notifcation::max('id');
         foreach ($data as $var) {

@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use utils\Alliancehelper\Alliancehelper;
+use utils\Helper\Helper;
 
 class UpdateAlliances extends Command
 {
@@ -38,6 +39,9 @@ class UpdateAlliances extends Command
      */
     public function handle()
     {
+        $status = Helper::checkeve();
+        if ($status == 1){
         Alliancehelper::updateAlliances();
+        }
     }
 }

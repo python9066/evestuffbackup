@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\TimersRecord;
+use utils\Helper\Helper;
 use utils\Timerhelper\Timerhelper;
 
 class TimerController extends Controller
@@ -16,6 +17,9 @@ class TimerController extends Controller
 
     public function updateTimerData()
     {
+        $status = Helper::checkeve();
+        if ($status == 1){
        Timerhelper::update();
+        }
     }
 }

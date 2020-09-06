@@ -12,11 +12,16 @@ class NotificationController extends Controller
 
     public function getNotifications()
     {
-
+        $status = Helper::checkeve();
+        if ($status == 1){
         $type = "note";
         Helper::authcheck();
         $data = Helper::authpull($type);
         Notifications::update($data);
+        }
 
     }
+
+
+
 }

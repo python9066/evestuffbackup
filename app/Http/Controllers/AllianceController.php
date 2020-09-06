@@ -3,8 +3,7 @@
 namespace App\Http\Controllers;
 
 use utils\Alliancehelper\Alliancehelper;
-
-
+use utils\Helper\Helper;
 
 //hierhere
 class AllianceController extends Controller
@@ -20,7 +19,10 @@ class AllianceController extends Controller
     public function updateAlliances()
 
     {
+        $status = Helper::checkeve();
+        if ($status == 1){
         Alliancehelper::updateAlliances();
+        }
     }
 
 

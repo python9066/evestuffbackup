@@ -59,7 +59,7 @@ class Helper
     {
         $type = $type;
 
-        if ( $type == "standing") {
+        if ($type == "standing") {
             $token = Auth::where('flag_standing', 0)->first();
             // $count = $token->count();
 
@@ -111,4 +111,37 @@ class Helper
     }
 
 
+    public static function checkeve()
+    {
+
+        $http = new GuzzleHttpCLient();
+
+        $headers = [
+            'Accept' => "text/plain",
+        ];
+
+        $response = $http->request('GET', 'https://esi.evetech.net/ping');
+        $status = $response->getBody();
+            if($status != "ok")
+            {
+                return 0;
+            }
+
+        $headers = [
+            'Accept' => "application/json",
+        ];
+
+        $response = $http->request('GET', 'https://esi.evetech.net/latest/status/?datasource=tranquility',[
+            'headers' => $headers,
+        ]);
+        $status =json_decode($response->getBody());
+        $status = $status->players;
+
+        if ($status < 10){
+            return 0;
+        }
+
+        return 1;
+
+    }
 }
