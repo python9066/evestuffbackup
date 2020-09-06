@@ -23,7 +23,7 @@ Route::get('/dances2','testController@index');
 Route::get('/timers', 'HomeController@index');
 Route::get('/getTimerData','TimerController@getTimerData');
 Route::get('/updateTimerData','TimerController@updateTimerData');
-Route::get('/test', 'notificationController@test');
+Route::get('/test', 'NotificationController@test');
 Route::get('/login', function() {
     return view('auth.login');
 });
