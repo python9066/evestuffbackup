@@ -108,7 +108,7 @@
 </template>
 <script>
 import Axios from "axios";
-import moment from "moment";
+import moment, { utc } from "moment";
 import { stringify } from "querystring";
 import { mapState } from 'vuex';
 function sleep(ms) {
@@ -128,7 +128,7 @@ export default {
             componentKey: 0,
             toggle_exclusive: 1,
             colorflag: 3,
-            today: getUTCDate(),
+            today: moment().getUTCDate(),
             name: 'Timer',
             test: new Date(),
 
