@@ -39,7 +39,7 @@ class CreateOrReplaceTimerRecordsViewCommand extends Command
      */
     public function handle()
     {
-        DB::statement("CREATE VIEW timer_records AS SELECT regions.region_name AS 'region',
+        DB::statement("SELECT regions.region_name AS 'region',
         regions.id AS 'region_id',
         constellations.constellation_name AS 'constellation',
         constellations.id AS 'constellation_id',
@@ -64,6 +64,7 @@ class CreateOrReplaceTimerRecordsViewCommand extends Command
         JOIN regions ON regions.id = systems.region_id
         JOIN items ON items.id = structures.item_id
         JOIN constellations ON constellations.id = systems.constellation_id
-        WHERE structures.vulnerable_start_time < NOW() AND structures.vulnerable_end_time > NOW()");
+        WHERE structures.vulnerable_start_time < UTC_TIMESTAMP AND structures.vulnerable_end_time > UTC_TIMESTAMP
+ORDER BY `start` DESC");
     }
 }
