@@ -130,7 +130,7 @@ export default {
             colorflag: 3,
             today: moment(),
             name: 'Timer',
-            test: new Date.utc(),
+            test: new Date(),
 
 
             headers: [
