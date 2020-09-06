@@ -1,7 +1,7 @@
 <template>
     <div class=" pr-16 pl-16">
         <div class=" d-flex align-items-center">
-            <v-card-title>Vulnerability Windows  </v-card-title>
+            <v-card-title>Vulnerability Windows - {{today}} - {{test}}  </v-card-title>
 
 
 
@@ -130,6 +130,7 @@ export default {
             colorflag: 3,
             today: moment(),
             name: 'Timer',
+            test: new Date(),
 
 
             headers: [
