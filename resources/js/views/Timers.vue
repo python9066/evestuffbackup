@@ -128,7 +128,7 @@ export default {
             componentKey: 0,
             toggle_exclusive: 1,
             colorflag: 3,
-            today: moment.utc(),
+            today: moment(),
             name: 'Timer',
             test: new Date.utc(),
 
