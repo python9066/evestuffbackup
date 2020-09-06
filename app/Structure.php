@@ -14,4 +14,9 @@ class Structure extends Model
     {
         return $this->belongsTo(System::class);
     }
+
+    public function campaign()
+    {
+        return $this->hasOne(Campaign::class);
+    }
 }

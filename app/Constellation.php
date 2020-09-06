@@ -12,4 +12,12 @@ class Constellation extends Model
     {
         return $this->belongsTO(Region::class);
     }
+
+
+    public function campaigns()
+    {
+        return $this->hasMany(Campaign::class);
+    }
+
+
 }

@@ -23,4 +23,9 @@ class System extends Model
         return $this->hasMany(Structure::class);
     }
 
+    public function campaigns()
+    {
+        return $this->hasMany(Campaign::class);
+    }
+
 }

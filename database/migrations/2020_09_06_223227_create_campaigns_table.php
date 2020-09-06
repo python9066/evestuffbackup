@@ -22,7 +22,7 @@ class CreateCampaignsTable extends Migration
             $table->string('event_type');
             $table->foreignId('system_id')->references('id')->on('systems');
             $table->dateTime('start_time');
-            $table->foreignId('strictire_id')->references('id')->on('structures');
+            $table->foreignId('structure_id')->references('id')->on('structures');
             $table->timestamps();
 
             $table->index('id');
