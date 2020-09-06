@@ -49,7 +49,7 @@ Route::get('/helper2', function () {
 
 
 Route::get('/367448c2da9ee714f64d0bce9dfd219fabf03dbccb1948969afea0d814c7e8d144/66cedf66cf26e0061eb2ca8ea6472c0c169f66', function () {
-   Artisan::call('update:notification');
+   Artisan::call('update:notifications');
    return Helper::displayName();
 });
 
