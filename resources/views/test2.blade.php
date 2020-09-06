@@ -5,6 +5,9 @@
 <div>
 
  HI THERE IS A TEST!!!!!!!!!!!!
+@php
+    now();
+@endphp
 </div>
 </div>
 @endsection
