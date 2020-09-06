@@ -86,7 +86,7 @@
                 @click.stop="navdrawer = !navdrawer"
             ></v-app-bar-nav-icon> -->
             <v-toolbar-title class="pl-15">
-                <span class>Eve App - {{this.username}}</span>
+                <span class>EveStuff - {{this.username}}</span>
 
                 <v-avatar :size="avatarsize" tile class="">
                     <v-icon color="">fa fa-rocket fa-sm</v-icon>
@@ -101,16 +101,16 @@
                     icons-and-text
                     align-with-title>
                 <v-tabs-slider></v-tabs-slider>
+                <v-tab link to="/notifications">
+                    Notifications
+                    <v-icon>mdi-heart</v-icon>
+                </v-tab>
 
                 <v-tab link to="/timers">
                     Timers
                     <v-icon>mdi-phone</v-icon>
                 </v-tab>
 
-                <v-tab link to="/notifications">
-                    Notifications
-                    <v-icon>mdi-heart</v-icon>
-                </v-tab>
             </v-tabs>
             </div>
 <v-spacer></v-spacer>
@@ -118,7 +118,7 @@
                 text
                 class="mr-2"
                 v-if="this.$vuetify.breakpoint.mdAndUp"
-                @click.prevent="logout()"
+                @click="logout()"
             >
                 <v-icon class="mr-2 grey--text lighten-1">fa fa-rocket</v-icon
                 >Logout
@@ -126,7 +126,7 @@
 
 
 
-            <v-menu :nudge-width="200" offset-y>
+            <!-- <v-menu :nudge-width="200" offset-y>
                 <template v-slot:activator="{ on }">
                     <v-btn icon v-on="on">
                         <v-icon>fas fa-ellipsis-v</v-icon>
@@ -186,7 +186,7 @@
                         </v-btn>
                     </v-card-actions>
                 </v-card>
-            </v-menu>
+            </v-menu> -->
         </v-app-bar>
 
         <!-- MAIN ROUTER-VIEW ------------------------------------->
@@ -232,7 +232,6 @@ export default {
         },
 
         logout() {
-            console.log("logout");
             axios
                 .post("/logout")
                 .then(() => {
