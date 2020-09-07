@@ -8,7 +8,7 @@
                 <div class="card-header align-middle">{{ __('Login') }}</div>
 
                 <div class="card-body">
-                    When you login for the first time ever, it will spit an error.  Just refresh and all will be fine.  This only ever happens once.
+                    <div>When you login for the first time ever, it will spit an error.  Just refresh and all will be fine.  This only ever happens once.</div>
                         <a class="btn btn-primary" href="/oauth/login" role="button">LOGIN</a>
                 </div>
             </div>
