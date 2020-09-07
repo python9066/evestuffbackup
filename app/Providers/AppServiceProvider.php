@@ -23,6 +23,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        \Illuminate\Support\Facades\URL::forceScheme('https');
         $socialite = $this->app->make('Laravel\Socialite\Contracts\Factory');
         $socialite->extend(
         'gice',
