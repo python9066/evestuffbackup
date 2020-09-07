@@ -8,7 +8,7 @@ use App\Region;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Mockery\Matcher\Not;
-use utils\Notificationhelper\Notifications;4444444444444444444444444444444444
+use utils\Notificationhelper\Notifications;
 
 class NotificationRecordsController extends Controller
 {
@@ -24,7 +24,7 @@ class NotificationRecordsController extends Controller
     {
         ////========API FOR NOTIFICATIONS=========
         // return ['notifications' => NotificationRecords::all()];
-        $now = Now('-3 hours');
+        $now = Now('-5 hours');
         return [ 'notifications' => NotificationRecords::where('timestamp','>=',$now)->get()];
     }
 
