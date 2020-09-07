@@ -386,10 +386,7 @@ export default {
 
         })
 
-        this.today = function(){
-
-            return 5;
-        }
+        this.today = moment.utc()
 
     },
 
