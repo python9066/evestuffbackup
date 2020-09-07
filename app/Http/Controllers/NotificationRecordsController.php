@@ -24,7 +24,7 @@ class NotificationRecordsController extends Controller
     {
         ////========API FOR NOTIFICATIONS=========
         // return ['notifications' => NotificationRecords::all()];
-        $now = Now('-5 hours');
+        $now = Now('-3 hours');
         return [ 'notifications' => NotificationRecords::where('timestamp','>=',$now)->get()];
     }
 
