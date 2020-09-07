@@ -386,7 +386,7 @@ export default {
 
         })
 
-        this.today = moment.utc()
+        this.today = moment.utc().add(5, 'hours')
 
     },
 
