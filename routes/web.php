@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 use utils\Helper\Helper;
 
 // Auth::routes();
-
+Route::group(['scheme' => 'https'], function () {
 
 Route::get('/dances2','testController@index');
 Route::get('/timers', 'HomeController@index');
@@ -77,6 +77,10 @@ Route::get('/corn/test', function () {
 
 //  NOTHING BELOW THIS LINE
 Route::get('/{any}', 'AppController@index')->where('any', '.*');
+
+
+
+});
 
 
 
