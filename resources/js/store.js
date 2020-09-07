@@ -106,7 +106,7 @@ export default new Vuex.Store({
 
         async getdelveLink({ commit, state }) {
 
-            console.log('Bearer ' + state.token)
+            // console.log('Bearer ' + state.token)
             let res = await axios({
                 method: 'get', //you can set what request you want to be
                 url: '/api/notifications/10000060',

@@ -381,7 +381,7 @@ export default {
     })
 
         .listen('NotificationNew', (e) => {
-        console.log('NEW UPDATE');
+        // console.log('NEW UPDATE');
         this.loadtimers();
 
         })
@@ -434,11 +434,7 @@ export default {
         // },
 
 
-        test(e){
 
-            console.log(e.id);
-
-        },
 
         loadtimers() {
             this.loadingr = true;
@@ -447,8 +443,8 @@ export default {
             });
             this.$store.dispatch("getqueriousLink");
             this.$store.dispatch("getdelveLink");
-            this.$store.dispatch("getperiodbasisLink");
-            console.log("30secs");
+            // this.$store.dispatch("getperiodbasisLink");
+            // console.log("30secs");
         },
 
         save() {
@@ -467,12 +463,12 @@ export default {
             this.snackText = "Dialog opened";
         },
         close() {
-            console.log("Dialog closed");
+            // console.log("Dialog closed");
         },
 
         click(item) {
-            console.log("Dialog clicked");
-            console.log(item);
+            // console.log("Dialog clicked");
+            // console.log(item);
             var request = {
                 status_id: item.status_id
             };
@@ -486,7 +482,7 @@ export default {
                     "Content-Type": "application/json",
                 }
             })
-            console.log(request);
+            // console.log(request);
             // ApiL().put("notifications/" + item.id, request);
         },
 
@@ -494,7 +490,7 @@ export default {
             var a = moment.utc();
             var b = moment(item.timestamp);
             this.diff = a.diff(b);
-            console.log(a.diff(b));
+            // console.log(a.diff(b));
             return this.diff;
         }
 
@@ -569,7 +565,7 @@ export default {
     beforeDestroy() {
 
         // clearInterval(this.poll);
-        console.log('KILL THEM ALL');
+        // console.log('KILL THEM ALL');
         Echo.leave('notes');
 
     },
