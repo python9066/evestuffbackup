@@ -1,7 +1,7 @@
 <template>
     <div class=" pr-16 pl-16">
         <div class=" d-flex align-items-center">
-            <v-card-title>Notifications  -- {{test}} </v-card-title>
+            <v-card-title>Notifications  -/- {{test}} </v-card-title>
 
             <v-btn
                 :loading="loadingr"
