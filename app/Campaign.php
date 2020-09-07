@@ -26,7 +26,7 @@ class Campaign extends Model
 
     public function structure()
     {
-        return $this->belongsTO(Structure::class);
+        return $this->hasOne(Structure::class);
     }
 
 
