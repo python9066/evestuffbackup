@@ -1,7 +1,7 @@
 <template>
     <div class=" pr-16 pl-16">
         <div class=" d-flex align-items-center">
-            <v-card-title>Notifications -/- {{today}} </v-card-title>
+            <v-card-title>Notifications -/- {{today.UTC}} </v-card-title>
 
             <v-btn
                 :loading="loadingr"
