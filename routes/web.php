@@ -30,6 +30,7 @@ Route::get('/login', function() {
 
 Route::get('/oauth/login', 'AuthController@redirectToProvider');
 Route::get('/oauth/callback', 'AuthController@handleProviderCallback');
+Route::get('/logout', 'AuthController@logout');
 
 
 Route::get('/party', 'HomeController@party');

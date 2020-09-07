@@ -235,10 +235,10 @@ export default {
             axios
                 .post("/logout")
                 .then(() => {
-                    window.location.href = "/login";
+                    window.location.href = "/logout";
                 })
                 .catch(error => {
-                    window.location.href = "/login";
+                    window.location.href = "/logout";
                 });
         }
     },
