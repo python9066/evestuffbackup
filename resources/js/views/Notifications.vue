@@ -372,7 +372,22 @@ export default {
         };
     },
 
-    created() {},
+    created() {
+
+        Echo.private('notes')
+        .listen('NotificationChanged', (e) => {
+        // console.log(e.notifications.id);
+        this.$store.dispatch('updateNotification',e);
+    })
+
+        .listen('NotificationNew', (e) => {
+        console.log('NEW UPDATE');
+        this.loadtimers();
+
+        })
+
+    },
+
 
     async mounted() {
         // await this.getLatest();
@@ -389,15 +404,15 @@ export default {
         this.$store.dispatch("getperiodbasisLink");
 
 
-       this.poll = setInterval(() => {
-            this.loadingr = true;
-            this.$store.dispatch("getNotifications").then(() => {
-                this.loadingr = false;
-            });
-            this.$store.dispatch("getqueriousLink");
-            this.$store.dispatch("getdelveLink");
-            this.$store.dispatch("getperiodbasisLink");
-        }, 30000);
+    //    this.poll = setInterval(() => {
+    //         this.loadingr = true;
+    //         this.$store.dispatch("getNotifications").then(() => {
+    //             this.loadingr = false;
+    //         });
+    //         this.$store.dispatch("getqueriousLink");
+    //         this.$store.dispatch("getdelveLink");
+    //         this.$store.dispatch("getperiodbasisLink");
+    //     }, 30000);
     },
     methods: {
         //     startCallBack: function (x) {
@@ -417,6 +432,13 @@ export default {
 
         //     });
         // },
+
+
+        test(e){
+
+            console.log(e.id);
+
+        },
 
         loadtimers() {
             this.loadingr = true;
@@ -546,8 +568,9 @@ export default {
     },
     beforeDestroy() {
 
-        clearInterval(this.poll);
+        // clearInterval(this.poll);
         console.log('KILL THEM ALL');
+        Echo.leave('notes');
 
     },
 

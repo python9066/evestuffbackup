@@ -28,6 +28,11 @@ export default new Vuex.Store({
 
         },
 
+        UPDATE_NOTIFICATIONS(state, data){
+            const item = state.notifications.find(item => item.id === data.notifications.id);
+            Object.assign(item, data.notifications);
+
+        },
 
         SET_TOKEN(state, token) {
             state.token = token;
@@ -75,6 +80,11 @@ export default new Vuex.Store({
 
         markOver({ commit }, timer) {
             commit('MARK_TIMER_OVER', timer)
+
+        },
+
+        updateNotification({ commit }, data) {
+            commit('UPDATE_NOTIFICATIONS', data)
 
         },
 

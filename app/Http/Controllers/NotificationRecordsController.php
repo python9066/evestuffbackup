@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\NotificationChanged;
 use App\NotificationRecords;
 use App\Region;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Mockery\Matcher\Not;
+use utils\Notificationhelper\Notifications;
 
 class NotificationRecordsController extends Controller
 {
@@ -19,9 +23,9 @@ class NotificationRecordsController extends Controller
     public function index()
     {
         ////========API FOR NOTIFICATIONS=========
-        // return ['notifications' => NotificationRecords::all()];
-        $now = Now('-2 hours');
-        return [ 'notifications' => NotificationRecords::where('timestamp','>=',$now)->get()];
+        return ['notifications' => NotificationRecords::all()];
+        // $now = Now('-2 hours');
+        // return [ 'notifications' => NotificationRecords::where('timestamp','>=',$now)->get()];
     }
 
     /**
@@ -90,8 +94,13 @@ class NotificationRecordsController extends Controller
     public function update(Request $request, $id)
     {
 
+        // dd($user);
         // dd($request,$id);
         NotificationRecords::find($id)->update($request->all());
+        $notifications = NotificationRecords::find($id);
+        broadcast(new NotificationChanged($notifications))->toOthers();
+        // broadcast(new NotificationChanged($notifications));
+
     }
 
     /**

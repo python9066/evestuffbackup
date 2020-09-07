@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Events\NotificationNew;
 use Illuminate\Console\Command;
 use utils\Helper\Helper;
 use utils\Notificationhelper\Notifications;
@@ -44,7 +45,11 @@ class UpdateNotifications extends Command
         $type = 'note';
         Helper::authcheck();
         $data = Helper::authpull($type);
-        Notifications::update($data);
+        $flag =Notifications::update($data);
+
+        if($flag == 1){
+            broadcast(new NotificationNew($flag))->toOthers();
+        }
         }
     }
 }

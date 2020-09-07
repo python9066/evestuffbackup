@@ -21,6 +21,7 @@ class Notifications
     {
 
 
+        $flag = 0;
         $notenumber = Notification::max('id');
         $tempnumber = Temp_notifcation::max('id');
         foreach ($data as $var) {
@@ -71,11 +72,13 @@ class Notifications
                 $count = $check->count();
                 if($count == 0){
                     Notification::updateOrCreate($si_id,$data2);
+                    $flag = 1;
                 }else{
 
                     if($var['notification_id'] > $check->max('id')){
 
                         Notification::updateOrCreate($si_id,$data2);
+                        $flag = 1;
                     }
 
                 }
@@ -127,10 +130,12 @@ class Notifications
                 $count = $check->count();
                 if($count == 0){
                     Temp_notifcation::updateOrCreate($es_id,$data2);
+                    $flag = 1;
                 }else{
                     if($var['notification_id'] > $check->max('id')){
 
                         Temp_notifcation::updateOrCreate($es_id,$data2);
+                        $flag = 1;
                     }
 
                 }
@@ -169,6 +174,8 @@ class Notifications
                 Temp_notifcation::where('id', $tempnote->id)->update(['status' => 1]);
             }
         }
+
+        return $flag;
     }
 
 
