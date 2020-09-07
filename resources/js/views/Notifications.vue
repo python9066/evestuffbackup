@@ -1,7 +1,7 @@
 <template>
     <div class=" pr-16 pl-16">
         <div class=" d-flex align-items-center">
-            <v-card-title>Notifications </v-card-title>
+            <v-card-title>Notifications  -- {{test}} </v-card-title>
 
             <v-btn
                 :loading="loadingr"
@@ -346,6 +346,7 @@ export default {
             icon: "justify",
             toggle_none: null,
             delve: 0,
+            test: now(),
             periodbasis: 0,
             querious: 0,
             poll: null,
