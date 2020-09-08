@@ -114,6 +114,7 @@ const VueCountUptimer = {
          */
         minutes() {
           let minutes = Math.floor((this.count % MILLISECONDS_HOUR) / MILLISECONDS_MINUTE);
+          console.log(minutes);
 
           if (!this.hourTxt) {
             let days = Math.floor(this.count / MILLISECONDS_DAY)
