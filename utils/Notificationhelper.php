@@ -166,7 +166,7 @@ class Notifications
                 if ($tempnote->id > $check[0]['id']) {
 
                     Notification::where('si_id', $si_id)
-                        ->where('item_id', $stype)->update(['status_id' => 2, 'timestamp' => $tempnote->time]);
+                        ->where('item_id', $stype)->update(['status_id' => 2, 'timestamp' => $tempnote->timestamp]);
                 }
                 Temp_notifcation::where('id', $tempnote->id)->update(['status' => 1]);
             } else {
