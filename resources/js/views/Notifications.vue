@@ -438,10 +438,10 @@ export default {
         timecheck(item){
             console.log(item);
             if(item.status_id === 4 ){
-            //     this.$store.dispatch('updateNotification',item)
-            //     var request = {
-            //     status_id: 10
-            // };
+                // this.$store.dispatch('updateNotification',item)
+                var request = {
+                status_id: 10
+            };
             axios({
                 method: 'put', //you can set what request you want to be
                 url: "api/notifications/" + item.id,
