@@ -25,9 +25,13 @@ class Timerhelper
             'headers' => $headers
         ]);
         $response = json_decode($response->getBody(), true);
-        Structure::truncate();
-        $data = array();
+        Structure::where('id','>',0)->update(['item_id' => 0]);
+
         foreach ($response as $var) {
+            $id = array();
+            $id = array(
+                'id' => $var['structure_id'],
+            );
             $count = count($var);
             if ($count > 4) {
                 $adm = $var['vulnerability_occupancy_level'];
@@ -40,11 +44,10 @@ class Timerhelper
                 $vulnerable_end_time = NULL;
                 $vulnerable_start_time = NULL;
             }
-            $data1 = array();
-            $data1 = array(
+            $data = array();
+            $data = array(
                 'alliance_id' => $var['alliance_id'],
                 'system_id' => $var['solar_system_id'],
-                'id' => $var['structure_id'],
                 'item_id' => $var['structure_type_id'],
                 'adm' => $adm,
                 'vulnerable_end_time' => $vulnerable_end_time,
@@ -52,9 +55,10 @@ class Timerhelper
 
             );
 
-            array_push($data, $data1);
+            Structure::firstOrCreate($id,$data);
+
         }
-        Structure::insert($data);
+            Structure::where('item_id',0)->delete();
         $system = Structure::where('adm', '>', 0)->select('system_id', 'adm')->get();
         $system = $system->unique('system_id');
         System::where('id', '>', 0)->update(['adm' => 0]);
