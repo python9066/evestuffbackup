@@ -188,7 +188,7 @@
         >
 
             <template slot="no-data">
-                <v-alert :value="true" color="primery" icon="warning">
+                <v-alert :value="true" color="primary" :icon= fas fa-plus>
                     No active hacks in the last few hours
                 </v-alert>
             </template>
