@@ -376,7 +376,7 @@ export default {
         Echo.private('notes')
         .listen('NotificationChanged', (e) => {
         // console.log(e.notifications.id);
-        this.$store.dispatch('updateNotification',e);
+        this.$store.dispatch('updateNotification',e.notifications);
     })
 
         .listen('NotificationNew', (e) => {

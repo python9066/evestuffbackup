@@ -29,8 +29,8 @@ export default new Vuex.Store({
         },
 
         UPDATE_NOTIFICATIONS(state, data){
-            const item = state.notifications.find(item => item.id === data.notifications.id);
-            Object.assign(item, data.notifications);
+            const item = state.notifications.find(item => item.id === data.id);
+            Object.assign(item, data);
 
         },
 

@@ -98,7 +98,6 @@ class NotificationRecordsController extends Controller
         // dd($request,$id);
         NotificationRecords::find($id)->update($request->all());
         $notifications = NotificationRecords::find($id);
-        dd($notifications->status_id);
         if($notifications->status_id != 10){
         broadcast(new NotificationChanged($notifications))->toOthers();
         }
