@@ -180,7 +180,7 @@
             item-key="id"
             :loading="loadingt"
             :items-per-page="25"
-            :items-per-page-options="[25,50,100,-1]"
+            items-per-page-options=[25,50,100,-1]
             :sort-by="['timestamp']"
             :search="search"
             :sort-desc="[true, false]"
