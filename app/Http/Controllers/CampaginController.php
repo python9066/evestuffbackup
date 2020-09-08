@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use utils\Campaginhelper\Campaginhelper;
 use utils\Helper\Helper;
 
 class CampaginController extends Controller
@@ -11,7 +12,7 @@ class CampaginController extends Controller
     {
         $status = Helper::checkeve();
         if ($status == 1){
-
+            Campaginhelper::update();
 
 
         }
