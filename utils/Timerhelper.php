@@ -20,7 +20,7 @@ class Timerhelper
             'Content-Type' => 'application/json',
             "Accept" => "application/json",
         ];
-        $url = $url = "https://esi.evetech.net/latest/sovereignty/structures/?datasource=tranquility";
+        $url = "https://esi.evetech.net/latest/sovereignty/structures/?datasource=tranquility";
         $response = $client->request('GET', $url, [
             'headers' => $headers
         ]);
