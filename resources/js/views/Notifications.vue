@@ -325,10 +325,6 @@
             </template>
         </v-snackbar>
     </div>
-
-    <!-- <template>
-  <v-data-table item-key="name" class="elevation-1" loading loading-text="Loading... Please wait"></v-data-table>
-</template> -->
 </template>
 <script>
 import Axios from "axios";
@@ -339,17 +335,13 @@ import ApiL from "../service/apil";
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
-// import VueFilterDateFormat from "@vuejs-community/vue-filter-date-format";
-// import VueFilterDateParse from "@vuejs-community/vue-filter-date-parse";
 export default {
     data() {
         return {
-            //timersAll: [],
             check: "not here",
             loadingt:true,
             loadingf:true,
             loadingr:true,
-            // loading3: true,
             endcount: "",
             search: "",
             componentKey: 0,
@@ -401,12 +393,10 @@ export default {
 
         Echo.private('notes')
         .listen('NotificationChanged', (e) => {
-        // console.log(e.notifications.id);
         this.$store.dispatch('updateNotification',e.notifications);
     })
 
         .listen('NotificationNew', (e) => {
-        // console.log('NEW UPDATE');
         this.loadtimers();
 
         })
@@ -462,17 +452,17 @@ export default {
 
 
         timecheck(item){
-            if(item.status_id == 4 ){
+            if(item.status_id == 4 || item.status_id == 2){
                 item.status_id = 10;
                 console.log(item.status_id);
                 this.$store.dispatch('updateNotification',item)
-                if(item.region_name == 'Querious'){
+                if(item.region_name === 'Querious'){
                     this.$store.dispatch('Querious');
                 }
-                if(item.region_name == 'Period Basis'){
+                if(item.region_name === 'Period Basis'){
                     this.$store.dispatch('Period Basis');
                 }
-                if(item.region_name == 'Delve'){
+                if(item.region_name === 'Delve'){
                     this.$store.dispatch('Delve');
                 }
                 var request = {
@@ -502,7 +492,7 @@ export default {
             });
             this.$store.dispatch("getqueriousLink");
             this.$store.dispatch("getdelveLink");
-            // this.$store.dispatch("getperiodbasisLink");
+            this.$store.dispatch("getperiodbasisLink");
             // console.log("30secs");
         },
 
@@ -522,12 +512,11 @@ export default {
             this.snackText = "Dialog opened";
         },
         close() {
-            // console.log("Dialog closed");
+
         },
 
         click(item) {
-            // console.log("Dialog clicked");
-            // console.log(item);
+
             var request = {
                 status_id: item.status_id
             };
@@ -541,15 +530,13 @@ export default {
                     "Content-Type": "application/json",
                 }
             })
-            // console.log(request);
-            // ApiL().put("notifications/" + item.id, request);
+
         },
 
         sec(item) {
             var a = moment.utc();
             var b = moment(item.timestamp);
             this.diff = a.diff(b);
-            // console.log(a.diff(b));
             return this.diff;
         }
 
