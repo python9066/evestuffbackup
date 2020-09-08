@@ -291,7 +291,7 @@
                                 v-on="on"
                                 tile
                                 outlined
-                                color="indigo"
+                                color="blue-grey lighten-1"
                             >
                                 <v-icon left>fas fa-search</v-icon>
                                 {{ item.status_name }}
