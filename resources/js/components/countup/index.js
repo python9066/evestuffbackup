@@ -262,8 +262,8 @@ const VueCountUptimer = {
             }
 
             this.count += this.interval;
-            this.$emit('fofo',this.count);
-            if(this.count === 1800000 ){
+            // this.$emit('fofo',this.count);
+            if(this.count > 1799000 && this.count < 1801000){
             this.$emit('timecheck', this.count);
             }
             this.next();
