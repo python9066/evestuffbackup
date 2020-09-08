@@ -193,7 +193,7 @@
                     :start-time="item.timestamp + ' UTC'"
                     :end-text="'Window Closed'"
                     :interval="1000"
-                    @fefefe='test(item)'
+                    @timecheck='timecheck(item)'
                 >
                     <template slot="countup" slot-scope="scope">
                         <span class="red--text pl-3"
@@ -437,7 +437,7 @@ export default {
         // },
 
 
-        test(item){
+        timecheck(item){
             console.log(item.id);
         },
 
