@@ -232,14 +232,7 @@ export default {
         },
 
         logout() {
-            axios
-                .post("/logout")
-                .then(() => {
-                    window.location.href = "/logout";
-                })
-                .catch(error => {
-                    window.location.href = "/logout";
-                });
+            window.location.href = "/logout";
         }
     },
     computed: {
