@@ -193,6 +193,7 @@
                     :start-time="item.timestamp + ' UTC'"
                     :end-text="'Window Closed'"
                     :interval="1000"
+                    @fefefe='console.log(item.id)'
                 >
                     <template slot="countup" slot-scope="scope">
                         <span class="red--text pl-3"
