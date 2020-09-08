@@ -438,7 +438,7 @@ export default {
         timecheck(item){
             console.log(item);
             if(item.status_id === 4 ){
-                item.status_id === 10
+                this.item.status_id === 10
 
                 var request = {
                 status_id: 10
