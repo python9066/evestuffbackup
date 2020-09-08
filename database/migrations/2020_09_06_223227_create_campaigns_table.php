@@ -16,13 +16,13 @@ class CreateCampaignsTable extends Migration
         Schema::create('campaigns', function (Blueprint $table) {
             $table->id('id');
             $table->float('attackers_score');
-            $table->foreignId('constellation_id')->references('id')->on('constellations');
-            $table->foreignId('alliance_id')->references('id')->on('alliances');
+            $table->foreignId('constellation_id');
+            $table->foreignId('alliance_id');
             $table->float('defenders_score');
             $table->string('event_type');
-            $table->foreignId('system_id')->references('id')->on('systems');
+            $table->foreignId('system_id');
             $table->dateTime('start_time');
-            $table->foreignId('structure_id')->references('id')->on('structures');
+            $table->foreignId('structure_id');
             $table->timestamps();
 
             $table->index('id');
