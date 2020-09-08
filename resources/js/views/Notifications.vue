@@ -354,7 +354,6 @@ export default {
             snack: false,
             snackColor: "",
             snackText: "",
-            pagination: {},
             dialog1: false,
             dialog2: false,
             dialog3: false,
