@@ -161,6 +161,13 @@
                 <v-btn
                     :loading="loadingf"
                     :disabled="loadingf"
+                    @click="statusflag = 6"
+                >
+                    Scouting
+                </v-btn>
+                <v-btn
+                    :loading="loadingf"
+                    :disabled="loadingf"
                     @click="statusflag = 3"
                 >
                     Repairing
@@ -277,6 +284,18 @@
                                 <v-icon left>fas fa-exclamation-circle</v-icon>
                                 {{ item.status_name }}
                             </v-btn>
+                            <v-btn
+                                v-if="item.status_id == 6"
+                                class="ma-2"
+                                v-bind="attrs"
+                                v-on="on"
+                                tile
+                                outlined
+                                color="light-green darken-1"
+                            >
+                                <v-icon left>fas fa-search</v-icon>
+                                {{ item.status_name }}
+                            </v-btn>
                         </div>
                     </template>
 
@@ -356,6 +375,7 @@ export default {
             poll: null,
 
             dropdown_edit: [
+                { title: 'Scouting', value: 6},
                 { title: "Reffed", value: 2 },
                 { title: "Repairing", value: 3 },
                 { title: "Secured", value: 4 },
@@ -554,6 +574,11 @@ export default {
             if (this.statusflag == 5) {
                 return this.notifications.filter(
                     notifications => notifications.status_id == 5
+                );
+            }
+            if (this.statusflag == 6) {
+                return this.notifications.filter(
+                    notifications => notifications.status_id == 6
                 );
             }
             else {
