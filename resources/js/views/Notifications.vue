@@ -193,7 +193,7 @@
                     :start-time="item.timestamp + ' UTC'"
                     :end-text="'Window Closed'"
                     :interval="1000"
-                    @fefefe='console.log(item.id)'
+                    @fefefe='test(item)'
                 >
                     <template slot="countup" slot-scope="scope">
                         <span class="red--text pl-3"
@@ -437,7 +437,9 @@ export default {
         // },
 
 
-
+        test(item){
+            console.log(item.id);
+        },
 
         loadtimers() {
             this.loadingr = true;
