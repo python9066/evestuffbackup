@@ -16,8 +16,8 @@ class CreateTempNotifcationsTable extends Migration
         Schema::create('temp_notifcations', function (Blueprint $table) {
             $table->id();
             $table->integer('event_type_id');
-            $table->foreignId('system_id')->references('id')->on('systems');
-            $table->foreignId('notification_type_id')->references('id')->on('notification_types');
+            $table->foreignId('system_id');
+            $table->foreignId('notification_type_id');
             $table->dateTime('timestamp');
             $table->bigInteger('es_id');
             $table->integer('status')->default(0);
