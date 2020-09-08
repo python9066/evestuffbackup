@@ -262,10 +262,7 @@ const VueCountUptimer = {
             }
 
             this.count += this.interval;
-            this.$emit('check', item.id);
-            if(this.count === 1800000){
-            this.$emit('30mins', 10);
-            };
+            this.$emit('fefefe', this.count);
             this.next();
           } else {
             this.count = 0;
