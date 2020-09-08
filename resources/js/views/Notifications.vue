@@ -8,9 +8,7 @@
                 :disabled="loadingr"
                 color="primary"
                 class="ma-2 white--text"
-                @click="
-                    loadtimers();
-                "
+                @click="loadtimers()"
             >
                 Update
                 <v-icon right dark>fas fa-sync-alt fa-xs</v-icon>
@@ -193,7 +191,7 @@
                     :start-time="item.timestamp + ' UTC'"
                     :end-text="'Window Closed'"
                     :interval="1000"
-                    @timecheck='timecheck(item)'
+                    @timecheck="timecheck(item)"
                 >
                     <template slot="countup" slot-scope="scope">
                         <span class="red--text pl-3"
@@ -387,7 +385,7 @@ export default {
 
         })
 
-        this.today = moment.utc().add(5, 'hours')
+
 
     },
 
@@ -438,7 +436,27 @@ export default {
 
 
         timecheck(item){
-            console.log(item.id);
+
+            if(item.status_id === 4 ){
+                item.status_id === 10
+
+                var request = {
+                status_id: 10
+            };
+            axios({
+                method: 'put', //you can set what request you want to be
+                url: "api/notifications/" + item.id,
+                data: request,
+                headers: {
+                    Authorization: 'Bearer ' + this.$store.state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json",
+                }
+                })
+
+                                    }
+
+
         },
 
         loadtimers() {
