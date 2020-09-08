@@ -263,7 +263,7 @@ const VueCountUptimer = {
 
             this.count += this.interval;
             // this.$emit('fofo',this.count);
-            if(this.count > 1799000 && this.count < 1801000){
+            if(this.count > 1799000 && this.count < 1801000  || this.count > 3599000 && this.count < 3601000 || this.count > 5399000 && this.count < 5401000 || this.count > 7199000 && this.count < 7201000 || this.count > 8999000 && this.count < 9001000 || this.count > 10799000 && this.count < 10801000){
             this.$emit('timecheck', this.count);
             }
             this.next();
@@ -272,7 +272,6 @@ const VueCountUptimer = {
             this.init();
           }
         },
-
         /**
          * Stop the countdown
          * 停止倒计时
