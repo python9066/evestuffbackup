@@ -24,10 +24,7 @@ Route::get('/timers', 'HomeController@index');
 Route::get('/getTimerData','TimerController@getTimerData');
 Route::get('/updateTimerData','TimerController@updateTimerData');
 Route::get('/test', 'NotificationController@test');
-Route::get('/login', function() {
-    return view('auth.login');
-});
-
+Route::get('/login', 'AuthController@login');
 Route::get('/oauth/login', 'AuthController@redirectToProvider');
 Route::get('/oauth/callback', 'AuthController@handleProviderCallback');
 Route::get('/logout', 'AuthController@logout');
@@ -55,10 +52,7 @@ Route::get('/367448c2da9ee714f64d0bce9dfd219fabf8969afea0d814c7e8d144/66cedf66cf
 
  Route::get('/3714f64d0bce9dfd219fabf03dbccb1948969afea0d814c7e8d144/66cedf66cf26e006172c0c169f66', 'CronController@alliances');
 
-Route::get('/corn/test', function () {
-    // Artisan::call('update:timers');
-    return Helper::displayName();
- });
+
 
 
 
