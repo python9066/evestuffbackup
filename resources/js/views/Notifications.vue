@@ -293,7 +293,7 @@
                                 outlined
                                 color="indigo"
                             >
-                                <v-icon left>fas fa-search-location</v-icon>
+                                <v-icon left>fas fa-search</v-icon>
                                 {{ item.status_name }}
                             </v-btn>
                         </div>
