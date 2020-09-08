@@ -462,12 +462,19 @@ export default {
 
 
         timecheck(item){
-            console.log(item.status_id);
-            console.log(" - ");
             if(item.status_id == 4 ){
                 item.status_id = 10;
                 console.log(item.status_id);
                 this.$store.dispatch('updateNotification',item)
+                if(item.region_name == 'Querious'){
+                    this.$store.dispatch('Querious');
+                }
+                if(item.region_name == 'Period Basis'){
+                    this.$store.dispatch('Period Basis');
+                }
+                if(item.region_name == 'Delve'){
+                    this.$store.dispatch('Delve');
+                }
                 var request = {
                 status_id: 10
 
