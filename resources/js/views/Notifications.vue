@@ -353,7 +353,7 @@ export default {
             dropdown_edit: [
                 { title: "Reffed", value: 2 },
                 { title: "Repairing", value: 3 },
-                { title: "Saved", value: 4 },
+                { title: "Secured", value: 4 },
                 { title: "Contested", value: 5 }
             ],
 
@@ -529,8 +529,11 @@ export default {
                 return this.notifications.filter(
                     notifications => notifications.status_id == 5
                 );
-            } else {
-                return this.notifications;
+            }
+            else {
+                return this.notifications.filter(
+                    notifications => notifications.status_id != 1 && notifications.timestamp < moment.utc().add(30, 'minutes')
+                );
             }
         },
 
