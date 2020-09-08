@@ -17,7 +17,7 @@ class CreateCampaignsTable extends Migration
             $table->id('id');
             $table->float('attackers_score');
             $table->foreignId('constellation_id')->references('id')->on('constellations');
-            $table->foreignId('defender_id')->references('id')->on('alliances');
+            $table->foreignId('alliance_id')->references('id')->on('alliances');
             $table->float('defenders_score');
             $table->string('event_type');
             $table->foreignId('system_id')->references('id')->on('systems');
