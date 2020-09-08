@@ -43,7 +43,7 @@ class NotificationRecordsController extends Controller
     {
         $now = Now('-2 hours');
         $http = "https://evemaps.dotlan.net/map/";
-        $region = Region::where('id', $region_id)->where('id','<',10)->get();
+        $region = Region::where('id', $region_id)->get();
         foreach ($region as $region) {
             if ($region->region_name == "Period Basis") {
 
@@ -53,7 +53,7 @@ class NotificationRecordsController extends Controller
                 $http = $http . $region->region_name . "/";
             }
         }
-        $link = NotificationRecords::where('region_id', $region_id)->where('timestamp','>=',$now)->get()->pluck('system_name');
+        $link = NotificationRecords::where('region_id', $region_id)->where('timestamp','>=',$now)->where('status_id','<',10)->get()->pluck('system_name');
         $count = $link->count();
         // dd($count);
         if ($count == 0) {
