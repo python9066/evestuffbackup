@@ -68,6 +68,11 @@
             multi-sort
             class="elevation-1"
         >
+        <template slot="no-data">
+
+                    No open Windows
+
+            </template>
             <template v-slot:item.alliance="{ item }">
                 <!-- <v-img src="https://images.evetech.net/Alliance/1354830081_64.png"  style="height: inherit"></v-img> -->
                 <v-avatar size="35"><img :src="item.url"/></v-avatar>
