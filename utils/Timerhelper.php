@@ -20,18 +20,14 @@ class Timerhelper
             'Content-Type' => 'application/json',
             "Accept" => "application/json",
         ];
-        $url ="https://esi.evetech.net/latest/sovereignty/structures/?datasource=tranquility";
+        $url = $url = "https://esi.evetech.net/latest/sovereignty/structures/?datasource=tranquility";
         $response = $client->request('GET', $url, [
             'headers' => $headers
         ]);
         $response = json_decode($response->getBody(), true);
-        Structure::where('id','>',0)->update(['item_id' => 0]);
-
+        Structure::truncate();
+        $data = array();
         foreach ($response as $var) {
-            $id = array();
-            $id = array(
-                'id' => $var['structure_id'],
-            );
             $count = count($var);
             if ($count > 4) {
                 $adm = $var['vulnerability_occupancy_level'];
@@ -44,10 +40,11 @@ class Timerhelper
                 $vulnerable_end_time = NULL;
                 $vulnerable_start_time = NULL;
             }
-            $data = array();
-            $data = array(
+            $data1 = array();
+            $data1 = array(
                 'alliance_id' => $var['alliance_id'],
                 'system_id' => $var['solar_system_id'],
+                'id' => $var['structure_id'],
                 'item_id' => $var['structure_type_id'],
                 'adm' => $adm,
                 'vulnerable_end_time' => $vulnerable_end_time,
@@ -55,10 +52,9 @@ class Timerhelper
 
             );
 
-            Structure::firstOrCreate($id,$data);
-
+            array_push($data, $data1);
         }
-            Structure::where('item_id',0)->delete();
+        Structure::insert($data);
         $system = Structure::where('adm', '>', 0)->select('system_id', 'adm')->get();
         $system = $system->unique('system_id');
         System::where('id', '>', 0)->update(['adm' => 0]);
