@@ -205,7 +205,7 @@
                     :start-time="item.timestamp + ' UTC'"
                     :end-text="'Window Closed'"
                     :interval="1000"
-                    @timecheck="timecheck(item), item.status_id = 10"
+                    @timecheck="timecheck(item)"
                 >
                     <template slot="countup" slot-scope="scope">
                         <span class="red--text pl-3"
@@ -464,9 +464,11 @@ export default {
         timecheck(item){
             console.log(item);
             if(item.status_id === 4 ){
-                // this.$store.dispatch('updateNotification',item)
+                item.statu_id = 10;
+                this.$store.dispatch('updateNotification',item)
                 var request = {
                 status_id: 10
+
             };
             axios({
                 method: 'put', //you can set what request you want to be
