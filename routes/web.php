@@ -40,27 +40,20 @@ Route::get('/test2', 'HomeController@party2');
 
 Route::get('/home', 'HomeController@index');
 Route::get('updateAlliances', 'AllianceController@updateAlliances');
-Route::get('/helper', function () {
-    return Helper::displayName();
-});
-Route::get('/helper2', function () {
-    return Auth::user()->name;
-});
+// Route::get('/helper', function () {
+//     return Helper::displayName();
+// });
+// Route::get('/helper2', function () {
+//     return Auth::user()->name;
+// });
 
 
 
-Route::get('/367448c2da9ee714f64d0bce9dfd219fabf03dbccb1948969afea0d814c7e8d144/66cedf66cf26e0061eb2ca8ea6472c0c169f66', function () {
-   Artisan::call('update:notifications');
-});
+Route::get('/367448c2da9ee714f64d0bce9dfd219fabf03dbccb1948969afea0d814c7e8d144/66cedf66cf26e0061eb2ca8ea6472c0c169f66', 'CronController@notifications');
 
-Route::get('/367448c2da9ee714f64d0bce9dfd219fabf8969afea0d814c7e8d144/66cedf66cf2a6472c0c169f66', function () {
-    Artisan::call('update:timers');
- });
+Route::get('/367448c2da9ee714f64d0bce9dfd219fabf8969afea0d814c7e8d144/66cedf66cf2a6472c0c169f66','CronController@timers');
 
- Route::get('/3714f64d0bce9dfd219fabf03dbccb1948969afea0d814c7e8d144/66cedf66cf26e006172c0c169f66', function () {
-    Artisan::call('update:alliances');
-
- });
+ Route::get('/3714f64d0bce9dfd219fabf03dbccb1948969afea0d814c7e8d144/66cedf66cf26e006172c0c169f66', 'CronController@alliances');
 
 Route::get('/corn/test', function () {
     // Artisan::call('update:timers');
