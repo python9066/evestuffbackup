@@ -3,8 +3,6 @@
         <div class=" d-flex align-items-center">
             <v-card-title>Vulnerability Windows</v-card-title>
 
-
-
             <v-btn
                 :loading="loading3"
                 :disabled="loading3"
@@ -63,6 +61,7 @@
             item-key="id"
             :loading="loading"
             :items-per-page="25"
+            :footer-props="{ 'items-per-page-options': [15, 25, 50, 100, -1] }"
             :sort-by="['end']"
             :search="search"
             :sort-desc="[false, true]"
@@ -85,20 +84,24 @@
                 <template>
                     <vue-countdown-timer
                         @start_callback="startCallBack('event started')"
-                        @end_callback="item.status=1,handleCountdownEnd(item)"
+                        @end_callback="
+                            (item.status = 1), handleCountdownEnd(item)
+                        "
                         :start-time="item.start + ' UTC'"
-                        :end-time="item.end +' UTC'"
+                        :end-time="item.end + ' UTC'"
                         :end-text="'Window Closed'"
                         :interval="1000"
                     >
-                    <template slot="countdown" slot-scope="scope">
-        <span class="red--text pl-3">{{scope.props.hours}}:{{scope.props.minutes}}:{{scope.props.seconds}}</span>
-      </template>
-
+                        <template slot="countdown" slot-scope="scope">
+                            <span class="red--text pl-3"
+                                >{{ scope.props.hours }}:{{
+                                    scope.props.minutes
+                                }}:{{ scope.props.seconds }}</span
+                            >
+                        </template>
                     </vue-countdown-timer>
                 </template>
             </template>
-            <v-data-footer items-per-page-options="[25,50,100]"></v-data-footer>
         </v-data-table>
     </div>
 
@@ -110,7 +113,7 @@
 import Axios from "axios";
 import moment, { now, utc } from "moment";
 import { stringify } from "querystring";
-import { mapState } from 'vuex';
+import { mapState } from "vuex";
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
@@ -129,10 +132,8 @@ export default {
             toggle_exclusive: 1,
             colorflag: 3,
             today: moment(),
-            name: 'Timer',
+            name: "Timer",
             test: now(),
-
-
 
             headers: [
                 { text: "Region", value: "region", width: "10%" },
@@ -164,13 +165,12 @@ export default {
         // await this.matchLatesttoNames();
     },
     methods: {
-
-        startCallBack: function (x) {
-        console.log(x)
-      },
-      endCallBack: function (x) {
-        console.log(x)
-      },
+        startCallBack: function(x) {
+            console.log(x);
+        },
+        endCallBack: function(x) {
+            console.log(x);
+        },
         // async getTimerDataAll() {
         //     this.loading = true;
         //     await axios.get("/getTimerData").then(res => {
@@ -184,7 +184,7 @@ export default {
         // },
 
         async loadtimers() {
-           await this.$store.dispatch("getTimerDataAll");
+            await this.$store.dispatch("getTimerDataAll");
             this.loading3 = false;
             this.loading = false;
         },
@@ -231,25 +231,29 @@ export default {
         //     console.log("hi");
         // }
         handleCountdownEnd(item) {
-            this.$store.dispatch('markOver',item);
-        },
+            this.$store.dispatch("markOver", item);
+        }
     },
     computed: {
-
-        ...mapState(['timers']),
+        ...mapState(["timers"]),
         filteredItems() {
             // var timers = this.$store.state.timers;
-            if (this.colorflag == 1){
-                return this.timers.filter(timers => timers.color == 1 && timers.status == 0)
+            if (this.colorflag == 1) {
+                return this.timers.filter(
+                    timers => timers.color == 1 && timers.status == 0
+                );
             }
-            if (this.colorflag == 2){
-                return this.timers.filter(timers => timers.color > 1  && timers.status == 0)
+            if (this.colorflag == 2) {
+                return this.timers.filter(
+                    timers => timers.color > 1 && timers.status == 0
+                );
             }
-            if (this.colorflag == 3){
-                return this.timers.filter(timers => timers.color == 3 && timers.status == 0)
-            }
-            else{
-                return this.timers.filter(timers => timers.status == 0)
+            if (this.colorflag == 3) {
+                return this.timers.filter(
+                    timers => timers.color == 3 && timers.status == 0
+                );
+            } else {
+                return this.timers.filter(timers => timers.status == 0);
             }
         }
     }
