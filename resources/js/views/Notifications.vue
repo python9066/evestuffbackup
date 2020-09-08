@@ -534,7 +534,9 @@ export default {
                 );
             }
             else {
-                return this.notifications
+                return this.notifications.filter(
+                    notifications => notifications.status_id !== 10
+                );
             }
         },
 
