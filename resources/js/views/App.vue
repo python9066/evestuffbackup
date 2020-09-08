@@ -79,7 +79,7 @@
             app
             clipped-left
             elevate-on-scroll
-            class="align-items-baseline top-border--orange"
+            class="align-items-baseline"
         >
             <!-- <v-app-bar app clipped-left flat hide-on-scroll scroll-threshold="500" class="top-border--teal"> -->
             <!-- <v-app-bar-nav-icon
