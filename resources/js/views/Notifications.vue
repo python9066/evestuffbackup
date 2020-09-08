@@ -180,6 +180,7 @@
             item-key="id"
             :loading="loadingt"
             :items-per-page="25"
+            :items-per-page-options=[25,50,100,-1]
             :sort-by="['timestamp']"
             :search="search"
             :sort-desc="[true, false]"
@@ -188,9 +189,9 @@
         >
 
             <template slot="no-data">
-                <v-alert :value="true" color="primary" :icon= fas fa-plus>
-                    No active hacks in the last few hours
-                </v-alert>
+
+                    No hacking notifications to show, which I would say is a good thing?
+
             </template>
             <template v-slot:item.count="{ item }">
                 <VueCountUptimer
@@ -296,7 +297,6 @@
                     </v-list>
                 </v-menu>
             </template>
-            <v-data-footer items-per-page-options="{25,50,100}"></v-data-footer>
         </v-data-table>
         <v-snackbar v-model="snack" :timeout="3000" :color="snackColor">
             {{ snackText }}
