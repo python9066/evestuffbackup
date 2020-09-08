@@ -333,6 +333,7 @@ const VueCountUptimer = {
             if (status === 1) {
               this.$set(this, 'tips', true);
               this.count = Math.max(0, startCount);
+              this.$emit('bla', this.status)
             }
 
             if (status === 2) {
