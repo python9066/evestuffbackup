@@ -464,7 +464,7 @@ export default {
         timecheck(item){
             console.log(item.status_id);
             console.log(" - ");
-            if(item.status_id === 4 ){
+            if(item.status_id == 4 ){
                 item.status_id = 10;
                 console.log(item.status_id);
                 this.$store.dispatch('updateNotification',item)
