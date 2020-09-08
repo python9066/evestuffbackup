@@ -436,7 +436,7 @@ export default {
 
 
         timecheck(item){
-
+            console.log(item);
             if(item.status_id === 4 ){
                 item.status_id === 10
 
