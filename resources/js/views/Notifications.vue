@@ -386,7 +386,7 @@ export default {
 
         })
 
-        this.today = moment.utc().add(30, 'minutes')
+        this.today = moment.utc().add(5, 'hours')
 
     },
 
@@ -531,9 +531,7 @@ export default {
                 );
             }
             else {
-                return this.notifications.filter(
-                    notifications => notifications.status_id != 1 && notifications.timestamp < moment.utc().add(30, 'minutes')
-                );
+                return this.notifications
             }
         },
 
