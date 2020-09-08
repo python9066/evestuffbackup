@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddTextColumnToStructuresTable extends Migration
+class AddTextColumnToNotificationsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class AddTextColumnToStructuresTable extends Migration
      */
     public function up()
     {
-        Schema::table('structures', function (Blueprint $table) {
+        Schema::table('notifications', function (Blueprint $table) {
             $table->string('text')->after('si_id')
                         ->nullable()
                         ->default(null);
@@ -27,7 +27,7 @@ class AddTextColumnToStructuresTable extends Migration
      */
     public function down()
     {
-        Schema::table('structures', function (Blueprint $table) {
+        Schema::table('notifications', function (Blueprint $table) {
             //
         });
     }
