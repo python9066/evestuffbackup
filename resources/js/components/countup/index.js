@@ -114,7 +114,6 @@ const VueCountUptimer = {
          */
         minutes() {
           let minutes = Math.floor((this.count % MILLISECONDS_HOUR) / MILLISECONDS_MINUTE);
-          console.log(minutes);
 
           if (!this.hourTxt) {
             let days = Math.floor(this.count / MILLISECONDS_DAY)
@@ -261,10 +260,10 @@ const VueCountUptimer = {
                 this.showMinute = false
               }
             }
-            console.log(this.minutes," - ", this.seconds);
+
             this.count += this.interval;
             // this.$emit('fofo',this.count);
-            if(this.count > 1799000 && this.count < 1801000  || this.count > 3599000 && this.count < 3601000 || this.count > 5399000 && this.count < 5401000 || this.count > 7199000 && this.count < 7201000 || this.count > 8999000 && this.count < 9001000 || this.count > 10799000 && this.count < 10801000){
+            if( this.minutes === 30 && this.seconds === 0){
             this.$emit('timecheck', this.count);
             }
             this.next();
