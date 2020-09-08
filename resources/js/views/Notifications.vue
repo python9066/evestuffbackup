@@ -186,6 +186,12 @@
             multi-sort
             class="elevation-1"
         >
+
+            <template slot="no-data">
+                <v-alert :value="true" color="primery" icon="warning">
+                    No active hacks in the last few hours
+                </v-alert>
+            </template>
             <template v-slot:item.count="{ item }">
                 <VueCountUptimer
                     :start-time="item.timestamp + ' UTC'"
