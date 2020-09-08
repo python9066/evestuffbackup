@@ -392,13 +392,6 @@ export default {
         })
 
 
-
-    },
-
-
-    async mounted() {
-        // await this.getLatest();
-        // await this.loadtimers();
         this.$store.dispatch("getNotifications").then(() => {
             this.loadingt = false;
             this.loadingf = false;
@@ -409,6 +402,13 @@ export default {
         this.$store.dispatch("getqueriousLink");
         this.$store.dispatch("getdelveLink");
         this.$store.dispatch("getperiodbasisLink");
+
+    },
+
+
+    async mounted() {
+        // await this.getLatest();
+        // await this.loadtimers();
 
 
     //    this.poll = setInterval(() => {
