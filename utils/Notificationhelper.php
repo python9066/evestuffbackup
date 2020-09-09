@@ -21,13 +21,33 @@ class Notifications
     public static function update($data)
     {
         $now = now('-10 minutes');
-        Notification::where('status_id',2)
-                    ->where('timestamp','>=',$now)
-                    ->update(['status_id' => 10]);
-        Notification::where('status_id',4)
-                    ->where('timestamp','>=',$now)
-                    ->update(['status_id' => 10]);
         $flag = 0;
+
+        $check =Notification::where('status_id',2)
+                    ->where('timestamp','>=',$now)
+                    ->count();
+        if($check > 0){
+
+            Notification::where('status_id',2)
+                        ->where('timestamp','>=',$now)
+                        ->update(['status_id' => 10]);
+                        $flag = 1;
+                        $check = null;
+        }
+
+        $check =Notification::where('status_id',2)
+                  ->where('timestamp','>=',$now)
+                  ->count();
+
+        if($check > 0){
+            Notification::where('status_id',4)
+                        ->where('timestamp','>=',$now)
+                        ->update(['status_id' => 10]);
+                        $flag = 1;
+                        $check = null;
+        }
+
+
         $notenumber = Notification::max('id');
         $tempnumber = Temp_notifcation::max('id');
         foreach ($data as $var) {
