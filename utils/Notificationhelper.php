@@ -20,8 +20,13 @@ class Notifications
 
     public static function update($data)
     {
-
-        // Notification::where()
+        $now = now('-10 minutes');
+        Notification::where('status_id',2)
+                    ->where('timestamp','>=',$now)
+                    ->update(['status_id' => 10]);
+        Notification::where('status_id',4)
+                    ->where('timestamp','>=',$now)
+                    ->update(['status_id' => 10]);
         $flag = 0;
         $notenumber = Notification::max('id');
         $tempnumber = Temp_notifcation::max('id');
@@ -66,7 +71,6 @@ class Notifications
                     'id' => $var['notification_id'],
                     'timestamp' => $time,
                     'notification_type_id' => 1,
-                    'status_id' => 1,
 
                 );
                 $data2 = array_merge($data, $result);
