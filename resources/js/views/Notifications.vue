@@ -353,7 +353,7 @@
                         <v-col class="align-center">
                             <v-text-field
                                 v-bind:value="item.text"
-                                label="aDash Board Link"
+                                label="aDash Board Link - needs to be a link to a scan, making a new scan from where will not save"
                                 outlined
                                 shaped
                                 @change="
@@ -366,7 +366,7 @@
                     <div
                         v-if="
                             item.text != null &&
-                                item.text.includes('https://adashboard.info/')
+                                item.text.includes('https://adashboard.info/intel/dscan/')
                         "
                     >
                         <v-card class="mx-auto" elevation="24">
@@ -523,7 +523,6 @@ export default {
         timecheck(item){
             if(item.status_id == 4 || item.status_id == 2){
                 item.status_id = 10;
-                console.log(item.status_id);
                 this.$store.dispatch('updateNotification',item)
                 if(item.region_name === 'Querious'){
                     this.$store.dispatch('getqueriousLink');

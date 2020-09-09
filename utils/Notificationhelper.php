@@ -11,7 +11,8 @@ class Notifications
 {
     public static function test ()
     {
-        echo "yo yo yo";
+        Notification::updateOrCreate(['si_id' => 3000474132226],['id' => 999999999999]);
+
 
     }#
 
@@ -19,14 +20,44 @@ class Notifications
 
     public static function update($data)
     {
-
-
+        $now = now('-10 minutes');
+        $yesterday = now('-6 hours');
+        // dd($yesterday);
+        Notification::where('timestamp','<=',$yesterday)->delete();
+        Temp_notifcation::where('timestamp','<=',$yesterday)->delete();
         $flag = 0;
+
+        $check =Notification::where('status_id',2)
+                    ->where('timestamp','>=',$now)
+                    ->count();
+                    // dd($check);
+                    if($check > 0){
+
+                        Notification::where('status_id',2)
+                        ->where('timestamp','>=',$now)
+                        ->update(['status_id' => 10]);
+                        $flag = 1;
+                        $check = null;
+                    }
+
+        $check =Notification::where('status_id',4)
+        ->where('timestamp','>=',$now)
+        ->count();
+
+        if($check > 0){
+            Notification::where('status_id',4)
+                        ->where('timestamp','>=',$now)
+                        ->update(['status_id' => 10]);
+                        $flag = 1;
+                        $check = null;
+        }
+
+
         $notenumber = Notification::max('id');
         $tempnumber = Temp_notifcation::max('id');
         foreach ($data as $var) {
 
-            $type = $var['type'];
+
             if ($var['type'] == 'EntosisCaptureStarted') {
                 if($var['notification_id'] > $notenumber){
 
@@ -154,10 +185,6 @@ class Notifications
 
             $si_id = $tempnote->system_id.$stype;
             $si_id = (int)$si_id;
-
-
-
-            // dd($tempnote->system_id);
             $check = Notification::where('si_id', $si_id)->get();
                 if ($check->count() == 1) {
 
@@ -166,7 +193,8 @@ class Notifications
                 if ($tempnote->id > $check[0]['id']) {
 
                     Notification::where('si_id', $si_id)
-                        ->where('item_id', $stype)->update(['status_id' => 2, 'timestamp' => $tempnote->timestamp]);
+                                ->where('item_id', $stype)
+                                ->update(['status_id' => 2]);
                 }
                 Temp_notifcation::where('id', $tempnote->id)->update(['status' => 1]);
             } else {
@@ -174,6 +202,7 @@ class Notifications
                 Temp_notifcation::where('id', $tempnote->id)->update(['status' => 1]);
             }
         }
+
 
         return $flag;
     }
