@@ -13,6 +13,7 @@ class Campaginhelper
 
     public static function update()
     {
+
         $flag = 0;
         $client = new Client();
         $headers = [
@@ -58,6 +59,36 @@ class Campaginhelper
                 }
             }
         }
+
+        $now = now();
+        $yesterday = now('-8 hours');
+        $check = Campaign::where('start_time','<=',$now)->count();
+        if($check){
+            Campaign::where('start_time','<=',$now)
+                    ->update(['status_id' => 2]);
+            $flag = 1;
+        }
+
+
+        $check = Campaign::where('attackers_score',0)
+                        ->orwhere('attackers_score',0)
+                        ->count();
+        if($check > 1){
+            Campaign::where('attackers_score',0)
+                    ->orwhere('attackers_score',0)
+                    ->update(['status_id' => 3]);
+            $flag = 1;
+        }
+
+        $check = Campaign::where('start_time','<=',$yesterday)->count();
+        if($check > 1){
+            Campaign::where('start_time','>=',$yesterday)
+                    ->update(['status_id' => 10]);
+            $flag = 1;
+        }
+
+
+
         return $flag;
     }
 }

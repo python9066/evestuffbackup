@@ -8,6 +8,7 @@ export default new Vuex.Store({
     state: {
         timers: [],
         notifications: [],
+        campagins:[],
         delveLink: "",
         queriousLink: "",
         periodbasisLink: "",
@@ -19,6 +20,10 @@ export default new Vuex.Store({
     mutations: {
         SET_TIMERS(state, timers) {
             state.timers = timers;
+        },
+
+        SET_CAMPAGINS(state, campagins){
+            state.campagins = campagins
         },
 
 
@@ -70,6 +75,21 @@ export default new Vuex.Store({
 
             })
             commit('SET_TIMERS', res.data.timers)
+        },
+
+        async getCampaginDataAll({ commit, state }) {
+
+            let res = await axios({
+                method: 'get',
+                url: '/api/campagins',
+                headers: {
+                    Authorization: 'Bearer ' + state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json",
+                }
+
+            })
+            commit('SET_CAMPAGINS', res.data.campagins)
         },
 
         // async getNotifications({commit, state}) {

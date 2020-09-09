@@ -31,4 +31,5 @@ Route::middleware('auth:api')->group(function(){
     Route::put('/notifications/{id}', 'NotificationRecordsController@update');
     Route::get('/notifications','NotificationRecordsController@index');
     Route::get('/timers','TimerController@getTimerData');
+    Route::get('/campagins','CampaginController@index');
 });

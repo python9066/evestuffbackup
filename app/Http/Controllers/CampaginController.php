@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Campaign;
 use App\Events\CampaginChanged;
 use Illuminate\Http\Request;
 use utils\Campaginhelper\Campaginhelper;
@@ -22,4 +23,16 @@ class CampaginController extends Controller
 
         }
     }
+
+    public function index()
+    {
+        return ['campaigns' => Campaign::all()];
+    }
+
+
+
+
+
+
+
 }
