@@ -232,7 +232,7 @@ export default {
         },
 
         logout() {
-                    window.location.href = "/logout";
+            window.location.href = "/logout";
         }
     },
     computed: {
