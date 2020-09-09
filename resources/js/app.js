@@ -22,7 +22,7 @@ import VueCountupTimer from './components/countup/index'
 
 
 Vue.prototype.moment = moment
-// import '@fortawesome/fontawesome-free/css/all.css'
+// import '@fortawesome/fontawesome-f      ree/css/all.css'
 
 Vue.use(VueCountdownTimer)
 Vue.use(VueCountupTimer)
