@@ -21,6 +21,8 @@ class Notifications
     public static function update($data)
     {
         $now = now('-10 minutes');
+        $yesterday = now('-1 day');
+        dd($yesterday);
         $flag = 0;
 
         $check =Notification::where('status_id',2)
