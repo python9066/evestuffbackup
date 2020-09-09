@@ -23,6 +23,7 @@ class CreateCampaignsTable extends Migration
             $table->foreignId('system_id');
             $table->dateTime('start_time');
             $table->foreignId('structure_id');
+            $table->integer('status_id')->default(1);
 
             $table->index('id');
         });

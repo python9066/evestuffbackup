@@ -18,6 +18,7 @@ class CampaginController extends Controller
             if($flag == 1){
                 broadcast(new CampaginChanged ($flag))->toOthers();
             }
+            return $flag;
 
         }
     }

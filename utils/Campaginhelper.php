@@ -30,6 +30,11 @@ class Campaginhelper
 
             $event_type = $var['event_type'];
             if ($event_type == 'ihub_defense' || $event_type == 'tcu_defense') {
+                if($event_type =='ihub_defense'){
+                    $event_type = 32458;
+                }else{
+                    $event_type = 32226;
+                }
                 $id = $var['campaign_id'];
                 $before = Campaign::where('id', $id)->get();
                 $time = $var['start_time'];
