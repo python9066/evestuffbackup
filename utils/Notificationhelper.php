@@ -26,19 +26,19 @@ class Notifications
         $check =Notification::where('status_id',2)
                     ->where('timestamp','>=',$now)
                     ->count();
-                    dd($check);
-        if($check > 0){
+                    // dd($check);
+                    if($check > 0){
 
-            Notification::where('status_id',2)
+                        Notification::where('status_id',2)
                         ->where('timestamp','>=',$now)
                         ->update(['status_id' => 10]);
                         $flag = 1;
                         $check = null;
-        }
+                    }
 
-        $check =Notification::where('status_id',2)
-                  ->where('timestamp','>=',$now)
-                  ->count();
+        $check =Notification::where('status_id',4)
+        ->where('timestamp','>=',$now)
+        ->count();
 
         if($check > 0){
             Notification::where('status_id',4)
