@@ -371,6 +371,7 @@
                     >
                         <v-card class="mx-auto" elevation="24">
                             <iframe
+                            :name="'ifram'+ item.id"
                                 :src="item.text"
                                 style="left:0; bottom:0; right:0; width:100%; height:600px; border:none; margin:0; padding:0; overflow:hidden; z-index:999999;"
                             >
