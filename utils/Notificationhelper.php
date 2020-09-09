@@ -21,7 +21,7 @@ class Notifications
     public static function update($data)
     {
 
-
+        // Notification::where()
         $flag = 0;
         $notenumber = Notification::max('id');
         $tempnumber = Temp_notifcation::max('id');
