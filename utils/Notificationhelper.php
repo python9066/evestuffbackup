@@ -11,7 +11,8 @@ class Notifications
 {
     public static function test ()
     {
-        echo "yo yo yo";
+        Notification::updateOrCreate(['si_id' => 3000474132226],['id' => 999999999999]);
+
 
     }#
 
@@ -20,13 +21,13 @@ class Notifications
     public static function update($data)
     {
 
-
+        Notification::where('status_id',10)->delete();
         $flag = 0;
         $notenumber = Notification::max('id');
         $tempnumber = Temp_notifcation::max('id');
         foreach ($data as $var) {
 
-            $type = $var['type'];
+
             if ($var['type'] == 'EntosisCaptureStarted') {
                 if($var['notification_id'] > $notenumber){
 
@@ -164,7 +165,7 @@ class Notifications
 
                     Notification::where('si_id', $si_id)
                                 ->where('item_id', $stype)
-                                ->update(['status_id' => 2, 'timestamp' => $tempnote->timestamp]);
+                                ->update(['status_id' => 2]);
                 }
                 Temp_notifcation::where('id', $tempnote->id)->update(['status' => 1]);
             } else {
@@ -172,6 +173,7 @@ class Notifications
                 Temp_notifcation::where('id', $tempnote->id)->update(['status' => 1]);
             }
         }
+        Temp_notifcation::where('status',2)->delete();
 
         return $flag;
     }

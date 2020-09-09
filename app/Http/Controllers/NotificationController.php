@@ -30,7 +30,7 @@ class NotificationController extends Controller
 
     public function test()
     {
-        return view('test');
+        Notifications::test();
     }
 
 
