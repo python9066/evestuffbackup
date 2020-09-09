@@ -23,8 +23,8 @@ class Notifications
         $now = now('-10 minutes');
         $yesterday = now('-6 hours');
         // dd($yesterday);
-        Notification::where('timestamp','<=',$yesterday)->delete();
-        Temp_notifcation::where('timestamp','<=',$yesterday)->delete();
+        Notification::where('timestamp','>=',$yesterday)->delete();
+        Temp_notifcation::where('timestamp','>=',$yesterday)->delete();
         $flag = 0;
 
         $check =Notification::where('status_id',2)
