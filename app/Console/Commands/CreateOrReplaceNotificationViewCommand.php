@@ -51,7 +51,8 @@ class CreateOrReplaceNotificationViewCommand extends Command
         notification_types.name AS 'notification_type_name',
         notifications.status_id AS 'status_id',
         statuses.name AS 'status_name',
-        notifications.timestamp AS 'timestamp'
+        notifications.timestamp AS 'timestamp',
+        notifications.text as 'text'
         FROM notifications
         JOIN systems ON systems.id = notifications.system_id
         JOIN constellations ON constellations.id = systems.constellation_id
