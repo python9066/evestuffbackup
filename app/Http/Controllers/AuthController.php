@@ -27,6 +27,7 @@ class AuthController extends Controller
     {
 
         $userGice = Socialite::with('gice')->user();
+        // dd($userGice);
         User::updateOrCreate(['id' => $userGice->id], ['name' => $userGice->name, 'token' => $userGice->token, 'pri_grp' => $userGice->user['pri_grp'], 'api_token' => Str::random(60)]);
         $user = User::where('id', $userGice->id)->first();
         Auth::login($user, true);

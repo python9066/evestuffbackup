@@ -184,21 +184,22 @@
         <v-data-table
             :headers="headers"
             :items="filteredItems"
+            :expanded.sync="expanded"
             item-key="id"
             :loading="loadingt"
             :items-per-page="25"
-            :footer-props="{'items-per-page-options':[15, 25, 50, 100, -1]}"
+            :footer-props="{ 'items-per-page-options': [15, 25, 50, 100, -1] }"
             :sort-by="['timestamp']"
             :search="search"
             :sort-desc="[true, false]"
             multi-sort
             class="elevation-1"
         >
+            >
 
             <template slot="no-data">
-
-                    No hacking notifications to show, which I would say is a good thing?
-
+                No hacking notifications to show, which I would say is a good
+                thing?
             </template>
             <template v-slot:item.count="{ item }">
                 <VueCountUptimer
@@ -284,6 +285,7 @@
                                 <v-icon left>fas fa-exclamation-circle</v-icon>
                                 {{ item.status_name }}
                             </v-btn>
+
                             <v-btn
                                 v-if="item.status_id == 6"
                                 class="ma-2"
@@ -296,6 +298,31 @@
                                 <v-icon left>fas fa-search</v-icon>
                                 {{ item.status_name }}
                             </v-btn>
+
+
+                            <!-- EXTRA BUTTON -->
+                            <v-fab-transition>
+                                <v-btn
+                                    icon
+                                    @click="expanded = [item], expanded_id = item.id"
+                                    v-if="
+                                        item.status_id == 5 &&
+                                            !expanded.includes(item)
+                                    "
+                                    color="success"
+                                    ><v-icon>fas fa-plus</v-icon></v-btn
+                                >
+                                <v-btn
+                                    icon
+                                    @click="expanded = [], expanded_id = 0"
+                                    v-if="
+                                        item.status_id == 5 &&
+                                            expanded.includes(item)
+                                    "
+                                    color="error"
+                                    ><v-icon>fas fa-minus</v-icon></v-btn
+                                >
+                            </v-fab-transition>
                         </div>
                     </template>
 
@@ -315,6 +342,45 @@
                         </v-list-item>
                     </v-list>
                 </v-menu>
+            </template>
+            <template
+                v-slot:expanded-item="{ headers, item }"
+                class="align-center"
+                height="100%"
+            >
+                <td :colspan="headers.length" align="center">
+                    <div>
+                        <v-col class="align-center">
+                            <v-text-field
+                                v-bind:value="item.text"
+                                label="aDash Board Link"
+                                outlined
+                                shaped
+                                @change="
+                                    (payload = $event),
+                                        updatetext(payload, item)
+                                "
+                            ></v-text-field>
+                        </v-col>
+                    </div>
+                    <div
+                        v-if="
+                            item.text != null &&
+                                item.text.includes('https://adashboard.info/')
+                        "
+                    >
+                        <v-card class="mx-auto" elevation="24">
+                            <iframe
+                                :src="item.text"
+                                style="left:0; bottom:0; right:0; width:100%; height:600px; border:none; margin:0; padding:0; overflow:hidden; z-index:999999;"
+                            >
+                            </iframe>
+                        </v-card>
+                    </div>
+                    <div>
+                        {{ item.text }}
+                    </div>
+                </td>
             </template>
         </v-data-table>
         <v-snackbar v-model="snack" :timeout="3000" :color="snackColor">
@@ -338,35 +404,37 @@ function sleep(ms) {
 export default {
     data() {
         return {
-            check: "not here",
-            loadingt:true,
-            loadingf:true,
-            loadingr:true,
-            endcount: "",
-            search: "",
-            componentKey: 0,
-            toggle_exclusive: 0,
-            statusflag: 4,
-            today: 0,
-            name: "Timer",
             atime: null,
-            diff: 0,
-            snack: false,
-            snackColor: "",
-            snackText: "",
+            check: "not here",
+            componentKey: 0,
             dialog1: false,
             dialog2: false,
             dialog3: false,
-            text: "center",
-            icon: "justify",
-            toggle_none: null,
+            diff: 0,
             delve: 0,
-            periodbasis: 0,
-            querious: 0,
+            endcount: "",
+            expanded:[],
+            expanded_id:0,
+            icon: "justify",
+            loadingt:true,
+            loadingf:true,
+            loadingr:true,
+            name: "Timer",
             poll: null,
+            periodbasis: 0,
+            search: "",
+            statusflag: 4,
+            snack: false,
+            snackColor: "",
+            snackText: "",
+            toggle_exclusive: 0,
+            today: 0,
+            text: "center",
+            toggle_none: null,
+            querious: 0,
 
             dropdown_edit: [
-                { title: 'Scouting', value: 6},
+                { title: "Scouting", value: 6 },
                 { title: "Reffed", value: 2 },
                 { title: "Repairing", value: 3 },
                 { title: "Secured", value: 4 },
@@ -381,7 +449,7 @@ export default {
                 { text: "ADM", value: "adm" },
                 { text: "Timestamp", value: "timestamp" },
                 { text: "Age", value: "count", sortable: false },
-                { text: "Status", value: "status_name" }
+                { text: "Status", value: "status_name", width: "20%",}
 
                 // { text: "Vulernable End Time", value: "vulnerable_end_time" }
             ]
@@ -392,6 +460,7 @@ export default {
 
         Echo.private('notes')
         .listen('NotificationChanged', (e) => {
+        this.checkexpanded(e.notifications)
         this.$store.dispatch('updateNotification',e.notifications);
     })
 
@@ -484,6 +553,42 @@ export default {
 
         },
 
+        checkexpanded(notifications){
+            console.log(notifications);
+            if(notifications.status_id != 5){
+                if(notifications.id == this.expanded_id)
+                {
+                    this.expanded = [];
+                    this.expanded_id = 0;
+                }
+            }
+        },
+
+
+
+        updatetext(payload, item){
+
+            if(item.text != payload){
+                item.text = payload
+                 var request = {
+                text: item.text
+            };
+                this.$store.dispatch('updateNotification',item)
+                axios({
+                method: 'put', //you can set what request you want to be
+                url: "api/notifications/" + item.id,
+                data: request,
+                headers: {
+                    Authorization: 'Bearer ' + this.$store.state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json",
+                }
+                })
+
+                                    }
+
+            },
+
         loadtimers() {
             this.loadingr = true;
             this.$store.dispatch("getNotifications").then(() => {
@@ -494,6 +599,8 @@ export default {
             this.$store.dispatch("getperiodbasisLink");
             // console.log("30secs");
         },
+
+
 
         save() {
             this.snack = true;
@@ -515,6 +622,11 @@ export default {
         },
 
         click(item) {
+
+            if(item.status !=5){
+                this.expanded = [];
+                item.text = null;
+            }
 
             var request = {
                 status_id: item.status_id
