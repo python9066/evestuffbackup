@@ -12,8 +12,8 @@ class CampaginController extends Controller
     {
         $status = Helper::checkeve();
         if ($status == 1){
-            Campaginhelper::update();
-
+            $flag = Campaginhelper::update();
+            return $flag;
 
         }
     }
