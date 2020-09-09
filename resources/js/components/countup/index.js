@@ -263,7 +263,7 @@ const VueCountUptimer = {
 
             this.count += this.interval;
             // this.$emit('fofo',this.count);
-            if( this.minutes == 10 && this.seconds == 10){
+            if( this.minutes === 10 && this.seconds === 10){
             this.$emit('timecheck', this.count);
             }
             this.next();
