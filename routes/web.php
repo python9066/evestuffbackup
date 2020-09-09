@@ -23,7 +23,7 @@ Route::get('/dances2','testController@index');
 Route::get('/timers', 'HomeController@index');
 Route::get('/getTimerData','TimerController@getTimerData');
 Route::get('/updateTimerData','TimerController@updateTimerData');
-Route::get('/test', 'NotificationController@test');
+Route::get('/test', 'NotificationController@getNotifications');
 Route::get('/login', 'AuthController@login')->name("login");
 Route::get('/oauth/login', 'AuthController@redirectToProvider');
 Route::get('/oauth/callback', 'AuthController@handleProviderCallback');

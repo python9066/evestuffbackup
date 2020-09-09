@@ -26,6 +26,7 @@ class Notifications
         $check =Notification::where('status_id',2)
                     ->where('timestamp','>=',$now)
                     ->count();
+                    dd($check);
         if($check > 0){
 
             Notification::where('status_id',2)
