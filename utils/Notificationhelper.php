@@ -65,6 +65,7 @@ class Notifications
                     'id' => $var['notification_id'],
                     'timestamp' => $time,
                     'notification_type_id' => 1,
+                    'status_id' => 1,
 
                 );
                 $data2 = array_merge($data, $result);
@@ -154,10 +155,6 @@ class Notifications
 
             $si_id = $tempnote->system_id.$stype;
             $si_id = (int)$si_id;
-
-
-
-            // dd($tempnote->system_id);
             $check = Notification::where('si_id', $si_id)->get();
                 if ($check->count() == 1) {
 
@@ -166,7 +163,8 @@ class Notifications
                 if ($tempnote->id > $check[0]['id']) {
 
                     Notification::where('si_id', $si_id)
-                        ->where('item_id', $stype)->update(['status_id' => 2, 'timestamp' => $tempnote->timestamp]);
+                                ->where('item_id', $stype)
+                                ->update(['status_id' => 2, 'timestamp' => $tempnote->timestamp]);
                 }
                 Temp_notifcation::where('id', $tempnote->id)->update(['status' => 1]);
             } else {
