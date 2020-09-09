@@ -21,7 +21,7 @@ class Notifications
     public static function update($data)
     {
         $now = now('-10 minutes');
-        $yesterday = now('-1 day');
+        $yesterday = now('-6 hours');
         dd($yesterday);
         $flag = 0;
 
