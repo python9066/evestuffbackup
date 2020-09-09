@@ -173,7 +173,7 @@ class Notifications
                 Temp_notifcation::where('id', $tempnote->id)->update(['status' => 1]);
             }
         }
-        Temp_notifcation::where('status',2)->delete();
+
 
         return $flag;
     }
