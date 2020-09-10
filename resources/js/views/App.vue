@@ -86,7 +86,7 @@
                 @click.stop="navdrawer = !navdrawer"
             ></v-app-bar-nav-icon> -->
             <v-toolbar-title class="pl-15">
-                <span class>EveStuff - {{this.username}} - UPDATE</span>
+                <span class>EveStuff - {{this.username}}</span>
 
                 <v-avatar :size="avatarsize" tile class="">
                     <v-icon color="">fa fa-rocket fa-sm</v-icon>
