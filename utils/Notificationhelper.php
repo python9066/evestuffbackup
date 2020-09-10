@@ -22,8 +22,6 @@ class Notifications
     {
         $current = now();
         $now = $current->modify('-10 minutes');
-        echo $now;
-        dd("bla");
         $flag = 0;
 
         $check =Notification::where('status_id',2)
