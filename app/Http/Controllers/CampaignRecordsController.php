@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\CampaignRecords;
+use App\Models\CampaignRecords;
 use Illuminate\Http\Request;
 
 class CampaignRecordsController extends Controller
@@ -42,7 +42,7 @@ class CampaignRecordsController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request  $request#
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */

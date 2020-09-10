@@ -1,7 +1,7 @@
 <template>
     <div class=" pr-16 pl-16">
         <div class=" d-flex align-items-center">
-            <v-card-title>Campagins</v-card-title>
+            <v-card-title>Campaigns</v-card-title>
 
             <v-btn
                 :loading="loadingr"
@@ -53,6 +53,13 @@
                 >
                     Hostile
                 </v-btn>
+                <v-btn
+                    :loading="loadingf"
+                    :disabled="loadingf"
+                    @click="colorflag = 5"
+                >
+                    Active
+                </v-btn>
             </v-btn-toggle>
         </div>
         <v-data-table
@@ -70,7 +77,7 @@
         >
         <template slot="no-data">
 
-                    No open Windows
+                    No Active or Upcoming Campaigns
 
             </template>
             <template v-slot:item.alliance="{ item }">
@@ -82,6 +89,13 @@
                     >{{ item.alliance }}
                 </span>
                 <span v-else class="pl-3">{{ item.alliance }}</span>
+            </template>
+
+            <template v-slot:item.start="{ item }">
+                <span v-if="item.status_id == 1"> {{item.start}} </span>
+                <span v-else>
+                        <v-progress-linear :value="(item.defenders_score * 100)"></v-progress-linear>
+                </span>
             </template>
 
             <template v-slot:item.count="{ item }">
@@ -131,10 +145,10 @@ export default {
                 { text: "Region", value: "region", width: "10%" },
                 { text: "Constellation", value: "constellation" },
                 { text: "System", value: "system" },
-                { text: "Alliance", value: "alliance", width: "30%" },
-                { text: "Ticker", value: "ticker" },
+                { text: "Alliance", value: "alliance" },
+                { text: "Ticker", value: "ticker", align: "start" },
                 { text: "Structure", value: "item_name" },
-                { text: "Start/Progress", value: "start"},
+                { text: "Start/Progress", value: "start", width: "30%", align: "center"},
                 { text: "Countdown", value: "count", sortable: false }
 
 
@@ -199,6 +213,11 @@ export default {
             if (this.colorflag == 3) {
                 return this.campaigns.filter(
                     campaigns => campaigns.color == 3
+                );
+            }
+            if (this.colorflag == 5) {
+                return this.campaigns.filter(
+                    campaigns => campaigns.status_id == 2
                 );
             } else {
                 return this.campaigns;

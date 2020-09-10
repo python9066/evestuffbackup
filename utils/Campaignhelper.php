@@ -13,7 +13,7 @@ class Campaignhelper
 
     public static function update()
     {
-
+        Campaign::where('id','>',0)->update(['check' => 0]);
         $flag = 0;
         $client = new Client();
         $headers = [
@@ -50,6 +50,7 @@ class Campaignhelper
                     'system_id' => $var['solar_system_id'],
                     'start_time' => $start_time,
                     'structure_id' => $var['structure_id'],
+                    'check' => 1,
                 );
                 Campaign::updateOrCreate(['id' => $id], $data);
                 $after = Campaign::where('id', $id)->get();
@@ -59,9 +60,10 @@ class Campaignhelper
                 }
             }
         }
-
         $now = now();
+        $now10 = $now->modify('+10 minutes');
         $yesterday = now('-8 hours');
+        dd($now, $now10,$yesterday);
         $check = Campaign::where('start_time','<=',$now)->count();
         if($check){
             Campaign::where('start_time','<=',$now)
@@ -69,22 +71,10 @@ class Campaignhelper
             $flag = 1;
         }
 
-
-        $check = Campaign::where('attackers_score',0)
-                        ->orwhere('attackers_score',0)
-                        ->count();
-        if($check > 1){
-            Campaign::where('attackers_score',0)
-                    ->orwhere('attackers_score',0)
-                    ->update(['status_id' => 3]);
-            $flag = 1;
-        }
-
-        $check = Campaign::where('start_time','<=',$yesterday)->count();
-        if($check > 1){
-            Campaign::where('start_time','>=',$yesterday)
-                    ->update(['status_id' => 10]);
-            $flag = 1;
+        $check = Campaign::where('check',0)->count();
+        if($check > 0){
+            Campaign::where('end',null)->update(['end'=> $now, 'status_id' => 3]);
+            Campaign::where('end','<=',$now10)->where('status_id',3)->update(['status_id' => 10]);
         }
 
 

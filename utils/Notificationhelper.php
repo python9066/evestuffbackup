@@ -20,7 +20,8 @@ class Notifications
 
     public static function update($data)
     {
-        $now = now('-10 minutes');
+        $current = now();
+        $now = $current->modify('-10 minutes');
         $flag = 0;
 
         $check =Notification::where('status_id',2)

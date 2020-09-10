@@ -16,9 +16,9 @@ class CampaignController extends Controller
         if ($status == 1){
             $flag = Campaignhelper::update();
 
-            if($flag == 1){
-                broadcast(new CampaignChanged ($flag))->toOthers();
-            }
+            // if($flag == 1){
+            //     broadcast(new CampaignChanged ($flag))->toOthers();
+            // }
             return $flag;
 
         }
