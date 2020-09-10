@@ -177,11 +177,11 @@ export default {
     methods: {
 
 
-        // async loadtimers() {
-        //     await this.$store.dispatch("getTimerDataAll");
-        //     this.loading3 = false;
-        //     this.loading = false;
-        // },
+        async loadtimers() {
+            await this.$store.dispatch("getCampaigns");
+            this.loadingr = false;
+            this.loadingf = false;
+        },
 
         transform(props) {
             Object.entries(props).forEach(([key, value]) => {
