@@ -42,7 +42,6 @@ class UpdateTimers extends Command
         $status = Helper::checkeve();
         if ($status == 1){
         Timerhelper::update();
-        return "Timers";
         }
     }
 }

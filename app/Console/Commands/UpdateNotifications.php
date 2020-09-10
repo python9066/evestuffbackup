@@ -49,7 +49,6 @@ class UpdateNotifications extends Command
 
         if($flag == 1){
             broadcast(new NotificationNew($flag))->toOthers();
-            return "Notifications";
         }
         }
     }
