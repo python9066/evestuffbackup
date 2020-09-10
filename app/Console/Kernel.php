@@ -15,7 +15,7 @@ class Kernel extends ConsoleKernel
     protected $commands = [
         Commands\UpdateNotifications::class,
         Commands\UpdateAlliances::class,
-        Commands\UpdateCampagins::class,
+        // Commands\UpdateCampagins::class,
         Commands\UpdateTimers::class
     ];
 
