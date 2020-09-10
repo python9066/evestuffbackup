@@ -1,6 +1,6 @@
 <?php
 
-namespace utils\Campaginhelper;
+namespace utils\Campaignhelper;
 
 use App\Campaign;
 use GuzzleHttp\Client;
@@ -8,7 +8,7 @@ use utils\Helper\Helper;
 
 use function GuzzleHttp\json_decode;
 
-class Campaginhelper
+class Campaignhelper
 {
 
     public static function update()

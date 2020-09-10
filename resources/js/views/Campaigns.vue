@@ -1,7 +1,7 @@
 <template>
     <div class=" pr-16 pl-16">
         <div class=" d-flex align-items-center">
-            <v-card-title>Vulnerability Windows</v-card-title>
+            <v-card-title>Campagins</v-card-title>
 
             <v-btn
                 :loading="loading3"
@@ -74,7 +74,6 @@
 
             </template>
             <template v-slot:item.alliance="{ item }">
-                <!-- <v-img src="https://images.evetech.net/Alliance/1354830081_64.png"  style="height: inherit"></v-img> -->
                 <v-avatar size="35"><img :src="item.url"/></v-avatar>
                 <span v-if="item.standing > 0" class=" blue--text pl-3"
                     >{{ item.alliance }}
@@ -109,10 +108,6 @@
             </template>
         </v-data-table>
     </div>
-
-    <!-- <template>
-  <v-data-table item-key="name" class="elevation-1" loading loading-text="Loading... Please wait"></v-data-table>
-</template> -->
 </template>
 <script>
 import Axios from "axios";
@@ -122,8 +117,7 @@ import { mapState } from "vuex";
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
-// import VueFilterDateFormat from "@vuejs-community/vue-filter-date-format";
-// import VueFilterDateParse from "@vuejs-community/vue-filter-date-parse";
+
 export default {
     data() {
         return {
@@ -147,42 +141,27 @@ export default {
                 { text: "Structure", value: "item_name" },
                 { text: "Countdown", value: "count", sortable: false }
 
-                // { text: "Vulernable End Time", value: "vulnerable_end_time" }
+
             ]
         };
     },
+
+    created(){
+
+
+
+    this.$store.dispatch('getCampagins')
+
+
+
+    },
+
+
     async mounted() {
-        // await this.getLatest();
-        this.loadtimers();
-        // await this.getSystems();
-        //await this.getTimerDataAll();
-        // await this.saveAlliancesID();
-        // await this.getNewAllianceIDs();
-        // await this.getNewAlliacneData();
-        // await this.saveNewAlliacneData();
-        // await this.getTimers();
-        // await this.sameTimers();
-        // await this.setStructureTypes();
-        // await this.matchLatesttoNames();
+
     },
     methods: {
-        startCallBack: function(x) {
-            // console.log(x);
-        },
-        endCallBack: function(x) {
-            // console.log(x);
-        },
-        // async getTimerDataAll() {
-        //     this.loading = true;
-        //     await axios.get("/getTimerData").then(res => {
-        //         if (res.status == 200) {
-        //             this.timersAll = res.data.timers;
-        //         }
-        //     this.loading = false;
-        //     this.loading3 = false;
 
-        //     });
-        // },
 
         async loadtimers() {
             await this.$store.dispatch("getTimerDataAll");
@@ -199,62 +178,30 @@ export default {
 
             return props;
         },
-
-        // endCounterDown(item) {
-        //     var today = new Date();
-        //     var date =
-        //         today.getUTCFullYear() +
-        //         "-" +
-        //         (today.getUTCMonth() + 1) +
-        //         "-" +
-        //         today.getUTCDate();
-        //     var time =
-        //         today.getUTCHours() +
-        //         ":" +
-        //         today.getUTCMinutes() +
-        //         ":" +
-        //         today.getUTCSeconds();
-        //     var dateTime = date + " " + time;
-        //     var a = moment(item.end);
-        //     var b = moment(dateTime);
-        //     var data = a.diff(b);
-        //     console.log(data);
-        //     return data;
-        // },
-        // fromNowStart(item) {
-        //     return moment(item.start);
-        // },
-        // fromNowEnd(item) {
-        //     return moment(item.end);
-        // },
-
-        // handleCountdownEnd() {
-        //     console.log("hi");
-        // }
         handleCountdownEnd(item) {
             this.$store.dispatch("markOver", item);
         }
     },
     computed: {
-        ...mapState(["timers"]),
+        ...mapState(["campagains"]),
         filteredItems() {
             // var timers = this.$store.state.timers;
             if (this.colorflag == 1) {
-                return this.timers.filter(
-                    timers => timers.color == 1 && timers.status == 0
+                return this.campagins.filter(
+                    campagins => campagins.color == 1 && campagins.status == 0
                 );
             }
             if (this.colorflag == 2) {
-                return this.timers.filter(
-                    timers => timers.color > 1 && timers.status == 0
+                return this.campagins.filter(
+                    campagins => campagins.color > 1 && campagins.status == 0
                 );
             }
             if (this.colorflag == 3) {
-                return this.timers.filter(
-                    timers => timers.color == 3 && timers.status == 0
+                return this.campagins.filter(
+                    campagins => campagins.color == 3 && campagins.status == 0
                 );
             } else {
-                return this.timers.filter(timers => timers.status == 0);
+                return this.campagins.filter(campagins => campagins.status == 0);
             }
         }
     }

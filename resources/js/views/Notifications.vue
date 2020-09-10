@@ -299,12 +299,14 @@
                                 {{ item.status_name }}
                             </v-btn>
 
-
                             <!-- EXTRA BUTTON -->
                             <v-fab-transition>
                                 <v-btn
                                     icon
-                                    @click="expanded = [item], expanded_id = item.id"
+                                    @click="
+                                        (expanded = [item]),
+                                            (expanded_id = item.id)
+                                    "
                                     v-if="
                                         item.status_id == 5 &&
                                             !expanded.includes(item)
@@ -314,7 +316,7 @@
                                 >
                                 <v-btn
                                     icon
-                                    @click="expanded = [], expanded_id = 0"
+                                    @click="(expanded = []), (expanded_id = 0)"
                                     v-if="
                                         item.status_id == 5 &&
                                             expanded.includes(item)
@@ -366,12 +368,14 @@
                     <div
                         v-if="
                             item.text != null &&
-                                item.text.includes('https://adashboard.info/intel/dscan/')
+                                item.text.includes(
+                                    'https://adashboard.info/intel/dscan/'
+                                )
                         "
                     >
                         <v-card class="mx-auto" elevation="24">
                             <iframe
-                            :name="'ifram'+ item.id"
+                                :name="'ifram' + item.id"
                                 :src="item.text"
                                 style="left:0; bottom:0; right:0; width:100%; height:600px; border:none; margin:0; padding:0; overflow:hidden; z-index:999999;"
                             >
@@ -398,7 +402,6 @@ import Axios from "axios";
 import moment from "moment";
 import { stringify } from "querystring";
 import { mapState } from "vuex";
-import ApiL from "../service/apil";
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
@@ -414,12 +417,12 @@ export default {
             diff: 0,
             delve: 0,
             endcount: "",
-            expanded:[],
-            expanded_id:0,
+            expanded: [],
+            expanded_id: 0,
             icon: "justify",
-            loadingt:true,
-            loadingf:true,
-            loadingr:true,
+            loadingt: true,
+            loadingf: true,
+            loadingr: true,
             name: "Timer",
             poll: null,
             periodbasis: 0,
@@ -450,7 +453,7 @@ export default {
                 { text: "ADM", value: "adm" },
                 { text: "Timestamp", value: "timestamp" },
                 { text: "Age", value: "count", sortable: false },
-                { text: "Status", value: "status_name", width: "20%",}
+                { text: "Status", value: "status_name", width: "20%" }
 
                 // { text: "Vulernable End Time", value: "vulnerable_end_time" }
             ]
@@ -458,18 +461,15 @@ export default {
     },
 
     created() {
+        Echo.private("notes")
+            .listen("NotificationChanged", e => {
+                this.checkexpanded(e.notifications);
+                this.$store.dispatch("updateNotification", e.notifications);
+            })
 
-        Echo.private('notes')
-        .listen('NotificationChanged', (e) => {
-        this.checkexpanded(e.notifications)
-        this.$store.dispatch('updateNotification',e.notifications);
-    })
-
-        .listen('NotificationNew', (e) => {
-        this.loadtimers();
-
-        })
-
+            .listen("NotificationNew", e => {
+                this.loadtimers();
+            });
 
         this.$store.dispatch("getNotifications").then(() => {
             this.loadingt = false;
@@ -477,28 +477,23 @@ export default {
             this.loadingr = false;
         });
 
-
         this.$store.dispatch("getqueriousLink");
         this.$store.dispatch("getdelveLink");
         this.$store.dispatch("getperiodbasisLink");
-
     },
-
 
     async mounted() {
         // await this.getLatest();
         // await this.loadtimers();
-
-
-    //    this.poll = setInterval(() => {
-    //         this.loadingr = true;
-    //         this.$store.dispatch("getNotifications").then(() => {
-    //             this.loadingr = false;
-    //         });
-    //         this.$store.dispatch("getqueriousLink");
-    //         this.$store.dispatch("getdelveLink");
-    //         this.$store.dispatch("getperiodbasisLink");
-    //     }, 30000);
+        //    this.poll = setInterval(() => {
+        //         this.loadingr = true;
+        //         this.$store.dispatch("getNotifications").then(() => {
+        //             this.loadingr = false;
+        //         });
+        //         this.$store.dispatch("getqueriousLink");
+        //         this.$store.dispatch("getdelveLink");
+        //         this.$store.dispatch("getperiodbasisLink");
+        //     }, 30000);
     },
     methods: {
         //     startCallBack: function (x) {
@@ -519,75 +514,35 @@ export default {
         //     });
         // },
 
-
-        timecheck(item){
-            if(item.status_id == 4 || item.status_id == 2){
-                item.status_id = 10;
-                this.$store.dispatch('updateNotification',item)
-                if(item.region_name === 'Querious'){
-                    this.$store.dispatch('getqueriousLink');
-                }
-                if(item.region_name === 'Period Basis'){
-                    this.$store.dispatch('getperiodbasisLink');
-                }
-                if(item.region_name === 'Delve'){
-                    this.$store.dispatch('getdelveLink');
-                }
-                var request = {
-                status_id: 10
-
-            };
-            axios({
-                method: 'put', //you can set what request you want to be
-                url: "api/notifications/" + item.id,
-                data: request,
-                headers: {
-                    Authorization: 'Bearer ' + this.$store.state.token,
-                    Accept: "application/json",
-                    "Content-Type": "application/json",
-                }
-                })
-
-                                    }
-
-
-        },
-
-        checkexpanded(notifications){
+        checkexpanded(notifications) {
             console.log(notifications);
-            if(notifications.status_id != 5){
-                if(notifications.id == this.expanded_id)
-                {
+            if (notifications.status_id != 5) {
+                if (notifications.id == this.expanded_id) {
                     this.expanded = [];
                     this.expanded_id = 0;
                 }
             }
         },
 
-
-
-        updatetext(payload, item){
-
-            if(item.text != payload){
-                item.text = payload
-                 var request = {
-                text: item.text
-            };
-                this.$store.dispatch('updateNotification',item)
+        updatetext(payload, item) {
+            if (item.text != payload) {
+                item.text = payload;
+                var request = {
+                    text: item.text
+                };
+                this.$store.dispatch("updateNotification", item);
                 axios({
-                method: 'put', //you can set what request you want to be
-                url: "api/notifications/" + item.id,
-                data: request,
-                headers: {
-                    Authorization: 'Bearer ' + this.$store.state.token,
-                    Accept: "application/json",
-                    "Content-Type": "application/json",
-                }
-                })
-
-                                    }
-
-            },
+                    method: "put", //you can set what request you want to be
+                    url: "api/notifications/" + item.id,
+                    data: request,
+                    headers: {
+                        Authorization: "Bearer " + this.$store.state.token,
+                        Accept: "application/json",
+                        "Content-Type": "application/json"
+                    }
+                });
+            }
+        },
 
         loadtimers() {
             this.loadingr = true;
@@ -599,8 +554,6 @@ export default {
             this.$store.dispatch("getperiodbasisLink");
             // console.log("30secs");
         },
-
-
 
         save() {
             this.snack = true;
@@ -617,13 +570,10 @@ export default {
             this.snackColor = "info";
             this.snackText = "Dialog opened";
         },
-        close() {
-
-        },
+        close() {},
 
         click(item) {
-
-            if(item.status !=5){
+            if (item.status != 5) {
                 this.expanded = [];
                 item.text = null;
             }
@@ -632,16 +582,15 @@ export default {
                 status_id: item.status_id
             };
             axios({
-                method: 'put', //you can set what request you want to be
+                method: "put", //you can set what request you want to be
                 url: "api/notifications/" + item.id,
                 data: request,
                 headers: {
-                    Authorization: 'Bearer ' + this.$store.state.token,
+                    Authorization: "Bearer " + this.$store.state.token,
                     Accept: "application/json",
-                    "Content-Type": "application/json",
+                    "Content-Type": "application/json"
                 }
-            })
-
+            });
         },
 
         sec(item) {
@@ -689,8 +638,7 @@ export default {
                 return this.notifications.filter(
                     notifications => notifications.status_id == 6
                 );
-            }
-            else {
+            } else {
                 return this.notifications.filter(
                     notifications => notifications.status_id != 10
                 );
@@ -728,15 +676,9 @@ export default {
         }
     },
     beforeDestroy() {
-
         // clearInterval(this.poll);
         // console.log('KILL THEM ALL');
-        Echo.leave('notes');
-
-    },
-
-
-
-
+        Echo.leave("notes");
+    }
 };
 </script>

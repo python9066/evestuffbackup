@@ -2,11 +2,12 @@
 
 namespace App\Listeners;
 
-use App\Events\CampaginChanged;
+use App\Events\CampaignChanged;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
+use utils\Campaignhelper\Campaignhelper;
 
-class SendCampaginChanged
+class SendCampaignChanged
 {
     /**
      * Create the event listener.
@@ -24,7 +25,7 @@ class SendCampaginChanged
      * @param  object  $event
      * @return void
      */
-    public function handle(CampaginChanged $event)
+    public function handle(Campaignhelper $event)
     {
         //
     }

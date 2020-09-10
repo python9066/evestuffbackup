@@ -10,7 +10,7 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class CampaginChanged implements ShouldBroadcast
+class CampaignChanged implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
     public $flag;
@@ -31,6 +31,6 @@ class CampaginChanged implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new PrivateChannel('campagains');
+        return new PrivateChannel('campaigns');
     }
 }

@@ -32,7 +32,7 @@ class Campaign extends Model
 
     public function status()
     {
-        return $this->belongsTO(CampagainStatus::class);
+        return $this->belongsTO(CampaignStatus::class);
     }
 
 

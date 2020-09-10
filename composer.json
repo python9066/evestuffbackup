@@ -51,7 +51,7 @@
             "utils/Alliancehelper.php",
             "utils/Notificationhelper.php",
             "utils/Timerhelper.php",
-            "utils/Campaginhelper.php"
+            "utils/Campaignhelper.php"
         ]
     },
     "autoload-dev": {

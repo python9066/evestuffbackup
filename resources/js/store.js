@@ -8,7 +8,7 @@ export default new Vuex.Store({
     state: {
         timers: [],
         notifications: [],
-        campagins:[],
+        campaigns:[],
         delveLink: "",
         queriousLink: "",
         periodbasisLink: "",
@@ -22,8 +22,8 @@ export default new Vuex.Store({
             state.timers = timers;
         },
 
-        SET_CAMPAGINS(state, campagins){
-            state.campagins = campagins
+        SET_CAMPAIGNS(state, campaigns){
+            state.campaigns = campaigns
         },
 
 
@@ -77,11 +77,11 @@ export default new Vuex.Store({
             commit('SET_TIMERS', res.data.timers)
         },
 
-        async getCampaginDataAll({ commit, state }) {
+        async getCampaigns({ commit, state }) {
 
             let res = await axios({
                 method: 'get',
-                url: '/api/campagins',
+                url: '/api/campaigns',
                 headers: {
                     Authorization: 'Bearer ' + state.token,
                     Accept: "application/json",
@@ -89,14 +89,8 @@ export default new Vuex.Store({
                 }
 
             })
-            commit('SET_CAMPAGINS', res.data.campagins)
+            commit('SET_CAMPAIGNS', res.data.campaigns)
         },
-
-        // async getNotifications({commit, state}) {
-        //     console.log(state.token)
-        //     let res = await ApiL().get("/notifications");
-        //     commit('SET_NOTIFICATIONS', res.data.notifications)
-        // },
 
         markOver({ commit }, timer) {
             commit('MARK_TIMER_OVER', timer)

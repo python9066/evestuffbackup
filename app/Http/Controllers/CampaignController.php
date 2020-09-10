@@ -3,21 +3,21 @@
 namespace App\Http\Controllers;
 
 use App\Campaign;
-use App\Events\CampaginChanged;
+use App\Events\CampaignChanged;
 use Illuminate\Http\Request;
-use utils\Campaginhelper\Campaginhelper;
+use utils\Campaignhelper\Campaignhelper;
 use utils\Helper\Helper;
 
-class CampaginController extends Controller
+class CampaignController extends Controller
 {
-    public function getCampagins()
+    public function getCampaigns()
     {
         $status = Helper::checkeve();
         if ($status == 1){
-            $flag = Campaginhelper::update();
+            $flag = Campaignhelper::update();
 
             if($flag == 1){
-                broadcast(new CampaginChanged ($flag))->toOthers();
+                broadcast(new CampaignChanged ($flag))->toOthers();
             }
             return $flag;
 

@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use utils\Campaginhelper\Campaginhelper;
+use utils\Campaignhelper\Campaignhelper;
 use utils\Helper\Helper;
 
 class UpdateCampagins extends Command
@@ -41,7 +42,7 @@ class UpdateCampagins extends Command
     {
         $status = Helper::checkeve();
         if ($status == 1){
-        $flag = Campaginhelper::update();
+        $flag = Campaignhelper::update();
         }
     }
 }
