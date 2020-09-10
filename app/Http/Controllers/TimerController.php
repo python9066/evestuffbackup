@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\TimersRecord;
+use App\Models\TimersRecord;
 use utils\Helper\Helper;
 use utils\Timerhelper\Timerhelper;
 

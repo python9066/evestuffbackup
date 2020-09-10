@@ -3,7 +3,7 @@
 namespace utils\Alliancehelper;
 
 use GuzzleHttp\Client;
-use App\Alliance;
+use App\Models\Alliance;
 use utils\Helper\Helper;
 use function GuzzleHttp\json_decode;
 

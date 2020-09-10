@@ -2,8 +2,8 @@
 
 namespace utils\Helper;
 
-use App\Auth;
-use App\Client;
+use App\Models\Auth;
+use App\Models\Client;
 use DateTime;
 use GuzzleHttp\Client as GuzzleHttpClient;
 

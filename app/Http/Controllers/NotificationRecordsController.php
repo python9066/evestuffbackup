@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Events\NotificationChanged;
-use App\NotificationRecords;
-use App\Region;
+use App\Models\NotificationRecords;
+use App\Models\Region;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Mockery\Matcher\Not;

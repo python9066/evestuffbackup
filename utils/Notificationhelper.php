@@ -2,8 +2,8 @@
 
 namespace utils\Notificationhelper;
 
-use App\Notification;
-use App\Temp_notifcation;
+use App\Models\Notification;
+use App\Models\Temp_notifcation;
 use utils\Helper\Helper;
 
 

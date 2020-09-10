@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Notification;
-use App\Temp_notifcation;
-use App\TimersRecord;
+use App\Models\Notification;
+use App\Models\TimersRecord;
 use DateTime;
 use Illuminate\Http\Request;
 use utils\Helper\Helper;

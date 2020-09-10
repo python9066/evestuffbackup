@@ -2,8 +2,8 @@
 
 namespace utils\Timerhelper;
 
-use App\Structure;
-use App\System;
+use App\Models\Structure;
+use App\Models\System;
 use GuzzleHttp\Client;
 use utils\Helper\Helper;
 
