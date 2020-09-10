@@ -19,6 +19,7 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import moment from 'moment'
 import VueCountdownTimer from 'vuejs-countdown-timer'
 import VueCountupTimer from './components/countup/index'
+import message from './components/random
 
 
 Vue.prototype.moment = moment
@@ -26,6 +27,7 @@ Vue.prototype.moment = moment
 
 Vue.use(VueCountdownTimer)
 Vue.use(VueCountupTimer)
+Vue.use(message)
 library.add(faUserSecret)
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 Vue.config.productionTip = false

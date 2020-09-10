@@ -391,6 +391,8 @@
                 <v-btn v-bind="attrs" text @click="snack = false">Close</v-btn>
             </template>
         </v-snackbar>
+
+        <router-view message />
     </div>
 </template>
 <script>
