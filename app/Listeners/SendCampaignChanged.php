@@ -25,7 +25,7 @@ class SendCampaignChanged
      * @param  object  $event
      * @return void
      */
-    public function handle(Campaignhelper $event)
+    public function handle(CampaignChanged $event)
     {
         //
     }

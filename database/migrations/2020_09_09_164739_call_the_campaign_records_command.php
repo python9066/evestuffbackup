@@ -5,7 +5,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Artisan;
 
-class CallTheCampaginRecordsCommand extends Migration
+class CallTheCampaignRecordsCommand extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,7 @@ class CallTheCampaginRecordsCommand extends Migration
      */
     public function up()
     {
-        Artisan::call("view:CreateOrReplaceCampaginRecordsView");
+        Artisan::call("view:CreateOrReplaceCampaignRecordsView");
     }
 
     /**
