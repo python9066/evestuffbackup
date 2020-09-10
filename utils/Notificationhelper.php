@@ -22,28 +22,30 @@ class Notifications
     {
         $current = now();
         $now = $current->modify('-10 minutes');
+        echo $now;
+        dd("bla");
         $flag = 0;
 
         $check =Notification::where('status_id',2)
-                    ->where('timestamp','>=',$now)
+                    ->where('timestamp','<=',$now)
                     ->count();
                     // dd($check);
                     if($check > 0){
 
                         Notification::where('status_id',2)
-                        ->where('timestamp','>=',$now)
+                        ->where('timestamp','<=',$now)
                         ->update(['status_id' => 10]);
                         $flag = 1;
                         $check = null;
                     }
 
         $check =Notification::where('status_id',4)
-        ->where('timestamp','>=',$now)
+        ->where('timestamp','<=',$now)
         ->count();
 
         if($check > 0){
             Notification::where('status_id',4)
-                        ->where('timestamp','>=',$now)
+                        ->where('timestamp','<=',$now)
                         ->update(['status_id' => 10]);
                         $flag = 1;
                         $check = null;
