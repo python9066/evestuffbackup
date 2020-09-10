@@ -19,11 +19,12 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import moment from 'moment'
 import VueCountdownTimer from 'vuejs-countdown-timer'
 import VueCountupTimer from './components/countup/index'
+import CountdownTimer from './components/countdown/index'
 
 
 Vue.prototype.moment = moment
 // import '@fortawesome/fontawesome-f      ree/css/all.css'
-
+Vue.use(CountdownTimer)
 Vue.use(VueCountdownTimer)
 Vue.use(VueCountupTimer)
 library.add(faUserSecret)

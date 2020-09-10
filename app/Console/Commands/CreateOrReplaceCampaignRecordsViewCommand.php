@@ -39,23 +39,26 @@ class CreateOrReplaceCampaignRecordsViewCommand extends Command
     public function handle()
     {
         DB::statement("CREATE VIEW campaign_records AS SELECT campaigns.id AS 'id',
-        regions.region_name AS 'region_name',
+        regions.region_name AS 'region',
         regions.id AS 'region_id',
-        constellations.constellation_name AS 'constellation_name',
+        constellations.constellation_name AS 'constellation',
         campaigns.constellation_id AS 'constellation_id',
-        systems.system_name AS 'system_name',
+        systems.system_name AS 'system',
         campaigns.system_id AS 'system_id',
-        alliances.name AS 'alliance_name',
+        alliances.name AS 'alliance',
         campaigns.alliance_id AS 'alliance_id',
-        alliances.ticker AS 'alliance_ticker',
-        alliances.color AS 'alliance_color',
-        alliances.url AS 'alliace_logo',
+        alliances.ticker AS 'ticker',
+        alliances.color AS 'color',
+        alliances.url AS 'url',
         campaigns.event_type AS 'event_type',
         items.item_name AS 'item_name',
         campaigns.attackers_score AS 'attackers_score',
         campaigns.defenders_score AS 'defenders_score',
         campaigns.status_id AS 'status_id',
-        campaign_statuses.name AS 'status_name'
+        campaign_statuses.name AS 'status_name',
+        alliances.standing AS 'standing',
+        campaigns.start_time AS 'start'
+
         FROM campaigns
         JOIN systems ON systems.id = campaigns.system_id
         JOIN constellations ON constellations.id = campaigns.constellation_id

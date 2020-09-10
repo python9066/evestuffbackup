@@ -24,12 +24,6 @@ class CampaignController extends Controller
         }
     }
 
-    public function index()
-    {
-        return ['campaigns' => Campaign::all()];
-    }
-
-
 
 
 

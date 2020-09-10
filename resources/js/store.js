@@ -89,6 +89,7 @@ export default new Vuex.Store({
                 }
 
             })
+            console.log(res.data.campaigns);
             commit('SET_CAMPAIGNS', res.data.campaigns)
         },
 

@@ -4,12 +4,12 @@
             <v-card-title>Campagins</v-card-title>
 
             <v-btn
-                :loading="loading3"
-                :disabled="loading3"
+                :loading="loadingr"
+                :disabled="loadingr"
                 color="primary"
                 class="ma-2 white--text"
                 @click="
-                    loading3 = true;
+                    loadingr = true;
                     loadtimers();
                 "
             >
@@ -26,29 +26,29 @@
 
             <v-btn-toggle v-model="toggle_exclusive" mandatory :value="1">
                 <v-btn
-                    :loading="loading3"
-                    :disabled="loading3"
+                    :loading="loadingf"
+                    :disabled="loadingf"
                     @click="colorflag = 4"
                 >
                     All
                 </v-btn>
                 <v-btn
-                    :loading="loading3"
-                    :disabled="loading3"
+                    :loading="loadingf"
+                    :disabled="loadingf"
                     @click="colorflag = 3"
                 >
                     Goons
                 </v-btn>
                 <v-btn
-                    :loading="loading3"
-                    :disabled="loading3"
+                    :loading="loadingf"
+                    :disabled="loadingf"
                     @click="colorflag = 2"
                 >
                     Friendly
                 </v-btn>
                 <v-btn
-                    :loading="loading3"
-                    :disabled="loading3"
+                    :loading="loadingf"
+                    :disabled="loadingf"
                     @click="colorflag = 1"
                 >
                     Hostile
@@ -85,26 +85,19 @@
             </template>
 
             <template v-slot:item.count="{ item }">
-                <template>
-                    <vue-countdown-timer
-                        @start_callback="startCallBack('event started')"
-                        @end_callback="
-                            (item.status = 1), handleCountdownEnd(item)
-                        "
-                        :start-time="item.start + ' UTC'"
-                        :end-time="item.end + ' UTC'"
-                        :end-text="'Window Closed'"
-                        :interval="1000"
-                    >
-                        <template slot="countdown" slot-scope="scope">
-                            <span class="red--text pl-3"
-                                >{{ scope.props.hours }}:{{
-                                    scope.props.minutes
-                                }}:{{ scope.props.seconds }}</span
-                            >
-                        </template>
-                    </vue-countdown-timer>
-                </template>
+                <countdown
+                    :start-time="item.start + ' UTC'"
+                    :end-text="'Window Closed'"
+                    :interval="1000"
+                >
+                    <template slot="countdown" slot-scope="scope">
+                        <span class="red--text pl-3"
+                            >{{ scope.props.hours }}:{{
+                                scope.props.minutes
+                            }}:{{ scope.props.seconds }}</span
+                        >
+                    </template>
+                </countdown>
             </template>
         </v-data-table>
     </div>
@@ -123,8 +116,9 @@ export default {
         return {
             //timersAll: [],
 
+            loadingr: true,
+            loadingf: true,
             loading: true,
-            loading3: true,
             endcount: "",
             search: "",
             componentKey: 0,
@@ -133,12 +127,13 @@ export default {
             name: "Timer",
 
             headers: [
-                { text: "Region", value: "region_name", width: "10%" },
-                { text: "Constellation", value: "constellation_name" },
-                { text: "System", value: "system_name" },
-                { text: "Alliance", value: "alliance_name", width: "30%" },
-                { text: "Ticker", value: "alliance_ticker" },
+                { text: "Region", value: "region", width: "10%" },
+                { text: "Constellation", value: "constellation" },
+                { text: "System", value: "system" },
+                { text: "Alliance", value: "alliance", width: "30%" },
+                { text: "Ticker", value: "ticker" },
                 { text: "Structure", value: "item_name" },
+                { text: "Start/Progress", value: "start"},
                 { text: "Countdown", value: "count", sortable: false }
 
 
@@ -150,7 +145,11 @@ export default {
 
 
 
-    this.$store.dispatch('getCampagins')
+    this.$store.dispatch('getCampaigns').then(() => {
+            this.loadingf = false;
+            this.loadingr = false;
+            this.loading = false;
+        });
 
 
 
@@ -163,11 +162,11 @@ export default {
     methods: {
 
 
-        async loadtimers() {
-            await this.$store.dispatch("getTimerDataAll");
-            this.loading3 = false;
-            this.loading = false;
-        },
+        // async loadtimers() {
+        //     await this.$store.dispatch("getTimerDataAll");
+        //     this.loading3 = false;
+        //     this.loading = false;
+        // },
 
         transform(props) {
             Object.entries(props).forEach(([key, value]) => {
@@ -183,25 +182,25 @@ export default {
         }
     },
     computed: {
-        ...mapState(["campagains"]),
+        ...mapState(["campaigns"]),
         filteredItems() {
             // var timers = this.$store.state.timers;
             if (this.colorflag == 1) {
-                return this.campagins.filter(
-                    campagins => campagins.color == 1 && campagins.status == 0
+                return this.campaigns.filter(
+                    campaigns => campaigns.color == 1
                 );
             }
             if (this.colorflag == 2) {
-                return this.campagins.filter(
-                    campagins => campagins.color > 1 && campagins.status == 0
+                return this.campaigns.filter(
+                    campaigns => campaigns.color > 1
                 );
             }
             if (this.colorflag == 3) {
-                return this.campagins.filter(
-                    campagins => campagins.color == 3 && campagins.status == 0
+                return this.campaigns.filter(
+                    campaigns => campaigns.color == 3
                 );
             } else {
-                return this.campagins.filter(campagins => campagins.status == 0);
+                return this.campaigns;
             }
         }
     }
