@@ -19,15 +19,12 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import moment from 'moment'
 import VueCountdownTimer from 'vuejs-countdown-timer'
 import VueCountupTimer from './components/countup/index'
-import message from './components/random
 
-
+Vue.component('messageComponent', require('./components/random/messageComponent.vue').default); //component name should be in camel-case
 Vue.prototype.moment = moment
 // import '@fortawesome/fontawesome-f      ree/css/all.css'
-
 Vue.use(VueCountdownTimer)
 Vue.use(VueCountupTimer)
-Vue.use(message)
 library.add(faUserSecret)
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 Vue.config.productionTip = false
@@ -70,7 +67,7 @@ export default new Vuetify({
 
   const app = new Vue({
     components: {
-      App
+      App,
     },
     el: "#app",
     router,
