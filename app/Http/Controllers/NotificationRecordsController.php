@@ -36,7 +36,7 @@ class NotificationRecordsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        /////
     }
 
     public function regionLink($region_id)
