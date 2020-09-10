@@ -2,8 +2,8 @@
 
 namespace App\Events;
 
-use App\NotificationRecords;
-use App\User;
+use App\Models\NotificationRecords;
+use App\Models\User;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Broadcasting\PresenceChannel;
