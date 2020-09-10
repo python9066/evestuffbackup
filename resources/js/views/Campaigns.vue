@@ -92,10 +92,33 @@
             </template>
 
             <template v-slot:item.start="{ item }">
+
                 <span v-if="item.status_id == 1"> {{item.start}} </span>
-                <span v-else>
-                        <v-progress-linear :value="(item.defenders_score * 100)"></v-progress-linear>
+                <span v-else class="d-flex full-width align-content-center" >
+
+                       <v-progress-linear
+                            v-if="item.defenders_score > 0.49"
+                            :value="(item.defenders_score * 100)"
+                            height = 15
+                            :rounded = true
+                            >
+                            <strong> {{item.defenders_score * 100}} / {{item.attackers_score * 100}} </strong>
+                        </v-progress-linear>
+
+                        <v-progress-linear
+                            v-if="item.attackers_score > 0.49"
+                            :value="(item.attackers_score * 100)"
+                            height = 15
+                            :rounded = true
+                            color = "red darken-4"
+                            reverse = true
+
+                            >
+                            <strong> {{item.defenders_score * 100}} / {{item.attackers_score * 100}} </strong>
+                        </v-progress-linear>
+
                 </span>
+
             </template>
 
             <template v-slot:item.count="{ item }">

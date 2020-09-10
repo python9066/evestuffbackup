@@ -61,9 +61,8 @@ class Campaignhelper
             }
         }
         $now = now();
-        $now10 = $now->modify('+10 minutes');
+        $now10 = now()->modify('+10 minutes');
         $yesterday = now('-8 hours');
-        dd($now, $now10,$yesterday);
         $check = Campaign::where('start_time','<=',$now)->count();
         if($check){
             Campaign::where('start_time','<=',$now)
@@ -73,8 +72,13 @@ class Campaignhelper
 
         $check = Campaign::where('check',0)->count();
         if($check > 0){
-            Campaign::where('end',null)->update(['end'=> $now, 'status_id' => 3]);
-            Campaign::where('end','<=',$now10)->where('status_id',3)->update(['status_id' => 10]);
+            Campaign::where('end',null)
+                ->where('check', 0)
+                ->update(['end'=> $now, 'status_id' => 3]);
+            Campaign::where('end','<=',$now10)
+                ->where('check', 0)
+                ->where('status_id',3)
+                ->update(['status_id' => 10]);
         }
 
 

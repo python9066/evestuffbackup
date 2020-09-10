@@ -261,7 +261,7 @@ const CountDowntimer = {
               }
             }
 
-            this.count += this.interval;
+            this.count -= this.interval;
             // this.$emit('fofo',this.count);
             this.next();
           } else {
