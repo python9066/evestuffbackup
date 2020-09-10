@@ -31,6 +31,14 @@ class CronController extends Controller
     }
 
 
+    public function update()
+    {
+
+        Artisan::call('schedule:run');
+
+    }
+
+
 
 
 }

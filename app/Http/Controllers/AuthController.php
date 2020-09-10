@@ -10,9 +10,6 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use App\Providers\RouteServiceProvider;
 use GuzzleHttp\Client;
 use Illuminate\Support\Str;
-use Illuminate\Foundation\Auth\User as AuthUser;
-
-use function GuzzleHttp\json_decode;
 use function GuzzleHttp\json_encode;
 
 class AuthController extends Controller
