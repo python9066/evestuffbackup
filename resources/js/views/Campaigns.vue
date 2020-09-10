@@ -62,7 +62,7 @@
             :loading="loading"
             :items-per-page="25"
             :footer-props="{ 'items-per-page-options': [15, 25, 50, 100, -1] }"
-            :sort-by="['end']"
+            :sort-by="['start']"
             :search="search"
             :sort-desc="[false, true]"
             multi-sort
@@ -85,20 +85,21 @@
             </template>
 
             <template v-slot:item.count="{ item }">
-                <countdown
+                <CountDowntimer
                     :start-time="item.start + ' UTC'"
                     :end-text="'Window Closed'"
                     :interval="1000"
                 >
                     <template slot="countdown" slot-scope="scope">
                         <span class="red--text pl-3"
-                            >{{ scope.props.hours }}:{{
+                            >{{ scope.props.days }}:{{ scope.props.hours }}:{{
                                 scope.props.minutes
                             }}:{{ scope.props.seconds }}</span
                         >
                     </template>
-                </countdown>
+                </CountDowntimer>
             </template>
+
         </v-data-table>
     </div>
 </template>

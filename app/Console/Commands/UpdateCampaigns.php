@@ -3,7 +3,6 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
-use utils\Campaginhelper\Campaginhelper;
 use utils\Campaignhelper\Campaignhelper;
 use utils\Helper\Helper;
 
