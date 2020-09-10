@@ -12,10 +12,7 @@ export default new Router({
   mode: 'history',
   routes: [
     // {
-    //   path: '/:sectionname',
-    //   name: 'landingpage',
-    //   component: LandingPage,
-    //   props: true
+    //
     // },
     {
       path: '/',
