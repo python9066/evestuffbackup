@@ -2,7 +2,7 @@
 
 namespace utils\Campaignhelper;
 
-use App\Campaign;
+use App\Models\Campaign;
 use GuzzleHttp\Client;
 use utils\Helper\Helper;
 
