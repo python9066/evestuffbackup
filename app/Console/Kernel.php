@@ -27,10 +27,10 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')->hourly();
-        $schedule->command('update:timers')->everyFourHours()->withoutOverlapping();
+        // $schedule->command('inspire')->everyMinute();
+        $schedule->command('update:timers')->everyTwoMinutes()->withoutOverlapping();
         $schedule->command('update:notifications')->everyTwoMinutes()->withoutOverlapping();
-        $schedule->command('update:alliances')->twiceDaily(1,13)->withoutOverlapping();
+        $schedule->command('update:alliances')->twiceDaily(12,1)->withoutOverlapping();
     }
 
     /**
