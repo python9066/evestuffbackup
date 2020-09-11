@@ -293,15 +293,15 @@ export default {
         },
 
         campaignStart(item){
-            console.log(item);
+        item.status_name = "Active"
         item.status_id = 2
                 var request = {
                 status_id: 2
         }
 
-        console.log(item);
+
         this.$store.dispatch('updateCampaign',item)
-        console.log(item);
+
          axios({
                 method: 'put', //you can set what request you want to be
                 url: "api/campaigns/" + item.id,
