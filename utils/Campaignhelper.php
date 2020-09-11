@@ -97,8 +97,27 @@ class Campaignhelper
                 ->where('check', 0)
                 ->where('status_id',3)
                 ->update(['status_id' => 10]);
+
+
         }
 
+        $finished = Campaign::where('status_id',10)
+                    ->where('attackers_score',"!=",100)
+                    ->where('attackers_score','!=',0)
+                    ->get();
+        foreach ($finished as $finished){
+
+            $a = $finished->attackers_score;
+            $d = $finished->defenders_score;
+
+            if($a > $d){
+                Campaign::where('id',$finished->id)->update(['attackers_score' => 1 ,'defenders_score' => 0]);
+            }else{
+                Campaign::where('id',$finished->id)->update(['attackers_score' => 0 ,'defenders_score' => 1]);
+            }
+
+                $flag = 1;
+        }
 
 
         return $flag;
