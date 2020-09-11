@@ -102,8 +102,7 @@ class Campaignhelper
         }
 
         $finished = Campaign::where('status_id',10)
-                    ->where('attackers_score',"!=",100)
-                    ->where('attackers_score','!=',0)
+                    ->where('status_id','3')
                     ->get();
         foreach ($finished as $finished){
 
