@@ -97,15 +97,6 @@
                 <span v-else class="d-flex full-width align-content-center" >
                     <span>
                         <v-icon
-                            v-if="item.defenders_score == item.defenders_score_old  || item.defenders_score_old === null"
-                            small
-                            left
-                            dark
-                            color="grey darken-3"
-                        >
-                        fas fa-minus-circle
-                        </v-icon>
-                        <v-icon
                             v-if="item.defenders_score > item.defenders_score_old && item.defenders_score_old > 0"
                             small
                             left
@@ -122,6 +113,15 @@
                             color="blue darken-4"
                         >
                         fas fa-arrow-alt-circle-down
+                        </v-icon>
+                        <v-icon
+                            v-if="item.defenders_score == item.defenders_score_old  || item.defenders_score_old === null"
+                            small
+                            left
+                            dark
+                            color="grey darken-3"
+                        >
+                        fas fa-minus-circle
                         </v-icon>
                     </span>
 
@@ -140,15 +140,6 @@
                         </v-progress-linear>
                     <span>
                         <v-icon
-                            v-if="item.attackers_score == item.attackers_score_old  || item.attackers_score_old == null"
-                            small
-                            right
-                            dark
-                            color="grey darken-3"
-                        >
-                        fas fa-minus-circle
-                        </v-icon>
-                        <v-icon
                             v-if="item.attackers_score > item.attackers_score_old && item.attackers_score_old > 0"
                             small
                             right
@@ -165,6 +156,15 @@
                             color="red darken-4"
                         >
                         fas fa-arrow-alt-circle-down
+                        </v-icon>
+                        <v-icon
+                            v-if="item.attackers_score == item.attackers_score_old  || item.attackers_score_old == null"
+                            small
+                            right
+                            dark
+                            color="grey darken-3"
+                        >
+                        fas fa-minus-circle
                         </v-icon>
                     </span>
 
