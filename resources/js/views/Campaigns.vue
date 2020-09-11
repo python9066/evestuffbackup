@@ -96,7 +96,7 @@
                 <span v-if="item.status_id == 1"> {{item.start}} </span>
                 <span v-else class="d-flex full-width align-content-center" >
                     <span>
-                        <v-icon
+                        <!-- <v-icon
                             v-if="item.defenders_score == item.defenders_score_old  || item.defenders_score_old === null"
                             small
                             left
@@ -104,9 +104,9 @@
                             color="grey darken-3"
                         >
                         fas fa-minus-circle
-                        </v-icon>
+                        </v-icon> -->
                         <v-icon
-                            v-if="item.defenders_score > item.defenders_score_old && item.defenders_score_old != null"
+                            v-if="item.defenders_score > item.defenders_score_old && item.defenders_score_old > 0"
                             small
                             left
                             dark
@@ -115,7 +115,7 @@
                         fas fa-arrow-alt-circle-up
                         </v-icon>
                         <v-icon
-                            v-if="item.defenders_score < item.defenders_score_old && item.defenders_score_old != null"
+                            v-if="item.defenders_score < item.defenders_score_old && item.defenders_score_old > 0"
                             small
                             left
                             dark
@@ -139,7 +139,7 @@
                             <strong> {{item.defenders_score * 100}} / {{item.attackers_score * 100}} </strong>
                         </v-progress-linear>
                     <span>
-                        <v-icon
+                        <!-- <v-icon
                             v-if="item.attackers_score == item.attackers_score_old  || item.attackers_score_old == null"
                             small
                             right
@@ -147,9 +147,9 @@
                             color="grey darken-3"
                         >
                         fas fa-minus-circle
-                        </v-icon>
+                        </v-icon> -->
                         <v-icon
-                            v-if="item.attackers_score > item.attackers_score_old && item.attackers_score_old != null"
+                            v-if="item.attackers_score > item.attackers_score_old && item.attackers_score_old > 0"
                             small
                             right
                             dark
@@ -158,7 +158,7 @@
                         fas fa-arrow-alt-circle-up
                         </v-icon>
                         <v-icon
-                            v-if="item.attackers_score < item.attackers_score_old && item.attackers_score_old != null"
+                            v-if="item.attackers_score < item.attackers_score_old && item.attackers_score_old > 0"
                             small
                             right
                             dark
