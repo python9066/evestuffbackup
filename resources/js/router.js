@@ -1,11 +1,9 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from './views/Home'
-import Updates from './views/Updates'
 import Timers from './views/Timers'
-import Buttonupdate from  './views/Buttonupdate'
 import Notifications from './views/Notifications'
 import Campagins from './views/Campaigns'
+import Campaign from './views/CampaignSheet'
 
 Vue.use(Router)
 
@@ -20,21 +18,21 @@ export default new Router({
       name: 'notifications',
         component: Notifications
     },
-    // {
-    //   path: '/home',
-    //   name: 'home',
-    //   component: Home
-    // },
+    {
+      path: '/campaign/:id',
+      name: 'campaign',
+      component: Campaign
+    },
     {
         path: '/timers',
         name: 'timers',
         component: Timers
       },
-      {
-        path: '/',
-        name: 'buttonupdate',
-        component: Buttonupdate
-      },
+    //   {
+    //     path: '/',
+    //     name: 'buttonupdate',
+    //     component: Buttonupdate
+    //   },
 
 
       {

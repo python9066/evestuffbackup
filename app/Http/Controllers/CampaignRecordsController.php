@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Campaign;
 use App\Models\CampaignRecords;
 use Illuminate\Http\Request;
 
@@ -36,7 +37,7 @@ class CampaignRecordsController extends Controller
      */
     public function show($id)
     {
-        //
+        return ['campaign' => Campaign::where('id',$id)];
     }
 
     /**
