@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use Illuminate\Console\Command;
 use utils\Campaignhelper\Campaignhelper;
 use utils\Helper\Helper;
+use App\Events\CampaignChanged;
 
 class UpdateCampaigns extends Command
 {
@@ -40,8 +41,11 @@ class UpdateCampaigns extends Command
     public function handle()
     {
         $status = Helper::checkeve();
-        if($status == 1){
+        if ($status == 1) {
             $flag = Campaignhelper::update();
+            if ($flag == 1) {
+                broadcast(new CampaignChanged($flag))->toOthers();
+            }
         }
     }
 }

@@ -136,31 +136,31 @@ const CountDowntimer = {
          * @returns {number}
          */
         seconds() {
-          const { interval } = this;
+            const { interval } = this;
           let seconds = (this.count % MILLISECONDS_MINUTE) / MILLISECONDS_SECOND;
 
           if (!this.minutesTxt) {
-            let minutes = Math.floor((this.count % MILLISECONDS_HOUR) / MILLISECONDS_MINUTE)
-            seconds = seconds + minutes * 60
-            if (!this.hourTxt) {
-              let hours = Math.floor((this.count % MILLISECONDS_DAY) / MILLISECONDS_HOUR)
-              seconds = seconds + hours * 60 * 60
-              if (!this.dayTxt) {
-                let days = Math.floor(this.count / MILLISECONDS_DAY)
-                seconds = seconds + days * 24 * 60 * 60
-              }
+              let minutes = Math.floor((this.count % MILLISECONDS_HOUR) / MILLISECONDS_MINUTE)
+              seconds = seconds + minutes * 60
+              if (!this.hourTxt) {
+                  let hours = Math.floor((this.count % MILLISECONDS_DAY) / MILLISECONDS_HOUR)
+                  seconds = seconds + hours * 60 * 60
+                  if (!this.dayTxt) {
+                      let days = Math.floor(this.count / MILLISECONDS_DAY)
+                      seconds = seconds + days * 24 * 60 * 60
+                    }
+                }
             }
-          }
 
           if (interval < 10) {
             return this.preprocess(parseFloat(seconds.toFixed(3)));
           } else if (interval >= 10 && interval < 100) {
-            return this.preprocess(parseFloat(seconds.toFixed(2)));
-          } else if (interval >= 100 && interval < 1000) {
-            return this.preprocess(parseFloat(seconds.toFixed(1)));
-          }
+              return this.preprocess(parseFloat(seconds.toFixed(2)));
+            } else if (interval >= 100 && interval < 1000) {
+                return this.preprocess(parseFloat(seconds.toFixed(1)));
+            }
 
-          return this.preprocess(Math.floor(seconds));
+            return this.preprocess(Math.floor(seconds));
         },
 
         /**
@@ -170,51 +170,60 @@ const CountDowntimer = {
          */
         status() {
 
-          // Current time is smaller than event start time
-          // 当前时间小于开始时间 活动尚未开始
-          if (this.current < new Date(this.formatTime(this.startTime)).getTime()) {
-            return 1;
-          }
+            // Current time is smaller than event start time
+            // 当前时间小于开始时间 活动尚未开始
+            if (this.current < new Date(this.formatTime(this.startTime)).getTime()) {
+                return 1;
+            }
+
+            if (this.current > new Date(this.formatTime(this.startTime)).getTime()) {
+                return 0;
+            }
 
         },
 
-      },
-      methods: {
+    },
+    methods: {
         /**
          * Initial countdown
          * 初始化倒计时
          */
         init() {
-          if (!this.dayTxt) {
-            this.showDay = false
-          }
+            if (!this.dayTxt) {
+                this.showDay = false
+            }
 
-          if (!this.hourTxt) {
-            this.showHour = false
-          }
+            if (!this.hourTxt) {
+                this.showHour = false
+            }
 
-          if (!this.minutesTxt) {
-            this.showMinute = false
-          }
-          // Formating time - 格式化时间格式
-          this.stop();
-          this.$set(this, 'current', new Date().getTime())
-          const startCount =  new Date(this.formatTime(this.startTime)).getTime() - this.current ;
+            if (!this.minutesTxt) {
+                this.showMinute = false
+            }
+            // Formating time - 格式化时间格式
+            this.stop();
+            this.$set(this, 'current', new Date().getTime())
+            const startCount =  new Date(this.formatTime(this.startTime)).getTime() - this.current ;
 
-          const { status } = this;
+            const { status } = this;
 
-
-
-          if (status === 1) {
-            this.$set(this, 'tips', true);
-            this.count = Math.max(0, startCount);
-          }
-
+            if (status === 0) {
+                this.count = 0;
+                // this.end_message();
+                return;
+            }
 
 
-          this.$nextTick(() => {
-            this.start();
-          });
+            if (status === 1) {
+                this.$set(this, 'tips', true);
+                this.count = Math.max(0, startCount);
+            }
+
+
+
+            this.$nextTick(() => {
+                this.start();
+            });
         },
 
         /**
@@ -222,12 +231,12 @@ const CountDowntimer = {
          * 开始倒计时
          */
         start () {
-          if (this.counting) {
-            return;
-          }
+            if (this.counting) {
+                return;
+            }
 
-          this.counting = true;
-          this.next();
+            this.counting = true;
+            this.next();
         },
 
         /**
@@ -235,7 +244,7 @@ const CountDowntimer = {
          * 进入下一个倒计时队列
          */
         next() {
-          this.timeout = setTimeout(this.step.bind(this), this.interval);
+            this.timeout = setTimeout(this.step.bind(this), this.interval);
         },
 
         /**
@@ -243,80 +252,85 @@ const CountDowntimer = {
          * 重新计算剩余时间 - 毫秒
          */
         step() {
-          if (!this.counting) {
-            return;
-          }
-
-          if (this.count > this.interval) {
-            // Update 00 display status
-            if (!this.showZero) {
-              if (Number(this.days) === 0) {
-                this.showDay = false
-              }
-              if (!this.showDay && Number(this.hours) === 0) {
-                this.showHour = false
-              }
-              if (!this.showHour && Number(this.minutes) === 0) {
-                this.showMinute = false
-              }
+            if (!this.counting) {
+                return;
             }
+
+            if (this.count > this.interval) {
+                // Update 00 display status
+                if (!this.showZero) {
+                    if (Number(this.days) === 0) {
+                        this.showDay = false
+                    }
+                    if (!this.showDay && Number(this.hours) === 0) {
+                        this.showHour = false
+                    }
+                    if (!this.showHour && Number(this.minutes) === 0) {
+                        this.showMinute = false
+                    }
+                }
 
             this.count -= this.interval;
             // this.$emit('fofo',this.count);
+                if(this.count < 1000){
+                    this.$emit('campaignStart',this.count);
+                }
+
             this.next();
-          } else {
+        } else {
             this.count = 0;
             this.init();
-          }
-        },
-        /**
-         * Stop the countdown
-         * 停止倒计时
-         */
-        stop() {
-          this.counting = false;
-          clearTimeout(this.timeout);
-          this.timeout = undefined;
-        },
+        }
+    },
+    /**
+     * Stop the countdown
+     * 停止倒计时
+     */
+    stop() {
+        this.counting = false;
 
-        start_message () {
-          this.$set(this, 'tips', false);
-          this.$emit('start_callback', this.status);
-        },
+        clearTimeout(this.timeout);
+        this.timeout = undefined;
+    },
+
+    start_message () {
+        this.$set(this, 'tips', false);
+        this.$emit('start_callback', this.status);
+    },
 
 
 
-        /**
-         * Format time into unique format
-         * @param time
-         * @returns {*}
-         */
-        formatTime(time) {
-          if (typeof time === 'number') {
+    /**
+     * Format time into unique format
+     * @param time
+     * @returns {*}
+     */
+    formatTime(time) {
+        if (typeof time === 'number') {
             if (time.toString().length === 10) {
-              return time * 1000
+                return time * 1000
             } else {
-              return time
+                return time
             }
-          } else {
+        } else {
             return time
-          }
-        },
+        }
+    },
 
-        /**
-         * Filling zeros
-         * @returns {string}
-         */
-        preprocess(value) {
-          return (this.leadingZero && value < 10 ? `0${value}` : value);
-        },
+    /**
+     * Filling zeros
+     * @returns {string}
+     */
+    preprocess(value) {
+        return (this.leadingZero && value < 10 ? `0${value}` : value);
+    },
 
-        /**
-         * Update the count.
-         * @private
-         */
-        update() {
-          if (this.counting) {
+    /**
+     * Update the count.
+     * @private
+     */
+    update() {
+        if (this.counting) {
             // Formating time - 格式化时间格式
             this.$set(this, 'current', new Date().getTime())
             const startCount = new Date(this.formatTime(this.startTime)).getTime() - this.current  ;
@@ -324,31 +338,33 @@ const CountDowntimer = {
             const { status } = this;
 
             if (status === 0) {
-              this.count = 0;
-              this.stop();
-              this.end_message();
-              return;
+                this.count = 0;
+                this.stop();
+
+
+                //   this.end_message();
+                return;
             }
 
             if (status === 1) {
 
-              this.$set(this, 'tips', true);
-              this.count = Math.max(0, startCount);
+                this.$set(this, 'tips', true);
+                this.count = Math.max(0, startCount);
             }
 
             if (status === 2) {
-              this.$set(this, 'tips', false);
-              this.$emit('start_callback', this.status);
-              this.count = Math.max(0, endCount);
+                this.$set(this, 'tips', false);
+                this.$emit('start_callback', this.status);
+                this.count = Math.max(0, endCount);
             }
-          }
         }
-      },
+    }
+},
 
-      watch: {
-        startTime() {
-          this.init();
-        },
+watch: {
+    startTime() {
+        this.init();
+    },
 
         endTime() {
           this.init();

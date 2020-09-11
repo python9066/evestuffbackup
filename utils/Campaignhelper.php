@@ -14,6 +14,7 @@ class Campaignhelper
     public static function update()
     {
         Campaign::where('id','>',0)->update(['check' => 0]);
+        // dd("fwefe");
         $flag = 0;
         $client = new Client();
         $headers = [
@@ -54,28 +55,45 @@ class Campaignhelper
                 );
                 Campaign::updateOrCreate(['id' => $id], $data);
                 $after = Campaign::where('id', $id)->get();
-                $diff = $before->diffAssoc($after)->count();
-                if ($diff > 0) {
-                    $flag = 1;
+
+                if($before->count() > 0)
+                {
+                    $attackers_old = $before->toArray();
+                    $attackers_old = floatval($attackers_old[0]['attackers_score']);
+                    $defenders_old = $before->toArray();
+                    $defenders_old = floatval($defenders_old[0]['defenders_score']);
+                    $new = $var['attackers_score'];
+                    if($new != $attackers_old){
+                        echo "diffurent";
+                        $flag = 1;
+                    };
+
+                    Campaign::where('id',$id)->update(['defenders_score_old' => $defenders_old, 'attackers_score_old' => $attackers_old]);
                 }
             }
         }
+        // dd("fwefe");
         $now = now();
         $now10 = now()->modify('-10 minutes');
         $yesterday = now('-8 hours');
-        $check = Campaign::where('start_time','<=',$now)->count();
-        if($check){
+        $check = Campaign::where('start_time','<=',$now)->where('status_id',1)->count();
+        if($check > 0){
             Campaign::where('start_time','<=',$now)
-                    ->update(['status_id' => 2]);
+            ->where('status_id',1)
+            ->update(['status_id' => 2, 'check' => 1]);
+            echo "started";
             $flag = 1;
         }
 
         $check = Campaign::where('check',0)->count();
+
         if($check > 0){
+
             Campaign::where('end',null)
                 ->where('check', 0)
                 ->update(['end'=> $now, 'status_id' => 3]);
-            Campaign::where('end','<=',$now10)
+                // ->update(['check' => 1]);
+                Campaign::where('end','<=',$now10)
                 ->where('check', 0)
                 ->where('status_id',3)
                 ->update(['status_id' => 10]);

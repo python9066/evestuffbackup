@@ -39,6 +39,12 @@ export default new Vuex.Store({
 
         },
 
+        UPDATE_CAMPAIGN(state, data){
+            const item = state.campaigns.find(item => item.id === data.id);
+            Object.assign(item, data);
+
+        },
+
         SET_TOKEN(state, token) {
             state.token = token;
         },
@@ -89,7 +95,7 @@ export default new Vuex.Store({
                 }
 
             })
-            console.log(res.data.campaigns);
+            // console.log(res.data.campaigns);
             commit('SET_CAMPAIGNS', res.data.campaigns)
         },
 
@@ -100,6 +106,11 @@ export default new Vuex.Store({
 
         updateNotification({ commit }, data) {
             commit('UPDATE_NOTIFICATIONS', data)
+
+        },
+
+        updateCampaign({ commit }, data) {
+            commit('UPDATE_CAMPAIGN', data)
 
         },
 

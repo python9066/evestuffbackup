@@ -57,8 +57,9 @@ class CreateOrReplaceCampaignRecordsViewCommand extends Command
         campaigns.status_id AS 'status_id',
         campaign_statuses.name AS 'status_name',
         alliances.standing AS 'standing',
-        campaigns.start_time AS 'start'
-
+        campaigns.start_time AS 'start',
+        campaigns.defenders_score_old AS 'defenders_score_old',
+        campaigns.attackers_score_old AS 'attackers_score_old'
         FROM campaigns
         JOIN systems ON systems.id = campaigns.system_id
         JOIN constellations ON constellations.id = campaigns.constellation_id
