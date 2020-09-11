@@ -5,6 +5,7 @@ import Updates from './views/Updates'
 import Timers from './views/Timers'
 import Buttonupdate from  './views/Buttonupdate'
 import Notifications from './views/Notifications'
+import Campagins from './views/Campaigns'
 
 Vue.use(Router)
 
@@ -40,6 +41,12 @@ export default new Router({
         path: '/notifications',
         name: 'notifications',
         component: Notifications
+      },
+
+      {
+        path: '/campaigns',
+        name: 'campaigns',
+        component: Campagins
       },
 
   ],

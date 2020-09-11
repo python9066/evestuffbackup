@@ -111,6 +111,11 @@
                     <v-icon>mdi-phone</v-icon>
                 </v-tab>
 
+                <v-tab link to="/campaigns">
+                    Campaigns
+                    <v-icon>mdi-phone</v-icon>
+                </v-tab>
+
             </v-tabs>
             </div>
 <v-spacer></v-spacer>

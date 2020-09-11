@@ -19,6 +19,7 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import moment from 'moment'
 import VueCountdownTimer from 'vuejs-countdown-timer'
 import VueCountupTimer from './components/countup/index'
+import CountdownTimer from './components/countdown/index'
 
 Vue.component('messageComponent', require('./components/random/messageComponent.vue').default); //component name should be in camel-case
 Vue.prototype.moment = moment

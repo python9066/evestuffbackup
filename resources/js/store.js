@@ -8,6 +8,7 @@ export default new Vuex.Store({
     state: {
         timers: [],
         notifications: [],
+        campaigns:[],
         delveLink: "",
         queriousLink: "",
         periodbasisLink: "",
@@ -21,6 +22,10 @@ export default new Vuex.Store({
             state.timers = timers;
         },
 
+        SET_CAMPAIGNS(state, campaigns){
+            state.campaigns = campaigns
+        },
+
 
         MARK_TIMER_OVER(state, timer) {
             const item = state.timers.find(item => item.id === timer.id);
@@ -30,6 +35,12 @@ export default new Vuex.Store({
 
         UPDATE_NOTIFICATIONS(state, data){
             const item = state.notifications.find(item => item.id === data.id);
+            Object.assign(item, data);
+
+        },
+
+        UPDATE_CAMPAIGN(state, data){
+            const item = state.campaigns.find(item => item.id === data.id);
             Object.assign(item, data);
 
         },
@@ -72,11 +83,21 @@ export default new Vuex.Store({
             commit('SET_TIMERS', res.data.timers)
         },
 
-        // async getNotifications({commit, state}) {
-        //     console.log(state.token)
-        //     let res = await ApiL().get("/notifications");
-        //     commit('SET_NOTIFICATIONS', res.data.notifications)
-        // },
+        async getCampaigns({ commit, state }) {
+
+            let res = await axios({
+                method: 'get',
+                url: '/api/campaigns',
+                headers: {
+                    Authorization: 'Bearer ' + state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json",
+                }
+
+            })
+            // console.log(res.data.campaigns);
+            commit('SET_CAMPAIGNS', res.data.campaigns)
+        },
 
         markOver({ commit }, timer) {
             commit('MARK_TIMER_OVER', timer)
@@ -85,6 +106,11 @@ export default new Vuex.Store({
 
         updateNotification({ commit }, data) {
             commit('UPDATE_NOTIFICATIONS', data)
+
+        },
+
+        updateCampaign({ commit }, data) {
+            commit('UPDATE_CAMPAIGN', data)
 
         },
 

@@ -24,6 +24,10 @@ class CreateCampaignsTable extends Migration
             $table->dateTime('start_time');
             $table->foreignId('structure_id');
             $table->integer('status_id')->default(1);
+            $table->integer('check')->nullable();
+            $table->dateTime('end')->nullable();
+            $table->float('defenders_score_old')->nullable();;
+            $table->float('attackers_score_old')->nullable();;
 
             $table->index('id');
         });

@@ -24,7 +24,7 @@ Route::get('/timers', 'HomeController@index');
 Route::get('/getTimerData','TimerController@getTimerData');
 Route::get('/updateTimerData','TimerController@updateTimerData');
 Route::get('/test', 'CampaignController@getCampaigns');
-// Route::get('/login', 'AuthController@login')->name("login");
+Route::get('/login', 'AuthController@login')->name("login");
 Route::get('/oauth/login', 'AuthController@redirectToProvider');
 Route::get('/oauth/callback', 'AuthController@handleProviderCallback');
 Route::get('/logout', 'AuthController@logout');

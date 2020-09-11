@@ -21,3 +21,7 @@ Broadcast::channel('App.User.{id}', function ($user, $id) {
 Broadcast::channel('notes', function () {
     return Auth::check();
   });
+
+  Broadcast::channel('campaigns', function () {
+    return Auth::check();
+  });

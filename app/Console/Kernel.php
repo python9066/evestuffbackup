@@ -15,7 +15,8 @@ class Kernel extends ConsoleKernel
     protected $commands = [
         Commands\UpdateNotifications::class,
         Commands\UpdateAlliances::class,
-        Commands\UpdateTimers::class
+        Commands\UpdateCampaigns::class,
+        Commands\UpdateTimers::class,
     ];
 
     /**
@@ -27,6 +28,7 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         // $schedule->command('inspire')->everyMinute();
+        $schedule->command('update:campaigns')->everyMinute()->withoutOverlapping();
         $schedule->command('update:notifications')->everyTwoMinutes()->withoutOverlapping();
         $schedule->command('update:timers')->hourly()->withoutOverlapping();
         $schedule->command('update:alliances')->twiceDaily(10,22)->withoutOverlapping();

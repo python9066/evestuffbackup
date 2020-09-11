@@ -30,6 +30,11 @@ class Campaign extends Model
         return $this->hasOne(Structure::class);
     }
 
+    public function status()
+    {
+        return $this->belongsTO(CampaignStatus::class);
+    }
+
 
 
 }
