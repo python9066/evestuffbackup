@@ -25,6 +25,7 @@ Vue.component('messageComponent', require('./components/random/messageComponent.
 Vue.component('errorMessage', require('./components/random/errorMessage.vue').default); //component name should be in camel-case
 Vue.prototype.moment = moment
 // import '@fortawesome/fontawesome-f      ree/css/all.css'
+Vue.use(CountdownTimer)
 Vue.use(VueCountdownTimer)
 Vue.use(VueCountupTimer)
 library.add(faUserSecret)
