@@ -61,7 +61,7 @@ class Campaignhelper
             }
         }
         $now = now();
-        $now10 = now()->modify('+10 minutes');
+        $now10 = now()->modify('-10 minutes');
         $yesterday = now('-8 hours');
         $check = Campaign::where('start_time','<=',$now)->count();
         if($check){
