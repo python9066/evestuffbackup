@@ -4,11 +4,11 @@
       outlined
       dismissible
       text
-      type="error"
+      type="light-blue darken-1"
       :icon = false
       :elevation = 24
     >
-      Working on this page
+      This page is new, but should be working fine at the moment.  Contact <strong> JohnMonty</strong> on Jabber if anything isnt working.
     </v-alert>
   </div>
 </template>
@@ -16,9 +16,6 @@
 
 <script>
 export default {
-  name: "messageComponent",
+  name: "errorMessage",
 };
 </script>
-
-
-

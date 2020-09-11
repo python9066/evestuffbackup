@@ -149,7 +149,7 @@
                         fas fa-minus-circle
                         </v-icon>
                         <v-icon
-                            v-if="item.attackers_score > item.attackers_score_old"
+                            v-if="item.attackers_score > item.attackers_score_old && item.attackers_score_old != null"
                             small
                             right
                             dark
@@ -158,7 +158,7 @@
                         fas fa-arrow-alt-circle-up
                         </v-icon>
                         <v-icon
-                            v-if="item.attackers_score < item.attackers_score_old"
+                            v-if="item.attackers_score < item.attackers_score_old && item.attackers_score_old != null"
                             small
                             right
                             dark
