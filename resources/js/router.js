@@ -4,6 +4,7 @@ import Timers from './views/Timers'
 import Notifications from './views/Notifications'
 import Campagins from './views/Campaigns'
 import Campaign from './views/CampaignSheet'
+import Vtest from './views/test.vue'
 
 Vue.use(Router)
 
@@ -28,11 +29,11 @@ export default new Router({
         name: 'timers',
         component: Timers
       },
-    //   {
-    //     path: '/',
-    //     name: 'buttonupdate',
-    //     component: Buttonupdate
-    //   },
+      {
+        path: '/vtest',
+        name: 'test',
+        component: Vtest
+      },
 
 
       {

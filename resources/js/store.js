@@ -186,7 +186,17 @@ export default new Vuex.Store({
     },
     getters: {
 
+        getCampaignById: (state) => (id) => {
+            return state.campaigns.find(campaigns => campaigns.id == id)
+        },
 
+        getActiveCampaigns: (state) =>{
+            return state.campaigns.find(campaigns => campaigns.status_id == 2)
+        },
+
+        getCampaignsCount: (state) =>{
+            return state.campaigns.length
+        }
 
     }
 })

@@ -4,7 +4,7 @@
       outlined
       dismissible
       text
-      type="light-blue darken-1"
+      color="light-blue darken-1"
       :icon = false
       :elevation = 24
     >

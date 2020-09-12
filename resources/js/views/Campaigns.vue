@@ -208,6 +208,7 @@
                         class="ma-2 ma"
                         filter
                         pill
+                        :to="'/campaign/'+item.id"
                         :disabled="pillDisabled(item)"
                         :color="pillColor(item)"
 
