@@ -42,6 +42,7 @@ class CreateOrReplaceCampaignUserRecordsViewCommand extends Command
         campaign_users.campaign_id AS campaign_id,
         campaign_users.campaign_system_id AS  campaign_system_id,
         campaign_systems.node_id AS node,
+        users.name AS main_char,
         campaign_users.char_name AS char_name,
         campaign_users.link AS link,
         campaign_users.ship AS ship,
@@ -52,9 +53,10 @@ class CreateOrReplaceCampaignUserRecordsViewCommand extends Command
         campaign_users.campaign_role_id AS role_id,
         campaign_user_roles.role AS role_name
         FROM campaign_users
-        JOIN systems ON systems.id = campaign_users.system_id
+        JOIN users on users.id = campaign_users.site_id
+        LEFT JOIN systems ON systems.id = campaign_users.system_id
         LEFT JOIN campaign_systems ON campaign_systems.id = campaign_users.campaign_system_id
         LEFT JOIN campaign_user_statuses ON campaign_user_statuses.id = campaign_users.status_id
-        LEFT JOIN campaign_user_roles ON campaign_user_roles.id = campaign_users.status_id");
+        LEFT JOIN campaign_user_roles ON campaign_user_roles.id = campaign_users.campaign_role_id");
     }
 }

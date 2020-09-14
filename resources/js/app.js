@@ -24,6 +24,8 @@ import CountdownTimer from './components/countdown/index'
 Vue.component('messageComponent', require('./components/random/messageComponent.vue').default);
 Vue.component('errorMessage', require('./components/random/errorMessage.vue').default); //component name should be in camel-case
 Vue.component('systemTable', require('./components/campaign/systemTable.vue').default);
+Vue.component('userTable', require('./components/campaign/userTable.vue').default);
+
 Vue.prototype.moment = moment
 // import '@fortawesome/fontawesome-f      ree/css/all.css'
 Vue.use(CountdownTimer)

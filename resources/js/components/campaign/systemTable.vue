@@ -1,5 +1,5 @@
 <template>
-<div>
+<v-col cols="6">
       <v-card
       tile
       >
@@ -208,7 +208,7 @@
         </v-data-table>
     </v-card-text>
       </v-card>
-   </div>
+</v-col>
 </template>
 
 <script>

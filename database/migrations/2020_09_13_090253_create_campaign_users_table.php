@@ -17,7 +17,7 @@ class CreateCampaignUsersTable extends Migration
             $table->id();
             $table->integer('site_id');
             $table->foreignId('campaign_id');
-            $table->foreignId('campaign_system_id');
+            $table->foreignId('campaign_system_id')->nullable();
             $table->string('char_name',50);
             $table->tinyInteger('link')->nullable();
             $table->string('ship',50)->nullable();

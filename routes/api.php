@@ -41,6 +41,8 @@ Route::middleware('auth:api')->group(function(){
     Route::put('/campaignusersrecords/{id}', 'CampaignUserRecordsController@update');
     Route::post('/campaignusersrecords/{id}', 'CampaignUserRecordsController@store');
 
+    Route::post('/campaignusers','CampaignUserController@store');
+
     Route::get('/campaignsystemsrecords/{id}','CampaignSystemRecordsController@show');
     Route::put('/campaignsystemsrecords/{id}','CampaignSystemRecordsController@update');
     Route::post('/campaignsystemsrecords/{id}','CampaignSystemRecordsController@store');

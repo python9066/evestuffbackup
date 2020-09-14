@@ -1,3 +1,4 @@
+import index from '@chenfengyuan/vue-countdown'
 import Vue from 'vue'
 import Vuex from 'vuex'
 import ApiL from './service/apil'
@@ -13,6 +14,7 @@ export default new Vuex.Store({
         queriousLink: "",
         periodbasisLink: "",
         token: "",
+        user_id:0,
         campaignusers:[],
         campaignsystem:[],
 
@@ -51,6 +53,9 @@ export default new Vuex.Store({
         SET_TOKEN(state, token) {
             state.token = token;
         },
+        SET_USER_ID(state, user_id) {
+            state.user_id = user_id;
+        },
 
         SET_NOTIFICATIONS(state, notifications) {
             state.notifications = notifications;
@@ -69,9 +74,7 @@ export default new Vuex.Store({
         },
 
         SET_CAMPAIGN_USERS(state, data) {
-
-            const item = state.campaignusers.find(item => item.id === data.id);
-            Object.assign(item, data);
+                state.campaignusers = data
         },
 
 
@@ -190,19 +193,27 @@ export default new Vuex.Store({
 
         },
 
-        async getCampaignUsersRecrods({ commit, state, campaign }) {
+        setUser_id({ commit }, user_id) {
+            commit('SET_USER_ID', user_id)
+
+        },
+
+        async getCampaignUsersRecrods({ commit,state }, id) {
 
 
             let res = await axios({
                 method: 'get', //you can set what request you want to be
-                url: '/api/campaignusersrecords/' + campaign,
+                url: '/api/campaignusersrecords/' + id,
                 headers: {
                     Authorization: 'Bearer ' + state.token,
                     Accept: "application/json",
                     "Content-Type": "application/json",
                 }
             })
+            if(res.data.length != 0){
+            console.log(res.data.users[0].id)
             commit('SET_CAMPAIGN_USERS', res.data.users)
+            }
         },
 
 
@@ -215,8 +226,13 @@ export default new Vuex.Store({
             return state.campaigns.find(campaigns => campaigns.id == id)
         },
 
-        getCampaignUsersById: (state) => (id) => {
-            return state.campaignusers.find(campaignusers => campaignsusers.id == id)
+        getCampaignUsersByCampaign: (state) => (id) => {
+            return state.campaignusers.find(campaignusers => campaignusers.campaign_id === id)
+        },
+
+        getCampaignUsersByUserId: (state) => (id) => {
+            console.log("poo",state.campaignusers.filter(campaignusers => campaignusers.site_id == id))
+            return state.campaignusers.filter(campaignusers => campaignusers.site_id == id)
         },
 
         getActiveCampaigns: (state) =>{

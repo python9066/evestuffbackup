@@ -124,7 +124,9 @@
           width = "100%"
         >
 
-    <form @submit.prevent="newCharForm()">
+    <form
+    v-if="this.userForm == 1"
+    @submit.prevent="newCharForm()">
     <v-text-field
     v-model="newCharName"
       label="Char Name"
@@ -160,13 +162,59 @@
     </v-radio-group>
 
     <v-btn class="mr-4" type="submit">submit</v-btn>
+    <v-btn class="mr-4" @click="newCharFormClose()">Close</v-btn>
     <!-- <v-btn @click="clear">clear</v-btn> -->
   </form>
+<!---edit/delete form------>
+<form
+    v-if="this.userForm == 1">
+    <v-select
+     v-model="editCharName"
+      :items="userCharsDrop"
+      label="Pick the char you want to edit"
+      name="editChars"
+      :item-text ="'char_name'"
+      :item-value ="'id'"
+      @change="charEditForm($event)"
+    ></v-select>
+    <v-select
+    v-model="editRole"
+     @change="roleEditForm($event)"
+      :items="dropdown_roles"
+      label="Role"
+      required
+      :placeholder ='editTextRole'
 
+    ></v-select>
+    <v-text-field
+    v-model="editShip"
+    v-if="this.editrole === 1"
+      label="Ship"
+      required
+      :placeholder ='editTextShip'
+    ></v-text-field>
+    <v-radio-group
+    v-model="editLink"
+    v-if="this.editrole === 1"
+    row
+    label="Entosis Link"
+    required
+    :placeholder ='editTextLink'
+    >
+      <v-radio label="Tech 1" value=1></v-radio>
+      <v-radio label="Tech 2" value=2></v-radio>
+    </v-radio-group>
+
+    <v-btn class="mr-4" type="submit">submit</v-btn>
+    <v-btn class="mr-4" @click="userForm = 0">Close</v-btn>
+    <!-- <v-btn @click="clear">clear</v-btn> -->
+  </form>
+  <!---edit/delete form------>
 </v-card>
 </v-col>
       <v-col lg="1"></v-col>
 </v-row>
+
 
 <ul id="example-1">
   <li v-for="system in systems" :key="system.id">
@@ -174,21 +222,33 @@
   </li>
 </ul>
 
-<!-- <v-row no-gutters class="red">
-    <v-col
-      class="yellow"
-        v-for="system in systems"
-        :key="system.id"
-        cols="5"
-        lg="4"
-      >
+
+<v-row
+ no-gutters
+ class="blue"
+ justify ="space-around"
+ >
+
+    <userTable
+    :campaign_id ='$route.params.id'
+    >
+    </userTable>
+</v-row>
+
+
+
+<!-- <v-row no-gutters class="red" justify ="center">
+
     <systemTable class=" px-5 pb-5"
+        v-for="(system, index) in systems"
         :system_name="system.system_name"
         :system_id='system.id'
         :campaign_id ='$route.params.id'
+        :index="index"
+        :key="system.id"
         >
     </systemTable>
-    </v-col>
+
 </v-row> -->
   </div>
 </template>
@@ -205,9 +265,6 @@ function sleep(ms) {
 export default {
     data() {
         return {
-            test: 1,
-            test2: "",
-            systems: [],
             dropdown_roles: [
                 { text: "Hacker", value: 1 },
                 { text: "Scout", value: 2 },
@@ -220,24 +277,52 @@ export default {
                 { text: "Ready to go", value: 3 },
             ],
 
-            valid: false,
-            newCharName: '',
+            newCharName:null,
             newNameRules: [
-              v => !!v || 'Name is required',
+                v => !!v || 'Name is required',
             ],
-            newRole: '',
+            newRole:null,
             newRoleRules: [
-              v => !!v || 'You need to pick a role',
+                v => !!v || 'You need to pick a role',
             ],
-            newShip: '',
+            newShip:null,
             newShipRules: [
-              v => !!v || 'Ship is required',
+                v => !!v || 'Ship is required',
             ],
-            newLink: '',
+            newLink:null,
             newLinkRules: [
-              v => !!v || 'T1 or T2?',
+                v => !!v || 'T1 or T2?',
             ],
+
+            editCharName:null,
+            editNameRules: [
+                v => !!v || 'Name is required',
+            ],
+            editRole:null,
+            editTextRole:null,
+            editRoleRules: [
+                v => !!v || 'You need to pick a role',
+            ],
+            editShip:null,
+            editTextShip:null,
+            editShipRules: [
+                v => !!v || 'Ship is required',
+            ],
+            editLink:null,
+            editTextLink:null,
+            editLinkRules: [
+                v => !!v || 'T1 or T2?',
+            ],
+
+            oldChar:[],
             role:0,
+            editrole:0,
+            systems: [],
+            test: 1,
+            test2: "",
+            userCharsDrop:null,
+            userForm:1,
+            valid: false,
 
       }
     },
@@ -250,7 +335,10 @@ export default {
         if (this.$store.getters.getCampaignsCount == 0) {
             await this.$store.dispatch("getCampaigns");
         }
+        // console.log(this.$route.params.id)
         await this.getSystems(this.campaign.constellation_id);
+        await this.$store.dispatch('getCampaignUsersRecrods',this.$route.params.id);
+        await this.getusersChars();
 
     },
     methods: {
@@ -273,6 +361,9 @@ export default {
 
         },
 
+  async getusersChars(){
+               this.userCharsDrop = this.$store.getters.getCampaignUsersByUserId(this.$store.state.user_id)
+            },
 
 
         roleForm(a){
@@ -281,7 +372,59 @@ export default {
             console.log(a)
         },
 
+        newCharFormClose(){
+            this.newCharName = null
+            this.newRole = null
+            this.newShip = null
+            this.newLink = null
+
+        },
+
+        roleEditForm(a){
+            this.editrole = a
+            console.log("LALAL")
+            console.log(a)
+        },
+
+
+        charEditForm($event){
+            this.oldChar = this.userCharsDrop.find(user => user.id == $event)
+            this.editTextRole = this.oldChar.role_name;
+            this.editTextShip = this.oldChar.ship
+            this.editTextLink = this.oldChar.link
+            if(this.oldChar.role_id == 1){
+                this.editrole = 1;
+            }
+            this.editrole = 0;
+
+        },
+
+
         newCharForm(){
+
+             var request = {
+                site_id: this.$store.state.user_id,
+                campaign_id: this.$route.params.id,
+                char_name: this.newCharName,
+                link: this.newLink,
+                ship: this.newShip,
+                campaign_role_id: this.newRole,
+
+            };
+
+            console.log(request);
+            axios({
+                method: 'POST', //you can set what request you want to be
+                url: "/api/campaignusers",
+                data: request,
+                headers: {
+                    Authorization: 'Bearer ' + this.$store.state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json",
+                }
+                })
+
+                this.role = null;
 
         },
 
@@ -305,12 +448,18 @@ export default {
     computed: {
         ...mapGetters(["getCampaignById",
             "getActiveCampaigns",
-            "getCampaignsCount"
+            "getCampaignsCount",
+            "getCampaignUsersByUserId",
         ]),
 
         campaign() {
             return this.getCampaignById(this.$route.params.id)
         },
+
+
+
+
+
             barScoure(){
 
                 var d = this.getCampaignById(this.$route.params.id).defenders_score *100;

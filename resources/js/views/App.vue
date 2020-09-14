@@ -215,20 +215,21 @@ import ClickOutside from "vue-click-outside";
 import { mapState } from "vuex";
 
 export default {
-    props: ['username','token'],
+    props: ['username','token','user_id'],
     mounted() {},
     data: () => ({
         loading2: false,
         navdrawer: null
     }),
-    created() {
+  async  created() {
         // EventBus.$on("buttonupdate", payload => {
         //     this.loading2 = payload;
         // });
         // console.log(this.username)
 
 
-    this.$store.dispatch('setToken',this.token);
+    await this.$store.dispatch('setToken',this.token);
+    await this.$store.dispatch('setUser_id',this.user_id);
 
     },
     methods: {

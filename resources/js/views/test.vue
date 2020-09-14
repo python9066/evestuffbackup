@@ -1,7 +1,7 @@
 <template>
   <div class="grey lighten-5" >
 
-    <v-row no-gutters cols="6" >
+    <v-row no-gutters class="blue" justify ="center">
     <!-- <v-col cols="6"> -->
       <v-col lg="1" >
         <v-card
