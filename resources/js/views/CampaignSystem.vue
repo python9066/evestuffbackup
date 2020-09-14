@@ -145,14 +145,14 @@
     <v-text-field
     v-model="newShip"
     :rules="newShipRules"
-    v-if="this.role === 1"
+    v-if="this.role == 1"
       label="Ship"
       required
     ></v-text-field>
     <v-radio-group
     v-model="newLink"
     :rules="newLinkRules"
-    v-if="this.role === 1"
+    v-if="this.role == 1"
     row
     label="Entosis Link"
     required
@@ -167,7 +167,8 @@
   </form>
 <!---edit/delete form------>
 <form
-    v-if="this.userForm == 1">
+    v-if="this.editUserForm == 1"
+    @submit.prevent="editCharForm()">
     <v-select
      v-model="editCharName"
       :items="userCharsDrop"
@@ -188,14 +189,14 @@
     ></v-select>
     <v-text-field
     v-model="editShip"
-    v-if="this.editrole === 1"
+    v-if="this.editrole == 1"
       label="Ship"
       required
       :placeholder ='editTextShip'
     ></v-text-field>
     <v-radio-group
     v-model="editLink"
-    v-if="this.editrole === 1"
+    v-if="this.editrole == 1"
     row
     label="Entosis Link"
     required
@@ -206,7 +207,8 @@
     </v-radio-group>
 
     <v-btn class="mr-4" type="submit">submit</v-btn>
-    <v-btn class="mr-4" @click="userForm = 0">Close</v-btn>
+    <v-btn class="mr-4" @click="editFormRemove()">Remove</v-btn>
+    <v-btn class="mr-4" @click="editFormClose()">Close</v-btn>
     <!-- <v-btn @click="clear">clear</v-btn> -->
   </form>
   <!---edit/delete form------>
@@ -313,6 +315,7 @@ export default {
             editLinkRules: [
                 v => !!v || 'T1 or T2?',
             ],
+            editUserForm:0,
 
             oldChar:[],
             role:0,
@@ -394,10 +397,20 @@ export default {
             this.editTextLink = this.oldChar.link
             if(this.oldChar.role_id == 1){
                 this.editrole = 1;
-            }
-            this.editrole = 0;
+            }else{this.editrole = 0;}
+
 
         },
+
+        editFormClose(){
+            this.editTextRole = null
+            this.editTextShip = null
+            this.editTextLink = null
+            this.oldCha = null
+            this.editrole = 0
+            this.editUserForm = 0
+
+            },
 
 
         newCharForm(){
@@ -412,7 +425,6 @@ export default {
 
             };
 
-            console.log(request);
             axios({
                 method: 'POST', //you can set what request you want to be
                 url: "/api/campaignusers",
@@ -426,7 +438,51 @@ export default {
 
                 this.role = null;
 
+            },
+
+        editCharForm(){
+
+            if(this.oldChar.role_id != this.editRole){
+                var role = this.editRole
+            }
+            if(this.oldChar.ship != this.editShip){
+                var ship = this.editShip
+            }
+            if(this.oldChar.link != this.editLink){
+                var link = this.editLink
+            }
+            var request = {
+                link: link,
+                ship: ship,
+                campaign_role_id: role,
+                 };
+
+            axios({
+                method: 'PUT', //you can set what request you want to be
+                url: "/api/campaignusers/" + this.oldChar.id,
+                data: request,
+                headers: {
+                    Authorization: 'Bearer ' + this.$store.state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json",
+                }
+                })
+
         },
+
+        editFormRemove(){
+
+            axios({
+                method: 'DELETE', //you can set what request you want to be
+                url: "/api/campaignusers/" + this.oldChar.id,
+                headers: {
+                    Authorization: 'Bearer ' + this.$store.state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json",
+                }
+                })
+
+        }
 
 
 

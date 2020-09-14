@@ -48,7 +48,7 @@ class CampaignUserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        CampaignUser::find($id)->update($request->all());
     }
 
     /**
@@ -59,6 +59,6 @@ class CampaignUserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        return CampaignUser::destroy($id);
     }
 }
