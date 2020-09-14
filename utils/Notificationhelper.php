@@ -90,6 +90,7 @@ class Notifications
                 $si_id = array(
                     'si_id' => $si_id = (int)$si_id
                 );
+
                 $data = array(
                     'id' => $var['notification_id'],
                     'timestamp' => $time,
@@ -104,7 +105,7 @@ class Notifications
                     $flag = 1;
                 }else{
 
-                    if($var['notification_id'] > $check->max('id')){
+                    if($var['notification_id'] > $notenumber){
 
                         Notification::updateOrCreate($si_id,$data2);
                         $flag = 1;
@@ -161,7 +162,7 @@ class Notifications
                     Temp_notifcation::updateOrCreate($es_id,$data2);
                     $flag = 1;
                 }else{
-                    if($var['notification_id'] > $check->max('id')){
+                    if($var['notification_id'] > $notenumber){
 
                         Temp_notifcation::updateOrCreate($es_id,$data2);
                         $flag = 1;
