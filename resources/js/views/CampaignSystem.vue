@@ -237,7 +237,7 @@
 
 
 
-<!-- <v-row no-gutters class="red" justify ="center">
+<v-row no-gutters class="red" justify ="center">
 
     <systemTable class=" px-5 pb-5"
         v-for="(system, index) in systems"
@@ -249,7 +249,7 @@
         >
     </systemTable>
 
-</v-row> -->
+</v-row>
   </div>
 </template>
 <!-- {{ $route.params.id }} - {{ test }} -  -->
