@@ -1,0 +1,58 @@
+<?php
+
+namespace App\Console\Commands;
+
+use Illuminate\Console\Command;
+use Illuminate\Support\Facades\DB;
+
+class CreateOrReplaceCampaignSystemRecordsViewCommand extends Command
+{ /**
+    * The name and signature of the console command.
+    *
+    * @var string
+    */
+   protected $signature = 'view:CreateOrReplaceCampaignSystemRecordsView';
+
+   /**
+    * The console command description.
+    *
+    * @var string
+    */
+   protected $description = 'Will make the view table for Campaign Systems';
+
+   /**
+    * Create a new command instance.
+    *
+    * @return void
+    */
+   public function __construct()
+   {
+       parent::__construct();
+   }
+
+   /**
+    * Execute the console command.
+    *
+    * @return int
+    */
+   public function handle()
+   {
+       DB::statement("CREATE VIEW campaign_system_records AS SELECT campaign_systems.id AS id,
+       campaign_systems.node_id AS node,
+       campaign_systems.campaigan_id AS campaigan_id,
+       campaign_systems.system_id AS system_id,
+       systems.system_name AS system_name,
+       campaign_systems.campaigan_user_id AS user_id,
+       campaign_users.site_id AS site_id,
+       campaign_users.char_name AS user_name,
+       campaign_systems.campaigan_system_status_id AS status_id,
+       campaign_system_statuses.name AS status_name,
+       campaign_systems.notes AS notes,
+       campaign_systems.created_at AS 'start'
+       FROM campaign_systems
+       JOIN systems ON systems.id = campaign_systems.system_id
+       JOIN campaign_system_statuses ON campaign_system_statuses.id = campaign_systems.campaigan_system_status_id
+       LEFT JOIN campaign_users ON campaign_users.id = campaign_systems.campaigan_user_id
+       WHERE campaign_systems.campaigan_system_status_id != 10");
+   }
+}

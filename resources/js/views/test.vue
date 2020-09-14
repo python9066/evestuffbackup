@@ -1,8 +1,9 @@
 <template>
-  <div class="grey lighten-5">
+  <div class="grey lighten-5" >
 
-    <v-row no-gutters>
-      <v-col lg="1">
+    <v-row no-gutters cols="6" >
+    <!-- <v-col cols="6"> -->
+      <v-col lg="1" >
         <v-card
           class="pa-2"
           outlined
@@ -11,7 +12,7 @@
           1 of 3
         </v-card>
       </v-col>
-      <v-col md="10">
+      <v-col md="1" >
         <v-card
           class="pa-2"
           outlined
@@ -29,6 +30,7 @@
           3 of 3
         </v-card>
       </v-col>
+    <!-- </v-col> -->
     </v-row>
   </div>
 </template>

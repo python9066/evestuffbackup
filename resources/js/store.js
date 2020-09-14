@@ -12,7 +12,10 @@ export default new Vuex.Store({
         delveLink: "",
         queriousLink: "",
         periodbasisLink: "",
-        token: ""
+        token: "",
+        campaignusers:[],
+        campaignsystem:[],
+
 
 
 
@@ -63,6 +66,12 @@ export default new Vuex.Store({
 
         SET_PERIOD_BASIS_LINK(state, periodbasisLink) {
             state.periodbasisLink = periodbasisLink
+        },
+
+        SET_CAMPAIGN_USERS(state, data) {
+
+            const item = state.campaignusers.find(item => item.id === data.id);
+            Object.assign(item, data);
         },
 
 
@@ -181,6 +190,22 @@ export default new Vuex.Store({
 
         },
 
+        async getCampaignUsersRecrods({ commit, state, campaign }) {
+
+
+            let res = await axios({
+                method: 'get', //you can set what request you want to be
+                url: '/api/campaignusersrecords/' + campaign,
+                headers: {
+                    Authorization: 'Bearer ' + state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json",
+                }
+            })
+            commit('SET_CAMPAIGN_USERS', res.data.users)
+        },
+
+
 
 
     },
@@ -188,6 +213,10 @@ export default new Vuex.Store({
 
         getCampaignById: (state) => (id) => {
             return state.campaigns.find(campaigns => campaigns.id == id)
+        },
+
+        getCampaignUsersById: (state) => (id) => {
+            return state.campaignusers.find(campaignusers => campaignsusers.id == id)
         },
 
         getActiveCampaigns: (state) =>{

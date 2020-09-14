@@ -3,8 +3,9 @@ import Router from 'vue-router'
 import Timers from './views/Timers'
 import Notifications from './views/Notifications'
 import Campagins from './views/Campaigns'
-import Campaign from './views/CampaignSheet'
+import Campaign from './views/CampaignSystem'
 import Vtest from './views/test.vue'
+import Stest from './components/campaign/systemTable.vue'
 
 Vue.use(Router)
 
@@ -29,6 +30,12 @@ export default new Router({
         name: 'timers',
         component: Timers
       },
+      {
+        path: '/stest',
+        name: 'stest',
+        component: Stest
+      },
+
       {
         path: '/vtest',
         name: 'test',

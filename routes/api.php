@@ -35,7 +35,15 @@ Route::middleware('auth:api')->group(function(){
 
     Route::get('/campaigns','CampaignRecordsController@index');
     Route::put('/campaigns/{id}','CampaignRecordsController@update');
-    Route::get('/constellation/{id}','SystemController@contellation');
+    Route::get('/systemsinconstellation/{id}','SystemController@systemsinconstellation');
+
+    Route::get('/campaignusersrecords/{id}','CampaignUserRecordsController@show');
+    Route::put('/campaignusersrecords/{id}', 'CampaignUserRecordsController@update');
+    Route::post('/campaignusersrecords/{id}', 'CampaignUserRecordsController@store');
+
+    Route::get('/campaignsystemsrecords/{id}','CampaignSystemRecordsController@show');
+    Route::put('/campaignsystemsrecords/{id}','CampaignSystemRecordsController@update');
+    Route::post('/campaignsystemsrecords/{id}','CampaignSystemRecordsController@store');
 
 
 
