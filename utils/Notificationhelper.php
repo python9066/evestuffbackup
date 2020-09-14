@@ -20,6 +20,8 @@ class Notifications
 
     public static function update($data)
     {
+        Notification::where('status_id',10)->delete();
+        Temp_notifcation::where('status',1)->delete();
         $current = now();
         $now = $current->modify('-10 minutes');
         $flag = 0;
