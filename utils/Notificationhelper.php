@@ -95,6 +95,7 @@ class Notifications
                     'id' => $var['notification_id'],
                     'timestamp' => $time,
                     'notification_type_id' => 1,
+                    'status_id' => 1,
 
                 );
                 $data2 = array_merge($data, $result);
