@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Userlogging.php extends Model
+class Userlogging extends Model
 {
     use HasFactory;
 }
