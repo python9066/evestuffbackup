@@ -19,4 +19,13 @@ class Structure extends Model
     {
         return $this->hasOne(Campaign::class);
     }
+
+    protected $casts = [
+        'id' => 'integer',
+        'alliance_id' => 'integer',
+        'system_id' => 'integer',
+        'item_id' => 'integer',
+        'adm' => 'double',
+        'status' => 'integer',
+    ];
 }

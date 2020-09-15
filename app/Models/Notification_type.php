@@ -12,4 +12,8 @@ class Notification_type extends Model
     {
         return $this->hasMany(Notification::class);
     }
+
+    protected $casts = [
+        'id' => 'integer',
+    ];
 }

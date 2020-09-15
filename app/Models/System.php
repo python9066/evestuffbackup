@@ -28,4 +28,11 @@ class System extends Model
         return $this->hasMany(Campaign::class);
     }
 
+    protected $casts = [
+        'region_id ' => 'integer',
+        'constellation_id' => 'integer',
+        'id' => 'integer',
+        'adm' => 'double',
+    ];
+
 }

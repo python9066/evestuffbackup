@@ -19,5 +19,10 @@ class Constellation extends Model
         return $this->hasMany(Campaign::class);
     }
 
+    protected $casts = [
+        'id' => 'integer',
+        'region_id' => 'integer',
+    ];
+
 
 }

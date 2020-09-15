@@ -36,5 +36,17 @@ class Campaign extends Model
     }
 
 
+    protected $casts = [
+        'id' => 'integer',
+        'attackers_score' => 'double',
+        'constellation_id' => 'integer',
+        'alliance_id' => 'integer',
+        'defenders_score' => '',
+        'system_id' => 'integer',
+        'structure_id' => 'integer',
+        'status_id' => 'integer',
+        'check' => 'integer',
+    ];
+
 
 }
