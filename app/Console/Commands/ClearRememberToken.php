@@ -4,6 +4,8 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 
+use utils\Helper\Helper;
+
 class ClearRememberToken extends Command
 {
     /**
@@ -11,7 +13,7 @@ class ClearRememberToken extends Command
      *
      * @var string
      */
-    protected $signature = 'command:name';
+    protected $signature = 'clear:remembertoken';
 
     /**
      * The console command description.
@@ -37,6 +39,6 @@ class ClearRememberToken extends Command
      */
     public function handle()
     {
-        return 0;
+        Helper::clearRemember();
     }
 }
