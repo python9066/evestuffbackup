@@ -17,6 +17,7 @@ class Kernel extends ConsoleKernel
         Commands\UpdateAlliances::class,
         Commands\UpdateCampaigns::class,
         Commands\UpdateTimers::class,
+        Commands\ClearRememberToken::class,
     ];
 
     /**
@@ -31,7 +32,8 @@ class Kernel extends ConsoleKernel
         $schedule->command('update:campaigns')->everyMinute()->withoutOverlapping();
         $schedule->command('update:notifications')->everyTwoMinutes()->withoutOverlapping();
         $schedule->command('update:timers')->hourly()->withoutOverlapping();
-        $schedule->command('update:alliances')->twiceDaily(10,22)->withoutOverlapping();
+        $schedule->command('update:alliances')->twiceDaily(9,22)->withoutOverlapping();
+        $schedule->command('clear:remembertoken')->twiceDaily(9,21)->withoutOverlapping();
     }
 
     /**

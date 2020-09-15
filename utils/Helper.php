@@ -4,6 +4,7 @@ namespace utils\Helper;
 
 use App\Models\Auth;
 use App\Models\Client;
+use App\Models\User;
 use DateTime;
 use GuzzleHttp\Client as GuzzleHttpClient;
 
@@ -108,6 +109,14 @@ class Helper
         $time = str_replace("T", " ", $time);
 
         return $time;
+    }
+
+
+    public static function clearRemember(){
+
+        $now = now()->modify('-3 days');
+        User::where('updated_at','<',$now)->update(['remember_token' => null]);
+
     }
 
 

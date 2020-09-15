@@ -58,31 +58,7 @@ class AuthController extends Controller
 
     public function test()
     {
+        $test = now()->modify('-3 days');
 
-
-        $body = array(
-            "displayName" => "Eve Stuff",
-            "redirectUris" => ["http://eve.test/oauth/callback", "http://evestuff.online/oauth/callback"]
-        );
-
-        $body = json_encode($body);
-        // echo $body;
-        // dd($body);
-
-        $client = new Client();
-        $headers = [
-            'Authorization' => 'Basic YzgwMDUzNWU3YzUyNDlkYTgxMDdkN2FjYzEzMWMzYjA6Q0lva1NHOG9BUUoybHZiTzJTVjJwNUV5NG5rbjZxaXc=',
-            'Content-Type' => 'application/json',
-            'Accept' => "application/json",
-        ];
-
-        $reponse = $client->request('PATCH', 'https://gice.goonfleet.com/Api/Oauth/Application/', [
-            'headers' => $headers,
-            'body' => $body
-        ]);
-        $body = $reponse->getBody();
-        // $body1 = json_decode($body, true);
-        echo $body;
-        dd($reponse, $body);
     }
 }
