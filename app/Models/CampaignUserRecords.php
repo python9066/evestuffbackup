@@ -18,7 +18,5 @@ class CampaignUserRecords extends Model
         'system_id' => 'integer',
         'status_id' => 'integer',
         'role_id' => 'integer',
-
-
     ];
 }

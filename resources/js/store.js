@@ -1,59 +1,50 @@
-import index from '@chenfengyuan/vue-countdown'
-import Vue from 'vue'
-import Vuex from 'vuex'
-import ApiL from './service/apil'
+import index from "@chenfengyuan/vue-countdown";
+import Vue from "vue";
+import Vuex from "vuex";
+import ApiL from "./service/apil";
 
-Vue.use(Vuex)
+Vue.use(Vuex);
 
 export default new Vuex.Store({
     state: {
         timers: [],
         notifications: [],
-        campaigns:[],
+        campaigns: [],
         delveLink: "",
         queriousLink: "",
         periodbasisLink: "",
         token: "",
-        user_id:0,
-        campaignusers:[],
-        campaignsystem:[],
-
-
-
-
+        user_id: 0,
+        campaignusers: [],
+        campaignsystems: []
     },
     mutations: {
         SET_TIMERS(state, timers) {
             state.timers = timers;
         },
 
-        SET_CAMPAIGNS(state, campaigns){
-            state.campaigns = campaigns
+        SET_CAMPAIGNS(state, campaigns) {
+            state.campaigns = campaigns;
         },
-
 
         MARK_TIMER_OVER(state, timer) {
             const item = state.timers.find(item => item.id === timer.id);
             Object.assign(item, timer);
-
         },
 
-        UPDATE_NOTIFICATIONS(state, data){
+        UPDATE_NOTIFICATIONS(state, data) {
             const item = state.notifications.find(item => item.id === data.id);
             Object.assign(item, data);
-
         },
 
-        UPDATE_CAMPAIGN(state, data){
+        UPDATE_CAMPAIGN(state, data) {
             const item = state.campaigns.find(item => item.id === data.id);
             Object.assign(item, data);
-
         },
 
-        UPDATE_CAMPAIGN_USERS(state, data){
+        UPDATE_CAMPAIGN_USERS(state, data) {
             const item = state.campaignusers.find(item => item.id === data.id);
             Object.assign(item, data);
-
         },
 
         SET_TOKEN(state, token) {
@@ -68,192 +59,194 @@ export default new Vuex.Store({
         },
 
         SET_DELVE_LINK(state, delveLink) {
-            state.delveLink = delveLink
+            state.delveLink = delveLink;
         },
 
         SET_QUERIOUS_LINK(state, queriousLink) {
-            state.queriousLink = queriousLink
+            state.queriousLink = queriousLink;
         },
 
         SET_PERIOD_BASIS_LINK(state, periodbasisLink) {
-            state.periodbasisLink = periodbasisLink
+            state.periodbasisLink = periodbasisLink;
         },
 
         SET_CAMPAIGN_USERS(state, data) {
-                state.campaignusers = data
+            state.campaignusers = data;
         },
 
-
+        SET_CAMPAIGN_SYSTEMS(state, data) {
+            state.campaignsystems = data;
+        }
     },
     actions: {
         async getTimerDataAll({ commit, state }) {
-
             let res = await axios({
-                method: 'get',
-                url: '/api/timers',
+                method: "get",
+                url: "/api/timers",
                 headers: {
-                    Authorization: 'Bearer ' + state.token,
+                    Authorization: "Bearer " + state.token,
                     Accept: "application/json",
-                    "Content-Type": "application/json",
+                    "Content-Type": "application/json"
                 }
-
-            })
-            commit('SET_TIMERS', res.data.timers)
+            });
+            commit("SET_TIMERS", res.data.timers);
         },
 
         async getCampaigns({ commit, state }) {
-
             let res = await axios({
-                method: 'get',
-                url: '/api/campaigns',
+                method: "get",
+                url: "/api/campaigns",
                 headers: {
-                    Authorization: 'Bearer ' + state.token,
+                    Authorization: "Bearer " + state.token,
                     Accept: "application/json",
-                    "Content-Type": "application/json",
+                    "Content-Type": "application/json"
                 }
-
-            })
+            });
             // console.log(res.data.campaigns);
-            commit('SET_CAMPAIGNS', res.data.campaigns)
+            commit("SET_CAMPAIGNS", res.data.campaigns);
         },
 
         markOver({ commit }, timer) {
-            commit('MARK_TIMER_OVER', timer)
-
+            commit("MARK_TIMER_OVER", timer);
         },
 
         updateNotification({ commit }, data) {
-            console.log(data)
-            commit('UPDATE_NOTIFICATIONS', data)
-
+            console.log(data);
+            commit("UPDATE_NOTIFICATIONS", data);
         },
 
         updateCampaign({ commit }, data) {
-            commit('UPDATE_CAMPAIGN', data)
-
+            commit("UPDATE_CAMPAIGN", data);
         },
 
         updateCampaignUsers({ commit }, data) {
-            commit('UPDATE_CAMPAIGN_USERS', data)
-
+            commit("UPDATE_CAMPAIGN_USERS", data);
         },
 
         async getNotifications({ commit, state }) {
             let res = await axios({
-                method: 'get', //you can set what request you want to be
-                url: '/api/notifications',
+                method: "get", //you can set what request you want to be
+                url: "/api/notifications",
                 // data: {id: varID},
                 headers: {
-                    Authorization: 'Bearer ' + state.token,
+                    Authorization: "Bearer " + state.token,
                     Accept: "application/json",
-                    "Content-Type": "application/json",
+                    "Content-Type": "application/json"
                 }
-            })
-            commit('SET_NOTIFICATIONS', res.data.notifications)
+            });
+            commit("SET_NOTIFICATIONS", res.data.notifications);
         },
 
-
-
         async getdelveLink({ commit, state }) {
-
             // console.log('Bearer ' + state.token)
             let res = await axios({
-                method: 'get', //you can set what request you want to be
-                url: '/api/notifications/10000060',
+                method: "get", //you can set what request you want to be
+                url: "/api/notifications/10000060",
                 headers: {
-                    Authorization: 'Bearer ' + state.token,
+                    Authorization: "Bearer " + state.token,
                     Accept: "application/json",
-                    "Content-Type": "application/json",
+                    "Content-Type": "application/json"
                 }
-            })
+            });
             // console.log(res.data)
-            commit('SET_DELVE_LINK', res.data.link)
+            commit("SET_DELVE_LINK", res.data.link);
         },
 
         async getqueriousLink({ commit, state }) {
-
-
             let res = await axios({
-                method: 'get', //you can set what request you want to be
-                url: '/api/notifications/10000050',
+                method: "get", //you can set what request you want to be
+                url: "/api/notifications/10000050",
                 headers: {
-                    Authorization: 'Bearer ' + state.token,
+                    Authorization: "Bearer " + state.token,
                     Accept: "application/json",
-                    "Content-Type": "application/json",
+                    "Content-Type": "application/json"
                 }
-            })
-            commit('SET_QUERIOUS_LINK', res.data.link)
+            });
+            commit("SET_QUERIOUS_LINK", res.data.link);
         },
 
         async getperiodbasisLink({ commit, state }) {
-
-
             let res = await axios({
-                method: 'get', //you can set what request you want to be
-                url: '/api/notifications/10000063',
+                method: "get", //you can set what request you want to be
+                url: "/api/notifications/10000063",
                 headers: {
-                    Authorization: 'Bearer ' + state.token,
+                    Authorization: "Bearer " + state.token,
                     Accept: "application/json",
-                    "Content-Type": "application/json",
+                    "Content-Type": "application/json"
                 }
-            })
-            commit('SET_PERIOD_BASIS_LINK', res.data.link)
+            });
+            commit("SET_PERIOD_BASIS_LINK", res.data.link);
         },
 
         setToken({ commit }, token) {
-            commit('SET_TOKEN', token)
-
+            commit("SET_TOKEN", token);
         },
 
         setUser_id({ commit }, user_id) {
-            commit('SET_USER_ID', user_id)
-
+            commit("SET_USER_ID", user_id);
         },
 
-        async getCampaignUsersRecrods({ commit,state }, id) {
-
-
+        async getCampaignUsersRecrods({ commit, state }, id) {
             let res = await axios({
-                method: 'get', //you can set what request you want to be
-                url: '/api/campaignusersrecords/' + id,
+                method: "get", //you can set what request you want to be
+                url: "/api/campaignusersrecords/" + id,
                 headers: {
-                    Authorization: 'Bearer ' + state.token,
+                    Authorization: "Bearer " + state.token,
                     Accept: "application/json",
-                    "Content-Type": "application/json",
+                    "Content-Type": "application/json"
                 }
-            })
-            if(res.data.length != 0){
-            console.log(res.data.users[0].id)
-            commit('SET_CAMPAIGN_USERS', res.data.users)
+            });
+            if (res.data.length != 0) {
+                commit("SET_CAMPAIGN_USERS", res.data.users);
             }
         },
 
-
-
-
+        async getCampaignSystemsRecrods({ commit, state }) {
+            let res = await axios({
+                method: "get", //you can set what request you want to be
+                url: "/api/campaignsystemsrecords",
+                headers: {
+                    Authorization: "Bearer " + state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                }
+            });
+            if (res.data.length != 0) {
+                commit("SET_CAMPAIGN_SYSTEMS", res.data.systems);
+            }
+        }
     },
     getters: {
-
-        getCampaignById: (state) => (id) => {
-            return state.campaigns.find(campaigns => campaigns.id == id)
+        getCampaignById: state => id => {
+            return state.campaigns.find(campaigns => campaigns.id == id);
         },
 
-        getCampaignUsersByCampaign: (state) => (id) => {
-            return state.campaignusers.find(campaignusers => campaignusers.campaign_id === id)
+        getCampaignUsersByCampaign: state => id => {
+            return state.campaignusers.find(
+                campaignusers => campaignusers.campaign_id === id
+            );
         },
 
-        getCampaignUsersByUserId: (state) => (id) => {
+        getCampaignUsersByUserId: state => id => {
             // console.log("poo",state.campaignusers.filter(campaignusers => campaignusers.site_id == id))
-            return state.campaignusers.filter(campaignusers => campaignusers.site_id == id)
+            return state.campaignusers.filter(
+                campaignusers => campaignusers.site_id == id
+            );
         },
 
-        getActiveCampaigns: (state) =>{
-            return state.campaigns.find(campaigns => campaigns.status_id == 2)
+        getCampaignUsersByUserIdEntosis: state => id => {
+            // console.log("poo",state.campaignusers.filter(campaignusers => campaignusers.site_id == id))
+            return state.campaignusers.filter(
+                campaignusers => campaignusers.site_id == id && campaignusers.role_id == 1
+            );
         },
 
-        getCampaignsCount: (state) =>{
-            return state.campaigns.length
+        getActiveCampaigns: state => {
+            return state.campaigns.find(campaigns => campaigns.status_id == 2);
+        },
+
+        getCampaignsCount: state => {
+            return state.campaigns.length;
         }
-
     }
-})
+});

@@ -17,5 +17,8 @@ class CampaignUserRole extends Model
         return $this->hasMany(CampaignUser::class);
     }
 
+    protected $casts = [
+        'id' => 'integer',
+    ];
 
 }

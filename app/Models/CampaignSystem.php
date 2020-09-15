@@ -30,5 +30,12 @@ class CampaignSystem extends Model
         return $this->belongsTo(System::class);
     }
 
+    protected $casts = [
+        'id' => 'integer',
+        'campaigan_id' => 'integer',
+        'system_id' => 'integer',
+        'campaigan_user_id' => 'integer',
+        'campaigan_system_status_id' => 'integer',
+    ];
 
 }

@@ -16,6 +16,8 @@ class CampaignSystemStatus extends Model
         return $this->hasMany(CampaignSystem::class);
     }
 
-
+    protected $casts = [
+        'id' => 'integer',
+    ];
 
 }

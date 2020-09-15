@@ -241,7 +241,7 @@
 
 
 
-<!-- <v-row no-gutters class="red" justify ="center">
+<v-row no-gutters class="red" justify ="center" >
 
     <systemTable class=" px-5 pb-5"
         v-for="(system, index) in systems"
@@ -253,7 +253,7 @@
         >
     </systemTable>
 
-</v-row> -->
+</v-row>
   </div>
 </template>
 <!-- {{ $route.params.id }} - {{ test }} -  -->
@@ -342,6 +342,7 @@ export default {
         // console.log(this.$route.params.id)
         await this.getSystems(this.campaign.constellation_id);
         await this.$store.dispatch('getCampaignUsersRecrods',this.$route.params.id);
+        await this.$store.dispatch('getCampaignSystemsRecrods');
 
     },
     methods: {
@@ -413,7 +414,7 @@ export default {
 
 
 
-        newCharForm(){
+       async newCharForm(){
 
              var request = {
                 site_id: this.$store.state.user_id,
@@ -425,7 +426,7 @@ export default {
 
             };
 
-            axios({
+           await axios({
                 method: 'POST', //you can set what request you want to be
                 url: "/api/campaignusers",
                 data: request,
@@ -435,8 +436,12 @@ export default {
                     "Content-Type": "application/json",
                 }
                 })
-
+                this.$store.dispatch('getCampaignUsersRecrods',this.$route.params.id);
                 this.role = null;
+                this.newCharName = null;
+                this.newLink = null;
+                this.newShip = null;
+                this.newRole = null;
 
             },
 
