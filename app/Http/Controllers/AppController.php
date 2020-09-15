@@ -4,11 +4,18 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\System;
+use App\Models\Userlogging;
+use Illuminate\Support\Facades\Auth;
 
 class AppController extends Controller
 {
     public function index()
   {
+    $check = Auth::user();
+    if ($check != null){
+    Userlogging::create([
+        'name' => Auth::user()->name
+    ]);}
     return view('/home');
   }
 

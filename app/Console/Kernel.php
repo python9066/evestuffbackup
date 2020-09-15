@@ -31,7 +31,7 @@ class Kernel extends ConsoleKernel
         $schedule->command('update:campaigns')->everyMinute()->withoutOverlapping();
         $schedule->command('update:notifications')->everyTwoMinutes()->withoutOverlapping();
         $schedule->command('update:timers')->hourly()->withoutOverlapping();
-        $schedule->command('update:alliances')->twiceDaily(10,22)->withoutOverlapping();
+        $schedule->command('update:alliances')->twiceDaily(9,22)->withoutOverlapping();
     }
 
     /**
