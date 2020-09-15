@@ -20,4 +20,12 @@ class Alliance extends Model
     public $incrementing = false;
     protected $primaryKey = 'id';
 
+
+    protected $casts = [
+        'id' => 'integer',
+        'standingstanding' => 'double',
+        'active' => 'integer',
+        'color' => 'integer',
+    ];
+
 }

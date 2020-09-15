@@ -11,4 +11,19 @@ class TimersRecord extends Model
     {
         return $this->belongsTo(Alliance::class);
     }
+
+
+
+    protected $casts = [
+        'region_id' => 'integer',
+        'constellation_id' => 'integer',
+        'system_id' => 'integer',
+        'alliance_id' => 'integer',
+        'region_id' => 'integer',
+        'standing' => 'double',
+        'color' => 'integer',
+        'adm' => 'double',
+        'status' => 'integer',
+        'id' => 'integer',
+    ];
 }

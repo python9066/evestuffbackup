@@ -17,4 +17,8 @@ class Region extends Model
     {
         return $this->hasMany(Constellation::class);
     }
+
+    protected $casts = [
+        'id' => 'integer',
+    ];
 }
