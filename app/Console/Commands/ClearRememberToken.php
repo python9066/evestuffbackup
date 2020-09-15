@@ -4,7 +4,7 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 
-class ClearRememberToken.php extends Command
+class ClearRememberToken extends Command
 {
     /**
      * The name and signature of the console command.
