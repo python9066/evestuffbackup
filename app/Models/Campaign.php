@@ -41,7 +41,7 @@ class Campaign extends Model
         'attackers_score' => 'double',
         'constellation_id' => 'integer',
         'alliance_id' => 'integer',
-        'defenders_score' => '',
+        'defenders_score' => 'double',
         'system_id' => 'integer',
         'structure_id' => 'integer',
         'status_id' => 'integer',

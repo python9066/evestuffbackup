@@ -23,7 +23,14 @@ export default new Router({
     {
       path: '/campaign/:id',
       name: 'campaign',
-      component: Campaign
+      component: Campaign,
+      props: (route) => {
+        const id = Number.parseInt(route.params.id, 10)
+        if (Number.isNaN(id)) {
+          return 0
+        }
+        return { id }
+      }
     },
     {
         path: '/timers',

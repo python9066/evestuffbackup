@@ -50,6 +50,12 @@ export default new Vuex.Store({
 
         },
 
+        UPDATE_CAMPAIGN_USERS(state, data){
+            const item = state.campaignusers.find(item => item.id === data.id);
+            Object.assign(item, data);
+
+        },
+
         SET_TOKEN(state, token) {
             state.token = token;
         },
@@ -117,12 +123,18 @@ export default new Vuex.Store({
         },
 
         updateNotification({ commit }, data) {
+            console.log(data)
             commit('UPDATE_NOTIFICATIONS', data)
 
         },
 
         updateCampaign({ commit }, data) {
             commit('UPDATE_CAMPAIGN', data)
+
+        },
+
+        updateCampaignUsers({ commit }, data) {
+            commit('UPDATE_CAMPAIGN_USERS', data)
 
         },
 
@@ -231,7 +243,7 @@ export default new Vuex.Store({
         },
 
         getCampaignUsersByUserId: (state) => (id) => {
-            console.log("poo",state.campaignusers.filter(campaignusers => campaignusers.site_id == id))
+            // console.log("poo",state.campaignusers.filter(campaignusers => campaignusers.site_id == id))
             return state.campaignusers.filter(campaignusers => campaignusers.site_id == id)
         },
 

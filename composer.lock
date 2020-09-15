@@ -1471,16 +1471,16 @@
         },
         {
             "name": "mavinoo/laravel-batch",
-            "version": "v2.2.0",
+            "version": "v2.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mavinoo/laravelBatch.git",
-                "reference": "64771c1985f7072c92401b7cc5d4b1be392efa6d"
+                "reference": "0b6302ad6b0fb79d7955b813beb54101f11eb7ad"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mavinoo/laravelBatch/zipball/64771c1985f7072c92401b7cc5d4b1be392efa6d",
-                "reference": "64771c1985f7072c92401b7cc5d4b1be392efa6d",
+                "url": "https://api.github.com/repos/mavinoo/laravelBatch/zipball/0b6302ad6b0fb79d7955b813beb54101f11eb7ad",
+                "reference": "0b6302ad6b0fb79d7955b813beb54101f11eb7ad",
                 "shasum": ""
             },
             "require-dev": {
@@ -1516,7 +1516,7 @@
                 }
             ],
             "description": "Insert and update batch (bulk) in laravel",
-            "time": "2020-09-03T06:03:18+00:00"
+            "time": "2020-09-15T05:34:30+00:00"
         },
         {
             "name": "monolog/monolog",
@@ -5993,16 +5993,16 @@
         },
         {
             "name": "phpunit/php-code-coverage",
-            "version": "9.1.8",
+            "version": "9.1.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-code-coverage.git",
-                "reference": "f98f8466126d83b55b924a94d2244c53c216b8fb"
+                "reference": "cf6582906d4b2502c5f4c6be6a3d0b4cd5b3ef7f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/f98f8466126d83b55b924a94d2244c53c216b8fb",
-                "reference": "f98f8466126d83b55b924a94d2244c53c216b8fb",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/cf6582906d4b2502c5f4c6be6a3d0b4cd5b3ef7f",
+                "reference": "cf6582906d4b2502c5f4c6be6a3d0b4cd5b3ef7f",
                 "shasum": ""
             },
             "require": {
@@ -6010,7 +6010,7 @@
                 "ext-libxml": "*",
                 "ext-xmlwriter": "*",
                 "nikic/php-parser": "^4.8",
-                "php": "^7.3 || ^8.0",
+                "php": ">=7.3",
                 "phpunit/php-file-iterator": "^3.0.3",
                 "phpunit/php-text-template": "^2.0.2",
                 "sebastian/code-unit-reverse-lookup": "^2.0.2",
@@ -6062,7 +6062,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2020-09-07T08:07:10+00:00"
+            "time": "2020-09-15T06:14:11+00:00"
         },
         {
             "name": "phpunit/php-file-iterator",

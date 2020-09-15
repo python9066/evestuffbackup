@@ -124,7 +124,7 @@
           width = "100%"
         >
 
-    <form
+    <v-form
     v-if="this.userForm == 1"
     @submit.prevent="newCharForm()">
     <v-text-field
@@ -164,9 +164,9 @@
     <v-btn class="mr-4" type="submit">submit</v-btn>
     <v-btn class="mr-4" @click="newCharFormClose()">Close</v-btn>
     <!-- <v-btn @click="clear">clear</v-btn> -->
-  </form>
+  </v-form>
 <!---edit/delete form------>
-<form
+<v-form
     v-if="this.editUserForm == 1"
     @submit.prevent="editCharForm()">
     <v-select
@@ -210,7 +210,7 @@
     <v-btn class="mr-4" @click="editFormRemove()">Remove</v-btn>
     <v-btn class="mr-4" @click="editFormClose()">Close</v-btn>
     <!-- <v-btn @click="clear">clear</v-btn> -->
-  </form>
+  </v-form>
   <!---edit/delete form------>
 </v-card>
 </v-col>
@@ -223,6 +223,8 @@
     {{ system.system_name }}
   </li>
 </ul>
+
+{{ $route.params.id }}
 
 
 <v-row
@@ -239,7 +241,7 @@
 
 
 
-<v-row no-gutters class="red" justify ="center">
+<!-- <v-row no-gutters class="red" justify ="center">
 
     <systemTable class=" px-5 pb-5"
         v-for="(system, index) in systems"
@@ -251,7 +253,7 @@
         >
     </systemTable>
 
-</v-row>
+</v-row> -->
   </div>
 </template>
 <!-- {{ $route.params.id }} - {{ test }} -  -->
@@ -315,7 +317,7 @@ export default {
             editLinkRules: [
                 v => !!v || 'T1 or T2?',
             ],
-            editUserForm:0,
+            editUserForm:1,
 
             oldChar:[],
             role:0,
@@ -323,7 +325,6 @@ export default {
             systems: [],
             test: 1,
             test2: "",
-            userCharsDrop:null,
             userForm:1,
             valid: false,
 
@@ -341,7 +342,6 @@ export default {
         // console.log(this.$route.params.id)
         await this.getSystems(this.campaign.constellation_id);
         await this.$store.dispatch('getCampaignUsersRecrods',this.$route.params.id);
-        await this.getusersChars();
 
     },
     methods: {
@@ -364,9 +364,7 @@ export default {
 
         },
 
-  async getusersChars(){
-               this.userCharsDrop = this.$store.getters.getCampaignUsersByUserId(this.$store.state.user_id)
-            },
+
 
 
         roleForm(a){
@@ -392,7 +390,7 @@ export default {
 
         charEditForm($event){
             this.oldChar = this.userCharsDrop.find(user => user.id == $event)
-            this.editTextRole = this.oldChar.role_name;
+            this.editRole = this.oldChar.role_id;
             this.editTextShip = this.oldChar.ship
             this.editTextLink = this.oldChar.link
             if(this.oldChar.role_id == 1){
@@ -409,8 +407,10 @@ export default {
             this.oldCha = null
             this.editrole = 0
             this.editUserForm = 0
-
             },
+
+
+
 
 
         newCharForm(){
@@ -451,11 +451,25 @@ export default {
             if(this.oldChar.link != this.editLink){
                 var link = this.editLink
             }
+            if(this.oldChar.role_name != this.editrole_name){
+                var role_name = this.dropdown_roles.find(droprole => droprole.value == role).text
+            }
+            console.log(role_name)
             var request = {
                 link: link,
                 ship: ship,
                 campaign_role_id: role,
                  };
+
+            var item = {
+                id: this.oldChar.id,
+                link: link,
+                ship: ship,
+                role_id: role,
+                role_name: role_name
+            };
+
+            this.$store.dispatch('updateCampaignUsers',item)
 
             axios({
                 method: 'PUT', //you can set what request you want to be
@@ -467,6 +481,8 @@ export default {
                     "Content-Type": "application/json",
                 }
                 })
+
+
 
         },
 
@@ -483,11 +499,6 @@ export default {
                 })
 
         }
-
-
-
-
-
         },
 
 
@@ -511,6 +522,11 @@ export default {
         campaign() {
             return this.getCampaignById(this.$route.params.id)
         },
+
+
+        userCharsDrop(){
+             return  this.getCampaignUsersByUserId(this.$store.state.user_id)
+            },
 
 
 

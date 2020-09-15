@@ -64,27 +64,27 @@ export default {
             // var timers = this.$store.state.timers;
             if (this.statusflag == 1) {
                 return this.campaignusers.filter(
-                    campaignusers => campaignusers.status_id == 1  && campaignusers.campaign_id === this.campaign_id
+                    campaignusers => campaignusers.status_id == 1  && campaignusers.campaign_id == this.campaign_id
                 );
             }
             if (this.statusflag == 3) {
                 return this.campaignusers.filter(
-                    campaignusers => campaignusers.status_id == 3  && campaignusers.campaign_id === this.campaign_id
+                    campaignusers => campaignusers.status_id == 3  && campaignusers.campaign_id == this.campaign_id
                 );
             }
             if (this.statusflag == 5) {
                 return this.campaignusers.filter(
-                    campaignusers => campaignusers.status_id == 5  && campaignusers.campaign_id === this.campaign_id
+                    campaignusers => campaignusers.status_id == 5  && campaignusers.campaign_id == this.campaign_id
                 );
             }
             if (this.statusflag == 6) {
                 return this.campaignusers.filter(
-                    campaignusers => campaignusers.status_id == 6  && campaignusers.campaign_id === this.campaign_id
+                    campaignusers => campaignusers.status_id == 6  && campaignusers.campaign_id == this.campaign_id
                 );
             }
             else {
                 return this.campaignusers.filter(
-                    campaignusers => campaignusers.status_id != 10  && campaignusers.campaign_id === this.campaign_id
+                    campaignusers => campaignusers.status_id != 10  && campaignusers.campaign_id == this.campaign_id
                 );
             }
         },
