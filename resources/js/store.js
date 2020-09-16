@@ -255,6 +255,16 @@ export default new Vuex.Store({
 
         getCampaignsCount: state => {
             return state.campaigns.length;
+        },
+
+        getCampaignUsersByUserIdEntosisCount: (state, getters) =>{
+            return getters.getCampaignUsersByUserIdEntosis.length
+        },
+
+        getCampaignUsersByUserIdCount: (state, getters) =>{
+            return getters.getCampaignUsersByUserId.length
         }
+
+
     }
 });

@@ -175,7 +175,7 @@
                         </v-menu>
                     </template>
                     <template v-slot:item.user_name="{ item }">
-                        <v-menu offset-y v-if="item.user_name == null">
+                        <v-menu offset-y v-if="item.user_name == null && this.getCampaignUsersByUserIdEntosisCount != 0">
                             <template v-slot:activator="{ on, attrs }">
                                 <div>
                                     <v-chip
@@ -573,7 +573,9 @@ export default {
     computed: {
         ...mapState(["campaignsystems"]),
 
-        ...mapGetters(["getCampaignUsersByUserIdEntosis"]),
+        ...mapGetters([
+            "getCampaignUsersByUserIdEntosis",
+            "getCampaignUsersByUserIdEntosisCount",]),
 
         filteredItems() {
             // var timers = this.$store.state.timers;
