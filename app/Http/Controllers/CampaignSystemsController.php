@@ -80,6 +80,7 @@ class CampaignSystemsController extends Controller
             'id' => $id
         ]);
         CampaignSystem::destroy($id);
+        dd($flag);
         CampaignUser::where('campaign_system_id',$id)->update(['campaign_system_id' => null]);
         broadcast(new CampaiganSystemUpdate($flag))->toOthers();
         $flag =null;
@@ -87,5 +88,7 @@ class CampaignSystemsController extends Controller
             'flag' => 1,
             'id' => $id
         ]);
+        broadcast(new CampaiganSystemUpdate($flag))->toOthers();
+
     }
 }
