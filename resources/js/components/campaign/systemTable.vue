@@ -18,7 +18,7 @@
                     <template v-slot:top>
                         <v-toolbar
                         flat
-                        src="https://cdn.vuetifyjs.com/images/backgrounds/vbanner.jpg"
+                        src="http://photos.napalm.net/clubsi/m-07.jpg"
                         >
                             <v-toolbar-title
                                 >{{ system_name }} -
