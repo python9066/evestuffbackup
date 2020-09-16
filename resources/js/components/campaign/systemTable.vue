@@ -241,7 +241,7 @@
                     <template v-slot:item.actions="{ item }">
 
       <v-icon
-        class= "orange darken-3"
+        color="orange darken-3"
         small
         @click="deleteNode(item)"
       >
