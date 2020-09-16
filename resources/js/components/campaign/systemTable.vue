@@ -223,6 +223,7 @@
                     <template v-slot:expanded-item="{ headers, item }">
                         <td :colspan="headers.length" align="center">
                             <div>
+                                tesdt
                                 <v-col class="align-center">
                                     <v-textarea
                                         v-bind:value="item.text"
