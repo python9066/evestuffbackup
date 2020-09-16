@@ -73,23 +73,28 @@ class CampaignSystemsController extends Controller
      */
     public function destroy($id)
     {
-
-        $data = CampaignSystem::find('id',$id)->get();
-        dd($data);
-        $flag = $data->campaigan_id;
-        $flag = collect([
-            'flag' => 2,
-            'id' => $data->campaigan_id
-        ]);
         CampaignSystem::destroy($id);
-        CampaignUser::where('campaign_system_id',$id)->update(['campaign_system_id' => null]);
-        broadcast(new CampaiganSystemUpdate($flag))->toOthers();
-        $flag =null;
-        $flag = collect([
-            'flag' => 3,
-            'id' => $data->campaigan_id
-        ]);
-        broadcast(new CampaiganSystemUpdate($flag))->toOthers();
 
     }
+    // public function destroy($id)
+    // {
+
+    //     $data = CampaignSystem::find('id',$id)->get();
+    //     dd($data);
+    //     $flag = $data->campaigan_id;
+    //     $flag = collect([
+    //         'flag' => 2,
+    //         'id' => $data->campaigan_id
+    //     ]);
+    //     CampaignSystem::destroy($id);
+    //     CampaignUser::where('campaign_system_id',$id)->update(['campaign_system_id' => null]);
+    //     broadcast(new CampaiganSystemUpdate($flag))->toOthers();
+    //     $flag =null;
+    //     $flag = collect([
+    //         'flag' => 3,
+    //         'id' => $data->campaigan_id
+    //     ]);
+    //     broadcast(new CampaiganSystemUpdate($flag))->toOthers();
+
+    // }
 }
