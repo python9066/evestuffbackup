@@ -73,7 +73,7 @@ class CampaignSystemsController extends Controller
      */
     public function destroy($id)
     {
-        $data = CampaignSystem::find($id)->first();
+        $data = CampaignSystem::find('id',$id)->first();
         $flag = $data->campaigan_id;
         $flag = collect([
             'flag' => 2,
