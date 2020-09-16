@@ -353,7 +353,7 @@ export default {
 
         clickCharAddNode(item) {
             var addChar = this.chars.find(user => user.id == this.charAddNode);
-            console.log(addChar, item);
+            // console.log(addChar, item);
             var data = {
                 id: item.id,
                 user_id: addChar.id,
@@ -453,7 +453,7 @@ export default {
                 var request = {
                     notes: item.text
                 };
-                console.log(item);
+                // console.log(item);
                 this.$store.dispatch("updateCampaignSystem", item);
                 axios({
                     method: "put", //you can set what request you want to be

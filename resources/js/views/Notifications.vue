@@ -556,7 +556,7 @@ export default {
         },
 
         checkexpanded(notifications){
-            console.log(notifications);
+            // console.log(notifications);
             if(notifications.status_id != 5){
                 if(notifications.id == this.expanded_id)
                 {

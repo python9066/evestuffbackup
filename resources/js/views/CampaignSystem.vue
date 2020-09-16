@@ -430,7 +430,7 @@ export default {
         },
 
         async getSystems(id) {
-            console.log(id, this.$store.state.token);
+            // console.log(id, this.$store.state.token);
             let res = await axios({
                 method: "get", //you can set what request you want to be
                 url: "/api/systemsinconstellation/" + id,
@@ -447,8 +447,8 @@ export default {
 
         roleForm(a) {
             this.role = a;
-            console.log("LALAL");
-            console.log(a);
+            // console.log("LALAL");
+            // console.log(a);
         },
 
         newCharFormClose() {
@@ -461,8 +461,8 @@ export default {
 
         roleEditForm(a) {
             this.editrole = a;
-            console.log("LALAL");
-            console.log(a);
+            // console.log("LALAL");
+            // console.log(a);
         },
 
         charEditForm($event) {
@@ -533,7 +533,7 @@ export default {
                     droprole => droprole.value == role
                 ).text;
             }
-            console.log(role_name);
+            // console.log(role_name);
             var request = {
                 link: link,
                 ship: ship,
