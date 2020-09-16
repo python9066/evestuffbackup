@@ -528,6 +528,7 @@ export default {
         },
 
         editCharForm() {
+            this.removeShown = false
             if (this.oldChar.role_id != this.editRole) {
                 var role = this.editRole;
             }
@@ -581,6 +582,8 @@ export default {
                     "Content-Type": "application/json"
                 }
             });
+            this.removeShown = false
+
 
         }
     },
