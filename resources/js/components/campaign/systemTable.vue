@@ -19,7 +19,7 @@
                         <v-toolbar
                         flat
                         elevation="24"
-                        color='black'
+                        color='grey darken-4'
                         >
                             <v-toolbar-title
                                 >{{ system_name }} -
