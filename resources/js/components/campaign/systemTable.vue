@@ -23,7 +23,9 @@
                                     <template v-slot:activator="{ on, attrs }">
                                         <v-btn
                                             dark
-                                            color="primary"
+                                            tile
+                                            outlined
+                                            color="teal"
                                             v-bind="attrs"
                                             v-on="on"
                                         >
@@ -50,7 +52,9 @@
                                     <template v-slot:activator="{ on, attrs }">
                                         <v-btn
                                             dark
-                                            color="primary"
+                                            tile
+                                            outlined
+                                            color="teal"
                                             v-bind="attrs"
                                             v-on="on"
                                         >
