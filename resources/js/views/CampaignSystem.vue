@@ -148,6 +148,7 @@
                                 class="mr-4"
                                 @click="addShown = true"
                                 v-bind="attrs"
+                                color="green lighten-1"
                                 v-on="on"
                                 >Add Char</v-btn
                             >
@@ -221,6 +222,7 @@
                         @click="removeShown = true"
                         v-bind="attrs"
                         v-on="on"
+                        color="red lighten-2"
                             >Edit/Remove Char</v-btn
                         >
                         </template>
