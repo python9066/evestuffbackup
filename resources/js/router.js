@@ -1,11 +1,11 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from './views/Home'
-import Updates from './views/Updates'
 import Timers from './views/Timers'
-import Buttonupdate from  './views/Buttonupdate'
 import Notifications from './views/Notifications'
 import Campagins from './views/Campaigns'
+import Campaign from './views/CampaignSystem'
+import Vtest from './views/test.vue'
+import Stest from './components/campaign/systemTable.vue'
 
 Vue.use(Router)
 
@@ -20,20 +20,33 @@ export default new Router({
       name: 'notifications',
         component: Notifications
     },
-    // {
-    //   path: '/home',
-    //   name: 'home',
-    //   component: Home
-    // },
+    {
+      path: '/campaign/:id',
+      name: 'campaign',
+      component: Campaign,
+      props: (route) => {
+        const id = Number.parseInt(route.params.id, 10)
+        if (Number.isNaN(id)) {
+          return 0
+        }
+        return { id }
+      }
+    },
     {
         path: '/timers',
         name: 'timers',
         component: Timers
       },
       {
-        path: '/',
-        name: 'buttonupdate',
-        component: Buttonupdate
+        path: '/stest',
+        name: 'stest',
+        component: Stest
+      },
+
+      {
+        path: '/vtest',
+        name: 'test',
+        component: Vtest
       },
 
 

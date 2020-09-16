@@ -208,6 +208,8 @@
                         class="ma-2 ma"
                         filter
                         pill
+                        :to="'/campaign/'+item.id"
+                        :disabled="pillDisabled(item)"
                         :color="pillColor(item)"
 
                     >
@@ -365,6 +367,14 @@ export default {
 
             if(item.status_id > 1){
                 return true;
+            }
+            return false
+
+        },
+
+        pillDisabled(item){
+            if(item.status_id == 3){
+                return true
             }
             return false
 

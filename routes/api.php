@@ -35,5 +35,25 @@ Route::middleware('auth:api')->group(function(){
 
     Route::get('/campaigns','CampaignRecordsController@index');
     Route::put('/campaigns/{id}','CampaignRecordsController@update');
+    Route::get('/systemsinconstellation/{id}','SystemController@systemsinconstellation');
+
+    Route::get('/campaignusersrecords/{id}','CampaignUserRecordsController@show');
+    Route::put('/campaignusersrecords/{id}', 'CampaignUserRecordsController@update');
+    Route::post('/campaignusersrecords/{id}', 'CampaignUserRecordsController@store');
+
+    Route::post('/campaignusers','CampaignUserController@store');
+    Route::put('/campaignusers/{id}','CampaignUserController@update');
+    Route::delete('/campaignusers/{id}','CampaignUserController@destroy');
+
+    Route::get('/campaignsystemsrecords','CampaignSystemRecordsController@index');
+    Route::get('/campaignsystemsrecords/{id}','CampaignSystemRecordsController@show');
+    Route::put('/campaignsystemsrecords/{id}','CampaignSystemRecordsController@update');
+    Route::post('/campaignsystemsrecords/{id}','CampaignSystemRecordsController@store');
+    Route::delete('/campaginsystemsrecords/{id}','CampaignSystemRecordsController@destroy');
+
+    Route::post('/campaignsystems', 'CampaignSystemsController@store');
+    Route::put('/campaignsystems/{id}', 'CampaignSystemsController@update');
+
+
 
 });

@@ -569,7 +569,7 @@ export default {
 
 
         updatetext(payload, item){
-
+            // console.log(item);
             if(item.text != payload){
                 item.text = payload
                  var request = {

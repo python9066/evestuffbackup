@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Campaign;
-use App\Models\CampaignRecords;
+use App\Events\CampaiganSystemUpdate;
+use App\Models\CampaignUser;
 use Illuminate\Http\Request;
 
-class CampaignRecordsController extends Controller
+class CampaignUserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,7 @@ class CampaignRecordsController extends Controller
      */
     public function index()
     {
-        return ['campaigns' => CampaignRecords::all()];
+        //
     }
 
     /**
@@ -26,7 +26,13 @@ class CampaignRecordsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        CampaignUser::create($request->all());
+        $flag = collect([
+            'flag' => 1,
+            'id' => $request->campaign_id
+        ]);
+        broadcast(new CampaiganSystemUpdate($flag))->toOthers();
     }
 
     /**
@@ -37,24 +43,25 @@ class CampaignRecordsController extends Controller
      */
     public function show($id)
     {
-        return ['campaign' => Campaign::where('id',$id)];
+        //
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request#
+     * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
-        CampaignRecords::find($id)->update($request->all());
-        // $notifications = NotificationRecords::find($id);
-        // if($notifications->status_id != 10){
-        // broadcast(new NotificationChanged($notifications))->toOthers();
-        // }
-        // broadcast(new NotificationChanged($notifications));
+        CampaignUser::find($id)->update($request->all());
+        $data = CampaignUser::find($id)->first();
+        $flag = collect([
+            'flag' => 1,
+            'id' => $data->campaign_id
+        ]);
+        broadcast(new CampaiganSystemUpdate($flag))->toOthers();
     }
 
     /**
@@ -65,6 +72,13 @@ class CampaignRecordsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $data = CampaignUser::find($id)->first();
+        $flag = collect([
+            'flag' => 1,
+            'id' => $data->campaign_id
+        ]);
+        CampaignUser::destroy($id);
+        broadcast(new CampaiganSystemUpdate($flag))->toOthers();
+
     }
 }

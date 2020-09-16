@@ -1,1 +1,1 @@
-cd ../laradock && upd.bat && bash
+cd ../laradock && upd.bat

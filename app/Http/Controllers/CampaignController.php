@@ -21,4 +21,32 @@ class CampaignController extends Controller
             }
         }
     }
+
+    public function test()
+    {
+        $collection = collect([
+            'Apple' =>
+                ['name' => 'iPhone 6S', 'brand' => 'Apple'],
+
+        ]);
+
+        echo $collection;
+        dd($collection);
+
+
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
