@@ -457,6 +457,7 @@ export default {
             this.newRole = null;
             this.newShip = null;
             this.newLink = null;
+            this.$refs.form.resetValidation()
         },
 
         roleEditForm(a) {
@@ -485,9 +486,12 @@ export default {
             this.removeShown = false;
             this.editrole = 0;
             this.editUserForm = 0;
+            this.$refs.form.resetValidation()
         },
 
         async newCharForm() {
+            this.$refs.form.resetValidation()
+
             var request = {
                 site_id: this.$store.state.user_id,
                 campaign_id: this.$route.params.id,
@@ -516,6 +520,7 @@ export default {
             this.newLink = null;
             this.newShip = null;
             this.newRole = null;
+            this.addShown = false;
         },
 
         editCharForm() {
@@ -572,6 +577,7 @@ export default {
                     "Content-Type": "application/json"
                 }
             });
+            this.$refs.form.resetValidation();
         }
     },
 
