@@ -74,9 +74,10 @@ class CampaignSystemsController extends Controller
     public function destroy($id)
     {
         $data = CampaignSystem::find($id)->first();
+        $id = $data->campaign_id;
         $flag = collect([
             'flag' => 2,
-            'id' => $data->campaign_id
+            'id' => $id
         ]);
         CampaignSystem::destroy($id);
         CampaignUser::where('campaign_system_id',$id)->update(['campaign_system_id' => null]);
@@ -84,7 +85,7 @@ class CampaignSystemsController extends Controller
         $flag =null;
         $flag = collect([
             'flag' => 1,
-            'id' => $data->campaign_id
+            'id' => $id
         ]);
     }
 }
