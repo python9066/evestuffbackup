@@ -74,13 +74,12 @@ class CampaignSystemsController extends Controller
     public function destroy($id)
     {
         $data = CampaignSystem::find($id)->first();
-        $id = $data->campaign_id;
+        dd($data);
         $flag = collect([
             'flag' => 2,
             'id' => $id
         ]);
         CampaignSystem::destroy($id);
-        dd($flag);
         CampaignUser::where('campaign_system_id',$id)->update(['campaign_system_id' => null]);
         broadcast(new CampaiganSystemUpdate($flag))->toOthers();
         $flag =null;
