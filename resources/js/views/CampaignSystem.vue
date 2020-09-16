@@ -295,12 +295,14 @@
                     </v-menu>
                     <v-btn
                         class="mr-4"
+                        color="blue darken-2"
                         v-if="showTable == false"
                         @click="showTable = true"
                         >Show Char table</v-btn
                     >
                     <v-btn
                         class="mr-4"
+                        color="orange darken-2"
                         v-if="showTable == true"
                         @click="showTable = false"
                         >Hide Char table</v-btn
