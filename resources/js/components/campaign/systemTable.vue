@@ -370,7 +370,7 @@ export default {
 
 
            await axios({
-                method: "DESTORY", //you can set what request you want to be
+                method: "DELETE", //you can set what request you want to be
                 url: "/api/campaignsystems/" + item.id,
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
