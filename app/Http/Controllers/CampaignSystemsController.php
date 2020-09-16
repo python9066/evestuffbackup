@@ -78,6 +78,7 @@ class CampaignSystemsController extends Controller
             'flag' => 3,
             'id' => $data->campaigan_id
         ]);
+        dd($flag);
         CampaignSystem::destroy($id);
 
     }
