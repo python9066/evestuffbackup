@@ -18,6 +18,7 @@
                     <template v-slot:top>
                         <v-toolbar
                         flat
+                        elevation="24"
                         src="http://photos.napalm.net/clubsi/m-07.jpg"
                         >
                             <v-toolbar-title
