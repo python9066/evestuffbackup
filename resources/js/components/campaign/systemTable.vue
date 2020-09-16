@@ -366,7 +366,22 @@ export default {
             this.charReadyToGo = null;
         },
 
-        deleteNode(item){
+      async  deleteNode(item){
+
+
+           await axios({
+                method: "DESTORY", //you can set what request you want to be
+                url: "/api/campaignsystems/" + item.id,
+                data: request,
+                headers: {
+                    Authorization: "Bearer " + this.$store.state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                }
+            });
+
+            this.$store.dispatch("getCampaignSystemsRecords");
+            this.$store.dispatch("getCampaignUsersRecords",this.$route.params.id);
 
         },
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\CampaignSystem;
 use App\Events\CampaiganSystemUpdate;
+use App\Models\CampaignUser;
 use Illuminate\Http\Request;
 
 class CampaignSystemsController extends Controller
@@ -73,10 +74,16 @@ class CampaignSystemsController extends Controller
     {
         $data = CampaignSystem::find($id)->first();
         $flag = collect([
-            'flag' => 1,
+            'flag' => 2,
             'id' => $data->campaign_id
         ]);
         CampaignSystem::destroy($id);
+        CampaignUser::where('campaign_system_id',$id)->update(['campaign_system_id' => null]);
         broadcast(new CampaiganSystemUpdate($flag))->toOthers();
+        $flag =null;
+        $flag = collect([
+            'flag' => 1,
+            'id' => $data->campaign_id
+        ]);
     }
 }
