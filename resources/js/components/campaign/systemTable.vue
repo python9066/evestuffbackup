@@ -372,7 +372,6 @@ export default {
            await axios({
                 method: "DESTORY", //you can set what request you want to be
                 url: "/api/campaignsystems/" + item.id,
-                data: request,
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
                     Accept: "application/json",

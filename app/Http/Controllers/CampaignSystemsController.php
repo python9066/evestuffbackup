@@ -32,6 +32,7 @@ class CampaignSystemsController extends Controller
             'flag' => 2,
             'id' => $request->campaign_id
         ]);
+        dd($flag);
         broadcast(new CampaiganSystemUpdate($flag))->toOthers();
     }
 
