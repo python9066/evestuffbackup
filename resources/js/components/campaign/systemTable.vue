@@ -16,7 +16,10 @@
                 >
                     >
                     <template v-slot:top>
-                        <v-toolbar flat>
+                        <v-toolbar
+                        flat
+                        src="https://cdn.vuetifyjs.com/images/backgrounds/vbanner.jpg"
+                        >
                             <v-toolbar-title
                                 >{{ system_name }} -
                                 <v-menu transition="fade-transition">
