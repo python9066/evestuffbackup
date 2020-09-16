@@ -28,11 +28,10 @@ class CampaignSystemsController extends Controller
     public function store(Request $request)
     {
 
-        dd($request);
         CampaignSystem::create($request->all());
         $flag = collect([
             'flag' => 2,
-            'id' => $request->campaign_id
+            'id' => $request->campaigan_id
         ]);
         broadcast(new CampaiganSystemUpdate($flag))->toOthers();
     }
