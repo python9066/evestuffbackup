@@ -244,7 +244,7 @@
         small
         @click="deleteNode(item)"
       >
-        mdi-delete
+        fas fa-trash-alt
       </v-icon>
     </template>
 
@@ -278,7 +278,7 @@ export default {
                     align: "center"
                 },
                 { text: "Finished", value: "count", width: "20%" },
-                { text: 'Actions', value: 'actions', sortable: false },
+                { text: '', value: 'actions', sortable: false, align: "end", width: "5%" },
                 {
                     text: "",
                     value: "data-table-expand",
