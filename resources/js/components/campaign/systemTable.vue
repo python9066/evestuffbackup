@@ -223,7 +223,6 @@
                     <template v-slot:expanded-item="{ headers, item }">
                         <td :colspan="headers.length" align="center">
                             <div>
-                                tesdt
                                 <v-col class="align-center">
                                     <v-textarea
                                         v-bind:value="item.text"
@@ -239,6 +238,15 @@
                             </div>
                         </td>
                     </template>
+                    <template v-slot:item.actions="{ item }">
+
+      <v-icon
+        small
+        @click="deleteNode(item)"
+      >
+        mdi-delete
+      </v-icon>
+    </template>
 
                     <template slot="no-data">
                         No nodes have showen up here..... yet!!!!
@@ -270,6 +278,7 @@ export default {
                     align: "center"
                 },
                 { text: "Finished", value: "count", width: "20%" },
+                { text: 'Actions', value: 'actions', sortable: false },
                 {
                     text: "",
                     value: "data-table-expand",
@@ -354,6 +363,10 @@ export default {
             });
 
             this.charReadyToGo = null;
+        },
+
+        deleteNode(item){
+
         },
 
         clickCharAddNode(item) {
