@@ -589,6 +589,11 @@ export default {
             if(e.flag.flag == 2){
                 this.loadCampaignSystemRecords()
             }
+            if(e.flag.flag == 3){
+                this.loadCampaignSystemRecords()
+                this.loadUsersRecords()
+            }
+
         });
         this.test = 2;
         this.test2 = 1;
