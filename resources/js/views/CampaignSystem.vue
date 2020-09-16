@@ -571,13 +571,13 @@ export default {
                 }
             });
 
-            editCharName = null;
-            editRole = null;
-            editTextRole = null;
-            editShip = null;
-            editTextShip = null;
-            editLink = null;
-            editTextLink = null;
+            this.editCharName = null;
+            this.editRole = null;
+            this.editTextRole = null;
+            this.editShip = null;
+            this.editTextShip = null;
+            this.editLink = null;
+            this.editTextLink = null;
         },
 
         editFormRemove() {
@@ -591,6 +591,13 @@ export default {
                 }
             });
             this.removeShown = false
+            this.editCharName = null;
+            this.editRole = null;
+            this.editTextRole = null;
+            this.editShip = null;
+            this.editTextShip = null;
+            this.editLink = null;
+            this.editTextLink = null;
 
 
         }
