@@ -24,13 +24,13 @@ class CampaignUserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $campid)
     {
 
         CampaignUser::create($request->all());
         $flag = collect([
             'flag' => 1,
-            'id' => $request->campaign_id
+            'id' => $campid
         ]);
         broadcast(new CampaiganSystemUpdate($flag))->toOthers();
     }
@@ -53,13 +53,12 @@ class CampaignUserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id, $campid)
     {
         CampaignUser::find($id)->update($request->all());
-        $data = CampaignUser::where('id',$id)->first();
         $flag = collect([
             'flag' => 1,
-            'id' => $data->campaign_id
+            'id' => $campid
         ]);
         broadcast(new CampaiganSystemUpdate($flag))->toOthers();
     }
@@ -70,14 +69,14 @@ class CampaignUserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id, $campid)
     {
-        $data = CampaignUser::where('id',$id)->first();
+
+        CampaignUser::destroy($id);
         $flag = collect([
             'flag' => 1,
-            'id' => $data->campaign_id
+            'id' => $campid
         ]);
-        CampaignUser::destroy($id);
         broadcast(new CampaiganSystemUpdate($flag))->toOthers();
 
     }

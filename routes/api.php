@@ -38,22 +38,22 @@ Route::middleware('auth:api')->group(function(){
     Route::get('/systemsinconstellation/{id}','SystemController@systemsinconstellation');
 
     Route::get('/campaignusersrecords/{id}','CampaignUserRecordsController@show');
-    Route::put('/campaignusersrecords/{id}', 'CampaignUserRecordsController@update');
-    Route::post('/campaignusersrecords/{id}', 'CampaignUserRecordsController@store');
+    Route::put('/campaignusersrecords/{id}/{campid}', 'CampaignUserRecordsController@update');
+    Route::post('/campaignusersrecords/{id}/{campid}', 'CampaignUserRecordsController@store');
 
-    Route::post('/campaignusers','CampaignUserController@store');
-    Route::put('/campaignusers/{id}','CampaignUserController@update');
-    Route::delete('/campaignusers/{id}','CampaignUserController@destroy');
+    Route::post('/campaignusers/{campid}','CampaignUserController@store');
+    Route::put('/campaignusers/{id}/{campid}','CampaignUserController@update');
+    Route::delete('/campaignusers/{id}/{campid}','CampaignUserController@destroy');
 
     Route::get('/campaignsystemsrecords','CampaignSystemRecordsController@index');
     Route::get('/campaignsystemsrecords/{id}','CampaignSystemRecordsController@show');
-    Route::put('/campaignsystemsrecords/{id}','CampaignSystemRecordsController@update');
-    Route::post('/campaignsystemsrecords/{id}','CampaignSystemRecordsController@store');
-    Route::delete('/campaginsystemsrecords/{id}','CampaignSystemRecordsController@destroy');
+    Route::put('/campaignsystemsrecords/{id}/{campid}','CampaignSystemRecordsController@update');
+    Route::post('/campaignsystemsrecords/{id}/{campid}','CampaignSystemRecordsController@store');
+    Route::delete('/campaginsystemsrecords/{id}/{campid}','CampaignSystemRecordsController@destroy');
 
-    Route::post('/campaignsystems', 'CampaignSystemsController@store');
+    Route::post('/campaignsystems/{campid}', 'CampaignSystemsController@store');
     Route::put('/campaignsystems/{id}/{campid}', 'CampaignSystemsController@update');
-    Route::delete('/campaignsystems/{id}','CampaignSystemsController@destroy');
+    Route::delete('/campaignsystems/{id}/{campid}','CampaignSystemsController@destroy');
 
 
 

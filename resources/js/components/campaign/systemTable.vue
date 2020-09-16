@@ -327,7 +327,7 @@ export default {
 
             axios({
                 method: "put", //you can set what request you want to be
-                url: "/api/campaignusers/" + this.charOnTheWay,
+                url: "/api/campaignusers/" + this.charOnTheWay + "/" + this.$route.params.id,
                 data: request,
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
@@ -354,7 +354,7 @@ export default {
 
             axios({
                 method: "put", //you can set what request you want to be
-                url: "/api/campaignusers/" + this.charReadyToGo,
+                url: "/api/campaignusers/" + this.charReadyToGo + "/" + this.$route.params.id,
                 data: request,
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
@@ -371,7 +371,7 @@ export default {
             console.log(item);
            await axios({
                 method: "DELETE", //you can set what request you want to be
-                url: "/api/campaignsystems/" + item.id,
+                url: "/api/campaignsystems/" + item.id + "/" + this.$route.params.id,
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
                     Accept: "application/json",
@@ -430,7 +430,7 @@ export default {
 
             axios({
                 method: "put", //you can set what request you want to be
-                url: "/api/campaignusers/" + addChar.id,
+                url: "/api/campaignusers/" + addChar.id + "/" + this.$route.params.id,
                 data: request1,
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
@@ -511,7 +511,7 @@ export default {
             this.addShown = false;
             await axios({
                 method: "POST", //you can set what request you want to be
-                url: "/api/campaignsystems",
+                url: "/api/campaignsystems/" + this.$route.params.id,
                 data: request,
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
@@ -555,7 +555,7 @@ export default {
             };
             axios({
                 method: "PUT", //you can set what request you want to be
-                url: "/api/campaignusers/" + userId,
+                url: "/api/campaignusers/" + userId + "/" + this.$route.params.id,
                 data: request1,
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,

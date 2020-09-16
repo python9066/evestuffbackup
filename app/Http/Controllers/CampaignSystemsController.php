@@ -25,13 +25,13 @@ class CampaignSystemsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $campid)
     {
 
         CampaignSystem::create($request->all());
         $flag = collect([
             'flag' => 2,
-            'id' => $request->campaigan_id
+            'id' => $campid,
         ]);
         broadcast(new CampaiganSystemUpdate($flag))->toOthers();
     }
@@ -57,7 +57,6 @@ class CampaignSystemsController extends Controller
     public function update(Request $request, $id, $campid)
     {
         CampaignSystem::where('id',$id)->update($request->all());
-        $data = CampaignSystem::where('id',$id)->first();
         $flag = collect([
             'flag' => 2,
             'id' => $campid
@@ -71,14 +70,13 @@ class CampaignSystemsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
-        $data = CampaignSystem::where('id',$id)->first();
+    public function destroy($id, $campid)    {
+
+        CampaignSystem::destroy($id);
         $flag = collect([
             'flag' => 3,
-            'id' => $data->campaigan_id
+            'id' => $campid
         ]);
-        CampaignSystem::destroy($id);
         broadcast(new CampaiganSystemUpdate($flag))->toOthers();
     }
     // public function destroy($id)
