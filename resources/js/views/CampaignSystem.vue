@@ -570,6 +570,14 @@ export default {
                     "Content-Type": "application/json"
                 }
             });
+
+            editCharName = null;
+            editRole = null;
+            editTextRole = null;
+            editShip = null;
+            editTextShip = null;
+            editLink = null;
+            editTextLink = null;
         },
 
         editFormRemove() {
