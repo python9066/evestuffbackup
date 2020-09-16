@@ -56,7 +56,7 @@ class CampaignUserController extends Controller
     public function update(Request $request, $id)
     {
         CampaignUser::find($id)->update($request->all());
-        $data = CampaignUser::find($id)->first();
+        $data = CampaignUser::where('id',$id)->first();
         $flag = collect([
             'flag' => 1,
             'id' => $data->campaign_id
@@ -72,7 +72,7 @@ class CampaignUserController extends Controller
      */
     public function destroy($id)
     {
-        $data = CampaignUser::find($id)->first();
+        $data = CampaignUser::where('id',$id)->first();
         $flag = collect([
             'flag' => 1,
             'id' => $data->campaign_id
