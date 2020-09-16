@@ -25,3 +25,11 @@ Broadcast::channel('notes', function () {
   Broadcast::channel('campaigns', function () {
     return Auth::check();
   });
+
+  Broadcast::channel('campaigns', function () {
+    return Auth::check();
+  });
+
+  Broadcast::channel('campaignsystem.{id}', function () {
+    return Auth::check();
+  });

@@ -1,5 +1,5 @@
 <template>
-    <div class="indigo accent-2">
+    <div>
         <v-row no-gutters v-if="this.getCampaignsCount > 1">
             <v-col lg="1"></v-col>
             <v-col md="10">
@@ -209,78 +209,117 @@
                             </v-col>
                         </v-row>
                     </v-menu>
-                    <v-btn class="mr-4" @click="removeShown = true"
-                        >Remove Char</v-btn
+                    <v-menu
+                        :close-on-content-click="false"
+                        :value="removeShown"
+                        transition="fab-transition"
+                        origin="100% -30%"
                     >
-                   <v-btn class="mr-4" v-if="showTable==false" @click="showTable=true" >Show Char table</v-btn>
-                    <v-btn class="mr-4" v-if="showTable==true" @click="showTable=false" >Hide Char table</v-btn>
+                    <template v-slot:activator="{ on, attrs }">
+                        <v-btn
+                        class="mr-4"
+                        @click="removeShown = true"
+                        v-bind="attrs"
+                        v-on="on"
+                            >Remove Char</v-btn
+                        >
+                        </template>
+                        <!---edit/delete form------>
+                        <v-row no-gutters>
+                            <v-col>
+                                <v-card class="pa-2" tile width="100%">
+                                    <v-form @submit.prevent="editCharForm()">
+                                        <v-select
+                                            v-model="editCharName"
+                                            :items="userCharsDrop"
+                                            label="Pick the char you want to edit"
+                                            name="editChars"
+                                            :item-text="'char_name'"
+                                            :item-value="'id'"
+                                            @change="charEditForm($event)"
+                                        ></v-select>
+                                        <v-select
+                                            v-model="editRole"
+                                            @change="roleEditForm($event)"
+                                            :items="dropdown_roles"
+                                            label="Role"
+                                            required
+                                            :placeholder="editTextRole"
+                                        ></v-select>
+                                        <v-text-field
+                                            v-model="editShip"
+                                            v-if="this.editrole == 1"
+                                            label="Ship"
+                                            required
+                                            :placeholder="editTextShip"
+                                        ></v-text-field>
+                                        <v-radio-group
+                                            v-model="editLink"
+                                            v-if="this.editrole == 1"
+                                            row
+                                            label="Entosis Link"
+                                            required
+                                            :placeholder="editTextLink"
+                                        >
+                                            <v-radio
+                                                label="Tech 1"
+                                                value="1"
+                                            ></v-radio>
+                                            <v-radio
+                                                label="Tech 2"
+                                                value="2"
+                                            ></v-radio>
+                                        </v-radio-group>
+
+                                        <v-btn class="mr-2" type="submit"
+                                            >submit</v-btn
+                                        >
+                                        <v-btn
+                                            class="mr-2"
+                                            @click="editFormRemove()"
+                                            >Remove</v-btn
+                                        >
+                                        <v-btn
+                                            class="mr-2"
+                                            @click="editFormClose()"
+                                            >Close</v-btn
+                                        >
+                                        <!-- <v-btn @click="clear">clear</v-btn> -->
+                                    </v-form>
+                                    <!---edit/delete form------>
+                                </v-card>
+                            </v-col>
+                        </v-row>
+                    </v-menu>
+                    <v-btn
+                        class="mr-4"
+                        v-if="showTable == false"
+                        @click="showTable = true"
+                        >Show Char table</v-btn
+                    >
+                    <v-btn
+                        class="mr-4"
+                        v-if="showTable == true"
+                        @click="showTable = false"
+                        >Hide Char table</v-btn
+                    >
                 </v-card>
             </v-col>
         </v-row>
 
-        <v-menu :close-on-content-click="false" :value="removeShown">
-            <!---edit/delete form------>
-            <v-row no-gutters>
-                <v-col>
-                    <v-card class="pa-2" tile width="100%">
-                        <v-form @submit.prevent="editCharForm()">
-                            <v-select
-                                v-model="editCharName"
-                                :items="userCharsDrop"
-                                label="Pick the char you want to edit"
-                                name="editChars"
-                                :item-text="'char_name'"
-                                :item-value="'id'"
-                                @change="charEditForm($event)"
-                            ></v-select>
-                            <v-select
-                                v-model="editRole"
-                                @change="roleEditForm($event)"
-                                :items="dropdown_roles"
-                                label="Role"
-                                required
-                                :placeholder="editTextRole"
-                            ></v-select>
-                            <v-text-field
-                                v-model="editShip"
-                                v-if="this.editrole == 1"
-                                label="Ship"
-                                required
-                                :placeholder="editTextShip"
-                            ></v-text-field>
-                            <v-radio-group
-                                v-model="editLink"
-                                v-if="this.editrole == 1"
-                                row
-                                label="Entosis Link"
-                                required
-                                :placeholder="editTextLink"
-                            >
-                                <v-radio label="Tech 1" value="1"></v-radio>
-                                <v-radio label="Tech 2" value="2"></v-radio>
-                            </v-radio-group>
-
-                            <v-btn class="mr-2" type="submit">submit</v-btn>
-                            <v-btn class="mr-2" @click="editFormRemove()"
-                                >Remove</v-btn
-                            >
-                            <v-btn class="mr-2" @click="editFormClose()"
-                                >Close</v-btn
-                            >
-                            <!-- <v-btn @click="clear">clear</v-btn> -->
-                        </v-form>
-                        <!---edit/delete form------>
-                    </v-card>
-                </v-col>
-            </v-row>
-        </v-menu>
-
-        <v-row no-gutters class="blue" justify="space-around" v-if="showTable == true">
+        <v-row
+            no-gutters
+            justify="space-around"
+            v-if="showTable == true"
+        >
             <userTable :campaign_id="$route.params.id"> </userTable>
         </v-row>
 
-        <v-row no-gutters class="red" justify="center" :v-if="systemLoaded == true" >
-
+        <v-row
+            no-gutters
+            justify="center"
+            :v-if="systemLoaded == true"
+        >
             <systemTable
                 class=" px-5 pt-5"
                 v-for="(system, index) in systems"
@@ -351,7 +390,7 @@ export default {
             addShown: false,
             removeShown: false,
             showTable: false,
-            systemLoaded: false,
+            systemLoaded: false
         };
     },
 
@@ -365,13 +404,31 @@ export default {
         }
         // console.log(this.$route.params.id)
         await this.getSystems(this.campaign.constellation_id);
-        await this.$store.dispatch(
-            "getCampaignUsersRecrods",
-            this.$route.params.id
-        );
-        await this.$store.dispatch("getCampaignSystemsRecrods");
+        await this.$store.dispatch("getCampaignUsersRecords",this.$route.params.id);
+        await this.$store.dispatch("getCampaignSystemsRecords");
     },
     methods: {
+
+        loadCampaigns(){
+            this.$store.dispatch("getCampaigns")
+        },
+
+        loadUsersRecords(){
+            this.$store.dispatch("getCampaignUsersRecords",this.$route.params.id);
+        },
+
+        loadCampaignSystemRecords(){
+            this.$store.dispatch("getCampaignSystemsRecords");
+        },
+
+        async loadcampaigns() {
+            this.loadingr = true
+            this.$store.dispatch("getCampaigns").then(() =>{
+                this.loadingr = false
+            });
+
+        },
+
         async getSystems(id) {
             console.log(id, this.$store.state.token);
             let res = await axios({
@@ -385,7 +442,7 @@ export default {
             });
 
             this.systems = res.data.systems;
-            this.systemLoaded = true
+            this.systemLoaded = true;
         },
 
         roleForm(a) {
@@ -425,6 +482,7 @@ export default {
             this.editTextShip = null;
             this.editTextLink = null;
             this.oldCha = null;
+            this.removeShown = false;
             this.editrole = 0;
             this.editUserForm = 0;
         },
@@ -450,7 +508,7 @@ export default {
                 }
             });
             this.$store.dispatch(
-                "getCampaignUsersRecrods",
+                "getCampaignUsersRecords",
                 this.$route.params.id
             );
             this.role = null;
@@ -518,6 +576,20 @@ export default {
     },
 
     async created() {
+        Echo.private('campaigns')
+        .listen('CampaignChanged',(e) => {
+            this.loadcampaigns();
+        }),
+
+        Echo.private('campaignsystem.'+ this.$route.params.id)
+        .listen('CampaiganSystemUpdate',(e) => {
+            if(e.flag.flag == 1){
+                this.loadUsersRecords()
+            }
+            if(e.flag.flag == 2){
+                this.loadCampaignSystemRecords()
+            }
+        });
         this.test = 2;
         this.test2 = 1;
         this.navdrawer = true;
@@ -597,6 +669,10 @@ export default {
             }
             return false;
         }
+    },
+    beforeDestroy(){
+        Echo.leave('campaigns');
+        Echo.leave('campaignsystem.'+ this.$route.params.id)
     }
 };
 </script>

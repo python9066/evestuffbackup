@@ -194,7 +194,7 @@ export default new Vuex.Store({
             commit("SET_USER_ID", user_id);
         },
 
-        async getCampaignUsersRecrods({ commit, state }, id) {
+        async getCampaignUsersRecords({ commit, state }, id) {
             let res = await axios({
                 method: "get", //you can set what request you want to be
                 url: "/api/campaignusersrecords/" + id,
@@ -209,7 +209,7 @@ export default new Vuex.Store({
             }
         },
 
-        async getCampaignSystemsRecrods({ commit, state }) {
+        async getCampaignSystemsRecords({ commit, state }) {
             let res = await axios({
                 method: "get", //you can set what request you want to be
                 url: "/api/campaignsystemsrecords",

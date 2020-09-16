@@ -35,9 +35,10 @@ export default {
             headers: [
                 { text: "Name", value: "char_name", width: "10%" },
                 { text: "Main",value: "main_name"},
-                { text: "Entosic Link", value: "link" },
                 { text: "Ship", value: "ship" },
+                { text: "Entosic", value: "link" },
                 { text: "System", value: "system_name" },
+                { text: "Node", value: "node_id" },
                 { text: "Status", value: "user_status_name" },
                 { text: "Role", value: "role_name" },
 

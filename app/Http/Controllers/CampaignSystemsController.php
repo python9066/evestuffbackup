@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\CampaignSystem;
+use App\Events\CampaiganSystemUpdate;
 use Illuminate\Http\Request;
 
 class CampaignSystemsController extends Controller
@@ -26,6 +27,11 @@ class CampaignSystemsController extends Controller
     public function store(Request $request)
     {
         return CampaignSystem::create($request->all());
+        $flag = collect([
+            'flag' => 2,
+            'id' => $request->campaign_id
+        ]);
+        broadcast(new CampaiganSystemUpdate($flag))->toOthers();
     }
 
     /**
@@ -49,6 +55,12 @@ class CampaignSystemsController extends Controller
     public function update(Request $request, $id)
     {
         CampaignSystem::find($id)->update($request->all());
+        $data = CampaignSystem::find($id)->first();
+        $flag = collect([
+            'flag' => 2,
+            'id' => $request->campaign_id
+        ]);
+        broadcast(new CampaiganSystemUpdate($flag))->toOthers();
     }
 
     /**
@@ -59,6 +71,12 @@ class CampaignSystemsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $data = CampaignSystem::find($id)->first();
+        $flag = collect([
+            'flag' => 1,
+            'id' => $data->campaign_id
+        ]);
+        CampaignSystem::destroy($id);
+        broadcast(new CampaiganSystemUpdate($flag))->toOthers();
     }
 }
