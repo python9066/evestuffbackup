@@ -86,7 +86,7 @@ class CampaignSystemsController extends Controller
         broadcast(new CampaiganSystemUpdate($flag))->toOthers();
         $flag =null;
         $flag = collect([
-            'flag' => 1,
+            'flag' => 3,
             'id' => $data->campaigan_id
         ]);
         broadcast(new CampaiganSystemUpdate($flag))->toOthers();
