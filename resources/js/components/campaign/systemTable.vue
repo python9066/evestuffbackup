@@ -419,7 +419,7 @@ export default {
 
             axios({
                 method: "put", //you can set what request you want to be
-                url: "/api/campaignsystems/" + item.id,
+                url: "/api/campaignsystems/" + item.id + "/" + this.$route.params.id,
                 data: request,
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
@@ -446,7 +446,7 @@ export default {
             };
             axios({
                 method: "put", //you can set what request you want to be
-                url: "/api/campaignsystems/" + item.id,
+                url: "/api/campaignsystems/" + item.id + "/" + this.$route.params.id,
                 data: request,
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
@@ -490,7 +490,7 @@ export default {
                 this.$store.dispatch("updateCampaignSystem", item);
                 axios({
                     method: "put", //you can set what request you want to be
-                    url: "/api/campaignsystems/" + item.id,
+                    url: "/api/campaignsystems/" + item.id + "/" + this.$route.params.id,
                     data: request,
                     headers: {
                         Authorization: "Bearer " + this.$store.state.token,
@@ -540,7 +540,7 @@ export default {
 
             axios({
                 method: "PUT", //you can set what request you want to be
-                url: "/api/campaignsystems/" + item.id,
+                url: "/api/campaignsystems/" + item.id + "/" + this.$route.params.id,
                 data: request,
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,

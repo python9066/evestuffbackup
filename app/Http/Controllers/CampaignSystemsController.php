@@ -54,13 +54,13 @@ class CampaignSystemsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id, $campid)
     {
         CampaignSystem::where('id',$id)->update($request->all());
         $data = CampaignSystem::where('id',$id)->first();
         $flag = collect([
             'flag' => 2,
-            'id' => $data->campaigan_id
+            'id' => $campid
         ]);
         broadcast(new CampaiganSystemUpdate($flag))->toOthers();
     }
