@@ -221,7 +221,7 @@
                         @click="removeShown = true"
                         v-bind="attrs"
                         v-on="on"
-                            >Remove Char</v-btn
+                            >Edit/Remove Char</v-btn
                         >
                         </template>
                         <!---edit/delete form------>
