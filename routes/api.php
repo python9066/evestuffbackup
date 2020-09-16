@@ -52,6 +52,7 @@ Route::middleware('auth:api')->group(function(){
     Route::delete('/campaginsystemsrecords/{id}','CampaignSystemRecordsController@destroy');
 
     Route::post('/campaignsystems', 'CampaignSystemsController@store');
+    Route::put('/campaignsystems/{id}', 'CampaignSystemsController@update');
 
 
 

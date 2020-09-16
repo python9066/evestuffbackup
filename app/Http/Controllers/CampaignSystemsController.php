@@ -48,7 +48,7 @@ class CampaignSystemsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        CampaignSystem::find($id)->update($request->all());
     }
 
     /**

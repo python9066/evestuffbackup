@@ -1,9 +1,24 @@
 <template>
     <v-col cols="6" align-self="stretch">
         <v-card tile height="100%">
-            <v-card-title>
-                INFO GOS HERE {{ this.system_name }}
-                <v-menu transition="fade-transition">
+            <v-card-text>
+                <v-data-table
+                    :headers="headers"
+                    :items="filteredItems"
+                    :single-expand="singleExpand"
+                    item-key="node"
+                    :sort-desc="[true, false]"
+                    show-expand
+                    :expanded.sync="expanded"
+                    hide-default-footer
+                    disable-pagination
+                    class="elevation-12"
+                >
+                    >
+                    <template v-slot:top>
+                        <v-toolbar flat>
+                        <v-toolbar-title>{{ system_name }} -
+                            <v-menu transition="fade-transition">
                     <template v-slot:activator="{ on, attrs }">
                         <v-btn dark color="primary" v-bind="attrs" v-on="on">
                             On the Way
@@ -21,6 +36,7 @@
                         </v-list-item>
                     </v-list>
                 </v-menu>
+
                 <v-menu transition="fade-transition">
                     <template v-slot:activator="{ on, attrs }">
                         <v-btn dark color="primary" v-bind="attrs" v-on="on">
@@ -39,10 +55,9 @@
                         </v-list-item>
                     </v-list>
                 </v-menu>
-
-                <v-menu :close-on-content-click="false" :value="addShown">
+                 <v-menu :close-on-content-click="false" :value="addShown">
                     <template v-slot:activator="{ on, attrs }">
-                        <v-btn icon v-bind="attrs" v-on="on" @click="addShown= true" color="success"
+                        <v-btn icon v-bind="attrs" v-on="on" @click="addShown= true" color="success" fixed right
                             ><v-icon>fas fa-plus</v-icon></v-btn
                         >
                     </template>
@@ -83,20 +98,118 @@
                         </v-card-text>
                     </v-card>
                 </v-menu>
-            </v-card-title>
-            <v-card-text>
-                <v-data-table
-                    :headers="headers"
-                    :items="filteredItems"
-                    item-key="id"
-                    :items-per-page="10"
-                    :sort-desc="[true, false]"
-                    multi-sort
-                    hide-default-footer
-                    disable-pagination
-                    class="elevation-12"
-                >
-                    >
+                        </v-toolbar-title>
+                        <v-spacer></v-spacer>
+
+                    </v-toolbar>
+                    </template>
+
+                    <template v-slot:item.status_name="{ item }"
+            >
+
+
+           <v-menu offset-y>
+                    <template v-slot:activator="{ on, attrs }">
+                        <div>
+                            <v-chip
+
+                                v-bind="attrs"
+                                v-on="on"
+                                pill
+                                outlined
+                                small
+                                :color="pillColor(item)"
+                            >
+                                {{ item.status_name }}
+                            </v-chip>
+                        </div>
+                    </template>
+
+                    <v-list>
+                        <v-list-item
+                            v-for="(list, index) in dropdown_edit"
+                            :key="index"
+                            @click="
+                                (item.status_id = list.value),
+                                    (item.status_name = list.title),
+                                    click(item)
+                            "
+                        >
+                            <v-list-item-title>{{
+                                list.title
+                            }}</v-list-item-title>
+                        </v-list-item>
+                    </v-list>
+                </v-menu>
+
+
+
+
+
+
+           </template>
+            <template v-slot:item.user_name="{ item }"
+            >
+
+
+           <v-menu offset-y  v-if="item.user_name == null">
+                    <template v-slot:activator="{ on, attrs }">
+                        <div>
+                            <v-chip
+
+                                v-bind="attrs"
+                                v-on="on"
+                                pill
+                                outlined
+                                small
+                                color="warning"
+                            >
+                                Add
+                            </v-chip>
+                        </div>
+                    </template>
+
+                    <v-list>
+                        <v-list-item
+                            v-for="(list, index) in chars"
+                            :key="index"
+                            @click="(charAddNode = list.id,clickCharAddNode(item) )"
+                        >
+                            <v-list-item-title>{{
+                                list.char_name
+                            }}</v-list-item-title>
+                        </v-list-item>
+                    </v-list>
+            </v-menu>
+            <span v-else>{{item.user_name}}</span>
+
+
+
+
+
+
+           </template>
+
+
+                    <template v-slot:expanded-item="{ headers, item }">
+                         <td :colspan="headers.length" align="center">
+                    <div>
+                        <v-col class="align-center">
+                            <v-textarea
+                                v-bind:value="item.text"
+                                label="Place for you all to stick notes"
+                                outlined
+                                shaped
+                                @change="
+                                    (payload = $event),
+                                        updatetext(payload, item)
+                                "
+                            ></v-textarea>
+                        </v-col>
+                    </div>
+
+                </td>
+                    </template>
 
                     <template slot="no-data">
                         No nodes have showen up here..... yet!!!!
@@ -118,19 +231,32 @@ export default {
     data() {
         return {
             headers: [
-                { text: "System", value: "system_name", width: "10%" },
-                { text: "NodeID", value: "node" },
-                { text: "Pilot", value: "pilot_name" },
-                { text: "Status", value: "status_name" },
-                { text: "Finished", value: "count" },
-                { text: "Notes", value: "notes" }
+                { text: "NodeID", value: "node", width: "10%" },
+                { text: "Pilot", value: "user_name", width: "20%" },
+                { text: "Main", value: "main_name", width: "10%" },
+                { text: "Status", value: "status_name", width: "20%", align: "center" },
+                { text: "Finished", value: "count", width: "20%" },
+                { text: '', value: 'data-table-expand',align: "end",width: "5%"},
 
                 // { text: "Vulernable End Time", value: "vulnerable_end_time" }
+            ],
+
+            dropdown_edit: [
+                { title: "New", value: 1 },
+                { title: "Warm Up", value: 2 },
+                { title: "Hacking", value: 3 },
+                { title: "Success", value: 4 },
+                { title: "Failed", value: 5 },
+                { title: "Contested", value: 6 },
+                { title: "Hostile Hacking", value: 7 },
             ],
             charOnTheWay: 0,
             charReadyToGo: 0,
             nodeText: "",
             addShown:false,
+            expanded: [],
+            singleExpand: true,
+            charAddNode:null,
         };
     },
 
@@ -138,15 +264,15 @@ export default {
         clickOnTheWay() {
             var item = {
                 id: this.charOnTheWay,
-                status_id: 1,
-                status: "On the way",
+                status_id: 2,
+                user_status_name: "On the way",
                 system_id: this.system_id,
                 system_name: this.system_name
             };
 
             this.$store.dispatch("updateCampaignUsers", item);
             var request = {
-                status_id: 1,
+                status_id: 2,
                 system_id: this.system_id
             };
 
@@ -160,19 +286,20 @@ export default {
                     "Content-Type": "application/json"
                 }
             });
+            this.charOnTheWay = null
         },
         clickReadyToGo() {
             var item = {
                 id: this.charReadyToGo,
-                status_id: 2,
-                status: "Ready To Go",
+                status_id: 3,
+                user_status_name: "Ready To Go",
                 system_id: this.system_id,
                 system_name: this.system_name
             };
 
             this.$store.dispatch("updateCampaignUsers", item);
             var request = {
-                status_id: 2,
+                status_id: 3,
                 system_id: this.system_id
             };
 
@@ -186,7 +313,96 @@ export default {
                     "Content-Type": "application/json"
                 }
             });
+
+            this.charReadyToGo = null
         },
+
+        clickCharAddNode(item){
+            var addChar = this.chars.find(user => user.id == this.charAddNode);
+            console.log(addChar, item);
+            var data = {
+                id:item.id,
+                user_id: addChar.id,
+                site_id: this.$store.state.user_id,
+                user_name: addChar.char_name,
+                main_name: addChar.main_name,
+            }
+            this.$store.dispatch("updateCampaignSystem", item);
+
+            data = null
+            data = {
+                id: addChar.id,
+                campaign_system_id: item.id,
+                node_id: item.node,
+            }
+            this.$store.dispatch("updateCampaignSystem", item);
+
+
+            // var request = {
+            //     user_id: this.charAddNode,
+            // }
+            // this.$store.dispatch("updateCampaignSystem",data)
+
+            // axios({
+            //     method: "put", //you can set what request you want to be
+            //     url: "/api/campaignsystemsrecords/" + this.item.id,
+            //     data: request,
+            //     headers: {
+            //         Authorization: "Bearer " + this.$store.state.token,
+            //         Accept: "application/json",
+            //         "Content-Type": "application/json"
+            //     }
+            // });
+
+        },
+
+        pillColor(item){
+            if(item.status_id == 1){
+                return "deep-orange lighten-1"
+            }
+            if(item.status_id == 2){
+                return "lime darken-4"
+            }
+            if(item.status_id == 3){
+                return "green darken-3"
+            }
+            if(item.status_id == 4){
+                return "green accent-4"
+            }
+            if(item.status_id == 5){
+                return "red darken-4"
+            }
+            if(item.status_id == 6){
+                return "deep-orange accent-3"
+            }
+            if(item.status_id == 7){
+                return "red darken-4"
+            }
+
+        },
+        updatetext(payload, item){
+            // console.log(item);
+            if(item.text != payload){
+                item.text = payload
+                 var request = {
+                notes: item.text
+            };
+            console.log(item);
+                this.$store.dispatch('updateCampaignSystem',item)
+                axios({
+                method: 'put', //you can set what request you want to be
+                url: "/api/campaignsystems/" + item.id,
+                data: request,
+                headers: {
+                    Authorization: 'Bearer ' + this.$store.state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json",
+                }
+                })
+
+                                    }
+
+            },
 
       async addNode(){
 
@@ -252,6 +468,7 @@ export default {
                 this.$store.state.user_id
             );
         },
+
 
 
     }

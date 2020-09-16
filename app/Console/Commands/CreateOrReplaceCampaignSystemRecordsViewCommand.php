@@ -44,6 +44,7 @@ class CreateOrReplaceCampaignSystemRecordsViewCommand extends Command
        systems.system_name AS system_name,
        campaign_systems.campaigan_user_id AS user_id,
        campaign_users.site_id AS site_id,
+       users.name AS main_name,
        campaign_users.char_name AS user_name,
        campaign_systems.campaigan_system_status_id AS status_id,
        campaign_system_statuses.name AS status_name,
@@ -53,6 +54,7 @@ class CreateOrReplaceCampaignSystemRecordsViewCommand extends Command
        JOIN systems ON systems.id = campaign_systems.system_id
        JOIN campaign_system_statuses ON campaign_system_statuses.id = campaign_systems.campaigan_system_status_id
        LEFT JOIN campaign_users ON campaign_users.id = campaign_systems.campaigan_user_id
+       LEFT JOIN users ON users.id = campaign_users.site_id
        WHERE campaign_systems.campaigan_system_status_id != 10");
    }
 }

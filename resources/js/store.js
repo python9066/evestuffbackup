@@ -37,6 +37,11 @@ export default new Vuex.Store({
             Object.assign(item, data);
         },
 
+        UPDATE_CAMPAIGN_SYSTEM(state, data) {
+            const item = state.campaignsystems.find(item => item.id === data.id);
+            Object.assign(item, data);
+        },
+
         UPDATE_CAMPAIGN(state, data) {
             const item = state.campaigns.find(item => item.id === data.id);
             Object.assign(item, data);
@@ -111,8 +116,11 @@ export default new Vuex.Store({
         },
 
         updateNotification({ commit }, data) {
-            console.log(data);
             commit("UPDATE_NOTIFICATIONS", data);
+        },
+
+        updateCampaignSystem({ commit }, data) {
+            commit("UPDATE_CAMPAIGN_SYSTEM", data);
         },
 
         updateCampaign({ commit }, data) {

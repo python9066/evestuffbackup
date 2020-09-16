@@ -212,8 +212,8 @@
                     <v-btn class="mr-4" @click="removeShown = true"
                         >Remove Char</v-btn
                     >
-                    <v-btn class="mr-4" v-if="showTable=false" @click="showTable=true" >Show Char table</v-btn>
-                    <v-btn class="mr-4" v-if="showTable=true" @click="showTable=false" >Hide Char table</v-btn>
+                   <v-btn class="mr-4" v-if="showTable==false" @click="showTable=true" >Show Char table</v-btn>
+                    <v-btn class="mr-4" v-if="showTable==true" @click="showTable=false" >Hide Char table</v-btn>
                 </v-card>
             </v-col>
         </v-row>
@@ -275,13 +275,14 @@
             </v-row>
         </v-menu>
 
-        <v-row no-gutters class="blue" justify="space-around" :v-if="showTable = true">
+        <v-row no-gutters class="blue" justify="space-around" v-if="showTable == true">
             <userTable :campaign_id="$route.params.id"> </userTable>
         </v-row>
 
-        <v-row no-gutters class="red" justify="center">
+        <v-row no-gutters class="red" justify="center" :v-if="systemLoaded == true" >
+
             <systemTable
-                class=" px-5 pb-5"
+                class=" px-5 pt-5"
                 v-for="(system, index) in systems"
                 :system_name="system.system_name"
                 :system_id="system.id"
@@ -350,6 +351,7 @@ export default {
             addShown: false,
             removeShown: false,
             showTable: false,
+            systemLoaded: false,
         };
     },
 
@@ -383,6 +385,7 @@ export default {
             });
 
             this.systems = res.data.systems;
+            this.systemLoaded = true
         },
 
         roleForm(a) {
