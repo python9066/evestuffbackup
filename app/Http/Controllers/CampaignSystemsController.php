@@ -27,6 +27,8 @@ class CampaignSystemsController extends Controller
      */
     public function store(Request $request)
     {
+
+        dd($request);
         CampaignSystem::create($request->all());
         $flag = collect([
             'flag' => 2,
