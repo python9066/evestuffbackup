@@ -23,7 +23,10 @@
                         >
                             <v-toolbar-title class="d-flex justify-space-between align-center "
                                 >
+                                <div>
                                 {{ system_name }} -
+                                </div>
+                                <div>
                                 <v-menu transition="fade-transition"
                                 v-if="charCount != 0">
                                     <template v-slot:activator="{ on, attrs }">
@@ -81,6 +84,8 @@
                                         </v-list-item>
                                     </v-list>
                                 </v-menu>
+                                </div>
+                                <div>
                                 <v-menu
                                     :close-on-content-click="false"
                                     :value="addShown"
@@ -134,6 +139,7 @@
                                         </v-card-text>
                                     </v-card>
                                 </v-menu>
+                                </div>
                             </v-toolbar-title>
                             <v-spacer></v-spacer>
                         </v-toolbar>
