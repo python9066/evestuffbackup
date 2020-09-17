@@ -214,12 +214,12 @@
                     <v-menu
                         :close-on-content-click="false"
                         :value="removeShown"
-                        :v-if="userCount > 0"
                         transition="fab-transition"
                         origin="100% -30%"
                     >
                     <template v-slot:activator="{ on, attrs }">
                         <v-btn
+                        :v-if="userCount > 0"
                         class="mr-4"
                         @click="removeShown = true"
                         v-bind="attrs"
