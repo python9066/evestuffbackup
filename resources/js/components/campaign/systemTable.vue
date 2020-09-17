@@ -16,12 +16,12 @@
                 >
                     >
                     <template v-slot:top>
-                        <v-toolbar  class="d-flex justify-space-between align-center "
+                        <v-toolbar
                         flat
                         elevation="24"
                         color='grey darken-4'
                         >
-                            <v-toolbar-title
+                            <v-toolbar-title class="d-flex justify-space-between align-center "
                                 >
                                 {{ system_name }} -
                                 <v-menu transition="fade-transition"
