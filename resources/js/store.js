@@ -225,6 +225,10 @@ export default new Vuex.Store({
         }
     },
     getters: {
+        getCampaignsCount: state => {
+            return state.campaigns.length;
+        },
+
         getCampaignById: state => id => {
             return state.campaigns.find(campaigns => campaigns.id == id);
         },
@@ -242,6 +246,10 @@ export default new Vuex.Store({
             );
         },
 
+        getCampaignUsersByUserIdCount: (state, getters) =>{
+            return getters.getCampaignUsersByUserId.length
+        },
+
         getCampaignUsersByUserIdEntosis: state => id => {
             // console.log("poo",state.campaignusers.filter(campaignusers => campaignusers.site_id == id))
             return state.campaignusers.filter(
@@ -249,27 +257,10 @@ export default new Vuex.Store({
             );
         },
 
+
         getActiveCampaigns: state => {
             return state.campaigns.find(campaigns => campaigns.status_id == 2);
         },
-
-        getCampaignsCount: state => {
-            return state.campaigns.length;
-        },
-
-        getCampaignUsersByUserIdEntosisCount: (state, getters) =>{
-            if(getters.getCampaignUsersByUserIdEntosis == null){
-                return 0
-            }
-            return getters.getCampaignUsersByUserIdEntosis.length
-        },
-
-
-
-        getCampaignUsersByUserIdCount: (state, getters) =>{
-            return getters.getCampaignUsersByUserId.length
-        }
-
 
     }
 });
