@@ -28,6 +28,7 @@
                                     <template v-slot:activator="{ on, attrs }">
                                         <v-btn
                                             dark
+                                            pill
                                             tile
                                             outlined
                                             color="teal"
@@ -58,6 +59,7 @@
                                     <template v-slot:activator="{ on, attrs }">
                                         <v-btn
                                             dark
+                                            pill
                                             tile
                                             outlined
                                             color="teal"
