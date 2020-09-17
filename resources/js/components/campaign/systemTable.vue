@@ -24,7 +24,7 @@
                         >
                             <v-toolbar-title
                             max-width
-                            class="d-flex justify-space-between align-center "
+                            class="d-flex justify-space-between align-center mb-12"
                                 >
                                 <div>{{ system_name }} -</div>
                                 <div>
