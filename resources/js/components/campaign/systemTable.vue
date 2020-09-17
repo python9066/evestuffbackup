@@ -30,12 +30,11 @@
                                             dark
                                             pill
                                             tile
-                                            outlined
                                             color="teal"
                                             v-bind="attrs"
                                             v-on="on"
                                         >
-                                            On the Way
+                                            On the Waysssss
                                         </v-btn>
                                     </template>
                                     <v-list>
@@ -61,7 +60,6 @@
                                             dark
                                             pill
                                             tile
-                                            outlined
                                             color="teal"
                                             v-bind="attrs"
                                             v-on="on"
