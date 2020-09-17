@@ -660,7 +660,7 @@ export default {
             {
                 return 0
             }
-            return this.userCharsDrop.length == null
+            return this.userCharsDrop.length
         },
         barScoure() {
             var d =
