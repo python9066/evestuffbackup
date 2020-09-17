@@ -634,7 +634,6 @@ export default {
             "getActiveCampaigns",
             "getCampaignsCount",
             "getCampaignUsersByUserId",
-            "getCampaignUsersByUserIdEntosisCount",
             "getCampaignUsersByUserIdCount"
         ]),
 

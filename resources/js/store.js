@@ -245,7 +245,7 @@ export default new Vuex.Store({
         getCampaignUsersByUserIdEntosis: state => id => {
             // console.log("poo",state.campaignusers.filter(campaignusers => campaignusers.site_id == id))
             return state.campaignusers.filter(
-                campaignusers => campaignusers.site_id == id && campaignusers.role_id == 1 && campaignusers.campaign_id == this.$route.params.id
+                campaignusers => campaignusers.site_id == id && campaignusers.role_id == 1
             );
         },
 
@@ -258,6 +258,9 @@ export default new Vuex.Store({
         },
 
         getCampaignUsersByUserIdEntosisCount: (state, getters) =>{
+            if(getters.getCampaignUsersByUserIdEntosis == null){
+                return 0
+            }
             return getters.getCampaignUsersByUserIdEntosis.length
         },
 
