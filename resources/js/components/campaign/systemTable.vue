@@ -29,7 +29,6 @@
                                         <v-btn
                                             dark
                                             pill
-                                            tile
                                             color="teal"
                                             v-bind="attrs"
                                             v-on="on"
@@ -59,7 +58,6 @@
                                         <v-btn
                                             dark
                                             pill
-                                            tile
                                             color="teal"
                                             v-bind="attrs"
                                             v-on="on"
