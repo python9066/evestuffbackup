@@ -23,9 +23,7 @@
                         >
                             <v-toolbar-title class="d-flex justify-space-between align-center "
                                 >
-                                <div>
-                                {{ system_name }} -
-                                </div>
+                                <div>{{ system_name }} -</div>
                                 <div>
                                 <v-menu transition="fade-transition"
                                 v-if="charCount != 0">
