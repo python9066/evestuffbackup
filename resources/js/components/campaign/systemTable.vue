@@ -26,14 +26,14 @@
                                 <v-menu transition="fade-transition"
                                 v-if="charCount != 0">
                                     <template v-slot:activator="{ on, attrs }">
-                                        <v-btn
+                                        <v-chip
                                             dark
                                             color="teal"
                                             v-bind="attrs"
                                             v-on="on"
                                         >
                                             On the Waysssss
-                                        </v-btn>
+                                        </v-chip>
                                     </template>
                                     <v-list>
                                         <v-list-item
@@ -54,14 +54,14 @@
                                 <v-menu transition="fade-transition"
                                 v-if="charCount != 0">
                                     <template v-slot:activator="{ on, attrs }">
-                                        <v-btn
+                                        <v-chip
                                             dark
                                             color="teal"
                                             v-bind="attrs"
                                             v-on="on"
                                         >
                                             Ready to go
-                                        </v-btn>
+                                        </v-chip>
                                     </template>
                                     <v-list>
                                         <v-list-item
