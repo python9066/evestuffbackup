@@ -42,15 +42,15 @@ class NotificationRecordsController extends Controller
     public function regionLink($region_id)
     {
         $now = Now('-3 hours');
-        $http = "https://evemaps.dotlan.net/map/B:rJK3xS5q,";
+        $http = "https://evemaps.dotlan.net/map/";
         $region = Region::where('id', $region_id)->get();
         foreach ($region as $region) {
             if ($region->region_name == "Period Basis") {
 
-                $http = $http . "Period_Basis/";
+                $http = $http . "Period_Basis/B:rJK3xS5q";
             } else {
 
-                $http = $http . $region->region_name . "/";
+                $http = $http . $region->region_name . "/B:rJK3xS5q";
             }
         }
         $link = NotificationRecords::where('region_id', $region_id)->where('timestamp','>=',$now)->where('status_id','<',10)->get()->pluck('system_name');
