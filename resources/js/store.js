@@ -233,11 +233,11 @@ export default new Vuex.Store({
             return state.campaigns.find(campaigns => campaigns.id == id);
         },
 
-        getCampaignUsersByUserId: state => payload => {
+        getCampaignUsersByUserId: state => id => {
             // console.log("poo",state.campaignusers.filter(campaignusers => campaignusers.site_id == id))
             return state.campaignusers.filter(
                 console.log(state.campaignusers),
-                campaignusers => campaignusers.site_id == payload.id
+                campaignusers => campaignusers.site_id == id
             );
         },
 
