@@ -22,7 +22,9 @@
                         elevation="24"
                         color='grey darken-4'
                         >
-                            <v-toolbar-title class="d-flex justify-space-between align-center "
+                            <v-toolbar-title
+                            max-width
+                            class="d-flex justify-space-between align-center "
                                 >
                                 <div>{{ system_name }} -</div>
                                 <div>
