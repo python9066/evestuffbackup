@@ -3,7 +3,7 @@
       <v-card
       tile
       >
-    <v-card-title  class="d-flex justify-space-between">
+    <v-card-title  class="d-flex justify-space-between align-center ">
         <div>Table of all Chars involed in this Campaign</div>
         <div> <v-btn-toggle right-align v-model="toggle_exclusive" mandatory :value="0">
                 <v-btn
@@ -41,6 +41,7 @@
             item-key="id"
             :items-per-page="10"
             class="elevation-10"
+            dense
         >
 
 
@@ -72,6 +73,7 @@ export default {
                 // { text: "Vulernable End Time", value: "vulnerable_end_time" }
             ],
             statusflag: 0,
+            toggle_exclusive: 0,
         }
     },
 
@@ -92,27 +94,27 @@ export default {
             // var timers = this.$store.state.timers;
             if (this.statusflag == 1) {
                 return this.campaignusers.filter(
-                    campaignusers => campaignusers.campaign_role_id == 1  && campaignusers.campaign_id == this.campaign_id
+                    campaignusers => campaignusers.role_id == 1  && campaignusers.campaign_id == this.campaign_id
+                );
+            }
+            if (this.statusflag == 2) {
+                return this.campaignusers.filter(
+                    campaignusers => campaignusers.role_id == 2  && campaignusers.campaign_id == this.campaign_id
                 );
             }
             if (this.statusflag == 3) {
                 return this.campaignusers.filter(
-                    campaignusers => campaignusers.campaign_role_id == 3  && campaignusers.campaign_id == this.campaign_id
+                    campaignusers => campaignusers.role_id == 3  && campaignusers.campaign_id == this.campaign_id
                 );
             }
-            if (this.statusflag == 5) {
+            if (this.statusflag == 4) {
                 return this.campaignusers.filter(
-                    campaignusers => campaignusers.campaign_role_id == 5  && campaignusers.campaign_id == this.campaign_id
-                );
-            }
-            if (this.statusflag == 6) {
-                return this.campaignusers.filter(
-                    campaignusers => campaignusers.campaign_role_id == 6  && campaignusers.campaign_id == this.campaign_id
+                    campaignusers => campaignusers.role_id == 4  && campaignusers.campaign_id == this.campaign_id
                 );
             }
             else {
                 return this.campaignusers.filter(
-                    campaignusers => campaignusers.campaign_role_id != 10  && campaignusers.campaign_id == this.campaign_id
+                    campaignusers => campaignusers.role_id != 10  && campaignusers.campaign_id == this.campaign_id
                 );
             }
         },
