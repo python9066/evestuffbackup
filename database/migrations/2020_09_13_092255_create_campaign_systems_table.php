@@ -15,10 +15,10 @@ class CreateCampaignSystemsTable extends Migration
     {
         Schema::create('campaign_systems', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('campaigan_id');
+            $table->foreignId('campaign_id');
             $table->foreignId('system_id');
-            $table->foreignId('campaigan_user_id')->nullable();
-            $table->foreignId('campaigan_system_status_id')->default(1);
+            $table->foreignId('campaign_user_id')->nullable();
+            $table->foreignId('campaign_system_status_id')->default(1);
             $table->string('node_id',8);
             $table->text('notes')->nullable();
             $table->timestamps();

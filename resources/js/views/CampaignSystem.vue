@@ -608,7 +608,7 @@ export default {
 
     async created() {
         Echo.private('campaignsystem.'+ this.$route.params.id)
-        .listen('CampaiganSystemUpdate',(e) => {
+        .listen('CampaignSystemUpdate',(e) => {
             if(e.flag.flag == 1){
                 this.loadUsersRecords()
             }

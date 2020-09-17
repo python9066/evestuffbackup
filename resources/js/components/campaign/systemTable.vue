@@ -400,7 +400,7 @@ export default {
             };
 
             var request = {
-                campaigan_user_id: addChar.id
+                campaign_user_id: addChar.id
             };
             this.$store.dispatch("updateCampaignSystem", data);
 
@@ -446,7 +446,7 @@ export default {
 
         statusClick(item) {
             var request = {
-                campaigan_system_status_id: item.status_id
+                campaign_system_status_id: item.status_id
             };
             axios({
                 method: "put", //you can set what request you want to be
@@ -507,7 +507,7 @@ export default {
 
         async addNode() {
             var request = {
-                campaigan_id: this.campaign_id,
+                campaign_id: this.campaign_id,
                 system_id: this.system_id,
                 node_id: this.nodeText
             };
@@ -538,8 +538,8 @@ export default {
             };
             this.$store.dispatch("updateCampaignUsers", data);
             var request = {
-                campaigan_user_id: null,
-                campaigan_system_status_id: 1
+                campaign_user_id: null,
+                campaign_system_status_id: 1
             };
 
             axios({
