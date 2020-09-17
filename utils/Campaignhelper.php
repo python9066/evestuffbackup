@@ -16,6 +16,7 @@ class Campaignhelper
         Campaign::where('id','>',0)->update(['check' => 0]);
         // dd("fwefe");
         $flag = 0;
+        $changed = collect([]);
         $client = new Client();
         $headers = [
             'Content-Type' => 'application/json',
@@ -66,6 +67,8 @@ class Campaignhelper
                     if($new != $attackers_old){
                         echo "diffurent";
                         $flag = 1;
+                        $changed->push($id);
+
                         Campaign::where('id',$id)->update(['defenders_score_old' => $defenders_old, 'attackers_score_old' => $attackers_old]);
                     };
 
@@ -115,9 +118,10 @@ class Campaignhelper
             }
 
                 $flag = 1;
+                $changed->push($finished->id);
         }
 
 
-        return $flag;
+        return array($flag, $changed);
     }
 }

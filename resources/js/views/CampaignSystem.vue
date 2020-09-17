@@ -604,11 +604,6 @@ export default {
     },
 
     async created() {
-        Echo.private('campaigns')
-        .listen('CampaignChanged',(e) => {
-            this.loadcampaigns();
-        }),
-
         Echo.private('campaignsystem.'+ this.$route.params.id)
         .listen('CampaiganSystemUpdate',(e) => {
             if(e.flag.flag == 1){
@@ -621,6 +616,14 @@ export default {
                 this.loadCampaignSystemRecords()
                 this.loadUsersRecords()
             }
+            if(e.flag.flag == 3){
+                this.loadcampaigns()
+            }
+
+
+
+
+
 
         });
         this.test = 2;
@@ -707,7 +710,6 @@ export default {
         }
     },
     beforeDestroy(){
-        Echo.leave('campaigns');
         Echo.leave('campaignsystem.'+ this.$route.params.id)
     }
 };
