@@ -649,10 +649,10 @@ export default {
         },
 
         userCharsDrop() {
-            let payload = {
-                id: this.$store.state.user_id,
-                campaignID: this.$route.params.id}
-            return this.getCampaignUsersByUserId(payload);
+            // let payload = {
+            //     id: this.$store.state.user_id,
+            //     campaignID: this.$route.params.id}
+            return this.getCampaignUsersByUserId(this.$store.state.user_id);
         },
         barScoure() {
             var d =
