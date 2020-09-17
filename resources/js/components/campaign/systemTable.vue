@@ -23,7 +23,8 @@
                         >
                             <v-toolbar-title
                                 >{{ system_name }} -
-                                <v-menu transition="fade-transition">
+                                <v-menu transition="fade-transition"
+                                v-if="charCount =! 0">
                                     <template v-slot:activator="{ on, attrs }">
                                         <v-btn
                                             dark
@@ -52,7 +53,8 @@
                                     </v-list>
                                 </v-menu>
 
-                                <v-menu transition="fade-transition">
+                                <v-menu transition="fade-transition"
+                                v-if="charCount != 0">
                                     <template v-slot:activator="{ on, attrs }">
                                         <v-btn
                                             dark
@@ -175,7 +177,7 @@
                         </v-menu>
                     </template>
                     <template v-slot:item.user_name="{ item }">
-                        <v-menu offset-y v-if="item.user_name == null">
+                        <v-menu offset-y v-if="item.user_name == null && charCount != 0">
                             <template v-slot:activator="{ on, attrs }">
                                 <div>
                                     <v-chip
@@ -574,7 +576,8 @@ export default {
         ...mapState(["campaignsystems"]),
 
         ...mapGetters([
-            "getCampaignUsersByUserIdEntosis",]),
+            "getCampaignUsersByUserIdEntosis",
+            "getCampaignUsersByUserIdEntosisCount"]),
 
         filteredItems() {
             // var timers = this.$store.state.timers;
@@ -608,6 +611,12 @@ export default {
             return this.getCampaignUsersByUserIdEntosis(
                 this.$store.state.user_id
             );
+        },
+
+        charCount(){
+            return this.getCampaignUsersByUserIdEntosisCount(
+                this.$store.state.user_id
+            )
         }
     }
 };
