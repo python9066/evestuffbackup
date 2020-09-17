@@ -143,7 +143,7 @@
                 hide-details
             ></v-text-field>
 
-            <v-btn-toggle v-model="toggle_exclusive" mandatory :value="0">
+            <v-btn-toggle right-align v-model="toggle_exclusive" mandatory :value="0">
                 <v-btn
                     :loading="loadingf"
                     :disabled="loadingf"
