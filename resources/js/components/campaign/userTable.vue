@@ -7,7 +7,7 @@
         <div>Table of all Chars involed in this Campaign</div>
         <div> <v-btn-toggle right-align v-model="toggle_exclusive" mandatory :value="0">
                 <v-btn
-                    @click="statusflag = 4"
+                    @click="statusflag = 5"
                 >
                     All
                 </v-btn>
@@ -17,7 +17,7 @@
                     Hackers
                 </v-btn>
                 <v-btn
-                    @click="statusflag = 6"
+                    @click="statusflag = 2"
                 >
                     Scouts
                 </v-btn>
@@ -27,7 +27,7 @@
                     FCs
                 </v-btn>
                 <v-btn
-                    @click="statusflag = 5"
+                    @click="statusflag = 4"
                 >
                     Commands
                 </v-btn>
