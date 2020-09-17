@@ -641,6 +641,13 @@ export default {
             return this.getCampaignById(this.$route.params.id);
         },
 
+        userCount(){
+            let count = this.getCampaignUsersByUserId.filter(
+                user => user.campaign_id == this.$route.params.id
+            )
+            return user.length;
+        },
+
         userCharsDrop() {
             return this.getCampaignUsersByUserId(this.$store.state.user_id);
         },

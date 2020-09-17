@@ -574,8 +574,7 @@ export default {
         ...mapState(["campaignsystems"]),
 
         ...mapGetters([
-            "getCampaignUsersByUserIdEntosis",
-            "getCampaignUsersByUserIdEntosisCount",]),
+            "getCampaignUsersByUserIdEntosis",]),
 
         filteredItems() {
             // var timers = this.$store.state.timers;
