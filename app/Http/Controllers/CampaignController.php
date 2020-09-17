@@ -25,7 +25,7 @@ class CampaignController extends Controller
     //     }
     // }
 
-    public function test()
+    public function getCampaigns()
     {
         $status = Helper::checkeve();
         if ($status == 1) {

@@ -132,6 +132,7 @@ class Campaignhelper
                 $changed->push($finished->id);
         }
 
+        echo "yay";
 
         return array($flag, $changed);
     }
