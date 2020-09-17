@@ -1,11 +1,11 @@
 <template>
     <div>
+        <hackingToolMessage></hackingToolMessage>
         <v-row no-gutters v-if="this.getCampaignsCount > 1">
             <v-col lg="1"></v-col>
             <v-col md="10">
                 <v-card class="pa-2" tile width="100%">
                     <v-card-title align="center" class="justify-center">
-                        <hackingToolMessage></hackingToolMessage>
                         Campaign page for the {{ this.campaign.item_name }} in
                         {{ this.campaign.system }}
                     </v-card-title>
