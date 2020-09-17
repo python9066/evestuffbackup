@@ -92,8 +92,6 @@
                                             v-on="on"
                                             @click="addShown = true"
                                             color="success"
-                                            fixed
-                                            right
                                             ><v-icon>fas fa-plus</v-icon></v-btn
                                         >
                                     </template>
