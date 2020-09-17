@@ -28,7 +28,6 @@
                                     <template v-slot:activator="{ on, attrs }">
                                         <v-btn
                                             dark
-                                            pill
                                             color="teal"
                                             v-bind="attrs"
                                             v-on="on"
@@ -57,7 +56,6 @@
                                     <template v-slot:activator="{ on, attrs }">
                                         <v-btn
                                             dark
-                                            pill
                                             color="teal"
                                             v-bind="attrs"
                                             v-on="on"
