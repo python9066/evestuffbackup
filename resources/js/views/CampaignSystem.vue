@@ -656,7 +656,11 @@ export default {
         },
 
         userCount() {
-            return this.userCharsDrop.length
+            if(this.userCharsDrop.length == null)
+            {
+                return 0
+            }
+            return this.userCharsDrop.length == null
         },
         barScoure() {
             var d =
