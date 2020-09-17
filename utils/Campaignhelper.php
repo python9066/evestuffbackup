@@ -3,6 +3,8 @@
 namespace utils\Campaignhelper;
 
 use App\Models\Campaign;
+use App\Models\CampaignSystem;
+use App\Models\CampaignUser;
 use GuzzleHttp\Client;
 use utils\Helper\Helper;
 
@@ -13,6 +15,14 @@ class Campaignhelper
 
     public static function update()
     {
+
+        $toDelete = Campaign::where('status_id',10)
+                    ->get();
+        foreach ($toDelete as $toDelete){
+            CampaignUser::where('campaigan_id',$toDelete->id)->delete();
+            CampaignSystem::where('campaigan_id',$toDelete->id)->delete();
+            Campaign::where('id',$toDelete->id)->delete();
+        }
         Campaign::where('id','>',0)->update(['check' => 0]);
         // dd("fwefe");
         $flag = 0;
