@@ -1,17 +1,5 @@
 <template>
     <div>
-        <v-row no-gutters v-if="this.getCampaignsCount > 1">
-            <v-col lg="1"></v-col>
-            <v-col md="10">
-                <v-card class="pa-2" tile width="100%">
-                    <v-card-title align="center" class="justify-center">
-                        Campaign page for the {{ this.campaign.item_name }} in
-                        {{ this.campaign.system }}
-                    </v-card-title>
-                </v-card>
-            </v-col>
-            <v-col lg="1"></v-col>
-        </v-row>
         <v-row
             no-gutters
             v-if="this.getCampaignsCount > 1"
@@ -19,8 +7,8 @@
             justify="space-around"
         >
             <v-col md="10">
-                <v-card class="pa-2" tile width="100%">
-                    <v-card-title align="center" class="justify-center">
+                <v-toolbar class="pa-2" tile width="100%">
+                    <v-toolbar-title align="center" class="justify-center">
                         {{ this.campaign.region }} -
                         {{ this.campaign.constellation }}
                         {{ this.campaign.system }} -
@@ -29,7 +17,7 @@
                         /></v-avatar>
                         -
                         {{ this.campaign.alliance }}
-                    </v-card-title>
+                    </v-toolbar-title>
                     <div class="d-flex full-width align-content-center">
                         <v-icon
                             v-if="
@@ -127,7 +115,7 @@
                             fas fa-minus-circle
                         </v-icon>
                     </div>
-                </v-card>
+                </v-toolbar>
             </v-col>
         </v-row>
         <v-row
