@@ -18,6 +18,7 @@
                     <template v-slot:top>
                         <v-toolbar
                         flat
+                        max-width
                         elevation="24"
                         color='grey darken-4'
                         >
