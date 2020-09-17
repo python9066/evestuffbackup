@@ -641,7 +641,8 @@ export default {
             "getCampaignById",
             "getActiveCampaigns",
             "getCampaignsCount",
-            "getCampaignUsersByUserId"
+            "getCampaignUsersByUserId",
+            "getCampaignUsersByUserIdCount",
         ]),
 
         campaign() {
@@ -656,11 +657,8 @@ export default {
         },
 
         userCount() {
-            if(this.userCharsDrop.length == null)
-            {
-                return 0
-            }
-            return this.userCharsDrop.length
+
+            return this.getCampaignUsersByUserIdCount(this.$store.state.user_id);
         },
         barScoure() {
             var d =
