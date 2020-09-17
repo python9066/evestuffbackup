@@ -644,7 +644,7 @@ export default {
 
         userCharsDrop() {
             return this.getCampaignUsersByUserId(
-                payload = {
+                this.payload = {
                     id: this.$store.state.user_id,
                     campaignID: this.$route.params.id,}
                 );
