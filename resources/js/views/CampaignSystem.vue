@@ -599,8 +599,8 @@ export default {
             this.editLink = null;
             this.editTextLink = null;
 
-            this.loadCampaignSystemRecords()
-            this.loadUsersRecords()
+            this.$store.dispatch("getCampaignUsersRecords",this.$route.params.id);
+            this.$store.dispatch("getCampaignSystemsRecords");
 
         }
     },
