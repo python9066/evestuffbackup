@@ -580,26 +580,26 @@ export default {
             // var timers = this.$store.state.timers;
             if (this.statusflag == 1) {
                 return this.campaignsystems.filter(
-                    s => s.status_id == 1 && s.system_id == this.system_id
+                    s => s.status_id == 1 && s.system_id == this.system_id && s.campaign_id == this.$route.params.id
                 );
             }
             if (this.statusflag == 3) {
                 return this.campaignsystems.filter(
-                    s => s.status_id == 3 && s.system_id == this.system_id
+                    s => s.status_id == 3 && s.system_id == this.system_id && s.campaign_id == this.$route.params.id
                 );
             }
             if (this.statusflag == 5) {
                 return this.campaignsystems.filter(
-                    s => s.status_id == 5 && s.system_id == this.system_id
+                    s => s.status_id == 5 && s.system_id == this.system_id && s.campaign_id == this.$route.params.id
                 );
             }
             if (this.statusflag == 6) {
                 return this.campaignsystems.filter(
-                    s => s.status_id == 6 && s.system_id == this.system_id
+                    s => s.status_id == 6 && s.system_id == this.system_id && s.campaign_id == this.$route.params.id
                 );
             } else {
                 return this.campaignsystems.filter(
-                    s => s.status_id != 10 && s.system_id == this.system_id
+                    s => s.status_id != 10 && s.system_id == this.system_id && s.campaign_id == this.$route.params.id
                 );
             }
         },
