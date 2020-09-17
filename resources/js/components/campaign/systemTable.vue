@@ -21,7 +21,7 @@
                         elevation="24"
                         color='grey darken-4'
                         >
-                            <v-toolbar-title class="d-flex justify-space-between align-center "
+                            <v-toolbar-title
                                 >{{ system_name }} -
                                 <v-menu transition="fade-transition"
                                 v-if="charCount != 0">
