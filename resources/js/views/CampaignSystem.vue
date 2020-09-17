@@ -656,10 +656,10 @@ export default {
             return this.getCampaignUsersByUserId(this.$store.state.user_id);
         },
 
-        // userCount() {
+        userCount() {
 
-        //     return this.getCampaignUsersByUserIdCount(this.$store.state.user_id);
-        // },
+            return this.getCampaignUsersByUserIdCount(this.$store.state.user_id);
+        },
         barScoure() {
             var d =
                 this.getCampaignById(this.$route.params.id).defenders_score *
