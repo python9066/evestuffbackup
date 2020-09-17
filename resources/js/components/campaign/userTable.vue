@@ -3,6 +3,37 @@
       <v-card
       tile
       >
+    <v-card-title  class="d-flex justify-space-between">
+        <div>Table of all Chars involed in this Campaign</div>
+        <div> <v-btn-toggle right-align v-model="toggle_exclusive" mandatory :value="0">
+                <v-btn
+                    @click="statusflag = 4"
+                >
+                    All
+                </v-btn>
+                <v-btn
+                    @click="statusflag = 1"
+                >
+                    Hackers
+                </v-btn>
+                <v-btn
+                    @click="statusflag = 6"
+                >
+                    Scouts
+                </v-btn>
+                <v-btn
+                    @click="statusflag = 3"
+                >
+                    FCs
+                </v-btn>
+                <v-btn
+                    @click="statusflag = 5"
+                >
+                    Commands
+                </v-btn>
+            </v-btn-toggle>
+        </div>
+    </v-card-title>
     <v-card-text>
         <v-data-table
             :headers="headers"
@@ -11,20 +42,6 @@
             :items-per-page="10"
             class="elevation-10"
         >
-            >
-        <template v-slot:top>
-                        <v-toolbar
-                        flat
-                        elevation="24"
-                        color='grey darken-4'
-                        >
-                            <v-toolbar-title
-                                >YAY -
-
-                            </v-toolbar-title>
-                            <v-spacer></v-spacer>
-                        </v-toolbar>
-                    </template>
 
 
         </v-data-table>
@@ -75,27 +92,27 @@ export default {
             // var timers = this.$store.state.timers;
             if (this.statusflag == 1) {
                 return this.campaignusers.filter(
-                    campaignusers => campaignusers.status_id == 1  && campaignusers.campaign_id == this.campaign_id
+                    campaignusers => campaignusers.campaign_role_id == 1  && campaignusers.campaign_id == this.campaign_id
                 );
             }
             if (this.statusflag == 3) {
                 return this.campaignusers.filter(
-                    campaignusers => campaignusers.status_id == 3  && campaignusers.campaign_id == this.campaign_id
+                    campaignusers => campaignusers.campaign_role_id == 3  && campaignusers.campaign_id == this.campaign_id
                 );
             }
             if (this.statusflag == 5) {
                 return this.campaignusers.filter(
-                    campaignusers => campaignusers.status_id == 5  && campaignusers.campaign_id == this.campaign_id
+                    campaignusers => campaignusers.campaign_role_id == 5  && campaignusers.campaign_id == this.campaign_id
                 );
             }
             if (this.statusflag == 6) {
                 return this.campaignusers.filter(
-                    campaignusers => campaignusers.status_id == 6  && campaignusers.campaign_id == this.campaign_id
+                    campaignusers => campaignusers.campaign_role_id == 6  && campaignusers.campaign_id == this.campaign_id
                 );
             }
             else {
                 return this.campaignusers.filter(
-                    campaignusers => campaignusers.status_id != 10  && campaignusers.campaign_id == this.campaign_id
+                    campaignusers => campaignusers.campaign_role_id != 10  && campaignusers.campaign_id == this.campaign_id
                 );
             }
         },
