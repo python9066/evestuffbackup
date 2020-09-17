@@ -3,9 +3,6 @@
       <v-card
       tile
       >
-    <v-card-title>
-        Table of all Chars involed in this Campaign
-    </v-card-title>
     <v-card-text>
         <v-data-table
             :headers="headers"
@@ -15,6 +12,19 @@
             class="elevation-10"
         >
             >
+        <template v-slot:top>
+                        <v-toolbar
+                        flat
+                        elevation="24"
+                        color='grey darken-4'
+                        >
+                            <v-toolbar-title
+                                >YAY -
+
+                            </v-toolbar-title>
+                            <v-spacer></v-spacer>
+                        </v-toolbar>
+                    </template>
 
 
         </v-data-table>
