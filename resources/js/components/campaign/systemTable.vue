@@ -28,7 +28,7 @@
                             style=" width: 100%;"
                                 >
                                 <div>{{ system_name }} -</div>
-                                <div>
+                                <div class=" ml-auto">
                                 <v-menu transition="fade-transition"
                                 v-if="charCount != 0">
                                     <template v-slot:activator="{ on, attrs }">
