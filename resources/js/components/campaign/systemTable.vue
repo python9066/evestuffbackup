@@ -16,7 +16,7 @@
                 >
                     >
                     <template v-slot:top>
-                        <v-toolbar
+                        <v-toolbar class="d-flex justify-space-between align-center "
                         flat
                         elevation="24"
                         color='grey darken-4'
