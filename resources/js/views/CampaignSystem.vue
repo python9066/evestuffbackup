@@ -217,7 +217,7 @@
                         transition="fab-transition"
                         origin="100% -30%"
                     >
-                    <template v-slot:activator="{ on, attrs }" v-if="this.userCount" != 0>
+                    <template v-slot:activator="{ on, attrs }" v-if="this.userCount != 0" >
                         <v-btn
                         class="mr-4"
                         @click="removeShown = true"
