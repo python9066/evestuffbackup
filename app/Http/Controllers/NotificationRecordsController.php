@@ -47,10 +47,10 @@ class NotificationRecordsController extends Controller
         foreach ($region as $region) {
             if ($region->region_name == "Period Basis") {
 
-                $http = $http . "Period_Basis/B:rJK3xS5q";
+                $http = $http . "Period_Basis/B:rJK3xS5q,";
             } else {
 
-                $http = $http . $region->region_name . "/B:rJK3xS5q";
+                $http = $http . $region->region_name . "/B:rJK3xS5q,";
             }
         }
         $link = NotificationRecords::where('region_id', $region_id)->where('timestamp','>=',$now)->where('status_id','<',10)->get()->pluck('system_name');
