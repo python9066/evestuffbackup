@@ -242,7 +242,7 @@ export default {
             endcount: "",
             search: "",
             componentKey: 0,
-            toggle_exclusive: 1,
+            toggle_exclusive: 0,
             colorflag: 3,
             name: "Timer",
 
