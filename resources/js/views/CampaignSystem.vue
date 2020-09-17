@@ -659,7 +659,7 @@ export default {
         // userCount() {
 
         //     return this.getCampaignUsersByUserIdCount(this.$store.state.user_id);
-        },
+        // },
         barScoure() {
             var d =
                 this.getCampaignById(this.$route.params.id).defenders_score *
