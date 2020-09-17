@@ -581,8 +581,8 @@ export default {
             this.editTextLink = null;
         },
 
-        editFormRemove() {
-            axios({
+      async  editFormRemove() {
+           await axios({
                 method: "DELETE", //you can set what request you want to be
                 url: "/api/campaignusers/" + this.oldChar.id + "/" + this.$route.params.id,
                 headers: {
@@ -602,6 +602,7 @@ export default {
 
             this.$store.dispatch("getCampaignUsersRecords",this.$route.params.id);
             this.$store.dispatch("getCampaignSystemsRecords");
+
 
         }
     },
