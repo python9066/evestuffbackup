@@ -139,7 +139,6 @@
                                 </v-menu>
                                 </div>
                             </v-toolbar-title>
-                            <v-spacer></v-spacer>
                         </v-toolbar>
                     </template>
 
