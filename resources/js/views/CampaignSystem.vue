@@ -219,7 +219,7 @@
                     >
                     <template v-slot:activator="{ on, attrs }">
                         <v-btn
-                        :v-if="userCount > 0"
+                        :v-if="this.userCount > 0"
                         class="mr-4"
                         @click="removeShown = true"
                         v-bind="attrs"
