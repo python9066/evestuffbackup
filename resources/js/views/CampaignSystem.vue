@@ -219,7 +219,7 @@
                     >
                     <template v-slot:activator="{ on, attrs }">
                         <v-btn
-                        :v-if="this.userCount != null"
+
                         class="mr-4"
                         @click="removeShown = true"
                         v-bind="attrs"
@@ -656,9 +656,9 @@ export default {
             return this.getCampaignUsersByUserId(this.$store.state.user_id);
         },
 
-        userCount() {
+        // userCount() {
 
-            return this.getCampaignUsersByUserIdCount(this.$store.state.user_id);
+        //     return this.getCampaignUsersByUserIdCount(this.$store.state.user_id);
         },
         barScoure() {
             var d =
