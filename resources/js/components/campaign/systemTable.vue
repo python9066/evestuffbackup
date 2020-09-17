@@ -15,8 +15,8 @@
                     class="elevation-12"
                 >
                     >
-                    <template v-slot:top>
-                        <v-toolbar class="d-flex justify-space-between align-center "
+                    <template v-slot:top class="d-flex justify-space-between align-center ">
+                        <v-toolbar
                         flat
                         elevation="24"
                         color='grey darken-4'
