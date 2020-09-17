@@ -5,9 +5,9 @@
             <v-col md="10">
                 <v-card class="pa-2" tile width="100%">
                     <v-card-title align="center" class="justify-center">
+                        <hackingToolMessage></hackingToolMessage>
                         Campaign page for the {{ this.campaign.item_name }} in
                         {{ this.campaign.system }}
-                        <hackingToolMessage></hackingToolMessage>
                     </v-card-title>
                 </v-card>
             </v-col>
