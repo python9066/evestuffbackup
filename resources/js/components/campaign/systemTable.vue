@@ -24,7 +24,7 @@
                             <v-toolbar-title
                                 >{{ system_name }} -
                                 <v-menu transition="fade-transition"
-                                v-if="charCount =! 0">
+                                v-if="charCount != 0">
                                     <template v-slot:activator="{ on, attrs }">
                                         <v-btn
                                             dark
