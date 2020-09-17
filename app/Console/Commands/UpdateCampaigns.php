@@ -6,6 +6,8 @@ use Illuminate\Console\Command;
 use utils\Campaignhelper\Campaignhelper;
 use utils\Helper\Helper;
 use App\Events\CampaignChanged;
+use App\Events\CampaiganSystemUpdate;
+use App\Models\CampaignUser;
 
 class UpdateCampaigns extends Command
 {
@@ -38,14 +40,41 @@ class UpdateCampaigns extends Command
      *
      * @return int
      */
+    // public function handle()
+    // {
+    //     $status = Helper::checkeve();
+    //     if ($status == 1) {
+    //         $flag = Campaignhelper::update();
+    //         if ($flag == 1) {
+    //             broadcast(new CampaignChanged($flag))->toOthers();
+    //         }
+    //     }
+    // }
+
     public function handle()
     {
         $status = Helper::checkeve();
         if ($status == 1) {
-            $flag = Campaignhelper::update();
+            $request = Campaignhelper::update();
+            $flag = $request[0];
             if ($flag == 1) {
                 broadcast(new CampaignChanged($flag))->toOthers();
             }
+            $flag = null;
+            $check = $request[1];
+            foreach ($check as $check) {
+                $camp = CampaignUser::where('campaign_id', $check)->count();
+                if ($camp > 0) {
+                    $flag = collect([
+                        'flag' => 4,
+                        'id' => $check
+                        ]);
+                        // dd($flag);
+                    broadcast(new CampaiganSystemUpdate($flag))->toOthers();
+                }
+            }
         }
     }
+
+
 }

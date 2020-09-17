@@ -14,16 +14,16 @@ use App\Events\CampaiganSystemUpdate;
 
 class CampaignController extends Controller
 {
-    public function getCampaigns()
-    {
-        $status = Helper::checkeve();
-        if ($status == 1) {
-            $flag = Campaignhelper::update();
-            if ($flag == 1) {
-                broadcast(new CampaignChanged($flag))->toOthers();
-            }
-        }
-    }
+    // public function getCampaigns()
+    // {
+    //     $status = Helper::checkeve();
+    //     if ($status == 1) {
+    //         $flag = Campaignhelper::update();
+    //         if ($flag == 1) {
+    //             broadcast(new CampaignChanged($flag))->toOthers();
+    //         }
+    //     }
+    // }
 
     public function test()
     {
@@ -36,36 +36,16 @@ class CampaignController extends Controller
             }
             $flag = null;
             $check = $request[1];
-            foreach($check as $check){
-                $camp = CampaignUser::where('campaign_id',$check)->count();
-                if($camp > 0){
+            foreach ($check as $check) {
+                $camp = CampaignUser::where('campaign_id', $check)->count();
+                if ($camp > 0) {
                     $flag = collect([
                         'flag' => 4,
                         'id' => $check
-                    ]);
+                        ]);
                     broadcast(new CampaiganSystemUpdate($flag))->toOthers();
                 }
-
-                echo $camp;
             }
-            // echo $flag;
-
         }
-
-
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
