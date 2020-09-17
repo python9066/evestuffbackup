@@ -643,7 +643,11 @@ export default {
         },
 
         userCharsDrop() {
-            return this.getCampaignUsersByUserId(this.$store.state.user_id);
+            return this.getCampaignUsersByUserId(
+                payload = {
+                    id: this.$store.state.user_id,
+                    campaignID: this.$route.params.id,}
+                );
         },
 
         barScoure() {
