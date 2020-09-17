@@ -175,7 +175,7 @@
                         </v-menu>
                     </template>
                     <template v-slot:item.user_name="{ item }">
-                        <v-menu offset-y v-if="item.user_name == null && this.getCampaignUsersByUserIdEntosisCount != 0">
+                        <v-menu offset-y v-if="item.user_name == null">
                             <template v-slot:activator="{ on, attrs }">
                                 <div>
                                     <v-chip
