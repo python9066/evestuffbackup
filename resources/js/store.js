@@ -242,7 +242,7 @@ export default new Vuex.Store({
         },
 
         getCampaignUsersByUserIdCount: (state, getters) =>{
-            console.log("lalalalal",getters.getCampaignUsersByUserId.length)
+            console.log("lalalalal",getters.getCampaignUsersByUserId)
             return getters.getCampaignUsersByUserId.length
         },
 
