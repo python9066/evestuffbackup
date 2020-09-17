@@ -18,7 +18,7 @@ class Campaignhelper
 
         $toDelete = Campaign::where('status_id',10)
                     ->get();
-        if($toDelete->count > 0){
+        if($toDelete->count() > 0){
         foreach ($toDelete as $toDelete){
             CampaignUser::where('campaigan_id',$toDelete->id)->delete();
             CampaignSystem::where('campaigan_id',$toDelete->id)->delete();
