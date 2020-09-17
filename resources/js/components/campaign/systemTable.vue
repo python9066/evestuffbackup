@@ -31,8 +31,9 @@
                                             color="teal"
                                             v-bind="attrs"
                                             v-on="on"
+                                            small
                                         >
-                                            On the Waysssss
+                                            On the Way
                                         </v-chip>
                                     </template>
                                     <v-list>
@@ -59,6 +60,7 @@
                                             color="teal"
                                             v-bind="attrs"
                                             v-on="on"
+                                            small
                                         >
                                             Ready to go
                                         </v-chip>
