@@ -599,6 +599,8 @@ export default {
             this.editLink = null;
             this.editTextLink = null;
 
+            this.loadCampaignSystemRecords()
+            this.loadUsersRecords()
 
         }
     },
