@@ -25,6 +25,7 @@ Vue.component('messageComponent', require('./components/random/messageComponent.
 Vue.component('errorMessage', require('./components/random/errorMessage.vue').default); //component name should be in camel-case
 Vue.component('systemTable', require('./components/campaign/systemTable.vue').default);
 Vue.component('userTable', require('./components/campaign/userTable.vue').default);
+Vue.component('userTable', require('./components/random/hackingToolMessage.vue').default);
 
 Vue.prototype.moment = moment
 // import '@fortawesome/fontawesome-f      ree/css/all.css'
