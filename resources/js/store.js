@@ -242,8 +242,9 @@ export default new Vuex.Store({
         },
 
         getCampaignUsersByUserIdCount: (state, getters) =>{
-            console.log("lalalalal",getters.getCampaignUsersByUserId)
-            return getters.getCampaignUsersByUserId.length
+            return state.campaignusers.filter(
+                campaignusers => campaignusers.site_id == id
+            ).length;
         },
 
         getCampaignUsersByUserIdEntosis: state => id => {
