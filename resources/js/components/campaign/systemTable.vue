@@ -28,6 +28,7 @@
                                     <template v-slot:activator="{ on, attrs }">
                                         <v-btn
                                             dark
+                                            right
                                             tile
                                             outlined
                                             color="teal"
@@ -59,6 +60,7 @@
                                         <v-btn
                                             dark
                                             tile
+                                            right
                                             outlined
                                             color="teal"
                                             v-bind="attrs"
