@@ -233,18 +233,14 @@ export default new Vuex.Store({
             return state.campaigns.find(campaigns => campaigns.id == id);
         },
 
+
+
         getCampaignUsersByUserId: state => id => {
             // console.log("poo",state.campaignusers.filter(campaignusers => campaignusers.site_id == id))
             return state.campaignusers.filter(
                 campaignusers => campaignusers.site_id == id
             );
 
-        },
-
-        getCampaignUsersByUserIdCount: (state, id) =>{
-            return state.campaignusers.filter(
-                campaignusers => campaignusers.site_id == id
-            ).length;
         },
 
         getCampaignUsersByUserIdEntosis: state => id => {
