@@ -416,7 +416,7 @@ export default {
     },
     methods: {
 
-        loadCampaigns(){
+        async loadCampaigns(){
             this.$store.dispatch("getCampaigns")
         },
 
@@ -622,8 +622,10 @@ export default {
                 this.loadCampaignSystemRecords()
                 this.loadUsersRecords()
             }
-            if(e.flag.flag == 3){
+            if(e.flag.flag == 4){
                 this.loadcampaigns()
+                this.loadCampaignSystemRecords()
+                this.loadUsersRecords()
             }
 
 

@@ -37,15 +37,20 @@ class CampaignController extends Controller
             $flag = null;
             $check = $request[1];
             foreach ($check as $check) {
-                $camp = CampaignUser::where('campaign_id', $check)->count();
-                if ($camp > 0) {
-                    $flag = collect([
-                        'flag' => 4,
-                        'id' => $check
-                        ]);
-                    broadcast(new CampaiganSystemUpdate($flag))->toOthers();
-                }
+                Campaignhelper::removeNode($check);
+                $flag = collect([
+                    'flag' => 4,
+                    'id' => $check
+                ]);
+                broadcast(new CampaiganSystemUpdate($flag))->toOthers();
+                // }
             }
         }
+    }
+
+    public function test()
+    {
+        $check = 83871;
+        Campaignhelper::removeNode($check);
     }
 }
