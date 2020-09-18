@@ -137,4 +137,38 @@ class Campaignhelper
 
         return array($flag, $changed);
     }
+
+    public static function removeNode($check){
+
+
+
+      $campaign = Campaign::find($check);
+      $campaign->campaignsystems()
+                ->where('campaign_system_status_id',4)
+                ->orwhere('campaign_system_status_id',5)
+                ->update(['campaign_system_status_id' =>10]);
+
+
+    $user = $campaign-> campaignsystems()
+                    ->where('campaign_system_status_id',10)
+                    ->where('campaign_user_id',"!=",null)
+                    ->get();
+
+        foreach ($user as $user){
+
+        $user->campaignusers()
+                    ->update(['campaign_system_id' => null,
+                            'system_id' => null,
+                             'status_id' => 1 ]);
+        }
+
+        $campaign-> campaignsystems()
+        ->where('campaign_system_status_id',10)
+        ->delete();
+
+
+    }
+
+
+
 }

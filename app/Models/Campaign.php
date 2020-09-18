@@ -35,6 +35,11 @@ class Campaign extends Model
         return $this->belongsTO(CampaignStatus::class);
     }
 
+    public function campaignsystems()
+    {
+        return $this->hasMany(CampaignSystem::class);
+    }
+
 
     protected $casts = [
         'id' => 'integer',

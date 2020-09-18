@@ -20,7 +20,7 @@ class CampaignSystem extends Model
         return $this->belongsTo(Campaign::class);
     }
 
-    public function campaignuser()
+    public function campaignusers()
     {
         return $this->hasMany(CampaignUser::class);
     }
