@@ -229,6 +229,28 @@
                             ></span
                         >
                     </template>
+                    <template v-slot:item.count="{ item }">
+                <VueCountUptimer
+                    :start-time="item.start + ' UTC'"
+                    :end-text="'Window Closed'"
+                    :interval="1000"
+                    @timecheck="timecheck(item)"
+                >
+                    <template slot="countup" slot-scope="scope">
+
+                        <span v-if="scope.props.minutes < 5" class="green--text pl-3"
+                            >{{ scope.props.hours }}:{{
+                                scope.props.minutes
+                            }}:{{ scope.props.seconds }}</span
+                        >
+                        <span v-else class="red--text pl-3"
+                            >{{ scope.props.hours }}:{{
+                                scope.props.minutes
+                            }}:{{ scope.props.seconds }}</span
+                        >
+                    </template>
+                </VueCountUptimer>
+            </template>
 
                     <template v-slot:expanded-item="{ headers, item }">
                         <td :colspan="headers.length" align="center">
@@ -288,7 +310,7 @@ export default {
                     width: "20%",
                     align: "center"
                 },
-                { text: "Finished", value: "count", width: "20%" },
+                { text: "Age", value: "count", width: "20%" },
                 { text: '', value: 'actions', sortable: false, align: "end", width: "5%" },
                 {
                     text: "",
