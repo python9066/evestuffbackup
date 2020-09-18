@@ -212,7 +212,7 @@
                                 </v-list-item>
                             </v-list>
                         </v-menu>
-                        <span v-else
+                        <span v-else-if="item.user_name != null"
                             >{{ item.user_name }}
                             <v-btn
                                 icon
