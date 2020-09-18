@@ -233,7 +233,7 @@
                 <VueCountUptimer
                     v-if="item.status_id == 1"
                     :start-time="item.start + ' UTC'"
-                    :end-text="'Window Closedd'"
+                    :end-text="'Window Closed'"
                     :interval="1000"
                     @timecheck="timecheck(item)"
                 >
