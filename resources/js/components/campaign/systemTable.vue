@@ -17,130 +17,142 @@
                     >
                     <template v-slot:top>
                         <v-toolbar
-                        flat
-                        max-width
-                        elevation="24"
-                        color='grey darken-4'
+                            flat
+                            max-width
+                            elevation="24"
+                            color="grey darken-4"
                         >
                             <v-toolbar-title
-                            max-width
-                            class="d-flex justify-space-between align-center"
-                            style=" width: 100%;"
-                                >
+                                max-width
+                                class="d-flex justify-space-between align-center"
+                                style=" width: 100%;"
+                            >
                                 <div>{{ system_name }} -</div>
                                 <div class=" ml-auto">
-                                <v-menu transition="fade-transition"
-                                v-if="charCount != 0">
-                                    <template v-slot:activator="{ on, attrs }">
-                                        <v-chip
-                                            dark
-                                            color="teal"
-                                            v-bind="attrs"
-                                            v-on="on"
-                                            small
+                                    <v-menu
+                                        transition="fade-transition"
+                                        v-if="charCount != 0"
+                                    >
+                                        <template
+                                            v-slot:activator="{ on, attrs }"
                                         >
-                                            On the Way
-                                        </v-chip>
-                                    </template>
-                                    <v-list>
-                                        <v-list-item
-                                            v-for="(list, index) in chars"
-                                            :key="index"
-                                            @click="
-                                                (charOnTheWay = list.id),
-                                                    clickOnTheWay()
-                                            "
-                                        >
-                                            <v-list-item-title>{{
-                                                list.char_name
-                                            }}</v-list-item-title>
-                                        </v-list-item>
-                                    </v-list>
-                                </v-menu>
+                                            <v-chip
+                                                dark
+                                                color="teal"
+                                                v-bind="attrs"
+                                                v-on="on"
+                                                small
+                                            >
+                                                On the Way
+                                            </v-chip>
+                                        </template>
+                                        <v-list>
+                                            <v-list-item
+                                                v-for="(list, index) in chars"
+                                                :key="index"
+                                                @click="
+                                                    (charOnTheWay = list.id),
+                                                        clickOnTheWay()
+                                                "
+                                            >
+                                                <v-list-item-title>{{
+                                                    list.char_name
+                                                }}</v-list-item-title>
+                                            </v-list-item>
+                                        </v-list>
+                                    </v-menu>
 
-                                <v-menu transition="fade-transition"
-                                v-if="charCount != 0">
-                                    <template v-slot:activator="{ on, attrs }">
-                                        <v-chip
-                                            dark
-                                            color="teal"
-                                            v-bind="attrs"
-                                            v-on="on"
-                                            small
+                                    <v-menu
+                                        transition="fade-transition"
+                                        v-if="charCount != 0"
+                                    >
+                                        <template
+                                            v-slot:activator="{ on, attrs }"
                                         >
-                                            Ready to go
-                                        </v-chip>
-                                    </template>
-                                    <v-list>
-                                        <v-list-item
-                                            v-for="(list, index) in chars"
-                                            :key="index"
-                                            @click="
-                                                (charReadyToGo = list.id),
-                                                    clickReadyToGo()
-                                            "
-                                        >
-                                            <v-list-item-title>{{
-                                                list.char_name
-                                            }}</v-list-item-title>
-                                        </v-list-item>
-                                    </v-list>
-                                </v-menu>
+                                            <v-chip
+                                                dark
+                                                color="teal"
+                                                v-bind="attrs"
+                                                v-on="on"
+                                                small
+                                            >
+                                                Ready to go
+                                            </v-chip>
+                                        </template>
+                                        <v-list>
+                                            <v-list-item
+                                                v-for="(list, index) in chars"
+                                                :key="index"
+                                                @click="
+                                                    (charReadyToGo = list.id),
+                                                        clickReadyToGo()
+                                                "
+                                            >
+                                                <v-list-item-title>{{
+                                                    list.char_name
+                                                }}</v-list-item-title>
+                                            </v-list-item>
+                                        </v-list>
+                                    </v-menu>
                                 </div>
                                 <div>
-                                <v-menu
-                                    :close-on-content-click="false"
-                                    :value="addShown"
-                                >
-                                    <template v-slot:activator="{ on, attrs }">
-                                        <v-btn
-                                            icon
-                                            v-bind="attrs"
-                                            v-on="on"
-                                            @click="addShown = true"
-                                            color="success"
-                                            ><v-icon>fas fa-plus</v-icon></v-btn
+                                    <v-menu
+                                        :close-on-content-click="false"
+                                        :value="addShown"
+                                    >
+                                        <template
+                                            v-slot:activator="{ on, attrs }"
                                         >
-                                    </template>
-                                    <v-card tile min-height="150px">
-                                        <v-card-title class=" pb-0">
-                                            <v-text-field
-                                                class=" mt-2"
-                                                label="Node"
-                                                placeholder="Enter Node"
-                                                flat
-                                                v-model="nodeText"
-                                            ></v-text-field>
-                                        </v-card-title>
-
-                                        <v-card-text>
                                             <v-btn
                                                 icon
-                                                fixed
-                                                left
+                                                v-bind="attrs"
+                                                v-on="on"
+                                                @click="addShown = true"
                                                 color="success"
-                                                @click="addNode()"
                                                 ><v-icon
-                                                    >fas fa-check</v-icon
+                                                    >fas fa-plus</v-icon
                                                 ></v-btn
                                             >
+                                        </template>
+                                        <v-card tile min-height="150px">
+                                            <v-card-title class=" pb-0">
+                                                <v-text-field
+                                                    class=" mt-2"
+                                                    label="Node"
+                                                    placeholder="Enter Node"
+                                                    flat
+                                                    v-model="nodeText"
+                                                ></v-text-field>
+                                            </v-card-title>
 
-                                            <v-btn
-                                                fixed
-                                                right
-                                                icon
-                                                color="warning"
-                                                @click="
-                                                    (addShown = false),
-                                                        (nodeText = '')
-                                                "
-                                                ><v-icon
-                                                    >fas fa-times</v-icon
-                                                ></v-btn
-                                            >
-                                        </v-card-text>
-                                    </v-card>
-                                </v-menu>
+                                            <v-card-text>
+                                                <v-btn
+                                                    icon
+                                                    fixed
+                                                    left
+                                                    color="success"
+                                                    @click="addNode()"
+                                                    ><v-icon
+                                                        >fas fa-check</v-icon
+                                                    ></v-btn
+                                                >
+
+                                                <v-btn
+                                                    fixed
+                                                    right
+                                                    icon
+                                                    color="warning"
+                                                    @click="
+                                                        (addShown = false),
+                                                            (nodeText = '')
+                                                    "
+                                                    ><v-icon
+                                                        >fas fa-times</v-icon
+                                                    ></v-btn
+                                                >
+                                            </v-card-text>
+                                        </v-card>
+                                    </v-menu>
                                 </div>
                             </v-toolbar-title>
                         </v-toolbar>
@@ -181,7 +193,10 @@
                         </v-menu>
                     </template>
                     <template v-slot:item.user_name="{ item }">
-                        <v-menu offset-y v-if="item.user_name == null && charCount != 0">
+                        <v-menu
+                            offset-y
+                            v-if="item.user_name == null && charCount != 0"
+                        >
                             <template v-slot:activator="{ on, attrs }">
                                 <div>
                                     <v-chip
@@ -230,28 +245,99 @@
                         >
                     </template>
                     <template v-slot:item.count="{ item }">
-                <VueCountUptimer
-                    v-if="item.status_id == 1"
-                    :start-time="item.start + ' UTC'"
-                    :end-text="'Window Closed'"
-                    :interval="1000"
-                    @timecheck="timecheck(item)"
-                >
-                    <template slot="countup" slot-scope="scope">
+                        <VueCountUptimer
+                            v-if="item.status_id == 1 && item.end_time == null"
+                            :start-time="item.start + ' UTC'"
+                            :end-text="'Window Closed'"
+                            :interval="1000"
+                            @timecheck="timecheck(item)"
+                        >
+                            <template slot="countup" slot-scope="scope">
+                                <span
+                                    v-if="scope.props.minutes < 5"
+                                    class="green--text pl-3"
+                                    >{{ scope.props.hours }}:{{
+                                        scope.props.minutes
+                                    }}:{{ scope.props.seconds }}</span
+                                >
+                                <span v-else class="red--text pl-3"
+                                    >{{ scope.props.hours }}:{{
+                                        scope.props.minutes
+                                    }}:{{ scope.props.seconds }}</span
+                                >
+                            </template>
+                        </VueCountUptimer>
+                        <v-menu
+                            :close-on-content-click="false"
+                            v-else-if="checkHackUser(item)"
+                        >
+                            <template v-slot:activator="{ on, attrs }">
+                                <v-chip
+                                    v-bind="attrs"
+                                    v-on="on"
+                                    pill
+                                    outlined
+                                    small
+                                    color="warning"
+                                >
+                                    Add Time
+                                </v-chip>
+                            </template>
 
-                        <span v-if="scope.props.minutes < 5" class="green--text pl-3"
-                            >{{ scope.props.hours }}:{{
-                                scope.props.minutes
-                            }}:{{ scope.props.seconds }}</span
+                            <template>
+                                <v-card tile min-height="150px">
+                                    <v-card-title class=" pb-0">
+                                        <v-text-field
+                                            v-model="hackTime"
+                                            label="Hack Time mm:ss"
+                                            v-mask="'##:##'"
+                                            placeholder="mm:ss"
+                                        ></v-text-field>
+                                    </v-card-title>
+                                    <v-card-text>
+                                        <v-btn
+                                            icon
+                                            fixed
+                                            left
+                                            color="success"
+                                            @click="addHacktime(item)"
+                                            ><v-icon
+                                                >fas fa-check</v-icon
+                                            ></v-btn
+                                        >
+
+                                        <v-btn
+                                            fixed
+                                            right
+                                            icon
+                                            color="warning"
+                                            @click="
+                                                (addShown = false),
+                                                    (nodeText = '')
+                                            "
+                                            ><v-icon
+                                                >fas fa-times</v-icon
+                                            ></v-btn
+                                        >
+                                    </v-card-text>
+                                </v-card>
+                            </template>
+                        </v-menu>
+                        <CountDowntimer
+                            v-else
+                            :start-time="item.end_time + ' UTC'"
+                            :end-text="'Window Closed'"
+                            :interval="1000"
                         >
-                        <span v-else class="red--text pl-3"
-                            >{{ scope.props.hours }}:{{
-                                scope.props.minutes
-                            }}:{{ scope.props.seconds }}</span
-                        >
+                            <template slot="countdown" slot-scope="scope">
+                                <span class="red--text pl-3"
+                                    >{{ scope.props.minutes }}:{{
+                                        scope.props.seconds
+                                    }}</span
+                                >
+                            </template>
+                        </CountDowntimer>
                     </template>
-                </VueCountUptimer>
-            </template>
 
                     <template v-slot:expanded-item="{ headers, item }">
                         <td :colspan="headers.length" align="center">
@@ -272,15 +358,14 @@
                         </td>
                     </template>
                     <template v-slot:item.actions="{ item }">
-
-      <v-icon
-        color="orange darken-3"
-        small
-        @click="deleteNode(item)"
-      >
-        fas fa-trash-alt
-      </v-icon>
-    </template>
+                        <v-icon
+                            color="orange darken-3"
+                            small
+                            @click="deleteNode(item)"
+                        >
+                            fas fa-trash-alt
+                        </v-icon>
+                    </template>
 
                     <template slot="no-data">
                         No nodes have showen up here..... yet!!!!
@@ -293,6 +378,7 @@
 
 <script>
 import { mapState, mapGetters } from "vuex";
+import moment from "moment";
 export default {
     props: {
         system_name: String,
@@ -311,8 +397,14 @@ export default {
                     width: "20%",
                     align: "center"
                 },
-                { text: "Age", value: "count", width: "20%" },
-                { text: '', value: 'actions', sortable: false, align: "end", width: "5%" },
+                { text: "Age/Hack", value: "count", width: "20%" },
+                {
+                    text: "",
+                    value: "actions",
+                    sortable: false,
+                    align: "end",
+                    width: "5%"
+                },
                 {
                     text: "",
                     value: "data-table-expand",
@@ -338,11 +430,46 @@ export default {
             addShown: false,
             expanded: [],
             singleExpand: true,
-            charAddNode: null
+            charAddNode: null,
+            hackTime: {
+                mm: "",
+                ss: ""
+            }
         };
     },
 
     methods: {
+        addHacktime(item) {
+            console.log(item);
+            var min = parseInt(this.hackTime.substr(0, 2));
+            var sec = parseInt(this.hackTime.substr(3, 2));
+            var finishTime = moment
+                .utc()
+                .add(sec, "seconds")
+                .add(min, "minutes")
+                .format("YYYY-MM-DD HH:mm:ss");
+            item.end_time = finishTime;
+            this.$store.dispatch("updateCampaignSystem", item);
+            var request = {
+                end_time: finishTime
+            };
+
+            axios({
+                method: "put", //you can set what request you want to be
+                url:
+                    "/api/campaignsystems/" +
+                    item.id +
+                    "/" +
+                    this.$route.params.id,
+                data: request,
+                headers: {
+                    Authorization: "Bearer " + this.$store.state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                }
+            });
+        },
+
         clickOnTheWay() {
             var item = {
                 id: this.charOnTheWay,
@@ -360,7 +487,11 @@ export default {
 
             axios({
                 method: "put", //you can set what request you want to be
-                url: "/api/campaignusers/" + this.charOnTheWay + "/" + this.$route.params.id,
+                url:
+                    "/api/campaignusers/" +
+                    this.charOnTheWay +
+                    "/" +
+                    this.$route.params.id,
                 data: request,
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
@@ -387,7 +518,11 @@ export default {
 
             axios({
                 method: "put", //you can set what request you want to be
-                url: "/api/campaignusers/" + this.charReadyToGo + "/" + this.$route.params.id,
+                url:
+                    "/api/campaignusers/" +
+                    this.charReadyToGo +
+                    "/" +
+                    this.$route.params.id,
                 data: request,
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
@@ -399,12 +534,14 @@ export default {
             this.charReadyToGo = null;
         },
 
-      async  deleteNode(item){
-
-            console.log(item);
-           await axios({
+        async deleteNode(item) {
+            await axios({
                 method: "DELETE", //you can set what request you want to be
-                url: "/api/campaignsystems/" + item.id + "/" + this.$route.params.id,
+                url:
+                    "/api/campaignsystems/" +
+                    item.id +
+                    "/" +
+                    this.$route.params.id,
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
                     Accept: "application/json",
@@ -413,8 +550,10 @@ export default {
             });
 
             this.$store.dispatch("getCampaignSystemsRecords");
-            this.$store.dispatch("getCampaignUsersRecords",this.$route.params.id);
-
+            this.$store.dispatch(
+                "getCampaignUsersRecords",
+                this.$route.params.id
+            );
         },
 
         clickCharAddNode(item) {
@@ -452,7 +591,11 @@ export default {
 
             axios({
                 method: "put", //you can set what request you want to be
-                url: "/api/campaignsystems/" + item.id + "/" + this.$route.params.id,
+                url:
+                    "/api/campaignsystems/" +
+                    item.id +
+                    "/" +
+                    this.$route.params.id,
                 data: request,
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
@@ -463,7 +606,11 @@ export default {
 
             axios({
                 method: "put", //you can set what request you want to be
-                url: "/api/campaignusers/" + addChar.id + "/" + this.$route.params.id,
+                url:
+                    "/api/campaignusers/" +
+                    addChar.id +
+                    "/" +
+                    this.$route.params.id,
                 data: request1,
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
@@ -479,7 +626,11 @@ export default {
             };
             axios({
                 method: "put", //you can set what request you want to be
-                url: "/api/campaignsystems/" + item.id + "/" + this.$route.params.id,
+                url:
+                    "/api/campaignsystems/" +
+                    item.id +
+                    "/" +
+                    this.$route.params.id,
                 data: request,
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
@@ -523,7 +674,11 @@ export default {
                 this.$store.dispatch("updateCampaignSystem", item);
                 axios({
                     method: "put", //you can set what request you want to be
-                    url: "/api/campaignsystems/" + item.id + "/" + this.$route.params.id,
+                    url:
+                        "/api/campaignsystems/" +
+                        item.id +
+                        "/" +
+                        this.$route.params.id,
                     data: request,
                     headers: {
                         Authorization: "Bearer " + this.$store.state.token,
@@ -573,7 +728,11 @@ export default {
 
             axios({
                 method: "PUT", //you can set what request you want to be
-                url: "/api/campaignsystems/" + item.id + "/" + this.$route.params.id,
+                url:
+                    "/api/campaignsystems/" +
+                    item.id +
+                    "/" +
+                    this.$route.params.id,
                 data: request,
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
@@ -584,11 +743,15 @@ export default {
 
             var request1 = {
                 campaign_system_id: null,
-                status_id: 1,
+                status_id: 1
             };
             axios({
                 method: "PUT", //you can set what request you want to be
-                url: "/api/campaignusers/" + userId + "/" + this.$route.params.id,
+                url:
+                    "/api/campaignusers/" +
+                    userId +
+                    "/" +
+                    this.$route.params.id,
                 data: request1,
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
@@ -596,40 +759,74 @@ export default {
                     "Content-Type": "application/json"
                 }
             });
+        },
+
+        checkHackUser(item) {
+            if (item.site_id == null) {
+                return false;
+            }
+
+            if (
+                item.site_id == this.$store.state.user_id &&
+                item.end_time == null
+            ) {
+                if (item.status_id == 2 || item.status_id == 3) {
+                    return true;
+                }
+                return false;
+            } else {
+                return false;
+            }
         }
     },
 
     computed: {
-        ...mapState(["campaignsystems"]),
+        ...mapState(["campaignsystems", "user_id"]),
 
         ...mapGetters([
             "getCampaignUsersByUserIdEntosis",
-            "getCampaignUsersByUserIdEntosisCount"]),
+            "getCampaignUsersByUserIdEntosisCount"
+        ]),
 
         filteredItems() {
             // var timers = this.$store.state.timers;
             if (this.statusflag == 1) {
                 return this.campaignsystems.filter(
-                    s => s.status_id == 1 && s.system_id == this.system_id && s.campaign_id == this.$route.params.id
+                    s =>
+                        s.status_id == 1 &&
+                        s.system_id == this.system_id &&
+                        s.campaign_id == this.$route.params.id
                 );
             }
             if (this.statusflag == 3) {
                 return this.campaignsystems.filter(
-                    s => s.status_id == 3 && s.system_id == this.system_id && s.campaign_id == this.$route.params.id
+                    s =>
+                        s.status_id == 3 &&
+                        s.system_id == this.system_id &&
+                        s.campaign_id == this.$route.params.id
                 );
             }
             if (this.statusflag == 5) {
                 return this.campaignsystems.filter(
-                    s => s.status_id == 5 && s.system_id == this.system_id && s.campaign_id == this.$route.params.id
+                    s =>
+                        s.status_id == 5 &&
+                        s.system_id == this.system_id &&
+                        s.campaign_id == this.$route.params.id
                 );
             }
             if (this.statusflag == 6) {
                 return this.campaignsystems.filter(
-                    s => s.status_id == 6 && s.system_id == this.system_id && s.campaign_id == this.$route.params.id
+                    s =>
+                        s.status_id == 6 &&
+                        s.system_id == this.system_id &&
+                        s.campaign_id == this.$route.params.id
                 );
             } else {
                 return this.campaignsystems.filter(
-                    s => s.status_id != 10 && s.system_id == this.system_id && s.campaign_id == this.$route.params.id
+                    s =>
+                        s.status_id != 10 &&
+                        s.system_id == this.system_id &&
+                        s.campaign_id == this.$route.params.id
                 );
             }
         },
@@ -640,10 +837,10 @@ export default {
             );
         },
 
-        charCount(){
+        charCount() {
             return this.getCampaignUsersByUserIdEntosisCount(
                 this.$store.state.user_id
-            )
+            );
         }
     }
 };

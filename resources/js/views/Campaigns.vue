@@ -75,10 +75,8 @@
             multi-sort
             class="elevation-1"
         >
-        <template slot="no-data">
-
-                    No Active or Upcoming Campaigns
-
+            <template slot="no-data">
+                No Active or Upcoming Campaigns
             </template>
             <template v-slot:item.alliance="{ item }">
                 <v-avatar size="35"><img :src="item.url"/></v-avatar>
@@ -92,83 +90,108 @@
             </template>
 
             <template v-slot:item.start="{ item }">
-
-                <span v-if="item.status_id == 1"> {{item.start}} </span>
-                <span v-else class="d-flex full-width align-content-center" >
+                <span v-if="item.status_id == 1"> {{ item.start }} </span>
+                <span v-else class="d-flex full-width align-content-center">
                     <span>
                         <v-icon
-                            v-if="item.defenders_score > item.defenders_score_old && item.defenders_score_old > 0"
+                            v-if="
+                                item.defenders_score >
+                                    item.defenders_score_old &&
+                                    item.defenders_score_old > 0
+                            "
                             small
                             left
                             dark
                             color="blue darken-4"
                         >
-                        fas fa-arrow-alt-circle-up
+                            fas fa-arrow-alt-circle-up
                         </v-icon>
                         <v-icon
-                            v-if="item.defenders_score < item.defenders_score_old && item.defenders_score_old > 0"
+                            v-if="
+                                item.defenders_score <
+                                    item.defenders_score_old &&
+                                    item.defenders_score_old > 0
+                            "
                             small
                             left
                             dark
                             color="blue darken-4"
                         >
-                        fas fa-arrow-alt-circle-down
+                            fas fa-arrow-alt-circle-down
                         </v-icon>
                         <v-icon
-                            v-if="item.defenders_score == item.defenders_score_old  || item.defenders_score_old === null"
+                            v-if="
+                                item.defenders_score ==
+                                    item.defenders_score_old ||
+                                    item.defenders_score_old === null
+                            "
                             small
                             left
                             dark
                             color="grey darken-3"
                         >
-                        fas fa-minus-circle
+                            fas fa-minus-circle
                         </v-icon>
                     </span>
 
-                       <v-progress-linear
-
-                            :color="barColor(item)"
-                            :value="barScoure(item)"
-                            height = 20
-                            rounded
-                            :active="barActive(item)"
-                            :reverse ="barReverse(item)"
-                            :background-color="barBgcolor(item)"
-                            background-opacity="0.2"
-                            >
-                            <strong> {{item.defenders_score * 100}} / {{item.attackers_score * 100}} </strong>
-                        </v-progress-linear>
+                    <v-progress-linear
+                        :color="barColor(item)"
+                        :value="barScoure(item)"
+                        height="20"
+                        rounded
+                        :active="barActive(item)"
+                        :reverse="barReverse(item)"
+                        :background-color="barBgcolor(item)"
+                        background-opacity="0.2"
+                    >
+                        <strong>
+                            {{ item.defenders_score * 100 }} /
+                            {{ item.attackers_score * 100 }}
+                        </strong>
+                    </v-progress-linear>
                     <span>
                         <v-icon
-                            v-if="item.attackers_score > item.attackers_score_old && item.attackers_score_old > 0"
+                            v-if="
+                                item.attackers_score >
+                                    item.attackers_score_old &&
+                                    item.attackers_score_old > 0
+                            "
                             small
                             right
                             dark
                             color="red darken-4"
                         >
-                        fas fa-arrow-alt-circle-up
+                            fas fa-arrow-alt-circle-up
                         </v-icon>
                         <v-icon
-                            v-if="item.attackers_score < item.attackers_score_old && item.attackers_score_old > 0"
+                            v-if="
+                                item.attackers_score <
+                                    item.attackers_score_old &&
+                                    item.attackers_score_old > 0
+                            "
                             small
                             right
                             dark
                             color="red darken-4"
                         >
-                        fas fa-arrow-alt-circle-down
+                            fas fa-arrow-alt-circle-down
                         </v-icon>
                         <v-icon
-                            v-if="item.attackers_score == item.attackers_score_old  || item.attackers_score_old == null"
+                            v-if="
+                                item.attackers_score ==
+                                    item.attackers_score_old ||
+                                    item.attackers_score_old == null
+                            "
                             small
                             right
                             dark
                             color="grey darken-3"
                         >
-                        fas fa-minus-circle
+                            fas fa-minus-circle
                         </v-icon>
                     </span>
 
-                        <!-- <v-progress-linear
+                    <!-- <v-progress-linear
 
                             :value="(item.attackers_score * 100)"
                             height = 15
@@ -179,21 +202,16 @@
                             >
                             <strong> {{item.defenders_score * 100}} / {{item.attackers_score * 100}} </strong>
                         </v-progress-linear> -->
-
                 </span>
-
             </template>
 
             <template v-slot:item.count="{ item }">
-
                 <CountDowntimer
                     v-if="item.status_id == 1"
                     :start-time="item.start + ' UTC'"
                     :end-text="'Window Closed'"
                     :interval="1000"
-                    @campaignStart="
-                    campaignStart(item);
-                "
+                    @campaignStart="campaignStart(item)"
                 >
                     <template slot="countdown" slot-scope="scope">
                         <span class="red--text pl-3"
@@ -203,21 +221,19 @@
                         >
                     </template>
                 </CountDowntimer>
-               <div v-if="item.status_id > 1">
-                   <v-chip
+                <div v-if="item.status_id > 1">
+                    <v-chip
                         class="ma-2 ma"
                         filter
                         pill
-                        :to="'/campaign/'+item.id"
+                        :to="'/campaign/' + item.id"
                         :disabled="pillDisabled(item)"
                         :color="pillColor(item)"
-
                     >
-                        {{item.status_name}}
-                   </v-chip>
-               </div>
+                        {{ item.status_name }}
+                    </v-chip>
+                </div>
             </template>
-
         </v-data-table>
         <errorMessage></errorMessage>
     </div>
@@ -253,142 +269,119 @@ export default {
                 { text: "Alliance", value: "alliance" },
                 { text: "Ticker", value: "ticker", align: "start" },
                 { text: "Structure", value: "item_name" },
-                { text: "Start/Progress", value: "start", width: "30%", align: "center"},
+                {
+                    text: "Start/Progress",
+                    value: "start",
+                    width: "30%",
+                    align: "center"
+                },
                 { text: "Countdown", value: "count", sortable: false }
-
-
             ]
         };
     },
 
-    created(){
-
-        Echo.private('campaigns')
-        .listen('CampaignChanged',(e) => {
+    created() {
+        Echo.private("campaigns").listen("CampaignChanged", e => {
             this.loadcampaigns();
         }),
-
-
-        this.$store.dispatch('getCampaigns').then(() => {
+            this.$store.dispatch("getCampaigns").then(() => {
                 this.loadingf = false;
                 this.loadingr = false;
                 this.loading = false;
             });
-
-
-
     },
 
-
-    async mounted() {
-
-    },
+    async mounted() {},
     methods: {
-
-
         async loadcampaigns() {
-            this.loadingr = true
-            this.$store.dispatch("getCampaigns").then(() =>{
-                this.loadingr = false
+            this.loadingr = true;
+            this.$store.dispatch("getCampaigns").then(() => {
+                this.loadingr = false;
             });
-
         },
 
-        campaignStart(item){
-        item.status_name = "Active"
-        item.status_id = 2
-                var request = {
+        campaignStart(item) {
+            item.status_name = "Active";
+            item.status_id = 2;
+            var request = {
                 status_id: 2
-        }
+            };
 
+            this.$store.dispatch("updateCampaign", item);
 
-        this.$store.dispatch('updateCampaign',item)
-
-         axios({
-                method: 'put', //you can set what request you want to be
+            axios({
+                method: "put", //you can set what request you want to be
                 url: "api/campaigns/" + item.id,
                 data: request,
                 headers: {
-                    Authorization: 'Bearer ' + this.$store.state.token,
+                    Authorization: "Bearer " + this.$store.state.token,
                     Accept: "application/json",
-                    "Content-Type": "application/json",
+                    "Content-Type": "application/json"
                 }
-                })
-
-
+            });
         },
 
-        barScoure(item){
+        barScoure(item) {
+            var d = item.defenders_score * 100;
+            var a = item.attackers_score * 100;
 
-            var d = item.defenders_score *100;
-            var a = item.attackers_score *100;
-
-            if( d > 50){
+            if (d > 50) {
                 return d;
             }
 
             return a;
-
         },
 
-        barBgcolor(item){
+        barBgcolor(item) {
+            var d = item.defenders_score * 100;
+            var a = item.attackers_score * 100;
 
-            var d = item.defenders_score *100;
-            var a = item.attackers_score *100;
-
-            if( d > 50){
+            if (d > 50) {
                 return "red darken-4";
             }
 
             return "blue darken-4";
-
         },
 
-        barColor(item){
-            var d = item.defenders_score *100;
-            if( d > 50){
+        barColor(item) {
+            var d = item.defenders_score * 100;
+            if (d > 50) {
                 return "blue darken-4";
             }
 
             return "red darken-4";
-
         },
 
-        barReverse(item){
-            var d = item.defenders_score *100;
-            if( d > 50){
+        barReverse(item) {
+            var d = item.defenders_score * 100;
+            if (d > 50) {
                 return false;
             }
 
             return true;
         },
 
-        barActive(item){
-
-            if(item.status_id > 1){
+        barActive(item) {
+            if (item.status_id > 1) {
                 return true;
             }
-            return false
-
+            return false;
         },
 
-        pillDisabled(item){
-            if(item.status_id == 3){
-                return true
+        pillDisabled(item) {
+            if (item.status_id == 3) {
+                return true;
             }
-            return false
-
+            return false;
         },
 
-        pillColor(item){
-
-            if(item.status_id == 3){
-                return "blue-grey darken-4"
+        pillColor(item) {
+            if (item.status_id == 3) {
+                return "blue-grey darken-4";
             }
 
-                return "green darken-3"
+            return "green darken-3";
         },
-
 
         transform(props) {
             Object.entries(props).forEach(([key, value]) => {
@@ -406,24 +399,16 @@ export default {
     computed: {
         ...mapState(["campaigns"]),
 
-
-
         filteredItems() {
             // var timers = this.$store.state.timers;
             if (this.colorflag == 1) {
-                return this.campaigns.filter(
-                    campaigns => campaigns.color == 1
-                );
+                return this.campaigns.filter(campaigns => campaigns.color == 1);
             }
             if (this.colorflag == 2) {
-                return this.campaigns.filter(
-                    campaigns => campaigns.color > 1
-                );
+                return this.campaigns.filter(campaigns => campaigns.color > 1);
             }
             if (this.colorflag == 3) {
-                return this.campaigns.filter(
-                    campaigns => campaigns.color == 3
-                );
+                return this.campaigns.filter(campaigns => campaigns.color == 3);
             }
             if (this.colorflag == 5) {
                 return this.campaigns.filter(
@@ -436,8 +421,8 @@ export default {
             }
         }
     },
-    beforeDestroy(){
-        Echo.leave('campaigns');
+    beforeDestroy() {
+        Echo.leave("campaigns");
     }
 };
 </script>

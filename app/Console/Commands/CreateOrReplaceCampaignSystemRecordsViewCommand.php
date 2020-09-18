@@ -49,7 +49,8 @@ class CreateOrReplaceCampaignSystemRecordsViewCommand extends Command
        campaign_systems.campaign_system_status_id AS status_id,
        campaign_system_statuses.name AS status_name,
        campaign_systems.notes AS notes,
-       campaign_systems.created_at AS 'start'
+       campaign_systems.created_at AS 'start',
+       campaign_systems.end_time AS 'end'
        FROM campaign_systems
        JOIN systems ON systems.id = campaign_systems.system_id
        JOIN campaign_system_statuses ON campaign_system_statuses.id = campaign_systems.campaign_system_status_id
