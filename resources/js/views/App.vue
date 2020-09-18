@@ -75,7 +75,7 @@
         </v-navigation-drawer> -->
 
         <v-app-bar
-            height="100px"
+            height="1000px"
             app
             clipped-left
             elevate-on-scroll
