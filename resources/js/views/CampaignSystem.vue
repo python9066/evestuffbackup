@@ -128,7 +128,7 @@
         >
             <v-col md="10">
                 <v-card  tile>
-                    <div class="pa-2 d-flex-inline">
+                    <div class="pa-2 d-flex full-width align-content-cente">
                         <v-btn
                             class="mr-4"
                             color="blue darken-2"
@@ -302,6 +302,7 @@
                                 </v-col>
                             </v-row>
                         </v-menu>
+                        <v-spacer></v-spacer>
                             <v-progress-circular
                                 v-if="nodeCountAll > 0"
                                 :transitionDuration="5000"
@@ -317,7 +318,7 @@
                                     {{ nodeCountAll }}
                                 </div></v-progress-circular
                             >
-                            <v-spacer></v-spacer>
+
                             <v-progress-circular
                                 v-if="nodeCountAll > 0"
                                 :transitionDuration="5000"
@@ -335,6 +336,7 @@
                                     {{ nodeCountAll }}
                                 </div></v-progress-circular
                             >
+                            <v-spacer></v-spacer>
                     </div>
                 </v-card>
             </v-col>
