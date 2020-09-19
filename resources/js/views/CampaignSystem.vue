@@ -127,214 +127,217 @@
             justify="space-around"
         >
             <v-col md="10">
-                <v-card class="pa-2 flex-auto" tile>
-                <div>
-                    <v-btn
-                        class="mr-4"
-                        color="blue darken-2"
-                        v-if="showTable == false"
-                        @click="showTable = true"
-                        >Show Char table</v-btn
-                    >
-                    <v-btn
-                        class="mr-4"
-                        color="orange darken-2"
-                        v-if="showTable == true"
-                        @click="showTable = false"
-                        >Hide Char table</v-btn
-                    >
-                    <v-menu
-                        :close-on-content-click="false"
-                        :value="addShown"
-                        transition="fab-transition"
-                        origin="100% -30%"
-                    >
-                        <template v-slot:activator="{ on, attrs }">
-                            <v-btn
-                                class="mr-4"
-                                @click="addShown = true"
-                                v-bind="attrs"
-                                color="green lighten-1"
-                                v-on="on"
-                                >Add Char</v-btn
+                <v-card  tile>
+                    <div class="pa-2 d-flex-auto">
+                        <v-btn
+                            class="mr-4"
+                            color="blue darken-2"
+                            v-if="showTable == false"
+                            @click="showTable = true"
+                            >Show Char table</v-btn
+                        >
+                        <v-btn
+                            class="mr-4"
+                            color="orange darken-2"
+                            v-if="showTable == true"
+                            @click="showTable = false"
+                            >Hide Char table</v-btn
+                        >
+                        <v-menu
+                            :close-on-content-click="false"
+                            :value="addShown"
+                            transition="fab-transition"
+                            origin="100% -30%"
+                        >
+                            <template v-slot:activator="{ on, attrs }">
+                                <v-btn
+                                    class="mr-4"
+                                    @click="addShown = true"
+                                    v-bind="attrs"
+                                    color="green lighten-1"
+                                    v-on="on"
+                                    >Add Char</v-btn
+                                >
+                            </template>
+                            <v-row no-gutters>
+                                <v-col>
+                                    <v-card class="pa-2" tile width="100%">
+                                        <v-form @submit.prevent="newCharForm()">
+                                            <v-text-field
+                                                v-model="newCharName"
+                                                label="Char Name"
+                                                required
+                                                :rules="newNameRules"
+                                            ></v-text-field>
+                                            <v-select
+                                                v-model="newRole"
+                                                @change="roleForm($event)"
+                                                :rules="newRoleRules"
+                                                :items="dropdown_roles"
+                                                label="Role"
+                                                required
+                                            ></v-select>
+                                            <v-text-field
+                                                v-model="newShip"
+                                                :rules="newShipRules"
+                                                v-if="this.role == 1"
+                                                label="Ship"
+                                                required
+                                            ></v-text-field>
+                                            <v-radio-group
+                                                v-model="newLink"
+                                                :rules="newLinkRules"
+                                                v-if="this.role == 1"
+                                                row
+                                                label="Entosis Link"
+                                                required
+                                            >
+                                                <v-radio
+                                                    label="Tech 1"
+                                                    value="1"
+                                                ></v-radio>
+                                                <v-radio
+                                                    label="Tech 2"
+                                                    value="2"
+                                                ></v-radio>
+                                            </v-radio-group>
+
+                                            <v-btn class="mr-4" type="submit"
+                                                >submit</v-btn
+                                            >
+                                            <v-btn
+                                                class="mr-4"
+                                                @click="newCharFormClose()"
+                                                >Close</v-btn
+                                            >
+                                            <!-- <v-btn @click="clear">clear</v-btn> -->
+                                        </v-form>
+                                    </v-card>
+                                </v-col>
+                            </v-row>
+                        </v-menu>
+                        <v-menu
+                            v-if="userCount != 0"
+                            :close-on-content-click="false"
+                            :value="removeShown"
+                            transition="fab-transition"
+                            origin="100% -30%"
+                        >
+                            <template v-slot:activator="{ on, attrs }">
+                                <v-btn
+                                    class="mr-4"
+                                    @click="removeShown = true"
+                                    v-bind="attrs"
+                                    v-on="on"
+                                    color="red lighten-2"
+                                    >Edit/Remove Char</v-btn
+                                >
+                            </template>
+                            <!---edit/delete form------>
+                            <v-row no-gutters>
+                                <v-col>
+                                    <v-card class="pa-2" tile width="100%">
+                                        <v-form
+                                            @submit.prevent="editCharForm()"
+                                        >
+                                            <v-select
+                                                v-model="editCharName"
+                                                :items="userCharsDrop"
+                                                label="Pick the char you want to edit"
+                                                name="editChars"
+                                                :item-text="'char_name'"
+                                                :item-value="'id'"
+                                                @change="charEditForm($event)"
+                                            ></v-select>
+                                            <v-select
+                                                v-model="editRole"
+                                                @change="roleEditForm($event)"
+                                                :items="dropdown_roles"
+                                                label="Role"
+                                                required
+                                                :placeholder="editTextRole"
+                                            ></v-select>
+                                            <v-text-field
+                                                v-model="editShip"
+                                                v-if="this.editrole == 1"
+                                                label="Ship"
+                                                required
+                                                :placeholder="editTextShip"
+                                            ></v-text-field>
+                                            <v-radio-group
+                                                v-model="editLink"
+                                                v-if="this.editrole == 1"
+                                                row
+                                                label="Entosis Link"
+                                                required
+                                                :placeholder="editTextLink"
+                                            >
+                                                <v-radio
+                                                    label="Tech 1"
+                                                    value="1"
+                                                ></v-radio>
+                                                <v-radio
+                                                    label="Tech 2"
+                                                    value="2"
+                                                ></v-radio>
+                                            </v-radio-group>
+
+                                            <v-btn class="mr-2" type="submit"
+                                                >submit</v-btn
+                                            >
+                                            <v-btn
+                                                class="mr-2"
+                                                @click="editFormRemove()"
+                                                >Remove</v-btn
+                                            >
+                                            <v-btn
+                                                class="mr-2"
+                                                @click="editFormClose()"
+                                                >Close</v-btn
+                                            >
+                                            <!-- <v-btn @click="clear">clear</v-btn> -->
+                                        </v-form>
+                                        <!---edit/delete form------>
+                                    </v-card>
+                                </v-col>
+                            </v-row>
+                        </v-menu>
+                        <div>
+                            <v-progress-circular
+                                v-if="nodeCountAll > 0"
+                                :transitionDuration="5000"
+                                :radius="25"
+                                :strokeWidth="5"
+                                :value="
+                                    (nodeCountHackingCountAll / nodeCountAll) *
+                                        100 || 0.000001
+                                "
                             >
-                        </template>
-                        <v-row no-gutters>
-                            <v-col>
-                                <v-card class="pa-2" tile width="100%">
-                                    <v-form @submit.prevent="newCharForm()">
-                                        <v-text-field
-                                            v-model="newCharName"
-                                            label="Char Name"
-                                            required
-                                            :rules="newNameRules"
-                                        ></v-text-field>
-                                        <v-select
-                                            v-model="newRole"
-                                            @change="roleForm($event)"
-                                            :rules="newRoleRules"
-                                            :items="dropdown_roles"
-                                            label="Role"
-                                            required
-                                        ></v-select>
-                                        <v-text-field
-                                            v-model="newShip"
-                                            :rules="newShipRules"
-                                            v-if="this.role == 1"
-                                            label="Ship"
-                                            required
-                                        ></v-text-field>
-                                        <v-radio-group
-                                            v-model="newLink"
-                                            :rules="newLinkRules"
-                                            v-if="this.role == 1"
-                                            row
-                                            label="Entosis Link"
-                                            required
-                                        >
-                                            <v-radio
-                                                label="Tech 1"
-                                                value="1"
-                                            ></v-radio>
-                                            <v-radio
-                                                label="Tech 2"
-                                                value="2"
-                                            ></v-radio>
-                                        </v-radio-group>
-
-                                        <v-btn class="mr-4" type="submit"
-                                            >submit</v-btn
-                                        >
-                                        <v-btn
-                                            class="mr-4"
-                                            @click="newCharFormClose()"
-                                            >Close</v-btn
-                                        >
-                                        <!-- <v-btn @click="clear">clear</v-btn> -->
-                                    </v-form>
-                                </v-card>
-                            </v-col>
-                        </v-row>
-                    </v-menu>
-                    <v-menu
-                        v-if="userCount != 0"
-                        :close-on-content-click="false"
-                        :value="removeShown"
-                        transition="fab-transition"
-                        origin="100% -30%"
-                    >
-                        <template v-slot:activator="{ on, attrs }">
-                            <v-btn
-                                class="mr-4"
-                                @click="removeShown = true"
-                                v-bind="attrs"
-                                v-on="on"
-                                color="red lighten-2"
-                                >Edit/Remove Char</v-btn
+                                <div class="caption">
+                                    {{ nodeCountHackingCountAll }} /
+                                    {{ nodeCountAll }}
+                                </div></v-progress-circular
                             >
-                        </template>
-                        <!---edit/delete form------>
-                        <v-row no-gutters>
-                            <v-col>
-                                <v-card class="pa-2" tile width="100%">
-                                    <v-form @submit.prevent="editCharForm()">
-                                        <v-select
-                                            v-model="editCharName"
-                                            :items="userCharsDrop"
-                                            label="Pick the char you want to edit"
-                                            name="editChars"
-                                            :item-text="'char_name'"
-                                            :item-value="'id'"
-                                            @change="charEditForm($event)"
-                                        ></v-select>
-                                        <v-select
-                                            v-model="editRole"
-                                            @change="roleEditForm($event)"
-                                            :items="dropdown_roles"
-                                            label="Role"
-                                            required
-                                            :placeholder="editTextRole"
-                                        ></v-select>
-                                        <v-text-field
-                                            v-model="editShip"
-                                            v-if="this.editrole == 1"
-                                            label="Ship"
-                                            required
-                                            :placeholder="editTextShip"
-                                        ></v-text-field>
-                                        <v-radio-group
-                                            v-model="editLink"
-                                            v-if="this.editrole == 1"
-                                            row
-                                            label="Entosis Link"
-                                            required
-                                            :placeholder="editTextLink"
-                                        >
-                                            <v-radio
-                                                label="Tech 1"
-                                                value="1"
-                                            ></v-radio>
-                                            <v-radio
-                                                label="Tech 2"
-                                                value="2"
-                                            ></v-radio>
-                                        </v-radio-group>
 
-                                        <v-btn class="mr-2" type="submit"
-                                            >submit</v-btn
-                                        >
-                                        <v-btn
-                                            class="mr-2"
-                                            @click="editFormRemove()"
-                                            >Remove</v-btn
-                                        >
-                                        <v-btn
-                                            class="mr-2"
-                                            @click="editFormClose()"
-                                            >Close</v-btn
-                                        >
-                                        <!-- <v-btn @click="clear">clear</v-btn> -->
-                                    </v-form>
-                                    <!---edit/delete form------>
-                                </v-card>
-                            </v-col>
-                        </v-row>
-                    </v-menu>
-                <div>
-                    <v-progress-circular
-                        v-if="nodeCountAll > 0"
-                        :transitionDuration="5000"
-                        :radius="25"
-                        :strokeWidth="5"
-                        :value="
-                            (nodeCountHackingCountAll / nodeCountAll) * 100 ||
-                                0.000001
-                        "
-                    >
-                        <div class="caption">
-                            {{ nodeCountHackingCountAll }} /
-                            {{ nodeCountAll }}
-                        </div></v-progress-circular
-                    >
-
-                    <v-progress-circular
-                        v-if="nodeCountAll > 0"
-                        :transitionDuration="5000"
-                        :radius="25"
-                        :strokeWidth="5"
-                        strokeColor="#FF3D00"
-                        :value="
-                            (nodeRedCountHackingCountAll / nodeCountAll) *
-                                100 || 0.000001
-                        "
-                    >
-                        <div class="caption">
-                            {{ nodeRedCountHackingCountAll }} /
-                            {{ nodeCountAll }}
-                        </div></v-progress-circular
-                    >
-                </div>
-                </div>
+                            <v-progress-circular
+                                v-if="nodeCountAll > 0"
+                                :transitionDuration="5000"
+                                :radius="25"
+                                :strokeWidth="5"
+                                strokeColor="#FF3D00"
+                                :value="
+                                    (nodeRedCountHackingCountAll /
+                                        nodeCountAll) *
+                                        100 || 0.000001
+                                "
+                            >
+                                <div class="caption">
+                                    {{ nodeRedCountHackingCountAll }} /
+                                    {{ nodeCountAll }}
+                                </div></v-progress-circular
+                            >
+                        </div>
+                    </div>
                 </v-card>
             </v-col>
         </v-row>
