@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Events\CampaiganSystemUpdate;
+use App\Events\CampaignSystemUpdate;
 use App\Models\CampaignUser;
 use Illuminate\Http\Request;
 
@@ -32,7 +32,7 @@ class CampaignUserController extends Controller
             'flag' => 1,
             'id' => $campid
         ]);
-        broadcast(new CampaiganSystemUpdate($flag))->toOthers();
+        broadcast(new CampaignSystemUpdate($flag))->toOthers();
     }
 
     /**
@@ -60,7 +60,7 @@ class CampaignUserController extends Controller
             'flag' => 1,
             'id' => $campid
         ]);
-        broadcast(new CampaiganSystemUpdate($flag))->toOthers();
+        broadcast(new CampaignSystemUpdate($flag))->toOthers();
     }
 
     /**
@@ -77,7 +77,7 @@ class CampaignUserController extends Controller
             'flag' => 1,
             'id' => $campid
         ]);
-        broadcast(new CampaiganSystemUpdate($flag))->toOthers();
+        broadcast(new CampaignSystemUpdate($flag))->toOthers();
 
     }
 }
