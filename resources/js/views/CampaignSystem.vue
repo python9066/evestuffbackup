@@ -302,7 +302,6 @@
                                 </v-col>
                             </v-row>
                         </v-menu>
-                        <div>
                             <v-progress-circular
                                 v-if="nodeCountAll > 0"
                                 :transitionDuration="5000"
@@ -336,7 +335,6 @@
                                     {{ nodeCountAll }}
                                 </div></v-progress-circular
                             >
-                        </div>
                     </div>
                 </v-card>
             </v-col>
