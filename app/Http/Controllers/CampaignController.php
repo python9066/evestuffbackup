@@ -10,7 +10,7 @@ use App\Models\CampaignUser;
 use Illuminate\Http\Request;
 use utils\Campaignhelper\Campaignhelper;
 use utils\Helper\Helper;
-use App\Events\CampaiganSystemUpdate;
+use App\Events\CampaignSystemUpdate;
 
 class CampaignController extends Controller
 {
@@ -42,7 +42,7 @@ class CampaignController extends Controller
                     'flag' => 4,
                     'id' => $check
                 ]);
-                broadcast(new CampaiganSystemUpdate($flag))->toOthers();
+                broadcast(new CampaignSystemUpdate($flag))->toOthers();
                 // }
             }
         }

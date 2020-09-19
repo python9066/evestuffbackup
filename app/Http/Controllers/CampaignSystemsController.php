@@ -97,7 +97,7 @@ class CampaignSystemsController extends Controller
     //         'flag' => 3,
     //         'id' => $data->campaigan_id
     //     ]);
-    //     broadcast(new CampaiganSystemUpdate($flag))->toOthers();
+    //     broadcast(new CampaignSystemUpdate($flag))->toOthers();
 
     // }
 }
