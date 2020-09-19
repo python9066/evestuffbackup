@@ -127,8 +127,8 @@
             justify="space-around"
         >
             <v-col md="10">
-                <v-card  tile>
-                    <div class="pa-2 d-flex full-width align-center">
+                <v-card class="pa-2 d-flex justify-space-between full-width align-center"  tile>
+                    <div class="flex-shrink-1" >
                         <v-btn
                             class="mr-4"
                             color="blue darken-2"
@@ -160,7 +160,7 @@
                                 >
                             </template>
                             <v-row no-gutters>
-                                <v-col>
+                                <div>
                                     <v-card class="pa-2" tile width="100%">
                                         <v-form @submit.prevent="newCharForm()">
                                             <v-text-field
@@ -213,7 +213,7 @@
                                             <!-- <v-btn @click="clear">clear</v-btn> -->
                                         </v-form>
                                     </v-card>
-                                </v-col>
+                                </div>
                             </v-row>
                         </v-menu>
                         <v-menu
@@ -235,7 +235,7 @@
                             </template>
                             <!---edit/delete form------>
                             <v-row no-gutters>
-                                <v-col>
+                                <div>
                                     <v-card class="pa-2" tile width="100%">
                                         <v-form
                                             @submit.prevent="editCharForm()"
@@ -299,10 +299,13 @@
                                         </v-form>
                                         <!---edit/delete form------>
                                     </v-card>
-                                </v-col>
+                                </div>
                             </v-row>
                         </v-menu>
-                        <v-spacer></v-spacer>
+                    </div>
+                    <v-spacer></v-spacer>
+                    <div>
+
                             <v-progress-circular
                                 class=" pr-3"
                                 v-if="nodeCountAll > 0"
@@ -336,10 +339,10 @@
                                     {{ nodeCountAll }}
                                 </div></v-progress-circular
                             >
-                            <v-spacer></v-spacer>
-                            <v-spacer></v-spacer>
-                            <v-spacer></v-spacer>
                     </div>
+                    <v-spacer></v-spacer>
+                    <v-spacer></v-spacer>
+
                 </v-card>
             </v-col>
         </v-row>
