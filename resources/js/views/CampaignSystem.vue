@@ -11,7 +11,7 @@
                 <v-card class="pa-2" tile width="100%">
                     <v-card-title align="center" class="justify-center">
                         <h1>
-                            Campaign page for the PARTY
+                            Campaign page for the
                             {{ this.campaign.item_name }} in
                             {{ this.campaign.system }} -
                             <v-avatar size="35"
@@ -21,7 +21,7 @@
                             {{ this.campaign.alliance }}
                         </h1>
                     </v-card-title>
-                    <div class="d-flex full-width align-content-center">
+                    <div>
                         <v-icon
                             v-if="
                                 this.campaign.defenders_score >
