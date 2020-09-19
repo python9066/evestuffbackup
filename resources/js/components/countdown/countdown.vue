@@ -55,6 +55,9 @@
       <span v-if="startLabel !== '' && tips && labelPosition === 'end'">{{startLabel}}:</span>
       <span v-if="endLabel !== '' && !tips && labelPosition === 'end'">{{endLabel}}:</span>
     </slot>
+    <slot name="end-text" v-if="status <=0" v-bind:props="{endText}">
+      {{endText}}
+    </slot>
   </div>
 </template>
 

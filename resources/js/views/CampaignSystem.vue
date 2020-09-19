@@ -386,6 +386,7 @@ export default {
             editTextLink: null,
             editLinkRules: [v => !!v || "T1 or T2?"],
             editUserForm: 1,
+            editrole_name: null,
 
             oldChar: [],
             role: 0,
@@ -486,13 +487,15 @@ export default {
         },
 
         editFormClose() {
+            this.removeShown = false
+            this.editCharName = null;
+            this.editRole = null;
             this.editTextRole = null;
+            this.editShip = null;
             this.editTextShip = null;
+            this.editLink = null;
             this.editTextLink = null;
-            this.oldCha = null;
-            this.removeShown = false;
-            this.editrole = 0;
-            this.editUserForm = 0;
+            this.editrole = null;
 
         },
 
@@ -532,19 +535,21 @@ export default {
 
         editCharForm() {
             this.removeShown = false
+
+                var link = this.oldChar.link
+                var ship = this.oldChar.ship
+                var role = this.oldChar.role_id
+                var role_name = this.oldChar.role_name
+
             if (this.oldChar.role_id != this.editRole) {
                 var role = this.editRole;
+                var role_name = this.dropdown_roles.find(droprole => droprole.value == role).text;
             }
             if (this.oldChar.ship != this.editShip) {
                 var ship = this.editShip;
             }
             if (this.oldChar.link != this.editLink) {
                 var link = this.editLink;
-            }
-            if (this.oldChar.role_name != this.editrole_name) {
-                var role_name = this.dropdown_roles.find(
-                    droprole => droprole.value == role
-                ).text;
             }
             // console.log(role_name);
             var request = {

@@ -214,7 +214,7 @@
 
                             <v-list>
                                 <v-list-item
-                                    v-for="(list, index) in chars"
+                                    v-for="(list, index) in charsFree"
                                     :key="index"
                                     @click="
                                         (charAddNode = list.id),
@@ -324,7 +324,7 @@
                         <CountDowntimer
                             v-else
                             :start-time="item.end + ' UTC'"
-                            :end-text="'Window Closed'"
+                            :end-text="'Did you finish?'"
                             :interval="1000"
                         >
                             <template slot="countdown" slot-scope="scope">
@@ -333,6 +333,9 @@
                                         scope.props.seconds
                                     }}</span
                                 >
+                            </template>
+                            <template slot="end-text" slot-scope="scope">
+                                     <span style="color: green">{{ scope.props.endText}}</span>
                             </template>
                         </CountDowntimer>
                     </template>
@@ -558,7 +561,7 @@ export default {
 
         clickCharAddNode(item) {
             var addChar = this.chars.find(user => user.id == this.charAddNode);
-            // console.log(addChar, item);
+            console.log(addChar, item);
             var data = {
                 id: item.id,
                 user_id: addChar.id,
@@ -578,10 +581,12 @@ export default {
                 campaign_system_id: item.id,
                 node_id: item.node,
                 system_id: item.system_id,
-                system_id: item.system_name,
+                system_name: item.system_name,
                 status_id: 4,
                 user_status_name: "Hacking"
             };
+
+            console.log(data);
             var request1 = {
                 campaign_system_id: item.id,
                 system_id: item.system_id,
@@ -795,7 +800,8 @@ export default {
 
         ...mapGetters([
             "getCampaignUsersByUserIdEntosis",
-            "getCampaignUsersByUserIdEntosisCount"
+            "getCampaignUsersByUserIdEntosisCount",
+            "getCampaignUsersByUserIdEntosisFree"
         ]),
 
         filteredItems() {
@@ -845,6 +851,12 @@ export default {
 
         chars() {
             return this.getCampaignUsersByUserIdEntosis(
+                this.$store.state.user_id
+            );
+        },
+
+        charsFree() {
+            return this.getCampaignUsersByUserIdEntosisFree(
                 this.$store.state.user_id
             );
         },

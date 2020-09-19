@@ -6,7 +6,7 @@ use Illuminate\Console\Command;
 use utils\Campaignhelper\Campaignhelper;
 use utils\Helper\Helper;
 use App\Events\CampaignChanged;
-use App\Events\CampaiganSystemUpdate;
+use App\Events\CampaignSystemUpdate;
 use App\Models\CampaignUser;
 
 class UpdateCampaigns extends Command
@@ -70,7 +70,7 @@ class UpdateCampaigns extends Command
                         'id' => $check
                         ]);
                         // dd($flag);
-                    broadcast(new CampaiganSystemUpdate($flag))->toOthers();
+                    broadcast(new CampaignSystemUpdate($flag))->toOthers();
                 }
             }
         }

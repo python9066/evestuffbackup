@@ -255,6 +255,13 @@ export default new Vuex.Store({
                 campaignusers => campaignusers.site_id == id && campaignusers.role_id == 1
             );
         },
+
+        getCampaignUsersByUserIdEntosisFree: state => id => {
+            // console.log("poo",state.campaignusers.filter(campaignusers => campaignusers.site_id == id))
+            return state.campaignusers.filter(
+                campaignusers => campaignusers.site_id == id && campaignusers.role_id == 1 && campaignusers.node_id == null
+            );
+        },
         getCampaignUsersByUserIdEntosisCount: state => id => {
             // console.log("poo",state.campaignusers.filter(campaignusers => campaignusers.site_id == id))
             return state.campaignusers.filter(

@@ -28,6 +28,15 @@ const CountDowntimer = {
             return 1000
           }
         },
+
+        endText: {
+            type: String,
+            default: function () {
+              return 'Event ended!'
+            }
+          },
+
+
         leadingZero: {
           type: Boolean,
           default: function () {
@@ -209,7 +218,7 @@ const CountDowntimer = {
 
             if (status === 0) {
                 this.count = 0;
-                // this.end_message();
+                this.end_message();
                 return;
             }
 
@@ -218,6 +227,12 @@ const CountDowntimer = {
                 this.$set(this, 'tips', true);
                 this.count = Math.max(0, startCount);
             }
+
+
+            if (this.count === 0) {
+                this.end_message();
+                return;
+              }
 
 
 
@@ -298,6 +313,16 @@ const CountDowntimer = {
         this.$emit('start_callback', this.status);
     },
 
+    end_message(){
+        if (
+            this.currentTime <= 0 ||
+            this.currentTime < new Date(this.formatTime(this.endTime)).getTime()
+        ) {
+          return;
+        }
+        this.$emit('end_callback', this.status);
+      },
+
 
 
     /**
@@ -340,9 +365,7 @@ const CountDowntimer = {
             if (status === 0) {
                 this.count = 0;
                 this.stop();
-
-
-                //   this.end_message();
+                this.end_message();
                 return;
             }
 
