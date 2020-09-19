@@ -21,7 +21,7 @@
                             {{ this.campaign.alliance }}
                         </h1>
                     </v-card-title>
-                    <div>
+                    <div class="d-flex full-width align-content-center">
                         <v-icon
                             v-if="
                                 this.campaign.defenders_score >
@@ -126,7 +126,7 @@
             v-if="this.getCampaignsCount > 1"
             justify="space-around"
         >
-            <v-col md="10" width="100%">
+            <v-col md="10">
                 <v-card class="pa-2 flex-auto" tile>
                 <div>
                     <v-btn
