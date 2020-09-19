@@ -128,7 +128,7 @@
         >
             <v-col md="10">
                 <v-card  tile>
-                    <div class="pa-2 d-flex-auto">
+                    <div class="pa-2 d-flex-inline">
                         <v-btn
                             class="mr-4"
                             color="blue darken-2"
