@@ -1,18 +1,6 @@
 <template>
     <div>
         <hackingToolMessage></hackingToolMessage>
-        <v-row no-gutters v-if="this.getCampaignsCount > 1">
-            <v-col lg="1"></v-col>
-            <v-col md="10">
-                <v-card class="pa-2" tile width="100%">
-                    <v-card-title align="center" class="justify-center">
-                        Campaign page for the {{ this.campaign.item_name }} in
-                        {{ this.campaign.system }}
-                    </v-card-title>
-                </v-card>
-            </v-col>
-            <v-col lg="1"></v-col>
-        </v-row>
         <v-row
             no-gutters
             v-if="this.getCampaignsCount > 1"
@@ -22,14 +10,13 @@
             <v-col md="10">
                 <v-card class="pa-2" tile width="100%">
                     <v-card-title align="center" class="justify-center">
-                        {{ this.campaign.region }} -
-                        {{ this.campaign.constellation }}
+                       <h1> Campaign page for the {{ this.campaign.item_name }} in
                         {{ this.campaign.system }} -
                         <v-avatar size="35"
                             ><img :src="this.campaign.url"
                         /></v-avatar>
                         -
-                        {{ this.campaign.alliance }}
+                        {{ this.campaign.alliance }}</h1>
                     </v-card-title>
                     <div class="d-flex full-width align-content-center">
                         <v-icon
@@ -134,10 +121,24 @@
         <v-row
             no-gutters
             v-if="this.getCampaignsCount > 1"
-            justify="space-around"
-        >
-            <v-col md="10">
-                <v-card class="pa-2" tile width="100%">
+            justify="space-around">
+
+            <v-col md="10" width="100%">
+                <v-card class="pa-2" tile>
+                    <v-btn
+                        class="mr-4"
+                        color="blue darken-2"
+                        v-if="showTable == false"
+                        @click="showTable = true"
+                        >Show Char table</v-btn
+                    >
+                    <v-btn
+                        class="mr-4"
+                        color="orange darken-2"
+                        v-if="showTable == true"
+                        @click="showTable = false"
+                        >Hide Char table</v-btn
+                    >
                     <v-menu
                         :close-on-content-click="false"
                         :value="addShown"
@@ -296,20 +297,6 @@
                             </v-col>
                         </v-row>
                     </v-menu>
-                    <v-btn
-                        class="mr-4"
-                        color="blue darken-2"
-                        v-if="showTable == false"
-                        @click="showTable = true"
-                        >Show Char table</v-btn
-                    >
-                    <v-btn
-                        class="mr-4"
-                        color="orange darken-2"
-                        v-if="showTable == true"
-                        @click="showTable = false"
-                        >Hide Char table</v-btn
-                    >
                 </v-card>
             </v-col>
         </v-row>

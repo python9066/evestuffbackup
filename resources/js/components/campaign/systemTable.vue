@@ -20,14 +20,54 @@
                             flat
                             max-width
                             elevation="24"
-                            color="grey darken-4"
-                        >
+                            color="grey darken-4">
+
                             <v-toolbar-title
                                 max-width
                                 class="d-flex justify-space-between align-center"
                                 style=" width: 100%;"
                             >
-                                <div>{{ system_name }} -</div>
+                                <div>
+                                    {{ system_name }} -
+                                </div>
+                                 <v-spacer></v-spacer>
+                                <div>
+                                    <v-progress-circular
+                                        v-if="nodeCount > 0"
+                                        :transitionDuration="5000"
+                                        :radius="20"
+                                        :strokeWidth="4"
+                                        :value="
+                                            (nodeCountHackingCount /
+                                                nodeCount) *
+                                                100 || 0.000001
+                                        "
+                                    >
+                                        <div class="caption">
+                                            {{ nodeCountHackingCount }} /
+                                            {{ nodeCount }}
+                                        </div></v-progress-circular
+                                    >
+
+                                    <v-progress-circular
+                                        v-if="nodeCount > 0"
+                                        :transitionDuration="5000"
+                                        :radius="20"
+                                        :strokeWidth="4"
+                                        strokeColor="#FF3D00"
+                                        :value="
+                                            (nodeRedCountHackingCount /
+                                                nodeCount) *
+                                                100 || 0.000001
+                                        "
+                                    >
+                                        <div class="caption">
+                                            {{ nodeRedCountHackingCount }} /
+                                            {{ nodeCount }}
+                                        </div></v-progress-circular
+                                    >
+                                </div>
+                                <v-spacer></v-spacer>
                                 <div class=" ml-auto">
                                     <v-menu
                                         transition="fade-transition"
@@ -301,7 +341,10 @@
                                             fixed
                                             left
                                             color="success"
-                                            @click="timerShown = false, addHacktime(item)"
+                                            @click="
+                                                (timerShown = false),
+                                                    addHacktime(item)
+                                            "
                                             ><v-icon
                                                 >fas fa-check</v-icon
                                             ></v-btn
@@ -312,7 +355,10 @@
                                             right
                                             icon
                                             color="warning"
-                                            @click="timerShown = false, hackTime = null"
+                                            @click="
+                                                (timerShown = false),
+                                                    (hackTime = null)
+                                            "
                                             ><v-icon
                                                 >fas fa-times</v-icon
                                             ></v-btn
@@ -335,7 +381,9 @@
                                 >
                             </template>
                             <template slot="end-text" slot-scope="scope">
-                                     <span style="color: green">{{ scope.props.endText}}</span>
+                                <span style="color: green">{{
+                                    scope.props.endText
+                                }}</span>
                             </template>
                         </CountDowntimer>
                     </template>
@@ -441,7 +489,7 @@ export default {
     },
 
     methods: {
-      async  addHacktime(item) {
+        async addHacktime(item) {
             var min = parseInt(this.hackTime.substr(0, 2));
             var sec = parseInt(this.hackTime.substr(3, 2));
             var finishTime = moment
@@ -455,7 +503,7 @@ export default {
                 end_time: finishTime
             };
 
-         await axios({
+            await axios({
                 method: "put", //you can set what request you want to be
                 url:
                     "/api/campaignsystems/" +
@@ -470,7 +518,7 @@ export default {
                 }
             });
 
-            this.$store.dispatch("getCampaignSystemsRecords")
+            this.$store.dispatch("getCampaignSystemsRecords");
         },
 
         clickOnTheWay() {
@@ -767,32 +815,31 @@ export default {
         },
 
         checkHackUser(item) {
-
-            if(item.site_id == this.$store.state.user_id && item.end == null && (item.status_id == 2 || item.status_id == 3)){
-                return true
-            }else{
-                return false
+            if (
+                item.site_id == this.$store.state.user_id &&
+                item.end == null &&
+                (item.status_id == 2 || item.status_id == 3)
+            ) {
+                return true;
+            } else {
+                return false;
             }
-
         }
 
+        // if (item.site_id == null) {
+        //     return false;
+        // }
 
-
-            // if (item.site_id == null) {
-            //     return false;
-            // }
-
-            // if (
-            //     item.site_id == this.$store.state.user_id && item.end_time == null
-            // ) {
-            //     if (item.status_id == 2 || item.status_id == 3) {
-            //         return true;
-            //     }
-            //     return false;
-            // } else {
-            //     return false;
-            // }
-
+        // if (
+        //     item.site_id == this.$store.state.user_id && item.end_time == null
+        // ) {
+        //     if (item.status_id == 2 || item.status_id == 3) {
+        //         return true;
+        //     }
+        //     return false;
+        // } else {
+        //     return false;
+        // }
     },
 
     computed: {
@@ -801,7 +848,11 @@ export default {
         ...mapGetters([
             "getCampaignUsersByUserIdEntosis",
             "getCampaignUsersByUserIdEntosisCount",
-            "getCampaignUsersByUserIdEntosisFree"
+            "getCampaignUsersByUserIdEntosisFree",
+            "getTotalNodeCountBySystem",
+            "getHackingNodeCountBySystem",
+            "getNodeValue",
+            "getRedHackingNodeCountBySystem"
         ]),
 
         filteredItems() {
@@ -847,8 +898,6 @@ export default {
             }
         },
 
-
-
         chars() {
             return this.getCampaignUsersByUserIdEntosis(
                 this.$store.state.user_id
@@ -865,6 +914,34 @@ export default {
             return this.getCampaignUsersByUserIdEntosisCount(
                 this.$store.state.user_id
             );
+        },
+
+        nodeCount() {
+            return this.getTotalNodeCountBySystem(this.system_id);
+        },
+
+        nodeCountHackingCount() {
+            let payload = {
+                system_id: this.system_id,
+                campaign_id: this.$route.params.id
+            };
+            return this.getHackingNodeCountBySystem(payload);
+        },
+
+        nodeRedCountHackingCount() {
+            let payload = {
+                system_id: this.system_id,
+                campaign_id: this.$route.params.id
+            };
+            return this.getRedHackingNodeCountBySystem(payload);
+        },
+
+        nodeValue() {
+            let payload = {
+                system_id: this.system_id,
+                campaign_id: this.$route.params.id
+            };
+            return this.getNodeValue(payload);
         }
     }
 };

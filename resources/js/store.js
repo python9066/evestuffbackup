@@ -233,8 +233,6 @@ export default new Vuex.Store({
             return state.campaigns.find(campaigns => campaigns.id == id);
         },
 
-
-
         getCampaignUsersByUserId: state => id => {
             // console.log("poo",state.campaignusers.filter(campaignusers => campaignusers.site_id == id))
             return state.campaignusers.filter(
@@ -273,6 +271,46 @@ export default new Vuex.Store({
         getActiveCampaigns: state => {
             return state.campaigns.find(campaigns => campaigns.status_id == 2);
         },
+
+        getTotalNodeCountBySystem: state => id => {
+            return state.campaignsystems.filter(
+                sys => sys.system_id == id
+            ).length
+        },
+
+        getHackingNodeCountBySystem: state => payload => {
+            return state.campaignsystems.filter(
+                sys => sys.system_id == payload.system_id && sys.status_id != 1 && sys.campaign_id == payload.campaign_id && sys.status_id !=7 && sys.status_id !=6
+            ).length
+        },
+
+        getRedHackingNodeCountBySystem: state => payload => {
+            return state.campaignsystems.filter(
+                sys => sys.system_id == payload.system_id && sys.campaign_id == payload.campaign_id && sys.status_id == 7
+            ).length
+        },
+
+        getNodeValue:state => payload => {
+
+            let total = state.campaignsystems.filter(
+                sys => sys.system_id == payload.system_id
+            ).length
+
+            let hack = state.campaignsystems.filter(
+                sys => sys.system_id == payload.system_id && sys.status_id != 1 && sys.campaign_id == payload.campaign_id && sys.status_id !=7 && sys.status_id !=6
+            ).length
+
+            let num = (hack/total)*100
+
+            if(num == null){
+                return 0.0
+            }else{
+
+                return num
+            }
+
+
+        }
 
     }
 });
