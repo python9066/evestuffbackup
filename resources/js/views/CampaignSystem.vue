@@ -317,7 +317,7 @@
                                     {{ nodeCountAll }}
                                 </div></v-progress-circular
                             >
-
+                            <v-spacer></v-spacer>
                             <v-progress-circular
                                 v-if="nodeCountAll > 0"
                                 :transitionDuration="5000"
