@@ -33,6 +33,7 @@
         "laravel-echo": "^1.8.1",
         "moment": "^2.28.0",
         "pusher-js": "^7.0.0",
+        "v-mask": "^2.2.3",
         "vue-click-outside": "^1.1.0",
         "vue-router": "^3.4.3",
         "vuejs-countdown-timer": "^2.1.2",

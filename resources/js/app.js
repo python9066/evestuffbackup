@@ -20,6 +20,7 @@ import moment from 'moment'
 import VueCountdownTimer from 'vuejs-countdown-timer'
 import VueCountupTimer from './components/countup/index'
 import CountdownTimer from './components/countdown/index'
+import VueMask from 'v-mask'
 
 Vue.component('messageComponent', require('./components/random/messageComponent.vue').default);
 Vue.component('errorMessage', require('./components/random/errorMessage.vue').default); //component name should be in camel-case
@@ -36,6 +37,7 @@ library.add(faUserSecret)
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 Vue.config.productionTip = false
 Vue.component(VueCountdown.name, VueCountdown);
+Vue.use(VueMask)
 
 /**
  * The following block of code may be used to automatically register your

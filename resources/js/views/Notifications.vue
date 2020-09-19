@@ -488,38 +488,8 @@ export default {
 
 
     async mounted() {
-        // await this.getLatest();
-        // await this.loadtimers();
-
-
-    //    this.poll = setInterval(() => {
-    //         this.loadingr = true;
-    //         this.$store.dispatch("getNotifications").then(() => {
-    //             this.loadingr = false;
-    //         });
-    //         this.$store.dispatch("getqueriousLink");
-    //         this.$store.dispatch("getdelveLink");
-    //         this.$store.dispatch("getperiodbasisLink");
-    //     }, 30000);
     },
     methods: {
-        //     startCallBack: function (x) {
-        //     console.log(x)
-        //   },
-        //   endCallBack: function (x) {
-        //     console.log(x)
-        //   },
-        // async getTimerDataAll() {
-        //     this.loading = true;
-        //     await axios.get("/getTimerData").then(res => {
-        //         if (res.status == 200) {
-        //             this.timersAll = res.data.timers;
-        //         }
-        //     this.loading = false;
-        //     this.loading3 = false;
-
-        //     });
-        // },
 
 
         timecheck(item){
