@@ -272,6 +272,25 @@ export default new Vuex.Store({
             return state.campaigns.find(campaigns => campaigns.status_id == 2);
         },
 
+        getTotalNodeCountByCampaign: state => id => {
+            return state.campaignsystems.filter(
+                sys => sys.campaign_id == id
+            ).length
+        },
+
+        getHackingNodeCountByCampaign: state => id => {
+            return state.campaignsystems.filter(
+                sys => sys.campaign_id == id && sys.status_id != 1 && sys.status_id !=7 && sys.status_id !=6
+            ).length
+        },
+
+        getRedHackingNodeCountByCampaign: state => id => {
+            return state.campaignsystems.filter(
+                sys => sys.campaign_id == id && sys.status_id == 7
+            ).length
+        },
+
+
         getTotalNodeCountBySystem: state => id => {
             return state.campaignsystems.filter(
                 sys => sys.system_id == id

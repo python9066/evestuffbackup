@@ -10,13 +10,16 @@
             <v-col md="10">
                 <v-card class="pa-2" tile width="100%">
                     <v-card-title align="center" class="justify-center">
-                       <h1> Campaign page for the {{ this.campaign.item_name }} in
-                        {{ this.campaign.system }} -
-                        <v-avatar size="35"
-                            ><img :src="this.campaign.url"
-                        /></v-avatar>
-                        -
-                        {{ this.campaign.alliance }}</h1>
+                        <h1>
+                            Campaign page for the
+                            {{ this.campaign.item_name }} in
+                            {{ this.campaign.system }} -
+                            <v-avatar size="35"
+                                ><img :src="this.campaign.url"
+                            /></v-avatar>
+                            -
+                            {{ this.campaign.alliance }}
+                        </h1>
                     </v-card-title>
                     <div class="d-flex full-width align-content-center">
                         <v-icon
@@ -121,8 +124,8 @@
         <v-row
             no-gutters
             v-if="this.getCampaignsCount > 1"
-            justify="space-around">
-
+            justify="space-around"
+        >
             <v-col md="10" width="100%">
                 <v-card class="pa-2" tile>
                     <v-btn
@@ -219,16 +222,15 @@
                         transition="fab-transition"
                         origin="100% -30%"
                     >
-                    <template v-slot:activator="{ on, attrs }">
-                        <v-btn
-
-                        class="mr-4"
-                        @click="removeShown = true"
-                        v-bind="attrs"
-                        v-on="on"
-                        color="red lighten-2"
-                            >Edit/Remove Char</v-btn
-                        >
+                        <template v-slot:activator="{ on, attrs }">
+                            <v-btn
+                                class="mr-4"
+                                @click="removeShown = true"
+                                v-bind="attrs"
+                                v-on="on"
+                                color="red lighten-2"
+                                >Edit/Remove Char</v-btn
+                            >
                         </template>
                         <!---edit/delete form------>
                         <v-row no-gutters>
@@ -297,23 +299,47 @@
                             </v-col>
                         </v-row>
                     </v-menu>
+                        <v-progress-circular
+                            v-if="nodeCountAll > 0"
+                            :transitionDuration="5000"
+                            :radius="25"
+                            :strokeWidth="5"
+                            :value="
+                                (nodeCountHackingCountAll / nodeCountAll) * 100 ||
+                                    0.000001
+                            "
+                        >
+                            <div class="caption">
+                                {{ nodeCountHackingCountAll }} /
+                                {{ nodeCountAll }}
+                            </div></v-progress-circular
+                        >
+
+                        <v-progress-circular
+                            v-if="nodeCountAll > 0"
+                            :transitionDuration="5000"
+                            :radius="25"
+                            :strokeWidth="5"
+                            strokeColor="#FF3D00"
+                            :value="
+                                (nodeRedCountHackingCountAll / nodeCountAll) * 100 ||
+                                    0.000001
+                            "
+                        >
+                            <div class="caption">
+                                {{ nodeRedCountHackingCountAll }} /
+                                {{ nodeCountAll }}
+                            </div></v-progress-circular
+                        >
                 </v-card>
             </v-col>
         </v-row>
 
-        <v-row
-            no-gutters
-            justify="space-around"
-            v-if="showTable == true"
-        >
+        <v-row no-gutters justify="space-around" v-if="showTable == true">
             <userTable :campaign_id="$route.params.id"> </userTable>
         </v-row>
 
-        <v-row
-            no-gutters
-            justify="center"
-            :v-if="systemLoaded == true"
-        >
+        <v-row no-gutters justify="center" :v-if="systemLoaded == true">
             <systemTable
                 class=" px-5 pt-5"
                 v-for="(system, index) in systems"
@@ -332,7 +358,7 @@
 import Axios from "axios";
 import { EventBus } from "../event-bus";
 import ApiL from "../service/apil";
-import { mapGetters } from "vuex";
+import { mapGetters, mapState } from "vuex";
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
@@ -399,29 +425,33 @@ export default {
         }
         // console.log(this.$route.params.id)
         await this.getSystems(this.campaign.constellation_id);
-        await this.$store.dispatch("getCampaignUsersRecords",this.$route.params.id);
+        await this.$store.dispatch(
+            "getCampaignUsersRecords",
+            this.$route.params.id
+        );
         await this.$store.dispatch("getCampaignSystemsRecords");
     },
     methods: {
-
-        async loadCampaigns(){
-            this.$store.dispatch("getCampaigns")
+        async loadCampaigns() {
+            this.$store.dispatch("getCampaigns");
         },
 
-        loadUsersRecords(){
-            this.$store.dispatch("getCampaignUsersRecords",this.$route.params.id);
+        loadUsersRecords() {
+            this.$store.dispatch(
+                "getCampaignUsersRecords",
+                this.$route.params.id
+            );
         },
 
-        loadCampaignSystemRecords(){
+        loadCampaignSystemRecords() {
             this.$store.dispatch("getCampaignSystemsRecords");
         },
 
         async loadcampaigns() {
-            this.loadingr = true
-            this.$store.dispatch("getCampaigns").then(() =>{
-                this.loadingr = false
+            this.loadingr = true;
+            this.$store.dispatch("getCampaigns").then(() => {
+                this.loadingr = false;
             });
-
         },
 
         async getSystems(id) {
@@ -452,7 +482,6 @@ export default {
             this.newRole = null;
             this.newShip = null;
             this.newLink = null;
-
         },
 
         roleEditForm(a) {
@@ -474,7 +503,7 @@ export default {
         },
 
         editFormClose() {
-            this.removeShown = false
+            this.removeShown = false;
             this.editCharName = null;
             this.editRole = null;
             this.editTextRole = null;
@@ -483,12 +512,9 @@ export default {
             this.editLink = null;
             this.editTextLink = null;
             this.editrole = null;
-
         },
 
         async newCharForm() {
-
-
             var request = {
                 site_id: this.$store.state.user_id,
                 campaign_id: this.$route.params.id,
@@ -521,16 +547,18 @@ export default {
         },
 
         editCharForm() {
-            this.removeShown = false
+            this.removeShown = false;
 
-                var link = this.oldChar.link
-                var ship = this.oldChar.ship
-                var role = this.oldChar.role_id
-                var role_name = this.oldChar.role_name
+            var link = this.oldChar.link;
+            var ship = this.oldChar.ship;
+            var role = this.oldChar.role_id;
+            var role_name = this.oldChar.role_name;
 
             if (this.oldChar.role_id != this.editRole) {
                 var role = this.editRole;
-                var role_name = this.dropdown_roles.find(droprole => droprole.value == role).text;
+                var role_name = this.dropdown_roles.find(
+                    droprole => droprole.value == role
+                ).text;
             }
             if (this.oldChar.ship != this.editShip) {
                 var ship = this.editShip;
@@ -557,7 +585,11 @@ export default {
 
             axios({
                 method: "PUT", //you can set what request you want to be
-                url: "/api/campaignusers/" + this.oldChar.id + "/" + this.$route.params.id,
+                url:
+                    "/api/campaignusers/" +
+                    this.oldChar.id +
+                    "/" +
+                    this.$route.params.id,
                 data: request,
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
@@ -575,17 +607,21 @@ export default {
             this.editTextLink = null;
         },
 
-      async  editFormRemove() {
-           await axios({
+        async editFormRemove() {
+            await axios({
                 method: "DELETE", //you can set what request you want to be
-                url: "/api/campaignusers/" + this.oldChar.id + "/" + this.$route.params.id,
+                url:
+                    "/api/campaignusers/" +
+                    this.oldChar.id +
+                    "/" +
+                    this.$route.params.id,
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
                     Accept: "application/json",
                     "Content-Type": "application/json"
                 }
             });
-            this.removeShown = false
+            this.removeShown = false;
             this.editCharName = null;
             this.editRole = null;
             this.editTextRole = null;
@@ -594,43 +630,40 @@ export default {
             this.editLink = null;
             this.editTextLink = null;
 
-            this.$store.dispatch("getCampaignUsersRecords",this.$route.params.id);
+            this.$store.dispatch(
+                "getCampaignUsersRecords",
+                this.$route.params.id
+            );
             this.$store.dispatch("getCampaignSystemsRecords");
-
-
         }
     },
 
     async created() {
-        Echo.private('campaignsystem.'+ this.$route.params.id)
-        .listen('CampaignSystemUpdate',(e) => {
-            console.log(e)
-            if(e.flag.flag == 1){
-                console.log(1)
-                this.loadUsersRecords()
+        Echo.private("campaignsystem." + this.$route.params.id).listen(
+            "CampaignSystemUpdate",
+            e => {
+                console.log(e);
+                if (e.flag.flag == 1) {
+                    console.log(1);
+                    this.loadUsersRecords();
+                }
+                if (e.flag.flag == 2) {
+                    console.log(2);
+                    this.loadCampaignSystemRecords();
+                }
+                if (e.flag.flag == 3) {
+                    console.log(3);
+                    this.loadCampaignSystemRecords();
+                    this.loadUsersRecords();
+                }
+                if (e.flag.flag == 4) {
+                    console.log(4);
+                    this.loadcampaigns();
+                    this.loadCampaignSystemRecords();
+                    this.loadUsersRecords();
+                }
             }
-            if(e.flag.flag == 2){
-                console.log(2)
-                this.loadCampaignSystemRecords()
-            }
-            if(e.flag.flag == 3){
-                console.log(3)
-                this.loadCampaignSystemRecords()
-                this.loadUsersRecords()
-            }
-            if(e.flag.flag == 4){
-                console.log(4)
-                this.loadcampaigns()
-                this.loadCampaignSystemRecords()
-                this.loadUsersRecords()
-            }
-
-
-
-
-
-
-        });
+        );
         this.test = 2;
         this.test2 = 1;
         this.navdrawer = true;
@@ -643,6 +676,9 @@ export default {
             "getCampaignsCount",
             "getCampaignUsersByUserId",
             "getCampaignUsersByUserIdCount",
+            "getTotalNodeCountByCampaign",
+            "getHackingNodeCountByCampaign",
+            "getRedHackingNodeCountByCampaign"
         ]),
 
         campaign() {
@@ -657,8 +693,9 @@ export default {
         },
 
         userCount() {
-
-            return this.getCampaignUsersByUserIdCount(this.$store.state.user_id);
+            return this.getCampaignUsersByUserIdCount(
+                this.$store.state.user_id
+            );
         },
         barScoure() {
             var d =
@@ -717,10 +754,21 @@ export default {
                 return true;
             }
             return false;
+        },
+        nodeCountAll() {
+            return this.getTotalNodeCountByCampaign(this.$route.params.id);
+        },
+
+        nodeCountHackingCountAll() {
+            return this.getHackingNodeCountByCampaign(this.$route.params.id);
+        },
+
+        nodeRedCountHackingCountAll() {
+            return this.getRedHackingNodeCountByCampaign(this.$route.params.id);
         }
     },
-    beforeDestroy(){
-        Echo.leave('campaignsystem.'+ this.$route.params.id)
+    beforeDestroy() {
+        Echo.leave("campaignsystem." + this.$route.params.id);
     }
 };
 </script>
