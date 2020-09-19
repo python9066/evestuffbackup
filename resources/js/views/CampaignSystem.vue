@@ -300,7 +300,6 @@
                             </v-col>
                         </v-row>
                     </v-menu>
-                </div>
                 <div>
                     <v-progress-circular
                         v-if="nodeCountAll > 0"
@@ -334,6 +333,7 @@
                             {{ nodeCountAll }}
                         </div></v-progress-circular
                     >
+                </div>
                 </div>
                 </v-card>
             </v-col>
