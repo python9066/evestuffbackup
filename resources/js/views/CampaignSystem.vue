@@ -11,7 +11,7 @@
                 <v-card class="pa-2" tile width="100%">
                     <v-card-title align="center" class="justify-center">
                         <h1>
-                            Campaign page for the
+                            Campaign page for the PARTY
                             {{ this.campaign.item_name }} in
                             {{ this.campaign.system }} -
                             <v-avatar size="35"
@@ -127,7 +127,8 @@
             justify="space-around"
         >
             <v-col md="10" width="100%">
-                <v-card class="pa-2" tile>
+                <v-card class="pa-2 flex-auto" tile>
+                <div>
                     <v-btn
                         class="mr-4"
                         color="blue darken-2"
@@ -299,38 +300,41 @@
                             </v-col>
                         </v-row>
                     </v-menu>
-                        <v-progress-circular
-                            v-if="nodeCountAll > 0"
-                            :transitionDuration="5000"
-                            :radius="25"
-                            :strokeWidth="5"
-                            :value="
-                                (nodeCountHackingCountAll / nodeCountAll) * 100 ||
-                                    0.000001
-                            "
-                        >
-                            <div class="caption">
-                                {{ nodeCountHackingCountAll }} /
-                                {{ nodeCountAll }}
-                            </div></v-progress-circular
-                        >
+                </div>
+                <div>
+                    <v-progress-circular
+                        v-if="nodeCountAll > 0"
+                        :transitionDuration="5000"
+                        :radius="25"
+                        :strokeWidth="5"
+                        :value="
+                            (nodeCountHackingCountAll / nodeCountAll) * 100 ||
+                                0.000001
+                        "
+                    >
+                        <div class="caption">
+                            {{ nodeCountHackingCountAll }} /
+                            {{ nodeCountAll }}
+                        </div></v-progress-circular
+                    >
 
-                        <v-progress-circular
-                            v-if="nodeCountAll > 0"
-                            :transitionDuration="5000"
-                            :radius="25"
-                            :strokeWidth="5"
-                            strokeColor="#FF3D00"
-                            :value="
-                                (nodeRedCountHackingCountAll / nodeCountAll) * 100 ||
-                                    0.000001
-                            "
-                        >
-                            <div class="caption">
-                                {{ nodeRedCountHackingCountAll }} /
-                                {{ nodeCountAll }}
-                            </div></v-progress-circular
-                        >
+                    <v-progress-circular
+                        v-if="nodeCountAll > 0"
+                        :transitionDuration="5000"
+                        :radius="25"
+                        :strokeWidth="5"
+                        strokeColor="#FF3D00"
+                        :value="
+                            (nodeRedCountHackingCountAll / nodeCountAll) *
+                                100 || 0.000001
+                        "
+                    >
+                        <div class="caption">
+                            {{ nodeRedCountHackingCountAll }} /
+                            {{ nodeCountAll }}
+                        </div></v-progress-circular
+                    >
+                </div>
                 </v-card>
             </v-col>
         </v-row>
