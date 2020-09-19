@@ -250,7 +250,6 @@
                             :start-time="item.start + ' UTC'"
                             :end-text="'Window Closed'"
                             :interval="1000"
-                            @timecheck="timecheck(item)"
                         >
                             <template slot="countup" slot-scope="scope">
                                 <span
@@ -269,6 +268,7 @@
                         </VueCountUptimer>
                         <v-menu
                             :close-on-content-click="false"
+                            :value="timerShown"
                             v-else-if="checkHackUser(item)"
                         >
                             <template v-slot:activator="{ on, attrs }">
@@ -277,6 +277,7 @@
                                     v-on="on"
                                     pill
                                     outlined
+                                    @click="timerShown = true"
                                     small
                                     color="warning"
                                 >
@@ -300,7 +301,7 @@
                                             fixed
                                             left
                                             color="success"
-                                            @click="addHacktime(item)"
+                                            @click="timerShown = false, addHacktime(item)"
                                             ><v-icon
                                                 >fas fa-check</v-icon
                                             ></v-btn
@@ -311,10 +312,7 @@
                                             right
                                             icon
                                             color="warning"
-                                            @click="
-                                                (addShown = false),
-                                                    (nodeText = '')
-                                            "
+                                            @click="timerShown = false, hackTime = null"
                                             ><v-icon
                                                 >fas fa-times</v-icon
                                             ></v-btn
@@ -325,7 +323,7 @@
                         </v-menu>
                         <CountDowntimer
                             v-else
-                            :start-time="item.end_time + ' UTC'"
+                            :start-time="item.end + ' UTC'"
                             :end-text="'Window Closed'"
                             :interval="1000"
                         >
@@ -428,6 +426,7 @@ export default {
             charReadyToGo: 0,
             nodeText: "",
             addShown: false,
+            timerShown: false,
             expanded: [],
             singleExpand: true,
             charAddNode: null,
@@ -439,8 +438,7 @@ export default {
     },
 
     methods: {
-        addHacktime(item) {
-            console.log(item);
+      async  addHacktime(item) {
             var min = parseInt(this.hackTime.substr(0, 2));
             var sec = parseInt(this.hackTime.substr(3, 2));
             var finishTime = moment
@@ -454,7 +452,7 @@ export default {
                 end_time: finishTime
             };
 
-            axios({
+         await axios({
                 method: "put", //you can set what request you want to be
                 url:
                     "/api/campaignsystems/" +
@@ -468,6 +466,8 @@ export default {
                     "Content-Type": "application/json"
                 }
             });
+
+            this.$store.dispatch("getCampaignSystemsRecords")
         },
 
         clickOnTheWay() {
@@ -762,22 +762,32 @@ export default {
         },
 
         checkHackUser(item) {
-            if (item.site_id == null) {
-                return false;
+
+            if(item.site_id == this.$store.state.user_id && item.end == null && (item.status_id == 2 || item.status_id == 3)){
+                return true
+            }else{
+                return false
             }
 
-            if (
-                item.site_id == this.$store.state.user_id &&
-                item.end_time == null
-            ) {
-                if (item.status_id == 2 || item.status_id == 3) {
-                    return true;
-                }
-                return false;
-            } else {
-                return false;
-            }
         }
+
+
+
+            // if (item.site_id == null) {
+            //     return false;
+            // }
+
+            // if (
+            //     item.site_id == this.$store.state.user_id && item.end_time == null
+            // ) {
+            //     if (item.status_id == 2 || item.status_id == 3) {
+            //         return true;
+            //     }
+            //     return false;
+            // } else {
+            //     return false;
+            // }
+
     },
 
     computed: {
@@ -830,6 +840,8 @@ export default {
                 );
             }
         },
+
+
 
         chars() {
             return this.getCampaignUsersByUserIdEntosis(
