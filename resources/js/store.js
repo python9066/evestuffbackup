@@ -15,6 +15,7 @@ export default new Vuex.Store({
         periodbasisLink: "",
         token: "",
         user_id: 0,
+        user_name:"",
         campaignusers: [],
         campaignsystems: []
     },
@@ -57,6 +58,9 @@ export default new Vuex.Store({
         },
         SET_USER_ID(state, user_id) {
             state.user_id = user_id;
+        },
+        SET_USER_NAME(state, user_name) {
+            state.user_name = user_name;
         },
 
         SET_NOTIFICATIONS(state, notifications) {
@@ -192,6 +196,9 @@ export default new Vuex.Store({
 
         setUser_id({ commit }, user_id) {
             commit("SET_USER_ID", user_id);
+        },
+        setUser_name({ commit }, user_name) {
+            commit("SET_USER_NAME", user_name);
         },
 
         async getCampaignUsersRecords({ commit, state }, id) {

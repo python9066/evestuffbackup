@@ -52,13 +52,16 @@ class CreateOrReplaceNotificationViewCommand extends Command
         notifications.status_id AS 'status_id',
         statuses.name AS 'status_name',
         notifications.timestamp AS 'timestamp',
-        notifications.text as 'text'
+        notifications.text as 'text',
+        users.name AS 'user_name',
+        notifications.user_id AS 'user_id'
         FROM notifications
         JOIN systems ON systems.id = notifications.system_id
         JOIN constellations ON constellations.id = systems.constellation_id
         JOIN regions ON regions.id = systems.region_id
         JOIN items ON items.id = notifications.item_id
         JOIN statuses ON statuses.id = notifications.status_id
-        JOIN notification_types ON notification_types.id = notifications.notification_type_id");
+        JOIN notification_types ON notification_types.id = notifications.notification_type_id
+        LEFT JOIN users ON users.id = notifications.user_id");
     }
 }
