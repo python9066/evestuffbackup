@@ -333,6 +333,7 @@
                             @click="
                                 (item.status_id = list.value),
                                     (item.status_name = list.title),
+                                    (item.user_name = user_name),
                                     click(item)
                             "
                         >
@@ -452,7 +453,9 @@ export default {
                 { text: "ADM", value: "adm" },
                 { text: "Timestamp", value: "timestamp" },
                 { text: "Age", value: "count", sortable: false },
-                { text: "Status", value: "status_name", width: "20%",}
+                { text: "Status", value: "status_name", width: "15%",},
+                { text: "Edited By", value: "user_name", width: "5%", align: "start"}
+
 
                 // { text: "Vulernable End Time", value: "vulnerable_end_time" }
             ]
@@ -601,7 +604,8 @@ export default {
             }
 
             var request = {
-                status_id: item.status_id
+                status_id: item.status_id,
+                user_id: this.$store.state.user_id,
             };
             axios({
                 method: 'put', //you can set what request you want to be
@@ -687,6 +691,10 @@ export default {
             } else {
                 return 1;
             }
+        },
+
+        user_name(){
+            return this.$store.state.user_name
         },
 
         queriousCheck() {
