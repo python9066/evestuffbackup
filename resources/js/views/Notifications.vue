@@ -454,7 +454,7 @@ export default {
                 { text: "Timestamp", value: "timestamp" },
                 { text: "Age", value: "count", sortable: false },
                 { text: "Status", value: "status_name", width: "15%",},
-                { text: "Edited By", value: "user_name", width: "5%", align: "start"}
+                { text: "Edited By", value: "user_name", width: "6%", align: "start"}
 
 
                 // { text: "Vulernable End Time", value: "vulnerable_end_time" }
