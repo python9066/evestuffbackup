@@ -341,8 +341,8 @@ export default {
         },
 
         fixTime(item){
-            var time = moment(item.time).toISOString()
-            console.log(time)
+            return moment(item.time).toISOString()
+
         },
 
         barScoure(item) {
