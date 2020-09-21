@@ -384,6 +384,9 @@
                     </div>
                 </td>
             </template>
+            <template v-slot:item.user_name="{ item }">
+                <p> {{item.user_name}}</p>
+            </template>
         </v-data-table>
         <v-snackbar v-model="snack" :timeout="3000" :color="snackColor">
             {{ snackText }}
@@ -447,14 +450,14 @@ export default {
 
             headers: [
                 { text: "Region", value: "region_name", width: "10%" },
-                { text: "Constellation", value: "constellation_name" },
-                { text: "System", value: "system_name" },
-                { text: "Structure", value: "item_name" },
-                { text: "ADM", value: "adm" },
-                { text: "Timestamp", value: "timestamp" },
+                { text: "Constellation", value: "constellation_name", width: "8%" },
+                { text: "System", value: "system_name", width: "8%" },
+                { text: "Structure", value: "item_name", width: "8%" },
+                { text: "ADM", value: "adm", width: "5%" },
+                { text: "Timestamp", value: "timestamp", align: "center",width: "20%" },
                 { text: "Age", value: "count", sortable: false },
                 { text: "Status", value: "status_name", width: "15%",},
-                { text: "Edited By", value: "user_name", width: "6%", align: "start"}
+                { text: "Edited By", value: "user_name", width: "10%", align: "start"}
 
 
                 // { text: "Vulernable End Time", value: "vulnerable_end_time" }
