@@ -44,6 +44,9 @@ class Helper
                     'body' => $body
                 ]);
 
+                $statuscode = $response->getStatusCode();
+                dd($statuscode);
+
                 //dd($response);
                 $data = json_decode($response->getBody(), true);
                 $date = new DateTime();
