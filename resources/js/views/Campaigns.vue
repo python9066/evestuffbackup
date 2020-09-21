@@ -215,13 +215,6 @@
                 >
                     <template slot="countdown" slot-scope="scope">
                         <span
-                            v-if="scope.props.minutes > 9 && scope.props.hours > 0 && scope.props.hours > 0"
-                            class="red--text pl-3"
-                            >{{ scope.props.days }}:{{ scope.props.hours }}:{{
-                                scope.props.minutes
-                            }}:{{ scope.props.seconds }}</span
-                        >
-                        <span
                             v-if="scope.props.minutes < 9 && scope.props.hours == 0 && scope.props.hours == 0"
                             class="red--text pl-3"
                         >
@@ -240,6 +233,13 @@
                                 </v-chip>
                             </div>
                         </span>
+                        <span
+                           v-else
+                            class="red--text pl-3"
+                            >{{ scope.props.days }}:{{ scope.props.hours }}:{{
+                                scope.props.minutes
+                            }}:{{ scope.props.seconds }}</span
+                        >
                     </template>
                 </CountDowntimer>
                 <div v-if="item.status_id > 1">
