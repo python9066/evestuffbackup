@@ -215,14 +215,14 @@
                 >
                     <template slot="countdown" slot-scope="scope">
                         <span
-                            v-if="scope.props.minutes > 9"
+                            v-if="scope.props.minutes > 9 && scope.props.hours > 0 && scope.props.hours > 0"
                             class="red--text pl-3"
                             >{{ scope.props.days }}:{{ scope.props.hours }}:{{
                                 scope.props.minutes
                             }}:{{ scope.props.seconds }}</span
                         >
                         <span
-                            v-if="scope.props.minutes < 10"
+                            v-if="scope.props.minutes < 9 && scope.props.hours == 0 && scope.props.hours == 0"
                             class="red--text pl-3"
                         >
                             <div>
