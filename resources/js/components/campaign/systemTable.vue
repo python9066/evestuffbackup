@@ -826,8 +826,7 @@ export default {
         checkHackUser(item) {
             if (
                 item.site_id == this.$store.state.user_id &&
-                item.end == null &&
-                (item.status_id == 2 || item.status_id == 3)
+                item.end == null && item.status_id == 3
             ) {
                 return true;
             } else {
