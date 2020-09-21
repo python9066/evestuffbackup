@@ -406,7 +406,7 @@ export default {
 
            var time = moment(item.start, "YYYY-MM-DD hh:mm:ss")
            var utc = moment.utc(time).format("YYYY-MM-DD hh:mm:ss")
-           console.log(utc + " UTC");
+           return (utc + " UTC");
         },
 
         transform(props) {
