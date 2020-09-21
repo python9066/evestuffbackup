@@ -405,8 +405,7 @@ export default {
         fixStartTime(item){
 
 
-           var time= moment(item.start, "YYYY-MM-DD hh:mm:ss").format("YYYY-MM-DD hh:mm:ss")
-           console.log(time, "-", item.start)
+           return time= moment(item.start, "YYYY-MM-DD hh:mm:ss").format("YYYY-MM-DD hh:mm:ss")
         },
 
         transform(props) {
