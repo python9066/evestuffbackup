@@ -497,7 +497,7 @@ export default {
                 .add(sec, "seconds")
                 .add(min, "minutes")
                 .format("YYYY-MM-DD HH:mm:ss");
-            item.end_time = finishTime;
+            item.end = finishTime;
             this.$store.dispatch("updateCampaignSystem", item);
             var request = {
                 end_time: finishTime
