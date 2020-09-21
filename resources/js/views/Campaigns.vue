@@ -214,11 +214,34 @@
                     @campaignStart="campaignStart(item)"
                 >
                     <template slot="countdown" slot-scope="scope">
-                        <span class="red--text pl-3"
+                        <span
+                            v-if="scope.props.minutes > 9"
+                            class="red--text pl-3"
                             >{{ scope.props.days }}:{{ scope.props.hours }}:{{
                                 scope.props.minutes
                             }}:{{ scope.props.seconds }}</span
                         >
+                        <span
+                            v-if="scope.props.minutes < 10"
+                            class="red--text pl-3"
+                        >
+                            <div>
+                                <v-chip
+                                    class="ma-2 ma"
+                                    filter
+                                    pill
+                                    :to="'/campaign/' + item.id"
+                                    :disabled="pillDisabled(item)"
+                                    :color="pillColor(item)"
+                                >
+                                    {{ scope.props.days }}:{{
+                                        scope.props.hours
+                                    }}:{{ scope.props.minutes }}:{{
+                                        scope.props.seconds
+                                    }}
+                                </v-chip>
+                            </div>
+                        </span>
                     </template>
                 </CountDowntimer>
                 <div v-if="item.status_id > 1">
