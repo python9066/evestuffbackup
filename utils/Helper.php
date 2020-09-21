@@ -19,7 +19,7 @@ class Helper
 
     public static function authcheck()
     {
-        $auth = Auth::where('active',1)->get();
+        $auth = Auth::where('active', 1)->get();
         foreach ($auth as $auth) {
 
 
@@ -49,18 +49,20 @@ class Helper
 
 
                 //dd($response);
-                if($statuscode == 200){
-                $data = json_decode($response->getBody(), true);
-                $date = new DateTime();
-                $date = $date->modify("+15 minutes");
-                $auth->refresh_token = $data['refresh_token'];
-                $auth->access_token = $data['access_token'];
-                $auth->expire_date = $date;
-                $auth->save();
-                 }else{
-                     $auth->active = 0;
-                     $auth->save();
-                 }
+                if ($statuscode == 200) {
+                    $data = json_decode($response->getBody(), true);
+                    $date = new DateTime();
+                    $date = $date->modify("+15 minutes");
+                    $auth->refresh_token = $data['refresh_token'];
+                    $auth->access_token = $data['access_token'];
+                    $auth->expire_date = $date;
+                    $auth->save();
+                    return 1;
+                } else {
+                    $auth->active = 0;
+                    $auth->save();
+                    return 0;
+                }
             }
         }
     }
@@ -71,7 +73,7 @@ class Helper
 
         if ($type == "standing") {
             $token = Auth::where('flag_standing', 0)
-                        ->where('active',1)->first();
+                ->where('active', 1)->first();
             // $count = $token->count();
 
             if ($token == null) {
@@ -89,7 +91,7 @@ class Helper
             if ($token == null) {
                 Auth::where('flag_note', 1)->update(['flag_note' => 0]);
                 $token = Auth::where('flag_standing', 0)
-                        ->where('active',1)->first();
+                    ->where('active', 1)->first();
                 $token->update(['flag_note' => 1]);
                 $url = "https://esi.evetech.net/latest/characters/" . $token->char_id . "/notifications/";
                 // dd($url);
@@ -123,11 +125,11 @@ class Helper
     }
 
 
-    public static function clearRemember(){
+    public static function clearRemember()
+    {
 
         $now = now()->modify('-3 days');
-        User::where('updated_at','<',$now)->update(['remember_token' => null]);
-
+        User::where('updated_at', '<', $now)->update(['remember_token' => null]);
     }
 
 
@@ -142,26 +144,24 @@ class Helper
 
         $response = $http->request('GET', 'https://esi.evetech.net/ping');
         $status = $response->getBody();
-            if($status != "ok")
-            {
-                return 0;
-            }
+        if ($status != "ok") {
+            return 0;
+        }
 
         $headers = [
             'Accept' => "application/json",
         ];
 
-        $response = $http->request('GET', 'https://esi.evetech.net/latest/status/?datasource=tranquility',[
+        $response = $http->request('GET', 'https://esi.evetech.net/latest/status/?datasource=tranquility', [
             'headers' => $headers,
         ]);
-        $status =json_decode($response->getBody());
+        $status = json_decode($response->getBody());
         $status = $status->players;
 
-        if ($status < 10){
+        if ($status < 10) {
             return 0;
         }
 
         return 1;
-
     }
 }

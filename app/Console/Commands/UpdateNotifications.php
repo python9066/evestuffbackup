@@ -41,15 +41,17 @@ class UpdateNotifications extends Command
     public function handle()
     {
         $status = Helper::checkeve();
-        if ($status == 1){
-        $type = 'note';
-        Helper::authcheck();
-        $data = Helper::authpull($type);
-        $flag =Notifications::update($data);
-
-        if($flag == 1){
-            broadcast(new NotificationNew($flag))->toOthers();
-        }
+        if ($status == 1) {
+            $type = "note";
+            $ok = Helper::authcheck();
+            if ($ok == 1) {
+                $data = Helper::authpull($type);
+                $flag = Notifications::update($data);
+                // dd($flag);
+                if ($flag == 1) {
+                    broadcast(new NotificationNew($flag))->toOthers();
+                }
+            }
         }
     }
 }
