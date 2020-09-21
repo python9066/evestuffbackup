@@ -676,6 +676,7 @@ export default {
         statusClick(item) {
             var request = null
             if(item.status_id == 2){
+                item.end = null
 
             request = {
                 campaign_system_status_id: item.status_id,
