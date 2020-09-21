@@ -406,7 +406,7 @@ export default {
 
 
            var time= moment(item.start, "YYYY-MM-DD HH:MM:SS").format("YYYY-MM-DD HH:MM:SS")
-            console.log(time)
+           console.log(time - item.start)
         },
 
         transform(props) {
