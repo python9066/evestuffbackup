@@ -384,7 +384,7 @@
                     </div>
                 </td>
             </template>
-            <template v-slot:item.user_name="{ item }">
+            <template v-slot:item.user_name="{ item }" justify="center">
                 <p> {{item.user_name}}</p>
             </template>
         </v-data-table>
