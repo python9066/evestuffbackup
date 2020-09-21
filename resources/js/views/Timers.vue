@@ -88,7 +88,6 @@
             <template v-slot:item.count="{ item }">
                 <template>
                     <vue-countdown-timer
-                        @start_callback="startCallBack('event started')"
                         @end_callback="
                             (item.status = 1), handleCountdownEnd(item)
                         "
@@ -171,12 +170,6 @@ export default {
         // await this.matchLatesttoNames();
     },
     methods: {
-        startCallBack: function(x) {
-            // console.log(x);
-        },
-        endCallBack: function(x) {
-            // console.log(x);
-        },
         // async getTimerDataAll() {
         //     this.loading = true;
         //     await axios.get("/getTimerData").then(res => {

@@ -208,7 +208,7 @@
             <template v-slot:item.count="{ item }">
                 <CountDowntimer
                     v-if="item.status_id == 1"
-                    :start-time="item.start + ' UTC'"
+                    :start-time="item.start"
                     :end-text="'Window Closed'"
                     :interval="1000"
                     @campaignStart="campaignStart(item)"
