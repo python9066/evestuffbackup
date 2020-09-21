@@ -405,8 +405,7 @@ export default {
         fixStartTime(item){
 
            var time = moment(item.start, "YYYY-MM-DD hh:mm:ss")
-           var utc = moment.utc(time).format("YYYY-MM-DD hh:mm:ss")
-           console.log(utc);
+           return moment.utc(time).format("YYYY-MM-DD hh:mm:ss")
         },
 
         transform(props) {
