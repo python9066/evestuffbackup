@@ -405,7 +405,7 @@ export default {
         fixStartTime(item){
 
            var time = moment(item.start, "YYYY-MM-DD hh:mm:ss").format("YYYY-MM-DD hh:mm:ss")
-           utc = time.replace(/\-/g,'\/').replace(/[T|Z]/g,' ')
+          var  utc = time.replace(/\-/g,'\/').replace(/[T|Z]/g,' ')
            return (utc + " UTC");
         },
 
