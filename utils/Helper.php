@@ -45,7 +45,8 @@ class Helper
                 ]);
 
                 $statuscode = $response->getStatusCode();
-                dd($statuscode);
+                // dd($statuscode);
+
 
                 //dd($response);
                 $data = json_decode($response->getBody(), true);
