@@ -232,11 +232,9 @@
                                     pill
                                     :to="'/campaign/' + item.id"
                                     :disabled="pillDisabled(item)"
-                                    :color="pillColor(item)"
+                                    color="light-blue lighten-1"
                                 >
-                                    {{ scope.props.days }}:{{
-                                        scope.props.hours
-                                    }}:{{ scope.props.minutes }}:{{
+                                    {{ scope.props.minutes }}:{{
                                         scope.props.seconds
                                     }}
                                 </v-chip>
