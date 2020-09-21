@@ -200,7 +200,7 @@
 
 
                             >
-                            <strong> {{item.defenders_score * 100}} / {{item.attackers_score * 100}} </strong>
+                            <strong> {{item.defenders_score * 100}} / {{item.attackers_score * 100}}  :start-time="item.start + ' UTC'"</strong>
                         </v-progress-linear> -->
                 </span>
             </template>
@@ -208,7 +208,7 @@
             <template v-slot:item.count="{ item }">
                 <CountDowntimer
                     v-if="item.status_id == 1"
-                    :start-time="item.start + ' UTC'"
+                    :start-time="fixStartTime(item)"
                     :end-text="'Window Closed'"
                     :interval="1000"
                     @campaignStart="campaignStart(item)"
@@ -400,6 +400,11 @@ export default {
             }
 
             return "green darken-3";
+        },
+
+        fixStartTime(item){
+
+            console.log(item.start)
         },
 
         transform(props) {
