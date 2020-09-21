@@ -218,7 +218,6 @@
                             v-if="scope.props.minutes < 9 && scope.props.hours == 0 && scope.props.hours == 0"
                             class="red--text pl-3"
                         >
-                            <div>
                                 <v-chip
                                     class="ma-2 ma"
                                     filter
@@ -231,7 +230,6 @@
                                         scope.props.seconds
                                     }}
                                 </v-chip>
-                            </div>
                         </span>
                         <span
                            v-else
