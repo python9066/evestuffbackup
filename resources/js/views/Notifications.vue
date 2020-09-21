@@ -385,7 +385,7 @@
                 </td>
             </template>
             <template v-slot:item.user_name="{ item }" >
-                <p class ="d-flex justify-center"> {{item.user_name}}</p>
+                <p class ="d-flex align-center"> {{item.user_name}}</p>
             </template>
         </v-data-table>
         <v-snackbar v-model="snack" :timeout="3000" :color="snackColor">
