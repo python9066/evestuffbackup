@@ -374,7 +374,7 @@
                             :interval="1000"
                         >
                             <template slot="countdown" slot-scope="scope">
-                                <span class="red--text pl-3"
+                                <span class="blue--text pl-3"
                                     >{{ scope.props.minutes }}:{{
                                         scope.props.seconds
                                     }}</span
