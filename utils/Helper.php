@@ -57,6 +57,9 @@ class Helper
                 $auth->access_token = $data['access_token'];
                 $auth->expire_date = $date;
                 $auth->save();
+                 }else{
+                     $auth->active = 0;
+                     $auth->save();
                  }
             }
         }
