@@ -55,6 +55,8 @@ Route::middleware('auth:api')->group(function(){
     Route::put('/campaignsystems/{id}/{campid}', 'CampaignSystemsController@update');
     Route::delete('/campaignsystems/{id}/{campid}','CampaignSystemsController@destroy');
 
+    Route::get('/users','AuthController@index');
+
 
 
 });

@@ -5,10 +5,14 @@ namespace App\Models;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Spatie\Permission\Traits\HasRoles;
+use Spatie\Permission\Models\Permission;
+use Illuminate\Support\Facades\Auth;
 
 class User extends Authenticatable
 {
     use Notifiable;
+    use HasRoles;
 
 
 
@@ -38,5 +42,16 @@ class User extends Authenticatable
         'pri_grp' => 'integer',
     ];
 
+    public function getAllPermissionsAttribute() {
+        $permissions = [];
+          foreach (Permission::all() as $permission) {
+
+            //   dd($name);
+            if (Auth::user()->can($permission->name)) {
+              $permissions[] = $permission->name;
+            }
+          }
+          return $permissions;
+      }
 
 }

@@ -6,6 +6,7 @@ import Campagins from './views/Campaigns'
 import Campaign from './views/CampaignSystem'
 import Vtest from './views/test.vue'
 import Stest from './components/campaign/systemTable.vue'
+import AdminPanel from './views/AdminPanel.vue'
 
 Vue.use(Router)
 
@@ -44,9 +45,15 @@ export default new Router({
       },
 
       {
-        path: '/vtest',
+        path: '/dance',
         name: 'test',
         component: Vtest
+      },
+
+      {
+        path: '/pannel',
+        name: 'test',
+        component: AdminPanel
       },
 
 
