@@ -23,6 +23,7 @@ class NotificationController extends Controller
             $type = "note";
             $ok = Helper::authcheck();
             if ($ok == 1) {
+                dd($ok);
                 $data = Helper::authpull($type);
                 $flag = Notifications::update($data);
                 // dd($flag);
