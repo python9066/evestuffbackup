@@ -675,7 +675,10 @@ export default {
 
         statusClick(item) {
             var request = {
-                campaign_system_status_id: item.status_id
+                campaign_system_status_id: item.status_id,
+                end_time: null
+
+
             };
             axios({
                 method: "put", //you can set what request you want to be
