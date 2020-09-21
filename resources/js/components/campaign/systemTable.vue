@@ -674,12 +674,17 @@ export default {
         },
 
         statusClick(item) {
-            var request = {
+            var request = null
+            if(item.status_id == 2){
+
+            request = {
                 campaign_system_status_id: item.status_id,
                 end_time: null
-
-
-            };
+            }}else{
+                request = {
+                campaign_system_status_id: item.status_id,
+                }
+            }
             axios({
                 method: "put", //you can set what request you want to be
                 url:
