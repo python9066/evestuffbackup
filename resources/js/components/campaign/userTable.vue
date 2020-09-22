@@ -126,8 +126,10 @@ export default {
                 var sum = count *50;
                 if (sum > 400) {
                     return 400;
-                } else {
-                    return sum+50;
+                } else if(count < 2){
+                    return 70
+                } {
+                    return sum+70;
                 }
             }
             if (this.statusflag == 2) {
@@ -139,8 +141,10 @@ export default {
                 var sum = count *50;
                 if (sum > 400) {
                     return 400;
-                } else {
-                    return sum+50;
+                } else if(count < 2){
+                    return 70
+                } {
+                    return sum+70;
                 }
             }
             if (this.statusflag == 3) {
@@ -152,8 +156,10 @@ export default {
                 var sum = count *50;
                 if (sum > 400) {
                     return 400;
-                } else {
-                    return sum+50;
+                } else if(count < 2){
+                    return 70
+                } {
+                    return sum+70;
                 }
             }
             if (this.statusflag == 4) {
@@ -165,8 +171,10 @@ export default {
                 var sum = count *50;
                 if (sum > 400) {
                     return 400;
-                } else {
-                    return sum+50;
+                } else if(count < 2){
+                    return 70
+                } {
+                    return sum+70;
                 }
             } else {
                 var count = this.campaignusers.filter(
@@ -177,8 +185,10 @@ export default {
                 var sum = count *50;
                 if (sum > 400) {
                     return 400;
-                } else {
-                    return sum+50;
+                } else if(count < 2){
+                    return 70
+                } {
+                    return sum+70;
                 }
             }
         }
