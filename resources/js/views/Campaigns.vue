@@ -259,7 +259,7 @@
 </template>
 <script>
 import Axios from "axios";
-import moment, { now, utc } from "moment";
+import moment, { now, unix, utc } from "moment";
 import { stringify } from "querystring";
 import { mapState } from "vuex";
 function sleep(ms) {
@@ -342,7 +342,7 @@ export default {
 
         fixTime(item){
 
-            time = Date.parse(item.start).getTime()/1000
+            var time =  moment.unix(item.start)
             console.log(time)
 
         },
