@@ -275,8 +275,6 @@
                                 icon
                                 @click="
                                     (item.user_name = null),
-                                        (item.status_id = 1),
-                                        (item.status_name = 'New'),
                                         (item.main_name = null),
                                         removeCharNode(item)
                                 "
@@ -787,7 +785,6 @@ export default {
             this.$store.dispatch("updateCampaignUsers", data);
             var request = {
                 campaign_user_id: null,
-                campaign_system_status_id: 1
             };
 
             axios({
@@ -807,7 +804,6 @@ export default {
 
             var request1 = {
                 campaign_system_id: null,
-                status_id: 1
             };
             axios({
                 method: "PUT", //you can set what request you want to be
