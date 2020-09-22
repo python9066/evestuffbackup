@@ -341,7 +341,9 @@ export default {
         },
 
         fixTime(item){
-            return moment(item.time).toISOString()
+
+            let time = item.start.getTime()/1000;
+            console.log(time)
 
         },
 
