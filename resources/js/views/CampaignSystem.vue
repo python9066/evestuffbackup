@@ -365,7 +365,7 @@
                             </div></v-progress-circular
                         >
                     </div>
-                    <div class=" d-inline-flex">
+                    <div class=" d-inline-flex justify-content-end align-content-center">
                         <p> Finished Nodes - </p>
                         <v-progress-circular
                             class=" pr-3"
