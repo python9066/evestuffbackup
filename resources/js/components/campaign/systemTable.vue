@@ -370,7 +370,7 @@
                             :interval="1000"
                         >
                             <template slot="countdown" slot-scope="scope">
-                                <span class="blue--text pl-3"
+                                <span :class="hackCountDownTextColor(item)"
                                     >{{ scope.props.minutes }}:{{
                                         scope.props.seconds
                                     }}</span
@@ -817,6 +817,15 @@ export default {
             }else{
                 return "Do you Finish?"
             }
+        },
+
+        hackCountDownTextColor(item){
+            if(item.status_id == 7){
+                return "color: while pl-3"
+            }else{
+                return "color: blue pl-3"
+            }
+
         },
         removeCharNode(item) {
             var userId = item.user_id;
