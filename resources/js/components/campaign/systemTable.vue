@@ -274,7 +274,7 @@
                                         (item.main_name = null),
                                         removeCharNode(item)
                                 "
-                                color="red darken-2"
+                                color="orange darken-3"
                             >
                                 <v-icon small>fas fa-trash-alt</v-icon></v-btn
                             ></span
@@ -366,7 +366,7 @@
                         <CountDowntimer
                             v-else
                             :start-time="moment.utc(item.end).unix()"
-                            :end-text="'Did you finish?'"
+                            :end-text="endText(item)""'Did you finish?'"
                             :interval="1000"
                         >
                             <template slot="countdown" slot-scope="scope">
@@ -377,7 +377,7 @@
                                 >
                             </template>
                             <template slot="end-text" slot-scope="scope">
-                                <span style="color: green">{{
+                                <span :style="hackTextColor(item)">{{
                                     scope.props.endText
                                 }}</span>
                             </template>
@@ -801,6 +801,22 @@ export default {
             });
 
             this.$store.dispatch("getCampaignSystemsRecords");
+        },
+
+        hackTextColor(item){
+            if(item.status_id == 7){
+                return "color: while"
+            }else{
+                return "color: green"
+            }
+        },
+
+        endText(item){
+            if(item.status_id == 7){
+                return "Do they Finish?"
+            }else{
+                return "Do you Finish?"
+            }
         },
         removeCharNode(item) {
             var userId = item.user_id;
