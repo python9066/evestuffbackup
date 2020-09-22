@@ -341,9 +341,9 @@ export default {
         },
 
         fixTime(item){
-
+        var fuck = moment.utc(Date(item.start))
            var utc = moment(item.start).unix()
-           console.log(item.start, " - ",utc)
+           console.log(item.start, " - ",utc, " - ",fuck)
             // return utc.unix()
 
 
