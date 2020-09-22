@@ -365,11 +365,11 @@
                             </div></v-progress-circular
                         >
                     </div>
-                    <div class=" ml-auto d-inline-flex">
+                    <v-spacer></v-spacer>
+                    <div v-if="campaign.total_node > 0" class=" ml-auto d-inline-flex">
                         <p> Finished Nodes - </p>
                         <v-progress-circular
                             class=" pr-3"
-                            v-if="campaign.total_node > 0"
                             :transitionDuration="5000"
                             :radius="25"
                             :strokeWidth="5"
@@ -384,7 +384,6 @@
                         >
                         <v-progress-circular
                             class=" pr-3"
-                            v-if="campaign.total_node > 0"
                             :transitionDuration="5000"
                             :radius="25"
                             :strokeWidth="5"
