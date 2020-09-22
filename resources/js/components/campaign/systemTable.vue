@@ -370,7 +370,7 @@
                             :interval="1000"
                         >
                             <template slot="countdown" slot-scope="scope">
-                                <span class="text-color: blue pl-3"
+                                <span :class="hackCountDownTextColor(item)"
                                     >{{ scope.props.minutes }}:{{
                                         scope.props.seconds
                                     }}</span
@@ -882,9 +882,9 @@ export default {
 
         hackCountDownTextColor(item){
             if(item.status_id == 7){
-                return "text-color: while pl-3"
+                return "white--text pl-3"
             }else{
-                return "text-color: blue pl-3"
+                return "blue--text pl-3"
             }
 
         },
