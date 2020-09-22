@@ -1017,7 +1017,7 @@ export default {
 <style>
 
 .style-1 {
-  background-color: rgb(215,215,44)
+  background-color: rgb(30,30,30,1)
 }
 .style-2 {
   background-color: rgb(114,114,67)
