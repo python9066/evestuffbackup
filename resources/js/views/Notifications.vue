@@ -204,7 +204,7 @@
             </template>
             <template v-slot:item.count="{ item }">
                 <VueCountUptimer
-                    :start-time="item.timestamp + ' UTC'"
+                    :start-time="moment.utc(item.timestamp).unix()"
                     :end-text="'Window Closed'"
                     :interval="1000"
                     @timecheck="timecheck(item)"

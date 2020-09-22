@@ -287,13 +287,13 @@ export default new Vuex.Store({
 
         getHackingNodeCountByCampaign: state => id => {
             return state.campaignsystems.filter(
-                sys => sys.campaign_id == id && sys.status_id != 1 && sys.status_id !=7 && sys.status_id !=6
+                sys => sys.campaign_id == id && sys.status_id != 1 && sys.status_id < 5
             ).length
         },
 
         getRedHackingNodeCountByCampaign: state => id => {
             return state.campaignsystems.filter(
-                sys => sys.campaign_id == id && sys.status_id == 7
+                sys => sys.campaign_id == id && (sys.status_id == 7 || sys.status_id == 5)
             ).length
         },
 
@@ -306,13 +306,13 @@ export default new Vuex.Store({
 
         getHackingNodeCountBySystem: state => payload => {
             return state.campaignsystems.filter(
-                sys => sys.system_id == payload.system_id && sys.status_id != 1 && sys.campaign_id == payload.campaign_id && sys.status_id !=7 && sys.status_id !=6
+                sys => sys.system_id == payload.system_id && sys.status_id != 1 && sys.campaign_id == payload.campaign_id && sys.status_id < 5
             ).length
         },
 
         getRedHackingNodeCountBySystem: state => payload => {
             return state.campaignsystems.filter(
-                sys => sys.system_id == payload.system_id && sys.campaign_id == payload.campaign_id && sys.status_id == 7
+                sys => sys.system_id == payload.system_id && sys.campaign_id == payload.campaign_id && (sys.status_id == 7 || sys.status_id == 5)
             ).length
         },
 

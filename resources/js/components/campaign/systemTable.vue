@@ -10,6 +10,7 @@
                     :sort-desc="[true, false]"
                     show-expand
                     :expanded.sync="expanded"
+                    :item-class="itemRowBackground"
                     hide-default-footer
                     disable-pagination
                     class="elevation-12"
@@ -20,17 +21,15 @@
                             flat
                             max-width
                             elevation="24"
-                            color="grey darken-4">
-
+                            color="grey darken-4"
+                        >
                             <v-toolbar-title
                                 max-width
                                 class="d-flex justify-space-between align-center"
                                 style=" width: 100%;"
                             >
-                                <div>
-                                    {{ system_name }} -
-                                </div>
-                                 <v-spacer></v-spacer>
+                                <div>{{ system_name }} -</div>
+                                <v-spacer></v-spacer>
                                 <div>
                                     <v-progress-circular
                                         v-if="nodeCount > 0"
@@ -78,7 +77,7 @@
                                         >
                                             <v-chip
                                                 dark
-                                                color="teal"
+                                                :color="filterCharsOnTheWay"
                                                 v-bind="attrs"
                                                 v-on="on"
                                                 small
@@ -111,7 +110,7 @@
                                         >
                                             <v-chip
                                                 dark
-                                                color="teal"
+                                                :color="filterCharsReadyToGo"
                                                 v-bind="attrs"
                                                 v-on="on"
                                                 small
@@ -161,6 +160,8 @@
                                                     label="Node"
                                                     placeholder="Enter Node"
                                                     flat
+                                                    v-mask="'AA##'"
+                                                    autofocus
                                                     v-model="nodeText"
                                                 ></v-text-field>
                                             </v-card-title>
@@ -206,7 +207,7 @@
                                         v-bind="attrs"
                                         v-on="on"
                                         pill
-                                        outlined
+                                        :outlined="pillOutlined(item)"
                                         small
                                         :color="pillColor(item)"
                                     >
@@ -233,10 +234,7 @@
                         </v-menu>
                     </template>
                     <template v-slot:item.user_name="{ item }">
-                        <v-menu
-                            offset-y
-                            v-if="item.user_name == null && charCount != 0"
-                        >
+                        <v-menu offset-y v-if="checkShowAdd(item)">
                             <template v-slot:activator="{ on, attrs }">
                                 <div>
                                     <v-chip
@@ -273,12 +271,10 @@
                                 icon
                                 @click="
                                     (item.user_name = null),
-                                        (item.status_id = 1),
-                                        (item.status_name = 'New'),
                                         (item.main_name = null),
                                         removeCharNode(item)
                                 "
-                                color="red darken-2"
+                                color="orange darken-3"
                             >
                                 <v-icon small>fas fa-trash-alt</v-icon></v-btn
                             ></span
@@ -286,8 +282,8 @@
                     </template>
                     <template v-slot:item.count="{ item }">
                         <VueCountUptimer
-                            v-if="item.status_id == 1 && item.end_time == null"
-                            :start-time="item.start + ' UTC'"
+                            v-if="item.status_id < 3 && item.end_time == null"
+                            :start-time="moment.utc(item.start).unix()"
                             :end-text="'Window Closed'"
                             :interval="1000"
                         >
@@ -316,7 +312,7 @@
                                     v-bind="attrs"
                                     v-on="on"
                                     pill
-                                    outlined
+                                    :outlined="pillOutlined(item)"
                                     @click="timerShown = true"
                                     small
                                     color="warning"
@@ -332,6 +328,7 @@
                                             v-model="hackTime"
                                             label="Hack Time mm:ss"
                                             v-mask="'##:##'"
+                                            autofocus
                                             placeholder="mm:ss"
                                         ></v-text-field>
                                     </v-card-title>
@@ -369,23 +366,84 @@
                         </v-menu>
                         <CountDowntimer
                             v-else
-                            :start-time="item.end + ' UTC'"
-                            :end-text="'Did you finish?'"
+                            :start-time="moment.utc(item.end).unix()"
+                            :end-text="endText(item)"
                             :interval="1000"
                         >
                             <template slot="countdown" slot-scope="scope">
-                                <span class="red--text pl-3"
+                                <span :class="hackCountDownTextColor(item)"
                                     >{{ scope.props.minutes }}:{{
                                         scope.props.seconds
                                     }}</span
                                 >
+                                <v-menu
+                            :close-on-content-click="false"
+                            :value="timerShown"
+                        >
+                            <template v-slot:activator="{ on, attrs }">
+                                <v-btn
+                                    v-if="checkHackUserEdit(item)"
+                                    v-bind="attrs"
+                                    v-on="on"
+                                    @click="timerShown = true, hackTime = null"
+                                    icon
+                                    color="warning"
+                                >
+                                    <v-icon x-small>fas fa-edit</v-icon>
+                                </v-btn>
+                            </template>
+
+                            <template>
+                                <v-card tile min-height="150px">
+                                    <v-card-title class=" pb-0">
+                                        <v-text-field
+                                            v-model="hackTime"
+                                            label="Hack Time mm:ss"
+                                            autofocus
+                                            v-mask="'##:##'"
+                                            placeholder="mm:ss"
+                                        ></v-text-field>
+                                    </v-card-title>
+                                    <v-card-text>
+                                        <v-btn
+                                            icon
+                                            fixed
+                                            left
+                                            color="success"
+                                            @click="
+                                                (timerShown = false),
+                                                    addHacktime(item)
+                                            "
+                                            ><v-icon
+                                                >fas fa-check</v-icon
+                                            ></v-btn
+                                        >
+
+                                        <v-btn
+                                            fixed
+                                            right
+                                            icon
+                                            color="warning"
+                                            @click="
+                                                (timerShown = false),
+                                                    (hackTime = null)
+                                            "
+                                            ><v-icon
+                                                >fas fa-times</v-icon
+                                            ></v-btn
+                                        >
+                                    </v-card-text>
+                                </v-card>
+                            </template>
+                        </v-menu>
                             </template>
                             <template slot="end-text" slot-scope="scope">
-                                <span style="color: green">{{
+                                <span :style="hackTextColor(item)">{{
                                     scope.props.endText
                                 }}</span>
                             </template>
                         </CountDowntimer>
+
                     </template>
 
                     <template v-slot:expanded-item="{ headers, item }">
@@ -394,7 +452,7 @@
                                 <v-col class="align-center">
                                     <v-textarea
                                         v-bind:value="item.text"
-                                        label="Place for you all to stick notes"
+                                        label="Where you can put any notes"
                                         outlined
                                         shaped
                                         @change="
@@ -417,7 +475,7 @@
                     </template>
 
                     <template slot="no-data">
-                        No nodes have showen up here..... yet!!!!
+                        No nodes have shown up here..... yet!!!!
                     </template>
                 </v-data-table>
             </v-card-text>
@@ -475,6 +533,7 @@ export default {
             ],
             charOnTheWay: 0,
             charReadyToGo: 0,
+            OnTheWayColor: "teal",
             nodeText: "",
             addShown: false,
             timerShown: false,
@@ -497,7 +556,7 @@ export default {
                 .add(sec, "seconds")
                 .add(min, "minutes")
                 .format("YYYY-MM-DD HH:mm:ss");
-            item.end_time = finishTime;
+            item.end = finishTime;
             this.$store.dispatch("updateCampaignSystem", item);
             var request = {
                 end_time: finishTime
@@ -522,6 +581,7 @@ export default {
         },
 
         clickOnTheWay() {
+            this.OnTheWayColor = "green";
             var item = {
                 id: this.charOnTheWay,
                 status_id: 2,
@@ -673,10 +733,30 @@ export default {
             });
         },
 
+        itemRowBackground: function(item) {
+            return item.status_id == 7 ? "style-1" : "style-2";
+        },
+
         statusClick(item) {
-            var request = {
-                campaign_system_status_id: item.status_id
-            };
+            var request = null;
+            if (item.status_id == 2) {
+                item.end = null;
+
+                request = {
+                    campaign_system_status_id: item.status_id,
+                    end_time: null
+                };
+            } else if (item.status_id == 4) {
+                this.removeCharNode(item);
+                item.user_name = null;
+                item.main_name = null;
+                return;
+            } else {
+                request = {
+                    campaign_system_status_id: item.status_id
+                };
+            }
+
             axios({
                 method: "put", //you can set what request you want to be
                 url:
@@ -691,6 +771,28 @@ export default {
                     "Content-Type": "application/json"
                 }
             });
+        },
+
+        checkShowAdd(item) {
+            if (
+                item.user_name == null &&
+                this.charCount != 0 &&
+                item.status_id != 4 &&
+                item.status_id != 5 &&
+                item.status_id != 7
+            ) {
+                return true;
+            } else {
+                return false;
+            }
+        },
+        pillOutlined(item){
+
+            if (item.status_id == 7){
+                return false
+            }else{
+                return true
+            }
         },
 
         pillColor(item) {
@@ -713,7 +815,7 @@ export default {
                 return "deep-orange accent-3";
             }
             if (item.status_id == 7) {
-                return "red darken-4";
+                return "#801916";
             }
         },
         updatetext(payload, item) {
@@ -763,6 +865,31 @@ export default {
 
             this.$store.dispatch("getCampaignSystemsRecords");
         },
+
+        hackTextColor(item){
+            if(item.status_id == 7){
+                return "color: while"
+            }else{
+                return "color: green"
+            }
+        },
+
+        endText(item){
+            if(item.status_id == 7){
+                return "Do they Finish?"
+            }else{
+                return "Do you Finish?"
+            }
+        },
+
+        hackCountDownTextColor(item){
+            if(item.status_id == 7){
+                return "white--text pl-3"
+            }else{
+                return "blue--text pl-3"
+            }
+
+        },
         removeCharNode(item) {
             var userId = item.user_id;
             item.user_id = null;
@@ -774,10 +901,17 @@ export default {
                 user_status_name: "None"
             };
             this.$store.dispatch("updateCampaignUsers", data);
-            var request = {
-                campaign_user_id: null,
-                campaign_system_status_id: 1
-            };
+            var request = null;
+            if (item.status_id == 4) {
+                request = {
+                    campaign_user_id: null,
+                    campaign_system_status_id: item.status_id
+                };
+            } else {
+                request = {
+                    campaign_user_id: null
+                };
+            }
 
             axios({
                 method: "PUT", //you can set what request you want to be
@@ -795,8 +929,7 @@ export default {
             });
 
             var request1 = {
-                campaign_system_id: null,
-                status_id: 1
+                campaign_system_id: null
             };
             axios({
                 method: "PUT", //you can set what request you want to be
@@ -818,8 +951,23 @@ export default {
             if (
                 item.site_id == this.$store.state.user_id &&
                 item.end == null &&
-                (item.status_id == 2 || item.status_id == 3)
+                item.status_id == 3
             ) {
+                return true;
+            } else if (item.end == null && item.status_id == 7) {
+                return true;
+            } else {
+                return false;
+            }
+        },
+
+        checkHackUserEdit(item) {
+            if (
+                item.site_id == this.$store.state.user_id &&
+                item.status_id == 3
+            ) {
+                return true;
+            } else if (item.status_id == 7) {
                 return true;
             } else {
                 return false;
@@ -942,9 +1090,44 @@ export default {
                 campaign_id: this.$route.params.id
             };
             return this.getNodeValue(payload);
+        },
+
+        filterCharsOnTheWay() {
+            var count = this.getCampaignUsersByUserIdEntosis(
+                this.$store.state.user_id
+            ).filter(
+                char => char.status_id == 2 && char.system_id == this.system_id
+            ).length;
+
+            if (count > 0) {
+                return "green";
+            } else {
+                return "red";
+            }
+        },
+
+        filterCharsReadyToGo() {
+            var count = this.getCampaignUsersByUserIdEntosis(
+                this.$store.state.user_id
+            ).filter(
+                char => char.status_id == 3 && char.system_id == this.system_id
+            ).length;
+
+            if (count > 0) {
+                return "green";
+            } else {
+                return "red";
+            }
         }
     }
 };
 </script>
 
-<style></style>
+<style>
+
+.style-2 {
+  background-color: rgb(30,30,30,1)
+}
+.style-1 {
+  background-color: rgb(184, 22, 35)
+}</style>

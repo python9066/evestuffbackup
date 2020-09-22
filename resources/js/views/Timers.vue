@@ -88,12 +88,11 @@
             <template v-slot:item.count="{ item }">
                 <template>
                     <vue-countdown-timer
-                        @start_callback="startCallBack('event started')"
                         @end_callback="
                             (item.status = 1), handleCountdownEnd(item)
                         "
-                        :start-time="item.start + ' UTC'"
-                        :end-time="item.end + ' UTC'"
+                        :start-time="moment.utc(item.start).unix()"
+                        :end-time="moment.utc(item.end).unix()"
                         :end-text="'Window Closed'"
                         :interval="1000"
                     >
@@ -171,12 +170,6 @@ export default {
         // await this.matchLatesttoNames();
     },
     methods: {
-        startCallBack: function(x) {
-            // console.log(x);
-        },
-        endCallBack: function(x) {
-            // console.log(x);
-        },
         // async getTimerDataAll() {
         //     this.loading = true;
         //     await axios.get("/getTimerData").then(res => {

@@ -74,7 +74,7 @@ class Helper
         if ($type == "standing") {
             $token = Auth::where('flag_standing', 0)
                 ->where('active', 1)->first();
-            dd($token);
+            // dd($token);
 
             if ($token == null) {
                 Auth::where('flag_standing', 1)->update(['flag_standing' => 0]);

@@ -73,6 +73,7 @@
             :search="search"
             :sort-desc="[false, true]"
             multi-sort
+            @click:row="rowClick($event)"
             class="elevation-1"
         >
             <template slot="no-data">
@@ -200,7 +201,7 @@
 
 
                             >
-                            <strong> {{item.defenders_score * 100}} / {{item.attackers_score * 100}} </strong>
+                            <strong> {{item.defenders_score * 100}} / {{item.attackers_score * 100}} :start-time="item.start + ' UTC'" </strong>
                         </v-progress-linear> -->
                 </span>
             </template>
@@ -208,13 +209,32 @@
             <template v-slot:item.count="{ item }">
                 <CountDowntimer
                     v-if="item.status_id == 1"
-                    :start-time="item.start + ' UTC'"
+                    :start-time="moment.utc(item.start).unix()"
                     :end-text="'Window Closed'"
                     :interval="1000"
                     @campaignStart="campaignStart(item)"
                 >
                     <template slot="countdown" slot-scope="scope">
-                        <span class="red--text pl-3"
+                        <span
+                            v-if="scope.props.minutes < 10 && scope.props.hours == 0 && scope.props.hours == 0 && scope.props.days ==0"
+                            class="red--text pl-3"
+                        >
+                                <v-chip
+                                    class="ma-2 ma"
+                                    filter
+                                    pill
+                                    :to="'/campaign/' + item.id"
+                                    :disabled="pillDisabled(item)"
+                                    color="light-blue lighten-1"
+                                >
+                                    {{ scope.props.minutes }}:{{
+                                        scope.props.seconds
+                                    }}
+                                </v-chip>
+                        </span>
+                        <span
+                           v-else
+                            class="red--text pl-3"
                             >{{ scope.props.days }}:{{ scope.props.hours }}:{{
                                 scope.props.minutes
                             }}:{{ scope.props.seconds }}</span
@@ -240,7 +260,7 @@
 </template>
 <script>
 import Axios from "axios";
-import moment, { now, utc } from "moment";
+import moment, { now, unix, utc } from "moment";
 import { stringify } from "querystring";
 import { mapState } from "vuex";
 function sleep(ms) {
@@ -319,6 +339,19 @@ export default {
                     "Content-Type": "application/json"
                 }
             });
+        },
+
+        fixTime(item){
+        return moment.utc(item.start).unix()// return utc.unix()
+        },
+
+
+        rowClick(item){
+
+            var left = (moment.utc(item.start).unix() -  moment.utc().unix())
+            if(left < 601 && item.status_id < 3){
+                this.$router.push({ path: `/campaign/${item.id}` }) // -> /user/123
+            }
         },
 
         barScoure(item) {

@@ -21,7 +21,10 @@
                             {{ this.campaign.alliance }}
                         </h1>
                     </v-card-title>
-                    <div class="d-flex full-width align-content-center">
+                    <div
+                        class="d-flex full-width align-content-center"
+                        v-if="this.campaign.status_id > 1"
+                    >
                         <v-icon
                             v-if="
                                 this.campaign.defenders_score >
@@ -118,6 +121,26 @@
                             fas fa-minus-circle
                         </v-icon>
                     </div>
+                    <div
+                        class="d-flex full-width align-content-center"
+                        v-if="this.campaign.status_id == 1"
+                    >
+                        <CountDowntimer
+                            :start-time="moment.utc(this.campaign.start).unix()"
+                            :end-text="'Window Closed'"
+                            :interval="1000"
+                            @campaignStart="campaignStart()"
+                        >
+                            <template slot="countdown" slot-scope="scope">
+                                <span
+                                    class="red--text pl-3 text-h3 justify-content"
+                                    >{{ scope.props.minutes }}:{{
+                                        scope.props.seconds
+                                    }}</span
+                                >
+                            </template>
+                        </CountDowntimer>
+                    </div>
                 </v-card>
             </v-col>
         </v-row>
@@ -127,8 +150,11 @@
             justify="space-around"
         >
             <v-col md="10">
-                <v-card class="pa-2 d-flex justify-space-between full-width align-center"  tile>
-                    <div class="flex-shrink-1" >
+                <v-card
+                    class="pa-2 d-flex justify-space-between full-width align-center"
+                    tile
+                >
+                    <div class="flex-shrink-1">
                         <v-btn
                             class="mr-4"
                             color="blue darken-2"
@@ -167,6 +193,7 @@
                                                 v-model="newCharName"
                                                 label="Char Name"
                                                 required
+                                                autofocus
                                                 :rules="newNameRules"
                                             ></v-text-field>
                                             <v-select
@@ -304,45 +331,85 @@
                         </v-menu>
                     </div>
                     <v-spacer></v-spacer>
-                    <div>
-
-                            <v-progress-circular
-                                class=" pr-3"
-                                v-if="nodeCountAll > 0"
-                                :transitionDuration="5000"
-                                :radius="25"
-                                :strokeWidth="5"
-                                :value="
-                                    (nodeCountHackingCountAll / nodeCountAll) *
-                                        100 || 0.000001
-                                "
-                            >
-                                <div class="caption">
-                                    {{ nodeCountHackingCountAll }} /
-                                    {{ nodeCountAll }}
-                                </div></v-progress-circular
-                            >
-                            <v-progress-circular
-                                v-if="nodeCountAll > 0"
-                                :transitionDuration="5000"
-                                :radius="25"
-                                :strokeWidth="5"
-                                strokeColor="#FF3D00"
-                                :value="
-                                    (nodeRedCountHackingCountAll /
-                                        nodeCountAll) *
-                                        100 || 0.000001
-                                "
-                            >
-                                <div class="caption">
-                                    {{ nodeRedCountHackingCountAll }} /
-                                    {{ nodeCountAll }}
-                                </div></v-progress-circular
-                            >
+                    <div class=" ml-auto d-inline-flex align-center"
+                    v-if="nodeCountAll > 0">
+                        <v-divider
+                            class="mx-4 my-0"
+                            vertical
+                        ></v-divider>
+                        <p class=" pt-4 pr-3">Active Nodes -</p>
+                        <v-progress-circular
+                            class=" pr-3"
+                            :transitionDuration="5000"
+                            :radius="25"
+                            :strokeWidth="5"
+                            :value="
+                                (nodeCountHackingCountAll / nodeCountAll) *
+                                    100 || 0.000001
+                            "
+                        >
+                            <div class="caption">
+                                {{ nodeCountHackingCountAll }} /
+                                {{ nodeCountAll }}
+                            </div></v-progress-circular
+                        >
+                        <v-progress-circular
+                            :transitionDuration="5000"
+                            :radius="25"
+                            :strokeWidth="5"
+                            strokeColor="#FF3D00"
+                            :value="
+                                (nodeRedCountHackingCountAll / nodeCountAll) *
+                                    100 || 0.000001
+                            "
+                        >
+                            <div class="caption">
+                                {{ nodeRedCountHackingCountAll }} /
+                                {{ nodeCountAll }}
+                            </div></v-progress-circular
+                        >
                     </div>
-                    <v-spacer></v-spacer>
-                    <v-spacer></v-spacer>
-
+                    <div
+                        v-if="campaign.total_node > 0"
+                        class=" ml-auto d-inline-flex align-center"
+                    >
+                        <v-divider
+                            class="mx-4 my-0"
+                            vertical
+                        ></v-divider>
+                        <p class=" pt-4 pr-3">Finished Nodes -</p>
+                        <v-progress-circular
+                            class=" pr-3"
+                            :transitionDuration="5000"
+                            :radius="25"
+                            :strokeWidth="5"
+                            :value="
+                                (campaign.b_node / campaign.total_node) * 100 ||
+                                    0.000001
+                            "
+                        >
+                            <div class="caption">
+                                {{ campaign.b_node }} /
+                                {{ campaign.total_node }}
+                            </div></v-progress-circular
+                        >
+                        <v-progress-circular
+                            class=" pr-3"
+                            :transitionDuration="5000"
+                            :radius="25"
+                            :strokeWidth="5"
+                            strokeColor="#FF3D00"
+                            :value="
+                                (campaign.r_node / campaign.total_node) * 100 ||
+                                    0.000001
+                            "
+                        >
+                            <div class="caption">
+                                {{ campaign.r_node }} /
+                                {{ campaign.total_node }}
+                            </div></v-progress-circular
+                        >
+                    </div>
                 </v-card>
             </v-col>
         </v-row>
@@ -647,6 +714,14 @@ export default {
                 this.$route.params.id
             );
             this.$store.dispatch("getCampaignSystemsRecords");
+        },
+        campaignStart() {
+            var data = {
+                id: this.campaign.id,
+                status_id: 2,
+                status_name: "Active"
+            };
+            this.$store.dispatch("updateCampaignSystem", data);
         }
     },
 
