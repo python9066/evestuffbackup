@@ -331,11 +331,12 @@
                         </v-menu>
                     </div>
                     <v-spacer></v-spacer>
-                    <div class="ml-auto mr-auto">
+                    <div class=" ml-auto d-inline-flex align-center">
                         <v-divider
                             class="mx-4 my-0"
                             vertical
                         ></v-divider>
+                        <p class=" pt-4 pr-3">Active Nodes -</p>
                         <v-progress-circular
                             class=" pr-3"
                             v-if="nodeCountAll > 0"
