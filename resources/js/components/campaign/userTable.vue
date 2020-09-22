@@ -126,9 +126,11 @@ export default {
                 var sum = count *40;
                 if (sum > 400) {
                     return 400;
-                } else if(count < 2){
+                } else if(count == 1){
                     return 70
-                } {
+                } else if(count == 2){
+                    return 100
+                }else {
                     return sum;
                 }
             }
@@ -141,9 +143,11 @@ export default {
                 var sum = count *40;
                 if (sum > 400) {
                     return 400;
-                } else if(count < 2){
+                } else if(count == 1){
                     return 70
-                } {
+                } else if(count == 2){
+                    return 100
+                }else {
                     return sum;
                 }
             }
@@ -156,9 +160,11 @@ export default {
                 var sum = count *40;
                 if (sum > 400) {
                     return 400;
-                } else if(count < 2){
+                } else if(count == 1){
                     return 70
-                } {
+                } else if(count == 2){
+                    return 100
+                }else {
                     return sum;
                 }
             }
@@ -171,9 +177,11 @@ export default {
                 var sum = count *40;
                 if (sum > 400) {
                     return 400;
-                } else if(count < 2){
+                } else if(count == 1){
                     return 70
-                } {
+                } else if(count == 2){
+                    return 100
+                }else {
                     return sum;
                 }
             } else {
@@ -185,9 +193,11 @@ export default {
                 var sum = count *40;
                 if (sum > 400) {
                     return 400;
-                } else if(count < 2){
+                } else if(count == 1){
                     return 70
-                } {
+                } else if(count == 2){
+                    return 100
+                }else {
                     return sum;
                 }
             }
