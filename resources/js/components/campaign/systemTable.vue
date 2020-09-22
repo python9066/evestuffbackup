@@ -328,6 +328,7 @@
                                             v-model="hackTime"
                                             label="Hack Time mm:ss"
                                             v-mask="'##:##'"
+                                            autofocus
                                             placeholder="mm:ss"
                                         ></v-text-field>
                                     </v-card-title>
@@ -398,6 +399,7 @@
                                         <v-text-field
                                             v-model="hackTime"
                                             label="Hack Time mm:ss"
+                                            autofocus
                                             v-mask="'##:##'"
                                             placeholder="mm:ss"
                                         ></v-text-field>
@@ -408,8 +410,6 @@
                                             fixed
                                             left
                                             color="success"
-                                            @keypress.enter="(timerShown = false),
-                                                    addHacktime(item)"
                                             @click="
                                                 (timerShown = false),
                                                     addHacktime(item)
@@ -424,8 +424,6 @@
                                             right
                                             icon
                                             color="warning"
-                                            @keydown.esc="(timerShown = false),
-                                                    (hackTime = null)"
                                             @click="
                                                 (timerShown = false),
                                                     (hackTime = null)
