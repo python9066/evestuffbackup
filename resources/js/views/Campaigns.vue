@@ -346,8 +346,11 @@ export default {
         },
 
 
-        rowClick(payload){
-            console.log(payload.start)
+        rowClick(item){
+
+            var start = moment.utc(item.start).unix()
+            var now = moment.utc().unix()
+            console.log(start," - ", now)
         },
 
         barScoure(item) {
