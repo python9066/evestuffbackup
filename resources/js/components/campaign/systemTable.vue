@@ -161,6 +161,8 @@
                                                     label="Node"
                                                     placeholder="Enter Node"
                                                     flat
+                                                    v-mask="'AA##'"
+                                                    autofocus
                                                     v-model="nodeText"
                                                 ></v-text-field>
                                             </v-card-title>
