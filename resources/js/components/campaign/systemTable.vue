@@ -752,7 +752,7 @@ export default {
                 return "deep-orange accent-3";
             }
             if (item.status_id == 7) {
-                return "red darken-4";
+                return "orange lighten-1";
             }
         },
         updatetext(payload, item) {
