@@ -365,7 +365,7 @@
                             </div></v-progress-circular
                         >
                     </div>
-                    <div>
+                    <div class=" d-inline-flex">
                         <p> Finished Nodes - </p>
                         <v-progress-circular
                             class=" pr-3"
@@ -383,17 +383,17 @@
                             </div></v-progress-circular
                         >
                         <v-progress-circular
-                            v-if="nodeCountAll > 0"
+                            class=" pr-3"
+                            v-if="campaign.total_node > 0"
                             :transitionDuration="5000"
                             :radius="25"
                             :strokeWidth="5"
-                            strokeColor="#FF3D00"
                             :value="
-                                (campaign.r_node / campaign.r_node) || 0.000001
+                                (campaign.b_node / campaign.b_node) || 0.000001
                             "
                         >
                             <div class="caption">
-                                {{ campaign.r_node }} /
+                                {{ campaign.b_node }} /
                                 {{ campaign.total_node }}
                             </div></v-progress-circular
                         >
