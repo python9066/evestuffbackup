@@ -227,7 +227,7 @@
                                     color="light-blue lighten-1"
                                 >
                                     {{ scope.props.minutes }}:{{
-                                        scope.props.seconds1
+                                        scope.props.seconds
                                     }}
                                 </v-chip>
                         </span>
