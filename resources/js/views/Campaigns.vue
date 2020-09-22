@@ -350,7 +350,8 @@ export default {
 
             var start = moment.utc(item.start).unix()
             var now = moment.utc().unix()
-            console.log(start," - ", now)
+            var left = (start - now)
+            console.log(start," - ", now, "-", left)
         },
 
         barScoure(item) {
