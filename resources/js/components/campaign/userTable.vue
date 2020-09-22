@@ -41,7 +41,7 @@
             item-key="id"
             disable-pagination = true
             fixed-header = true
-            height= 500
+            height= "5%"
             hide-default-footer = true
             class="elevation-10"
             dense
