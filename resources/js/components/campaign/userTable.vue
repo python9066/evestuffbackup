@@ -122,7 +122,7 @@ export default {
                     campaignusers =>
                         campaignusers.role_id == 1 &&
                         campaignusers.campaign_id == this.campaign_id
-                ).lenght;
+                ).length;
                 var sum = sum * 10;
                 if (sum > 250) {
                     return 250;
@@ -135,7 +135,7 @@ export default {
                     campaignusers =>
                         campaignusers.role_id == 2 &&
                         campaignusers.campaign_id == this.campaign_id
-                ).lenght;
+                ).length;
                 var sum = sum * 10;
                 if (sum > 250) {
                     return 250;
@@ -148,7 +148,7 @@ export default {
                     campaignusers =>
                         campaignusers.role_id == 3 &&
                         campaignusers.campaign_id == this.campaign_id
-                ).lenght;
+                ).length;
                 var sum = sum * 10;
                 if (sum > 250) {
                     return 250;
@@ -161,7 +161,7 @@ export default {
                     campaignusers =>
                         campaignusers.role_id == 4 &&
                         campaignusers.campaign_id == this.campaign_id
-                ).lenght;
+                ).length;
                 var sum = sum * 10;
                 if (sum > 250) {
                     return 250;
@@ -173,7 +173,7 @@ export default {
                     campaignusers =>
                         campaignusers.role_id != 10 &&
                         campaignusers.campaign_id == this.campaign_id
-                ).lenght;
+                ).length;
                 var sum = sum * 10;
                 if (sum > 250) {
                     return 250;
