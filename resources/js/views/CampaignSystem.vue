@@ -21,7 +21,7 @@
                             {{ this.campaign.alliance }}
                         </h1>
                     </v-card-title>
-                    <div class="d-flex full-width align-content-center">
+                    <div class="d-flex full-width align-content-center" v-if="this.campaign.status_id > 1">
                         <v-icon
                             v-if="
                                 this.campaign.defenders_score >
@@ -117,6 +117,9 @@
                         >
                             fas fa-minus-circle
                         </v-icon>
+                    </div>
+                    <div class="d-flex full-width align-content-center" v-if="this.campaign.status_id == 1">
+
                     </div>
                 </v-card>
             </v-col>
