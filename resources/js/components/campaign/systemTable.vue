@@ -381,10 +381,11 @@
                         >
                             <template v-slot:activator="{ on, attrs }">
                                 <v-btn
+                                    v-if="checkHackUser(item)"
                                     v-bind="attrs"
                                     v-on="on"
                                     @click="timerShown = true, hackTime = null"
-                                    small
+                                    icon
                                     color="warning"
                                 >
                                     <v-icon small>fas fa-trash-alt</v-icon>
