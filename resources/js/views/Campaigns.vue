@@ -343,7 +343,8 @@ export default {
         fixTime(item){
 
            var utc = moment(item.start).utc()
-            return utc.unix()/1000
+           console.log(utc.unix())
+            return utc.unix()
 
 
 
