@@ -21,7 +21,10 @@
                             {{ this.campaign.alliance }}
                         </h1>
                     </v-card-title>
-                    <div class="d-flex full-width align-content-center" v-if="this.campaign.status_id > 1">
+                    <div
+                        class="d-flex full-width align-content-center"
+                        v-if="this.campaign.status_id > 1"
+                    >
                         <v-icon
                             v-if="
                                 this.campaign.defenders_score >
@@ -118,8 +121,28 @@
                             fas fa-minus-circle
                         </v-icon>
                     </div>
-                    <div class="d-flex full-width align-content-center" v-if="this.campaign.status_id == 1">
-                            dwdwa
+                    <div
+                        class="d-flex full-width align-content-center"
+                        v-if="this.campaign.status_id == 1"
+                    >
+                        <CountDowntimer
+                            v-if="item.status_id == 1"
+                            :start-time="moment.utc(campaign.start).unix()"
+                            :end-text="'Window Closed'"
+                            :interval="1000"
+                            @campaignStart="campaignStart(item)"
+                        >
+                            <template slot="countdown" slot-scope="scope">
+
+                                <span class="red--text pl-3"
+                                    >{{ scope.props.days }}:{{
+                                        scope.props.hours
+                                    }}:{{ scope.props.minutes }}:{{
+                                        scope.props.seconds
+                                    }}</span
+                                >
+                            </template>
+                        </CountDowntimer>
                     </div>
                 </v-card>
             </v-col>
@@ -130,8 +153,11 @@
             justify="space-around"
         >
             <v-col md="10">
-                <v-card class="pa-2 d-flex justify-space-between full-width align-center"  tile>
-                    <div class="flex-shrink-1" >
+                <v-card
+                    class="pa-2 d-flex justify-space-between full-width align-center"
+                    tile
+                >
+                    <div class="flex-shrink-1">
                         <v-btn
                             class="mr-4"
                             color="blue darken-2"
@@ -308,44 +334,41 @@
                     </div>
                     <v-spacer></v-spacer>
                     <div>
-
-                            <v-progress-circular
-                                class=" pr-3"
-                                v-if="nodeCountAll > 0"
-                                :transitionDuration="5000"
-                                :radius="25"
-                                :strokeWidth="5"
-                                :value="
-                                    (nodeCountHackingCountAll / nodeCountAll) *
-                                        100 || 0.000001
-                                "
-                            >
-                                <div class="caption">
-                                    {{ nodeCountHackingCountAll }} /
-                                    {{ nodeCountAll }}
-                                </div></v-progress-circular
-                            >
-                            <v-progress-circular
-                                v-if="nodeCountAll > 0"
-                                :transitionDuration="5000"
-                                :radius="25"
-                                :strokeWidth="5"
-                                strokeColor="#FF3D00"
-                                :value="
-                                    (nodeRedCountHackingCountAll /
-                                        nodeCountAll) *
-                                        100 || 0.000001
-                                "
-                            >
-                                <div class="caption">
-                                    {{ nodeRedCountHackingCountAll }} /
-                                    {{ nodeCountAll }}
-                                </div></v-progress-circular
-                            >
+                        <v-progress-circular
+                            class=" pr-3"
+                            v-if="nodeCountAll > 0"
+                            :transitionDuration="5000"
+                            :radius="25"
+                            :strokeWidth="5"
+                            :value="
+                                (nodeCountHackingCountAll / nodeCountAll) *
+                                    100 || 0.000001
+                            "
+                        >
+                            <div class="caption">
+                                {{ nodeCountHackingCountAll }} /
+                                {{ nodeCountAll }}
+                            </div></v-progress-circular
+                        >
+                        <v-progress-circular
+                            v-if="nodeCountAll > 0"
+                            :transitionDuration="5000"
+                            :radius="25"
+                            :strokeWidth="5"
+                            strokeColor="#FF3D00"
+                            :value="
+                                (nodeRedCountHackingCountAll / nodeCountAll) *
+                                    100 || 0.000001
+                            "
+                        >
+                            <div class="caption">
+                                {{ nodeRedCountHackingCountAll }} /
+                                {{ nodeCountAll }}
+                            </div></v-progress-circular
+                        >
                     </div>
                     <v-spacer></v-spacer>
                     <v-spacer></v-spacer>
-
                 </v-card>
             </v-col>
         </v-row>
