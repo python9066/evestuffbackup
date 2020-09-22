@@ -342,7 +342,7 @@ export default {
 
         fixTime(item){
 
-            var time =  moment.unix(item.start)
+            var time =  moment(item.start).unix()
             console.log(time)
 
         },
