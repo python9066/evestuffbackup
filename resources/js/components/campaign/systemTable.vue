@@ -683,6 +683,7 @@ export default {
                 end_time: null
             }}else if(item.status_id == 4){
                 this.removeCharNode(item)
+                item.user_id = null;
                 return
             }else{
                 request = {
