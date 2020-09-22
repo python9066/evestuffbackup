@@ -13,7 +13,7 @@ class AddBNodsColumnAndRNodColumnToCampaignTable extends Migration
      */
     public function up()
     {
-        Schema::table('campaign', function (Blueprint $table) {
+        Schema::table('campaigns', function (Blueprint $table) {
             $table->integer('b_node')->after('attackers_score_old')
                         ->nullable();
             $table->integer('r_node')->after('b_node')
