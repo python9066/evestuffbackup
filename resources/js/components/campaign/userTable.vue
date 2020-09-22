@@ -124,7 +124,7 @@ export default {
                         campaignusers.campaign_id == this.campaign_id
                 ).length;
                 var sum = count *32;
-                if (sum => 320) {
+                if (sum >= 320) {
                     return 352;
                 } else if(count == 1){
                     return 70
@@ -141,7 +141,7 @@ export default {
                         campaignusers.campaign_id == this.campaign_id
                 ).length;
                 var sum = count *32;
-                if (sum => 320) {
+                if (sum >= 320) {
                     return 352;
                 } else if(count == 1){
                     return 70
@@ -158,7 +158,7 @@ export default {
                         campaignusers.campaign_id == this.campaign_id
                 ).length;
                 var sum = count *32;
-                if (sum => 320) {
+                if (sum >= 320) {
                     return 352;
                 } else if(count == 1){
                     return 70
@@ -175,7 +175,7 @@ export default {
                         campaignusers.campaign_id == this.campaign_id
                 ).length;
                 var sum = count *32;
-                if (sum => 320) {
+                if (sum >= 320) {
                     return 352;
                 } else if(count == 1){
                     return 70
@@ -191,7 +191,7 @@ export default {
                         campaignusers.campaign_id == this.campaign_id
                 ).length;
                 var sum = count *32;
-                if (sum => 320) {
+                if (sum >= 320) {
                     return 352;
                 } else if(count == 1){
                     return 64
