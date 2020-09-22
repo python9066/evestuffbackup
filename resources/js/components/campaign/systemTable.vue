@@ -10,6 +10,7 @@
                     :sort-desc="[true, false]"
                     show-expand
                     :expanded.sync="expanded"
+                    :item-class="itemRowBackground"
                     hide-default-footer
                     disable-pagination
                     class="elevation-12"
@@ -20,17 +21,15 @@
                             flat
                             max-width
                             elevation="24"
-                            color="grey darken-4">
-
+                            color="grey darken-4"
+                        >
                             <v-toolbar-title
                                 max-width
                                 class="d-flex justify-space-between align-center"
                                 style=" width: 100%;"
                             >
-                                <div>
-                                    {{ system_name }} -
-                                </div>
-                                 <v-spacer></v-spacer>
+                                <div>{{ system_name }} -</div>
+                                <v-spacer></v-spacer>
                                 <div>
                                     <v-progress-circular
                                         v-if="nodeCount > 0"
@@ -235,10 +234,7 @@
                         </v-menu>
                     </template>
                     <template v-slot:item.user_name="{ item }">
-                        <v-menu
-                            offset-y
-                            v-if="checkShowAdd(item)"
-                        >
+                        <v-menu offset-y v-if="checkShowAdd(item)">
                             <template v-slot:activator="{ on, attrs }">
                                 <div>
                                     <v-chip
@@ -475,7 +471,7 @@ export default {
             ],
             charOnTheWay: 0,
             charReadyToGo: 0,
-            OnTheWayColor:"teal",
+            OnTheWayColor: "teal",
             nodeText: "",
             addShown: false,
             timerShown: false,
@@ -523,7 +519,7 @@ export default {
         },
 
         clickOnTheWay() {
-            this.OnTheWayColor = "green"
+            this.OnTheWayColor = "green";
             var item = {
                 id: this.charOnTheWay,
                 status_id: 2,
@@ -675,23 +671,28 @@ export default {
             });
         },
 
-        statusClick(item) {
-            var request = null
-            if(item.status_id == 2){
-                item.end = null
+        itemRowBackground: function(item) {
+            return item.status_id == 7 ? "style-1" : "style-2";
+        },
 
-            request = {
-                campaign_system_status_id: item.status_id,
-                end_time: null
-            }}else if(item.status_id == 4){
-                this.removeCharNode(item)
-                item.user_name = null
-                item.main_name = null
-                return
-            }else{
+        statusClick(item) {
+            var request = null;
+            if (item.status_id == 2) {
+                item.end = null;
+
                 request = {
-                campaign_system_status_id: item.status_id,
-                }
+                    campaign_system_status_id: item.status_id,
+                    end_time: null
+                };
+            } else if (item.status_id == 4) {
+                this.removeCharNode(item);
+                item.user_name = null;
+                item.main_name = null;
+                return;
+            } else {
+                request = {
+                    campaign_system_status_id: item.status_id
+                };
             }
 
             axios({
@@ -710,12 +711,16 @@ export default {
             });
         },
 
-        checkShowAdd(item){
-            if(item.user_name == null && this.charCount != 0 && item.status_id !=4 && item.status_id !=5)
-            {
-                return true
-            }else{
-                return false
+        checkShowAdd(item) {
+            if (
+                item.user_name == null &&
+                this.charCount != 0 &&
+                item.status_id != 4 &&
+                item.status_id != 5
+            ) {
+                return true;
+            } else {
+                return false;
             }
         },
 
@@ -800,18 +805,17 @@ export default {
                 user_status_name: "None"
             };
             this.$store.dispatch("updateCampaignUsers", data);
-            var request = null
-            if(item.status_id == 4)
-            {
+            var request = null;
+            if (item.status_id == 4) {
                 request = {
-                campaign_user_id: null,
-                campaign_system_status_id: item.status_id
-
-
-            }}else{
-            request = {
-                campaign_user_id: null,
-            }}
+                    campaign_user_id: null,
+                    campaign_system_status_id: item.status_id
+                };
+            } else {
+                request = {
+                    campaign_user_id: null
+                };
+            }
 
             axios({
                 method: "PUT", //you can set what request you want to be
@@ -829,7 +833,7 @@ export default {
             });
 
             var request1 = {
-                campaign_system_id: null,
+                campaign_system_id: null
             };
             axios({
                 method: "PUT", //you can set what request you want to be
@@ -850,15 +854,14 @@ export default {
         checkHackUser(item) {
             if (
                 item.site_id == this.$store.state.user_id &&
-                item.end == null && item.status_id == 3
+                item.end == null &&
+                item.status_id == 3
             ) {
                 return true;
-            } else if(
-                item.end == null && item.status_id == 7
-            ){
-                return true
-            }else{
-                return false
+            } else if (item.end == null && item.status_id == 7) {
+                return true;
+            } else {
+                return false;
             }
         }
 
@@ -980,33 +983,42 @@ export default {
             return this.getNodeValue(payload);
         },
 
-        filterCharsOnTheWay(){
-            var count = this.getCampaignUsersByUserIdEntosis(this.$store.state.user_id).filter(
-                char =>
-                char.status_id == 2 && char.system_id == this.system_id
-            ).length
+        filterCharsOnTheWay() {
+            var count = this.getCampaignUsersByUserIdEntosis(
+                this.$store.state.user_id
+            ).filter(
+                char => char.status_id == 2 && char.system_id == this.system_id
+            ).length;
 
-            if(count > 0){
-                return "green"
-            }else{
-                return "red"
+            if (count > 0) {
+                return "green";
+            } else {
+                return "red";
             }
         },
 
-        filterCharsReadyToGo(){
-            var count = this.getCampaignUsersByUserIdEntosis(this.$store.state.user_id).filter(
-                char =>
-                char.status_id == 3 && char.system_id == this.system_id
-            ).length
+        filterCharsReadyToGo() {
+            var count = this.getCampaignUsersByUserIdEntosis(
+                this.$store.state.user_id
+            ).filter(
+                char => char.status_id == 3 && char.system_id == this.system_id
+            ).length;
 
-            if(count > 0){
-                return "green"
-            }else{
-                return "red"
+            if (count > 0) {
+                return "green";
+            } else {
+                return "red";
             }
         }
     }
 };
 </script>
 
-<style></style>
+<style>
+
+.style-1 {
+  background-color: rgb(215,215,44)
+}
+.style-2 {
+  background-color: rgb(114,114,67)
+}</style>
