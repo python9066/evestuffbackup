@@ -365,6 +365,39 @@
                             </div></v-progress-circular
                         >
                     </div>
+                    <div>
+                        <p> Finished Nodes - </p>
+                        <v-progress-circular
+                            class=" pr-3"
+                            v-if="campaign.total_node > 0"
+                            :transitionDuration="5000"
+                            :radius="25"
+                            :strokeWidth="5"
+                            :value="
+                                (campaign.b_node / campaign.b_node) || 0.000001
+                            "
+                        >
+                            <div class="caption">
+                                {{ campaign.b_node }} /
+                                {{ campaign.total_node }}
+                            </div></v-progress-circular
+                        >
+                        <v-progress-circular
+                            v-if="nodeCountAll > 0"
+                            :transitionDuration="5000"
+                            :radius="25"
+                            :strokeWidth="5"
+                            strokeColor="#FF3D00"
+                            :value="
+                                (campaign.r_node / campaign.r_node) || 0.000001
+                            "
+                        >
+                            <div class="caption">
+                                {{ campaign.r_node }} /
+                                {{ campaign.total_node }}
+                            </div></v-progress-circular
+                        >
+                    </div>
                     <v-spacer></v-spacer>
                     <v-spacer></v-spacer>
                 </v-card>
@@ -802,6 +835,7 @@ export default {
         nodeCountAll() {
             return this.getTotalNodeCountByCampaign(this.$route.params.id);
         },
+
 
         nodeCountHackingCountAll() {
             return this.getHackingNodeCountByCampaign(this.$route.params.id);
