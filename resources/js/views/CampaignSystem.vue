@@ -126,11 +126,10 @@
                         v-if="this.campaign.status_id == 1"
                     >
                         <CountDowntimer
-                            v-if="item.status_id == 1"
-                            :start-time="moment.utc(campaign.start).unix()"
+                            :start-time="moment.utc(this.campaign.start).unix()"
                             :end-text="'Window Closed'"
                             :interval="1000"
-                            @campaignStart="campaignStart(item)"
+                            @campaignStart="this.campaign.status_id = 2"
                         >
                             <template slot="countdown" slot-scope="scope">
 
