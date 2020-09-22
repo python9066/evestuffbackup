@@ -350,7 +350,7 @@ export default {
 
             var left = (moment.utc(item.start).unix() -  moment.utc().unix())
             if(left < 601 && item.status_id < 3){
-                router.push({ path: `'/campaign/${item.id}` }) // -> /user/123
+                $router.push({ path: `'/campaign/${item.id}` }) // -> /user/123
             }
         },
 
