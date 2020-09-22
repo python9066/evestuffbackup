@@ -133,10 +133,8 @@
                         >
                             <template slot="countdown" slot-scope="scope">
 
-                                <span class="red--text pl-3"
-                                    >{{ scope.props.days }}:{{
-                                        scope.props.hours
-                                    }}:{{ scope.props.minutes }}:{{
+                                <span class="red--text pl-3 text-h1"
+                                    >{{ scope.props.minutes }}:{{
                                         scope.props.seconds
                                     }}</span
                                 >
