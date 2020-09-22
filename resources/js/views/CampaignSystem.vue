@@ -367,7 +367,7 @@
                     </div>
                     <v-spacer></v-spacer>
                     <div v-if="campaign.total_node > 0" class=" ml-auto d-inline-flex align-center">
-                        <p class=" pt-5"> Finished Nodes -    </p>
+                        <p class=" pt-4 pl-3"> Finished Nodes -</p>
                         <v-progress-circular
                             class=" pr-3"
                             :transitionDuration="5000"
