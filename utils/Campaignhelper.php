@@ -150,8 +150,9 @@ class Campaignhelper
             ->count();
 
         $b_node_new = $campaign->b_node + $b_node_add;
+        $r_node_new = $campaign->r_node + $r_node_add;
 
-        echo " ---".$b_node_new.  "----  ";
+        $campaign->update(["b_node" =>$b_node_new, "r_node" =>$r_node_new ]);
 
         $campaign->campaignsystems()
             ->where('campaign_system_status_id', 4)
