@@ -16,16 +16,17 @@ class Campaignhelper
     public static function update()
     {
 
-        $toDelete = Campaign::where('status_id',10)
-                    ->get();
+        $toDelete = Campaign::where('status_id', 10)
+            ->get();
 
-        if($toDelete->count() != 0){
-        foreach ($toDelete as $toDelete){
-            CampaignUser::where('campaign_id',$toDelete->id)->delete();
-            CampaignSystem::where('campaign_id',$toDelete->id)->delete();
-            Campaign::where('id',$toDelete->id)->delete();
-        }}
-        Campaign::where('id','>',0)->update(['check' => 0]);
+        if ($toDelete->count() != 0) {
+            foreach ($toDelete as $toDelete) {
+                CampaignUser::where('campaign_id', $toDelete->id)->delete();
+                CampaignSystem::where('campaign_id', $toDelete->id)->delete();
+                Campaign::where('id', $toDelete->id)->delete();
+            }
+        }
+        Campaign::where('id', '>', 0)->update(['check' => 0]);
         // dd("fwefe");
         $flag = 0;
         $changed = collect([]);
@@ -45,9 +46,9 @@ class Campaignhelper
 
             $event_type = $var['event_type'];
             if ($event_type == 'ihub_defense' || $event_type == 'tcu_defense') {
-                if($event_type =='ihub_defense'){
+                if ($event_type == 'ihub_defense') {
                     $event_type = 32458;
-                }else{
+                } else {
                     $event_type = 32226;
                 }
                 $id = $var['campaign_id'];
@@ -69,21 +70,19 @@ class Campaignhelper
                 Campaign::updateOrCreate(['id' => $id], $data);
                 $after = Campaign::where('id', $id)->get();
 
-                if($before->count() > 0)
-                {
+                if ($before->count() > 0) {
                     $attackers_old = $before->toArray();
                     $attackers_old = floatval($attackers_old[0]['attackers_score']);
                     $defenders_old = $before->toArray();
                     $defenders_old = floatval($defenders_old[0]['defenders_score']);
                     $new = $var['attackers_score'];
-                    if($new != $attackers_old){
+                    if ($new != $attackers_old) {
                         echo "diffurent";
                         $flag = 1;
                         $changed->push($id);
 
-                        Campaign::where('id',$id)->update(['defenders_score_old' => $defenders_old, 'attackers_score_old' => $attackers_old]);
+                        Campaign::where('id', $id)->update(['defenders_score_old' => $defenders_old, 'attackers_score_old' => $attackers_old]);
                     };
-
                 }
             }
         }
@@ -91,46 +90,44 @@ class Campaignhelper
         $now = now();
         $now10 = now()->modify('-10 minutes');
         $yesterday = now('-8 hours');
-        $check = Campaign::where('start_time','<=',$now)->where('status_id',1)->count();
-        if($check > 0){
-            Campaign::where('start_time','<=',$now)
-            ->where('status_id',1)
-            ->update(['status_id' => 2, 'check' => 1]);
+        $check = Campaign::where('start_time', '<=', $now)->where('status_id', 1)->count();
+        if ($check > 0) {
+            Campaign::where('start_time', '<=', $now)
+                ->where('status_id', 1)
+                ->update(['status_id' => 2, 'check' => 1]);
             echo "started";
             $flag = 1;
         }
 
-        $check = Campaign::where('check',0)->count();
+        $check = Campaign::where('check', 0)->count();
 
-        if($check > 0){
+        if ($check > 0) {
 
-            Campaign::where('end',null)
+            Campaign::where('end', null)
                 ->where('check', 0)
-                ->update(['end'=> $now, 'status_id' => 3]);
-                // ->update(['check' => 1]);
-                Campaign::where('end','<=',$now10)
+                ->update(['end' => $now, 'status_id' => 3]);
+            // ->update(['check' => 1]);
+            Campaign::where('end', '<=', $now10)
                 ->where('check', 0)
-                ->where('status_id',3)
+                ->where('status_id', 3)
                 ->update(['status_id' => 10]);
-
-
         }
 
-        $finished = Campaign::where('status_id',3)
-                    ->get();
-        foreach ($finished as $finished){
+        $finished = Campaign::where('status_id', 3)
+            ->get();
+        foreach ($finished as $finished) {
 
             $a = $finished->attackers_score;
             $d = $finished->defenders_score;
 
-            if($a > $d){
-                Campaign::where('id',$finished->id)->update(['attackers_score' => 1 ,'defenders_score' => 0]);
-            }else{
-                Campaign::where('id',$finished->id)->update(['attackers_score' => 0 ,'defenders_score' => 1]);
+            if ($a > $d) {
+                Campaign::where('id', $finished->id)->update(['attackers_score' => 1, 'defenders_score' => 0]);
+            } else {
+                Campaign::where('id', $finished->id)->update(['attackers_score' => 0, 'defenders_score' => 1]);
             }
 
-                $flag = 1;
-                $changed->push($finished->id);
+            $flag = 1;
+            $changed->push($finished->id);
         }
 
         echo "yay";
@@ -138,37 +135,36 @@ class Campaignhelper
         return array($flag, $changed);
     }
 
-    public static function removeNode($check){
+    public static function removeNode($check)
+    {
 
 
 
-      $campaign = Campaign::find($check);
-      $campaign->campaignsystems()
-                ->where('campaign_system_status_id',4)
-                ->orwhere('campaign_system_status_id',5)
-                ->update(['campaign_system_status_id' =>10]);
+        $campaign = Campaign::find($check);
+        dd($check);
+        $campaign->campaignsystems()
+            ->where('campaign_system_status_id', 4)
+            ->orwhere('campaign_system_status_id', 5)
+            ->update(['campaign_system_status_id' => 10]);
 
 
-    $user = $campaign-> campaignsystems()
-                    ->where('campaign_system_status_id',10)
-                    ->where('campaign_user_id',"!=",null)
-                    ->get();
+        $user = $campaign->campaignsystems()
+            ->where('campaign_system_status_id', 10)
+            ->where('campaign_user_id', "!=", null)
+            ->get();
 
-        foreach ($user as $user){
+        foreach ($user as $user) {
 
-        $user->campaignusers()
-                    ->update(['campaign_system_id' => null,
-                            'system_id' => null,
-                             'status_id' => 1 ]);
+            $user->campaignusers()
+                ->update([
+                    'campaign_system_id' => null,
+                    'system_id' => null,
+                    'status_id' => 1
+                ]);
         }
 
-        $campaign-> campaignsystems()
-        ->where('campaign_system_status_id',10)
-        ->delete();
-
-
+        $campaign->campaignsystems()
+            ->where('campaign_system_status_id', 10)
+            ->delete();
     }
-
-
-
 }
