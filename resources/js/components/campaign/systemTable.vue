@@ -78,7 +78,7 @@
                                         >
                                             <v-chip
                                                 dark
-                                                :color="OnTheWayColor"
+                                                :color="filterCharsOneTheWay"
                                                 v-bind="attrs"
                                                 v-on="on"
                                                 small
@@ -965,6 +965,19 @@ export default {
                 campaign_id: this.$route.params.id
             };
             return this.getNodeValue(payload);
+        },
+
+        filterCharsOneTheWay(){
+            var count =this.getCampaignUsersByUserIdEntosis.filer(
+                char =>
+                char.status_id == 2 && char.system_id == this.system_id
+            ).length
+
+            if(count > 0){
+                return "green"
+            }else{
+                return "red"
+            }
         }
     }
 };
