@@ -207,7 +207,7 @@
                                         v-bind="attrs"
                                         v-on="on"
                                         pill
-                                        outlined
+                                        :outlined="pillOutlined(item)"
                                         small
                                         :color="pillColor(item)"
                                     >
@@ -721,6 +721,14 @@ export default {
                 return true;
             } else {
                 return false;
+            }
+        },
+        pillOutlined(item){
+
+            if (item.status_id == 7){
+                return false
+            }else{
+                return true
             }
         },
 
