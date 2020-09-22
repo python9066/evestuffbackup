@@ -348,15 +348,10 @@ export default {
 
         rowClick(item){
 
-            var start = moment.utc(item.start).unix()
-            var now = moment.utc().unix()
-            var left = (start - now)
-            if(left < 601){
-                console.log("yes")
-            }else{
-                console.log("no")
+            var left = (moment.utc(item.start).unix() -  moment.utc().unix())
+            if(left < 601 && item.status_id < 3){
+                router.push({ path: `'/campaign/${item.id}` }) // -> /user/123
             }
-            console.log(start," - ", now, "-", left)
         },
 
         barScoure(item) {
