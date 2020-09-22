@@ -716,7 +716,8 @@ export default {
                 item.user_name == null &&
                 this.charCount != 0 &&
                 item.status_id != 4 &&
-                item.status_id != 5
+                item.status_id != 5 &&
+                item.status_id != 7
             ) {
                 return true;
             } else {
