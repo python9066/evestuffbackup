@@ -375,6 +375,16 @@
                                         scope.props.seconds
                                     }}</span
                                 >
+                                <v-btn
+                                                icon
+                                                v-bind="attrs"
+                                                v-on="on"
+                                                @click="timerShown = true"
+                                                color="success"
+                                                ><v-icon
+                                                    >fas fa-plus</v-icon
+                                                ></v-btn
+                                            >
                             </template>
                             <template slot="end-text" slot-scope="scope">
                                 <span :style="hackTextColor(item)">{{
@@ -382,6 +392,7 @@
                                 }}</span>
                             </template>
                         </CountDowntimer>
+
                     </template>
 
                     <template v-slot:expanded-item="{ headers, item }">
