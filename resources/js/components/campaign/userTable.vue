@@ -123,7 +123,7 @@ export default {
                         campaignusers.role_id == 1 &&
                         campaignusers.campaign_id == this.campaign_id
                 ).length;
-                var sum = count *50;
+                var sum = count *35;
                 if (sum > 400) {
                     return 400;
                 } else if(count < 2){
@@ -138,7 +138,7 @@ export default {
                         campaignusers.role_id == 2 &&
                         campaignusers.campaign_id == this.campaign_id
                 ).length;
-                var sum = count *50;
+                var sum = count *35;
                 if (sum > 400) {
                     return 400;
                 } else if(count < 2){
@@ -153,7 +153,7 @@ export default {
                         campaignusers.role_id == 3 &&
                         campaignusers.campaign_id == this.campaign_id
                 ).length;
-                var sum = count *50;
+                var sum = count *35;
                 if (sum > 400) {
                     return 400;
                 } else if(count < 2){
@@ -168,7 +168,7 @@ export default {
                         campaignusers.role_id == 4 &&
                         campaignusers.campaign_id == this.campaign_id
                 ).length;
-                var sum = count *50;
+                var sum = count *35;
                 if (sum > 400) {
                     return 400;
                 } else if(count < 2){
@@ -182,7 +182,7 @@ export default {
                         campaignusers.role_id != 10 &&
                         campaignusers.campaign_id == this.campaign_id
                 ).length;
-                var sum = count *50;
+                var sum = count *35;
                 if (sum > 400) {
                     return 400;
                 } else if(count < 2){
