@@ -792,7 +792,7 @@ export default {
             {
                 request = {
                 campaign_user_id: null,
-                status_id: item.status_id
+                campaign_system_status_id: item.status_id
 
 
             }}else{
