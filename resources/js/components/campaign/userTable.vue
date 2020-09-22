@@ -123,7 +123,7 @@ export default {
                         campaignusers.role_id == 1 &&
                         campaignusers.campaign_id == this.campaign_id
                 ).length;
-                var sum = count *38;
+                var sum = count *32;
                 if (sum > 400) {
                     return 400;
                 } else if(count == 1){
@@ -131,7 +131,7 @@ export default {
                 } else if(count == 2){
                     return 100
                 }else {
-                    return sum +38;
+                    return sum +32;
                 }
             }
             if (this.statusflag == 2) {
@@ -140,7 +140,7 @@ export default {
                         campaignusers.role_id == 2 &&
                         campaignusers.campaign_id == this.campaign_id
                 ).length;
-                var sum = count *38;
+                var sum = count *32;
                 if (sum > 400) {
                     return 400;
                 } else if(count == 1){
@@ -148,7 +148,7 @@ export default {
                 } else if(count == 2){
                     return 100
                 }else {
-                    return sum +38;
+                    return sum +32;
                 }
             }
             if (this.statusflag == 3) {
@@ -157,7 +157,7 @@ export default {
                         campaignusers.role_id == 3 &&
                         campaignusers.campaign_id == this.campaign_id
                 ).length;
-                var sum = count *38;
+                var sum = count *32;
                 if (sum > 400) {
                     return 400;
                 } else if(count == 1){
@@ -165,7 +165,7 @@ export default {
                 } else if(count == 2){
                     return 100
                 }else {
-                    return sum +38;
+                    return sum +32;
                 }
             }
             if (this.statusflag == 4) {
@@ -174,7 +174,7 @@ export default {
                         campaignusers.role_id == 4 &&
                         campaignusers.campaign_id == this.campaign_id
                 ).length;
-                var sum = count *38;
+                var sum = count *32;
                 if (sum > 400) {
                     return 400;
                 } else if(count == 1){
@@ -182,7 +182,7 @@ export default {
                 } else if(count == 2){
                     return 100
                 }else {
-                    return sum +38;
+                    return sum +32;
                 }
             } else {
                 var count = this.campaignusers.filter(
@@ -190,7 +190,7 @@ export default {
                         campaignusers.role_id != 10 &&
                         campaignusers.campaign_id == this.campaign_id
                 ).length;
-                var sum = count *38;
+                var sum = count *32;
                 if (sum > 400) {
                     return 400;
                 } else if(count == 1){
@@ -198,7 +198,7 @@ export default {
                 } else if(count == 2){
                     return 100
                 }else {
-                    return sum +38;
+                    return sum +32;
                 }
             }
         }
