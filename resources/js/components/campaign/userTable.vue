@@ -194,9 +194,9 @@ export default {
                 if (sum > 400) {
                     return 400;
                 } else if(count == 1){
-                    return 70
+                    return 64
                 } else if(count == 2){
-                    return 100
+                    return 96
                 }else {
                     return sum +32;
                 }
