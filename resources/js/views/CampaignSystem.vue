@@ -332,6 +332,10 @@
                     </div>
                     <v-spacer></v-spacer>
                     <div class="ml-auto mr-auto">
+                        <v-divider
+                            class="mx-4 my-0"
+                            vertical
+                        ></v-divider>
                         <v-progress-circular
                             class=" pr-3"
                             v-if="nodeCountAll > 0"
@@ -365,7 +369,6 @@
                             </div></v-progress-circular
                         >
                     </div>
-                    <v-spacer></v-spacer>
                     <div
                         v-if="campaign.total_node > 0"
                         class=" ml-auto d-inline-flex align-center"
