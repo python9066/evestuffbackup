@@ -394,7 +394,7 @@
                                 <v-col class="align-center">
                                     <v-textarea
                                         v-bind:value="item.text"
-                                        label="Place for you all to stick notes"
+                                        label="Where you can put any notes"
                                         outlined
                                         shaped
                                         @change="
@@ -681,11 +681,15 @@ export default {
             request = {
                 campaign_system_status_id: item.status_id,
                 end_time: null
-            }}else{
+            }}else if(item.status_id == 4){
+                this.removeCharNode(item)
+                return
+            }else{
                 request = {
                 campaign_system_status_id: item.status_id,
                 }
             }
+
             axios({
                 method: "put", //you can set what request you want to be
                 url:
@@ -783,9 +787,18 @@ export default {
                 user_status_name: "None"
             };
             this.$store.dispatch("updateCampaignUsers", data);
-            var request = {
+            var request = null
+            if(item.status_id == 4)
+            {
+                request = {
                 campaign_user_id: null,
-            };
+                status_id: item.status_id
+
+
+            }}else{
+            request = {
+                campaign_user_id: null,
+            }}
 
             axios({
                 method: "PUT", //you can set what request you want to be
