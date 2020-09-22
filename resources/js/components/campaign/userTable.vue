@@ -124,8 +124,8 @@ export default {
                         campaignusers.campaign_id == this.campaign_id
                 ).lenght;
                 count = count * 10;
-                if (count > 400) {
-                    return 400;
+                if (count > 250) {
+                    return "250px";
                 } else {
                     return count;
                 }
@@ -137,8 +137,8 @@ export default {
                         campaignusers.campaign_id == this.campaign_id
                 ).lenght;
                 count = count * 10;
-                if (count > 400) {
-                    return 400;
+                if (count > 250) {
+                    return "250px";
                 } else {
                     return count;
                 }
@@ -150,8 +150,8 @@ export default {
                         campaignusers.campaign_id == this.campaign_id
                 ).lenght;
                 count = count * 10;
-                if (count > 400) {
-                    return 400;
+                if (count > 250) {
+                    return "250px";
                 } else {
                     return count;
                 }
@@ -163,8 +163,8 @@ export default {
                         campaignusers.campaign_id == this.campaign_id
                 ).lenght;
                 count = count * 10;
-                if (count > 400) {
-                    return 400;
+                if (count > 250) {
+                    return "250px";
                 } else {
                     return count;
                 }
@@ -175,8 +175,8 @@ export default {
                         campaignusers.campaign_id == this.campaign_id
                 ).lenght;
                 count = count * 10;
-                if (count > 400) {
-                    return 400;
+                if (count > 250) {
+                    return "250px";
                 } else {
                     return count;
                 }
