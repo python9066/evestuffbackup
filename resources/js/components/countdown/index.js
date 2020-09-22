@@ -181,11 +181,11 @@ const CountDowntimer = {
 
             // Current time is smaller than event start time
             // 当前时间小于开始时间 活动尚未开始
-            if (this.current < new Date(this.formatTime(this.startTime)).getTime()) {
+            if (this.current < new Date.UTC(this.formatTime(this.startTime)).getTime()) {
                 return 1;
             }
 
-            if (this.current > new Date(this.formatTime(this.startTime)).getTime()) {
+            if (this.current > new Date.UTC(this.formatTime(this.startTime)).getTime()) {
                 return 0;
             }
 
@@ -211,8 +211,8 @@ const CountDowntimer = {
             }
             // Formating time - 格式化时间格式
             this.stop();
-            this.$set(this, 'current', new Date().getTime())
-            const startCount =  new Date(this.formatTime(this.startTime)).getTime() - this.current ;
+            this.$set(this, 'current', new Date.UTC().getTime())
+            const startCount =  new Date.UTC(this.formatTime(this.startTime)).getTime() - this.current ;
 
             const { status } = this;
 
@@ -316,7 +316,7 @@ const CountDowntimer = {
     end_message(){
         if (
             this.currentTime <= 0 ||
-            this.currentTime < new Date(this.formatTime(this.endTime)).getTime()
+            this.currentTime < new Date.UTC(this.formatTime(this.endTime)).getTime()
         ) {
           return;
         }
@@ -357,8 +357,8 @@ const CountDowntimer = {
     update() {
         if (this.counting) {
             // Formating time - 格式化时间格式
-            this.$set(this, 'current', new Date().getTime())
-            const startCount = new Date(this.formatTime(this.startTime)).getTime() - this.current  ;
+            this.$set(this, 'current', new Date.UTC().getTime())
+            const startCount = new Date.UTC(this.formatTime(this.startTime)).getTime() - this.current  ;
 
             const { status } = this;
 
