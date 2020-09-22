@@ -377,8 +377,6 @@
                                 >
                                 <v-btn
                                                 icon
-                                                v-bind="attrs"
-                                                v-on="on"
                                                 @click="timerShown = true"
                                                 color="success"
                                                 ><v-icon
