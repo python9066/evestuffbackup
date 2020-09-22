@@ -399,8 +399,6 @@
                             </div></v-progress-circular
                         >
                     </div>
-                    <v-spacer></v-spacer>
-                    <v-spacer></v-spacer>
                 </v-card>
             </v-col>
         </v-row>
