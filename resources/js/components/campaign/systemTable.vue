@@ -388,7 +388,7 @@
                                     icon
                                     color="warning"
                                 >
-                                    <v-icon small>fas fa-trash-alt</v-icon>
+                                    <v-icon small>fas fa-edit</v-icon>
                                 </v-btn>
                             </template>
 
@@ -882,9 +882,9 @@ export default {
 
         hackCountDownTextColor(item){
             if(item.status_id == 7){
-                return "color: while pl-3"
+                return "text-color: while pl-3"
             }else{
-                return "color: blue pl-3"
+                return "text-color: blue pl-3"
             }
 
         },
