@@ -374,7 +374,7 @@
                             :radius="25"
                             :strokeWidth="5"
                             :value="
-                                (campaign.b_node / total_node) || 0.000001
+                                (campaign.b_node / total_node) * 100 || 0.000001
                             "
                         >
                             <div class="caption">
@@ -390,7 +390,7 @@
                             :strokeWidth="5"
                             strokeColor="#FF3D00"
                             :value="
-                                (campaign.b_node / campaign.total_node) || 0.000001
+                                (campaign.b_node / campaign.total_node) *100 || 0.000001
                             "
                         >
                             <div class="caption">
