@@ -237,7 +237,7 @@
                     <template v-slot:item.user_name="{ item }">
                         <v-menu
                             offset-y
-                            v-if="item.user_name == null && charCount != 0"
+                            v-if="item.user_name == null && charCount != 0 && (item.status_id !=4 ||item.status_id !=5) "
                         >
                             <template v-slot:activator="{ on, attrs }">
                                 <div>
