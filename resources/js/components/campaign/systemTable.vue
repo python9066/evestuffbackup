@@ -375,14 +375,66 @@
                                         scope.props.seconds
                                     }}</span
                                 >
-                                <v-btn
-                                                icon
-                                                @click="timerShown = true"
-                                                color="success"
-                                                ><v-icon
-                                                    >fas fa-plus</v-icon
-                                                ></v-btn
-                                            >
+                                <v-menu
+                            :close-on-content-click="false"
+                            :value="timerShown"
+                        >
+                            <template v-slot:activator="{ on, attrs }">
+                                <v-chip
+                                    v-bind="attrs"
+                                    v-on="on"
+                                    pill
+                                    :outlined="pillOutlined(item)"
+                                    @click="timerShown = true"
+                                    small
+                                    color="warning"
+                                >
+                                    Add Time
+                                </v-chip>
+                            </template>
+
+                            <template>
+                                <v-card tile min-height="150px">
+                                    <v-card-title class=" pb-0">
+                                        <v-text-field
+                                            v-model="hackTime"
+                                            label="Hack Time mm:ss"
+                                            v-mask="'##:##'"
+                                            placeholder="mm:ss"
+                                        ></v-text-field>
+                                    </v-card-title>
+                                    <v-card-text>
+                                        <v-btn
+                                            icon
+                                            fixed
+                                            left
+                                            color="success"
+                                            @click="
+                                                (timerShown = false),
+                                                    addHacktime(item)
+                                            "
+                                            ><v-icon
+                                                >fas fa-check</v-icon
+                                            ></v-btn
+                                        >
+
+                                        <v-btn
+                                            fixed
+                                            right
+                                            icon
+                                            color="warning"
+                                            @click="
+                                                (timerShown = false),
+                                                    (hackTime = null)
+                                            "
+                                            ><v-icon
+                                                >fas fa-times</v-icon
+                                            ></v-btn
+                                        >
+                                    </v-card-text>
+                                </v-card>
+                            </template>
+                        </v-menu>
                             </template>
                             <template slot="end-text" slot-scope="scope">
                                 <span :style="hackTextColor(item)">{{
