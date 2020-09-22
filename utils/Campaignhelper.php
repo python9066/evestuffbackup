@@ -141,7 +141,7 @@ class Campaignhelper
 
 
         $campaign = Campaign::find($check);
-        dd($check);
+        // dd($check);
         $campaign->campaignsystems()
             ->where('campaign_system_status_id', 4)
             ->orwhere('campaign_system_status_id', 5)
