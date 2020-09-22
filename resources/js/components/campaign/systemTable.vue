@@ -844,8 +844,12 @@ export default {
                 item.end == null && item.status_id == 3
             ) {
                 return true;
-            } else {
-                return false;
+            } else if(
+                item.end == null && item.status_id == 7
+            ){
+                return true
+            }else{
+                return false
             }
         }
 
