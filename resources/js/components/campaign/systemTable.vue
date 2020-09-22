@@ -78,7 +78,7 @@
                                         >
                                             <v-chip
                                                 dark
-                                                color="teal"
+                                                :color="OnTheWayColor"
                                                 v-bind="attrs"
                                                 v-on="on"
                                                 small
@@ -475,6 +475,7 @@ export default {
             ],
             charOnTheWay: 0,
             charReadyToGo: 0,
+            OnTheWayColor:"teal",
             nodeText: "",
             addShown: false,
             timerShown: false,
