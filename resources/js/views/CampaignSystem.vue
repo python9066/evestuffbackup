@@ -674,7 +674,7 @@ export default {
          campaignStart(){
              var data = {
                  id: this.campaign.id,
-                 status_id: 1,
+                 status_id: 2,
                  status_name:"Active"
                    }
             this.$store.dispatch("updateCampaignSystem",data)
