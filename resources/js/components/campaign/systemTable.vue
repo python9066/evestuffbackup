@@ -366,7 +366,7 @@
                         <CountDowntimer
                             v-else
                             :start-time="moment.utc(item.end).unix()"
-                            :end-text="endText(item)""'Did you finish?'"
+                            :end-text="endText(item)"
                             :interval="1000"
                         >
                             <template slot="countdown" slot-scope="scope">
