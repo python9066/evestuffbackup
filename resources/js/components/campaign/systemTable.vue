@@ -1028,5 +1028,5 @@ export default {
   background-color: rgb(30,30,30,1)
 }
 .style-1 {
-  background-color: rgb(255, 94, 234)
+  background-color: rgb(184, 22, 35)
 }</style>
