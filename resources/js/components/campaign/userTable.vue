@@ -124,10 +124,10 @@ export default {
                         campaignusers.campaign_id == this.campaign_id
                 ).length;
                 var sum = count *50;
-                if (sum > 250) {
-                    return 250;
+                if (sum > 400) {
+                    return 400;
                 } else {
-                    return sum;
+                    return sum+50;
                 }
             }
             if (this.statusflag == 2) {
@@ -137,10 +137,10 @@ export default {
                         campaignusers.campaign_id == this.campaign_id
                 ).length;
                 var sum = count *50;
-                if (sum > 250) {
-                    return 250;
+                if (sum > 400) {
+                    return 400;
                 } else {
-                    return sum;
+                    return sum+50;
                 }
             }
             if (this.statusflag == 3) {
@@ -150,10 +150,10 @@ export default {
                         campaignusers.campaign_id == this.campaign_id
                 ).length;
                 var sum = count *50;
-                if (sum > 250) {
-                    return 250;
+                if (sum > 400) {
+                    return 400;
                 } else {
-                    return sum;
+                    return sum+50;
                 }
             }
             if (this.statusflag == 4) {
@@ -163,10 +163,10 @@ export default {
                         campaignusers.campaign_id == this.campaign_id
                 ).length;
                 var sum = count *50;
-                if (sum > 250) {
-                    return 250;
+                if (sum > 400) {
+                    return 400;
                 } else {
-                    return sum;
+                    return sum+50;
                 }
             } else {
                 var count = this.campaignusers.filter(
@@ -175,10 +175,10 @@ export default {
                         campaignusers.campaign_id == this.campaign_id
                 ).length;
                 var sum = count *50;
-                if (sum > 250) {
-                    return 250;
+                if (sum > 400) {
+                    return 400;
                 } else {
-                    return sum;
+                    return sum+50;
                 }
             }
         }
