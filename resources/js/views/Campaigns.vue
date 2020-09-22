@@ -73,7 +73,7 @@
             :search="search"
             :sort-desc="[false, true]"
             multi-sort
-            @click:row="console.log($payload)"
+            @click:row="rowClick($payload)"
             class="elevation-1"
         >
             <template slot="no-data">
@@ -342,11 +342,12 @@ export default {
         },
 
         fixTime(item){
-        return moment.utc(item.start).unix()
-            // return utc.unix()
+        return moment.utc(item.start).unix()// return utc.unix()
+        },
 
 
-
+        rowClick(payload){
+            console.log(payload)
         },
 
         barScoure(item) {
