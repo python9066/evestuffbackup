@@ -388,6 +388,7 @@
                             :transitionDuration="5000"
                             :radius="25"
                             :strokeWidth="5"
+                            strokeColor="#FF3D00"
                             :value="
                                 (campaign.b_node / campaign.b_node) || 0.000001
                             "
