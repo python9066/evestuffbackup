@@ -78,7 +78,7 @@
                                         >
                                             <v-chip
                                                 dark
-                                                :color="filterCharsOneTheWay"
+                                                :color="this.filterCharsOneTheWay"
                                                 v-bind="attrs"
                                                 v-on="on"
                                                 small
