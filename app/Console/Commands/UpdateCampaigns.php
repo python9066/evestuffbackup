@@ -63,16 +63,13 @@ class UpdateCampaigns extends Command
             $flag = null;
             $check = $request[1];
             foreach ($check as $check) {
-                dd($check);
-                $camp = CampaignUser::where('campaign_id', $check)->count();
-                if ($camp > 0) {
-                    $flag = collect([
-                        'flag' => 4,
-                        'id' => $check
-                        ]);
-                        // dd($flag);
-                    broadcast(new CampaignSystemUpdate($flag))->toOthers();
-                }
+                Campaignhelper::removeNode($check);
+                $flag = collect([
+                    'flag' => 4,
+                    'id' => $check
+                ]);
+                broadcast(new CampaignSystemUpdate($flag))->toOthers();
+                // }
             }
         }
     }
