@@ -61,7 +61,8 @@ class CreateOrReplaceCampaignRecordsViewCommand extends Command
         campaigns.defenders_score_old AS 'defenders_score_old',
         campaigns.attackers_score_old AS 'attackers_score_old',
         campaigns.b_node AS 'b_node',
-        campaigns.r_node AS 'r_node'
+        campaigns.r_node AS 'r_node',
+        campaigns.b_node + campaigns.r_node AS 'total_node'
         FROM campaigns
         JOIN systems ON systems.id = campaigns.system_id
         JOIN constellations ON constellations.id = campaigns.constellation_id
