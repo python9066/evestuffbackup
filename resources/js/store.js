@@ -312,7 +312,7 @@ export default new Vuex.Store({
 
         getRedHackingNodeCountBySystem: state => payload => {
             return state.campaignsystems.filter(
-                sys => sys.system_id == payload.system_id && sys.campaign_id == payload.campaign_id && sys.status_id == 7
+                sys => sys.system_id == payload.system_id && sys.campaign_id == payload.campaign_id && (sys.status_id == 7 || sys.status_id == 5)
             ).length
         },
 

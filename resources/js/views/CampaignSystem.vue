@@ -331,7 +331,8 @@
                         </v-menu>
                     </div>
                     <v-spacer></v-spacer>
-                    <div class=" ml-auto d-inline-flex align-center">
+                    <div class=" ml-auto d-inline-flex align-center"
+                    v-if="nodeCountAll > 0">
                         <v-divider
                             class="mx-4 my-0"
                             vertical
@@ -339,7 +340,6 @@
                         <p class=" pt-4 pr-3">Active Nodes -</p>
                         <v-progress-circular
                             class=" pr-3"
-                            v-if="nodeCountAll > 0"
                             :transitionDuration="5000"
                             :radius="25"
                             :strokeWidth="5"
@@ -354,7 +354,6 @@
                             </div></v-progress-circular
                         >
                         <v-progress-circular
-                            v-if="nodeCountAll > 0"
                             :transitionDuration="5000"
                             :radius="25"
                             :strokeWidth="5"
