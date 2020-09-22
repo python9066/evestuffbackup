@@ -211,8 +211,8 @@ const CountDowntimer = {
             }
             // Formating time - 格式化时间格式
             this.stop();
-            this.$set(this, 'current', new Date().getTime())
-            const startCount =  new Date(this.formatTime(this.startTime)).getTimeUTC() - this.current ;
+            this.$set(this, 'current', new Date.UTC().getTime())
+            const startCount =  new Date(this.formatTime(this.startTime)).getTime() - this.current ;
 
             const { status } = this;
 
