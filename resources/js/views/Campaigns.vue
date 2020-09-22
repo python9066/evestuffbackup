@@ -342,8 +342,7 @@ export default {
 
         fixTime(item){
 
-            let time = item.start
-            time = time.getTime()/1000;
+            time = Date.parse(item.start).getTime()/1000
             console.log(time)
 
         },
