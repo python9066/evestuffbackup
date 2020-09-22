@@ -408,7 +408,7 @@
                                             fixed
                                             left
                                             color="success"
-                                            @keydown.enter="(timerShown = false),
+                                            @keypress.enter="(timerShown = false),
                                                     addHacktime(item)"
                                             @click="
                                                 (timerShown = false),
