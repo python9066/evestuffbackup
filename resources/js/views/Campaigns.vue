@@ -342,8 +342,8 @@ export default {
 
         fixTime(item){
 
-            var time =  moment(item.start).unix()
-            console.log(time)
+            return moment(item.start).unix()
+
 
         },
 
