@@ -125,7 +125,7 @@ export default {
                 ).lenght;
                 sum = sum * 10;
                 if (sum > 250) {
-                    return "250px";
+                    return 250;
                 } else {
                     return sum;
                 }
@@ -138,7 +138,7 @@ export default {
                 ).lenght;
                 sum = sum * 10;
                 if (sum > 250) {
-                    return "250px";
+                    return 250;
                 } else {
                     return sum;
                 }
@@ -151,7 +151,7 @@ export default {
                 ).lenght;
                 sum = sum * 10;
                 if (sum > 250) {
-                    return "250px";
+                    return 250;
                 } else {
                     return sum;
                 }
@@ -164,7 +164,7 @@ export default {
                 ).lenght;
                 sum = sum * 10;
                 if (sum > 250) {
-                    return "250px";
+                    return 250;
                 } else {
                     return sum;
                 }
@@ -176,7 +176,7 @@ export default {
                 ).lenght;
                 sum = sum * 10;
                 if (sum > 250) {
-                    return "250px";
+                    return 250;
                 } else {
                     return sum;
                 }
