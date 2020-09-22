@@ -381,7 +381,7 @@
                         >
                             <template v-slot:activator="{ on, attrs }">
                                 <v-btn
-                                    v-if="checkHackUser(item)"
+                                    v-if="checkHackUserEdit(item)"
                                     v-bind="attrs"
                                     v-on="on"
                                     @click="timerShown = true, hackTime = null"
@@ -953,6 +953,19 @@ export default {
             ) {
                 return true;
             } else if (item.end == null && item.status_id == 7) {
+                return true;
+            } else {
+                return false;
+            }
+        },
+
+        checkHackUserEdit(item) {
+            if (
+                item.site_id == this.$store.state.user_id &&
+                item.status_id == 3
+            ) {
+                return true;
+            } else if (item.status_id == 7) {
                 return true;
             } else {
                 return false;
