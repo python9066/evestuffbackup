@@ -212,6 +212,7 @@ const CountDowntimer = {
             // Formating time - 格式化时间格式
             this.stop();
             this.$set(this, 'current', new Date().getTime())
+            console.log(this.current)
             const startCount =  new Date(this.formatTime(this.startTime)).getTime() - this.current ;
 
             const { status } = this;
@@ -226,7 +227,6 @@ const CountDowntimer = {
             if (status === 1) {
                 this.$set(this, 'tips', true);
                 this.count = Math.max(0, startCount);
-                console.log(this.count)
             }
 
 
