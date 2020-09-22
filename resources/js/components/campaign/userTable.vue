@@ -127,7 +127,7 @@ export default {
                 if (sum >= 320) {
                     return 352;
                 } else if(count == 1){
-                    return 70
+                    return 64
                 } else if(count == 2){
                     return 96
                 }else {
@@ -144,7 +144,7 @@ export default {
                 if (sum >= 320) {
                     return 352;
                 } else if(count == 1){
-                    return 70
+                    return 64
                 } else if(count == 2){
                     return 96
                 }else {
@@ -161,7 +161,7 @@ export default {
                 if (sum >= 320) {
                     return 352;
                 } else if(count == 1){
-                    return 70
+                    return 64
                 } else if(count == 2){
                     return 96
                 }else {
@@ -178,7 +178,7 @@ export default {
                 if (sum >= 320) {
                     return 352;
                 } else if(count == 1){
-                    return 70
+                    return 64
                 } else if(count == 2){
                     return 96
                 }else {
