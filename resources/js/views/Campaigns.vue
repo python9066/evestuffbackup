@@ -73,7 +73,7 @@
             :search="search"
             :sort-desc="[false, true]"
             multi-sort
-            @click:row="rowClick($payload)"
+            @click:row="rowClick(payload)"
             class="elevation-1"
         >
             <template slot="no-data">
