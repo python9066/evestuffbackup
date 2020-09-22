@@ -39,10 +39,10 @@
             :headers="headers"
             :items="filteredItems"
             item-key="id"
-            disable-pagination=true
-            fixed-header=true
+            disable-pagination
+            fixed-header
             height= "2%"
-            hide-default-footer=true
+            hide-default-footer
             class="elevation-24"
             dense
         >
