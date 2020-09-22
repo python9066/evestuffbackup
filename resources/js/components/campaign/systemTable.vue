@@ -417,7 +417,7 @@
                     </template>
 
                     <template slot="no-data">
-                        No nodes have showen up here..... yet!!!!
+                        No nodes have shown up here..... yet!!!!
                     </template>
                 </v-data-table>
             </v-card-text>

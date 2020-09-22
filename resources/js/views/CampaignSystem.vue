@@ -129,7 +129,7 @@
                             :start-time="moment.utc(this.campaign.start).unix()"
                             :end-text="'Window Closed'"
                             :interval="1000"
-                            @campaignStart="this.campaign.status_id = 2"
+                            @campaignStart="campaignStart()"
                         >
                             <template slot="countdown" slot-scope="scope">
 
@@ -670,7 +670,15 @@ export default {
                 this.$route.params.id
             );
             this.$store.dispatch("getCampaignSystemsRecords");
-        }
+        },
+         campaignStart(){
+             var data = {
+                 id: this.campaign.id,
+                 status_id: 1,
+                 status_name:"Active"
+                   }
+            this.$store.dispatch("updateCampaignSystem",data)
+         }
     },
 
     async created() {
