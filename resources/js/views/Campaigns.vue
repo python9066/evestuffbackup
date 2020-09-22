@@ -347,7 +347,7 @@ export default {
 
 
         rowClick(payload){
-            console.log(payload)
+            console.log(payload.start)
         },
 
         barScoure(item) {
