@@ -151,6 +151,8 @@ class Campaignhelper
 
         $b_node_new = $campaign->b_node + $b_node_add;
 
+        echo " ---".$b_node_new.  "----  ";
+
         $campaign->campaignsystems()
             ->where('campaign_system_status_id', 4)
             ->orwhere('campaign_system_status_id', 5)
