@@ -119,7 +119,7 @@
                         </v-icon>
                     </div>
                     <div class="d-flex full-width align-content-center" v-if="this.campaign.status_id == 1">
-
+                            dwdwa
                     </div>
                 </v-card>
             </v-col>
