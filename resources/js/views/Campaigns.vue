@@ -342,7 +342,9 @@ export default {
 
         fixTime(item){
 
-            return moment.UTC(item.start).unix()
+            utc = moment.UTC(item.start)
+            unix = utc.unix()
+            console.log(unix)
 
 
         },
