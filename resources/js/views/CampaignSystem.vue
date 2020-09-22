@@ -193,6 +193,7 @@
                                                 v-model="newCharName"
                                                 label="Char Name"
                                                 required
+                                                autofocus
                                                 :rules="newNameRules"
                                             ></v-text-field>
                                             <v-select
