@@ -129,7 +129,7 @@ export default {
                 } else if(count < 2){
                     return 70
                 } {
-                    return sum+70;
+                    return sum;
                 }
             }
             if (this.statusflag == 2) {
@@ -144,7 +144,7 @@ export default {
                 } else if(count < 2){
                     return 70
                 } {
-                    return sum+70;
+                    return sum;
                 }
             }
             if (this.statusflag == 3) {
@@ -159,7 +159,7 @@ export default {
                 } else if(count < 2){
                     return 70
                 } {
-                    return sum+70;
+                    return sum;
                 }
             }
             if (this.statusflag == 4) {
@@ -174,7 +174,7 @@ export default {
                 } else if(count < 2){
                     return 70
                 } {
-                    return sum+70;
+                    return sum;
                 }
             } else {
                 var count = this.campaignusers.filter(
@@ -188,7 +188,7 @@ export default {
                 } else if(count < 2){
                     return 70
                 } {
-                    return sum+70;
+                    return sum;
                 }
             }
         }
