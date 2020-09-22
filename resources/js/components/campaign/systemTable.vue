@@ -968,7 +968,7 @@ export default {
         },
 
         filterCharsOneTheWay(){
-            var count =this.getCampaignUsersByUserIdEntosis.filer(
+            var count =this.getCampaignUsersByUserIdEntosis(this.$store.state.user_id).filer(
                 char =>
                 char.status_id == 2 && char.system_id == this.system_id
             ).length
