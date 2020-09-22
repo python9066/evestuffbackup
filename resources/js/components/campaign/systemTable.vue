@@ -287,7 +287,7 @@
                     <template v-slot:item.count="{ item }">
                         <VueCountUptimer
                             v-if="item.status_id < 3 && item.end_time == null"
-                            :start-time="item.start + ' UTC'"
+                            :start-time="moment.utc(item.start).unix()"
                             :end-text="'Window Closed'"
                             :interval="1000"
                         >
@@ -369,7 +369,7 @@
                         </v-menu>
                         <CountDowntimer
                             v-else
-                            :start-time="item.end + ' UTC'"
+                            :start-time="moment.utc(item.end).unix()"
                             :end-text="'Did you finish?'"
                             :interval="1000"
                         >
