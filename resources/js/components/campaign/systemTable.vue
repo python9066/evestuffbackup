@@ -408,6 +408,8 @@
                                             fixed
                                             left
                                             color="success"
+                                            @keydown.enter="(timerShown = false),
+                                                    addHacktime(item)"
                                             @click="
                                                 (timerShown = false),
                                                     addHacktime(item)
@@ -422,6 +424,8 @@
                                             right
                                             icon
                                             color="warning"
+                                            @keydown.esc="(timerShown = false),
+                                                    (hackTime = null)"
                                             @click="
                                                 (timerShown = false),
                                                     (hackTime = null)
