@@ -351,6 +351,11 @@ export default {
             var start = moment.utc(item.start).unix()
             var now = moment.utc().unix()
             var left = (start - now)
+            if(left < 601){
+                console.log("yes")
+            }else{
+                console.log("no")
+            }
             console.log(start," - ", now, "-", left)
         },
 
