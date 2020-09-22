@@ -371,7 +371,7 @@
                         class=" ml-auto d-inline-flex align-center"
                     >
                         <v-divider
-                            class="mx-4"
+                            class="mx-4 my-0"
                             vertical
                         ></v-divider>
                         <p class=" pt-4 pr-3">Finished Nodes -</p>
