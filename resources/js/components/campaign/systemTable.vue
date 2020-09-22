@@ -683,8 +683,8 @@ export default {
                 end_time: null
             }}else if(item.status_id == 4){
                 this.removeCharNode(item)
-                item.user_id = null;
-                this.$store.dispatch("updateCampaignSystem", item);
+                item.user_name = null
+                item.main_name = null
                 return
             }else{
                 request = {
