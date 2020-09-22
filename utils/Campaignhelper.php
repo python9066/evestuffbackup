@@ -142,6 +142,14 @@ class Campaignhelper
         echo "in change";
         $campaign = Campaign::find($check);
         // dd($check);
+        $b_node = $campaign->campaignsystems()
+            ->where('campaign_system_status_id', 4)
+            ->count();
+        $r_node = $campaign->campaignsystems()
+            ->where('campaign_system_status_id', 5)
+            ->count();
+
+        echo $b_node." - ".$r_node;
         $campaign->campaignsystems()
             ->where('campaign_system_status_id', 4)
             ->orwhere('campaign_system_status_id', 5)
