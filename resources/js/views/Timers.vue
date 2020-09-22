@@ -91,8 +91,8 @@
                         @end_callback="
                             (item.status = 1), handleCountdownEnd(item)
                         "
-                        :start-time="item.start + ' UTC'"
-                        :end-time="item.end + ' UTC'"
+                        :start-time="moment.utc(item.start).unix()"
+                        :end-time="moment.utc(item.end).unix()"
                         :end-text="'Window Closed'"
                         :interval="1000"
                     >
