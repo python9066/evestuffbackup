@@ -331,7 +331,7 @@
                         </v-menu>
                     </div>
                     <v-spacer></v-spacer>
-                    <div>
+                    <div class="ml-auto mr-auto">
                         <v-progress-circular
                             class=" pr-3"
                             v-if="nodeCountAll > 0"
@@ -365,7 +365,7 @@
                             </div></v-progress-circular
                         >
                     </div>
-                    <div class=" ml-auto">
+                    <div class=" ml-auto d-inline-flex">
                         <p> Finished Nodes - </p>
                         <v-progress-circular
                             class=" pr-3"
