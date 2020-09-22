@@ -237,7 +237,7 @@
                     <template v-slot:item.user_name="{ item }">
                         <v-menu
                             offset-y
-                            v-if="item.user_name == null && charCount != 0 && (item.status_id !=4 ||item.status_id !=5) "
+                            v-if="checkShowAdd(item)"
                         >
                             <template v-slot:activator="{ on, attrs }">
                                 <div>
@@ -708,6 +708,15 @@ export default {
                     "Content-Type": "application/json"
                 }
             });
+        },
+
+        checkShowAdd(item){
+            if(item.user_name == null && this.charCount != 0 && (item.status_id !=4 || item.status_id !=5))
+            {
+                return true
+            }else{
+                return false
+            }
         },
 
         pillColor(item) {
