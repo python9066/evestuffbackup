@@ -523,6 +523,7 @@ export default {
         },
 
         clickOnTheWay() {
+            this.OnTheWayColor = "green"
             var item = {
                 id: this.charOnTheWay,
                 status_id: 2,
