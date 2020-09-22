@@ -388,7 +388,7 @@
                                     icon
                                     color="warning"
                                 >
-                                    <v-icon small>fas fa-edit</v-icon>
+                                    <v-icon x-small>fas fa-edit</v-icon>
                                 </v-btn>
                             </template>
 
