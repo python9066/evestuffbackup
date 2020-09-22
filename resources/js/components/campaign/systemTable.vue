@@ -380,7 +380,7 @@
                             :value="timerShown"
                         >
                             <template v-slot:activator="{ on, attrs }">
-                                <v-chip
+                                <v-btn
                                     v-bind="attrs"
                                     v-on="on"
                                     pill
@@ -389,8 +389,8 @@
                                     small
                                     color="warning"
                                 >
-                                    Add Time
-                                </v-chip>
+                                    <v-icon small>fas fa-trash-alt</v-icon>
+                                </v-btn>
                             </template>
 
                             <template>
