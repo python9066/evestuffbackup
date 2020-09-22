@@ -383,8 +383,6 @@
                                 <v-btn
                                     v-bind="attrs"
                                     v-on="on"
-                                    pill
-                                    :outlined="pillOutlined(item)"
                                     @click="timerShown = true, hackTime = null"
                                     small
                                     color="warning"
