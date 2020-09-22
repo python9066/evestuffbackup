@@ -312,7 +312,7 @@
                                     v-bind="attrs"
                                     v-on="on"
                                     pill
-                                    outlined
+                                    :outlined="pillOutlined(item)"
                                     @click="timerShown = true"
                                     small
                                     color="warning"
