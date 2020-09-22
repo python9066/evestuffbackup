@@ -124,12 +124,12 @@ export default {
                         campaignusers.campaign_id == this.campaign_id
                 ).length;
                 var sum = count *32;
-                if (sum > 400) {
-                    return 400;
+                if (sum => 320) {
+                    return 352;
                 } else if(count == 1){
                     return 70
                 } else if(count == 2){
-                    return 100
+                    return 96
                 }else {
                     return sum +32;
                 }
@@ -141,12 +141,12 @@ export default {
                         campaignusers.campaign_id == this.campaign_id
                 ).length;
                 var sum = count *32;
-                if (sum > 400) {
-                    return 400;
+                if (sum => 320) {
+                    return 352;
                 } else if(count == 1){
                     return 70
                 } else if(count == 2){
-                    return 100
+                    return 96
                 }else {
                     return sum +32;
                 }
@@ -158,12 +158,12 @@ export default {
                         campaignusers.campaign_id == this.campaign_id
                 ).length;
                 var sum = count *32;
-                if (sum > 400) {
-                    return 400;
+                if (sum => 320) {
+                    return 352;
                 } else if(count == 1){
                     return 70
                 } else if(count == 2){
-                    return 100
+                    return 96
                 }else {
                     return sum +32;
                 }
@@ -175,12 +175,12 @@ export default {
                         campaignusers.campaign_id == this.campaign_id
                 ).length;
                 var sum = count *32;
-                if (sum > 400) {
-                    return 400;
+                if (sum => 320) {
+                    return 352;
                 } else if(count == 1){
                     return 70
                 } else if(count == 2){
-                    return 100
+                    return 96
                 }else {
                     return sum +32;
                 }
@@ -191,8 +191,8 @@ export default {
                         campaignusers.campaign_id == this.campaign_id
                 ).length;
                 var sum = count *32;
-                if (sum > 400) {
-                    return 400;
+                if (sum => 320) {
+                    return 352;
                 } else if(count == 1){
                     return 64
                 } else if(count == 2){
