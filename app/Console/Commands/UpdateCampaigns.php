@@ -62,8 +62,8 @@ class UpdateCampaigns extends Command
             }
             $flag = null;
             $check = $request[1];
-            dd($check);
             foreach ($check as $check) {
+                dd($check);
                 $camp = CampaignUser::where('campaign_id', $check)->count();
                 if ($camp > 0) {
                     $flag = collect([
