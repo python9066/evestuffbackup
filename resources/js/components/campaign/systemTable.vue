@@ -78,7 +78,7 @@
                                         >
                                             <v-chip
                                                 dark
-                                                :color="filterCharsOneTheWay"
+                                                :color="filterCharsOnTheWay"
                                                 v-bind="attrs"
                                                 v-on="on"
                                                 small
@@ -111,7 +111,7 @@
                                         >
                                             <v-chip
                                                 dark
-                                                color="teal"
+                                                :color="filterCharsReadyToGo"
                                                 v-bind="attrs"
                                                 v-on="on"
                                                 small
@@ -967,10 +967,23 @@ export default {
             return this.getNodeValue(payload);
         },
 
-        filterCharsOneTheWay(){
+        filterCharsOnTheWay(){
             var count = this.getCampaignUsersByUserIdEntosis(this.$store.state.user_id).filter(
                 char =>
                 char.status_id == 2 && char.system_id == this.system_id
+            ).length
+
+            if(count > 0){
+                return "green"
+            }else{
+                return "red"
+            }
+        },
+
+        filterCharsReadyToGo(){
+            var count = this.getCampaignUsersByUserIdEntosis(this.$store.state.user_id).filter(
+                char =>
+                char.status_id == 3 && char.system_id == this.system_id
             ).length
 
             if(count > 0){
