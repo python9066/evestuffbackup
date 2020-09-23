@@ -219,7 +219,14 @@ export default {
             let roleID = item.map(i => i.id);
             const filter = this.rolesList.filter(r => !roleID.includes(r.id));
             console.log(filter);
-            return filter;
+            if(this.$can("edit_all_users")){
+                return filter;
+            }else if(this.$can("edit_scout_users")){
+                return filter.filter(f => f.name == "Scout")
+            }else if(this.$can("edit_hack_users")){
+                return filter.filter(f => f.name == "Hackers")
+            }
+
         },
 
         pillClose(name) {
