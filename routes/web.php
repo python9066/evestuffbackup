@@ -19,7 +19,8 @@ use utils\Helper\Helper;
 // Auth::routes();
 
 Route::get('/admin/admin','AuthController@admin');
-Route::get('/dances2','testController@index');
+Route::get('/makerole', "AuthController@makeUserRole");
+Route::get('/dances2','RoleController@getAllUsersRoles');
 Route::get('/timers', 'HomeController@index');
 Route::get('/getTimerData','TimerController@getTimerData');
 Route::get('/updateTimerData','TimerController@updateTimerData');
@@ -33,10 +34,10 @@ Route::get('/logout', 'AuthController@logout');
 Route::get('/party', 'HomeController@party');
 Route::get('/party2', 'HomeController@party2');
 Route::get('/updateNotifications', 'NotificationController@getNotifications');
-Route::get('/test2', 'HomeController@party2');
+Route::get('/test2', 'UserRolesRecordsController@index');
 
 Route::get('/home', 'HomeController@index');
-Route::get('updateAlliances', 'AllianceController@updateAlliances');
+Route::get('/updateAlliances', 'AllianceController@updateAlliances');
 // Route::get('/helper', function () {
 //     return Helper::displayName();
 // });

@@ -11,10 +11,14 @@ use App\Providers\RouteServiceProvider;
 use GuzzleHttp\Client;
 use Illuminate\Support\Str;
 use function GuzzleHttp\json_encode;
+use Spatie\Permission\Traits\HasRoles;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 
 class AuthController extends Controller
 {
     use AuthenticatesUsers;
+    use HasRoles;
     protected $redirectTo = RouteServiceProvider::HOME;
     public function redirectToProvider()
     {
@@ -43,6 +47,22 @@ class AuthController extends Controller
         return redirect('/notifications');
     }
 
+    public function makeUserRole()
+    {
+        $user = Auth::user();
+        // $permissions = $user->getAllPermissions()->pluck("name");
+        // // if($permissions == true){
+        // //     echo "HAS ROLE";
+        // // }else{
+        // //     echo "NO ROLE";
+        // // }
+        // echo $permissions;
+        // dd($permissions);
+        $user->assignRole('Recon');
+        // $role = Role::findByName('Super Admin');
+
+    }
+
 
     public function logout()
     {
@@ -56,9 +76,8 @@ class AuthController extends Controller
         return view('auth.login');
     }
 
-    public function test()
+    public function index()
     {
-        $test = now()->modify('-3 days');
-
+        return ['users' => User::select('id','name')->get()];
     }
 }

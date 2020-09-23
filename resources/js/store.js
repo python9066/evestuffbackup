@@ -17,11 +17,21 @@ export default new Vuex.Store({
         user_id: 0,
         user_name:"",
         campaignusers: [],
-        campaignsystems: []
+        campaignsystems: [],
+        users: [],
+        rolesList:[],
     },
     mutations: {
         SET_TIMERS(state, timers) {
             state.timers = timers;
+        },
+
+        SET_USERS(state, users) {
+            state.users = users;
+        },
+
+        SET_ROLES(state, roles) {
+            state.rolesList = roles;
         },
 
         SET_CAMPAIGNS(state, campaigns) {
@@ -98,8 +108,41 @@ export default new Vuex.Store({
                     "Content-Type": "application/json"
                 }
             });
+            // console.log(res.data.timers)
             commit("SET_TIMERS", res.data.timers);
         },
+
+
+        async getUsers({ commit, state }) {
+            let res = await axios({
+                method: "get",
+                url: "/api/allusersroles",
+                headers: {
+                    Authorization: "Bearer " + state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                }
+            });
+            // debugger
+            commit("SET_USERS",res.data.usersroles)
+            // commit("SET_USER_ROLES", userRoles.map(u => ({id: u.id, name: u.name})));
+        },
+
+        async getRoles({ commit, state }) {
+            let res = await axios({
+                method: "get",
+                url: "/api/roles",
+                headers: {
+                    Authorization: "Bearer " + state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                }
+            });
+            commit("SET_ROLES",res.data.roles)
+            // commit("SET_USER_ROLES", userRoles.map(u => ({id: u.id, name: u.name})));
+        },
+
+
 
         async getCampaigns({ commit, state }) {
             let res = await axios({
