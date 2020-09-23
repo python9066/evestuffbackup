@@ -111,7 +111,7 @@ class Helper
             'headers' => $headers
         ]);
         $data = json_decode($response->getBody(), true);
-        echo $data;
+        // echo $data;
         return $data;
     }
 
