@@ -320,7 +320,7 @@ export default {
 <style scoped>
 
 .rainbow{
-  background-color: #343A40;
+  background-color: rgb(30,30,30,1);
   border-radius: 4px;
   color: #fff;
   cursor: pointer;
@@ -330,7 +330,7 @@ export default {
 
 .rainbow-2:hover{
   background-image: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet, red);
-  animation:slidebg 2s linear infinite;
+  animation: 2s linear infinite;
 }
 
 
