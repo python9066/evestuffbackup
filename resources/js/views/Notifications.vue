@@ -448,8 +448,8 @@
                     </div>
                 </td>
             </template>
-            <template v-if="$can('edit_notifications')" v-slot:item.user_name="{ item } " class ="d-flex align-center" >
-                <p> {{item.user_name}}</p>
+            <template  v-slot:item.user_name="{ item } " class ="d-flex align-center" >
+                <p v-if="$can('edit_notifications')"> {{item.user_name}}</p>
             </template>
         </v-data-table>
         <v-snackbar v-model="snack" :timeout="3000" :color="snackColor">
