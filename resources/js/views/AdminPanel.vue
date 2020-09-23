@@ -218,13 +218,6 @@ export default {
             return roles.filter(r => r.name != "Super Admin");
         },
 
-        filerRolesByUser(item) {
-            return this.roles.filter(
-                roles =>
-                    roles.user_id == item.id && roles.role_name != "Super Admin"
-            );
-        },
-
         filterDropdownList(item) {
             let roleID = item.map(i => i.id);
             const filter = this.rolesList.filter(r => !roleID.includes(r.id));
@@ -232,11 +225,31 @@ export default {
         },
 
         pillClose(name){
-            if(name == "Wizhard"){
+            if(this.$can("edit all users")){
+                if(name == "Wizhard"){
                 return false
             }else{
                 return true
+            }}
+
+            if(this.$can("edit scout users")){
+                if(name == "Scout"){
+                    true
+                }else{
+                    return false
+                }
             }
+
+            if(this.$can("edit hack users")){
+                if(name == "Hacker"){
+                    true
+                }else{
+                    return false
+                }
+            }
+
+
+
         },
 
         async userAddRole(item) {
