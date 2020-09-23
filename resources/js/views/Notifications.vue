@@ -448,7 +448,7 @@
                     </div>
                 </td>
             </template>
-            <template v-slot:item.user_name="{ item } " class ="d-flex align-center" >
+            <template v-if="$can('edit_notifications')" v-slot:item.user_name="{ item } " class ="d-flex align-center" >
                 <p> {{item.user_name}}</p>
             </template>
         </v-data-table>
