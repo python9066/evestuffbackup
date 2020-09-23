@@ -40,9 +40,6 @@ Route::get('/home', 'HomeController@index');
 Route::get('/updateAlliances', 'AllianceController@updateAlliances');
 Route::get('/pannel/{any}','RoleController@addCord')->where('any', '.*');
 Route::get('/party2', 'HomeController@party2');
-
-
-Route::get('/Wizhard','RoleController@Wizhard');
 // Route::get('/helper', function () {
 //     return Helper::displayName();
 // });
