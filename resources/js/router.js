@@ -57,11 +57,12 @@ export default new Router({
         path: '/pannel',
         name: 'test',
         component: AdminPanel,
-        beforeEnter: (to, from, next) => {
-            if($can("access hacks")){
-                console.log("YES -" )
+        beforeEnter(to, from, next) {
+
+            if(Permissions.indexOf('edit all users','edit scout users','edit hack users')!== -1){
+                next()
             }else{
-                console.log("no" )
+                next('/')
             }
 
           }
