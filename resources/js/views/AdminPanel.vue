@@ -261,7 +261,7 @@ export default {
             }else{
                 return
             }
-        }
+        },
 
         async userRemoveRole(item) {
             var request = {
