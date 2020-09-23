@@ -58,24 +58,10 @@ class AuthController extends Controller
         // // }
         // echo $permissions;
         // dd($permissions);
-        // $user->assignRole('Super Admin');
-        $role = Role::findByName('Super Admin');
+        $user->assignRole('Recon');
+        // $role = Role::findByName('Super Admin');
 
     }
-
-    public function getAllUsersRoles()
-    {
-        foreach(User::with('roles')->get() as $user){;
-            echo $user;
-            dd($user);
-        }
-        // $users= User::with('roles')->get();
-
-        // echo $users;
-        // dd($users);
-
-    }
-
 
 
     public function logout()

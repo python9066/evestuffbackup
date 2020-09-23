@@ -56,6 +56,15 @@ Route::middleware('auth:api')->group(function(){
     Route::delete('/campaignsystems/{id}/{campid}','CampaignSystemsController@destroy');
 
     Route::get('/users','AuthController@index');
+    Route::get('/userrolerecord','UserRolesRecordsController@index');
+
+    Route::get('/roles','RoleController@index');
+    Route::get('/allusersroles','RoleController@getAllUsersRoles');
+    Route::put('/rolesadd','RoleController@addRole');
+    Route::put('/rolesremove','RoleController@removeRole');
+
+
+
 
 
 

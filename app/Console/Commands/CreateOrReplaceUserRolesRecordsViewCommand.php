@@ -41,7 +41,8 @@ class CreateOrReplaceUserRolesRecordsViewCommand extends Command
         DB::statement("CREATE VIEW user_roles_records AS SELECT model_has_roles.model_id AS 'user_id',
         users.name AS 'user_name',
         model_has_roles.role_id AS 'role_id',
-        roles.name AS 'role_name'
+        roles.name AS 'role_name',
+        concat(model_has_roles.model_id,model_has_roles.role_id) AS 'id'
         FROM model_has_roles
         JOIN users ON users.id = model_has_roles.model_id
         JOIN roles ON roles.id = model_has_roles.role_id");

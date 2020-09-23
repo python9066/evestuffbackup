@@ -1,92 +1,166 @@
 <template>
     <div class="pr-16 pl-16">
-        <v-row no-gutters
-        justify="center">
-            <v-col class=" d-inline-flex justify-content-end align-content-end"
-            cols="8">
-            <v-card tile flat color="#121212" class="mr-auto d-inline-flex align-content-start">
-                <v-card-title>Add/Remove Roles</v-card-title>
-                <v-btn
-                    :loading="loadingr"
-                    :disabled="loadingr"
-                    color="primary"
-                    class="ma-2 white--text"
-                    @click="
-                        loadingr = true;
-                        loadcampaigns();
-                    "
+        <v-row no-gutters justify="center">
+            <v-col class=" d-inline-flex" cols="8">
+                <v-card
+                    tile
+                    flat
+                    color="#121212"
+                    class="d-inline-flex align-content-start"
                 >
-                    Update
-                    <v-icon right dark>fas fa-sync-alt fa-xs</v-icon>
-                </v-btn>
-            </v-card>
-            <v-card tile flat color="#121212">
-                <v-text-field
-                    v-model="search"
-                    append-icon="mdi-magnify"
-                    label="Search"
-                    single-line
-                    hide-details
-                ></v-text-field>
-            </v-card>
-            <v-card tile flat color="#121212" class="ml-auto align-end">
-                <v-btn-toggle v-model="toggle_exclusive" mandatory :value="1">
-                    <v-btn
-                        :loading="loadingf"
-                        :disabled="loadingf"
-                        @click="colorflag = 4"
+                    <v-card-title>Add/Remove Roles</v-card-title>
+                </v-card>
+                <v-card
+                    width="500"
+                    tile
+                    flat
+                    color="#121212"
+                    class="align-start"
+                >
+                    <v-text-field
+                        v-model="search"
+                        append-icon="mdi-magnify"
+                        label="Search for Users"
+                        single-line
+                        hide-details
+                    ></v-text-field>
+                </v-card>
+                <v-spacer></v-spacer>
+                <v-card tile flat color="#121212" class="align-end">
+                    <v-btn-toggle
+                        right
+                        v-model="toggle_exclusive"
+                        mandatory
+                        :value="1"
                     >
-                        All
-                    </v-btn>
-                    <v-btn
-                        :loading="loadingf"
-                        :disabled="loadingf"
-                        @click="colorflag = 3"
-                    >
-                        Goons
-                    </v-btn>
-                    <v-btn
-                        :loading="loadingf"
-                        :disabled="loadingf"
-                        @click="colorflag = 2"
-                    >
-                        Friendly
-                    </v-btn>
-                    <v-btn
-                        :loading="loadingf"
-                        :disabled="loadingf"
-                        @click="colorflag = 1"
-                    >
-                        Hostile
-                    </v-btn>
-                    <v-btn
-                        :loading="loadingf"
-                        :disabled="loadingf"
-                        @click="colorflag = 5"
-                    >
-                        Active
-                    </v-btn>
-                </v-btn-toggle>
-            </v-card>
+                        <v-btn
+                            :loading="loadingf"
+                            :disabled="loadingf"
+                            @click="roleflag = 10"
+                        >
+                            All
+                        </v-btn>
+                        <v-btn
+                            :loading="loadingf"
+                            :disabled="loadingf"
+                            @click="roleflag = 2"
+                        >
+                            Recon
+                        </v-btn>
+                        <v-btn
+                            :loading="loadingf"
+                            :disabled="loadingf"
+                            @click="roleflag = 5"
+                        >
+                            Ops
+                        </v-btn>
+                        <v-btn
+                            :loading="loadingf"
+                            :disabled="loadingf"
+                            @click="roleflag = 4"
+                        >
+                            Cord
+                        </v-btn>
+                        <v-btn
+                            :loading="loadingf"
+                            :disabled="loadingf"
+                            @click="roleflag = 8"
+                        >
+                            Hacker
+                        </v-btn>
+                    </v-btn-toggle>
+                </v-card>
             </v-col>
         </v-row>
-        <v-data-table
-            :headers="headers"
-            :items="users"
-            item-key="id"
-            :loading="loading"
-            :items-per-page="25"
-            :footer-props="{ 'items-per-page-options': [15, 25, 50, 100, -1] }"
-            :sort-by="['start']"
-            :search="search"
-            :sort-desc="[false, true]"
-            multi-sort
-            class="elevation-1"
-        >
-            <template slot="no-data">
-                No Active or Upcoming Campaigns
-            </template>
-        </v-data-table>
+        <v-row no-gutters justify="center">
+            <v-col
+                class=" d-inline-flex justify-content-center w-auto"
+                cols="8"
+            >
+                <v-card width="100%">
+                    <v-data-table
+                        :headers="headers"
+                        :items="filteredItems"
+                        item-key="id"
+                        :loading="loading"
+                        :items-per-page="25"
+                        :search="search"
+                        :footer-props="{
+                            'items-per-page-options': [15, 25, 50, 100, -1]
+                        }"
+                        :sort-by="['start']"
+                        :sort-desc="[false, true]"
+                        multi-sort
+                        class="elevation-1"
+                    >
+                        <template v-slot:item.roles="{ item }">
+                            <div class=" d-inline-flex">
+                                <v-menu>
+                                    <template v-slot:activator="{ on, attrs }">
+                                        <div>
+                                            <v-btn
+                                                icon
+                                                v-bind="attrs"
+                                                v-on="on"
+                                                color="success"
+                                                ><v-icon
+                                                    >fas fa-plus</v-icon
+                                                ></v-btn
+                                            >
+                                        </div>
+                                    </template>
+
+                                    <v-list>
+                                        <v-list-item
+                                            v-for="(list,
+                                            index) in filterDropdownList(
+                                                item.roles
+                                            )"
+                                            :key="index"
+                                            @click="
+                                                (userAddRoleText = list.id),
+                                                    userAddRole(item)
+                                            "
+                                        >
+                                            <v-list-item-title>{{
+                                                list.name
+                                            }}</v-list-item-title>
+                                        </v-list-item>
+                                    </v-list>
+                                </v-menu>
+                            </div>
+
+                            <div class=" d-inline-flex">
+                                <div
+                                    v-for="(role, index) in filterRoles(
+                                        item.roles
+                                    )"
+                                    :key="index"
+                                    class=" pr-2"
+                                >
+                                    <v-chip
+                                        pill
+                                        close
+                                        dark
+                                        draggable
+                                        @click:close="
+                                            (userRemoveRoleText = role.id),
+                                                userRemoveRole(item)
+                                        "
+                                    >
+                                        <span> {{ role.name }}</span>
+                                    </v-chip>
+                                </div>
+                            </div>
+                        </template>
+                        <template slot="no-data">
+                            No Active or Upcoming Campaigns
+                        </template>
+                    </v-data-table>
+                </v-card>
+            </v-col>
+        </v-row>
+
         <errorMessage></errorMessage>
     </div>
 </template>
@@ -106,57 +180,128 @@ export default {
 
             headers: [
                 { text: "Name", value: "name" },
-                { text: "Roles", value: "roles" }
+                { text: "Roles", value: "roles", width: "80%" }
             ],
-            users: [],
             loadingr: false,
             loadingf: false,
             loading: false,
-            toggle_exclusive: 0
+            toggle_exclusive: 0,
+            search: "",
+            addShown: false,
+            userAddRoleText: "",
+            userRemoveRoleText: "",
+            roleflag: 10
         };
     },
 
-    created() {},
+    async created() {},
 
     async mounted() {
-        await this.getUsers();
+        await this.$store.dispatch("getUsers");
+        await this.$store.dispatch("getRoles");
     },
     methods: {
-        async getUsers() {
-            let res = await axios({
-                method: "get",
-                url: "/api/users",
+        test(item) {
+            // console.log(item)
+        },
+
+        filterRoles(roles) {
+            // console.log(roles);
+            return roles.filter(r => r.name != "Super Admin");
+        },
+
+        filerRolesByUser(item) {
+            return this.roles.filter(
+                roles =>
+                    roles.user_id == item.id && roles.role_name != "Super Admin"
+            );
+        },
+
+        filterDropdownList(item) {
+            let roleID = item.map(i => i.id);
+            const filter = this.rolesList.filter(r => !roleID.includes(r.id));
+            return filter;
+        },
+
+        async userAddRole(item) {
+            var request = {
+                roleId: this.userAddRoleText,
+                userId: item.id
+            };
+
+            console.log(request);
+
+            await axios({
+                method: "put", //you can set what request you want to be
+                url: "/api/rolesadd",
+                data: request,
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
                     Accept: "application/json",
                     "Content-Type": "application/json"
                 }
             });
-            this.users = res.data.users;
+            this.$store.dispatch("getUsers");
+        },
+
+        async userRemoveRole(item) {
+            var request = {
+                roleId: this.userRemoveRoleText,
+                userId: item.id
+            };
+
+            console.log(request);
+
+            await axios({
+                method: "put", //you can set what request you want to be
+                url: "/api/rolesremove",
+                data: request,
+                headers: {
+                    Authorization: "Bearer " + this.$store.state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                }
+            });
+            this.$store.dispatch("getUsers");
         }
     },
+
     computed: {
-        // filteredItems() {
-        //     // var timers = this.$store.state.timers;
-        //     if (this.roleflag == 1) {
-        //         return this.users.filter(users => users.color == 1);
-        //     }
-        //     if (this.roleflag == 2) {
-        //         return this.users.filter(users => users.color > 1);
-        //     }
-        //     if (this.roleflag == 3) {
-        //         return this.users.filter(users => users.color == 3);
-        //     }
-        //     if (this.roleflag == 5) {
-        //         return this.users.filter(
-        //             users => users.status_id == 2
-        //         );
-        //     } else {
-        //         return this.users.filter(
-        //             users => users.status_id != 10
-        //         );
-        //     }
-        // }
+        ...mapState(["users", "rolesList"]),
+        filteredItems() {
+            var timers = this.$store.state.timers;
+            if (this.roleflag == 2) {
+                return this.users.filter(function(u) {
+                    return u.roles.some(function(role) {
+                        return role.id == 2;
+                    });
+                });
+            }
+            if (this.roleflag == 5) {
+                return this.users.filter(function(u) {
+                    return u.roles.some(function(role) {
+                        return role.id == 5;
+                    });
+                });
+            }
+            if (this.roleflag == 4) {
+                return this.users.filter(function(u) {
+                    return u.roles.some(function(role) {
+                        return role.id == 4;
+                    });
+                });
+            }
+
+            if (this.roleflag == 8) {
+                return this.users.filter(function(u) {
+                    return u.roles.some(function(role) {
+                        return role.id == 8;
+                    });
+                });
+            } else {
+                return this.users;
+            }
+        }
     },
     beforeDestroy() {}
 };
