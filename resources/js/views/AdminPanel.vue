@@ -205,7 +205,7 @@ export default {
     },
     methods: {
         test() {
-            if(this.$can('edit all user')){
+            if(this.$can('edit all users')){
                 console.log("yes")
             }else{
 
