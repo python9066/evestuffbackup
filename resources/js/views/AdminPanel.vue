@@ -138,7 +138,7 @@
                                     :key="index"
                                     class=" pr-2"
                                 >
-                                    <span class="rainbow rainbow-2"><v-chip
+                                    <v-chip
                                         pill
 
                                         :close="pillClose(role.name)"
@@ -148,9 +148,8 @@
                                                 userRemoveRole(item)
                                         "
                                     >
-                                        <span> {{ role.name }}</span>
+                                        <span class="rainbow-2"> {{ role.name }}</span>
                                     </v-chip>
-                                    </span>
                                 </div>
                             </div>
                         </template>
@@ -319,14 +318,7 @@ export default {
 </script>
 <style scoped>
 
-.rainbow{
-  background-color: rgb(30,30,30,1);
-  border-radius: 4px;
-  color: #fff;
-  cursor: pointer;
-  padding: 8px 16px;
 
-}
 
 .rainbow-2:hover{
   background-image: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet, red);
