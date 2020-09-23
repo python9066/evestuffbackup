@@ -85,6 +85,7 @@
                         :loading="loading"
                         :items-per-page="25"
                         :search="search"
+                        :item-class="mittian"
                         :footer-props="{
                             'items-per-page-options': [15, 25, 50, 100, -1]
                         }"
@@ -136,7 +137,7 @@
                                         item.roles
                                     )"
                                     :key="index"
-                                    class=" pr-2 rainbow rainbow-2"
+                                    class=" pr-2"
                                 >
                                     <v-chip
                                         pill
@@ -231,6 +232,10 @@ export default {
             }else{
                 return true
             }
+        },
+
+        itemRowBackground: function(item) {
+            return item.id == 92 ? "rainbow rainbow-2";
         },
 
         async userAddRole(item) {
