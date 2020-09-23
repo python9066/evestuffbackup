@@ -93,6 +93,7 @@ class Helper
                 $token = Auth::where('flag_standing', 0)
                     ->where('active', 1)->first();
                 $token->update(['flag_note' => 1]);
+                echo $token->char_id;
                 $url = "https://esi.evetech.net/latest/characters/" . $token->char_id . "/notifications/";
                 // dd($url);
             } else {
