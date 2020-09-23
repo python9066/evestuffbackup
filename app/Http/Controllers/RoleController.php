@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Traits\HasPermissions;
 use Spatie\Permission\Traits\HasRoles;
+use Spatie\Permission\Models\Permission;
 
 class RoleController extends Controller
 {
@@ -33,7 +34,7 @@ class RoleController extends Controller
     public function addRole(Request $request)
     {
         $check=Auth::user();
-        $check->hasRoles("edit_users");
+        $check->hasRole("edit_users");
         dd($check);
         $user = User::find($request->userId);
         $user->assignRole($request->roleId);
