@@ -316,10 +316,8 @@ export default {
     beforeDestroy() {}
 };
 </script>
-<style>
-.style-2 {
-  background-color: rgb(30,30,30,1)
-}
+<style scoped>
+
 .rainbow{
   background-color: #343A40;
   border-radius: 4px;
