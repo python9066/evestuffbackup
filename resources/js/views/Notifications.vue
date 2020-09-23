@@ -223,7 +223,7 @@
                 v-slot:item.status_name="{ item }"
                 class="align-items-center"
             >
-                <v-menu offset-y>
+                <v-menu offset-y v-if="$can('edit_notifications')">
                     <template v-slot:activator="{ on, attrs }">
                         <div class="align-items-center">
                             <v-btn
