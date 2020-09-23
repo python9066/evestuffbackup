@@ -218,6 +218,7 @@ export default {
         filterDropdownList(item) {
             let roleID = item.map(i => i.id);
             const filter = this.rolesList.filter(r => !roleID.includes(r.id));
+            console.log(filter);
             return filter;
         },
 
