@@ -43,14 +43,14 @@
                         <v-btn
                             :loading="loadingf"
                             :disabled="loadingf"
-                            @click="roleflag = 2"
+                            @click="roleflag = 5"
                         >
                             Recon
                         </v-btn>
                         <v-btn
                             :loading="loadingf"
                             :disabled="loadingf"
-                            @click="roleflag = 5"
+                            @click="roleflag = 6"
                         >
                             Ops
                         </v-btn>
