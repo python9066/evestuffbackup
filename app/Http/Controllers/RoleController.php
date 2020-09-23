@@ -32,8 +32,9 @@ class RoleController extends Controller
 
     public function addRole(Request $request)
     {
-
-
+        $check=Auth::user();
+        $check->hasRoles("edit_users");
+        dd($check);
         $user = User::find($request->userId);
         $user->assignRole($request->roleId);
     }
