@@ -15,8 +15,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 use utils\Helper\Helper;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 
-Auth::routes();
+
 
 Route::get('/admin/admin','AuthController@admin');
 Route::get('/dances2','RoleController@getAllUsersRoles');
