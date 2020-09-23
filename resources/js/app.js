@@ -21,7 +21,7 @@ import VueCountdownTimer from 'vuejs-countdown-timer'
 import VueCountupTimer from './components/countup/index'
 import CountdownTimer from './components/countdown/index'
 import VueMask from 'v-mask'
-import Permissions from '../assets/js/mixins/Permissions'
+import Permissions from './mixins/Permissions.vue'
 
 Vue.component('messageComponent', require('./components/random/messageComponent.vue').default);
 Vue.component('errorMessage', require('./components/random/errorMessage.vue').default); //component name should be in camel-case

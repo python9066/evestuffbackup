@@ -2,7 +2,7 @@
     <div class=" pr-16 pl-16">
         <div class=" d-flex align-items-center">
             <v-card-title>Notifications</v-card-title>
-            <div v-if="$can('edit all users')">You can edit posts.</div>
+            <div v-if="$can('access hacks')">You can edit posts.</div>
 
             <v-btn
                 :loading="loadingr"

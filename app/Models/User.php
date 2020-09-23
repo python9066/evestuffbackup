@@ -8,11 +8,13 @@ use Illuminate\Notifications\Notifiable;
 use Spatie\Permission\Traits\HasRoles;
 use Spatie\Permission\Models\Permission;
 use Illuminate\Support\Facades\Auth;
+use Spatie\Permission\Traits\HasPermissions;
 
 class User extends Authenticatable
 {
     use Notifiable;
     use HasRoles;
+    use HasPermissions;
 
 
 
