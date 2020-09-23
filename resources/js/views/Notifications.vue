@@ -353,7 +353,6 @@
                                 v-if="item.status_id == 1"
                                 class="ma-2"
                                 label
-                                disabled
                                 color="success"
                             >
                                 <v-icon left>fas fa-plus</v-icon>
@@ -363,7 +362,6 @@
                                 v-if="item.status_id == 2"
                                 class="ma-2"
                                 label
-                                disabled
                                 color="error"
                             >
                                 <v-icon left>fas fa-fire fa-sm</v-icon>
@@ -373,7 +371,6 @@
                                 v-if="item.status_id == 3"
                                 class="ma-2"
                                 label
-                                disabled
                                 color="dark-orange"
                             >
                                 <v-icon left>fas fa-toolbox</v-icon>
@@ -383,7 +380,6 @@
                                 v-if="item.status_id == 4"
                                 class="ma-2"
                                 label
-                                disabled
                                 color="primary"
                             >
                                 <v-icon left>fas fa-thumbs-up</v-icon>
@@ -393,7 +389,6 @@
                                 v-if="item.status_id == 5"
                                 class="ma-2"
                                 label
-                                disabled
                                 color="warning"
                             >
                                 <v-icon left>fas fa-exclamation-circle</v-icon>
@@ -404,7 +399,6 @@
                                 v-if="item.status_id == 6"
                                 class="ma-2"
                                 label
-                                disabled
                                 color="light-green darken-1"
                             >
                                 <v-icon left>fas fa-search</v-icon>
