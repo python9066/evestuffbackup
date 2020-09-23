@@ -40,7 +40,9 @@ Route::get('/test2', 'UserRolesRecordsController@index');
 Route::get('/home', 'HomeController@index');
 Route::get('/updateAlliances', 'AllianceController@updateAlliances');
 
-Route::group(['middleware' => ['permission:edit all users']], function () {
+
+
+Route::group(['middleware' => ['can:edit all users']], function () {
     Route::get('/pannel/{any}','RoleController@addCord')->where('any', '.*');
 });
 
