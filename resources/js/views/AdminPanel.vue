@@ -140,9 +140,8 @@
                                 >
                                     <v-chip
                                         pill
-                                        close
+                                        :close="pillClose(role.name)"
                                         dark
-                                        draggable
                                         @click:close="
                                             (userRemoveRoleText = role.id),
                                                 userRemoveRole(item)
@@ -215,7 +214,7 @@ export default {
         filerRolesByUser(item) {
             return this.roles.filter(
                 roles =>
-                    roles.user_id == item.id && roles.role_name != "Super Admin"
+                    roles.user_id == item.id && (roles.role_name != "Super Admin" || roles.role_name != "Wizhard")
             );
         },
 
@@ -223,6 +222,14 @@ export default {
             let roleID = item.map(i => i.id);
             const filter = this.rolesList.filter(r => !roleID.includes(r.id));
             return filter;
+        },
+
+        pillClose(name){
+            if(name == "Wizhard"){
+                return false
+            }else{
+                return true
+            }
         },
 
         async userAddRole(item) {
