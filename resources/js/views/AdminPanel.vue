@@ -85,7 +85,7 @@
                         :loading="loading"
                         :items-per-page="25"
                         :search="search"
-                        :item-class="mittian"
+                        :item-class="itemRowBackground"
                         :footer-props="{
                             'items-per-page-options': [15, 25, 50, 100, -1]
                         }"
@@ -234,7 +234,7 @@ export default {
             }
         },
 
-        mittian: function(item) {
+        itemRowBackground: function(item) {
             return item.id == 92 ? "rainbow rainbow-2":"style-2"
         },
 
@@ -326,7 +326,7 @@ export default {
   background-color: rgb(30,30,30,1)
 }
 .rainbow-2:hover{
-  background-image: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet, red);
+  background-color: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet, red);
   animation:slidebg 2s linear infinite;
 }
 </style>
