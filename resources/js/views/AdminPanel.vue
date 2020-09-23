@@ -148,7 +148,7 @@
                                                 userRemoveRole(item)
                                         "
                                     >
-                                        <span > {{ role.name }}</span>
+                                        <span> {{ role.name }}</span>
                                     </v-chip>
                                 </div>
                             </div>
@@ -172,8 +172,6 @@ import { mapState } from "vuex";
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
-
-
 
 export default {
     data() {
@@ -205,11 +203,10 @@ export default {
     },
     methods: {
         test() {
-            if(this.$can('edit all users')){
-                console.log("yes")
-            }else{
-
-                console.log("no")
+            if (this.$can("edit all users")) {
+                console.log("yes");
+            } else {
+                console.log("no");
             }
         },
 
@@ -224,32 +221,26 @@ export default {
             return filter;
         },
 
-        pillClose(name){
-            if(this.$can("edit_all_users")){
-                if(name == "Wizhard"){
-                return false
-            }else{
-                return true
-            }}
-
-            if(this.$can("edit_scout_users")){
-                if(name == "Scout"){
-                    true
-                }else{
-                    return false
+        pillClose(name) {
+            if (this.$can("edit_all_users")) {
+                if (name == "Wizhard") {
+                    return false;
+                } else {
+                    return true;
+                }
+            }else if (this.$can("edit_scout_users")) {
+                if (name == "Scout") {
+                    true;
+                } else {
+                    return false;
+                }
+            }else if (this.$can("edit_hack_users")) {
+                if (name == "Hacker") {
+                    true;
+                } else {
+                    return false;
                 }
             }
-
-            if(this.$can("edit_hack_users")){
-                if(name == "Hacker"){
-                    true
-                }else{
-                    return false
-                }
-            }
-
-
-
         },
 
         async userAddRole(item) {
@@ -273,12 +264,11 @@ export default {
             this.$store.dispatch("getUsers");
         },
 
-        mittin(item){
-
-            if(item.id == 92){
-                return "rainbow-2"
-            }else{
-                return
+        mittin(item) {
+            if (item.id == 92) {
+                return "rainbow-2";
+            } else {
+                return;
             }
         },
 
@@ -345,28 +335,34 @@ export default {
 };
 </script>
 <style scoped>
-
-
-
-.rainbow-2:hover{
-  background-image: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet, red);
-  animation:slidebg 2s linear infinite;
+.rainbow-2:hover {
+    background-image: linear-gradient(
+        to right,
+        red,
+        orange,
+        yellow,
+        green,
+        blue,
+        indigo,
+        violet,
+        red
+    );
+    animation: slidebg 2s linear infinite;
 }
-
 
 @keyframes slidebg {
-  to {
-    background-position:20vw;
-  }
+    to {
+        background-position: 20vw;
+    }
 }
 
-.follow{
-  margin-top: 40px;
+.follow {
+    margin-top: 40px;
 }
 
-.follow a{
-  color: black;
-  padding: 8px 16px;
-  text-decoration: none;
+.follow a {
+    color: black;
+    padding: 8px 16px;
+    text-decoration: none;
 }
 </style>
