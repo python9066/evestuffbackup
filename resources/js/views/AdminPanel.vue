@@ -230,17 +230,42 @@ export default {
                 }
             }else if (this.$can("edit_scout_users")) {
                 if (name == "Scout") {
-                    true;
+                    return true;
                 } else {
                     return false;
                 }
             }else if (this.$can("edit_hack_users")) {
                 if (name == "Hacker") {
-                    true;
+                    return true;
                 } else {
                     return false;
                 }
             }
+
+            // if(this.$can("edit_all_users")){
+
+            //     if(name == "Wizhard"){
+
+            //     }else{
+
+            //     }
+
+            // }else if(this.$can("edit_scout_users")){
+
+            //     if(name == "Scout"){
+
+            //     }else{
+
+            //     }
+            // }else if(this.$can("edit_hack_users")){
+
+            //     if(name == "Hacker"){
+
+            //     }else
+            // }
+
+
+
         },
 
         async userAddRole(item) {
