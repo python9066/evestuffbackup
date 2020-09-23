@@ -322,7 +322,7 @@ export default {
 
 .rainbow-2:hover{
   background-image: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet, red);
-  animation: 2s linear infinite;
+  animation:slidebg 2s linear infinite;
 }
 
 
