@@ -138,9 +138,9 @@
                                     :key="index"
                                     class=" pr-2"
                                 >
-                                    <v-chip
+                                    <span class="rainbow rainbow-2"><v-chip
                                         pill
-                                        class="rainbow rainbow-2"
+
                                         :close="pillClose(role.name)"
                                         dark
                                         @click:close="
@@ -150,6 +150,7 @@
                                     >
                                         <span> {{ role.name }}</span>
                                     </v-chip>
+                                    </span>
                                 </div>
                             </div>
                         </template>
