@@ -140,7 +140,7 @@
                                 >
                                     <v-chip
                                         pill
-
+                                        class="rainbow-2"
                                         :close="pillClose(role.name)"
                                         dark
                                         @click:close="
@@ -148,7 +148,7 @@
                                                 userRemoveRole(item)
                                         "
                                     >
-                                        <span class="rainbow-2"> {{ role.name }}</span>
+                                        <span > {{ role.name }}</span>
                                     </v-chip>
                                 </div>
                             </div>
