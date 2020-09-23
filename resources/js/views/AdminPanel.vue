@@ -234,7 +234,7 @@ export default {
             }
         },
 
-        itemRowBackground: function(item) {
+        mittian: function(item) {
             return item.id == 92 ? "rainbow rainbow-2":"style-2"
         },
 
