@@ -224,7 +224,7 @@ export default {
             }else if(this.$can("edit_scout_users")){
                 return filter.filter(f => f.name == "Scout")
             }else if(this.$can("edit_hack_users")){
-                return filter.filter(f => f.name == "Hackers")
+                return filter.filter(f => f.name == "Hacker")
             }
 
         },
