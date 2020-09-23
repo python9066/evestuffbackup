@@ -136,7 +136,7 @@
                                         item.roles
                                     )"
                                     :key="index"
-                                    class=" pr-2"
+                                    class=" pr-2 rainbow rainbow-2"
                                 >
                                     <v-chip
                                         pill
@@ -317,5 +317,8 @@ export default {
 };
 </script>
 <style>
-
+.rainbow-2:hover{
+  background-image: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet, red);
+  animation:slidebg 2s linear infinite;
+}
 </style>
