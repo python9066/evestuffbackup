@@ -37,6 +37,11 @@ Route::get('/test2', 'UserRolesRecordsController@index');
 
 Route::get('/home', 'HomeController@index');
 Route::get('/updateAlliances', 'AllianceController@updateAlliances');
+
+Route::group(['middleware' => ['permission:edit all users']], function () {
+    Route::get('/pannel','RoleController@addCord');
+});
+
 Route::get('/4218aff5352b126a/a61f91b18510db23','RoleController@addCord');
 // Route::get('/helper', function () {
 //     return Helper::displayName();
