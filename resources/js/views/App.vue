@@ -116,10 +116,7 @@
                     <v-icon>mdi-phone</v-icon>
                 </v-tab>
 
-                <v-tab v-if="checkAccess()" link to="/pannel">
-                    Users
-                    <v-icon>mdi-phone</v-icon>
-                </v-tab>
+
 
             </v-tabs>
             </div>
@@ -245,12 +242,6 @@ export default {
 
         logout() {
             window.location.href = "/logout";
-        },
-
-        checkAccess(){
-            if($can('edit all users')){
-                return true
-            }
         }
     },
     computed: {
