@@ -27,8 +27,12 @@ class RoleController extends Controller
 
     public function removeRole(Request $request)
     {
+        $check=Auth::user();
+        $check->hasRole("edit_users");
+        if($check){
         $user = User::find($request->userId);
         $user->removeRole($request->roleId);
+            }
     }
 
     public function addRole(Request $request)
@@ -36,7 +40,6 @@ class RoleController extends Controller
         $check=Auth::user();
         $check->hasRole("edit_users");
         if($check){
-
             $user = User::find($request->userId);
             $user->assignRole($request->roleId);
         }
