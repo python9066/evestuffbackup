@@ -256,7 +256,7 @@ export default {
 
         mittin(item){
 
-            if(item.id == 95){
+            if(item.id == 92){
                 return "rainbow-2"
             }else{
                 return
