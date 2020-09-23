@@ -25,7 +25,7 @@ class NotificationController extends Controller
             if ($ok == 1) {
                 $data = Helper::authpull($type);
                 $flag = Notifications::update($data);
-                dd($flag);
+                // dd($flag);
                 if ($flag == 1) {
                     broadcast(new NotificationNew($flag))->toOthers();
                 }
