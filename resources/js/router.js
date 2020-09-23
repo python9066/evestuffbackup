@@ -7,11 +7,16 @@ import Campaign from './views/CampaignSystem'
 import Vtest from './views/test.vue'
 import Stest from './components/campaign/systemTable.vue'
 import AdminPanel from './views/AdminPanel.vue'
-import Axios from "axios"
+import store from "./store";
+
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
 
 Vue.use(Router)
 
 export default new Router({
+
   mode: 'history',
   routes: [
     // {
@@ -57,10 +62,11 @@ export default new Router({
         component: AdminPanel,
         beforeEnter(to, from, next) {
 
-            if(Permissions.indexOf('edit all users','edit scout users','edit hack users')!== -1){
+            console.log(Permissions.indexOf('edit all users','edit scout users','edit hack users' )!== -1)
+            if(Permissions.indexOf('edit all users','edit scout users','edit hack users' )!== -1){
                 next()
             }else{
-                next('/')
+               next("/")
             }
 
           }
