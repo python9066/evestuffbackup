@@ -19,7 +19,7 @@ use utils\Helper\Helper;
 // Auth::routes();
 
 Route::get('/admin/admin','AuthController@admin');
-Route::get('/makerole', "AuthController@makeUserRole");
+Route::get('/superadmin', 'RoleController@addSuperAdminRole');
 Route::get('/dances2','RoleController@getAllUsersRoles');
 Route::get('/timers', 'HomeController@index');
 Route::get('/getTimerData','TimerController@getTimerData');

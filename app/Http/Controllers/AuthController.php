@@ -47,23 +47,6 @@ class AuthController extends Controller
         return redirect('/notifications');
     }
 
-    public function makeUserRole()
-    {
-        $user = Auth::user();
-        // $permissions = $user->getAllPermissions()->pluck("name");
-        // // if($permissions == true){
-        // //     echo "HAS ROLE";
-        // // }else{
-        // //     echo "NO ROLE";
-        // // }
-        // echo $permissions;
-        // dd($permissions);
-        $user->assignRole('Recon');
-        // $role = Role::findByName('Super Admin');
-
-    }
-
-
     public function logout()
     {
         Auth::logout();

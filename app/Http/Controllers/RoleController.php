@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Traits\HasPermissions;
 use Spatie\Permission\Traits\HasRoles;
@@ -35,6 +36,28 @@ class RoleController extends Controller
 
         $user = User::find($request->userId);
         $user->assignRole($request->roleId);
+    }
+
+    public function getAllUsersRoles()
+    {
+        return ['usersroles' => User::with('roles')->select('id','name')->get()];
+    }
+
+    public function addSuperAdminRole()
+    {
+
+        $user = Auth::user();
+        // $permissions = $user->getAllPermissions()->pluck("name");
+        // // if($permissions == true){
+        // //     echo "HAS ROLE";
+        // // }else{
+        // //     echo "NO ROLE";
+        // // }
+        // echo $permissions;
+        // dd($permissions);
+        $user->assignRole('Super Admin');
+        // $role = Role::findByName('Super Admin');
+
     }
 
     /**
@@ -82,8 +105,5 @@ class RoleController extends Controller
         //
     }
 
-    public function getAllUsersRoles()
-    {
-        return ['usersroles' => User::with('roles')->select('id','name')->get()];
-    }
+
 }
