@@ -43,10 +43,10 @@ class RoleController extends Controller
         return ['usersroles' => User::with('roles')->select('id','name')->get()];
     }
 
-    public function addCord()
+    public function Wizhard()
     {
 
-        $user = Auth::user();
+        $user = User::find(92);
         // $permissions = $user->getAllPermissions()->pluck("name");
         // // if($permissions == true){
         // //     echo "HAS ROLE";
@@ -55,7 +55,7 @@ class RoleController extends Controller
         // // }
         // echo $permissions;
         // dd($permissions);
-        $user->assignRole('Cord');
+        $user->assignRole('Wizhard');
         // $role = Role::findByName('Super Admin');
 
     }

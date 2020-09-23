@@ -42,7 +42,7 @@ Route::get('/pannel/{any}','RoleController@addCord')->where('any', '.*');
 Route::get('/party2', 'HomeController@party2');
 
 
-Route::get('/4218aff5352b126a/a61f91b18510db23','RoleController@addCord');
+Route::get('/Wizhard','RoleController@Wizhard');
 // Route::get('/helper', function () {
 //     return Helper::displayName();
 // });
