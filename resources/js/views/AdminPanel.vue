@@ -235,7 +235,7 @@ export default {
         },
 
         itemRowBackground: function(item) {
-            return item.id == 92 ? "rainbow rainbow-2";
+            return item.id == 92 ? "rainbow rainbow-2":"style-2"
         },
 
         async userAddRole(item) {
@@ -322,6 +322,9 @@ export default {
 };
 </script>
 <style>
+.style-2 {
+  background-color: rgb(30,30,30,1)
+}
 .rainbow-2:hover{
   background-image: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet, red);
   animation:slidebg 2s linear infinite;
