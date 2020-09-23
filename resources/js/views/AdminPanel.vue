@@ -208,7 +208,7 @@ export default {
 
         filterRoles(roles) {
             // console.log(roles);
-            return roles.filter(r => r.name != "Super Admin"  || roles.role_name != "Wizhard");
+            return roles.filter(r => r.name != "Super Admin");
         },
 
         filerRolesByUser(item) {
