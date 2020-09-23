@@ -225,14 +225,14 @@ export default {
         },
 
         pillClose(name){
-            if(this.$can("edit all users")){
+            if(this.$can("edit_all_users")){
                 if(name == "Wizhard"){
                 return false
             }else{
                 return true
             }}
 
-            if(this.$can("edit scout users")){
+            if(this.$can("edit_scout_users")){
                 if(name == "Scout"){
                     true
                 }else{
@@ -240,7 +240,7 @@ export default {
                 }
             }
 
-            if(this.$can("edit hack users")){
+            if(this.$can("edit_hack_users")){
                 if(name == "Hacker"){
                     true
                 }else{
