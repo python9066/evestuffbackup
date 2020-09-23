@@ -20,7 +20,7 @@ class RoleController extends Controller
      */
     public function index()
     {
-        return['roles' => Role::where("name","!=","Super Admin")->orwhere("name","!=","Wizhard")->select('id','name')->get()];
+        return['roles' => Role::where("name","!=","Super Admin")->where("name","!=","Wizhard")->select('id','name')->get()];
     }
 
 
