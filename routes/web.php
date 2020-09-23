@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 */
 use utils\Helper\Helper;
 
-// Auth::routes();
+Auth::routes();
 
 Route::get('/admin/admin','AuthController@admin');
 Route::get('/dances2','RoleController@getAllUsersRoles');
