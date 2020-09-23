@@ -248,7 +248,7 @@ export default {
         },
 
         checkAccess(){
-            if($can('edit all users')){
+            if($can('edit all users') == true){
                 return true
             }
         }
