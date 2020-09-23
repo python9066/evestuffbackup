@@ -349,7 +349,7 @@
                 <v-div v-else>
                     <template>
                         <div class="align-items-center">
-                            <v-btn
+                            <v-chip
                                 v-if="item.status_id == 1"
                                 large
                                 class="ma-2"
@@ -358,8 +358,8 @@
                             >
                                 <v-icon left>fas fa-plus</v-icon>
                                 {{ item.status_name }}
-                            </v-btn>
-                            <v-btn
+                            </v-chip>
+                            <v-chip
                                 v-if="item.status_id == 2"
                                 large
                                 class="ma-2"
@@ -368,8 +368,8 @@
                             >
                                 <v-icon left>fas fa-fire fa-sm</v-icon>
                                 {{ item.status_name }}
-                            </v-btn>
-                            <v-btn
+                            </v-chip>
+                            <v-chip
                                 v-if="item.status_id == 3"
                                 large
                                 class="ma-2"
@@ -378,8 +378,8 @@
                             >
                                 <v-icon left>fas fa-toolbox</v-icon>
                                 {{ item.status_name }}
-                            </v-btn>
-                            <v-btn
+                            </v-chip>
+                            <v-chip
                                 v-if="item.status_id == 4"
                                 large
                                 class="ma-2"
@@ -388,8 +388,8 @@
                             >
                                 <v-icon left>fas fa-thumbs-up</v-icon>
                                 {{ item.status_name }}
-                            </v-btn>
-                            <v-btn
+                            </v-chip>
+                            <v-chip
                                 v-if="item.status_id == 5"
                                 large
                                 class="ma-2"
@@ -398,9 +398,9 @@
                             >
                                 <v-icon left>fas fa-exclamation-circle</v-icon>
                                 {{ item.status_name }}
-                            </v-btn>
+                            </v-chip>
 
-                            <v-btn
+                            <v-chip
                                 v-if="item.status_id == 6"
                                 large
                                 class="ma-2"
@@ -409,7 +409,7 @@
                             >
                                 <v-icon left>fas fa-search</v-icon>
                                 {{ item.status_name }}
-                            </v-btn>
+                            </v-chip>
                         </div>
                     </template>
                 </v-div>
