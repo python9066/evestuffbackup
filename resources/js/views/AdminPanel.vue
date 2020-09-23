@@ -85,7 +85,6 @@
                         :loading="loading"
                         :items-per-page="25"
                         :search="search"
-                        :item-class="itemRowBackground"
                         :footer-props="{
                             'items-per-page-options': [15, 25, 50, 100, -1]
                         }"
@@ -141,7 +140,7 @@
                                 >
                                     <v-chip
                                         pill
-                                        class="rainbow-button"
+                                        class="rainbow rainbow-2"
                                         :close="pillClose(role.name)"
                                         dark
                                         @click:close="
@@ -234,10 +233,6 @@ export default {
             }
         },
 
-        itemRowBackground: function(item) {
-            return item.id == 92 ? "rainbow rainbow-2":"style-2"
-        },
-
         async userAddRole(item) {
             var request = {
                 roleId: this.userAddRoleText,
@@ -326,12 +321,11 @@ export default {
   background-color: rgb(30,30,30,1)
 }
 .rainbow{
-  background-color:linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet, red);
+  background-color: #343A40;
   border-radius: 4px;
   color: #fff;
   cursor: pointer;
   padding: 8px 16px;
-  animation:slidebg 2s linear infinite;
 
 }
 
@@ -345,5 +339,15 @@ export default {
   to {
     background-position:20vw;
   }
+}
+
+.follow{
+  margin-top: 40px;
+}
+
+.follow a{
+  color: black;
+  padding: 8px 16px;
+  text-decoration: none;
 }
 </style>
