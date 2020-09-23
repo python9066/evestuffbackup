@@ -223,7 +223,6 @@
                                     class="ma-2 ma"
                                     filter
                                     pill
-                                    :to="'/campaign/' + item.id"
                                     :disabled="pillDisabled(item)"
                                     color="light-blue lighten-1"
                                 >
@@ -246,7 +245,6 @@
                         class="ma-2 ma"
                         filter
                         pill
-                        :to="'/campaign/' + item.id"
                         :disabled="pillDisabled(item)"
                         :color="pillColor(item)"
                     >
@@ -347,11 +345,11 @@ export default {
 
 
         rowClick(item){
-
+            if(this.$can('access_campaigns')){
             var left = (moment.utc(item.start).unix() -  moment.utc().unix())
             if(left < 601 && item.status_id < 3){
                 this.$router.push({ path: `/campaign/${item.id}` }) // -> /user/123
-            }
+            }}
         },
 
         barScoure(item) {
