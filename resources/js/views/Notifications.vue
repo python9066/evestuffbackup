@@ -351,9 +351,9 @@
                         <div class="align-items-center">
                             <v-chip
                                 v-if="item.status_id == 1"
+                                large
                                 class="ma-2"
                                 tile
-                                outlined
                                 color="success"
                             >
                                 <v-icon left>fas fa-plus</v-icon>
@@ -361,9 +361,9 @@
                             </v-chip>
                             <v-chip
                                 v-if="item.status_id == 2"
+                                large
                                 class="ma-2"
                                 tile
-                                outlined
                                 color="error"
                             >
                                 <v-icon left>fas fa-fire fa-sm</v-icon>
@@ -371,9 +371,9 @@
                             </v-chip>
                             <v-chip
                                 v-if="item.status_id == 3"
+                                large
                                 class="ma-2"
                                 tile
-                                outlined
                                 color="dark-orange"
                             >
                                 <v-icon left>fas fa-toolbox</v-icon>
@@ -381,9 +381,9 @@
                             </v-chip>
                             <v-chip
                                 v-if="item.status_id == 4"
+                                large
                                 class="ma-2"
                                 tile
-                                outlined
                                 color="primary"
                             >
                                 <v-icon left>fas fa-thumbs-up</v-icon>
@@ -391,9 +391,9 @@
                             </v-chip>
                             <v-chip
                                 v-if="item.status_id == 5"
+                                large
                                 class="ma-2"
                                 tile
-                                outlined
                                 color="warning"
                             >
                                 <v-icon left>fas fa-exclamation-circle</v-icon>
@@ -402,9 +402,9 @@
 
                             <v-chip
                                 v-if="item.status_id == 6"
+                                large
                                 class="ma-2"
                                 tile
-                                outlined
                                 color="light-green darken-1"
                             >
                                 <v-icon left>fas fa-search</v-icon>
