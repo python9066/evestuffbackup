@@ -36,13 +36,10 @@ class RoleController extends Controller
         $check=Auth::user();
         $check->hasRole("edit_users");
         if($check){
-            echo "yes";
-        }else{
-            echo "no";
+
+            $user = User::find($request->userId);
+            $user->assignRole($request->roleId);
         }
-        dd($check);
-        $user = User::find($request->userId);
-        $user->assignRole($request->roleId);
     }
 
     public function getAllUsersRoles()
