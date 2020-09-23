@@ -116,6 +116,11 @@
                     <v-icon>mdi-phone</v-icon>
                 </v-tab>
 
+                <v-tab v-if="$can('edit all users')" link to="">
+                    Users
+                    <v-icon>mdi-phone</v-icon>
+                </v-tab>
+
 
 
             </v-tabs>
