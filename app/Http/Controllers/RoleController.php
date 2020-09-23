@@ -35,6 +35,11 @@ class RoleController extends Controller
     {
         $check=Auth::user();
         $check->hasRole("edit_users");
+        if($check){
+            echo "yes";
+        }else{
+            echo "no";
+        }
         dd($check);
         $user = User::find($request->userId);
         $user->assignRole($request->roleId);
