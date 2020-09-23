@@ -1,5 +1,6 @@
 <template>
     <div class=" pr-16 pl-16">
+        <messageComponent></messageComponent>
         <div class=" d-flex align-items-center">
             <v-card-title>Notifications</v-card-title>
             <div v-if="$can('access hacks')">You can edit posts.</div>
@@ -396,7 +397,7 @@
                 <v-btn v-bind="attrs" text @click="snack = false">Close</v-btn>
             </template>
         </v-snackbar>
-        <messageComponent></messageComponent>
+
     </div>
 </template>
 <script>
