@@ -116,7 +116,7 @@
                     <v-icon>mdi-phone</v-icon>
                 </v-tab>
 
-                <v-tab v-if="$can('edit all users') ||$can('edit scout users') ||$can('edit hack users') " link to="/pannel">
+                <v-tab v-if="$can('edit_users') ||$can('edit scout users') ||$can('edit hack users') " link to="/pannel">
                     Users
                     <v-icon>mdi-phone</v-icon>
                 </v-tab>
