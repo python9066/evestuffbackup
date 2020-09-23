@@ -86,7 +86,7 @@
                 @click.stop="navdrawer = !navdrawer"
             ></v-app-bar-nav-icon> -->
             <v-toolbar-title class="pl-15">
-                <span class>EveStuff - {{this.username}}</span>
+                <span class>EveStuff - {{ this.username }}</span>
 
                 <v-avatar :size="avatarsize" tile class="">
                     <v-icon color="">fa fa-rocket fa-sm</v-icon>
@@ -94,31 +94,36 @@
             </v-toolbar-title>
             <v-spacer></v-spacer>
             <div>
-            <v-tabs
+                <v-tabs
                     entered
                     centered
                     background-color="#272727"
                     icons-and-text
-                    align-with-title>
-                <v-tabs-slider></v-tabs-slider>
-                <v-tab link to="/notifications">
-                    Notifications
-                    <v-icon>mdi-heart</v-icon>
-                </v-tab>
+                    align-with-title
+                >
+                    <v-tabs-slider></v-tabs-slider>
+                    <v-tab link to="/notifications">
+                        Notifications
+                        <v-icon>mdi-heart</v-icon>
+                    </v-tab>
 
-                <v-tab link to="/timers">
-                    Timers
-                    <v-icon>mdi-phone</v-icon>
-                </v-tab>
+                    <v-tab link to="/timers">
+                        Timers
+                        <v-icon>mdi-phone</v-icon>
+                    </v-tab>
 
-                <v-tab link to="/campaigns">
-                    Campaigns
-                    <v-icon>mdi-phone</v-icon>
-                </v-tab>
+                    <v-tab link to="/campaigns">
+                        Campaigns
+                        <v-icon>mdi-phone</v-icon>
+                    </v-tab>
 
-            </v-tabs>
+                    <v-tab :v-if="checkAccess()" link to="/pannel">
+                        Campaigns
+                        <v-icon>mdi-phone</v-icon>
+                    </v-tab>
+                </v-tabs>
             </div>
-<v-spacer></v-spacer>
+            <v-spacer></v-spacer>
             <v-btn
                 text
                 class="mr-2"
@@ -128,8 +133,6 @@
                 <v-icon class="mr-2 grey--text lighten-1">fa fa-rocket</v-icon
                 >Logout
             </v-btn>
-
-
 
             <!-- <v-menu :nudge-width="200" offset-y>
                 <template v-slot:activator="{ on }">
@@ -215,23 +218,21 @@ import ClickOutside from "vue-click-outside";
 import { mapState } from "vuex";
 
 export default {
-    props: ['username','token','user_id'],
+    props: ["username", "token", "user_id"],
     mounted() {},
     data: () => ({
         loading2: false,
         navdrawer: null
     }),
-  async  created() {
+    async created() {
         // EventBus.$on("buttonupdate", payload => {
         //     this.loading2 = payload;
         // });
         // console.log(this.username)
 
-
-    await this.$store.dispatch('setToken',this.token);
-    await this.$store.dispatch('setUser_id',this.user_id);
-    await this.$store.dispatch('setUser_name',this.username);
-
+        await this.$store.dispatch("setToken", this.token);
+        await this.$store.dispatch("setUser_id", this.user_id);
+        await this.$store.dispatch("setUser_name", this.username);
     },
     methods: {
         gotoCovid() {
@@ -240,6 +241,18 @@ export default {
 
         logout() {
             window.location.href = "/logout";
+        },
+
+        checkAccess() {
+            if ($can("edit all users")) {
+                return true;
+            } else if ($can("edit all users")) {
+                return true;
+            } else if ($can("edit scout users")) {
+                return true;
+            } else {
+                return false;
+            }
         }
     },
     computed: {
