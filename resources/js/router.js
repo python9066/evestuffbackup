@@ -7,11 +7,9 @@ import Campaign from './views/CampaignSystem'
 import Vtest from './views/test.vue'
 import Stest from './components/campaign/systemTable.vue'
 import AdminPanel from './views/AdminPanel.vue'
-import Permissions from './mixins/Permissions.vue'
 import Axios from "axios"
 
 Vue.use(Router)
-Vue.mixin(Permissions);
 
 export default new Router({
   mode: 'history',
