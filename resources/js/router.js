@@ -62,7 +62,7 @@ export default new Router({
         component: AdminPanel,
         beforeEnter(to, from, next) {
 
-            // console.log(Permissions.indexOf('edit all users','edit scout users','edit hack users' )!== -1)
+            console.log(Permissions.indexOf('edit all users','edit scout users','edit hack users' )!== -1)
             if(Permissions.indexOf('edit all users','edit scout users','edit hack users' )!== -1){
                 next()
             }else{
