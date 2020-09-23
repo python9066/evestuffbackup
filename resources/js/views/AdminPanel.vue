@@ -201,10 +201,16 @@ export default {
     async mounted() {
         await this.$store.dispatch("getUsers");
         await this.$store.dispatch("getRoles");
+        this.test();
     },
     methods: {
-        test(item) {
-            // console.log(item)
+        test() {
+            if(this.$can('edit all user')){
+                console.log("yes")
+            }else{
+
+                console.log("no")
+            }
         },
 
         filterRoles(roles) {
