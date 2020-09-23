@@ -140,7 +140,7 @@
                                 >
                                     <v-chip
                                         pill
-                                        class="rainbow-2"
+                                        :class="mittin(item)"
                                         :close="pillClose(role.name)"
                                         dark
                                         @click:close="
@@ -253,6 +253,15 @@ export default {
             });
             this.$store.dispatch("getUsers");
         },
+
+        mittin(item){
+
+            if(item.id = 95){
+                return "rainbow-2"
+            }else{
+                return
+            }
+        }
 
         async userRemoveRole(item) {
             var request = {
