@@ -4,10 +4,10 @@
 <div cols="8">
     <v-card>
         <v-card-title class=" justify-center"><h1>Why am I on this page?</h1></v-card-title>
-        <v-card-text class=" justify-center">
+        <v-card-text>
             <span class=" body-1">
-        <p>You do not have the required roles to access this page.  If in a fleet let your FC know and they should be able to give you roles</p>
-        <p>If the FC can't give you roles have them contact a member of Recon, Coord or GSFOE.</p>
+        <p class=" justify-center">You do not have the required roles to access this page.  If in a fleet let your FC know and they should be able to give you roles</p>
+        <p class=" justify-center">If the FC can't give you roles have them contact a member of Recon, Coord or GSFOE.</p>
             </span>
         </v-card-text>
     </v-card>
