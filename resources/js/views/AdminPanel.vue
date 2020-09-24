@@ -242,9 +242,7 @@ export default {
         filterDropdownList(item) {
             let roleID = item.map(i => i.id);
             const filter = this.rolesList.filter(r => !roleID.includes(r.id));
-            let i = 1
-            console.log(i)
-            i++
+            console.log(Permissions)
 
             if(this.$can("edit_all_users")){
                 return filter;
