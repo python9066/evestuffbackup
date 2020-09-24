@@ -26,8 +26,10 @@ class AuthController extends Controller
     }
     public function handleProviderCallback()
     {
+        $flag = 0;
         $userGice = Socialite::with('gice')->user();
-        if(User::find($userGice->id)->count() ==1){
+        $check = User::where('id',$userGice->id)->get()->count();
+        if($check != 1 ){
             $flag = 1;
         };
         User::updateOrCreate(['id' => $userGice->id], ['name' => $userGice->name, 'token' => $userGice->token, 'pri_grp' => $userGice->user['pri_grp'], 'api_token' => Str::random(60)]);
