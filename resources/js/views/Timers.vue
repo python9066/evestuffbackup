@@ -1,5 +1,6 @@
 <template>
     <div class=" pr-16 pl-16">
+        <messageComponent></messageComponent>
         <div class=" d-flex align-items-center">
             <v-card-title>Vulnerability Windows</v-card-title>
 
@@ -107,7 +108,6 @@
                 </template>
             </template>
         </v-data-table>
-        <messageComponent></messageComponent>
     </div>
 
     <!-- <template>

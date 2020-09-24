@@ -1,5 +1,6 @@
 <template>
     <div class="pr-16 pl-16">
+         <errorMessage></errorMessage>
         <v-row no-gutters justify="center">
             <v-col class=" d-inline-flex" cols="8">
                 <v-card
@@ -181,8 +182,6 @@
                 </v-card>
             </v-col>
         </v-row>
-
-        <errorMessage></errorMessage>
     </div>
 </template>
 <script>
