@@ -342,9 +342,10 @@
                                             icon
                                             fixed
                                             left
+                                            v-bind="attrs"
+                                            v-on="off"
                                             color="success"
                                             @click="
-                                                (timerShown = false),
                                                     addHacktime(item)
                                             "
                                             ><v-icon
@@ -356,9 +357,10 @@
                                             fixed
                                             right
                                             icon
+                                            v-bind="attrs"
+                                            v-on="off"
                                             color="warning"
                                             @click="
-                                                (timerShown = false),
                                                     (hackTime = null)
                                             "
                                             ><v-icon
