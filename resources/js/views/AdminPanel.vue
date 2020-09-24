@@ -256,6 +256,8 @@ export default {
                 return filter;
             }else if(this.$can("edit_gsfoe_users") && this.$can("edit_recon_users") && this.$can("edit_scout_users")){
                 return filter.filter(f => f.name == "GSFOE" || f.name == "Recon" || f.name == "Scout")
+            }else if(this.$can("edit_gsfoe_FC") && this.$can("edit_gsfoe_users")){
+                return filter.filter(f => f.name == "GSFOE" || f.name == "GSFOE FC")
             }else if(this.$can("edit_scout_users")){
                 return filter.filter(f => f.name == "Scout")
             }else if(this.$can("edit_gsfo_users")){
@@ -273,6 +275,12 @@ export default {
                 }
             }else if(this.$can("edit_gsfoe_users") && this.$can("edit_recon_users") && this.$can("edit_scout_users")) {
                 if (name == "GSFOE" || name == "Recon" || name == "Scout") {
+                    return true;
+                } else {
+                    return false;
+                }
+            }else if(this.$can("edit_gsfoe_FC") && this.$can("edit_gsfoe_users")){
+                if (name == "GSFOE" || name == "GSFOE FC") {
                     return true;
                 } else {
                     return false;
