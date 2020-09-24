@@ -311,7 +311,6 @@
                         </VueCountUptimer>
                         <v-menu
                             :close-on-content-click="false"
-                            :value="timerShown"
                             v-else-if="checkHackUser(item)"
                         >
                             <template v-slot:activator="{ on, attrs }">
@@ -320,7 +319,6 @@
                                     v-on="on"
                                     pill
                                     :outlined="pillOutlined(item)"
-                                    @click="timerShown = true"
                                     small
                                     color="warning"
                                 >
