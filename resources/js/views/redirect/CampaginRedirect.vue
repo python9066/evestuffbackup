@@ -3,6 +3,7 @@
 
 <div>
     <v-card
+    hover
     class=" align-content-center">
         <v-card-title> Why am I on this page? </v-card-title>
         <v-card-text>
