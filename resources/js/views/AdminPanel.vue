@@ -232,7 +232,11 @@ export default {
 
         test() {
             // console.log(roles);
-            console.log(this.$can("edit_hack_users","edit_recon_users","edit_all_users"))
+            if(this.$can("edit_hack_users") && this.$can("edit_recon_users") && this.$can("edit_all_users")){
+                console.log("yes")
+            }else{
+                console.log("no")
+            }
         },
 
         filterRoles(roles) {
