@@ -45,6 +45,8 @@ class RoleController extends Controller
         if($check){
             $user = User::find($request->userId);
             $user->assignRole($request->roleId);
+            $flag = 1;
+            broadcast(new UserUpdate($flag))->toOthers();
         }
     }
 
