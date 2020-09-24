@@ -74,14 +74,14 @@
                             :disabled="loadingf"
                             @click="roleflag = 9"
                         >
-                            HackerFC
+                            GSFOE FC
                         </v-btn>
                         <v-btn
                             :loading="loadingf"
                             :disabled="loadingf"
                             @click="roleflag = 8"
                         >
-                            Hacker
+                            GSFOE
                         </v-btn>
                         <v-btn
                             :loading="loadingf"
