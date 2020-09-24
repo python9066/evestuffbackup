@@ -232,7 +232,7 @@ export default {
 
         test() {
             // console.log(roles);
-            console.log(this.$can("edit_hack_users","edit_recon_users "))
+            console.log(this.$can("edit_hack_users","edit_recon_users","edit_all_users"))
         },
 
         filterRoles(roles) {

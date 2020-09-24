@@ -78,8 +78,6 @@ export default new Router({
         name: 'test',
         component: AdminPanel,
         beforeEnter(to, from, next) {
-
-            console.log(Permissions.indexOf('edit users' )!== -1)
             if(Permissions.indexOf('edit_users' )!== -1){
                 next()
             }else{
