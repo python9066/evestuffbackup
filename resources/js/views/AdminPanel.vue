@@ -232,7 +232,7 @@ export default {
 
         test() {
             // console.log(roles);
-            if(this.$can("edit_hack_users") && this.$can("edit_recon_users") && this.$can("edit_all_users")){
+            if(this.$can("edit_gsfoe_users") && this.$can("edit_recon_users") && this.$can("edit_all_users")){
                 console.log("yes")
             }else{
                 console.log("no")
@@ -254,12 +254,12 @@ export default {
             const filter = this.rolesList.filter(r => !roleID.includes(r.id));
             if(this.$can("edit_all_users")){
                 return filter;
-            }else if(this.$can("edit_hack_users") && this.$can("edit_recon_users") && this.$can("edit_scout_users")){
-                return filter.filter(f => f.name == "Hacker" || f.name == "Recon" || f.name == "Scout")
+            }else if(this.$can("edit_gsfoe_users") && this.$can("edit_recon_users") && this.$can("edit_scout_users")){
+                return filter.filter(f => f.name == "GSFOE" || f.name == "Recon" || f.name == "Scout")
             }else if(this.$can("edit_scout_users")){
                 return filter.filter(f => f.name == "Scout")
-            }else if(this.$can("edit_hack_users")){
-                return filter.filter(f => f.name == "Hacker")
+            }else if(this.$can("edit_gsfo_users")){
+                return filter.filter(f => f.name == "GSFOE")
             }
 
         },
@@ -271,8 +271,8 @@ export default {
                 } else {
                     return true;
                 }
-            }else if(this.$can("edit_hack_users") && this.$can("edit_recon_users") && this.$can("edit_scout_users")) {
-                if (name == "Hacker" || name == "Recon" || name == "Scout") {
+            }else if(this.$can("edit_gsfoe_users") && this.$can("edit_recon_users") && this.$can("edit_scout_users")) {
+                if (name == "GSFOE" || name == "Recon" || name == "Scout") {
                     return true;
                 } else {
                     return false;
@@ -283,8 +283,8 @@ export default {
                 } else {
                     return false;
                 }
-            }else if (this.$can("edit_hack_users")) {
-                if (name == "Hacker") {
+            }else if (this.$can("edit_gsfoe_users")) {
+                if (name == "GSFOE") {
                     return true;
                 } else {
                     return false;
