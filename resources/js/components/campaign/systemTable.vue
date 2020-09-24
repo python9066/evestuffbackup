@@ -134,11 +134,8 @@
                                         </v-list>
                                     </v-menu>
                                 </div>
-                                <div>
-                                    <v-divider
-                            class="mx-4 my-0"
-                            vertical
-                        ></v-divider>
+
+                                wddwdw
                                     <v-menu
                                         :close-on-content-click="false"
                                         :value="addShown"
