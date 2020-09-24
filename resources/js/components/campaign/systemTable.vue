@@ -343,7 +343,7 @@
                                             fixed
                                             left
                                             v-bind="attrs"
-                                            v-on="off"
+                                            v-on="on"
                                             color="success"
                                             @click="
                                                     addHacktime(item)
@@ -358,7 +358,7 @@
                                             right
                                             icon
                                             v-bind="attrs"
-                                            v-on="off"
+                                            v-on="on"
                                             color="warning"
                                             @click="
                                                     (hackTime = null)
