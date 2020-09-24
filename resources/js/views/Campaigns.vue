@@ -254,7 +254,6 @@
                 </div>
             </template>
         </v-data-table>
-        <errorMessage></errorMessage>
     </div>
 </template>
 <script>

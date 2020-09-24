@@ -214,7 +214,13 @@ export default {
         };
     },
 
-    async created() {},
+    async created() {
+        Echo.private('userupdate')
+        .listen('UserUpdate', (e) => {
+        this.refresh()
+    })
+
+    },
 
     async mounted() {
         await this.$store.dispatch("getUsers");
@@ -233,6 +239,11 @@ export default {
         filterRoles(roles) {
             // console.log(roles);
             return roles.filter(r => r.name != "Super Admin");
+        },
+
+    async refresh(){
+            await this.$store.dispatch("getUsers");
+            await this.$store.dispatch("getRoles");
         },
 
         filterDropdownList(item) {
@@ -405,7 +416,9 @@ export default {
             }
         }
     },
-    beforeDestroy() {}
+    beforeDestroy() {
+        Echo.leave('userupdate');
+    }
 };
 </script>
 <style scoped>

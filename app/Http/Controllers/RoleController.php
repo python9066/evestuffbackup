@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\UserUpdate;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -32,6 +33,8 @@ class RoleController extends Controller
         if($check){
         $user = User::find($request->userId);
         $user->removeRole($request->roleId);
+        $flag = 1;
+        broadcast(new UserUpdate($flag))->toOthers();
             }
     }
 

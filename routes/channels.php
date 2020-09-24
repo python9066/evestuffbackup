@@ -33,3 +33,7 @@ Broadcast::channel('notes', function () {
   Broadcast::channel('campaignsystem.{id}', function () {
     return Auth::check();
   });
+
+  Broadcast::channel('userupdate', function () {
+    return Auth::check();
+  });

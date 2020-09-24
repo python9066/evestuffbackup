@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-
+use App\Events\UserUpdate;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
@@ -26,12 +26,17 @@ class AuthController extends Controller
     }
     public function handleProviderCallback()
     {
-
         $userGice = Socialite::with('gice')->user();
-        // dd($userGice);
+        if(User::find($userGice->id)->count() ==1){
+            $flag = 1;
+        };
         User::updateOrCreate(['id' => $userGice->id], ['name' => $userGice->name, 'token' => $userGice->token, 'pri_grp' => $userGice->user['pri_grp'], 'api_token' => Str::random(60)]);
         $user = User::where('id', $userGice->id)->first();
         Auth::login($user, true);
+
+        if($flag == 1){
+            broadcast(new UserUpdate($flag))->toOthers();
+        }
 
         return redirect('/notifications');
     }
