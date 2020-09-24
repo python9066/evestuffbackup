@@ -39,16 +39,16 @@ export default new Router({
         }
         return { id }
       },
-      beforeEnter(to, from, next) {
+    //   beforeEnter(to, from, next) {
 
-        console.log(Permissions.indexOf('access_campaigns' )!== -1)
-        if(Permissions.indexOf('access_campaigns' )!== -1){
-            next()
-        }else{
-           next("/redirect/campagin")
-        }
+    //     console.log(Permissions.indexOf('access_campaigns' )!== -1)
+    //     if(Permissions.indexOf('access_campaigns' )!== -1){
+    //         next()
+    //     }else{
+    //        next("/redirect/campagin")
+    //     }
 
-      }
+    //   }
     },
     {
         path: '/timers',
