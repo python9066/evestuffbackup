@@ -2,7 +2,7 @@
     <div class="pr-16 pl-16">
          <errorMessage></errorMessage>
         <v-row no-gutters justify="center">
-            <v-col class=" d-inline-flex" cols="8">
+            <v-col class=" d-inline-flex" cols="9">
                 <v-card
                     tile
                     flat
@@ -97,7 +97,7 @@
         <v-row no-gutters justify="center">
             <v-col
                 class=" d-inline-flex justify-content-center w-auto"
-                cols="8"
+                cols="9"
             >
                 <v-card width="100%">
                     <v-data-table
@@ -105,15 +105,12 @@
                         :items="filteredItems"
                         item-key="id"
                         :loading="loading"
-                        :items-per-page="25"
+                        :items-per-page="20"
                         :search="search"
                         :footer-props="{
-                            'items-per-page-options': [15, 25, 50, 100, -1]
+                            'items-per-page-options': [10, 20, 50, 100, -1]
                         }"
-                        :sort-by="['name']"
-                        :sort-desc="[false, true]"
-                        multi-sort
-                        class="elevation-1"
+                        class="elevation-5"
                     >
                         <template v-slot:item.roles="{ item }">
                             <div class=" d-inline-flex">
