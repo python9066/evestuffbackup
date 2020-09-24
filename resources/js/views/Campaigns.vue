@@ -217,7 +217,7 @@
                 >
                     <template slot="countdown" slot-scope="scope">
                         <span
-                            v-if="scope.props.minutes < 10 && scope.props.hours == 0 && scope.props.hours == 0 && scope.props.days ==0"
+                            v-if="scope.props.minutes < 30 && scope.props.hours == 0 && scope.props.hours == 0 && scope.props.days ==0"
                             class="red--text pl-3"
                         >
                                 <v-chip
