@@ -105,6 +105,7 @@
                         :items="filteredItems"
                         item-key="id"
                         :loading="loading"
+                        :sort-by="['name']"
                         :items-per-page="20"
                         :search="search"
                         :footer-props="{
