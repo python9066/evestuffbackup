@@ -8,7 +8,7 @@
       :icon = false
       :elevation = 24
     >
-      If you find any problems, contact <strong>JohnMonty</strong> on Jabber  Doing some testing, so will see old notifications
+      If you find any problems, contact <strong>JohnMonty</strong> on Jabber
     </v-alert>
   </div>
 </template>
