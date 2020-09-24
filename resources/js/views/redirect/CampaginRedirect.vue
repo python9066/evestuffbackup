@@ -2,10 +2,8 @@
     <div class=" pr-16 pl-16">
 
 <div>
-    <v-card
-
-    class=" align-content-center">
-        <v-card-title> Why am I on this page? </v-card-title>
+    <v-card>
+        <v-card-title raised><h1> Why am I on this page? </h1></v-card-title>
         <v-card-text>
         <p>You do not have the required roles to access this page.  If in a fleet let your FC know and they should be able to give you roles</p>
         <p>If the FC can't give you roles have them contact a member of Recon, Coord or GSFOE.</p>
