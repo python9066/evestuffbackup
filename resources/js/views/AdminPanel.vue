@@ -225,9 +225,15 @@ export default {
     async mounted() {
         await this.$store.dispatch("getUsers");
         await this.$store.dispatch("getRoles");
+        this.test();
     },
     methods: {
 
+
+        test() {
+            // console.log(roles);
+            console.log(this.$can("edit_hack_users","edit_recon_users "))
+        },
 
         filterRoles(roles) {
             // console.log(roles);
@@ -242,8 +248,6 @@ export default {
         filterDropdownList(item) {
             let roleID = item.map(i => i.id);
             const filter = this.rolesList.filter(r => !roleID.includes(r.id));
-            console.log(Permissions)
-
             if(this.$can("edit_all_users")){
                 return filter;
             }else if(this.$can("edit_scout_users")){
