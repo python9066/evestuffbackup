@@ -155,7 +155,7 @@
                                                 ><v-icon
                                                     >fas fa-plus</v-icon
                                                 ></v-btn
-                                            >
+                                            > bla
                                         </template>
                                         <v-card tile min-height="150px">
                                             <v-card-title class=" pb-0">
