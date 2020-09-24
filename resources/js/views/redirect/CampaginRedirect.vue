@@ -1,7 +1,7 @@
 <template>
     <div class=" pr-16 pl-16">
 
-<div class=" d-inline" cols="8">
+<div class=" d-inline align-content-center" cols="8">
     <v-col cols="8">
     <v-card>
         <v-card-title raised><h1> Why am I on this page? </h1></v-card-title>
