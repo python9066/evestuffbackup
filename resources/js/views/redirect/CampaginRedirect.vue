@@ -3,7 +3,7 @@
 
 <div cols="8">
     <v-card>
-        <v-card-title><h1 class=" align-center"> Why am I on this page? </h1></v-card-title>
+        <v-card-title><h1><span class=" align-center"> Why am I on this page? </span> </h1></v-card-title>
         <v-card-text>
             <span class=" body-1">
         <p>You do not have the required roles to access this page.  If in a fleet let your FC know and they should be able to give you roles</p>
