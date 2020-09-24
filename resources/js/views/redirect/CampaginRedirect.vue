@@ -5,8 +5,10 @@
     <v-card>
         <v-card-title elevation=10><h1> Why am I on this page? </h1></v-card-title>
         <v-card-text>
+            <body-1>
         <p>You do not have the required roles to access this page.  If in a fleet let your FC know and they should be able to give you roles</p>
         <p>If the FC can't give you roles have them contact a member of Recon, Coord or GSFOE.</p>
+            </body-1>
         </v-card-text>
     </v-card>
 </div>
