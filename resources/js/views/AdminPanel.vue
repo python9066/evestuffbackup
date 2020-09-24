@@ -251,14 +251,12 @@ export default {
             const filter = this.rolesList.filter(r => !roleID.includes(r.id));
             if(this.$can("edit_all_users")){
                 return filter;
-            }else if(this.$can("edit_gsfoe_users") && this.$can("edit_recon_users") && this.$can("edit_scout_users")){
-                return filter.filter(f => f.name == "GSFOE" || f.name == "Recon" || f.name == "Scout")
-            }else if(this.$can("edit_gsfoe_FC") && this.$can("edit_gsfoe_users")){
-                return filter.filter(f => f.name == "GSFOE" || f.name == "GSFOE FC")
+            }else if(this.$can("edit_recon_users") && this.$can("edit_scout_users")){
+                return filter.filter(f => f.name == "Recon" || f.name == "Scout")
+            }else if(this.$can("edit_gsfoe_fc")){
+                return filter.filter(f => f.name == "GSFOE FC")
             }else if(this.$can("edit_scout_users")){
                 return filter.filter(f => f.name == "Scout")
-            }else if(this.$can("edit_gsfo_users")){
-                return filter.filter(f => f.name == "GSFOE")
             }
 
         },
@@ -270,26 +268,20 @@ export default {
                 } else {
                     return true;
                 }
-            }else if(this.$can("edit_gsfoe_users") && this.$can("edit_recon_users") && this.$can("edit_scout_users")) {
-                if (name == "GSFOE" || name == "Recon" || name == "Scout") {
+            }else if(this.$can("edit_recon_users") && this.$can("edit_scout_users")) {
+                if (name == "Recon" || name == "Scout") {
                     return true;
                 } else {
                     return false;
                 }
-            }else if(this.$can("edit_gsfoe_FC") && this.$can("edit_gsfoe_users")){
-                if (name == "GSFOE" || name == "GSFOE FC") {
+            }else if(this.$can("edit_gsfoe_fc")){
+                if (name == "GSFOE FC") {
                     return true;
                 } else {
                     return false;
                 }
             }else if (this.$can("edit_scout_users")) {
                 if (name == "Scout") {
-                    return true;
-                } else {
-                    return false;
-                }
-            }else if (this.$can("edit_gsfoe_users")) {
-                if (name == "GSFOE") {
                     return true;
                 } else {
                     return false;
