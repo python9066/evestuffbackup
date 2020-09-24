@@ -225,16 +225,9 @@ export default {
     async mounted() {
         await this.$store.dispatch("getUsers");
         await this.$store.dispatch("getRoles");
-        this.test();
     },
     methods: {
-        test() {
-            if (this.$can("edit all users")) {
-                console.log("yes");
-            } else {
-                console.log("no");
-            }
-        },
+
 
         filterRoles(roles) {
             // console.log(roles);
@@ -316,8 +309,6 @@ export default {
                 userId: item.id
             };
 
-            console.log(request);
-
             await axios({
                 method: "put", //you can set what request you want to be
                 url: "/api/rolesadd",
@@ -344,8 +335,6 @@ export default {
                 roleId: this.userRemoveRoleText,
                 userId: item.id
             };
-
-            console.log(request);
 
             await axios({
                 method: "put", //you can set what request you want to be
