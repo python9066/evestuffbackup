@@ -7,6 +7,7 @@ import Campaign from './views/CampaignSystem'
 import Vtest from './views/test.vue'
 import Stest from './components/campaign/systemTable.vue'
 import AdminPanel from './views/AdminPanel.vue'
+import CampaginRedirect from './views/redirect/CampaginRedirect.vue'
 import store from "./store";
 
 function sleep(ms) {
@@ -44,7 +45,7 @@ export default new Router({
         if(Permissions.indexOf('access_campaigns' )!== -1){
             next()
         }else{
-           next("/")
+           next("/redirect/campagin")
         }
 
       }
@@ -58,6 +59,12 @@ export default new Router({
         path: '/stest',
         name: 'stest',
         component: Stest
+      },
+
+      {
+        path: '/redirect/campagin',
+        name: 'campagin_redirect',
+        component: CampaginRedirect
       },
 
       {
@@ -76,7 +83,7 @@ export default new Router({
             if(Permissions.indexOf('edit_users' )!== -1){
                 next()
             }else{
-               next("/")
+               next("/notifications")
             }
 
           }
