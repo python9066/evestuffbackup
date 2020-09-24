@@ -134,8 +134,14 @@
                                         </v-list>
                                     </v-menu>
                                 </div>
+                        <div>
+                                <v-divider
+                            class="mx-4 my-0"
+                            vertical
+                        ></v-divider>
+                        </div>
 
-                                wddwdw
+                                <div>
                                     <v-menu
                                         :close-on-content-click="false"
                                         :value="addShown"
@@ -152,7 +158,7 @@
                                                 ><v-icon
                                                     >fas fa-plus</v-icon
                                                 ></v-btn
-                                            > bla
+                                            >
                                         </template>
                                         <v-card tile min-height="150px">
                                             <v-card-title class=" pb-0">
