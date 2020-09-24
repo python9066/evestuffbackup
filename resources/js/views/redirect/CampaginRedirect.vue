@@ -2,7 +2,6 @@
     <div class=" pr-16 pl-16 d-flex justify-center">
 
 <div cols="8">
-    <v-col>
     <v-card>
         <v-card-title raised><h1> Why am I on this page? </h1></v-card-title>
         <v-card-text>
@@ -10,7 +9,6 @@
         <p>If the FC can't give you roles have them contact a member of Recon, Coord or GSFOE.</p>
         </v-card-text>
     </v-card>
-    </v-col>
 </div>
 
     </div>
