@@ -488,7 +488,8 @@ export default {
             this.$store.dispatch("updateCampaignUsers", item);
             var request = {
                 status_id: 3,
-                system_id: this.system_id
+                system_id: this.system_id,
+                campaign_system_id: null
             };
 
             axios({
