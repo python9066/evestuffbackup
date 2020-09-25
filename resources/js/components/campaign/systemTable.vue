@@ -134,18 +134,11 @@
                                         </v-list>
                                     </v-menu>
                                 </div>
-                        <div>
-                                <v-divider
-                            class="mx-4 my-0"
-                            vertical
-                        ></v-divider>
-                        </div>
-
                                 <div>
                                     <v-menu
                                         :close-on-content-click="false"
                                         :value="addShown"
-                                    >
+                                        :key="item.id"                                    >
                                         <template
                                             v-slot:activator="{ on, attrs }"
                                         >
@@ -311,6 +304,7 @@
                         </VueCountUptimer>
                         <v-menu
                             :close-on-content-click="false"
+                            :value="timerShown"
                             v-else-if="checkHackUser(item)"
                         >
                             <template v-slot:activator="{ on, attrs }">
@@ -319,6 +313,7 @@
                                     v-on="on"
                                     pill
                                     :outlined="pillOutlined(item)"
+                                    @click="timerShown = true"
                                     small
                                     color="warning"
                                 >
@@ -342,10 +337,9 @@
                                             icon
                                             fixed
                                             left
-                                            v-bind="attrs"
-                                            v-on="on"
                                             color="success"
                                             @click="
+                                                (timerShown = false),
                                                     addHacktime(item)
                                             "
                                             ><v-icon
@@ -357,10 +351,9 @@
                                             fixed
                                             right
                                             icon
-                                            v-bind="attrs"
-                                            v-on="on"
                                             color="warning"
                                             @click="
+                                                (timerShown = false),
                                                     (hackTime = null)
                                             "
                                             ><v-icon
