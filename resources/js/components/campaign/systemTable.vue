@@ -362,9 +362,7 @@
                         </v-icon>
                     </template>
 
-                    <template v-slot:item.ship="{ item }">
-                        {{item.user_ship}} {{item.user_link}}
-                    </template>
+
 
                     <template slot="no-data">
                         No nodes have shown up here..... yet!!!!
@@ -390,7 +388,8 @@ export default {
                 { text: "NodeID", value: "node", width: "10%" },
                 { text: "Pilot", value: "user_name", width: "25%" },
                 { text: "Main", value: "main_name", width: "10%" },
-                { text: "Ship", value: "ship", width: "15%" },
+                { text: "Ship", value: "user_ship", width: "15%" },
+                { text: "Link", value: "user_link", width: "5%" },
 
                 {
                     text: "Status",
