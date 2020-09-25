@@ -320,6 +320,7 @@
                         <span v-else-if="item.user_name != null"
                             >{{ item.user_name }}
                             <v-btn
+                                v-if="checkShowAdd(item)"
                                 icon
                                 @click="
                                     (item.user_name = null),
