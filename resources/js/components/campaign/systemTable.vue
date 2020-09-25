@@ -481,6 +481,7 @@ export default {
                 system_id: this.system_id,
                 campaign_id: this.$route.params.id
             }
+            console.log(request);
 
             axios({
                 method: "put", //you can set what request you want to be
