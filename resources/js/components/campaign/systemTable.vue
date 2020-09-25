@@ -304,7 +304,7 @@
                         </VueCountUptimer>
                         <v-menu
                             :close-on-content-click="false"
-                            :value="timerShown[item.name]"
+                            :value="timerShown"
                             v-else-if="checkHackUser(item)"
                         >
                             <template v-slot:activator="{ on, attrs }">
@@ -313,7 +313,7 @@
                                     v-on="on"
                                     pill
                                     :outlined="pillOutlined(item)"
-                                    @click="timerShown[item.id] = true"
+                                    @click="timerShown = true"
                                     small
                                     color="warning"
                                 >
@@ -339,7 +339,7 @@
                                             left
                                             color="success"
                                             @click="
-                                                (timerShown[item.id] = false),
+                                                (timerShown = false),
                                                     addHacktime(item)
                                             "
                                             ><v-icon
@@ -353,7 +353,7 @@
                                             icon
                                             color="warning"
                                             @click="
-                                                (timerShown[item.id] = false),
+                                                (timerShown = false),
                                                     (hackTime = null)
                                             "
                                             ><v-icon
@@ -378,14 +378,14 @@
                                 >
                                 <v-menu
                             :close-on-content-click="false"
-                            :value="timerShown[item.id]"
+                            :value="timerShown"
                         >
                             <template v-slot:activator="{ on, attrs }">
                                 <v-btn
                                     v-if="checkHackUserEdit(item)"
                                     v-bind="attrs"
                                     v-on="on"
-                                    @click="timerShown[item.id] = true, hackTime = null"
+                                    @click="timerShown = true, hackTime = null"
                                     icon
                                     color="warning"
                                 >
@@ -411,7 +411,7 @@
                                             left
                                             color="success"
                                             @click="
-                                                (timerShown[item.id] = false),
+                                                (timerShown = false),
                                                     addHacktime(item)
                                             "
                                             ><v-icon
@@ -425,7 +425,7 @@
                                             icon
                                             color="warning"
                                             @click="
-                                                (timerShown[item.id] = false),
+                                                (timerShown = false),
                                                     (hackTime = null)
                                             "
                                             ><v-icon
@@ -536,7 +536,7 @@ export default {
             OnTheWayColor: "teal",
             nodeText: "",
             addShown: false,
-            timerShown: [],
+            timerShown: false,
             expanded: [],
             singleExpand: true,
             charAddNode: null,
