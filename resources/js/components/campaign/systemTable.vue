@@ -304,7 +304,7 @@
                         </VueCountUptimer>
                         <v-menu
                             :close-on-content-click="false"
-                            :value="timerShown[item.id]"
+                            :value="timeshowencheck(item)"
                             v-else-if="checkHackUser(item)"
                         >
                             <template v-slot:activator="{ on, attrs }">
@@ -555,6 +555,11 @@ export default {
     },
 
     methods: {
+
+        timeshowencheck(item){
+
+            return this.timerShown[item.id]
+        },
 
 
 
