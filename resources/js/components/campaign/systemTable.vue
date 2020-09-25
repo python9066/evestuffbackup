@@ -137,7 +137,7 @@
                                 <div>
                                     <v-menu
                                         :close-on-content-click="false"
-                                        :value="addShown"
+                                        :value="addShown[item.id]"
                                     >
                                         <template
                                             v-slot:activator="{ on, attrs }"
