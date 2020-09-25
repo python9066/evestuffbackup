@@ -564,7 +564,7 @@ export default {
                     s.campaign_id == this.$route.params.id
             );
 
-            Onject.entries(check).forEach(s => {
+            Object.entries(check).forEach(s => {
 
                 console.log(s.id);
             })
