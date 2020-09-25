@@ -304,6 +304,7 @@
                         </VueCountUptimer>
                         <v-menu
                             :close-on-content-click="false"
+                            :v-value="timeshowencheck(item)"
                             :v-model="timeshowencheck(item)"
                             v-else-if="checkHackUser(item)"
                         >
