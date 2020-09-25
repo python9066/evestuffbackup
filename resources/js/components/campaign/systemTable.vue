@@ -313,7 +313,7 @@
                                     v-on="on"
                                     pill
                                     :outlined="pillOutlined(item)"
-                                    @click="timerShownitem = true"
+                                    @click="timerShown = true"
                                     small
                                     color="warning"
                                 >
