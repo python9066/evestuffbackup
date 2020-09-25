@@ -500,7 +500,7 @@ export default {
 
     data() {
         return {
-            ...mapState(["campaignsystems", "user_id"]),
+
             headers: [
                 { text: "NodeID", value: "node", width: "10%" },
                 { text: "Pilot", value: "user_name", width: "20%" },
@@ -555,13 +555,6 @@ export default {
     },
 
     methods: {
-
-
-            setTimerShow(){
-
-                console.log(this.campaignsystems)
-
-            },
 
         async addHacktime(item) {
             var min = parseInt(this.hackTime.substr(0, 2));
