@@ -561,7 +561,7 @@ export default {
                     check = check.filter(
                     s =>  s.system_id == this.system_id &&
                         s.campaign_id == this.$route.params.id)
-            console.log(this.check)
+            console.log(check)
         },
 
         async addHacktime(item) {
