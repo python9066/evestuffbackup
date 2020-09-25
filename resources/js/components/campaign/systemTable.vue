@@ -481,7 +481,8 @@ export default {
                 user_status_name: "On the way",
                 system_id: this.system_id,
                 system_name: this.system_name,
-                campaign_system_id: null
+                campaign_system_id: null,
+                node_id:null
             };
 
             this.$store.dispatch("updateCampaignUsers", item);
@@ -534,7 +535,8 @@ export default {
                 user_status_name: "Ready To Go",
                 system_id: this.system_id,
                 system_name: this.system_name,
-                campaign_system_id: null
+                campaign_system_id: null,
+                node_id:null
             };
 
             this.$store.dispatch("updateCampaignUsers", item);
