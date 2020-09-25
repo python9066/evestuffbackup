@@ -1022,8 +1022,8 @@ export default {
                     s =>  s.system_id == this.system_id &&
                         s.campaign_id == this.$route.params.id)
 
-            }
-        },
+            },
+
 
         chars() {
             return this.getCampaignUsersByUserIdEntosis(
