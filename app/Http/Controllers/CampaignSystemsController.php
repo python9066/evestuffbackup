@@ -66,10 +66,11 @@ class CampaignSystemsController extends Controller
 
     public function removechar(Request $request, $campid)
     {
-        $count = CampaignSystem::where('campaign_id',$request->campaign_id)
+        CampaignSystem::where('campaign_id',$request->campaign_id)
                         ->where('system_id',$request->system_id)
                         ->where('campaign_user_id',$request->campaign_user_id)
                         ->update(['campaign_user_id' => null]);
+                        dd($request);
 
         $flag = collect([
             'flag' => 2,
