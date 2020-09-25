@@ -371,6 +371,14 @@
                         </v-icon>
                     </template>
 
+                    <template v-slot:item.ship="{ item }">
+
+                        <span v-if="item.user_name != null">
+                            {{item.user_ship}} - T{{item.user_link}}
+                        </span>
+
+                    </template>
+
                     <template slot="no-data">
                         No nodes have shown up here..... yet!!!!
                     </template>
@@ -409,12 +417,6 @@ export default {
                     text: "Ship",
                     value: "user_ship",
                     width: "15%",
-                    align: "start"
-                },
-                {
-                    text: "Link",
-                    value: "user_link",
-                    width: "5%",
                     align: "start"
                 },
 
