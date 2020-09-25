@@ -362,8 +362,8 @@
                         </v-icon>
                     </template>
 
-                    <template v-slot:item.status_ship="{ item }">
-                        {{item.user_ship}} - t{{item.user_link}}
+                    <template v-slot:item.ship="{ item }">
+                        {{item.user_ship}} {{item.user_link}}
                     </template>
 
                     <template slot="no-data">
@@ -388,9 +388,9 @@ export default {
         return {
             headers: [
                 { text: "NodeID", value: "node", width: "10%" },
-                { text: "Pilot", value: "user_name", width: "20%" },
+                { text: "Pilot", value: "user_name", width: "25%" },
                 { text: "Main", value: "main_name", width: "10%" },
-                { text: "Ship", value: "ship", width: "10%" },
+                { text: "Ship", value: "ship", width: "15%" },
 
                 {
                     text: "Status",
