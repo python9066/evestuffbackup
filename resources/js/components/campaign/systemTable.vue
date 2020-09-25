@@ -84,30 +84,33 @@
                                 <span v-else>
                                     On the way -
                                 </span>
-                                 <v-menu
-                                    transition="fade-transition"
-                                >
+                                <v-menu transition="fade-transition">
                                     <template v-slot:activator="{ on, attrs }">
                                         <v-btn
-                                    class="mx-2"
-                                    v-bind="attrs"
-                                    :disabled="fabOnTheWayDisbale"
-                                    v-on="on"
-                                    fab
-                                    color="green darken-4"
-                                    dark
-                                    x-small
-                                >
-                                    {{OnTheWayCount}}
-                                </v-btn>
+                                            class="mx-2"
+                                            v-bind="attrs"
+                                            :disabled="fabOnTheWayDisbale"
+                                            v-on="on"
+                                            fab
+                                            color="green darken-4"
+                                            dark
+                                            x-small
+                                        >
+                                            {{ OnTheWayCount }}
+                                        </v-btn>
                                     </template>
                                     <v-list>
                                         <v-list-item
-                                            v-for="(list, index) in charsOnTheWayAll"
+                                            v-for="(list,
+                                            index) in charsOnTheWayAll"
                                             :key="index"
                                         >
                                             <v-list-item-title>
-                                                {{list.char_name}} - {{list.ship}} - t{{list.link}}</v-list-item-title>
+                                                {{ list.char_name }} -
+                                                {{ list.ship }} - t{{
+                                                    list.link
+                                                }}</v-list-item-title
+                                            >
                                         </v-list-item>
                                     </v-list>
                                 </v-menu>
@@ -144,30 +147,33 @@
                                         </v-list-item>
                                     </v-list>
                                 </v-menu>
-                                <v-menu
-                                    transition="fade-transition"
-                                >
+                                <v-menu transition="fade-transition">
                                     <template v-slot:activator="{ on, attrs }">
                                         <v-btn
-                                    class="mx-2"
-                                    v-bind="attrs"
-                                    v-on="on"
-                                    :disabled="fabReadyToGoDisbale"
-                                    fab
-                                    color="green darken-4"
-                                    dark
-                                    x-small
-                                >
-                                    {{ReadyToGoCount}}
-                                </v-btn>
+                                            class="mx-2"
+                                            v-bind="attrs"
+                                            v-on="on"
+                                            :disabled="fabReadyToGoDisbale"
+                                            fab
+                                            color="green darken-4"
+                                            dark
+                                            x-small
+                                        >
+                                            {{ ReadyToGoCount }}
+                                        </v-btn>
                                     </template>
                                     <v-list>
                                         <v-list-item
-                                            v-for="(list, index) in charsReadyToGoAll"
+                                            v-for="(list,
+                                            index) in charsReadyToGoAll"
                                             :key="index"
                                         >
                                             <v-list-item-title>
-                                                {{list.char_name}} - {{list.ship}} - t{{list.link}}</v-list-item-title>
+                                                {{ list.char_name }} -
+                                                {{ list.ship }} - t{{
+                                                    list.link
+                                                }}</v-list-item-title
+                                            >
                                         </v-list-item>
                                     </v-list>
                                 </v-menu>
@@ -362,8 +368,6 @@
                         </v-icon>
                     </template>
 
-
-
                     <template slot="no-data">
                         No nodes have shown up here..... yet!!!!
                     </template>
@@ -385,11 +389,31 @@ export default {
     data() {
         return {
             headers: [
-                { text: "NodeID", value: "node", width: "5%", align:"start" },
-                { text: "Pilot", value: "user_name", width: "25%", align:"start" },
-                { text: "Main", value: "main_name", width: "10%", align:"start" },
-                { text: "Ship", value: "user_ship", width: "15%", align:"start" },
-                { text: "Link", value: "user_link", width: "5%", align:"start" },
+                { text: "NodeID", value: "node", width: "5%", align: "start" },
+                {
+                    text: "Pilot",
+                    value: "user_name",
+                    width: "25%",
+                    align: "start"
+                },
+                {
+                    text: "Main",
+                    value: "main_name",
+                    width: "10%",
+                    align: "start"
+                },
+                {
+                    text: "Ship",
+                    value: "user_ship",
+                    width: "15%",
+                    align: "start"
+                },
+                {
+                    text: "Link",
+                    value: "user_link",
+                    width: "5%",
+                    align: "start"
+                },
 
                 {
                     text: "Status",
@@ -397,7 +421,12 @@ export default {
                     width: "20%",
                     align: "end"
                 },
-                { text: "Age/Hack", value: "count", width: "20%", align:"end" },
+                {
+                    text: "Age/Hack",
+                    value: "count",
+                    width: "20%",
+                    align: "end"
+                },
                 {
                     text: "",
                     value: "actions",
@@ -457,10 +486,11 @@ export default {
             this.$store.dispatch("updateCampaignUsers", item);
             var request = {
                 status_id: 2,
-                system_id: this.system_id
+                system_id: this.system_id,
+                campaign_system_id: null
             };
 
-          await  axios({
+            await axios({
                 method: "put", //you can set what request you want to be
                 url:
                     "/api/campaignusers/" +
@@ -475,18 +505,17 @@ export default {
                 }
             });
 
-            request = null
-            request ={
+            request = null;
+            request = {
                 campaign_user_id: this.charOnTheWay,
                 system_id: this.system_id,
                 campaign_id: this.$route.params.id
-            }
+            };
             console.log(request);
 
-           await axios({
+            await axios({
                 method: "put", //you can set what request you want to be
-                url:
-                    "/api/campaignsystemremovechar/" + this.$route.params.id,
+                url: "/api/campaignsystemremovechar/" + this.$route.params.id,
                 data: request,
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
@@ -496,7 +525,6 @@ export default {
             });
             this.$store.dispatch("getCampaignSystemsRecords");
             this.charOnTheWay = null;
-
         },
         async clickReadyToGo() {
             var item = {
@@ -514,7 +542,7 @@ export default {
                 campaign_system_id: null
             };
 
-           await axios({
+            await axios({
                 method: "put", //you can set what request you want to be
                 url:
                     "/api/campaignusers/" +
@@ -529,17 +557,16 @@ export default {
                 }
             });
 
-            request = null
-            request ={
+            request = null;
+            request = {
                 campaign_user_id: this.charReadyToGo,
                 system_id: this.system_id,
                 campaign_id: this.$route.params.id
-            }
+            };
 
-           await axios({
+            await axios({
                 method: "put", //you can set what request you want to be
-                url:
-                    "/api/campaignsystemremovechar/" + this.$route.params.id,
+                url: "/api/campaignsystemremovechar/" + this.$route.params.id,
                 data: request,
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
@@ -547,7 +574,6 @@ export default {
                     "Content-Type": "application/json"
                 }
             });
-
 
             this.$store.dispatch("getCampaignSystemsRecords");
             this.charReadyToGo = null;
@@ -584,7 +610,7 @@ export default {
                 user_name: addChar.char_name,
                 main_name: addChar.main_name,
                 user_ship: addChar.ship,
-                user_link: addChar.link,
+                user_link: addChar.link
             };
 
             var request = {
@@ -602,7 +628,6 @@ export default {
                 status_id: 4,
                 user_status_name: "Hacking"
             };
-
 
             var request1 = {
                 campaign_system_id: item.id,
@@ -874,21 +899,19 @@ export default {
             "getCampaignUsersOnTheWayAll"
         ]),
 
-        fabOnTheWayDisbale(){
-            if(this.OnTheWayCount == 0)
-            {
-                return true
-            }else{
-                return false
+        fabOnTheWayDisbale() {
+            if (this.OnTheWayCount == 0) {
+                return true;
+            } else {
+                return false;
             }
         },
 
-        fabReadyToGoDisbale(){
-            if(this.ReadyToGoCount == 0)
-            {
-                return true
-            }else{
-                return false
+        fabReadyToGoDisbale() {
+            if (this.ReadyToGoCount == 0) {
+                return true;
+            } else {
+                return false;
             }
         },
 
@@ -942,15 +965,11 @@ export default {
         },
 
         charsReadyToGoAll() {
-            return this.getCampaignUsersReadyToGoAll(
-                this.system_id
-            );
+            return this.getCampaignUsersReadyToGoAll(this.system_id);
         },
 
         charsOnTheWayAll() {
-            return this.getCampaignUsersOnTheWayAll(
-                this.system_id
-            );
+            return this.getCampaignUsersOnTheWayAll(this.system_id);
         },
 
         charsFree() {
@@ -1021,21 +1040,21 @@ export default {
             }
         },
 
-        ReadyToGoCount(){
+        ReadyToGoCount() {
             let payload = {
                 system_id: this.system_id,
                 campaign_id: this.campaign_id
-            }
-            return this.getSystemReadyToGoCount(payload)
+            };
+            return this.getSystemReadyToGoCount(payload);
         },
 
-        OnTheWayCount(){
+        OnTheWayCount() {
             let payload = {
                 system_id: this.system_id,
                 campaign_id: this.campaign_id
-            }
-            return this.getSystemOnTheWayCount(payload)
-        },
+            };
+            return this.getSystemOnTheWayCount(payload);
+        }
     }
 };
 </script>
