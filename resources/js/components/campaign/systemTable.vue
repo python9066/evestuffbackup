@@ -304,10 +304,10 @@
                         </VueCountUptimer>
                         <v-menu
                             :close-on-content-click="false"
-                            :v-model="timerShown[item.id]"
+                            :v-model="timerShown[item.id].item.id"
                             v-else-if="checkHackUser(item)"
                         >
-                            <template v-slot:activator="{ on, attrs,}">
+                            <!-- <template v-slot:activator="{ on, attrs,}">
                                 <v-chip
                                     v-on="on"
                                     v-bind="attrs"
@@ -318,7 +318,7 @@
                                 >
                                     Add Time
                                 </v-chip>
-                            </template>
+                            </template> -->
 
                             <template>
                                 <v-card tile min-height="150px">
