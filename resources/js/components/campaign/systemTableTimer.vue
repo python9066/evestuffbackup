@@ -147,13 +147,17 @@ import { mapState, mapGetters } from "vuex";
 import moment from "moment";
 export default {
     props: {
-        item,
-        system_name: String,
-        system_id: Number,
-        campaign_id: String
+        item:Object
     },
     data() {
-        return {};
+        return {
+            timerShown: false,
+            hackTime: {
+                mm: "",
+                ss: ""
+            }
+
+        };
     },
 
     methods: {
@@ -227,8 +231,6 @@ export default {
                 return false;
             }
         },
-    },
-
     endText(item){
             if(item.status_id == 7){
                 return "Do they Finish?"
@@ -236,6 +238,38 @@ export default {
                 return "Do you Finish?"
             }
         },
+
+    checkHackUserEdit(item) {
+        if (
+            item.site_id == this.$store.state.user_id &&
+            item.status_id == 3
+        ) {
+            return true;
+        } else if (item.status_id == 7) {
+            return true;
+        } else {
+            return false;
+        }
+    },
+
+    hackTextColor(item){
+            if(item.status_id == 7){
+                return "color: while"
+            }else{
+                return "color: green"
+            }
+        },
+
+    pillOutlined(item){
+
+            if (item.status_id == 7){
+                return false
+            }else{
+                return true
+            }
+        },
+    },
+
 
     computed: {}
 };

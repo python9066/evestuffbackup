@@ -28,7 +28,7 @@
                                 class="d-flex justify-space-between align-center"
                                 style=" width: 100%;"
                             >
-                                <div>{{ system_name }} -</div>
+                                <div>{{ system_name }} - test</div>
                                 <v-spacer></v-spacer>
                                 <div>
                                     <v-progress-circular
@@ -281,168 +281,10 @@
                         >
                     </template>
                     <template v-slot:item.count="{ item }">
-                        <VueCountUptimer
-                            v-if="item.status_id < 3 && item.end_time == null"
-                            :start-time="moment.utc(item.start).unix()"
-                            :end-text="'Window Closed'"
-                            :interval="1000"
+                        <systemTableTimer
+                            :item = item
                         >
-                            <template slot="countup" slot-scope="scope">
-                                <span
-                                    v-if="scope.props.minutes < 5"
-                                    class="green--text pl-3"
-                                    >{{ scope.props.hours }}:{{
-                                        scope.props.minutes
-                                    }}:{{ scope.props.seconds }}</span
-                                >
-                                <span v-else class="red--text pl-3"
-                                    >{{ scope.props.hours }}:{{
-                                        scope.props.minutes
-                                    }}:{{ scope.props.seconds }}</span
-                                >
-                            </template>
-                        </VueCountUptimer>
-                        <v-menu
-                            :close-on-content-click="false"
-                            :value="timerShown"
-                            v-else-if="checkHackUser(item)"
-                        >
-                            <template v-slot:activator="{ on, attrs }">
-                                <v-chip
-                                    v-bind="attrs"
-                                    v-on="on"
-                                    pill
-                                    :outlined="pillOutlined(item)"
-                                    @click="timerShown = true"
-                                    small
-                                    color="warning"
-                                >
-                                    Add Time
-                                </v-chip>
-                            </template>
-
-                            <template>
-                                <v-card tile min-height="150px">
-                                    <v-card-title class=" pb-0">
-                                        <v-text-field
-                                            v-model="hackTime"
-                                            label="Hack Time mm:ss"
-                                            v-mask="'##:##'"
-                                            autofocus
-                                            placeholder="mm:ss"
-                                        ></v-text-field>
-                                    </v-card-title>
-                                    <v-card-text>
-                                        <v-btn
-                                            icon
-                                            fixed
-                                            left
-                                            color="success"
-                                            @click="
-                                                (timerShown = false),
-                                                    addHacktime(item)
-                                            "
-                                            ><v-icon
-                                                >fas fa-check</v-icon
-                                            ></v-btn
-                                        >
-
-                                        <v-btn
-                                            fixed
-                                            right
-                                            icon
-                                            color="warning"
-                                            @click="
-                                                (timerShown = false),
-                                                    (hackTime = null)
-                                            "
-                                            ><v-icon
-                                                >fas fa-times</v-icon
-                                            ></v-btn
-                                        >
-                                    </v-card-text>
-                                </v-card>
-                            </template>
-                        </v-menu>
-                        <CountDowntimer
-                            v-else
-                            :start-time="moment.utc(item.end).unix()"
-                            :end-text="endText(item)"
-                            :interval="1000"
-                        >
-                            <template slot="countdown" slot-scope="scope">
-                                <span :class="hackCountDownTextColor(item)"
-                                    >{{ scope.props.minutes }}:{{
-                                        scope.props.seconds
-                                    }}</span
-                                >
-                                <v-menu
-                            :close-on-content-click="false"
-                            :value="timerShown"
-                        >
-                            <template v-slot:activator="{ on, attrs }">
-                                <v-btn
-                                    v-if="checkHackUserEdit(item)"
-                                    v-bind="attrs"
-                                    v-on="on"
-                                    @click="timerShown = true, hackTime = null"
-                                    icon
-                                    color="warning"
-                                >
-                                    <v-icon x-small>fas fa-edit</v-icon>
-                                </v-btn>
-                            </template>
-
-                            <template>
-                                <v-card tile min-height="150px">
-                                    <v-card-title class=" pb-0">
-                                        <v-text-field
-                                            v-model="hackTime"
-                                            label="Hack Time mm:ss"
-                                            autofocus
-                                            v-mask="'##:##'"
-                                            placeholder="mm:ss"
-                                        ></v-text-field>
-                                    </v-card-title>
-                                    <v-card-text>
-                                        <v-btn
-                                            icon
-                                            fixed
-                                            left
-                                            color="success"
-                                            @click="
-                                                (timerShown = false),
-                                                    addHacktime(item)
-                                            "
-                                            ><v-icon
-                                                >fas fa-check</v-icon
-                                            ></v-btn
-                                        >
-
-                                        <v-btn
-                                            fixed
-                                            right
-                                            icon
-                                            color="warning"
-                                            @click="
-                                                (timerShown = false),
-                                                    (hackTime = null)
-                                            "
-                                            ><v-icon
-                                                >fas fa-times</v-icon
-                                            ></v-btn
-                                        >
-                                    </v-card-text>
-                                </v-card>
-                            </template>
-                        </v-menu>
-                            </template>
-                            <template slot="end-text" slot-scope="scope">
-                                <span :style="hackTextColor(item)">{{
-                                    scope.props.endText
-                                }}</span>
-                            </template>
-                        </CountDowntimer>
+                        </systemtabletimer>
 
                     </template>
 
@@ -536,49 +378,23 @@ export default {
             OnTheWayColor: "teal",
             nodeText: "",
             addShown: false,
-            timerShown: false,
             expanded: [],
             singleExpand: true,
             charAddNode: null,
-            hackTime: {
-                mm: "",
-                ss: ""
-            }
         };
     },
 
     methods: {
-        async addHacktime(item) {
-            var min = parseInt(this.hackTime.substr(0, 2));
-            var sec = parseInt(this.hackTime.substr(3, 2));
-            var finishTime = moment
-                .utc()
-                .add(sec, "seconds")
-                .add(min, "minutes")
-                .format("YYYY-MM-DD HH:mm:ss");
-            item.end = finishTime;
-            this.$store.dispatch("updateCampaignSystem", item);
-            var request = {
-                end_time: finishTime
-            };
 
-            await axios({
-                method: "put", //you can set what request you want to be
-                url:
-                    "/api/campaignsystems/" +
-                    item.id +
-                    "/" +
-                    this.$route.params.id,
-                data: request,
-                headers: {
-                    Authorization: "Bearer " + this.$store.state.token,
-                    Accept: "application/json",
-                    "Content-Type": "application/json"
-                }
-            });
+        pillOutlined(item){
 
-            this.$store.dispatch("getCampaignSystemsRecords");
+            if (item.status_id == 7){
+                return false
+            }else{
+                return true
+            }
         },
+
 
         clickOnTheWay() {
             this.OnTheWayColor = "green";
@@ -786,14 +602,6 @@ export default {
                 return false;
             }
         },
-        pillOutlined(item){
-
-            if (item.status_id == 7){
-                return false
-            }else{
-                return true
-            }
-        },
 
         pillColor(item) {
             if (item.status_id == 1) {
@@ -865,31 +673,6 @@ export default {
 
             this.$store.dispatch("getCampaignSystemsRecords");
         },
-
-        hackTextColor(item){
-            if(item.status_id == 7){
-                return "color: while"
-            }else{
-                return "color: green"
-            }
-        },
-
-        endText(item){
-            if(item.status_id == 7){
-                return "Do they Finish?"
-            }else{
-                return "Do you Finish?"
-            }
-        },
-
-        hackCountDownTextColor(item){
-            if(item.status_id == 7){
-                return "white--text pl-3"
-            }else{
-                return "blue--text pl-3"
-            }
-
-        },
         removeCharNode(item) {
             var userId = item.user_id;
             item.user_id = null;
@@ -946,33 +729,6 @@ export default {
                 }
             });
         },
-
-        checkHackUser(item) {
-            if (
-                item.site_id == this.$store.state.user_id &&
-                item.end == null &&
-                item.status_id == 3
-            ) {
-                return true;
-            } else if (item.end == null && item.status_id == 7) {
-                return true;
-            } else {
-                return false;
-            }
-        },
-
-        checkHackUserEdit(item) {
-            if (
-                item.site_id == this.$store.state.user_id &&
-                item.status_id == 3
-            ) {
-                return true;
-            } else if (item.status_id == 7) {
-                return true;
-            } else {
-                return false;
-            }
-        }
 
         // if (item.site_id == null) {
         //     return false;

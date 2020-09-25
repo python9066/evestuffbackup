@@ -15,6 +15,8 @@ class CreateCampaginSystemUsersTable extends Migration
     {
         Schema::create('campagin_system_users', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id');
+            $table->foreignId('campagin_id');
             $table->timestamps();
         });
     }

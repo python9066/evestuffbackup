@@ -28,8 +28,9 @@ Vue.component('errorMessage', require('./components/random/errorMessage.vue').de
 Vue.component('systemTable', require('./components/campaign/systemTable.vue').default);
 Vue.component('userTable', require('./components/campaign/userTable.vue').default);
 Vue.component('hackingToolMessage', require('./components/random/hackingToolMessage.vue').default);
-Vue.component('v-progress-circular', require('easy-circular-progress/src/index.vue').default)
-Vue.component('messageNotification', require('./components/random/messageNotification.vue').default)
+Vue.component('v-progress-circular', require('easy-circular-progress/src/index.vue').default);
+Vue.component('messageNotification', require('./components/random/messageNotification.vue').default);
+Vue.component('systemTableTimer', require('./components/campaign/systemTableTimer.vue').default);
 
 Vue.prototype.moment = moment
 // import '@fortawesome/fontawesome-f      ree/css/all.css'
