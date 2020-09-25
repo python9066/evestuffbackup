@@ -304,7 +304,7 @@
                         </VueCountUptimer>
                         <v-menu
                             :close-on-content-click="false"
-                            :value="timerShown"
+                            :value="timerShown.item.id"
                             v-else-if="checkHackUser(item)"
                         >
                             <template v-slot:activator="{ on, attrs }">
@@ -521,6 +521,8 @@ export default {
 
                 // { text: "Vulernable End Time", value: "vulnerable_end_time" }
             ],
+
+            timerShown: {},
 
             dropdown_edit: [
                 { title: "New", value: 1 },
