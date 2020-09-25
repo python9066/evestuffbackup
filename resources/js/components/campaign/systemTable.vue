@@ -305,7 +305,7 @@
                         <v-menu
                             :close-on-content-click="false"
                             :value="timerShown"
-                            v-else-if="checkHackUser(item)"
+                            v-else-if="setTimerShow(item)"
                         >
                             <template v-slot:activator="{ on, attrs }">
                                 <v-chip
@@ -496,7 +496,6 @@ export default {
     },
 
     async mounted() {
-        await this.setTimerShow();
     },
 
     data() {
@@ -555,8 +554,7 @@ export default {
     },
 
     methods: {
-        async setTimerShow() {
-            await this.$store.dispatch("getCampaignSystemsRecords");
+        async setTimerShow(item) {
             let check = this.$store.state.campaignsystems;
             check = check.filter(
                 s =>
@@ -564,10 +562,8 @@ export default {
                     s.campaign_id == this.$route.params.id
             );
 
-            Object.entries(check).forEach(s => {
-
-                console.log(s);
-            })
+            check.find(c => c.id == item.id)
+                console.log(check);
         },
 
         async addHacktime(item) {
