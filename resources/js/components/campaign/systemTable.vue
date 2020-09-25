@@ -239,7 +239,6 @@
                     :items="filteredItems"
                     :single-expand="singleExpand"
                     item-key="node"
-                    :sort-desc="[true, false]"
                     show-expand
                     :expanded.sync="expanded"
                     :item-class="itemRowBackground"
