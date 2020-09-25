@@ -304,8 +304,8 @@
                         </VueCountUptimer>
                         <v-menu
                             :close-on-content-click="false"
-                            :value="timerShown"
-                            v-else-if="setTimerShow(item)"
+                            :value="setTimerShow(item)"
+                            v-else-if="checkHackUser(item)"
                         >
                             <template v-slot:activator="{ on, attrs }">
                                 <v-chip
@@ -562,8 +562,8 @@ export default {
                     s.campaign_id == this.$route.params.id
             );
 
-            let check2 = check.find(c => c.id == item.id)
-                console.log(check2.id);
+            check.find(c => c.id == item.id)
+                console.log(check);
         },
 
         async addHacktime(item) {
