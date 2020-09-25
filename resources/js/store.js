@@ -275,12 +275,42 @@ export default new Vuex.Store({
         }
     },
     getters: {
+
         getCampaignsCount: state => {
             return state.campaigns.length;
         },
 
+
+
+        getSystemReadyToGoCount: state => payload => {
+            console.log(payload, " - ", state.campaignusers)
+            // console.log(state.campaignusers.filter(u => u.id == payload.campaign_id && u.system_id == payload.system_id && u.status_id ==  3))
+
+            return state.campaignusers.filter(u => u.campaign_id == payload.campaign_id && u.system_id == payload.system_id && u.status_id ==  3).length
+        },
+
+        getSystemOnTheWayCount: state => payload => {
+            return state.campaignusers.filter(u => u.campaign_id == payload.campaign_id && u.system_id == payload.system_id && u.status_id == 2 ).length
+        },
+
         getCampaignById: state => id => {
             return state.campaigns.find(campaigns => campaigns.id == id);
+        },
+
+        getCampaignUsersReadyToGoAll: state => id => {
+            // console.log("poo",state.campaignusers.filter(campaignusers => campaignusers.site_id == id))
+            return state.campaignusers.filter(
+                campaignusers => campaignusers.system_id == id && campaignusers.status_id == 3
+            );
+
+        },
+
+        getCampaignUsersOnTheWayAll: state => id => {
+            // console.log("poo",state.campaignusers.filter(campaignusers => campaignusers.site_id == id))
+            return state.campaignusers.filter(
+                campaignusers => campaignusers.system_id == id && campaignusers.status_id == 2
+            );
+
         },
 
         getCampaignUsersByUserId: state => id => {

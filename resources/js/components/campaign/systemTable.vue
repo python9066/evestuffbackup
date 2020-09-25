@@ -2,6 +2,238 @@
     <v-col cols="6" align-self="stretch">
         <v-card tile height="100%">
             <v-card-text>
+                <template>
+                    <v-card flat max-width elevation="24" color="grey darken-4">
+                        <v-card-title
+                            max-width
+                            class="d-flex justify-space-between align-center"
+                            style=" width: 100%;"
+                        >
+                            <div>{{ system_name }}</div>
+                            <v-divider class="mx-4 my-0" vertical></v-divider>
+                            <p v-if="nodeCount > 0" class=" pt-4 pr-3">
+                                Active Nodes -
+                            </p>
+                            <div>
+                                <v-progress-circular
+                                    v-if="nodeCount > 0"
+                                    :transitionDuration="5000"
+                                    :radius="20"
+                                    :strokeWidth="4"
+                                    :value="
+                                        (nodeCountHackingCount / nodeCount) *
+                                            100 || 0.000001
+                                    "
+                                >
+                                    <div class="caption">
+                                        {{ nodeCountHackingCount }} /
+                                        {{ nodeCount }}
+                                    </div></v-progress-circular
+                                >
+
+                                <v-progress-circular
+                                    v-if="nodeCount > 0"
+                                    :transitionDuration="5000"
+                                    :radius="20"
+                                    :strokeWidth="4"
+                                    strokeColor="#FF3D00"
+                                    :value="
+                                        (nodeRedCountHackingCount / nodeCount) *
+                                            100 || 0.000001
+                                    "
+                                >
+                                    <div class="caption">
+                                        {{ nodeRedCountHackingCount }} /
+                                        {{ nodeCount }}
+                                    </div></v-progress-circular
+                                >
+                            </div>
+                            <v-spacer></v-spacer>
+                            <v-divider class="mx-4 my-0" vertical></v-divider>
+                            <div class=" ml-auto">
+                                <v-menu
+                                    transition="fade-transition"
+                                    v-if="charCount != 0"
+                                >
+                                    <template v-slot:activator="{ on, attrs }">
+                                        <v-chip
+                                            dark
+                                            :color="filterCharsOnTheWay"
+                                            v-bind="attrs"
+                                            v-on="on"
+                                            small
+                                        >
+                                            On the Way
+                                        </v-chip>
+                                    </template>
+                                    <v-list>
+                                        <v-list-item
+                                            v-for="(list, index) in chars"
+                                            :key="index"
+                                            @click="
+                                                (charOnTheWay = list.id),
+                                                    clickOnTheWay()
+                                            "
+                                        >
+                                            <v-list-item-title>{{
+                                                list.char_name
+                                            }}</v-list-item-title>
+                                        </v-list-item>
+                                    </v-list>
+                                </v-menu>
+                                <span v-else>
+                                    On the way -
+                                </span>
+                                 <v-menu
+                                    transition="fade-transition"
+                                >
+                                    <template v-slot:activator="{ on, attrs }">
+                                        <v-btn
+                                    class="mx-2"
+                                    v-bind="attrs"
+                                    :disabled="fabOnTheWayDisbale"
+                                    v-on="on"
+                                    fab
+                                    dark
+                                    x-small
+                                >
+                                    {{OnTheWayCount}}
+                                </v-btn>
+                                    </template>
+                                    <v-list>
+                                        <v-list-item
+                                            v-for="(list, index) in charsOnTheWayAll"
+                                            :key="index"
+                                        >
+                                            <v-list-item-title>
+                                                {{list.char_name}} - {{list.ship}} - t{{list.link}}</v-list-item-title>
+                                        </v-list-item>
+                                    </v-list>
+                                </v-menu>
+                            </div>
+                            <v-divider class="mx-4 my-0" vertical></v-divider>
+                            <div>
+                                <v-menu
+                                    transition="fade-transition"
+                                    v-if="charCount != 0"
+                                >
+                                    <template v-slot:activator="{ on, attrs }">
+                                        <v-chip
+                                            dark
+                                            :color="filterCharsReadyToGo"
+                                            v-bind="attrs"
+                                            v-on="on"
+                                            small
+                                        >
+                                            Ready to go
+                                        </v-chip>
+                                    </template>
+                                    <v-list>
+                                        <v-list-item
+                                            v-for="(list, index) in chars"
+                                            :key="index"
+                                            @click="
+                                                (charReadyToGo = list.id),
+                                                    clickReadyToGo()
+                                            "
+                                        >
+                                            <v-list-item-title>{{
+                                                list.char_name
+                                            }}</v-list-item-title>
+                                        </v-list-item>
+                                    </v-list>
+                                </v-menu>
+                                <span v-else>
+                                    One the way -
+                                </span>
+                                <v-menu
+                                    transition="fade-transition"
+                                >
+                                    <template v-slot:activator="{ on, attrs }">
+                                        <v-btn
+                                    class="mx-2"
+                                    v-bind="attrs"
+                                    v-on="on"
+                                    :disabled="fabReadyToGoDisbale"
+                                    fab
+                                    dark
+                                    x-small
+                                >
+                                    {{ReadyToGoCount}}
+                                </v-btn>
+                                    </template>
+                                    <v-list>
+                                        <v-list-item
+                                            v-for="(list, index) in charsReadyToGoAll"
+                                            :key="index"
+                                        >
+                                            <v-list-item-title>
+                                                {{list.char_name}} - {{list.ship}} - t{{list.link}}</v-list-item-title>
+                                        </v-list-item>
+                                    </v-list>
+                                </v-menu>
+                            </div>
+                            <v-divider class="mx-4 my-0" vertical></v-divider>
+                            <div>
+                                <v-menu
+                                    :close-on-content-click="false"
+                                    :value="addShown"
+                                >
+                                    <template v-slot:activator="{ on, attrs }">
+                                        <v-btn
+                                            icon
+                                            v-bind="attrs"
+                                            v-on="on"
+                                            @click="addShown = true"
+                                            color="success"
+                                            ><v-icon>fas fa-plus</v-icon></v-btn
+                                        >
+                                    </template>
+                                    <v-card tile min-height="150px">
+                                        <v-card-title class=" pb-0">
+                                            <v-text-field
+                                                class=" mt-2"
+                                                label="Node"
+                                                placeholder="Enter Node"
+                                                flat
+                                                v-mask="'AA##'"
+                                                autofocus
+                                                v-model="nodeText"
+                                            ></v-text-field>
+                                        </v-card-title>
+
+                                        <v-card-text>
+                                            <v-btn
+                                                icon
+                                                fixed
+                                                left
+                                                color="success"
+                                                @click="addNode()"
+                                                ><v-icon
+                                                    >fas fa-check</v-icon
+                                                ></v-btn
+                                            >
+
+                                            <v-btn
+                                                fixed
+                                                right
+                                                icon
+                                                color="warning"
+                                                @click="
+                                                    (addShown = false),
+                                                        (nodeText = '')
+                                                "
+                                                ><v-icon
+                                                    >fas fa-times</v-icon
+                                                ></v-btn
+                                            >
+                                        </v-card-text>
+                                    </v-card>
+                                </v-menu>
+                            </div>
+                        </v-card-title>
+                    </v-card>
+                </template>
                 <v-data-table
                     :headers="headers"
                     :items="filteredItems"
@@ -16,188 +248,6 @@
                     class="elevation-12"
                 >
                     >
-                    <template v-slot:top>
-                        <v-toolbar
-                            flat
-                            max-width
-                            elevation="24"
-                            color="grey darken-4"
-                        >
-                            <v-toolbar-title
-                                max-width
-                                class="d-flex justify-space-between align-center"
-                                style=" width: 100%;"
-                            >
-                                <div>{{ system_name }} - test</div>
-                                <v-spacer></v-spacer>
-                                <div>
-                                    <v-progress-circular
-                                        v-if="nodeCount > 0"
-                                        :transitionDuration="5000"
-                                        :radius="20"
-                                        :strokeWidth="4"
-                                        :value="
-                                            (nodeCountHackingCount /
-                                                nodeCount) *
-                                                100 || 0.000001
-                                        "
-                                    >
-                                        <div class="caption">
-                                            {{ nodeCountHackingCount }} /
-                                            {{ nodeCount }}
-                                        </div></v-progress-circular
-                                    >
-
-                                    <v-progress-circular
-                                        v-if="nodeCount > 0"
-                                        :transitionDuration="5000"
-                                        :radius="20"
-                                        :strokeWidth="4"
-                                        strokeColor="#FF3D00"
-                                        :value="
-                                            (nodeRedCountHackingCount /
-                                                nodeCount) *
-                                                100 || 0.000001
-                                        "
-                                    >
-                                        <div class="caption">
-                                            {{ nodeRedCountHackingCount }} /
-                                            {{ nodeCount }}
-                                        </div></v-progress-circular
-                                    >
-                                </div>
-                                <v-spacer></v-spacer>
-                                <div class=" ml-auto">
-                                    <v-menu
-                                        transition="fade-transition"
-                                        v-if="charCount != 0"
-                                    >
-                                        <template
-                                            v-slot:activator="{ on, attrs }"
-                                        >
-                                            <v-chip
-                                                dark
-                                                :color="filterCharsOnTheWay"
-                                                v-bind="attrs"
-                                                v-on="on"
-                                                small
-                                            >
-                                                On the Way
-                                            </v-chip>
-                                        </template>
-                                        <v-list>
-                                            <v-list-item
-                                                v-for="(list, index) in chars"
-                                                :key="index"
-                                                @click="
-                                                    (charOnTheWay = list.id),
-                                                        clickOnTheWay()
-                                                "
-                                            >
-                                                <v-list-item-title>{{
-                                                    list.char_name
-                                                }}</v-list-item-title>
-                                            </v-list-item>
-                                        </v-list>
-                                    </v-menu>
-
-                                    <v-menu
-                                        transition="fade-transition"
-                                        v-if="charCount != 0"
-                                    >
-                                        <template
-                                            v-slot:activator="{ on, attrs }"
-                                        >
-                                            <v-chip
-                                                dark
-                                                :color="filterCharsReadyToGo"
-                                                v-bind="attrs"
-                                                v-on="on"
-                                                small
-                                            >
-                                                Ready to go
-                                            </v-chip>
-                                        </template>
-                                        <v-list>
-                                            <v-list-item
-                                                v-for="(list, index) in chars"
-                                                :key="index"
-                                                @click="
-                                                    (charReadyToGo = list.id),
-                                                        clickReadyToGo()
-                                                "
-                                            >
-                                                <v-list-item-title>{{
-                                                    list.char_name
-                                                }}</v-list-item-title>
-                                            </v-list-item>
-                                        </v-list>
-                                    </v-menu>
-                                </div>
-                                <div>
-                                    <v-menu
-                                        :close-on-content-click="false"
-                                        :value="addShown"
-                                    >
-                                        <template
-                                            v-slot:activator="{ on, attrs }"
-                                        >
-                                            <v-btn
-                                                icon
-                                                v-bind="attrs"
-                                                v-on="on"
-                                                @click="addShown = true"
-                                                color="success"
-                                                ><v-icon
-                                                    >fas fa-plus</v-icon
-                                                ></v-btn
-                                            >
-                                        </template>
-                                        <v-card tile min-height="150px">
-                                            <v-card-title class=" pb-0">
-                                                <v-text-field
-                                                    class=" mt-2"
-                                                    label="Node"
-                                                    placeholder="Enter Node"
-                                                    flat
-                                                    v-mask="'AA##'"
-                                                    autofocus
-                                                    v-model="nodeText"
-                                                ></v-text-field>
-                                            </v-card-title>
-
-                                            <v-card-text>
-                                                <v-btn
-                                                    icon
-                                                    fixed
-                                                    left
-                                                    color="success"
-                                                    @click="addNode()"
-                                                    ><v-icon
-                                                        >fas fa-check</v-icon
-                                                    ></v-btn
-                                                >
-
-                                                <v-btn
-                                                    fixed
-                                                    right
-                                                    icon
-                                                    color="warning"
-                                                    @click="
-                                                        (addShown = false),
-                                                            (nodeText = '')
-                                                    "
-                                                    ><v-icon
-                                                        >fas fa-times</v-icon
-                                                    ></v-btn
-                                                >
-                                            </v-card-text>
-                                        </v-card>
-                                    </v-menu>
-                                </div>
-                            </v-toolbar-title>
-                        </v-toolbar>
-                    </template>
 
                     <template v-slot:item.status_name="{ item }">
                         <v-menu offset-y>
@@ -281,11 +331,7 @@
                         >
                     </template>
                     <template v-slot:item.count="{ item }">
-                        <systemTableTimer
-                            :item = item
-                        >
-                        </systemtabletimer>
-
+                        <systemTableTimer :item="item"> </systemTableTimer>
                     </template>
 
                     <template v-slot:expanded-item="{ headers, item }">
@@ -380,21 +426,18 @@ export default {
             addShown: false,
             expanded: [],
             singleExpand: true,
-            charAddNode: null,
+            charAddNode: null
         };
     },
 
     methods: {
-
-        pillOutlined(item){
-
-            if (item.status_id == 7){
-                return false
-            }else{
-                return true
+        pillOutlined(item) {
+            if (item.status_id == 7) {
+                return false;
+            } else {
+                return true;
             }
         },
-
 
         clickOnTheWay() {
             this.OnTheWayColor = "green";
@@ -673,6 +716,7 @@ export default {
 
             this.$store.dispatch("getCampaignSystemsRecords");
         },
+
         removeCharNode(item) {
             var userId = item.user_id;
             item.user_id = null;
@@ -728,7 +772,7 @@ export default {
                     "Content-Type": "application/json"
                 }
             });
-        },
+        }
 
         // if (item.site_id == null) {
         //     return false;
@@ -756,8 +800,30 @@ export default {
             "getTotalNodeCountBySystem",
             "getHackingNodeCountBySystem",
             "getNodeValue",
-            "getRedHackingNodeCountBySystem"
+            "getRedHackingNodeCountBySystem",
+            "getSystemReadyToGoCount",
+            "getSystemOnTheWayCount",
+            "getCampaignUsersReadyToGoAll",
+            "getCampaignUsersOnTheWayAll"
         ]),
+
+        fabOnTheWayDisbale(){
+            if(this.OnTheWayCount == 0)
+            {
+                return true
+            }else{
+                return false
+            }
+        },
+
+        fabReadyToGoDisbale(){
+            if(this.ReadyToGoCount == 0)
+            {
+                return true
+            }else{
+                return false
+            }
+        },
 
         filteredItems() {
             // var timers = this.$store.state.timers;
@@ -805,6 +871,18 @@ export default {
         chars() {
             return this.getCampaignUsersByUserIdEntosis(
                 this.$store.state.user_id
+            );
+        },
+
+        charsReadyToGoAll() {
+            return this.getCampaignUsersReadyToGoAll(
+                this.system_id
+            );
+        },
+
+        charsOnTheWayAll() {
+            return this.getCampaignUsersOnTheWayAll(
+                this.system_id
             );
         },
 
@@ -874,16 +952,32 @@ export default {
             } else {
                 return "red";
             }
-        }
+        },
+
+        ReadyToGoCount(){
+            let payload = {
+                system_id: this.system_id,
+                campaign_id: this.campaign_id
+            }
+            return this.getSystemReadyToGoCount(payload)
+        },
+
+        OnTheWayCount(){
+            let payload = {
+                system_id: this.system_id,
+                campaign_id: this.campaign_id
+            }
+            return this.getSystemOnTheWayCount(payload)
+        },
     }
 };
 </script>
 
 <style>
-
 .style-2 {
-  background-color: rgb(30,30,30,1)
+    background-color: rgb(30, 30, 30, 1);
 }
 .style-1 {
-  background-color: rgb(184, 22, 35)
-}</style>
+    background-color: rgb(184, 22, 35);
+}
+</style>
