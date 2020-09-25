@@ -304,6 +304,7 @@
                         <v-menu
                             :close-on-content-click="false"
                             :value="timerShown"
+                            :name="'time'+index"
                             :key="item.id"
                             v-else-if="checkHackUser(item)"
                         >
