@@ -474,6 +474,25 @@ export default {
                     "Content-Type": "application/json"
                 }
             });
+
+            request = null
+            request ={
+                campaign_user_id: this.charOnTheWay,
+                system_id: this.system_id,
+                campaign_id: this.$route.params.id
+            }
+
+            axios({
+                method: "put", //you can set what request you want to be
+                url:
+                    "/api/campaignsystemremovechar/" + this.$route.params.id,
+                data: request,
+                headers: {
+                    Authorization: "Bearer " + this.$store.state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                }
+            });
             this.charOnTheWay = null;
         },
         clickReadyToGo() {
@@ -506,6 +525,27 @@ export default {
                     "Content-Type": "application/json"
                 }
             });
+
+            request = null
+            request ={
+                campaign_user_id: this.charReadyToGo,
+                system_id: this.system_id,
+                campaign_id: this.$route.params.id
+            }
+
+            axios({
+                method: "put", //you can set what request you want to be
+                url:
+                    "/api/campaignsystemremovechar/" + this.$route.params.id,
+                data: request,
+                headers: {
+                    Authorization: "Bearer " + this.$store.state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                }
+            });
+
+
 
             this.charReadyToGo = null;
         },

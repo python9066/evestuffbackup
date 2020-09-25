@@ -64,6 +64,21 @@ class CampaignSystemsController extends Controller
         broadcast(new CampaignSystemUpdate($flag))->toOthers();
     }
 
+    public function removechar(Request $request, $campid)
+    {
+        CampaignSystem::where('campaign_id'.$request->campaign_id)
+                        ->where('system_id',$request->system_id)
+                        ->where('campaign_user_id',$request->campaign_user_id)
+                        ->update(['campaign_user_id' => null]);
+        $flag = collect([
+            'flag' => 2,
+            'id' => $campid
+        ]);
+        broadcast(new CampaignSystemUpdate($flag))->toOthers();
+    }
+
+
+
     /**
      * Remove the specified resource from storage.
      *
