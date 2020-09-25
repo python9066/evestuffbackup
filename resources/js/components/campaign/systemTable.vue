@@ -147,6 +147,9 @@
                                         </v-list-item>
                                     </v-list>
                                 </v-menu>
+                                <span v-else>
+                                    Ready to go -
+                                </span>
                                 <v-menu transition="fade-transition">
                                     <template v-slot:activator="{ on, attrs }">
                                         <v-btn
