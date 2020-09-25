@@ -307,9 +307,9 @@
                             :value="timerShown[item.id]"
                             v-else-if="checkHackUser(item)"
                         >
-                            <template v-slot:activator="{ attrs }">
+                            <template v-slot:activator="{ on, attrs }">
                                 <v-chip
-                                    @click="timerShown[item.id] == true"
+                                    v-on="test(item) "
                                     v-bind="attrs"
                                     pill
                                     :outlined="pillOutlined(item)"
@@ -553,6 +553,11 @@ export default {
     },
 
     methods: {
+
+        test(item)
+        {
+            console.log(test)
+        },
 
         async addHacktime(item) {
             var min = parseInt(this.hackTime.substr(0, 2));
