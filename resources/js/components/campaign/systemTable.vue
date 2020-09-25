@@ -536,7 +536,7 @@ export default {
             OnTheWayColor: "teal",
             nodeText: "",
             addShown: false,
-            timerShown: [],
+            timerShown: false,
             expanded: [],
             singleExpand: true,
             charAddNode: null,
