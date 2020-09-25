@@ -68,8 +68,9 @@ class CampaignSystemsController extends Controller
     {
         $count = CampaignSystem::where('campaign_id',$request->campaign_id)
                         ->where('system_id',$request->system_id)
-                        ->where('campaign_user_id',$request->campaign_user_id)->get()->count();
-        dd($count);
+                        ->where('campaign_user_id',$request->campaign_user_id)
+                        ->update(['campaign_user_id' => null]);
+
         $flag = collect([
             'flag' => 2,
             'id' => $campid
