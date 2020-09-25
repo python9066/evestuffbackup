@@ -46,6 +46,8 @@ class CreateOrReplaceCampaignSystemRecordsViewCommand extends Command
        campaign_users.site_id AS site_id,
        users.name AS main_name,
        campaign_users.char_name AS user_name,
+       campaign_users.ship AS user_ship,
+       campaign_users.link AS user_link,
        campaign_systems.campaign_system_status_id AS status_id,
        campaign_system_statuses.name AS status_name,
        campaign_systems.notes AS notes,
