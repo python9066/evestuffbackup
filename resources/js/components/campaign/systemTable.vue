@@ -309,7 +309,7 @@
                         >
                             <template v-slot:activator="{ on, attrs }">
                                 <v-chip
-                                    v-on="test(item) "
+                                    v-on="on"
                                     v-bind="attrs"
                                     pill
                                     :outlined="pillOutlined(item)"
@@ -338,6 +338,7 @@
                                             left
                                             color="success"
                                             @click="
+                                            (timerShown[item.id] = true),
                                                 (timerShown[item.id] = false),
                                                     addHacktime(item)
                                             "
@@ -352,6 +353,7 @@
                                             icon
                                             color="warning"
                                             @click="
+                                            (timerShown[item.id] = true),
                                                 (timerShown[item.id] = false),
                                                     (hackTime = null)
                                             "
@@ -554,10 +556,7 @@ export default {
 
     methods: {
 
-        test(item)
-        {
-            console.log(test)
-        },
+
 
         async addHacktime(item) {
             var min = parseInt(this.hackTime.substr(0, 2));
