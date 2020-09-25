@@ -240,6 +240,7 @@
                     :single-expand="singleExpand"
                     item-key="node"
                     show-expand
+                    disable-sort
                     :expanded.sync="expanded"
                     :item-class="itemRowBackground"
                     hide-default-footer
