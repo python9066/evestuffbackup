@@ -137,8 +137,7 @@
                                 <div>
                                     <v-menu
                                         :close-on-content-click="false"
-                                        :value="addShown"
-                                        :key="item.id"                                    >
+                                        :value="addShown"                                    >
                                         <template
                                             v-slot:activator="{ on, attrs }"
                                         >
@@ -305,6 +304,7 @@
                         <v-menu
                             :close-on-content-click="false"
                             :value="timerShown"
+                            :key="item.id"
                             v-else-if="checkHackUser(item)"
                         >
                             <template v-slot:activator="{ on, attrs }">
