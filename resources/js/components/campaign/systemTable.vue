@@ -562,8 +562,8 @@ export default {
                     s.campaign_id == this.$route.params.id
             );
 
-            check.find(c => c.id == item.id)
-                console.log(check);
+            let check2 = check.find(c => c.id == item.id)
+                console.log(check2.id);
         },
 
         async addHacktime(item) {
