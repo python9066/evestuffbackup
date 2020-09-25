@@ -563,7 +563,7 @@ export default {
             );
 
             let check2 = check.find(c => c.id == item.id)
-                console.log(check2);
+                console.log(check2.id);
         },
 
         async addHacktime(item) {
