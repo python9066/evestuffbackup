@@ -557,7 +557,7 @@ export default {
     methods: {
 
         setTimerShow(){
-            let check =  this.$store.dispatch('campaignsystems')
+            let check =  this.$store.state.campaignsystems
                     check = check.filter(
                     s =>  s.system_id == this.system_id &&
                         s.campaign_id == this.$route.params.id)
