@@ -563,7 +563,11 @@ export default {
                     s.system_id == this.system_id &&
                     s.campaign_id == this.$route.params.id
             );
-            console.log(check.id);
+
+            Onject.entries(check).forEach(s => {
+
+                console.log(s.id);
+            })
         },
 
         async addHacktime(item) {
