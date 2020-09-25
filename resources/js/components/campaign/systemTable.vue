@@ -536,13 +536,14 @@ export default {
 
         clickCharAddNode(item) {
             var addChar = this.chars.find(user => user.id == this.charAddNode);
-            console.log(addChar, item);
             var data = {
                 id: item.id,
                 user_id: addChar.id,
                 site_id: this.$store.state.user_id,
                 user_name: addChar.char_name,
-                main_name: addChar.main_name
+                main_name: addChar.main_name,
+                user_ship: addChar.ship,
+                user_link: addChar.link,
             };
 
             var request = {
@@ -561,7 +562,7 @@ export default {
                 user_status_name: "Hacking"
             };
 
-            console.log(data);
+
             var request1 = {
                 campaign_system_id: item.id,
                 system_id: item.system_id,
@@ -742,12 +743,14 @@ export default {
         removeCharNode(item) {
             var userId = item.user_id;
             item.user_id = null;
+            item.user_ship = null;
+            item.user_link = null;
             this.$store.dispatch("updateCampaignSystem", item);
             var data = {
                 id: userId,
                 node_id: null,
-                status_id: 1,
-                user_status_name: "None"
+                status_id: 3,
+                user_status_name: "Ready to go"
             };
             this.$store.dispatch("updateCampaignUsers", data);
             var request = null;
