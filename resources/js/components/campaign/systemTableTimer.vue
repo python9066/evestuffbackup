@@ -1,5 +1,144 @@
 <template>
     <v-col>
+        <VueCountUptimer
+            v-if="item.status_id < 3 && item.end_time == null"
+            :start-time="moment.utc(item.start).unix()"
+            :end-text="'Window Closed'"
+            :interval="1000"
+        >
+            <template slot="countup" slot-scope="scope">
+                <span v-if="scope.props.minutes < 5" class="green--text pl-3"
+                    >{{ scope.props.hours }}:{{ scope.props.minutes }}:{{
+                        scope.props.seconds
+                    }}</span
+                >
+                <span v-else class="red--text pl-3"
+                    >{{ scope.props.hours }}:{{ scope.props.minutes }}:{{
+                        scope.props.seconds
+                    }}</span
+                >
+            </template>
+        </VueCountUptimer>
+        <v-menu
+            :close-on-content-click="false"
+            :value="timerShown"
+            v-else-if="checkHackUser(item)"
+        >
+            <template v-slot:activator="{ on, attrs }">
+                <v-chip
+                    v-bind="attrs"
+                    v-on="on"
+                    pill
+                    :outlined="pillOutlined(item)"
+                    @click="timerShown = true"
+                    small
+                    color="warning"
+                >
+                    Add Time
+                </v-chip>
+            </template>
+
+            <template>
+                <v-card tile min-height="150px">
+                    <v-card-title class=" pb-0">
+                        <v-text-field
+                            v-model="hackTime"
+                            label="Hack Time mm:ss"
+                            v-mask="'##:##'"
+                            autofocus
+                            placeholder="mm:ss"
+                        ></v-text-field>
+                    </v-card-title>
+                    <v-card-text>
+                        <v-btn
+                            icon
+                            fixed
+                            left
+                            color="success"
+                            @click="(timerShown = false), addHacktime(item)"
+                            ><v-icon>fas fa-check</v-icon></v-btn
+                        >
+
+                        <v-btn
+                            fixed
+                            right
+                            icon
+                            color="warning"
+                            @click="(timerShown = false), (hackTime = null)"
+                            ><v-icon>fas fa-times</v-icon></v-btn
+                        >
+                    </v-card-text>
+                </v-card>
+            </template>
+        </v-menu>
+        <CountDowntimer
+            v-else
+            :start-time="moment.utc(item.end).unix()"
+            :end-text="endText(item)"
+            :interval="1000"
+        >
+            <template slot="countdown" slot-scope="scope">
+                <span :class="hackCountDownTextColor(item)"
+                    >{{ scope.props.minutes }}:{{ scope.props.seconds }}</span
+                >
+                <v-menu :close-on-content-click="false" :value="timerShown">
+                    <template v-slot:activator="{ on, attrs }">
+                        <v-btn
+                            v-if="checkHackUserEdit(item)"
+                            v-bind="attrs"
+                            v-on="on"
+                            @click="(timerShown = true), (hackTime = null)"
+                            icon
+                            color="warning"
+                        >
+                            <v-icon x-small>fas fa-edit</v-icon>
+                        </v-btn>
+                    </template>
+
+                    <template>
+                        <v-card tile min-height="150px">
+                            <v-card-title class=" pb-0">
+                                <v-text-field
+                                    v-model="hackTime"
+                                    label="Hack Time mm:ss"
+                                    autofocus
+                                    v-mask="'##:##'"
+                                    placeholder="mm:ss"
+                                ></v-text-field>
+                            </v-card-title>
+                            <v-card-text>
+                                <v-btn
+                                    icon
+                                    fixed
+                                    left
+                                    color="success"
+                                    @click="
+                                        (timerShown = false), addHacktime(item)
+                                    "
+                                    ><v-icon>fas fa-check</v-icon></v-btn
+                                >
+
+                                <v-btn
+                                    fixed
+                                    right
+                                    icon
+                                    color="warning"
+                                    @click="
+                                        (timerShown = false), (hackTime = null)
+                                    "
+                                    ><v-icon>fas fa-times</v-icon></v-btn
+                                >
+                            </v-card-text>
+                        </v-card>
+                    </template>
+                </v-menu>
+            </template>
+            <template slot="end-text" slot-scope="scope">
+                <span :style="hackTextColor(item)">{{
+                    scope.props.endText
+                }}</span>
+            </template>
+        </CountDowntimer>
     </v-col>
 </template>
 
@@ -8,28 +147,105 @@ import { mapState, mapGetters } from "vuex";
 import moment from "moment";
 export default {
     props: {
+        item,
         system_name: String,
         system_id: Number,
         campaign_id: String
     },
     data() {
-        return {
-        };
+        return {};
     },
 
     methods: {
+
+        async addHacktime(item) {
+            var min = parseInt(this.hackTime.substr(0, 2));
+            var sec = parseInt(this.hackTime.substr(3, 2));
+            var finishTime = moment
+                .utc()
+                .add(sec, "seconds")
+                .add(min, "minutes")
+                .format("YYYY-MM-DD HH:mm:ss");
+            item.end = finishTime;
+            this.$store.dispatch("updateCampaignSystem", item);
+            var request = {
+                end_time: finishTime
+            };
+
+            await axios({
+                method: "put", //you can set what request you want to be
+                url:
+                    "/api/campaignsystems/" +
+                    item.id +
+                    "/" +
+                    this.$route.params.id,
+                data: request,
+                headers: {
+                    Authorization: "Bearer " + this.$store.state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                }
+            });
+
+            this.$store.dispatch("getCampaignSystemsRecords");
+        },
+
+
+        checkHackUser(item) {
+            if (
+                item.site_id == this.$store.state.user_id &&
+                item.end == null &&
+                item.status_id == 3
+            ) {
+                return true;
+            } else if (item.end == null && item.status_id == 7) {
+                return true;
+            } else {
+                return false;
+            }
+        },
+
+        hackCountDownTextColor(item){
+            if(item.status_id == 7){
+                return "white--text pl-3"
+            }else{
+                return "blue--text pl-3"
+            }
+
+        },
+
+        checkHackUser(item) {
+            if (
+                item.site_id == this.$store.state.user_id &&
+                item.end == null &&
+                item.status_id == 3
+            ) {
+                return true;
+            } else if (item.end == null && item.status_id == 7) {
+                return true;
+            } else {
+                return false;
+            }
+        },
     },
 
-    computed: {
-    }
+    endText(item){
+            if(item.status_id == 7){
+                return "Do they Finish?"
+            }else{
+                return "Do you Finish?"
+            }
+        },
+
+    computed: {}
 };
 </script>
 
 <style>
-
 .style-2 {
-  background-color: rgb(30,30,30,1)
+    background-color: rgb(30, 30, 30, 1);
 }
 .style-1 {
-  background-color: rgb(184, 22, 35)
-}</style>
+    background-color: rgb(184, 22, 35);
+}
+</style>
