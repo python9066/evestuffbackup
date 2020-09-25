@@ -307,8 +307,10 @@
                             :value="timerShown[item.id]"
                             v-else-if="checkHackUser(item)"
                         >
-
+                            <template v-slot:activator="{ on, attrs }">
                                 <v-chip
+                                    v-bind="attrs"
+                                    v-on="on"
                                     pill
                                     :outlined="pillOutlined(item)"
                                     @click="timerShown[item.id] == true"
@@ -317,7 +319,7 @@
                                 >
                                     Add Time
                                 </v-chip>
-
+                            </template>
 
                             <template>
                                 <v-card tile min-height="150px">
