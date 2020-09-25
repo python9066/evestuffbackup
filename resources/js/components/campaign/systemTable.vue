@@ -556,6 +556,10 @@ export default {
 
     methods: {
 
+        setTimerShow(){
+            console.log(this.campaignsystems)
+        },
+
         async addHacktime(item) {
             var min = parseInt(this.hackTime.substr(0, 2));
             var sec = parseInt(this.hackTime.substr(3, 2));
