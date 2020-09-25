@@ -313,7 +313,7 @@
                                     v-on="on"
                                     pill
                                     :outlined="pillOutlined(item)"
-                                    @click="timerShown[item.name] = true"
+                                    @click="timerShown[item.id] = true"
                                     small
                                     color="warning"
                                 >
@@ -339,7 +339,7 @@
                                             left
                                             color="success"
                                             @click="
-                                                (timerShown[item.name] = false),
+                                                (timerShown[item.id] = false),
                                                     addHacktime(item)
                                             "
                                             ><v-icon
@@ -353,7 +353,7 @@
                                             icon
                                             color="warning"
                                             @click="
-                                                (timerShown[item.name] = false),
+                                                (timerShown[item.id] = false),
                                                     (hackTime = null)
                                             "
                                             ><v-icon
@@ -378,14 +378,14 @@
                                 >
                                 <v-menu
                             :close-on-content-click="false"
-                            :value="timerShown[item.name]"
+                            :value="timerShown[item.id]"
                         >
                             <template v-slot:activator="{ on, attrs }">
                                 <v-btn
                                     v-if="checkHackUserEdit(item)"
                                     v-bind="attrs"
                                     v-on="on"
-                                    @click="timerShown[item.name] = true, hackTime = null"
+                                    @click="timerShown[item.id] = true, hackTime = null"
                                     icon
                                     color="warning"
                                 >
@@ -411,7 +411,7 @@
                                             left
                                             color="success"
                                             @click="
-                                                (timerShown[item.name] = false),
+                                                (timerShown[item.id] = false),
                                                     addHacktime(item)
                                             "
                                             ><v-icon
@@ -425,7 +425,7 @@
                                             icon
                                             color="warning"
                                             @click="
-                                                (timerShown[item.name] = false),
+                                                (timerShown[item.id] = false),
                                                     (hackTime = null)
                                             "
                                             ><v-icon
