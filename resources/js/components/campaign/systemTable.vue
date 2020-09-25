@@ -304,7 +304,7 @@
                         </VueCountUptimer>
                         <v-menu
                             :close-on-content-click="false"
-                            :value="$use(timerShown.item)"
+                            :value="timerShown"
                             v-else-if="checkHackUser(item)"
                         >
                             <template v-slot:activator="{ on, attrs }">
@@ -313,7 +313,7 @@
                                     v-on="on"
                                     pill
                                     :outlined="pillOutlined(item)"
-                                    @click="$set(timerShown, item, true)"
+                                    @click="timerShown = true"
                                     small
                                     color="warning"
                                 >
@@ -339,7 +339,7 @@
                                             left
                                             color="success"
                                             @click="
-                                                ($set(timerShown, item, false)),
+                                                (timerShown = false),
                                                     addHacktime(item)
                                             "
                                             ><v-icon
@@ -353,7 +353,7 @@
                                             icon
                                             color="warning"
                                             @click="
-                                                ($set(timerShown, item, false)),
+                                                (timerShown = false),
                                                     (hackTime = null)
                                             "
                                             ><v-icon
@@ -378,7 +378,7 @@
                                 >
                                 <v-menu
                             :close-on-content-click="false"
-                            :value="timerShown"
+                            :value.sync="timerShown"
                         >
                             <template v-slot:activator="{ on, attrs }">
                                 <v-btn
@@ -521,8 +521,6 @@ export default {
 
                 // { text: "Vulernable End Time", value: "vulnerable_end_time" }
             ],
-
-            timerShown: {},
 
             dropdown_edit: [
                 { title: "New", value: 1 },
