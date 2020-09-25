@@ -424,13 +424,13 @@ export default {
                     text: "Status",
                     value: "status_name",
                     width: "20%",
-                    align: "end"
+                    align: "center"
                 },
                 {
                     text: "Age/Hack",
                     value: "count",
                     width: "20%",
-                    align: "end"
+                    align: "center"
                 },
                 {
                     text: "",
