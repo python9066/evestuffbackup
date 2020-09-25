@@ -94,7 +94,7 @@
                                     :disabled="fabOnTheWayDisbale"
                                     v-on="on"
                                     fab
-                                    color="green lighten-3"
+                                    color="green darken-4"
                                     dark
                                     x-small
                                 >
@@ -157,7 +157,7 @@
                                     v-on="on"
                                     :disabled="fabReadyToGoDisbale"
                                     fab
-                                    color="green lighten-3"
+                                    color="green darken-4"
                                     dark
                                     x-small
                                 >
