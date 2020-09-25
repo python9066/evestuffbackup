@@ -305,10 +305,9 @@
                         <v-menu
                             :close-on-content-click="false"
                             :v-value="timeshowencheck(item)"
-                            :v-model="timeshowencheck(item)"
                             v-else-if="checkHackUser(item)"
                         >
-                            <template v-slot:activator="{ on, attrs }">
+                            <template v-slot:activator="{ on, attrs, item }">
                                 <v-chip
                                     v-on="on"
                                     v-bind="attrs"
