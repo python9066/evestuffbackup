@@ -74,6 +74,7 @@ class CampaignSystemsController extends Controller
 
         if($node != null){
             $node->update(['campaign_user_id' =>  null]);
+            $node->save();
             $test = CampaignSystem::where('campaign_id',$request->campaign_id)
             ->where('system_id',$request->system_id)->get();
             echo "yo";
