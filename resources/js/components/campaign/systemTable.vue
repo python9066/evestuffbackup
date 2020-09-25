@@ -371,7 +371,7 @@
                         </v-icon>
                     </template>
 
-                    <template v-slot:item.ship="{ item }">
+                    <template v-slot:item.user_ship="{ item }">
 
                         <span v-if="item.user_name != null">
                             {{item.user_ship}} - T{{item.user_link}}
