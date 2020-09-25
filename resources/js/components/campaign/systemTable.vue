@@ -307,7 +307,7 @@
                             :v-value="timeshowencheck(item)"
                             v-else-if="checkHackUser(item)"
                         >
-                            <template v-slot:activator="{ on, attrs, item }">
+                            <template v-slot:activator="{ on, attrs,}">
                                 <v-chip
                                     v-on="on"
                                     v-bind="attrs"
