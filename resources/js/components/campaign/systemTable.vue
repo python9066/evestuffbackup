@@ -444,7 +444,7 @@ export default {
             }
         },
 
-        clickOnTheWay() {
+        async clickOnTheWay() {
             this.OnTheWayColor = "green";
             var item = {
                 id: this.charOnTheWay,
@@ -460,7 +460,7 @@ export default {
                 system_id: this.system_id
             };
 
-            axios({
+          await  axios({
                 method: "put", //you can set what request you want to be
                 url:
                     "/api/campaignusers/" +
@@ -483,7 +483,7 @@ export default {
             }
             console.log(request);
 
-            axios({
+           await axios({
                 method: "put", //you can set what request you want to be
                 url:
                     "/api/campaignsystemremovechar/" + this.$route.params.id,
@@ -498,7 +498,7 @@ export default {
             this.charOnTheWay = null;
 
         },
-        clickReadyToGo() {
+        async clickReadyToGo() {
             var item = {
                 id: this.charReadyToGo,
                 status_id: 3,
@@ -514,7 +514,7 @@ export default {
                 campaign_system_id: null
             };
 
-            axios({
+           await axios({
                 method: "put", //you can set what request you want to be
                 url:
                     "/api/campaignusers/" +
@@ -536,7 +536,7 @@ export default {
                 campaign_id: this.$route.params.id
             }
 
-            axios({
+           await axios({
                 method: "put", //you can set what request you want to be
                 url:
                     "/api/campaignsystemremovechar/" + this.$route.params.id,
