@@ -76,6 +76,7 @@ class CampaignSystemsController extends Controller
             $node->update(['campaign_user_id' =>  null]);
             $test = CampaignSystem::where('campaign_id',$request->campaign_id)
             ->where('system_id',$request->system_id)->get();
+            echo "yo";
 
 
 
