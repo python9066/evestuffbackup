@@ -378,7 +378,7 @@
                                 >
                                 <v-menu
                             :close-on-content-click="false"
-                            :value.sync="timerShown"
+                            :value="timerShown"
                         >
                             <template v-slot:activator="{ on, attrs }">
                                 <v-btn
@@ -492,8 +492,15 @@ export default {
         system_id: Number,
         campaign_id: String
     },
+
+    async mounted() {
+
+        await this.setTimerShow();
+    },
+
     data() {
         return {
+            ...mapState(["campaignsystems", "user_id"]),
             headers: [
                 { text: "NodeID", value: "node", width: "10%" },
                 { text: "Pilot", value: "user_name", width: "20%" },
@@ -548,6 +555,14 @@ export default {
     },
 
     methods: {
+
+
+            setTimerShow(){
+
+                console.log(this.campaignsystems)
+
+            },
+
         async addHacktime(item) {
             var min = parseInt(this.hackTime.substr(0, 2));
             var sec = parseInt(this.hackTime.substr(3, 2));
