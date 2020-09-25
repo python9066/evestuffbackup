@@ -307,13 +307,12 @@
                             :value="timerShown[item.id]"
                             v-else-if="checkHackUser(item)"
                         >
-                            <template v-slot:activator="{ on, attrs }">
+                            <template v-slot:activator="{ attrs }">
                                 <v-chip
+                                    @click="timerShown[item.id] == true"
                                     v-bind="attrs"
-                                    v-on="on"
                                     pill
                                     :outlined="pillOutlined(item)"
-                                    @click="timerShown[item.id] == true"
                                     small
                                     color="warning"
                                 >
