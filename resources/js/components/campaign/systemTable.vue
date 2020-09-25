@@ -339,7 +339,7 @@
                                             left
                                             color="success"
                                             @click="
-                                                (timerShown = false),
+                                                ($set(timerShown, item, false)),
                                                     addHacktime(item)
                                             "
                                             ><v-icon
@@ -353,7 +353,7 @@
                                             icon
                                             color="warning"
                                             @click="
-                                                (timerShown = false),
+                                                ($set(timerShown, item, false)),
                                                     (hackTime = null)
                                             "
                                             ><v-icon
