@@ -309,8 +309,6 @@
                         >
 
                                 <v-chip
-                                    v-bind="attrs"
-                                    v-on="on"
                                     pill
                                     :outlined="pillOutlined(item)"
                                     @click="timerShown[item.id] == true"
