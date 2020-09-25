@@ -304,7 +304,7 @@
                         </VueCountUptimer>
                         <v-menu
                             :close-on-content-click="false"
-                            :value="setTimerShow(item)"
+                            :value="timerShown[item.id]"
                             v-else-if="checkHackUser(item)"
                         >
                             <template v-slot:activator="{ on, attrs }">
@@ -313,7 +313,7 @@
                                     v-on="on"
                                     pill
                                     :outlined="pillOutlined(item)"
-                                    @click="setTimerShow(item)"
+                                    @click="timerShown[item.id] == true"
                                     small
                                     color="warning"
                                 >
@@ -339,7 +339,7 @@
                                             left
                                             color="success"
                                             @click="
-                                                (timerShown = false),
+                                                (timerShown[item.id] = false),
                                                     addHacktime(item)
                                             "
                                             ><v-icon
@@ -353,7 +353,7 @@
                                             icon
                                             color="warning"
                                             @click="
-                                                (timerShown = false),
+                                                (timerShown[item.id] = false),
                                                     (hackTime = null)
                                             "
                                             ><v-icon
@@ -542,7 +542,7 @@ export default {
             OnTheWayColor: "teal",
             nodeText: "",
             addShown: false,
-            timerShown: [],
+            timerShown: {},
             expanded: [],
             singleExpand: true,
             charAddNode: null,
@@ -554,17 +554,6 @@ export default {
     },
 
     methods: {
-        async setTimerShow(item) {
-            let check = this.$store.state.campaignsystems;
-            check = check.filter(
-                s =>
-                    s.system_id == this.system_id &&
-                    s.campaign_id == this.$route.params.id
-            );
-
-            let check2 = check.find(c => c.id == item.id)
-                console.log(check2.id);
-        },
 
         async addHacktime(item) {
             var min = parseInt(this.hackTime.substr(0, 2));
