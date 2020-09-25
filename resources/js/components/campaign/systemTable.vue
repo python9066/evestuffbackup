@@ -320,7 +320,7 @@
                         <span v-else-if="item.user_name != null"
                             >{{ item.user_name }}
                             <v-btn
-                                v-if="checkShowAdd(item)"
+                                v-if="checkShowAddRemove(item)"
                                 icon
                                 @click="
                                     (item.user_name = null),
@@ -643,6 +643,20 @@ export default {
         checkShowAdd(item) {
             if (
                 item.user_name == null &&
+                this.charCount != 0 &&
+                item.status_id != 4 &&
+                item.status_id != 5 &&
+                item.status_id != 7
+            ) {
+                return true;
+            } else {
+                return false;
+            }
+        },
+
+        checkShowAddRemove(item) {
+            if (
+                item.user_name != null &&
                 this.charCount != 0 &&
                 item.status_id != 4 &&
                 item.status_id != 5 &&
