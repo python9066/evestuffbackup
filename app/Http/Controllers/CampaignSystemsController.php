@@ -72,14 +72,14 @@ class CampaignSystemsController extends Controller
 
 
 
-        if($node->count() == 0){
+        if($node->count() == 1){
             $node->update(['campaign_user_id' =>  null]);
             $test = CampaignSystem::where('campaign_id',$request->campaign_id)
             ->where('system_id',$request->system_id)->get();
 
+            dd($node, $test);
         }
 
-        dd($node, $test);
 
         $flag = collect([
             'flag' => 2,
