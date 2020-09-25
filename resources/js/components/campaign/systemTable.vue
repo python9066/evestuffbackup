@@ -557,7 +557,7 @@ export default {
     methods: {
 
         timeshowencheck(item){
-
+            console.log(this.timerShown[item.id])
             return this.timerShown[item.id]
         },
 
