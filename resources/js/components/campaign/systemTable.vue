@@ -2,21 +2,7 @@
     <v-col cols="6" align-self="stretch">
         <v-card tile height="100%">
             <v-card-text>
-                <v-data-table
-                    :headers="headers"
-                    :items="filteredItems"
-                    :single-expand="singleExpand"
-                    item-key="node"
-                    :sort-desc="[true, false]"
-                    show-expand
-                    :expanded.sync="expanded"
-                    :item-class="itemRowBackground"
-                    hide-default-footer
-                    disable-pagination
-                    class="elevation-12"
-                >
-                    >
-                    <template v-slot:top>
+                <template>
                         <v-toolbar
                             flat
                             max-width
@@ -115,7 +101,7 @@
                                                 v-on="on"
                                                 small
                                             >
-                                                Ready to go
+                                                Ready to go yay
                                             </v-chip>
                                         </template>
                                         <v-list>
@@ -198,6 +184,21 @@
                             </v-toolbar-title>
                         </v-toolbar>
                     </template>
+                <v-data-table
+                    :headers="headers"
+                    :items="filteredItems"
+                    :single-expand="singleExpand"
+                    item-key="node"
+                    :sort-desc="[true, false]"
+                    show-expand
+                    :expanded.sync="expanded"
+                    :item-class="itemRowBackground"
+                    hide-default-footer
+                    disable-pagination
+                    class="elevation-12"
+                >
+                    >
+
 
                     <template v-slot:item.status_name="{ item }">
                         <v-menu offset-y>
