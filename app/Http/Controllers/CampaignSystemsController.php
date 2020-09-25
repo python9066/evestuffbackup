@@ -70,14 +70,12 @@ class CampaignSystemsController extends Controller
                         ->where('system_id',$request->system_id)
                         ->where('campaign_user_id',$request->campaign_user_id)->first();
 
-        dd($node);
+
 
         if($node != null){
             $node->update(['campaign_user_id' =>  null]);
             $test = CampaignSystem::where('campaign_id',$request->campaign_id)
             ->where('system_id',$request->system_id)->get();
-
-            dd($node, $test);
         }
 
 
