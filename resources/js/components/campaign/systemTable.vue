@@ -144,9 +144,6 @@
                                         </v-list-item>
                                     </v-list>
                                 </v-menu>
-                                <span v-else>
-                                    One the way -
-                                </span>
                                 <v-menu
                                     transition="fade-transition"
                                 >
@@ -388,19 +385,19 @@ export default {
     data() {
         return {
             headers: [
-                { text: "NodeID", value: "node", width: "10%" },
-                { text: "Pilot", value: "user_name", width: "25%" },
-                { text: "Main", value: "main_name", width: "10%" },
-                { text: "Ship", value: "user_ship", width: "15%" },
-                { text: "Link", value: "user_link", width: "5%" },
+                { text: "NodeID", value: "node", width: "5%", align:"start" },
+                { text: "Pilot", value: "user_name", width: "25%", align:"start" },
+                { text: "Main", value: "main_name", width: "10%", align:"start" },
+                { text: "Ship", value: "user_ship", width: "15%", align:"start" },
+                { text: "Link", value: "user_link", width: "5%", align:"start" },
 
                 {
                     text: "Status",
                     value: "status_name",
                     width: "20%",
-                    align: "center"
+                    align: "end"
                 },
-                { text: "Age/Hack", value: "count", width: "20%" },
+                { text: "Age/Hack", value: "count", width: "20%", align:"end" },
                 {
                     text: "",
                     value: "actions",
