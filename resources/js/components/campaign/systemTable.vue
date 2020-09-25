@@ -566,7 +566,7 @@ export default {
 
             Object.entries(check).forEach(s => {
 
-                console.log(s.id);
+                console.log(s);
             })
         },
 
