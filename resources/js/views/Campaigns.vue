@@ -344,20 +344,12 @@ export default {
         },
 
 
-        // rowClick(item){
-        //     if(this.$can('access_campaigns')){
-        //     var left = (moment.utc(item.start).unix() -  moment.utc().unix())
-        //     if(left < 1779 && item.status_id < 3){
-        //         this.$router.push({ path: `/campaign/${item.id}` }) // -> /user/123
-        //     }}
-        // },
-
         rowClick(item){
-
+            if(this.$can('access_campaigns')){
             var left = (moment.utc(item.start).unix() -  moment.utc().unix())
             if(left < 1779 && item.status_id < 3){
                 this.$router.push({ path: `/campaign/${item.id}` }) // -> /user/123
-            }
+            }}
         },
 
         // rowClick(item){
