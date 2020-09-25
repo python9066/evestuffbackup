@@ -494,7 +494,9 @@ export default {
                     "Content-Type": "application/json"
                 }
             });
+            this.$store.dispatch("getCampaignSystemsRecords");
             this.charOnTheWay = null;
+
         },
         clickReadyToGo() {
             var item = {
@@ -547,7 +549,7 @@ export default {
             });
 
 
-
+            this.$store.dispatch("getCampaignSystemsRecords");
             this.charReadyToGo = null;
         },
 
