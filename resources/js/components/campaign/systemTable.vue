@@ -303,8 +303,6 @@
                         </VueCountUptimer>
                         <v-menu
                             :close-on-content-click="false"
-                            :value="timerShown"
-                            :name="'time'+index"
                             :key="item.id"
                             v-else-if="checkHackUser(item)"
                         >
@@ -334,8 +332,11 @@
                                         ></v-text-field>
                                     </v-card-title>
                                     <v-card-text>
+                                    <template v-slot:activator="{ on, attrs }">
                                         <v-btn
                                             icon
+                                            v-bind="attrs"
+                                            v-on="on"
                                             fixed
                                             left
                                             color="success"
@@ -347,7 +348,7 @@
                                                 >fas fa-check</v-icon
                                             ></v-btn
                                         >
-
+                                    </template>
                                         <v-btn
                                             fixed
                                             right
