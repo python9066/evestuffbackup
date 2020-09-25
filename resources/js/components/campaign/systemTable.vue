@@ -377,65 +377,68 @@
                                     }}</span
                                 >
                                 <v-menu
-                            :close-on-content-click="false"
-                            :value="timerShown"
-                        >
-                            <template v-slot:activator="{ on, attrs }">
-                                <v-btn
-                                    v-if="checkHackUserEdit(item)"
-                                    v-bind="attrs"
-                                    v-on="on"
-                                    @click="timerShown = true, hackTime = null"
-                                    icon
-                                    color="warning"
+                                    :close-on-content-click="false"
+                                    :value="timerShown"
                                 >
-                                    <v-icon x-small>fas fa-edit</v-icon>
-                                </v-btn>
-                            </template>
-
-                            <template>
-                                <v-card tile min-height="150px">
-                                    <v-card-title class=" pb-0">
-                                        <v-text-field
-                                            v-model="hackTime"
-                                            label="Hack Time mm:ss"
-                                            autofocus
-                                            v-mask="'##:##'"
-                                            placeholder="mm:ss"
-                                        ></v-text-field>
-                                    </v-card-title>
-                                    <v-card-text>
+                                    <template v-slot:activator="{ on, attrs }">
                                         <v-btn
-                                            icon
-                                            fixed
-                                            left
-                                            color="success"
+                                            v-if="checkHackUserEdit(item)"
+                                            v-bind="attrs"
+                                            v-on="on"
                                             @click="
-                                                (timerShown = false),
-                                                    addHacktime(item)
-                                            "
-                                            ><v-icon
-                                                >fas fa-check</v-icon
-                                            ></v-btn
-                                        >
-
-                                        <v-btn
-                                            fixed
-                                            right
-                                            icon
-                                            color="warning"
-                                            @click="
-                                                (timerShown = false),
+                                                (timerShown = true),
                                                     (hackTime = null)
                                             "
-                                            ><v-icon
-                                                >fas fa-times</v-icon
-                                            ></v-btn
+                                            icon
+                                            color="warning"
                                         >
-                                    </v-card-text>
-                                </v-card>
-                            </template>
-                        </v-menu>
+                                            <v-icon x-small>fas fa-edit</v-icon>
+                                        </v-btn>
+                                    </template>
+
+                                    <template>
+                                        <v-card tile min-height="150px">
+                                            <v-card-title class=" pb-0">
+                                                <v-text-field
+                                                    v-model="hackTime"
+                                                    label="Hack Time mm:ss"
+                                                    autofocus
+                                                    v-mask="'##:##'"
+                                                    placeholder="mm:ss"
+                                                ></v-text-field>
+                                            </v-card-title>
+                                            <v-card-text>
+                                                <v-btn
+                                                    icon
+                                                    fixed
+                                                    left
+                                                    color="success"
+                                                    @click="
+                                                        (timerShown = false),
+                                                            addHacktime(item)
+                                                    "
+                                                    ><v-icon
+                                                        >fas fa-check</v-icon
+                                                    ></v-btn
+                                                >
+
+                                                <v-btn
+                                                    fixed
+                                                    right
+                                                    icon
+                                                    color="warning"
+                                                    @click="
+                                                        (timerShown = false),
+                                                            (hackTime = null)
+                                                    "
+                                                    ><v-icon
+                                                        >fas fa-times</v-icon
+                                                    ></v-btn
+                                                >
+                                            </v-card-text>
+                                        </v-card>
+                                    </template>
+                                </v-menu>
                             </template>
                             <template slot="end-text" slot-scope="scope">
                                 <span :style="hackTextColor(item)">{{
@@ -443,7 +446,6 @@
                                 }}</span>
                             </template>
                         </CountDowntimer>
-
                     </template>
 
                     <template v-slot:expanded-item="{ headers, item }">
@@ -494,13 +496,11 @@ export default {
     },
 
     async mounted() {
-
         await this.setTimerShow();
     },
 
     data() {
         return {
-
             headers: [
                 { text: "NodeID", value: "node", width: "10%" },
                 { text: "Pilot", value: "user_name", width: "20%" },
@@ -555,14 +555,15 @@ export default {
     },
 
     methods: {
-
-       async setTimerShow(){
-           await this.$store.dispatch("getCampaignSystemsRecords");
-            let check =  this.$store.state.campaignsystems
-                    check = check.filter(
-                    s =>  s.system_id == this.system_id &&
-                        s.campaign_id == this.$route.params.id)
-            console.log(check)
+        async setTimerShow() {
+            await this.$store.dispatch("getCampaignSystemsRecords");
+            let check = this.$store.state.campaignsystems;
+            check = check.filter(
+                s =>
+                    s.system_id == this.system_id &&
+                    s.campaign_id == this.$route.params.id
+            );
+            console.log(check.id);
         },
 
         async addHacktime(item) {
@@ -803,12 +804,11 @@ export default {
                 return false;
             }
         },
-        pillOutlined(item){
-
-            if (item.status_id == 7){
-                return false
-            }else{
-                return true
+        pillOutlined(item) {
+            if (item.status_id == 7) {
+                return false;
+            } else {
+                return true;
             }
         },
 
@@ -883,29 +883,28 @@ export default {
             this.$store.dispatch("getCampaignSystemsRecords");
         },
 
-        hackTextColor(item){
-            if(item.status_id == 7){
-                return "color: while"
-            }else{
-                return "color: green"
+        hackTextColor(item) {
+            if (item.status_id == 7) {
+                return "color: while";
+            } else {
+                return "color: green";
             }
         },
 
-        endText(item){
-            if(item.status_id == 7){
-                return "Do they Finish?"
-            }else{
-                return "Do you Finish?"
+        endText(item) {
+            if (item.status_id == 7) {
+                return "Do they Finish?";
+            } else {
+                return "Do you Finish?";
             }
         },
 
-        hackCountDownTextColor(item){
-            if(item.status_id == 7){
-                return "white--text pl-3"
-            }else{
-                return "blue--text pl-3"
+        hackCountDownTextColor(item) {
+            if (item.status_id == 7) {
+                return "white--text pl-3";
+            } else {
+                return "blue--text pl-3";
             }
-
         },
         removeCharNode(item) {
             var userId = item.user_id;
@@ -1023,12 +1022,12 @@ export default {
         filteredItems() {
             // var timers = this.$store.state.timers;
 
-                return this.campaignsystems.filter(
-                    s =>  s.system_id == this.system_id &&
-                        s.campaign_id == this.$route.params.id)
-
-            },
-
+            return this.campaignsystems.filter(
+                s =>
+                    s.system_id == this.system_id &&
+                    s.campaign_id == this.$route.params.id
+            );
+        },
 
         chars() {
             return this.getCampaignUsersByUserIdEntosis(
@@ -1108,10 +1107,10 @@ export default {
 </script>
 
 <style>
-
 .style-2 {
-  background-color: rgb(30,30,30,1)
+    background-color: rgb(30, 30, 30, 1);
 }
 .style-1 {
-  background-color: rgb(184, 22, 35)
-}</style>
+    background-color: rgb(184, 22, 35);
+}
+</style>
