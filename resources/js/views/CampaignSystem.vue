@@ -332,7 +332,7 @@
                         <div v-if="$can('view_campaign_members')">
                             <v-btn
                                     class="mr-4"
-                                    @click="showUsers != showUsers"
+                                    @click="showUsers = !showUsers"
                                     color="red lighten-2"
                                     >People Watching</v-btn
                                 >
