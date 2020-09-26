@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Events\CampaignUsersChanged;
-use App\Models\CampaginSystemUsers;
+use App\Models\CampaignSystemUsers;
 use Illuminate\Http\Request;
 
-class CampaginSystemUserController extends Controller
+class CampaignSystemUserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,7 @@ class CampaginSystemUserController extends Controller
      */
     public function index($campid)
     {
-        return [ 'users' => CampaginSystemUsers::where('campagin_id',$campid)->get()];
+        return [ 'users' => CampaignSystemUsers::where('campagin_id',$campid)->get()];
     }
 
     /**
@@ -26,7 +26,7 @@ class CampaginSystemUserController extends Controller
      */
     public function store(Request $request, $campid)
     {
-        CampaginSystemUsers::create($request->all());
+        CampaignSystemUsers::create($request->all());
         $flag = collect([
             'flag' => 5,
             'id' => $campid
@@ -65,7 +65,7 @@ class CampaginSystemUserController extends Controller
      */
     public function destroy($id, $campid)
     {
-        CampaginSystemUsers::where('user_id',$id)->delete();
+        CampaignSystemUsers::where('user_id',$id)->delete();
         $flag = collect([
             'flag' => 5,
             'id' => $campid
