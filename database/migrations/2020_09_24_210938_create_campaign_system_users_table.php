@@ -13,7 +13,7 @@ class CreateCampaignSystemUsersTable extends Migration
      */
     public function up()
     {
-        Schema::create('campagin_system_users', function (Blueprint $table) {
+        Schema::create('campaign_system_users', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id');
             $table->foreignId('campaign_id');
