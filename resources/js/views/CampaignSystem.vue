@@ -592,7 +592,7 @@ export default {
         async addMember(){
 
             var request = {
-                user_id: this.$store.state.user_id,
+                user_id: this.user_id,
                 campaign_id: this.$route.params.id,
             };
 
@@ -613,7 +613,7 @@ export default {
 
             await axios({
                 method: "POST", //you can set what request you want to be
-                url: "/api/campaignsystemuers/"+ this.$store.state.user_id +"/" + this.$route.params.id,
+                url: "/api/campaignsystemuers/"+ this.user_id +"/" + this.$route.params.id,
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
                     Accept: "application/json",
