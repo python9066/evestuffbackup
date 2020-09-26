@@ -592,7 +592,7 @@ export default {
         async addMember(){
 
             var request = {
-                site_id: this.$store.state.user_id,
+                user_id: this.$store.state.user_id,
                 campaign_id: this.$route.params.id,
             };
 
