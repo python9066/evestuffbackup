@@ -726,7 +726,7 @@ export default {
     },
 
     async created() {
-        Echo.private("campaignsystem." + this.$route.params.id).listen(
+        window.Echo.private("campaignsystem." + this.$route.params.id).listen(
             "CampaignSystemUpdate",
             e => {
                 console.log(e);
