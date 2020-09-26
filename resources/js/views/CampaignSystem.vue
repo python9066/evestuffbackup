@@ -751,6 +751,7 @@ export default {
                 }
             }
         );
+
         this.test = 2;
         this.test2 = 1;
         this.navdrawer = true;
