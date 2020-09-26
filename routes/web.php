@@ -32,7 +32,7 @@ Route::get('/oauth/callback', 'AuthController@handleProviderCallback');
 Route::get('/logout', 'AuthController@logout');
 
 
-Route::get('/party', 'RoleController@Wizhard');
+
 Route::get('/updateNotifications', 'NotificationController@getNotifications');
 Route::get('/test2', 'UserRolesRecordsController@index');
 
