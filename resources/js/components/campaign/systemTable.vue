@@ -722,7 +722,8 @@ export default {
                 this.charCount != 0 &&
                 item.status_id != 4 &&
                 item.status_id != 5 &&
-                item.status_id != 7
+                item.status_id != 7 &&
+                item.status_id != 8
             ) {
                 return true;
             } else {
@@ -736,7 +737,8 @@ export default {
                 this.charCount != 0 &&
                 item.status_id != 4 &&
                 item.status_id != 5 &&
-                item.status_id != 7
+                item.status_id != 7 &&
+                item.status_id != 8
             ) {
                 return true;
             } else {
@@ -751,7 +753,7 @@ export default {
             if (item.status_id == 2) {
                 return "lime darken-4";
             }
-            if (item.status_id == 3) {
+            if (item.status_id == 3 || item.status_id == 8 ) {
                 return "green darken-3";
             }
             if (item.status_id == 4) {

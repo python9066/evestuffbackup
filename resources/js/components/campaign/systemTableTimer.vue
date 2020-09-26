@@ -225,17 +225,19 @@ export default {
                 item.status_id == 3
             ) {
                 return true;
-            } else if (item.end == null && item.status_id == 7) {
+            } else if (item.end == null && (item.status_id == 7 || item.status_id == 8)) {
                 return true;
             } else {
                 return false;
             }
         },
     endText(item){
-            if(item.status_id == 7){
+            if(item.status_id == 7 || item.status_id == 8){
                 return "Do they Finish?"
-            }else{
+            }else if (item.status_id == 3){
                 return "Do you Finish?"
+            }else{
+                return "Finished!!! "
             }
         },
 
@@ -245,7 +247,7 @@ export default {
             item.status_id == 3
         ) {
             return true;
-        } else if (item.status_id == 7) {
+        } else if (item.status_id == 7 || item.status_id == 8) {
             return true;
         } else {
             return false;
