@@ -333,7 +333,7 @@
                             <v-btn
                                     class="mr-4"
                                     @click="showUsers = !showUsers"
-                                    color="red lighten-2"
+                                    color="warning"
                                     >People Watching</v-btn
                                 >
 
