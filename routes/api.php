@@ -64,6 +64,10 @@ Route::middleware('auth:api')->group(function(){
     Route::put('/rolesadd','RoleController@addRole');
     Route::put('/rolesremove','RoleController@removeRole');
 
+    Route::post('/campaginsystemuers/{campid}', 'CampaginSystemUserController@store');
+    Route::get('/campaginsystemuers/{campid}', 'CampaginSystemUserController@index');
+    Route::delete('/campaginsystemuers/{id}/{campid}', 'CampaginSystemUserController@destroy');
+
 
 
 

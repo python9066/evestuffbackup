@@ -494,6 +494,46 @@ export default {
         };
     },
 
+    async created() {
+        Echo.private("campaignsystem." + this.$route.params.id).listen(
+            "CampaignSystemUpdate",
+            e => {
+                console.log(e);
+                if (e.flag.flag == 1) {
+                    console.log(1);
+                    this.loadUsersRecords();
+                }
+                if (e.flag.flag == 2) {
+                    console.log(2);
+                    this.loadCampaignSystemRecords();
+                }
+                if (e.flag.flag == 3) {
+                    console.log(3);
+                    this.loadCampaignSystemRecords();
+                    this.loadUsersRecords();
+                }
+                if (e.flag.flag == 4) {
+                    console.log(4);
+                    this.loadcampaigns();
+                    this.loadCampaignSystemRecords();
+                    this.loadUsersRecords();
+                }
+                if (e.flag.flag == 5) {
+                    console.log(5);
+                    this.userViewTable();
+
+                }
+            }
+        );
+
+        this.userViewTable();
+
+        this.test = 2;
+        this.test2 = 1;
+        this.navdrawer = true;
+        this.addMember();
+    },
+
     beforeMonunt() {},
 
     beforeCreate() {},
@@ -547,6 +587,40 @@ export default {
 
             this.systems = res.data.systems;
             this.systemLoaded = true;
+        },
+
+        async addMember(){
+
+            var request = {
+                site_id: this.$store.state.user_id,
+                campaign_id: this.$route.params.id,
+            };
+
+            await axios({
+                method: "POST", //you can set what request you want to be
+                url: "/api/campaginsystemuers/" + this.$route.params.id,
+                data: request,
+                headers: {
+                    Authorization: "Bearer " + this.$store.state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                }
+            });
+
+        },
+
+        async removeMember(){
+
+            await axios({
+                method: "POST", //you can set what request you want to be
+                url: "/api/campaginsystemuers/"+ this.$store.state.user_id +"/" + this.$route.params.id,
+                headers: {
+                    Authorization: "Bearer " + this.$store.state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                }
+            });
+
         },
 
         roleForm(a) {
@@ -722,40 +796,18 @@ export default {
                 status_name: "Active"
             };
             this.$store.dispatch("updateCampaignSystem", data);
-        }
-    },
+        },
 
-    async created() {
-        window.Echo.private("campaignsystem." + this.$route.params.id).listen(
-            "CampaignSystemUpdate",
-            e => {
-                console.log(e);
-                if (e.flag.flag == 1) {
-                    console.log(1);
-                    this.loadUsersRecords();
-                }
-                if (e.flag.flag == 2) {
-                    console.log(2);
-                    this.loadCampaignSystemRecords();
-                }
-                if (e.flag.flag == 3) {
-                    console.log(3);
-                    this.loadCampaignSystemRecords();
-                    this.loadUsersRecords();
-                }
-                if (e.flag.flag == 4) {
-                    console.log(4);
-                    this.loadcampaigns();
-                    this.loadCampaignSystemRecords();
-                    this.loadUsersRecords();
-                }
+        userViewTable() {
+            if(this.$can('view_campaign_members')){
+                Echo.private("campaignsystemmembers." + this.$route.params.id)
             }
-        );
 
-        this.test = 2;
-        this.test2 = 1;
-        this.navdrawer = true;
+            this.$store.dispatch('getCampaignMembers',this.$route.params.id)
+        },
     },
+
+
 
     computed: {
         ...mapGetters([
@@ -768,6 +820,8 @@ export default {
             "getHackingNodeCountByCampaign",
             "getRedHackingNodeCountByCampaign"
         ]),
+
+
 
         campaign() {
             return this.getCampaignById(this.$route.params.id);
@@ -857,6 +911,8 @@ export default {
     },
     beforeDestroy() {
         Echo.leave("campaignsystem." + this.$route.params.id);
+        Echo.leave("campaignsystemmembers." + this.$route.params.id)
+        this.removeMember()
     }
 };
 </script>

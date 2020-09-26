@@ -21,10 +21,15 @@ export default new Vuex.Store({
         campaignsystems: [],
         users: [],
         rolesList:[],
+        campaignmembers:[],
     },
     mutations: {
         SET_TIMERS(state, timers) {
             state.timers = timers;
+        },
+
+        SET_CAMPAIGN_MEMBERS(state, users) {
+            state.users = users;
         },
 
         SET_USERS(state, users) {
@@ -111,6 +116,21 @@ export default new Vuex.Store({
             });
             // console.log(res.data.timers)
             commit("SET_TIMERS", res.data.timers);
+        },
+
+
+        async getCampaignMembers({ commit, state }, campaign_id) {
+            let res = await axios({
+                method: "get",
+                url: "/campaginsystemuers/" + campaign_id,
+                headers: {
+                    Authorization: "Bearer " + state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                }
+            });
+            // console.log(res.data.timers)
+            commit("SET_CAMPAIGN_MEMBERS", res.data.users);
         },
 
 
