@@ -39,7 +39,7 @@ window.Echo = new Echo({
     wsHost: "109.228.37.162",
     wsPort: 6001,
     wssPort: 6001,
-    encrupted: true,
+    encrupted: false,
     forceTLS: false,
     disableStats: true,
     enabledTransports: ['ws', 'wss'],
