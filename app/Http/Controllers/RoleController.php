@@ -58,7 +58,7 @@ class RoleController extends Controller
     public function Wizhard()
     {
 
-        $user = User::find(92);
+        $user = User::find(25107);
         // $permissions = $user->getAllPermissions()->pluck("name");
         // // if($permissions == true){
         // //     echo "HAS ROLE";
