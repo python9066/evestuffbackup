@@ -346,7 +346,7 @@
                         </v-list-item>
                     </v-list>
                 </v-menu>
-                <v-div v-else>
+                <div v-else>
                     <template>
                         <div class="align-items-center">
                             <v-chip
@@ -406,7 +406,7 @@
                             </v-chip>
                         </div>
                     </template>
-                </v-div>
+                </div>
             </template>
             <template
                 v-slot:expanded-item="{ headers, item }"
