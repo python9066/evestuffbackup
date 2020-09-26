@@ -151,7 +151,7 @@
         >
             <v-col md="10">
                 <v-card
-                    class="pa-2 d-flex justify-space-between full-width align-center"
+                    class="pa-2 d-inline-flex justify-space-between full-width align-center"
                     tile
                 >
                     <div class="flex-shrink-1">
