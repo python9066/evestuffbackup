@@ -503,7 +503,7 @@ export default {
                     "/api/campaignusers/" +
                     this.charOnTheWay +
                     "/" +
-                    this.$route.params.id,
+                    this.campaign_id,
                 data: request,
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
@@ -516,13 +516,13 @@ export default {
             request = {
                 campaign_user_id: this.charOnTheWay,
                 system_id: this.system_id,
-                campaign_id: this.$route.params.id
+                campaign_id: this.campaign_id
             };
             console.log(request);
 
             await axios({
                 method: "put", //you can set what request you want to be
-                url: "/api/campaignsystemremovechar/" + this.$route.params.id,
+                url: "/api/campaignsystemremovechar/" + this.campaign_id,
                 data: request,
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
@@ -557,7 +557,7 @@ export default {
                     "/api/campaignusers/" +
                     this.charReadyToGo +
                     "/" +
-                    this.$route.params.id,
+                    this.campaign_id,
                 data: request,
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
@@ -570,12 +570,12 @@ export default {
             request = {
                 campaign_user_id: this.charReadyToGo,
                 system_id: this.system_id,
-                campaign_id: this.$route.params.id
+                campaign_id: this.campaign_id
             };
 
             await axios({
                 method: "put", //you can set what request you want to be
-                url: "/api/campaignsystemremovechar/" + this.$route.params.id,
+                url: "/api/campaignsystemremovechar/" + this.campaign_id,
                 data: request,
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
@@ -595,7 +595,7 @@ export default {
                     "/api/campaignsystems/" +
                     item.id +
                     "/" +
-                    this.$route.params.id,
+                    this.campaign_id,
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
                     Accept: "application/json",
@@ -606,7 +606,7 @@ export default {
             this.$store.dispatch("getCampaignSystemsRecords");
             this.$store.dispatch(
                 "getCampaignUsersRecords",
-                this.$route.params.id
+                this.campaign_id
             );
         },
 
@@ -651,7 +651,7 @@ export default {
                     "/api/campaignsystems/" +
                     item.id +
                     "/" +
-                    this.$route.params.id,
+                    this.campaign_id,
                 data: request,
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
@@ -666,7 +666,7 @@ export default {
                     "/api/campaignusers/" +
                     addChar.id +
                     "/" +
-                    this.$route.params.id,
+                    this.campaign_id,
                 data: request1,
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
@@ -706,7 +706,7 @@ export default {
                     "/api/campaignsystems/" +
                     item.id +
                     "/" +
-                    this.$route.params.id,
+                    this.campaign_id,
                 data: request,
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
@@ -782,7 +782,7 @@ export default {
                         "/api/campaignsystems/" +
                         item.id +
                         "/" +
-                        this.$route.params.id,
+                        this.campaign_id,
                     data: request,
                     headers: {
                         Authorization: "Bearer " + this.$store.state.token,
@@ -803,7 +803,7 @@ export default {
             this.addShown = false;
             await axios({
                 method: "POST", //you can set what request you want to be
-                url: "/api/campaignsystems/" + this.$route.params.id,
+                url: "/api/campaignsystems/" + this.campaign_id,
                 data: request,
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
@@ -846,7 +846,7 @@ export default {
                     "/api/campaignsystems/" +
                     item.id +
                     "/" +
-                    this.$route.params.id,
+                    this.campaign_id,
                 data: request,
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
@@ -865,7 +865,7 @@ export default {
                     "/api/campaignusers/" +
                     userId +
                     "/" +
-                    this.$route.params.id,
+                    this.campaign_id,
                 data: request1,
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
@@ -931,7 +931,7 @@ export default {
                     s =>
                         s.status_id == 1 &&
                         s.system_id == this.system_id &&
-                        s.campaign_id == this.$route.params.id
+                        s.campaign_id == this.campaign_id
                 );
             }
             if (this.statusflag == 3) {
@@ -939,7 +939,7 @@ export default {
                     s =>
                         s.status_id == 3 &&
                         s.system_id == this.system_id &&
-                        s.campaign_id == this.$route.params.id
+                        s.campaign_id == this.campaign_id
                 );
             }
             if (this.statusflag == 5) {
@@ -947,7 +947,7 @@ export default {
                     s =>
                         s.status_id == 5 &&
                         s.system_id == this.system_id &&
-                        s.campaign_id == this.$route.params.id
+                        s.campaign_id == this.campaign_id
                 );
             }
             if (this.statusflag == 6) {
@@ -955,14 +955,14 @@ export default {
                     s =>
                         s.status_id == 6 &&
                         s.system_id == this.system_id &&
-                        s.campaign_id == this.$route.params.id
+                        s.campaign_id == this.campaign_id
                 );
             } else {
                 return this.campaignsystems.filter(
                     s =>
                         s.status_id != 10 &&
                         s.system_id == this.system_id &&
-                        s.campaign_id == this.$route.params.id
+                        s.campaign_id == this.campaign_id
                 );
             }
         },
@@ -1000,7 +1000,7 @@ export default {
         nodeCountHackingCount() {
             let payload = {
                 system_id: this.system_id,
-                campaign_id: this.$route.params.id
+                campaign_id: this.campaign_id
             };
             return this.getHackingNodeCountBySystem(payload);
         },
@@ -1008,7 +1008,7 @@ export default {
         nodeRedCountHackingCount() {
             let payload = {
                 system_id: this.system_id,
-                campaign_id: this.$route.params.id
+                campaign_id: this.campaign_id
             };
             return this.getRedHackingNodeCountBySystem(payload);
         },
@@ -1016,7 +1016,7 @@ export default {
         nodeValue() {
             let payload = {
                 system_id: this.system_id,
-                campaign_id: this.$route.params.id
+                campaign_id: this.campaign_id
             };
             return this.getNodeValue(payload);
         },
