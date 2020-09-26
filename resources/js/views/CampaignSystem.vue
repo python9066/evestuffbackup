@@ -624,7 +624,7 @@ export default {
 
             await axios({
                 method: "POST", //you can set what request you want to be
-                url: "/api/campaignsystemuers/"+ this.$store.state.user_id +"/" + this.$route.params.id,
+                url: "/api/campaignsystemuers/"+ this.$store.state.user_id +"/" + this.campaignId,
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
                     Accept: "application/json",
@@ -921,8 +921,8 @@ export default {
         }
     },
     beforeDestroy() {
-        Echo.leave("campaignsystem." + this.$route.params.id);
-        Echo.leave("campaignsystemmembers." + this.$route.params.id)
+        Echo.leave("campaignsystem." + this.campaignId);
+        Echo.leave("campaignsystemmembers." + this.campaignId)
         this.removeMember()
     }
 };
