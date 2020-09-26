@@ -524,7 +524,9 @@ export default {
                     this.userViewTable();
 
                 }
-            }
+            },
+
+            window.addEventListener('beforeunload', this.leaving)
         );
 
         this.userViewTable();
@@ -620,7 +622,7 @@ export default {
 
         },
 
-        async removeMember(){
+        async leaving(){
 
             await axios({
                 method: "delete", //you can set what request you want to be
@@ -923,7 +925,7 @@ export default {
     beforeDestroy() {
         Echo.leave("campaignsystem." + this.campaignId);
         Echo.leave("campaignsystemmembers." + this.campaignId)
-        this.removeMember()
+        window.removeEventListener('beforeunload', this.leaving)
     }
 };
 </script>
