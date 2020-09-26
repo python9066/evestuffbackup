@@ -329,6 +329,15 @@
                                 </div>
                             </v-row>
                         </v-menu>
+                        <div v-if="$can('view_campaign_members')">
+                            <v-btn
+                                    class="mr-4"
+                                    @click="showUsers != showUsers"
+                                    color="red lighten-2"
+                                    >People Watching</v-btn
+                                >
+
+                        </div>
                     </div>
                     <v-spacer></v-spacer>
                     <div class=" ml-auto d-inline-flex align-center"
@@ -491,7 +500,8 @@ export default {
             removeShown: false,
             showTable: false,
             systemLoaded: false,
-            campaignId:0
+            campaignId:0,
+            showUsers: false,
         };
     },
 
