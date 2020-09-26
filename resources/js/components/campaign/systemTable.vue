@@ -107,7 +107,7 @@
                                         >
                                             <v-list-item-title>
                                                 {{ list.char_name }} -
-                                                {{ list.ship }} - t{{
+                                                {{ list.ship }} - T{{
                                                     list.link
                                                 }}</v-list-item-title
                                             >
@@ -173,7 +173,7 @@
                                         >
                                             <v-list-item-title>
                                                 {{ list.char_name }} -
-                                                {{ list.ship }} - t{{
+                                                {{ list.ship }} - T{{
                                                     list.link
                                                 }}</v-list-item-title
                                             >
