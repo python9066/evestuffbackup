@@ -1,4 +1,5 @@
 import index from "@chenfengyuan/vue-countdown";
+import { pullAll } from "lodash";
 import Vue from "vue";
 import Vuex from "vuex";
 import ApiL from "./service/apil";
@@ -371,9 +372,9 @@ export default new Vuex.Store({
         },
 
 
-        getTotalNodeCountBySystem: state => id => {
+        getTotalNodeCountBySystem: state => payload => {
             return state.campaignsystems.filter(
-                sys => sys.system_id == id
+                sys => sys.system_id == payload.system_id && sys.campaign_id == payload.campaign_id
             ).length
         },
 

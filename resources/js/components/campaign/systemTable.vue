@@ -994,7 +994,11 @@ export default {
         },
 
         nodeCount() {
-            return this.getTotalNodeCountBySystem(this.system_id);
+            let payload = {
+                system_id: this.system_id,
+                campaign_id: this.campaign_id
+            };
+            return this.getTotalNodeCountBySystem(payload);
         },
 
         nodeCountHackingCount() {
