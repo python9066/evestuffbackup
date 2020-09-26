@@ -363,6 +363,7 @@
                     </template>
                     <template v-slot:item.actions="{ item }">
                         <v-icon
+                            v-if="item.status_id != 7 || item.status_id != 8"
                             color="orange darken-3"
                             small
                             @click="deleteNode(item)"
