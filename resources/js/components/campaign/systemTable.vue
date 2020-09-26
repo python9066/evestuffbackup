@@ -453,10 +453,11 @@ export default {
                 { title: "New", value: 1 },
                 { title: "Warm Up", value: 2 },
                 { title: "Hacking", value: 3 },
+                { title: "Friendly Hacking", value: 8 },
                 { title: "Success", value: 4 },
-                { title: "Failed", value: 5 },
                 { title: "Contested", value: 6 },
-                { title: "Hostile Hacking", value: 7 }
+                { title: "Hostile Hacking", value: 7 },
+                { title: "Failed", value: 5 },
             ],
             charOnTheWay: 0,
             charReadyToGo: 0,
