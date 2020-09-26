@@ -623,7 +623,7 @@ export default {
         async removeMember(){
 
             await axios({
-                method: "POST", //you can set what request you want to be
+                method: "delete", //you can set what request you want to be
                 url: "/api/campaignsystemuers/"+ this.$store.state.user_id +"/" + this.campaignId,
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
