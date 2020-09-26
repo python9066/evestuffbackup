@@ -490,7 +490,8 @@ export default {
             addShown: false,
             removeShown: false,
             showTable: false,
-            systemLoaded: false
+            systemLoaded: false,
+            campaignId:0
         };
     },
 
@@ -527,7 +528,7 @@ export default {
         );
 
         this.userViewTable();
-
+        this.campaignId =this.$route.params.id
         this.test = 2;
         this.test2 = 1;
         this.navdrawer = true;
