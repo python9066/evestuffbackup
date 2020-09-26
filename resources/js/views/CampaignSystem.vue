@@ -925,6 +925,7 @@ export default {
     beforeDestroy() {
         Echo.leave("campaignsystem." + this.campaignId);
         Echo.leave("campaignsystemmembers." + this.campaignId)
+        this.leaving()
         window.removeEventListener('beforeunload', this.leaving)
     }
 };
