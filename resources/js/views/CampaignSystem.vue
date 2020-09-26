@@ -602,7 +602,7 @@ export default {
 
             }
             var request = {
-                user_id: this.$store.state.user_id,
+                user_id: user_id,
                 campaign_id: this.$route.params.id,
             };
 
