@@ -832,6 +832,7 @@ export default {
                 status_name: "Active"
             };
             this.$store.dispatch("updateCampaignSystem", data);
+            this.$store.dispatch("updateCampaign", data);
         },
 
 
