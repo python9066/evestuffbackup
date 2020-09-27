@@ -352,12 +352,10 @@
                                         label="Where you can put any notes"
                                         outlined
                                         shaped
-                                        @change="
-                                            (payload = $event),
-                                                updatetext(payload, item)
-                                        "
                                     ></v-textarea>
-                                    <v-btn>
+                                    <v-btn
+                                    @click="updatetext(item)"
+                                    >
                                         Submit
                                     </v-btn>
                                 </v-col>
@@ -774,13 +772,8 @@ export default {
                 return "#801916";
             }
         },
-        updatetext(payload, item) {
+        updatetext(item) {
             // console.log(item);
-            if (item.text != payload) {
-                item.text = payload;
-                var request = {
-                    notes: item.text
-                };
                 // console.log(item);
                 this.$store.dispatch("updateCampaignSystem", item);
                 axios({
@@ -797,7 +790,7 @@ export default {
                         "Content-Type": "application/json"
                     }
                 });
-            }
+
         },
 
         async addNode() {
