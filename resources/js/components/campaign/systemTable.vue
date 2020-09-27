@@ -207,6 +207,7 @@
                                                 v-mask="'AA##'"
                                                 autofocus
                                                 v-model="nodeText"
+                                                @keyup.enter="addNode()"
                                             ></v-text-field>
                                         </v-card-title>
 
