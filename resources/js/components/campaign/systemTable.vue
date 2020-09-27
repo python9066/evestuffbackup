@@ -348,7 +348,7 @@
                             <div>
                                 <v-col class="align-center">
                                     <v-textarea
-                                        v-bind:value="item.notes"
+                                        v-bind:value="notesText"
                                         label="Where you can put any notes"
                                         outlined
                                         shaped
@@ -468,7 +468,8 @@ export default {
             addShown: false,
             expanded: [],
             singleExpand: true,
-            charAddNode: null
+            charAddNode: null,
+            notesText:"",
         };
     },
 
