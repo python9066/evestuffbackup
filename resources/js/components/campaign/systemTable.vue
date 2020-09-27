@@ -208,6 +208,10 @@
                                                 autofocus
                                                 v-model="nodeText"
                                                 @keyup.enter="addNode()"
+                                                @keyup.esc="
+                                                    (addShown = false),
+                                                        (nodeText = '')
+                                                "
                                             ></v-text-field>
                                         </v-card-title>
 

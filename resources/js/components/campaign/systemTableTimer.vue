@@ -47,6 +47,8 @@
                             v-mask="'##:##'"
                             autofocus
                             placeholder="mm:ss"
+                            @keyup.enter="(timerShown = false), addHacktime(item)"
+                            @keyup.esc="(timerShown = false), (hackTime = null)"
                         ></v-text-field>
                     </v-card-title>
                     <v-card-text>
