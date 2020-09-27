@@ -20,7 +20,7 @@ class CampaignSystemUsersController extends Controller
     {
 
         $test = CampaignSystemUsers::all();
-        $test->user;
+        $test->with("user");
 
         $test2 =$test;
         dd($test,$test2);
