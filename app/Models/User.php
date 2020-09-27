@@ -44,6 +44,14 @@ class User extends Authenticatable
         'pri_grp' => 'integer',
     ];
 
+
+    public function campaignsystemusers()
+    {
+        return $this->hasMany(CampaignSystemUsers::class);
+    }
+
+
+
     public function getAllPermissionsAttribute() {
         $permissions = [];
           foreach (Permission::all() as $permission) {

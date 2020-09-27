@@ -15,7 +15,7 @@ class CampaignSystemUserController extends Controller
      */
     public function index($campid)
     {
-        return [ 'users' => CampaignSystemUsers::where('campagin_id',$campid)->get()];
+        return [ 'users' => CampaignSystemUsers::with('user')->where('campagin_id',$campid)->get()];
     }
 
     /**
