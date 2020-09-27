@@ -46,7 +46,7 @@ export default {
     },
 
     async created(){
-        this.userViewTable();
+        await this.userViewTable();
         Echo.private("campaignsystemmembers." + this.$route.params.id).listen(
             "CampaignUsersChanged",
             e => {
