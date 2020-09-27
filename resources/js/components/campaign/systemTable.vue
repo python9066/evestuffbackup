@@ -775,7 +775,7 @@ export default {
             }
         },
         updatetext(item) {
-
+            this.expanded = []
             let request = {
                 notes: item.notes
             }
