@@ -334,6 +334,8 @@
                             :value="showUsers"
                             transition="fab-transition"
                             origin="100% -30%"
+                            :nudge-width="200"
+                            offset-x
                         >
                             <template v-slot:activator="{ on, attrs }" v-if="$can('view_campaign_members')">
                                 <v-btn
