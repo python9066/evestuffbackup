@@ -354,7 +354,7 @@
                                         shaped
                                     >{{item.notes}}</v-textarea>
                                     <v-btn
-                                    color="Success"
+                                    color="green"
                                     @click="updatetext(item)"
                                     >
                                         Submit
