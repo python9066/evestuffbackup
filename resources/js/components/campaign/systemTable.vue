@@ -358,6 +358,11 @@
                                         "
                                     ></v-textarea>
                                 </v-col>
+                                <v-col class="align-center">
+                                    <v-btn>
+                                        Submit
+                                    </v-btn>
+                                </v-col>
                             </div>
                         </td>
                     </template>
