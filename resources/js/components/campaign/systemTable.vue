@@ -354,7 +354,7 @@
                                         shaped
                                     >{{item.notes}}</v-textarea>
                                     <v-btn
-                                    @click="addtext(item)"
+                                    @click="updatetext(item)"
                                     >
                                         Submit
                                     </v-btn>
