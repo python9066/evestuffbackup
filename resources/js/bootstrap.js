@@ -38,6 +38,8 @@ window.Echo = new Echo({
     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
     useTLS: true,
     encrypted: true,
-    disableStats: true
+    disableStats: true,
+    enabledTransports: ['ws', 'wss'],
+    disabledTransports: ['sockjs', 'xhr_polling', 'xhr_streaming']
 
 });
