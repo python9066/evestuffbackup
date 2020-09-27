@@ -331,7 +331,6 @@
                         </v-menu>
                           <v-menu
                             :close-on-content-click="false"
-                            :value="showUsers"
                             transition="fab-transition"
                             origin="100% -30%"
                             :nudge-width="200"
