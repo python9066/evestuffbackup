@@ -31,6 +31,7 @@ Vue.component('hackingToolMessage', require('./components/random/hackingToolMess
 Vue.component('v-progress-circular', require('easy-circular-progress/src/index.vue').default);
 Vue.component('messageNotification', require('./components/random/messageNotification.vue').default);
 Vue.component('systemTableTimer', require('./components/campaign/systemTableTimer.vue').default);
+Vue.component('watchUserTable', require('./components/campaign/watchUserTable.vue').default);
 
 Vue.prototype.moment = moment
 // import '@fortawesome/fontawesome-f      ree/css/all.css'
