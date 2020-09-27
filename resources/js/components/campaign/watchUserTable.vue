@@ -47,7 +47,7 @@ export default {
 
     async created(){
         await this.userViewTable();
-        Echo.private("campaignsystemmembers." + this.$route.params.id).listen(
+        Echo.private("campaignsystemmembers." + campaign_id).listen(
             "CampaignUsersChanged",
             e => {
                  if(this.$can('view_campaign_members')){
@@ -62,13 +62,13 @@ export default {
 
         userViewTable() {
             if(this.$can('view_campaign_members')){
-                this.$store.dispatch('getCampaignMembers',this.$route.params.id)
+                this.$store.dispatch('getCampaignMembers',this.campaign_id)
             }
 
         },
 
         updateUserViewTable(){
-            this.$store.dispatch('getCampaignMembers',this.$route.params.id)
+            this.$store.dispatch('getCampaignMembers',this.campaign_id)
 
         }
 
