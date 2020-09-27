@@ -79,7 +79,7 @@ export default {
         },
 
         userCheck(item){
-            let count = this.$store.state.campaignusers.filter( u => u.site_id == item.user_id).count()
+            let count = this.$store.state.campaignusers.filter( u => u.site_id == item.user_id).length
             if(count == 0){
                 return false
             }else{
