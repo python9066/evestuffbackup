@@ -43,6 +43,11 @@ export default new Vuex.Store({
             state.campaigns = campaigns;
         },
 
+        UPDATE_CAMPAIGNS(state, data) {
+            const item = state.campaigns.find(c => c.id === data.id);
+            Object.assign(item, data);
+        },
+
         MARK_TIMER_OVER(state, timer) {
             const item = state.timers.find(item => item.id === timer.id);
             Object.assign(item, timer);
@@ -185,6 +190,10 @@ export default new Vuex.Store({
 
         updateNotification({ commit }, data) {
             commit("UPDATE_NOTIFICATIONS", data);
+        },
+
+        updateCampaigns({ commit }, data) {
+            commit("UPDATE_CAMPAIGNS", data);
         },
 
         updateCampaignSystem({ commit }, data) {
