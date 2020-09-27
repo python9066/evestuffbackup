@@ -129,7 +129,7 @@ export default new Vuex.Store({
                     "Content-Type": "application/json"
                 }
             });
-            debugger
+            // debugger
             // console.log(res.data.timers)
             commit("SET_CAMPAIGN_MEMBERS", res.data.users);
         },
