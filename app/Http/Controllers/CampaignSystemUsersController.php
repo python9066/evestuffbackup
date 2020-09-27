@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Events\CampaignUsersChanged;
 use App\Models\Campaign;
 use App\Models\CampaignSystemUsers;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class CampaignSystemUsersController extends Controller
@@ -16,7 +17,8 @@ class CampaignSystemUsersController extends Controller
      */
     public function index($campid)
     {
-        $test = CampaignSystemUsers::where('campaign_id',$campid)->user();
+        // $test = CampaignSystemUsers::where('campaign_id',$campid)->user();
+        $test = User::has("campaignsystemusers")->get();
         $test2 =$test;
         dd($test,$test2);
         return [ 'users' => CampaignSystemUsers::with('user')->where('campaign_id',$campid)->get()];
