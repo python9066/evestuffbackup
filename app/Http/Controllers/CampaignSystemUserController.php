@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Events\CampaignUsersChanged;
+use App\Models\Campaign;
 use App\Models\CampaignSystemUsers;
 use Illuminate\Http\Request;
 
@@ -15,7 +16,8 @@ class CampaignSystemUserController extends Controller
      */
     public function index($campid)
     {
-        $test = CampaignSystemUsers::where('campaign_id',$campid)->get();
+        // $test = CampaignSystemUsers::where('campaign_id',$campid)->get();
+        $test = $campaign = Campaign::find($campid);
         dd($test);
         return [ 'users' => CampaignSystemUsers::with('user')->where('campaign_id',$campid)->get()];
     }
