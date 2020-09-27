@@ -621,7 +621,7 @@ export default {
 
             await axios({
                 method: "POST", //you can set what request you want to be
-                url: "/api/campaignsystemuers/" + this.$route.params.id,
+                url: "/api/campaignsystemusers/" + this.$route.params.id,
                 data: request,
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
@@ -636,7 +636,7 @@ export default {
 
             await axios({
                 method: "delete", //you can set what request you want to be
-                url: "/api/campaignsystemuers/"+ this.$store.state.user_id +"/" + this.campaignId,
+                url: "/api/campaignsystemusers/"+ this.$store.state.user_id +"/" + this.campaignId,
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
                     Accept: "application/json",
