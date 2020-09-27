@@ -5,13 +5,13 @@
                 <div>Table of all Users on this page</div>
             </v-card-title>
             <v-card-text>
+                 <!-- :height="tableHight" -->
                 <v-data-table
                     :headers="headers"
                     :items="campaignMembers"
                     item-key="id"
                     disable-pagination
                     fixed-header
-                    :height="tableHight"
                     hide-default-footer
                     class="elevation-24"
                     dense
@@ -86,73 +86,73 @@ export default {
         },
 
 
-        tableHight() {
-            // var timers = this.$store.state.timers;
-            if (this.statusflag == 1) {
-                var count = this.getCampaignMembersByCampagin(this.campaign_id).length;
-                var sum = count *32;
-                if (sum >= 320) {
-                    return 352;
-                } else if(count == 1){
-                    return 64
-                } else if(count == 2){
-                    return 96
-                }else {
-                    return sum +32;
-                }
-            }
-            if (this.statusflag == 2) {
-                var count = this.getCampaignMembersByCampagin(this.campaign_id).length;
-                var sum = count *32;
-                if (sum >= 320) {
-                    return 352;
-                } else if(count == 1){
-                    return 64
-                } else if(count == 2){
-                    return 96
-                }else {
-                    return sum +32;
-                }
-            }
-            if (this.statusflag == 3) {
-                var count = this.getCampaignMembersByCampagin(this.campaign_id).length;
-                var sum = count *32;
-                if (sum >= 320) {
-                    return 352;
-                } else if(count == 1){
-                    return 64
-                } else if(count == 2){
-                    return 96
-                }else {
-                    return sum +32;
-                }
-            }
-            if (this.statusflag == 4) {
-                var count = this.getCampaignMembersByCampagin(this.campaign_id).length;
-                var sum = count *32;
-                if (sum >= 320) {
-                    return 352;
-                } else if(count == 1){
-                    return 64
-                } else if(count == 2){
-                    return 96
-                }else {
-                    return sum +32;
-                }
-            } else {
-                var count = this.getCampaignMembersByCampagin(this.campaign_id).length;
-                var sum = count *32;
-                if (sum >= 320) {
-                    return 352;
-                } else if(count == 1){
-                    return 64
-                } else if(count == 2){
-                    return 96
-                }else {
-                    return sum +32;
-                }
-            }
-        }
+        // tableHight() {
+        //     // var timers = this.$store.state.timers;
+        //     if (this.statusflag == 1) {
+        //         var count = this.getCampaignMembersByCampagin(this.campaign_id).length;
+        //         var sum = count *32;
+        //         if (sum >= 320) {
+        //             return 352;
+        //         } else if(count == 1){
+        //             return 64
+        //         } else if(count == 2){
+        //             return 96
+        //         }else {
+        //             return sum +32;
+        //         }
+        //     }
+        //     if (this.statusflag == 2) {
+        //         var count = this.getCampaignMembersByCampagin(this.campaign_id).length;
+        //         var sum = count *32;
+        //         if (sum >= 320) {
+        //             return 352;
+        //         } else if(count == 1){
+        //             return 64
+        //         } else if(count == 2){
+        //             return 96
+        //         }else {
+        //             return sum +32;
+        //         }
+        //     }
+        //     if (this.statusflag == 3) {
+        //         var count = this.getCampaignMembersByCampagin(this.campaign_id).length;
+        //         var sum = count *32;
+        //         if (sum >= 320) {
+        //             return 352;
+        //         } else if(count == 1){
+        //             return 64
+        //         } else if(count == 2){
+        //             return 96
+        //         }else {
+        //             return sum +32;
+        //         }
+        //     }
+        //     if (this.statusflag == 4) {
+        //         var count = this.getCampaignMembersByCampagin(this.campaign_id).length;
+        //         var sum = count *32;
+        //         if (sum >= 320) {
+        //             return 352;
+        //         } else if(count == 1){
+        //             return 64
+        //         } else if(count == 2){
+        //             return 96
+        //         }else {
+        //             return sum +32;
+        //         }
+        //     } else {
+        //         var count = this.getCampaignMembersByCampagin(this.campaign_id).length;
+        //         var sum = count *32;
+        //         if (sum >= 320) {
+        //             return 352;
+        //         } else if(count == 1){
+        //             return 64
+        //         } else if(count == 2){
+        //             return 96
+        //         }else {
+        //             return sum +32;
+        //         }
+        //     }
+        // }
     },
 
     beforeDestroy() {
