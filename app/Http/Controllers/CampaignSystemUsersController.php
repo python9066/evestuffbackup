@@ -7,7 +7,7 @@ use App\Models\Campaign;
 use App\Models\CampaignSystemUsers;
 use Illuminate\Http\Request;
 
-class CampaignSystemUserController extends Controller
+class CampaignSystemUsersController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +16,7 @@ class CampaignSystemUserController extends Controller
      */
     public function index($campid)
     {
-        $test = CampaignSystemUsers::where('campaign_id',$campid)->user->get();
+        $test = CampaignSystemUsers::where('campaign_id',$campid)->user;
         $test2 =$test;
         dd($test,$test2);
         return [ 'users' => CampaignSystemUsers::with('user')->where('campaign_id',$campid)->get()];
