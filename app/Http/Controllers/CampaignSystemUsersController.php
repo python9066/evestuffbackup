@@ -30,8 +30,8 @@ class CampaignSystemUsersController extends Controller
             ];
             array_push($users, $data);
            }
-        dd( ['users' => $users]);
-        return [ 'users' => CampaignSystemUsers::with('user')->where('campaign_id',$campid)->get()];
+        // dd( ['users' => $users]);
+        return [ 'users' => $users];
     }
 
     /**
