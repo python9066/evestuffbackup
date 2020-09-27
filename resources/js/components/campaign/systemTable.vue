@@ -463,7 +463,7 @@ export default {
                 { title: "Hacking", value: 3 },
                 { title: "Friendly Hacking", value: 8 },
                 { title: "Success", value: 4 },
-                { title: "Contested", value: 6 },
+                { title: "Pushed off", value: 6 },
                 { title: "Hostile Hacking", value: 7 },
                 { title: "Failed", value: 5 },
             ],
@@ -773,7 +773,7 @@ export default {
                 return "red darken-4";
             }
             if (item.status_id == 6) {
-                return "deep-orange accent-3";
+                return "#FF5EEA";
             }
             if (item.status_id == 7) {
                 return "#801916";
