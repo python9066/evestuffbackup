@@ -56,7 +56,7 @@ class CampaignSystemsController extends Controller
      */
     public function update(Request $request, $id, $campid)
     {
-        dd($request->text);
+        dd($request->notes);
         CampaignSystem::where('id',$id)->update($request->all());
         $flag = collect([
             'flag' => 2,
