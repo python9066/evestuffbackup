@@ -127,7 +127,7 @@
                     >
                         <CountDowntimer
                             :start-time="moment.utc(this.campaign.start).unix()"
-                            :end-text="'Window Closed'"
+                            :end-text="'Campaign Started'"
                             :interval="1000"
                             @campaignStart="campaignStart()"
                         >
