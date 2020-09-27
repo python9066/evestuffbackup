@@ -86,93 +86,73 @@ export default {
         },
 
 
-        // tableHight() {
-        //     // var timers = this.$store.state.timers;
-        //     if (this.statusflag == 1) {
-        //         var count = this.campaignusers.filter(
-        //             campaignusers =>
-        //                 campaignusers.role_id == 1 &&
-        //                 campaignusers.campaign_id == this.campaign_id
-        //         ).length;
-        //         var sum = count *32;
-        //         if (sum >= 320) {
-        //             return 352;
-        //         } else if(count == 1){
-        //             return 64
-        //         } else if(count == 2){
-        //             return 96
-        //         }else {
-        //             return sum +32;
-        //         }
-        //     }
-        //     if (this.statusflag == 2) {
-        //         var count = this.campaignusers.filter(
-        //             campaignusers =>
-        //                 campaignusers.role_id == 2 &&
-        //                 campaignusers.campaign_id == this.campaign_id
-        //         ).length;
-        //         var sum = count *32;
-        //         if (sum >= 320) {
-        //             return 352;
-        //         } else if(count == 1){
-        //             return 64
-        //         } else if(count == 2){
-        //             return 96
-        //         }else {
-        //             return sum +32;
-        //         }
-        //     }
-        //     if (this.statusflag == 3) {
-        //         var count = this.campaignusers.filter(
-        //             campaignusers =>
-        //                 campaignusers.role_id == 3 &&
-        //                 campaignusers.campaign_id == this.campaign_id
-        //         ).length;
-        //         var sum = count *32;
-        //         if (sum >= 320) {
-        //             return 352;
-        //         } else if(count == 1){
-        //             return 64
-        //         } else if(count == 2){
-        //             return 96
-        //         }else {
-        //             return sum +32;
-        //         }
-        //     }
-        //     if (this.statusflag == 4) {
-        //         var count = this.campaignusers.filter(
-        //             campaignusers =>
-        //                 campaignusers.role_id == 4 &&
-        //                 campaignusers.campaign_id == this.campaign_id
-        //         ).length;
-        //         var sum = count *32;
-        //         if (sum >= 320) {
-        //             return 352;
-        //         } else if(count == 1){
-        //             return 64
-        //         } else if(count == 2){
-        //             return 96
-        //         }else {
-        //             return sum +32;
-        //         }
-        //     } else {
-        //         var count = this.campaignusers.filter(
-        //             campaignusers =>
-        //                 campaignusers.role_id != 10 &&
-        //                 campaignusers.campaign_id == this.campaign_id
-        //         ).length;
-        //         var sum = count *32;
-        //         if (sum >= 320) {
-        //             return 352;
-        //         } else if(count == 1){
-        //             return 64
-        //         } else if(count == 2){
-        //             return 96
-        //         }else {
-        //             return sum +32;
-        //         }
-        //     }
-        // }
+        tableHight() {
+            // var timers = this.$store.state.timers;
+            if (this.statusflag == 1) {
+                var count = this.getCampaignMembersByCampagin(this.campaign_id).length;
+                var sum = count *32;
+                if (sum >= 320) {
+                    return 352;
+                } else if(count == 1){
+                    return 64
+                } else if(count == 2){
+                    return 96
+                }else {
+                    return sum +32;
+                }
+            }
+            if (this.statusflag == 2) {
+                var count = this.getCampaignMembersByCampagin(this.campaign_id).length;
+                var sum = count *32;
+                if (sum >= 320) {
+                    return 352;
+                } else if(count == 1){
+                    return 64
+                } else if(count == 2){
+                    return 96
+                }else {
+                    return sum +32;
+                }
+            }
+            if (this.statusflag == 3) {
+                var count = this.getCampaignMembersByCampagin(this.campaign_id).length;
+                var sum = count *32;
+                if (sum >= 320) {
+                    return 352;
+                } else if(count == 1){
+                    return 64
+                } else if(count == 2){
+                    return 96
+                }else {
+                    return sum +32;
+                }
+            }
+            if (this.statusflag == 4) {
+                var count = this.getCampaignMembersByCampagin(this.campaign_id).length;
+                var sum = count *32;
+                if (sum >= 320) {
+                    return 352;
+                } else if(count == 1){
+                    return 64
+                } else if(count == 2){
+                    return 96
+                }else {
+                    return sum +32;
+                }
+            } else {
+                var count = this.getCampaignMembersByCampagin(this.campaign_id).length;
+                var sum = count *32;
+                if (sum >= 320) {
+                    return 352;
+                } else if(count == 1){
+                    return 64
+                } else if(count == 2){
+                    return 96
+                }else {
+                    return sum +32;
+                }
+            }
+        }
     },
 
     beforeDestroy() {
