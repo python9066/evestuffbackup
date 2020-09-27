@@ -348,11 +348,11 @@
                             <div>
                                 <v-col class="align-center">
                                     <v-textarea
-                                        v-bind:value="item.text"
+                                        v-bind:value="item.notes"
                                         label="Where you can put any notes"
                                         outlined
                                         shaped
-                                    >{{item.text}}</v-textarea>
+                                    >{{item.notes}}</v-textarea>
                                     <v-btn
                                     @click="updatetext(item)"
                                     >
@@ -775,7 +775,7 @@ export default {
         updatetext(item) {
 
             let request = {
-                text: item.text
+                notes: item.notes
             }
             // console.log(item);
                 // console.log(item);
