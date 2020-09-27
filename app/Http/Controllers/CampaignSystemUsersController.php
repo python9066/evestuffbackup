@@ -18,11 +18,10 @@ class CampaignSystemUsersController extends Controller
      */
     public function index($campid)
     {
-        $id = $campid;
-        // $test = CampaignSystemUsers::where('campaign_id',$campid)->user();
-        $test = User::whereHas("campaignsystemusers", function (Builder $query, $id ){
-            $query->where('campaign_id', $id);
-        })->get();
+
+        $test = CampaignSystemUsers::all();
+        $test->user;
+
         $test2 =$test;
         dd($test,$test2);
         return [ 'users' => CampaignSystemUsers::with('user')->where('campaign_id',$campid)->get()];
