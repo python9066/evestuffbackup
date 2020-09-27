@@ -352,7 +352,7 @@
                                         label="Where you can put any notes"
                                         outlined
                                         shaped
-                                    ></v-textarea>
+                                    >{{item.text}}</v-textarea>
                                     <v-btn
                                     @click="updatetext(item)"
                                     >
