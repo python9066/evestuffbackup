@@ -692,22 +692,25 @@ export default {
 
         statusClick(item) {
             var request = null;
-            if (item.status_id == 2) {
-                item.end = null;
 
+            if (item.status_id == 1 || item.status_id == 7){
+                item.end = null
+                this.removeCharNode(item);
+                return;
+                            }
+            if (item.status_id == 2 || item.status_id == 3 || item.status_id == 8 || item.status_id == 6 ){
+                item.end = null;
                 request = {
                     campaign_system_status_id: item.status_id,
                     end_time: null
-                };
-            } else if (item.status_id == 4) {
+                }
+            }
+            if (item.status_id ==  4 || item.status_id == 5){
                 this.removeCharNode(item);
                 item.user_name = null;
                 item.main_name = null;
                 return;
-            } else {
-                request = {
-                    campaign_system_status_id: item.status_id
-                };
+
             }
 
             axios({
@@ -840,12 +843,20 @@ export default {
             };
             this.$store.dispatch("updateCampaignUsers", data);
             var request = null;
-            if (item.status_id == 4) {
+            if (item.status_id == 4 || item.status_id == 5) {
                 request = {
+
                     campaign_user_id: null,
                     campaign_system_status_id: item.status_id
                 };
-            } else {
+            } else if(item.status_id == 1 || item.status_id == 7){
+                request = {
+                    campaign_user_id: null,
+                    campaign_system_status_id: item.status_id,
+                    end_time: item.end
+                };
+
+            } else{
                 request = {
                     campaign_user_id: null
                 };
