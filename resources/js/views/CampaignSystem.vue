@@ -534,7 +534,6 @@ export default {
             window.addEventListener('beforeunload', this.leaving)
         );
 
-        this.userViewTable();
         this.campaignId =this.$route.params.id
         this.test = 2;
         this.test2 = 1;
