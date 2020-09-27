@@ -773,6 +773,10 @@ export default {
             }
         },
         updatetext(item) {
+
+            let request = {
+                text: item.text
+            }
             // console.log(item);
                 // console.log(item);
                 this.$store.dispatch("updateCampaignSystem", item);
