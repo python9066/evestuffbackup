@@ -21,14 +21,14 @@ class CampaignSystemUsersController extends Controller
 
         $member = CampaignSystemUsers::with('user')->where('campaign_id',$campid)->get();
         foreach($member as $member){
-            dd($member->user);
-            echo '<pre>'; print_r($member); echo '</pre>';
+
             $data = [
                 "id" => $member->id,
                 "user_id" => $member->user_id,
-                "user_name" => $member->relation->name,
+                "user_name" => $member->user->name,
                 "campaign_id" => $member->campaign_id,
             ];
+            dd($data);
 
         }
         return [ 'users' => CampaignSystemUsers::with('user')->where('campaign_id',$campid)->get()];
