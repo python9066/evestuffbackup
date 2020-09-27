@@ -348,7 +348,7 @@
                                 >
                             </template>
                             <v-row no-gutters>
-                                <div class=" full-width">
+                                <div style=" width 400px;">
 
                                         <watchUserTable
                                         :campaign_id ="this.$route.params.id"
