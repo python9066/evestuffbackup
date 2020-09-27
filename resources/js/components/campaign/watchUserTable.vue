@@ -16,6 +16,13 @@
                     class="elevation-24"
                     dense
                 >
+
+                <template v-slot:item.check="{ item }">
+
+                <span v-if="userCheck(item)">Yes</span>
+                <span v-else>No</span>
+
+                </template>
                     <template slot="no-data">
                         No one is here
                     </template>
@@ -69,6 +76,15 @@ export default {
         updateUserViewTable(){
             this.$store.dispatch('getCampaignMembers',this.$route.params.id)
 
+        },
+
+        userCheck(item){
+            let count = this.$store.state.campaignusers.filter( u => u.site_id == item.user_id).count()
+            if(count == 0){
+                return false
+            }else{
+                return true
+            }
         }
 
     },
