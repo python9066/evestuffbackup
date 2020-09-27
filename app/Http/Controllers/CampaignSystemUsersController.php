@@ -19,11 +19,11 @@ class CampaignSystemUsersController extends Controller
     public function index($campid)
     {
 
-        $test = CampaignSystemUsers::with('user')->where('campaign_id',$campid)->get();
+        $member = CampaignSystemUsers::with('user')->where('campaign_id',$campid)->get();
+        foreach($member as $member){
+            dd($member);
 
-
-        $test2 =$test;
-        dd($test,$test2);
+        }
         return [ 'users' => CampaignSystemUsers::with('user')->where('campaign_id',$campid)->get()];
     }
 
