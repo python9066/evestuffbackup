@@ -7,7 +7,7 @@
             <v-card-text>
                 <v-data-table
                     :headers="headers"
-                    :items="usersWatching"
+                    :items="campaignMembers"
                     item-key="id"
                     disable-pagination
                     fixed-header
