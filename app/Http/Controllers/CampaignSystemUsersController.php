@@ -19,7 +19,7 @@ class CampaignSystemUsersController extends Controller
     public function index($campid)
     {
 
-        $test = CampaignSystemUsers::with('user')->get();
+        $test = CampaignSystemUsers::with('user.name')->get();
 
 
         $test2 =$test;
