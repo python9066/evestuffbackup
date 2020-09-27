@@ -19,7 +19,6 @@ export default new Vuex.Store({
         user_name:"",
         campaignusers: [],
         campaignsystems: [],
-        users: [],
         rolesList:[],
         campaignmembers:[],
     },
@@ -29,7 +28,7 @@ export default new Vuex.Store({
         },
 
         SET_CAMPAIGN_MEMBERS(state, users) {
-            state.users = users;
+            state.campaignmembers = users;
         },
 
         SET_USERS(state, users) {
@@ -317,6 +316,10 @@ export default new Vuex.Store({
 
         getCampaignById: state => id => {
             return state.campaigns.find(campaigns => campaigns.id == id);
+        },
+
+        getCampaignMembersByCampagin: state => id => {
+            return state.campaignmembers.find(m => m.campaign_id == id);
         },
 
         getCampaignUsersReadyToGoAll: state => id => {

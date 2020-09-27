@@ -35,8 +35,8 @@ export default {
     data() {
         return {
             headers: [
-                { text: "Name", value: "user_id", width: "10%" },
-                { text: "Added Char", value: "check" }
+                { text: "Name", value: "user_name", width: "80%" },
+                { text: "Has Char", value: "check" }
 
                 // { text: "Vulernable End Time", value: "vulnerable_end_time" }
             ],
@@ -78,45 +78,14 @@ export default {
 
 
     computed: {
-        ...mapState(["campaignusers"]),
+        ...mapGetters(["getCampaignMembersByCampagin"]),
 
-        filteredItems() {
-            // var timers = this.$store.state.timers;
-            if (this.statusflag == 1) {
-                return this.campaignusers.filter(
-                    campaignusers =>
-                        campaignusers.role_id == 1 &&
-                        campaignusers.campaign_id == this.campaign_id
-                );
-            }
-            if (this.statusflag == 2) {
-                return this.campaignusers.filter(
-                    campaignusers =>
-                        campaignusers.role_id == 2 &&
-                        campaignusers.campaign_id == this.campaign_id
-                );
-            }
-            if (this.statusflag == 3) {
-                return this.campaignusers.filter(
-                    campaignusers =>
-                        campaignusers.role_id == 3 &&
-                        campaignusers.campaign_id == this.campaign_id
-                );
-            }
-            if (this.statusflag == 4) {
-                return this.campaignusers.filter(
-                    campaignusers =>
-                        campaignusers.role_id == 4 &&
-                        campaignusers.campaign_id == this.campaign_id
-                );
-            } else {
-                return this.campaignusers.filter(
-                    campaignusers =>
-                        campaignusers.role_id != 10 &&
-                        campaignusers.campaign_id == this.campaign_id
-                );
-            }
+        campaignMembers() {
+
+                return this.getCampaignMembersByCampagin(this.campaign_id)
         },
+
+
         tableHight() {
             // var timers = this.$store.state.timers;
             if (this.statusflag == 1) {

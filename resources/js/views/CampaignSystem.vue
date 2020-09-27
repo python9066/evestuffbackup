@@ -329,15 +329,30 @@
                                 </div>
                             </v-row>
                         </v-menu>
-                        <div v-if="$can('view_campaign_members')">
-                            <v-btn
+                          <v-menu
+                            :close-on-content-click="false"
+                            :value="showUsers"
+                            transition="fab-transition"
+                            origin="100% -30%"
+                        >
+                            <template v-slot:activator="{ on, attrs }" v-if="$can('view_campaign_members')">
+                                <v-btn
                                     class="mr-4"
                                     @click="showUsers = !showUsers"
+                                    v-bind="attrs"
                                     color="warning"
+                                    v-on="on"
                                     >People Watching</v-btn
                                 >
+                            </template>
+                            <v-row no-gutters>
+                                <div>
+                                    <v-card class="pa-2" tile width="100%">
 
-                        </div>
+                                    </v-card>
+                                </div>
+                            </v-row>
+                        </v-menu>
                     </div>
                     <v-spacer></v-spacer>
                     <div class=" ml-auto d-inline-flex align-center"
