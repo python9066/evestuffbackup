@@ -22,7 +22,7 @@ use Spatie\Permission\Models\Permission;
 
 Route::get('/admin/admin','AuthController@admin');
 Route::get('/dances2','RoleController@getAllUsersRoles');
-Route::get('/timers', 'HomeController@index');
+Route::get('/timers/{campid}', 'CampaignSystemUserController@index');
 Route::get('/getTimerData','TimerController@getTimerData');
 Route::get('/updateTimerData','TimerController@updateTimerData');
 Route::get('/test', 'CampaignController@test');
