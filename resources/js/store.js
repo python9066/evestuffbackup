@@ -404,7 +404,7 @@ export default new Vuex.Store({
 
         getHackingNodeCountBySystem: state => payload => {
             return state.campaignsystems.filter(
-                sys => sys.system_id == payload.system_id && sys.status_id != 1 && sys.campaign_id == payload.campaign_id && (sys.status_id == 2 || sys.status_id == 3 || sys.status_id == 4 || sys.status_id == 8 ||
+                sys => sys.system_id == payload.system_id && sys.status_id != 1 && sys.campaign_id == payload.campaign_id && (sys.status_id == 2 || sys.status_id == 3 || sys.status_id == 4 || sys.status_id == 8)
             ).length
         },
 
