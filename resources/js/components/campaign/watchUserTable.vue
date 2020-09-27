@@ -45,6 +45,38 @@ export default {
         };
     },
 
+    async created(){
+        this.userViewTable();
+        Echo.private("campaignsystemmembers." + this.$route.params.id).listen(
+            "CampaignUsersChanged",
+            e => {
+                 if(this.$can('view_campaign_members')){
+                updateUserViewTable()
+            }
+            })
+    },
+
+    mounted(){},
+
+    methods: {
+
+        userViewTable() {
+            if(this.$can('view_campaign_members')){
+                this.$store.dispatch('getCampaignMembers',this.$route.params.id)
+            }
+
+        },
+
+        updateUserViewTable(){
+            this.$store.dispatch('getCampaignMembers',this.$route.params.id)
+
+        }
+
+    },
+
+
+
+
     computed: {
         ...mapState(["campaignusers"]),
 
@@ -172,7 +204,12 @@ export default {
                 }
             }
         }
-    }
+    },
+
+    beforeDestroy() {
+        Echo.leave("campaignsystemmembers." + this.campaignId)
+    },
+
 };
 </script>
 

@@ -529,11 +529,6 @@ export default {
                     this.loadCampaignSystemRecords();
                     this.loadUsersRecords();
                 }
-                if (e.flag.flag == 5) {
-                    // console.log(5);
-                    this.userViewTable();
-
-                }
             },
 
             window.addEventListener('beforeunload', this.leaving)
@@ -821,13 +816,7 @@ export default {
             this.$store.dispatch("updateCampaignSystem", data);
         },
 
-        userViewTable() {
-            if(this.$can('view_campaign_members')){
-                Echo.private("campaignsystemmembers." + this.$route.params.id)
-            }
 
-            this.$store.dispatch('getCampaignMembers',this.$route.params.id)
-        },
     },
 
 
@@ -934,7 +923,6 @@ export default {
     },
     beforeDestroy() {
         Echo.leave("campaignsystem." + this.campaignId);
-        Echo.leave("campaignsystemmembers." + this.campaignId)
         this.leaving()
         window.removeEventListener('beforeunload', this.leaving)
     }
