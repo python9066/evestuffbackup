@@ -351,7 +351,7 @@
                                 <div>
                                     <v-card class="pa-2" tile width="100%">
                                         <watchUserTable
-                                        campaign_id: this.$route.params.id,
+                                        :campaign_id ="this.$route.params.id"
                                         >
                                         </watchUserTable>
                                     </v-card>
