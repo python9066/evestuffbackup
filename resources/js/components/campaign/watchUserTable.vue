@@ -78,11 +78,12 @@ export default {
 
 
     computed: {
+        ...mapState(["campaignmembers"]),
         ...mapGetters(["getCampaignMembersByCampagin"]),
 
         campaignMembers() {
 
-                return this.getCampaignMembersByCampagin(this.campaign_id)
+                return this.campaignmembers.filter( m => m.campaign_id == this.campaign_id)
         },
 
 
