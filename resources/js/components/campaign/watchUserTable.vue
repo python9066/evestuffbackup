@@ -49,9 +49,7 @@ export default {
         Echo.private("campaignsystemmembers." + this.$route.params.id).listen(
             "CampaignUsersChanged",
             e => {
-                 if(this.$can('view_campaign_members')){
-                updateUserViewTable()
-            }
+                 updateUserViewTable()
             })
     },
 
