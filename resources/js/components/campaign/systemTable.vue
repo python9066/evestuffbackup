@@ -348,13 +348,13 @@
                             <div>
                                 <v-col class="align-center">
                                     <v-textarea
-                                        v-bind:value="notesText"
+                                        v-bind:value="noteText"
                                         label="Where you can put any notes"
                                         outlined
                                         shaped
                                     >{{item.notes}}</v-textarea>
                                     <v-btn
-                                    @click="updatetext(item)"
+                                    @click="addtext(item)"
                                     >
                                         Submit
                                     </v-btn>
@@ -469,7 +469,7 @@ export default {
             expanded: [],
             singleExpand: true,
             charAddNode: null,
-            notesText:"",
+            noteText:""
         };
     },
 
