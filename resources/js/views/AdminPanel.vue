@@ -218,14 +218,17 @@ export default {
         this.refresh()
     })
 
-        await this.$store.dispatch("getUsers");
-        await this.$store.dispatch("getRoles");
+
     },
 
     async mounted() {
-
-
+        await this.$store.dispatch("getUsers");
+        await this.$store.dispatch("getRoles");
+        this.test();
     },
+
+
+
     methods: {
 
         filterRoles(roles) {
