@@ -78,6 +78,7 @@ export default new Router({
         name: 'test',
         component: AdminPanel,
        async beforeEnter(to, from, next) {
+           console.log(Permissions.length);
             if(Permissions.indexOf('edit_users' )!== -1){
                 await store.dispatch("getUsers");
                 await store.dispatch("getRoles");
