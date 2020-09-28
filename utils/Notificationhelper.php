@@ -152,6 +152,7 @@ class Notifications
                         'timestamp' => $time,
                         'notification_type_id' => 2,
                         'status' => 0,
+                        'user_id' => null,
                     );
 
                     // ($data2);
