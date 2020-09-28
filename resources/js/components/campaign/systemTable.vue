@@ -690,12 +690,12 @@ export default {
             return item.status_id == 7 ? "style-1" : "style-2";
         },
 
-        statusClick(item) {
+       async statusClick(item) {
             var request = [];
 
             if (item.status_id == 1 || item.status_id == 7){
                 item.end = null
-                this.removeCharNode(item);
+                await this.removeCharNode(item);
                 this.$store.dispatch('getCampaignSystemsRecords')
                 this.$store.dispatch("getCampaignUsersRecords",this.campaign_id);
                 return;
@@ -708,7 +708,7 @@ export default {
                 }
             }
             if (item.status_id ==  4 || item.status_id == 5){
-                this.removeCharNode(item);
+                await this.removeCharNode(item);
                 item.user_name = null;
                 item.main_name = null;
                 this.$store.dispatch('getCampaignSystemsRecords')
@@ -717,7 +717,7 @@ export default {
 
             }
 
-            axios({
+           await axios({
                 method: "put", //you can set what request you want to be
                 url:
                     "/api/campaignsystems/" +
