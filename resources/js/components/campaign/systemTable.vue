@@ -856,7 +856,7 @@ export default {
                     campaign_user_id: null,
                     campaign_system_status_id: item.status_id
                 };
-            } else if(item.status_id == 1 || item.status_id == 7){
+            } else if(item.status_id == 1 || item.status_id == 7 || item.status_id == 8){
                 request = {
                     campaign_user_id: null,
                     campaign_system_status_id: item.status_id,
