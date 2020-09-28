@@ -224,7 +224,6 @@ export default {
     async mounted() {
         await this.$store.dispatch("getUsers");
         await this.$store.dispatch("getRoles");
-        this.test();
     },
 
 
