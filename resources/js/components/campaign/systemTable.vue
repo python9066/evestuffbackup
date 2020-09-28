@@ -841,7 +841,9 @@ export default {
                 status_id: 3,
                 user_status_name: "Ready to go"
             };
+            if( userId != null){
             this.$store.dispatch("updateCampaignUsers", data);
+            }
             var request = null;
             if (item.status_id == 4 || item.status_id == 5) {
                 request = {
