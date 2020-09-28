@@ -11,6 +11,7 @@ export default new Vuex.Store({
         timers: [],
         notifications: [],
         campaigns: [],
+        users:[],
         delveLink: "",
         queriousLink: "",
         periodbasisLink: "",
