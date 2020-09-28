@@ -695,7 +695,7 @@ export default {
 
             if (item.status_id == 1 || item.status_id == 7){
                 item.end = null
-                await this.removeCharNode(item);
+                this.removeCharNode(item);
                 return;
                             }
             if (item.status_id == 2 || item.status_id == 3 || item.status_id == 8 || item.status_id == 6 ){
