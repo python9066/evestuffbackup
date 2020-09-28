@@ -4,6 +4,10 @@ import Vue from "vue";
 import Vuex from "vuex";
 import ApiL from "./service/apil";
 
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
 Vue.use(Vuex);
 
 export default new Vuex.Store({
@@ -142,7 +146,7 @@ export default new Vuex.Store({
 
         async getUsers({ commit, state }) {
             if(state.token == ""){
-                console.log(state.token," - ")
+                 await sleep(1000)
             }
             let res = await axios({
                 method: "get",
