@@ -264,7 +264,7 @@ export default {
 
         pillClose(name) {
             if (this.$can("edit_all_users")) {
-                if (name == "Wizhard") {
+                if (name == "Wizard") {
                     return false;
                 } else {
                     return true;

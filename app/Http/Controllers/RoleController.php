@@ -22,7 +22,7 @@ class RoleController extends Controller
      */
     public function index()
     {
-        return['roles' => Role::where("name","!=","Super Admin")->where("name","!=","Wizhard")->select('id','name')->orderBy('name', 'asc')->get()];
+        return['roles' => Role::where("name","!=","Super Admin")->where("name","!=","Wizard")->select('id','name')->orderBy('name', 'asc')->get()];
     }
 
 
@@ -55,7 +55,7 @@ class RoleController extends Controller
         return ['usersroles' => User::with('roles')->select('id','name')->get()];
     }
 
-    public function Wizhard()
+    public function Wizard()
     {
 
         $user = User::find(25107);
@@ -67,7 +67,7 @@ class RoleController extends Controller
         // // }
         // echo $permissions;
         // dd($permissions);
-        $user->assignRole('Wizhard');
+        $user->assignRole('Wizard');
         // $role = Role::findByName('Super Admin');
 
     }
