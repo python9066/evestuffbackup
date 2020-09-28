@@ -59,7 +59,7 @@ return [
         //         'scheme' => 'http',
 
         //     ],
-        ],
+        // ],
 
         'redis' => [
             'driver' => 'redis',
