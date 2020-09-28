@@ -691,7 +691,7 @@ export default {
         },
 
         statusClick(item) {
-            var request = null;
+            var request = [];
 
             if (item.status_id == 1 || item.status_id == 7){
                 item.end = null
