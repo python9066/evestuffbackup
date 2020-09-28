@@ -696,6 +696,8 @@ export default {
             if (item.status_id == 1 || item.status_id == 7){
                 item.end = null
                 this.removeCharNode(item);
+                this.$store.dispatch('getCampaignSystemsRecords')
+                this.$store.dispatch("getCampaignUsersRecords",this.campaign_id);
                 return;
                             }
             if (item.status_id == 2 || item.status_id == 3 || item.status_id == 8 || item.status_id == 6 ){
@@ -709,6 +711,8 @@ export default {
                 this.removeCharNode(item);
                 item.user_name = null;
                 item.main_name = null;
+                this.$store.dispatch('getCampaignSystemsRecords')
+                this.$store.dispatch("getCampaignUsersRecords",this.campaign_id);
                 return;
 
             }
@@ -727,6 +731,9 @@ export default {
                     "Content-Type": "application/json"
                 }
             });
+
+            this.$store.dispatch('getCampaignSystemsRecords')
+            this.$store.dispatch("getCampaignUsersRecords",this.campaign_id);
         },
 
         checkShowAdd(item) {
