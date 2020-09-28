@@ -696,6 +696,8 @@ export default {
             if (item.status_id == 1 || item.status_id == 7 || item.status_id == 8){
                 item.end = null
                 this.removeCharNode(item);
+                tem.user_name = null;
+                item.main_name = null;
                 return;
                             }
             if (item.status_id == 2 || item.status_id == 3 || item.status_id == 8 || item.status_id == 6 ){
@@ -709,8 +711,6 @@ export default {
                 await this.removeCharNode(item);
                 item.user_name = null;
                 item.main_name = null;
-                this.$store.dispatch('getCampaignSystemsRecords')
-                this.$store.dispatch("getCampaignUsersRecords",this.campaign_id);
                 return;
 
             }
