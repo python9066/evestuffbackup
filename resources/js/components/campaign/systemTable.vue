@@ -883,6 +883,7 @@ export default {
                 campaign_system_id: null,
                 status_id: 3
             };
+            if(userId != null){
             axios({
                 method: "PUT", //you can set what request you want to be
                 url:
@@ -896,7 +897,7 @@ export default {
                     Accept: "application/json",
                     "Content-Type": "application/json"
                 }
-            });
+            });}
         }
 
         // if (item.site_id == null) {
