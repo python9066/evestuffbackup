@@ -218,24 +218,15 @@ export default {
         this.refresh()
     })
 
+        await this.$store.dispatch("getUsers");
+        await this.$store.dispatch("getRoles");
     },
 
     async mounted() {
-        await this.$store.dispatch("getUsers");
-        await this.$store.dispatch("getRoles");
-        this.test();
+
+
     },
     methods: {
-
-
-        test() {
-            // console.log(roles);
-            if(this.$can("edit_gsfoe_users") && this.$can("edit_recon_users") && this.$can("edit_all_users")){
-                console.log("yes")
-            }else{
-                console.log("no")
-            }
-        },
 
         filterRoles(roles) {
             // console.log(roles);
