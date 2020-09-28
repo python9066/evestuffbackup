@@ -696,7 +696,7 @@ export default {
             if (item.status_id == 1 || item.status_id == 7 || item.status_id == 8){
                 item.end = null
                 this.removeCharNode(item);
-                tem.user_name = null;
+                item.user_name = null;
                 item.main_name = null;
                 return;
                             }
