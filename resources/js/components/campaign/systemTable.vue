@@ -459,7 +459,7 @@ export default {
 
             dropdown_edit: [
                 { title: "New", value: 1 },
-                { title: "Warm Up", value: 2 },
+                { title: "Warm up", value: 2 },
                 { title: "Hacking", value: 3 },
                 { title: "Friendly Hacking", value: 8 },
                 { title: "Success", value: 4 },
@@ -696,8 +696,6 @@ export default {
             if (item.status_id == 1 || item.status_id == 7){
                 item.end = null
                 await this.removeCharNode(item);
-                this.$store.dispatch('getCampaignSystemsRecords')
-                this.$store.dispatch("getCampaignUsersRecords",this.campaign_id);
                 return;
                             }
             if (item.status_id == 2 || item.status_id == 3 || item.status_id == 8 || item.status_id == 6 ){
