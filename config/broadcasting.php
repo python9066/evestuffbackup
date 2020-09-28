@@ -55,8 +55,8 @@ return [
                 'disableStats' =>true,
                 'host' => '109.228.37.162',
                 'port' => '6001',
-                'scheme' => 'https',
-                // 'scheme' => 'http',
+                // 'scheme' => 'https',
+                'scheme' => 'http',
 
             ],
         ],
