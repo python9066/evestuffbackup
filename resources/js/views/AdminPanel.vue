@@ -356,7 +356,6 @@ export default {
     computed: {
         ...mapState(["users", "rolesList"]),
         filteredItems() {
-            var timers = this.$store.state.timers;
             if (this.roleflag == 5) {
                 return this.users.filter(function(u) {
                     return u.roles.some(function(role) {
