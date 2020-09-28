@@ -141,7 +141,7 @@ export default new Vuex.Store({
 
 
         async getUsers({ commit, state }) {
-            console.log(state.token)
+            console.log(state.token," - ")
             let res = await axios({
                 method: "get",
                 url: "/api/allusersroles",
