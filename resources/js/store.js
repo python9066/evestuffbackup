@@ -141,7 +141,7 @@ export default new Vuex.Store({
 
 
         async getUsers({ commit, state }) {
-            if(state.token == null){
+            if(state.token == ""){
                 console.log(state.token," - ")
             }
             let res = await axios({
