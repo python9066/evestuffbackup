@@ -52,6 +52,6 @@ window.Echo = new Echo({
     // encrupted: false,
     // forceTLS: false,
     disableStats: true,
-    enabledTransports: ['ws', 'wss'],
+    // enabledTransports: ['ws', 'wss'],
 
 });
