@@ -853,7 +853,7 @@ export default {
                 request = {
                     campaign_user_id: null,
                     campaign_system_status_id: item.status_id,
-                    end_time: item.end
+                    end_time: null
                 };
 
             } else{
