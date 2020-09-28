@@ -77,8 +77,10 @@ export default new Router({
         path: '/pannel',
         name: 'test',
         component: AdminPanel,
-        beforeEnter(to, from, next) {
+       async beforeEnter(to, from, next) {
             if(Permissions.indexOf('edit_users' )!== -1){
+                await $store.dispatch("getUsers");
+                await $store.dispatch("getRoles");
                 next()
             }else{
                next("/notifications")
