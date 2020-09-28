@@ -693,7 +693,7 @@ export default {
        async statusClick(item) {
             var request = [];
 
-            if (item.status_id == 1 || item.status_id == 7){
+            if (item.status_id == 1 || item.status_id == 7 || item.status_id == 8){
                 item.end = null
                 this.removeCharNode(item);
                 return;
