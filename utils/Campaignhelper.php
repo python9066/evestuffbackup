@@ -175,8 +175,7 @@ class Campaignhelper
             $user->campaignusers()
                 ->update([
                     'campaign_system_id' => null,
-                    'system_id' => null,
-                    'status_id' => 1
+                    'status_id' => 3
                 ]);
         }
 
