@@ -25,7 +25,7 @@ Route::get('/73cbd63ecd4d2d9267ae4ad7bf25c704/5a1f48be9e4df773064f33590be892ff',
 // Route::get('/timers/{campid}', 'CampaignSystemUsersController@index');
 // Route::get('/getTimerData','TimerController@getTimerData');
 // Route::get('/updateTimerData','TimerController@updateTimerData');
-Route::get('/test', 'RoleController@remove');
+// Route::get('/test', 'RoleController@remove');
 Route::get('/login', 'AuthController@login')->name("login");
 Route::get('/oauth/login', 'AuthController@redirectToProvider');
 Route::get('/oauth/callback', 'AuthController@handleProviderCallback');
