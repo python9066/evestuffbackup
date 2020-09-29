@@ -268,6 +268,12 @@ export default {
                 } else {
                     return false;
                 }
+            }else if(this.$can("edit_recon_users") && this.$can("edit_scout_users")) {
+                if (name == "Recon" || name == "Scout") {
+                    return true;
+                } else {
+                    return false;
+                }
             }else if(this.$can("edit_gsfoe_fc")){
                 if (name == "GSFOE FC") {
                     return true;

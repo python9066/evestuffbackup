@@ -72,6 +72,25 @@ class RoleController extends Controller
 
     }
 
+    public function remove()
+    {
+
+        $role = User::where('name','Coord');
+        $permission = Permission::where('name','edit_all_users');
+        $role->revokePermissionTo($permission);
+        // $permissions = $user->getAllPermissions()->pluck("name");
+        // // if($permissions == true){
+        // //     echo "HAS ROLE";
+        // // }else{
+        // //     echo "NO ROLE";
+        // // }
+        // echo $permissions;
+        // dd($permissions);
+        // $user->assignRole('Wizard');
+        // $role = Role::findByName('Super Admin');
+
+    }
+
     /**
      * Store a newly created resource in storage.
      *
