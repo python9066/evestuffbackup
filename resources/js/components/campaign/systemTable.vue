@@ -813,10 +813,11 @@ export default {
         },
 
         async addNode() {
+            let node = this.nodeText.toUpperCase()
             var request = {
                 campaign_id: this.campaign_id,
                 system_id: this.system_id,
-                node_id: this.nodeText
+                node_id: node
             };
             this.nodeText = "";
             this.addShown = false;
