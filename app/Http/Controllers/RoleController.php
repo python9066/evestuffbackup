@@ -75,8 +75,8 @@ class RoleController extends Controller
     public function remove()
     {
 
-        $role = User::where('name','Coord');
-        $permission = Permission::where('name','edit_all_users');
+        $role = User::where('name','Coord')->get();
+        $permission = Permission::where('name','edit_all_users')->get();
         $role->revokePermissionTo($permission);
         // $permissions = $user->getAllPermissions()->pluck("name");
         // // if($permissions == true){
