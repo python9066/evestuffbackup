@@ -107,7 +107,7 @@ class Campaignhelper
                 ->where('check', 0)
                 ->update(['end' => $now, 'status_id' => 3]);
             // ->update(['check' => 1]);
-            Campaign::where('end', '<=', $now10)
+            Campaign::where('end', '>=', $now10)
                 ->where('check', 0)
                 ->where('status_id', 3)
                 ->update(['status_id' => 10]);
