@@ -246,7 +246,7 @@ export default {
             if(this.$can("edit_all_users")){
                 return filter;
             }else if(this.$can("edit_gsfoe_fc") && this.$can("edit_recon_users")&& this.$can("edit_scout_users")) {
-                return filter.filter(f => f.name != "Director")
+                return filter.filter(f => f.name != "Director" || f.name != "Coord")
             }else if(this.$can("edit_recon_users") && this.$can("edit_scout_users")){
                 return filter.filter(f => f.name == "Recon" || f.name == "Scout")
             }else if(this.$can("edit_gsfoe_fc")){
@@ -265,7 +265,7 @@ export default {
                     return true;
                 }
             }else if(this.$can("edit_gsfoe_fc") && this.$can("edit_recon_users")&& this.$can("edit_scout_users")) {
-                if (name == "Recon" || name == "Director") {
+                if (name == "Coord" || name == "Director") {
                     return false;
                 } else {
                     return true;
