@@ -103,14 +103,19 @@ class Campaignhelper
 
         if ($check > 0) {
 
+            Campaign::where('end','!=', null)
+                ->where('check', 0)
+                ->update(['status_id' => 3]);
+
             Campaign::where('end', null)
                 ->where('check', 0)
                 ->update(['end' => $now, 'status_id' => 3]);
             // ->update(['check' => 1]);
-            Campaign::where('end', '>=', $now10)
+            Campaign::where('end', '<=', $now10)
                 ->where('check', 0)
                 ->where('status_id', 3)
                 ->update(['status_id' => 10]);
+
         }
 
         $finished = Campaign::where('status_id', 3)
