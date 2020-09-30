@@ -6,6 +6,7 @@ use App\Models\Campaign;
 use App\Models\CampaignSystem;
 use App\Models\CampaignUser;
 use GuzzleHttp\Client;
+use GuzzleHttp\Utils;
 use utils\Helper\Helper;
 
 use function GuzzleHttp\json_decode;
@@ -39,7 +40,7 @@ class Campaignhelper
         $response = $client->request('GET', $url, [
             'headers' => $headers
         ]);
-        $response = json_decode($response->getBody(), true);
+        $response = Utils::jsonDecode($response->getBody(), true);
 
 
         foreach ($response as $var) {

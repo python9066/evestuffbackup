@@ -5,6 +5,7 @@ namespace utils\Alliancehelper;
 use GuzzleHttp\Client;
 use App\Models\Alliance;
 use utils\Helper\Helper;
+use GuzzleHttp\Utils;
 use function GuzzleHttp\json_decode;
 
 
@@ -25,7 +26,7 @@ class Alliancehelper
         $response = $client->request('GET', $url, [
             'headers' => $headers
         ]);
-        $data = json_decode($response->getBody(), true);
+        $data = Utils::jsonDecode($response->getBody(), true);
         Alliance::whereNotNull('id')->update(['active' => 0]);
         foreach ($data as $var) {
             Alliance::updateOrCreate(
@@ -56,7 +57,7 @@ class Alliancehelper
                 sleep($errorTime);
             }
             if ($response->getStatusCode() == 200) {
-                $body = json_decode($response->getBody(), true);
+                $body = Utils::jsonDecode($response->getBody(), true);
 
                 $body = array(
                     'name' => $body["name"],

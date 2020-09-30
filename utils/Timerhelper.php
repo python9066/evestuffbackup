@@ -6,6 +6,7 @@ use App\Models\Structure;
 use App\Models\System;
 use GuzzleHttp\Client;
 use utils\Helper\Helper;
+use GuzzleHttp\Utils;
 
 use function GuzzleHttp\json_decode;
 
@@ -24,7 +25,7 @@ class Timerhelper
         $response = $client->request('GET', $url, [
             'headers' => $headers
         ]);
-        $response = json_decode($response->getBody(), true);
+        $response = Utils::jsonDecode($response->getBody(), true);
         Structure::truncate();
         $data = array();
         foreach ($response as $var) {

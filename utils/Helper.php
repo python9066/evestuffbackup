@@ -7,6 +7,7 @@ use App\Models\Client;
 use App\Models\User;
 use DateTime;
 use GuzzleHttp\Client as GuzzleHttpClient;
+use GuzzleHttp\Utils;
 
 use function GuzzleHttp\json_decode;
 
@@ -50,7 +51,7 @@ class Helper
 
 
                 if ($statuscode == 200) {
-                    $data = json_decode($response->getBody(), true);
+                    $data = Utils::jsonDecode($response->getBody(), true);
                     dd($data);
                     $date = new DateTime();
                     $date = $date->modify("+15 minutes");
@@ -114,7 +115,7 @@ class Helper
         $response = $client->request('GET', $url, [
             'headers' => $headers
         ]);
-        $data = json_decode($response->getBody(), true);
+        $data = Utils::jsonDecode($response->getBody(), true);
         // echo $data;
         return $data;
     }
@@ -160,7 +161,7 @@ class Helper
         $response = $http->request('GET', 'https://esi.evetech.net/latest/status/?datasource=tranquility', [
             'headers' => $headers,
         ]);
-        $status = json_decode($response->getBody());
+        $status = Utils::jsonDecode($response->getBody());
         $status = $status->players;
 
         if ($status < 10) {
