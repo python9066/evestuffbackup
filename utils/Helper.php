@@ -27,9 +27,9 @@ class Helper
             $expire_date = new DateTime($auth->expire_date);
             $date = new DateTime();
 
-            // if ($date > $expire_date) {
-                if (1 > 0) {
-                echo "old!¬¬¬¬¬ !!!! ----";
+            if ($date > $expire_date) {
+                // if (1 > 0) {
+                // echo "old!¬¬¬¬¬ !!!! ----";
                 $client = Client::first();
                 $http = new GuzzleHttpCLient();
 
