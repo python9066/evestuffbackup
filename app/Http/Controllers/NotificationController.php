@@ -20,13 +20,13 @@ class NotificationController extends Controller
     {
         $status = Helper::checkeve();
         if ($status == 1) {
-            echo "1";
+            echo "1 - ";
             $type = "note";
             $ok = Helper::authcheck();
             echo $ok;
             if ($ok == 1) {
                 $data = Helper::authpull($type);
-                echo $data;
+                // echo $data;
                 $flag = Notifications::update($data);
                 // dd($flag);
                 if ($flag == 1) {
