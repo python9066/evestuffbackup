@@ -27,7 +27,7 @@ class Helper
             $date = new DateTime();
 
             if ($date > $expire_date) {
-
+                echo "old";
                 $client = Client::first();
                 $http = new GuzzleHttpCLient();
 
