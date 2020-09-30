@@ -22,6 +22,7 @@ class Notifications
 
 
         echo "adding shite";
+        echo '<pre>'; print_r($data); echo '</pre>';
         $current = now();
         $now = $current->modify('-10 minutes');
         $flag = 0;
