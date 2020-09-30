@@ -97,6 +97,7 @@ class Notifications
                         'timestamp' => $time,
                         'notification_type_id' => 1,
                         'status_id' => 1,
+                        'user_id' => null,
 
                     );
                     $data2 = array_merge($data, $result);
@@ -152,7 +153,6 @@ class Notifications
                         'timestamp' => $time,
                         'notification_type_id' => 2,
                         'status' => 0,
-                        'user_id' => null,
                     );
 
                     // ($data2);
@@ -193,7 +193,8 @@ class Notifications
 
                     Notification::where('si_id', $si_id)
                         ->where('item_id', $stype)
-                        ->update(['status_id' => 2]);
+                        ->update(['status_id' => 2,
+                        'user_id' => null,]);
                 }
                 Temp_notifcation::where('id', $tempnote->id)->update(['status' => 1]);
             } else {
