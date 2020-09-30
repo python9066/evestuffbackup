@@ -10,4 +10,9 @@ class testController extends Controller
     {
         return view('test2');
     }
+
+    public function notifications(Request $request)
+    {
+        return "yo yo";
+    }
 }
