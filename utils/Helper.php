@@ -46,12 +46,6 @@ class Helper
                     'headers' => $headers,
                     'body' => $body
                 ]);
-
-                $statuscode = $response->getStatusCode();
-                // dd($statuscode);
-
-
-                if ($statuscode == 200) {
                     $data = Utils::jsonDecode($response->getBody(), true);
                     echo "old -". $data['refresh_token'];
                     $date = new DateTime();
@@ -61,11 +55,7 @@ class Helper
                     $auth->expire_date = $date;
                     $auth->save();
                     return 1;
-                } else {
-                    $auth->active = 0;
-                    $auth->save();
-                    return 0;
-                }
+
             }
             return 1;
         }
