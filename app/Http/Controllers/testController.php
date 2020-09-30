@@ -32,7 +32,7 @@ class testController extends Controller
                     $text = str_replace("structureTypeID", "item_id", $text);
                     $text = Yaml::parse($text);
                     // array_pop($text);
-                    dd($text);
+
 
                     // for ($i = 0; $i < count($text); $i++) {
                     //     $lines = $text;
@@ -47,7 +47,8 @@ class testController extends Controller
                     // };
                     // dd($result);
 
-                    $si_id = $result['system_id'] . $result['item_id'];
+                    $im_id = $text['typeID'] . $text['moonID'];
+                    dd($text, $im_id);
                     $check_si_id = $si_id;
                     $check_si_id = (int)$check_si_id;
                     $si_id = array(
