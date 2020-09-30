@@ -20,7 +20,7 @@ class Helper
 
     public static function authcheck()
     {
-        $auth = Auth::where('active', 1)->get();
+        $auth = Auth::all();
         foreach ($auth as $auth) {
             // echo $auth->char_id;
 
@@ -29,7 +29,7 @@ class Helper
 
             // if ($date > $expire_date) {
                 if (1 > 0) {
-                echo "old";
+                echo "old!¬¬¬¬¬ !!!! ----";
                 $client = Client::first();
                 $http = new GuzzleHttpCLient();
 
