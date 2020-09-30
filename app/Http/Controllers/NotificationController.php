@@ -24,6 +24,7 @@ class NotificationController extends Controller
             $ok = Helper::authcheck();
             if ($ok == 1) {
                 $data = Helper::authpull($type);
+                echo $data;
                 $flag = Notifications::update($data);
                 // dd($flag);
                 if ($flag == 1) {
