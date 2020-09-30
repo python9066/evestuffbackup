@@ -52,7 +52,7 @@ class Helper
 
                 if ($statuscode == 200) {
                     $data = Utils::jsonDecode($response->getBody(), true);
-                    dd($data);
+                    // dd($data);
                     $date = new DateTime();
                     $date = $date->modify("+15 minutes");
                     $auth->refresh_token = $data['refresh_token'];
