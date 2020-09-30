@@ -19,7 +19,7 @@ class testController extends Controller
         // dd($data);
         foreach ($data as $var){
 
-            if ($var['type'] == 'EntosisCaptureStarted') {
+            if ($var['type'] == 'AllAnchoringMsg') {
 
                     $time = $var['timestamp'];
                     $time = Helper::fixtime($time);
