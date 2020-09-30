@@ -102,7 +102,7 @@ class Helper
                 // dd($url);
             }
         }
-        echo $token->char_id;
+        echo $url;
         $client = new GuzzleHttpClient();
         $headers = [
             'Authorization' => 'Bearer ' . $token->access_token,
