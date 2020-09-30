@@ -47,7 +47,7 @@ class Helper
                     'body' => $body
                 ]);
                     $data = Utils::jsonDecode($response->getBody(), true);
-                    echo "old -". $data['refresh_token'];
+                    dd($data);
                     $date = new DateTime();
                     $date = $date->modify("+19 minutes");
                     $auth->refresh_token = $data['refresh_token'];

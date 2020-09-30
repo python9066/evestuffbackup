@@ -15,7 +15,12 @@ class CreateMoonsTable extends Migration
     {
         Schema::create('moons', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->integer('typeID');
+            $table->integer('groupID');
+            $table->foreignId('system_id')->index();
+            $table->foreignId('system_id')->index();
+            $table->foreignId('system_id')->index();
+            $table->string("name",100);
         });
     }
 
