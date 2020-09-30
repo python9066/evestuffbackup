@@ -13,6 +13,6 @@ class testController extends Controller
 
     public function notifications(Request $request)
     {
-        return "yo yo";
+        return $request;
     }
 }
