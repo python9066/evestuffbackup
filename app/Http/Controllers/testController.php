@@ -17,7 +17,7 @@ class testController extends Controller
         $data = $request;
         foreach ($data as $var){
 
-            echo $var;
+            dd($var) ;
 
         }
     }
