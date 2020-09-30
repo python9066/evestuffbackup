@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use GuzzleHttp\Utils;
 use Illuminate\Http\Request;
 use utils\Helper\Helper;
 
@@ -14,6 +15,7 @@ class testController extends Controller
 
     public function notifications(Request $request)
     {
+        Utils::jsonDecode($request);
         dd($request);
         foreach ($request as $var){
             dd($var);
