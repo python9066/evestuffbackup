@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use GuzzleHttp\Utils;
 use Illuminate\Http\Request;
 use utils\Helper\Helper;
+use Symfony\Component\Yaml\Yaml;
 
 class testController extends Controller
 {
@@ -29,9 +30,9 @@ class testController extends Controller
                     // $text = explode("\n", $text);
                     $text = str_replace("solarSystemID", "system_id", $text);
                     $text = str_replace("structureTypeID", "item_id", $text);
-                    $text = \yaml_parse($text);
+                    $text = Yaml::parse($text);
                     // array_pop($text);
-                    // dd($text);
+                    dd($text);
 
                     for ($i = 0; $i < count($text); $i++) {
                         $lines = $text;
