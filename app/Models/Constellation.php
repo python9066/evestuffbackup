@@ -19,6 +19,11 @@ class Constellation extends Model
         return $this->hasMany(Campaign::class);
     }
 
+    public function moons()
+    {
+        return $this->hasMany(Moon::class);
+    }
+
     protected $casts = [
         'id' => 'integer',
         'region_id' => 'integer',

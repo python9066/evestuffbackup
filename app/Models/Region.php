@@ -18,6 +18,11 @@ class Region extends Model
         return $this->hasMany(Constellation::class);
     }
 
+    public function moons()
+    {
+        return $this->hasMany(Moon::class);
+    }
+
     protected $casts = [
         'id' => 'integer',
     ];

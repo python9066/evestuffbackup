@@ -28,6 +28,11 @@ class System extends Model
         return $this->hasMany(Campaign::class);
     }
 
+    public function moons()
+    {
+        return $this->hasMany(Moon::class);
+    }
+
     protected $casts = [
         'region_id ' => 'integer',
         'constellation_id' => 'integer',
