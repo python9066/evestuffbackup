@@ -76,7 +76,7 @@ class Helper
             $token = Auth::where('flag_standing', 0)
                 ->where('active', 1)->first();
             // dd($token);
-
+            echo "auth pull - ";
             if ($token == null) {
                 Auth::where('flag_standing', 1)->update(['flag_standing' => 0]);
                 $token = Auth::where('flag_standing', 0)->first();
@@ -90,6 +90,7 @@ class Helper
             $token = Auth::where('flag_note', 0)->first();
 
             if ($token == null) {
+                echo "yo yo yo";
                 Auth::where('flag_note', 1)->update(['flag_note' => 0]);
                 $token = Auth::where('flag_standing', 0)
                     ->where('active', 1)->first();
