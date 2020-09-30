@@ -21,7 +21,7 @@ class Helper
     {
         $auth = Auth::where('active', 1)->get();
         foreach ($auth as $auth) {
-            echo $auth->char_id;
+            // echo $auth->char_id;
 
             $expire_date = new DateTime($auth->expire_date);
             $date = new DateTime();
@@ -103,7 +103,7 @@ class Helper
                 // dd($url);
             }
         }
-        echo $url.":url";
+        // echo $url.":url";
         $client = new GuzzleHttpClient();
         $headers = [
             'Authorization' => 'Bearer ' . $token->access_token,
