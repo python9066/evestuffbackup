@@ -12,8 +12,9 @@ class testController extends Controller
         return view('test2');
     }
 
-    public function notifications(Request $data)
+    public function notifications(Request $request)
     {
+        $data = $request;
         foreach ($data as $var){
             if($var['type' == 'AllAnchoringMsg']){
                 $time = $var['timestamp'];
