@@ -21,7 +21,7 @@ class Helper
     {
         $auth = Auth::where('active', 1)->get();
         foreach ($auth as $auth) {
-
+            echo $auth->char_id;
 
             $expire_date = new DateTime($auth->expire_date);
             $date = new DateTime();
@@ -30,6 +30,7 @@ class Helper
 
                 $client = Client::first();
                 $http = new GuzzleHttpCLient();
+
 
                 $headers = [
                     'Authorization' => 'Basic ' . $client->code,
