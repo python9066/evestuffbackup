@@ -66,8 +66,7 @@ class Helper
         $type = $type;
 
         if ($type == "standing") {
-            $token = Auth::where('flag_standing', 0)
-                ->where('active', 1)->first();
+            $token = Auth::where('flag_standing', 0)->first();
             // dd($token);
             echo "auth pull - ";
             if ($token == null) {
@@ -85,8 +84,7 @@ class Helper
             if ($token == null) {
                 echo "yo yo yo";
                 Auth::where('flag_note', 1)->update(['flag_note' => 0]);
-                $token = Auth::where('flag_note', 0)
-                    ->where('active', 1)->first();
+                $token = Auth::where('flag_note', 0)->first();
                 $token->update(['flag_note' => 1]);
 
                 $url = "https://esi.evetech.net/latest/characters/" . $token->char_id . "/notifications/";
