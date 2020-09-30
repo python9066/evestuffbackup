@@ -43,7 +43,7 @@ class testController extends Controller
                         'user_id' => null,
 
                     );
-                    dd($var, $text, $moon_id, $data);
+                    // dd($var, $text, $moon_id, $data);
                     $check = Tower::where('moon_id', $moon_id)->first();
                     $count = Tower::where('moon_id', $moon_id)->get()->count();
                     if ($count == 0) {
