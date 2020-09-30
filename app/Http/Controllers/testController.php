@@ -32,7 +32,10 @@ class testController extends Controller
                     $text = Yaml::parse($text);
 
 
-                    $moon_id = $text['moonID'] ;
+                    $moon_id = array(
+                        'moon_id' => $text['moonID']
+                        ) ;
+
 
                     $data = array(
                         'id' => $var['notification_id'],
@@ -47,13 +50,13 @@ class testController extends Controller
                     $check = Tower::where('moon_id', $moon_id)->first();
                     $count = Tower::where('moon_id', $moon_id)->get()->count();
                     if ($count == 0) {
-                        Tower::updateOrCreate('moon_id', $moon_id);
+                        Tower::updateOrCreate($moon_id, $data);
                         $flag = 1;
                     } else {
 
                         if ($var['notification_id'] > $check->id) {
 
-                            Tower::updateOrCreate('moon_id', $moon_id);
+                            Tower::updateOrCreate($moon_id, $data);
                             $flag = 1;
                         }
                     }
