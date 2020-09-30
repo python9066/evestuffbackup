@@ -54,11 +54,9 @@ class Helper
                     $auth->access_token = $data['access_token'];
                     $auth->expire_date = $date;
                     $auth->save();
-                    return 1;
 
             }
         }
-        return 1;
     }
 
     public static function authpull($type)

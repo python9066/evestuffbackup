@@ -21,10 +21,7 @@ class NotificationController extends Controller
         $status = Helper::checkeve();
         if ($status == 1) {
             echo " status 1 - ";
-            $type = "note";
-            $ok = Helper::authcheck();
-            echo $ok;
-            if ($ok == 1) {
+            $type = "note";Helper::authcheck();
                 $data = Helper::authpull($type);
                 // echo $data;
                 $flag = Notifications::update($data);
@@ -32,7 +29,6 @@ class NotificationController extends Controller
                 if ($flag == 1) {
                     broadcast(new NotificationNew($flag))->toOthers();
                 }
-            }
         }
     }
 
