@@ -26,7 +26,7 @@ class testController extends Controller
                     $text = str_replace("solarSystemID", "system_id", $text);
                     $text = str_replace("structureTypeID", "item_id", $text);
                     array_pop($text);
-                    dd($text);
+                    echo $text;
                     for ($i = 0; $i < count($text); $i++) {
                         $lines = $text;
                         $keys = explode(':', $lines[$i]);
