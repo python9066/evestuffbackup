@@ -20,7 +20,7 @@ class NotificationController extends Controller
     {
         $status = Helper::checkeve();
         if ($status == 1) {
-            echo "1 - ";
+            echo " status 1 - ";
             $type = "note";
             $ok = Helper::authcheck();
             echo $ok;
