@@ -13,9 +13,9 @@ class testController extends Controller
         return view('test2');
     }
 
-    public function notifications(Request $data)
+    public function notifications(Request $request)
     {
-        $data = json_decode($data);
+        $data = json_decode($request);
         dd($data);
         foreach ($data as $var){
             dd($var);
