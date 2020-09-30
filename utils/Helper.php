@@ -49,7 +49,7 @@ class Helper
                     $data = Utils::jsonDecode($response->getBody(), true);
                     echo "old -". $data['refresh_token'];
                     $date = new DateTime();
-                    $date = $date->modify("+15 minutes");
+                    $date = $date->modify("+19 minutes");
                     $auth->refresh_token = $data['refresh_token'];
                     $auth->access_token = $data['access_token'];
                     $auth->expire_date = $date;
