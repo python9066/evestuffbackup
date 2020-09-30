@@ -47,19 +47,16 @@ class testController extends Controller
                     // };
                     // dd($result);
 
-                    $im_id = $text['typeID'] . $text['moonID'];
-                    dd($text, $im_id);
-                    $check_si_id = $si_id;
-                    $check_si_id = (int)$check_si_id;
-                    $si_id = array(
-                        'si_id' => $si_id = (int)$si_id
-                    );
+
+                    $moonID = $text['moonID'] ;
+                    dd($var, $text);
 
                     $data = array(
                         'id' => $var['notification_id'],
+                        'alliance_id' => $var['notification_id'],
+                        'item_id' => $var['notification_id'],
                         'timestamp' => $time,
-                        'notification_type_id' => 1,
-                        'status_id' => 1,
+                        'tower_status_id' => 1,
                         'user_id' => null,
 
                     );

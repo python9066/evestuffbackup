@@ -20,7 +20,7 @@ class CreateTowersTable extends Migration
             $table->foreignId('moon_id')->index();
             $table->foreignId('tower_status_id')->default(1);
             $table->dateTime('timestamp');
-            $table->bigInteger('im_id');
+            $table->foreignId('user_id')->nullable();
             $table->timestamps();
         });
     }
