@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Tower;
 use GuzzleHttp\Utils;
 use Illuminate\Http\Request;
 use utils\Helper\Helper;
@@ -24,32 +25,14 @@ class testController extends Controller
 
                     $time = $var['timestamp'];
                     $time = Helper::fixtime($time);
-                    $result = array();
                     $data = array();
                     $text = $var['text'];
-                    // $text = explode("\n", $text);
                     $text = str_replace("solarSystemID", "system_id", $text);
                     $text = str_replace("structureTypeID", "item_id", $text);
                     $text = Yaml::parse($text);
-                    // array_pop($text);
 
 
-                    // for ($i = 0; $i < count($text); $i++) {
-                    //     $lines = $text;
-                    //     $keys = explode(':', $lines[$i]);
-                    //     $item = $keys;
-                    //     array_pop($keys);
-                    //     unset($item[0]);
-                    //     $item = array_map('trim', $item);
-                    //     $item[1] = (int)$item[1];
-                    //     $item = array_values($item);
-                    //     $result[$keys[0]] = $item[0];
-                    // };
-                    // dd($result);
-
-
-                    $moonID = $text['moonID'] ;
-                    dd($var, $text);
+                    $moon_id = $text['moonID'] ;
 
                     $data = array(
                         'id' => $var['notification_id'],
@@ -60,17 +43,17 @@ class testController extends Controller
                         'user_id' => null,
 
                     );
-                    $data2 = array_merge($data, $result);
-                    $check = Notification::where('si_id', $check_si_id)->first();
-                    $count = Notification::where('si_id', $check_si_id)->get()->count();
+                    dd($var, $text, $moon_id, $data);
+                    $check = Tower::where('moon_id', $moon_id)->first();
+                    $count = Tower::where('moon_id', $moon_id)->get()->count();
                     if ($count == 0) {
-                        Notification::updateOrCreate($si_id, $data2);
+                        Tower::updateOrCreate('moon_id', $moon_id);
                         $flag = 1;
                     } else {
 
                         if ($var['notification_id'] > $check->id) {
 
-                            Notification::updateOrCreate($si_id, $data2);
+                            Tower::updateOrCreate('moon_id', $moon_id);
                             $flag = 1;
                         }
                     }
