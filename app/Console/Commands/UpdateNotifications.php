@@ -46,7 +46,7 @@ class UpdateNotifications extends Command
             $ok = Helper::authcheck();
             if ($ok == 1) {
                 $data = Helper::authpull($type);
-                echo "hi - "
+                echo "hi - ";
                 $flag = Notifications::update($data);
                 // dd($flag);
                 if ($flag == 1) {
