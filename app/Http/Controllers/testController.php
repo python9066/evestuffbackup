@@ -16,7 +16,7 @@ class testController extends Controller
     public function notifications(Request $request)
     {
         $data =  $request->toArray();
-        dd($data);
+        // dd($data);
         foreach ($data as $var){
             dd($var);
         }
