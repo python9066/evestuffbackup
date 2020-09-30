@@ -94,7 +94,7 @@ class Helper
             if ($token == null) {
                 echo "yo yo yo";
                 Auth::where('flag_note', 1)->update(['flag_note' => 0]);
-                $token = Auth::where('flag_standing', 0)
+                $token = Auth::where('flag_note', 0)
                     ->where('active', 1)->first();
                 $token->update(['flag_note' => 1]);
 
