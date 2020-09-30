@@ -41,13 +41,13 @@ class Helper
 
                 ];
                 $body = 'grant_type=refresh_token&refresh_token=' . $auth->refresh_token;
-                echo "refresh". $auth->user_id;
+                // echo "refresh". $auth->user_id;
                 $response = $http->request('POST', 'https://login.eveonline.com/v2/oauth/token', [
                     'headers' => $headers,
                     'body' => $body
                 ]);
                     $data = Utils::jsonDecode($response->getBody(), true);
-                    dd($data);
+                    // dd($data);
                     $date = new DateTime();
                     $date = $date->modify("+19 minutes");
                     $auth->refresh_token = $data['refresh_token'];
