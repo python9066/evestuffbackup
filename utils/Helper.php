@@ -57,8 +57,8 @@ class Helper
                     return 1;
 
             }
-            return 1;
         }
+        return 1;
     }
 
     public static function authpull($type)
