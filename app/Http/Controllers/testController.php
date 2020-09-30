@@ -30,7 +30,7 @@ class testController extends Controller
                     $text = str_replace("solarSystemID", "system_id", $text);
                     $text = str_replace("structureTypeID", "item_id", $text);
                     array_pop($text);
-                    dd($text);
+                    // dd($text);
 
                     for ($i = 0; $i < count($text); $i++) {
                         $lines = $text;
@@ -43,6 +43,7 @@ class testController extends Controller
                         $item = array_values($item);
                         $result[$keys[0]] = $item[0];
                     };
+                    dd($result);
                     $si_id = $result['system_id'] . $result['item_id'];
                     $check_si_id = $si_id;
                     $check_si_id = (int)$check_si_id;
