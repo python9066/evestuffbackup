@@ -26,10 +26,11 @@ class testController extends Controller
                     $result = array();
                     $data = array();
                     $text = $var['text'];
-                    $text = explode("\n", $text);
+                    // $text = explode("\n", $text);
                     $text = str_replace("solarSystemID", "system_id", $text);
                     $text = str_replace("structureTypeID", "item_id", $text);
-                    array_pop($text);
+                    $text = \yaml_parse($text);
+                    // array_pop($text);
                     // dd($text);
 
                     for ($i = 0; $i < count($text); $i++) {
