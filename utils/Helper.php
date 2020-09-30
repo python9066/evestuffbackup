@@ -49,9 +49,9 @@ class Helper
                 // dd($statuscode);
 
 
-                //dd($response);
                 if ($statuscode == 200) {
                     $data = json_decode($response->getBody(), true);
+                    dd($data);
                     $date = new DateTime();
                     $date = $date->modify("+15 minutes");
                     $auth->refresh_token = $data['refresh_token'];
