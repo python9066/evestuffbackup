@@ -13,11 +13,11 @@ class testController extends Controller
         return view('test2');
     }
 
-    public function notifications(Request $request)
+    public function notifications(Request $data)
     {
-        Utils::jsonDecode($request, true);
-        dd($request);
-        foreach ($request as $var){
+        json_decode($data);
+        dd($data);
+        foreach ($data as $var){
             dd($var);
         }
     }
