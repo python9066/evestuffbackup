@@ -15,7 +15,7 @@ class testController extends Controller
 
     public function notifications(Request $request)
     {
-        Utils::jsonDecode($request);
+        Utils::jsonDecode($request, true);
         dd($request);
         foreach ($request as $var){
             dd($var);
