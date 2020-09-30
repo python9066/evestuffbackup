@@ -34,18 +34,19 @@ class testController extends Controller
                     // array_pop($text);
                     dd($text);
 
-                    for ($i = 0; $i < count($text); $i++) {
-                        $lines = $text;
-                        $keys = explode(':', $lines[$i]);
-                        $item = $keys;
-                        array_pop($keys);
-                        unset($item[0]);
-                        $item = array_map('trim', $item);
-                        $item[1] = (int)$item[1];
-                        $item = array_values($item);
-                        $result[$keys[0]] = $item[0];
-                    };
-                    dd($result);
+                    // for ($i = 0; $i < count($text); $i++) {
+                    //     $lines = $text;
+                    //     $keys = explode(':', $lines[$i]);
+                    //     $item = $keys;
+                    //     array_pop($keys);
+                    //     unset($item[0]);
+                    //     $item = array_map('trim', $item);
+                    //     $item[1] = (int)$item[1];
+                    //     $item = array_values($item);
+                    //     $result[$keys[0]] = $item[0];
+                    // };
+                    // dd($result);
+
                     $si_id = $result['system_id'] . $result['item_id'];
                     $check_si_id = $si_id;
                     $check_si_id = (int)$check_si_id;
