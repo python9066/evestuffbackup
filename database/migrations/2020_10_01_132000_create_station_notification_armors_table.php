@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Schema;
 class CreateStationNotificationArmorsTable extends Migration
 {
     /**
-     * Run the migrations.
+     * Run the migrat ions.
      *
      * @return void
      */

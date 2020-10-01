@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Schema;
 class CreateStationNotificationShieldsTable extends Migration
 {
     /**
-     * Run the migrations.
+     * Run the migra  tions.
      *
      * @return void
      */
