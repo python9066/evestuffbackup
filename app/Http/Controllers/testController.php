@@ -141,6 +141,7 @@ class testController extends Controller
                     Station::Create([
                         'id' => $text['structureID'],
                         'name' => $stationdata['name'],
+                        'system_id' => $stationdata['solar_system_id'],
                         'item_id' => $stationdata['type_id'],
                         'station_status_id' => 4,
                     ]);
@@ -148,6 +149,13 @@ class testController extends Controller
                 }else{
                 Station::where('id',$text['structureID'])->update(['station_status_id' => 4]);
                 }
+
+                $data = array(
+                    'id' => $var['notification_id'],
+                    'timestamp' => $time,
+                    'user_id' => null
+
+                );
 
                 $check = StationNotificationShield::where('station_id', $station_id)->first();
                 $count = StationNotificationShield::where('station_id', $station_id)->get()->count();
