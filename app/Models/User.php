@@ -50,6 +50,12 @@ class User extends Authenticatable
         return $this->hasMany(CampaignSystemUsers::class);
     }
 
+    public function stationNotification()
+    {
+        return $this->hasMany(StationNotification::class);
+    }
+
+
 
 
     public function getAllPermissionsAttribute() {

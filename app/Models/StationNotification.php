@@ -9,4 +9,16 @@ class StationNotification extends Model
 {
     use HasFactory;
     protected $guarded =[];
+
+
+    public function station()
+    {
+        return $this->hasOne(Station::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
 }

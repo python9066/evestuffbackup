@@ -8,4 +8,21 @@ use Illuminate\Database\Eloquent\Model;
 class Station extends Model
 {
     use HasFactory;
+    protected $guarded =[];
+
+    public function system()
+    {
+        return $this->belongsTo(System::class);
+    }
+
+    public function notification()
+    {
+        return $this->hasOne(StationNotification::class);
+    }
+
+    public function item()
+    {
+        return $this->belongsTo(Item::class);
+    }
+
 }

@@ -23,6 +23,11 @@ class System extends Model
         return $this->hasMany(Structure::class);
     }
 
+    public function stations()
+    {
+        return $this->hasMany(Station::class);
+    }
+
     public function campaigns()
     {
         return $this->hasMany(Campaign::class);
