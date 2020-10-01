@@ -18,11 +18,6 @@ class Notifications
 
     public static function update($data)
     {
-
-
-
-        echo "addingffff shite";
-        echo '<pre>'; print_r($data); echo '</pre>';
         $current = now();
         $now = $current->modify('-10 minutes');
         $flag = 0;
@@ -194,8 +189,10 @@ class Notifications
 
                     Notification::where('si_id', $si_id)
                         ->where('item_id', $stype)
-                        ->update(['status_id' => 2,
-                        'user_id' => null,]);
+                        ->update([
+                            'status_id' => 2,
+                            'user_id' => null,
+                        ]);
                 }
                 Temp_notifcation::where('id', $tempnote->id)->update(['status' => 1]);
             } else {
