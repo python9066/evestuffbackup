@@ -92,10 +92,7 @@ class testController extends Controller
                         'item_id' => $stationdata['type_id'],
                         'text' => null,
                         'user_id' => null,
-                        'station_status_id' => 1,
                     ]);
-                } else {
-                    Station::where('id', $text['structureID'])->update(['station_status_id' => 1, 'user_id' => null]);
                 }
 
                 $data = array(
@@ -144,10 +141,7 @@ class testController extends Controller
                         'item_id' => $stationdata['type_id'],
                         'text' => null,
                         'user_id' => null,
-                        'station_status_id' => 4,
                     ]);
-                } else {
-                    Station::where('id', $text['structureID'])->update(['station_status_id' => 4, 'user_id' => null]);
                 }
 
                 $data = array(
@@ -199,10 +193,7 @@ class testController extends Controller
                         'item_id' => $stationdata['type_id'],
                         'text' => null,
                         'user_id' => null,
-                        'station_status_id' => 5,
                     ]);
-                } else {
-                    Station::where('id', $text['structureID'])->update(['station_status_id' => 5, 'user_id' => null]);
                 }
 
                 $data = array(
@@ -231,7 +222,11 @@ class testController extends Controller
         $shield = StationNotificationShield::where('status',0)->get();
         foreach($shield as $shield){
             $station_id = $shield->station_id;
-            dd($station_id,$shield);
+            $check = StationNotification::where('station_id',$station_id)->get();
+            if ($check->count() == 1){
+
+               dd($check);
+            }
         }
 
     }
