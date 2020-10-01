@@ -16,7 +16,6 @@ class CreateStationNotificationsTable extends Migration
         Schema::create('station_notifications', function (Blueprint $table) {
             $table->id();
             $table->foreignId('station_id')->index();
-            $table->foreignId('system_id')->index();
             $table->integer('status_id')->default(1)->index();
             $table->string('text')->nullable()->default(null);
             $table->foreignId('user_id')->nullable()->index();
