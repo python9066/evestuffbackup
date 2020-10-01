@@ -224,9 +224,8 @@ class testController extends Controller
             $station_id = $shield->station_id;
             $check = StationNotification::where('station_id',$station_id)->get();
             if ($check->count() == 1){
-                dd($check->first()->id);
 
-                if ($shield->id > $check['id']){
+                if ($shield->id > $check->first()->id){
                     echo "yay";
                 }else{
                     echo "no";
