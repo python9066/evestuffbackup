@@ -26,10 +26,6 @@ Broadcast::channel('notes', function () {
     return Auth::check();
   });
 
-  Broadcast::channel('campaigns', function () {
-    return Auth::check();
-  });
-
   Broadcast::channel('campaignsystem.{id}', function () {
     return Auth::check();
   });
@@ -39,5 +35,9 @@ Broadcast::channel('notes', function () {
   });
 
   Broadcast::channel('campaignsystemmembers.{id}', function () {
+    return Auth::check();
+  });
+
+  Broadcast::channel('stations', function () {
     return Auth::check();
   });
