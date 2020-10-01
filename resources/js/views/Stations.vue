@@ -452,7 +452,7 @@
                 <p v-if="$can('edit_notifications')"> {{item.user_name}}</p>
             </template>
 
-            <template  v-slot:item.station_name="{ item } " class ="d-flex align-center" >
+            <template  v-slot:item.station_name="{ item } " class ="d-inline-flex align-center" >
                <p>{{item.item_name}} - {{item.station_name}}</p>
             </template>
         </v-data-table>
