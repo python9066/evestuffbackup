@@ -105,7 +105,7 @@
 
                                 <v-icon v-if="item.station_status_id == 2" left>faSvg fa-road</v-icon>
 
-                                <v-icon v-if="item.station_status_id == 3" left>faSvg fa-bomb</v-icon>
+                                <v-icon v-if="item.station_status_id == 3" left>faSvg fa-fighter-jet</v-icon>
 
                                 <v-icon v-if="item.station_status_id == 4" left>faSvg fa-thumbs-up</v-icon>
 
