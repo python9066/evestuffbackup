@@ -79,34 +79,33 @@ class testController extends Controller
                 );
 
 
-                $stationcheck = Station::where('id',$text['structureID'])->get()->count();
+                $stationcheck = Station::where('id', $text['structureID'])->get()->count();
                 echo $stationcheck;
-                if($stationcheck == 0){
+                if ($stationcheck == 0) {
                     Helper::authcheck();
-                    $stationdata = Helper::authpull('station',$text['structureID']);
+                    $stationdata = Helper::authpull('station', $text['structureID']);
 
                     Station::Create([
                         'id' => $text['structureID'],
                         'name' => $stationdata['name'],
                         'system_id' => $stationdata['solar_system_id'],
                         'item_id' => $stationdata['type_id'],
+                        'text' => null,
+                        'user_id' => null,
                         'station_status_id' => 1,
                     ]);
-
-                }else{
-                Station::where('id',$text['structureID'])->update(['station_status_id' => 1]);
+                } else {
+                    Station::where('id', $text['structureID'])->update(['station_status_id' => 1, 'user_id' => null]);
                 }
 
                 $data = array(
                     'id' => $var['notification_id'],
                     'timestamp' => $time,
-                    'user_id' => null
-
                 );
                 $check = StationNotification::where('station_id', $station_id)->first();
                 $count = StationNotification::where('station_id', $station_id)->get()->count();
                 if ($count == 0) {
-                    StationNotification::updateOrCreate($station_id,$data);
+                    StationNotification::updateOrCreate($station_id, $data);
                     $flag = 1;
                 } else {
 
@@ -116,8 +115,7 @@ class testController extends Controller
                         $flag = 1;
                     }
                 }
-
-            }elseif($var['type'] == 'StructureLostShields'){
+            } elseif ($var['type'] == 'StructureLostShields') {
 
                 $time = $var['timestamp'];
                 $time = Helper::fixtime($time);
@@ -133,22 +131,23 @@ class testController extends Controller
                     'station_id' => $text['structureID'],
                 );
 
-                $stationcheck = Station::where('id',$text['structureID'])->get()->count();
+                $stationcheck = Station::where('id', $text['structureID'])->get()->count();
                 // echo $stationcheck;
-                if($stationcheck == 0){
+                if ($stationcheck == 0) {
                     Helper::authcheck();
-                    $stationdata = Helper::authpull('station',$text['structureID']);
+                    $stationdata = Helper::authpull('station', $text['structureID']);
 
                     Station::Create([
                         'id' => $text['structureID'],
                         'name' => $stationdata['name'],
                         'system_id' => $stationdata['solar_system_id'],
                         'item_id' => $stationdata['type_id'],
+                        'text' => null,
+                        'user_id' => null,
                         'station_status_id' => 4,
                     ]);
-
-                }else{
-                Station::where('id',$text['structureID'])->update(['station_status_id' => 4]);
+                } else {
+                    Station::where('id', $text['structureID'])->update(['station_status_id' => 4, 'user_id' => null]);
                 }
 
                 $data = array(
@@ -161,7 +160,7 @@ class testController extends Controller
                 $count = StationNotificationShield::where('station_id', $station_id)->get()->count();
 
                 if ($count == 0) {
-                    StationNotificationShield::updateOrCreate($station_id,$data);
+                    StationNotificationShield::updateOrCreate($station_id, $data);
                     $flag = 1;
                 } else {
 
@@ -171,7 +170,7 @@ class testController extends Controller
                         $flag = 1;
                     }
                 }
-            }elseif($var['type'] == 'StructureLostArmor'){
+            } elseif ($var['type'] == 'StructureLostArmor') {
 
                 $time = $var['timestamp'];
                 $time = Helper::fixtime($time);
@@ -187,22 +186,23 @@ class testController extends Controller
                     'station_id' => $text['structureID'],
                 );
 
-                $stationcheck = Station::where('id',$text['structureID'])->get()->count();
+                $stationcheck = Station::where('id', $text['structureID'])->get()->count();
                 // echo $stationcheck;
-                if($stationcheck == 0){
+                if ($stationcheck == 0) {
                     Helper::authcheck();
-                    $stationdata = Helper::authpull('station',$text['structureID']);
+                    $stationdata = Helper::authpull('station', $text['structureID']);
 
                     Station::Create([
                         'id' => $text['structureID'],
                         'name' => $stationdata['name'],
                         'system_id' => $stationdata['solar_system_id'],
                         'item_id' => $stationdata['type_id'],
+                        'text' => null,
+                        'user_id' => null,
                         'station_status_id' => 5,
                     ]);
-
-                }else{
-                Station::where('id',$text['structureID'])->update(['station_status_id' => 5]);
+                } else {
+                    Station::where('id', $text['structureID'])->update(['station_status_id' => 5, 'user_id' => null]);
                 }
 
                 $data = array(
@@ -215,7 +215,7 @@ class testController extends Controller
                 $count = StationNotificationArmor::where('station_id', $station_id)->get()->count();
 
                 if ($count == 0) {
-                    StationNotificationArmor::updateOrCreate($station_id,$data);
+                    StationNotificationArmor::updateOrCreate($station_id, $data);
                     $flag = 1;
                 } else {
 
