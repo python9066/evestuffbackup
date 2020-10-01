@@ -123,7 +123,7 @@
                                     icon
                                     @click="expanded = [item], expanded_id = item.id"
                                     v-if="
-                                        item.status_id == 5 &&
+                                        item.station_status_id == 5 &&
                                             !expanded.includes(item)
                                     "
                                     color="success"
@@ -133,7 +133,7 @@
                                     icon
                                     @click="expanded = [], expanded_id = 0"
                                     v-if="
-                                        item.status_id == 5 &&
+                                        item.station_status_id == 5 &&
                                             expanded.includes(item)
                                     "
                                     color="error"
@@ -402,25 +402,25 @@ export default {
 
         click(item) {
 
-            // if(item.status !=5){
-            //     this.expanded = [];
-            //     item.text = null;
-            // }
+            if(item.status !=5){
+                this.expanded = [];
+                item.text = null;
+            }
 
-            // var request = {
-            //     status_id: item.status_id,
-            //     user_id: this.$store.state.user_id,
-            // };
-            // axios({
-            //     method: 'put', //you can set what request you want to be
-            //     url: "api/notifications/" + item.id,
-            //     data: request,
-            //     headers: {
-            //         Authorization: 'Bearer ' + this.$store.state.token,
-            //         Accept: "application/json",
-            //         "Content-Type": "application/json",
-            //     }
-            // })
+            var request = {
+                station_status_id: item.station_status_id,
+                user_id: this.$store.state.user_id,
+            };
+            axios({
+                method: 'put', //you can set what request you want to be
+                url: "api/stations/" + item.id,
+                data: request,
+                headers: {
+                    Authorization: 'Bearer ' + this.$store.state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json",
+                }
+            })
 
         },
 
