@@ -265,6 +265,7 @@ class testController extends Controller
                 StationNotificationShield::where('id', $shield->id)->update(['status' => 1]);
             } else {
                 StationNotificationShield::where('id', $shield->id)->update(['status' => 1]);
+                echo "here";
                 Station::where('id', $shield->station_id)->update(['station_status_id' => 4, 'timestamp' => $shield->timestamp]);
             }
         }
