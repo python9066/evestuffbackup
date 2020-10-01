@@ -99,7 +99,7 @@
                                 v-on="on"
                                 tile
                                 outlined
-                                :color='pillColor(item.status_id)'
+                                :color='pillColor(item.station_status_id)'
                             >
                                 <v-icon v-if="item.station_status_id == 1" left>faSvg fa-plus</v-icon>
 
