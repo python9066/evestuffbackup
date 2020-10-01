@@ -15,6 +15,9 @@ class CreateStationNotificationShieldsTable extends Migration
     {
         Schema::create('station_notification_shields', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('system_id')->index();
+            $table->foreignId('station_id')->index();
+            $table->dateTime('timestamp');
             $table->timestamps();
         });
     }
