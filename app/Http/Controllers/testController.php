@@ -99,6 +99,7 @@ class testController extends Controller
                 $data = array(
                     'id' => $var['notification_id'],
                     'timestamp' => $time,
+                    'user_id' => null
 
                 );
                 $check = StationNotification::where('station_id', $station_id)->first();
@@ -152,7 +153,6 @@ class testController extends Controller
                 $data = array(
                     'id' => $var['notification_id'],
                     'timestamp' => $time,
-                    'user_id' => null
 
                 );
 
