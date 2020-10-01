@@ -97,7 +97,7 @@ class Notifications
 
                     );
                     $data2 = array_merge($data, $result);
-                    $check = Notification::where('si_id', $check_si_id)->get();
+                    $check = Notification::where('si_id', $check_si_id)->get()->pluck('id');
                     $count = Notification::where('si_id', $check_si_id)->get()->count();
                     if ($count == 0) {
                         Notification::updateOrCreate($si_id, $data2);
@@ -105,7 +105,7 @@ class Notifications
                     } else {
                         dd($check);
 
-                        if ($var['notification_id'] > $check->id) {
+                        if ($var['notification_id'] > $check) {
 
                             Notification::updateOrCreate($si_id, $data2);
                             $flag = 1;
