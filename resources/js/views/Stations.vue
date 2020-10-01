@@ -336,7 +336,7 @@ export default {
                 this.$store.dispatch('updateStations',item)
                 axios({
                 method: 'put', //you can set what request you want to be
-                url: "api/stations/" + item.id,
+                url: "api/stationrecords/" + item.id,
                 data: request,
                 headers: {
                     Authorization: 'Bearer ' + this.$store.state.token,
@@ -413,7 +413,7 @@ export default {
             };
             axios({
                 method: 'put', //you can set what request you want to be
-                url: "api/stations/" + item.id,
+                url: "api/stationrecords/" + item.id,
                 data: request,
                 headers: {
                     Authorization: 'Bearer ' + this.$store.state.token,
