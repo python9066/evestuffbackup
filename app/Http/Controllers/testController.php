@@ -22,6 +22,19 @@ class testController extends Controller
     public function notifications(Request $request)
     {
         $data =  $request->toArray();
+        $current = now();
+        $now = $current->modify('-10 minutes');
+        $stationflag = 0;
+
+        $stationCheck = Station::where('station_status_id', 4)
+                        ->orWhere('station_status_id',5)
+                        ->get()
+                        ->count();
+        if ($stationCheck > 0){
+
+
+
+        }
         // dd($data);
         foreach ($data as $var) {
 
@@ -55,13 +68,13 @@ class testController extends Controller
                 $count = Tower::where('moon_id', $moon_id)->get()->count();
                 if ($count == 0) {
                     Tower::updateOrCreate($moon_id, $data);
-                    $flag = 1;
+                    $stationflag = 1;
                 } else {
 
                     if ($var['notification_id'] > $check->id) {
 
                         Tower::updateOrCreate($moon_id, $data);
-                        $flag = 1;
+                        $stationflag = 1;
                     }
                 }
             } elseif ($var['type'] == 'StructureUnderAttack') {
@@ -80,7 +93,6 @@ class testController extends Controller
 
 
                 $stationcheck = Station::where('id', $text['structureID'])->get()->count();
-                echo $stationcheck;
                 if ($stationcheck == 0) {
                     Helper::authcheck();
                     $stationdata = Helper::authpull('station', $text['structureID']);
@@ -92,7 +104,17 @@ class testController extends Controller
                         'item_id' => $stationdata['type_id'],
                         'text' => null,
                         'user_id' => null,
+                        'station_status_id' => 1,
+                        'timestamp' =>$time,
                     ]);
+                }else{
+
+                    $data = array(
+                        'timestamp' => $time,
+                        'user_id' => null,
+                        'text' => null,
+                    );
+                    Station::updateOrCreate($station_id,$data);
                 }
 
                 $data = array(
@@ -103,13 +125,13 @@ class testController extends Controller
                 $count = StationNotification::where('station_id', $station_id)->get()->count();
                 if ($count == 0) {
                     StationNotification::updateOrCreate($station_id, $data);
-                    $flag = 1;
+                    $stationflag = 1;
                 } else {
 
                     if ($var['notification_id'] > $check->id) {
 
                         StationNotification::updateOrCreate($station_id, $data);
-                        $flag = 1;
+                        $stationflag = 1;
                     }
                 }
             } elseif ($var['type'] == 'StructureLostShields') {
@@ -155,13 +177,13 @@ class testController extends Controller
 
                 if ($count == 0) {
                     StationNotificationShield::updateOrCreate($station_id, $data);
-                    $flag = 1;
+                    $stationflag = 1;
                 } else {
 
                     if ($var['notification_id'] > $check->id) {
 
                         StationNotificationShield::updateOrCreate($station_id, $data);
-                        $flag = 1;
+                        $stationflag = 1;
                     }
                 }
             } elseif ($var['type'] == 'StructureLostArmor') {
@@ -207,13 +229,13 @@ class testController extends Controller
 
                 if ($count == 0) {
                     StationNotificationArmor::updateOrCreate($station_id, $data);
-                    $flag = 1;
+                    $stationflag = 1;
                 } else {
 
                     if ($var['notification_id'] > $check->id) {
 
                         StationNotificationArmor::updateOrCreate($station_id, $data);
-                        $flag = 1;
+                        $stationflag = 1;
                     }
                 }
             }
@@ -226,12 +248,12 @@ class testController extends Controller
             if ($check->count() == 1) {
 
                 if ($shield->id > $check->first()->id) {
-                    Station::where('id', $shield->id)->update(['status_id' => 4, 'char_id' => null]);
+                    Station::where('id', $shield->id)->update(['status_id' => 4, 'char_id' => null, 'timestamp' => $shield->timestamp]);
                 }
                 StationNotificationShield::where('id', $shield->id)->update(['status' => 1]);
             } else {
                 StationNotificationShield::where('id', $shield->id)->update(['status' => 1]);
-                Station::where('id',$shield->station_id)->update(['station_status_id' =>4]);
+                Station::where('id',$shield->station_id)->update(['station_status_id' =>4 , 'timestamp' => $shield->timestamp]);
             }
         }
 
@@ -242,12 +264,12 @@ class testController extends Controller
             if ($check->count() == 1) {
 
                 if ($armor->id > $check->first()->id) {
-                    Station::where('id', $armor->id)->update(['status_id' => 4, 'char_id' => null]);
+                    Station::where('id', $armor->id)->update(['status_id' => 5, 'char_id' => null, 'timestamp' => $armor->timestamp]);
                 }
                 StationNotificationArmor::where('id', $armor->id)->update(['status' => 1]);
             } else {
                 StationNotificationArmor::where('id', $armor->id)->update(['status' => 1]);
-                Station::where('id',$armor->station_id)->update(['station_status_id' =>5]);
+                Station::where('id',$armor->station_id)->update(['station_status_id' =>5, 'timestamp' => $armor->timestamp]);
             }
         }
     }
