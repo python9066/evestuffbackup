@@ -103,6 +103,7 @@ class Notifications
                         Notification::updateOrCreate($si_id, $data2);
                         $flag = 1;
                     } else {
+                        echo $check;
                         dd($check);
 
                         if ($var['notification_id'] > $check) {
