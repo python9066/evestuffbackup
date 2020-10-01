@@ -83,6 +83,14 @@ class testController extends Controller
                     Helper::authcheck();
                     $stationdata = Helper::authpull('station',$text['structureID']);
                     dd($stationdata);
+
+                    Station::Create([
+                        'id' => $text['structureID'],
+                        'name' => $stationdata['name'],
+                        'system_id' => $stationdata['solar_system_id'],
+                        'item_id' => $stationdata['type_id'],
+                    ])
+
                 }
 
                 $data = array(
