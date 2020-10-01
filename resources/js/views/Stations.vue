@@ -112,7 +112,7 @@
                                 <v-icon v-if="item.station_status_id == 5" left>faSvg fa-shield-alt</v-icon>
 
                                 <v-icon v-if="item.station_status_id == 6" left>faSvg fa-house-damage</v-icon>
-                                {{ item.status_name }}
+                                {{ item.station_status_name }}
                             </v-btn>
 
 
