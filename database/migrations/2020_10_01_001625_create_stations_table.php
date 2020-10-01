@@ -14,9 +14,9 @@ class CreateStationsTable extends Migration
     public function up()
     {
         Schema::create('stations', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('system_id');
-            $table->foreignId('item_id');
+            $table->id()->index();
+            $table->foreignId('system_id')->index();
+            $table->foreignId('item_id')->index();
             $table->timestamps();
         });
     }
