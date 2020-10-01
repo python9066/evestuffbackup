@@ -50,7 +50,7 @@ class StationRecordsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        StationRecords::find($id)->update($request->all());
+        Station::find($id)->update($request->all());
         $station =  StationRecords::find($id);
         if ($station->status_id != 10) {
             broadcast(new StationChanged($station))->toOthers();
