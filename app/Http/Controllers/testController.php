@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\StationNotification;
 use App\Models\Tower;
 use GuzzleHttp\Utils;
 use Illuminate\Http\Request;
@@ -84,8 +85,19 @@ class testController extends Controller
                     'user_id' => null
 
                 );
+                $check = StationNotification::where('station_id', $station_id)->first();
+                $count = StationNotification::where('station_id', $station_id)->get()->count();
+                if ($count == 0) {
+                    StationNotification::updateOrCreate($station_id,$data);
+                    $flag = 1;
+                } else {
 
-                dd($data);
+                    if ($var['notification_id'] > $check->id) {
+
+                        StationNotification::updateOrCreate($station_id, $data);
+                        $flag = 1;
+                    }
+                }
 
             }
         }
