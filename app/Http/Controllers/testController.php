@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Station;
 use App\Models\StationNotification;
+use App\Models\StationNotificationShield;
 use App\Models\Tower;
 use GuzzleHttp\Utils;
 use Illuminate\Http\Request;
@@ -124,9 +125,45 @@ class testController extends Controller
                 $text = str_replace("solarSystemID", "system_id", $text);
                 $text = str_replace("structureTypeID", "item_id", $text);
                 $text = Yaml::parse($text);
-                dd($var,$text);
+                // dd($var,$text);
 
 
+                $station_id = array(
+                    'station_id' => $text['structureID'],
+                );
+
+                $stationcheck = Station::where('id',$text['structureID'])->get()->count();
+                // echo $stationcheck;
+                if($stationcheck == 0){
+                    Helper::authcheck();
+                    $stationdata = Helper::authpull('station',$text['structureID']);
+
+                    Station::Create([
+                        'id' => $text['structureID'],
+                        'name' => $stationdata['name'],
+                        'system_id' => $stationdata['solar_system_id'],
+                        'item_id' => $stationdata['type_id'],
+                        'station_status_id' => 4,
+                    ]);
+
+                }else{
+                Station::where('id',$text['structureID'])->update(['station_status_id' => 4]);
+                }
+
+                $check = StationNotificationShield::where('station_id', $station_id)->first();
+                $count = StationNotificationShield::where('station_id', $station_id)->get()->count();
+
+                if ($count == 0) {
+                    StationNotificationShield::updateOrCreate($station_id,$data);
+                    $flag = 1;
+                } else {
+
+                    if ($var['notification_id'] > $check->id) {
+
+                        StationNotificationShield::updateOrCreate($station_id, $data);
+                        $flag = 1;
+                    }
+                }
             }
         }
     }
