@@ -291,6 +291,7 @@ export default {
         Echo.private('stations')
         .listen('StationChanged', (e) => {
         this.checkexpanded(e.notifications)
+        this.$store.dispatch('updateStations',e.notifications);
     })
 
         .listen('StationNew', (e) => {
