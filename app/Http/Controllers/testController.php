@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Station;
 use App\Models\StationNotification;
 use App\Models\Tower;
 use GuzzleHttp\Utils;
@@ -76,7 +77,13 @@ class testController extends Controller
                 );
 
 
-                //do station check/pull//
+                $stationcheck = Station::where('id',$text['structureID'])->get()->count();
+                echo $stationcheck;
+                if($stationcheck == 0){
+                    Helper::authcheck();
+                    $stationdata = Helper::authpull('station',$text['structureID']);
+                    dd($stationdata);
+                }
 
                 $data = array(
                     'id' => $var['notification_id'],
