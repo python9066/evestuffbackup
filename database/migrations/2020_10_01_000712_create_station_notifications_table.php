@@ -15,6 +15,11 @@ class CreateStationNotificationsTable extends Migration
     {
         Schema::create('station_notifications', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('system_id');
+            $table->integer('status_id')->default(1);
+            $table->string('text')->nullable()->default(null);
+            $table->foreignId('user_id')->after('si_id')->nullable();
+            $table->dateTime('timestamp');
             $table->timestamps();
         });
     }
