@@ -227,5 +227,11 @@ class testController extends Controller
                 }
             }
         }
+
+        $shield = StationNotificationShield::where('status',0)->get();
+        foreach($shield as $shield){
+            dd($shield);
+        }
+
     }
 }
