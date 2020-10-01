@@ -98,9 +98,9 @@ class Notifications
                     );
                     $data2 = array_merge($data, $result);
                     $check = Notification::where('si_id', $check_si_id)->get();
-                    dd($check);
                     $count = Notification::where('si_id', $check_si_id)->get()->count();
                     if ($count == 0) {
+                        dd($check);
                         Notification::updateOrCreate($si_id, $data2);
                         $flag = 1;
                     } else {
