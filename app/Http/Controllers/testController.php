@@ -141,7 +141,6 @@ class testController extends Controller
                     Station::Create([
                         'id' => $text['structureID'],
                         'name' => $stationdata['name'],
-                        'system_id' => $stationdata['solar_system_id'],
                         'item_id' => $stationdata['type_id'],
                         'station_status_id' => 4,
                     ]);
