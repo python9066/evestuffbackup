@@ -520,7 +520,7 @@ export default {
                 { text: "Region", value: "region_name", width: "10%" },
                 { text: "Constellation", value: "constellation_name", width: "8%" },
                 { text: "System", value: "system_name", width: "8%" },
-                { text: "Station", value: "station_name", width: "15%" },
+                { text: "Station", value: "station_name", width: "25%" },
                 { text: "Timestamp", value: "timestamp", align: "center",width: "15%" },
                 { text: "Age", value: "count", sortable: false },
                 { text: "Status", value: "station_status_name", width: "15%",},
