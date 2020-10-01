@@ -14,7 +14,7 @@ class CallTheStationRecordsCommand extends Migration
      */
     public function up()
     {
-        Artisan::call("view:CreateOrReplaceCampaignSystemRecordsView");
+        Artisan::call("view:CreateOrReplaceStationRecordsView");
     }
 
     /**
