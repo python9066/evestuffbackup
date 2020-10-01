@@ -37,7 +37,7 @@
                     :disabled="loadingf"
                     @click="statusflag = 2"
                 >
-                    OnTheWay
+                    On The Way
                 </v-btn>
                 <v-btn
                     :loading="loadingf"
@@ -149,8 +149,8 @@
                             v-for="(list, index) in dropdown_edit"
                             :key="index"
                             @click="
-                                (item.status_id = list.value),
-                                    (item.status_name = list.title),
+                                (item.station_status_id = list.value),
+                                    (item.station_status_name = list.title),
                                     (item.user_name = user_name),
                                     click(item)
                             "
@@ -402,25 +402,25 @@ export default {
 
         click(item) {
 
-            if(item.status !=5){
-                this.expanded = [];
-                item.text = null;
-            }
+            // if(item.status !=5){
+            //     this.expanded = [];
+            //     item.text = null;
+            // }
 
-            var request = {
-                status_id: item.status_id,
-                user_id: this.$store.state.user_id,
-            };
-            axios({
-                method: 'put', //you can set what request you want to be
-                url: "api/notifications/" + item.id,
-                data: request,
-                headers: {
-                    Authorization: 'Bearer ' + this.$store.state.token,
-                    Accept: "application/json",
-                    "Content-Type": "application/json",
-                }
-            })
+            // var request = {
+            //     status_id: item.status_id,
+            //     user_id: this.$store.state.user_id,
+            // };
+            // axios({
+            //     method: 'put', //you can set what request you want to be
+            //     url: "api/notifications/" + item.id,
+            //     data: request,
+            //     headers: {
+            //         Authorization: 'Bearer ' + this.$store.state.token,
+            //         Accept: "application/json",
+            //         "Content-Type": "application/json",
+            //     }
+            // })
 
         },
 
