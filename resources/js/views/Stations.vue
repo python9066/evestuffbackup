@@ -453,7 +453,7 @@
             </template>
 
             <template  v-slot:item.station_name="{ item } " class ="d-flex align-center" >
-               {{item.item_name}} - {{item.station_name}}
+               <p>{{item.item_name}} - {{item.station_name}}</p>
             </template>
         </v-data-table>
         <v-snackbar v-model="snack" :timeout="3000" :color="snackColor">
