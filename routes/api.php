@@ -70,7 +70,7 @@ Route::middleware('auth:api')->group(function(){
     Route::delete('/campaignsystemusers/{id}/{campid}', 'CampaignSystemUsersController@destroy');
 
     Route::get('/stationrecords','StationRecordsController@index');
-    Route::put('/stations/{id}', 'Station@update');
+    Route::put('/stations/{id}', 'StationController@update');
 
 
 
