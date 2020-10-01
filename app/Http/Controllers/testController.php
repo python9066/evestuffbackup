@@ -219,19 +219,34 @@ class testController extends Controller
             }
         }
 
-        $shield = StationNotificationShield::where('status',0)->get();
-        foreach($shield as $shield){
+        $shield = StationNotificationShield::where('status', 0)->get();
+        foreach ($shield as $shield) {
             $station_id = $shield->station_id;
-            $check = StationNotification::where('station_id',$station_id)->get();
-            if ($check->count() == 1){
+            $check = StationNotification::where('station_id', $station_id)->get();
+            if ($check->count() == 1) {
 
-                if ($shield->id > $check->first()->id){
-                    echo "yay";
-                }else{
-                    echo "no";
+                if ($shield->id > $check->first()->id) {
+                    Station::where('id', $shield->id)->update(['status_id' => 4, 'char_id' => null]);
                 }
+                StationNotificationShield::where('id', $shield->id)->update(['status' => 1]);
+            } else {
+                StationNotificationShield::where('id', $shield->id)->update(['status' => 1]);
             }
         }
 
+        $armor = StationNotificationArmor::where('status', 0)->get();
+        foreach ($armor as $armor) {
+            $station_id = $armor->station_id;
+            $check = StationNotification::where('station_id', $station_id)->get();
+            if ($check->count() == 1) {
+
+                if ($armor->id > $check->first()->id) {
+                    Station::where('id', $armor->id)->update(['status_id' => 4, 'char_id' => null]);
+                }
+                StationNotificationArmor::where('id', $armor->id)->update(['status' => 1]);
+            } else {
+                StationNotificationArmor::where('id', $armor->id)->update(['status' => 1]);
+            }
+        }
     }
 }
