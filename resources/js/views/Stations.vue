@@ -290,8 +290,8 @@ export default {
 
         Echo.private('stations')
         .listen('StationChanged', (e) => {
-        this.checkexpanded(e.notifications)
-        this.$store.dispatch('updateStations',e.notifications);
+        this.checkexpanded(e.stations)
+        this.$store.dispatch('updateStations',e.stations);
     })
 
         .listen('StationNew', (e) => {
@@ -314,10 +314,10 @@ export default {
     methods: {
 
 
-        checkexpanded(notifications){
-            // console.log(notifications);
-            if(notifications.station_status_id != 3){
-                if(notifications.id == this.expanded_id)
+        checkexpanded(stations){
+            console.log(stations);
+            if(stations.station_status_id != 3){
+                if(stations.id == this.expanded_id)
                 {
                     this.expanded = [];
                     this.expanded_id = 0;
