@@ -113,6 +113,18 @@ class testController extends Controller
                     }
                 }
 
+            }elseif($var['type'] == 'StructureLostShields'){
+
+                $time = $var['timestamp'];
+                $time = Helper::fixtime($time);
+                $data = array();
+                $text = $var['text'];
+                $text = str_replace("solarSystemID", "system_id", $text);
+                $text = str_replace("structureTypeID", "item_id", $text);
+                $text = Yaml::parse($text);
+                dd($text);
+
+
             }
         }
     }
