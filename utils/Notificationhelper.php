@@ -97,16 +97,14 @@ class Notifications
 
                     );
                     $data2 = array_merge($data, $result);
-                    $check = Notification::where('si_id', $check_si_id)->get()->pluck('id');
+                    $check = Notification::where('si_id', $check_si_id)->first();
                     $count = Notification::where('si_id', $check_si_id)->get()->count();
                     if ($count == 0) {
                         Notification::updateOrCreate($si_id, $data2);
                         $flag = 1;
                     } else {
-                        echo $check;
-                        dd($check);
 
-                        if ($var['notification_id'] > $check) {
+                        if ($var['notification_id'] > $check->id) {
 
                             Notification::updateOrCreate($si_id, $data2);
                             $flag = 1;
@@ -155,15 +153,12 @@ class Notifications
 
                     // ($data2);
                     $data2 = array_merge($data, $result);
-                    $check = Temp_notifcation::where('es_id', $check_es_id)->pluck('id');
+                    $check = Temp_notifcation::where('es_id', $check_es_id)->first();
                     $count = Temp_notifcation::where('es_id', $check_es_id)->get()->count();
                     if ($count == 0) {
                         Temp_notifcation::updateOrCreate($es_id, $data2);
                         $flag = 1;
                     } else {
-                        dd($check);
-                        echo $check;
-                        dd($check);
                         if ($var['notification_id'] > $check->id) {
 
                             Temp_notifcation::updateOrCreate($es_id, $data2);
