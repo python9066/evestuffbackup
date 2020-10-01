@@ -39,7 +39,7 @@ Vue.prototype.moment = moment
 Vue.use(CountdownTimer)
 Vue.use(VueCountdownTimer)
 Vue.use(VueCountupTimer)
-library.add(faUserSecret)
+// library.add(faUserSecret)
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 library.add(fas) // Include needed icons
 Vue.config.productionTip = false
