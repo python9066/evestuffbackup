@@ -230,7 +230,8 @@ class testController extends Controller
 
         $shield = StationNotificationShield::where('status',0)->get();
         foreach($shield as $shield){
-            dd($shield);
+            $station_id = $shield->station_id;
+            dd($station_id,$shield);
         }
 
     }
