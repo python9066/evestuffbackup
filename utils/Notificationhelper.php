@@ -97,7 +97,7 @@ class Notifications
 
                     );
                     $data2 = array_merge($data, $result);
-                    $check = Notification::where('si_id', $check_si_id)->first();
+                    $check = Notification::where('si_id', $check_si_id)->get();
                     $count = Notification::where('si_id', $check_si_id)->get()->count();
                     if ($count == 0) {
                         Notification::updateOrCreate($si_id, $data2);
@@ -153,7 +153,7 @@ class Notifications
 
                     // ($data2);
                     $data2 = array_merge($data, $result);
-                    $check = Temp_notifcation::where('es_id', $check_es_id)->first();
+                    $check = Temp_notifcation::where('es_id', $check_es_id)->get();
                     $count = Temp_notifcation::where('es_id', $check_es_id)->get()->count();
                     if ($count == 0) {
                         Temp_notifcation::updateOrCreate($es_id, $data2);
