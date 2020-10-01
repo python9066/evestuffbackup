@@ -61,8 +61,7 @@ export default new Router({
             name: "stations",
             component: Stations,
               beforeEnter(to, from, next) {
-
-                if(Permissions.indexOf('gunners' )!== -1){
+                if(Permissions.indexOf('gunner' )!== -1){
                     next()
                 }else{
                    next("/redirect/stations")
