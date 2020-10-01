@@ -316,7 +316,7 @@ export default {
 
         checkexpanded(notifications){
             // console.log(notifications);
-            if(notifications.status_id != 3){
+            if(notifications.station_status_id != 3){
                 if(notifications.id == this.expanded_id)
                 {
                     this.expanded = [];
