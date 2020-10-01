@@ -258,10 +258,10 @@ class testController extends Controller
             $station_id = $shield->station_id;
             $check = StationNotification::where('station_id', $station_id)->get();
             if ($check->count() == 1) {
-                echo "there - ".$shield->id." - ".$check->first()->id;
+
                 if ($shield->id > $check->first()->id) {
-                    echo "bigger";
-                    Station::where('id', $shield->id)->update(['station_status_id' => 4, 'user_id' => null, 'timestamp' => $shield->timestamp]);
+
+                    Station::where('id', $shield->station_id)->update(['station_status_id' => 4, 'user_id' => null, 'timestamp' => $shield->timestamp]);
                 }
                 StationNotificationShield::where('id', $shield->id)->update(['status' => 1]);
             } else {
@@ -278,7 +278,7 @@ class testController extends Controller
             if ($check->count() == 1) {
 
                 if ($armor->id > $check->first()->id) {
-                    Station::where('id', $armor->id)->update(['station_status_id' => 5, 'user_id' => null, 'timestamp' => $armor->timestamp]);
+                    Station::where('id', $armor->station_id)->update(['station_status_id' => 5, 'user_id' => null, 'timestamp' => $armor->timestamp]);
                 }
                 StationNotificationArmor::where('id', $armor->id)->update(['status' => 1]);
             } else {
