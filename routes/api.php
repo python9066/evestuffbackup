@@ -69,6 +69,8 @@ Route::middleware('auth:api')->group(function(){
     Route::get('/campaignsystemusers/{campid}', 'CampaignSystemUsersController@index');
     Route::delete('/campaignsystemusers/{id}/{campid}', 'CampaignSystemUsersController@destroy');
 
+    Route::get('/stations','StationRecordsController@index');
+
 
 
 

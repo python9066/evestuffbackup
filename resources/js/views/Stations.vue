@@ -200,7 +200,7 @@
             >
 
             <template slot="no-data">
-                No hacking notifications to show, which I would say is a good
+                No one is shooting our stuff atm, which I would say is a good
                 thing?
             </template>
             <template v-slot:item.count="{ item }">
@@ -504,11 +504,11 @@ export default {
             querious: 0,
 
             dropdown_edit: [
-                { title: "Scouting", value: 6 },
-                { title: "Reffed", value: 2 },
-                { title: "Repairing", value: 3 },
-                { title: "Secured", value: 4 },
-                { title: "Contested", value: 5 },
+                { title: "On My Way", value: 2 },
+                { title: "Gunning", value: 3 },
+                { title: "Saved", value: 4 },
+                { title: "Reffed - Shield", value: 5 },
+                { title: "Reffed - Armor", value: 6 },
                 { title: "New", value: 1 }
             ],
 
@@ -516,11 +516,11 @@ export default {
                 { text: "Region", value: "region_name", width: "10%" },
                 { text: "Constellation", value: "constellation_name", width: "8%" },
                 { text: "System", value: "system_name", width: "8%" },
-                { text: "Structure", value: "item_name", width: "8%" },
-                { text: "ADM", value: "adm", width: "5%" },
+                { text: "Station", value: "station_name", width: "8%" },
+                { text: "Type", value: "item_name", width: "5%" },
                 { text: "Timestamp", value: "timestamp", align: "center",width: "20%" },
                 { text: "Age", value: "count", sortable: false },
-                { text: "Status", value: "status_name", width: "15%",},
+                { text: "Status", value: "station_status_name", width: "15%",},
                 { text: "Edited By", value: "user_name", width: "10%", align: "start"}
 
 
@@ -532,9 +532,8 @@ export default {
     created() {
 
         Echo.private('stations')
-        .listen('NotificationChanged', (e) => {
+        .listen('StationChanged', (e) => {
         this.checkexpanded(e.notifications)
-        this.$store.dispatch('updateNotification',e.notifications);
     })
 
         .listen('NotificationNew', (e) => {
@@ -543,16 +542,11 @@ export default {
         })
 
 
-        this.$store.dispatch("getNotifications").then(() => {
+        this.$store.dispatch("getStationData").then(() => {
             this.loadingt = false;
             this.loadingf = false;
             this.loadingr = false;
         });
-
-
-        this.$store.dispatch("getqueriousLink");
-        this.$store.dispatch("getdelveLink");
-        this.$store.dispatch("getperiodbasisLink");
 
     },
 
@@ -561,39 +555,6 @@ export default {
     },
     methods: {
 
-
-        timecheck(item){
-            if(item.status_id == 4 || item.status_id == 2){
-                item.status_id = 10;
-                this.$store.dispatch('updateNotification',item)
-                if(item.region_name === 'Querious'){
-                    this.$store.dispatch('getqueriousLink');
-                }
-                if(item.region_name === 'Period Basis'){
-                    this.$store.dispatch('getperiodbasisLink');
-                }
-                if(item.region_name === 'Delve'){
-                    this.$store.dispatch('getdelveLink');
-                }
-                var request = {
-                status_id: 10
-
-            };
-            axios({
-                method: 'put', //you can set what request you want to be
-                url: "api/notifications/" + item.id,
-                data: request,
-                headers: {
-                    Authorization: 'Bearer ' + this.$store.state.token,
-                    Accept: "application/json",
-                    "Content-Type": "application/json",
-                }
-                })
-
-                                    }
-
-
-        },
 
         checkexpanded(notifications){
             // console.log(notifications);
@@ -633,12 +594,9 @@ export default {
 
         loadtimers() {
             this.loadingr = true;
-            this.$store.dispatch("getNotifications").then(() => {
+            this.$store.dispatch("getStationData").then(() => {
                 this.loadingr = false;
             });
-            this.$store.dispatch("getqueriousLink");
-            this.$store.dispatch("getdelveLink");
-            this.$store.dispatch("getperiodbasisLink");
             // console.log("30secs");
         },
 
@@ -705,74 +663,44 @@ export default {
 
     computed: {
         ...mapState([
-            "notifications",
-            "delveLink",
-            "queriousLink",
-            "periodbasisLink"
+            "stations",
         ]),
 
         filteredItems() {
             // var timers = this.$store.state.timers;
             if (this.statusflag == 1) {
-                return this.notifications.filter(
-                    notifications => notifications.status_id == 1
+                return this.stations.filter(
+                    stations => stations.status_id == 1
                 );
             }
             if (this.statusflag == 3) {
-                return this.notifications.filter(
-                    notifications => notifications.status_id == 3
+                return this.stations.filter(
+                    stations => stations.status_id == 3
                 );
             }
             if (this.statusflag == 5) {
-                return this.notifications.filter(
-                    notifications => notifications.status_id == 5
+                return this.stations.filter(
+                    stations => stations.status_id == 5
                 );
             }
             if (this.statusflag == 6) {
-                return this.notifications.filter(
-                    notifications => notifications.status_id == 6
+                return this.stations.filter(
+                    stations => stations.status_id == 6
                 );
             }
             else {
-                return this.notifications.filter(
-                    notifications => notifications.status_id != 10
+                return this.stations.filter(
+                    stations => stations.status_id != 10
                 );
             }
         },
 
-        delvecheck() {
-            if (this.delveLink === "") {
-                return 0;
-            } else if (this.delveLink === "nope") {
-                return 0;
-            } else {
-                return 1;
-            }
-        },
 
-        periodbasisCheck() {
-            if (this.periodbasisLink === "") {
-                return 0;
-            } else if (this.periodbasisLink === "nope") {
-                return 0;
-            } else {
-                return 1;
-            }
-        },
 
         user_name(){
             return this.$store.state.user_name
         },
 
-        queriousCheck() {
-            if (this.queriousLink === "") {
-                return 0;
-            } else if (this.queriousLink === "nope") {
-                return 0;
-            } else {
-                return 1;
-            }
-        }
     },
     beforeDestroy() {
 
