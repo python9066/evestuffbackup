@@ -123,7 +123,7 @@
                                     icon
                                     @click="expanded = [item], expanded_id = item.id"
                                     v-if="
-                                        item.station_status_id == 5 &&
+                                        item.station_status_id == 3 &&
                                             !expanded.includes(item)
                                     "
                                     color="success"
@@ -133,7 +133,7 @@
                                     icon
                                     @click="expanded = [], expanded_id = 0"
                                     v-if="
-                                        item.station_status_id == 5 &&
+                                        item.station_status_id == 3 &&
                                             expanded.includes(item)
                                     "
                                     color="error"
@@ -293,7 +293,7 @@ export default {
         this.checkexpanded(e.notifications)
     })
 
-        .listen('NotificationNew', (e) => {
+        .listen('StationNew', (e) => {
         this.loadtimers();
 
         })
@@ -315,7 +315,7 @@ export default {
 
         checkexpanded(notifications){
             // console.log(notifications);
-            if(notifications.status_id != 5){
+            if(notifications.status_id != 3){
                 if(notifications.id == this.expanded_id)
                 {
                     this.expanded = [];
@@ -402,7 +402,7 @@ export default {
 
         click(item) {
 
-            if(item.status !=5){
+            if(item.status !=3){
                 this.expanded = [];
                 item.text = null;
             }

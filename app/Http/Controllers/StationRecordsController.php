@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\StationChanged;
+use App\Models\Station;
 use App\Models\StationRecords;
 use Illuminate\Http\Request;
 
@@ -48,7 +50,11 @@ class StationRecordsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        Station::find($id)->update($request->all());
+        $station =  Station::find($id);
+        if ($station->status_id != 10) {
+            broadcast(new StationChanged($station))->toOthers();
+        }
     }
 
     /**
