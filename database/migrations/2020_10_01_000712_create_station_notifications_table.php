@@ -18,7 +18,7 @@ class CreateStationNotificationsTable extends Migration
             $table->foreignId('system_id');
             $table->integer('status_id')->default(1);
             $table->string('text')->nullable()->default(null);
-            $table->foreignId('user_id')->after('si_id')->nullable();
+            $table->foreignId('user_id')->nullable();
             $table->dateTime('timestamp');
             $table->timestamps();
         });

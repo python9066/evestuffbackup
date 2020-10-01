@@ -76,7 +76,15 @@ class testController extends Controller
 
                 dd($station_id, $var,$text);
 
+                //do station check/pull//
 
+                $data = array(
+                    'id' => $var['notification_id'],
+                    'timestamp' => $time,
+                    'status_id' => 1,
+                    'user_id' => null
+
+                );
 
 
             }
