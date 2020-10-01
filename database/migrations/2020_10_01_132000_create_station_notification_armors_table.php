@@ -17,8 +17,6 @@ class CreateStationNotificationArmorsTable extends Migration
             $table->id();
             $table->foreignId('station_id')->index();
             $table->dateTime('timestamp');
-            $table->foreignId('user_id')->nullable();
-            $table->string('text')->nullable();
             $table->timestamps();
         });
     }
