@@ -103,7 +103,7 @@
                             >
                                 <v-icon v-if="item.station_status_id == 1" left>faSvg fa-plus</v-icon>
 
-                                <v-icon v-if="item.station_status_id == 2" left>faSvg fa-route</v-icon>
+                                <v-icon v-if="item.station_status_id == 2" left>faSvg fa-road</v-icon>
 
                                 <v-icon v-if="item.station_status_id == 3" left>faSvg fa-fist-raised</v-icon>
 
