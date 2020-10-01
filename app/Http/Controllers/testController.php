@@ -74,7 +74,6 @@ class testController extends Controller
                     'station_id' => $text['structureID'],
                 );
 
-                dd($station_id, $var,$text);
 
                 //do station check/pull//
 
@@ -86,6 +85,7 @@ class testController extends Controller
 
                 );
 
+                dd($data);
 
             }
         }
