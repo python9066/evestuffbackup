@@ -43,7 +43,7 @@ class UpdateNotifications extends Command
         $status = Helper::checkeve();
         if ($status == 1) {
             $type = "note";Helper::authcheck();
-                $data = Helper::authpull($type);
+                $data = Helper::authpull($type, 0);
                 echo "hi - ";
                 $flag = Notifications::update($data);
                 // dd($flag);

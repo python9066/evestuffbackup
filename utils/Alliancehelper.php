@@ -74,7 +74,7 @@ class Alliancehelper
         Alliance::where('id', '>', 0)->update(['standing' => 0, 'color' => 0]);
         $type = "standing";
         Helper::authcheck();
-        $data = Helper::authpull($type);
+        $data = Helper::authpull($type,0);
 
         foreach ($data as $var) {
             if ($var['standing'] > 0) {

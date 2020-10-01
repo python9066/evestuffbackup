@@ -14,7 +14,7 @@ class AddFlagStationColumnToAuthsTable extends Migration
     public function up()
     {
         Schema::table('auths', function (Blueprint $table) {
-            $table->integer('falg_station')->after('flag_standing')
+            $table->integer('flag_station')->after('flag_standing')
                         ->default(0);
         });
     }

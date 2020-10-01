@@ -22,7 +22,7 @@ class NotificationController extends Controller
         if ($status == 1) {
             echo " status 1 - ";
             $type = "note";Helper::authcheck();
-                $data = Helper::authpull($type);
+                $data = Helper::authpull($type,0);
                 // echo $data;
                 $flag = Notifications::update($data);
                 // dd($flag);

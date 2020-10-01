@@ -59,7 +59,7 @@ class Helper
         }
     }
 
-    public static function authpull($type)
+    public static function authpull($type, $station_id)
     {
         $type = $type;
 
@@ -76,7 +76,7 @@ class Helper
                 $token->update(['flag_standing' => 1]);
                 $url = 'https://esi.evetech.net/latest/alliances/1354830081/contacts/?datasource=tranquility';
             }
-        } else {
+        } elseif($type == "note") {
             $token = Auth::where('flag_note', 0)->first();
 
             if ($token == null) {
@@ -90,6 +90,21 @@ class Helper
             } else {
                 $token->update(['flag_note' => 1]);
                 $url = "https://esi.evetech.net/latest/characters/" . $token->char_id . "/notifications/";
+                // dd($url);
+            }
+        } elseif($type == "station"){
+            $token = Auth::where('flag_station', 0)->first();
+
+            if ($token == null) {
+                Auth::where('flag_station', 1)->update(['flag_station' => 0]);
+                $token = Auth::where('flag_station', 0)->first();
+                $token->update(['flag_station' => 1]);
+
+                $url = "https://esi.evetech.net/latest/universe/structures/". $station_id ."/?datasource=tranquility";
+                // dd($url);
+            } else {
+                $token->update(['flag_station' => 1]);
+                $url = "https://esi.evetech.net/latest/universe/structures/". $station_id ."/?datasource=tranquility";
                 // dd($url);
             }
         }
