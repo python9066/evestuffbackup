@@ -260,6 +260,7 @@ class testController extends Controller
             if ($check->count() == 1) {
                 echo "there - ".$shield->id." - ".$check->first()->id;
                 if ($shield->id > $check->first()->id) {
+                    echo "bigger";
                     Station::where('id', $shield->id)->update(['station_status_id' => 4, 'user_id' => null, 'timestamp' => $shield->timestamp]);
                 }
                 StationNotificationShield::where('id', $shield->id)->update(['status' => 1]);
