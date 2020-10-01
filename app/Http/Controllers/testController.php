@@ -231,6 +231,7 @@ class testController extends Controller
                 StationNotificationShield::where('id', $shield->id)->update(['status' => 1]);
             } else {
                 StationNotificationShield::where('id', $shield->id)->update(['status' => 1]);
+                Station::where('id',$shield->station_id)->update(['status' =>4]);
             }
         }
 
@@ -246,6 +247,7 @@ class testController extends Controller
                 StationNotificationArmor::where('id', $armor->id)->update(['status' => 1]);
             } else {
                 StationNotificationArmor::where('id', $armor->id)->update(['status' => 1]);
+                Station::where('id',$shield->station_id)->update(['status' =>5]);
             }
         }
     }
