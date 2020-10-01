@@ -15,127 +15,6 @@
                 Update
                 <v-icon right dark>fas fa-sync-alt fa-xs</v-icon>
             </v-btn>
-            <div>
-                <v-btn-toggle v-model="icon" borderless group>
-                    <v-dialog
-                        v-model="dialog1"
-                        fullscreen
-                        hide-overlay
-                        transition="dialog-bottom-transition"
-                    >
-                        <template v-slot:activator="{ on, attrs }">
-                            <template>
-                                <v-btn
-                                    v-show="delvecheck == 1"
-                                    color="primary"
-                                    class="ma-2 white--text"
-                                    v-bind="attrs"
-                                    v-on="on"
-                                    @click="dialog1 = true"
-                                >
-                                    Delve
-                                    <v-icon right dark>fas fa-map fa-xs</v-icon>
-                                </v-btn>
-                            </template>
-                        </template>
-                        <v-card>
-                            <v-toolbar dark color="primary">
-                                <v-btn icon dark @click="dialog1 = false">
-                                    <v-icon>fas fa-times-circle</v-icon>
-                                </v-btn>
-                                <v-toolbar-title>Delve</v-toolbar-title>
-                                <v-spacer></v-spacer>
-                            </v-toolbar>
-                            <div
-                                style="position: absolute; top: 64px; right: 0px; bottom: 0px; left: 0px;"
-                            >
-                                <iframe
-                                    :src="delveLink"
-                                    style="left:0; bottom:0; right:0; width:100%; height:100%; border:none; margin:0; padding:0; overflow:hidden; z-index:999999;"
-                                >
-                                </iframe>
-                            </div>
-                        </v-card>
-                    </v-dialog>
-
-                    <v-dialog
-                        v-model="dialog2"
-                        fullscreen
-                        hide-overlay
-                        transition="dialog-bottom-transition"
-                    >
-                        <template v-slot:activator="{ on, attrs }">
-                            <v-btn
-                                v-show="queriousCheck == 1"
-                                color="primary"
-                                class="ma-2 white--text"
-                                v-bind="attrs"
-                                v-on="on"
-                                @click="dialog2 = true"
-                            >
-                                Querious
-                                <v-icon right dark>fas fa-map fa-xs</v-icon>
-                            </v-btn>
-                        </template>
-                        <v-card>
-                            <v-toolbar dark color="primary">
-                                <v-btn icon dark @click="dialog2 = false">
-                                    <v-icon>fas fa-times-circle</v-icon>
-                                </v-btn>
-                                <v-toolbar-title>Querious</v-toolbar-title>
-                                <v-spacer></v-spacer>
-                            </v-toolbar>
-                            <div
-                                style="position: absolute; top: 64px; right: 0px; bottom: 0px; left: 0px;"
-                            >
-                                <iframe
-                                    :src="queriousLink"
-                                    style="left:0; bottom:0; right:0; width:100%; height:100%; border:none; margin:0; padding:0; overflow:hidden; z-index:999999;"
-                                >
-                                </iframe>
-                            </div>
-                        </v-card>
-                    </v-dialog>
-                    <v-dialog
-                        v-model="dialog3"
-                        fullscreen
-                        hide-overlay
-                        transition="dialog-bottom-transition"
-                    >
-                        <template v-slot:activator="{ on, attrs }">
-                            <v-btn
-                                v-show="periodbasisCheck == 1"
-                                color="primary"
-                                class="ma-2 white--text"
-                                v-bind="attrs"
-                                v-on="on"
-                                @click="dialog3 = true"
-                            >
-                                Period Basis
-                                <v-icon right dark>fas fa-map fa-xs</v-icon>
-                            </v-btn>
-                        </template>
-                        <v-card>
-                            <v-toolbar dark color="primary">
-                                <v-btn icon dark @click="dialog3 = false">
-                                    <v-icon>fas fa-times-circle</v-icon>
-                                </v-btn>
-                                <v-toolbar-title>Period Basis</v-toolbar-title>
-                                <v-spacer></v-spacer>
-                            </v-toolbar>
-                            <div
-                                style="position: absolute; top: 64px; right: 0px; bottom: 0px; left: 0px;"
-                            >
-                                <iframe
-                                    :src="periodbasisLink"
-                                    style="left:0; bottom:0; right:0; width:100%; height:100%; border:none; margin:0; padding:0; overflow:hidden; z-index:999999;"
-                                >
-                                </iframe>
-                            </div>
-                        </v-card>
-                    </v-dialog>
-                </v-btn-toggle>
-            </div>
 
             <v-text-field
                 v-model="search"
@@ -149,37 +28,23 @@
                 <v-btn
                     :loading="loadingf"
                     :disabled="loadingf"
-                    @click="statusflag = 4"
+                    @click="statusflag = 1"
                 >
                     All
                 </v-btn>
                 <v-btn
                     :loading="loadingf"
                     :disabled="loadingf"
-                    @click="statusflag = 1"
+                    @click="statusflag = 2"
                 >
-                    New
-                </v-btn>
-                <v-btn
-                    :loading="loadingf"
-                    :disabled="loadingf"
-                    @click="statusflag = 6"
-                >
-                    Scouting
+                    OnTheWay
                 </v-btn>
                 <v-btn
                     :loading="loadingf"
                     :disabled="loadingf"
                     @click="statusflag = 3"
                 >
-                    Repairing
-                </v-btn>
-                <v-btn
-                    :loading="loadingf"
-                    :disabled="loadingf"
-                    @click="statusflag = 5"
-                >
-                    Contested
+                    Gunning
                 </v-btn>
             </v-btn-toggle>
         </div>
@@ -224,82 +89,32 @@
                 v-slot:item.status_name="{ item }"
                 class="align-items-center"
             >
-                <v-menu offset-y v-if="$can('edit_notifications')">
+                <v-menu offset-y>
                     <template v-slot:activator="{ on, attrs }">
                         <div class="align-items-center">
+
                             <v-btn
-                                v-if="item.status_id == 1"
                                 class="ma-2"
                                 v-bind="attrs"
                                 v-on="on"
                                 tile
                                 outlined
-                                color="success"
+                                :color='pillColor(item.status_id)'
                             >
-                                <v-icon left>fas fa-plus</v-icon>
-                                {{ item.status_name }}
-                            </v-btn>
-                            <v-btn
-                                v-if="item.status_id == 2"
-                                class="ma-2"
-                                v-bind="attrs"
-                                v-on="on"
-                                tile
-                                outlined
-                                color="error"
-                            >
-                                <v-icon left>fas fa-fire fa-sm</v-icon>
-                                {{ item.status_name }}
-                            </v-btn>
-                            <v-btn
-                                v-if="item.status_id == 3"
-                                class="ma-2"
-                                v-bind="attrs"
-                                v-on="on"
-                                tile
-                                outlined
-                                color="dark-orange"
-                            >
-                                <v-icon left>fas fa-toolbox</v-icon>
-                                {{ item.status_name }}
-                            </v-btn>
-                            <v-btn
-                                v-if="item.status_id == 4"
-                                class="ma-2"
-                                v-bind="attrs"
-                                v-on="on"
-                                tile
-                                outlined
-                                color="primary"
-                            >
-                                <v-icon left>fas fa-thumbs-up</v-icon>
-                                {{ item.status_name }}
-                            </v-btn>
-                            <v-btn
-                                v-if="item.status_id == 5"
-                                class="ma-2"
-                                v-bind="attrs"
-                                v-on="on"
-                                tile
-                                outlined
-                                color="warning"
-                            >
-                                <v-icon left>fas fa-exclamation-circle</v-icon>
+                                <v-icon v-if="item.status_id == 1" left>fas fa-plus</v-icon>
+
+                                <v-icon v-if="item.status_id == 2" left>fas fa-route</v-icon>
+
+                                <v-icon v-if="item.status_id == 3" left>fas fa-fist-raised</v-icon>
+
+                                <v-icon v-if="item.status_id == 4" left>fas fa-thumbs-up</v-icon>
+
+                                <v-icon v-if="item.status_id == 5" left>fas fa-shield-alt</v-icon>
+
+                                <v-icon v-if="item.status_id == 6" left>fas fa-house-damage</v-icon>
                                 {{ item.status_name }}
                             </v-btn>
 
-                            <v-btn
-                                v-if="item.status_id == 6"
-                                class="ma-2"
-                                v-bind="attrs"
-                                v-on="on"
-                                tile
-                                outlined
-                                color="light-green darken-1"
-                            >
-                                <v-icon left>fas fa-search</v-icon>
-                                {{ item.status_name }}
-                            </v-btn>
 
 
                             <!-- EXTRA BUTTON -->
@@ -346,67 +161,6 @@
                         </v-list-item>
                     </v-list>
                 </v-menu>
-                <div v-else>
-                    <template>
-                        <div class="align-items-center">
-                            <v-chip
-                                v-if="item.status_id == 1"
-                                class="ma-2"
-                                label
-                                color="success"
-                            >
-                                <v-icon left>fas fa-plus</v-icon>
-                                {{ item.status_name }}
-                            </v-chip>
-                            <v-chip
-                                v-if="item.status_id == 2"
-                                class="ma-2"
-                                label
-                                color="error"
-                            >
-                                <v-icon left>fas fa-fire fa-sm</v-icon>
-                                {{ item.status_name }}
-                            </v-chip>
-                            <v-chip
-                                v-if="item.status_id == 3"
-                                class="ma-2"
-                                label
-                                color="dark-orange"
-                            >
-                                <v-icon left>fas fa-toolbox</v-icon>
-                                {{ item.status_name }}
-                            </v-chip>
-                            <v-chip
-                                v-if="item.status_id == 4"
-                                class="ma-2"
-                                label
-                                color="primary"
-                            >
-                                <v-icon left>fas fa-thumbs-up</v-icon>
-                                {{ item.status_name }}
-                            </v-chip>
-                            <v-chip
-                                v-if="item.status_id == 5"
-                                class="ma-2"
-                                label
-                                color="warning"
-                            >
-                                <v-icon left>fas fa-exclamation-circle</v-icon>
-                                {{ item.status_name }}
-                            </v-chip>
-
-                            <v-chip
-                                v-if="item.status_id == 6"
-                                class="ma-2"
-                                label
-                                color="light-green darken-1"
-                            >
-                                <v-icon left>fas fa-search</v-icon>
-                                {{ item.status_name }}
-                            </v-chip>
-                        </div>
-                    </template>
-                </div>
             </template>
             <template
                 v-slot:expanded-item="{ headers, item }"
@@ -603,6 +357,28 @@ export default {
             // console.log("30secs");
         },
 
+        pillColor(statusId){
+
+            if (statusId == 1){
+                return "success"
+            }
+            if (statusId == 2){
+                return "primary"
+            }
+            if (statusId == 3){
+                return "primary"
+            }
+            if (statusId == 4){
+                return "dark-orange"
+            }
+            if (statusId == 5){
+                return "warning"
+            }
+            if (statusId == 6){
+                return "warning"
+            }
+
+        },
 
 
         save() {
@@ -671,24 +447,14 @@ export default {
 
         filteredItems() {
             // var timers = this.$store.state.timers;
-            if (this.statusflag == 1) {
+            if (this.statusflag == 2) {
                 return this.stations.filter(
-                    stations => stations.status_id == 1
+                    stations => stations.status_id == 2
                 );
             }
             if (this.statusflag == 3) {
                 return this.stations.filter(
                     stations => stations.status_id == 3
-                );
-            }
-            if (this.statusflag == 5) {
-                return this.stations.filter(
-                    stations => stations.status_id == 5
-                );
-            }
-            if (this.statusflag == 6) {
-                return this.stations.filter(
-                    stations => stations.status_id == 6
                 );
             }
             else {
