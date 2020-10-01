@@ -451,6 +451,10 @@
             <template  v-slot:item.user_name="{ item } " class ="d-flex align-center" >
                 <p v-if="$can('edit_notifications')"> {{item.user_name}}</p>
             </template>
+
+            <template  v-slot:item.station_name="{ item } " class ="d-flex align-center" >
+               {{item_name}} - {{station_name}}
+            </template>
         </v-data-table>
         <v-snackbar v-model="snack" :timeout="3000" :color="snackColor">
             {{ snackText }}
@@ -517,7 +521,6 @@ export default {
                 { text: "Constellation", value: "constellation_name", width: "8%" },
                 { text: "System", value: "system_name", width: "8%" },
                 { text: "Station", value: "station_name", width: "8%" },
-                { text: "Type", value: "item_name", width: "5%" },
                 { text: "Timestamp", value: "timestamp", align: "center",width: "20%" },
                 { text: "Age", value: "count", sortable: false },
                 { text: "Status", value: "station_status_name", width: "15%",},
