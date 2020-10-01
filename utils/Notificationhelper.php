@@ -154,6 +154,7 @@ class Notifications
                     // ($data2);
                     $data2 = array_merge($data, $result);
                     $check = Temp_notifcation::where('es_id', $check_es_id)->get();
+                    dd($check);
                     $count = Temp_notifcation::where('es_id', $check_es_id)->get()->count();
                     if ($count == 0) {
                         Temp_notifcation::updateOrCreate($es_id, $data2);
