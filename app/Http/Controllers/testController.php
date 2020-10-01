@@ -88,14 +88,16 @@ class testController extends Controller
                         'name' => $stationdata['name'],
                         'system_id' => $stationdata['solar_system_id'],
                         'item_id' => $stationdata['type_id'],
+                        'station_status_id' => 1,
                     ]);
 
-                };
+                }else{
+                Station::where('id',$text['structureID'])->update(['station_status_id' => 1]);
+                }
 
                 $data = array(
                     'id' => $var['notification_id'],
                     'timestamp' => $time,
-                    'status_id' => 1,
                     'user_id' => null
 
                 );
