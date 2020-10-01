@@ -100,10 +100,10 @@ class Notifications
                     $check = Notification::where('si_id', $check_si_id)->get();
                     $count = Notification::where('si_id', $check_si_id)->get()->count();
                     if ($count == 0) {
-                        dd($check);
                         Notification::updateOrCreate($si_id, $data2);
                         $flag = 1;
                     } else {
+                        dd($check);
 
                         if ($var['notification_id'] > $check->id) {
 
@@ -155,12 +155,12 @@ class Notifications
                     // ($data2);
                     $data2 = array_merge($data, $result);
                     $check = Temp_notifcation::where('es_id', $check_es_id)->get();
-                    dd($check);
                     $count = Temp_notifcation::where('es_id', $check_es_id)->get()->count();
                     if ($count == 0) {
                         Temp_notifcation::updateOrCreate($es_id, $data2);
                         $flag = 1;
                     } else {
+                        dd($check);
                         if ($var['notification_id'] > $check->id) {
 
                             Temp_notifcation::updateOrCreate($es_id, $data2);
