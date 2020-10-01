@@ -1,8 +1,8 @@
 <template>
     <div class=" pr-16 pl-16">
-        <messageNotification></messageNotification>
+        <messageStations></messageStations>
         <div class=" d-flex align-items-center">
-            <v-card-title>Notifications</v-card-title>
+            <v-card-title>Stations</v-card-title>
             <div v-if="$can('access hacks')">You can edit posts.</div>
 
             <v-btn
