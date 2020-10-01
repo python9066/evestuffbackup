@@ -106,6 +106,11 @@
                     <v-icon>mdi-heart</v-icon>
                 </v-tab>
 
+                <v-tab v-if="$can('gunner') " link to="/stations">
+                    Stations
+                    <v-icon>mdi-phone</v-icon>
+                </v-tab>
+
                 <v-tab link to="/timers">
                     Timers
                     <v-icon>mdi-phone</v-icon>

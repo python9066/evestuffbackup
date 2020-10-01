@@ -32,6 +32,7 @@ Vue.component('v-progress-circular', require('easy-circular-progress/src/index.v
 Vue.component('messageNotification', require('./components/random/messageNotification.vue').default);
 Vue.component('systemTableTimer', require('./components/campaign/systemTableTimer.vue').default);
 Vue.component('watchUserTable', require('./components/campaign/watchUserTable.vue').default);
+Vue.component('messageStations', require('./components/random/messageStations.vue').default);
 
 Vue.prototype.moment = moment
 // import '@fortawesome/fontawesome-f      ree/css/all.css'
