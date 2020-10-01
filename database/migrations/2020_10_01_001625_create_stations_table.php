@@ -17,6 +17,7 @@ class CreateStationsTable extends Migration
             $table->id()->index();
             $table->foreignId('system_id')->index();
             $table->foreignId('item_id')->index();
+            $table->integer('station_status_id')->default(1)->index();
             $table->timestamps();
         });
     }
