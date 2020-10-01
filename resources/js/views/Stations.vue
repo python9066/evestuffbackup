@@ -101,17 +101,17 @@
                                 outlined
                                 :color='pillColor(item.status_id)'
                             >
-                                <v-icon v-if="item.status_id == 1" left>faSvg fa-plus</v-icon>
+                                <v-icon v-if="item.station_status_id == 1" left>faSvg fa-plus</v-icon>
 
-                                <v-icon v-if="item.status_id == 2" left>faSvg fa-route</v-icon>
+                                <v-icon v-if="item.station_status_id == 2" left>faSvg fa-route</v-icon>
 
-                                <v-icon v-if="item.status_id == 3" left>faSvg fa-fist-raised</v-icon>
+                                <v-icon v-if="item.station_status_id == 3" left>faSvg fa-fist-raised</v-icon>
 
-                                <v-icon v-if="item.status_id == 4" left>faSvg fa-thumbs-up</v-icon>
+                                <v-icon v-if="item.station_status_id == 4" left>faSvg fa-thumbs-up</v-icon>
 
-                                <v-icon v-if="item.status_id == 5" left>faSvg fa-shield-alt</v-icon>
+                                <v-icon v-if="item.station_status_id == 5" left>faSvg fa-shield-alt</v-icon>
 
-                                <v-icon v-if="item.status_id == 6" left>faSvg fa-house-damage</v-icon>
+                                <v-icon v-if="item.station_status_id == 6" left>faSvg fa-house-damage</v-icon>
                                 {{ item.status_name }}
                             </v-btn>
 
