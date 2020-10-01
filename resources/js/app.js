@@ -14,7 +14,7 @@ import App from "./views/App";
 import colors from "vuetify/lib/util/colors";
 import VueCountdown from '@chenfengyuan/vue-countdown';
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faUserSecret } from '@fortawesome/free-solid-svg-icons'
+import { fas } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import moment from 'moment'
 import VueCountdownTimer from 'vuejs-countdown-timer'
@@ -41,6 +41,7 @@ Vue.use(VueCountdownTimer)
 Vue.use(VueCountupTimer)
 library.add(faUserSecret)
 Vue.component('font-awesome-icon', FontAwesomeIcon)
+library.add(fas) // Include needed icons
 Vue.config.productionTip = false
 Vue.component(VueCountdown.name, VueCountdown);
 Vue.use(VueMask)
@@ -77,7 +78,7 @@ export default new Vuetify({
       dark: true,
     },
     icons: {
-        iconfont: 'fa',
+        iconfont: 'faSvg',
     },
   })
 
