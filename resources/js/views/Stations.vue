@@ -111,7 +111,7 @@
 
                                 <v-icon v-if="item.station_status_id == 5" left>faSvg fa-shield-alt</v-icon>
 
-                                <v-icon v-if="item.station_status_id == 6" left>faSvg fa-house-damage</v-icon>
+                                <v-icon v-if="item.station_status_id == 6" left>faSvg fa-shield-alt</v-icon>
                                 {{ item.station_status_name }}
                             </v-btn>
 
@@ -276,7 +276,7 @@ export default {
                 { text: "System", value: "system_name", width: "8%" },
                 { text: "Station", value: "station_name", width: "25%" },
                 { text: "Timestamp", value: "timestamp", align: "center",width: "15%" },
-                { text: "Age", value: "count", sortable: false },
+                { text: "Age", value: "count", sortable: false,width: "5%"  },
                 { text: "Status", value: "station_status_name", width: "15%",},
                 { text: "Edited By", value: "user_name", width: "10%", align: "start"}
 
@@ -333,10 +333,10 @@ export default {
                  var request = {
                 text: item.text
             };
-                this.$store.dispatch('updateNotification',item)
+                this.$store.dispatch('updateStations',item)
                 axios({
                 method: 'put', //you can set what request you want to be
-                url: "api/notifications/" + item.id,
+                url: "api/stations/" + item.id,
                 data: request,
                 headers: {
                     Authorization: 'Bearer ' + this.$store.state.token,

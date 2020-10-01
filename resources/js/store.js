@@ -68,6 +68,11 @@ export default new Vuex.Store({
             Object.assign(item, data);
         },
 
+        UPDATE_STATIONS(state, data) {
+            const item = state.stations.find(item => item.id === data.id);
+            Object.assign(item, data);
+        },
+
         UPDATE_CAMPAIGN_SYSTEM(state, data) {
             const item = state.campaignsystems.find(item => item.id === data.id);
             Object.assign(item, data);
@@ -135,7 +140,7 @@ export default new Vuex.Store({
         async getStationData({ commit, state }) {
             let res = await axios({
                 method: "get",
-                url: "/api/stations",
+                url: "/api/stationrecords",
                 headers: {
                     Authorization: "Bearer " + state.token,
                     Accept: "application/json",
@@ -217,6 +222,10 @@ export default new Vuex.Store({
 
         updateNotification({ commit }, data) {
             commit("UPDATE_NOTIFICATIONS", data);
+        },
+
+        updateStations({ commit }, data) {
+            commit("UPDATE_STATIONS", data);
         },
 
         updateCampaigns({ commit }, data) {
