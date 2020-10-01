@@ -86,7 +86,7 @@
             </template>
 
             <template
-                v-slot:item.status_name="{ item }"
+                v-slot:item.station_status_name="{ item }"
                 class="align-items-center"
             >
                 <v-menu offset-y>
