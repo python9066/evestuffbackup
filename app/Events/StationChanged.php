@@ -23,7 +23,7 @@ class StationChanged implements ShouldBroadcast
      *
      * @var User
      */
-    public $notifications;
+    public $stations;
     /**
      * Create a new event instance.
      *
