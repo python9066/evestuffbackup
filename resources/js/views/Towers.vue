@@ -2,7 +2,7 @@
     <div class=" pr-16 pl-16">
         <messageStations></messageStations>
         <div class=" d-flex align-items-center">
-            <v-card-title>Stations</v-card-title>
+            <v-card-title>Towers</v-card-title>
             <div v-if="$can('access hacks')">You can edit posts.</div>
 
             <v-btn
@@ -107,7 +107,7 @@
             </template>
 
             <template
-                v-slot:item.station_status_name="{ item }"
+                v-slot:item.tower_status_name="{ item }"
                 class="align-items-center"
             >
                 <v-menu offset-y>
@@ -144,7 +144,7 @@
                                     icon
                                     @click="expanded = [item], expanded_id = item.id"
                                     v-if="
-                                        item.station_status_id == 3 &&
+                                        item.tower_status_id == 3 &&
                                             !expanded.includes(item)
                                     "
                                     color="success"
@@ -154,7 +154,7 @@
                                     icon
                                     @click="expanded = [], expanded_id = 0"
                                     v-if="
-                                        item.station_status_id == 3 &&
+                                        item.tower_status_id == 3 &&
                                             expanded.includes(item)
                                     "
                                     color="error"
@@ -170,8 +170,8 @@
                             v-for="(list, index) in dropdown_edit"
                             :key="index"
                             @click="
-                                (item.station_status_id = list.value),
-                                    (item.station_status_name = list.title),
+                                (item.tower_status_id = list.value),
+                                    (item.tower_status_name = list.title),
                                     (item.user_name = user_name),
                                     click(item)
                             "
@@ -222,10 +222,6 @@
                         {{ item.text }}
                     </div>
                 </td>
-            </template>
-
-            <template  v-slot:item.station_name="{ item } " class ="d-inline-flex align-center" >
-               {{item.item_name}} - {{item.station_name}}
             </template>
         </v-data-table>
         <v-snackbar v-model="snack" :timeout="3000" :color="snackColor">
@@ -280,11 +276,11 @@ export default {
             querious: 0,
 
             dropdown_edit: [
-                { title: "On My Way", value: 2 },
-                { title: "Gunning", value: 3 },
-                { title: "Saved", value: 4 },
-                { title: "Reffed - Shield", value: 8 },
-                { title: "Reffed - Armor", value: 9 },
+                { title: "Scouting", value: 2 },
+                { title: "Anchoring", value: 3 },
+                { title: "Online", value: 4 },
+                { title: "Reffed", value: 5 },
+                { title: "Dead", value: 6 },
                 { title: "New", value: 1 }
             ],
 
@@ -292,10 +288,10 @@ export default {
                 { text: "Region", value: "region_name", width: "10%" },
                 { text: "Constellation", value: "constellation_name", width: "8%" },
                 { text: "System", value: "system_name", width: "8%" },
-                { text: "Station", value: "station_name", width: "25%" },
-                { text: "Timestamp", value: "timestamp", align: "center",width: "15%" },
-                { text: "Age", value: "count", sortable: false,width: "5%"  },
-                { text: "Status", value: "station_status_name", width: "15%",},
+                { text: "Alliance", value: "alliance_name",width: "5%"  },
+                { text: "Moon", value: "moon_name", width: "25%" },
+                { text: "Type", value: "item_name", align: "center",width: "15%" },
+                { text: "Status", value: "tower_status_name", width: "15%",},
                 { text: "Edited By", value: "user_name", width: "10%", align: "start"}
 
 
@@ -308,12 +304,12 @@ export default {
 
         Echo.private('towers')
         .listen('TowerChanged', (e) => {
-        this.checkexpanded(e.stations)
-        this.$store.dispatch('updateTowers',e.stations);
+        this.checkexpanded(e.towers)
+        this.$store.dispatch('updateTowers',e.towers);
     })
 
         .listen('TowerNew', (e) => {
-        this.loadstations();
+        this.loadtowers();
 
         })
 
@@ -334,7 +330,7 @@ export default {
 
         checkexpanded(towers){
             console.log(towers);
-            if(towers.station_status_id != 3){
+            if(towers.tower_status_id == 1 ||towers.tower_status_id == 6){
                 if(towers.id == this.expanded_id)
                 {
                     this.expanded = [];
@@ -368,7 +364,7 @@ export default {
 
             },
 
-        loadstations() {
+        loadtowers() {
             this.loadingr = true;
             this.$store.dispatch("getTowerData").then(() => {
                 this.loadingr = false;
@@ -421,7 +417,7 @@ export default {
 
         click(item) {
 
-            if(item.tower_status_id !=3){
+            if(towers.tower_status_id == 1 ||towers.tower_status_id == 6){
                 this.expanded = [];
                 item.text = null;
             }
@@ -468,17 +464,32 @@ export default {
             // var timers = this.$store.state.timers;
             if (this.statusflag == 2) {
                 return this.towers.filter(
-                    towers => towers.station_status_id == 2
+                    towers => towers.tower_status_id == 2
                 );
             }
             if (this.statusflag == 3) {
                 return this.towers.filter(
-                    towers => towers.station_status_id == 3
+                    towers => towers.tower_status_id == 3
+                );
+            }
+            if (this.statusflag == 4) {
+                return this.towers.filter(
+                    towers => towers.tower_status_id == 3
+                );
+            }
+            if (this.statusflag == 5) {
+                return this.towers.filter(
+                    towers => towers.tower_status_id == 3
+                );
+            }
+            if (this.statusflag == 6) {
+                return this.towers.filter(
+                    towers => towers.tower_status_id == 3
                 );
             }
             else {
                 return this.towers.filter(
-                    towers => towers.station_status_id != 10
+                    towers => towers.tower_status_id != 10
                 );
             }
         },

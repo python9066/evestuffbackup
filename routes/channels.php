@@ -41,3 +41,7 @@ Broadcast::channel('notes', function () {
   Broadcast::channel('stations', function () {
     return Auth::check();
   });
+
+  Broadcast::channel('towers', function () {
+    return Auth::check();
+  });
