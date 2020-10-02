@@ -169,7 +169,7 @@
                                         "
                                     >
                                     <v-icon v-if="role.name == 'Wizard'" left>
-                                         faSvg fa-hat-wizard
+                                         faSvg fa-hat-wizard fa-xs
                                     </v-icon>
                                         <span> {{ role.name }}</span>
                                     </v-chip>
