@@ -14,7 +14,7 @@ import App from "./views/App";
 import colors from "vuetify/lib/util/colors";
 import VueCountdown from '@chenfengyuan/vue-countdown';
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faUserSecret } from '@fortawesome/free-solid-svg-icons'
+import { fas } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import moment from 'moment'
 import VueCountdownTimer from 'vuejs-countdown-timer'
@@ -22,8 +22,6 @@ import VueCountupTimer from './components/countup/index'
 import CountdownTimer from './components/countdown/index'
 import VueMask from 'v-mask'
 import Permissions from './mixins/Permissions.vue'
-
-library.add(faUserSecret)
 
 Vue.component('messageComponent', require('./components/random/messageComponent.vue').default);
 Vue.component('errorMessage', require('./components/random/errorMessage.vue').default); //component name should be in camel-case
@@ -41,7 +39,9 @@ Vue.prototype.moment = moment
 Vue.use(CountdownTimer)
 Vue.use(VueCountdownTimer)
 Vue.use(VueCountupTimer)
+// library.add(faUserSecret)
 Vue.component('font-awesome-icon', FontAwesomeIcon)
+library.add(fas) // Include needed icons
 Vue.config.productionTip = false
 Vue.component(VueCountdown.name, VueCountdown);
 Vue.use(VueMask)
@@ -77,9 +77,9 @@ export default new Vuetify({
         },
       dark: true,
     },
-    // icons: {
-    //     iconfont: 'faSvg',
-    // },
+    icons: {
+        iconfont: 'faSvg',
+    },
   })
 
   const app = new Vue({
