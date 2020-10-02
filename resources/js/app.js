@@ -77,6 +77,9 @@ export default new Vuetify({
         },
       dark: true,
     },
+    icons: {
+        iconfont: 'fas',
+    },
   })
 
   const app = new Vue({
