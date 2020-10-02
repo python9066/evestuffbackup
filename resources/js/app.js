@@ -24,6 +24,8 @@ import CountdownTimer from './components/countdown/index'
 import VueMask from 'v-mask'
 import Permissions from './mixins/Permissions.vue'
 
+Vue.component('font-awesome-icon', FontAwesomeIcon)
+library.add(fas) // Include needed icons
 Vue.component('messageComponent', require('./components/random/messageComponent.vue').default);
 Vue.component('errorMessage', require('./components/random/errorMessage.vue').default); //component name should be in camel-case
 Vue.component('systemTable', require('./components/campaign/systemTable.vue').default);
@@ -41,8 +43,6 @@ Vue.use(CountdownTimer)
 Vue.use(VueCountdownTimer)
 Vue.use(VueCountupTimer)
 // library.add(faUserSecret)
-Vue.component('font-awesome-icon', FontAwesomeIcon)
-library.add(fas) // Include needed icons
 Vue.config.productionTip = false
 Vue.component(VueCountdown.name, VueCountdown);
 Vue.use(VueMask)

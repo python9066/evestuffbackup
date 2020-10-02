@@ -13,7 +13,7 @@
                 @click="loadtimers()"
             >
                 Update
-                <v-icon right dark>fas fa-sync-alt fa-xs</v-icon>
+                <v-icon right dark>faSvg fa-sync-alt fa-xs</v-icon>
             </v-btn>
             <div>
                 <v-btn-toggle v-model="icon" borderless group>
