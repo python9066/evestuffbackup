@@ -450,17 +450,17 @@ export default {
             // var timers = this.$store.state.timers;
             if (this.statusflag == 2) {
                 return this.stations.filter(
-                    stations => stations.status_id == 2
+                    stations => stations.station_status_id == 2
                 );
             }
             if (this.statusflag == 3) {
                 return this.stations.filter(
-                    stations => stations.status_id == 3
+                    stations => stations.station_status_id == 3
                 );
             }
             else {
                 return this.stations.filter(
-                    stations => stations.status_id != 10
+                    stations => stations.station_status_id != 10
                 );
             }
         },
