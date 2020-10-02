@@ -26,13 +26,15 @@ class testController extends Controller
         $now = $current->modify('-10 minutes');
         $stationflag = 0;
 
-        $stationCheck = Station::where('station_status_id','>', 3)
+        $stationCheck = Station::where('station_status_id', 4)
+            ->orWhere('station_status_id', 5)
             ->get()
             ->count();
         if ($stationCheck > 0) {
 
-            Station::where('station_status_id','>', 3)
-                ->update(['station_status_id', 10]);
+            Station::where('station_status_id',4)
+                ->orWhere('station_status_id', 5)
+                ->update(['station_status_id'=> 10]);
         }
 
         $stationnotenumber = StationNotification::max('id');
