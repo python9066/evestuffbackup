@@ -109,9 +109,9 @@
 
                                 <v-icon v-if="item.station_status_id == 4" left>faSvg fa-thumbs-up</v-icon>
 
-                                <v-icon v-if="item.station_status_id == 5" left>faSvg fa-shield-alt</v-icon>
+                                <v-icon v-if="item.station_status_id == 8" left>faSvg fa-shield-alt</v-icon>
 
-                                <v-icon v-if="item.station_status_id == 6" left>faSvg fa-shield-alt</v-icon>
+                                <v-icon v-if="item.station_status_id == 9" left>faSvg fa-shield-alt</v-icon>
                                 {{ item.station_status_name }}
                             </v-btn>
 
