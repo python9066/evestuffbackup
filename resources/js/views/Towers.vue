@@ -265,7 +265,7 @@ export default {
             poll: null,
             periodbasis: 0,
             search: "",
-            statusflag: 4,
+            statusflag: 1,
             snack: false,
             snackColor: "",
             snackText: "",
