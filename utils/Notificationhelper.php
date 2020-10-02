@@ -22,6 +22,7 @@ class Notifications
         $now = $current->modify('-10 minutes');
         $stationflag = 0;
         $towerflag = 0;
+        $flag = 0;
 
         $stationCheck = Station::where('station_status_id', '>', 3)
             ->where('timestamp', '<=', $now)
@@ -290,6 +291,7 @@ class Notifications
         return $request = array(
             'stationflag' => $stationflag,
             'towerflag' => $towerflag,
+            'notificationflag' => $flag,
         );
     }
 

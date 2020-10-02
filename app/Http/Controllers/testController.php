@@ -19,7 +19,11 @@ class testController extends Controller
     {
         $data =  $request->toArray();
         $flag = Notifications::test($data);
-        dd ($flag);
+        dd ($flag['stationflag']);
+
+        if ($flag == 1) {
+            broadcast(new NotificationNew($flag))->toOthers();
+        }
 
 
     }
