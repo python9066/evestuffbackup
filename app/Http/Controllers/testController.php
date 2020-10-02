@@ -32,7 +32,7 @@ class testController extends Controller
             ->count();
         if ($stationCheck > 0) {
 
-            Station::where('station_status_id',)
+            Station::where('station_status_id',4)
                 ->orWhere('station_status_id', 5)
                 ->update(['station_status_id', 10]);
         }
