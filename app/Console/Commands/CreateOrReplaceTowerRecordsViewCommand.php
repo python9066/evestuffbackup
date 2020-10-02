@@ -64,7 +64,7 @@ class CreateOrReplaceTowerRecordsViewCommand extends Command
         JOIN regions ON regions.id = moons.region_id
         JOIN tower_statuses ON tower_statuses.id = towers.tower_status_id
         LEFT JOIN users ON users.id = towers.user_id
-        WHERE stations.station_status_id != 10");
+        WHERE towers.tower_status_id != 10");
     }
 
 }
