@@ -364,7 +364,7 @@ export default {
                 return "primary"
             }
             if (statusId == 3){
-                return "primary"
+                return "#FF5EEA"
             }
             if (statusId == 4){
                 return "dark-orange"
