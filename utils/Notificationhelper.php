@@ -21,6 +21,7 @@ class Notifications
         $current = now();
         $now = $current->modify('-10 minutes');
         $stationflag = 0;
+        $towerflag = 0;
 
         $stationCheck = Station::where('station_status_id', '>', 3)
             ->where('timestamp', '<=', $now)
@@ -59,8 +60,8 @@ class Notifications
 
                     $data = array(
                         'id' => $var['notification_id'],
-                        'alliance_id' => $var['notification_id'],
-                        'item_id' => $var['notification_id'],
+                        'alliance_id' => $text['allianceID'],
+                        'item_id' => $text['typeID'],
                         'timestamp' => $time,
                         'tower_status_id' => 1,
                         'user_id' => null,
@@ -71,13 +72,13 @@ class Notifications
                     $count = Tower::where('moon_id', $moon_id)->get()->count();
                     if ($count == 0) {
                         Tower::updateOrCreate($moon_id, $data);
-                        $stationflag = 1;
+                        $towerflag = 1;
                     } else {
 
                         if ($var['notification_id'] > $check->id) {
 
                             Tower::updateOrCreate($moon_id, $data);
-                            $stationflag = 1;
+                            $towerflag = 1;
                         }
                     }
                 }
@@ -285,6 +286,11 @@ class Notifications
                 Station::where('id', $armor->station_id)->update(['station_status_id' => 5, 'timestamp' => $armor->timestamp]);
             }
         }
+
+        return $request = array(
+            'stationflag' => $stationflag,
+            'towerflag' => $towerflag,
+        );
     }
 
 

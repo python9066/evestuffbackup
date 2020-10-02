@@ -19,7 +19,7 @@ class testController extends Controller
     {
         $data =  $request->toArray();
         $flag = Notifications::test($data);
-        echo $flag;
+        dd ($flag);
 
 
     }
