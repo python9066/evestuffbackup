@@ -26,6 +26,10 @@
                         hide-details
                     ></v-text-field>
                 </v-card>
+            </v-col>
+        </v-row>
+        <v-row no-gutters justify="center">
+            <v-col class=" d-inline-flex" cols="9">
                 <v-spacer></v-spacer>
                 <v-card tile flat color="#121212" class="align-end">
                     <v-btn-toggle
