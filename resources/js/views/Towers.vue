@@ -132,7 +132,7 @@
 
                                 <v-icon v-if="item.tower_status_id == 5" left>faSvg fa-shield-alt</v-icon>
 
-                                <v-icon v-if="item.tower_status_id == 6" left><i class="fas fa-skull-crossbones"></i></v-icon>
+                                <v-icon v-if="item.tower_status_id == 6" left>fas fa-skull-crossbones</v-icon>
                                 {{ item.tower_status_name }}
                             </v-btn>
 
