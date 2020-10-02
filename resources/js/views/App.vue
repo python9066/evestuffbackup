@@ -104,7 +104,6 @@
                 <v-tabs-slider></v-tabs-slider>
                 <v-tab link to="/notifications">
                     Notifications
-                    <v-icon>mdi-heart</v-icon>
                 </v-tab>
 
                 <v-tab v-if="$can('gunner') " link to="/stations">
