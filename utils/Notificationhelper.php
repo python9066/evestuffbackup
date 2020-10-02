@@ -254,13 +254,13 @@ class Notifications
 
                 if ($shield->id > $check->first()->id) {
 
-                    Station::where('id', $shield->station_id)->update(['station_status_id' => 4, 'user_id' => null, 'timestamp' => $shield->timestamp]);
+                    Station::where('id', $shield->station_id)->update(['station_status_id' => 8, 'user_id' => null, 'timestamp' => $shield->timestamp]);
                 }
                 StationNotificationShield::where('id', $shield->id)->update(['status' => 1]);
             } else {
                 StationNotificationShield::where('id', $shield->id)->update(['status' => 1]);
                 echo "here";
-                Station::where('id', $shield->station_id)->update(['station_status_id' => 4, 'timestamp' => $shield->timestamp]);
+                Station::where('id', $shield->station_id)->update(['station_status_id' => 8, 'timestamp' => $shield->timestamp]);
             }
         }
 
@@ -271,12 +271,12 @@ class Notifications
             if ($check->count() == 1) {
 
                 if ($armor->id > $check->first()->id) {
-                    Station::where('id', $armor->station_id)->update(['station_status_id' => 5, 'user_id' => null, 'timestamp' => $armor->timestamp]);
+                    Station::where('id', $armor->station_id)->update(['station_status_id' => 9, 'user_id' => null, 'timestamp' => $armor->timestamp]);
                 }
                 StationNotificationArmor::where('id', $armor->id)->update(['status' => 1]);
             } else {
                 StationNotificationArmor::where('id', $armor->id)->update(['status' => 1]);
-                Station::where('id', $armor->station_id)->update(['station_status_id' => 5, 'timestamp' => $armor->timestamp]);
+                Station::where('id', $armor->station_id)->update(['station_status_id' => 9, 'timestamp' => $armor->timestamp]);
             }
         }
 

@@ -262,8 +262,8 @@ export default {
                 { title: "On My Way", value: 2 },
                 { title: "Gunning", value: 3 },
                 { title: "Saved", value: 4 },
-                { title: "Reffed - Shield", value: 5 },
-                { title: "Reffed - Armor", value: 6 },
+                { title: "Reffed - Shield", value: 8 },
+                { title: "Reffed - Armor", value: 9 },
                 { title: "New", value: 1 }
             ],
 
@@ -369,10 +369,10 @@ export default {
             if (statusId == 4){
                 return "dark-orange"
             }
-            if (statusId == 5){
+            if (statusId == 8){
                 return "warning"
             }
-            if (statusId == 6){
+            if (statusId == 9){
                 return "warning"
             }
 
