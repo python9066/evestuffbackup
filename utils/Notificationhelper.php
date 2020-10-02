@@ -114,14 +114,6 @@ class Notifications
                             'station_status_id' => 1,
                             'timestamp' => $time,
                         ]);
-                    } else {
-
-                        $data = array(
-                            'timestamp' => $time,
-                            'user_id' => null,
-                            'text' => null,
-                        );
-                        Station::updateOrCreate($station_id, $data);
                     }
 
                     $data = array(
