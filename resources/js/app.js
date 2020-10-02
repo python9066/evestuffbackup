@@ -79,7 +79,7 @@ export default new Vuetify({
       dark: true,
     },
     icons: {
-        iconfont: 'faSvg',
+        iconfont: ['faSvg','mdi'],
     },
   })
 
