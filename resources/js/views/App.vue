@@ -110,6 +110,10 @@
                     Stations
                 </v-tab>
 
+                <v-tab v-if="$can('view_towers') " link to="/towers">
+                    Towers
+                </v-tab>
+
                 <v-tab link to="/timers">
                     Timers
                 </v-tab>

@@ -72,6 +72,9 @@ Route::middleware('auth:api')->group(function(){
     Route::get('/stationrecords','StationRecordsController@index');
     Route::put('/stationrecords/{id}', 'StationRecordsController@update');
 
+    Route::get('/towersrecords','TowerRecordsController@index');
+    Route::put('/towerrecords/{id}', 'TowerRecordsController@update');
+
 
 
 

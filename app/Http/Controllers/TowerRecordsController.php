@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\TowerChanged;
+use App\Models\Tower;
+use App\Models\TowerRecord;
 use Illuminate\Http\Request;
 
 class TowerRecordsController extends Controller
@@ -13,7 +16,7 @@ class TowerRecordsController extends Controller
      */
     public function index()
     {
-        //
+        return ['towers' => TowerRecord::all()];
     }
 
     /**
@@ -47,7 +50,11 @@ class TowerRecordsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        Tower::find($id)->update($request->all());
+        $station =  TowerRecord::find($id);
+        if ($station->status_id != 10) {
+            broadcast(new TowerChanged($station))->toOthers();
+        }
     }
 
     /**

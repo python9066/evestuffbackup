@@ -27,10 +27,15 @@ export default new Vuex.Store({
         rolesList:[],
         campaignmembers:[],
         stations:[],
+        towers:[],
     },
     mutations: {
         SET_TIMERS(state, timers) {
             state.timers = timers;
+        },
+
+        SET_TOWERS(state, towers) {
+            state.towers = towers;
         },
 
         SET_STATIONS(state, stations) {
@@ -55,6 +60,11 @@ export default new Vuex.Store({
 
         UPDATE_CAMPAIGNS(state, data) {
             const item = state.campaigns.find(c => c.id === data.id);
+            Object.assign(item, data);
+        },
+
+        UPDATE_TOWERS(state, data) {
+            const item = state.towers.find(c => c.id === data.id);
             Object.assign(item, data);
         },
 
@@ -135,6 +145,20 @@ export default new Vuex.Store({
             });
             // console.log(res.data.timers)
             commit("SET_TIMERS", res.data.timers);
+        },
+
+        async getTowerData({ commit, state }) {
+            let res = await axios({
+                method: "get",
+                url: "/api/towersrecords",
+                headers: {
+                    Authorization: "Bearer " + state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                }
+            });
+            // console.log(res.data.timers)
+            commit("SET_TOWERS", res.data.towers);
         },
 
         async getStationData({ commit, state }) {
@@ -230,6 +254,10 @@ export default new Vuex.Store({
 
         updateCampaigns({ commit }, data) {
             commit("UPDATE_CAMPAIGNS", data);
+        },
+
+        updateTowers({ commit }, data) {
+            commit("UPDATE_TOWERS", data);
         },
 
         updateCampaignSystem({ commit }, data) {

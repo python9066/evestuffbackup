@@ -9,6 +9,7 @@ import Stest from "./components/campaign/systemTable.vue";
 import AdminPanel from "./views/AdminPanel.vue";
 import StationsRedirect from "./views/redirect/StationsRedirect.vue";
 import Stations from "./views/Stations.vue"
+import Towers from "./views/Towers.vue"
 import store from "./store";
 
 function sleep(ms) {
@@ -62,6 +63,20 @@ export default new Router({
             component: Stations,
               beforeEnter(to, from, next) {
                 if(Permissions.indexOf('gunner' )!== -1){
+                    next()
+                }else{
+                   next("/redirect/stations")
+                }
+
+              }
+        },
+
+        {
+            path: "/towers",
+            name: "towers",
+            component: Towers,
+              beforeEnter(to, from, next) {
+                if(Permissions.indexOf('view_towers' )!== -1){
                     next()
                 }else{
                    next("/redirect/stations")
