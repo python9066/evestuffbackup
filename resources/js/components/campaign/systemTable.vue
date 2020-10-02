@@ -189,8 +189,7 @@
                                 >
                                     <template v-slot:activator="{ on, attrs }">
                                         <v-btn
-                                            tile
-                                            outlined
+                                            text
                                             v-bind="attrs"
                                             v-on="on"
                                             @click="addShown = true"
