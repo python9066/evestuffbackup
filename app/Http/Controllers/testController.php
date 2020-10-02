@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Events\StationNew;
+use App\Events\TowerNew;
 use Illuminate\Http\Request;
 use utils\Helper\Helper;
 use utils\Notificationhelper\Notifications;
@@ -22,6 +23,10 @@ class testController extends Controller
 
         if ($flag['stationflag'] == 1) {
             broadcast(new StationNew($flag['stationflag']))->toOthers();
+        }
+
+        if ($flag['tower'] == 1) {
+            broadcast(new TowerNew($flag['towerflag']))->toOthers();
         }
 
 
