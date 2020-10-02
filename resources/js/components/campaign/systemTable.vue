@@ -189,12 +189,12 @@
                                 >
                                     <template v-slot:activator="{ on, attrs }">
                                         <v-btn
-                                            icon
                                             v-bind="attrs"
                                             v-on="on"
                                             @click="addShown = true"
                                             color="success"
-                                            ><v-icon>fas fa-plus</v-icon></v-btn
+                                            ><v-icon left small>fas fa-plus</v-icon>
+                                            Node</v-btn
                                         >
                                     </template>
                                     <v-card tile min-height="150px">
