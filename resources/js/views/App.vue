@@ -109,22 +109,18 @@
 
                 <v-tab v-if="$can('gunner') " link to="/stations">
                     Stations
-                    <v-icon>mdi-phone</v-icon>
                 </v-tab>
 
                 <v-tab link to="/timers">
                     Timers
-                    <v-icon>mdi-phone</v-icon>
                 </v-tab>
 
                 <v-tab link to="/campaigns">
                     Campaigns
-                    <v-icon>mdi-phone</v-icon>
                 </v-tab>
 
                 <v-tab v-if="$can('edit_users') ||$can('edit scout users') ||$can('edit hack users') " link to="/pannel">
                     Users
-                    <v-icon>mdi-phone</v-icon>
                 </v-tab>
 
 
