@@ -120,20 +120,20 @@
                                 v-on="on"
                                 tile
                                 outlined
-                                :color='pillColor(item.station_status_id)'
+                                :color='pillColor(item.tower_status_id)'
                             >
-                                <v-icon v-if="item.station_status_id == 1" left>faSvg fa-plus</v-icon>
+                                <v-icon v-if="item.tower_status_id == 1" left>faSvg fa-plus</v-icon>
 
-                                <v-icon v-if="item.station_status_id == 2" left>faSvg fa-search</v-icon>
+                                <v-icon v-if="item.tower_status_id == 2" left>faSvg fa-search</v-icon>
 
-                                <v-icon v-if="item.station_status_id == 3" left>faSvg fa-anchor</v-icon>
+                                <v-icon v-if="item.tower_status_id == 3" left>faSvg fa-anchor</v-icon>
 
-                                <v-icon v-if="item.station_status_id == 4" left>faSvg fa-broadcast_tower</v-icon>
+                                <v-icon v-if="item.tower_status_id == 4" left>faSvg fa-broadcast_tower</v-icon>
 
-                                <v-icon v-if="item.station_status_id == 5" left>faSvg fa-shield-alt</v-icon>
+                                <v-icon v-if="item.tower_status_id == 5" left>faSvg fa-shield-alt</v-icon>
 
-                                <v-icon v-if="item.station_status_id == 6" left>faSvg fa-skill-crossbones</v-icon>
-                                {{ item.station_status_name }}
+                                <v-icon v-if="item.tower_status_id == 6" left>faSvg fa-skill-crossbones</v-icon>
+                                {{ item.tower_status_name }}
                             </v-btn>
 
 
