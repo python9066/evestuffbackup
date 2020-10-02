@@ -44,23 +44,16 @@
                         <v-btn
                             :loading="loadingf"
                             :disabled="loadingf"
-                            @click="roleflag = 5"
-                        >
-                            Recon
-                        </v-btn>
-                        <v-btn
-                            :loading="loadingf"
-                            :disabled="loadingf"
-                            @click="roleflag = 6"
-                        >
-                            Ops
-                        </v-btn>
-                        <v-btn
-                            :loading="loadingf"
-                            :disabled="loadingf"
                             @click="roleflag = 4"
                         >
-                            Cord
+                            Coord
+                        </v-btn>
+                        <v-btn
+                            :loading="loadingf"
+                            :disabled="loadingf"
+                            @click="roleflag = 13"
+                        >
+                            Director
                         </v-btn>
                         <v-btn
                             :loading="loadingf"
@@ -74,21 +67,49 @@
                             :disabled="loadingf"
                             @click="roleflag = 9"
                         >
-                            GSFOE FC
+                            GSFFOE FC
                         </v-btn>
                         <v-btn
                             :loading="loadingf"
                             :disabled="loadingf"
-                            @click="roleflag = 8"
+                            @click="roleflag = 16"
                         >
-                            GSFOE
+                            GSFOE Leader
+                        </v-btn>
+                        <v-btn
+                            :loading="loadingf"
+                            :disabled="loadingf"
+                            @click="roleflag = 17"
+                        >
+                            GSOL
+                        </v-btn>
+                        <v-btn
+                            :loading="loadingf"
+                            :disabled="loadingf"
+                            @click="roleflag = 6"
+                        >
+                            Ops
+                        </v-btn>
+                        <v-btn
+                            :loading="loadingf"
+                            :disabled="loadingf"
+                            @click="roleflag = 5"
+                        >
+                            Recon
+                        </v-btn>
+                        <v-btn
+                            :loading="loadingf"
+                            :disabled="loadingf"
+                            @click="roleflag = 14"
+                        >
+                            Recon Leader
                         </v-btn>
                         <v-btn
                             :loading="loadingf"
                             :disabled="loadingf"
                             @click="roleflag = 7"
                         >
-                            Scouts
+                            Scout
                         </v-btn>
                     </v-btn-toggle>
                 </v-card>
@@ -369,6 +390,13 @@ export default {
     computed: {
         ...mapState(["users", "rolesList"]),
         filteredItems() {
+            if (this.roleflag == 4) {
+                return this.users.filter(function(u) {
+                    return u.roles.some(function(role) {
+                        return role.id == 4;
+                    });
+                });
+            }
             if (this.roleflag == 5) {
                 return this.users.filter(function(u) {
                     return u.roles.some(function(role) {
@@ -383,17 +411,17 @@ export default {
                     });
                 });
             }
-            if (this.roleflag == 4) {
-                return this.users.filter(function(u) {
-                    return u.roles.some(function(role) {
-                        return role.id == 4;
-                    });
-                });
-            }
             if (this.roleflag == 7) {
                 return this.users.filter(function(u) {
                     return u.roles.some(function(role) {
                         return role.id == 7;
+                    });
+                });
+            }
+            if (this.roleflag == 8) {
+                return this.users.filter(function(u) {
+                    return u.roles.some(function(role) {
+                        return role.id == 8;
                     });
                 });
             }
@@ -404,6 +432,13 @@ export default {
                     });
                 });
             }
+            if (this.roleflag == 11) {
+                return this.users.filter(function(u) {
+                    return u.roles.some(function(role) {
+                        return role.id == 11;
+                    });
+                });
+            }
             if (this.roleflag == 12) {
                 return this.users.filter(function(u) {
                     return u.roles.some(function(role) {
@@ -411,11 +446,32 @@ export default {
                     });
                 });
             }
-
-            if (this.roleflag == 8) {
+            if (this.roleflag == 13) {
                 return this.users.filter(function(u) {
                     return u.roles.some(function(role) {
-                        return role.id == 8;
+                        return role.id == 13;
+                    });
+                });
+            }
+            if (this.roleflag == 14) {
+                return this.users.filter(function(u) {
+                    return u.roles.some(function(role) {
+                        return role.id == 14;
+                    });
+                });
+            }
+            if (this.roleflag == 16) {
+                return this.users.filter(function(u) {
+                    return u.roles.some(function(role) {
+                        return role.id == 16;
+                    });
+                });
+            }
+
+            if (this.roleflag == 17) {
+                return this.users.filter(function(u) {
+                    return u.roles.some(function(role) {
+                        return role.id == 17;
                     });
                 });
             } else {
