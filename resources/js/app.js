@@ -12,6 +12,7 @@ import router from "./router";
 import store from "./store";
 import App from "./views/App";
 import colors from "vuetify/lib/util/colors";
+import '@fortawesome/fontawesome-free/css/all.css'
 import VueCountdown from '@chenfengyuan/vue-countdown';
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fas } from '@fortawesome/free-solid-svg-icons'
