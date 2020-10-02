@@ -168,7 +168,7 @@
                                                 userRemoveRole(item)
                                         "
                                     >
-                                    <v-icon v-if="item.id == 92" left>
+                                    <v-icon v-if="role.name == 'Wizard'" left>
                                          faSvg fa-hat-wizard
                                     </v-icon>
                                         <span> {{ role.name }}</span>
