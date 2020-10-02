@@ -48,7 +48,7 @@ window.Echo = new Echo({
     wsHost: "evewebsockets.club",
     wsPort: 6001,
     encrupted: true,
-    forceTLS: true,
+    // forceTLS: true,
     // encrupted: false,
     // forceTLS: false,
     disableStats: true,
