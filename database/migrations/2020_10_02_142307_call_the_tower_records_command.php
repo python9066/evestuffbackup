@@ -3,8 +3,9 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\Artisan;
 
-class AddTextColumnToTowersTable extends Migration
+class CallTheTowerRecordsCommand extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +14,7 @@ class AddTextColumnToTowersTable extends Migration
      */
     public function up()
     {
-        Schema::table('towers', function (Blueprint $table) {
-            $table->string('text')->after('timestamp')->default(null)->nullable();
-        });
+        Artisan::call("view:CreateOrReplaceTowerRecordsView");
     }
 
     /**
@@ -25,8 +24,6 @@ class AddTextColumnToTowersTable extends Migration
      */
     public function down()
     {
-        Schema::table('towers', function (Blueprint $table) {
-            //
-        });
+        //
     }
 }

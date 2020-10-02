@@ -15,8 +15,6 @@ class CreateMoonsTable extends Migration
     {
         Schema::create('moons', function (Blueprint $table) {
             $table->id();
-            $table->integer('typeID');
-            $table->integer('groupID');
             $table->foreignId('system_id')->index();
             $table->foreignId('constellation_id')->index();
             $table->foreignId('region_id')->index();
