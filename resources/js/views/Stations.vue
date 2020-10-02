@@ -400,7 +400,7 @@ export default {
 
         click(item) {
 
-            if(item.status !=3){
+            if(item.station_status_id !=3){
                 this.expanded = [];
                 item.text = null;
             }

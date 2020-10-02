@@ -37,14 +37,35 @@
                     :disabled="loadingf"
                     @click="statusflag = 2"
                 >
-                    On The Way
+                    Scouting
                 </v-btn>
                 <v-btn
                     :loading="loadingf"
                     :disabled="loadingf"
                     @click="statusflag = 3"
                 >
-                    Gunning
+                    Anchoring
+                </v-btn>
+                <v-btn
+                    :loading="loadingf"
+                    :disabled="loadingf"
+                    @click="statusflag = 4"
+                >
+                    Online
+                </v-btn>
+                <v-btn
+                    :loading="loadingf"
+                    :disabled="loadingf"
+                    @click="statusflag = 5"
+                >
+                    Reffed
+                </v-btn>
+                <v-btn
+                    :loading="loadingf"
+                    :disabled="loadingf"
+                    @click="statusflag = 6"
+                >
+                    Dead
                 </v-btn>
             </v-btn-toggle>
         </div>
@@ -103,15 +124,15 @@
                             >
                                 <v-icon v-if="item.station_status_id == 1" left>faSvg fa-plus</v-icon>
 
-                                <v-icon v-if="item.station_status_id == 2" left>faSvg fa-route</v-icon>
+                                <v-icon v-if="item.station_status_id == 2" left>faSvg fa-search</v-icon>
 
-                                <v-icon v-if="item.station_status_id == 3" left>faSvg fa-fist-raised</v-icon>
+                                <v-icon v-if="item.station_status_id == 3" left>faSvg fa-anchor</v-icon>
 
-                                <v-icon v-if="item.station_status_id == 4" left>faSvg fa-thumbs-up</v-icon>
+                                <v-icon v-if="item.station_status_id == 4" left>faSvg fa-broadcast_tower</v-icon>
 
-                                <v-icon v-if="item.station_status_id == 8" left>faSvg fa-shield-alt</v-icon>
+                                <v-icon v-if="item.station_status_id == 5" left>faSvg fa-shield-alt</v-icon>
 
-                                <v-icon v-if="item.station_status_id == 9" left>faSvg fa-house-damage</v-icon>
+                                <v-icon v-if="item.station_status_id == 6" left>faSvg fa-skill-crossbones</v-icon>
                                 {{ item.station_status_name }}
                             </v-btn>
 
@@ -285,19 +306,19 @@ export default {
 
     created() {
 
-        Echo.private('stations')
-        .listen('StationChanged', (e) => {
+        Echo.private('towers')
+        .listen('TowerChanged', (e) => {
         this.checkexpanded(e.stations)
-        this.$store.dispatch('updateStations',e.stations);
+        this.$store.dispatch('updateTowers',e.stations);
     })
 
-        .listen('StationNew', (e) => {
+        .listen('TowerNew', (e) => {
         this.loadstations();
 
         })
 
 
-        this.$store.dispatch("getStationData").then(() => {
+        this.$store.dispatch("getTowerData").then(() => {
             this.loadingt = false;
             this.loadingf = false;
             this.loadingr = false;
@@ -311,10 +332,10 @@ export default {
     methods: {
 
 
-        checkexpanded(stations){
-            console.log(stations);
-            if(stations.station_status_id != 3){
-                if(stations.id == this.expanded_id)
+        checkexpanded(towers){
+            console.log(towers);
+            if(towers.station_status_id != 3){
+                if(towers.id == this.expanded_id)
                 {
                     this.expanded = [];
                     this.expanded_id = 0;
@@ -331,10 +352,10 @@ export default {
                  var request = {
                 text: item.text
             };
-                this.$store.dispatch('updateStations',item)
+                this.$store.dispatch('updateTowers',item)
                 axios({
                 method: 'put', //you can set what request you want to be
-                url: "api/stationrecords/" + item.id,
+                url: "api/towerrecords/" + item.id,
                 data: request,
                 headers: {
                     Authorization: 'Bearer ' + this.$store.state.token,
@@ -349,7 +370,7 @@ export default {
 
         loadstations() {
             this.loadingr = true;
-            this.$store.dispatch("getStationData").then(() => {
+            this.$store.dispatch("getTowerData").then(() => {
                 this.loadingr = false;
             });
             // console.log("30secs");
@@ -358,22 +379,22 @@ export default {
         pillColor(statusId){
 
             if (statusId == 1){
-                return "success"
+                return "light-green accent-3"
             }
             if (statusId == 2){
-                return "primary"
+                return "light-blue darken-2"
             }
             if (statusId == 3){
-                return "primary"
+                return "deep-orange darken-2"
             }
             if (statusId == 4){
-                return "dark-orange"
+                return "red accent-4"
             }
-            if (statusId == 8){
-                return "warning"
+            if (statusId == 5){
+                return "blue darken-4"
             }
-            if (statusId == 9){
-                return "warning"
+            if (statusId == 6){
+                return "light-green accent-3"
             }
 
         },
@@ -400,18 +421,18 @@ export default {
 
         click(item) {
 
-            if(item.status !=3){
+            if(item.tower_status_id !=3){
                 this.expanded = [];
                 item.text = null;
             }
 
             var request = {
-                station_status_id: item.station_status_id,
+                tower_status_id: item.tower_status_id,
                 user_id: this.$store.state.user_id,
             };
             axios({
                 method: 'put', //you can set what request you want to be
-                url: "api/stationrecords/" + item.id,
+                url: "api/towerrecords/" + item.id,
                 data: request,
                 headers: {
                     Authorization: 'Bearer ' + this.$store.state.token,
@@ -440,24 +461,24 @@ export default {
 
     computed: {
         ...mapState([
-            "stations",
+            "towers",
         ]),
 
         filteredItems() {
             // var timers = this.$store.state.timers;
             if (this.statusflag == 2) {
-                return this.stations.filter(
-                    stations => stations.station_status_id == 2
+                return this.towers.filter(
+                    towers => towers.station_status_id == 2
                 );
             }
             if (this.statusflag == 3) {
-                return this.stations.filter(
-                    stations => stations.station_status_id == 3
+                return this.towers.filter(
+                    towers => towers.station_status_id == 3
                 );
             }
             else {
-                return this.stations.filter(
-                    stations => stations.station_status_id != 10
+                return this.towers.filter(
+                    towers => towers.station_status_id != 10
                 );
             }
         },
@@ -473,7 +494,7 @@ export default {
 
         // clearInterval(this.poll);
         // console.log('KILL THEM ALL');
-        Echo.leave('stations');
+        Echo.leave('towers');
 
     },
 
