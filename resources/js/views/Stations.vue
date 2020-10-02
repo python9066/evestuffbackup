@@ -292,7 +292,7 @@ export default {
     })
 
         .listen('StationNew', (e) => {
-        this.loadtimers();
+        this.loadstations();
 
         })
 
@@ -347,7 +347,7 @@ export default {
 
             },
 
-        loadtimers() {
+        loadstations() {
             this.loadingr = true;
             this.$store.dispatch("getStationData").then(() => {
                 this.loadingr = false;

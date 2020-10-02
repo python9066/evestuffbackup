@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-
+use App\Events\StationNew;
 use Illuminate\Http\Request;
 use utils\Helper\Helper;
 use utils\Notificationhelper\Notifications;
@@ -19,10 +19,9 @@ class testController extends Controller
     {
         $data =  $request->toArray();
         $flag = Notifications::test($data);
-        dd ($flag['stationflag']);
 
-        if ($flag == 1) {
-            broadcast(new NotificationNew($flag))->toOthers();
+        if ($flag['stationflag'] == 1) {
+            broadcast(new StationNew($flag['stationflag']))->toOthers();
         }
 
 
