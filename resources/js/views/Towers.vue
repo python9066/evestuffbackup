@@ -128,11 +128,11 @@
 
                                 <v-icon v-if="item.tower_status_id == 3" left>faSvg fa-anchor</v-icon>
 
-                                <v-icon v-if="item.tower_status_id == 4" left>faSvg fa-broadcast_tower</v-icon>
+                                <v-icon v-if="item.tower_status_id == 4" left>faSvg fa-broadcast-tower</v-icon>
 
                                 <v-icon v-if="item.tower_status_id == 5" left>faSvg fa-shield-alt</v-icon>
 
-                                <v-icon v-if="item.tower_status_id == 6" left>fas fa-skull-crossbones</v-icon>
+                                <v-icon v-if="item.tower_status_id == 6" left>faSvg fa-skull-crossbones</v-icon>
                                 {{ item.tower_status_name }}
                             </v-btn>
 
@@ -417,7 +417,7 @@ export default {
 
         click(item) {
 
-            if(towers.tower_status_id == 1 ||towers.tower_status_id == 6){
+            if(item.tower_status_id == 1 ||item.tower_status_id == 6){
                 this.expanded = [];
                 item.text = null;
             }
