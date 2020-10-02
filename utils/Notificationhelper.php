@@ -51,7 +51,7 @@ class Notifications
                     $text = str_replace("solarSystemID", "system_id", $text);
                     $text = str_replace("structureTypeID", "item_id", $text);
                     $text = Yaml::parse($text);
-                    dd($var, $text);
+                    // dd($var, $text);
 
                     $moon_id = array(
                         'moon_id' => $text['moonID']
