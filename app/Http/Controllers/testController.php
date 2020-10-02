@@ -26,14 +26,12 @@ class testController extends Controller
         $now = $current->modify('-10 minutes');
         $stationflag = 0;
 
-        $stationCheck = Station::where('station_status_id', 4)
-            ->orwhere('station_status_id', 5)
+        $stationCheck = Station::where('station_status_id','>', 3)
             ->get()
             ->count();
         if ($stationCheck > 0) {
 
-            Station::where('station_status_id',4)
-                ->orwhere('station_status_id', 5)
+            Station::where('station_status_id','>', 3)
                 ->update(['station_status_id', 10]);
         }
 
