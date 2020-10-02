@@ -103,15 +103,15 @@
                             >
                                 <v-icon v-if="item.station_status_id == 1" left>faSvg fa-plus</v-icon>
 
-                                <v-icon v-if="item.station_status_id == 2" left>faSvg fa-road</v-icon>
+                                <v-icon v-if="item.station_status_id == 2" left>faSvg fa-route</v-icon>
 
-                                <v-icon v-if="item.station_status_id == 3" left>faSvg fa-fighter-jet</v-icon>
+                                <v-icon v-if="item.station_status_id == 3" left>faSvg fa-fist-raised</v-icon>
 
                                 <v-icon v-if="item.station_status_id == 4" left>faSvg fa-thumbs-up</v-icon>
 
                                 <v-icon v-if="item.station_status_id == 8" left>faSvg fa-shield-alt</v-icon>
 
-                                <v-icon v-if="item.station_status_id == 9" left>faSvg fa-shield-alt</v-icon>
+                                <v-icon v-if="item.station_status_id == 9" left>faSvg fa-house-damage</v-icon>
                                 {{ item.station_status_name }}
                             </v-btn>
 
