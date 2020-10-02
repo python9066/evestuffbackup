@@ -90,7 +90,7 @@
 
                 <v-avatar :size="avatarsize" tile class="">
                     <!-- <v-icon color="">fa fa-rocket fa-sm </v-icon> -->
-                    <v-icon color=""><font-awesome-icon icon="rocket" /></v-icon>
+                    <v-icon color=""><font-awesome-icon icon="user-secret" /></v-icon>
                 </v-avatar>
             </v-toolbar-title>
             <v-spacer></v-spacer>
