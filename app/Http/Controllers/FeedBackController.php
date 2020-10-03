@@ -25,7 +25,7 @@ class FeedBackController extends Controller
      */
     public function store(Request $request)
     {
-        FeedBack::create($request->all());
+        return [ "feedback" => FeedBack::create($request->all())];
     }
 
     /**

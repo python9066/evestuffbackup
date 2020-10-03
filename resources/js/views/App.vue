@@ -125,14 +125,22 @@
 
                     <v-tab
                         v-if="
-                            $can('edit_users') ||
-                                $can('edit scout users') ||
-                                $can('edit hack users')
+                            $can('edit_users')
                         "
                         link
                         to="/pannel"
                     >
                         Users
+                    </v-tab>
+
+                    <v-tab
+                        v-if="
+                            $can('super')
+                        "
+                        link
+                        to="/feedback"
+                    >
+                        FeedBack
                     </v-tab>
                 </v-tabs>
             </div>
