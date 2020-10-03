@@ -14,7 +14,7 @@ class FeedBackController extends Controller
      */
     public function index()
     {
-        //
+        return ["feedback" => FeedBack::all()];
     }
 
     /**
@@ -25,7 +25,7 @@ class FeedBackController extends Controller
      */
     public function store(Request $request)
     {
-        return [ "feedback" => FeedBack::create($request->all())];
+        FeedBack::create($request->all());
     }
 
     /**
