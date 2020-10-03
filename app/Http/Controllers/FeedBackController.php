@@ -77,6 +77,6 @@ class FeedBackController extends Controller
      */
     public function destroy($id)
     {
-        //
+        FeedBack::destroy($id);
     }
 }

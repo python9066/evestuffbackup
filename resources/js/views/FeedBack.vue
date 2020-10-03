@@ -88,6 +88,16 @@
                         </td>
                     </template>
 
+                    <template v-slot:item.actions="{ item }">
+                        <v-icon
+                            color="orange darken-3"
+                            small
+                            @click="deleteFeedBack(item)"
+                        >
+                            fas fa-trash-alt
+                        </v-icon>
+                    </template>
+
 
         </v-data-table>
         <v-snackbar v-model="snack" :timeout="3000" :color="snackColor">
@@ -150,7 +160,7 @@ export default {
             headers: [
                 { text: "User", value: "user_name" },
                 { text: "Date", value: "created" },
-                { text: "Actions", value: "", align: "end" }
+                { text: "Actions", value: "", align: "start" }
 
                 // { text: "Vulernable End Time", value: "vulnerable_end_time" }
             ]
@@ -182,6 +192,19 @@ export default {
             });
             this.data = res.data.feedback;
             this.loadingr = false;
+        },
+
+        async deleteFeedBack(item) {
+            let res = await axios({
+                method: "delete", //you can set what request you want to be
+                url: "api/feedback" + item.id,
+                headers: {
+                    Authorization: "Bearer " + this.$store.state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                }
+            });
+            this.loadFeedBack();
         },
 
         save() {

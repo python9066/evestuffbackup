@@ -77,6 +77,7 @@ Route::middleware('auth:api')->group(function(){
 
     Route::post('/feedback','FeedBackController@store');
     Route::get('/feedback', 'FeedBackController@index');
+    Route::delete('/feedback/{id}', 'FeedBackController@destroy');
 
 
 
