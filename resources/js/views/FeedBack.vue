@@ -55,9 +55,10 @@
         <v-data-table
             :headers="headers"
             :items="this.data"
+            :single-expand="singleExpand"
             :expanded.sync="expanded"
             item-key="id"
-            :loading="loadingt"
+            show-expand
             :items-per-page="25"
             :footer-props="{ 'items-per-page-options': [15, 25, 50, 100, -1] }"
             :sort-by="['created']"
