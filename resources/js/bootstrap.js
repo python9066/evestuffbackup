@@ -45,13 +45,10 @@ window.Echo = new Echo({
 //     broadcaster: 'pusher',
 //     key: process.env.MIX_PUSHER_APP_KEY,
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
-//     wsHost: "evewebsockets.club",
-//     wsPort: 6001,
-//     encrupted: true,
-//     forceTLS: true,
-//     encrupted: false,
+//     wsHost: 'evewebsockets.club',
 //     forceTLS: false,
 //     disableStats: true,
+//     wsPort: 6001,
+//     wssPort: 443,
 //     enabledTransports: ['ws', 'wss'],
-
 // });
