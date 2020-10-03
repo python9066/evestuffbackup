@@ -11,6 +11,7 @@ import StationsRedirect from "./views/redirect/StationsRedirect.vue";
 import Stations from "./views/Stations.vue"
 import Towers from "./views/Towers.vue"
 import store from "./store";
+import FeedBack from "./views/FeedBack.vue";
 
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
@@ -66,6 +67,20 @@ export default new Router({
                     next()
                 }else{
                    next("/redirect/stations")
+                }
+
+              }
+        },
+
+        {
+            path: "/feedback",
+            name: "feedback",
+            component: FeedBack,
+              beforeEnter(to, from, next) {
+                if(Permissions.indexOf('super' )!== -1){
+                    next()
+                }else{
+                   next("/notifications")
                 }
 
               }
