@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\FeedBack;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class FeedBackController extends Controller
@@ -15,8 +16,9 @@ class FeedBackController extends Controller
     public function index()
     {
         $feedback = FeedBack::all();
+        $test = User::has('feedback')->get();
 
-        return ["feedback" => $feedback->user()->get()];
+        return ["feedback" => $test];
     }
 
     /**
