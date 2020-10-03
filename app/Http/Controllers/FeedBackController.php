@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\FeedBack;
 use App\Models\User;
 use Illuminate\Http\Request;
+use utils\Helper\Helper;
 
 class FeedBackController extends Controller
 {
@@ -19,12 +20,13 @@ class FeedBackController extends Controller
         $feed = FeedBack::with('user')->get();
         foreach ($feed as $feed){
             $data = [];
+            $time = Helper::fixtime($feed->created_at);
             $data = [
                 'id' => $feed->id,
                 'user_id' => $feed->user_id,
                 'user_name' => $feed->user->name,
                 'text' => $feed->text,
-                'created' => $feed->created_at,
+                'created' => $time,
             ];
             array_push($feedback, $data);
         }
