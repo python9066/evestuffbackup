@@ -228,11 +228,20 @@
                             <v-card-title> Give your feedback </v-card-title>
                             <v-card-subtitle>All suggestions welcome</v-card-subtitle>
                             <v-card-text>
+                                <v-textarea
+                                        v-model="feedBackText"
+                                        label="Enter your feed back here"
+                                        outlined
+                                        shaped
+                                    ></v-textarea>
 
                             </v-card-text>
                             <v-card-actions>
                                 <v-btn color="success" @click="overlay = false">
-                                    Hide Overlay
+                                    Submit
+                                </v-btn>
+                                <v-btn color="warning" @click="overlay = false">
+                                    Close
                                 </v-btn>
                             </v-card-actions>
                         </v-card>
