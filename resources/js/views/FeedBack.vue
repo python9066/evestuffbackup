@@ -160,7 +160,7 @@ export default {
             headers: [
                 { text: "User", value: "user_name" },
                 { text: "Date", value: "created" },
-                { text: "Actions", value: "", align: "start" }
+                { text: "Actions", value: "actions", align: "start" }
 
                 // { text: "Vulernable End Time", value: "vulnerable_end_time" }
             ]
