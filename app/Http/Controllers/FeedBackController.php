@@ -15,7 +15,9 @@ class FeedBackController extends Controller
      */
     public function index()
     {
-        $feedback = FeedBack::with('user')->select('name')->get();
+        $feedback = FeedBack::with(array('user' => function ($query) {
+            $query->select('name');
+        }))->get();
         // $test = User::has('feedback')->get();
 
         return ["feedback" => $feedback];
