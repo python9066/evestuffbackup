@@ -213,11 +213,11 @@
                     </v-card-actions>
                 </v-card>
             </v-menu> -->
-            <v-overlay :value="overlay"></v-overlay>
         </v-app-bar>
 
         <!-- MAIN ROUTER-VIEW ------------------------------------->
         <v-main class="pb-10">
+            <v-overlay :value="overlay"></v-overlay>
             <!-- <transition name="fade" mode="out-in"> -->
             <v-fade-transition mode="out-in">
                 <router-view :key="$route.path" />
