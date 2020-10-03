@@ -297,8 +297,8 @@ export default {
         async submitFeedBack(){
 
             let request = {
-                user_id = this.$store.state.user_id,
-                text = this.feedBackText
+                user_id: this.$store.state.user_id,
+                text: this.feedBackText
             }
 
             await axios({
