@@ -263,7 +263,8 @@ export default {
     data: () => ({
         loading2: false,
         navdrawer: null,
-        overlay: false
+        overlay: false,
+        feedBackText:"",
     }),
     async created() {
         // EventBus.$on("buttonupdate", payload => {
