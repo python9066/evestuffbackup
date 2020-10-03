@@ -222,8 +222,8 @@
         <!-- MAIN ROUTER-VIEW ------------------------------------->
         <v-main class="pb-10">
             <v-overlay :value="overlay">
-                <v-row>
-                    <v-col cols="12">
+                <v-row no-gutters>
+                    <v-col cols="auto">
                         <v-card>
                             <v-card-title> Give your feedback </v-card-title>
                             <v-card-subtitle>All suggestions welcome</v-card-subtitle>
