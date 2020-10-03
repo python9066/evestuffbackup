@@ -113,7 +113,7 @@ export default {
             atime: null,
             check: "not here",
             componentKey: 0,
-            data: null,
+            data: [],
             dialog1: false,
             dialog2: false,
             dialog3: false,
