@@ -15,9 +15,19 @@ class FeedBackController extends Controller
      */
     public function index()
     {
-        $feedback = FeedBack::with(array('user' => function ($query) {
-            $query->select('user_name');
-        }))->get();
+        $feedback = [];
+        $feed = FeedBack::with('user')->get();
+        foreach ($feed as $feed){
+            $data = [];
+            $data = [
+                'id' => $feed->id,
+                'user_id' => $feed->user_id,
+                'user_name' => $feed->user->name,
+                'text' => $feed->text,
+                'created' => $feed->created_at,
+            ];
+            array_push($feedback, $data);
+        }
         // $test = User::has('feedback')->get();
 
         return ["feedback" => $feedback];
