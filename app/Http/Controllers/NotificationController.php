@@ -10,6 +10,8 @@ use utils\Helper\Helper;
 use utils\Notificationhelper\Notifications;
 use App\Events\NotificationChanged;
 use App\Models\NotificationRecords;
+use App\Events\StationNew;
+use App\Events\TowerNew;
 
 class NotificationController extends Controller
 {
@@ -23,18 +25,23 @@ class NotificationController extends Controller
             echo " status 1 - ";
             $type = "note";Helper::authcheck();
                 $data = Helper::authpull($type,0);
-                // echo $data;
                 $flag = Notifications::update($data);
-                // dd($flag);
-                if ($flag == 1) {
-                    broadcast(new NotificationNew($flag))->toOthers();
+                if ($flag['notificationflag']) {
+                    broadcast(new NotificationNew($flag['notificationflag']))->toOthers();
+                }
+                if ($flag['stationflag'] == 1) {
+                    broadcast(new StationNew($flag['stationflag']))->toOthers();
+                }
+
+                if ($flag['tower'] == 1) {
+                    broadcast(new TowerNew($flag['towerflag']))->toOthers();
                 }
         }
     }
 
     public function test()
     {
-        Notifications::test();
+
     }
 
     public function update(Request $request, $id)

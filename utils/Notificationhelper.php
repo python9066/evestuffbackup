@@ -296,6 +296,8 @@ class Notifications
     {
         $current = now();
         $now = $current->modify('-10 minutes');
+        $stationflag = 0;
+        $towerflag = 0;
         $flag = 0;
 
         $check = Notification::where('status_id', 2)
@@ -478,6 +480,10 @@ class Notifications
         }
 
 
-        return $flag;
+        return $request = array(
+            'stationflag' => $stationflag,
+            'towerflag' => $towerflag,
+            'notificationflag' => $flag,
+        );
     }
 }

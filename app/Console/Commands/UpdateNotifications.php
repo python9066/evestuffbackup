@@ -44,11 +44,11 @@ class UpdateNotifications extends Command
         if ($status == 1) {
             $type = "note";Helper::authcheck();
                 $data = Helper::authpull($type, 0);
-                echo "hi - ";
                 $flag = Notifications::update($data);
+
                 // dd($flag);
-                if ($flag == 1) {
-                    broadcast(new NotificationNew($flag))->toOthers();
+                if ($flag['notificationflag'] == 1) {
+                    broadcast(new NotificationNew($flag['notificationflag']))->toOthers();
                 }
 
         }
