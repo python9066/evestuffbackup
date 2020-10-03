@@ -78,7 +78,8 @@
                                 <v-col class="align-center">
                                     <v-textarea
                                         v-model="item.text"
-                                        label="Where you can put any notes"
+                                        readonly
+                                        label="What do people think?"
                                         outlined
                                         shaped
                                     >{{item.text}}</v-textarea>
