@@ -197,7 +197,7 @@ export default {
         async deleteFeedBack(item) {
             let res = await axios({
                 method: "delete", //you can set what request you want to be
-                url: "api/feedback" + item.id,
+                url: "api/feedback/" + item.id,
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
                     Accept: "application/json",
