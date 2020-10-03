@@ -55,7 +55,6 @@
         <v-data-table
             :headers="headers"
             :items="this.data"
-            :single-expand="singleExpand"
             :expanded.sync="expanded"
             item-key="id"
             show-expand
