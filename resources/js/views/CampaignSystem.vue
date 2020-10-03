@@ -229,10 +229,10 @@
                                                 ></v-radio>
                                             </v-radio-group>
 
-                                            <v-btn class="mr-4" type="submit"
+                                            <v-btn color="success" class="mr-4" type="submit"
                                                 >submit</v-btn
                                             >
-                                            <v-btn
+                                            <v-btn color="warning"
                                                 class="mr-4"
                                                 @click="newCharFormClose()"
                                                 >Close</v-btn
