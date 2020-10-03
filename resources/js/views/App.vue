@@ -237,10 +237,10 @@
 
                             </v-card-text>
                             <v-card-actions>
-                                <v-btn color="success" @click="overlay = false">
+                                <v-btn color="success" @click="overlay = false, submitFeedBack()">
                                     Submit
                                 </v-btn>
-                                <v-btn color="warning" @click="overlay = false">
+                                <v-btn color="warning" @click="overlay = false, feedBackText = ''">
                                     Close
                                 </v-btn>
                             </v-card-actions>
@@ -292,7 +292,29 @@ export default {
 
         logout() {
             window.location.href = "/logout";
-        }
+        },
+
+        async submitFeedBack(){
+
+            let request = {
+                user_id = this.$store.state.user_id,
+                text = this.feedBackText
+            }
+
+            await axios({
+                method: "post", //you can set what request you want to be
+                url:
+                    "/api/feedback/",
+                data: request,
+                headers: {
+                    Authorization: "Bearer " + this.$store.state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                }
+            });
+
+
+        },
     },
     computed: {
         avatarsize() {
