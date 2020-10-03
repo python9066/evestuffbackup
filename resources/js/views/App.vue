@@ -217,7 +217,16 @@
 
         <!-- MAIN ROUTER-VIEW ------------------------------------->
         <v-main class="pb-10">
-            <v-overlay :value="overlay"></v-overlay>
+            <v-overlay :value="overlay">
+                 <v-btn
+            color="success"
+            @click="overlay = false"
+          >
+            Hide Overlay
+          </v-btn>
+
+
+            </v-overlay>
             <!-- <transition name="fade" mode="out-in"> -->
             <v-fade-transition mode="out-in">
                 <router-view :key="$route.path" />
