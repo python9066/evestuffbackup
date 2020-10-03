@@ -54,7 +54,7 @@
         </div>
         <v-data-table
             :headers="headers"
-            :items="data"
+            :items="this.data"
             :expanded.sync="expanded"
             item-key="id"
             :loading="loadingt"
