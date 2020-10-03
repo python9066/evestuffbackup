@@ -135,6 +135,15 @@
                 text
                 class="mr-2"
                 v-if="this.$vuetify.breakpoint.mdAndUp"
+                @click="overlay = !overlay"
+            >
+                <v-icon class="mr-2 grey--text lighten-1">fa fa-rocket</v-icon
+                >TEST
+            </v-btn>
+            <v-btn
+                text
+                class="mr-2"
+                v-if="this.$vuetify.breakpoint.mdAndUp"
                 @click="logout()"
             >
                 <v-icon class="mr-2 grey--text lighten-1">fa fa-rocket</v-icon
@@ -204,6 +213,7 @@
                     </v-card-actions>
                 </v-card>
             </v-menu> -->
+            <v-overlay :value="overlay"></v-overlay>
         </v-app-bar>
 
         <!-- MAIN ROUTER-VIEW ------------------------------------->
@@ -231,7 +241,8 @@ export default {
     mounted() {},
     data: () => ({
         loading2: false,
-        navdrawer: null
+        navdrawer: null,
+        overlay: false,
     }),
   async  created() {
         // EventBus.$on("buttonupdate", payload => {
