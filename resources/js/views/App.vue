@@ -304,7 +304,7 @@ export default {
             await axios({
                 method: "post", //you can set what request you want to be
                 url:
-                    "/api/feedback/",
+                    "/api/feedback",
                 data: request,
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
