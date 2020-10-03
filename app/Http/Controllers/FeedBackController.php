@@ -15,10 +15,10 @@ class FeedBackController extends Controller
      */
     public function index()
     {
-        $feedback = FeedBack::all();
-        $test = User::has('feedback')->get();
+        $feedback = FeedBack::with('user')->all();
+        // $test = User::has('feedback')->get();
 
-        return ["feedback" => $test];
+        return ["feedback" => $feedback];
     }
 
     /**
