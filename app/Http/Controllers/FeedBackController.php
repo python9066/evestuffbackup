@@ -14,7 +14,9 @@ class FeedBackController extends Controller
      */
     public function index()
     {
-        return ["feedback" => FeedBack::all()->user()];
+        $feedback = FeedBack::all();
+
+        return ["feedback" => $feedback->user()->get()];
     }
 
     /**
