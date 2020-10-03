@@ -86,7 +86,7 @@
                 @click.stop="navdrawer = !navdrawer"
             ></v-app-bar-nav-icon> -->
             <v-toolbar-title class="pl-15">
-                <span class>EveStuff - {{this.username}}</span>
+                <span class>EveStuff - {{ this.username }}</span>
 
                 <v-avatar :size="avatarsize" tile class="">
                     <v-icon color="">fa fa-rocket fa-sm </v-icon>
@@ -95,42 +95,48 @@
             </v-toolbar-title>
             <v-spacer></v-spacer>
             <div>
-            <v-tabs
+                <v-tabs
                     entered
                     centered
                     background-color="#272727"
                     icons-and-text
-                    align-with-title>
-                <v-tabs-slider></v-tabs-slider>
-                <v-tab link to="/notifications">
-                    Notifications
-                </v-tab>
+                    align-with-title
+                >
+                    <v-tabs-slider></v-tabs-slider>
+                    <v-tab link to="/notifications">
+                        Notifications
+                    </v-tab>
 
-                <v-tab v-if="$can('gunner') " link to="/stations">
-                    Stations
-                </v-tab>
+                    <v-tab v-if="$can('gunner')" link to="/stations">
+                        Stations
+                    </v-tab>
 
-                <v-tab v-if="$can('view_towers') " link to="/towers">
-                    Towers
-                </v-tab>
+                    <v-tab v-if="$can('view_towers')" link to="/towers">
+                        Towers
+                    </v-tab>
 
-                <v-tab link to="/timers">
-                    Timers
-                </v-tab>
+                    <v-tab link to="/timers">
+                        Timers
+                    </v-tab>
 
-                <v-tab link to="/campaigns">
-                    Campaigns
-                </v-tab>
+                    <v-tab link to="/campaigns">
+                        Campaigns
+                    </v-tab>
 
-                <v-tab v-if="$can('edit_users') ||$can('edit scout users') ||$can('edit hack users') " link to="/pannel">
-                    Users
-                </v-tab>
-
-
-
-            </v-tabs>
+                    <v-tab
+                        v-if="
+                            $can('edit_users') ||
+                                $can('edit scout users') ||
+                                $can('edit hack users')
+                        "
+                        link
+                        to="/pannel"
+                    >
+                        Users
+                    </v-tab>
+                </v-tabs>
             </div>
-<v-spacer></v-spacer>
+            <v-spacer></v-spacer>
             <v-btn
                 text
                 class="mr-2"
@@ -149,8 +155,6 @@
                 <v-icon class="mr-2 grey--text lighten-1">fa fa-rocket</v-icon
                 >Logout
             </v-btn>
-
-
 
             <!-- <v-menu :nudge-width="200" offset-y>
                 <template v-slot:activator="{ on }">
@@ -218,14 +222,22 @@
         <!-- MAIN ROUTER-VIEW ------------------------------------->
         <v-main class="pb-10">
             <v-overlay :value="overlay">
-                 <v-btn
-            color="success"
-            @click="overlay = false"
-          >
-            Hide Overlay
-          </v-btn>
+                <v-row>
+                    <v-col>
+                        <v-card>
+                            <v-card-title> Give your feedback </v-card-title>
+                            <v-card-subtitle>All suggestions welcome</v-card-subtitle>
+                            <v-card-text>
 
-
+                            </v-card-text>
+                            <v-card-actions>
+                                <v-btn color="success" @click="overlay = false">
+                                    Hide Overlay
+                                </v-btn>
+                            </v-card-actions>
+                        </v-card>
+                    </v-col>
+                </v-row>
             </v-overlay>
             <!-- <transition name="fade" mode="out-in"> -->
             <v-fade-transition mode="out-in">
@@ -246,24 +258,22 @@ import ClickOutside from "vue-click-outside";
 import { mapState } from "vuex";
 
 export default {
-    props: ['username','token','user_id'],
+    props: ["username", "token", "user_id"],
     mounted() {},
     data: () => ({
         loading2: false,
         navdrawer: null,
-        overlay: false,
+        overlay: false
     }),
-  async  created() {
+    async created() {
         // EventBus.$on("buttonupdate", payload => {
         //     this.loading2 = payload;
         // });
         // console.log(this.username)
 
-
-    await this.$store.dispatch('setToken',this.token);
-    await this.$store.dispatch('setUser_id',this.user_id);
-    await this.$store.dispatch('setUser_name',this.username);
-
+        await this.$store.dispatch("setToken", this.token);
+        await this.$store.dispatch("setUser_id", this.user_id);
+        await this.$store.dispatch("setUser_name", this.username);
     },
     methods: {
         gotoCovid() {

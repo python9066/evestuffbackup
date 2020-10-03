@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\FeedBack;
 use Illuminate\Http\Request;
 
 class FeedBackController extends Controller
@@ -24,7 +25,7 @@ class FeedBackController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        FeedBack::create($request->all());
     }
 
     /**
