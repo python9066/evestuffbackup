@@ -152,7 +152,7 @@
                 @click="overlay = !overlay"
             >
                 <v-icon class="mr-2 grey--text lighten-1">fa fa-comment</v-icon
-                >Feed back
+                >Feedback
             </v-btn>
             <v-btn
                 text
@@ -238,7 +238,7 @@
                             <v-card-text>
                                 <v-textarea
                                         v-model="feedBackText"
-                                        label="Enter your feed back here"
+                                        label="Enter your feedback here"
                                         outlined
                                         shaped
                                     ></v-textarea>
