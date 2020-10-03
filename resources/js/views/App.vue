@@ -223,7 +223,7 @@
         <v-main class="pb-10">
             <v-overlay :value="overlay">
                 <v-row>
-                    <v-col cols="8">
+                    <v-col cols="12">
                         <v-card>
                             <v-card-title> Give your feedback </v-card-title>
                             <v-card-subtitle>All suggestions welcome</v-card-subtitle>
