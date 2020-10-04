@@ -120,7 +120,7 @@ export default new Router({
 
         {
             path: "/pannel",
-            name: "test",
+            name: "pannel",
             component: AdminPanel,
             async beforeEnter(to, from, next) {
                 if (Permissions.indexOf("edit_users") !== -1) {
