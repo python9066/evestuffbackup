@@ -30,19 +30,6 @@ return [
 
     'connections' => [
 
-        // 'pusher' => [
-        //     'driver' => 'pusher',
-        //     'key' => env('PUSHER_APP_KEY'),
-        //     'secret' => env('PUSHER_APP_SECRET'),
-        //     'app_id' => env('PUSHER_APP_ID'),
-        //     'options' => [
-        //         'cluster' => env('PUSHER_APP_CLUSTER'),
-        //         'useTLS' => true,
-        //         'disableStats' =>true
-
-        //     ],
-        // ],
-
         'pusher' => [
             'driver' => 'pusher',
             'key' => env('PUSHER_APP_KEY'),
@@ -50,17 +37,30 @@ return [
             'app_id' => env('PUSHER_APP_ID'),
             'options' => [
                 'cluster' => env('PUSHER_APP_CLUSTER'),
-                'encrypted' => true,
-                'forceTLS' => true,
-                'host' => 'https://socket.evestuff.online',
-                'port' => 6001,
-                'scheme' => 'http',
-                'curl_options' => [
-                    CURLOPT_SSL_VERIFYHOST => 0,
-                    CURLOPT_SSL_VERIFYPEER => 0,
-                ]
+                'useTLS' => true,
+                'disableStats' =>true
+
             ],
         ],
+
+        // 'pusher' => [
+        //     'driver' => 'pusher',
+        //     'key' => env('PUSHER_APP_KEY'),
+        //     'secret' => env('PUSHER_APP_SECRET'),
+        //     'app_id' => env('PUSHER_APP_ID'),
+        //     'options' => [
+        //         'cluster' => env('PUSHER_APP_CLUSTER'),
+        //         'encrypted' => true,
+        //         'forceTLS' => true,
+        //         'host' => 'https://socket.evestuff.online',
+        //         'port' => 6001,
+        //         'scheme' => 'http',
+        //         'curl_options' => [
+        //             CURLOPT_SSL_VERIFYHOST => 0,
+        //             CURLOPT_SSL_VERIFYPEER => 0,
+        //         ]
+        //     ],
+        // ],
 
 
         'redis' => [
