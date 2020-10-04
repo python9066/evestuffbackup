@@ -32,23 +32,24 @@ import Echo from 'laravel-echo';
 window.Pusher = require('pusher-js');
 
 
-window.Echo = new Echo({
-    broadcaster: 'pusher',
-    key: process.env.MIX_PUSHER_APP_KEY,
-    cluster: process.env.MIX_PUSHER_APP_CLUSTER,
-    useTLS: true,
-    disableStats: true,
-
-});
-
 // window.Echo = new Echo({
 //     broadcaster: 'pusher',
 //     key: process.env.MIX_PUSHER_APP_KEY,
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
-//     wsHost: 'evewebsockets.club',
-//     forceTLS: false,
+//     useTLS: true,
 //     disableStats: true,
-//     wsPort: 6001,
-//     wssPort: 443,
-//     enabledTransports: ['ws', 'wss'],
+
 // });
+
+window.Echo = new Echo({
+    broadcaster: 'pusher',
+    key: 'b68a7bfafda4661aa486',
+    cluster: 'eu',
+    wsHost: 'https://socket.evestuff.online',
+    wsPort: 6001,
+    wssPort: 6001,
+	disableStats: true,
+    encrypted: true,
+	forceTLS: true,
+	enabledTransports: ['ws', 'wss']
+});
