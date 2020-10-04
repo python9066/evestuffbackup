@@ -45,7 +45,7 @@ window.Echo = new Echo({
     broadcaster: 'pusher',
     key: 'b68a7bfafda4661aa486',
     cluster: 'eu',
-    wsHost: 'https://socket.evestuff.online',
+    wsHost: 'socket.evestuff.online',
     wsPort: 6001,
     wssPort: 443,
 	disableStats: true,
