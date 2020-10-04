@@ -27,7 +27,7 @@ export default new Router({
         // },
         {
             path: "/",
-            name: "notifications",
+            name: "default",
             component: Notifications
         },
         {
