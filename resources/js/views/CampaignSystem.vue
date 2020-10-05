@@ -941,7 +941,7 @@ export default {
         }
     },
     beforeDestroy() {
-        Echo.leave("campaignsystem." + this.campaignId);
+        Echo.leave("campaignsystem." + this.$route.params.id);
         this.leaving()
         window.removeEventListener('beforeunload', this.leaving)
     }
