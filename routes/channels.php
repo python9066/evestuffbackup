@@ -48,18 +48,34 @@ use Illuminate\Support\Facades\Broadcast;
 
   /////---------------------/////
 
-  Broadcast::channel('App.User.{id}');
+ Broadcast::channel('App.User.{id}', function ($user, $id) {
+    return true;
+});
 
-Broadcast::channel('notes');
+Broadcast::channel('notes', function () {
+    return true;
+  });
 
-  Broadcast::channel('campaigns');
+  Broadcast::channel('campaigns', function () {
+    return true;
+  });
 
-  Broadcast::channel('campaignsystem.{id}');
+  Broadcast::channel('campaignsystem.{id}', function () {
+    return true;
+  });
 
-  Broadcast::channel('userupdate');
+  Broadcast::channel('userupdate', function () {
+    return true;
+  });
 
-  Broadcast::channel('campaignsystemmembers.{id}');
+  Broadcast::channel('campaignsystemmembers.{id}', function () {
+    return true;
+  });
 
-  Broadcast::channel('stations');
+  Broadcast::channel('stations', function () {
+    return true;
+  });
 
-  Broadcast::channel('towers');
+  Broadcast::channel('towers', function () {
+    return true;
+  });
