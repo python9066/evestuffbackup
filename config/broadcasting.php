@@ -52,7 +52,7 @@ return [
                 'cluster' => env('PUSHER_APP_CLUSTER'),
                 'encrypted' => true,
                 'useTLS' => true,
-                'host' => 'https://socket.evestuff.online',
+                'host' => '109.228.37.162',
                 'port' => 6001,
                         'scheme' => 'https',
                         'curl_options' => [
