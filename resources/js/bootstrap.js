@@ -41,15 +41,15 @@ window.Echo = new Echo({
 
 });
 
-// window.Echo = new Echo({
-//     broadcaster: 'pusher',
-//     key: 'b68a7bfafda4661aa486',
-//     cluster: 'eu',
-//     wsHost: 'socket.evestuff.online',
-//     wsPort: 6001,
-//     wssPort: 443,
-// 	disableStats: true,
-//     encrypted: true,
-// 	forceTLS: true,
-// 	enabledTransports: ['ws', 'wss']
-// });
+window.Echo = new Echo({
+    broadcaster: 'pusher',
+    key: 'b68a7bfafda4661aa486',
+    cluster: 'eu',
+    wsHost: 'socket.evestuff.online',
+    wsPort: 6001,
+    wssPort: 6001,
+	disableStats: true,
+    encrypted: true,
+	forceTLS: true,
+	enabledTransports: ['ws', 'wss']
+});
