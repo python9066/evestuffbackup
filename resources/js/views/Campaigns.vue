@@ -217,7 +217,7 @@
                 >
                     <template slot="countdown" slot-scope="scope">
                         <span
-                            v-if="scope.props.minutes < 30 && scope.props.hours == 0 && scope.props.hours == 0 && scope.props.days ==0"
+                            v-if="scope.props.minutes < 30 && scope.props.hours == 0 && scope.props.hours == 0 && scope.props.days ==0 && $can('access_campaigns')"
                             class="red--text pl-3"
                         >
                                 <v-chip
@@ -241,7 +241,7 @@
                         >
                     </template>
                 </CountDowntimer>
-                <div v-if="item.status_id > 1">
+                <div v-if="item.status_id > 1 && $can('access_campaigns')">
                     <v-chip
                         class="ma-2 ma"
                         filter
