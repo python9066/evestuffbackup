@@ -52,13 +52,13 @@ return [
                 'cluster' => env('PUSHER_APP_CLUSTER'),
                 'encrypted' => true,
                 'useTLS' => true,
-                'host' => 'https://socket.evestuff.online',
+                'host' => 'socket.evestuff.online',
                 'port' => 6001,
                 'scheme' => 'https',
-                        // 'curl_options' => [
-                        //     CURLOPT_SSL_VERIFYHOST => 0,
-                        //     CURLOPT_SSL_VERIFYPEER => 0,
-                        // ]
+                        'curl_options' => [
+                            CURLOPT_SSL_VERIFYHOST => 0,
+                            CURLOPT_SSL_VERIFYPEER => 0,
+                        ]
             ],
         ],
 
