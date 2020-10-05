@@ -252,7 +252,7 @@
                         {{ item.status_name }}
                     </v-chip>
                 </div>
-                <div v-else >
+                <div v-else-if="item.status_id > 1" >
                         {{ item.status_name }}
                 </div>
             </template>
