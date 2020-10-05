@@ -252,6 +252,9 @@
                         {{ item.status_name }}
                     </v-chip>
                 </div>
+                <div v-else >
+                        {{ item.status_name }}
+                </div>
             </template>
         </v-data-table>
     </div>
