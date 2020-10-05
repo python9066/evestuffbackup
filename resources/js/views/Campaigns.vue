@@ -253,7 +253,7 @@
                     </v-chip>
                 </div>
                 <div v-else-if="item.status_id > 1" >
-                        <span class=" pl-10">{{ item.status_name }}</span>
+                        <span class=" pl-5">{{ item.status_name }}</span>
                 </div>
             </template>
         </v-data-table>
