@@ -14,34 +14,52 @@ use Illuminate\Support\Facades\Broadcast;
 |
 */
 
-Broadcast::channel('App.User.{id}', function ($user, $id) {
-    return (int) $user->id === (int) $id;
-});
+// Broadcast::channel('App.User.{id}', function ($user, $id) {
+//     return (int) $user->id === (int) $id;
+// });
 
-Broadcast::channel('notes', function () {
-    return Auth::check();
-  });
+// Broadcast::channel('notes', function () {
+//     return Auth::check();
+//   });
 
-  Broadcast::channel('campaigns', function () {
-    return Auth::check();
-  });
+//   Broadcast::channel('campaigns', function () {
+//     return Auth::check();
+//   });
 
-  Broadcast::channel('campaignsystem.{id}', function () {
-    return Auth::check();
-  });
+//   Broadcast::channel('campaignsystem.{id}', function () {
+//     return Auth::check();
+//   });
 
-  Broadcast::channel('userupdate', function () {
-    return Auth::check();
-  });
+//   Broadcast::channel('userupdate', function () {
+//     return Auth::check();
+//   });
 
-  Broadcast::channel('campaignsystemmembers.{id}', function () {
-    return Auth::check();
-  });
+//   Broadcast::channel('campaignsystemmembers.{id}', function () {
+//     return Auth::check();
+//   });
 
-  Broadcast::channel('stations', function () {
-    return Auth::check();
-  });
+//   Broadcast::channel('stations', function () {
+//     return Auth::check();
+//   });
 
-  Broadcast::channel('towers', function () {
-    return Auth::check();
-  });
+//   Broadcast::channel('towers', function () {
+//     return Auth::check();
+//   });
+
+  /////---------------------/////
+
+  Broadcast::channel('App.User.{id}');
+
+Broadcast::channel('notes');
+
+  Broadcast::channel('campaigns');
+
+  Broadcast::channel('campaignsystem.{id}');
+
+  Broadcast::channel('userupdate');
+
+  Broadcast::channel('campaignsystemmembers.{id}');
+
+  Broadcast::channel('stations');
+
+  Broadcast::channel('towers');
