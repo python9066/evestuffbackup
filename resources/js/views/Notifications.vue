@@ -542,7 +542,7 @@ export default {
 
         })
 
-
+    Echo.channel('dance');
         this.$store.dispatch("getNotifications").then(() => {
             this.loadingt = false;
             this.loadingf = false;
