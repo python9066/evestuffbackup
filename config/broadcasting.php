@@ -54,7 +54,7 @@ return [
                 'useTLS' => true,
                 'host' => 'https://socket.evestuff.online',
                 'port' => 6001,
-                        'scheme' => 'http',
+                        'scheme' => 'https',
                         'curl_options' => [
                             CURLOPT_SSL_VERIFYHOST => 0,
                             CURLOPT_SSL_VERIFYPEER => 0,

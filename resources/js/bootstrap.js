@@ -47,7 +47,7 @@ window.Echo = new Echo({
     cluster: 'eu',
     wsHost: 'socket.evestuff.online',
     wsPort: 6001,
-    wssPort: 443,
+    wssPort: 6001,
 	disableStats: true,
     encrypted: true,
 	forceTLS: true,
