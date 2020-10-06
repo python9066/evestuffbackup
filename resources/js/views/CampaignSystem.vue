@@ -521,6 +521,7 @@ export default {
             systemLoaded: false,
             campaignId:0,
             showUsers: false,
+            channel:"",
         };
     },
 
@@ -552,7 +553,7 @@ export default {
 
             window.addEventListener('beforeunload', this.leaving)
         );
-
+        this.channel = "campaignsystem." + this.$route.params.id
         this.campaignId =this.$route.params.id
         this.test = 2;
         this.test2 = 1;
@@ -646,7 +647,7 @@ export default {
         },
 
         async leaving(){
-            Echo.leave("campaignsystem." + this.$route.params.id);
+            Echo.leave(this.channel);
             await axios({
                 method: "delete", //you can set what request you want to be
                 url: "/api/campaignsystemusers/"+ this.$store.state.user_id +"/" + this.campaignId,
