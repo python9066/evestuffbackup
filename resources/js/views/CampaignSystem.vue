@@ -646,7 +646,7 @@ export default {
         },
 
         async leaving(){
-
+            Echo.leave("campaignsystem." + this.$route.params.id);
             await axios({
                 method: "delete", //you can set what request you want to be
                 url: "/api/campaignsystemusers/"+ this.$store.state.user_id +"/" + this.campaignId,
@@ -941,7 +941,7 @@ export default {
         }
     },
     beforeDestroy() {
-        Echo.leave("campaignsystem." + this.$route.params.id);
+
         this.leaving()
         window.removeEventListener('beforeunload', this.leaving)
     }
