@@ -47,7 +47,8 @@ export default {
                 // { text: "Vulernable End Time", value: "vulnerable_end_time" }
             ],
             statusflag: 0,
-            toggle_exclusive: 0
+            toggle_exclusive: 0,
+            channel: "",
         };
     },
 
@@ -60,6 +61,8 @@ export default {
                 this.updateUserViewTable()
             }
             })
+
+
     },
 
     mounted(){},
@@ -172,7 +175,7 @@ export default {
     },
 
     beforeDestroy() {
-        Echo.leave("campaignsystemmembers." + this.campaignId)
+        Echo.leave(this.channel)
     },
 
 };
