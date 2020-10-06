@@ -62,6 +62,8 @@ export default {
             }
             })
 
+            this.channel = "campaignsystemmembers." + this.$route.params.id;
+
 
     },
 
