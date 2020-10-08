@@ -238,9 +238,9 @@ export default {
         },
     endText(item){
             if(item.status_id == 7 || item.status_id == 8){
-                return "Do they Finish?"
+                return "Did they Finish?"
             }else if (item.status_id == 3){
-                return "Do you Finish?"
+                return "Did you Finish?"
             }else{
                 return "Finished!!! "
             }
