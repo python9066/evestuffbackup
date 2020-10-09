@@ -600,7 +600,7 @@ export default {
     },
     methods: {
         checkAddUser() {
-            if (userCount == 0) {
+            if (this.userCount == 0) {
                 this.overlay = true;
             }
         },
