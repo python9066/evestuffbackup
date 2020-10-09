@@ -368,7 +368,7 @@
                         <v-tooltip bottom>
                         <template v-slot:activator="{ on, attrs }">
                         <v-btn
-                            v-if="$can('super')"
+                            v-if="$can('access_campaigns')"
                             fab
                             dark
                             small
