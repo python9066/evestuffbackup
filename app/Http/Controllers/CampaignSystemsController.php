@@ -108,7 +108,7 @@ class CampaignSystemsController extends Controller
         broadcast(new CampaignSystemUpdate($flag))->toOthers();
     }
 
-    public function checkAddChar($id, $campid)    {
+    public function checkAddChar($campid)    {
 
 
         $flag = collect([
