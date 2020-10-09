@@ -57,7 +57,7 @@ class CampaignSystemsController extends Controller
     public function update(Request $request, $id, $campid)
     {
         // dd($request->notes);
-        CampaignSystem::where('id',$id)->update($request->all());
+        CampaignSystem::where('id', $id)->update($request->all());
         $flag = collect([
             'flag' => 2,
             'id' => $campid
@@ -67,27 +67,27 @@ class CampaignSystemsController extends Controller
 
     public function removechar(Request $request, $campid)
     {
-        $node = CampaignSystem::where('campaign_id',$request->campaign_id)
-                        ->where('system_id',$request->system_id)
-                        ->where('campaign_user_id',$request->campaign_user_id)->first();
+        $node = CampaignSystem::where('campaign_id', $request->campaign_id)
+            ->where('system_id', $request->system_id)
+            ->where('campaign_user_id', $request->campaign_user_id)->first();
 
 
 
-        if($node != null){
+        if ($node != null) {
             $node->update(['campaign_user_id' =>  null]);
             $node->save();
-            $test = CampaignSystem::where('campaign_id',$request->campaign_id)
-            ->where('system_id',$request->system_id)->get();
+            $test = CampaignSystem::where('campaign_id', $request->campaign_id)
+                ->where('system_id', $request->system_id)->get();
             echo "yo";
 
 
 
-        $flag = collect([
-            'flag' => 2,
-            'id' => $campid
-        ]);
-        broadcast(new CampaignSystemUpdate($flag))->toOthers();
-    }
+            $flag = collect([
+                'flag' => 2,
+                'id' => $campid
+            ]);
+            broadcast(new CampaignSystemUpdate($flag))->toOthers();
+        }
     }
 
 
@@ -98,7 +98,8 @@ class CampaignSystemsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id, $campid)    {
+    public function destroy($id, $campid)
+    {
 
         CampaignSystem::destroy($id);
         $flag = collect([
@@ -108,7 +109,8 @@ class CampaignSystemsController extends Controller
         broadcast(new CampaignSystemUpdate($flag))->toOthers();
     }
 
-    public function checkAddChar($campid)    {
+    public function checkAddChar($campid)
+    {
 
 
         $flag = collect([
@@ -123,10 +125,10 @@ class CampaignSystemsController extends Controller
     //
     //     dd($data);
     //     $flag = $data->campaigan_id;
-        // $flag = collect([
-        //     'flag' => 2,
-        //     'id' => $data->campaigan_id
-        // ]);
+    // $flag = collect([
+    //     'flag' => 2,
+    //     'id' => $data->campaigan_id
+    // ]);
     //     CampaignSystem::destroy($id);
     //     CampaignUser::where('campaign_system_id',$id)->update(['campaign_system_id' => null]);
     //
