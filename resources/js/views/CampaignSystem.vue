@@ -362,9 +362,14 @@
                                 </div>
                             </v-row>
                         </v-menu>
-                        <v-btn v-if="$can('super')"
-                        @click="overlay = !overlay">
+                        <v-btn v-if="$can('super')" @click="overlay = !overlay">
                             test
+                        </v-btn>
+                        <v-btn
+                            v-if="$can('super')"
+                            @click="sendAddCharMessage()"
+                        >
+                            test2
                         </v-btn>
                     </div>
                     <v-spacer></v-spacer>
@@ -464,7 +469,7 @@
             </systemTable>
         </v-row>
 
-        <v-overlay z-index=0 :value="overlay">
+        <v-overlay z-index="0" :value="overlay">
             <v-btn class="white--text" color="teal" @click="overlay = false">
                 Hide Overlay
             </v-btn>
@@ -561,6 +566,10 @@ export default {
                     this.loadCampaignSystemRecords();
                     this.loadUsersRecords();
                 }
+                if (e.flag.flag == 5) {
+                    // console.log(4);
+                    this.checkAddUser();
+                }
             },
 
             window.addEventListener("beforeunload", this.leaving)
@@ -590,6 +599,12 @@ export default {
         await this.$store.dispatch("getCampaignSystemsRecords");
     },
     methods: {
+        checkAddUser() {
+            if (userCount == 0) {
+                this.overlay = true;
+            }
+        },
+
         async loadCampaigns() {
             this.$store.dispatch("getCampaigns");
         },
@@ -609,6 +624,19 @@ export default {
             this.loadingr = true;
             this.$store.dispatch("getCampaigns").then(() => {
                 this.loadingr = false;
+            });
+        },
+
+        async sendAddCharMessage() {
+            await axios({
+                method: "get", //you can set what request you want to be
+                url: "/api/campaignsystemcheckaddchar/" + this.$route.params.id,
+                data: request,
+                headers: {
+                    Authorization: "Bearer " + this.$store.state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                }
             });
         },
 

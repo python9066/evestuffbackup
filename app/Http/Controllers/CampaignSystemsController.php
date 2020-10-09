@@ -107,6 +107,16 @@ class CampaignSystemsController extends Controller
         ]);
         broadcast(new CampaignSystemUpdate($flag))->toOthers();
     }
+
+    public function checkAddChar($id, $campid)    {
+
+
+        $flag = collect([
+            'flag' => 5,
+            'id' => $campid
+        ]);
+        broadcast(new CampaignSystemUpdate($flag))->toOthers();
+    }
     // public function destroy($id)
     // {
 
