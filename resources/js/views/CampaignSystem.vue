@@ -365,12 +365,22 @@
                         <v-btn v-if="$can('super')" @click="overlay = !overlay">
                             test
                         </v-btn>
+                        <v-tooltip bottom>
+                        <template v-slot:activator="{ on, attrs }">
                         <v-btn
                             v-if="$can('super')"
+                            fab
+                            dark
+                            small
+                            v-bind="attrs"
+                            v-on="on"
                             @click="sendAddCharMessage()"
                         >
-                            test2
+                            <v-icon>fas fa-bullhorn</v-icon>
                         </v-btn>
+                        </template>
+                        <span> Send a message to all Users without a Char added </span>
+                        </v-tooltip>
                     </div>
                     <v-spacer></v-spacer>
                     <div
@@ -472,11 +482,18 @@
         <v-overlay z-index="0" :value="overlay">
             <v-card>
                 <v-card-title> MAKE SURE TO ADD A CHAR </v-card-title>
-                <v-card-text> Remeber to add any chars you have in the campaign by pressing the green "ADD CHAR" button</v-card-text>
+                <v-card-text>
+                    Remeber to add any chars you have in the campaign by
+                    pressing the green "ADD CHAR" button</v-card-text
+                >
                 <v-card-actions>
-            <v-btn class="white--text" color="teal" @click="overlay = false, addShown = true">
-                Close
-            </v-btn>
+                    <v-btn
+                        class="white--text"
+                        color="teal"
+                        @click="(overlay = false), (addShown = true)"
+                    >
+                        Close
+                    </v-btn>
                 </v-card-actions>
             </v-card>
         </v-overlay>
