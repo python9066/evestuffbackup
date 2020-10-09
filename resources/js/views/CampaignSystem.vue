@@ -229,10 +229,14 @@
                                                 ></v-radio>
                                             </v-radio-group>
 
-                                            <v-btn color="success" class="mr-4" type="submit"
+                                            <v-btn
+                                                color="success"
+                                                class="mr-4"
+                                                type="submit"
                                                 >submit</v-btn
                                             >
-                                            <v-btn color="warning"
+                                            <v-btn
+                                                color="warning"
                                                 class="mr-4"
                                                 @click="newCharFormClose()"
                                                 >Close</v-btn
@@ -329,14 +333,17 @@
                                 </div>
                             </v-row>
                         </v-menu>
-                          <v-menu
+                        <v-menu
                             :close-on-content-click="false"
                             transition="fab-transition"
                             origin="100% -30%"
                             :nudge-width="200"
                             offset-x
                         >
-                            <template v-slot:activator="{ on, attrs }" v-if="$can('view_campaign_members')">
+                            <template
+                                v-slot:activator="{ on, attrs }"
+                                v-if="$can('view_campaign_members')"
+                            >
                                 <v-btn
                                     class="mr-4"
                                     @click="showUsers = !showUsers"
@@ -348,23 +355,24 @@
                             </template>
                             <v-row no-gutters>
                                 <div style="width: 400px;">
-
-                                        <watchUserTable
-                                        :campaign_id ="this.$route.params.id"
-                                        >
-                                        </watchUserTable>
-
+                                    <watchUserTable
+                                        :campaign_id="this.$route.params.id"
+                                    >
+                                    </watchUserTable>
                                 </div>
                             </v-row>
                         </v-menu>
+                        <v-btn v-if="$can('super')"
+                        @click="overlay = !overlay">
+                            test
+                        </v-btn>
                     </div>
                     <v-spacer></v-spacer>
-                    <div class=" ml-auto d-inline-flex align-center"
-                    v-if="nodeCountAll > 0">
-                        <v-divider
-                            class="mx-4 my-0"
-                            vertical
-                        ></v-divider>
+                    <div
+                        class=" ml-auto d-inline-flex align-center"
+                        v-if="nodeCountAll > 0"
+                    >
+                        <v-divider class="mx-4 my-0" vertical></v-divider>
                         <p class=" pt-4 pr-3">Active Nodes -</p>
                         <v-progress-circular
                             class=" pr-3"
@@ -401,10 +409,7 @@
                         v-if="campaign.total_node > 0"
                         class=" ml-auto d-inline-flex align-center"
                     >
-                        <v-divider
-                            class="mx-4 my-0"
-                            vertical
-                        ></v-divider>
+                        <v-divider class="mx-4 my-0" vertical></v-divider>
                         <p class=" pt-4 pr-3">Finished Nodes -</p>
                         <v-progress-circular
                             class=" pr-3"
@@ -458,6 +463,12 @@
             >
             </systemTable>
         </v-row>
+
+        <v-overlay :z-index="zIndex" :value="overlay">
+            <v-btn class="white--text" color="teal" @click="overlay = false">
+                Hide Overlay
+            </v-btn>
+        </v-overlay>
     </div>
 </template>
 <!-- {{ $route.params.id }} - {{ test }} -  -->
@@ -519,9 +530,10 @@ export default {
             removeShown: false,
             showTable: false,
             systemLoaded: false,
-            campaignId:0,
+            campaignId: 0,
             showUsers: false,
-            channel:"",
+            channel: "",
+            overlay: false
         };
     },
 
@@ -551,10 +563,10 @@ export default {
                 }
             },
 
-            window.addEventListener('beforeunload', this.leaving)
+            window.addEventListener("beforeunload", this.leaving)
         );
-        this.channel = "campaignsystem." + this.$route.params.id
-        this.campaignId =this.$route.params.id
+        this.channel = "campaignsystem." + this.$route.params.id;
+        this.campaignId = this.$route.params.id;
         this.test = 2;
         this.test2 = 1;
         this.navdrawer = true;
@@ -616,21 +628,19 @@ export default {
             this.systemLoaded = true;
         },
 
-        async addMember(){
-
-            let user_id = this.$store.state.user_id
-            if(user_id == 0){
-                await sleep(1000)
-                user_id = this.$store.state.user_id
-                if(user_id == 0){
-                    await sleep(1000)
-                user_id = this.$store.state.user_id
+        async addMember() {
+            let user_id = this.$store.state.user_id;
+            if (user_id == 0) {
+                await sleep(1000);
+                user_id = this.$store.state.user_id;
+                if (user_id == 0) {
+                    await sleep(1000);
+                    user_id = this.$store.state.user_id;
                 }
-
             }
             var request = {
                 user_id: user_id,
-                campaign_id: this.$route.params.id,
+                campaign_id: this.$route.params.id
             };
 
             await axios({
@@ -643,21 +653,23 @@ export default {
                     "Content-Type": "application/json"
                 }
             });
-
         },
 
-        async leaving(){
+        async leaving() {
             Echo.leave(this.channel);
             await axios({
                 method: "delete", //you can set what request you want to be
-                url: "/api/campaignsystemusers/"+ this.$store.state.user_id +"/" + this.campaignId,
+                url:
+                    "/api/campaignsystemusers/" +
+                    this.$store.state.user_id +
+                    "/" +
+                    this.campaignId,
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
                     Accept: "application/json",
                     "Content-Type": "application/json"
                 }
             });
-
         },
 
         roleForm(a) {
@@ -834,12 +846,8 @@ export default {
             };
             this.$store.dispatch("updateCampaignSystem", data);
             this.$store.dispatch("updateCampaign", data);
-        },
-
-
+        }
     },
-
-
 
     computed: {
         ...mapGetters([
@@ -852,8 +860,6 @@ export default {
             "getHackingNodeCountByCampaign",
             "getRedHackingNodeCountByCampaign"
         ]),
-
-
 
         campaign() {
             return this.getCampaignById(this.$route.params.id);
@@ -942,9 +948,8 @@ export default {
         }
     },
     beforeDestroy() {
-
-        this.leaving()
-        window.removeEventListener('beforeunload', this.leaving)
+        this.leaving();
+        window.removeEventListener("beforeunload", this.leaving);
     }
 };
 </script>
