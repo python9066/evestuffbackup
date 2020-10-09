@@ -464,7 +464,7 @@
             </systemTable>
         </v-row>
 
-        <v-overlay :z-index="zIndex" :value="overlay">
+        <v-overlay z-index=0 :value="overlay">
             <v-btn class="white--text" color="teal" @click="overlay = false">
                 Hide Overlay
             </v-btn>
