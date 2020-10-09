@@ -540,6 +540,11 @@ export default {
         .listen('NotificationNew', (e) => {
         this.loadtimers();
 
+        })
+        this.$store.dispatch("getNotifications").then(() => {
+            this.loadingt = false;
+            this.loadingf = false;
+            this.loadingr = false;
         });
 
 
