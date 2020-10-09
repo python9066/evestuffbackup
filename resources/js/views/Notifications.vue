@@ -540,13 +540,6 @@ export default {
         .listen('NotificationNew', (e) => {
         this.loadtimers();
 
-        })
-
-    Echo.channel('dance');
-        this.$store.dispatch("getNotifications").then(() => {
-            this.loadingt = false;
-            this.loadingf = false;
-            this.loadingr = false;
         });
 
 
@@ -779,6 +772,7 @@ export default {
         // clearInterval(this.poll);
         // console.log('KILL THEM ALL');
         Echo.leave('notes');
+        Echo.leave('dance');
 
     },
 
