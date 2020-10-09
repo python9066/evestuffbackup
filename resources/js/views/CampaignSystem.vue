@@ -470,9 +470,15 @@
         </v-row>
 
         <v-overlay z-index="0" :value="overlay">
-            <v-btn class="white--text" color="teal" @click="overlay = false">
-                Hide Overlay
+            <v-card>
+                <v-card-title> MAKE SURE TO ADD A CHAR </v-card-title>
+                <v-card-text> Remeber to add any chars you have in the campaign by pressing the green "ADD CHAR" button</v-card-text>
+                <v-card-actions>
+            <v-btn class="white--text" color="teal" @click="overlay = false, addShown = true">
+                Close
             </v-btn>
+                </v-card-actions>
+            </v-card>
         </v-overlay>
     </div>
 </template>
