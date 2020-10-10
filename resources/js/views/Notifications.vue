@@ -362,18 +362,18 @@
                                         <v-card tile min-height="150px">
                                             <v-card-title class=" pb-0">
                                                 <v-text-field
-                                                    v-model="reapirTime"
+                                                    v-model="RepairTime"
                                                     label="Reapir Time mm:ss"
                                                     v-mask="'##:##'"
                                                     autofocus
                                                     placeholder="mm:ss"
                                                     @keyup.enter="
                                                         (timerShown = false),
-                                                            addReapirtime(item)
+                                                            addRepairTime(item)
                                                     "
                                                     @keyup.esc="
                                                         (timerShown = false),
-                                                            (reapirTime = null)
+                                                            (RepairTime = null)
                                                     "
                                                 ></v-text-field>
                                             </v-card-title>
@@ -385,7 +385,7 @@
                                                     color="success"
                                                     @click="
                                                         (timerShown = false),
-                                                            addReapirtime(item)
+                                                            addRepairTime(item)
                                                     "
                                                     ><v-icon
                                                         >fas fa-check</v-icon
@@ -399,7 +399,7 @@
                                                     color="warning"
                                                     @click="
                                                         (timerShown = false),
-                                                            (reapirTime = null)
+                                                            (RepairTime = null)
                                                     "
                                                     ><v-icon
                                                         >fas fa-times</v-icon
@@ -594,7 +594,7 @@ export default {
             toggle_none: null,
             querious: 0,
             timerShown: false,
-            repairTime:null,
+            RepairTime:null,
 
 
             dropdown_edit: [
@@ -730,7 +730,7 @@ export default {
             // console.log("30secs");
         },
 
-        addReapirtime(item){
+        addRepairTime(item){
             // var min = parseInt(this.hackTime.substr(0, 2));
             // var sec = parseInt(this.hackTime.substr(3, 2));
             // var finishTime = moment
