@@ -415,7 +415,7 @@
                             <CountDowntimer
                                 v-else-if="item.status_id == 3 && $can('super')"
                                 :start-time="moment.utc(item.end_time).unix()"
-                                end-text="Did it repair?"
+                                end-text="Is it Secured?"
                                 :interval="1000"
                             >
                                 <template slot="countdown" slot-scope="scope">
@@ -882,9 +882,14 @@ export default {
                 item.text = null;
             }
 
+            if(item.status != 3){
+                item.end_time == null;
+            }
+
             var request = {
                 status_id: item.status_id,
-                user_id: this.$store.state.user_id
+                user_id: this.$store.state.user_id,
+                end_time: item.end_time
             };
             axios({
                 method: "put", //you can set what request you want to be
