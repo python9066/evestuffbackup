@@ -337,7 +337,7 @@
                             </v-fab-transition>
                             <span
                                 v-if="
-                                    item.end_time == null && item.status_id == 3
+                                    item.end_time == null && item.status_id == 3 && $can('super')
                                 "
                             >
                                 <v-menu
@@ -410,7 +410,7 @@
                                     </template>
                                 </v-menu>
                             </span>
-                            <span v-else-if="item.status_id == 3">
+                            <span v-else-if="item.status_id == 3 && $can('super')">
                                 showtime
                             </span>
                         </div>
