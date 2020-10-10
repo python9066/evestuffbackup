@@ -1,6 +1,8 @@
 <template>
     <div class=" pr-16 pl-16">
-        <messageNotification v-if="$can('access_notifications' != true)"></messageNotification>
+        <messageNotification
+            v-if="$can('access_notifications' != true)"
+        ></messageNotification>
         <testingMessage></testingMessage>
         <div class=" d-flex align-items-center">
             <v-card-title>Notifications</v-card-title>
@@ -146,7 +148,12 @@
                 hide-details
             ></v-text-field>
 
-            <v-btn-toggle right-align v-model="toggle_exclusive" mandatory :value="0">
+            <v-btn-toggle
+                right-align
+                v-model="toggle_exclusive"
+                mandatory
+                :value="0"
+            >
                 <v-btn
                     :loading="loadingf"
                     :disabled="loadingf"
@@ -302,12 +309,14 @@
                                 {{ item.status_name }}
                             </v-btn>
 
-
                             <!-- EXTRA BUTTON -->
                             <v-fab-transition>
                                 <v-btn
                                     icon
-                                    @click="expanded = [item], expanded_id = item.id"
+                                    @click="
+                                        (expanded = [item]),
+                                            (expanded_id = item.id)
+                                    "
                                     v-if="
                                         item.status_id == 5 &&
                                             !expanded.includes(item)
@@ -317,7 +326,7 @@
                                 >
                                 <v-btn
                                     icon
-                                    @click="expanded = [], expanded_id = 0"
+                                    @click="(expanded = []), (expanded_id = 0)"
                                     v-if="
                                         item.status_id == 5 &&
                                             expanded.includes(item)
@@ -326,15 +335,86 @@
                                     ><v-icon>fas fa-minus</v-icon></v-btn
                                 >
                             </v-fab-transition>
-                            <span v-if="item.end_time == null && item.status_id == 3">
-                                addtime
+                            <span
+                                v-if="
+                                    item.end_time == null && item.status_id == 3
+                                "
+                            >
+                                <v-menu
+                                    :close-on-content-click="false"
+                                    :value="timerShown"
+                                >
+                                    <template v-slot:activator="{ on, attrs }">
+                                        <v-chip
+                                            v-bind="attrs"
+                                            v-on="on"
+                                            pill
+                                            :outlined="pillOutlined(item)"
+                                            @click="timerShown = true"
+                                            small
+                                            color="warning"
+                                        >
+                                            Add Time
+                                        </v-chip>
+                                    </template>
+
+                                    <template>
+                                        <v-card tile min-height="150px">
+                                            <v-card-title class=" pb-0">
+                                                <v-text-field
+                                                    v-model="reapirTime"
+                                                    label="Reapir Time mm:ss"
+                                                    v-mask="'##:##'"
+                                                    autofocus
+                                                    placeholder="mm:ss"
+                                                    @keyup.enter="
+                                                        (timerShown = false),
+                                                            addReapirtime(item)
+                                                    "
+                                                    @keyup.esc="
+                                                        (timerShown = false),
+                                                            (reapirTime = null)
+                                                    "
+                                                ></v-text-field>
+                                            </v-card-title>
+                                            <v-card-text>
+                                                <v-btn
+                                                    icon
+                                                    fixed
+                                                    left
+                                                    color="success"
+                                                    @click="
+                                                        (timerShown = false),
+                                                            addReapirtime(item)
+                                                    "
+                                                    ><v-icon
+                                                        >fas fa-check</v-icon
+                                                    ></v-btn
+                                                >
+
+                                                <v-btn
+                                                    fixed
+                                                    right
+                                                    icon
+                                                    color="warning"
+                                                    @click="
+                                                        (timerShown = false),
+                                                            (reapirTime = null)
+                                                    "
+                                                    ><v-icon
+                                                        >fas fa-times</v-icon
+                                                    ></v-btn
+                                                >
+                                            </v-card-text>
+                                        </v-card>
+                                    </template>
+                                </v-menu>
                             </span>
                             <span v-else-if="item.status_id == 3">
                                 showtime
                             </span>
                         </div>
                     </template>
-
 
                     <v-list>
                         <v-list-item
@@ -438,12 +518,14 @@
                     <div
                         v-if="
                             item.text != null &&
-                                item.text.includes('https://adashboard.info/intel/dscan/')
+                                item.text.includes(
+                                    'https://adashboard.info/intel/dscan/'
+                                )
                         "
                     >
                         <v-card class="mx-auto" elevation="24">
                             <iframe
-                            :name="'ifram'+ item.id"
+                                :name="'ifram' + item.id"
                                 :src="item.text"
                                 style="left:0; bottom:0; right:0; width:100%; height:600px; border:none; margin:0; padding:0; overflow:hidden; z-index:999999;"
                             >
@@ -455,8 +537,11 @@
                     </div>
                 </td>
             </template>
-            <template  v-slot:item.user_name="{ item } " class ="d-flex align-center" >
-                <p v-if="$can('edit_notifications')"> {{item.user_name}}</p>
+            <template
+                v-slot:item.user_name="{ item }"
+                class="d-flex align-center"
+            >
+                <p v-if="$can('edit_notifications')">{{ item.user_name }}</p>
             </template>
         </v-data-table>
         <v-snackbar v-model="snack" :timeout="3000" :color="snackColor">
@@ -466,7 +551,6 @@
                 <v-btn v-bind="attrs" text @click="snack = false">Close</v-btn>
             </template>
         </v-snackbar>
-
     </div>
 </template>
 <script>
@@ -490,12 +574,12 @@ export default {
             diff: 0,
             delve: 0,
             endcount: "",
-            expanded:[],
-            expanded_id:0,
+            expanded: [],
+            expanded_id: 0,
             icon: "justify",
-            loadingt:true,
-            loadingf:true,
-            loadingr:true,
+            loadingt: true,
+            loadingf: true,
+            loadingr: true,
             name: "Timer",
             poll: null,
             periodbasis: 0,
@@ -509,6 +593,9 @@ export default {
             text: "center",
             toggle_none: null,
             querious: 0,
+            timerShown: false,
+            repairTime:null,
+
 
             dropdown_edit: [
                 { title: "Scouting", value: 6 },
@@ -521,15 +608,28 @@ export default {
 
             headers: [
                 { text: "Region", value: "region_name", width: "10%" },
-                { text: "Constellation", value: "constellation_name", width: "8%" },
+                {
+                    text: "Constellation",
+                    value: "constellation_name",
+                    width: "8%"
+                },
                 { text: "System", value: "system_name", width: "8%" },
                 { text: "Structure", value: "item_name", width: "8%" },
                 { text: "ADM", value: "adm", width: "5%" },
-                { text: "Timestamp", value: "timestamp", align: "center",width: "20%" },
+                {
+                    text: "Timestamp",
+                    value: "timestamp",
+                    align: "center",
+                    width: "20%"
+                },
                 { text: "Age", value: "count", sortable: false, width: "10%" },
-                { text: "Status", value: "status_name", width: "20%",},
-                { text: "Edited By", value: "user_name", width: "10%", align: "start"}
-
+                { text: "Status", value: "status_name", width: "20%" },
+                {
+                    text: "Edited By",
+                    value: "user_name",
+                    width: "10%",
+                    align: "start"
+                }
 
                 // { text: "Vulernable End Time", value: "vulnerable_end_time" }
             ]
@@ -537,104 +637,87 @@ export default {
     },
 
     created() {
+        Echo.private("notes")
+            .listen("NotificationChanged", e => {
+                this.checkexpanded(e.notifications);
+                this.$store.dispatch("updateNotification", e.notifications);
+            })
 
-        Echo.private('notes')
-        .listen('NotificationChanged', (e) => {
-        this.checkexpanded(e.notifications)
-        this.$store.dispatch('updateNotification',e.notifications);
-    })
-
-        .listen('NotificationNew', (e) => {
-        this.loadtimers();
-
-        })
+            .listen("NotificationNew", e => {
+                this.loadtimers();
+            });
         this.$store.dispatch("getNotifications").then(() => {
             this.loadingt = false;
             this.loadingf = false;
             this.loadingr = false;
         });
 
-
         this.$store.dispatch("getqueriousLink");
         this.$store.dispatch("getdelveLink");
         this.$store.dispatch("getperiodbasisLink");
-
     },
 
-
-    async mounted() {
-    },
+    async mounted() {},
     methods: {
-
-
-        timecheck(item){
-            if(item.status_id == 4 || item.status_id == 2){
+        timecheck(item) {
+            if (item.status_id == 4 || item.status_id == 2) {
                 item.status_id = 10;
-                this.$store.dispatch('updateNotification',item)
-                if(item.region_name === 'Querious'){
-                    this.$store.dispatch('getqueriousLink');
+                this.$store.dispatch("updateNotification", item);
+                if (item.region_name === "Querious") {
+                    this.$store.dispatch("getqueriousLink");
                 }
-                if(item.region_name === 'Period Basis'){
-                    this.$store.dispatch('getperiodbasisLink');
+                if (item.region_name === "Period Basis") {
+                    this.$store.dispatch("getperiodbasisLink");
                 }
-                if(item.region_name === 'Delve'){
-                    this.$store.dispatch('getdelveLink');
+                if (item.region_name === "Delve") {
+                    this.$store.dispatch("getdelveLink");
                 }
                 var request = {
-                status_id: 10
-
-            };
-            axios({
-                method: 'put', //you can set what request you want to be
-                url: "api/notifications/" + item.id,
-                data: request,
-                headers: {
-                    Authorization: 'Bearer ' + this.$store.state.token,
-                    Accept: "application/json",
-                    "Content-Type": "application/json",
-                }
-                })
-
-                                    }
-
-
+                    status_id: 10
+                };
+                axios({
+                    method: "put", //you can set what request you want to be
+                    url: "api/notifications/" + item.id,
+                    data: request,
+                    headers: {
+                        Authorization: "Bearer " + this.$store.state.token,
+                        Accept: "application/json",
+                        "Content-Type": "application/json"
+                    }
+                });
+            }
         },
 
-        checkexpanded(notifications){
+        checkexpanded(notifications) {
             // console.log(notifications);
-            if(notifications.status_id != 5){
-                if(notifications.id == this.expanded_id)
-                {
+            if (notifications.status_id != 5) {
+                if (notifications.id == this.expanded_id) {
                     this.expanded = [];
                     this.expanded_id = 0;
                 }
             }
         },
 
-
-
-        updatetext(payload, item){
+        updatetext(payload, item) {
             // console.log(item);
-            if(item.text != payload){
-                item.text = payload
-                 var request = {
-                text: item.text
-            };
-                this.$store.dispatch('updateNotification',item)
+            if (item.text != payload) {
+                item.text = payload;
+                var request = {
+                    text: item.text
+                };
+                this.$store.dispatch("updateNotification", item);
                 axios({
-                method: 'put', //you can set what request you want to be
-                url: "api/notifications/" + item.id,
-                data: request,
-                headers: {
-                    Authorization: 'Bearer ' + this.$store.state.token,
-                    Accept: "application/json",
-                    "Content-Type": "application/json",
-                }
-                })
-
-                                    }
-
-            },
+                    method: "put", //you can set what request you want to be
+                    url: "api/notifications/" + item.id,
+                    data: request,
+                    headers: {
+                        Authorization: "Bearer " + this.$store.state.token,
+                        Accept: "application/json",
+                        "Content-Type": "application/json"
+                    }
+                });
+            }
+        },
 
         loadtimers() {
             this.loadingr = true;
@@ -647,7 +730,37 @@ export default {
             // console.log("30secs");
         },
 
+        addReapirtime(item){
+            // var min = parseInt(this.hackTime.substr(0, 2));
+            // var sec = parseInt(this.hackTime.substr(3, 2));
+            // var finishTime = moment
+            //     .utc()
+            //     .add(sec, "seconds")
+            //     .add(min, "minutes")
+            //     .format("YYYY-MM-DD HH:mm:ss");
+            // item.end = finishTime;
+            // this.$store.dispatch("updateCampaignSystem", item);
+            // var request = {
+            //     end_time: finishTime
+            // };
 
+            // await axios({
+            //     method: "put", //you can set what request you want to be
+            //     url:
+            //         "/api/campaignsystems/" +
+            //         item.id +
+            //         "/" +
+            //         this.$route.params.id,
+            //     data: request,
+            //     headers: {
+            //         Authorization: "Bearer " + this.$store.state.token,
+            //         Accept: "application/json",
+            //         "Content-Type": "application/json"
+            //     }
+            // });
+
+            // this.$store.dispatch("getCampaignSystemsRecords");
+        },
 
         save() {
             this.snack = true;
@@ -664,32 +777,28 @@ export default {
             this.snackColor = "info";
             this.snackText = "Dialog opened";
         },
-        close() {
-
-        },
+        close() {},
 
         click(item) {
-
-            if(item.status !=5){
+            if (item.status != 5) {
                 this.expanded = [];
                 item.text = null;
             }
 
             var request = {
                 status_id: item.status_id,
-                user_id: this.$store.state.user_id,
+                user_id: this.$store.state.user_id
             };
             axios({
-                method: 'put', //you can set what request you want to be
+                method: "put", //you can set what request you want to be
                 url: "api/notifications/" + item.id,
                 data: request,
                 headers: {
-                    Authorization: 'Bearer ' + this.$store.state.token,
+                    Authorization: "Bearer " + this.$store.state.token,
                     Accept: "application/json",
-                    "Content-Type": "application/json",
+                    "Content-Type": "application/json"
                 }
-            })
-
+            });
         },
 
         sec(item) {
@@ -737,8 +846,7 @@ export default {
                 return this.notifications.filter(
                     notifications => notifications.status_id == 6
                 );
-            }
-            else {
+            } else {
                 return this.notifications.filter(
                     notifications => notifications.status_id != 10
                 );
@@ -765,8 +873,8 @@ export default {
             }
         },
 
-        user_name(){
-            return this.$store.state.user_name
+        user_name() {
+            return this.$store.state.user_name;
         },
 
         queriousCheck() {
@@ -780,16 +888,10 @@ export default {
         }
     },
     beforeDestroy() {
-
         // clearInterval(this.poll);
         // console.log('KILL THEM ALL');
-        Echo.leave('notes');
-        Echo.leave('dance');
-
-    },
-
-
-
-
+        Echo.leave("notes");
+        Echo.leave("dance");
+    }
 };
 </script>
