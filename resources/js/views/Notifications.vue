@@ -420,6 +420,7 @@
                                 v-if="item.status_id == 3 && item.end_time != null"
                                 :start-time="moment.utc(item.end_time).unix()"
                                 :interval="1000"
+                                end-text= null
                                 >
                                 <template slot="countdown" slot-scope="scope">
                 <span class="blue--text pl-3"
