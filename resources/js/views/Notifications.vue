@@ -670,12 +670,12 @@ export default {
         close() {},
 
         click(item) {
-            if (item.status != 5) {
+            if (item.status_id != 5) {
                 this.expanded = [];
                 item.text = null;
             }
 
-            if(item.status != 3){
+            if(item.status_id != 3){
                 item.end_time == null;
             }
 
