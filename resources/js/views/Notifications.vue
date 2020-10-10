@@ -678,7 +678,7 @@ export default {
             if(item.status_id != 3){
                 item.end_time == null;
             }
-
+            console.log(item.end_time)
             var request = {
                 status_id: item.status_id,
                 user_id: this.$store.state.user_id,
