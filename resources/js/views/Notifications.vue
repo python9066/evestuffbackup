@@ -335,183 +335,9 @@
                                     ><v-icon>fas fa-minus</v-icon></v-btn
                                 >
                             </v-fab-transition>
-                            <span
-                                v-if="
-                                    item.end_time == null &&
-                                        item.status_id == 3 &&
-                                        $can('super')
-                                "
-                            >
-                                <v-menu
-                                    :close-on-content-click="false"
-                                    :value="timerShown"
-                                >
-                                    <template v-slot:activator="{ on, attrs }">
-                                        <v-chip
-                                            v-bind="attrs"
-                                            v-on="on"
-                                            pill
-                                            outlined
-                                            @click="timerShown = true"
-                                            small
-                                            color="warning"
-                                        >
-                                            Add Time
-                                        </v-chip>
-                                    </template>
-
-                                    <template>
-                                        <v-card tile min-height="150px">
-                                            <v-card-title class=" pb-0">
-                                                <v-text-field
-                                                    v-model="repairTime"
-                                                    label="Reapir Time mm:ss"
-                                                    v-mask="'##:##'"
-                                                    autofocus
-                                                    placeholder="mm:ss"
-                                                    @keyup.enter="
-                                                        (timerShown = false),
-                                                            addRepairTime(item)
-                                                    "
-                                                    @keyup.esc="
-                                                        (timerShown = false),
-                                                            (repairTime = null)
-                                                    "
-                                                ></v-text-field>
-                                            </v-card-title>
-                                            <v-card-text>
-                                                <v-btn
-                                                    icon
-                                                    fixed
-                                                    left
-                                                    color="success"
-                                                    @click="
-                                                        (timerShown = false),
-                                                            addRepairTime(item)
-                                                    "
-                                                    ><v-icon
-                                                        >fas fa-check</v-icon
-                                                    ></v-btn
-                                                >
-
-                                                <v-btn
-                                                    fixed
-                                                    right
-                                                    icon
-                                                    color="warning"
-                                                    @click="
-                                                        (timerShown = false),
-                                                            (repairTime = null)
-                                                    "
-                                                    ><v-icon
-                                                        >fas fa-times</v-icon
-                                                    ></v-btn
-                                                >
-                                            </v-card-text>
-                                        </v-card>
-                                    </template>
-                                </v-menu>
-                            </span>
-                            <CountDowntimer
-                                v-else-if="item.status_id == 3 && $can('super')"
-                                :start-time="moment.utc(item.end_time).unix()"
-                                end-text="Is it Secured?"
-                                :interval="1000"
-                            >
-                                <template slot="countdown" slot-scope="scope">
-                                    <span class="blue--text pl-3"
-                                        >{{ scope.props.minutes }}:{{
-                                            scope.props.seconds
-                                        }}</span
-                                    >
-                                    <v-menu
-                                        :close-on-content-click="false"
-                                        :value="timerShown"
-                                    >
-                                        <template
-                                            v-slot:activator="{ on, attrs }"
-                                        >
-                                            <v-btn
-
-                                                v-bind="attrs"
-                                                v-on="on"
-                                                @click="
-                                                    (timerShown = true),
-                                                        (repairTime = null)
-                                                "
-                                                icon
-                                                color="warning"
-                                            >
-                                                <v-icon x-small
-                                                    >fas fa-edit</v-icon
-                                                >
-                                            </v-btn>
-                                        </template>
-
-                                        <template>
-                                            <v-card tile min-height="150px">
-                                                <v-card-title class=" pb-0">
-                                                    <v-text-field
-                                                        v-model="repairTime"
-                                                        label="Repair Time mm:ss"
-                                                        autofocus
-                                                        v-mask="'##:##'"
-                                                        placeholder="mm:ss"
-                                                        @keyup.enter="
-                                                            (repairShown = false),
-                                                                addRepairTime(
-                                                                    item
-                                                                )
-                                                        "
-                                                        @keyup.esc="
-                                                            (timerShown = false),
-                                                                (repairTime = null)
-                                                        "
-                                                    ></v-text-field>
-                                                </v-card-title>
-                                                <v-card-text>
-                                                    <v-btn
-                                                        icon
-                                                        fixed
-                                                        left
-                                                        color="success"
-                                                        @click="
-                                                            (timerShown = false),
-                                                                addRepairTime(
-                                                                    item
-                                                                )
-                                                        "
-                                                        ><v-icon
-                                                            >fas
-                                                            fa-check</v-icon
-                                                        ></v-btn
-                                                    >
-
-                                                    <v-btn
-                                                        fixed
-                                                        right
-                                                        icon
-                                                        color="warning"
-                                                        @click="
-                                                            (timerShown = false),
-                                                                (repairTime = null)
-                                                        "
-                                                        ><v-icon
-                                                            >fas
-                                                            fa-times</v-icon
-                                                        ></v-btn
-                                                    >
-                                                </v-card-text>
-                                            </v-card>
-                                        </template>
-                                    </v-menu>
-                                </template>
-                                <template slot="end-text" slot-scope="scope">
-                                    <span style="color: green">{{
-                                        scope.props.endText
-                                    }}</span>
-                                </template>
-                            </CountDowntimer>
+                           <notificationTimer
+                           :item="item"
+                           ></notificationTimer>
                         </div>
                     </template>
 
@@ -692,11 +518,6 @@ export default {
             text: "center",
             toggle_none: null,
             querious: 0,
-            timerShown: false,
-            repairTime: {
-                mm: "",
-                ss: ""
-            },
 
             dropdown_edit: [
                 { title: "Scouting", value: 6 },
@@ -829,34 +650,6 @@ export default {
             this.$store.dispatch("getdelveLink");
             this.$store.dispatch("getperiodbasisLink");
             // console.log("30secs");
-        },
-
-        async addRepairTime(item) {
-            var min = parseInt(this.repairTime.substr(0, 2));
-            var sec = parseInt(this.repairTime.substr(3, 2));
-            var finishTime = moment
-                .utc()
-                .add(sec, "seconds")
-                .add(min, "minutes")
-                .format("YYYY-MM-DD HH:mm:ss");
-            item.end_time = finishTime;
-            this.$store.dispatch("updateNotification", item);
-            var request = {
-                end_time: finishTime
-            };
-
-            await axios({
-                method: "put", //you can set what request you want to be
-                url: "/api/notificationsaddtime/" + item.id,
-                data: request,
-                headers: {
-                    Authorization: "Bearer " + this.$store.state.token,
-                    Accept: "application/json",
-                    "Content-Type": "application/json"
-                }
-            });
-
-            this.$store.dispatch("getNotifications");
         },
 
         save() {
