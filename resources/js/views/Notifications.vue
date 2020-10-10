@@ -408,6 +408,9 @@
                         </div>
                     </template>
                 </div>
+                <div v-if="item.status_id == 3">
+                    lalala
+                </div>
             </template>
             <template
                 v-slot:expanded-item="{ headers, item }"
