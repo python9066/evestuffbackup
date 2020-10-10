@@ -594,7 +594,10 @@ export default {
             toggle_none: null,
             querious: 0,
             timerShown: false,
-            RepairTime:null,
+            RepairTime: {
+                mm: "",
+                ss: ""
+            },
 
 
             dropdown_edit: [
