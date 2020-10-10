@@ -459,7 +459,7 @@
                                                         placeholder="mm:ss"
                                                         @keyup.enter="
                                                             (repairShown = false),
-                                                                addRepairtime(
+                                                                addRepairTime(
                                                                     item
                                                                 )
                                                         "
@@ -477,7 +477,7 @@
                                                         color="success"
                                                         @click="
                                                             (repairShown = false),
-                                                                addRepairtime(
+                                                                addRepairTime(
                                                                     item
                                                                 )
                                                         "
