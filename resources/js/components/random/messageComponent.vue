@@ -8,7 +8,7 @@
       :icon = false
       :elevation = 24
     >
-      Use the feedback button if you find any problems. Contact <strong> JohnMonty</strong> on Jabber if a big problem.
+      Use the feedback button if you find any problems. Contact <strong> JohnMonty</strong> on Jabber if its a big problem.
     </v-alert>
   </div>
 </template>
