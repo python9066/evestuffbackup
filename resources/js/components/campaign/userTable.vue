@@ -41,7 +41,7 @@
                     dense
                 >
                     <template slot="no-data">
-                        No one is here
+                        No on is here
                     </template>
                 </v-data-table>
             </v-card-text>
