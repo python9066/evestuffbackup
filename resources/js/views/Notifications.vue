@@ -594,7 +594,7 @@ export default {
             toggle_none: null,
             querious: 0,
             timerShown: false,
-            RepairTime: {
+            repairTime: {
                 mm: "",
                 ss: ""
             },
