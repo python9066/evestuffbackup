@@ -3,7 +3,7 @@
         <messageNotification
             v-if="$can('access_notifications' != true)"
         ></messageNotification>
-        <testingMessage></testingMessage>
+        <!-- <testingMessage></testingMessage> -->
         <div class=" d-flex align-items-center">
             <v-card-title>Notifications</v-card-title>
             <div v-if="$can('access hacks')">You can edit posts.</div>
