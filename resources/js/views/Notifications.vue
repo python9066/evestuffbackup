@@ -326,9 +326,6 @@
                                     ><v-icon>fas fa-minus</v-icon></v-btn
                                 >
                             </v-fab-transition>
-                            <div v-if="item.status_id == 3">
-                                 lalala
-                            </div>
                         </div>
                     </template>
 
@@ -410,6 +407,9 @@
                             </v-chip>
                         </div>
                     </template>
+                </div>
+                <div v-if="item.status_id == 3">
+                    lalala
                 </div>
             </template>
             <template
@@ -523,8 +523,8 @@ export default {
                 { text: "Structure", value: "item_name", width: "8%" },
                 { text: "ADM", value: "adm", width: "5%" },
                 { text: "Timestamp", value: "timestamp", align: "center",width: "20%" },
-                { text: "Age", value: "count", sortable: false },
-                { text: "Status", value: "status_name", width: "15%",},
+                { text: "Age", value: "count", sortable: false, width: "10%" },
+                { text: "Status", value: "status_name", width: "20%",},
                 { text: "Edited By", value: "user_name", width: "10%", align: "start"}
 
 
