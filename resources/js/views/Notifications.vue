@@ -1,7 +1,7 @@
 <template>
     <div class=" pr-16 pl-16">
         <messageNotification
-            v-if="$can('access_notifications' != true)"
+            v-if="seeMessage()"
         ></messageNotification>
         <testingMessage></testingMessage>
         <div class=" d-flex align-items-center">
@@ -420,7 +420,7 @@
                                 v-if="item.status_id == 3 && item.end_time != null"
                                 :start-time="moment.utc(item.end_time).unix()"
                                 :interval="1000"
-                                end-text= null
+                                end-text="Is it Secured?"
                                 >
                                 <template slot="countdown" slot-scope="scope">
                 <span class="blue--text pl-3"
@@ -619,6 +619,14 @@ export default {
                         "Content-Type": "application/json"
                     }
                 });
+            }
+        },
+
+        seeMessage(){
+            if(this.$can('access_notifications')){
+                return false;
+            }else{
+                return true;
             }
         },
 
