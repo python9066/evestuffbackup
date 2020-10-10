@@ -623,7 +623,7 @@ export default {
         },
 
         seeMessage(){
-            if(this.$can('access_notifications')){
+            if(this.$can('edit_notifications')){
                 return false;
             }else{
                 return true;
