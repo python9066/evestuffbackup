@@ -234,7 +234,7 @@
             >
                 <v-menu offset-y v-if="$can('edit_notifications')">
                     <template v-slot:activator="{ on, attrs }">
-                        <div class="align-items-center">
+                        <div class="align-items-center d-inline-flex">
                             <v-btn
                                 v-if="item.status_id == 1"
                                 class="ma-2"
@@ -476,7 +476,7 @@
                                                         left
                                                         color="success"
                                                         @click="
-                                                            (repairShown = false),
+                                                            (timerShown = false),
                                                                 addRepairTime(
                                                                     item
                                                                 )
