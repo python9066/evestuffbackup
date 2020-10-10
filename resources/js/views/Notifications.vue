@@ -326,7 +326,7 @@
                                     ><v-icon>fas fa-minus</v-icon></v-btn
                                 >
                             </v-fab-transition>
-                            <span v-if="item_end_time == null">
+                            <span v-if="item.end_time == null">
                                 addtime
                             </span>
                             <span v-else>
