@@ -326,6 +326,9 @@
                                     ><v-icon>fas fa-minus</v-icon></v-btn
                                 >
                             </v-fab-transition>
+                            <div v-if="item.status_id == 3">
+                                 lalala
+                            </div>
                         </div>
                     </template>
 
@@ -407,9 +410,6 @@
                             </v-chip>
                         </div>
                     </template>
-                </div>
-                <div v-if="item.status_id == 3">
-                    lalala
                 </div>
             </template>
             <template
