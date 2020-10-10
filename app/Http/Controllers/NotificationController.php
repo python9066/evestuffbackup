@@ -52,4 +52,13 @@ class NotificationController extends Controller
             broadcast(new NotificationChanged($notifications))->toOthers();
         }
     }
+
+    public function addTime(Request $request, $id)
+    {
+        Notification::find($id)->update($request->all());
+        $notifications =  NotificationRecords::find($id);
+        if ($notifications->status_id != 10) {
+            broadcast(new NotificationChanged($notifications))->toOthers();
+        }
+    }
 }

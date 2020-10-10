@@ -730,36 +730,34 @@ export default {
             // console.log("30secs");
         },
 
-        addRepairTime(item){
-            // var min = parseInt(this.hackTime.substr(0, 2));
-            // var sec = parseInt(this.hackTime.substr(3, 2));
-            // var finishTime = moment
-            //     .utc()
-            //     .add(sec, "seconds")
-            //     .add(min, "minutes")
-            //     .format("YYYY-MM-DD HH:mm:ss");
-            // item.end = finishTime;
-            // this.$store.dispatch("updateCampaignSystem", item);
-            // var request = {
-            //     end_time: finishTime
-            // };
+       async addRepairTime(item){
+            var min = parseInt(this.repairTime.substr(0, 2));
+            var sec = parseInt(this.repairTime.substr(3, 2));
+            var finishTime = moment
+                .utc()
+                .add(sec, "seconds")
+                .add(min, "minutes")
+                .format("YYYY-MM-DD HH:mm:ss");
+            item.end_time = finishTime;
+            this.$store.dispatch("updateNotification", item);
+            var request = {
+                end_time: finishTime
+            };
 
-            // await axios({
-            //     method: "put", //you can set what request you want to be
-            //     url:
-            //         "/api/campaignsystems/" +
-            //         item.id +
-            //         "/" +
-            //         this.$route.params.id,
-            //     data: request,
-            //     headers: {
-            //         Authorization: "Bearer " + this.$store.state.token,
-            //         Accept: "application/json",
-            //         "Content-Type": "application/json"
-            //     }
-            // });
+            await axios({
+                method: "put", //you can set what request you want to be
+                url:
+                    "/api/notificationsaddtime/" +
+                    item.id,
+                data: request,
+                headers: {
+                    Authorization: "Bearer " + this.$store.state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                }
+            });
 
-            // this.$store.dispatch("getCampaignSystemsRecords");
+            this.$store.dispatch("getNotifications");
         },
 
         save() {
