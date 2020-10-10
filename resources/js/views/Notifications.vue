@@ -416,6 +416,17 @@
                                 <v-icon left>fas fa-search</v-icon>
                                 {{ item.status_name }}
                             </v-chip>
+                            <CountDowntimer
+                                v-if="item.status_id == 3 && item.end_time != null"
+                                :start-time="moment.utc(item.end_time).unix()"
+                                :interval="1000"
+                                >
+                                <template slot="countdown" slot-scope="scope">
+                <span class="blue--text pl-3"
+                    >{{ scope.props.minutes }}:{{ scope.props.seconds }}</span
+                >
+                                </template>
+                            </CountDowntimer>
                         </div>
                     </template>
                 </div>
@@ -678,7 +689,7 @@ export default {
             if(item.status_id != 3){
                 item.end_time = null;
             }
-            console.log(item.end_time)
+            // console.log(item.end_time)
             var request = {
                 status_id: item.status_id,
                 user_id: this.$store.state.user_id,
