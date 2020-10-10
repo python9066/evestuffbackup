@@ -362,7 +362,7 @@
                                         <v-card tile min-height="150px">
                                             <v-card-title class=" pb-0">
                                                 <v-text-field
-                                                    v-model="RepairTime"
+                                                    v-model="repairTime"
                                                     label="Reapir Time mm:ss"
                                                     v-mask="'##:##'"
                                                     autofocus
@@ -373,7 +373,7 @@
                                                     "
                                                     @keyup.esc="
                                                         (timerShown = false),
-                                                            (RepairTime = null)
+                                                            (repairTime = null)
                                                     "
                                                 ></v-text-field>
                                             </v-card-title>
@@ -399,7 +399,7 @@
                                                     color="warning"
                                                     @click="
                                                         (timerShown = false),
-                                                            (RepairTime = null)
+                                                            (repairTime = null)
                                                     "
                                                     ><v-icon
                                                         >fas fa-times</v-icon
