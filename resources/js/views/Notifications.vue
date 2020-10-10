@@ -360,7 +360,7 @@
                 </v-menu>
                 <div v-else>
                     <template>
-                        <div class="align-items-center">
+                        <div class="align-items-center d-inline-flex">
                             <v-chip
                                 v-if="item.status_id == 1"
                                 class="ma-2"
