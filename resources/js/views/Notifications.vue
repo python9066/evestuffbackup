@@ -676,7 +676,7 @@ export default {
             }
 
             if(item.status_id != 3){
-                item.end_time == null;
+                item.end_time = null;
             }
             console.log(item.end_time)
             var request = {
