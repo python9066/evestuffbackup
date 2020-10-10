@@ -329,7 +329,7 @@
                             <span v-if="item.end_time == null && item.status_id == 3">
                                 addtime
                             </span>
-                            <span v-else>
+                            <span v-else-if="item.status_id == 3">
                                 showtime
                             </span>
                         </div>
