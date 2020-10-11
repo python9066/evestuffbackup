@@ -28,16 +28,18 @@
                 <v-btn
                     class=" ma-2"
                     tile
+                    @click="kickUser(item)"
                     icon>
                     <v-icon small color="red">faSvg fa-user-minus</v-icon>
                 </v-btn>
 
-                <v-btn
+                <!-- <v-btn
                     class=" ma-2"
                     tile
+                    @click="banUser(item)"
                     icon>
                     <v-icon small color= "red">faSvg fa-user-alt-slash</v-icon>
-                </v-btn>
+                </v-btn> -->
 
                 </span>
                 </template>
@@ -100,6 +102,10 @@ export default {
         updateUserViewTable(){
             this.$store.dispatch('getCampaignMembers',this.$route.params.id)
 
+        },
+
+        kickUser(item){
+            console.log(item)
         },
 
         userCheck(item){
