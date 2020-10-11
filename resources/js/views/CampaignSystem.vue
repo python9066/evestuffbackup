@@ -595,7 +595,7 @@ export default {
                 }
 
                 if (e.flag.flag == 6) {
-                    // console.log(4);
+                     console.log(6);
                     this.kickUser(e.user_id);
                 }
             },
