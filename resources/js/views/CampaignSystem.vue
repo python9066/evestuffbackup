@@ -634,7 +634,9 @@ export default {
         },
 
         kickUser(user_id){
-            console.log(user_id);
+            if(this.$store.state.user_id == user_id){
+                console.log("kick")
+            }
         },
 
         async loadCampaigns() {
