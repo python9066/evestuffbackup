@@ -24,10 +24,10 @@
 
                 </template>
                 <template v-slot:item.action="{ item }">
-
-                <v-icon>faSvg fa-user-minus</v-icon>
-                <v-icon>faSvg fa-user-alt-slash</v-icon>
-
+                <span class=" d-inline-flex">
+                <v-icon x-small>faSvg fa-user-minus</v-icon>
+                <v-icon x-small>faSvg fa-user-alt-slash</v-icon>
+                </span>
                 </template>
                     <template slot="no-data">
                         No one is here
