@@ -58,7 +58,7 @@ Route::middleware('auth:api')->group(function(){
     Route::delete('/campaignsystems/{id}/{campid}','CampaignSystemsController@destroy');
     Route::put('/campaignsystemremovechar/{campid}', 'CampaignSystemsController@removechar');
     Route::get('/campaignsystemcheckaddchar/{campid}', 'CampaignSystemsController@checkAddChar');
-    Route::post('/campaignsystemuserskick/{campid}','CampaignSystemsController@removechar');
+    Route::post('/campaignsystemuserskick/{campid}','CampaignSystemsController@kickUser');
 
     Route::get('/users','AuthController@index');
     Route::get('/userrolerecord','UserRolesRecordsController@index');
