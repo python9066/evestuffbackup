@@ -47,7 +47,7 @@ export default {
         return {
             headers: [
                 { text: "Name", value: "user_name", width: "70%" },
-                { text: "Has Char", value: "check" },
+                { text: "Has Char", value: "check", width: "20%" },
                 { text: "", value: "action"}
 
                 // { text: "Vulernable End Time", value: "vulnerable_end_time" }
