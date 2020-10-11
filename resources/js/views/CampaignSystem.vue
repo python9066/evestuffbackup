@@ -595,7 +595,7 @@ export default {
                 }
 
                 if (e.flag.flag == 6) {
-                     console.log(6);
+                    //  console.log(6);
                     this.kickUser(e.flag.user_id);
                 }
             },
@@ -634,9 +634,8 @@ export default {
         },
 
         kickUser(user_id){
-            console.log(user_id + "---")
             if(this.$store.state.user_id == user_id){
-                console.log("kick")
+                this.$router.push('campaginSystemKick');
             }
         },
 
