@@ -23,6 +23,11 @@
                 <span v-else>No</span>
 
                 </template>
+                <template v-slot:item.action="{ item }">
+
+                <span> lalalal </span>
+
+                </template>
                     <template slot="no-data">
                         No one is here
                     </template>
@@ -42,7 +47,8 @@ export default {
         return {
             headers: [
                 { text: "Name", value: "user_name", width: "70%" },
-                { text: "Has Char", value: "check" }
+                { text: "Has Char", value: "check" },
+                { text: "", value: "action"}
 
                 // { text: "Vulernable End Time", value: "vulnerable_end_time" }
             ],
