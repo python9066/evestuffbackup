@@ -122,8 +122,6 @@ class CampaignSystemsController extends Controller
 
     public function kickUser(Request $request, $campid)
     {
-        dd($request['user_id']);
-
         $flag = collect([
             'flag' => 6,
             'id' => $campid,
