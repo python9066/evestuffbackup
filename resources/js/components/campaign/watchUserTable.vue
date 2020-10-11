@@ -25,7 +25,8 @@
                 </template>
                 <template v-slot:item.action="{ item }">
 
-                <span> lalalal </span>
+                <v-icon>faSvg fa-user-minus</v-icon>
+                <v-icon>faSvg fa-user-alt-slash</v-icon>
 
                 </template>
                     <template slot="no-data">
@@ -47,7 +48,7 @@ export default {
         return {
             headers: [
                 { text: "Name", value: "user_name", width: "70%" },
-                { text: "Has Char", value: "check", width: "20%" },
+                { text: "Char", value: "check", width: "20%" },
                 { text: "", value: "action"}
 
                 // { text: "Vulernable End Time", value: "vulnerable_end_time" }
