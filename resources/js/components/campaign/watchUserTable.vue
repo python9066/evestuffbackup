@@ -105,7 +105,7 @@ export default {
         },
 
         kickUser(item){
-            console.log(item)
+            console.log(item.user_id)
         },
 
         userCheck(item){
