@@ -12,6 +12,7 @@ import Stations from "./views/Stations.vue"
 import Towers from "./views/Towers.vue"
 import store from "./store";
 import FeedBack from "./views/FeedBack.vue";
+import campaginSystemKick from "./views/redirect/campaginSystemKick.vue"
 
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
@@ -70,6 +71,12 @@ export default new Router({
                 }
 
               }
+        },
+
+        {
+            path: "/campaignkick",
+            name: "campaginSystemKick",
+            component: campaginSystemKick,
         },
 
         {

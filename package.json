@@ -19,7 +19,7 @@
         "bootstrap": "^4.0.0",
         "cross-env": "^7.0",
         "jquery": "^3.2",
-        "laravel-mix": "^5.0.6",
+        "laravel-mix": "^5.0.7",
         "lodash": "^4.17.19",
         "material-design-icons-iconfont": "^6.1.0",
         "popper.js": "^1.12",
