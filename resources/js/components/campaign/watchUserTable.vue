@@ -104,8 +104,21 @@ export default {
 
         },
 
-        kickUser(item){
+        async kickUser(item){
             console.log(item.user_id)
+            var request = {
+                user_id: item.user_id
+            }
+            await axios({
+                method: "POST", //you can set what request you want to be
+                url: "/api/campaignsystemuserskick/" + this.$route.params.id,
+                data: request,
+                headers: {
+                    Authorization: "Bearer " + this.$store.state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                }
+            });
         },
 
         userCheck(item){

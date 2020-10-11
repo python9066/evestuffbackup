@@ -119,6 +119,18 @@ class CampaignSystemsController extends Controller
         ]);
         broadcast(new CampaignSystemUpdate($flag))->toOthers();
     }
+
+    public function kickUser(Request $request, $campid)
+    {
+        dd($request['user_id']);
+
+        $flag = collect([
+            'flag' => 6,
+            'id' => $campid,
+            'user_id' => $request['user_id']
+        ]);
+        broadcast(new CampaignSystemUpdate($flag))->toOthers();
+    }
     // public function destroy($id)
     // {
 
