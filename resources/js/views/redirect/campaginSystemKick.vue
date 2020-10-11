@@ -6,8 +6,8 @@
         <v-card-title class=" justify-center"><h1>Why am I on this page?</h1></v-card-title>
         <v-card-text>
             <span class=" body-1">
-        <p class=" text-md-center">You have been kicked from the active campaign page.  Most likey you where kicked for not adding a character to the page </p>
-        <p class=" text-md-center">Check MotD in your fleet to get access to the page again and remember to add a character.  If you fail to do so you may get a temp ban</p>
+        <p class=" text-md-center">You have been kicked from the active campaign page.  Most likey you were kicked for not adding a character to the page </p>
+        <p class=" text-md-center">Check MotD in your fleet to gain access to the page again and remember to add a character.  If you fail to do so you may get a temp ban</p>
             </span>
         </v-card-text>
     </v-card>
