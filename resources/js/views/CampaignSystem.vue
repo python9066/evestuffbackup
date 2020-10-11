@@ -593,6 +593,11 @@ export default {
                     // console.log(4);
                     this.checkAddUser();
                 }
+
+                if (e.flag.flag == 6) {
+                    // console.log(4);
+                    this.kickUser(e.user_id);
+                }
             },
 
             window.addEventListener("beforeunload", this.leaving)
@@ -626,6 +631,10 @@ export default {
             if (this.userCount == 0) {
                 this.overlay = true;
             }
+        },
+
+        kickUser(user_id){
+            console.log(user_id);
         },
 
         async loadCampaigns() {
