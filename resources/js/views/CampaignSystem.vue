@@ -635,7 +635,7 @@ export default {
 
         kickUser(user_id){
             if(this.$store.state.user_id == user_id){
-                this.$router.push('campaginSystemKick');
+                this.$router.push('/campaignkick');
             }
         },
 
