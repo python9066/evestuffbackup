@@ -25,8 +25,20 @@
                 </template>
                 <template v-slot:item.action="{ item }">
                 <span class=" d-inline-flex">
-                <v-icon small color="red">faSvg fa-user-minus</v-icon>
-                <v-icon small color= "red">faSvg fa-user-alt-slash</v-icon>
+                <v-btn
+                    class=" ma-2"
+                    tile
+                    icon>
+                    <v-icon small color="red">faSvg fa-user-minus</v-icon>
+                </v-btn>
+
+                <v-btn
+                    class=" ma-2"
+                    tile
+                    icon>
+                    <v-icon small color= "red">faSvg fa-user-alt-slash</v-icon>
+                </v-btn>
+
                 </span>
                 </template>
                     <template slot="no-data">
