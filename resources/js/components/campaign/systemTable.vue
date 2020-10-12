@@ -792,7 +792,7 @@ export default {
         },
         updatetext(item) {
             this.expanded = []
-            var note = this.user_name +": " + this.noteText + item.notes
+            var note = this.$store.state.user_name +": " + this.noteText + item.notes
             console.log(note)
             this.item.notes = note
             let request = {
