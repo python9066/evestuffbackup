@@ -22,7 +22,6 @@
     <script>
         @auth
           window.Permissions = {!! json_encode(Auth::user()->allPermissions, true) !!};
-          window.Permissions = {!! json_encode(Auth::user()->allRoles, true) !!};
         @else
           window.Permissions = [];
         @endauth
