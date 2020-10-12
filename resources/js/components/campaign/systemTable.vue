@@ -353,18 +353,18 @@
                         <td :colspan="headers.length" align="center">
                             <div>
                                 <v-col class="align-center">
-                                    <v-textarea
-                                        v-model="item.notes"
+                                    <v-text-field
                                         label="Where you can put any notes"
                                         outlined
                                         shaped
-                                    >{{item.notes}}</v-textarea>
+                                    ></v-text-field>
                                     <v-btn
                                     color="green"
                                     @click="updatetext(item)"
                                     >
                                         Submit
                                     </v-btn>
+                                    {{item.notes}}
                                 </v-col>
                             </div>
                         </td>

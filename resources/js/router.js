@@ -44,8 +44,8 @@ export default new Router({
             }
             //   beforeEnter(to, from, next) {
 
-            //     console.log(Permissions.indexOf('access_campaigns' )!== -1)
-            //     if(Permissions.indexOf('access_campaigns' )!== -1){
+            //     // console.log(Permissions.indexOf('access_campaigns' )!== -1)
+            //     if(Permissions.indexOf('campaign ' )!== -1){
             //         next()
             //     }else{
             //        next("/redirect/campagin")
