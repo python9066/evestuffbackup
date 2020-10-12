@@ -799,9 +799,9 @@ export default {
         updatetext(item) {
             this.expanded = []
             if(item.notes == null){
-               var note = this.$store.state.user_name +": " + this.noteText
+               var note = this.$store.state.user_name +": " + this.noteText+"/n"
             }else{
-                var note = this.$store.state.user_name +": " + this.noteText + item.notes
+                var note = this.$store.state.user_name +": " + this.noteText + item.notes +"/n"
             }
             console.log(note)
             item.notes = note
