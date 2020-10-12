@@ -369,7 +369,6 @@
                                         solo
                                         name="Log"
                                         auto-grow
-                                        disabled
                                         :placeholder="item.text"
                                      ></v-textarea>
                                 </v-col>
