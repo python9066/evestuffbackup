@@ -293,6 +293,7 @@ export default {
         await this.$store.dispatch("setUser_id", this.user_id);
         await this.$store.dispatch("setUser_name", this.username);
         console.log(Permissions);
+        console.log(Permission.role);
     },
     methods: {
         gotoCovid() {
