@@ -369,7 +369,8 @@
                                         solo
                                         name="Log"
                                         auto-grow
-                                        :placeholder="item.text"
+                                        disabled
+                                        v-model="item.notes"
                                      ></v-textarea>
                                 </v-col>
                             </div>
