@@ -365,7 +365,14 @@
                                     >
                                         Submit
                                     </v-btn>
-                                    {{item.notes}}
+                                    <v-textarea
+                                        solo
+                                        name="Log"
+                                        label="Log"
+                                        auto-grow
+                                        :messages="item.text"
+                                        disabled
+                                     ></v-textarea>
                                 </v-col>
                             </div>
                         </td>
