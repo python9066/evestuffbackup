@@ -354,6 +354,7 @@
                             <div>
                                 <v-col class="align-center">
                                     <v-text-field
+                                        v-model="noteText"
                                         label="Where you can put any notes"
                                         outlined
                                         shaped
@@ -477,6 +478,7 @@ export default {
             singleExpand: true,
             charAddNode: null,
             noteText:""
+
         };
     },
 
@@ -790,8 +792,9 @@ export default {
         },
         updatetext(item) {
             this.expanded = []
+            var note = this.noteText + item.notes
             let request = {
-                notes: item.notes
+                notes: noteText
             }
             // console.log(item);
                 // console.log(item);
