@@ -368,9 +368,9 @@
                                     <v-textarea
                                         solo
                                         name="Log"
-                                        :value="item.text"
                                         auto-grow
                                         disabled
+                                        :placeholder="item.text"
                                      ></v-textarea>
                                 </v-col>
                             </div>
