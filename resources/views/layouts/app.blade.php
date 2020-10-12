@@ -21,8 +21,8 @@
     {{-- <link href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" rel="stylesheet"> --}}
     <script>
         @auth
-          window.Permissions = {!! json_encode(Auth::user()->allPermissions, true) !!};
-          window.Permissions = {!! json_encode(Auth::user()->allRoles, true) !!};
+          window.Permissions = {!! json_encode(Auth::user()->allPermissions, true) && json_encode(Auth::user()->allRoles, true) !!};
+        //   window.Permissions = {!! json_encode(Auth::user()->allRoles, true) !!};
         @else
           window.Permissions = [];
         @endauth
