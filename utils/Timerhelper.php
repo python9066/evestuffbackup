@@ -37,7 +37,7 @@ class Timerhelper
                 $time = $var['vulnerable_start_time'];
                 $vulnerable_start_time = Helper::fixtime($time);
             } else {
-                $adm = NULL;
+                $adm = $var['vulnerability_occupancy_level'];
                 $vulnerable_end_time = NULL;
                 $vulnerable_start_time = NULL;
             }
