@@ -22,7 +22,7 @@
     <script>
         @auth
           window.Permissions = {!! json_encode(Auth::user()->allPermissions, true)  !!};
-          Permissions.merge = {!! json_encode(Auth::user()->allRoles, true) !!};
+          Permissions = {!! json_encode(Auth::user()->allRoles, true) !!};
         @else
           window.Permissions = [];
         @endauth
