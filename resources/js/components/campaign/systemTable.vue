@@ -795,11 +795,10 @@ export default {
             if(item.notes == null){
                var note = this.$store.state.user_name +": " + this.noteText
             }else{
-
                 var note = this.$store.state.user_name +": " + this.noteText + item.notes
             }
             console.log(note)
-            this.item.notes = note
+            item.notes = note
             let request = {
                 notes: note
             }
@@ -820,6 +819,7 @@ export default {
                         "Content-Type": "application/json"
                     }
                 });
+                this.noteText = ""
 
         },
 
