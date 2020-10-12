@@ -7,6 +7,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Spatie\Permission\Traits\HasRoles;
 use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Auth;
 use Spatie\Permission\Traits\HasPermissions;
 
@@ -73,6 +74,18 @@ class User extends Authenticatable
             }
           }
           return $permissions;
+      }
+
+      public function getAllRolesAttribute() {
+        $roles = [];
+          foreach (Role::all() as $role) {
+
+            //   dd($name);
+            if (Auth::user()->can($role->name)) {
+              $roles[] = $role->name;
+            }
+          }
+          return $roles;
       }
 
 }
