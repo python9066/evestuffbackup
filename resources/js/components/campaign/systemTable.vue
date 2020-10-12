@@ -798,10 +798,11 @@ export default {
         },
         updatetext(item) {
             this.expanded = []
+            this.noteText = this.noteText+'\n'
             if(item.notes == null){
-               var note = this.$store.state.user_name +": " + this.noteText+"/n"
+               var note = this.$store.state.user_name +": " + this.noteText
             }else{
-                var note = this.$store.state.user_name +": " + this.noteText + item.notes +"/n"
+                var note = this.$store.state.user_name +": " + this.noteText + item.notes
             }
             console.log(note)
             item.notes = note
