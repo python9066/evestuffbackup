@@ -819,7 +819,7 @@ export default {
                         "Content-Type": "application/json"
                     }
                 });
-
+            this.noteText = null
         },
 
         async addNode() {
