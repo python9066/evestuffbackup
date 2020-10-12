@@ -37,7 +37,7 @@ class Timerhelper
                 $time = $var['vulnerable_start_time'];
                 $vulnerable_start_time = Helper::fixtime($time);
             } else {
-                $adm = $var['vulnerability_occupancy_level'];
+                $adm = NULL;
                 $vulnerable_end_time = NULL;
                 $vulnerable_start_time = NULL;
             }
@@ -58,7 +58,7 @@ class Timerhelper
         Structure::insert($data);
         $system = Structure::where('adm', '>', 0)->select('system_id', 'adm')->get();
         $system = $system->unique('system_id');
-        System::where('id', '>', 0)->update(['adm' => 0]);
+        // System::where('id', '>', 0)->update(['adm' => 0]);
 
         foreach ($system as $system) {
 
