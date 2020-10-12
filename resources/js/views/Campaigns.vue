@@ -289,6 +289,7 @@ export default {
                 { text: "System", value: "system" },
                 { text: "Alliance", value: "alliance" },
                 { text: "Ticker", value: "ticker", align: "start" },
+                { text: 'ADM', value:'adm'},
                 { text: "Structure", value: "item_name" },
                 {
                     text: "Start/Progress",
