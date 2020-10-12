@@ -791,8 +791,9 @@ export default {
             }
         },
         updatetext(item) {
+            console.log(this.noteText)
             this.expanded = []
-            var note = this.user_name +": " +this.noteText + item.notes
+            var note = this.user_name +": " + this.noteText + item.notes
             this.item.notes = note
             let request = {
                 notes: note
