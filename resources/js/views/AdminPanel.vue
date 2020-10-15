@@ -293,7 +293,7 @@ export default {
                     return true;
                 }
             }else if(this.$can("edit_gsfoe_fc") && this.$can("edit_recon_users")&& this.$can("edit_scout_users")) {
-                if (name == "Coord" || name == "Director") {
+                if (name == "Coord" || name == "Director" || name == "Wizard") {
                     return false;
                 } else {
                     return true;
