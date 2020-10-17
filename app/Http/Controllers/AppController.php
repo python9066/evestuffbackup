@@ -16,6 +16,8 @@ class AppController extends Controller
     Userlogging::create([
         'name' => Auth::user()->name
     ]);}
+    $url = url()->current();
+    dd($url);
     return view('/home');
   }
 
