@@ -19,8 +19,8 @@ class AppController extends Controller
     $url = url()->current();
     // dd($url);
     session(['url' => $url]);
-    $data = session()->all();
-    dd($data);
+    // $data = session()->all();
+    // dd($data);
     return view('/home');
   }
 
