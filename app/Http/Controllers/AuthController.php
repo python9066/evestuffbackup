@@ -39,8 +39,9 @@ class AuthController extends Controller
         if($flag == 1){
             broadcast(new UserUpdate($flag))->toOthers();
         }
+        $url = session('url');
 
-        return redirect('/notifications');
+        return redirect($url);
     }
 
     public function admin()
