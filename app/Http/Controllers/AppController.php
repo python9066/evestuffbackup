@@ -17,7 +17,7 @@ class AppController extends Controller
         'name' => Auth::user()->name
     ]);}
     $url = url()->current();
-    dd($url);
+    // dd($url);
     return view('/home');
   }
 
