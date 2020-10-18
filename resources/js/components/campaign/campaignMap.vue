@@ -10,12 +10,12 @@
                 <template>
                     <v-btn
                         color="primary"
+                        icon
                         class="ma-2 white--text"
                         v-bind="attrs"
                         v-on="on"
                         @click="dialog1 = true"
                     >
-                        Delve
                         <v-icon right dark>fas fa-map fa-xs</v-icon>
                     </v-btn>
                 </template>
