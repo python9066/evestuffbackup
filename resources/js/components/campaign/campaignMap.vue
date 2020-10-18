@@ -59,67 +59,67 @@ export default {
     methods: {
 
         link(){
-            if(region_name == "Black Rise"){
+            if(this.region_name == "Black Rise"){
               return "https://evemaps.dotlan.net/map/Black_Rise/"+this.system_name+"#adm"
             }
-             if(region_name == "The Bleak Lands"){
+             if(this.region_name == "The Bleak Lands"){
               return "https://evemaps.dotlan.net/map/The_Bleak_Lands/"+this.system_name+"#adm"
             }
-             if(region_name == "The Citadel"){
+             if(this.region_name == "The Citadel"){
               return "https://evemaps.dotlan.net/map/The_Citadel/"+this.system_name+"#adm"
             }
-             if(region_name == "Cloud Ring"){
+             if(this.region_name == "Cloud Ring"){
               return "https://evemaps.dotlan.net/map/Cloud_Ring/"+this.system_name+"#adm"
             }
-             if(region_name == "Cobalt Edge"){
+             if(this.region_name == "Cobalt Edge"){
               return "https://evemaps.dotlan.net/map/Cobalt_Edge/"+this.system_name+"#adm"
             }
-             if(region_name == "Etherium Reach"){
+             if(this.region_name == "Etherium Reach"){
               return "https://evemaps.dotlan.net/map/Etherium_Reach/"+this.system_name+"#adm"
             }
-             if(region_name == "The Forge"){
+             if(this.region_name == "The Forge"){
               return "https://evemaps.dotlan.net/map/The_Forge/"+this.system_name+"#adm"
             }
-             if(region_name == "The Kalevala Expanse"){
+             if(this.region_name == "The Kalevala Expanse"){
               return "https://evemaps.dotlan.net/map/The_Kalevala_Expanse/"+this.system_name+"#adm"
             }
-             if(region_name == "Molden Heath"){
+             if(this.region_name == "Molden Heath"){
               return "https://evemaps.dotlan.net/map/Molden_Heath/"+this.system_name+"#adm"
             }
-             if(region_name == "Outer Passage"){
+             if(this.region_name == "Outer Passage"){
               return "https://evemaps.dotlan.net/map/Outer_Passage/"+this.system_name+"#adm"
             }
-             if(region_name == "Outer Ring"){
+             if(this.region_name == "Outer Ring"){
               return "https://evemaps.dotlan.net/map/Outer_Ring/"+this.system_name+"#adm"
             }
-             if(region_name == "Paragon Soul"){
+             if(this.region_name == "Paragon Soul"){
               return "https://evemaps.dotlan.net/map/Paragon_Soul/"+this.system_name+"#adm"
             }
-             if(region_name == "Period Basis"){
+             if(this.region_name == "Period Basis"){
               return "https://evemaps.dotlan.net/map/Period_Basis/"+this.system_name+"#adm"
             }
-             if(region_name == "Perrigen Falls"){
+             if(this.region_name == "Perrigen Falls"){
               return "https://evemaps.dotlan.net/map/Perrigen_Falls/"+this.system_name+"#adm"
             }
-             if(region_name == "Pure Blind"){
+             if(this.region_name == "Pure Blind"){
               return "https://evemaps.dotlan.net/map/Pure_Blind/"+this.system_name+"#adm"
             }
-             if(region_name == "Scalding Pass"){
+             if(this.region_name == "Scalding Pass"){
               return "https://evemaps.dotlan.net/map/Scalding_Pass/"+this.system_name+"#adm"
             }
-             if(region_name == "Sinq Laison"){
+             if(this.region_name == "Sinq Laison"){
               return "https://evemaps.dotlan.net/map/Sinq_Laison/"+this.system_name+"#adm"
             }
-             if(region_name == "The Spire"){
+             if(this.region_name == "The Spire"){
               return "https://evemaps.dotlan.net/map/The_Spire/"+this.system_name+"#adm"
             }
-             if(region_name == "Vale of the Silent"){
+             if(this.region_name == "Vale of the Silent"){
               return "https://evemaps.dotlan.net/map/Vale_of_the_Silent/"+this.system_name+"#adm"
             }
-            if(region_name == "Verge Vendor"){
+            if(this.region_name == "Verge Vendor"){
               return "https://evemaps.dotlan.net/map/Verge_Vendor/"+this.system_name+"#adm"
             }
-            if(region_name == "Wicked Creek"){
+            if(this.region_name == "Wicked Creek"){
               return "https://evemaps.dotlan.net/map/Wicked_Creek/"+this.system_name+"#adm"
             }
             return "https://evemaps.dotlan.net/map/"+this.region_name+"/"+this.system_name+"#adm"
