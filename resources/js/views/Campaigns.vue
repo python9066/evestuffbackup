@@ -256,14 +256,14 @@
                 <div v-else-if="item.status_id > 1" >
                         <span class=" pl-5">{{ item.status_name }}</span>
                 </div>
-                <div>
+
                 <campaignMap
                     :system_name="item.system"
                     :region_name="item.region"
                 >
                 </campaignMap>
+
                 </div>
-                |</div>
             </template>
         </v-data-table>
     </div>
