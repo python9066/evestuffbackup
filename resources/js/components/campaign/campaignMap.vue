@@ -9,7 +9,6 @@
             <template v-slot:activator="{ on, attrs }">
                 <template>
                     <v-btn
-                        v-show="delvecheck == 1"
                         color="primary"
                         class="ma-2 white--text"
                         v-bind="attrs"
