@@ -208,6 +208,7 @@
             </template>
 
             <template v-slot:item.count="{ item }">
+                <div class=" d-inline-flex">
                 <CountDowntimer
                     v-if="item.status_id == 1"
                     :start-time="moment.utc(item.start).unix()"
@@ -262,6 +263,7 @@
                 >
                 </campaignMap>
                 </div>
+                |</div>
             </template>
         </v-data-table>
     </div>
