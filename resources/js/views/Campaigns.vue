@@ -255,9 +255,6 @@
                 <div v-else-if="item.status_id > 1" >
                         <span class=" pl-5">{{ item.status_name }}</span>
                 </div>
-                <span>
-                    <v-icon> fas fa-map fa-xs </v-icon>
-                </span>
             </template>
         </v-data-table>
     </div>
