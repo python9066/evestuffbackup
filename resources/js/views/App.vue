@@ -119,10 +119,13 @@
                         Timers
                     </v-tab>
 
-                    <v-tab link to="/campaigns">
-                        Campaigns
+                    <v-tab v-if="campaigns()" link to="/campaigns">
+                        Campaigns - test
                     </v-tab>
 
+                    <v-tab v-else link to="/campaigns">
+                        Campaigns
+                    </v-tab>
                     <v-tab
                         v-if="
                             $can('edit_users')
@@ -320,9 +323,14 @@ export default {
                     "Content-Type": "application/json"
                 }
             });
-
-
         },
+
+        campaigns(){
+                if(this.$can('super')){
+                    return false
+                }
+                return true
+            }
     },
     computed: {
         avatarsize() {
