@@ -119,12 +119,12 @@
                         Timers
                     </v-tab>
 
-                    <v-tab v-if="campaigns()" link to="/campaigns">
-                        Campaigns - test
+                    <v-tab link to="/campaigns">
+                        Campaigns
                     </v-tab>
 
-                    <v-tab v-else link to="/campaigns">
-                        Campaigns
+                    <v-tab v-if="$can('super')" link to="/campaigns">
+                        Mulit-Campaign
                     </v-tab>
                     <v-tab
                         v-if="
@@ -324,13 +324,6 @@ export default {
                 }
             });
         },
-
-        campaigns(){
-                if(this.$can('super')){
-                    return true
-                }
-                return false
-            }
     },
     computed: {
         avatarsize() {
