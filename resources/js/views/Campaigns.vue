@@ -218,7 +218,7 @@
                 >
                     <template slot="countdown" slot-scope="scope">
                         <span
-                            v-if="scope.props.minutes < 30 && scope.props.hours == 0 && scope.props.hours == 0 && scope.props.days ==0 && $can('access_campaigns')"
+                            v-if="scope.props.hours == 0 && $can('access_campaigns')"
                             class="red--text pl-3"
                         >
                                 <v-chip
@@ -360,7 +360,7 @@ export default {
         rowClick(item){
             if(this.$can('access_campaigns')){
             var left = (moment.utc(item.start).unix() -  moment.utc().unix())
-            if(left < 1800 && item.status_id < 3){
+            if(left < 3600 && item.status_id < 3){
                 this.$router.push({ path: `/campaign/${item.id}` }) // -> /user/123
             }}
         },
