@@ -12,7 +12,8 @@ import Stations from "./views/Stations.vue"
 import Towers from "./views/Towers.vue"
 import store from "./store";
 import FeedBack from "./views/FeedBack.vue";
-import campaginSystemKick from "./views/redirect/campaginSystemKick.vue"
+import campaginSystemKick from "./views/redirect/campaginSystemKick.vue";
+import MultiCampagins from "./views/MultiCampaigns.vue";
 
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
@@ -150,7 +151,25 @@ export default new Router({
             path: "/campaigns",
             name: "campaigns",
             component: Campagins
+        },
+
+        {
+            path: "/mcampaigns",
+            name: "mcampaigns",
+            component: MultiCampagins,
+            beforeEnter(to, from, next) {
+                if(Permissions.indexOf('super')!== -1){
+                    next()
+                }else{
+                   next("/campaigns")
+                }
+
+              }
         }
+
+
+
+
     ]
     // scrollBehavior(to, from, savedPosition) {
     //   return { x: 0, y: 0 }

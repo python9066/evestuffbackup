@@ -123,7 +123,7 @@
                         Campaigns
                     </v-tab>
 
-                    <v-tab v-if="$can('super')" link to="/campaigns">
+                    <v-tab v-if="$can('super')" link to="/mcampaigns">
                         Mulit-Campaign
                     </v-tab>
                     <v-tab
