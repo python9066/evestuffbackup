@@ -15,6 +15,7 @@ class CreateCustomCampaignsTable extends Migration
     {
         Schema::create('custom_campaigns', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
             $table->integer('status_id')->default(1);
         });
     }
