@@ -218,7 +218,7 @@
                 >
                     <template slot="countdown" slot-scope="scope">
                         <span
-                            v-if="scope.props.hours == 0 && $can('access_campaigns')"
+                            v-if="scope.props.hours == 0 && scope.props.days == 0 && $can('access_campaigns')"
                             class="red--text pl-3"
                         >
                                 <v-chip
