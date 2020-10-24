@@ -41,14 +41,7 @@ export default {
 
 
     created() {
-        Echo.private("multicampaigns").listen("CampaignChanged", e => {
-            this.loadcampaigns();
-        }),
-            this.$store.dispatch("getCampaigns").then(() => {
-                this.loadingf = false;
-                this.loadingr = false;
-                this.loading = false;
-            });
+            this.$store.dispatch("getCampaigns")
     },
 
     methods: {
