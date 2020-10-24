@@ -42,7 +42,7 @@ class CampaignJoinsController extends Controller
         foreach ($pull as $pull){
             $data = [];
             $camp = CampaignRecords::where('id',$pull)->select('system','item_name')->get();
-            $dd($camp);
+            dd($camp);
             $data = [
                 $camp['system']. " - ".$camp['item_name']
             ];
