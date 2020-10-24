@@ -41,7 +41,7 @@ export default {
 
 
     created() {
-            this.$store.dispatch("getCampaigns")
+            this.$store.dispatch("getCampaignsList")
     },
 
     methods: {
@@ -54,12 +54,6 @@ export default {
 
 
     computed: {
-        ...mapGetters(["getAllActiveCampaigns"]),
-
-        campaignlist(){
-            console.log(this.getAllActiveCampaigns)
-            return this.getAllActiveCampaigns
-        }
 
     }
 };

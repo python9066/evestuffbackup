@@ -18,6 +18,14 @@ class CampaignRecordsController extends Controller
         return ['campaigns' => CampaignRecords::all()];
     }
 
+    public function campaignslist()
+    {
+        $pull = CampaignRecords::where('status_id',"<",3)->get();
+        dd($pull);
+
+        return ['campaigns' => CampaignRecords::all()];
+    }
+
     /**
      * Store a newly created resource in storage.
      *

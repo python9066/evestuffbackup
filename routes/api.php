@@ -36,6 +36,7 @@ Route::middleware('auth:api')->group(function(){
     Route::get('/timers','TimerController@getTimerData');
 
     Route::get('/campaigns','CampaignRecordsController@index');
+    Route::get('/campaignslsit','CampaignRecordsController@campaignslist');
     Route::put('/campaigns/{id}','CampaignRecordsController@update');
     Route::get('/systemsinconstellation/{id}','SystemController@systemsinconstellation');
 

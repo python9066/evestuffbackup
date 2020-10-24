@@ -15,6 +15,7 @@ export default new Vuex.Store({
         timers: [],
         notifications: [],
         campaigns: [],
+        campaignslist: [],
         users:[],
         delveLink: "",
         queriousLink: "",
@@ -56,6 +57,10 @@ export default new Vuex.Store({
 
         SET_CAMPAIGNS(state, campaigns) {
             state.campaigns = campaigns;
+        },
+
+        SET_CAMPAIGNSLIST(state, campaignslist) {
+            state.campaignslist = campaignslist;
         },
 
         UPDATE_CAMPAIGNS(state, data) {
@@ -238,6 +243,20 @@ export default new Vuex.Store({
             });
             // console.log(res.data.campaigns);
             commit("SET_CAMPAIGNS", res.data.campaigns);
+        },
+
+        async getCampaignsList({ commit, state }) {
+            let res = await axios({
+                method: "get",
+                url: "/api/campaignslist",
+                headers: {
+                    Authorization: "Bearer " + state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                }
+            });
+            // console.log(res.data.campaigns);
+            commit("SET_CAMPAIGNSLIST", res.data.campaignslist);
         },
 
         markOver({ commit }, timer) {
@@ -448,11 +467,6 @@ export default new Vuex.Store({
 
         getActiveCampaigns: state => {
             return state.campaigns.find(campaigns => campaigns.status_id == 2);
-        },
-
-        getAllActiveCampaigns: state => {
-            let list = state.campaigns.filter(campaigns => campaigns.status_id < 3);
-            console.log(list)
         },
 
         getTotalNodeCountByCampaign: state => id => {
