@@ -25,7 +25,7 @@ class CampaignRecordsController extends Controller
         foreach($pull as $pull){
             $data1 = [];
             $data1= [
-                "text" => $pull['region'] ." - ". $pull['constellation']. " - ". $pull['system']. " - " .$pull['alliance']. " - " .$pull['item_name'],
+                "text" => $pull['region'] ." - ". $pull['constellation']. " - ". $pull['system']. " - " .$pull['alliance']. " - " .$pull['item_name']." - " .$pull['start'],
                 'value' => $pull['id']
             ];
 
