@@ -30,7 +30,7 @@ class CustomCampaignsController extends Controller
         // dd($data);
         CustomCampaign::create(['id' => $campid, 'name' => $name]);
         foreach ($data as $data){
-            dd($data);
+            // dd($data);
         CampaignJoin::create(['custom_campaign_id' => $campid, 'campaign_id' => $data]);
 
         }
