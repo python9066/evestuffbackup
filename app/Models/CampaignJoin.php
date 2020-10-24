@@ -20,7 +20,7 @@ class CampaignJoin extends Model
         return $this->belongsTo(Campaign::class);
     }
 
-    public function campaignrecord()
+    public function campaignrecords()
     {
         return $this->belongsTo(CampaignRecords::class,"campagin_id");
     }
