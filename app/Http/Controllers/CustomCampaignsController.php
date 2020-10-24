@@ -28,7 +28,7 @@ class CustomCampaignsController extends Controller
             array_push($list,$data);
         };
 
-        return ['campaigns' => $data];
+        return ['campaigns' => $list];
 
     }
 
