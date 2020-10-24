@@ -22,7 +22,11 @@ class CampaignRecordsController extends Controller
     {
         $pull = CampaignRecords::where('status_id',"<",3)->get();
         foreach($pull as $pull){
-        dd($pull);
+            $data1= [
+                "text" => $pull['region'] ." - ". $pull['constellation']. " - ". $pull['system']. " - " .$pull['alliance']. " - " .$pull['ticker']. " - " .$pull['item_name'],
+                'value' => $pull['id']
+            ];
+        dd($data1);
         }
 
         return ['campaigns' => CampaignRecords::all()];
