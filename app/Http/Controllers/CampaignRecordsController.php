@@ -32,9 +32,9 @@ class CampaignRecordsController extends Controller
             array_push($data, $data1);
         }
 
-        dd($data);
+        // dd($data);
 
-        return ['campaigns' => CampaignRecords::all()];
+        return ['campaignslist' => $data];
     }
 
     /**

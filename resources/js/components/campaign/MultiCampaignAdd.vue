@@ -13,7 +13,7 @@
                 </v-text-field>
                 <v-select
                     v-model="picked"
-                    :items="campaignlist"
+                    :items="list"
                     label="Select"
                     multiple
                     chips
@@ -36,12 +36,13 @@ export default {
         name:"",
         picked:[],
 
+
         };
     },
 
 
     created() {
-            this.$store.dispatch("getCampaignsList")
+           this.$store.dispatch("getCampaignsList")
     },
 
     methods: {
@@ -54,6 +55,12 @@ export default {
 
 
     computed: {
+
+        ...mapState([campaignslist]),
+
+        list(){
+            return this.campaignslist
+        }
 
     }
 };
