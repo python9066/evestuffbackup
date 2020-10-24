@@ -18,7 +18,7 @@
                     label="Select"
                     multiple
                     chips
-                    close
+                    deletable-chips
                     hint="Which Campaigns do you want"
                     persistent-hint
                 ></v-select>
