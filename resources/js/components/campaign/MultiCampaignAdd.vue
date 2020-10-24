@@ -49,7 +49,18 @@ export default {
         this.$store.dispatch("getCampaignsList");
     },
 
-    methods: {},
+    methods: {
+
+        addCampaignDone(){
+
+        },
+
+        addCampaignClose(){
+
+
+        },
+
+    },
 
     computed: {
         ...mapState(["campaignslist"]),
