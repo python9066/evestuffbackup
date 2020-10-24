@@ -20,14 +20,19 @@ class CampaignRecordsController extends Controller
 
     public function campaignslist()
     {
+        $data = [];
         $pull = CampaignRecords::where('status_id',"<",3)->get();
         foreach($pull as $pull){
+            $data1 = [];
             $data1= [
-                "text" => $pull['region'] ." - ". $pull['constellation']. " - ". $pull['system']. " - " .$pull['alliance']. " - " .$pull['ticker']. " - " .$pull['item_name'],
+                "text" => $pull['region'] ." - ". $pull['constellation']. " - ". $pull['system']. " - " .$pull['alliance']. " - " .$pull['item_name'],
                 'value' => $pull['id']
             ];
-        dd($data1);
+
+            array_push($data, $data1);
         }
+
+        dd($data);
 
         return ['campaigns' => CampaignRecords::all()];
     }
