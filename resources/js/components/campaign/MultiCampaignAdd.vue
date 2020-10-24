@@ -52,8 +52,21 @@ export default {
 
     methods: {
 
-        addCampaignDone(){
-            console.log(moment().format('x'))
+       async addCampaignDone(){
+            let id = moment().format('x')
+
+            await axios({
+                method: "POST",
+                url:
+                    "/multicampaigns/"+id+"/"+this.name,
+                data: this.picked,
+                headers: {
+                    Authorization: "Bearer " + this.$store.state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                }
+            })
+
         },
 
         addCampaignClose(){
