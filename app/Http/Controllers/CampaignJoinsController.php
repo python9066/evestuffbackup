@@ -38,15 +38,16 @@ class CampaignJoinsController extends Controller
     public function show($id)
     {
         $list = [];
-        $pull = CampaignJoin::where('custom_campaign_id',$id)->get()->pluck('campaign_id');
-        foreach ($pull as $pull){
-            $data = [];
-            $camp = CampaignRecords::where('id',$pull)->get();
-            // dd($camp);
-            $data = [
-                "text" => $camp['system']
-            ];
-            array_push($list,$data);
+        $pull = CampaignJoin::where('custom_campaign_id', $id)->get()->pluck('campaign_id');
+        foreach ($pull as $pull) {
+            $camp = CampaignRecords::where('id', $pull)->get();
+            foreach ($camp as $camp) {
+                $data = [];
+                $data = [
+                    "text" => $camp['system']
+                ];
+            }
+            array_push($list, $data);
         }
         dd($list);
     }
