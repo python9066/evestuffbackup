@@ -15,7 +15,10 @@ class CustomCampaignsController extends Controller
      */
     public function index()
     {
-        //
+        echo "yoyoyo";
+        $data = CustomCampaign::where('status_id',"<",3)->with("status")->get();
+        dd($data);
+
     }
 
     /**
