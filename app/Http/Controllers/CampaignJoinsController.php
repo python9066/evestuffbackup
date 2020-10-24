@@ -41,10 +41,10 @@ class CampaignJoinsController extends Controller
         $pull = CampaignJoin::where('custom_campaign_id',$id)->get()->pluck('campaign_id');
         foreach ($pull as $pull){
             $data = [];
-            $camp = CampaignRecords::where('id',$pull)->select('system','item_name')->get();
+            $camp = CampaignRecords::where('id',$pull)->get();
             // dd($camp);
             $data = [
-                "text" => $camp['system']. " - ".$camp['item_name']
+                "text" => $camp['system']. " - ".$camp['item_name'],
             ];
             array_push($list,$data);
         }
