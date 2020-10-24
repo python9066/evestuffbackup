@@ -64,6 +64,7 @@ export default {
         ...mapGetters(["getAllActiveCampaigns"]),
 
         campaignlist(){
+            console.log(this.getAllActiveCampaigns)
             return this.getAllActiveCampaigns
         }
 
