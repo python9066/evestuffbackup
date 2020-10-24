@@ -22,6 +22,6 @@ class CampaignJoin extends Model
 
     public function campaignrecord()
     {
-        return $this->belongsTo(CampaignRecords::class,"id");
+        return $this->belongsTo(CampaignRecords::class,"campagin_id");
     }
 }
