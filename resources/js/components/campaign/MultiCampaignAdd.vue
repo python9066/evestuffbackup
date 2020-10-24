@@ -18,6 +18,7 @@
                     label="Select"
                     multiple
                     chips
+                    close
                     hint="Which Campaigns do you want"
                     persistent-hint
                 ></v-select>
@@ -57,6 +58,7 @@ export default {
 
         addCampaignClose(){
             this.picked = []
+            this.name = ""
 
         },
 
