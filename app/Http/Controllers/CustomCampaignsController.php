@@ -18,7 +18,6 @@ class CustomCampaignsController extends Controller
         $list = [];
         $data = CustomCampaign::where('status_id',"<",3)->with("status")->get();
         foreach ($data as $data){
-            $data = [];
             $data = [
                 'id' => $data['id'],
                 'name' => $data['name'],
