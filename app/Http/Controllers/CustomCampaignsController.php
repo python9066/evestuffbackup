@@ -17,7 +17,10 @@ class CustomCampaignsController extends Controller
     {
         echo "yoyoyo";
         $data = CustomCampaign::where('status_id',"<",3)->with("status")->get();
-        dd($data);
+        foreach ($data as $data){
+
+            dd($data);
+        }
 
     }
 
