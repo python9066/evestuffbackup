@@ -86,6 +86,8 @@ Route::middleware('auth:api')->group(function(){
     Route::post('/multicampaigns/{campid}/{name}', 'CustomCampaignsController@store');
     Route::get('/multicampaigns', 'CustomCampaignsController@index');
 
+    Route::get('/campaignjoin/{id}', 'CampaignJoinsController@show');
+
 
 
 
