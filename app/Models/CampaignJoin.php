@@ -9,4 +9,14 @@ class CampaignJoin extends Model
 {
     protected $guarded =[];
     public $timestamps = false;
+
+    public function customcampaign()
+    {
+        return $this->belongsTo(CustomCampaign::class);
+    }
+
+    public function campaign()
+    {
+        return $this->belongsTo(Campaign::class);
+    }
 }

@@ -40,6 +40,10 @@ class Campaign extends Model
         return $this->hasMany(CampaignSystem::class);
     }
 
+    public function campaignjoin(){
+        return $this->hasMany(CampaignJoin::class);
+    }
+
 
     protected $casts = [
         'id' => 'integer',

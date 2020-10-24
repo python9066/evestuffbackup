@@ -84,6 +84,7 @@ Route::middleware('auth:api')->group(function(){
     Route::delete('/feedback/{id}', 'FeedBackController@destroy');
 
     Route::post('/multicampaigns/{campid}/{name}', 'CustomCampaignsController@store');
+    Route::get('/multicampaigns', 'CustomCampaignsController@index');
 
 
 
