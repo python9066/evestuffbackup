@@ -36,7 +36,7 @@ class CampaignJoinsController extends Controller
      */
     public function show($id)
     {
-        $pull = CampaignJoin::where('custom_campaign_id',$id)->with("campaign")->get();
+        $pull = CampaignJoin::where('custom_campaign_id',$id)->with("campaignrecord")->get();
         foreach ($pull as $pull){
             dd($pull);
         }

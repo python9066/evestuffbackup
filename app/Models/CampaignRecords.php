@@ -25,4 +25,8 @@ class CampaignRecords extends Model
         'attackers_score_old' => 'double',
         'notification_type_id' => 'double',
     ];
+
+    public function campaignjoin(){
+        return $this->hasMany(CampaignJoin::class);
+    }
 }
