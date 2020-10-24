@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CampaignJoin;
+use App\Models\CustomCampaign;
 use Illuminate\Http\Request;
 
 class CustomCampaignsController extends Controller
@@ -24,7 +26,11 @@ class CustomCampaignsController extends Controller
      */
     public function store(Request $request, $campid, $name)
     {
-        dd($request,$campid,$name);
+        CustomCampaign::create(['id' => $campid, 'name' => $name]);
+        foreach ($request as $request){
+        CampaignJoin::create(['custom_campaign_id' => $campid, 'campaign_id' => $request]);
+
+        }
     }
 
     /**
