@@ -6,10 +6,11 @@
             </v-card-title>
             <v-card-text>
                 <v-text-field
-                label="Multi-Campaign Name"
-                :value ="name"
-                hint="Enter The name of your Campaign here"
-                filled>
+                    label="Multi-Campaign Name"
+                    :value="name"
+                    hint="Enter The name of your Campaign here"
+                    filled
+                >
                 </v-text-field>
                 <v-select
                     v-model="picked"
@@ -19,10 +20,17 @@
                     chips
                     hint="Which Campaigns do you want"
                     persistent-hint
-        ></v-select>
+                ></v-select>
             </v-card-text>
+            <v-card-actions>
+                <v-btn color="success" class="mr-4" @click="addCampaignDone()"
+                    >Done</v-btn
+                >
+                <v-btn color="warning" class="mr-4" @click="addCampaignClose()"
+                    >Close</v-btn
+                >
+            </v-card-actions>
         </v-card>
-
     </div>
 </template>
 
@@ -32,36 +40,23 @@ import moment from "moment";
 export default {
     data() {
         return {
-
-        name:"",
-        picked:[],
-
-
+            name: "",
+            picked: []
         };
     },
 
-
     created() {
-           this.$store.dispatch("getCampaignsList")
+        this.$store.dispatch("getCampaignsList");
     },
 
-    methods: {
-
-
-
-
-    },
-
-
+    methods: {},
 
     computed: {
-
         ...mapState(["campaignslist"]),
 
-        list(){
-            return this.campaignslist
+        list() {
+            return this.campaignslist;
         }
-
     }
 };
 </script>
