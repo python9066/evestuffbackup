@@ -451,7 +451,8 @@ export default new Vuex.Store({
         },
 
         getAllActiveCampaigns: state => {
-            return state.campaigns.filter(campaigns => campaigns.status_id < 3);
+            let list = state.campaigns.filter(campaigns => campaigns.status_id < 3);
+            debugger
         },
 
         getTotalNodeCountByCampaign: state => id => {
