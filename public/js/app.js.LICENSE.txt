@@ -1248,6 +1248,8 @@
 
 /*! exports provided: default, Goto */
 
+/*! exports provided: default, functionalThemeClasses */
+
 /*! exports provided: default, mergeStyles, mergeClasses, mergeListeners */
 
 /*! exports provided: default, validateNumber, validateWeekdays */
@@ -1261,8 +1263,6 @@
 /*! exports provided: fromHSVA, fromHSLA, fromRGBA, fromHexa, fromHex, parseColor, extractColor, hasAlpha */
 
 /*! exports provided: fromXYZ, toXYZ */
-
-/*! exports provided: functionalThemeClasses, default */
 
 /*! exports provided: genPath */
 
