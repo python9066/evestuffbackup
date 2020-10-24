@@ -42,9 +42,9 @@ class CampaignJoinsController extends Controller
         foreach ($pull as $pull){
             $data = [];
             $camp = CampaignRecords::where('id',$pull)->get();
-            // dd($camp);
+            dd($camp);
             $data = [
-                "text" => $camp['system']. " - ".$camp['item_name'],
+                "text" => dwdw
             ];
             array_push($list,$data);
         }
