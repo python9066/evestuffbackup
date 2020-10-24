@@ -2,11 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\CampaignJoin;
-use App\Models\CustomCampaign;
 use Illuminate\Http\Request;
 
-class CustomCampaignsController extends Controller
+class CampaignJoinsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,20 +13,7 @@ class CustomCampaignsController extends Controller
      */
     public function index()
     {
-        $list = [];
-        $data = CustomCampaign::where('status_id',"<",3)->with("status")->get();
-        foreach ($data as $data){
-            $data = [
-                'id' => $data['id'],
-                'name' => $data['name'],
-                'status_id' => $data['status_id'],
-                'status_name' => $data['status']['name']
-            ];
-            array_push($list,$data);
-        };
-
-        return ['list' => $data];
-
+        //
     }
 
     /**
@@ -37,16 +22,9 @@ class CustomCampaignsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, $campid, $name)
+    public function store(Request $request)
     {
-        $data = $request->all();
-        // dd($data);
-        CustomCampaign::create(['id' => $campid, 'name' => $name]);
-        foreach ($data as $data){
-            // dd($data);
-        CampaignJoin::create(['custom_campaign_id' => $campid, 'campaign_id' => $data]);
-
-        }
+        //
     }
 
     /**
