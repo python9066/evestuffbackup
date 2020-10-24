@@ -18,7 +18,7 @@ export default new Vuex.Store({
         campaignsystems: [],
         campaignmembers:[],
         delveLink: "",
-        multicampaign:[],
+        multicampaigns:[],
         notifications: [],
         periodbasisLink: "",
         queriousLink: "",
@@ -60,8 +60,8 @@ export default new Vuex.Store({
             state.campaigns = campaigns;
         },
 
-        SET_MULTI_CAMPAIGNS(state, campaigns) {
-            state.multicampaigns = campaigns;
+        SET_MULTI_CAMPAIGNS(state, multicampaigns) {
+            state.multicampaigns = multicampaigns;
         },
 
         SET_CAMPAIGNSLIST(state, campaignslist) {
