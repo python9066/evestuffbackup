@@ -7,7 +7,7 @@
             <v-card-text>
                 <v-text-field
                     label="Multi-Campaign Name"
-                    :value="name"
+                    v-model="name"
                     hint="Enter The name of your Campaign here"
                     filled
                 >
