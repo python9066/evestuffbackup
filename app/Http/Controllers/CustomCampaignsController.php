@@ -24,7 +24,7 @@ class CustomCampaignsController extends Controller
                 'status_id' => $data['status_id'],
                 'status_name' => $data['status']['name']
             ];
-            array_push($list,$data);
+            array_push($data,$list);
         };
 
         return ['campaigns' => $data];
