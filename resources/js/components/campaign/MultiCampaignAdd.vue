@@ -21,6 +21,7 @@
                     persistent-hint
         ></v-select>
             </v-card-text>
+        </v-card>
 
     </div>
 </template>
@@ -45,8 +46,10 @@ export default {
 
     },
 
+
+
     computed: {
-        ...mapGetters{"getAllActiveCampaigns"};
+        ...mapGetters(["getAllActiveCampaigns"]),
 
 
 
