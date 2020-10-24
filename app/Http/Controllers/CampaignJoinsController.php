@@ -49,7 +49,7 @@ class CampaignJoinsController extends Controller
             }
             array_push($list, $data);
         }
-        return ["list" => $list];
+        return ["value" => $list];
     }
 
     /**

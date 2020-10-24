@@ -39,6 +39,7 @@ Vue.component('messageStations', require('./components/random/messageStations.vu
 Vue.component('testingMessage', require('./components/random/testingMessage.vue').default);
 Vue.component('notificationTimer', require('./components/notification/notificationTimer.vue').default);
 Vue.component('campaignMap', require('./components/campaign/campaignMap.vue').default);
+Vue.component('SystemItemList', require('./components/multicampaigns/systemItemList.vue').default);
 
 Vue.prototype.moment = moment
 // import '@fortawesome/fontawesome-f      ree/css/all.css'

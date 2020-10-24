@@ -28,16 +28,11 @@
             <template slot="no-data">
                 No Multi Campaigns have been made
             </template>
-            <!-- <template v-slot:item.alliance="{ item }">
-                <v-avatar size="35"><img :src="item.url"/></v-avatar>
-                <span v-if="item.standing > 0" class=" blue--text pl-3"
-                    >{{ item.alliance }}
-                </span>
-                <span v-else-if="item.standing < 0" class="red--text pl-3"
-                    >{{ item.alliance }}
-                </span>
-                <span v-else class="pl-3">{{ item.alliance }}</span>
-            </template> -->
+            <template v-slot:item.system="{ item }">
+                <systemItemList
+                    campaignID = item.id>
+                </systemItemList>
+            </template>
 
 
             <!-- <template v-slot:actions.="{ item }">
@@ -72,6 +67,7 @@ export default {
 
             headers: [
                 { text: "Name", value: "name", width: "10%" },
+                { text: "System - Target", value: "system"},
                 { text: "Status", value: "status_name" },
                 // { text: "", value: "actions" },
 
