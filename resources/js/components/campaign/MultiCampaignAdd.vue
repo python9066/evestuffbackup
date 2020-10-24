@@ -56,7 +56,7 @@ export default {
 
     computed: {
 
-        ...mapState([campaignslist]),
+        ...mapState(["campaignslist"]),
 
         list(){
             return this.campaignslist
