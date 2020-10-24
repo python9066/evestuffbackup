@@ -16,13 +16,14 @@ class CustomCampaignsController extends Controller
     public function index()
     {
         $list = [];
-        $data = CustomCampaign::where('status_id',"<",3)->with("status")->get();
-        foreach ($data as $data){
+        $pull = CustomCampaign::where('status_id',"<",3)->with("status")->get();
+        foreach ($pull as $pull){
+            $data = [];
             $data = [
-                'id' => $data['id'],
-                'name' => $data['name'],
-                'status_id' => $data['status_id'],
-                'status_name' => $data['status']['name']
+                'id' => $pull['id'],
+                'name' => $pull['name'],
+                'status_id' => $pull['status_id'],
+                'status_name' => $pull['status']['name']
             ];
             array_push($list,$data);
         };
