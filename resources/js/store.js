@@ -12,23 +12,24 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
     state: {
-        timers: [],
-        notifications: [],
         campaigns: [],
         campaignslist: [],
-        users:[],
-        delveLink: "",
-        queriousLink: "",
-        periodbasisLink: "",
-        token: "",
-        user_id: 0,
-        user_name:"",
         campaignusers: [],
         campaignsystems: [],
-        rolesList:[],
         campaignmembers:[],
+        delveLink: "",
+        multicampaign:[],
+        notifications: [],
+        periodbasisLink: "",
+        queriousLink: "",
+        rolesList:[],
         stations:[],
+        timers: [],
+        token: "",
         towers:[],
+        users:[],
+        user_id: 0,
+        user_name:"",
     },
     mutations: {
         SET_TIMERS(state, timers) {
@@ -57,6 +58,10 @@ export default new Vuex.Store({
 
         SET_CAMPAIGNS(state, campaigns) {
             state.campaigns = campaigns;
+        },
+
+        SET_MULTI_CAMPAIGNS(state, campaigns) {
+            state.multicampaigns = campaigns;
         },
 
         SET_CAMPAIGNSLIST(state, campaignslist) {
@@ -244,6 +249,23 @@ export default new Vuex.Store({
             // console.log(res.data.campaigns);
             commit("SET_CAMPAIGNS", res.data.campaigns);
         },
+
+        async getMultiCampaigns({ commit, state }) {
+            let res = await axios({
+                method: "get",
+                url: "/api/multicampaigns",
+                headers: {
+                    Authorization: "Bearer " + state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                }
+            });
+            // console.log(res.data.campaigns);
+            commit("SET_MULTI_CAMPAIGNS", res.data.campaigns);
+        },
+
+
+
 
         async getCampaignsList({ commit, state }) {
             let res = await axios({
