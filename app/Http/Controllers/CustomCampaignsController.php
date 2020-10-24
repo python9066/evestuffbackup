@@ -27,13 +27,13 @@ class CustomCampaignsController extends Controller
     public function store(Request $request, $campid, $name)
     {
         $data = $request->all();
-        dd($data);
+        // dd($data);
         // CustomCampaign::create(['id' => $campid, 'name' => $name]);
-        // foreach ($request->parameters as $request){
-        //     dd($request);
-        // CampaignJoin::create(['custom_campaign_id' => $campid, 'campaign_id' => $request]);
+        foreach ($data as $data){
+            dd($data);
+        CampaignJoin::create(['custom_campaign_id' => $campid, 'campaign_id' => $data]);
 
-        // }
+        }
     }
 
     /**
