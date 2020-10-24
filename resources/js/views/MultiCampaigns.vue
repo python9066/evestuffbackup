@@ -4,27 +4,6 @@
         <div class=" d-flex align-items-center">
             <v-card-title>Campaigns</v-card-title>
 
-            <v-btn
-                :loading="loadingr"
-                :disabled="loadingr"
-                color="primary"
-                class="ma-2 white--text"
-                @click="
-                    loadingr = true;
-                    loadcampaigns();
-                "
-            >
-                Update
-                <v-icon right dark>fas fa-sync-alt fa-xs</v-icon>
-            </v-btn>
-            <v-text-field
-                v-model="search"
-                append-icon="mdi-magnify"
-                label="Search"
-                single-line
-                hide-details
-            ></v-text-field>
-
             <v-btn-toggle v-model="toggle_exclusive" mandatory :value="1">
                 <v-btn
                     :loading="loadingf"
@@ -61,9 +40,9 @@
             </template> -->
 
 
-            <template v-slot:actions.="{ item }">
+            <!-- <template v-slot:actions.="{ item }">
                 LALALALA
-            </template>
+            </template> -->
         </v-data-table>
     </div>
 </template>
@@ -94,7 +73,7 @@ export default {
             headers: [
                 { text: "Name", value: "name", width: "10%" },
                 { text: "Status", value: "status_name" },
-                { text: "", value: "actions" },
+                // { text: "", value: "actions" },
 
             ]
         };
@@ -235,10 +214,10 @@ export default {
         }
     },
     computed: {
-        ...mapState(["multicampaign"]),
+        ...mapState(["multicampaigns"]),
 
         campaigns(){
-            return this.multicampaign
+            return this.multicampaigns
         }
     },
     beforeDestroy() {
