@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\CampaignJoin;
+use App\Models\CampaignRecords;
 use Illuminate\Http\Request;
 
 class CampaignJoinsController extends Controller
@@ -36,9 +37,10 @@ class CampaignJoinsController extends Controller
      */
     public function show($id)
     {
-        $pull = CampaignJoin::where('custom_campaign_id',$id)->with("campaignrecords")->get();
+        $pull = CampaignJoin::where('custom_campaign_id',$id)->get()->pluck('campaign_id');
         foreach ($pull as $pull){
-            dd($pull);
+            $camp = CampaignRecords::where('id',$pull);
+            dd($camp);
         }
     }
 
