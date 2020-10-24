@@ -58,7 +58,7 @@ export default {
             await axios({
                 method: "POST",
                 url:
-                    "/multicampaigns/"+id+"/"+this.name,
+                    "/api/multicampaigns/"+id+"/"+this.name,
                 data: this.picked,
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
