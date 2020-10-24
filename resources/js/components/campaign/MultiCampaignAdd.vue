@@ -53,7 +53,7 @@ export default {
     methods: {
 
         addCampaignDone(){
-
+            console.log(moment().unix())
         },
 
         addCampaignClose(){
