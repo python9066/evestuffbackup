@@ -21,8 +21,9 @@ class CampaignRecordsController extends Controller
     public function campaignslist()
     {
         $pull = CampaignRecords::where('status_id',"<",3)->get();
-        echo "hello";
+        foreach($pull as $pull){
         dd($pull);
+        }
 
         return ['campaigns' => CampaignRecords::all()];
     }
