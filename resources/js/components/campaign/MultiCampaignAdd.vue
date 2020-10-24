@@ -13,7 +13,7 @@
                 </v-text-field>
                 <v-select
                     v-model="picked"
-                    :items="states"
+                    :items="campaignlist"
                     label="Select"
                     multiple
                     chips
@@ -63,7 +63,9 @@ export default {
     computed: {
         ...mapGetters(["getAllActiveCampaigns"]),
 
-
+        campaignlist(){
+            return this.getAllActiveCampaigns
+        }
 
     }
 };
