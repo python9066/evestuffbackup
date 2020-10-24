@@ -26,7 +26,7 @@ class CustomCampaignsController extends Controller
      */
     public function store(Request $request, $campid, $name)
     {
-        echo $request;
+        dd($request);
         // CustomCampaign::create(['id' => $campid, 'name' => $name]);
         foreach ($request as $request){
             dd($request);
