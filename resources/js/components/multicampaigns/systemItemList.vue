@@ -1,6 +1,6 @@
 <template>
     <div>
-        <v-card>
+        <!-- <v-card>
             <v-list>
                 <v-list-item
                     v-for="(list, index) in filterDropdownList(item.roles)"
@@ -10,7 +10,7 @@
                     <v-list-item-title>{{ list.name }}</v-list-item-title>
                 </v-list-item>
             </v-list>
-        </v-card>
+        </v-card> -->
     </div>
 </template>
 
