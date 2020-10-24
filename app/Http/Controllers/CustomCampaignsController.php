@@ -15,11 +15,16 @@ class CustomCampaignsController extends Controller
      */
     public function index()
     {
-        echo "yoyoyo";
+        $list = [];
         $data = CustomCampaign::where('status_id',"<",3)->with("status")->get();
         foreach ($data as $data){
-            $status = $data['status']['name'];
-            echo $status;
+            $data = [
+                'id' => $data['id'],
+                'name' => $data['name'],
+                'status_id' => $data['status_id'],
+                'status_name' => $data['status']['name']
+            ];
+
             dd($data);
         }
 
