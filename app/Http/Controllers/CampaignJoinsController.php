@@ -44,12 +44,12 @@ class CampaignJoinsController extends Controller
             foreach ($camp as $camp) {
                 $data = [];
                 $data = [
-                    "text" => $camp['system']. " - ". $camp['item_name']
+                    "text" => $camp['system']. "-". $camp['item_name']
                 ];
             }
             array_push($list, $data);
         }
-        dd($list);
+        return ["list" => $list];
     }
 
     /**
