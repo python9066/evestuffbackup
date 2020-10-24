@@ -18,24 +18,23 @@
 import { mapState, mapGetters } from "vuex";
 import moment from "moment";
 export default {
+    props: {
+        campaignID: Number,
+    },
     data() {
         return {
-            name: "",
-            picked: []
         };
     },
 
     created() {
-        this.$store.dispatch("getCampaignsList");
     },
 
     methods: {
-        async addCampaignDone() {
-            let id = moment().format("x");
+        async getlist() {
 
             await axios({
-                method: "POST",
-                url: "/api/multicampaigns/" + id + "/" + this.name,
+                method: "get",
+                url: "/api/campaignjoin/" + campaignID,
                 data: this.picked,
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
@@ -52,11 +51,6 @@ export default {
     },
 
     computed: {
-        ...mapState(["campaignslist"]),
-
-        list() {
-            return this.campaignslist;
-        }
     }
 };
 </script>
