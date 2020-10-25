@@ -52,11 +52,11 @@ class CustomCampaignsController extends Controller
 
     public function edit(Request $request, $campid, $name)
     {
-        CustomCampaign::destroy($campid);
+
         CampaignJoin::destroy('custom_campaign_id',$campid);
         $data = $request->all();
-        // dd($data);
-        CustomCampaign::create(['id' => $campid, 'name' => $name]);
+        dd($data);
+        CustomCampaign::update(['id' => $campid, 'name' => $name]);
         foreach ($data as $data){
             // dd($data);
         CampaignJoin::create(['custom_campaign_id' => $campid, 'campaign_id' => $data]);
