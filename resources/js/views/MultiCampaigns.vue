@@ -42,6 +42,7 @@
         </v-data-table>
         <v-overlay :value="overlay">
             <MultiCampaignAdd
+            @closeAddNew="updatemultiCampaginAdd()"
             @closeAdd="overlay = !overlay"></MultiCampaignAdd>
         </v-overlay>
     </div>
@@ -96,6 +97,12 @@ export default {
             this.$store.dispatch("getCampaigns").then(() => {
                 this.loadingr = false;
             });
+        },
+
+
+        updatemultiCampaginAdd(){
+            overlay = !overlay
+            this.$store.dispatch("getMultiCampaigns")
         },
 
         campaignStart(item) {

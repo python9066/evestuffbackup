@@ -66,8 +66,7 @@ export default {
                     "Content-Type": "application/json"
                 }
             })
-            this.$emit("closeAdd")
-            this.$store.dispatch("getMultiCampaigns")
+            this.$emit("closeAddNew")
 
         },
 
