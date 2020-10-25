@@ -10,6 +10,7 @@ class CampaignJoin extends Model
     protected $guarded =[];
     public $timestamps = false;
 
+
     public function customcampaign()
     {
         return $this->belongsTo(CustomCampaign::class);
@@ -24,4 +25,9 @@ class CampaignJoin extends Model
     {
         return $this->belongsTo(CampaignRecords::class,"id");
     }
+
+    protected $casts = [
+        'custom_campaign_id' => 'integer',
+        'campaign_id' => 'integer',
+    ];
 }
