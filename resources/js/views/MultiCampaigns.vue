@@ -115,7 +115,7 @@ export default {
                 }
             });
 
-            this.$store.dispatch("updateCampaign", item);
+            this.$store.dispatch("getMultiCampaigns")
         },
 
         updatemultiCampaginAdd() {
