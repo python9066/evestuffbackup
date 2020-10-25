@@ -142,10 +142,12 @@ export default {
         updatemultiCampaginAdd() {
             this.overlay = !this.overlay;
             this.$store.dispatch("getMultiCampaigns");
+            this.loadCampaignJoinData()
         },
         updatemultiCampaginEdit() {
             this.overlayEdit = !this.overlayEdit;
             this.$store.dispatch("getMultiCampaigns");
+            this.loadCampaignJoinData()
         },
 
         getCampaignID() {
