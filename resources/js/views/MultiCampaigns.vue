@@ -106,7 +106,7 @@ export default {
             this.loadingf = false;
             this.loadingr = false;
             this.loading = false;
-        });
+    });
     },
 
     async mounted() {},

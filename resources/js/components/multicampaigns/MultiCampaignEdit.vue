@@ -92,6 +92,7 @@ export default {
                     "Content-Type": "application/json"
                 }
             })
+            sleep(500)
             this.$emit("closeEditNew")
 
         },
