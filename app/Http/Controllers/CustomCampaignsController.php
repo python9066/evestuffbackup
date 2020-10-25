@@ -53,7 +53,7 @@ class CustomCampaignsController extends Controller
     public function edit(Request $request, $campid, $name)
     {
 
-        CampaignJoin::destroy('custom_campaign_id',$campid);
+        CampaignJoin::where('custom_campaign_id',$campid)->delete();
         $data = $request->all();
         // dd($data);
         CustomCampaign::find($campid)->update(['name' => $name]);
