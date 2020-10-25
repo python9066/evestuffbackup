@@ -18,9 +18,9 @@
 import { mapState, mapGetters } from "vuex";
 import moment from "moment";
 export default {
-    props: {
-        campaignID
-    },
+    // props: {
+    //     campaignID
+    // },
     data() {
         return {
         };
