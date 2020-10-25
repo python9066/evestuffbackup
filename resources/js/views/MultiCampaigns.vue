@@ -31,10 +31,10 @@
             </template>
             <template v-slot:item.actions="{ item }">
                 <v-btn icon @click="overlayEditID = item.id, overlayEdit = !overlayEdit" color="warning"
-                    ><v-icon small>fas fa-trash</v-icon></v-btn
+                    ><v-icon small>fas fa-edit</v-icon></v-btn
                 >
                 <v-btn icon @click="deleteCampaign(item.id)" color="warning"
-                    ><v-icon small>fas fa-edit</v-icon></v-btn
+                    ><v-icon small>fas fa-trash</v-icon></v-btn
                 >
             </template>
 
