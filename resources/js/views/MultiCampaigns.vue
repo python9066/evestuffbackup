@@ -50,7 +50,7 @@
         </v-overlay>
         <v-overlay :value="overlayEdit">
             <MultiCampaignEdit
-                :campaginID="overlayEditID"
+                :campaignID="getCampaignID()"
                 @closeAddNew="updatemultiCampaginAdd()"
                 @closeAdd="overlayEdit = !overlayEdit"
             ></MultiCampaignEdit>
@@ -135,6 +135,10 @@ export default {
         updatemultiCampaginAdd() {
             this.overlay = !this.overlay;
             this.$store.dispatch("getMultiCampaigns");
+        },
+
+        getCampaignID() {
+            return this.overlayEditID
         },
 
         campaignStart(item) {
