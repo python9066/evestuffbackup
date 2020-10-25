@@ -97,5 +97,6 @@ class CustomCampaignsController extends Controller
     {
         CustomCampaign::destroy($id);
         CampaignJoin::destroy('custom_campaign_id',$id);
+        CampaignJoin::where('custom_campaign_id',$id)->delete()->save();
     }
 }
