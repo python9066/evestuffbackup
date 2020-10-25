@@ -52,8 +52,8 @@
             <MultiCampaignEdit
                 :campaignID="getCampaignID()"
                 :nameProp="getCampaignName()"
-                @closeAddNew="updatemultiCampaginAdd()"
-                @closeAdd="overlayEdit = !overlayEdit"
+                @closeEditNew="updatemultiCampaginEdit()"
+                @closeEdit="overlayEdit = !overlayEdit"
             ></MultiCampaignEdit>
         </v-overlay>
     </div>
@@ -136,6 +136,10 @@ export default {
 
         updatemultiCampaginAdd() {
             this.overlay = !this.overlay;
+            this.$store.dispatch("getMultiCampaigns");
+        },
+        updatemultiCampaginEdit() {
+            this.overlayEdit = !this.overlayEdit;
             this.$store.dispatch("getMultiCampaigns");
         },
 
