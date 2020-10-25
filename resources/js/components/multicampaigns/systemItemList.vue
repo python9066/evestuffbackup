@@ -59,7 +59,7 @@ export default {
         systemcount(){
             let count = this.systems.length
             console.log('count-'+ count + " system- " + this.systems)
-            if(this.count == 0){
+            if(count == 0){
                 console.log('false')
                 return false
             }else{
