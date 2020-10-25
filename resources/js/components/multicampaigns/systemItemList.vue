@@ -28,10 +28,18 @@ export default {
     },
 
     created() {
-        this.getlist
     },
 
     methods: {
+
+        addCampaignClose() {
+            this.picked = [];
+            this.name = "";
+        }
+    },
+
+    computed: {
+
         async getlist() {
 
             await axios({
@@ -45,16 +53,8 @@ export default {
                 }
             });
 
-            let test = res.data.list
+            return res.data.list
         },
-
-        addCampaignClose() {
-            this.picked = [];
-            this.name = "";
-        }
-    },
-
-    computed: {
 
 
     }
