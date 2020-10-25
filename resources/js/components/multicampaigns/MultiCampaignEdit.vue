@@ -68,7 +68,7 @@ export default {
                     "Content-Type": "application/json"
                 }
             })
-            this.pciked = res.data.list
+            this.picked = res.data.list
 
         },
 
