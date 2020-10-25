@@ -37,19 +37,6 @@ export default {
             this.picked = [];
             this.name = "";
         },
-
-
-
-        systemcount(){
-            let count = this.systems.length
-            if(count == 0){
-
-                return false
-            }else{
-
-                return true
-            }
-        }
     },
 
     computed: {
