@@ -13,6 +13,7 @@ Vue.use(Vuex);
 export default new Vuex.Store({
     state: {
         campaigns: [],
+        campaignJoin:[],
         campaignslist: [],
         campaignusers: [],
         campaignsystems: [],
@@ -34,6 +35,10 @@ export default new Vuex.Store({
     mutations: {
         SET_TIMERS(state, timers) {
             state.timers = timers;
+        },
+
+        SET_CAMPAIGN_JOIN(state, campaignJoin) {
+            state.campaignJoin = campaignJoin;
         },
 
         SET_TOWERS(state, towers) {
@@ -171,6 +176,8 @@ export default new Vuex.Store({
             commit("SET_TOWERS", res.data.towers);
         },
 
+
+
         async getStationData({ commit, state }) {
             let res = await axios({
                 method: "get",
@@ -183,6 +190,22 @@ export default new Vuex.Store({
             });
             // console.log(res.data.timers)
             commit("SET_STATIONS", res.data.stations);
+        },
+
+        async getCampaignJoinData({ commit, state }) {
+            let res = await axios({
+                method: "get",
+                url: "/api/campaignjoin",
+                // url: "/api/campaignjoin/1603574888917",
+                data: this.picked,
+                headers: {
+                    Authorization: "Bearer " + state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                }
+            });
+            // console.log(res.data.timers)
+            commit("SET_CAMPAIGN_JOIN", res.data.value);
         },
 
 
@@ -430,6 +453,11 @@ export default new Vuex.Store({
 
         getCampaignById: state => id => {
             return state.campaigns.find(campaigns => campaigns.id == id);
+        },
+
+
+        getCampaignJoinById: state => id => {
+            return state.campaignJoin.find(c => c.custom_campaign_id == id);
         },
 
         getCampaignMembersByCampagin: state => id => {

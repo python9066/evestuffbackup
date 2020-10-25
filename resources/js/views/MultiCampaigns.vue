@@ -107,6 +107,7 @@ export default {
             this.loadingr = false;
             this.loading = false;
     });
+    this.loadCampaignJoinData();
     },
 
     async mounted() {},
@@ -116,6 +117,10 @@ export default {
             this.$store.dispatch("getCampaigns").then(() => {
                 this.loadingr = false;
             });
+        },
+
+        loadCampaignJoinData(){
+            this.$store.dispatch("getCampaignJoinData");
         },
 
         async deleteCampaign(item) {

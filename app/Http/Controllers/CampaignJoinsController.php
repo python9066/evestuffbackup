@@ -15,7 +15,7 @@ class CampaignJoinsController extends Controller
      */
     public function index()
     {
-        //
+        return ["value" => CampaignJoin::all()];
     }
 
     /**

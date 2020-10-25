@@ -93,7 +93,6 @@ export default {
                 }
             })
             sleep(500)
-            this.$store.dispatch("getMultiCampaigns")
             this.$emit("closeEditNew")
 
         },
