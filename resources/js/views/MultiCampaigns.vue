@@ -30,11 +30,8 @@
                 <systemItemList :campaignID="item.id"> </systemItemList>
             </template>
             <template v-slot:item.actions="{ item }">
-                <v-btn
-                    icon
-                    @click="deleteCampaign()"
-                    color="warning"
-                    ><v-icon left small>fas fa-trash</v-icon></v-btn
+                <v-btn icon @click="deleteCampaign(item.id)" color="warning"
+                    ><v-icon small>fas fa-trash</v-icon></v-btn
                 >
             </template>
 
@@ -107,8 +104,19 @@ export default {
             });
         },
 
-        deleteCampaign(){
+        deleteCampaign(id) {
+            axios({
+                method: "delete", //you can set what request you want to be
+                url: "api/multicampaigns/" + id,
+                data: request,
+                headers: {
+                    Authorization: "Bearer " + this.$store.state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                }
+            });
 
+            this.$store.dispatch("updateCampaign", item);
         },
 
         updatemultiCampaginAdd() {
