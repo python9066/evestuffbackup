@@ -1,16 +1,18 @@
 <template>
-    <div>
-
-            <v-list>
-                <v-list-item
-                    v-for="list in lists"
-                    :key="list.text"
-
-                >
-                    <v-list-item-title>{{ text }}</v-list-item-title>
-                </v-list-item>
-            </v-list>
-    </div>
+    <div class=" d-inline-flex">
+                                <div
+                                    v-for="(system, index) in systems"
+                                    :key="index"
+                                    class=" pr-2"
+                                >
+                                    <v-chip
+                                        pill
+                                        dark
+                                    >
+                                        <span> {{ system.text }}</span>
+                                    </v-chip>
+                                </div>
+                            </div>
 </template>
 
 <script>
@@ -41,7 +43,12 @@ export default {
             this.lists=[];
         },
 
-       async getlist() {
+
+    },
+
+    computed: {
+
+        async systems() {
 
             let res = await axios({
                 method: "get",
@@ -55,13 +62,8 @@ export default {
                 }
             });
 
-            this.lists =  res.data.list
+            return  res.data.list
         },
-    },
-
-    computed: {
-
-
 
     }
 };

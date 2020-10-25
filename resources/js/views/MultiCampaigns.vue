@@ -5,9 +5,14 @@
             <v-card-title>Campaigns</v-card-title>
 
             <v-btn-toggle v-model="toggle_exclusive" mandatory :value="1">
-                <v-btn :loading="loadingf" :disabled="loadingf">
+                <v-btn
+                    :loading="loadingf"
+                    :disabled="loadingf"
+
+                >
                     ADD CAMPAIGN
                 </v-btn>
+
             </v-btn-toggle>
         </div>
         <v-data-table
@@ -24,23 +29,11 @@
                 No Multi Campaigns have been made
             </template>
             <template v-slot:item.system="{ item }">
-                <div
-                    v-for="(system, index) in systemlist(item.id)"
-                    :key="index"
-                    class=" pr-2"
-                >
-                    <v-chip
-                        pill
-                        dark
-                    >
-                        <span> {{ system.text }}</span>
-                    </v-chip>
-                </div>
-
-                <!-- <systemItemList
+                <systemItemList
                     :campaignID = item.id>
-                </systemItemList> -->
+                </systemItemList>
             </template>
+
 
             <!-- <template v-slot:actions.="{ item }">
                 LALALALA
@@ -74,19 +67,20 @@ export default {
 
             headers: [
                 { text: "Name", value: "name", width: "10%" },
-                { text: "System - Target", value: "system" },
-                { text: "Status", value: "status_name" }
+                { text: "System - Target", value: "system"},
+                { text: "Status", value: "status_name" },
                 // { text: "", value: "actions" },
+
             ]
         };
     },
 
     created() {
-        this.$store.dispatch("getMultiCampaigns").then(() => {
-            this.loadingf = false;
-            this.loadingr = false;
-            this.loading = false;
-        });
+            this.$store.dispatch("getMultiCampaigns").then(() => {
+                this.loadingf = false;
+                this.loadingr = false;
+                this.loading = false;
+            });
     },
 
     async mounted() {},
@@ -97,8 +91,6 @@ export default {
                 this.loadingr = false;
             });
         },
-
-
 
         campaignStart(item) {
             item.status_name = "Active";
@@ -121,17 +113,17 @@ export default {
             });
         },
 
-        fixTime(item) {
-            return moment.utc(item.start).unix(); // retu  rn utc.unix()
+        fixTime(item){
+        return moment.utc(item.start).unix()// retu  rn utc.unix()
         },
 
-        rowClick(item) {
-            if (this.$can("access_campaigns")) {
-                var left = moment.utc(item.start).unix() - moment.utc().unix();
-                if (left < 3600 && item.status_id < 3) {
-                    this.$router.push({ path: `/campaign/${item.id}` }); // -> /user/123
-                }
-            }
+
+        rowClick(item){
+            if(this.$can('access_campaigns')){
+            var left = (moment.utc(item.start).unix() -  moment.utc().unix())
+            if(left < 3600 && item.status_id < 3){
+                this.$router.push({ path: `/campaign/${item.id}` }) // -> /user/123
+            }}
         },
 
         // rowClick(item){
@@ -151,23 +143,6 @@ export default {
             }
 
             return a;
-        },
-
-        async systemlist(campaignID){
-            let res = await axios({
-                method: "get",
-                url: "/api/campaignjoin/" + this.campaignID,
-                // url: "/api/campaignjoin/1603574888917",
-                data: this.picked,
-                headers: {
-                    Authorization: "Bearer " + this.$store.state.token,
-                    Accept: "application/json",
-                    "Content-Type": "application/json"
-                }
-            });
-
-            return  res.data.list
-
         },
 
         barBgcolor(item) {
@@ -237,12 +212,11 @@ export default {
     computed: {
         ...mapState(["multicampaigns"]),
 
-        campaigns() {
-            return this.multicampaigns;
-        },
-
-
+        campaigns(){
+            return this.multicampaigns
+        }
     },
-    beforeDestroy() {}
+    beforeDestroy() {
+    }
 };
 </script>
