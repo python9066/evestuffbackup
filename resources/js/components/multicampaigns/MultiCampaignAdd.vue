@@ -66,12 +66,14 @@ export default {
                     "Content-Type": "application/json"
                 }
             })
+            this.$emit("closeAdd")
 
         },
 
         addCampaignClose(){
             this.picked = []
             this.name = ""
+            this.$emit("closeAdd")
 
         },
 
