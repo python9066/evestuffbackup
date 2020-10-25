@@ -44,7 +44,8 @@ export default {
 
              axios({
                 method: "get",
-                url: "/api/campaignjoin/" + campaignID,
+                // url: "/api/campaignjoin/" + campaignID,
+                url: "/api/campaignjoin/1603574888917",
                 data: this.picked,
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
