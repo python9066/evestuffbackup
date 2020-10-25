@@ -45,7 +45,7 @@ export default {
 
             let res = await axios({
                 method: "get",
-                url: "/api/campaignjoin/" + campaignID,
+                url: "/api/campaignjoin/" + this.campaignID,
                 // url: "/api/campaignjoin/1603574888917",
                 data: this.picked,
                 headers: {
