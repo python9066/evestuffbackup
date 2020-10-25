@@ -4,6 +4,7 @@ import Timers from "./views/Timers";
 import Notifications from "./views/Notifications";
 import Campagins from "./views/Campaigns";
 import Campaign from "./views/CampaignSystem";
+import MultiCampaign from "./views/MultiCampaignSystem";
 import Vtest from "./components/multicampaigns/MultiCampaignAdd.vue";
 import Stest from "./components/campaign/systemTable.vue";
 import AdminPanel from "./views/AdminPanel.vue";
@@ -54,6 +55,30 @@ export default new Router({
 
             //   }
         },
+
+        {
+            path: "/mcampaign/:id",
+            name: "mcampaign",
+            component: MultiCampaign,
+            props: route => {
+                const id = Number.parseInt(route.params.id, 10);
+                if (Number.isNaN(id)) {
+                    return 0;
+                }
+                return { id };
+            }
+            //   beforeEnter(to, from, next) {
+
+            //     // console.log(Permissions.indexOf('access_campaigns' )!== -1)
+            //     if(Permissions.indexOf('campaign ' )!== -1){
+            //         next()
+            //     }else{
+            //        next("/redirect/campagin")
+            //     }
+
+            //   }
+        },
+
         {
             path: "/timers",
             name: "timers",

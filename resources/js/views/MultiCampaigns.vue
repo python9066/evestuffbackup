@@ -36,6 +36,9 @@
                 <v-btn icon @click="deleteCampaign(item)" color="warning"
                     ><v-icon small>fas fa-trash</v-icon></v-btn
                 >
+                <v-btn @click="clickCampaign(item)" color="green"
+                    >View</v-btn
+                >
             </template>
 
             <!-- <template v-slot:actions.="{ item }">
@@ -108,6 +111,12 @@ export default {
             this.loading = false;
     });
     this.loadCampaignJoinData();
+    },
+
+    clickCampaign(item){
+
+                this.$router.push({ path: `/mcampaign/${item.id}` }) // -> /user/123
+
     },
 
     async mounted() {},
