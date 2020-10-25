@@ -24,10 +24,10 @@
                 ></v-select>
             </v-card-text>
             <v-card-actions>
-                <v-btn color="success" class="mr-4" @click="addCampaignDone()"
+                <v-btn color="success" class="mr-4" @click="eidtCampaignDone()"
                     >Done</v-btn
                 >
-                <v-btn color="warning" class="mr-4" @click="addCampaignClose()"
+                <v-btn color="warning" class="mr-4" @click="editCampaignClose()"
                     >Close</v-btn
                 >
             </v-card-actions>
@@ -55,13 +55,13 @@ export default {
 
     created() {
         this.$store.dispatch("getCampaignsList");
-        this.addCampaignDone();
+        this.eidtCampaignLoad();
         this.name = this.nameProp
     },
 
     methods: {
 
-       async addCampaignDone(){
+       async eidtCampaignLoad(){
 
            let res = await axios({
                 method: "get",
@@ -79,10 +79,27 @@ export default {
 
         },
 
-        addCampaignClose(){
-            this.picked = []
-            this.name = ""
-            this.$emit("closeAdd")
+        async editCampaignDone(){
+            let id = moment().format('x')
+
+            await axios({
+                method: "POST",
+                url:
+                    "/api/multicampaigns/"+id+"/"+this.name,
+                data: this.picked,
+                headers: {
+                    Authorization: "Bearer " + this.$store.state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                }
+            })
+            this.$emit("closeEditNew")
+
+        },
+
+        editCampaignClose(){
+
+            this.$emit("closeEdit")
 
         },
 
