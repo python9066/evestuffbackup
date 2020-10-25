@@ -25,13 +25,11 @@ export default {
     data() {
         return {
             test: "",
-            systems: []
         };
     },
 
     created() {},
     async mounted() {
-        await this.getSystems();
     },
 
     methods: {
@@ -40,21 +38,7 @@ export default {
             this.name = "";
         },
 
-        async getSystems() {
-            let res = await axios({
-                method: "get",
-                url: "/api/campaignjoin/" + this.campaignID,
-                // url: "/api/campaignjoin/1603574888917",
-                data: this.picked,
-                headers: {
-                    Authorization: "Bearer " + this.$store.state.token,
-                    Accept: "application/json",
-                    "Content-Type": "application/json"
-                }
-            });
 
-            this.systems = res.data.value;
-        },
 
         systemcount(){
             let count = this.systems.length
@@ -68,6 +52,13 @@ export default {
         }
     },
 
-    computed: {}
+    computed: {
+        ...mapGetters(["getCampaignJoinById"]),
+
+        system(){
+            return this.getCampaignJoinById(this.campaignID)
+        }
+
+    }
 };
 </script>
