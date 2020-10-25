@@ -55,8 +55,8 @@ class CustomCampaignsController extends Controller
 
         CampaignJoin::destroy('custom_campaign_id',$campid);
         $data = $request->all();
-        dd($data);
-        CustomCampaign::update(['id' => $campid, 'name' => $name]);
+        // dd($data);
+        CustomCampaign::find($campid)->update(['name' => $name]);
         foreach ($data as $data){
             // dd($data);
         CampaignJoin::create(['custom_campaign_id' => $campid, 'campaign_id' => $data]);
