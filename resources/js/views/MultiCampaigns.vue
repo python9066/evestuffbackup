@@ -8,6 +8,7 @@
                 <v-btn
                     :loading="loadingf"
                     :disabled="loadingf"
+                    color="light-blue darken-4"
 
                 >
                     ADD CAMPAIGN
@@ -67,8 +68,8 @@ export default {
 
             headers: [
                 { text: "Name", value: "name", width: "10%" },
-                { text: "System - Target", value: "system"},
-                { text: "Status", value: "status_name" },
+                { text: "System - Target", value: "system", width: "80%", align: "center"},
+                { text: "Status", value: "status_name", align: "end" },
                 // { text: "", value: "actions" },
 
             ]
