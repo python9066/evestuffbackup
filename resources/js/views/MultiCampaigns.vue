@@ -4,17 +4,14 @@
         <div class=" d-flex align-items-center">
             <v-card-title>Campaigns</v-card-title>
 
-                <v-btn
-                    :loading="loadingf"
-                    :disabled="loadingf"
-                    @click="overlay = !overlay"
-                    color="light-blue darken-4"
-
-                >
-                    ADD CAMPAIGN
-                </v-btn>
-
-
+            <v-btn
+                :loading="loadingf"
+                :disabled="loadingf"
+                @click="overlay = !overlay"
+                color="light-blue darken-4"
+            >
+                ADD CAMPAIGN
+            </v-btn>
         </div>
         <v-data-table
             :headers="headers"
@@ -30,14 +27,16 @@
                 No Multi Campaigns have been made
             </template>
             <template v-slot:item.system="{ item }">
-                <systemItemList
-                    :campaignID = item.id>
-                </systemItemList>
+                <systemItemList :campaignID="item.id"> </systemItemList>
             </template>
             <template v-slot:item.actions="{ item }">
-                bla bla
+                <v-btn
+                    icon
+                    @click="deleteCampaign()"
+                    color="warning"
+                    ><v-icon left small>fas fa-trash</v-icon></v-btn
+                >
             </template>
-
 
             <!-- <template v-slot:actions.="{ item }">
                 LALALALA
@@ -45,8 +44,9 @@
         </v-data-table>
         <v-overlay :value="overlay">
             <MultiCampaignAdd
-            @closeAddNew="updatemultiCampaginAdd()"
-            @closeAdd="overlay = !overlay"></MultiCampaignAdd>
+                @closeAddNew="updatemultiCampaginAdd()"
+                @closeAdd="overlay = !overlay"
+            ></MultiCampaignAdd>
         </v-overlay>
     </div>
 </template>
@@ -77,21 +77,25 @@ export default {
 
             headers: [
                 { text: "Name", value: "name", width: "10%" },
-                { text: "System - Target", value: "system", width: "80%", align: "center"},
+                {
+                    text: "System - Target",
+                    value: "system",
+                    width: "80%",
+                    align: "center"
+                },
                 { text: "Status", value: "status_name", align: "end" },
-                { text: "", value: "actions", align: "end" },
+                { text: "", value: "actions", align: "end" }
                 // { text: "", value: "actions" },
-
             ]
         };
     },
 
     created() {
-            this.$store.dispatch("getMultiCampaigns").then(() => {
-                this.loadingf = false;
-                this.loadingr = false;
-                this.loading = false;
-            });
+        this.$store.dispatch("getMultiCampaigns").then(() => {
+            this.loadingf = false;
+            this.loadingr = false;
+            this.loading = false;
+        });
     },
 
     async mounted() {},
@@ -103,10 +107,13 @@ export default {
             });
         },
 
+        deleteCampaign(){
 
-        updatemultiCampaginAdd(){
-            this.overlay = !this.overlay
-            this.$store.dispatch("getMultiCampaigns")
+        },
+
+        updatemultiCampaginAdd() {
+            this.overlay = !this.overlay;
+            this.$store.dispatch("getMultiCampaigns");
         },
 
         campaignStart(item) {
@@ -130,17 +137,17 @@ export default {
             });
         },
 
-        fixTime(item){
-        return moment.utc(item.start).unix()// retu  rn utc.unix()
+        fixTime(item) {
+            return moment.utc(item.start).unix(); // retu  rn utc.unix()
         },
 
-
-        rowClick(item){
-            if(this.$can('access_campaigns')){
-            var left = (moment.utc(item.start).unix() -  moment.utc().unix())
-            if(left < 3600 && item.status_id < 3){
-                this.$router.push({ path: `/campaign/${item.id}` }) // -> /user/123
-            }}
+        rowClick(item) {
+            if (this.$can("access_campaigns")) {
+                var left = moment.utc(item.start).unix() - moment.utc().unix();
+                if (left < 3600 && item.status_id < 3) {
+                    this.$router.push({ path: `/campaign/${item.id}` }); // -> /user/123
+                }
+            }
         },
 
         // rowClick(item){
@@ -229,11 +236,10 @@ export default {
     computed: {
         ...mapState(["multicampaigns"]),
 
-        campaigns(){
-            return this.multicampaigns
+        campaigns() {
+            return this.multicampaigns;
         }
     },
-    beforeDestroy() {
-    }
+    beforeDestroy() {}
 };
 </script>
