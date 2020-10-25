@@ -1,18 +1,18 @@
 <template>
     <div class=" d-inline-flex">
-                                <div
-                                    v-for="(system, index) in systems"
-                                    :key="index"
-                                    class=" pr-2"
-                                >
-                                    <v-chip
-                                        pill
-                                        dark
-                                    >
-                                        <span> {{ system.text }}</span>
-                                    </v-chip>
-                                </div>
-                            </div>
+        <span v-if="systemccount()">
+        <div  v-for="(system, index) in systems" :key="index" class=" pr-2">
+            <v-chip pill dark>
+                <span> {{ system.text }}</span>
+            </v-chip>
+        </div>
+        </span>
+        <span v-else>
+        <div>
+            All Campaigns have finished
+        </div>
+        </span>
+    </div>
 </template>
 
 <script>
@@ -24,28 +24,23 @@ export default {
     },
     data() {
         return {
-            test:"",
-            systems:[],
+            test: "",
+            systems: []
         };
     },
 
-    created() {
-    },
+    created() {},
     async mounted() {
-        await this.getSystems()
+        await this.getSystems();
     },
 
     methods: {
-
         addCampaignClose() {
             this.picked = [];
             this.name = "";
-            this.lists=[];
         },
 
-
         async getSystems() {
-
             let res = await axios({
                 method: "get",
                 url: "/api/campaignjoin/" + this.campaignID,
@@ -58,13 +53,18 @@ export default {
                 }
             });
 
-            this.systems =  res.data.value
+            this.systems = res.data.value;
         },
+
+        systemcount(){
+            if(this.systems == []){
+                return false
+            }else{
+                return true
+            }
+        }
     },
 
-    computed: {
-
-
-    }
+    computed: {}
 };
 </script>
