@@ -322,7 +322,7 @@
                                             !expanded.includes(item)
                                     "
                                     color="success"
-                                    ><v-icon left>fas fa-plus</v-icon>Add aDash</v-btn
+                                    ><v-icon left class=" ml-10">fas fa-plus</v-icon>Add aDash</v-btn
                                 >
                                 <v-btn
                                     icon
