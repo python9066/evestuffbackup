@@ -25,7 +25,7 @@
             </template>
             <template v-slot:item.system="{ item }">
                 <div
-                    v-for="(system, index) in systemlist"
+                    v-for="(system, index) in systemlist(item.id)"
                     :key="index"
                     class=" pr-2"
                 >
@@ -153,6 +153,23 @@ export default {
             return a;
         },
 
+        async systemlist(campaignID){
+            let res = await axios({
+                method: "get",
+                url: "/api/campaignjoin/" + this.campaignID,
+                // url: "/api/campaignjoin/1603574888917",
+                data: this.picked,
+                headers: {
+                    Authorization: "Bearer " + this.$store.state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                }
+            });
+
+            return  res.data.list
+
+        },
+
         barBgcolor(item) {
             var d = item.defenders_score * 100;
             var a = item.attackers_score * 100;
@@ -224,22 +241,7 @@ export default {
             return this.multicampaigns;
         },
 
-       async systemlist(){
-            let res = await axios({
-                method: "get",
-                url: "/api/campaignjoin/" + this.campaignID,
-                // url: "/api/campaignjoin/1603574888917",
-                data: this.picked,
-                headers: {
-                    Authorization: "Bearer " + this.$store.state.token,
-                    Accept: "application/json",
-                    "Content-Type": "application/json"
-                }
-            });
 
-            return  res.data.list
-
-        },
     },
     beforeDestroy() {}
 };
