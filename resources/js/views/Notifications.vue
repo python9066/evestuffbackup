@@ -312,7 +312,7 @@
                             <!-- EXTRA BUTTON -->
                             <v-fab-transition>
                                 <v-btn
-                                    icon
+                                    pill
                                     @click="
                                         (expanded = [item]),
                                             (expanded_id = item.id)
