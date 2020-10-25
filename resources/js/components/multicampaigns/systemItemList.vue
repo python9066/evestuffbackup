@@ -58,7 +58,7 @@ export default {
                 }
             });
 
-            this.systems =  res.data
+            this.systems =  res.data.value
         },
     },
 
