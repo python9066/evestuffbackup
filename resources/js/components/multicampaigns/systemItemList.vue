@@ -57,7 +57,8 @@ export default {
         },
 
         systemcount(){
-            if(this.systems == []){
+            let count = this.systems.length
+            if(this.count == 0){
                 return false
             }else{
                 return true
