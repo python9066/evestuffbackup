@@ -25,7 +25,7 @@ class CampaignJoinsController extends Controller
                 $data = [];
                 $data = [
                     "text" => $camp['system']. " - ". $camp['item_name'],
-                    "custom_campaign_id" => $pull['custom_campagin_id'],
+                    "custom_campaign_id" => $pull['custom_campaign_id'],
                     "color" => $camp['color']
                 ];
             }
