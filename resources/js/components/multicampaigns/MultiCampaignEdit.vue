@@ -24,7 +24,7 @@
                 ></v-select>
             </v-card-text>
             <v-card-actions>
-                <v-btn color="success" class="mr-4" @click="eidtCampaignDone()"
+                <v-btn color="success" class="mr-4" @click="editCampaignDone()"
                     >Done</v-btn
                 >
                 <v-btn color="warning" class="mr-4" @click="editCampaignClose()"
