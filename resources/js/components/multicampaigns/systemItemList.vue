@@ -40,9 +40,10 @@ export default {
             this.picked = [];
             this.name = "";
         },
-        getlist() {
 
-             axios({
+       async getlist() {
+
+            let res = await axios({
                 method: "get",
                 // url: "/api/campaignjoin/" + campaignID,
                 url: "/api/campaignjoin/1603574888917",
