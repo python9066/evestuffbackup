@@ -42,7 +42,7 @@ export default {
     computed: {
         ...mapGetters(["getCampaignJoinById"]),
 
-        system(){
+        systems(){
             return this.getCampaignJoinById(this.campaignID)
         },
 
