@@ -1,6 +1,6 @@
 <template>
     <div class=" d-inline-flex">
-        <span v-if="systemccount()">
+        <span v-if="systemcount()">
         <div  v-for="(system, index) in systems" :key="index" class=" pr-2">
             <v-chip pill dark>
                 <span> {{ system.text }}</span>
