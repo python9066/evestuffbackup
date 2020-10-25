@@ -313,6 +313,7 @@
                             <v-fab-transition>
                                 <v-btn
                                     pill
+                                    outlined
                                     @click="
                                         (expanded = [item]),
                                             (expanded_id = item.id)
@@ -322,7 +323,7 @@
                                             !expanded.includes(item)
                                     "
                                     color="success"
-                                    ><v-icon left class=" ml-10">fas fa-plus</v-icon>Add aDash</v-btn
+                                    ><v-icon left>fas fa-plus</v-icon>Add aDash</v-btn
                                 >
                                 <v-btn
                                     icon
