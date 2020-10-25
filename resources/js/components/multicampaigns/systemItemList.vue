@@ -3,8 +3,8 @@
         <v-card>
             <v-list>
                 <v-list-item
-                    v-for="list in lists"
-                    :key="list.text"
+                    v-for="(text, index) in lists"
+                    :key = index
                     @click="(userAddRoleText = list.id), userAddRole(item)"
                 >
                     <v-list-item-title>{{ list.text }}</v-list-item-title>
@@ -55,7 +55,7 @@ export default {
                 }
             });
 
-            this.list =  res.data.list
+            this.lists =  res.data
         },
     },
 
