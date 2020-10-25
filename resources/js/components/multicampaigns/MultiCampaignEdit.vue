@@ -69,7 +69,7 @@ export default {
                 }
             })
             sleep(500)
-            this.picked = res.data.list
+            this.picked = res.data
 
         },
 
