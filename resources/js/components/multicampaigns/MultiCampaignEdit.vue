@@ -80,12 +80,11 @@ export default {
         },
 
         async editCampaignDone(){
-            let id = moment().format('x')
 
             await axios({
                 method: "POST",
                 url:
-                    "/api/multicampaignsedit/"+id+"/"+this.name,
+                    "/api/multicampaignsedit/"+this.campaignID+"/"+this.name,
                 data: this.picked,
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
