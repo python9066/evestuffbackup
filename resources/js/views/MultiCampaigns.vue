@@ -113,12 +113,6 @@ export default {
     this.loadCampaignJoinData();
     },
 
-    clickCampaign(item){
-
-                this.$router.push({ path: `/mcampaign/${item.id}` }) // -> /user/123
-
-    },
-
     async mounted() {},
     methods: {
         async loadcampaigns() {
@@ -127,6 +121,12 @@ export default {
                 this.loadingr = false;
             });
         },
+
+        clickCampaign(item){
+
+                this.$router.push({ path: `/mcampaign/${item.id}` }) // -> /user/123
+
+    },
 
         loadCampaignJoinData(){
             this.$store.dispatch("getCampaignJoinData");
