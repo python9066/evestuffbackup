@@ -332,7 +332,7 @@
                                             expanded.includes(item)
                                     "
                                     color="error"
-                                    ><v-icon>fas fa-minus</v-icon></v-btn
+                                    > Add aDash<v-icon>fas fa-minus</v-icon></v-btn
                                 >
                             </v-fab-transition>
                            <notificationTimer
