@@ -24,7 +24,7 @@ export default {
     data() {
         return {
             test:"",
-            list:[],
+            lists:[],
         };
     },
 
