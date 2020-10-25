@@ -34,6 +34,9 @@
                     :campaignID = item.id>
                 </systemItemList>
             </template>
+            <template v-slot:item.actions="{ item }">
+                bla bla
+            </template>
 
 
             <!-- <template v-slot:actions.="{ item }">
@@ -76,6 +79,7 @@ export default {
                 { text: "Name", value: "name", width: "10%" },
                 { text: "System - Target", value: "system", width: "80%", align: "center"},
                 { text: "Status", value: "status_name", align: "end" },
+                { text: "", value: "actions", align: "end" },
                 // { text: "", value: "actions" },
 
             ]
