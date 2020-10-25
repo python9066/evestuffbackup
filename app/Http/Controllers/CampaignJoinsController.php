@@ -57,7 +57,7 @@ class CampaignJoinsController extends Controller
     public function list($id)
     {
         $pull = CampaignJoin::where('custom_campaign_id', $id)->get()->pluck('campaign_id');
-        dd($pull);
+
         return ["value" => $pull];
     }
 
