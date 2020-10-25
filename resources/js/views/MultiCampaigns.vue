@@ -4,17 +4,17 @@
         <div class=" d-flex align-items-center">
             <v-card-title>Campaigns</v-card-title>
 
-            <v-btn-toggle v-model="toggle_exclusive" mandatory :value="1">
                 <v-btn
                     :loading="loadingf"
                     :disabled="loadingf"
+                    @click="overlay = !overlay"
                     color="light-blue darken-4"
 
                 >
                     ADD CAMPAIGN
                 </v-btn>
 
-            </v-btn-toggle>
+
         </div>
         <v-data-table
             :headers="headers"
@@ -40,6 +40,9 @@
                 LALALALA
             </template> -->
         </v-data-table>
+        <v-overlay :value="overlay">
+            <MultiCampaignAdd></MultiCampaignAdd>
+        </v-overlay>
     </div>
 </template>
 <script>
@@ -65,6 +68,7 @@ export default {
             toggle_exclusive: 0,
             colorflag: 4,
             name: "Timer",
+            overlay: false,
 
             headers: [
                 { text: "Name", value: "name", width: "10%" },
