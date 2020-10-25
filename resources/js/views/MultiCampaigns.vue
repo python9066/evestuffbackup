@@ -30,7 +30,7 @@
             </template>
             <template v-slot:item.system="{ item }">
                 <systemItemList
-                    campaignID = item.id>
+                    :campaignID = item.id>
                 </systemItemList>
             </template>
 
