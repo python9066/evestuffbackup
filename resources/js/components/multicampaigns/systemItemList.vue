@@ -24,10 +24,14 @@ export default {
     data() {
         return {
             test:"",
+            list:[],
         };
     },
 
     created() {
+    },
+    async mounted() {
+        await this.getlist()
     },
 
     methods: {
@@ -35,11 +39,7 @@ export default {
         addCampaignClose() {
             this.picked = [];
             this.name = "";
-        }
-    },
-
-    computed: {
-
+        },
         getlist() {
 
              axios({
@@ -54,8 +54,12 @@ export default {
                 }
             });
 
-            return res.data.list
+            this.list =  res.data.list
         },
+    },
+
+    computed: {
+
 
 
     }
