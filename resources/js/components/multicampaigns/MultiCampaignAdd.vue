@@ -67,6 +67,7 @@ export default {
                 }
             })
             this.$emit("closeAdd")
+            this.$store.dispatch("getMultiCampaigns")
 
         },
 
