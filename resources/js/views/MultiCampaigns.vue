@@ -33,7 +33,7 @@
                 <v-btn icon @click="overlayEditID = item.id, overlayEditName = item.name, overlayEdit = !overlayEdit" color="warning"
                     ><v-icon small>fas fa-edit</v-icon></v-btn
                 >
-                <v-btn icon @click="deleteCampaign(item.id)" color="warning"
+                <v-btn icon @click="deleteCampaign(item)" color="warning"
                     ><v-icon small>fas fa-trash</v-icon></v-btn
                 >
             </template>
@@ -118,10 +118,10 @@ export default {
             });
         },
 
-        async deleteCampaign(id) {
+        async deleteCampaign(item) {
            await axios({
                 method: "delete", //you can set what request you want to be
-                url: "api/multicampaigns/" + id,
+                url: "api/multicampaigns/" + item.id,
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
                     Accept: "application/json",
