@@ -196,7 +196,6 @@ export default new Vuex.Store({
             let res = await axios({
                 method: "get",
                 url: "/api/campaignjoin",
-                // url: "/api/campaignjoin/1603574888917",
                 data: this.picked,
                 headers: {
                     Authorization: "Bearer " + state.token,
