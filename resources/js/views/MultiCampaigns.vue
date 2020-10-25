@@ -108,7 +108,6 @@ export default {
             axios({
                 method: "delete", //you can set what request you want to be
                 url: "api/multicampaigns/" + id,
-                data: request,
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
                     Accept: "application/json",
