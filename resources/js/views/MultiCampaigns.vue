@@ -30,7 +30,7 @@
                 <systemItemList :campaignID="item.id"> </systemItemList>
             </template>
             <template v-slot:item.actions="{ item }">
-                <v-btn icon @click="overlayEditID = item.id,overlayEditName = item.name, overlayEdit = !overlayEdit" color="warning"
+                <v-btn icon @click="overlayEditID = item.id, overlayEditName = item.name, overlayEdit = !overlayEdit" color="warning"
                     ><v-icon small>fas fa-edit</v-icon></v-btn
                 >
                 <v-btn icon @click="deleteCampaign(item.id)" color="warning"
@@ -51,7 +51,7 @@
         <v-overlay :value="overlayEdit">
             <MultiCampaignEdit
                 :campaignID="getCampaignID()"
-                :nameProb="getCampaignName()"
+                :nameProp="getCampaignName()"
                 @closeAddNew="updatemultiCampaginAdd()"
                 @closeAdd="overlayEdit = !overlayEdit"
             ></MultiCampaignEdit>
