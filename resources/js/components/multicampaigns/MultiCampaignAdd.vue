@@ -1,6 +1,6 @@
 <template>
     <div>
-        <v-card>
+        <v-card min-width=1200 max-width=1200>
             <v-card-title>
                 Make your Mulit-Campaign Here
             </v-card-title>
