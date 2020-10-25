@@ -2,7 +2,7 @@
     <div class=" d-inline-flex">
         <span v-if="systemcount">
         <span  v-for="(system, index) in systems" :key="index" class=" pr-2">
-            <v-chip pill dark>
+            <v-chip pill :color="pillcolor(system)" dark>
                 <span> {{ system.text }}</span>
             </v-chip>
         </span>
@@ -37,6 +37,14 @@ export default {
             this.picked = [];
             this.name = "";
         },
+
+        pillcolor(system){
+        if(system.color == 1){
+            return "red darken-4"
+        }else{
+            return "blue darken-4"
+        }
+        }
     },
 
     computed: {
