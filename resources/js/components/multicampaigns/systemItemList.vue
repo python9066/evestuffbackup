@@ -57,6 +57,17 @@ export default {
 
         system(){
             return this.getCampaignJoinById(this.campaignID)
+        },
+
+        systemcount(){
+            let count = this.getCampaignJoinById(this.campaignID).length
+            if(count == 0){
+
+                return false
+            }else{
+
+                return true
+            }
         }
 
     }
