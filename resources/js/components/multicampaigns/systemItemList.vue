@@ -40,9 +40,9 @@ export default {
 
     computed: {
 
-        async getlist() {
+        getlist() {
 
-            await axios({
+             axios({
                 method: "get",
                 url: "/api/campaignjoin/" + campaignID,
                 data: this.picked,
