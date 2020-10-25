@@ -2,7 +2,7 @@
     <div>
         <v-card min-width=1200 max-width=1200>
             <v-card-title>
-                Make your Mulit-Campaign Here
+                Edit your Mulit-Campaign Here
             </v-card-title>
             <v-card-text>
                 <v-text-field
@@ -51,6 +51,7 @@ export default {
 
     created() {
         this.$store.dispatch("getCampaignsList");
+        this.addCampaignDone();
     },
 
     methods: {
