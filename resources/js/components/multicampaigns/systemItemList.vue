@@ -55,7 +55,7 @@ export default {
                 }
             });
 
-            this.list =  res
+            this.list =  res.data
         },
     },
 
