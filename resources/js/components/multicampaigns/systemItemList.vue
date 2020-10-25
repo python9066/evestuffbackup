@@ -32,7 +32,7 @@ export default {
     created() {
     },
     async mounted() {
-        await this.getlist()
+        // await this.getlist()
     },
 
     methods: {
