@@ -15,7 +15,23 @@ class CampaignJoinsController extends Controller
      */
     public function index()
     {
-        return ["value" => CampaignJoin::all()];
+        $list = [];
+        $pull = CampaignJoin::all();
+        foreach ($pull as $pull) {
+            $camp = CampaignRecords::where('id', $pull['campaign_id'])->get();
+            $count = $camp->count();
+            if($count != 0){
+            foreach ($camp as $camp) {
+                $data = [];
+                $data = [
+                    "text" => $camp['system']. " - ". $camp['item_name'],
+                    "custom_campaign_id" => $pull['custom_campagin_id'],
+                    "color" => $camp['color']
+                ];
+            }
+            array_push($list, $data);
+        }}
+        return ["value" => $list];
     }
 
     /**
