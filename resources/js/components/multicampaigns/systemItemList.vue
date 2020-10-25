@@ -39,6 +39,7 @@ export default {
         addCampaignClose() {
             this.picked = [];
             this.name = "";
+            this.lists=[];
         },
 
        async getlist() {
