@@ -30,8 +30,11 @@
                 <systemItemList :campaignID="item.id"> </systemItemList>
             </template>
             <template v-slot:item.actions="{ item }">
-                <v-btn icon @click="deleteCampaign(item.id)" color="warning"
+                <v-btn icon @click="overlayEditID = item.id, overlayEdit = !overlayEdit" color="warning"
                     ><v-icon small>fas fa-trash</v-icon></v-btn
+                >
+                <v-btn icon @click="deleteCampaign(item.id)" color="warning"
+                    ><v-icon small>fas fa-edit</v-icon></v-btn
                 >
             </template>
 
@@ -44,6 +47,13 @@
                 @closeAddNew="updatemultiCampaginAdd()"
                 @closeAdd="overlay = !overlay"
             ></MultiCampaignAdd>
+        </v-overlay>
+        <v-overlay :value="overlayEdit">
+            <MultiCampaignEdit
+                :campaginID="overlayEditID"
+                @closeAddNew="updatemultiCampaginAdd()"
+                @closeAdd="overlayEdit = !overlayEdit"
+            ></MultiCampaignEdit>
         </v-overlay>
     </div>
 </template>
@@ -71,6 +81,8 @@ export default {
             colorflag: 4,
             name: "Timer",
             overlay: false,
+            overlayEdit:false,
+            overlayEditID:"",
 
             headers: [
                 { text: "Name", value: "name", width: "10%" },

@@ -88,6 +88,7 @@ Route::middleware('auth:api')->group(function(){
     Route::delete('/multicampaigns/{id}', 'CustomCampaignsController@destroy');
 
     Route::get('/campaignjoin/{id}', 'CampaignJoinsController@show');
+    Route::get('/campaignjoinlist/{id}', 'CampaignJoinsController@list');
 
 
 

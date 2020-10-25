@@ -39,6 +39,9 @@
 import { mapState, mapGetters } from "vuex";
 import moment from "moment";
 export default {
+    props: {
+        campaignID: Number
+    },
     data() {
         return {
             name: "",
@@ -53,20 +56,18 @@ export default {
     methods: {
 
        async addCampaignDone(){
-            let id = moment().format('x')
 
-            await axios({
-                method: "POST",
+           let res = await axios({
+                method: "get",
                 url:
-                    "/api/multicampaigns/"+id+"/"+this.name,
-                data: this.picked,
+                    "/api/campaignjoinlist/"+this.campaignID,
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
                     Accept: "application/json",
                     "Content-Type": "application/json"
                 }
             })
-            this.$emit("closeAddNew")
+            this.pciked = res.data.list
 
         },
 

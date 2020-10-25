@@ -54,6 +54,13 @@ class CampaignJoinsController extends Controller
         return ["value" => $list];
     }
 
+    public function list($id)
+    {
+        $pull = CampaignJoin::where('custom_campaign_id', $id)->get()->pluck('campaign_id');
+        dd($pull);
+        return ["value" => $pull];
+    }
+
     /**
      * Update the specified resource in storage.
      *
