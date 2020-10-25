@@ -25,14 +25,14 @@ export default {
     data() {
         return {
             test:"",
-            lists:[],
+            systems:[],
         };
     },
 
     created() {
     },
     async mounted() {
-        // await this.getlist()
+        await this.getSystems()
     },
 
     methods: {
@@ -44,11 +44,7 @@ export default {
         },
 
 
-    },
-
-    computed: {
-
-        async systems() {
+        async getSystems() {
 
             let res = await axios({
                 method: "get",
@@ -62,8 +58,12 @@ export default {
                 }
             });
 
-            return  res.data.list
+            this.systems =  res.data.list
         },
+    },
+
+    computed: {
+
 
     }
 };
