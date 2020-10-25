@@ -69,7 +69,8 @@ export default {
                 }
             })
             sleep(500)
-            this.picked = res.data
+
+            this.picked = res.data.value
 
         },
 
