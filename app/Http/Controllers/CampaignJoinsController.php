@@ -41,6 +41,7 @@ class CampaignJoinsController extends Controller
         $pull = CampaignJoin::where('custom_campaign_id', $id)->get()->pluck('campaign_id');
         foreach ($pull as $pull) {
             $camp = CampaignRecords::where('id', $pull)->get();
+            dd($camp);
             foreach ($camp as $camp) {
                 $data = [];
                 $data = [
