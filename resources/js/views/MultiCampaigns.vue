@@ -41,7 +41,8 @@
             </template> -->
         </v-data-table>
         <v-overlay :value="overlay">
-            <MultiCampaignAdd></MultiCampaignAdd>
+            <MultiCampaignAdd
+            @closeAdd="overlay = !overlay"></MultiCampaignAdd>
         </v-overlay>
     </div>
 </template>
