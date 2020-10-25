@@ -1,16 +1,16 @@
 <template>
     <div>
-        <!-- <v-card>
+        <v-card>
             <v-list>
                 <v-list-item
-                    v-for="(list, index) in filterDropdownList(item.roles)"
-                    :key="index"
+                    v-for="list in lists"
+                    :key="list.text"
                     @click="(userAddRoleText = list.id), userAddRole(item)"
                 >
-                    <v-list-item-title>{{ list.name }}</v-list-item-title>
+                    <v-list-item-title>{{ list.text }}</v-list-item-title>
                 </v-list-item>
             </v-list>
-        </v-card> -->
+        </v-card>
     </div>
 </template>
 
