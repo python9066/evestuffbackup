@@ -101,7 +101,7 @@ export default {
 
 
         updatemultiCampaginAdd(){
-            overlay = !overlay
+            this.overlay = !this.overlay
             this.$store.dispatch("getMultiCampaigns")
         },
 
