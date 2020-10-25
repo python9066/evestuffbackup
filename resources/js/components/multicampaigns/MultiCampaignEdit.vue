@@ -43,7 +43,8 @@ function sleep(ms) {
 }
 export default {
     props: {
-        campaignID: Number
+        campaignID: Number,
+        nameProp: String,
     },
     data() {
         return {
@@ -55,6 +56,7 @@ export default {
     created() {
         this.$store.dispatch("getCampaignsList");
         this.addCampaignDone();
+        this.name = this.nameProp
     },
 
     methods: {
