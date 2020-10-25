@@ -4,7 +4,7 @@
             <v-list>
                 <v-list-item
                     v-for="list in lists"
-                    :key="list"
+                    :key="list.text"
 
                 >
                     <v-list-item-title>{{ text }}</v-list-item-title>
