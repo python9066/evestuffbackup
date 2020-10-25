@@ -23,6 +23,7 @@ export default {
     },
     data() {
         return {
+            test:"",
         };
     },
 
@@ -43,6 +44,8 @@ export default {
                     "Content-Type": "application/json"
                 }
             });
+
+            let test = res.data.list
         },
 
         addCampaignClose() {
@@ -52,6 +55,8 @@ export default {
     },
 
     computed: {
+
+
     }
 };
 </script>
