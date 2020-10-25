@@ -68,6 +68,7 @@ export default {
                     "Content-Type": "application/json"
                 }
             })
+            sleep(500)
             this.picked = res.data.list
 
         },
