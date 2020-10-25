@@ -104,8 +104,8 @@ export default {
             });
         },
 
-        deleteCampaign(id) {
-            axios({
+        async deleteCampaign(id) {
+           await axios({
                 method: "delete", //you can set what request you want to be
                 url: "api/multicampaigns/" + id,
                 headers: {
@@ -114,6 +114,8 @@ export default {
                     "Content-Type": "application/json"
                 }
             });
+
+            sleep(500)
 
             this.$store.dispatch("getMultiCampaigns")
         },
