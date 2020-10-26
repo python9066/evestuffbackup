@@ -826,7 +826,7 @@ export default {
         },
 
         nodeCountHackingCountAll() {
-            return this.getHackingNodeCountByCampaign(this.$route.params.id);
+            return this.getHackingNodeCountByCampaign(this.campaignId);
         },
 
         nodeRedCountHackingCountAll() {
