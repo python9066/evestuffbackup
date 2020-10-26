@@ -197,7 +197,7 @@ export default {
             e => {
                 if (e.flag.flag == 4) {
                     console.log(4+this.sCampaignID);
-                    this.loadcampaigns();
+                    this.$store.dispatch("getCampaigns");
                 }
             },
         );
