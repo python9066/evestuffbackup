@@ -765,7 +765,7 @@ export default {
         },
         barScoure() {
             var d =
-                this.getCampaignById(this.$route.params.id).defenders_score *
+                this.getCampaignById(this.campaignId).defenders_score *
                 100;
             var a =
                 this.getCampaignById(this.$route.params.id).attackers_score *
