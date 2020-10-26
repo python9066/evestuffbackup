@@ -431,7 +431,9 @@ export default {
 
     beforeMonunt() {},
 
-    beforeCreate() {},
+    beforeCreate() {
+        this.$store.dispatch("getCampaignJoinData");
+    },
 
     async mounted() {
         if (this.$store.getters.getCampaignsCount == 0) {

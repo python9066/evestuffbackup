@@ -94,7 +94,7 @@ export default {
                 {
                     text: "System - Target",
                     value: "system",
-                    width: "80%",
+                    width: "70%",
                     align: "center"
                 },
                 { text: "Status", value: "status_name", align: "end" },

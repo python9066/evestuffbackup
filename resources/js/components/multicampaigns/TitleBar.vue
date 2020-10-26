@@ -209,7 +209,7 @@ export default {
         ]),
 
         campaign() {
-            return this.getCampaignById(this.$route.params.id);
+            return this.getCampaignById(this.sCampaignID);
         },
     }
 };
