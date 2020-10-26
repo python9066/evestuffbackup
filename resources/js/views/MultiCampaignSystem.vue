@@ -440,7 +440,7 @@ export default {
             await this.$store.dispatch("getCampaigns");
         }
         // console.log(this.$route.params.id)
-        await this.getSystems(this.campaign.constellation_id);
+        await this.getSystems(this.this.$route.params.id);
         await this.$store.dispatch(
             "getCampaignUsersRecords",
             this.$route.params.id

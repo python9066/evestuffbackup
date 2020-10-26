@@ -91,6 +91,7 @@ Route::middleware('auth:api')->group(function(){
     Route::get('/campaignjoin', 'CampaignJoinsController@index');
     Route::get('/campaignjoin/{id}', 'CampaignJoinsController@show');
     Route::get('/campaignjoinlist/{id}', 'CampaignJoinsController@list');
+    Route::get('/campaignjoinsystems/{id}','CampaignJoinsController@campaignSystems');
 
 
 
