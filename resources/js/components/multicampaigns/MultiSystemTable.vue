@@ -436,12 +436,12 @@ export default {
                     width: "25%",
                     align: "start"
                 },
-                {
-                    text: "Main",
-                    value: "main_name",
-                    width: "10%",
-                    align: "start"
-                },
+                // {
+                //     text: "Main",
+                //     value: "main_name",
+                //     width: "10%",
+                //     align: "start"
+                // },
                 {
                     text: "Ship",
                     value: "user_ship",
