@@ -483,7 +483,7 @@ export default {
         async sendAddCharMessage() {
             await axios({
                 method: "get", //you can set what request you want to be
-                url: "/api/campaignsystemcheckaddchar/" + this.$route.params.id,
+                url: "/api/campaignsystemcheckaddchar/" + this.campaignId,
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
                     Accept: "application/json",
