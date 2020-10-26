@@ -199,6 +199,9 @@
                                         >
                                     </template>
                                     <v-card tile min-height="150px">
+                                        <v-select>
+
+                                        </v-select>
                                         <v-card-title class=" pb-0">
                                             <v-text-field
                                                 class=" mt-2"
@@ -411,7 +414,8 @@ export default {
     props: {
         system_name: String,
         system_id: Number,
-        campaign_id: String
+        campaign_id: String,
+        campaignJoinDrop:Object
     },
     data() {
         return {
