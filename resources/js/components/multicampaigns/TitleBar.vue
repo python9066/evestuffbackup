@@ -163,7 +163,7 @@
                         @campaignStart="campaignStart()"
                     >
                         <template slot="countdown" slot-scope="scope">
-                            <span class="red--text pl-3 text-h3 justify-content"
+                            <span class="red--text pl-3 justify-content"
                                 >{{ scope.props.minutes }}:{{
                                     scope.props.seconds
                                 }}</span
