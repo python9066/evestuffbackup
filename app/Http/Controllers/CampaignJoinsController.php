@@ -62,13 +62,13 @@ class CampaignJoinsController extends Controller
                         "id" => $sys['id'],
                         "system_name" => $sys['system_name']
                     ];
+                    array_push($list, $data);
                 }
 
             }
 
 
 
-            array_push($list, $data);
         }
         return ["systems" => $list];
     }
