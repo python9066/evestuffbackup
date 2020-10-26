@@ -51,7 +51,7 @@ class CampaignJoinsController extends Controller
         $list = [];
         $pull = CampaignJoin::where('custom_campaign_id', $id)->with('campaign')->get();
         foreach ($pull as $pull) {
-            $const = Constellation::where('id',$pull['constellation_id']);
+            $const = Constellation::where('id',$pull['constellation_id'])->get();
             dd($const);
             $count = $camp->count();
             if($count != 0){
