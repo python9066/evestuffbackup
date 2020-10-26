@@ -14,7 +14,7 @@ class AddCustomCampaignIdColumnToCampaignSystems extends Migration
     public function up()
     {
         Schema::table('campaign_systems', function (Blueprint $table) {
-            //
+            $table->foreignId('custom_campaign_id')->after('campaign_id')->nullable();
         });
     }
 
@@ -26,7 +26,7 @@ class AddCustomCampaignIdColumnToCampaignSystems extends Migration
     public function down()
     {
         Schema::table('campaign_systems', function (Blueprint $table) {
-            $table->foreignId('custom_campaign_id')->after('campaign_id')->nullable();
+
         });
     }
 }
