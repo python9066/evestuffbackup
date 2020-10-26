@@ -747,7 +747,7 @@ export default {
         ...mapState(['campaignJoin']),
 
         sCampaigns() {
-            return this.getsCampaignById(this.campaignId);
+            return this.getsCampaignById();
         },
 
         closechannel(){
@@ -772,10 +772,6 @@ export default {
         campaignJoinDrop(){
             return this.$store.state.campaignJoin
         },
-
-
-
-
 
         nodeCountAll() {
             return this.getTotalNodeCountByMultiCampaign(this.campaignId);
