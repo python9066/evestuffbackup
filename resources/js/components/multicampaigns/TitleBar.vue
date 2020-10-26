@@ -1,9 +1,5 @@
 <template>
-    <v-row
-        no-gutters
-        v-if="this.getCampaignsCount > 1"
-        justify="space-around"
-    >
+    <v-row no-gutters v-if="this.getCampaignsCount > 1" justify="space-around">
         <v-col md="10">
             <v-card class="pa-2" tile width="100%">
                 <v-card-title align="center" class="justify-center">
@@ -139,43 +135,43 @@
                 </div>
             </v-card>
             <div
-                        v-if="campaign.total_node > 0"
-                        class=" ml-auto d-inline-flex align-center"
-                    >
-                        <v-divider class="mx-4 my-0" vertical></v-divider>
-                        <p class=" pt-4 pr-3">Finished Nodes -</p>
-                        <v-progress-circular
-                            class=" pr-3"
-                            :transitionDuration="5000"
-                            :radius="25"
-                            :strokeWidth="5"
-                            :value="
-                                (campaign.b_node / campaign.total_node) * 100 ||
-                                    0.000001
-                            "
-                        >
-                            <div class="caption">
-                                {{ campaign.b_node }} /
-                                {{ campaign.total_node }}
-                            </div></v-progress-circular
-                        >
-                        <v-progress-circular
-                            class=" pr-3"
-                            :transitionDuration="5000"
-                            :radius="25"
-                            :strokeWidth="5"
-                            strokeColor="#FF3D00"
-                            :value="
-                                (campaign.r_node / campaign.total_node) * 100 ||
-                                    0.000001
-                            "
-                        >
-                            <div class="caption">
-                                {{ campaign.r_node }} /
-                                {{ campaign.total_node }}
-                            </div></v-progress-circular
-                        >
-                    </div>
+                v-if="campaign.total_node > 0"
+                class=" ml-auto d-inline-flex align-center"
+            >
+                <v-divider class="mx-4 my-0" vertical></v-divider>
+                <p class=" pt-4 pr-3">Finished Nodes -</p>
+                <v-progress-circular
+                    class=" pr-3"
+                    :transitionDuration="5000"
+                    :radius="25"
+                    :strokeWidth="5"
+                    :value="
+                        (campaign.b_node / campaign.total_node) * 100 ||
+                            0.000001
+                    "
+                >
+                    <div class="caption">
+                        {{ campaign.b_node }} /
+                        {{ campaign.total_node }}
+                    </div></v-progress-circular
+                >
+                <v-progress-circular
+                    class=" pr-3"
+                    :transitionDuration="5000"
+                    :radius="25"
+                    :strokeWidth="5"
+                    strokeColor="#FF3D00"
+                    :value="
+                        (campaign.r_node / campaign.total_node) * 100 ||
+                            0.000001
+                    "
+                >
+                    <div class="caption">
+                        {{ campaign.r_node }} /
+                        {{ campaign.total_node }}
+                    </div></v-progress-circular
+                >
+            </div>
         </v-col>
     </v-row>
 </template>
@@ -188,8 +184,7 @@ function sleep(ms) {
 }
 export default {
     props: {
-        sCampaignID: Number,
-
+        sCampaignID: Number
     },
     data() {
         return {};
@@ -197,68 +192,7 @@ export default {
 
     created() {},
 
-    methods: {
-        barColor() {
-            var d =
-                this.campaign.defenders_score *
-                100;
-                console.log(d)
-            if (d > 50) {
-                return "blue darken-4";
-            }
-
-            return "red darken-4";
-        },
-
-        barScoure() {
-            var d =
-                this.campaign.defenders_score *
-                100;
-                console.log(this.sCampaignID)
-            var a =
-                this.campaign.attackers_score *
-                100;
-
-            if (d > 50) {
-                return d;
-            }
-
-            return a;
-        },
-
-        barActive() {
-            if (this.campaign.status_id > 1) {
-                return true;
-            }
-            return false;
-        },
-
-        barBgcolor() {
-            var d =
-                this.campaign.defenders_score *
-                100;
-            var a =
-                this.campaign.attackers_score *
-                100;
-
-            if (d > 50) {
-                return "red darken-4";
-            }
-
-            return "blue darken-4";
-        },
-
-        barReverse() {
-            var d =
-                this.campaign.defenders_score *
-                100;
-            if (d > 50) {
-                return false;
-            }
-
-            return true;
-        },
-    },
+    methods: {},
 
     computed: {
         ...mapGetters([
@@ -271,10 +205,64 @@ export default {
             "getHackingNodeCountByCampaign",
             "getRedHackingNodeCountByCampaign"
         ]),
+        barColor() {
+            var d =
+                this.getCampaignById(this.sCampaignID).defenders_score * 100;
+            console.log(d);
+            if (d > 50) {
+                return "blue darken-4";
+            }
+
+            return "red darken-4";
+        },
+
+        barScoure() {
+            var d =
+                this.getCampaignById(this.sCampaignID).defenders_score * 100;
+            console.log(this.sCampaignID);
+            var a =
+                this.getCampaignById(this.sCampaignID).attackers_score * 100;
+
+            if (d > 50) {
+                return d;
+            }
+
+            return a;
+        },
+
+        barActive() {
+            if (this.getCampaignById(this.sCampaignID).status_id > 1) {
+                return true;
+            }
+            return false;
+        },
+
+        barBgcolor() {
+            var d =
+                this.getCampaignById(this.sCampaignID).defenders_score * 100;
+            var a =
+                this.getCampaignById(this.sCampaignID).attackers_score * 100;
+
+            if (d > 50) {
+                return "red darken-4";
+            }
+
+            return "blue darken-4";
+        },
+
+        barReverse() {
+            var d =
+                this.getCampaignById(this.sCampaignID).defenders_score * 100;
+            if (d > 50) {
+                return false;
+            }
+
+            return true;
+        },
 
         campaign() {
             return this.getCampaignById(this.sCampaignID);
-        },
+        }
     }
 };
 </script>
