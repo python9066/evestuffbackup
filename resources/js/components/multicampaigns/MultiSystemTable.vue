@@ -428,7 +428,7 @@ export default {
     data() {
         return {
             headers: [
-                { text: "Target", value: "text", width: "10%", align: "start" },
+                { text: "Target", value: "text", width: "15%", align: "start" },
                 { text: "NodeID", value: "node", width: "5%", align: "start" },
                 {
                     text: "Pilot",
@@ -452,7 +452,7 @@ export default {
                 {
                     text: "Status",
                     value: "status_name",
-                    width: "20%",
+                    width: "15%",
                     align: "center"
                 },
                 {
