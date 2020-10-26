@@ -209,14 +209,9 @@
                                                 v-model="nodeCampaignID"
                                                 label="Campaign"
                                                 placeholder="Which Hack is this for"
-                                                :item-text="
-                                                    campaignJoinDrop.text
-                                                "
-                                                :item-value="
-                                                    campaignJoinDrop
-                                                        .campaign_id
-                                                "
-
+                                                item-text="text"
+                                                item-value="campaign_id"
+                                                :items="campaignJoinDrop"
                                                 autofocus
                                             >
                                             </v-select>
