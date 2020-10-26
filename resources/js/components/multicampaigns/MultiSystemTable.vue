@@ -198,7 +198,7 @@
                                             Node</v-btn
                                         >
                                     </template>
-                                    <v-card tile min-height="300px">
+                                    <v-card tile min-height="250px">
                                         <v-card-title class=" pb-0">
                                         </v-card-title>
                                         <v-card-text>
