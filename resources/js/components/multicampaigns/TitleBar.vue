@@ -13,6 +13,44 @@
                         -
                         {{ this.campaign.alliance }}
                     </p>
+                    <div
+                        v-if="campaign.total_node > 0"
+                        class=" ml-auto d-inline-flex align-center"
+                    >
+                        <v-divider class="mx-4 my-0" vertical></v-divider>
+                        <p class=" pt-4 pr-3">Finished Nodes -</p>
+                        <v-progress-circular
+                            class=" pr-3"
+                            :transitionDuration="5000"
+                            :radius="25"
+                            :strokeWidth="5"
+                            :value="
+                                (campaign.b_node / campaign.total_node) * 100 ||
+                                    0.000001
+                            "
+                        >
+                            <div class="caption">
+                                {{ campaign.b_node }} /
+                                {{ campaign.total_node }}
+                            </div></v-progress-circular
+                        >
+                        <v-progress-circular
+                            class=" pr-3"
+                            :transitionDuration="5000"
+                            :radius="25"
+                            :strokeWidth="5"
+                            strokeColor="#FF3D00"
+                            :value="
+                                (campaign.r_node / campaign.total_node) * 100 ||
+                                    0.000001
+                            "
+                        >
+                            <div class="caption">
+                                {{ campaign.r_node }} /
+                                {{ campaign.total_node }}
+                            </div></v-progress-circular
+                        >
+                    </div>
                 </v-card-title>
                 <div
                     class="d-flex full-width align-content-center"
