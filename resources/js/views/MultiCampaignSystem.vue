@@ -425,8 +425,6 @@ export default {
         // );
         this.channel = "campaignsystem." + this.$route.params.id;
         this.campaignId = this.$route.params.id;
-        this.test = 2;
-        this.test2 = 1;
         this.navdrawer = true;
         this.addMember();
     },
@@ -732,108 +730,108 @@ export default {
     },
 
     computed: {
-        ...mapGetters([
-            "getCampaignById",
-            "getActiveCampaigns",
-            "getCampaignsCount",
-            "getCampaignUsersByUserId",
-            "getCampaignUsersByUserIdCount",
-            "getTotalNodeCountByCampaign",
-            "getHackingNodeCountByCampaign",
-            "getRedHackingNodeCountByCampaign"
-        ]),
+        // ...mapGetters([
+        //     "getCampaignById",
+        //     "getActiveCampaigns",
+        //     "getCampaignsCount",
+        //     "getCampaignUsersByUserId",
+        //     "getCampaignUsersByUserIdCount",
+        //     "getTotalNodeCountByCampaign",
+        //     "getHackingNodeCountByCampaign",
+        //     "getRedHackingNodeCountByCampaign"
+        // ]),
 
-        campaign() {
-            return this.getCampaignById(this.$route.params.id);
-        },
+        // campaign() {
+        //     return this.getCampaignById(this.$route.params.id);
+        // },
 
-        closechannel(){
-            if (this.campaigan.defenders_score == 1 || this.campaigan.defenders_score == 0){
-                Echo.leave(this.channel);
-            }
-        },
+        // closechannel(){
+        //     if (this.campaigan.defenders_score == 1 || this.campaigan.defenders_score == 0){
+        //         Echo.leave(this.channel);
+        //     }
+        // },
 
-        userCharsDrop() {
-            // let payload = {
-            //     id: this.$store.state.user_id,
-            //     campaignID: this.$route.params.id}
-            return this.getCampaignUsersByUserId(this.$store.state.user_id);
-        },
+        // userCharsDrop() {
+        //     // let payload = {
+        //     //     id: this.$store.state.user_id,
+        //     //     campaignID: this.$route.params.id}
+        //     return this.getCampaignUsersByUserId(this.$store.state.user_id);
+        // },
 
-        userCount() {
-            return this.getCampaignUsersByUserIdCount(
-                this.$store.state.user_id
-            );
-        },
-        barScoure() {
-            var d =
-                this.getCampaignById(this.$route.params.id).defenders_score *
-                100;
-            var a =
-                this.getCampaignById(this.$route.params.id).attackers_score *
-                100;
+        // userCount() {
+        //     return this.getCampaignUsersByUserIdCount(
+        //         this.$store.state.user_id
+        //     );
+        // },
+        // barScoure() {
+        //     var d =
+        //         this.getCampaignById(this.$route.params.id).defenders_score *
+        //         100;
+        //     var a =
+        //         this.getCampaignById(this.$route.params.id).attackers_score *
+        //         100;
 
-            if (d > 50) {
-                return d;
-            }
+        //     if (d > 50) {
+        //         return d;
+        //     }
 
-            return a;
-        },
+        //     return a;
+        // },
 
-        barBgcolor() {
-            var d =
-                this.getCampaignById(this.$route.params.id).defenders_score *
-                100;
-            var a =
-                this.getCampaignById(this.$route.params.id).attackers_score *
-                100;
+        // barBgcolor() {
+        //     var d =
+        //         this.getCampaignById(this.$route.params.id).defenders_score *
+        //         100;
+        //     var a =
+        //         this.getCampaignById(this.$route.params.id).attackers_score *
+        //         100;
 
-            if (d > 50) {
-                return "red darken-4";
-            }
+        //     if (d > 50) {
+        //         return "red darken-4";
+        //     }
 
-            return "blue darken-4";
-        },
+        //     return "blue darken-4";
+        // },
 
-        barColor() {
-            var d =
-                this.getCampaignById(this.$route.params.id).defenders_score *
-                100;
-            if (d > 50) {
-                return "blue darken-4";
-            }
+        // barColor() {
+        //     var d =
+        //         this.getCampaignById(this.$route.params.id).defenders_score *
+        //         100;
+        //     if (d > 50) {
+        //         return "blue darken-4";
+        //     }
 
-            return "red darken-4";
-        },
+        //     return "red darken-4";
+        // },
 
-        barReverse() {
-            var d =
-                this.getCampaignById(this.$route.params.id).defenders_score *
-                100;
-            if (d > 50) {
-                return false;
-            }
+        // barReverse() {
+        //     var d =
+        //         this.getCampaignById(this.$route.params.id).defenders_score *
+        //         100;
+        //     if (d > 50) {
+        //         return false;
+        //     }
 
-            return true;
-        },
+        //     return true;
+        // },
 
-        barActive() {
-            if (this.getCampaignById(this.$route.params.id).status_id > 1) {
-                return true;
-            }
-            return false;
-        },
-        nodeCountAll() {
-            return this.getTotalNodeCountByCampaign(this.$route.params.id);
-        },
+        // barActive() {
+        //     if (this.getCampaignById(this.$route.params.id).status_id > 1) {
+        //         return true;
+        //     }
+        //     return false;
+        // },
+        // nodeCountAll() {
+        //     return this.getTotalNodeCountByCampaign(this.$route.params.id);
+        // },
 
-        nodeCountHackingCountAll() {
-            return this.getHackingNodeCountByCampaign(this.$route.params.id);
-        },
+        // nodeCountHackingCountAll() {
+        //     return this.getHackingNodeCountByCampaign(this.$route.params.id);
+        // },
 
-        nodeRedCountHackingCountAll() {
-            return this.getRedHackingNodeCountByCampaign(this.$route.params.id);
-        }
+        // nodeRedCountHackingCountAll() {
+        //     return this.getRedHackingNodeCountByCampaign(this.$route.params.id);
+        // }
     },
     beforeDestroy() {
         this.leaving();
