@@ -291,6 +291,17 @@ export default {
             return a;
         },
 
+        campaignStart() {
+            var data = {
+                id: this.sCampaignID,
+                status_id: 2,
+                status_name: "Active"
+            };
+            this.$store.dispatch("updateCampaignSystem", data);
+            this.$store.dispatch("updateCampaign", data);
+            this.loadcampaigns()
+        },
+
         barActive() {
             if (this.getCampaignById(this.sCampaignID).status_id > 1) {
                 return true;

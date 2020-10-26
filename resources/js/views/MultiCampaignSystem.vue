@@ -725,15 +725,7 @@ export default {
             );
             this.$store.dispatch("getCampaignSystemsRecords");
         },
-        campaignStart() {
-            var data = {
-                id: this.campaign.id,
-                status_id: 2,
-                status_name: "Active"
-            };
-            this.$store.dispatch("updateCampaignSystem", data);
-            this.$store.dispatch("updateCampaign", data);
-        }
+
     },
 
     computed: {
