@@ -243,6 +243,11 @@ export default {
             "getHackingNodeCountByCampaign",
             "getRedHackingNodeCountByCampaign"
         ]),
+
+         campaign() {
+             console.log(this.sCampaignID)
+            return this.getCampaignById(this.sCampaignID);
+        },
         barColor() {
             var d =
                 this.getCampaignById(this.sCampaignID).defenders_score * 100;
@@ -296,9 +301,7 @@ export default {
             return true;
         },
 
-        campaign() {
-            return this.getCampaignById(this.sCampaignID);
-        }
+
     }
 };
 </script>
