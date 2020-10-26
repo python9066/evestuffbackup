@@ -198,7 +198,7 @@
                                             Node</v-btn
                                         >
                                     </template>
-                                    <v-card tile min-height="300px">
+                                    <v-card tile min-height="500px">
                                         <v-select
                                         :item-text="this.campaignJoinDrop.text"
                                         :item-value="this.campaignJoinDrop.campaign_id"
