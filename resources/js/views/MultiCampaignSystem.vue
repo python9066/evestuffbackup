@@ -737,7 +737,7 @@ export default {
 
     computed: {
         ...mapGetters([
-            "getCampaignById",
+            "getsCampaignById",
             "getActiveCampaigns",
             "getCampaignsCount",
             "getCampaignUsersByUserId",
@@ -748,7 +748,7 @@ export default {
         ]),
 
         sCampaigns() {
-            return this.getCampaignById(this.campaignId);
+            return this.getsCampaignById(this.campaignId);
         },
 
         closechannel(){
