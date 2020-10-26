@@ -3,12 +3,12 @@
         <v-col md="10">
             <v-card class="pa-2" tile width="100%">
                 <v-card-title align="end" class="justify-center">
-                    <p>
+                    <caption>
                         Campaign page for the
                         {{ this.campaign.item_name }} in
                         {{ this.campaign.system }} -
                         {{ this.campaign.alliance }}
-                    </p>
+                    </caption>
                 </v-card-title>
                 <div
                     class="d-flex full-width align-content-center"
