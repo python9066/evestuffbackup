@@ -200,7 +200,7 @@ export default {
     methods: {
         barColor() {
             var d =
-                this.getCampaignById(this.campaignId).defenders_score *
+                this.getCampaignById(this.sCampaignID).defenders_score *
                 100;
             if (d > 50) {
                 return "blue darken-4";
