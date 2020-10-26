@@ -57,7 +57,7 @@ class CampaignJoinsController extends Controller
                 $data = [];
                 $data = [
                     "id" => $camp['system_id'],
-                    "system_name" => $camp['system_name']
+                    "system_name" => $camp['system']
                 ];
             }
             array_push($list, $data);
