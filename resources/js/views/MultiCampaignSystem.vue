@@ -730,16 +730,16 @@ export default {
     },
 
     computed: {
-        // ...mapGetters([
-        //     "getCampaignById",
-        //     "getActiveCampaigns",
-        //     "getCampaignsCount",
-        //     "getCampaignUsersByUserId",
-        //     "getCampaignUsersByUserIdCount",
-        //     "getTotalNodeCountByCampaign",
-        //     "getHackingNodeCountByCampaign",
-        //     "getRedHackingNodeCountByCampaign"
-        // ]),
+        ...mapGetters([
+            "getCampaignById",
+            "getActiveCampaigns",
+            "getCampaignsCount",
+            "getCampaignUsersByUserId",
+            "getCampaignUsersByUserIdCount",
+            "getTotalNodeCountByCampaign",
+            "getHackingNodeCountByCampaign",
+            "getRedHackingNodeCountByCampaign"
+        ]),
 
         // campaign() {
         //     return this.getCampaignById(this.$route.params.id);
