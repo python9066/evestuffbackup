@@ -671,7 +671,7 @@ export default {
                     "/api/campaignusers/" +
                     this.oldChar.id +
                     "/" +
-                    this.$route.params.id,
+                    this.campaignId,
                 data: request,
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
