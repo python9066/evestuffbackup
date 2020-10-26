@@ -199,14 +199,15 @@
                                         >
                                     </template>
                                     <v-card tile min-height="300px">
-
+                                        <div>
                                         <v-card-title class=" pb-0">
                                             <v-select
                                         :item-text="this.campaignJoinDrop.text"
                                         :item-value="this.campaignJoinDrop.campaign_id"
                                         :items="this.campaignJoinDrop">
-
                                         </v-select>
+                                        </div>
+                                        <div>
                                             <v-text-field
                                                 class=" mt-2"
                                                 label="Node"
@@ -221,6 +222,7 @@
                                                         (nodeText = '')
                                                 "
                                             ></v-text-field>
+                                        </div>
                                         </v-card-title>
 
                                         <v-card-text>
