@@ -22,17 +22,18 @@ class CampaignJoinsController extends Controller
         foreach ($pull as $pull) {
             $camp = CampaignRecords::where('id', $pull['campaign_id'])->get();
             $count = $camp->count();
-            if($count != 0){
-            foreach ($camp as $camp) {
-                $data = [];
-                $data = [
-                    "text" => $camp['system']. " - ". $camp['item_name'],
-                    "custom_campaign_id" => $pull['custom_campaign_id'],
-                    "color" => $camp['color']
-                ];
+            if ($count != 0) {
+                foreach ($camp as $camp) {
+                    $data = [];
+                    $data = [
+                        "text" => $camp['system'] . " - " . $camp['item_name'],
+                        "custom_campaign_id" => $pull['custom_campaign_id'],
+                        "color" => $camp['color']
+                    ];
+                }
+                array_push($list, $data);
             }
-            array_push($list, $data);
-        }}
+        }
         return ["value" => $list];
     }
 
@@ -52,17 +53,17 @@ class CampaignJoinsController extends Controller
         $list = [];
         $pull = CampaignJoin::where('custom_campaign_id', $id)->with('campaign')->get();
         foreach ($pull as $pull) {
-            $const = Constellation::where('id',$pull['campaign']['constellation_id'])->get();
-            foreach ($const as $const){
-                $sys = System::where('constellation_id',$const['id'])->get();
-                foreach ($camp as $camp) {
+            $const = Constellation::where('id', $pull['campaign']['constellation_id'])->get();
+            foreach ($const as $const) {
+                $sys = System::where('constellation_id', $const['id'])->get();
+                foreach ($sys as $sys) {
                     $data = [];
                     $data = [
-                        "id" => $camp['system_id'],
-                        "system_name" => $camp['system']
+                        "id" => $sys['id'],
+                        "system_name" => $sys['system_name']
                     ];
                 }
-            dd($sys);
+
             }
 
 
@@ -85,15 +86,16 @@ class CampaignJoinsController extends Controller
         foreach ($pull as $pull) {
             $camp = CampaignRecords::where('id', $pull)->get();
             $count = $camp->count();
-            if($count != 0){
-            foreach ($camp as $camp) {
-                $data = [];
-                $data = [
-                    "text" => $camp['system']. " - ". $camp['item_name']
-                ];
+            if ($count != 0) {
+                foreach ($camp as $camp) {
+                    $data = [];
+                    $data = [
+                        "text" => $camp['system'] . " - " . $camp['item_name']
+                    ];
+                }
+                array_push($list, $data);
             }
-            array_push($list, $data);
-        }}
+        }
         return ["value" => $list];
     }
 
