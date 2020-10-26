@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\CampaignJoin;
 use App\Models\CampaignSystem;
 use App\Models\CampaignSystemUsers;
+use App\Models\CampaignUser;
 use App\Models\CustomCampaign;
 use Illuminate\Http\Request;
 
@@ -101,6 +102,9 @@ class CustomCampaignsController extends Controller
         CampaignJoin::where('custom_campaign_id',$id)->delete();
         CampaignSystem::where('custom_campaign_id',$id)->delete();
         CampaignSystemUsers::where('custom_campaign_id',$id)->delete();
+        CampaignUser::where('campaign_id',$id)->delete();
+
+
 
     }
 }
