@@ -362,24 +362,27 @@
                                 </div>
                             </v-row>
                         </v-menu>
+                        <v-btn v-if="$can('access_campaigns')" @click="finishCampaign()" class="mr-4" color="red">Campaign Over</v-btn>
                         <v-btn v-if="$can('super')" @click="overlay = !overlay">
                             test
                         </v-btn>
                         <v-tooltip bottom>
-                        <template v-slot:activator="{ on, attrs }">
-                        <v-btn
-                            v-if="$can('access_campaigns')"
-                            fab
-                            dark
-                            small
-                            v-bind="attrs"
-                            v-on="on"
-                            @click="sendAddCharMessage()"
-                        >
-                            <v-icon>fas fa-bullhorn</v-icon>
-                        </v-btn>
-                        </template>
-                        <span> Send a message to all Users without a Char added </span>
+                            <template v-slot:activator="{ on, attrs }">
+                                <v-btn
+                                    v-if="$can('access_campaigns')"
+                                    fab
+                                    dark
+                                    small
+                                    v-bind="attrs"
+                                    v-on="on"
+                                    @click="sendAddCharMessage()"
+                                >
+                                    <v-icon>fas fa-bullhorn</v-icon>
+                                </v-btn>
+                            </template>
+                            <span>
+                                Send a message to all Users without a Char added
+                            </span>
                         </v-tooltip>
                     </div>
                     <v-spacer></v-spacer>
@@ -420,7 +423,6 @@
                             </div></v-progress-circular
                         >
                     </div>
-
                 </v-card>
             </v-col>
         </v-row>
@@ -564,7 +566,7 @@ export default {
 
                 if (e.flag.flag == 7) {
                     //  console.log(6);
-                    this.$router.push('/campaignfinished')
+                    this.$router.push("/campaignfinished");
                 }
             },
 
@@ -601,7 +603,7 @@ export default {
             }
         },
 
-        async finishCampaign(item){
+        async finishCampaign() {
             await axios({
                 method: "get", //you can set what request you want to be
                 url: "/api/campaignsystemfinished/" + this.$route.params.id,
@@ -612,12 +614,12 @@ export default {
                 }
             });
 
-            this.$router.push('/campaignfinished')
+            this.$router.push("/campaignfinished");
         },
 
-        kickUser(user_id){
-            if(this.$store.state.user_id == user_id){
-                this.$router.push('/campaignkick');
+        kickUser(user_id) {
+            if (this.$store.state.user_id == user_id) {
+                this.$router.push("/campaignkick");
             }
         },
 
@@ -908,8 +910,11 @@ export default {
             return this.getCampaignById(this.$route.params.id);
         },
 
-        closechannel(){
-            if (this.campaigan.defenders_score == 1 || this.campaigan.defenders_score == 0){
+        closechannel() {
+            if (
+                this.campaigan.defenders_score == 1 ||
+                this.campaigan.defenders_score == 0
+            ) {
                 Echo.leave(this.channel);
             }
         },
