@@ -202,6 +202,7 @@ export default {
             var d =
                 this.getCampaignById(this.sCampaignID).defenders_score *
                 100;
+                console.log(d)
             if (d > 50) {
                 return "blue darken-4";
             }
