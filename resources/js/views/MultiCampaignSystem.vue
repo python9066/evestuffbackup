@@ -618,7 +618,7 @@ export default {
             });
             this.$store.dispatch(
                 "getCampaignUsersRecords",
-                this.$route.params.id
+                this.campaignId
             );
             this.role = null;
             this.newCharName = null;
