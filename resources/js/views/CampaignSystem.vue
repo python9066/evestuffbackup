@@ -367,6 +367,8 @@
                                 <v-btn
                                     v-if="$can('access_campaigns')"
                                     dark
+                                    color="red"
+                                    class="mr-4"
                                     v-bind="attrs"
                                     v-on="on"
                                     @click="finishCampaign()"
