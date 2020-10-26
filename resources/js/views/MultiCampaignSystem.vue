@@ -393,8 +393,7 @@ export default {
 
     async created() {
         this.campaignId = this.$route.params.id;
-        this.joinchannels()
-        Echo.listen(
+        Echo.private("campaignsystem." + this.$route.params.id).listen(
             "CampaignSystemUpdate",
             e => {
                 // console.log(e);
@@ -439,7 +438,6 @@ export default {
 
     beforeCreate() {
         this.$store.dispatch("getCampaignJoinData");
-        this.sCampaigns.foreach(s => console.log(111111111))
     },
 
     async mounted() {
@@ -455,14 +453,6 @@ export default {
         await this.$store.dispatch("getCampaignSystemsRecords");
     },
     methods: {
-
-        joinchannels(){
-            Echo.private("campaignsystem." + this.$route.params.id)
-
-
-
-        },
-
         checkAddUser() {
             if (this.userCount == 0) {
                 this.overlay = true;

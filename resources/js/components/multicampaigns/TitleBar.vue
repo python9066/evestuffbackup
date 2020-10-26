@@ -228,9 +228,50 @@ export default {
         return {};
     },
 
-    created() {},
+     async created() {
+        this.campaignId = this.$route.params.id;
+        Echo.private("campaignsystem." + this.$route.params.id).listen(
+            "CampaignSystemUpdate",
+            e => {
+                // console.log(e);
+                if (e.flag.flag == 1) {
+                    // console.log(1);
+                    this.loadUsersRecords();
+                }
+                if (e.flag.flag == 2) {
+                    // console.log(2);
+                    this.loadCampaignSystemRecords();
+                }
+                if (e.flag.flag == 3) {
+                    // console.log(3);
+                    this.loadCampaignSystemRecords();
+                    this.loadUsersRecords();
+                }
+                if (e.flag.flag == 4) {
+                    // console.log(4);
+                    this.loadcampaigns();
+                    this.loadCampaignSystemRecords();
+                    this.loadUsersRecords();
+                }
+                if (e.flag.flag == 5) {
+                    // console.log(4);
+                    this.checkAddUser();
+                }
 
-    methods: {},
+                if (e.flag.flag == 6) {
+                    //  console.log(6);
+                    this.kickUser(e.flag.user_id);
+                }
+            },
+        );
+        this.channel = "campaignsystem." + this.campaignId;
+    },
+
+    methods: {
+        async leaving() {
+            Echo.leave(this.channel);
+        }
+    },
 
     computed: {
         ...mapGetters([
@@ -302,6 +343,10 @@ export default {
         },
 
 
+    },
+    beforeDestroy() {
+        this.leaving();
     }
+
 };
 </script>
