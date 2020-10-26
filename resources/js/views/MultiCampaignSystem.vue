@@ -393,42 +393,43 @@ export default {
 
     async created() {
         this.campaignId = this.$route.params.id;
-        // Echo.private("campaignsystem." + this.$route.params.id).listen(
-        //     "CampaignSystemUpdate",
-        //     e => {
-        //         // console.log(e);
-        //         if (e.flag.flag == 1) {
-        //             // console.log(1);
-        //             this.loadUsersRecords();
-        //         }
-        //         if (e.flag.flag == 2) {
-        //             // console.log(2);
-        //             this.loadCampaignSystemRecords();
-        //         }
-        //         if (e.flag.flag == 3) {
-        //             // console.log(3);
-        //             this.loadCampaignSystemRecords();
-        //             this.loadUsersRecords();
-        //         }
-        //         if (e.flag.flag == 4) {
-        //             // console.log(4);
-        //             this.loadcampaigns();
-        //             this.loadCampaignSystemRecords();
-        //             this.loadUsersRecords();
-        //         }
-        //         if (e.flag.flag == 5) {
-        //             // console.log(4);
-        //             this.checkAddUser();
-        //         }
+        this.joinchannels()
+        Echo.listen(
+            "CampaignSystemUpdate",
+            e => {
+                // console.log(e);
+                if (e.flag.flag == 1) {
+                    // console.log(1);
+                    this.loadUsersRecords();
+                }
+                if (e.flag.flag == 2) {
+                    // console.log(2);
+                    this.loadCampaignSystemRecords();
+                }
+                if (e.flag.flag == 3) {
+                    // console.log(3);
+                    this.loadCampaignSystemRecords();
+                    this.loadUsersRecords();
+                }
+                if (e.flag.flag == 4) {
+                    // console.log(4);
+                    this.loadcampaigns();
+                    this.loadCampaignSystemRecords();
+                    this.loadUsersRecords();
+                }
+                if (e.flag.flag == 5) {
+                    // console.log(4);
+                    this.checkAddUser();
+                }
 
-        //         if (e.flag.flag == 6) {
-        //             //  console.log(6);
-        //             this.kickUser(e.flag.user_id);
-        //         }
-        //     },
+                if (e.flag.flag == 6) {
+                    //  console.log(6);
+                    this.kickUser(e.flag.user_id);
+                }
+            },
 
-        //     window.addEventListener("beforeunload", this.leaving)
-        // );
+            window.addEventListener("beforeunload", this.leaving)
+        );
         this.channel = "campaignsystem." + this.campaignId;
         this.navdrawer = true;
         this.addMember();
@@ -438,6 +439,7 @@ export default {
 
     beforeCreate() {
         this.$store.dispatch("getCampaignJoinData");
+        this.sCampaigns.foreach(s => console.log(111111111))
     },
 
     async mounted() {
@@ -453,6 +455,14 @@ export default {
         await this.$store.dispatch("getCampaignSystemsRecords");
     },
     methods: {
+
+        joinchannels(){
+            Echo.private("campaignsystem." + this.$route.params.id)
+
+
+
+        },
+
         checkAddUser() {
             if (this.userCount == 0) {
                 this.overlay = true;
