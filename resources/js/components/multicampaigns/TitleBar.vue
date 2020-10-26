@@ -3,22 +3,22 @@
         <v-col md="10">
             <v-card class="pa-2" tile width="100%">
                 <v-card-title align="center" class="justify-center">
-                    <h1>
-                        Campaign page for the
+
+                        {{ this.campaign.item_name }} in
+                        {{ this.campaign.system }}
                         <v-avatar size="35"
                             ><img :src="this.campaign.url"
                         /></v-avatar>
                         -
-                        {{ this.campaign.alliance }}
-                    </h1>
+                        {{ this.campaign.ticker }}
+
                 </v-card-title>
                 <div
                     class="d-flex full-width align-content-center"
                     v-if="this.campaign.status_id > 1"
                 >
                     <!-- <div>
-                    {{ this.campaign.item_name }} in
-                    {{ this.campaign.system }}
+
                     </div> -->
                     <v-icon
                         v-if="
