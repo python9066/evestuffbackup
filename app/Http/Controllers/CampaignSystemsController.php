@@ -129,6 +129,15 @@ class CampaignSystemsController extends Controller
         ]);
         broadcast(new CampaignSystemUpdate($flag))->toOthers();
     }
+
+    public function finishCampaign($campid)
+    {
+        $flag = collect([
+            'flag' => 7,
+            'id' => $campid,
+        ]);
+        broadcast(new CampaignSystemUpdate($flag))->toOthers();
+    }
     // public function destroy($id)
     // {
 

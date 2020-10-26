@@ -15,6 +15,7 @@ import store from "./store";
 import FeedBack from "./views/FeedBack.vue";
 import campaginSystemKick from "./views/redirect/campaginSystemKick.vue";
 import MultiCampagins from "./views/MultiCampaigns.vue";
+import campaignFinished from "./views/redirect/campaignOver.vue";
 
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
@@ -143,6 +144,12 @@ export default new Router({
             path: "/redirect/stations",
             name: "campagin_redirect",
             component: StationsRedirect
+        },
+
+        {
+            path: "/campaignfinished",
+            name: "campaignfinished",
+            component: campaignFinished
         },
 
         {

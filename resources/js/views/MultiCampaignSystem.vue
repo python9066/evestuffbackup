@@ -2,7 +2,8 @@
     <div>
         <span  v-for="(sCampaign, index) in sCampaigns" :key="index" >
             <TitleBar
-            :sCampaignID = sCampaign.campaign_id>
+            :sCampaignID = sCampaign.campaign_id
+            @updateNow="updateBar()">
             </TitleBar>
         </span>
 
@@ -453,6 +454,9 @@ export default {
         await this.$store.dispatch("getCampaignSystemsRecords");
     },
     methods: {
+        updateBar(){
+            this.loadcampaigns()
+        },
         checkAddUser() {
             if (this.userCount == 0) {
                 this.overlay = true;

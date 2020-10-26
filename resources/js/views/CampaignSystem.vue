@@ -561,6 +561,11 @@ export default {
                     //  console.log(6);
                     this.kickUser(e.flag.user_id);
                 }
+
+                if (e.flag.flag == 7) {
+                    //  console.log(6);
+                    this.$router.push('/campaignfinished')
+                }
             },
 
             window.addEventListener("beforeunload", this.leaving)
@@ -594,6 +599,20 @@ export default {
             if (this.userCount == 0) {
                 this.overlay = true;
             }
+        },
+
+        async finishCampaign(item){
+            await axios({
+                method: "get", //you can set what request you want to be
+                url: "/api/campaignsystemfinished/" + this.$route.params.id,
+                headers: {
+                    Authorization: "Bearer " + this.$store.state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                }
+            });
+
+            this.$router.push('/campaignfinished')
         },
 
         kickUser(user_id){
