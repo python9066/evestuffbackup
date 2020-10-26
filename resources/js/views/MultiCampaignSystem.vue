@@ -438,7 +438,7 @@ export default {
             await this.$store.dispatch("getCampaigns");
         }
         // console.log(this.$route.params.id)
-        await this.getSystems(this.this.$route.params.id);
+        await this.getSystems(this.campaignId);
         await this.$store.dispatch(
             "getCampaignUsersRecords",
             this.$route.params.id
