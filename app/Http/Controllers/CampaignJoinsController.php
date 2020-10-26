@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\CampaignJoin;
 use App\Models\CampaignRecords;
+use App\Models\Constellation;
 use Illuminate\Http\Request;
 
 class CampaignJoinsController extends Controller
@@ -48,10 +49,10 @@ class CampaignJoinsController extends Controller
     public function campaignSystems($id)
     {
         $list = [];
-        $pull = CampaignJoin::where('custom_campaign_id', $id)->with('campaign')->with('constellation')->get();
-        dd($pull);
+        $pull = CampaignJoin::where('custom_campaign_id', $id)->with('campaign')->get();
         foreach ($pull as $pull) {
-            $camp = CampaignRecords::where('id', $pull)->get();
+            $const = Constellation::where('id',$pull['constellation_id']);
+            dd($const);
             $count = $camp->count();
             if($count != 0){
             foreach ($camp as $camp) {
