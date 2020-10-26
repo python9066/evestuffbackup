@@ -424,7 +424,7 @@ export default {
 
         //     window.addEventListener("beforeunload", this.leaving)
         // );
-        this.channel = "campaignsystem." + this.$route.params.id;
+        this.channel = "campaignsystem." + this.campaignId;
         this.navdrawer = true;
         this.addMember();
     },
