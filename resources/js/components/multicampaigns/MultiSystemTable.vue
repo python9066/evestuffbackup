@@ -267,6 +267,7 @@
                     :single-expand="singleExpand"
                     item-key="node"
                     show-expand
+                    dense
                     disable-sort
                     :expanded.sync="expanded"
                     :item-class="itemRowBackground"
