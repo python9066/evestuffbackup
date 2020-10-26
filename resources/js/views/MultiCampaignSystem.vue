@@ -747,7 +747,7 @@ export default {
         ...mapState(['campaignJoin']),
 
         sCampaigns() {
-            return this.getsCampaignById();
+            return this.getsCampaignById(this.campaignId);
         },
 
         closechannel(){
