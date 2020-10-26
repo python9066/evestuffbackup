@@ -210,13 +210,13 @@
                                                 label="Campaign"
                                                 placeholder="Which Hack is this for"
                                                 :item-text="
-                                                    this.campaignJoinDrop.text
+                                                    campaignJoinDrop.text
                                                 "
                                                 :item-value="
-                                                    this.campaignJoinDrop
+                                                    campaignJoinDrop
                                                         .campaign_id
                                                 "
-                                                :items="this.campaignJoinDrop"
+                                                :items="campaignJoinDrop"
                                                 autofocus
                                             >
                                             </v-select>
