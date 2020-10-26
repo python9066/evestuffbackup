@@ -739,9 +739,9 @@ export default {
             "getCampaignsCount",
             "getCampaignUsersByUserId",
             "getCampaignUsersByUserIdCount",
-            "getTotalNodeCountByCampaign",
-            "getHackingNodeCountByCampaign",
-            "getRedHackingNodeCountByCampaign"
+            "getTotalNodeCountByMultiCampaign",
+            "getHackingNodeCountByMultiCampaign",
+            "getRedHackingNodeCountByMultiCampaign"
         ]),
 
         ...mapState(['campaignJoin']),
@@ -778,15 +778,15 @@ export default {
 
 
         nodeCountAll() {
-            return this.getTotalNodeCountByCampaign(this.campaignId);
+            return this.getTotalNodeCountByMultiCampaign(this.campaignId);
         },
 
         nodeCountHackingCountAll() {
-            return this.getHackingNodeCountByCampaign(this.campaignId);
+            return this.getHackingNodeCountByMultiCampaign(this.campaignId);
         },
 
         nodeRedCountHackingCountAll() {
-            return this.getRedHackingNodeCountByCampaign(this.campaignId);
+            return this.getRedHackingNodeCountByMultiCampaign(this.campaignId);
         }
     },
     beforeDestroy() {
