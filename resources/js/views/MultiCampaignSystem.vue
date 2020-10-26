@@ -799,16 +799,7 @@ export default {
             return "blue darken-4";
         },
 
-        barColor() {
-            var d =
-                this.getCampaignById(this.campaignId).defenders_score *
-                100;
-            if (d > 50) {
-                return "blue darken-4";
-            }
 
-            return "red darken-4";
-        },
 
         barReverse() {
             var d =
