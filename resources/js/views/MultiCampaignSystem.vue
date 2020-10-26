@@ -742,7 +742,7 @@ export default {
         ]),
 
         campaign() {
-            return this.getCampaignById(this.campaignId;
+            return this.getCampaignById(this.campaignId);
         },
 
         closechannel(){
