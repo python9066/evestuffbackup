@@ -415,7 +415,7 @@ export default {
         system_name: String,
         system_id: Number,
         campaign_id: String,
-        campaignJoinDrop:Object
+        campaignJoinDrop:Array
     },
     data() {
         return {
