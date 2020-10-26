@@ -2,20 +2,12 @@
     <v-row no-gutters v-if="this.getCampaignsCount > 1" justify="space-around">
         <v-col md="10">
             <v-card class="pa-2" tile width="100%">
-                 <div
+                <div
                     class="d-flex full-width align-content-center"
                     v-if="this.campaign.status_id > 1"
                 >
-
-                        {{ this.campaign.item_name }} in
-                        {{ this.campaign.system }}
-                        <v-avatar size="35"
-                            ><img :src="this.campaign.url"
-                        /></v-avatar>
-                        -
-                        {{ this.campaign.ticker }}
-
-
+                   <p> {{ this.campaign.item_name }} in
+                    {{ this.campaign.system }} - {{ this.campaign.ticker }}</p>
 
                     <!-- <div>
 
