@@ -3,6 +3,7 @@
 namespace utils\Campaignhelper;
 
 use App\Models\Campaign;
+use App\Models\CampaignJoin;
 use App\Models\CampaignSystem;
 use App\Models\CampaignUser;
 use GuzzleHttp\Client;
@@ -25,6 +26,7 @@ class Campaignhelper
                 CampaignUser::where('campaign_id', $toDelete->id)->delete();
                 CampaignSystem::where('campaign_id', $toDelete->id)->delete();
                 Campaign::where('id', $toDelete->id)->delete();
+                CampaignJoin::where('campaign_id',$toDelete->id)->delete();
             }
         }
         Campaign::where('id', '>', 0)->update(['check' => 0]);
@@ -89,7 +91,7 @@ class Campaignhelper
         }
         // dd("fwefe");
         $now = now();
-        $now10 = now()->modify('-10 minutes');
+        $now10 = now()->modify('-12 hours');
         $yesterday = now('-8 hours');
         $check = Campaign::where('start_time', '<=', $now)->where('status_id', 1)->count();
         if ($check > 0) {
