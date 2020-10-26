@@ -216,7 +216,7 @@
                                                     campaignJoinDrop
                                                         .campaign_id
                                                 "
-                                                :items="campaignJoinDrop"
+
                                                 autofocus
                                             >
                                             </v-select>
