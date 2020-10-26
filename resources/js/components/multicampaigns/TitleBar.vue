@@ -2,7 +2,6 @@
     <v-row
         no-gutters
         v-if="this.getCampaignsCount > 1"
-        class="pt-5"
         justify="space-around"
     >
         <v-col md="10">
