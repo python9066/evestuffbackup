@@ -16,10 +16,10 @@
                     class="d-flex full-width align-content-center"
                     v-if="this.campaign.status_id > 1"
                 >
-                    <div>
+                    <!-- <div>
                     {{ this.campaign.item_name }} in
                     {{ this.campaign.system }}
-                    </div>
+                    </div> -->
                     <v-icon
                         v-if="
                             this.campaign.defenders_score >
