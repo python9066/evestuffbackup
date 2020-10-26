@@ -200,22 +200,21 @@
                                     </template>
                                     <v-card tile min-height="300px">
                                         <v-card-title class=" pb-0">
-                                        <p>
+                                        </v-card-title>
+                                        <v-card-text>
                                             <v-select
                                         :item-text="this.campaignJoinDrop.text"
                                         :item-value="this.campaignJoinDrop.campaign_id"
-                                        :items="this.campaignJoinDrop">
+                                        :items="this.campaignJoinDrop"
+                                        autofocus>
 
                                         </v-select>
-                                        </p>
-                                        <p>
                                             <v-text-field
                                                 class=" mt-2"
                                                 label="Node"
                                                 placeholder="Enter Node"
                                                 flat
                                                 v-mask="'AA##'"
-                                                autofocus
                                                 v-model="nodeText"
                                                 @keyup.enter="addNode()"
                                                 @keyup.esc="
@@ -223,10 +222,9 @@
                                                         (nodeText = '')
                                                 "
                                             ></v-text-field>
-                                        </p>
-                                        </v-card-title>
 
-                                        <v-card-text>
+                                        </v-card-text>
+                                        <v-card-actions>
                                             <v-btn
                                                 icon
                                                 fixed
@@ -251,7 +249,7 @@
                                                     >fas fa-times</v-icon
                                                 ></v-btn
                                             >
-                                        </v-card-text>
+                                        </v-card-actions>
                                     </v-card>
                                 </v-menu>
                             </div>
