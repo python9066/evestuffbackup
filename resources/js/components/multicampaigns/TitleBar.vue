@@ -195,7 +195,9 @@ export default {
         return {};
     },
 
-    created() {},
+    created() {
+        console.log(this.sCampaignID)
+    },
 
     methods: {
         barColor() {
