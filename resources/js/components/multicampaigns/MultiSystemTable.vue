@@ -199,7 +199,9 @@
                                         >
                                     </template>
                                     <v-card tile min-height="150px">
-                                        <v-select>
+                                        <v-select
+                                        :item-text="this.campaignJoinDrop.text"
+                                        :item-value="this.campaignJoinDrop.campign_id">
 
                                         </v-select>
                                         <v-card-title class=" pb-0">
