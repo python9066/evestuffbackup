@@ -5,8 +5,6 @@
                 <v-card-title align="center" class="justify-center">
                     <h1>
                         Campaign page for the
-                        {{ this.campaign.item_name }} in
-                        {{ this.campaign.system }} -
                         <v-avatar size="35"
                             ><img :src="this.campaign.url"
                         /></v-avatar>
@@ -18,6 +16,8 @@
                     class="d-flex full-width align-content-center"
                     v-if="this.campaign.status_id > 1"
                 >
+                    {{ this.campaign.item_name }} in
+                    {{ this.campaign.system }} -
                     <v-icon
                         v-if="
                             this.campaign.defenders_score >
@@ -208,7 +208,6 @@ export default {
         barColor() {
             var d =
                 this.getCampaignById(this.sCampaignID).defenders_score * 100;
-            console.log(d);
             if (d > 50) {
                 return "blue darken-4";
             }
@@ -219,7 +218,6 @@ export default {
         barScoure() {
             var d =
                 this.getCampaignById(this.sCampaignID).defenders_score * 100;
-            console.log(this.sCampaignID);
             var a =
                 this.getCampaignById(this.sCampaignID).attackers_score * 100;
 
