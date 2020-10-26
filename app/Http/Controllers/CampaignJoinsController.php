@@ -55,18 +55,18 @@ class CampaignJoinsController extends Controller
             $const = Constellation::where('id',$pull['campaign']['constellation_id'])->get();
             foreach ($const as $const){
                 $sys = System::where('constellation_id',$const['id'])->get();
-
+                foreach ($camp as $camp) {
+                    $data = [];
+                    $data = [
+                        "id" => $camp['system_id'],
+                        "system_name" => $camp['system']
+                    ];
+                }
             dd($sys);
             }
 
 
-            foreach ($camp as $camp) {
-                $data = [];
-                $data = [
-                    "id" => $camp['system_id'],
-                    "system_name" => $camp['system']
-                ];
-            }
+
             array_push($list, $data);
         }
         return ["systems" => $list];
