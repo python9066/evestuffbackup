@@ -61,6 +61,13 @@
                 >
                     Active
                 </v-btn>
+                <v-btn
+                    :loading="loadingf"
+                    :disabled="loadingf"
+                    @click="colorflag = 6"
+                >
+                    Finished
+                </v-btn>
             </v-btn-toggle>
         </div>
         <v-data-table
@@ -462,13 +469,18 @@ export default {
             if (this.colorflag == 3) {
                 return this.campaigns.filter(campaigns => campaigns.color == 3);
             }
+            if (this.colorflag == 6) {
+                return this.campaigns.filter(
+                    campaigns => campaigns.status_id == 3
+                );
+            }
             if (this.colorflag == 5) {
                 return this.campaigns.filter(
                     campaigns => campaigns.status_id == 2
                 );
             } else {
                 return this.campaigns.filter(
-                    campaigns => campaigns.status_id != 10
+                    campaigns => campaigns.status_id == 1 || campaigns.status_id == 2
                 );
             }
         }
