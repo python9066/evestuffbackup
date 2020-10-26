@@ -520,7 +520,7 @@ export default {
             }
             var request = {
                 user_id: user_id,
-                campaign_id: this.$route.params.id
+                campaign_id: this.campaignId
             };
 
             await axios({
