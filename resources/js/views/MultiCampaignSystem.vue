@@ -696,7 +696,7 @@ export default {
                     "/api/campaignusers/" +
                     this.oldChar.id +
                     "/" +
-                    this.$route.params.id,
+                    this.campaignId,
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
                     Accept: "application/json",
@@ -714,7 +714,7 @@ export default {
 
             this.$store.dispatch(
                 "getCampaignUsersRecords",
-                this.$route.params.id
+                this.campaignId
             );
             this.$store.dispatch("getCampaignSystemsRecords");
         },
