@@ -830,7 +830,7 @@ export default {
         },
 
         nodeRedCountHackingCountAll() {
-            return this.getRedHackingNodeCountByCampaign(this.$route.params.id);
+            return this.getRedHackingNodeCountByCampaign(this.campaignId);
         }
     },
     beforeDestroy() {
