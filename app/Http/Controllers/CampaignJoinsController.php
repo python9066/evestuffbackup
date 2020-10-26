@@ -70,6 +70,7 @@ class CampaignJoinsController extends Controller
 
 
         }
+        dd($list);
         $list = array_unique($list);
         return ["systems" => $list];
     }
