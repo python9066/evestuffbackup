@@ -1010,7 +1010,7 @@ export default {
                     s =>
                         s.status_id != 10 &&
                         s.system_id == this.system_id &&
-                        s.campaign_id == this.campaign_id
+                        s.custom_campaign_id == this.campaign_id
                 );
             }
         },
