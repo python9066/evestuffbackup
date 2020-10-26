@@ -599,7 +599,7 @@ export default {
         async newCharForm() {
             var request = {
                 site_id: this.$store.state.user_id,
-                campaign_id: this.$route.params.id,
+                campaign_id: this.campaignId,
                 char_name: this.newCharName,
                 link: this.newLink,
                 ship: this.newShip,
