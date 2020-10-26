@@ -233,34 +233,9 @@ export default {
         Echo.private("campaignsystem." + this.sCampaignID).listen(
             "CampaignSystemUpdate",
             e => {
-                // console.log(e);
-                if (e.flag.flag == 1) {
-                    // console.log(1);
-                    this.loadUsersRecords();
-                }
-                if (e.flag.flag == 2) {
-                    // console.log(2);
-                    this.loadCampaignSystemRecords();
-                }
-                if (e.flag.flag == 3) {
-                    // console.log(3);
-                    this.loadCampaignSystemRecords();
-                    this.loadUsersRecords();
-                }
                 if (e.flag.flag == 4) {
                     // console.log(4);
                     this.loadcampaigns();
-                    this.loadCampaignSystemRecords();
-                    this.loadUsersRecords();
-                }
-                if (e.flag.flag == 5) {
-                    // console.log(4);
-                    this.checkAddUser();
-                }
-
-                if (e.flag.flag == 6) {
-                    //  console.log(6);
-                    this.kickUser(e.flag.user_id);
                 }
             },
         );
@@ -270,7 +245,11 @@ export default {
     methods: {
         async leaving() {
             Echo.leave(this.channel);
-        }
+        },
+
+        loadCampaignSystemRecords() {
+            this.$store.dispatch("getCampaignSystemsRecords");
+        },
     },
 
     computed: {
