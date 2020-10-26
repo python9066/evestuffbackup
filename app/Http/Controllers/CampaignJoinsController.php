@@ -54,7 +54,7 @@ class CampaignJoinsController extends Controller
         foreach ($pull as $pull) {
             $const = Constellation::where('id',$pull['campaign']['constellation_id'])->get();
             foreach ($const as $const){
-                $sys = System::where('constellation_id',$const['id']);
+                $sys = System::where('constellation_id',$const['id'])->get();
 
             dd($sys);
             }
