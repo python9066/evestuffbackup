@@ -284,7 +284,7 @@
         </v-row>
 
         <v-row no-gutters justify="space-around" v-if="showTable == true">
-            <userTable :campaign_id="$route.params.id"> </userTable>
+            <userTable :campaign_id="campaignId"> </userTable>
         </v-row>
 
         <v-row no-gutters justify="center" :v-if="systemLoaded == true">
@@ -293,7 +293,7 @@
                 v-for="(system, index) in systems"
                 :system_name="system.system_name"
                 :system_id="system.id"
-                :campaign_id="$route.params.id"
+                :campaign_id="campaignId"
                 :index="index"
                 :key="system.id"
             >
