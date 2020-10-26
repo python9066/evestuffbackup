@@ -388,7 +388,7 @@ export default {
 
     async created() {
         this.campaignId = this.$route.params.id;
-        // Echo.private("campaignsystem." + this.campaignId).listen(
+        // Echo.private("campaignsystem." + this.$route.params.id).listen(
         //     "CampaignSystemUpdate",
         //     e => {
         //         // console.log(e);
@@ -424,7 +424,7 @@ export default {
 
         //     window.addEventListener("beforeunload", this.leaving)
         // );
-        this.channel = "campaignsystem." + this.campaignId;
+        this.channel = "campaignsystem." + this.$route.params.id;
         this.navdrawer = true;
         this.addMember();
     },
@@ -437,11 +437,11 @@ export default {
         if (this.$store.getters.getCampaignsCount == 0) {
             await this.$store.dispatch("getCampaigns");
         }
-        // console.log(this.campaignId)
-        await this.getSystems(this.this.campaignId);
+        // console.log(this.$route.params.id)
+        await this.getSystems(this.this.$route.params.id);
         await this.$store.dispatch(
             "getCampaignUsersRecords",
-            this.campaignId
+            this.$route.params.id
         );
         await this.$store.dispatch("getCampaignSystemsRecords");
     },
@@ -465,7 +465,7 @@ export default {
         loadUsersRecords() {
             this.$store.dispatch(
                 "getCampaignUsersRecords",
-                this.campaignId
+                this.$route.params.id
             );
         },
 
@@ -483,7 +483,7 @@ export default {
         async sendAddCharMessage() {
             await axios({
                 method: "get", //you can set what request you want to be
-                url: "/api/campaignsystemcheckaddchar/" + this.campaignId,
+                url: "/api/campaignsystemcheckaddchar/" + this.$route.params.id,
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
                     Accept: "application/json",
@@ -520,12 +520,12 @@ export default {
             }
             var request = {
                 user_id: user_id,
-                campaign_id: this.campaignId
+                campaign_id: this.$route.params.id
             };
 
             await axios({
                 method: "POST", //you can set what request you want to be
-                url: "/api/campaignsystemusers/" + this.campaignId,
+                url: "/api/campaignsystemusers/" + this.$route.params.id,
                 data: request,
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
@@ -599,7 +599,7 @@ export default {
         async newCharForm() {
             var request = {
                 site_id: this.$store.state.user_id,
-                campaign_id: this.campaignId,
+                campaign_id: this.$route.params.id,
                 char_name: this.newCharName,
                 link: this.newLink,
                 ship: this.newShip,
@@ -608,7 +608,7 @@ export default {
 
             await axios({
                 method: "POST", //you can set what request you want to be
-                url: "/api/campaignusers/" + this.campaignId,
+                url: "/api/campaignusers/" + this.$route.params.id,
                 data: request,
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
@@ -618,7 +618,7 @@ export default {
             });
             this.$store.dispatch(
                 "getCampaignUsersRecords",
-                this.campaignId
+                this.$route.params.id
             );
             this.role = null;
             this.newCharName = null;
@@ -671,7 +671,7 @@ export default {
                     "/api/campaignusers/" +
                     this.oldChar.id +
                     "/" +
-                    this.campaignId,
+                    this.$route.params.id,
                 data: request,
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
@@ -696,7 +696,7 @@ export default {
                     "/api/campaignusers/" +
                     this.oldChar.id +
                     "/" +
-                    this.campaignId,
+                    this.$route.params.id,
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
                     Accept: "application/json",
@@ -714,7 +714,7 @@ export default {
 
             this.$store.dispatch(
                 "getCampaignUsersRecords",
-                this.campaignId
+                this.$route.params.id
             );
             this.$store.dispatch("getCampaignSystemsRecords");
         },
@@ -742,7 +742,7 @@ export default {
         ]),
 
         campaign() {
-            return this.getCampaignById(this.campaignId);
+            return this.getCampaignById(this.$route.params.id);
         },
 
         closechannel(){
@@ -754,7 +754,7 @@ export default {
         userCharsDrop() {
             // let payload = {
             //     id: this.$store.state.user_id,
-            //     campaignID: this.campaignId}
+            //     campaignID: this.$route.params.id}
             return this.getCampaignUsersByUserId(this.$store.state.user_id);
         },
 
@@ -765,10 +765,10 @@ export default {
         },
         barScoure() {
             var d =
-                this.getCampaignById(this.campaignId).defenders_score *
+                this.getCampaignById(this.$route.params.id).defenders_score *
                 100;
             var a =
-                this.getCampaignById(this.campaignId).attackers_score *
+                this.getCampaignById(this.$route.params.id).attackers_score *
                 100;
 
             if (d > 50) {
@@ -780,10 +780,10 @@ export default {
 
         barBgcolor() {
             var d =
-                this.getCampaignById(this.campaignId).defenders_score *
+                this.getCampaignById(this.$route.params.id).defenders_score *
                 100;
             var a =
-                this.getCampaignById(this.campaignId).attackers_score *
+                this.getCampaignById(this.$route.params.id).attackers_score *
                 100;
 
             if (d > 50) {
@@ -795,7 +795,7 @@ export default {
 
         barColor() {
             var d =
-                this.getCampaignById(this.campaignId).defenders_score *
+                this.getCampaignById(this.$route.params.id).defenders_score *
                 100;
             if (d > 50) {
                 return "blue darken-4";
@@ -806,7 +806,7 @@ export default {
 
         barReverse() {
             var d =
-                this.getCampaignById(this.campaignId).defenders_score *
+                this.getCampaignById(this.$route.params.id).defenders_score *
                 100;
             if (d > 50) {
                 return false;
@@ -816,21 +816,21 @@ export default {
         },
 
         barActive() {
-            if (this.getCampaignById(this.campaignId).status_id > 1) {
+            if (this.getCampaignById(this.$route.params.id).status_id > 1) {
                 return true;
             }
             return false;
         },
         nodeCountAll() {
-            return this.getTotalNodeCountByCampaign(this.campaignId);
+            return this.getTotalNodeCountByCampaign(this.$route.params.id);
         },
 
         nodeCountHackingCountAll() {
-            return this.getHackingNodeCountByCampaign(this.campaignId);
+            return this.getHackingNodeCountByCampaign(this.$route.params.id);
         },
 
         nodeRedCountHackingCountAll() {
-            return this.getRedHackingNodeCountByCampaign(this.campaignId);
+            return this.getRedHackingNodeCountByCampaign(this.$route.params.id);
         }
     },
     beforeDestroy() {
