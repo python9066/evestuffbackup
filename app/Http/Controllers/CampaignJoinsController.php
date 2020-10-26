@@ -47,7 +47,7 @@ class CampaignJoinsController extends Controller
 
     public function campaignSystems($id)
     {
-        $camp = CampaignJoin::where('custom_campaign_id',$id)->with('customcampaign')->get();
+        $camp = CampaignJoin::where('custom_campaign_id',$id)->with('campaignrecords')->get();
         dd($camp);
         foreach($camp as $camp){
 
