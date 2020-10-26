@@ -780,10 +780,10 @@ export default {
 
         barBgcolor() {
             var d =
-                this.getCampaignById(this.$route.params.id).defenders_score *
+                this.getCampaignById(this.campaignId).defenders_score *
                 100;
             var a =
-                this.getCampaignById(this.$route.params.id).attackers_score *
+                this.getCampaignById(this.campaignId).attackers_score *
                 100;
 
             if (d > 50) {
