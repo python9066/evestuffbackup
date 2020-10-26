@@ -2,7 +2,8 @@
     <v-row no-gutters v-if="this.getCampaignsCount > 1" justify="space-around">
         <v-col md="10">
             <v-card class="pa-2 d-inline-flex full-width align-content-center" tile width="100%">
-                <div class="pa-2 d-inline-flex full-width align-content-center">
+                <div class="pa-2 d-inline-flex full-width align-content-center"
+                style=" width: 100%">
                    <p> {{ this.campaign.item_name }} in
                     {{ this.campaign.system }} - {{ this.campaign.ticker }}</p>
 
