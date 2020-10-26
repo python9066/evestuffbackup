@@ -498,7 +498,7 @@ export default {
             // console.log(id, this.$store.state.token);
             let res = await axios({
                 method: "get", //you can set what request you want to be
-                url: "/api/systemsinconstellation/" + id,
+                url: "/api/campaignjoinsystems/" + id,
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
                     Accept: "application/json",
