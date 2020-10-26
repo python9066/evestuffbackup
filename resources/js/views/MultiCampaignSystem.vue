@@ -1,6 +1,10 @@
 <template>
     <div>
-
+        <span  v-for="(sCampaign, index) in sCampaigns" :key="index" class=" pr-2">
+            <TitleBar
+            sCampaignID = sCampaign.campagin_id>
+            </TitleBar>
+        </span>
 
         <v-row
             no-gutters
@@ -743,7 +747,7 @@ export default {
             "getRedHackingNodeCountByCampaign"
         ]),
 
-        campaign() {
+        sCampaign() {
             return this.getCampaignById(this.campaignId);
         },
 
