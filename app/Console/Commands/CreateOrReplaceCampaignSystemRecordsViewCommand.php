@@ -53,12 +53,14 @@ class CreateOrReplaceCampaignSystemRecordsViewCommand extends Command
        campaign_system_statuses.name AS status_name,
        campaign_systems.notes AS notes,
        campaign_systems.created_at AS 'start',
-       campaign_systems.end_time AS 'end'
+       campaign_systems.end_time AS 'end',
+       CONCAT(campaign_records.system, ' - ',campaign_records.item_name) AS 'text'
        FROM campaign_systems
        JOIN systems ON systems.id = campaign_systems.system_id
        JOIN campaign_system_statuses ON campaign_system_statuses.id = campaign_systems.campaign_system_status_id
        LEFT JOIN campaign_users ON campaign_users.id = campaign_systems.campaign_user_id
        LEFT JOIN users ON users.id = campaign_users.site_id
+       JOIN campaign_records ON campaign_records.id = campaign_systems.campaign_id
        WHERE campaign_systems.campaign_system_status_id != 10");
    }
 }
