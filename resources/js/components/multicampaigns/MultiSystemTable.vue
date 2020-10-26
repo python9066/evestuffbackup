@@ -206,6 +206,7 @@
                                         <v-card-text>
                                             <v-select
                                                 class=" mt-2"
+                                                v-model="nodeCampaignID"
                                                 label="Campaign"
                                                 placeholder="Which Hack is this for"
                                                 :item-text="
@@ -229,7 +230,7 @@
                                                 @keyup.enter="addNode()"
                                                 @keyup.esc="
                                                     (addShown = false),
-                                                        (nodeText = '')
+                                                        (nodeText = ''),(nodeCampaignID = '')
                                                 "
                                             ></v-text-field>
                                         </v-card-text>
@@ -252,7 +253,7 @@
                                                 color="warning"
                                                 @click="
                                                     (addShown = false),
-                                                        (nodeText = '')
+                                                        (nodeText = ''),(nodeCampaignID = '')
                                                 "
                                                 ><v-icon
                                                     >fas fa-times</v-icon
@@ -495,6 +496,7 @@ export default {
             charReadyToGo: 0,
             OnTheWayColor: "teal",
             nodeText: "",
+            nodeCampaignID:"",
             addShown: false,
             expanded: [],
             singleExpand: true,
@@ -837,11 +839,13 @@ export default {
         async addNode() {
             let node = this.nodeText.toUpperCase();
             var request = {
-                campaign_id: this.campaign_id,
+                campaign_id: this.nodeCampaignID,
+                custom_campaign_id: this.campaign_id,
                 system_id: this.system_id,
                 node_id: node
             };
             this.nodeText = "";
+            this.nodeCampaignID = '';
             this.addShown = false;
             await axios({
                 method: "POST", //you can set what request you want to be
