@@ -13,7 +13,7 @@
                     </h1>
                 </v-card-title>
                 <div
-                    class=" d-inline-flex full-width align-content-center"
+                    class="d-flex full-width align-content-center"
                     v-if="this.campaign.status_id > 1"
                 >
                     <div>
