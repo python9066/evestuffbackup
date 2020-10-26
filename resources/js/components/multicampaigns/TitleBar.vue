@@ -188,6 +188,10 @@ function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 export default {
+    props: {
+        sCampaignID: Number,
+
+    },
     data() {
         return {};
     },
