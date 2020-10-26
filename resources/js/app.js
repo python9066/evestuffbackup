@@ -43,6 +43,7 @@ Vue.component('SystemItemList', require('./components/multicampaigns/systemItemL
 Vue.component('MultiCampaignAdd', require('./components/multicampaigns/MultiCampaignAdd.vue').default);
 Vue.component('MultiCampaignEdit', require('./components/multicampaigns/MultiCampaignEdit.vue').default);
 Vue.component('TitleBar', require('./components/multicampaigns/TitleBar.vue').default);
+Vue.component('MultiSystemTable', require('./components/multicampaigns/MultiSystemTable.vue').default);
 
 
 

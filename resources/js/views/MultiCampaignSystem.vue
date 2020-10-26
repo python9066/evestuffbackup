@@ -292,7 +292,7 @@
         </v-row>
 
         <v-row no-gutters justify="center" :v-if="systemLoaded == true">
-            <systemTable
+            <MultiSystemTable
                 class=" px-5 pt-5"
                 v-for="(system, index) in systems"
                 :system_name="system.system_name"
@@ -301,7 +301,7 @@
                 :index="index"
                 :key="system.id"
             >
-            </systemTable>
+            </MultiSystemTable>
         </v-row>
 
         <v-overlay z-index="0" :value="overlay">
