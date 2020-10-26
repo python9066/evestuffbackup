@@ -62,7 +62,7 @@
                         fas fa-minus-circle
                     </v-icon>
 
-                    <!-- <v-progress-linear
+                    <v-progress-linear
                         :color="this.barColor"
                         :value="this.barScoure"
                         height="20"
@@ -76,7 +76,7 @@
                             {{ this.campaign.defenders_score * 100 }} /
                             {{ this.campaign.attackers_score * 100 }}
                         </strong>
-                    </v-progress-linear> -->
+                    </v-progress-linear>
 
                     <v-icon
                         v-if="
