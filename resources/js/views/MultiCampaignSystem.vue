@@ -795,7 +795,7 @@ export default {
 
         barColor() {
             var d =
-                this.getCampaignById(this.$route.params.id).defenders_score *
+                this.getCampaignById(this.campaignId).defenders_score *
                 100;
             if (d > 50) {
                 return "blue darken-4";
@@ -806,7 +806,7 @@ export default {
 
         barReverse() {
             var d =
-                this.getCampaignById(this.$route.params.id).defenders_score *
+                this.getCampaignById(this.campaignId).defenders_score *
                 100;
             if (d > 50) {
                 return false;
@@ -816,13 +816,13 @@ export default {
         },
 
         barActive() {
-            if (this.getCampaignById(this.$route.params.id).status_id > 1) {
+            if (this.getCampaignById(this.campaignId).status_id > 1) {
                 return true;
             }
             return false;
         },
         nodeCountAll() {
-            return this.getTotalNodeCountByCampaign(this.$route.params.id);
+            return this.getTotalNodeCountByCampaign(this.campaignId);
         },
 
         nodeCountHackingCountAll() {
