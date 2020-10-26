@@ -3,7 +3,7 @@
         <v-col md="10">
             <v-card class="pa-2" tile width="100%">
                 <v-card-title align="center" class="justify-center">
-                    <h1>
+                    <p>
                         Campaign page for the
                         {{ this.campaign.item_name }} in
                         {{ this.campaign.system }} -
@@ -12,7 +12,7 @@
                         /></v-avatar>
                         -
                         {{ this.campaign.alliance }}
-                    </h1>
+                    </p>
                 </v-card-title>
                 <div
                     class="d-flex full-width align-content-center"
