@@ -463,7 +463,7 @@ export default new Vuex.Store({
             return state.campaignJoin.filter(c => c.custom_campaign_id == id);
         },
 
-        getCampaignMembersByCampagin: state => id => {
+        getCampaignMembersByCampaign: state => id => {
             return state.campaignmembers.find(m => m.campaign_id == id);
         },
 

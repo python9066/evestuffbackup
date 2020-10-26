@@ -2,7 +2,7 @@
     <div>
         <span  v-for="(sCampaign, index) in sCampaigns" :key="index" >
             <TitleBar
-            :sCampaignID = sCampaign.campagin_id>
+            :sCampaignID = sCampaign.campaign_id>
             </TitleBar>
         </span>
 
