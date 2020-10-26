@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\CampaignJoin;
+use App\Models\CampaignSystem;
+use App\Models\CampaignSystemUsers;
 use App\Models\CustomCampaign;
 use Illuminate\Http\Request;
 
@@ -97,5 +99,8 @@ class CustomCampaignsController extends Controller
     {
         CustomCampaign::destroy($id);
         CampaignJoin::where('custom_campaign_id',$id)->delete();
+        CampaignSystem::where('custom_campaign_id',$id)->delete();
+        CampaignSystemUsers::where('custom_campaign_id',$id)->delete();
+
     }
 }
