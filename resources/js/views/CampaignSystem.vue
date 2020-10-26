@@ -362,7 +362,22 @@
                                 </div>
                             </v-row>
                         </v-menu>
-                        <v-btn v-if="$can('access_campaigns')" @click="finishCampaign()" class="mr-4" color="red">Campaign Over</v-btn>
+                        <v-tooltip bottom>
+                            <template v-slot:activator="{ on, attrs }">
+                                <v-btn
+                                    v-if="$can('access_campaigns')"
+                                    dark
+                                    v-bind="attrs"
+                                    v-on="on"
+                                    @click="finishCampaign()"
+                                >
+                                    Campaign Over
+                                </v-btn>
+                            </template>
+                            <span>
+                                This will kicked everyone (you also) from the page.  Press when hack is over.
+                            </span>
+                        </v-tooltip>
                         <v-btn v-if="$can('super')" @click="overlay = !overlay">
                             test
                         </v-btn>
