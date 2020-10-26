@@ -208,6 +208,54 @@ export default {
 
             return "red darken-4";
         },
+
+        barScoure() {
+            var d =
+                this.getCampaignById(this.campaignId).defenders_score *
+                100;
+            var a =
+                this.getCampaignById(this.campaignId).attackers_score *
+                100;
+
+            if (d > 50) {
+                return d;
+            }
+
+            return a;
+        },
+
+        barActive() {
+            if (this.getCampaignById(this.campaignId).status_id > 1) {
+                return true;
+            }
+            return false;
+        },
+
+        barBgcolor() {
+            var d =
+                this.getCampaignById(this.campaignId).defenders_score *
+                100;
+            var a =
+                this.getCampaignById(this.campaignId).attackers_score *
+                100;
+
+            if (d > 50) {
+                return "red darken-4";
+            }
+
+            return "blue darken-4";
+        },
+
+        barReverse() {
+            var d =
+                this.getCampaignById(this.campaignId).defenders_score *
+                100;
+            if (d > 50) {
+                return false;
+            }
+
+            return true;
+        },
     },
 
     computed: {
