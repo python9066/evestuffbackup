@@ -213,6 +213,7 @@ export default {
             var d =
                 this.getCampaignById(this.sCampaignID).defenders_score *
                 100;
+                console.log(this.sCampaignID)
             var a =
                 this.getCampaignById(this.sCampaignID).attackers_score *
                 100;
