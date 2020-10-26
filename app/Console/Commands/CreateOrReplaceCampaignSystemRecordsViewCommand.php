@@ -41,7 +41,7 @@ class CreateOrReplaceCampaignSystemRecordsViewCommand extends Command
        campaign_systems.node_id AS node,
        campaign_systems.campaign_id AS campaign_id,
        campaign_systems.system_id AS system_id,
-       campaign_systems.custom_campaign_id AS custom_campaign_id
+       campaign_systems.custom_campaign_id AS custom_campaign_id,
        systems.system_name AS system_name,
        campaign_systems.campaign_user_id AS user_id,
        campaign_users.site_id AS site_id,
