@@ -465,7 +465,7 @@ export default {
         loadUsersRecords() {
             this.$store.dispatch(
                 "getCampaignUsersRecords",
-                this.$route.params.id
+                this.campaignId
             );
         },
 
