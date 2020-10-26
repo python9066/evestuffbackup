@@ -608,7 +608,7 @@ export default {
 
             await axios({
                 method: "POST", //you can set what request you want to be
-                url: "/api/campaignusers/" + this.$route.params.id,
+                url: "/api/campaignusers/" + this.campaignId,
                 data: request,
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
