@@ -198,14 +198,15 @@
                                             Node</v-btn
                                         >
                                     </template>
-                                    <v-card tile min-height="500px">
-                                        <v-select
+                                    <v-card tile min-height="300px">
+
+                                        <v-card-title class=" pb-0">
+                                            <v-select
                                         :item-text="this.campaignJoinDrop.text"
                                         :item-value="this.campaignJoinDrop.campaign_id"
                                         :items="this.campaignJoinDrop">
 
                                         </v-select>
-                                        <v-card-title class=" pb-0">
                                             <v-text-field
                                                 class=" mt-2"
                                                 label="Node"
