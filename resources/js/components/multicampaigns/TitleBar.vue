@@ -200,7 +200,7 @@ export default {
     methods: {
         barColor() {
             var d =
-                this.getCampaignById(this.sCampaignID).defenders_score *
+                this.campaign.defenders_score *
                 100;
                 console.log(d)
             if (d > 50) {
@@ -212,11 +212,11 @@ export default {
 
         barScoure() {
             var d =
-                this.getCampaignById(this.sCampaignID).defenders_score *
+                this.campaign.defenders_score *
                 100;
                 console.log(this.sCampaignID)
             var a =
-                this.getCampaignById(this.sCampaignID).attackers_score *
+                this.campaign.attackers_score *
                 100;
 
             if (d > 50) {
@@ -227,7 +227,7 @@ export default {
         },
 
         barActive() {
-            if (this.getCampaignById(this.sCampaignID).status_id > 1) {
+            if (this.campaign.status_id > 1) {
                 return true;
             }
             return false;
@@ -235,10 +235,10 @@ export default {
 
         barBgcolor() {
             var d =
-                this.getCampaignById(this.sCampaignID).defenders_score *
+                this.campaign.defenders_score *
                 100;
             var a =
-                this.getCampaignById(this.sCampaignID).attackers_score *
+                this.campaign.attackers_score *
                 100;
 
             if (d > 50) {
@@ -250,7 +250,7 @@ export default {
 
         barReverse() {
             var d =
-                this.getCampaignById(this.sCampaignID).defenders_score *
+                this.campaign.defenders_score *
                 100;
             if (d > 50) {
                 return false;
