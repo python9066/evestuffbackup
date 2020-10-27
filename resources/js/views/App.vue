@@ -124,7 +124,7 @@
                     </v-tab>
 
                     <v-tab v-if="$can('access_multi_campaigns')" link to="/mcampaigns">
-                        Mulit-Campaign
+                        Multi-Campaign
                     </v-tab>
                     <v-tab
                         v-if="
