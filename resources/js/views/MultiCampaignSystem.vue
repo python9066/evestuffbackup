@@ -542,6 +542,31 @@ export default {
             this.systemLoaded = true;
         },
 
+        async finishCampaign() {
+            await axios({
+                method: "get", //you can set what request you want to be
+                url: "/api/campaignsystemfinished/" + this.$route.params.id,
+                headers: {
+                    Authorization: "Bearer " + this.$store.state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                }
+            });
+
+            await axios({
+                method: "delete", //you can set what request you want to be
+                url: "api/multicampaigns/" + this.$route.params.id,
+                headers: {
+                    Authorization: "Bearer " + this.$store.state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                }
+            });
+
+            this.$router.push("/campaignfinished");
+
+        },
+
         async addMember() {
             let user_id = this.$store.state.user_id;
             if (user_id == 0) {
