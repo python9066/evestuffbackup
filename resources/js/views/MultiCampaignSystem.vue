@@ -750,11 +750,6 @@ export default {
             return this.getsCampaignById(this.campaignId);
         },
 
-        closechannel(){
-            if (this.campaigan.defenders_score == 1 || this.campaigan.defenders_score == 0){
-                Echo.leave(this.channel);
-            }
-        },
 
         userCharsDrop() {
             // let payload = {
