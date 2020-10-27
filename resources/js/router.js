@@ -190,7 +190,7 @@ export default new Router({
             name: "mcampaigns",
             component: MultiCampagins,
             beforeEnter(to, from, next) {
-                if(Permissions.indexOf('super')!== -1){
+                if(Permissions.indexOf('access_multi_campaigns')!== -1){
                     next()
                 }else{
                    next("/campaigns")
