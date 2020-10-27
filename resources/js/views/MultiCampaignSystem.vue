@@ -225,6 +225,24 @@
                                 </div>
                             </v-row>
                         </v-menu>
+                        <v-tooltip bottom>
+                            <template v-slot:activator="{ on, attrs }">
+                                <v-btn
+                                    v-if="$can('view_campaign_members')"
+                                    dark
+                                    color="red"
+                                    class="mr-4"
+                                    v-bind="attrs"
+                                    v-on="on"
+                                    @click="finishCampaign()"
+                                >
+                                    Campaign Over
+                                </v-btn>
+                            </template>
+                            <span>
+                                This will kicked everyone (you also) from the page.  Press when hack is over.
+                            </span>
+                        </v-tooltip>
                         <v-btn v-if="$can('super')" @click="overlay = !overlay">
                             test
                         </v-btn>
@@ -425,6 +443,11 @@ export default {
                 if (e.flag.flag == 6) {
                     //  console.log(6);
                     this.kickUser(e.flag.user_id);
+                }
+
+                if (e.flag.flag == 7) {
+                    //  console.log(6);
+                    this.$router.push("/campaignfinished");
                 }
             },
 

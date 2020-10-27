@@ -365,7 +365,7 @@
                         <v-tooltip bottom>
                             <template v-slot:activator="{ on, attrs }">
                                 <v-btn
-                                    v-if="$can('access_campaigns')"
+                                    v-if="$can('view_campaign_members')"
                                     dark
                                     color="red"
                                     class="mr-4"
