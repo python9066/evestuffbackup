@@ -196,8 +196,9 @@ export default {
             "CampaignSystemUpdate",
             e => {
                 if (e.flag.flag == 4) {
-                    console.log(4+this.sCampaignID);
                     this.$store.dispatch("getCampaigns");
+                    this.$store.dispatch("getCampaignSystemsRecords");
+
                 }
             },
         );
