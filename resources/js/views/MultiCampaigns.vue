@@ -135,7 +135,7 @@ export default {
         async deleteCampaign(item) {
            await axios({
                 method: "delete", //you can set what request you want to be
-                url: "api/multicampaigns/" + item.id,
+                url: "/api/multicampaigns/" + item.id,
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
                     Accept: "application/json",
