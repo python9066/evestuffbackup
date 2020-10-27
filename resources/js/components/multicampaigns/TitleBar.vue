@@ -164,7 +164,7 @@
                     >
                         <template slot="countdown" slot-scope="scope">
                             <span class="red--text pl-3 text-h5 justify-content align-center"
-                                >{{ scope.props.minutes }}:{{
+                                >{{scope.props.hours}}:{{ scope.props.minutes }}:{{
                                     scope.props.seconds
                                 }}</span
                             >
