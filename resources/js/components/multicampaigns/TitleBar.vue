@@ -219,6 +219,7 @@ export default {
                 status_id: 2,
                 status_name: "Active"
             };
+            console.log("this started")
             this.$store.dispatch("updateCampaignSystem", data);
             this.$store.dispatch("updateCampaign", data);
             this.$store.dispatch("getCampaigns")
