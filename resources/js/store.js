@@ -332,6 +332,10 @@ export default new Vuex.Store({
             commit("UPDATE_CAMPAIGN_SYSTEM", data);
         },
 
+        updateCampaignSystemBar({ commit }, data) {
+            commit("UPDATE_CAMPAIGN_SYSTEM_UPDATE", data);
+        },
+
         updateCampaign({ commit }, data) {
             commit("UPDATE_CAMPAIGN", data);
         },
