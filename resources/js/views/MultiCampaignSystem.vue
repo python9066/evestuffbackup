@@ -240,7 +240,8 @@
                                 </v-btn>
                             </template>
                             <span>
-                                This will kicked everyone (you also) from the page.  Press when hack is over.
+                                <p>This will kicked everyone (you also) from the page and Delete the Campagin.</p>
+                                <p>  Press when hack is over.</p>
                             </span>
                         </v-tooltip>
                         <v-btn v-if="$can('super')" @click="overlay = !overlay">
