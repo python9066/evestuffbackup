@@ -12,7 +12,7 @@
                             <div>{{ system_name }}</div>
                             <v-divider class="mx-4 my-0" vertical></v-divider>
                             <p v-if="nodeCount > 0" class=" pt-4 pr-3">
-                                Active Nodes -
+                                Nodes -
                             </p>
                             <div>
                                 <v-progress-circular
@@ -194,7 +194,9 @@
                                             v-on="on"
                                             @click="addShown = true"
                                             color="success"
-                                            ><v-icon left small>fas fa-plus</v-icon>
+                                            ><v-icon left small
+                                                >fas fa-plus</v-icon
+                                            >
                                             Node</v-btn
                                         >
                                     </template>
@@ -360,8 +362,8 @@
                                         shaped
                                     ></v-text-field>
                                     <v-btn
-                                    color="green"
-                                    @click="updatetext(item)"
+                                        color="green"
+                                        @click="updatetext(item)"
                                     >
                                         Submit
                                     </v-btn>
@@ -371,7 +373,7 @@
                                         auto-grow
                                         disabled
                                         v-model="item.notes"
-                                     ></v-textarea>
+                                    ></v-textarea>
                                 </v-col>
                             </div>
                         </td>
@@ -388,11 +390,9 @@
                     </template>
 
                     <template v-slot:item.user_ship="{ item }">
-
                         <span v-if="item.user_name != null">
-                            {{item.user_ship}} - T{{item.user_link}}
+                            {{ item.user_ship }} - T{{ item.user_link }}
                         </span>
-
                     </template>
 
                     <template slot="no-data">
@@ -473,7 +473,7 @@ export default {
                 { title: "Success", value: 4 },
                 { title: "Pushed off", value: 6 },
                 { title: "Hostile Hacking", value: 7 },
-                { title: "Failed", value: 5 },
+                { title: "Failed", value: 5 }
             ],
             charOnTheWay: 0,
             charReadyToGo: 0,
@@ -483,8 +483,7 @@ export default {
             expanded: [],
             singleExpand: true,
             charAddNode: null,
-            noteText:""
-
+            noteText: ""
         };
     },
 
@@ -506,7 +505,7 @@ export default {
                 system_id: this.system_id,
                 system_name: this.system_name,
                 campaign_system_id: null,
-                node_id:null
+                node_id: null
             };
 
             this.$store.dispatch("updateCampaignUsers", item);
@@ -560,7 +559,7 @@ export default {
                 system_id: this.system_id,
                 system_name: this.system_name,
                 campaign_system_id: null,
-                node_id:null
+                node_id: null
             };
 
             this.$store.dispatch("updateCampaignUsers", item);
@@ -610,11 +609,7 @@ export default {
         async deleteNode(item) {
             await axios({
                 method: "DELETE", //you can set what request you want to be
-                url:
-                    "/api/campaignsystems/" +
-                    item.id +
-                    "/" +
-                    this.campaign_id,
+                url: "/api/campaignsystems/" + item.id + "/" + this.campaign_id,
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
                     Accept: "application/json",
@@ -623,10 +618,7 @@ export default {
             });
 
             this.$store.dispatch("getCampaignSystemsRecords");
-            this.$store.dispatch(
-                "getCampaignUsersRecords",
-                this.campaign_id
-            );
+            this.$store.dispatch("getCampaignUsersRecords", this.campaign_id);
         },
 
         clickCharAddNode(item) {
@@ -666,11 +658,7 @@ export default {
 
             axios({
                 method: "put", //you can set what request you want to be
-                url:
-                    "/api/campaignsystems/" +
-                    item.id +
-                    "/" +
-                    this.campaign_id,
+                url: "/api/campaignsystems/" + item.id + "/" + this.campaign_id,
                 data: request,
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
@@ -682,10 +670,7 @@ export default {
             axios({
                 method: "put", //you can set what request you want to be
                 url:
-                    "/api/campaignusers/" +
-                    addChar.id +
-                    "/" +
-                    this.campaign_id,
+                    "/api/campaignusers/" + addChar.id + "/" + this.campaign_id,
                 data: request1,
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
@@ -699,38 +684,42 @@ export default {
             return item.status_id == 7 ? "style-1" : "style-2";
         },
 
-       async statusClick(item) {
+        async statusClick(item) {
             var request = [];
 
-            if (item.status_id == 1 || item.status_id == 7 || item.status_id == 8){
-                item.end = null
+            if (
+                item.status_id == 1 ||
+                item.status_id == 7 ||
+                item.status_id == 8
+            ) {
+                item.end = null;
                 this.removeCharNode(item);
                 item.user_name = null;
                 item.main_name = null;
                 return;
-                            }
-            if (item.status_id == 2 || item.status_id == 3 || item.status_id == 8 || item.status_id == 6 ){
+            }
+            if (
+                item.status_id == 2 ||
+                item.status_id == 3 ||
+                item.status_id == 8 ||
+                item.status_id == 6
+            ) {
                 item.end = null;
                 request = {
                     campaign_system_status_id: item.status_id,
                     end_time: null
-                }
+                };
             }
-            if (item.status_id ==  4 || item.status_id == 5){
+            if (item.status_id == 4 || item.status_id == 5) {
                 await this.removeCharNode(item);
                 item.user_name = null;
                 item.main_name = null;
                 return;
-
             }
 
-           await axios({
+            await axios({
                 method: "put", //you can set what request you want to be
-                url:
-                    "/api/campaignsystems/" +
-                    item.id +
-                    "/" +
-                    this.campaign_id,
+                url: "/api/campaignsystems/" + item.id + "/" + this.campaign_id,
                 data: request,
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
@@ -739,8 +728,8 @@ export default {
                 }
             });
 
-            this.$store.dispatch('getCampaignSystemsRecords')
-            this.$store.dispatch("getCampaignUsersRecords",this.campaign_id);
+            this.$store.dispatch("getCampaignSystemsRecords");
+            this.$store.dispatch("getCampaignUsersRecords", this.campaign_id);
         },
 
         checkShowAdd(item) {
@@ -780,7 +769,7 @@ export default {
             if (item.status_id == 2) {
                 return "lime darken-4";
             }
-            if (item.status_id == 3 || item.status_id == 8 ) {
+            if (item.status_id == 3 || item.status_id == 8) {
                 return "green darken-3";
             }
             if (item.status_id == 4) {
@@ -797,40 +786,40 @@ export default {
             }
         },
         updatetext(item) {
-            this.expanded = []
-            this.noteText = this.noteText+'\n'
-            if(item.notes == null){
-               var note = this.$store.state.user_name +": " + this.noteText
-            }else{
-                var note = this.$store.state.user_name +": " + this.noteText + item.notes
+            this.expanded = [];
+            this.noteText = this.noteText + "\n";
+            if (item.notes == null) {
+                var note = this.$store.state.user_name + ": " + this.noteText;
+            } else {
+                var note =
+                    this.$store.state.user_name +
+                    ": " +
+                    this.noteText +
+                    item.notes;
             }
-            console.log(note)
-            item.notes = note
+            console.log(note);
+            item.notes = note;
             let request = {
                 notes: note
-            }
+            };
             // console.log(item);
-                // console.log(item);
-                this.$store.dispatch("updateCampaignSystem", item);
-                axios({
-                    method: "put", //you can set what request you want to be
-                    url:
-                        "/api/campaignsystems/" +
-                        item.id +
-                        "/" +
-                        this.campaign_id,
-                    data: request,
-                    headers: {
-                        Authorization: "Bearer " + this.$store.state.token,
-                        Accept: "application/json",
-                        "Content-Type": "application/json"
-                    }
-                });
-            this.noteText = null
+            // console.log(item);
+            this.$store.dispatch("updateCampaignSystem", item);
+            axios({
+                method: "put", //you can set what request you want to be
+                url: "/api/campaignsystems/" + item.id + "/" + this.campaign_id,
+                data: request,
+                headers: {
+                    Authorization: "Bearer " + this.$store.state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                }
+            });
+            this.noteText = null;
         },
 
         async addNode() {
-            let node = this.nodeText.toUpperCase()
+            let node = this.nodeText.toUpperCase();
             var request = {
                 campaign_id: this.campaign_id,
                 system_id: this.system_id,
@@ -864,24 +853,26 @@ export default {
                 status_id: 3,
                 user_status_name: "Ready to go"
             };
-            if( userId != null){
-            this.$store.dispatch("updateCampaignUsers", data);
+            if (userId != null) {
+                this.$store.dispatch("updateCampaignUsers", data);
             }
             var request = null;
             if (item.status_id == 4 || item.status_id == 5) {
                 request = {
-
                     campaign_user_id: null,
                     campaign_system_status_id: item.status_id
                 };
-            } else if(item.status_id == 1 || item.status_id == 7 || item.status_id == 8){
+            } else if (
+                item.status_id == 1 ||
+                item.status_id == 7 ||
+                item.status_id == 8
+            ) {
                 request = {
                     campaign_user_id: null,
                     campaign_system_status_id: item.status_id,
                     end_time: null
                 };
-
-            } else{
+            } else {
                 request = {
                     campaign_user_id: null
                 };
@@ -889,11 +880,7 @@ export default {
 
             axios({
                 method: "PUT", //you can set what request you want to be
-                url:
-                    "/api/campaignsystems/" +
-                    item.id +
-                    "/" +
-                    this.campaign_id,
+                url: "/api/campaignsystems/" + item.id + "/" + this.campaign_id,
                 data: request,
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
@@ -906,21 +893,19 @@ export default {
                 campaign_system_id: null,
                 status_id: 3
             };
-            if(userId != null){
-            axios({
-                method: "PUT", //you can set what request you want to be
-                url:
-                    "/api/campaignusers/" +
-                    userId +
-                    "/" +
-                    this.campaign_id,
-                data: request1,
-                headers: {
-                    Authorization: "Bearer " + this.$store.state.token,
-                    Accept: "application/json",
-                    "Content-Type": "application/json"
-                }
-            });}
+            if (userId != null) {
+                axios({
+                    method: "PUT", //you can set what request you want to be
+                    url:
+                        "/api/campaignusers/" + userId + "/" + this.campaign_id,
+                    data: request1,
+                    headers: {
+                        Authorization: "Bearer " + this.$store.state.token,
+                        Accept: "application/json",
+                        "Content-Type": "application/json"
+                    }
+                });
+            }
         }
 
         // if (item.site_id == null) {

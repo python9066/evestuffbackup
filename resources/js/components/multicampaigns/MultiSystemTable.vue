@@ -12,7 +12,7 @@
                             <div>{{ system_name }}</div>
                             <v-divider class="mx-4 my-0" vertical></v-divider>
                             <p v-if="nodeCount > 0" class=" pt-4 pr-3">
-                                Active Nodes -
+                                Nodes -
                             </p>
                             <div>
                                 <v-progress-circular
@@ -225,7 +225,8 @@
                                                 @keyup.enter="addNode()"
                                                 @keyup.esc="
                                                     (addShown = false),
-                                                        (nodeText = ''),(nodeCampaignID = '')
+                                                        (nodeText = ''),
+                                                        (nodeCampaignID = '')
                                                 "
                                             ></v-text-field>
                                         </v-card-text>
@@ -248,7 +249,8 @@
                                                 color="warning"
                                                 @click="
                                                     (addShown = false),
-                                                        (nodeText = ''),(nodeCampaignID = '')
+                                                        (nodeText = ''),
+                                                        (nodeCampaignID = '')
                                                 "
                                                 ><v-icon
                                                     >fas fa-times</v-icon
@@ -493,7 +495,7 @@ export default {
             charReadyToGo: 0,
             OnTheWayColor: "teal",
             nodeText: "",
-            nodeCampaignID:"",
+            nodeCampaignID: "",
             addShown: false,
             expanded: [],
             singleExpand: true,
@@ -842,7 +844,7 @@ export default {
                 node_id: node
             };
             this.nodeText = "";
-            this.nodeCampaignID = '';
+            this.nodeCampaignID = "";
             this.addShown = false;
             await axios({
                 method: "POST", //you can set what request you want to be
