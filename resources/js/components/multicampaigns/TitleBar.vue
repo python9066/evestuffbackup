@@ -1,7 +1,7 @@
 <template>
     <v-row no-gutters v-if="this.getCampaignsCount > 1" class="pb-2" justify="space-around">
         <v-col md="10">
-            <v-card class="pa-2" tile width="100%">
+            <v-card class="px-2" tile width="100%">
                 <v-card-title align="center" class="justify-center">
                     <p>
                         Campaign page for the
@@ -15,7 +15,7 @@
                     </p>
                     <div
                         v-if="campaign.total_node > 0"
-                        class=" ml-auto d-inline-flex align-center"
+                        class=" d-inline-flex align-center"
                     >
                         <v-divider class="mx-4 my-0" vertical></v-divider>
                         <p class=" pt-4 pr-3">Finished Nodes -</p>
