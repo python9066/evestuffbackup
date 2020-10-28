@@ -968,9 +968,9 @@ export default {
             "getCampaignUsersByUserIdEntosisCount",
             "getCampaignUsersByUserIdEntosisFree",
             "getTotalNodeCountBySystem",
-            "getHackingNodeCountBySystem",
+            "getHackingNodeCountBySystemByMultiCampaign",
             "getNodeValue",
-            "getRedHackingNodeCountBySystem",
+            "getRedHackingNodeCountBySystemByMultiCampaign",
             "getSystemReadyToGoCount",
             "getSystemOnTheWayCount",
             "getCampaignUsersReadyToGoAll",
@@ -1120,7 +1120,7 @@ export default {
                 system_id: this.system_id,
                 campaign_id: this.campaign_id
             };
-            return this.getHackingNodeCountBySystem(payload);
+            return this.getHackingNodeCountBySystemByMultiCampaign(payload);
         },
 
         nodeRedCountHackingCount() {
@@ -1128,7 +1128,7 @@ export default {
                 system_id: this.system_id,
                 campaign_id: this.campaign_id
             };
-            return this.getRedHackingNodeCountBySystem(payload);
+            return this.getRedHackingNodeCountBySystemByMultiCampaign(payload);
         },
 
         nodeValue() {
