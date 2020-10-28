@@ -183,7 +183,7 @@
                             </div>
                             <v-divider class="mx-4 my-0" vertical></v-divider>
                             <div>
-                                <v-menu
+                                <v-menu v-if="campaignJoinDropCount == 0"
                                     :close-on-content-click="false"
                                     :value="addShown"
                                 >
@@ -985,6 +985,14 @@ export default {
                 id: this.campaign_id
             };
             return this.getsActiveCampaignByIdDrop(payload);
+        },
+
+        campaignJoinDropCount() {
+            let payload = {
+                constellation_id: this.constellation_id,
+                id: this.campaign_id
+            };
+            return this.getsActiveCampaignByIdDrop(payload).length;
         },
 
         campaignActiveCount() {
