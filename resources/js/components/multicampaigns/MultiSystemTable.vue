@@ -849,7 +849,7 @@ export default {
 
         async addNode() {
             let node = this.nodeText.toUpperCase();
-            console.log("AAAAAAAAAAAA")
+            console.log(this.campaignActiveCountsingle)
             if (this.campaignActiveCountsingle == true) {
                 console.log("kafoekofe")
                 var request = {
