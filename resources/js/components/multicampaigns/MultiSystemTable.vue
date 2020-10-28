@@ -964,7 +964,7 @@ export default {
         campaignJoinDrop(){
             let payload = {
                 constellation_id: this.constellation_id,
-                campaign_id: this.campaign_id
+                id: this.campaign_id
             };
             return this.getsActiveCampaignById(payload)
         },
