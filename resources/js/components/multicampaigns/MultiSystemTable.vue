@@ -214,7 +214,7 @@
                                                 item-value="campaign_id"
                                                 :items="campaignJoinDrop"
                                                 autofocus
-                                                readonly
+
                                             >
                                             </v-select>
                                             <v-text-field
@@ -223,7 +223,7 @@
                                                 class=" mt-2"
                                                 label="Campaign"
                                                 placeholder="Which Hack is this for"
-                                                autofocus
+                                                readonly
                                             >
                                             </v-text-field>
 
