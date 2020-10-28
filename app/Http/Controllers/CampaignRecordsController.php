@@ -58,7 +58,7 @@ class CampaignRecordsController extends Controller
     public function show($id)
     {
         return ['campaign' => Campaign::where('id',$id)];
-    },
+    }
 
     /**
      * Update the specified resource in storage.
