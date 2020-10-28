@@ -468,7 +468,7 @@ export default new Vuex.Store({
         },
 
         getsActiveCampaignById: state => payload => {
-            return state.campaignJoin.filter(c => c.custom_campaign_id == payload.id && (c.status_id == 2 || c.status_id == 1) && c.constellation_id == payload.constellation_id && c.warmup == 1);
+            return state.campaignJoin.filter(c => c.custom_campaign_id == payload.id && c.status_id == 2 && c.constellation_id == payload.constellation_id && c.warmup == 1);
         },
 
 
