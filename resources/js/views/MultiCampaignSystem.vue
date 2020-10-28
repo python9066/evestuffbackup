@@ -311,7 +311,7 @@
             <userTable :campaign_id="campaignId"> </userTable>
         </v-row>
 
-        <div cols="8" v-if="campaignWarmup">
+        <div cols="8" v-if="campaignWarmup == false">
     <v-card>
         <v-card-title class=" justify-center"><h1>Why am I on this page?</h1></v-card-title>
         <v-card-text>
