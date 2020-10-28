@@ -240,8 +240,8 @@
                                 </v-btn>
                             </template>
                             <span>
-                                <p>This will kicked everyone (you also) from the page and Delete the Campagin.</p>
-                                <p>  Press when hack is over.</p>
+                                <p class=" text-md-center">This will kicked everyone (you also) from the page and Delete the Campagin.</p>
+                                <p class=" text-md-center">  Press when hack is over.</p>
                             </span>
                         </v-tooltip>
                         <v-btn v-if="$can('super')" @click="overlay = !overlay">
@@ -307,11 +307,10 @@
             </v-col>
             <div v-if="campaignWarmup == false" class=" pt-10">
     <v-card>
-        <v-card-title class=" justify-center"><h1>Why am I on this page?</h1></v-card-title>
+        <v-card-title class=" justify-center"><h1>No Campaigns are open for setup yet</h1></v-card-title>
         <v-card-text>
             <span class=" body-1">
-        <p class=" text-md-center">You have been kicked from the active campaign page.  Most likey you were kicked for not adding a character to the page </p>
-        <p class=" text-md-center">Check MotD in your fleet to gain access to the page again and remember to add a character.  If you fail to do so you may get a temp ban</p>
+        <p class=" text-md-center">Systems will start to showup when a Campaign has less than <strong> One Hour</strong> to start</p>
             </span>
         </v-card-text>
     </v-card>
