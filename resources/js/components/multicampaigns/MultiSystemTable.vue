@@ -212,13 +212,13 @@
                                                 placeholder="Which Hack is this for"
                                                 item-text="text"
                                                 item-value="campaign_id"
-                                                :items="campaignJoinDrop.map(a => a.text)"
+                                                :items="campaignJoinDrop"
                                                 autofocus
                                             >
                                             </v-select>
                                             <v-text-field
                                                 v-else
-                                                :value="campaignJoinDrop"
+                                                :value="campaignJoinDrop.map(a => a.text)"
                                                 class=" mt-2"
                                                 v-model="nodeCampaignID"
                                                 label="Campaign"
