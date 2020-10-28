@@ -63,7 +63,6 @@ class CreateOrReplaceCampaignRecordsViewCommand extends Command
         campaigns.b_node AS 'b_node',
         campaigns.r_node AS 'r_node',
         campaigns.b_node + campaigns.r_node AS 'total_node',
-        campaigns.warmup AS 'warmup',
         systems.adm AS 'adm'
         FROM campaigns
         JOIN systems ON systems.id = campaigns.system_id
