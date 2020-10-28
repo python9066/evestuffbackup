@@ -119,7 +119,7 @@ class Campaignhelper
 
             Campaign::where('end','!=', null)
                 ->where('check', 0)
-                ->update(['status_id' => 3]);
+                ->update(['status_id' => 3, 'warmup' => 0]);
 
             Campaign::where('end', null)
                 ->where('check', 0)
