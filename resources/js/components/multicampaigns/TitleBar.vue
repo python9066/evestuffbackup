@@ -199,6 +199,7 @@ export default {
                 if (e.flag.flag == 4) {
                     this.$store.dispatch("getCampaigns");
                     this.$store.dispatch("getCampaignSystemsRecords");
+                    this.$store.dispatch("getCampaignJoinData");
 
                 }
             },
