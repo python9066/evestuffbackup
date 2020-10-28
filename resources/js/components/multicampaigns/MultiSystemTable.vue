@@ -849,10 +849,10 @@ export default {
 
         async addNode() {
             let node = this.nodeText.toUpperCase();
-            if (campaignActiveCountsingle == 1) {
+            if (this.campaignActiveCountsingle == 1) {
                 console.log("kafoekofe")
                 var request = {
-                    campaign_id: campaignJoinDrop.map(a => a.value),
+                    campaign_id: this.campaignJoinDrop.map(a => a.value),
                     custom_campaign_id: this.campaign_id,
                     system_id: this.system_id,
                     node_id: node
