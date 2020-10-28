@@ -1,6 +1,6 @@
 <template>
-    <v-col cols="6" align-self="stretch">
-        <v-card tile height="100%" v-if="campaignActiveCount">
+    <v-col cols="6" align-self="stretch" v-if="campaignActiveCount">
+        <v-card tile height="100%" >
             <v-card-text>
                 <template>
                     <v-card flat max-width elevation="24" color="grey darken-4">
