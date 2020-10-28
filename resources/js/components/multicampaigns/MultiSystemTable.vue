@@ -218,9 +218,8 @@
                                             </v-select>
                                             <v-text-field
                                                 v-else
-                                                value="ssssssss"
+                                                :value="campaignJoinDrop.map(a => a.text)"
                                                 class=" mt-2"
-                                                v-model="nodeCampaignID"
                                                 label="Campaign"
                                                 placeholder="Which Hack is this for"
                                                 autofocus
