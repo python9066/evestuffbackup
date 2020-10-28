@@ -860,7 +860,7 @@ export default {
                     node_id: node
                 };
             this.nodeText = "";
-            this.nodeCampaignID = "";
+            // this.nodeCampaignID = "";
             this.addShown = false;
             await axios({
                 method: "POST", //you can set what request you want to be
