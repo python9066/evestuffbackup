@@ -467,6 +467,10 @@ export default new Vuex.Store({
             return state.campaignJoin.filter(campaigns => campaigns.custom_campaign_id == id);
         },
 
+        getsActiveCampaignById: state => id => {
+            return state.campaignJoin.filter(campaigns => campaigns.custom_campaign_id == id && campaigns.status_id == 2);
+        },
+
 
         getCampaignJoinById: state => id => {
             return state.campaignJoin.filter(c => c.custom_campaign_id == id);

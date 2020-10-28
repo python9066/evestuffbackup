@@ -426,7 +426,6 @@ export default {
         system_name: String,
         system_id: Number,
         campaign_id: String,
-        campaignJoinDrop: Array
     },
     data() {
         return {
@@ -957,8 +956,13 @@ export default {
             "getSystemReadyToGoCount",
             "getSystemOnTheWayCount",
             "getCampaignUsersReadyToGoAll",
-            "getCampaignUsersOnTheWayAll"
+            "getCampaignUsersOnTheWayAll",
+            "getsActiveCampaignById"
         ]),
+
+        campaignJoinDrop(){
+            return this.getsActiveCampaignById(this.campaign_id)
+        },
 
         fabOnTheWayDisbale() {
             if (this.OnTheWayCount == 0) {

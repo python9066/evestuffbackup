@@ -317,7 +317,6 @@
                 v-for="(system, index) in systems"
                 :system_name="system.system_name"
                 :system_id="system.id"
-                :campaignJoinDrop="campaignJoinDrop"
                 :campaign_id="campaignId"
                 :index="index"
                 :key="system.id"
@@ -811,10 +810,6 @@ export default {
             return this.getCampaignUsersByUserIdCount(
                 this.$store.state.user_id
             );
-        },
-
-        campaignJoinDrop(){
-            return this.$store.state.campaignJoin
         },
 
         nodeCountAll() {
