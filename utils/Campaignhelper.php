@@ -17,7 +17,9 @@ class Campaignhelper
 
     public static function update()
     {
-
+        $now = now();
+        $warmup = now()->modify(' -1 hour');
+        $now10 = now()->modify('-12 hours');
         $toDelete = Campaign::where('status_id', 10)
             ->get();
 
@@ -73,6 +75,18 @@ class Campaignhelper
                 Campaign::updateOrCreate(['id' => $id], $data);
                 $after = Campaign::where('id', $id)->get();
 
+                $warmcheck = Campaign::where('id', $id)->where('start_time','>=',$warmup)->where('warmup',0)->where('status_id', 1)->count();
+                if ($warmcheck > 0) {
+                    Campaign::where('start_time','>=', $warmup)->where('status_id', 1)->where('warmup',0)->update(['warmup' => 1]);
+                    echo "started warm up";
+                    $changed->push($id);
+                    $flag = 1;
+                }
+
+
+
+
+
                 if ($before->count() > 0) {
                     $attackers_old = $before->toArray();
                     $attackers_old = floatval($attackers_old[0]['attackers_score']);
@@ -90,9 +104,7 @@ class Campaignhelper
             }
         }
         // dd("fwefe");
-        $now = now();
-        $warmup = now()->modify(' -1 hour');
-        $now10 = now()->modify('-12 hours');
+
         $yesterday = now('-8 hours');
         $check = Campaign::where('start_time', '<=', $now)->where('status_id', 1)->count();
         if ($check > 0) {
@@ -108,10 +120,7 @@ class Campaignhelper
         // $warmcheck = Campaign::where('start_time', '>=', $now)->where('start_time','<=', $warmup)->where('warmup',0)->where('status_id', 1)->count();
         // dd( $warmcheck);
         if ($warmcheck > 0) {
-            Campaign::where('start_time','>=', $warmup)
-                ->where('status_id', 1)
-                ->where('warmup',0)
-                ->update(['warmup' => 1]);
+            Campaign::where('start_time','>=', $warmup)->where('status_id', 1)->where('warmup',0)->update(['warmup' => 1]);
             echo "started warm up";
             $flag = 1;
         }
