@@ -14,7 +14,7 @@ class AddWarmupColoumnToCampaignsTable extends Migration
     public function up()
     {
         Schema::table('campaigns', function (Blueprint $table) {
-            $table->integer('warmuup')->after('check')->default(0);
+            $table->integer('warmup')->after('check')->default(0);
         });
     }
 
