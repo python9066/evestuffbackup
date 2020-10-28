@@ -31,7 +31,8 @@ class CampaignJoinsController extends Controller
                         "custom_campaign_id" => $pull['custom_campaign_id'],
                         "color" => $camp['color'],
                         "status_id" => $camp['status_id'],
-                        "constellation_id" => $camp['constellation_id']
+                        "constellation_id" => $camp['constellation_id'],
+                        "warmup" => $camp['warmup']
                     ];
                 }
                 array_push($list, $data);
