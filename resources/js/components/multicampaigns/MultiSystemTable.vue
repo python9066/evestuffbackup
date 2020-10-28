@@ -976,7 +976,8 @@ export default {
             "getCampaignUsersReadyToGoAll",
             "getCampaignUsersOnTheWayAll",
             "getsActiveCampaignById",
-            "getsActiveCampaignByIdDrop"
+            "getsActiveCampaignByIdDrop",
+            "getTotalNodeCountBySystemByMultiCampaign"
         ]),
 
         campaignJoinDrop() {
@@ -1111,7 +1112,7 @@ export default {
                 system_id: this.system_id,
                 campaign_id: this.campaign_id
             };
-            return this.getTotalNodeCountBySystem(payload);
+            return this.getTotalNodeCountBySystemByMultiCampaign(payload);
         },
 
         nodeCountHackingCount() {
