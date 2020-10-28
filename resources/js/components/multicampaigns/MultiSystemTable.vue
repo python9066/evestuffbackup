@@ -851,6 +851,7 @@ export default {
             let node = this.nodeText.toUpperCase();
             if (this.campaignActiveCountsingle == false) {
             this.nodeCampaignID = this.campaignJoinDrop.map(a => a.campaign_id)
+            this.nodeCampaignID = this.nodeCampaignID[0]
             console.log("****"+this.nodeCampaignID+"*******")
             }
                 var request = {
