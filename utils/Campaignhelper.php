@@ -103,14 +103,16 @@ class Campaignhelper
             $flag = 1;
         }
 
+
         $warmcheck = Campaign::where('start_time', '>=', $now)->where('start_time','<=', $warmup)->where('warmup',0)->where('status_id', 1)->count();
+        dd( $warmcheck);
         if ($warmcheck > 0) {
             Campaign::where('start_time', '>=', $now)
                 ->where('status_id', 1)
                 ->where('warmup',0)
                 ->where('start_time','<=', $warmup)
                 ->update(['warmup' => 1]);
-            echo "started";
+            echo "started warm up";
             $flag = 1;
         }
         $check = Campaign::where('check', 0)->count();
