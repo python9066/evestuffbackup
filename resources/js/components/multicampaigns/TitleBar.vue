@@ -2,7 +2,7 @@
     <v-row no-gutters v-if="this.getCampaignsCount > 1" class="pb-2" justify="space-around">
         <v-col md="10">
             <v-card class="pa-2" tile width="100%">
-                <v-card-title align="center" class="justify-center">
+                <v-card-title align="center" class="justify-center align-center">
                     <p>
                         Campaign page for the
                         {{ this.campaign.item_name }} in
