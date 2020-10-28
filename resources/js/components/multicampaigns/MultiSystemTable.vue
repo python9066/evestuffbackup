@@ -1,6 +1,6 @@
 <template>
     <v-col cols="6" align-self="stretch">
-        <v-card tile height="100%">
+        <v-card tile height="100%" v-if="campaignActiveCount()">
             <v-card-text>
                 <template>
                     <v-card flat max-width elevation="24" color="grey darken-4">
@@ -967,6 +967,20 @@ export default {
                 id: this.campaign_id
             };
             return this.getsActiveCampaignById(payload)
+        },
+
+        campaignActiveCount(){
+            let payload = {
+                constellation_id: this.constellation_id,
+                id: this.campaign_id
+            };
+            let count = this.getsActiveCampaignById(payload).length
+            if(count == 0){
+                return false
+            } else {
+                return true
+            }
+
         },
 
         fabOnTheWayDisbale() {
