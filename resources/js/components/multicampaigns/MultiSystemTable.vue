@@ -183,7 +183,7 @@
                             </div>
                             <v-divider class="mx-4 my-0" vertical></v-divider>
                             <div>
-                                <v-menu v-if="campaignJoinDropCount == 0"
+                                <v-menu v-if="campaignJoinDropCount != 0"
                                     :close-on-content-click="false"
                                     :value="addShown"
                                 >
