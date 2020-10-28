@@ -975,7 +975,8 @@ export default {
             "getSystemOnTheWayCount",
             "getCampaignUsersReadyToGoAll",
             "getCampaignUsersOnTheWayAll",
-            "getsActiveCampaignById"
+            "getsActiveCampaignById",
+            "getsActiveCampaignByIdDrop"
         ]),
 
         campaignJoinDrop() {
@@ -983,7 +984,7 @@ export default {
                 constellation_id: this.constellation_id,
                 id: this.campaign_id
             };
-            return this.getsActiveCampaignById(payload);
+            return this.getsActiveCampaignByIdDrop(payload);
         },
 
         campaignActiveCount() {
