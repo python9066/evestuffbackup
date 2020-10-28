@@ -218,7 +218,7 @@
                                             </v-select>
                                             <v-text-field
                                                 v-else
-                                                :value="campaignJoinDrop.map(a => a.text)"
+                                                value="ssssssss"
                                                 class=" mt-2"
                                                 v-model="nodeCampaignID"
                                                 label="Campaign"
