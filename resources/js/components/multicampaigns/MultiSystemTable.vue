@@ -205,6 +205,7 @@
                                         </v-card-title>
                                         <v-card-text>
                                             <v-select
+                                                v-if="campaignActiveCountsingle"
                                                 class=" mt-2"
                                                 v-model="nodeCampaignID"
                                                 label="Campaign"
@@ -976,6 +977,20 @@ export default {
             };
             let count = this.getsActiveCampaignById(payload).length
             if(count == 0){
+                return false
+            } else {
+                return true
+            }
+
+        },
+
+        campaignActiveCountsingle(){
+            let payload = {
+                constellation_id: this.constellation_id,
+                id: this.campaign_id
+            };
+            let count = this.getsActiveCampaignById(payload).length
+            if(count == 1){
                 return false
             } else {
                 return true
