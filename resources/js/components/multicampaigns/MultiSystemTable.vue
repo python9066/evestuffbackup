@@ -966,7 +966,7 @@ export default {
                 constellation_id: this.constellation_id,
                 campaign_id: this.campaign_id
             };
-            return this.getsActiveCampaignById(this.campaign_id)
+            return this.getsActiveCampaignById(payload)
         },
 
         fabOnTheWayDisbale() {
