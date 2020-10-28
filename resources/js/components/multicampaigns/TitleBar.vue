@@ -214,15 +214,23 @@ export default {
             this.$store.dispatch("getCampaignSystemsRecords");
         },
 
-        campaignStart() {
-            var data = {
-                id: this.sCampaignID,
+       async campaignStart() {
+            var request = {
                 status_id: 2,
-                status_name: "Active"
             };
             console.log("this started")
-            this.$store.dispatch("updateCampaignSystem", data);
-            this.$store.dispatch("updateCampaignBar", data);
+
+            await axios({
+                method: "put", //you can set what request you want to be
+                url: "/api/campaigns/" + this.sCampaignID,
+                data: request,
+                headers: {
+                    Authorization: "Bearer " + this.$store.state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                }
+            });
+
             this.$store.dispatch("getCampaigns")
             console.log("this started again")
 

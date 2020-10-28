@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\CampaignSystemUpdate;
 use App\Models\Campaign;
 use App\Models\CampaignRecords;
 use Illuminate\Http\Request;
@@ -66,14 +67,14 @@ class CampaignRecordsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id,)
     {
-        CampaignRecords::find($id)->update($request->all());
-        // $notifications = NotificationRecords::find($id);
-        // if($notifications->status_id != 10){
-        // broadcast(new NotificationChanged($notifications))->toOthers();
-        // }
-        // broadcast(new NotificationChanged($notifications));
+        Campaign::find($id)->update($request->all());
+        $flag = collect([
+            'flag' => 4,
+            'id' => $id
+        ]);
+        broadcast(new CampaignSystemUpdate($flag))->toOthers();
     }
 
     /**

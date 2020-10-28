@@ -48,6 +48,16 @@ class CampaignController extends Controller
         }
     }
 
+    public function update(Request $request, $id, $campID)
+    {
+        CampaignRecords::find($id)->update($request->all());
+        // $notifications = NotificationRecords::find($id);
+        // if($notifications->status_id != 10){
+        // broadcast(new NotificationChanged($notifications))->toOthers();
+        // }
+        // broadcast(new NotificationChanged($notifications));
+    }
+
     public function test()
     {
         $check = 83871;
