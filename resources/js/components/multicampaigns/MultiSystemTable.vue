@@ -426,6 +426,7 @@ export default {
         system_name: String,
         system_id: Number,
         campaign_id: String,
+        constellation_id: Number
     },
     data() {
         return {
@@ -961,6 +962,10 @@ export default {
         ]),
 
         campaignJoinDrop(){
+            let payload = {
+                constellation_id: this.constellation_id,
+                campaign_id: this.campaign_id
+            };
             return this.getsActiveCampaignById(this.campaign_id)
         },
 

@@ -318,6 +318,7 @@
                 :system_name="system.system_name"
                 :system_id="system.id"
                 :campaign_id="campaignId"
+                :constellation_id="system.constellation_id"
                 :index="index"
                 :key="system.id"
             >

@@ -30,7 +30,8 @@ class CampaignJoinsController extends Controller
                         "campaign_id" => $pull['campaign_id'],
                         "custom_campaign_id" => $pull['custom_campaign_id'],
                         "color" => $camp['color'],
-                        "status_id" => $camp['status_id']
+                        "status_id" => $camp['status_id'],
+                        "constellation_id" => $camp['constellation_id']
                     ];
                 }
                 array_push($list, $data);
@@ -62,7 +63,8 @@ class CampaignJoinsController extends Controller
                     $data = [];
                     $data = [
                         "id" => $sys['id'],
-                        "system_name" => $sys['system_name']
+                        "system_name" => $sys['system_name'],
+                        "constellation_id" =>$sys['constellation_id']
                     ];
                     array_push($list, $data);
                 }
