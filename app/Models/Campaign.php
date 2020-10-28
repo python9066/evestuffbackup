@@ -55,6 +55,7 @@ class Campaign extends Model
         'structure_id' => 'integer',
         'status_id' => 'integer',
         'check' => 'integer',
+        'warmup' => 'intger',
     ];
 
 
