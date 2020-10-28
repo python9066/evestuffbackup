@@ -91,6 +91,7 @@ class Campaignhelper
         }
         // dd("fwefe");
         $now = now();
+        $warmup = now()->modify(' -1 hour');
         $now10 = now()->modify('-12 hours');
         $yesterday = now('-8 hours');
         $check = Campaign::where('start_time', '<=', $now)->where('status_id', 1)->count();
@@ -102,6 +103,15 @@ class Campaignhelper
             $flag = 1;
         }
 
+        $warmcheck = Campaign::where('start_time', '>=', $now)->where('start_time','<=', $warmup)->where('status_id', 1)->count();
+        if ($warmcheck > 0) {
+            Campaign::where('start_time', '>=', $now)
+                ->where('status_id', 1)
+                ->where('start_time','<=', $warmup)
+                ->update(['warmup' => 1]);
+            echo "started";
+            $flag = 1;
+        }
         $check = Campaign::where('check', 0)->count();
 
         if ($check > 0) {
