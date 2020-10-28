@@ -224,6 +224,7 @@ export default {
             this.$store.dispatch("updateCampaignSystem", data);
             this.$store.dispatch("updateCampaignBar", data);
             this.$store.dispatch("getCampaigns")
+            console.log("this started again")
 
             // this.loadcampaigns()
             // this.$emit("updateNow");
