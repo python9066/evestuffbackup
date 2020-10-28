@@ -105,7 +105,7 @@ class Campaignhelper
 
 
         $warmcheck = Campaign::where('start_time', '>=', $now)->where('start_time','<=', $warmup)->where('warmup',0)->where('status_id', 1)->count();
-        dd( $warmcheck);
+        dd( $warmup);
         if ($warmcheck > 0) {
             Campaign::where('start_time', '>=', $now)
                 ->where('status_id', 1)
