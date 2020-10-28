@@ -214,6 +214,7 @@
                                                 item-value="campaign_id"
                                                 :items="campaignJoinDrop"
                                                 autofocus
+                                                readonly
                                             >
                                             </v-select>
                                             <v-text-field
@@ -848,12 +849,21 @@ export default {
 
         async addNode() {
             let node = this.nodeText.toUpperCase();
-            var request = {
-                campaign_id: this.nodeCampaignID,
-                custom_campaign_id: this.campaign_id,
-                system_id: this.system_id,
-                node_id: node
-            };
+            if (this.campaignActiveCountsingle == 1) {
+                var request = {
+                    campaign_id: this.campaignJoinDrop.map(a => a.value),
+                    custom_campaign_id: this.campaign_id,
+                    system_id: this.system_id,
+                    node_id: node
+                };
+            } else {
+                var request = {
+                    campaign_id: this.nodeCampaignID,
+                    custom_campaign_id: this.campaign_id,
+                    system_id: this.system_id,
+                    node_id: node
+                };
+            }
             this.nodeText = "";
             this.nodeCampaignID = "";
             this.addShown = false;
@@ -972,40 +982,38 @@ export default {
             "getsActiveCampaignById"
         ]),
 
-        campaignJoinDrop(){
+        campaignJoinDrop() {
             let payload = {
                 constellation_id: this.constellation_id,
                 id: this.campaign_id
             };
-            return this.getsActiveCampaignById(payload)
+            return this.getsActiveCampaignById(payload);
         },
 
-        campaignActiveCount(){
+        campaignActiveCount() {
             let payload = {
                 constellation_id: this.constellation_id,
                 id: this.campaign_id
             };
-            let count = this.getsActiveCampaignById(payload).length
-            if(count == 0){
-                return false
+            let count = this.getsActiveCampaignById(payload).length;
+            if (count == 0) {
+                return false;
             } else {
-                return true
+                return true;
             }
-
         },
 
-        campaignActiveCountsingle(){
+        campaignActiveCountsingle() {
             let payload = {
                 constellation_id: this.constellation_id,
                 id: this.campaign_id
             };
-            let count = this.getsActiveCampaignById(payload).length
-            if(count == 1){
-                return false
+            let count = this.getsActiveCampaignById(payload).length;
+            if (count == 1) {
+                return false;
             } else {
-                return true
+                return true;
             }
-
         },
 
         fabOnTheWayDisbale() {
