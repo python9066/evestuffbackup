@@ -24,6 +24,7 @@ class CampaignRecords extends Model
         'defenders_score_old' => 'double',
         'attackers_score_old' => 'double',
         'notification_type_id' => 'double',
+        'warmup' => 'intger',
     ];
 
     public function campaignjoin(){
