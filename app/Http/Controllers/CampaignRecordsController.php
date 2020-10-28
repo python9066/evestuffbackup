@@ -74,7 +74,7 @@ class CampaignRecordsController extends Controller
             'flag' => 4,
             'id' => $id
         ]);
-        broadcast(new CampaignSystemUpdate($flag))->toOthers();
+        broadcast(new CampaignSystemUpdate($flag));
     }
 
     /**
