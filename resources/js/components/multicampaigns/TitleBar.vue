@@ -11,8 +11,27 @@
                             ><img :src="this.campaign.url"
                         /></v-avatar>
                         -
-                        {{ this.campaign.alliance }}
+                        {{ this.campaign.alliance }} :
                     </p>
+                    <div
+                    class="d-flex full-width align-content-center"
+                    v-if="this.campaign.status_id == 1"
+                >
+                    <CountDowntimer
+                        :start-time="moment.utc(this.campaign.start).unix()"
+                        :end-text="'Campaign Started'"
+                        :interval="1000"
+                        @campaignStart="campaignStart()"
+                    >
+                        <template slot="countdown" slot-scope="scope">
+                            <span class="red--text pl-3 text-h5 justify-content align-center"
+                                >{{scope.props.hours}}:{{ scope.props.minutes }}:{{
+                                    scope.props.seconds
+                                }}</span
+                            >
+                        </template>
+                    </CountDowntimer>
+                </div>
                     <div
                         v-if="campaign.total_node > 0"
                         class=" d-inline-flex align-center"
@@ -152,25 +171,7 @@
                         fas fa-minus-circle
                     </v-icon>
                 </div>
-                <div
-                    class="d-flex full-width align-content-center"
-                    v-if="this.campaign.status_id == 1"
-                >
-                    <CountDowntimer
-                        :start-time="moment.utc(this.campaign.start).unix()"
-                        :end-text="'Campaign Started'"
-                        :interval="1000"
-                        @campaignStart="campaignStart()"
-                    >
-                        <template slot="countdown" slot-scope="scope">
-                            <span class="red--text pl-3 text-h5 justify-content align-center"
-                                >{{scope.props.hours}}:{{ scope.props.minutes }}:{{
-                                    scope.props.seconds
-                                }}</span
-                            >
-                        </template>
-                    </CountDowntimer>
-                </div>
+
             </v-card>
         </v-col>
     </v-row>
