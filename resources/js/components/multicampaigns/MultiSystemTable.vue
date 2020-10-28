@@ -852,7 +852,7 @@ export default {
             if (this.campaignActiveCountsingle == 1) {
                 console.log("kafoekofe")
                 var request = {
-                    campaign_id: this.campaignJoinDrop.map(a => a.value),
+                    campaign_id: this.campaignJoinDrop.map(a => a.campaign_id),
                     custom_campaign_id: this.campaign_id,
                     system_id: this.system_id,
                     node_id: node
