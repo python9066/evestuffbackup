@@ -852,14 +852,13 @@ export default {
             if (this.campaignActiveCountsingle == false) {
             this.nodeCampaignID = this.campaignJoinDrop.map(a => a.campaign_id)
             console.log("****"+this.nodeCampaignID+"*******")
-            } else {
+            }
                 var request = {
                     campaign_id: this.nodeCampaignID,
                     custom_campaign_id: this.campaign_id,
                     system_id: this.system_id,
                     node_id: node
                 };
-            }
             this.nodeText = "";
             this.nodeCampaignID = "";
             this.addShown = false;
