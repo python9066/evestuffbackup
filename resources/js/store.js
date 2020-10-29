@@ -581,7 +581,7 @@ export default new Vuex.Store({
                 sys => sys.custom_campaign_id == id && (sys.status_id == 7 || sys.status_id == 5)
             ).length
 
-            console.log(count)
+            return count
         },
 
 
