@@ -315,6 +315,8 @@ export default {
         },
 
 
+
+
         barActive() {
             if (this.getCampaignById(this.sCampaignID).status_id > 1) {
                 return true;
@@ -334,6 +336,18 @@ export default {
 
             return "blue darken-4";
         },
+
+        nodeCountAll() {
+            return this.getTotalNodeCountByCampaign(this.sCampaignID);
+        },
+
+        nodeCountHackingCountAll() {
+            return this.getHackingNodeCountByCampaign(this.sCampaignID);
+        },
+
+        nodeRedCountHackingCountAll() {
+            return this.getRedHackingNodeCountByCampaign(this.sCampaignID);
+        }
 
         barReverse() {
             var d =
