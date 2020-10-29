@@ -21,12 +21,12 @@
                                     :radius="20"
                                     :strokeWidth="4"
                                     :value="
-                                        (nodeCountHackingCount / nodeCount) *
+                                        (nodeCountHackingCountMultiCampagin / nodeCount) *
                                             100 || 0.000001
                                     "
                                 >
                                     <div class="caption">
-                                        {{ nodeCountHackingCount }} /
+                                        {{ nodeCountHackingCountMultiCampagin }} /
                                         {{ nodeCount }}
                                     </div></v-progress-circular
                                 >
@@ -1110,7 +1110,7 @@ export default {
             return this.getTotalNodeCountBySystemByMultiCampaign(payload);
         },
 
-        nodeCountHackingCount() {
+        nodeCountHackingCountMultiCampagin() {
             let payload = {
                 system_id: this.system_id,
                 campaign_id: this.campaign_id
