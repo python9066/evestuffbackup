@@ -213,7 +213,7 @@
                                                 item-text="text"
                                                 item-value="campaign_id"
                                                 :items="campaignJoinDrop"
-                                                autofocus
+                                                :autofocus="campaignActiveCountsingle"
 
                                             >
                                             </v-select>
@@ -232,6 +232,7 @@
                                                 label="Node"
                                                 placeholder="Enter Node"
                                                 flat
+                                                :autofocus="!campaignActiveCountsingle"
                                                 v-mask="'AA##'"
                                                 v-model="nodeText"
                                                 @keyup.enter="addNode()"
