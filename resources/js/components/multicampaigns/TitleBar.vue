@@ -32,6 +32,43 @@
                         </template>
                     </CountDowntimer>
                 </div>
+                <div
+                        class=" ml-auto d-inline-flex align-center"
+                        v-if="nodeCountAll > 0"
+                    >
+                        <v-divider class="mx-4 my-0" vertical></v-divider>
+                        <p class=" pt-4 pr-3">Active Nodes -</p>
+                        <v-progress-circular
+                            class=" pr-3"
+                            :transitionDuration="5000"
+                            :radius="25"
+                            :strokeWidth="5"
+                            :value="
+                                (nodeCountHackingCountAll / nodeCountAll) *
+                                    100 || 0.000001
+                            "
+                        >
+                            <div class="caption">
+                                {{ nodeCountHackingCountAll }} /
+                                {{ nodeCountAll }}
+                            </div></v-progress-circular
+                        >
+                        <v-progress-circular
+                            :transitionDuration="5000"
+                            :radius="25"
+                            :strokeWidth="5"
+                            strokeColor="#FF3D00"
+                            :value="
+                                (nodeRedCountHackingCountAll / nodeCountAll) *
+                                    100 || 0.000001
+                            "
+                        >
+                            <div class="caption">
+                                {{ nodeRedCountHackingCountAll }} /
+                                {{ nodeCountAll }}
+                            </div></v-progress-circular
+                        >
+                    </div>
                     <div
                         v-if="campaign.total_node > 0"
                         class=" d-inline-flex align-center"
