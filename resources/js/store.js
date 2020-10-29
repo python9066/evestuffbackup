@@ -613,7 +613,7 @@ export default new Vuex.Store({
             console.log(state.campaignsystems)
             console.log(payload)
             return state.campaignsystems.filter(
-                sys => sys.system_id == payload.system_id && sys.custom_campaign_id == payload.campaign_id
+                sys => sys.system_id == payload.system_id && sys.custom_campaign_id == payload.campaign_id && (sys.status_id == 5 || sys.status_id == 7)
             ).length
         },
 
