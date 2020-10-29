@@ -33,7 +33,7 @@
                     </CountDowntimer>
                 </div>
                 <div
-                        class=" ml-auto d-inline-flex align-center"
+                        class="d-inline-flex align-center"
                         v-if="nodeCountAll > 0"
                     >
                         <v-divider class="mx-4 my-0" vertical></v-divider>
