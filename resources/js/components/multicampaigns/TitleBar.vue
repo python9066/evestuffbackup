@@ -347,7 +347,7 @@ export default {
 
         nodeRedCountHackingCountAll() {
             return this.getRedHackingNodeCountByCampaign(this.sCampaignID);
-        }
+        },
 
         barReverse() {
             var d =
