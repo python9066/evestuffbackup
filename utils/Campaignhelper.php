@@ -174,7 +174,7 @@ class Campaignhelper
 
         $campaign->campaignsystems()
             ->where('campaign_system_status_id', 4)
-            ->orwhere('campaign_system_status_id', 5)
+            // ->orwhere('campaign_system_status_id', 5)
             ->update(['campaign_system_status_id' => 10]);
 
 
