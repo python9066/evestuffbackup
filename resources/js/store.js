@@ -598,7 +598,7 @@ export default new Vuex.Store({
 
         getHackingNodeCountBySystemByMultiCampaign: state => payload => {
             return state.campaignsystems.filter(
-                sys => sys.system_id == payload.system_id && sys.custom_campaign_id == payload.campaign_id && (sys.status_id == 2 || sys.status_id == 4 || sys.status_id == 8 )
+                sys => sys.system_id == payload.system_id && sys.custom_campaign_id == payload.campaign_id && (sys.status_id == 2 || sys.status_id == 4 || sys.status_id == 8 || sys.status_id == 3)
             ).length
 
         },
