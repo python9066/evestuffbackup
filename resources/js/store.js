@@ -586,7 +586,7 @@ export default new Vuex.Store({
 
         getTotalNodeCountBySystemByMultiCampaign: state => payload => {
             return state.campaignsystems.filter(
-                sys => sys.system_id == payload.system_id && sys.custom_campaign_id == payload.campaign_id
+                sys => sys.system_id == payload.system_id && sys.warmup == 1 && sys.custom_campaign_id == payload.campaign_id
             ).length
         },
 
@@ -598,7 +598,7 @@ export default new Vuex.Store({
 
         getHackingNodeCountBySystemByMultiCampaign: state => payload => {
             return state.campaignsystems.filter(
-                sys => sys.system_id == payload.system_id && sys.custom_campaign_id == payload.campaign_id && (sys.status_id == 2 || sys.status_id == 4 || sys.status_id == 8 || sys.status_id == 3)
+                sys => sys.system_id == payload.system_id && sys.warmup == 1 && sys.custom_campaign_id == payload.campaign_id && (sys.status_id == 2 || sys.status_id == 4 || sys.status_id == 8 || sys.status_id == 3)
             ).length
 
         },
@@ -611,7 +611,7 @@ export default new Vuex.Store({
 
         getRedHackingNodeCountBySystemByMultiCampaign: state => payload => {
             return state.campaignsystems.filter(
-                sys => sys.system_id == payload.system_id && sys.custom_campaign_id == payload.campaign_id && (sys.status_id == 5 || sys.status_id == 7)
+                sys => sys.system_id == payload.system_id && sys.warmup == 1 && sys.custom_campaign_id == payload.campaign_id && (sys.status_id == 5 || sys.status_id == 7)
             ).length
         },
 
