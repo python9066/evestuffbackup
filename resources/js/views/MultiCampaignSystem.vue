@@ -427,38 +427,30 @@ export default {
         Echo.private("campaignsystem." + this.$route.params.id).listen(
             "CampaignSystemUpdate",
             e => {
-                // console.log(e);
                 if (e.flag.flag == 1) {
-                    // console.log(1);
                     this.loadUsersRecords();
                 }
                 if (e.flag.flag == 2) {
-                    // console.log(2);
                     this.loadCampaignSystemRecords();
                 }
                 if (e.flag.flag == 3) {
-                    // console.log(3);
                     this.loadCampaignSystemRecords();
                     this.loadUsersRecords();
                 }
                 if (e.flag.flag == 4) {
-                    // console.log(4);
                     this.loadcampaigns();
                     this.loadCampaignSystemRecords();
                     this.loadUsersRecords();
                 }
                 if (e.flag.flag == 5) {
-                    // console.log(4);
                     this.checkAddUser();
                 }
 
                 if (e.flag.flag == 6) {
-                    //  console.log(6);
                     this.kickUser(e.flag.user_id);
                 }
 
                 if (e.flag.flag == 7) {
-                    //  console.log(6);
                     this.$router.push("/campaignfinished");
                 }
             },
@@ -480,7 +472,6 @@ export default {
         if (this.$store.getters.getCampaignsCount == 0) {
             await this.$store.dispatch("getCampaigns");
         }
-        // console.log(this.$route.params.id)
         await this.getSystems(this.campaignId);
         await this.$store.dispatch(
             "getCampaignUsersRecords",
@@ -539,7 +530,6 @@ export default {
         },
 
         async getSystems(id) {
-            // console.log(id, this.$store.state.token);
             let res = await axios({
                 method: "get", //you can set what request you want to be
                 url: "/api/campaignjoinsystems/" + id,
@@ -625,8 +615,6 @@ export default {
 
         roleForm(a) {
             this.role = a;
-            // console.log("LALAL");
-            // console.log(a);
         },
 
         newCharFormClose() {
@@ -639,8 +627,6 @@ export default {
 
         roleEditForm(a) {
             this.editrole = a;
-            // console.log("LALAL");
-            // console.log(a);
         },
 
         charEditForm($event) {
@@ -719,7 +705,6 @@ export default {
             if (this.oldChar.link != this.editLink) {
                 var link = this.editLink;
             }
-            // console.log(role_name);
             var request = {
                 link: link,
                 ship: ship,

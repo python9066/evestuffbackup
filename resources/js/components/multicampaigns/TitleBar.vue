@@ -220,7 +220,6 @@ export default {
             var request = {
                 status_id: 2,
             };
-            console.log("this started")
 
             await axios({
                 method: "put", //you can set what request you want to be
@@ -234,7 +233,6 @@ export default {
             });
 
             this.$store.dispatch("getCampaigns")
-            console.log("this started again")
 
             // this.loadcampaigns()
             // this.$emit("updateNow");
@@ -254,7 +252,6 @@ export default {
         ]),
 
          campaign() {
-             console.log(this.sCampaignID)
             return this.getCampaignById(this.sCampaignID);
         },
         barColor() {

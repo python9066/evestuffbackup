@@ -565,7 +565,6 @@ export default {
                 system_id: this.system_id,
                 campaign_id: this.campaign_id
             };
-            console.log(request);
 
             await axios({
                 method: "put", //you can set what request you want to be
@@ -826,13 +825,10 @@ export default {
                     this.noteText +
                     item.notes;
             }
-            console.log(note);
             item.notes = note;
             let request = {
                 notes: note
             };
-            // console.log(item);
-            // console.log(item);
             this.$store.dispatch("updateCampaignSystem", item);
             axios({
                 method: "put", //you can set what request you want to be
@@ -852,7 +848,6 @@ export default {
             if (this.campaignActiveCountsingle == false) {
             this.nodeCampaignID = this.campaignJoinDrop.map(a => a.campaign_id)
             this.nodeCampaignID = this.nodeCampaignID[0]
-            console.log("****"+this.nodeCampaignID+"*******")
             }
                 var request = {
                     campaign_id: this.nodeCampaignID,
