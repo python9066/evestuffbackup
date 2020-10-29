@@ -573,9 +573,15 @@ export default new Vuex.Store({
         getRedHackingNodeCountByMultiCampaign: state => id => {
             console.log(state.campaignsystems)
             console.log(id)
-            return state.campaignsystems.filter(
+            // return state.campaignsystems.filter(
+            //     sys => sys.custom_campaign_id == id && (sys.status_id == 7 || sys.status_id == 5)
+            // ).length
+
+            let count = state.campaignsystems.filter(
                 sys => sys.custom_campaign_id == id && (sys.status_id == 7 || sys.status_id == 5)
             ).length
+
+            console.log(count)
         },
 
 
