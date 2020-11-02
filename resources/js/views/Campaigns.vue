@@ -264,11 +264,6 @@
                         <span class=" pl-5">{{ item.status_name }}</span>
                 </div>
 
-                <campaignMap
-                    :system_name="item.system"
-                    :region_name="item.region"
-                >
-                </campaignMap>
                 <div
                         class="d-flex full-width align-content-center"
                         v-if="item.status_id == 2"
@@ -287,6 +282,11 @@
                             </template>
                         </VueCountUptimer>
                     </div>
+                <campaignMap
+                    :system_name="item.system"
+                    :region_name="item.region"
+                >
+                </campaignMap>
 
                 </div>
             </template>
