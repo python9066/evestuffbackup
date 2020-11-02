@@ -262,6 +262,7 @@
                     hide-default-footer
                     disable-pagination
                     class="elevation-12"
+                    expand-icon="fas fa-pen"
                 >
                     >
 

@@ -24,7 +24,7 @@
         "material-design-icons-iconfont": "^6.1.0",
         "popper.js": "^1.12",
         "resolve-url-loader": "^2.3.1",
-        "sass": "^1.27.1",
+        "sass": "^1.28.0",
         "sass-loader": "^8.0.0",
         "vue": "^2.6.12",
         "vue-template-compiler": "^2.6.10"
@@ -36,7 +36,7 @@
         "easy-circular-progress": "^1.0.4",
         "laravel-echo": "^1.9.0",
         "moment": "^2.29.1",
-        "pusher-js": "^7.0.0",
+        "pusher-js": "^7.0.1",
         "v-mask": "^2.2.3",
         "vue-click-outside": "^1.1.0",
         "vue-router": "^3.4.8",
