@@ -269,6 +269,24 @@
                     :region_name="item.region"
                 >
                 </campaignMap>
+                <div
+                        class="d-flex full-width align-content-center"
+                        v-if="item.status_id == 2"
+                    >
+                        <VueCountUptimer
+                            :start-time="moment.utc(item.start).unix()"
+                            :end-text="'Campaign Started'"
+                            :interval="1000"
+                        >
+                            <template slot="countup" slot-scope="scope">
+                                <span class="red--text pl-3"
+                                    >{{ scope.props.hours }}:{{
+                                        scope.props.minutes
+                                    }}:{{ scope.props.seconds }}</span
+                                >
+                            </template>
+                        </VueCountUptimer>
+                    </div>
 
                 </div>
             </template>
