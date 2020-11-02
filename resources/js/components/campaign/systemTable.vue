@@ -262,6 +262,7 @@
                     hide-default-footer
                     disable-pagination
                     class="elevation-12"
+                    expand-icon="fas fa-pen"
 
                 >
                     >
@@ -353,7 +354,6 @@
                     </template>
 
                     <template v-slot:expanded-item="{ headers, item }">
-                        <v-icon slot="actions" color="primary">fas fa-pen</v-icon>
                         <td :colspan="headers.length" align="center">
                             <div>
                                 <v-col class="align-center">
