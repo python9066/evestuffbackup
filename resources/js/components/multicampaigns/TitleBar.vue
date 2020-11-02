@@ -42,6 +42,24 @@
                         </CountDowntimer>
                     </div>
                     <div
+                        class="d-flex full-width align-content-center"
+                        v-if="this.campaign.status_id == 2"
+                    >
+                        <VueCountUptimer
+                            :start-time="moment.utc(this.campaign.start).unix()"
+                            :end-text="'Campaign Started'"
+                            :interval="1000"
+                        >
+                            <template slot="countup" slot-scope="scope">
+                                <span class="red--text pl-3"
+                                    >{{ scope.props.hours }}:{{
+                                        scope.props.minutes
+                                    }}:{{ scope.props.seconds }}</span
+                                >
+                            </template>
+                        </VueCountUptimer>
+                    </div>
+                    <div
                         class="d-inline-flex align-center"
                         v-if="nodeCountAll > 0"
                     >
