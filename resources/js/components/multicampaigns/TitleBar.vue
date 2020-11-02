@@ -1,11 +1,19 @@
 <template>
-    <v-row no-gutters v-if="this.getCampaignsCount > 1" class="pb-2" justify="space-around">
+    <v-row
+        no-gutters
+        v-if="this.getCampaignsCount > 1"
+        class="pb-2"
+        justify="space-around"
+    >
         <v-col md="10">
             <v-card class="pa-2" tile width="100%">
-                <v-card-title align="center" class="justify-center align-center">
+                <v-card-title
+                    align="center"
+                    class="justify-center align-center d-inline-flex"
+                >
                     <p class=" pt-5">
                         <VueCountUptimer
-                        v-if="this.campaign.status_id == 2"
+                            v-if="this.campaign.status_id == 2"
                             :start-time="moment.utc(this.campaign.start).unix()"
                             :end-text="'Campaign Started'"
                             :interval="1000"
@@ -14,8 +22,8 @@
                                 <span class="red--text pl-3"
                                     >{{ scope.props.hours }}:{{
                                         scope.props.minutes
-                                    }}:{{ scope.props.seconds }} : </span
-                                >
+                                    }}:{{ scope.props.seconds }} :
+                                </span>
                             </template>
                         </VueCountUptimer>
                         Campaign page for the
@@ -28,29 +36,29 @@
                         {{ this.campaign.alliance }} :
                     </p>
                     <div
-                    class="d-flex full-width align-content-center"
-                    v-if="this.campaign.status_id == 1"
-                >
-                    <CountDowntimer
-                        :start-time="moment.utc(this.campaign.start).unix()"
-                        :end-text="'Campaign Started'"
-                        :interval="1000"
-                        @campaignStart="campaignStart()"
+                        class="d-flex full-width align-content-center"
+                        v-if="this.campaign.status_id == 1"
                     >
-                        <template slot="countdown" slot-scope="scope">
-                            <span class="red--text pl-3 text-h5 justify-content align-center"
-                                >{{scope.props.hours}}:{{ scope.props.minutes }}:{{
-                                    scope.props.seconds
-                                }}</span
-                            >
-                        </template>
-                    </CountDowntimer>
-                </div>
-                <div
+                        <CountDowntimer
+                            :start-time="moment.utc(this.campaign.start).unix()"
+                            :end-text="'Campaign Started'"
+                            :interval="1000"
+                            @campaignStart="campaignStart()"
+                        >
+                            <template slot="countdown" slot-scope="scope">
+                                <span
+                                    class="red--text pl-3 text-h5 justify-content align-center"
+                                    >{{ scope.props.hours }}:{{
+                                        scope.props.minutes
+                                    }}:{{ scope.props.seconds }}</span
+                                >
+                            </template>
+                        </CountDowntimer>
+                    </div>
+                    <div
                         class="d-inline-flex align-center"
                         v-if="nodeCountAll > 0"
                     >
-
                         <v-divider class="mx-4 my-0" vertical></v-divider>
                         <p class=" pt-4 pr-3">Active Nodes -</p>
                         <v-progress-circular
@@ -223,7 +231,6 @@
                         fas fa-minus-circle
                     </v-icon>
                 </div>
-
             </v-card>
         </v-col>
     </v-row>
@@ -243,7 +250,7 @@ export default {
         return {};
     },
 
-     async created() {
+    async created() {
         this.campaignId = this.sCampaignID;
         Echo.private("campaignsystem." + this.sCampaignID).listen(
             "CampaignSystemUpdate",
@@ -252,9 +259,8 @@ export default {
                     this.$store.dispatch("getCampaigns");
                     this.$store.dispatch("getCampaignSystemsRecords");
                     this.$store.dispatch("getCampaignJoinData");
-
                 }
-            },
+            }
         );
         this.channel = "campaignsystem." + this.campaignId;
     },
@@ -268,9 +274,9 @@ export default {
             this.$store.dispatch("getCampaignSystemsRecords");
         },
 
-       async campaignStart() {
+        async campaignStart() {
             var request = {
-                status_id: 2,
+                status_id: 2
             };
 
             await axios({
@@ -284,11 +290,11 @@ export default {
                 }
             });
 
-            this.$store.dispatch("getCampaigns")
+            this.$store.dispatch("getCampaigns");
 
             // this.loadcampaigns()
             // this.$emit("updateNow");
-        },
+        }
     },
 
     computed: {
@@ -303,7 +309,7 @@ export default {
             "getRedHackingNodeCountByCampaign"
         ]),
 
-         campaign() {
+        campaign() {
             return this.getCampaignById(this.sCampaignID);
         },
         barColor() {
@@ -328,9 +334,6 @@ export default {
 
             return a;
         },
-
-
-
 
         barActive() {
             if (this.getCampaignById(this.sCampaignID).status_id > 1) {
@@ -372,13 +375,10 @@ export default {
             }
 
             return true;
-        },
-
-
+        }
     },
     beforeDestroy() {
         this.leaving();
     }
-
 };
 </script>
