@@ -331,7 +331,7 @@ export default {
                     width: "30%",
                     align: "center"
                 },
-                { text: "Countdown", value: "count", sortable: false }
+                { text: "Countdown/Age", value: "count", sortable: false }
             ]
         };
     },
