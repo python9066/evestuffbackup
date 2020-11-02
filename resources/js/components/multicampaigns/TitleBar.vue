@@ -3,7 +3,23 @@
         <v-col md="10">
             <v-card class="pa-2" tile width="100%">
                 <v-card-title align="center" class="justify-center align-center">
-                    <p class=" pt-5">
+                    <p class=" pt-5"> <span v-if="this.campaign.status_id == 2" >
+                        <VueCountUptimer
+                            :start-time="moment.utc(this.campaign.start).unix()"
+                            :end-text="'Campaign Started'"
+                            :interval="1000"
+                        >
+                            <template slot="countup" slot-scope="scope">
+                                <span class="red--text pl-3"
+                                    >{{ scope.props.hours }}:{{
+                                        scope.props.minutes
+                                    }}:{{ scope.props.seconds }} -- </span
+                                >
+                            </template>
+                        </VueCountUptimer>
+
+
+                    </span>
                         Campaign page for the
                         {{ this.campaign.item_name }} in
                         {{ this.campaign.system }} -
@@ -36,6 +52,7 @@
                         class="d-inline-flex align-center"
                         v-if="nodeCountAll > 0"
                     >
+
                         <v-divider class="mx-4 my-0" vertical></v-divider>
                         <p class=" pt-4 pr-3">Active Nodes -</p>
                         <v-progress-circular
