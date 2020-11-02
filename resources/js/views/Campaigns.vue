@@ -274,7 +274,7 @@
                             :interval="1000"
                         >
                             <template slot="countup" slot-scope="scope">
-                                <span class="red--text pl-3"
+                                <span class="green--text pl-3"
                                     >{{ scope.props.hours }}:{{
                                         scope.props.minutes
                                     }}:{{ scope.props.seconds }}</span
