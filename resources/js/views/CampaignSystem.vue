@@ -377,7 +377,8 @@
                                 </v-btn>
                             </template>
                             <span>
-                                This will kicked everyone (you also) from the page.  Press when hack is over.
+                                This will kicked everyone (you also) from the
+                                page. Press when hack is over.
                             </span>
                         </v-tooltip>
                         <v-btn v-if="$can('super')" @click="overlay = !overlay">
@@ -403,6 +404,24 @@
                         </v-tooltip>
                     </div>
                     <v-spacer></v-spacer>
+                    <div
+                        class="d-flex full-width align-content-center"
+                        v-if="this.campaign.status_id == 2"
+                    >
+                        <VueCountUptimer
+                            :start-time="moment.utc(this.campaign.start).unix()"
+                            :end-text="'Campaign Started'"
+                            :interval="1000"
+                        >
+                            <template slot="countup" slot-scope="scope">
+                                <span class="red--text pl-3"
+                                    >{{ scope.props.hours }}:{{
+                                        scope.props.minutes
+                                    }}:{{ scope.props.seconds }}</span
+                                >
+                            </template>
+                        </VueCountUptimer>
+                    </div>
                     <div
                         class=" ml-auto d-inline-flex align-center"
                         v-if="nodeCountAll > 0"
