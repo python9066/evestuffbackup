@@ -262,7 +262,7 @@
                     hide-default-footer
                     disable-pagination
                     class="elevation-12"
-                    expand-icon="color=red fas fa-pen"
+                    expand-icon="warming fas fa-pen"
 
                 >
                     >
