@@ -116,7 +116,7 @@
                     </v-tab>
 
                     <v-tab link to="/timers">
-                        Timers
+                        Windows
                     </v-tab>
 
                     <v-tab link to="/campaigns">
