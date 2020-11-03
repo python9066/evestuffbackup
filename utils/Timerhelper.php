@@ -55,7 +55,7 @@ class Timerhelper
             );
 
             // array_push($data, $data1);
-        Structure::updateOrCreate(['id' => $var['structure_id'], $data1]);
+        Structure::updateOrCreate(['id' => $var['structure_id']], $data1);
         }
         $now = now();
         Structure::where('status',0)->delete();
