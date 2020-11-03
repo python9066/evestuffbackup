@@ -27,6 +27,7 @@ class Timerhelper
         ]);
         $response = Utils::jsonDecode($response->getBody(), true);
         Structure::truncate();
+        Structure::where('id','>',0)->update(['status' => 1]);
         $data = array();
         foreach ($response as $var) {
             $count = count($var);
