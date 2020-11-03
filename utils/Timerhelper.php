@@ -26,8 +26,9 @@ class Timerhelper
             'headers' => $headers
         ]);
         $response = Utils::jsonDecode($response->getBody(), true);
-        Structure::truncate();
+        // Structure::truncate();
         $data = array();
+        Structure::where('id','>',0)->update(['status' => 1]);
         foreach ($response as $var) {
             $count = count($var);
             if ($count > 4) {
@@ -45,17 +46,21 @@ class Timerhelper
             $data1 = array(
                 'alliance_id' => $var['alliance_id'],
                 'system_id' => $var['solar_system_id'],
-                'id' => $var['structure_id'],
                 'item_id' => $var['structure_type_id'],
                 'adm' => $adm,
                 'vulnerable_end_time' => $vulnerable_end_time,
                 'vulnerable_start_time' => $vulnerable_start_time,
+                'status' => 2
 
             );
 
-            array_push($data, $data1);
+            // array_push($data, $data1);
+        Structure::updateOrCreate(['id' => $var['structure_id'], $data1]);
         }
-        Structure::insert($data);
+        $now = now();
+        Structure::where('status',0)->delete();
+        Structure::where('status',2)->update(['age' => $now]);
+        Structure::where('id','>',0)->update(['status' => 0]);
         $system = Structure::where('adm', '>', 0)->select('system_id', 'adm')->get();
         $system = $system->unique('system_id');
         // System::where('id', '>', 0)->update(['adm' => 0]);
