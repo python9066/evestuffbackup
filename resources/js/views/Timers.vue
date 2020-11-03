@@ -107,6 +107,23 @@
                     </vue-countdown-timer>
                 </template>
             </template>
+            <template v-slot:item.age="{ item }">
+                <template>
+                    <VueCountUptimer
+                    :start-time="moment.utc(item.age).unix()"
+                    :end-text="'Window Closed'"
+                    :interval="1000"
+                >
+                    <template slot="countup" slot-scope="scope">
+                        <span class="red--text pl-3"
+                            >{{ scope.props.hours }}:{{
+                                scope.props.minutes
+                            }}:{{ scope.props.seconds }}</span
+                        >
+                    </template>
+                </VueCountUptimer>
+                </template>
+            </template>
         </v-data-table>
     </div>
 
