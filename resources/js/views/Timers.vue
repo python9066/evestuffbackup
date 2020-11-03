@@ -149,7 +149,8 @@ export default {
                 { text: "Structure", value: "type" },
                 { text: "ADM", value: "adm" },
                 { text: "End", value: "end" },
-                { text: "Countdown", value: "count", sortable: false }
+                { text: "Countdown", value: "count", sortable: false },
+                { text: "Age", value: "age"}
 
                 // { text: "Vulernable End Time", value: "vulnerable_end_time" }
             ]

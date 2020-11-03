@@ -53,6 +53,7 @@ class CreateOrReplaceTimerRecordsViewCommand extends Command
         alliances.color AS 'color',
         items.item_name AS 'type',
         structures.adm AS 'adm',
+        structures.age AS 'age',
         structures.vulnerable_start_time AS 'start',
         structures.vulnerable_end_time as 'end',
         structures.status as 'status',
