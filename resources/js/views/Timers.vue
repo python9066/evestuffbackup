@@ -115,10 +115,8 @@
                     :interval="1000"
                 >
                     <template slot="countup" slot-scope="scope">
-                        <span class="red--text pl-3"
-                            >{{ scope.props.hours }}:{{
-                                scope.props.minutes
-                            }}:{{ scope.props.seconds }}</span
+                        <span class="green--text pl-3"
+                            >Days: {{ scope.props.days }}- Hours:{{scope.props.hours}}</span
                         >
                     </template>
                 </VueCountUptimer>
