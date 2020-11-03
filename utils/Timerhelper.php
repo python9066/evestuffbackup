@@ -59,7 +59,7 @@ class Timerhelper
         $system = Structure::where('adm', '>', 0)->select('system_id', 'adm')->get();
         $system = $system->unique('system_id');
         // System::where('id', '>', 0)->update(['adm' => 0]);
-        Structure::where('id','>',0)->update(['status' => 1]);
+        // Structure::where('id','>',0)->update(['status' => 1]);
 
         foreach ($system as $system) {
 
