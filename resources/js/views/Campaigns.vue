@@ -213,11 +213,11 @@
                         </v-progress-linear> -->
                 </span>
                 <span v-else-if="item.status_id  == 3 || item.status_id  == 4">
-                <p v-if="item.attackers_score == 0" class=" text-md-center" >
-                    {{item.alliance}} <span class = "green--text"> won </span> the {{item.item_name}} timer.
+                <p v-if="item.attackers_score == 0" class=" text-md-center green--text" >
+                    {{item.alliance}} <span class = "font-weight-bold"> won </span> the {{item.item_name}} timer.
                 </p>
-                <p v-else class=" text-md-center">
-                    {{item.alliance}} <span class = "red--text"> lost </span> the {{item.item_name}} timer.
+                <p v-else class=" text-md-center red--text">
+                    {{item.alliance}} <span class = "font-weight-bold"> lost </span> the {{item.item_name}} timer.
                 </p>
                 </span>
             </template>
