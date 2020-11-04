@@ -212,9 +212,14 @@
                             <strong> {{item.defenders_score * 100}} / {{item.attackers_score * 100}} :start-time="item.start + ' UTC'" </strong>
                         </v-progress-linear> -->
                 </span>
-                <p v-else-if="item.status_id  == 3 || item.status_id  == 4" class="d-flex full-width align-content-center text-md-center">
-                    {{item.alliance}} {{outcome(item)}} the {{item.item_name}} timer.
+                <span v-else-if="item.status_id  == 3 || item.status_id  == 4" class="d-flex full-width align-content-center text-md-center">
+                <p v-if="item.attackers_score == 0">
+                    {{item.alliance}} won the {{item.item_name}} timer.
                 </p>
+                <p v-else>
+                    {{item.alliance}} lost the {{item.item_name}} timer.
+                </p>
+                </span>
             </template>
 
             <template v-slot:item.count="{ item }">
@@ -396,14 +401,7 @@ export default {
             }
         },
 
-        outcome(item){
-            if(item.attackers_score == 0){
-                return '<span class="text-decoration-overline"> won </span>'
-            }else{
-                return "lost"
-            }
 
-        },
 
         // rowClick(item){
 
