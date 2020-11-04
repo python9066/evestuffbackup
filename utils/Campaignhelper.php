@@ -93,6 +93,7 @@ class Campaignhelper
         $now = now();
         $warmup = now()->modify(' -1 hour');
         $now10 = now()->modify('-12 hours');
+        $now10m = now()->modify('-10 minutes');
         $yesterday = now('-8 hours');
         $check = Campaign::where('start_time', '<=', $now)->where('status_id', 1)->count();
         if ($check > 0) {
@@ -123,15 +124,19 @@ class Campaignhelper
             Campaign::where('end', null)
                 ->where('check', 0)
                 ->update(['end' => $now, 'status_id' => 3]);
+
+            Campaign::where('end', null)
+                ->where('check', 0)
+                ->update(['end' => $now10m, 'status_id' => 4]);
             // ->update(['check' => 1]);
             Campaign::where('end', '<=', $now10)
                 ->where('check', 0)
-                ->where('status_id', 3)
+                ->where('status_id', 4)
                 ->update(['status_id' => 10]);
 
         }
 
-        $finished = Campaign::where('status_id', 3)
+        $finished = Campaign::where('status_id', 4)
             ->get();
         foreach ($finished as $finished) {
 
