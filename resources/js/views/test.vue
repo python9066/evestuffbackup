@@ -1,38 +1,25 @@
 <template>
-  <div class="grey lighten-5" >
-
-    <v-row no-gutters class="blue" justify ="center">
-    <!-- <v-col cols="6"> -->
-      <v-col lg="1" >
-        <v-card
-          class="pa-2"
-          outlined
-          tile
-        >
-          1 of 3
-        </v-card>
-      </v-col>
-      <v-col md="1" >
-        <v-card
-          class="pa-2"
-          outlined
-          tile
-        >
-          Variable width content
-        </v-card>
-      </v-col>
-      <v-col lg="1">
-        <v-card
-          class="pa-2"
-          outlined
-          tile
-        >
-          3 of 3
-        </v-card>
-      </v-col>
-    <!-- </v-col> -->
-    </v-row>
-  </div>
+    <div class="grey lighten-5">
+        <v-row no-gutters class="blue" justify="center">
+            <!-- <v-col cols="6"> -->
+            <v-col lg="1">
+                <v-card class="pa-2" outlined tile>
+                    1 of 3
+                </v-card>
+            </v-col>
+            <v-col md="1">
+                <v-card class="pa-2" outlined tile>
+                    Variable width content
+                </v-card>
+            </v-col>
+            <v-col lg="1">
+                <v-card class="pa-2" outlined tile>
+                    3 of 3
+                </v-card>
+            </v-col>
+            <!-- </v-col> -->
+        </v-row>
+    </div>
 </template>
 <!-- {{ $route.params.id }} - {{ test }} -  -->
 <script>
@@ -50,23 +37,23 @@ export default {
             test: 1,
             test2: "",
             alignmentsAvailable: [
-          'start',
-          'center',
-          'end',
-          'baseline',
-          'stretch',
-        ],
-        alignment: 'center',
-        dense: false,
-        justifyAvailable: [
-          'start',
-          'center',
-          'end',
-          'space-around',
-          'space-between',
-        ],
-        justify: 'center',
-      }
+                "start",
+                "center",
+                "end",
+                "baseline",
+                "stretch"
+            ],
+            alignment: "center",
+            dense: false,
+            justifyAvailable: [
+                "start",
+                "center",
+                "end",
+                "space-around",
+                "space-between"
+            ],
+            justify: "center"
+        };
     },
 
     beforeMonunt() {},
@@ -78,9 +65,7 @@ export default {
             await this.$store.dispatch("getCampaigns");
         }
     },
-    methods: {
-
-        },
+    methods: {},
 
     async created() {
         this.test = 2;
@@ -89,67 +74,73 @@ export default {
     },
 
     computed: {
-        ...mapGetters(["getCampaignById",
+        ...mapGetters([
+            "getCampaignById",
             "getActiveCampaigns",
             "getCampaignsCount"
         ]),
 
         campaign() {
-            return this.getCampaignById(this.$route.params.id)
+            return this.getCampaignById(this.$route.params.id);
         },
-            barScoure(){
+        barScoure() {
+            var d =
+                this.getCampaignById(this.$route.params.id).defenders_score *
+                100;
+            var a =
+                this.getCampaignById(this.$route.params.id).attackers_score *
+                100;
 
-                var d = this.getCampaignById(this.$route.params.id).defenders_score *100;
-                var a = this.getCampaignById(this.$route.params.id).attackers_score *100;
+            if (d > 50) {
+                return d;
+            }
 
-                if( d > 50){
-                    return d;
-                }
+            return a;
+        },
 
-                return a;
+        barBgcolor() {
+            var d =
+                this.getCampaignById(this.$route.params.id).defenders_score *
+                100;
+            var a =
+                this.getCampaignById(this.$route.params.id).attackers_score *
+                100;
 
-            },
-
-            barBgcolor(){
-
-                var d = this.getCampaignById(this.$route.params.id).defenders_score *100;
-                var a = this.getCampaignById(this.$route.params.id).attackers_score *100;
-
-                if( d > 50){
-                    return "red darken-4";
-                }
-
-                return "blue darken-4";
-
-            },
-
-            barColor(){
-                var d = this.getCampaignById(this.$route.params.id).defenders_score *100;
-                if( d > 50){
-                    return "blue darken-4";
-                }
-
+            if (d > 50) {
                 return "red darken-4";
+            }
 
-            },
+            return "blue darken-4";
+        },
 
-            barReverse(){
-                var d = this.getCampaignById(this.$route.params.id).defenders_score *100;
-                if( d > 50){
-                    return false;
-                }
+        barColor() {
+            var d =
+                this.getCampaignById(this.$route.params.id).defenders_score *
+                100;
+            if (d > 50) {
+                return "blue darken-4";
+            }
 
+            return "red darken-4";
+        },
+
+        barReverse() {
+            var d =
+                this.getCampaignById(this.$route.params.id).defenders_score *
+                100;
+            if (d > 50) {
+                return false;
+            }
+
+            return true;
+        },
+
+        barActive() {
+            if (this.getCampaignById(this.$route.params.id).status_id > 1) {
                 return true;
-            },
-
-            barActive(){
-
-                if(this.getCampaignById(this.$route.params.id).status_id > 1){
-                    return true;
-                }
-                return false
-
-            },
+            }
+            return false;
+        }
     }
 };
 </script>

@@ -123,26 +123,18 @@
                         Campaigns
                     </v-tab>
 
-                    <v-tab v-if="$can('access_multi_campaigns')" link to="/mcampaigns">
+                    <v-tab
+                        v-if="$can('access_multi_campaigns')"
+                        link
+                        to="/mcampaigns"
+                    >
                         Multi-Campaign
                     </v-tab>
-                    <v-tab
-                        v-if="
-                            $can('edit_users')
-                        "
-                        link
-                        to="/pannel"
-                    >
+                    <v-tab v-if="$can('edit_users')" link to="/pannel">
                         Users
                     </v-tab>
 
-                    <v-tab
-                        v-if="
-                            $can('super')
-                        "
-                        link
-                        to="/feedback"
-                    >
+                    <v-tab v-if="$can('super')" link to="/feedback">
                         FeedBack
                     </v-tab>
                 </v-tabs>
@@ -235,23 +227,32 @@
             <v-overlay :value="overlay">
                 <v-row no-gutters>
                     <v-col cols="auto">
-                        <v-card min-width=800>
+                        <v-card min-width="800">
                             <v-card-title> Give your feedback </v-card-title>
-                            <v-card-subtitle>All suggestions welcome</v-card-subtitle>
+                            <v-card-subtitle
+                                >All suggestions welcome</v-card-subtitle
+                            >
                             <v-card-text>
                                 <v-textarea
-                                        v-model="feedBackText"
-                                        label="Enter your feedback here"
-                                        outlined
-                                        shaped
-                                    ></v-textarea>
-
+                                    v-model="feedBackText"
+                                    label="Enter your feedback here"
+                                    outlined
+                                    shaped
+                                ></v-textarea>
                             </v-card-text>
                             <v-card-actions>
-                                <v-btn color="success" @click="overlay = false, submitFeedBack()">
+                                <v-btn
+                                    color="success"
+                                    @click="(overlay = false), submitFeedBack()"
+                                >
                                     Submit
                                 </v-btn>
-                                <v-btn color="warning" @click="overlay = false, feedBackText = ''">
+                                <v-btn
+                                    color="warning"
+                                    @click="
+                                        (overlay = false), (feedBackText = '')
+                                    "
+                                >
                                     Close
                                 </v-btn>
                             </v-card-actions>
@@ -284,7 +285,7 @@ export default {
         loading2: false,
         navdrawer: null,
         overlay: false,
-        feedBackText:"",
+        feedBackText: ""
     }),
     async created() {
         // EventBus.$on("buttonupdate", payload => {
@@ -305,17 +306,15 @@ export default {
             window.location.href = "/logout";
         },
 
-        async submitFeedBack(){
-
+        async submitFeedBack() {
             let request = {
                 user_id: this.$store.state.user_id,
                 text: this.feedBackText
-            }
+            };
 
             await axios({
                 method: "post", //you can set what request you want to be
-                url:
-                    "/api/feedback",
+                url: "/api/feedback",
                 data: request,
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
@@ -323,7 +322,7 @@ export default {
                     "Content-Type": "application/json"
                 }
             });
-        },
+        }
     },
     computed: {
         avatarsize() {

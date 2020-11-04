@@ -1,6 +1,6 @@
 <template>
     <div class="pr-16 pl-16">
-         <errorMessage></errorMessage>
+        <errorMessage></errorMessage>
         <v-row no-gutters justify="center">
             <v-col class=" d-inline-flex" cols="9">
                 <v-card
@@ -193,9 +193,13 @@
                                                 userRemoveRole(item)
                                         "
                                     >
-                                    <v-icon v-if="role.name == 'Wizard'" small left>
-                                         faSvg fa-hat-wizard
-                                    </v-icon>
+                                        <v-icon
+                                            v-if="role.name == 'Wizard'"
+                                            small
+                                            left
+                                        >
+                                            faSvg fa-hat-wizard
+                                        </v-icon>
                                         <span> {{ role.name }}</span>
                                     </v-chip>
                                 </div>
@@ -241,12 +245,9 @@ export default {
     },
 
     async created() {
-        Echo.private('userupdate')
-        .listen('UserUpdate', (e) => {
-        this.refresh()
-    })
-
-
+        Echo.private("userupdate").listen("UserUpdate", e => {
+            this.refresh();
+        });
     },
 
     async mounted() {
@@ -254,16 +255,13 @@ export default {
         await this.$store.dispatch("getRoles");
     },
 
-
-
     methods: {
-
         filterRoles(roles) {
             // console.log(roles);
             return roles.filter(r => r.name != "Super Admin");
         },
 
-    async refresh(){
+        async refresh() {
             await this.$store.dispatch("getUsers");
             await this.$store.dispatch("getRoles");
         },
@@ -271,18 +269,28 @@ export default {
         filterDropdownList(item) {
             let roleID = item.map(i => i.id);
             const filter = this.rolesList.filter(r => !roleID.includes(r.id));
-            if(this.$can("edit_all_users")){
+            if (this.$can("edit_all_users")) {
                 return filter;
-            }else if(this.$can("edit_gsfoe_fc") && this.$can("edit_recon_users")&& this.$can("edit_scout_users")) {
-                return filter.filter(f => f.name != "Director" && f.name != "Coord")
-            }else if(this.$can("edit_recon_users") && this.$can("edit_scout_users")){
-                return filter.filter(f => f.name == "Recon" || f.name == "Scout")
-            }else if(this.$can("edit_gsfoe_fc")){
-                return filter.filter(f => f.name == "GSFOE FC")
-            }else if(this.$can("edit_scout_users")){
-                return filter.filter(f => f.name == "Scout")
+            } else if (
+                this.$can("edit_gsfoe_fc") &&
+                this.$can("edit_recon_users") &&
+                this.$can("edit_scout_users")
+            ) {
+                return filter.filter(
+                    f => f.name != "Director" && f.name != "Coord"
+                );
+            } else if (
+                this.$can("edit_recon_users") &&
+                this.$can("edit_scout_users")
+            ) {
+                return filter.filter(
+                    f => f.name == "Recon" || f.name == "Scout"
+                );
+            } else if (this.$can("edit_gsfoe_fc")) {
+                return filter.filter(f => f.name == "GSFOE FC");
+            } else if (this.$can("edit_scout_users")) {
+                return filter.filter(f => f.name == "Scout");
             }
-
         },
 
         pillClose(name) {
@@ -292,25 +300,32 @@ export default {
                 } else {
                     return true;
                 }
-            }else if(this.$can("edit_gsfoe_fc") && this.$can("edit_recon_users")&& this.$can("edit_scout_users")) {
+            } else if (
+                this.$can("edit_gsfoe_fc") &&
+                this.$can("edit_recon_users") &&
+                this.$can("edit_scout_users")
+            ) {
                 if (name == "Coord" || name == "Director" || name == "Wizard") {
                     return false;
                 } else {
                     return true;
                 }
-            }else if(this.$can("edit_recon_users") && this.$can("edit_scout_users")) {
+            } else if (
+                this.$can("edit_recon_users") &&
+                this.$can("edit_scout_users")
+            ) {
                 if (name == "Recon" || name == "Scout") {
                     return true;
                 } else {
                     return false;
                 }
-            }else if(this.$can("edit_gsfoe_fc")){
+            } else if (this.$can("edit_gsfoe_fc")) {
                 if (name == "GSFOE FC") {
                     return true;
                 } else {
                     return false;
                 }
-            }else if (this.$can("edit_scout_users")) {
+            } else if (this.$can("edit_scout_users")) {
                 if (name == "Scout") {
                     return true;
                 } else {
@@ -339,9 +354,6 @@ export default {
 
             //     }else
             // }
-
-
-
         },
 
         async userAddRole(item) {
@@ -484,7 +496,7 @@ export default {
         }
     },
     beforeDestroy() {
-        Echo.leave('userupdate');
+        Echo.leave("userupdate");
     }
 };
 </script>

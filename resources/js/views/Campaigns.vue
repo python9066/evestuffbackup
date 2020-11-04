@@ -216,18 +216,22 @@
 
             <template v-slot:item.count="{ item }">
                 <div class=" d-inline-flex align-center">
-                <CountDowntimer
-                    v-if="item.status_id == 1"
-                    :start-time="moment.utc(item.start).unix()"
-                    :end-text="'Window Closed'"
-                    :interval="1000"
-                    @campaignStart="campaignStart(item)"
-                >
-                    <template slot="countdown" slot-scope="scope">
-                        <span
-                            v-if="scope.props.hours == 0 && scope.props.days == 0 && $can('access_campaigns')"
-                            class="red--text pl-3"
-                        >
+                    <CountDowntimer
+                        v-if="item.status_id == 1"
+                        :start-time="moment.utc(item.start).unix()"
+                        :end-text="'Window Closed'"
+                        :interval="1000"
+                        @campaignStart="campaignStart(item)"
+                    >
+                        <template slot="countdown" slot-scope="scope">
+                            <span
+                                v-if="
+                                    scope.props.hours == 0 &&
+                                        scope.props.days == 0 &&
+                                        $can('access_campaigns')
+                                "
+                                class="red--text pl-3"
+                            >
                                 <v-chip
                                     class="ma-2 ma"
                                     filter
@@ -239,32 +243,32 @@
                                         scope.props.seconds
                                     }}
                                 </v-chip>
-                        </span>
-                        <span
-                           v-else
-                            class="red--text pl-3"
-                            >{{ scope.props.days }}:{{ scope.props.hours }}:{{
-                                scope.props.minutes
-                            }}:{{ scope.props.seconds }}</span
+                            </span>
+                            <span v-else class="red--text pl-3"
+                                >{{ scope.props.days }}:{{
+                                    scope.props.hours
+                                }}:{{ scope.props.minutes }}:{{
+                                    scope.props.seconds
+                                }}</span
+                            >
+                        </template>
+                    </CountDowntimer>
+                    <div v-if="item.status_id > 1 && $can('access_campaigns')">
+                        <v-chip
+                            class="ma-2 ma"
+                            filter
+                            pill
+                            :disabled="pillDisabled(item)"
+                            :color="pillColor(item)"
                         >
-                    </template>
-                </CountDowntimer>
-                <div v-if="item.status_id > 1 && $can('access_campaigns')">
-                    <v-chip
-                        class="ma-2 ma"
-                        filter
-                        pill
-                        :disabled="pillDisabled(item)"
-                        :color="pillColor(item)"
-                    >
-                        {{ item.status_name }}
-                    </v-chip>
-                </div>
-                <div v-else-if="item.status_id > 1" >
+                            {{ item.status_name }}
+                        </v-chip>
+                    </div>
+                    <div v-else-if="item.status_id > 1">
                         <span class=" pl-5">{{ item.status_name }}</span>
-                </div>
+                    </div>
 
-                <div
+                    <div
                         class="d-flex full-width align-content-center"
                         v-if="item.status_id == 2"
                     >
@@ -282,12 +286,11 @@
                             </template>
                         </VueCountUptimer>
                     </div>
-                <campaignMap
-                    :system_name="item.system"
-                    :region_name="item.region"
-                >
-                </campaignMap>
-
+                    <campaignMap
+                        :system_name="item.system"
+                        :region_name="item.region"
+                    >
+                    </campaignMap>
                 </div>
             </template>
         </v-data-table>
@@ -323,7 +326,7 @@ export default {
                 { text: "System", value: "system" },
                 { text: "Alliance", value: "alliance" },
                 { text: "Ticker", value: "ticker", align: "start" },
-                { text: 'ADM', value:'adm'},
+                { text: "ADM", value: "adm" },
                 { text: "Structure", value: "item_name" },
                 {
                     text: "Start/Progress",
@@ -377,17 +380,17 @@ export default {
             });
         },
 
-        fixTime(item){
-        return moment.utc(item.start).unix()// retu  rn utc.unix()
+        fixTime(item) {
+            return moment.utc(item.start).unix(); // retu  rn utc.unix()
         },
 
-
-        rowClick(item){
-            if(this.$can('access_campaigns')){
-            var left = (moment.utc(item.start).unix() -  moment.utc().unix())
-            if(left < 3600 && item.status_id < 3){
-                this.$router.push({ path: `/campaign/${item.id}` }) // -> /user/123
-            }}
+        rowClick(item) {
+            if (this.$can("access_campaigns")) {
+                var left = moment.utc(item.start).unix() - moment.utc().unix();
+                if (left < 3600 && item.status_id < 3) {
+                    this.$router.push({ path: `/campaign/${item.id}` }); // -> /user/123
+                }
+            }
         },
 
         // rowClick(item){
@@ -479,13 +482,21 @@ export default {
         filteredItems() {
             // var timers = this.$store.state.timers;
             if (this.colorflag == 1) {
-                return this.campaigns.filter(campaigns => campaigns.color == 1 && campaigns.status_id != 3);
+                return this.campaigns.filter(
+                    campaigns =>
+                        campaigns.color == 1 && campaigns.status_id != 3
+                );
             }
             if (this.colorflag == 2) {
-                return this.campaigns.filter(campaigns => campaigns.color > 1 && campaigns.status_id != 3);
+                return this.campaigns.filter(
+                    campaigns => campaigns.color > 1 && campaigns.status_id != 3
+                );
             }
             if (this.colorflag == 3) {
-                return this.campaigns.filter(campaigns => campaigns.color == 3 && campaigns.status_id != 3);
+                return this.campaigns.filter(
+                    campaigns =>
+                        campaigns.color == 3 && campaigns.status_id != 3
+                );
             }
             if (this.colorflag == 6) {
                 return this.campaigns.filter(
@@ -498,7 +509,8 @@ export default {
                 );
             } else {
                 return this.campaigns.filter(
-                    campaigns => campaigns.status_id == 1 || campaigns.status_id == 2
+                    campaigns =>
+                        campaigns.status_id == 1 || campaigns.status_id == 2
                 );
             }
         }

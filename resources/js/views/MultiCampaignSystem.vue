@@ -1,9 +1,10 @@
 <template>
     <div>
-        <span  v-for="(sCampaign, index) in sCampaigns" :key="index" >
+        <span v-for="(sCampaign, index) in sCampaigns" :key="index">
             <TitleBar
-            :sCampaignID = sCampaign.campaign_id
-            @updateNow="updateBar()">
+                :sCampaignID="sCampaign.campaign_id"
+                @updateNow="updateBar()"
+            >
             </TitleBar>
         </span>
 
@@ -240,27 +241,34 @@
                                 </v-btn>
                             </template>
                             <span>
-                                <p class=" text-md-center">This will kicked everyone (you also) from the page and Delete the Campagin.<strong>Press when hack is over.</strong></p>
+                                <p class=" text-md-center">
+                                    This will kicked everyone (you also) from
+                                    the page and Delete the Campagin.<strong
+                                        >Press when hack is over.</strong
+                                    >
+                                </p>
                             </span>
                         </v-tooltip>
                         <v-btn v-if="$can('super')" @click="overlay = !overlay">
                             test
                         </v-btn>
                         <v-tooltip bottom>
-                        <template v-slot:activator="{ on, attrs }">
-                        <v-btn
-                            v-if="$can('access_campaigns')"
-                            fab
-                            dark
-                            small
-                            v-bind="attrs"
-                            v-on="on"
-                            @click="sendAddCharMessage()"
-                        >
-                            <v-icon>fas fa-bullhorn</v-icon>
-                        </v-btn>
-                        </template>
-                        <span> Send a message to all Users without a Char added </span>
+                            <template v-slot:activator="{ on, attrs }">
+                                <v-btn
+                                    v-if="$can('access_campaigns')"
+                                    fab
+                                    dark
+                                    small
+                                    v-bind="attrs"
+                                    v-on="on"
+                                    @click="sendAddCharMessage()"
+                                >
+                                    <v-icon>fas fa-bullhorn</v-icon>
+                                </v-btn>
+                            </template>
+                            <span>
+                                Send a message to all Users without a Char added
+                            </span>
                         </v-tooltip>
                     </div>
                     <v-spacer></v-spacer>
@@ -301,26 +309,30 @@
                             </div></v-progress-circular
                         >
                     </div>
-
                 </v-card>
             </v-col>
             <div v-if="campaignWarmup == false" class=" pt-10">
-    <v-card>
-        <v-card-title class=" justify-center"><h1>No Campaigns are open for setup yet</h1></v-card-title>
-        <v-card-text>
-            <span class=" body-1">
-        <p class=" text-md-center">Systems will start to showup when a Campaign has less than <strong> One Hour</strong> to start</p>
-            </span>
-        </v-card-text>
-    </v-card>
-</div>
+                <v-card>
+                    <v-card-title class=" justify-center"
+                        ><h1>
+                            No Campaigns are open for setup yet
+                        </h1></v-card-title
+                    >
+                    <v-card-text>
+                        <span class=" body-1">
+                            <p class=" text-md-center">
+                                Systems will start to showup when a Campaign has
+                                less than <strong> One Hour</strong> to start
+                            </p>
+                        </span>
+                    </v-card-text>
+                </v-card>
+            </div>
         </v-row>
 
         <v-row no-gutters justify="space-around" v-if="showTable == true">
             <userTable :campaign_id="campaignId"> </userTable>
         </v-row>
-
-
 
         <v-row no-gutters justify="center" :v-if="systemLoaded == true">
             <MultiSystemTable
@@ -473,15 +485,12 @@ export default {
             await this.$store.dispatch("getCampaigns");
         }
         await this.getSystems(this.campaignId);
-        await this.$store.dispatch(
-            "getCampaignUsersRecords",
-            this.campaignId
-        );
+        await this.$store.dispatch("getCampaignUsersRecords", this.campaignId);
         await this.$store.dispatch("getCampaignSystemsRecords");
     },
     methods: {
-        updateBar(){
-            this.loadcampaigns()
+        updateBar() {
+            this.loadcampaigns();
         },
         checkAddUser() {
             if (this.userCount == 0) {
@@ -489,9 +498,9 @@ export default {
             }
         },
 
-        kickUser(user_id){
-            if(this.$store.state.user_id == user_id){
-                this.$router.push('/campaignkick');
+        kickUser(user_id) {
+            if (this.$store.state.user_id == user_id) {
+                this.$router.push("/campaignkick");
             }
         },
 
@@ -500,10 +509,7 @@ export default {
         },
 
         loadUsersRecords() {
-            this.$store.dispatch(
-                "getCampaignUsersRecords",
-                this.campaignId
-            );
+            this.$store.dispatch("getCampaignUsersRecords", this.campaignId);
         },
 
         loadCampaignSystemRecords() {
@@ -566,7 +572,6 @@ export default {
             });
 
             this.$router.push("/campaignfinished");
-
         },
 
         async addMember() {
@@ -673,10 +678,7 @@ export default {
                     "Content-Type": "application/json"
                 }
             });
-            this.$store.dispatch(
-                "getCampaignUsersRecords",
-                this.campaignId
-            );
+            this.$store.dispatch("getCampaignUsersRecords", this.campaignId);
             this.role = null;
             this.newCharName = null;
             this.newLink = null;
@@ -768,13 +770,9 @@ export default {
             this.editLink = null;
             this.editTextLink = null;
 
-            this.$store.dispatch(
-                "getCampaignUsersRecords",
-                this.campaignId
-            );
+            this.$store.dispatch("getCampaignUsersRecords", this.campaignId);
             this.$store.dispatch("getCampaignSystemsRecords");
-        },
-
+        }
     },
 
     computed: {
@@ -789,21 +787,22 @@ export default {
             "getRedHackingNodeCountByMultiCampaign"
         ]),
 
-        ...mapState(['campaignJoin']),
+        ...mapState(["campaignJoin"]),
 
         sCampaigns() {
             return this.getsCampaignById(this.campaignId);
         },
 
         campaignWarmup() {
-            let count = this.getsCampaignById(this.campaignId).filter(c=> c.warmup == 1).length
-            if(count > 0){
-                return true
-            } else{
-                return false
+            let count = this.getsCampaignById(this.campaignId).filter(
+                c => c.warmup == 1
+            ).length;
+            if (count > 0) {
+                return true;
+            } else {
+                return false;
             }
         },
-
 
         userCharsDrop() {
             // let payload = {

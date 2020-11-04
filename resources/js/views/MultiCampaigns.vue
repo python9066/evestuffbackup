@@ -30,15 +30,20 @@
                 <systemItemList :campaignID="item.id"> </systemItemList>
             </template>
             <template v-slot:item.actions="{ item }">
-                <v-btn icon @click="overlayEditID = item.id, overlayEditName = item.name, overlayEdit = !overlayEdit" color="warning"
+                <v-btn
+                    icon
+                    @click="
+                        (overlayEditID = item.id),
+                            (overlayEditName = item.name),
+                            (overlayEdit = !overlayEdit)
+                    "
+                    color="warning"
                     ><v-icon small>fas fa-edit</v-icon></v-btn
                 >
                 <v-btn icon @click="deleteCampaign(item)" color="warning"
                     ><v-icon small>fas fa-trash</v-icon></v-btn
                 >
-                <v-btn @click="clickCampaign(item)" color="green"
-                    >View</v-btn
-                >
+                <v-btn @click="clickCampaign(item)" color="green">View</v-btn>
             </template>
 
             <!-- <template v-slot:actions.="{ item }">
@@ -85,9 +90,9 @@ export default {
             colorflag: 4,
             name: "Timer",
             overlay: false,
-            overlayEdit:false,
-            overlayEditID:"",
-            overlayEditName:"",
+            overlayEdit: false,
+            overlayEditID: "",
+            overlayEditName: "",
 
             headers: [
                 { text: "Name", value: "name", width: "10%" },
@@ -109,8 +114,8 @@ export default {
             this.loadingf = false;
             this.loadingr = false;
             this.loading = false;
-    });
-    this.loadCampaignJoinData();
+        });
+        this.loadCampaignJoinData();
     },
 
     async mounted() {},
@@ -122,18 +127,16 @@ export default {
             });
         },
 
-        clickCampaign(item){
+        clickCampaign(item) {
+            this.$router.push({ path: `/mcampaign/${item.id}` }); // -> /user/123
+        },
 
-                this.$router.push({ path: `/mcampaign/${item.id}` }) // -> /user/123
-
-    },
-
-        loadCampaignJoinData(){
+        loadCampaignJoinData() {
             this.$store.dispatch("getCampaignJoinData");
         },
 
         async deleteCampaign(item) {
-           await axios({
+            await axios({
                 method: "delete", //you can set what request you want to be
                 url: "/api/multicampaigns/" + item.id,
                 headers: {
@@ -143,28 +146,28 @@ export default {
                 }
             });
 
-            sleep(500)
+            sleep(500);
 
-            this.$store.dispatch("getMultiCampaigns")
+            this.$store.dispatch("getMultiCampaigns");
         },
 
         updatemultiCampaginAdd() {
             this.overlay = !this.overlay;
             this.$store.dispatch("getMultiCampaigns");
-            this.loadCampaignJoinData()
+            this.loadCampaignJoinData();
         },
         updatemultiCampaginEdit() {
             this.overlayEdit = !this.overlayEdit;
             this.$store.dispatch("getMultiCampaigns");
-            this.loadCampaignJoinData()
+            this.loadCampaignJoinData();
         },
 
         getCampaignID() {
-            return this.overlayEditID
+            return this.overlayEditID;
         },
 
         getCampaignName() {
-            return this.overlayEditName
+            return this.overlayEditName;
         },
 
         campaignStart(item) {

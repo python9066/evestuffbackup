@@ -1,8 +1,6 @@
 <template>
     <div class=" pr-16 pl-16">
-        <messageNotification
-            v-if="seeMessage()"
-        ></messageNotification>
+        <messageNotification v-if="seeMessage()"></messageNotification>
         <!-- <testingMessage></testingMessage> -->
         <div class=" d-flex align-items-center">
             <v-card-title>Notifications</v-card-title>
@@ -323,7 +321,8 @@
                                             !expanded.includes(item)
                                     "
                                     color="success"
-                                    ><v-icon left>fas fa-plus</v-icon>Add aDash</v-btn
+                                    ><v-icon left>fas fa-plus</v-icon>Add
+                                    aDash</v-btn
                                 >
                                 <v-btn
                                     icon
@@ -333,12 +332,11 @@
                                             expanded.includes(item)
                                     "
                                     color="error"
-                                    > <v-icon>fas fa-minus</v-icon></v-btn
+                                >
+                                    <v-icon>fas fa-minus</v-icon></v-btn
                                 >
                             </v-fab-transition>
-                           <notificationTimer
-                           :item="item"
-                           ></notificationTimer>
+                            <notificationTimer :item="item"></notificationTimer>
                         </div>
                     </template>
 
@@ -418,15 +416,19 @@
                                 {{ item.status_name }}
                             </v-chip>
                             <CountDowntimer
-                                v-if="item.status_id == 3 && item.end_time != null"
+                                v-if="
+                                    item.status_id == 3 && item.end_time != null
+                                "
                                 :start-time="moment.utc(item.end_time).unix()"
                                 :interval="1000"
                                 end-text="Is it Secured?"
-                                >
+                            >
                                 <template slot="countdown" slot-scope="scope">
-                <span class="blue--text pl-3"
-                    >{{ scope.props.minutes }}:{{ scope.props.seconds }}</span
-                >
+                                    <span class="blue--text pl-3"
+                                        >{{ scope.props.minutes }}:{{
+                                            scope.props.seconds
+                                        }}</span
+                                    >
                                 </template>
                             </CountDowntimer>
                         </div>
@@ -623,10 +625,10 @@ export default {
             }
         },
 
-        seeMessage(){
-            if(this.$can('edit_notifications')){
+        seeMessage() {
+            if (this.$can("edit_notifications")) {
                 return false;
-            }else{
+            } else {
                 return true;
             }
         },
@@ -696,7 +698,7 @@ export default {
                 item.text = null;
             }
 
-            if(item.status_id != 3){
+            if (item.status_id != 3) {
                 item.end_time = null;
             }
             // console.log(item.end_time)

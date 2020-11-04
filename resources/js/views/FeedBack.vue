@@ -22,35 +22,6 @@
                 single-line
                 hide-details
             ></v-text-field>
-
-            <!-- <v-btn-toggle
-                right-align
-                v-model="toggle_exclusive"
-                mandatory
-                :value="0"
-            >
-                <v-btn
-                    :loading="loadingf"
-                    :disabled="loadingf"
-                    @click="statusflag = 1"
-                >
-                    All
-                </v-btn>
-                <v-btn
-                    :loading="loadingf"
-                    :disabled="loadingf"
-                    @click="statusflag = 2"
-                >
-                    On The Way
-                </v-btn>
-                <v-btn
-                    :loading="loadingf"
-                    :disabled="loadingf"
-                    @click="statusflag = 3"
-                >
-                    Gunning
-                </v-btn>
-            </v-btn-toggle> -->
         </div>
         <v-data-table
             :headers="headers"
@@ -72,33 +43,32 @@
                 No feed back atm
             </template>
 
-             <template v-slot:expanded-item="{ headers, item }">
-                        <td :colspan="headers.length" align="center">
-                            <div>
-                                <v-col class="align-center">
-                                    <v-textarea
-                                        v-model="item.text"
-                                        readonly
-                                        label="What do people think?"
-                                        outlined
-                                        shaped
-                                    >{{item.text}}</v-textarea>
-                                </v-col>
-                            </div>
-                        </td>
-                    </template>
+            <template v-slot:expanded-item="{ headers, item }">
+                <td :colspan="headers.length" align="center">
+                    <div>
+                        <v-col class="align-center">
+                            <v-textarea
+                                v-model="item.text"
+                                readonly
+                                label="What do people think?"
+                                outlined
+                                shaped
+                                >{{ item.text }}</v-textarea
+                            >
+                        </v-col>
+                    </div>
+                </td>
+            </template>
 
-                    <template v-slot:item.actions="{ item }">
-                        <v-icon
-                            color="orange darken-3"
-                            small
-                            @click="deleteFeedBack(item)"
-                        >
-                            fas fa-trash-alt
-                        </v-icon>
-                    </template>
-
-
+            <template v-slot:item.actions="{ item }">
+                <v-icon
+                    color="orange darken-3"
+                    small
+                    @click="deleteFeedBack(item)"
+                >
+                    fas fa-trash-alt
+                </v-icon>
+            </template>
         </v-data-table>
         <v-snackbar v-model="snack" :timeout="3000" :color="snackColor">
             {{ snackText }}

@@ -92,6 +92,7 @@
                         @end_callback="
                             (item.status = 1), handleCountdownEnd(item)
                         "
+                        leadingZero=false
                         :start-time="moment.utc(item.start).unix()"
                         :end-time="moment.utc(item.end).unix()"
                         :end-text="'Window Closed'"
@@ -116,7 +117,7 @@
                 >
                     <template slot="countup" slot-scope="scope">
                         <span class="green--text pl-3"
-                            >Days: {{ scope.props.days }}- Hours:{{scope.props.hours}}</span
+                            ><span v-if="scope.props.days != 0">Days: {{ scope.props.days }} - </span>Hours:{{scope.props.hours}}</span
                         >
                     </template>
                 </VueCountUptimer>
