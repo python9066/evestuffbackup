@@ -100,7 +100,7 @@
 
             <template v-slot:item.start="{ item }">
                 <span v-if="item.status_id == 1"> {{ item.start }} </span>
-                <span v-else class="d-flex full-width align-content-center">
+                <span v-else-if="item.status.id != 3 || item.status.id !=4" class="d-flex full-width align-content-center">
                     <span>
                         <v-icon
                             v-if="
