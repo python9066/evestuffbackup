@@ -214,10 +214,10 @@
                 </span>
                 <span v-else-if="item.status_id  == 3 || item.status_id  == 4">
                 <p v-if="item.attackers_score == 0" class=" text-md-center" >
-                    {{item.alliance}} <span> won </span> the {{item.item_name}} timer.
+                    {{item.alliance}} <span text--color="green"> won </span> the {{item.item_name}} timer.
                 </p>
                 <p v-else class=" text-md-center">
-                    {{item.alliance}} <span> lost </span> the {{item.item_name}} timer.
+                    {{item.alliance}} <span text--color="red"> lost </span> the {{item.item_name}} timer.
                 </p>
                 </span>
             </template>
