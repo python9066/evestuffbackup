@@ -92,7 +92,6 @@
                         @end_callback="
                             (item.status = 1), handleCountdownEnd(item)
                         "
-                        leadingZero=false
                         :start-time="moment.utc(item.start).unix()"
                         :end-time="moment.utc(item.end).unix()"
                         :end-text="'Window Closed'"
