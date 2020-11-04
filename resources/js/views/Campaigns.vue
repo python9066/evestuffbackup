@@ -327,7 +327,7 @@ export default {
                 { text: "Alliance", value: "alliance" },
                 { text: "Ticker", value: "ticker", align: "start" },
                 { text: "ADM", value: "adm" },
-                { text: "Structure", value: "item_name",width: "10%" },
+                { text: "Structure", value: "item_name",width: "5%" },
                 {
                     text: "Start/Progress",
                     value: "start",
