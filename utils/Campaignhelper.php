@@ -108,6 +108,7 @@ class Campaignhelper
             foreach($warmcheck as $warmcheck){
                 Campaign::where('id',$warmcheck['id'])->where('status_id',1)->where('warmup',0)->update(['warmup' =>1 ]);
                 $flag = 1;
+                echo "warm";
                 $changed->push($warmcheck['id']);
             };
 
@@ -144,6 +145,7 @@ class Campaignhelper
             }
 
             $flag = 1;
+            echo " finished";
             $changed->push($finished->id);
         }
 
