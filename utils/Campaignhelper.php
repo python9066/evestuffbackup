@@ -136,7 +136,7 @@ class Campaignhelper
 
         }
 
-        $finished = Campaign::where('status_id', 4)
+        $finished = Campaign::where('status_id', 3)
             ->get();
         foreach ($finished as $finished) {
 
