@@ -324,17 +324,17 @@ export default {
                 { text: "Region", value: "region", width: "10%" },
                 { text: "Constellation", value: "constellation" },
                 { text: "System", value: "system" },
-                { text: "Alliance", value: "alliance" ,width: "20%"},
+                { text: "Alliance", value: "alliance" },
                 { text: "Ticker", value: "ticker", align: "start" },
                 { text: "ADM", value: "adm" },
-                { text: "Structure", value: "item_name",width: "5%" },
+                { text: "Structure", value: "item_name" },
                 {
                     text: "Start/Progress",
                     value: "start",
-                    // width: "30%",
+                    width: "30%",
                     align: "center"
                 },
-                { text: "Countdown/Age", value: "count",align: "end",width: "10%", sortable: false }
+                { text: "Countdown/Age", value: "count", sortable: false }
             ]
         };
     },
