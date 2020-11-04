@@ -213,7 +213,7 @@
                         </v-progress-linear> -->
                 </span>
                 <p v-else-if="item.status_id  == 3 || item.status_id  == 4" class="d-flex full-width align-content-center text-md-center">
-                    {{item.alliance}} {{outcome(item)}} the {{item.item_name}} timer.
+                    {{item.alliance}} <span class="text-decoration-overline">{{outcome(item)}}</span> the {{item.item_name}} timer.
                 </p>
             </template>
 
