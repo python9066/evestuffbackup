@@ -484,18 +484,18 @@ export default {
             if (this.colorflag == 1) {
                 return this.campaigns.filter(
                     campaigns =>
-                        campaigns.color == 1 && campaigns.status_id != 3 || campaigns.status_id !=4
+                        campaigns.color == 1 && (campaigns.status_id != 3 || campaigns.status_id !=4)
                 );
             }
             if (this.colorflag == 2) {
                 return this.campaigns.filter(
-                    campaigns => campaigns.color > 1 && campaigns.status_id != 3 || campaigns.status_id !=4
+                    campaigns => campaigns.color > 1 && (campaigns.status_id != 3 || campaigns.status_id !=4)
                 );
             }
             if (this.colorflag == 3) {
                 return this.campaigns.filter(
                     campaigns =>
-                        campaigns.color == 3 && campaigns.status_id != 3 || campaigns.status_id !=4
+                        campaigns.color == 3 && (campaigns.status_id != 3 || campaigns.status_id !=4)
                 );
             }
             if (this.colorflag == 6) {
