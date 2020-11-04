@@ -324,7 +324,7 @@ export default {
                 { text: "Region", value: "region", width: "10%" },
                 { text: "Constellation", value: "constellation" },
                 { text: "System", value: "system" },
-                { text: "Alliance", value: "alliance" },
+                { text: "Alliance", value: "alliance" ,width: "20%"},
                 { text: "Ticker", value: "ticker", align: "start" },
                 { text: "ADM", value: "adm" },
                 { text: "Structure", value: "item_name",width: "5%" },
