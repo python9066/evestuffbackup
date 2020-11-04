@@ -403,7 +403,7 @@ export default {
                 return "lost"
             }
 
-        }
+        },
 
         // rowClick(item){
 
