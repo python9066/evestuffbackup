@@ -500,7 +500,7 @@ export default {
             }
             if (this.colorflag == 6) {
                 return this.campaigns.filter(
-                    campaigns => campaigns.status_id == 3
+                    campaigns => campaigns.status_id == 3 || campaigns.status_id == 4
                 );
             }
             if (this.colorflag == 5) {
