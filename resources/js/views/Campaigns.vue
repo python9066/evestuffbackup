@@ -331,7 +331,7 @@ export default {
                 {
                     text: "Start/Progress",
                     value: "start",
-                    width: "30%",
+                    // width: "30%",
                     align: "center"
                 },
                 { text: "Countdown/Age", value: "count", sortable: false }
