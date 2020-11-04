@@ -212,7 +212,7 @@
                             <strong> {{item.defenders_score * 100}} / {{item.attackers_score * 100}} :start-time="item.start + ' UTC'" </strong>
                         </v-progress-linear> -->
                 </span>
-                <span v-else-if="item.status_id  == 3 || item.status_id  == 4" class="d-flex full-width align-content-center text-md-center">
+                <span v-else-if="item.status_id  == 3 || item.status_id  == 4">
                 <p v-if="item.attackers_score == 0" class=" text-md-center" >
                     {{item.alliance}} won the {{item.item_name}} timer.
                 </p>
