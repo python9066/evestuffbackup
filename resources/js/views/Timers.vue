@@ -113,7 +113,7 @@
                     :start-time="moment.utc(item.age).unix()"
                     :end-text="'Window Closed'"
                     :interval="1000"
-                    leadingZero=false
+                    :leadingZero="false"
                 >
                     <template slot="countup" slot-scope="scope">
                         <span class="green--text pl-3"
