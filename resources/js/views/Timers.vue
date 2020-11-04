@@ -117,7 +117,7 @@
                 >
                     <template slot="countup" slot-scope="scope">
                         <span class="green--text pl-3"
-                            ><span v-if="scope.props.days != 0">Days: {{ scope.props.days }} - </span>Hours:{{scope.props.hours}}</span
+                            ><span v-if="scope.props.days != 0"> {{ scope.props.days }} Days - </span>{{scope.props.hours}} Hours</span
                         >
                     </template>
                 </VueCountUptimer>
