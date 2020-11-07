@@ -56,8 +56,7 @@ class Campaignhelper
                 }
                 $id = $var['campaign_id'];
                 $string = $id.$var['solar_system_id'].$var['structure_id'];
-                $link = utf8_encode($string);
-                dd($link);
+                dd($string);
                 $before = Campaign::where('id', $id)->get();
                 $time = $var['start_time'];
                 $start_time = Helper::fixtime($time);
