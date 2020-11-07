@@ -55,7 +55,7 @@ class Campaignhelper
                     $event_type = 32226;
                 }
                 $id = $var['campaign_id'];
-                $string = $id.$var['solar_system_id'].$var['structure_id'];
+                $string = $id.$var['solar_system_id'].$var['structure_id'].substr(md5(rand()), 0, 7);
                 hash('crc32b',$string);
                 dd(hash('ripemd128',$string));
                 $before = Campaign::where('id', $id)->get();
