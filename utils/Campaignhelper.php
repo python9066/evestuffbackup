@@ -55,6 +55,9 @@ class Campaignhelper
                     $event_type = 32226;
                 }
                 $id = $var['campaign_id'];
+                $string = $id.$var['system_id'].$var['structure_id'];
+                $link = urlencode(utf8_encode($string));
+                dd($link);
                 $before = Campaign::where('id', $id)->get();
                 $time = $var['start_time'];
                 $start_time = Helper::fixtime($time);
