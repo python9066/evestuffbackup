@@ -73,7 +73,7 @@ class Campaignhelper
                     'check' => 1,
                 );
                 Campaign::updateOrCreate(['id' => $id], $data);
-                dd(Campaign::where('id',$id)->get()->plunk('link'));
+                dd(Campaign::where('id',$id)->get()->pluck('link'));
                 $after = Campaign::where('id', $id)->get();
 
                 if ($before->count() > 0) {
