@@ -26,7 +26,7 @@ class Campaignhelper
                 CampaignUser::where('campaign_id', $toDelete->id)->delete();
                 CampaignSystem::where('campaign_id', $toDelete->id)->delete();
                 Campaign::where('id', $toDelete->id)->delete();
-                CampaignJoin::where('campaign_id',$toDelete->id)->delete();
+                CampaignJoin::where('campaign_id', $toDelete->id)->delete();
             }
         }
         Campaign::where('id', '>', 0)->update(['check' => 0]);
@@ -55,8 +55,7 @@ class Campaignhelper
                     $event_type = 32226;
                 }
                 $id = $var['campaign_id'];
-                $string = $id.$var['solar_system_id'].$var['structure_id'].substr(md5(rand()), 0, 7);
-                hash('ripemd128',$string);
+
                 $before = Campaign::where('id', $id)->get();
                 $time = $var['start_time'];
                 $start_time = Helper::fixtime($time);
@@ -73,10 +72,9 @@ class Campaignhelper
                     'check' => 1,
                 );
                 Campaign::updateOrCreate(['id' => $id], $data);
-                if(Campaign::where('id',$id)->where('link',"!=",null)->count() == 0){
-                    dd("null");
-                }else{
-                    dd("not null");
+                if (Campaign::where('id', $id)->where('link', "!=", null)->count() == 0) {
+                    $string = $id . $var['solar_system_id'] . $var['structure_id'] . substr(md5(rand()), 0, 7);
+                    Campaign::where('id', $id)->update(['link' => hash('ripemd128', $string)]);
                 }
                 $after = Campaign::where('id', $id)->get();
 
@@ -112,19 +110,19 @@ class Campaignhelper
         }
 
 
-        $warmcheck = Campaign::where('start_time','>=',$warmup)->where('warmup',0)->where('status_id', 1)->get();
-            foreach($warmcheck as $warmcheck){
-                Campaign::where('id',$warmcheck['id'])->where('status_id',1)->where('warmup',0)->update(['warmup' =>1 ]);
-                $flag = 1;
-                echo "warm";
-                $changed->push($warmcheck['id']);
-            };
+        $warmcheck = Campaign::where('start_time', '>=', $warmup)->where('warmup', 0)->where('status_id', 1)->get();
+        foreach ($warmcheck as $warmcheck) {
+            Campaign::where('id', $warmcheck['id'])->where('status_id', 1)->where('warmup', 0)->update(['warmup' => 1]);
+            $flag = 1;
+            echo "warm";
+            $changed->push($warmcheck['id']);
+        };
 
         $check = Campaign::where('check', 0)->count();
 
         if ($check > 0) {
 
-            Campaign::where('end','!=', null)
+            Campaign::where('end', '!=', null)
                 ->where('check', 0)
                 ->update(['status_id' => 3, 'warmup' => 0]);
 
@@ -142,7 +140,6 @@ class Campaignhelper
                 ->where('check', 0)
                 ->where('status_id', 4)
                 ->update(['status_id' => 10]);
-
         }
 
         $finished = Campaign::where('status_id', 3)
@@ -185,14 +182,14 @@ class Campaignhelper
         $b_node_new = $campaign->b_node + $b_node_add;
         $r_node_new = $campaign->r_node + $r_node_add;
 
-        $campaign->update(["b_node" =>$b_node_new ]);
-        $campaign->update(["r_node" =>$r_node_new ]);
+        $campaign->update(["b_node" => $b_node_new]);
+        $campaign->update(["r_node" => $r_node_new]);
 
         $campaign->campaignsystems()
             ->where('campaign_system_status_id', 4)
             ->update(['campaign_system_status_id' => 10]);
 
-            $campaign->campaignsystems()
+        $campaign->campaignsystems()
             ->where('campaign_system_status_id', 5)
             ->update(['campaign_system_status_id' => 10]);
 
