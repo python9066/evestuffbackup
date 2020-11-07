@@ -73,7 +73,11 @@ class Campaignhelper
                     'check' => 1,
                 );
                 Campaign::updateOrCreate(['id' => $id], $data);
-                dd(Campaign::where('id',$id)->get()->pluck('link'));
+                if(Campaign::where('id',$id)->get()->pluck('link') == NULL){
+                    dd("null");
+                }else{
+                    dd("not null");
+                }
                 $after = Campaign::where('id', $id)->get();
 
                 if ($before->count() > 0) {
