@@ -39,7 +39,7 @@ export default new Router({
             name: "campaign",
             component: Campaign,
             props: route => {
-                const id = Number.parseInt(route.params.id, 10);
+                const id = Number.parseInt(route.params.id, 32);
                 if (Number.isNaN(id)) {
                     return 0;
                 }
