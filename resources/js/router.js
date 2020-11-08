@@ -39,6 +39,7 @@ export default new Router({
             name: "campaign",
             component: Campaign,
             props: route => {
+                const id = route.params.id;
                 return { id };
             }
             //   beforeEnter(to, from, next) {
