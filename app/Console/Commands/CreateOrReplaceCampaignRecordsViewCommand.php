@@ -64,7 +64,8 @@ class CreateOrReplaceCampaignRecordsViewCommand extends Command
         campaigns.r_node AS 'r_node',
         campaigns.b_node + campaigns.r_node AS 'total_node',
         campaigns.warmup AS 'warmup',
-        systems.adm AS 'adm'
+        systems.adm AS 'adm',
+        campaigns.link AS 'link'
         FROM campaigns
         JOIN systems ON systems.id = campaigns.system_id
         JOIN constellations ON constellations.id = campaigns.constellation_id
