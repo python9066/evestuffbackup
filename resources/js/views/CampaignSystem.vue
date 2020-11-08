@@ -605,7 +605,7 @@ export default {
     },
 
     async created() {
-        this.campaignId = this.$route.params.id;
+        this.campaignId = campaign.id;
         Echo.private("campaignsystem." + this.$route.params.id).listen(
             "CampaignSystemUpdate",
             e => {
@@ -977,11 +977,16 @@ export default {
             "getCampaignUsersByUserIdCount",
             "getTotalNodeCountByCampaign",
             "getHackingNodeCountByCampaign",
-            "getRedHackingNodeCountByCampaign"
+            "getRedHackingNodeCountByCampaign",
+            "getCampaignByLink"
         ]),
 
+        // campaign() {
+        //     return this.getCampaignById(this.$route.params.id);
+        // },
+
         campaign() {
-            return this.getCampaignById(this.$route.params.id);
+            return this.getCampaignByLink(this.$route.params.id);
         },
 
         userCharsDrop() {
