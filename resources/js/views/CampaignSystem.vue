@@ -597,6 +597,7 @@ export default {
             removeShown: false,
             showTable: false,
             systemLoaded: false,
+            campaignId: 0,
             showUsers: false,
             channel: "",
             overlay: false
