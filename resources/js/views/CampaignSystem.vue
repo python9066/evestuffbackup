@@ -606,8 +606,11 @@ export default {
     },
 
     async created() {
-        this.link = this.$route.params.id;
-        this.campaignId = campaign.id;
+         this.link = this.$route.params.id;
+        if (this.$store.getters.getCampaignsCount == 0) {
+            await this.$store.dispatch("getCampaigns");
+        }
+        this.campaignId = this.campaign.id;
         Echo.private("campaignsystem." + this.$route.params.id).listen(
             "CampaignSystemUpdate",
             e => {
