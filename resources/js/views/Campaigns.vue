@@ -396,7 +396,7 @@ export default {
             if (this.$can("access_campaigns")) {
                 var left = moment.utc(item.start).unix() - moment.utc().unix();
                 if (left < 3600 && item.status_id < 3) {
-                    this.$router.push({ path: `/campaign/${item.id}` }); // -> /user/123
+                    this.$router.push({ path: `/campaign/${item.link}` }); // -> /user/123
                 }
             }
         },
