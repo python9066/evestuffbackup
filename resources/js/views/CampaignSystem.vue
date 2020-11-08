@@ -605,7 +605,7 @@ export default {
     },
 
     async created() {
-        this.campaignId = campaign.id;
+        this.campaignId = this.campaign.id;
         Echo.private("campaignsystem." + this.$route.params.id).listen(
             "CampaignSystemUpdate",
             e => {
