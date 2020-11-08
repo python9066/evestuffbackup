@@ -413,7 +413,7 @@ export default {
     props: {
         system_name: String,
         system_id: Number,
-        campaign_id: String
+        campaign_id: Number
     },
     data() {
         return {
