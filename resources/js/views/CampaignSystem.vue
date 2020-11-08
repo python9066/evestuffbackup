@@ -600,11 +600,13 @@ export default {
             campaignId: 0,
             showUsers: false,
             channel: "",
-            overlay: false
+            overlay: false,
+            link:""
         };
     },
 
     async created() {
+        this.link = this.$route.params.id;
         this.campaignId = this.campaign.id;
         Echo.private("campaignsystem." + this.$route.params.id).listen(
             "CampaignSystemUpdate",
