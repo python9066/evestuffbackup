@@ -38,13 +38,18 @@ export default new Router({
             path: "/campaign/:id",
             name: "campaign",
             component: Campaign,
+            // props: route => {
+            //     const id = Number.parseInt(route.params.id, 32);
+            //     if (Number.isNaN(id)) {
+            //         return 0;
+            //     }
+            //     return { id };
+            // }
+
             props: route => {
-                const id = Number.parseInt(route.params.id, 32);
-                if (Number.isNaN(id)) {
-                    return 0;
-                }
                 return { id };
             }
+
             //   beforeEnter(to, from, next) {
 
             //     // console.log(Permissions.indexOf('access_campaigns' )!== -1)
