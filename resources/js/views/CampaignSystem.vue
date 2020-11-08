@@ -988,7 +988,7 @@ export default {
         // },
 
         campaign() {
-            return this.getCampaignByLink(this.$route.params.id);
+            return this.getCampaignByLink(this.link);
         },
 
         userCharsDrop() {
