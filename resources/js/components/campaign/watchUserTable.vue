@@ -75,7 +75,7 @@ export default {
 
     async created(){
         await this.userViewTable();
-        Echo.private("campaignsystemmembers." + this.$route.params.id).listen(
+        Echo.private("campaignsystemmembers." + this.campaign_id).listen(
             "CampaignUsersChanged",
             e => {
                  if(this.$can('view_campaign_members')){
@@ -83,7 +83,7 @@ export default {
             }
             })
 
-            this.channel = "campaignsystemmembers." + this.$route.params.id;
+            this.channel = "campaignsystemmembers." + this.campaign_id;
 
 
     },
@@ -94,13 +94,13 @@ export default {
 
         userViewTable() {
             if(this.$can('view_campaign_members')){
-                this.$store.dispatch('getCampaignMembers',this.$route.params.id)
+                this.$store.dispatch('getCampaignMembers',this.campaign_id)
             }
 
         },
 
         updateUserViewTable(){
-            this.$store.dispatch('getCampaignMembers',this.$route.params.id)
+            this.$store.dispatch('getCampaignMembers',this.campaign_id)
 
         },
 
@@ -111,7 +111,7 @@ export default {
             }
             await axios({
                 method: "POST", //you can set what request you want to be
-                url: "/api/campaignsystemuserskick/" + this.$route.params.id,
+                url: "/api/campaignsystemuserskick/" + this.campaign_id,
                 data: request,
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
