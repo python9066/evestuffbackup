@@ -17,7 +17,7 @@ class CreateUsersTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('token');
-            $table->integer('pri_grp');
+            $table->integer('pri_grp')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
