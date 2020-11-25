@@ -18,16 +18,16 @@ class testController extends Controller
 
     public function notifications(Request $request)
     {
-        $data =  $request->toArray();
-        $flag = Notifications::test($data);
+        // $data =  $request->toArray();
+        // $flag = Notifications::test($data);
 
-        if ($flag['stationflag'] == 1) {
-            broadcast(new StationNew($flag['stationflag']))->toOthers();
-        }
+        // if ($flag['stationflag'] == 1) {
+        //     broadcast(new StationNew($flag['stationflag']))->toOthers();
+        // }
 
-        if ($flag['tower'] == 1) {
-            broadcast(new TowerNew($flag['towerflag']))->toOthers();
-        }
+        // if ($flag['tower'] == 1) {
+        //     broadcast(new TowerNew($flag['towerflag']))->toOthers();
+        // }
 
 
     }
