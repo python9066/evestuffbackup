@@ -189,7 +189,7 @@ export default {
         async newCharForm() {
             var request = {
                 site_id: this.$store.state.user_id,
-                campaign_id: this.campaign.id,
+                campaign_id: campaign_id,
                 char_name: this.newCharName,
                 link: this.newLink,
                 ship: this.newShip,
@@ -198,7 +198,7 @@ export default {
 
             await axios({
                 method: "POST", //you can set what request you want to be
-                url: "/api/campaignusers/" + this.campaign.id,
+                url: "/api/campaignusers/" + campaign_id,
                 data: request,
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
@@ -206,7 +206,7 @@ export default {
                     "Content-Type": "application/json"
                 }
             });
-            await this.$store.dispatch("getCampaignUsersRecords", this.campaign.id);
+            await this.$store.dispatch("getCampaignUsersRecords", campaign_id);
             await this.$store.dispatch("getUsersChars",this.$store.state.user_id)
             this.role = null;
             this.newCharName = null;
