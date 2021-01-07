@@ -538,7 +538,9 @@
         </v-overlay> -->
         <v-overlay z-index="0" :value="overlay" min-width = "1000px" >
                <UsersChars
-               :campaign_id="campaign.id">
+               :campaign_id="campaign.id"
+               @closeAddChar="overlay = false"
+               >
             </UsersChars>
         </v-overlay>
     </div>
@@ -687,11 +689,6 @@ export default {
             if (this.userCount == 0) {
                 this.overlay = true;
             }
-        },
-
-        close: function (v) {
-            this.overlay = false;
-
         },
 
         async finishCampaign() {

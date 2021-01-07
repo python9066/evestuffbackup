@@ -125,7 +125,7 @@ export default {
     methods: {
 
         close(){
-            this.$emit('close','yo')
+            this.$emit('closeAddChar','yo')
         }
 
     },
