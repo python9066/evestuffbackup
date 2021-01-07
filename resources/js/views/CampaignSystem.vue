@@ -538,7 +538,7 @@
         </v-overlay> -->
         <v-overlay z-index="0" :value="overlay" min-width = "1000px" >
                <UsersChars
-               :campaign_id="campaign_id"
+               :campaign_id="campaign.id"
                @closeAddChar="overlay = false"
                >
             </UsersChars>
