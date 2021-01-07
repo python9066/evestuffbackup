@@ -75,7 +75,7 @@ class CampaignUserController extends Controller
 
         CampaignUser::destroy($id);
         $remove = CampaignSystemUsers::where('user_id',$siteid)->get();
-        dd($remove,$siteid);
+        // dd($remove,$siteid);
         $remove->delete;
         $flag = collect([
             'flag' => 1,
