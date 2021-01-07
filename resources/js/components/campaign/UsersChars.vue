@@ -1,6 +1,6 @@
 <template>
     <v-col cols="10">
-        <v-card tile min-width="60%">
+        <v-card tile min-width="1000px">
             <v-card-title class="d-flex justify-space-between align-center ">
                 <div>Table of all your saved Charaters</div>
                 <v-divider class="mx-4 my-0" vertical></v-divider>
