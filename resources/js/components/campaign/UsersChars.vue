@@ -180,6 +180,12 @@ export default {
             this.newLink = null;
         },
 
+        roleForm(a) {
+            this.role = a;
+            // console.log("LALAL");
+            // console.log(a);
+        },
+
         async newCharForm() {
             var request = {
                 site_id: this.$store.state.user_id,
