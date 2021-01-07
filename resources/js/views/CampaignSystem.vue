@@ -518,7 +518,7 @@
             </systemTable>
         </v-row>
 
-        <v-overlay z-index="0" :value="overlay">
+        <!-- <v-overlay z-index="0" :value="overlay">
             <v-card>
                 <v-card-title> MAKE SURE TO ADD A CHAR </v-card-title>
                 <v-card-text>
@@ -535,6 +535,10 @@
                     </v-btn>
                 </v-card-actions>
             </v-card>
+        </v-overlay> -->
+        <v-overlay z-index="0" :value="overlay">
+            <UserChars>
+            </UserChars>
         </v-overlay>
     </div>
 </template>
