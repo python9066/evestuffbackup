@@ -115,7 +115,7 @@ import { mapGetters } from "vuex";
 import { mapState } from "vuex";
 export default {
     props: {
-        campaign_id: String
+        campaign_id: Number
     },
     data() {
         return {
