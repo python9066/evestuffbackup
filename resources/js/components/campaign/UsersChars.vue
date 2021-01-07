@@ -1,6 +1,6 @@
 <template>
     <v-col cols="10">
-        <v-card tile min-width="1000px">
+        <v-card tile min-width="700px">
             <v-card-title class="d-flex justify-space-between align-center ">
                 <div>Table of all your saved Charaters</div>
                 <v-divider class="mx-4 my-0" vertical></v-divider>
@@ -19,7 +19,7 @@
                                             ><v-icon left small
                                                 >fas fa-plus</v-icon
                                             >
-                                            Node</v-btn
+                                            Char</v-btn
                                         >
                                     </template>
                                     <v-card tile min-height="150px">
@@ -86,6 +86,15 @@
                     </template>
                 </v-data-table>
             </v-card-text>
+            <v-card-actions>
+                    <v-btn
+                        class="white--text"
+                        color="teal"
+                        @click="(overlay = false), (addShown = true)"
+                    >
+                        Close
+                    </v-btn>
+                </v-card-actions>
         </v-card>
     </v-col>
 </template>
