@@ -41,6 +41,7 @@ Route::middleware('auth:api')->group(function(){
     Route::get('/systemsinconstellation/{id}','SystemController@systemsinconstellation');
 
     Route::get('/campaignusersrecords/{id}','CampaignUserRecordsController@show');
+    Route::get('/campaignusersrecordsbychar/{id}','CampaignUserRecordsController@show');
     Route::put('/campaignusersrecords/{id}/{campid}', 'CampaignUserRecordsController@update');
     Route::post('/campaignusersrecords/{id}/{campid}', 'CampaignUserRecordsController@store');
 

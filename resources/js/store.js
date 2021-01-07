@@ -31,6 +31,7 @@ export default new Vuex.Store({
         users:[],
         user_id: 0,
         user_name:"",
+        userschars:[],
     },
     mutations: {
         SET_TIMERS(state, timers) {
@@ -150,7 +151,11 @@ export default new Vuex.Store({
 
         SET_CAMPAIGN_SYSTEMS(state, data) {
             state.campaignsystems = data;
-        }
+        },
+
+        SET_USERS_CHARS(state, data) {
+            state.userschars = data;
+        },
     },
     actions: {
         async getTimerDataAll({ commit, state }) {
@@ -217,6 +222,22 @@ export default new Vuex.Store({
             let res = await axios({
                 method: "get",
                 url: "/api/campaignsystemusers/" + campaign_id,
+                headers: {
+                    Authorization: "Bearer " + state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                }
+            });
+            // debugger
+            // console.log(res.data.timers)
+            commit("SET_CAMPAIGN_MEMBERS", res.data.users);
+        },
+
+
+        async getUsersChars({ commit, state }, user_id) {
+            let res = await axios({
+                method: "get",
+                url: "/api/campaignsystemusers/" + user_id,
                 headers: {
                     Authorization: "Bearer " + state.token,
                     Accept: "application/json",

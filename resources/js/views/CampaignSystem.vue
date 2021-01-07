@@ -681,6 +681,7 @@ export default {
             this.campaign.id
         );
         await this.$store.dispatch("getCampaignSystemsRecords");
+        await this.$store.dispatch("getUsersChars",this.$store.state.user_id)
     },
     methods: {
 

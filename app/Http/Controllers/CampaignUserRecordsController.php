@@ -39,6 +39,11 @@ class CampaignUserRecordsController extends Controller
         return [ 'users' => CampaignUserRecords::where('campaign_id',$id)->get()];
     }
 
+    public function bychar($id)
+    {
+        return [ 'users' => CampaignUserRecords::where('site_id',$id)->get()];
+    }
+
     /**
      * Update the specified resource in storage.
      *
