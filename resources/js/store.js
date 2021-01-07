@@ -237,7 +237,7 @@ export default new Vuex.Store({
         async getUsersChars({ commit, state }, user_id) {
             let res = await axios({
                 method: "get",
-                url: "/api/campaignsystemusers/" + user_id,
+                url: "/api/campaignusersrecordsbychar/" + user_id,
                 headers: {
                     Authorization: "Bearer " + state.token,
                     Accept: "application/json",
