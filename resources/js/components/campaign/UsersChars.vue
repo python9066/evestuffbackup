@@ -90,7 +90,7 @@
                     <v-btn
                         class="white--text"
                         color="teal"
-                        @click="(overlay = false), (addShown = true)"
+                        @click="overlay = false"
                     >
                         Close
                     </v-btn>
@@ -109,7 +109,7 @@ export default {
     data() {
         return {
             headers: [
-                { text: "Name", value: "char_name", width: "10%" },
+                { text: "Name", value: "char_name",},
                 { text: "Role", value: "role_name" },
                 { text: "Ship", value: "ship" },
                 { text: "Entosis", value: "link" },
