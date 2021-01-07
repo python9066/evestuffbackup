@@ -233,7 +233,7 @@ export default {
         },
 
         async removeChar(item) {
-            console.log(item)
+            console.log(item);
             await axios({
                 method: "DELETE", //you can set what request you want to be
                 url:
@@ -249,16 +249,11 @@ export default {
                     "Content-Type": "application/json"
                 }
             });
-            this.removeShown = false;
-            this.editCharName = null;
-            this.editRole = null;
-            this.editTextRole = null;
-            this.editShip = null;
-            this.editTextShip = null;
-            this.editLink = null;
-            this.editTextLink = null;
-
-            this.$store.dispatch("getCampaignUsersRecords", this.campaign.id);
+            await this.$store.dispatch(
+                "getUsersChars",
+                this.$store.state.user_id
+            );
+            this.$store.dispatch("getCampaignUsersRecords", this.campaign_id);
             this.$store.dispatch("getCampaignSystemsRecords");
         }
     },
