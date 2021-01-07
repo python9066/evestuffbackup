@@ -90,7 +90,7 @@
                     <v-btn
                         class="white--text"
                         color="teal"
-                        @click="this.$emit('close',close)"
+                        @click="this.$emit('close','yo')"
                     >
                         Close
                     </v-btn>
