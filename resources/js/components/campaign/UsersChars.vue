@@ -1,5 +1,5 @@
 <template>
-    <v-col cols="10">
+    <v-col cols="12">
         <v-card tile>
             <v-card-title class="d-flex justify-space-between align-center ">
                 <div>Table of all your saved Charaters</div>
