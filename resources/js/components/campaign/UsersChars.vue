@@ -105,7 +105,7 @@
                             v-if="item.status_id != 4 && item.status_id != 5"
                             color="orange darken-3"
                             small
-                            @click="editFormRemove(item)"
+                            @click="removeChar(item)"
                         >
                             fas fa-trash-alt
                         </v-icon>
