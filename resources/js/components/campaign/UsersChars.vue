@@ -160,6 +160,9 @@ export default {
             editUserForm: 1,
             editrole_name: null,
 
+            role: 0,
+            editrole: 0,
+
             addShown: false
         };
     },
