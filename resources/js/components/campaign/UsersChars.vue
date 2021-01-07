@@ -102,7 +102,6 @@
 
                     <template v-slot:item.actions="{ item }">
                         <v-icon
-                            v-if="item.status_id != 4 && item.status_id != 5"
                             color="orange darken-3"
                             small
                             @click="removeChar(item)"
@@ -238,7 +237,7 @@ export default {
                 method: "DELETE", //you can set what request you want to be
                 url:
                     "/api/campaignusers/" +
-                    this.item.id +
+                    item.id +
                     "/" +
                     this.campaign.id +
                     "/" +
