@@ -246,7 +246,7 @@ export default new Vuex.Store({
             });
             // debugger
             // console.log(res.data.timers)
-            commit("SET_CAMPAIGN_MEMBERS", res.data.users);
+            commit("SET_USERS_CHARS", res.data.users);
         },
 
 
