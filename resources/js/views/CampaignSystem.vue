@@ -536,7 +536,7 @@
                 </v-card-actions>
             </v-card>
         </v-overlay> -->
-        <v-overlay z-index="0" :value="overlay" min-width = "500px" >
+        <v-overlay z-index="0" :value="overlay" min-width = "1000px" >
                <UsersChars>
             </UsersChars>
         </v-overlay>
