@@ -4,87 +4,87 @@
             <v-card-title class="d-flex justify-space-between align-center ">
                 <div>Table of all your saved Charaters</div>
                 <v-divider class="mx-4 my-0" vertical></v-divider>
+                <div>
+                    <v-menu
+                        :close-on-content-click="false"
+                        :value="addShown"
+                        transition="fab-transition"
+                        origin="100% -30%"
+                    >
+                        <template v-slot:activator="{ on, attrs }">
+                            <v-btn
+                                text
+                                v-bind="attrs"
+                                v-on="on"
+                                @click="addShown = true"
+                                color="success"
+                                ><v-icon left small>fas fa-plus</v-icon>
+                                Char</v-btn
+                            >
+                        </template>
+                        <v-row no-gutters>
                             <div>
-                                <v-menu
-                                    :close-on-content-click="false"
-                                    :value="addShown"
-                                >
-                                    <template v-slot:activator="{ on, attrs }">
-                                        <v-btn
-                                            text
-                                            v-bind="attrs"
-                                            v-on="on"
-                                            @click="addShown = true"
-                                            color="success"
-                                            ><v-icon left small
-                                                >fas fa-plus</v-icon
-                                            >
-                                            Char</v-btn
+                                <v-card class="pa-2" tile width="100%">
+                                    <v-form @submit.prevent="newCharForm()">
+                                        <v-text-field
+                                            v-model="newCharName"
+                                            label="Char Name"
+                                            required
+                                            autofocus
+                                            :rules="newNameRules"
+                                        ></v-text-field>
+                                        <v-select
+                                            v-model="newRole"
+                                            @change="roleForm($event)"
+                                            :rules="newRoleRules"
+                                            :items="dropdown_roles"
+                                            label="Role"
+                                            required
+                                        ></v-select>
+                                        <v-text-field
+                                            v-model="newShip"
+                                            :rules="newShipRules"
+                                            v-if="this.role == 1"
+                                            label="Ship"
+                                            required
+                                        ></v-text-field>
+                                        <v-radio-group
+                                            v-model="newLink"
+                                            :rules="newLinkRules"
+                                            v-if="this.role == 1"
+                                            row
+                                            label="Entosis Link"
+                                            required
                                         >
-                                    </template>
-                                    <v-row no-gutters>
-                                <div>
-                                    <v-card class="pa-2" tile width="100%">
-                                        <v-form @submit.prevent="newCharForm()">
-                                            <v-text-field
-                                                v-model="newCharName"
-                                                label="Char Name"
-                                                required
-                                                autofocus
-                                                :rules="newNameRules"
-                                            ></v-text-field>
-                                            <v-select
-                                                v-model="newRole"
-                                                @change="roleForm($event)"
-                                                :rules="newRoleRules"
-                                                :items="dropdown_roles"
-                                                label="Role"
-                                                required
-                                            ></v-select>
-                                            <v-text-field
-                                                v-model="newShip"
-                                                :rules="newShipRules"
-                                                v-if="this.role == 1"
-                                                label="Ship"
-                                                required
-                                            ></v-text-field>
-                                            <v-radio-group
-                                                v-model="newLink"
-                                                :rules="newLinkRules"
-                                                v-if="this.role == 1"
-                                                row
-                                                label="Entosis Link"
-                                                required
-                                            >
-                                                <v-radio
-                                                    label="Tech 1"
-                                                    value="1"
-                                                ></v-radio>
-                                                <v-radio
-                                                    label="Tech 2"
-                                                    value="2"
-                                                ></v-radio>
-                                            </v-radio-group>
+                                            <v-radio
+                                                label="Tech 1"
+                                                value="1"
+                                            ></v-radio>
+                                            <v-radio
+                                                label="Tech 2"
+                                                value="2"
+                                            ></v-radio>
+                                        </v-radio-group>
 
-                                            <v-btn
-                                                color="success"
-                                                class="mr-4"
-                                                type="submit"
-                                                >submit</v-btn
-                                            >
-                                            <v-btn
-                                                color="warning"
-                                                class="mr-4"
-                                                @click="newCharFormClose()"
-                                                >Close</v-btn
-                                            >
-                                            <!-- <v-btn @click="clear">clear</v-btn> -->
-                                        </v-form>
-                                    </v-card>
-                                </div>
-                            </v-row>
-                                </v-menu>
+                                        <v-btn
+                                            color="success"
+                                            class="mr-4"
+                                            type="submit"
+                                            >submit</v-btn
+                                        >
+                                        <v-btn
+                                            color="warning"
+                                            class="mr-4"
+                                            @click="newCharFormClose()"
+                                            >Close</v-btn
+                                        >
+                                        <!-- <v-btn @click="clear">clear</v-btn> -->
+                                    </v-form>
+                                </v-card>
                             </div>
+                        </v-row>
+                    </v-menu>
+                </div>
             </v-card-title>
             <v-card-text>
                 <v-data-table
@@ -95,7 +95,6 @@
                     fixed-header
                     hide-default-footer
                     class="elevation-24"
-
                 >
                     <template slot="no-data">
                         You have no saved Chars
@@ -103,14 +102,10 @@
                 </v-data-table>
             </v-card-text>
             <v-card-actions>
-                    <v-btn
-                        class="white--text"
-                        color="teal"
-                        @click="close()"
-                    >
-                        Close
-                    </v-btn>
-                </v-card-actions>
+                <v-btn class="white--text" color="teal" @click="close()">
+                    Close
+                </v-btn>
+            </v-card-actions>
         </v-card>
     </v-col>
 </template>
@@ -125,13 +120,20 @@ export default {
     data() {
         return {
             headers: [
-                { text: "Name", value: "char_name",},
+                { text: "Name", value: "char_name" },
                 { text: "Role", value: "role_name" },
                 { text: "Ship", value: "ship" },
                 { text: "Entosis", value: "link" },
-                { text: "", value: "actions", width: "5%", align:"end" }
+                { text: "", value: "actions", width: "5%", align: "end" }
 
                 // { text: "Vulernable End Time", value: "vulnerable_end_time" }
+            ],
+
+            dropdown_roles: [
+                { text: "Hacker", value: 1 },
+                { text: "Scout", value: 2 },
+                { text: "FC", value: 3 },
+                { text: "Command", value: 4 }
             ],
             statusflag: 0,
             toggle_exclusive: 0,
@@ -157,20 +159,27 @@ export default {
             editLinkRules: [v => !!v || "T1 or T2?"],
             editUserForm: 1,
             editrole_name: null,
+
+            addShown:false
         };
     },
 
     methods: {
+        close() {
+            this.$emit("closeAddChar", "yo");
+        },
 
-        close(){
-            this.$emit('closeAddChar','yo')
-        }
-
+        newCharFormClose() {
+            this.addShown = false;
+            this.newCharName = null;
+            this.newRole = null;
+            this.newShip = null;
+            this.newLink = null;
+        },
     },
 
     computed: {
         // ...mapState(["campaignusers"]),
-
         // filteredItems() {
         //     // var timers = this.$store.state.timers;
         //     if (this.statusflag == 1) {
