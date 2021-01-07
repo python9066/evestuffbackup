@@ -214,7 +214,40 @@ export default {
             this.newShip = null;
             this.newRole = null;
             this.addShown = false;
-        }
+        },
+
+        async removeChar(item) {
+            await axios({
+                method: "DELETE", //you can set what request you want to be
+                url:
+                    "/api/campaignusers/" +
+                    this.item.id +
+                    "/" +
+                    this.campaign.id +
+                    "/" +
+                    this.item.site_id,
+                headers: {
+                    Authorization: "Bearer " + this.$store.state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                }
+            });
+            this.removeShown = false;
+            this.editCharName = null;
+            this.editRole = null;
+            this.editTextRole = null;
+            this.editShip = null;
+            this.editTextShip = null;
+            this.editLink = null;
+            this.editTextLink = null;
+
+            this.$store.dispatch(
+                "getCampaignUsersRecords",
+                this.campaign.id
+            );
+            this.$store.dispatch("getCampaignSystemsRecords");
+        },
+
     },
 
     computed: {

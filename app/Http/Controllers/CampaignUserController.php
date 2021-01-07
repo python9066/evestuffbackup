@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Events\CampaignSystemUpdate;
+use App\Models\CampaignSystemUsers;
 use App\Models\CampaignUser;
 use Illuminate\Http\Request;
 
@@ -69,10 +70,11 @@ class CampaignUserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id, $campid)
+    public function destroy($id, $campid, $siteid)
     {
 
         CampaignUser::destroy($id);
+        CampaignSystemUsers::destroy($siteid);
         $flag = collect([
             'flag' => 1,
             'id' => $campid
