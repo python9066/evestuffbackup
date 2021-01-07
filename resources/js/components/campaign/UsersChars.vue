@@ -90,7 +90,7 @@
                     <v-btn
                         class="white--text"
                         color="teal"
-                        @click="this.$emit('close','yo')"
+                        @click="close()"
                     >
                         Close
                     </v-btn>
@@ -120,6 +120,14 @@ export default {
             statusflag: 0,
             toggle_exclusive: 0
         };
+    },
+
+    methods: {
+
+        close(){
+            this.$emit('close','yo')
+        }
+
     },
 
     computed: {
