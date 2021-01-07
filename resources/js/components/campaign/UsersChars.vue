@@ -160,7 +160,7 @@ export default {
             editUserForm: 1,
             editrole_name: null,
 
-            addShown:false
+            addShown: false
         };
     },
 
@@ -197,25 +197,21 @@ export default {
                     "Content-Type": "application/json"
                 }
             });
-            this.$store.dispatch(
-                "getCampaignUsersRecords",
-                this.campaign.id
-            );
+            this.$store.dispatch("getCampaignUsersRecords", this.campaign.id);
             this.role = null;
             this.newCharName = null;
             this.newLink = null;
             this.newShip = null;
             this.newRole = null;
             this.addShown = false;
-        },
+        }
     },
 
     computed: {
-        ...mapState(["campaignusers"]),
-        ...mapGetters(['getCampaignUsersByUserId']),
+        ...mapState(["campaignusers", "getUsersChars"]),
         filteredItems() {
-        return this.getCampaignUsersByUserId(this.$store.state.user_id);
-        },
+            return this.getUsersChars;
+        }
     }
 };
 </script>
