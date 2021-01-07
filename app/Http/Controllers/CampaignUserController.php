@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Events\CampaignSystemUpdate;
+use App\Models\CampaignSystem;
 use App\Models\CampaignSystemUsers;
 use App\Models\CampaignUser;
 use Illuminate\Http\Request;
@@ -74,13 +75,16 @@ class CampaignUserController extends Controller
     {
 
         CampaignUser::destroy($id);
-        $remove = CampaignSystemUsers::where('user_id',$siteid)->delete();
+        CampaignSystemUsers::where('user_id', $siteid)->delete();
+
+        if (CampaignSystem::where('campaign_user_id', $id)->count() != 0) {
+            CampaignSystem::where('campaign_user_id', $id)->update(['campaign_user_id'=>null]);
+        }
         // dd($remove,$siteid);
         $flag = collect([
             'flag' => 1,
             'id' => $campid
         ]);
         broadcast(new CampaignSystemUpdate($flag))->toOthers();
-
     }
 }
