@@ -537,20 +537,8 @@
             </v-card>
         </v-overlay> -->
         <v-overlay z-index="0" :value="overlay">
-
-            <v-card>
                <UsersChars>
             </UsersChars>
-                <v-card-actions>
-                    <v-btn
-                        class="white--text"
-                        color="teal"
-                        @click="(overlay = false)"
-                    >
-                        Close
-                    </v-btn>
-                </v-card-actions>
-            </v-card>
         </v-overlay>
     </div>
 </template>
