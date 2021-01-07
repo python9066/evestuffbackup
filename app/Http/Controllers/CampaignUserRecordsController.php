@@ -41,6 +41,8 @@ class CampaignUserRecordsController extends Controller
 
     public function bychar($id)
     {
+        $data = CampaignUserRecords::where('site_id',$id)->get();
+        dd($data,$id);
         return [ 'users' => CampaignUserRecords::where('site_id',$id)->get()];
     }
 
