@@ -214,7 +214,7 @@ export default {
         ...mapState(["campaignusers"]),
         ...mapGetters(['getCampaignUsersByUserId']),
         filteredItems() {
-        return this.getCampaignUsersByUserId
+        return this.getCampaignUsersByUserId(this.$store.state.user_id);
         },
     }
 };
