@@ -3,14 +3,72 @@
         <v-card tile>
             <v-card-title class="d-flex justify-space-between align-center ">
                 <div>Table of all your saved Charaters</div>
-                <div>
+                <v-divider class="mx-4 my-0" vertical></v-divider>
+                            <div>
+                                <v-menu
+                                    :close-on-content-click="false"
+                                    :value="addShown"
+                                >
+                                    <template v-slot:activator="{ on, attrs }">
+                                        <v-btn
+                                            text
+                                            v-bind="attrs"
+                                            v-on="on"
+                                            @click="addShown = true"
+                                            color="success"
+                                            ><v-icon left small
+                                                >fas fa-plus</v-icon
+                                            >
+                                            Node</v-btn
+                                        >
+                                    </template>
+                                    <v-card tile min-height="150px">
+                                        <v-card-title class=" pb-0">
+                                            <v-text-field
+                                                class=" mt-2"
+                                                label="Node"
+                                                placeholder="Enter Node"
+                                                flat
+                                                v-mask="'AA##'"
+                                                autofocus
+                                                v-model="nodeText"
+                                                @keyup.enter="addNode()"
+                                                @keyup.esc="
+                                                    (addShown = false),
+                                                        (nodeText = '')
+                                                "
+                                            ></v-text-field>
+                                        </v-card-title>
 
-                    >
-                        <v-btn @click="statusflag = 4"
-                        right-align>
-                            Add
-                        </v-btn>
-                </div>
+                                        <v-card-text>
+                                            <v-btn
+                                                icon
+                                                fixed
+                                                left
+                                                color="success"
+                                                @click="addNode()"
+                                                ><v-icon
+                                                    >fas fa-check</v-icon
+                                                ></v-btn
+                                            >
+
+                                            <v-btn
+                                                fixed
+                                                right
+                                                icon
+                                                color="warning"
+                                                @click="
+                                                    (addShown = false),
+                                                        (nodeText = '')
+                                                "
+                                                ><v-icon
+                                                    >fas fa-times</v-icon
+                                                ></v-btn
+                                            >
+                                        </v-card-text>
+                                    </v-card>
+                                </v-menu>
+                            </div>
             </v-card-title>
             <v-card-text>
                 <v-data-table
@@ -21,10 +79,10 @@
                     fixed-header
                     hide-default-footer
                     class="elevation-24"
-                    dense
+
                 >
                     <template slot="no-data">
-                        No one is here
+                        You have no saved Chars
                     </template>
                 </v-data-table>
             </v-card-text>
