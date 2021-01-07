@@ -233,6 +233,7 @@ export default {
         },
 
         async removeChar(item) {
+            console.log(item)
             await axios({
                 method: "DELETE", //you can set what request you want to be
                 url:
