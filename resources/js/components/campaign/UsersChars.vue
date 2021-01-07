@@ -99,6 +99,17 @@
                     <template slot="no-data">
                         You have no saved Chars
                     </template>
+
+                    <template v-slot:item.actions="{ item }">
+                        <v-icon
+                            v-if="item.status_id != 4 && item.status_id != 5"
+                            color="orange darken-3"
+                            small
+                            @click="editFormRemove(item)"
+                        >
+                            fas fa-trash-alt
+                        </v-icon>
+                    </template>
                 </v-data-table>
             </v-card-text>
             <v-card-actions>
@@ -206,8 +217,14 @@ export default {
                     "Content-Type": "application/json"
                 }
             });
-            await this.$store.dispatch("getCampaignUsersRecords", this.campaign_id);
-            await this.$store.dispatch("getUsersChars",this.$store.state.user_id)
+            await this.$store.dispatch(
+                "getCampaignUsersRecords",
+                this.campaign_id
+            );
+            await this.$store.dispatch(
+                "getUsersChars",
+                this.$store.state.user_id
+            );
             this.role = null;
             this.newCharName = null;
             this.newLink = null;
@@ -241,13 +258,9 @@ export default {
             this.editLink = null;
             this.editTextLink = null;
 
-            this.$store.dispatch(
-                "getCampaignUsersRecords",
-                this.campaign.id
-            );
+            this.$store.dispatch("getCampaignUsersRecords", this.campaign.id);
             this.$store.dispatch("getCampaignSystemsRecords");
-        },
-
+        }
     },
 
     computed: {
