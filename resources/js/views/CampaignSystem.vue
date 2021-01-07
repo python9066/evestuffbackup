@@ -681,10 +681,17 @@ export default {
         await this.$store.dispatch("getCampaignSystemsRecords");
     },
     methods: {
+
+
         checkAddUser() {
             if (this.userCount == 0) {
                 this.overlay = true;
             }
+        },
+
+        close: function () {
+            this.overlay = false;
+
         },
 
         async finishCampaign() {
