@@ -113,7 +113,7 @@ export default {
                 { text: "Role", value: "role_name" },
                 { text: "Ship", value: "ship" },
                 { text: "Entosis", value: "link" },
-                { text: "", value: "actions" }
+                { text: "", value: "actions", width: "5%", align:"end" }
 
                 // { text: "Vulernable End Time", value: "vulnerable_end_time" }
             ],
