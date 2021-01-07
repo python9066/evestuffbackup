@@ -213,6 +213,7 @@ export default {
     computed: {
         ...mapState(["campaignusers", "getUsersChars"]),
         filteredItems() {
+            console.log(this.getUsersChars);
             return this.getUsersChars;
         }
     }
