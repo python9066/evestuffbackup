@@ -950,7 +950,9 @@ export default {
                     "/api/campaignusers/" +
                     this.oldChar.id +
                     "/" +
-                    this.campaign.id,
+                    this.campaign.id +
+                    "/" +
+                    this.item.site_id,
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
                     Accept: "application/json",
