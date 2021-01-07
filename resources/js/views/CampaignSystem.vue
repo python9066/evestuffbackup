@@ -539,13 +539,13 @@
         <v-overlay z-index="0" :value="overlay">
 
             <v-card>
-               <UserChars>
-            </UserChars>
+               <UsersChars>
+            </UsersChars>
                 <v-card-actions>
                     <v-btn
                         class="white--text"
                         color="teal"
-                        @click="(overlay = false), (addShown = true)"
+                        @click="(overlay = false)"
                     >
                         Close
                     </v-btn>
