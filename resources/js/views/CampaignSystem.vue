@@ -536,7 +536,7 @@
                 </v-card-actions>
             </v-card>
         </v-overlay> -->
-        <v-overlay z-index="0" :value="overlay">
+        <v-overlay z-index="0" :value="overlay" >
                <UsersChars>
             </UsersChars>
         </v-overlay>
