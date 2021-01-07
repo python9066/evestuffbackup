@@ -19,7 +19,6 @@
                     item-key="id"
                     disable-pagination
                     fixed-header
-                    :height="tableHight"
                     hide-default-footer
                     class="elevation-24"
                     dense
