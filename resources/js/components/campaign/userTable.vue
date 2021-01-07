@@ -41,7 +41,7 @@
                     dense
                 >
                     <template slot="no-data">
-                        No on is here
+                        No one is here
                     </template>
                 </v-data-table>
             </v-card-text>
@@ -63,7 +63,7 @@ export default {
                 { text: "Main", value: "main_name" },
                 { text: "Role", value: "role_name" },
                 { text: "Ship", value: "ship" },
-                { text: "Entosic", value: "link" },
+                { text: "Entosis", value: "link" },
                 { text: "System", value: "system_name" },
                 { text: "Node", value: "node_id" },
                 { text: "Status", value: "user_status_name" }
