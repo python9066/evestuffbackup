@@ -206,7 +206,8 @@ export default {
                     "Content-Type": "application/json"
                 }
             });
-            this.$store.dispatch("getCampaignUsersRecords", this.campaign.id);
+            await this.$store.dispatch("getCampaignUsersRecords", this.campaign.id);
+            await this.$store.dispatch("getUsersChars",this.$store.state.user_id)
             this.role = null;
             this.newCharName = null;
             this.newLink = null;
