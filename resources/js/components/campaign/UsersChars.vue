@@ -22,51 +22,67 @@
                                             Char</v-btn
                                         >
                                     </template>
-                                    <v-card tile min-height="150px">
-                                        <v-card-title class=" pb-0">
+                                    <v-row no-gutters>
+                                <div>
+                                    <v-card class="pa-2" tile width="100%">
+                                        <v-form @submit.prevent="newCharForm()">
                                             <v-text-field
-                                                class=" mt-2"
-                                                label="Node"
-                                                placeholder="Enter Node"
-                                                flat
-                                                v-mask="'AA##'"
+                                                v-model="newCharName"
+                                                label="Char Name"
+                                                required
                                                 autofocus
-                                                v-model="nodeText"
-                                                @keyup.enter="addNode()"
-                                                @keyup.esc="
-                                                    (addShown = false),
-                                                        (nodeText = '')
-                                                "
+                                                :rules="newNameRules"
                                             ></v-text-field>
-                                        </v-card-title>
+                                            <v-select
+                                                v-model="newRole"
+                                                @change="roleForm($event)"
+                                                :rules="newRoleRules"
+                                                :items="dropdown_roles"
+                                                label="Role"
+                                                required
+                                            ></v-select>
+                                            <v-text-field
+                                                v-model="newShip"
+                                                :rules="newShipRules"
+                                                v-if="this.role == 1"
+                                                label="Ship"
+                                                required
+                                            ></v-text-field>
+                                            <v-radio-group
+                                                v-model="newLink"
+                                                :rules="newLinkRules"
+                                                v-if="this.role == 1"
+                                                row
+                                                label="Entosis Link"
+                                                required
+                                            >
+                                                <v-radio
+                                                    label="Tech 1"
+                                                    value="1"
+                                                ></v-radio>
+                                                <v-radio
+                                                    label="Tech 2"
+                                                    value="2"
+                                                ></v-radio>
+                                            </v-radio-group>
 
-                                        <v-card-text>
                                             <v-btn
-                                                icon
-                                                fixed
-                                                left
                                                 color="success"
-                                                @click="addNode()"
-                                                ><v-icon
-                                                    >fas fa-check</v-icon
-                                                ></v-btn
+                                                class="mr-4"
+                                                type="submit"
+                                                >submit</v-btn
                                             >
-
                                             <v-btn
-                                                fixed
-                                                right
-                                                icon
                                                 color="warning"
-                                                @click="
-                                                    (addShown = false),
-                                                        (nodeText = '')
-                                                "
-                                                ><v-icon
-                                                    >fas fa-times</v-icon
-                                                ></v-btn
+                                                class="mr-4"
+                                                @click="newCharFormClose()"
+                                                >Close</v-btn
                                             >
-                                        </v-card-text>
+                                            <!-- <v-btn @click="clear">clear</v-btn> -->
+                                        </v-form>
                                     </v-card>
+                                </div>
+                            </v-row>
                                 </v-menu>
                             </div>
             </v-card-title>
@@ -118,7 +134,29 @@ export default {
                 // { text: "Vulernable End Time", value: "vulnerable_end_time" }
             ],
             statusflag: 0,
-            toggle_exclusive: 0
+            toggle_exclusive: 0,
+            newCharName: null,
+            newNameRules: [v => !!v || "Name is required"],
+            newRole: null,
+            newRoleRules: [v => !!v || "You need to pick a role"],
+            newShip: null,
+            newShipRules: [v => !!v || "Ship is required"],
+            newLink: null,
+            newLinkRules: [v => !!v || "T1 or T2?"],
+
+            editCharName: null,
+            editNameRules: [v => !!v || "Name is required"],
+            editRole: null,
+            editTextRole: null,
+            editRoleRules: [v => !!v || "You need to pick a role"],
+            editShip: null,
+            editTextShip: null,
+            editShipRules: [v => !!v || "Ship is required"],
+            editLink: null,
+            editTextLink: null,
+            editLinkRules: [v => !!v || "T1 or T2?"],
+            editUserForm: 1,
+            editrole_name: null,
         };
     },
 
