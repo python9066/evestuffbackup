@@ -240,7 +240,7 @@ export default {
                     "/api/campaignusers/" +
                     item.id +
                     "/" +
-                    this.campaign.id +
+                    this.campaign_id +
                     "/" +
                     this.$store.state.user_id,
                 headers: {
