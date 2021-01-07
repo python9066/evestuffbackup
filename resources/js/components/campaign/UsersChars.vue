@@ -176,134 +176,46 @@ export default {
             this.newShip = null;
             this.newLink = null;
         },
+
+        async newCharForm() {
+            var request = {
+                site_id: this.$store.state.user_id,
+                campaign_id: this.campaign.id,
+                char_name: this.newCharName,
+                link: this.newLink,
+                ship: this.newShip,
+                campaign_role_id: this.newRole
+            };
+
+            await axios({
+                method: "POST", //you can set what request you want to be
+                url: "/api/campaignusers/" + this.campaign.id,
+                data: request,
+                headers: {
+                    Authorization: "Bearer " + this.$store.state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                }
+            });
+            this.$store.dispatch(
+                "getCampaignUsersRecords",
+                this.campaign.id
+            );
+            this.role = null;
+            this.newCharName = null;
+            this.newLink = null;
+            this.newShip = null;
+            this.newRole = null;
+            this.addShown = false;
+        },
     },
 
     computed: {
-        // ...mapState(["campaignusers"]),
-        // filteredItems() {
-        //     // var timers = this.$store.state.timers;
-        //     if (this.statusflag == 1) {
-        //         return this.campaignusers.filter(
-        //             campaignusers =>
-        //                 campaignusers.role_id == 1 &&
-        //                 campaignusers.campaign_id == this.campaign_id
-        //         );
-        //     }
-        //     if (this.statusflag == 2) {
-        //         return this.campaignusers.filter(
-        //             campaignusers =>
-        //                 campaignusers.role_id == 2 &&
-        //                 campaignusers.campaign_id == this.campaign_id
-        //         );
-        //     }
-        //     if (this.statusflag == 3) {
-        //         return this.campaignusers.filter(
-        //             campaignusers =>
-        //                 campaignusers.role_id == 3 &&
-        //                 campaignusers.campaign_id == this.campaign_id
-        //         );
-        //     }
-        //     if (this.statusflag == 4) {
-        //         return this.campaignusers.filter(
-        //             campaignusers =>
-        //                 campaignusers.role_id == 4 &&
-        //                 campaignusers.campaign_id == this.campaign_id
-        //         );
-        //     } else {
-        //         return this.campaignusers.filter(
-        //             campaignusers =>
-        //                 campaignusers.role_id != 10 &&
-        //                 campaignusers.campaign_id == this.campaign_id
-        //         );
-        //     }
-        // },
-        // tableHight() {
-        //     // var timers = this.$store.state.timers;
-        //     if (this.statusflag == 1) {
-        //         var count = this.campaignusers.filter(
-        //             campaignusers =>
-        //                 campaignusers.role_id == 1 &&
-        //                 campaignusers.campaign_id == this.campaign_id
-        //         ).length;
-        //         var sum = count *32;
-        //         if (sum >= 320) {
-        //             return 352;
-        //         } else if(count == 1){
-        //             return 64
-        //         } else if(count == 2){
-        //             return 96
-        //         }else {
-        //             return sum +32;
-        //         }
-        //     }
-        //     if (this.statusflag == 2) {
-        //         var count = this.campaignusers.filter(
-        //             campaignusers =>
-        //                 campaignusers.role_id == 2 &&
-        //                 campaignusers.campaign_id == this.campaign_id
-        //         ).length;
-        //         var sum = count *32;
-        //         if (sum >= 320) {
-        //             return 352;
-        //         } else if(count == 1){
-        //             return 64
-        //         } else if(count == 2){
-        //             return 96
-        //         }else {
-        //             return sum +32;
-        //         }
-        //     }
-        //     if (this.statusflag == 3) {
-        //         var count = this.campaignusers.filter(
-        //             campaignusers =>
-        //                 campaignusers.role_id == 3 &&
-        //                 campaignusers.campaign_id == this.campaign_id
-        //         ).length;
-        //         var sum = count *32;
-        //         if (sum >= 320) {
-        //             return 352;
-        //         } else if(count == 1){
-        //             return 64
-        //         } else if(count == 2){
-        //             return 96
-        //         }else {
-        //             return sum +32;
-        //         }
-        //     }
-        //     if (this.statusflag == 4) {
-        //         var count = this.campaignusers.filter(
-        //             campaignusers =>
-        //                 campaignusers.role_id == 4 &&
-        //                 campaignusers.campaign_id == this.campaign_id
-        //         ).length;
-        //         var sum = count *32;
-        //         if (sum >= 320) {
-        //             return 352;
-        //         } else if(count == 1){
-        //             return 64
-        //         } else if(count == 2){
-        //             return 96
-        //         }else {
-        //             return sum +32;
-        //         }
-        //     } else {
-        //         var count = this.campaignusers.filter(
-        //             campaignusers =>
-        //                 campaignusers.role_id != 10 &&
-        //                 campaignusers.campaign_id == this.campaign_id
-        //         ).length;
-        //         var sum = count *32;
-        //         if (sum >= 320) {
-        //             return 352;
-        //         } else if(count == 1){
-        //             return 64
-        //         } else if(count == 2){
-        //             return 96
-        //         }else {
-        //             return sum +32;
-        //         }
-        //     }
-        // }
+        ...mapState(["campaignusers"]),
+        ...mapGetters(['getCampaignUsersByUserId']),
+        filteredItems() {
+        return this.getCampaignUsersByUserId
+        },
     }
 };
 </script>
