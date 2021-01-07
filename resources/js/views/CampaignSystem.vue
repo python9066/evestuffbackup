@@ -689,7 +689,7 @@ export default {
             }
         },
 
-        close: function () {
+        close: function (v) {
             this.overlay = false;
 
         },
