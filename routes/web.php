@@ -33,7 +33,7 @@ Route::get('/logout', 'AuthController@logout');
 Route::get('/home', 'HomeController@index');
 // Route::get('/pannel/{any}', 'RoleController@addCord')->where('any', '.*');
 Route::get('/updateNotifications', 'NotificationController@getNotifications');
-Route::get('/dance', 'CampaignController@getCampaigns');
+Route::get('/campaignusers/{id}/{campid}/{siteid}','CampaignUserController@destroy');
 // Route::get('/test2', 'UserRolesRecordsController@index');
 // Route::get('/updateAlliances', 'AllianceController@updateAlliances');
 // Route::get('/party2', 'HomeController@party2');
