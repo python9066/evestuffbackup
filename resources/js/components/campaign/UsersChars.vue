@@ -127,10 +127,9 @@
                                             >
                                                 <v-text-field
                                                     v-model="editCharName"
-                                                    :items="userCharsDrop"
-                                                    name="editChars"
-                                                    :item-text="'char_name'"
-                                                    :item-value="'id'"
+                                                    label="Name"
+                                                    required
+                                                    :placehoder="item.char_name"
                                                     @change="
                                                         charEditForm($event)
                                                     "
