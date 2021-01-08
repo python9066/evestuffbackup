@@ -122,8 +122,10 @@ export default {
             this.editRole = this.oldChar.role_id;
             this.editTextShip = this.oldChar.ship;
             this.editTextLink = this.oldChar.link;
+            this.editShip = this.oldChar.ship;
+            this.editLink = this.oldChar.link;
             if (this.oldChar.role_id == 1) {
-                this.editrole = 1;
+                this.editrole = "1";
             } else {
                 this.editrole = 0;
             }
