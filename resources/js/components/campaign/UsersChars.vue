@@ -267,7 +267,7 @@ export default {
             oldChar: [],
 
             addShown: false,
-            editshown: false,
+            editShown: false,
         };
     },
 
