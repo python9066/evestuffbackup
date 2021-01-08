@@ -293,6 +293,18 @@ export default {
             // console.log(a);
         },
 
+        charEditForm($event) {
+            this.oldChar = this.userCharsDrop.find(user => user.id == $event);
+            this.editRole = this.oldChar.role_id;
+            this.editTextShip = this.oldChar.ship;
+            this.editTextLink = this.oldChar.link;
+            if (this.oldChar.role_id == 1) {
+                this.editrole = 1;
+            } else {
+                this.editrole = 0;
+            }
+        },
+
         async newCharForm() {
             var request = {
                 site_id: this.$store.state.user_id,
