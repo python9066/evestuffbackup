@@ -100,6 +100,7 @@ export default {
             editUserForm: 1,
             editrole_name: null,
             oldChar: [],
+            editrole: 1,
         };
     },
 
