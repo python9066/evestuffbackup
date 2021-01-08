@@ -250,7 +250,7 @@ export default {
 
             editCharName: null,
             editNameRules: [v => !!v || "Name is required"],
-            editRole: null,
+            editRole: 0,
             editTextRole: null,
             editRoleRules: [v => !!v || "You need to pick a role"],
             editShip: null,
