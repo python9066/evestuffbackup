@@ -218,6 +218,7 @@ export default {
             this.editTextShip = null;
             this.editLink = null;
             this.editTextLink = null;
+            this.$store.dispatch("getCampaignSystemsRecords");
         }
     },
 
