@@ -102,9 +102,33 @@ export default {
         };
     },
 
-    methods: {},
+    methods: {
 
-    computed: {}
+        charEditForm($event) {
+            this.oldChar = this.item;
+            this.editRole = this.oldChar.role_id;
+            this.editTextShip = this.oldChar.ship;
+            this.editTextLink = this.oldChar.link;
+            if (this.oldChar.role_id == 1) {
+                this.editrole = 1;
+            } else {
+                this.editrole = 0;
+            }
+        },
+
+
+    },
+
+    computed: {
+
+        userCharsDrop() {
+            // let payload = {
+            //     id: this.$store.state.user_id,
+            //     campaignID: this.$route.params.id}
+            return this.getCampaignUsersByUserId(this.$store.state.user_id);
+        },
+
+    }
 };
 </script>
 
