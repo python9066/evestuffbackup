@@ -107,8 +107,8 @@
                                 x-small
                                 :color="pillColor(item)"
                             >
-                                <v-icon x-small left dark>
-                                    fas fa-trash-alt
+                                <v-icon x-small dark>
+                                    {{ pillIcon(item) }}
                                 </v-icon>
                                 {{ pillText(item) }}
                             </v-btn>
@@ -210,21 +210,25 @@ export default {
 
         pillColor(item) {
             if (item.campaign_id == this.campaign_id) {
-                console.log("true");
                 return "red";
             } else {
-                console.log("false");
                 return "green";
             }
         },
 
         pillText(item) {
             if (item.campaign_id == this.campaign_id) {
-                console.log("true");
-                return "- Remove";
+                return "Remove";
             } else {
-                console.log("false");
-                return "+ Add";
+                return "Add";
+            }
+        },
+
+        pillIcon(item) {
+            if (item.campaign_id == this.campaign_id) {
+                return "fas fa-minus";
+            } else {
+                return "fas fa-plus";
             }
         },
 
