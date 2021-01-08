@@ -76,7 +76,9 @@ export default {
         item: Object
     },
     data() {
-        return {};
+        return {
+            editShown: false,
+        };
     },
 
     methods: {},
