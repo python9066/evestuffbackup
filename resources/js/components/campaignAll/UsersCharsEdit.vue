@@ -196,7 +196,6 @@ export default {
                     "Content-Type": "application/json"
                 }
             });
-            this.$store.dispatch("getUsersChars", this.$store.state.user_id);
             this.editCharName = null;
             this.editRole = null;
             this.editTextRole = null;
