@@ -113,7 +113,7 @@
                                         v-bind="attrs"
                                         v-on="on"
                                         small
-                                        @click="editShown = true, charEditForm($event)"
+                                        @click="editShown = true, charEditForm($item)"
                                     >
                                         fas fa-edit
                                     </v-icon>
@@ -247,7 +247,7 @@ export default {
 
             editCharName: null,
             editNameRules: [v => !!v || "Name is required"],
-            editRole: 0,
+            editRole: null,
             editTextRole: null,
             editRoleRules: [v => !!v || "You need to pick a role"],
             editShip: null,
