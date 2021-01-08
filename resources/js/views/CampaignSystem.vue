@@ -521,24 +521,24 @@
             </systemTable>
         </v-row>
 
-        <!-- <v-overlay z-index="0" :value="overlay">
+        <v-overlay z-index="0" :value="bullhorn">
             <v-card>
-                <v-card-title> MAKE SURE TO ADD A CHAR </v-card-title>
+                <v-card-title> MAKE SURE TO ADD A CHARACTER </v-card-title>
                 <v-card-text>
                     Remeber to add any chars you have in the campaign by
-                    pressing the green "ADD CHAR" button</v-card-text
+                    pressing the green "CHARACTER" button</v-card-text
                 >
                 <v-card-actions>
                     <v-btn
                         class="white--text"
                         color="teal"
-                        @click="(overlay = false), (addShown = true)"
+                        @click="(bullhorn = false), (overlay = true)"
                     >
                         Close
                     </v-btn>
                 </v-card-actions>
             </v-card>
-        </v-overlay> -->
+        </v-overlay>
         <v-overlay z-index="0" :value="overlay" min-width="1000px">
             <UsersChars
                 :campaign_id="campaign.id"
@@ -611,6 +611,7 @@ export default {
             showUsers: false,
             channel: "",
             overlay: false,
+            bullhorn: false,
             link: ""
         };
     },
@@ -686,7 +687,7 @@ export default {
     methods: {
         checkAddUser() {
             if (this.userCount == 0) {
-                this.overlay = true;
+                this.bullhorn = true;
             }
         },
 
