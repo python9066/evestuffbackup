@@ -112,7 +112,6 @@ export default {
 
     methods: {
         setEditCharname() {
-            console.log(this.item);
             this.editCharName = this.item.char_name;
         },
 
@@ -157,6 +156,7 @@ export default {
             this.editShown = false;
 
             var link = this.oldChar.link;
+            var char_name = this.oldChar.char_name;
             var ship = this.oldChar.ship;
             var role = this.oldChar.role_id;
             var role_name = this.oldChar.role_name;
@@ -173,8 +173,13 @@ export default {
             if (this.oldChar.link != this.editLink) {
                 var link = this.editLink;
             }
+
+            if (this.oldChar.char_name != this.editCharName) {
+                var char_name = this.editCharName;
+            }
             // console.log(role_name);
             var request = {
+                char_name: char_name,
                 link: link,
                 ship: ship,
                 campaign_role_id: role
@@ -182,6 +187,7 @@ export default {
 
             var item = {
                 id: this.oldChar.id,
+                char_name: char_name,
                 link: link,
                 ship: ship,
                 role_id: role,
