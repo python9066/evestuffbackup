@@ -101,12 +101,7 @@
                     <!-- :color="pillColor(item)" -->
                     <template v-slot:item.actions="{ item }">
                         <span>
-                            <v-chip
-                                pill
-                                outlined="true"
-                                small
-                                :color="pillColor(item)"
-                            >
+                            <v-chip pill small :color="pillColor(item)">
                                 + Add
                             </v-chip>
 
