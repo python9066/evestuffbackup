@@ -105,7 +105,7 @@
                                 pill
                                 outlined="true"
                                 small
-                                :color="pillColor()"
+                                :color="pillColor(item)"
                             >
                                 + Add
                             </v-chip>
