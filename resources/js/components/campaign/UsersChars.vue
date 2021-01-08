@@ -101,20 +101,107 @@
 
                     <template v-slot:item.actions="{ item }">
                         <span>
-                        <v-icon
-                            color="orange darken-3"
-                            small
-                            @click="editChar(item)"
-                        >
-                            fas fa-edit
-                        </v-icon>
-                        <v-icon
-                            color="orange darken-3"
-                            small
-                            @click="removeChar(item)"
-                        >
-                            fas fa-trash-alt
-                        </v-icon>
+                            <v-menu
+                                v-if="userCount != 0"
+                                :close-on-content-click="false"
+                                :value="removeShown"
+                                transition="fab-transition"
+                                origin="100% -30%"
+                            >
+                                <template v-slot:activator="{ on, attrs }">
+                                    <v-icon
+                                        color="orange darken-3"
+                                        v-bind="attrs"
+                                        v-on="on"
+                                        small
+                                        @click="removeShown = true"
+                                    >
+                                        fas fa-edit
+                                    </v-icon>
+                                </template>
+                                <!---edit/delete form------>
+                                <v-row no-gutters>
+                                    <div>
+                                        <v-card class="pa-2" tile width="100%">
+                                            <v-form
+                                                @submit.prevent="editCharForm()"
+                                            >
+                                                <v-select
+                                                    v-model="editCharName"
+                                                    :items="userCharsDrop"
+                                                    label="Pick the char you want to edit"
+                                                    name="editChars"
+                                                    :item-text="'char_name'"
+                                                    :item-value="'id'"
+                                                    @change="
+                                                        charEditForm($event)
+                                                    "
+                                                ></v-select>
+                                                <v-select
+                                                    v-model="editRole"
+                                                    @change="
+                                                        roleEditForm($event)
+                                                    "
+                                                    :items="dropdown_roles"
+                                                    label="Role"
+                                                    required
+                                                    :placeholder="editTextRole"
+                                                ></v-select>
+                                                <v-text-field
+                                                    v-model="editShip"
+                                                    v-if="this.editrole == 1"
+                                                    label="Ship"
+                                                    required
+                                                    :placeholder="editTextShip"
+                                                ></v-text-field>
+                                                <v-radio-group
+                                                    v-model="editLink"
+                                                    v-if="this.editrole == 1"
+                                                    row
+                                                    label="Entosis Link"
+                                                    required
+                                                    :placeholder="editTextLink"
+                                                >
+                                                    <v-radio
+                                                        label="Tech 1"
+                                                        value="1"
+                                                    ></v-radio>
+                                                    <v-radio
+                                                        label="Tech 2"
+                                                        value="2"
+                                                    ></v-radio>
+                                                </v-radio-group>
+
+                                                <v-btn
+                                                    class="mr-2"
+                                                    type="submit"
+                                                    >submit</v-btn
+                                                >
+                                                <v-btn
+                                                    class="mr-2"
+                                                    @click="editFormRemove()"
+                                                    >Remove</v-btn
+                                                >
+                                                <v-btn
+                                                    class="mr-2"
+                                                    @click="editFormClose()"
+                                                    >Close</v-btn
+                                                >
+                                                <!-- <v-btn @click="clear">clear</v-btn> -->
+                                            </v-form>
+                                            <!---edit/delete form------>
+                                        </v-card>
+                                    </div>
+                                </v-row>
+                            </v-menu>
+
+                            <v-icon
+                                color="orange darken-3"
+                                small
+                                @click="removeChar(item)"
+                            >
+                                fas fa-trash-alt
+                            </v-icon>
                         </span>
                     </template>
                 </v-data-table>
