@@ -102,6 +102,13 @@ export default {
         };
     },
 
+    async mounted() {
+
+        // console.log(this.$route.params.id)
+        await this.editCharName == this.item.char_name;
+
+    },
+
     methods: {
 
         charEditForm($event) {
@@ -120,13 +127,6 @@ export default {
     },
 
     computed: {
-
-        userCharsDrop() {
-            // let payload = {
-            //     id: this.$store.state.user_id,
-            //     campaignID: this.$route.params.id}
-            return this.getCampaignUsersByUserId(this.$store.state.user_id);
-        },
 
     }
 };
