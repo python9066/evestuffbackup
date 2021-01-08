@@ -77,6 +77,13 @@ export default {
     },
     data() {
         return {
+            dropdown_roles: [
+                { text: "Hacker", value: 1 },
+                { text: "Scout", value: 2 },
+                { text: "FC", value: 3 },
+                { text: "Command", value: 4 }
+            ],
+
             editShown: false,
 
             editCharName: null,
