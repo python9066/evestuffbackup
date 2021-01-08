@@ -25,7 +25,7 @@
                             v-model="editCharName"
                             label="Name"
                             required
-                            :placehoder="item.char_name"
+                            :placehoder="this.item.char_name"
                         ></v-text-field>
                         <v-select
                             v-model="editRole"
