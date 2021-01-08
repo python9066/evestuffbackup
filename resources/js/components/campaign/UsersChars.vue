@@ -125,17 +125,16 @@
                                             <v-form
                                                 @submit.prevent="editCharForm()"
                                             >
-                                                <v-select
+                                                <v-text-field
                                                     v-model="editCharName"
                                                     :items="userCharsDrop"
-                                                    label="Pick the char you want to edit"
                                                     name="editChars"
                                                     :item-text="'char_name'"
                                                     :item-value="'id'"
                                                     @change="
                                                         charEditForm($event)
                                                     "
-                                                ></v-select>
+                                                ></v-text-field>
                                                 <v-select
                                                     v-model="editRole"
                                                     @change="
@@ -267,7 +266,8 @@ export default {
             role: 0,
             editrole: 0,
 
-            addShown: false
+            addShown: false,
+            removeShown: false,
         };
     },
 
