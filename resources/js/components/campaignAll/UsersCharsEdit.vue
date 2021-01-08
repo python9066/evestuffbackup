@@ -112,7 +112,8 @@ export default {
     methods: {
 
         setEditCharname(){
-            this.editCharName = this.item.char_name
+            console.log(this.item);
+            this.editCharName = this.item.char_name;
         },
 
         charEditForm($event) {
