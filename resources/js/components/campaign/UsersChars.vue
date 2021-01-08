@@ -3,7 +3,6 @@
         <v-card tile min-width="700px">
             <v-card-title class="d-flex justify-space-between align-center ">
                 <div>Table of all your saved Charaters</div>
-                <v-divider class="mx-4 my-0" vertical></v-divider>
                 <div>
                     <v-menu
                         :close-on-content-click="false"
@@ -101,6 +100,13 @@
                     </template>
 
                     <template v-slot:item.actions="{ item }">
+                        <v-icon
+                            color="orange darken-3"
+                            small
+                            @click="editChar(item)"
+                        >
+                            fas fa-edit
+                        </v-icon>
                         <v-icon
                             color="orange darken-3"
                             small
