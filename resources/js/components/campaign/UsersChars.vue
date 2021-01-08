@@ -113,7 +113,7 @@
                                         v-bind="attrs"
                                         v-on="on"
                                         small
-                                        @click="removeShown = true"
+                                        @click="removeShown = true, charEditForm($event)"
                                     >
                                         fas fa-edit
                                     </v-icon>
@@ -264,6 +264,7 @@ export default {
 
             role: 0,
             editrole: 0,
+            oldChar: [],
 
             addShown: false,
             removeShown: false,
