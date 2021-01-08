@@ -102,7 +102,6 @@
                     <template v-slot:item.actions="{ item }">
                         <span>
                             <v-menu
-                                v-if="userCount != 0"
                                 :close-on-content-click="false"
                                 :value="removeShown"
                                 transition="fab-transition"
