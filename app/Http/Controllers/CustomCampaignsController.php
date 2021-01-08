@@ -19,8 +19,8 @@ class CustomCampaignsController extends Controller
     public function index()
     {
         $list = [];
-        $pull = CustomCampaign::where('status_id',"<",3)->with("status")->get();
-        foreach ($pull as $pull){
+        $pull = CustomCampaign::where('status_id', "<", 3)->with("status")->get();
+        foreach ($pull as $pull) {
             $data = [];
             $data = [
                 'id' => $pull['id'],
@@ -28,11 +28,10 @@ class CustomCampaignsController extends Controller
                 'status_id' => $pull['status_id'],
                 'status_name' => $pull['status']['name']
             ];
-            array_push($list,$data);
+            array_push($list, $data);
         };
 
         return ['campaigns' => $list];
-
     }
 
     /**
@@ -46,24 +45,22 @@ class CustomCampaignsController extends Controller
         $data = $request->all();
         // dd($data);
         CustomCampaign::create(['id' => $campid, 'name' => $name]);
-        foreach ($data as $data){
+        foreach ($data as $data) {
             // dd($data);
-        CampaignJoin::create(['custom_campaign_id' => $campid, 'campaign_id' => $data]);
-
+            CampaignJoin::create(['custom_campaign_id' => $campid, 'campaign_id' => $data]);
         }
     }
 
     public function edit(Request $request, $campid, $name)
     {
 
-        CampaignJoin::where('custom_campaign_id',$campid)->delete();
+        CampaignJoin::where('custom_campaign_id', $campid)->delete();
         $data = $request->all();
         // dd($data);
         CustomCampaign::find($campid)->update(['name' => $name]);
-        foreach ($data as $data){
+        foreach ($data as $data) {
             // dd($data);
-        CampaignJoin::create(['custom_campaign_id' => $campid, 'campaign_id' => $data]);
-
+            CampaignJoin::create(['custom_campaign_id' => $campid, 'campaign_id' => $data]);
         }
     }
 
@@ -99,12 +96,9 @@ class CustomCampaignsController extends Controller
     public function destroy($id)
     {
         CustomCampaign::destroy($id);
-        CampaignJoin::where('custom_campaign_id',$id)->delete();
-        CampaignSystem::where('custom_campaign_id',$id)->delete();
-        CampaignSystemUsers::where('custom_campaign_id',$id)->delete();
-        CampaignUser::where('campaign_id',$id)->delete();
-
-
-
+        CampaignJoin::where('custom_campaign_id', $id)->delete();
+        CampaignSystem::where('custom_campaign_id', $id)->delete();
+        CampaignSystemUsers::where('custom_campaign_id', $id)->delete();
+        CampaignUser::where('campaign_id', $id)->update(["system_id" => null, "status_id" => 1]);
     }
 }

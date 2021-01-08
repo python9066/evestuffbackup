@@ -501,6 +501,7 @@ export default {
         await this.getSystems(this.campaignId);
         await this.$store.dispatch("getCampaignUsersRecords", this.campaignId);
         await this.$store.dispatch("getCampaignSystemsRecords");
+        await this.$store.dispatch("getUsersChars", this.$store.state.user_id);
     },
     methods: {
         updateBar() {
