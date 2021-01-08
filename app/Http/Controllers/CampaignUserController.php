@@ -59,7 +59,7 @@ class CampaignUserController extends Controller
     {
         CampaignUser::find($id)->update($request->all());
         $flag = collect([
-            'flag' => 1,
+            'flag' => 4,
             'id' => $campid
         ]);
         broadcast(new CampaignSystemUpdate($flag))->toOthers();
