@@ -99,6 +99,22 @@
                         You have no saved Chars
                     </template>
                     <!-- :color="pillColor(item)" -->
+                    <template v-slot:item.addRemove="{ item }">
+                        <span>
+                            <v-btn
+                                rounded
+                                :outlined="true"
+                                x-small
+                                :color="pillColor(item)"
+                                @click="pillClick(item)"
+                            >
+                                <v-icon x-small left dark>
+                                    {{ pillIcon(item) }}
+                                </v-icon>
+                                {{ pillText(item) }}
+                            </v-btn>
+                        </span>
+                    </template>
                     <template v-slot:item.actions="{ item }">
                         <span>
                             <v-btn
@@ -154,7 +170,8 @@ export default {
                 { text: "Role", value: "role_name" },
                 { text: "Ship", value: "ship" },
                 { text: "Entosis", value: "link" },
-                { text: "", value: "actions", align: "center" }
+                { text: "", value: "addRemove", align: "center" },
+                { text: "", value: "actions", align: "end" }
 
                 // { text: "Vulernable End Time", value: "vulnerable_end_time" }
             ],
