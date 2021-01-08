@@ -117,19 +117,6 @@
                     </template>
                     <template v-slot:item.actions="{ item }">
                         <span>
-                            <v-btn
-                                rounded
-                                :outlined="true"
-                                x-small
-                                :color="pillColor(item)"
-                                @click="pillClick(item)"
-                            >
-                                <v-icon x-small left dark>
-                                    {{ pillIcon(item) }}
-                                </v-icon>
-                                {{ pillText(item) }}
-                            </v-btn>
-
                             <UsersCharsEdit
                                 :item="item"
                                 :campaign_id="campaign_id"
