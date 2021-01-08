@@ -102,10 +102,9 @@
                     <template v-slot:item.actions="{ item }">
                         <span>
                             <v-btn
-                                elevation="2"
                                 rounded
                                 :outlined="true"
-                                small
+                                xsmall
                                 :color="pillColor(item)"
                             >
                                 {{ pillText(item) }}
