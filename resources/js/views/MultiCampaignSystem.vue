@@ -372,7 +372,7 @@
 
         <v-overlay z-index="0" :value="overlay" min-width="1000px">
             <UsersChars
-                :campaign_id="campaign.id"
+                :campaign_id="campaignId"
                 @closeAddChar="overlay = false"
             >
             </UsersChars>
