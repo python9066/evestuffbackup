@@ -100,6 +100,7 @@
                     </template>
 
                     <template v-slot:item.actions="{ item }">
+                        <span>
                         <v-icon
                             color="orange darken-3"
                             small
@@ -114,6 +115,7 @@
                         >
                             fas fa-trash-alt
                         </v-icon>
+                        </span>
                     </template>
                 </v-data-table>
             </v-card-text>
