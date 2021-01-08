@@ -102,6 +102,7 @@
                     <template v-slot:item.actions="{ item }">
                         <span>
                             <UsersCharsEdit
+                            :item = item
                             >
                             </UsersCharsEdit>
 
@@ -180,7 +181,7 @@ export default {
             oldChar: [],
 
             addShown: false,
-            editShown: false,
+
         };
     },
 
