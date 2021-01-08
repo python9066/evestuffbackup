@@ -152,7 +152,7 @@ export default {
             this.editrole = a;
         },
 
-        editCharForm() {
+        async editCharForm() {
             this.editShown = false;
 
             var link = this.oldChar.link;
@@ -197,7 +197,7 @@ export default {
             this.$store.dispatch("updateCampaignUsers", item);
             this.$store.dispatch("updateUsersChars", item);
 
-            axios({
+            await axios({
                 method: "PUT", //you can set what request you want to be
                 url:
                     "/api/campaignusers/" +
