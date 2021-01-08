@@ -53,7 +53,7 @@
                         </v-radio-group>
 
                         <v-btn class="mr-2" type="submit">submit</v-btn>
-                        >
+
                         <v-btn class="mr-2" @click="editFormClose()"
                             >Close</v-btn
                         >
@@ -97,6 +97,7 @@ export default {
             editLinkRules: [v => !!v || "T1 or T2?"],
             editUserForm: 1,
             editrole_name: null,
+            oldChar: [],
         };
     },
 
