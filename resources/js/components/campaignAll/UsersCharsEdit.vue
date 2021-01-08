@@ -105,11 +105,15 @@ export default {
     async mounted() {
 
         // console.log(this.$route.params.id)
-        await this.editCharName == this.item.char_name;
+        await setEditCharname();
 
     },
 
     methods: {
+
+        setEditCharname(){
+            this.editCharName = this.item.char_name
+        },
 
         charEditForm($event) {
             this.oldChar = this.item;
