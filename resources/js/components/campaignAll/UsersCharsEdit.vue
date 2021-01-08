@@ -78,6 +78,20 @@ export default {
     data() {
         return {
             editShown: false,
+
+            editCharName: null,
+            editNameRules: [v => !!v || "Name is required"],
+            editRole: null,
+            editTextRole: null,
+            editRoleRules: [v => !!v || "You need to pick a role"],
+            editShip: null,
+            editTextShip: null,
+            editShipRules: [v => !!v || "Ship is required"],
+            editLink: null,
+            editTextLink: null,
+            editLinkRules: [v => !!v || "T1 or T2?"],
+            editUserForm: 1,
+            editrole_name: null,
         };
     },
 
