@@ -102,7 +102,8 @@
                     <template v-slot:item.actions="{ item }">
                         <span>
                             <UsersCharsEdit
-                            :item = item
+                                :item="item"
+                                :campaign_id="campaign_id"
                             >
                             </UsersCharsEdit>
 
@@ -162,14 +163,11 @@ export default {
             newLink: null,
             newLinkRules: [v => !!v || "T1 or T2?"],
 
-
-
             role: 0,
             editrole: 0,
             oldChar: [],
 
-            addShown: false,
-
+            addShown: false
         };
     },
 
@@ -197,8 +195,6 @@ export default {
             // console.log("LALAL");
             // console.log(a);
         },
-
-
 
         async newCharForm() {
             var request = {
