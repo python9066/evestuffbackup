@@ -5,6 +5,7 @@ namespace utils\Campaignhelper;
 use App\Models\Campaign;
 use App\Models\CampaignJoin;
 use App\Models\CampaignSystem;
+use App\Models\CampaignSystemUsers;
 use App\Models\CampaignUser;
 use GuzzleHttp\Client;
 use GuzzleHttp\Utils;
@@ -23,7 +24,8 @@ class Campaignhelper
 
         if ($toDelete->count() != 0) {
             foreach ($toDelete as $toDelete) {
-                CampaignUser::where('campaign_id', $toDelete->id)->delete();
+                CampaignUser::where('campaign_id', $toDelete->id)->update(["system_id" => null, "status_id" => 1]);
+                CampaignSystemUsers::where('campaign_id', $toDelete->id)->delete();
                 CampaignSystem::where('campaign_id', $toDelete->id)->delete();
                 Campaign::where('id', $toDelete->id)->delete();
                 CampaignJoin::where('campaign_id', $toDelete->id)->delete();
