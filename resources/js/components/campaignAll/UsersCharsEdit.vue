@@ -180,6 +180,7 @@ export default {
                 role_name: role_name
             };
 
+            this.$store.dispatch("updateCampaignUsers", item);
             this.$store.dispatch("updateUsersChars", item);
 
             axios({
