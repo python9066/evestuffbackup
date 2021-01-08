@@ -372,7 +372,7 @@
 
         <v-overlay z-index="0" :value="overlay" min-width="1000px">
             <UsersChars
-                :campaign_id="campaignId"
+                :campaign_id="campaign_id"
                 @closeAddChar="overlay = false"
             >
             </UsersChars>
@@ -439,6 +439,7 @@ export default {
             showTable: false,
             systemLoaded: false,
             campaignId: 0,
+            campaign_id: "",
             showUsers: false,
             channel: "",
             overlay: false
@@ -447,6 +448,8 @@ export default {
 
     async created() {
         this.campaignId = this.$route.params.id;
+        this.campaign_id = parseInt(this.$route.params.id);
+
         Echo.private("campaignsystem." + this.$route.params.id).listen(
             "CampaignSystemUpdate",
             e => {
