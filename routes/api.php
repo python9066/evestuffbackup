@@ -59,7 +59,7 @@ Route::middleware('auth:api')->group(function () {
     Route::put('/campaignsystems/{id}/{campid}', 'CampaignSystemsController@update');
     Route::delete('/campaignsystems/{id}/{campid}', 'CampaignSystemsController@destroy');
     Route::put('/campaignsystemremovechar/{campid}', 'CampaignSystemsController@removechar');
-    Route::put('/campaignsystemremovecharmove/{campid}', 'CampaignSystemsController@movechar');
+    Route::put('/campaignsystemmovechar/{campid}', 'CampaignSystemsController@movechar');
     Route::get('/campaignsystemcheckaddchar/{campid}', 'CampaignSystemsController@checkAddChar');
     Route::post('/campaignsystemuserskick/{campid}', 'CampaignSystemsController@kickUser');
     Route::get('/campaignsystemfinished/{campid}', 'CampaignSystemsController@finishCampaign');

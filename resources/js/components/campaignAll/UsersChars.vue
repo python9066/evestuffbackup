@@ -266,7 +266,7 @@ export default {
 
                 await axios({
                     method: "PUT", //you can set what request you want to be
-                    url: "/api/campaignsystemsmove/" + this.campaign_id,
+                    url: "/api/campaignsystemmovechar/" + this.campaign_id,
                     data: request2,
                     headers: {
                         Authorization: "Bearer " + this.$store.state.token,
@@ -311,7 +311,7 @@ export default {
 
                 await axios({
                     method: "PUT", //you can set what request you want to be
-                    url: "/api/campaignsystemsmove/" + this.campaign_id,
+                    url: "/api/campaignsystemmovechar/" + this.campaign_id,
                     data: request2,
                     headers: {
                         Authorization: "Bearer " + this.$store.state.token,
