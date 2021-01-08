@@ -206,11 +206,11 @@ export default {
         },
 
         pillColor(item) {
-            console.log("1" + item.campaign_id);
-            console.log("2" + this.campaign_id);
-            if ((item.campaign_id = this.campaign_id)) {
+            if (item.campaign_id == this.campaign_id) {
+                console.log("true");
                 return "red";
             } else {
+                console.log("false");
                 return "green";
             }
         },
