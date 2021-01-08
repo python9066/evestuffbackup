@@ -8,14 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class CampaignUser extends Model
 {
     use HasFactory;
-    protected $guarded =[];
+    protected $guarded = [];
     public $timestamps = false;
     protected $casts = [
         'id' => 'integer',
         'site_id' => 'integer',
         'campaign_id' => 'integer',
         'campaign_system_id' => 'integer',
-        'link' => 'integer',
+        'link' => 'string',
         'system_id' => 'integer',
         'status_id' => 'integer',
         'campaign_role_id' => 'integer',
@@ -52,6 +52,4 @@ class CampaignUser extends Model
     {
         return $this->belongsTo(CampaignUserRole::class);
     }
-
-
 }
