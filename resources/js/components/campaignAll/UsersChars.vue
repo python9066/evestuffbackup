@@ -101,7 +101,12 @@
                     <!-- :color="pillColor(item)" -->
                     <template v-slot:item.actions="{ item }">
                         <span>
-                            <v-chip pill outlined="true" small color="red">
+                            <v-chip
+                                pill
+                                outlined="true"
+                                small
+                                :color="pillColor()"
+                            >
                                 + Add
                             </v-chip>
 
@@ -198,6 +203,14 @@ export default {
             this.editrole = a;
             // console.log("LALAL");
             // console.log(a);
+        },
+
+        pillColor(item) {
+            if ((item.campaign_id = this.campaign_id)) {
+                return "red";
+            } else {
+                return "green";
+            }
         },
 
         async newCharForm() {
