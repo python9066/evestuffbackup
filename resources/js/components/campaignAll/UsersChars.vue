@@ -154,7 +154,7 @@ export default {
                 { text: "Role", value: "role_name" },
                 { text: "Ship", value: "ship" },
                 { text: "Entosis", value: "link" },
-                { text: "", value: "actions", align: "end" }
+                { text: "", value: "actions", align: "center" }
 
                 // { text: "Vulernable End Time", value: "vulnerable_end_time" }
             ],
@@ -233,7 +233,38 @@ export default {
             }
         },
 
-        pillClick() {},
+        async pillClick(item) {
+            if (item.campaign_id == this.campaign_id) {
+                return "fas fa-minus";
+            } else {
+                var request = {
+                    campaign_id: this.campaign_id
+                };
+
+                await axios({
+                    method: "PUT", //you can set what request you want to be
+                    url:
+                        "/api/campaignusers/" +
+                        this.item.id +
+                        "/" +
+                        this.campaign_id,
+                    data: request,
+                    headers: {
+                        Authorization: "Bearer " + this.$store.state.token,
+                        Accept: "application/json",
+                        "Content-Type": "application/json"
+                    }
+                });
+                await this.$store.dispatch(
+                    "getCampaignUsersRecords",
+                    this.campaign_id
+                );
+                await this.$store.dispatch(
+                    "getUsersChars",
+                    this.$store.state.user_id
+                );
+            }
+        },
 
         async newCharForm() {
             var request = {
