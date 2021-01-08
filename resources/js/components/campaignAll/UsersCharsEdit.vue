@@ -73,7 +73,8 @@ import { mapGetters } from "vuex";
 import { mapState } from "vuex";
 export default {
     props: {
-        item: Object
+        item: Object,
+        campaign_id: Number
     },
     data() {
         return {
@@ -119,7 +120,6 @@ export default {
         },
 
         charEditForm($event) {
-            console.log("YOYOYOYO")
             this.oldChar = this.item;
             this.editCharName = this.oldChar.char_name;
             this.editRole = this.oldChar.role_id;
@@ -142,6 +142,67 @@ export default {
             this.editLink = null;
             this.editTextLink = null;
             this.editrole = null;
+        },
+
+        editCharForm() {
+            this.removeShown = false;
+
+            var link = this.oldChar.link;
+            var ship = this.oldChar.ship;
+            var role = this.oldChar.role_id;
+            var role_name = this.oldChar.role_name;
+
+            if (this.oldChar.role_id != this.editRole) {
+                var role = this.editRole;
+                var role_name = this.dropdown_roles.find(
+                    droprole => droprole.value == role
+                ).text;
+            }
+            if (this.oldChar.ship != this.editShip) {
+                var ship = this.editShip;
+            }
+            if (this.oldChar.link != this.editLink) {
+                var link = this.editLink;
+            }
+            // console.log(role_name);
+            var request = {
+                link: link,
+                ship: ship,
+                campaign_role_id: role
+            };
+
+            var item = {
+                id: this.oldChar.id,
+                link: link,
+                ship: ship,
+                role_id: role,
+                role_name: role_name
+            };
+
+            this.$store.dispatch("updateCampaignUsers", item);
+
+            axios({
+                method: "PUT", //you can set what request you want to be
+                url:
+                    "/api/campaignusers/" +
+                    this.oldChar.id +
+                    "/" +
+                    this.campaign_id,
+                data: request,
+                headers: {
+                    Authorization: "Bearer " + this.$store.state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                }
+            });
+
+            this.editCharName = null;
+            this.editRole = null;
+            this.editTextRole = null;
+            this.editShip = null;
+            this.editTextShip = null;
+            this.editLink = null;
+            this.editTextLink = null;
         },
 
 
