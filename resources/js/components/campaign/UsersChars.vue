@@ -143,14 +143,14 @@
                                                 ></v-select>
                                                 <v-text-field
                                                     v-model="editShip"
-                                                    v-if="this.editrole == 1"
+
                                                     label="Ship"
                                                     required
                                                     :placeholder="editTextShip"
                                                 ></v-text-field>
                                                 <v-radio-group
                                                     v-model="editLink"
-                                                    v-if="this.editrole == 1"
+
                                                     row
                                                     label="Entosis Link"
                                                     required
