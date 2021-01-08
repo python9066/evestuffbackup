@@ -172,11 +172,9 @@
 
                         <v-btn
                             class="mr-4"
-                            @click="addShown = true"
-                            v-bind="attrs"
                             color="green lighten-1"
-                            v-on="on"
-                            >Add Char</v-btn
+                            @click="overlay = !overlay"
+                            >characters</v-btn
                         >
 
                         <!-- <v-menu
