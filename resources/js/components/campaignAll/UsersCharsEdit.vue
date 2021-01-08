@@ -127,7 +127,7 @@ export default {
         },
 
         editFormClose() {
-            this.removeShown = false;
+            this.editShown = false;
             this.editCharName = null;
             this.editRole = null;
             this.editTextRole = null;
