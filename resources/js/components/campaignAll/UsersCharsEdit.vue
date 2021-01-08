@@ -115,6 +115,7 @@ export default {
         },
 
         charEditForm($event) {
+            console.log("YOYOYOYO")
             this.oldChar = this.item;
             this.editRole = this.oldChar.role_id;
             this.editTextShip = this.oldChar.ship;
