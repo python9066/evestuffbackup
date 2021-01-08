@@ -283,6 +283,7 @@ export default {
                     "getUsersChars",
                     this.$store.state.user_id
                 );
+                this.$store.dispatch("getCampaignSystemsRecords");
             } else {
                 var request = {
                     campaign_id: this.campaign_id,
@@ -328,6 +329,7 @@ export default {
                     "getUsersChars",
                     this.$store.state.user_id
                 );
+                this.$store.dispatch("getCampaignSystemsRecords");
             }
         },
 
