@@ -108,7 +108,7 @@
                                 :color="pillColor(item)"
                             >
                                 {{ pillText(item) }}
-                                <v-icon x-small dark>
+                                <v-icon x-small left dark>
                                     fas fa-trash-alt
                                 </v-icon>
                             </v-btn>
