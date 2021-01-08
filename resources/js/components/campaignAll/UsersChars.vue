@@ -106,8 +106,9 @@
                                 :outlined="true"
                                 x-small
                                 :color="pillColor(item)"
+                                @click="pillClick(item)"
                             >
-                                <v-icon x-small dark>
+                                <v-icon x-small left dark>
                                     {{ pillIcon(item) }}
                                 </v-icon>
                                 {{ pillText(item) }}
@@ -231,6 +232,8 @@ export default {
                 return "fas fa-plus";
             }
         },
+
+        pillClick() {},
 
         async newCharForm() {
             var request = {
