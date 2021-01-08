@@ -116,7 +116,7 @@ export default {
             this.editCharName = this.item.char_name;
         },
 
-        charEditForm($event) {
+        charEditForm(item) {
             this.oldChar = this.item;
             this.editCharName = this.oldChar.char_name;
             this.editRole = this.oldChar.role_id;
