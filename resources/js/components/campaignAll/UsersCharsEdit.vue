@@ -123,9 +123,9 @@ export default {
             this.editTextShip = this.oldChar.ship;
             this.editTextLink = this.oldChar.link;
             this.editShip = this.oldChar.ship;
-            if ((this.oldChar.link = 1)) {
+            if (this.oldChar.link == 1) {
                 this.editLink = "1";
-            } else if ((this.oldChar.link = 2)) {
+            } else if (this.oldChar.link == 2) {
                 this.editLink = "2";
             } else {
                 this.editLink = "0";
