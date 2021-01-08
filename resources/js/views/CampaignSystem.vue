@@ -169,7 +169,17 @@
                             @click="showTable = false"
                             >Hide Char table</v-btn
                         >
-                        <v-menu
+
+                        <v-btn
+                            class="mr-4"
+                            @click="addShown = true"
+                            v-bind="attrs"
+                            color="green lighten-1"
+                            v-on="on"
+                            >Add Char</v-btn
+                        >
+
+                        <!-- <v-menu
                             :close-on-content-click="false"
                             :value="addShown"
                             transition="fab-transition"
@@ -241,7 +251,6 @@
                                                 @click="newCharFormClose()"
                                                 >Close</v-btn
                                             >
-                                            <!-- <v-btn @click="clear">clear</v-btn> -->
                                         </v-form>
                                     </v-card>
                                 </div>
@@ -264,7 +273,6 @@
                                     >Edit/Remove Char</v-btn
                                 >
                             </template>
-                            <!---edit/delete form------>
                             <v-row no-gutters>
                                 <div>
                                     <v-card class="pa-2" tile width="100%">
@@ -326,13 +334,12 @@
                                                 @click="editFormClose()"
                                                 >Close</v-btn
                                             >
-                                            <!-- <v-btn @click="clear">clear</v-btn> -->
                                         </v-form>
-                                        <!---edit/delete form------>
+
                                     </v-card>
                                 </div>
                             </v-row>
-                        </v-menu>
+                        </v-menu> -->
                         <v-menu
                             :close-on-content-click="false"
                             transition="fab-transition"
@@ -355,9 +362,7 @@
                             </template>
                             <v-row no-gutters>
                                 <div style="width: 400px;">
-                                    <watchUserTable
-                                        :campaign_id="campaign.id"
-                                    >
+                                    <watchUserTable :campaign_id="campaign.id">
                                     </watchUserTable>
                                 </div>
                             </v-row>
@@ -536,11 +541,11 @@
                 </v-card-actions>
             </v-card>
         </v-overlay> -->
-        <v-overlay z-index="0" :value="overlay" min-width = "1000px" >
-               <UsersChars
-               :campaign_id="campaign.id"
-               @closeAddChar="overlay = false"
-               >
+        <v-overlay z-index="0" :value="overlay" min-width="1000px">
+            <UsersChars
+                :campaign_id="campaign.id"
+                @closeAddChar="overlay = false"
+            >
             </UsersChars>
         </v-overlay>
     </div>
@@ -608,12 +613,12 @@ export default {
             showUsers: false,
             channel: "",
             overlay: false,
-            link:""
+            link: ""
         };
     },
 
     async created() {
-         this.link = this.$route.params.id;
+        this.link = this.$route.params.id;
         if (this.$store.getters.getCampaignsCount == 0) {
             await this.$store.dispatch("getCampaigns");
         }
@@ -676,16 +681,11 @@ export default {
         }
         // console.log(this.$route.params.id)
         await this.getSystems(this.campaign.constellation_id);
-        await this.$store.dispatch(
-            "getCampaignUsersRecords",
-            this.campaign.id
-        );
+        await this.$store.dispatch("getCampaignUsersRecords", this.campaign.id);
         await this.$store.dispatch("getCampaignSystemsRecords");
-        await this.$store.dispatch("getUsersChars",this.$store.state.user_id)
+        await this.$store.dispatch("getUsersChars", this.$store.state.user_id);
     },
     methods: {
-
-
         checkAddUser() {
             if (this.userCount == 0) {
                 this.overlay = true;
@@ -717,10 +717,7 @@ export default {
         },
 
         loadUsersRecords() {
-            this.$store.dispatch(
-                "getCampaignUsersRecords",
-                this.campaign.id
-            );
+            this.$store.dispatch("getCampaignUsersRecords", this.campaign.id);
         },
 
         loadCampaignSystemRecords() {
@@ -870,10 +867,7 @@ export default {
                     "Content-Type": "application/json"
                 }
             });
-            this.$store.dispatch(
-                "getCampaignUsersRecords",
-                this.campaign.id
-            );
+            this.$store.dispatch("getCampaignUsersRecords", this.campaign.id);
             this.role = null;
             this.newCharName = null;
             this.newLink = null;
@@ -968,10 +962,7 @@ export default {
             this.editLink = null;
             this.editTextLink = null;
 
-            this.$store.dispatch(
-                "getCampaignUsersRecords",
-                this.campaign.id
-            );
+            this.$store.dispatch("getCampaignUsersRecords", this.campaign.id);
             this.$store.dispatch("getCampaignSystemsRecords");
         },
         campaignStart() {
@@ -1020,11 +1011,9 @@ export default {
         },
         barScoure() {
             var d =
-                this.getCampaignById(this.campaign.id).defenders_score *
-                100;
+                this.getCampaignById(this.campaign.id).defenders_score * 100;
             var a =
-                this.getCampaignById(this.campaign.id).attackers_score *
-                100;
+                this.getCampaignById(this.campaign.id).attackers_score * 100;
 
             if (d > 50) {
                 return d;
@@ -1035,11 +1024,9 @@ export default {
 
         barBgcolor() {
             var d =
-                this.getCampaignById(this.campaign.id).defenders_score *
-                100;
+                this.getCampaignById(this.campaign.id).defenders_score * 100;
             var a =
-                this.getCampaignById(this.campaign.id).attackers_score *
-                100;
+                this.getCampaignById(this.campaign.id).attackers_score * 100;
 
             if (d > 50) {
                 return "red darken-4";
@@ -1050,8 +1037,7 @@ export default {
 
         barColor() {
             var d =
-                this.getCampaignById(this.campaign.id).defenders_score *
-                100;
+                this.getCampaignById(this.campaign.id).defenders_score * 100;
             if (d > 50) {
                 return "blue darken-4";
             }
@@ -1061,8 +1047,7 @@ export default {
 
         barReverse() {
             var d =
-                this.getCampaignById(this.campaign.id).defenders_score *
-                100;
+                this.getCampaignById(this.campaign.id).defenders_score * 100;
             if (d > 50) {
                 return false;
             }
