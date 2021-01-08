@@ -40,7 +40,7 @@
                             v-if="this.editrole == 1"
                             label="Ship"
                             required
-                            :placeholder="editTextShip"
+                            :placeholder="editShip"
                         ></v-text-field>
                         <v-radio-group
                             v-model="editLink"
@@ -48,7 +48,7 @@
                             row
                             label="Entosis Link"
                             required
-                            :placeholder="editTextLink"
+                            :placeholder="editLink"
                         >
                             <v-radio label="Tech 1" value="1"></v-radio>
                             <v-radio label="Tech 2" value="2"></v-radio>
