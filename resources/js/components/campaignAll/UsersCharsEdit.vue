@@ -53,8 +53,6 @@
                         </v-radio-group>
 
                         <v-btn class="mr-2" type="submit">submit</v-btn>
-                        <v-btn class="mr-2" @click="editFormRemove()"
-                            >Remove</v-btn
                         >
                         <v-btn class="mr-2" @click="editFormClose()"
                             >Close</v-btn
@@ -126,6 +124,18 @@ export default {
             } else {
                 this.editrole = 0;
             }
+        },
+
+        editFormClose() {
+            this.removeShown = false;
+            this.editCharName = null;
+            this.editRole = null;
+            this.editTextRole = null;
+            this.editShip = null;
+            this.editTextShip = null;
+            this.editLink = null;
+            this.editTextLink = null;
+            this.editrole = null;
         },
 
 
