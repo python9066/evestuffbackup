@@ -180,7 +180,7 @@ export default {
                 role_name: role_name
             };
 
-            this.$store.dispatch("updateCampaignUsers", item);
+            this.$store.dispatch("updateUsersChars", item);
 
             axios({
                 method: "PUT", //you can set what request you want to be

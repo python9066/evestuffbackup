@@ -119,6 +119,11 @@ export default new Vuex.Store({
             Object.assign(item, data);
         },
 
+        UPDATE_USERS_CHARS(state, data) {
+            const item = state.userschars.find(item => item.id === data.id);
+            Object.assign(item, data);
+        },
+
         SET_TOKEN(state, token) {
             state.token = token;
         },
@@ -363,6 +368,10 @@ export default new Vuex.Store({
 
         updateCampaignUsers({ commit }, data) {
             commit("UPDATE_CAMPAIGN_USERS", data);
+        },
+
+        updateUsersChars({ commit }, data) {
+            commit("UPDATE_USERS_CHARS", data);
         },
 
         async getNotifications({ commit, state }) {
