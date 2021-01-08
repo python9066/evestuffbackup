@@ -103,7 +103,7 @@
                         <span>
                             <v-menu
                                 :close-on-content-click="false"
-                                :value="removeShown"
+                                :value="editShown"
                                 transition="fab-transition"
                                 origin="100% -30%"
                             >
@@ -113,7 +113,7 @@
                                         v-bind="attrs"
                                         v-on="on"
                                         small
-                                        @click="removeShown = true, charEditForm($event)"
+                                        @click="editShown = true, charEditForm($event)"
                                     >
                                         fas fa-edit
                                     </v-icon>
@@ -267,7 +267,7 @@ export default {
             oldChar: [],
 
             addShown: false,
-            removeShown: false,
+            editshown: false,
         };
     },
 
