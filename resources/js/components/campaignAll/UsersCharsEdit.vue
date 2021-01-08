@@ -144,6 +144,10 @@ export default {
             this.editrole = null;
         },
 
+        roleEditForm(a) {
+            this.editrole = a;
+        },
+
         editCharForm() {
             this.removeShown = false;
 
