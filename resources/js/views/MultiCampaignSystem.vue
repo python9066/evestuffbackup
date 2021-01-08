@@ -33,7 +33,13 @@
                             @click="showTable = false"
                             >Hide Char table</v-btn
                         >
-                        <v-menu
+                        <v-btn
+                            class="mr-4"
+                            color="green lighten-1"
+                            @click="overlay = !overlay"
+                            >characters</v-btn
+                        >
+                        <!-- <v-menu
                             :close-on-content-click="false"
                             :value="addShown"
                             transition="fab-transition"
@@ -105,7 +111,6 @@
                                                 @click="newCharFormClose()"
                                                 >Close</v-btn
                                             >
-                                            <!-- <v-btn @click="clear">clear</v-btn> -->
                                         </v-form>
                                     </v-card>
                                 </div>
@@ -128,7 +133,6 @@
                                     >Edit/Remove Char</v-btn
                                 >
                             </template>
-                            <!---edit/delete form------>
                             <v-row no-gutters>
                                 <div>
                                     <v-card class="pa-2" tile width="100%">
@@ -190,13 +194,12 @@
                                                 @click="editFormClose()"
                                                 >Close</v-btn
                                             >
-                                            <!-- <v-btn @click="clear">clear</v-btn> -->
                                         </v-form>
-                                        <!---edit/delete form------>
+
                                     </v-card>
                                 </div>
                             </v-row>
-                        </v-menu>
+                        </v-menu> -->
                         <v-menu
                             :close-on-content-click="false"
                             transition="fab-transition"
@@ -348,7 +351,7 @@
             </MultiSystemTable>
         </v-row>
 
-        <v-overlay z-index="0" :value="overlay">
+        <!-- <v-overlay z-index="0" :value="overlay">
             <v-card>
                 <v-card-title> MAKE SURE TO ADD A CHAR </v-card-title>
                 <v-card-text>
@@ -365,6 +368,14 @@
                     </v-btn>
                 </v-card-actions>
             </v-card>
+        </v-overlay> -->
+
+        <v-overlay z-index="0" :value="overlay" min-width="1000px">
+            <UsersChars
+                :campaign_id="campaign.id"
+                @closeAddChar="overlay = false"
+            >
+            </UsersChars>
         </v-overlay>
     </div>
 </template>
