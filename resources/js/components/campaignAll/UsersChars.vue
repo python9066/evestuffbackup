@@ -102,7 +102,6 @@
                     <template v-slot:item.actions="{ item }">
                         <span>
                             <UsersCharsEdit
-                            :item="item"
                             >
                             </UsersCharsEdit>
 
