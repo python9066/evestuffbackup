@@ -123,7 +123,13 @@ export default {
             this.editTextShip = this.oldChar.ship;
             this.editTextLink = this.oldChar.link;
             this.editShip = this.oldChar.ship;
-            this.editLink = this.oldChar.link;
+            if ((this.oldChar.link = 1)) {
+                this.editLink = "1";
+            } else if ((this.oldChar.link = 2)) {
+                this.editLink = "2";
+            } else {
+                this.editLink = "0";
+            }
             if (this.oldChar.role_id == 1) {
                 this.editrole = "1";
             } else {
