@@ -130,9 +130,6 @@
                                                     label="Name"
                                                     required
                                                     :placehoder="item.char_name"
-                                                    @change="
-                                                        charEditForm($event)
-                                                    "
                                                 ></v-text-field>
                                                 <v-select
                                                     v-model="editRole"
