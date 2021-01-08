@@ -44,7 +44,8 @@ Vue.component('MultiCampaignAdd', require('./components/multicampaigns/MultiCamp
 Vue.component('MultiCampaignEdit', require('./components/multicampaigns/MultiCampaignEdit.vue').default);
 Vue.component('TitleBar', require('./components/multicampaigns/TitleBar.vue').default);
 Vue.component('MultiSystemTable', require('./components/multicampaigns/MultiSystemTable.vue').default);
-Vue.component('UsersChars', require('./components/campaign/UsersChars.vue').default);
+Vue.component('UsersChars', require('./components/campaignAll/UsersChars.vue').default);
+Vue.component('UsersCharsEdit', require('./components/campaignAll/UsersCharsEdit.vue').default);
 
 
 
