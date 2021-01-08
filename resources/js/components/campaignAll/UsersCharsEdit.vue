@@ -11,7 +11,7 @@
                 v-bind="attrs"
                 v-on="on"
                 small
-                @click="(editShown = true), charEditForm($item)"
+                @click="(editShown = true), charEditForm(item)"
             >
                 fas fa-edit
             </v-icon>
@@ -105,7 +105,7 @@ export default {
     async mounted() {
 
         // console.log(this.$route.params.id)
-        await setEditCharname();
+        // await setEditCharname();
 
     },
 
