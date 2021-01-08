@@ -239,10 +239,11 @@ export default {
 
         async pillClick(item) {
             if (item.campaign_id == this.campaign_id) {
-                return "fas fa-minus";
-            } else {
                 var request = {
-                    campaign_id: this.campaign_id
+                    campaign_id: null,
+                    campaign_system_id: null,
+                    system_id: null,
+                    status_id: 1
                 };
 
                 await axios({
@@ -259,6 +260,66 @@ export default {
                         "Content-Type": "application/json"
                     }
                 });
+                var request2 = {
+                    id: item.id
+                };
+
+                await axios({
+                    method: "PUT", //you can set what request you want to be
+                    url: "/api/campaignsystemsmove/" + this.campaign_id,
+                    data: request2,
+                    headers: {
+                        Authorization: "Bearer " + this.$store.state.token,
+                        Accept: "application/json",
+                        "Content-Type": "application/json"
+                    }
+                });
+
+                await this.$store.dispatch(
+                    "getCampaignUsersRecords",
+                    this.campaign_id
+                );
+                await this.$store.dispatch(
+                    "getUsersChars",
+                    this.$store.state.user_id
+                );
+            } else {
+                var request = {
+                    campaign_id: this.campaign_id,
+                    campaign_system_id: null,
+                    system_id: null,
+                    status_id: 1
+                };
+
+                await axios({
+                    method: "PUT", //you can set what request you want to be
+                    url:
+                        "/api/campaignusers/" +
+                        item.id +
+                        "/" +
+                        this.campaign_id,
+                    data: request,
+                    headers: {
+                        Authorization: "Bearer " + this.$store.state.token,
+                        Accept: "application/json",
+                        "Content-Type": "application/json"
+                    }
+                });
+                var request2 = {
+                    id: item.id
+                };
+
+                await axios({
+                    method: "PUT", //you can set what request you want to be
+                    url: "/api/campaignsystemsmove/" + this.campaign_id,
+                    data: request2,
+                    headers: {
+                        Authorization: "Bearer " + this.$store.state.token,
+                        Accept: "application/json",
+                        "Content-Type": "application/json"
+                    }
+                });
+
                 await this.$store.dispatch(
                     "getCampaignUsersRecords",
                     this.campaign_id
