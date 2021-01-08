@@ -98,9 +98,13 @@
                     <template slot="no-data">
                         You have no saved Chars
                     </template>
-
+                    <!-- :color="pillColor(item)" -->
                     <template v-slot:item.actions="{ item }">
                         <span>
+                            <v-chip pill outlined="true" small color="red">
+                                + Add
+                            </v-chip>
+
                             <UsersCharsEdit
                                 :item="item"
                                 :campaign_id="campaign_id"
