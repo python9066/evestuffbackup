@@ -245,7 +245,7 @@ export default {
                     method: "PUT", //you can set what request you want to be
                     url:
                         "/api/campaignusers/" +
-                        this.item.id +
+                        item.id +
                         "/" +
                         this.campaign_id,
                     data: request,
