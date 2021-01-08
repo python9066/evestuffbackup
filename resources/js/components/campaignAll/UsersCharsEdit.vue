@@ -88,7 +88,7 @@ export default {
 
             editCharName: null,
             editNameRules: [v => !!v || "Name is required"],
-            editRole: null,
+            editRole: 1,
             editTextRole: null,
             editRoleRules: [v => !!v || "You need to pick a role"],
             editShip: null,
@@ -120,6 +120,7 @@ export default {
         charEditForm($event) {
             console.log("YOYOYOYO")
             this.oldChar = this.item;
+            this.editCharName = this.oldChar.char_name;
             this.editRole = this.oldChar.role_id;
             this.editTextShip = this.oldChar.ship;
             this.editTextLink = this.oldChar.link;
