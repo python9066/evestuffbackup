@@ -101,14 +101,15 @@
                     <!-- :color="pillColor(item)" -->
                     <template v-slot:item.actions="{ item }">
                         <span>
-                            <v-chip
-                                pill
+                            <v-button
+                                elevation="2"
+                                rounded
                                 :outlined="true"
                                 small
                                 :color="pillColor(item)"
                             >
                                 {{ pillText(item) }}
-                            </v-chip>
+                            </v-button>
 
                             <UsersCharsEdit
                                 :item="item"
