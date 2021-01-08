@@ -11,7 +11,7 @@
                 v-bind="attrs"
                 v-on="on"
                 small
-                @click="(editShown = true), charEditForm(item)"
+                @click="charEditForm(item), (editShown = true)"
             >
                 fas fa-edit
             </v-icon>
