@@ -11,7 +11,7 @@
                 v-bind="attrs"
                 v-on="on"
                 small
-                @click="(editShown = true, charEditForm(item))"
+                @click="(editShown = true), charEditForm(item)"
             >
                 fas fa-edit
             </v-icon>
@@ -101,20 +101,17 @@ export default {
             editUserForm: 1,
             editrole_name: null,
             oldChar: [],
-            editrole: 1,
+            editrole: 1
         };
     },
 
     async mounted() {
-
         // console.log(this.$route.params.id)
         // await setEditCharname();
-
     },
 
     methods: {
-
-        setEditCharname(){
+        setEditCharname() {
             console.log(this.item);
             this.editCharName = this.item.char_name;
         },
@@ -149,7 +146,7 @@ export default {
         },
 
         editCharForm() {
-            this.removeShown = false;
+            this.editShown = false;
 
             var link = this.oldChar.link;
             var ship = this.oldChar.ship;
@@ -207,14 +204,10 @@ export default {
             this.editTextShip = null;
             this.editLink = null;
             this.editTextLink = null;
-        },
-
-
+        }
     },
 
-    computed: {
-
-    }
+    computed: {}
 };
 </script>
 
