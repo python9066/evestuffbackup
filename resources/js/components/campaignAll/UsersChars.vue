@@ -104,7 +104,7 @@
                             <v-btn
                                 rounded
                                 :outlined="true"
-                                xsmall
+                                x-small
                                 :color="pillColor(item)"
                             >
                                 {{ pillText(item) }}
