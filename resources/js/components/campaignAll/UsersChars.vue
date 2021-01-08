@@ -107,7 +107,7 @@
                                 small
                                 :color="pillColor(item)"
                             >
-                                + Add
+                                {{ pillText(item) }}
                             </v-chip>
 
                             <UsersCharsEdit
@@ -212,6 +212,16 @@ export default {
             } else {
                 console.log("false");
                 return "green";
+            }
+        },
+
+        pillText(item) {
+            if (item.campaign_id == this.campaign_id) {
+                console.log("true");
+                return "- Remove";
+            } else {
+                console.log("false");
+                return "+ Add";
             }
         },
 
