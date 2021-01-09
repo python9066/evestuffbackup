@@ -18,6 +18,7 @@ class CreateCampaignSolaSystemsTable extends Migration
             $table->foreignId('system_id');
             $table->foreignId('campaign_id');
             $table->foreignId('supervisor_id')->references('id')->on('users')->nullable();
+            $table->foreignId('last_checked_by')->references('id')->on('users')->nullable();
             $table->dateTime('last_checked')->nullable();
         });
     }
