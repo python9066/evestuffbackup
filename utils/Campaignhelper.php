@@ -94,7 +94,7 @@ class Campaignhelper
                         Campaign::where('id', $id)->update(['defenders_score_old' => $defenders_old, 'attackers_score_old' => $attackers_old]);
                     };
                 } else {
-                    echo "new-";
+                    dd($var);
                 }
             }
         }
