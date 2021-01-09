@@ -408,7 +408,10 @@
                     </v-icon>
                     System Checked</v-btn
                 >
-                <span> [name] checked [hh:mm:ss] ago </span>
+                <span>
+                    [name] checked [hh:mm:ss] ago
+                    {{ this.CampaignSolaSystem.id }}
+                </span>
                 <!-- <VueCountUptimer
                     :v-if="showCounter()"
                     :start-time="moment.utc(this.lastchecked).unix()"
