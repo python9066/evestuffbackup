@@ -508,6 +508,11 @@ export default new Vuex.Store({
             return state.campaignusers.filter(u => u.campaign_id == payload.campaign_id && u.system_id == payload.system_id && u.status_id ==  3).length
         },
 
+        getCampaignSolaSystemFilter: state => payload => {
+
+            return state.campaignSolaSystems.filter(u => u.campaign_id == payload.campaign_id && u.system_id == payload.system_id)
+        },
+
         getSystemOnTheWayCount: state => payload => {
             return state.campaignusers.filter(u => u.campaign_id == payload.campaign_id && u.system_id == payload.system_id && u.status_id == 2 ).length
         },
