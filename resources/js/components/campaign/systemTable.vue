@@ -404,7 +404,7 @@
             <div v-if="$can('super')" class=" ml-5 mb-5">
                 <v-btn class="mr-4" color="green" small>
                     <v-icon small left dark>
-                        fas fa-search-location"
+                        fas fa-search-location
                     </v-icon>
                     System Checked</v-btn
                 >
