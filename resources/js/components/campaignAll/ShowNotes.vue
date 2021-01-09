@@ -8,7 +8,7 @@
         <v-card-title>NOTES FOR ALL THE THINGS </v-card-title>
         <v-card-text> I HAVE NO IDEA</v-card-text>
         <v-spacer></v-spacer
-        ><v-card-actions class=" align-end"
+        ><v-card-actions
             ><v-btn class="white--text" color="teal" @click="close()">
                 Close
             </v-btn></v-card-actions
