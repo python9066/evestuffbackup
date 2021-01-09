@@ -96,7 +96,7 @@ class Campaignhelper
                     };
                 } else {
                     $constellation = System::where('id', $var['solar_system_id'])->value('constellation_id');
-                    $systems = System::where('constellation', $constellation)->get();
+                    $systems = System::where('constellation_id', $constellation)->get();
                     dd($systems);
                 };
             }
