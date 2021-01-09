@@ -402,7 +402,12 @@
                 </v-data-table>
             </v-card-text>
             <div v-if="$can('super')" class=" ml-5 mb-5">
-                <v-btn class="mr-4" color="green" small>System Checked</v-btn>
+                <v-btn class="mr-4" color="green" small>
+                    <v-icon small left dark>
+                        fas fa-search-location"
+                    </v-icon>
+                    System Checked</v-btn
+                >
                 <span> [name] checked [hh:mm:ss] ago </span>
                 <!-- <VueCountUptimer
                     :v-if="showCounter()"
