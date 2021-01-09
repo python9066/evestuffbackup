@@ -19,7 +19,7 @@ class CampaignSolaSystemsController extends Controller
         $data = [];
         $pull = CampaignSolaSystem::all();
         foreach ($pull as $pull) {
-            $checker_name = User::where('id', $pull['last_checked_user_id'])->select('name')->get();
+            $checker_name = User::where('id', $pull['last_checked_user_id'])->value('name')->get();
             // if ($checker_name->count() == 0) {
             //     $checker_name = null;
             // } else {
