@@ -31,6 +31,7 @@ class Campaignhelper
                 CampaignSystem::where('campaign_id', $toDelete->id)->delete();
                 Campaign::where('id', $toDelete->id)->delete();
                 CampaignJoin::where('campaign_id', $toDelete->id)->delete();
+                CampaignSolaSystem::where('campaign_id', $toDelete->id)->delete();
             }
         }
         Campaign::where('id', '>', 0)->update(['check' => 0]);
