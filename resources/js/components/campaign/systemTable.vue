@@ -410,7 +410,7 @@
                 >
                 <span>
                     [name] checked [hh:mm:ss] ago
-                    {{ CampaignSolaSystem }}
+                    {{ CampaignSolaSystem[0]["id"] }}
                 </span>
                 <!-- <VueCountUptimer
                     :v-if="showCounter()"
