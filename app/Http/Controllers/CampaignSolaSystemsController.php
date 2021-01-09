@@ -19,14 +19,14 @@ class CampaignSolaSystemsController extends Controller
         $data = [];
         $pull = CampaignSolaSystem::all();
         foreach ($pull as $pull) {
-            $checker_name = User::where('id', $pull['last_checked_user_id'])->get();
+            $checker_name = User::where('id', $pull['last_checked_user_id'])->select('name')->get();
             // if ($checker_name->count() == 0) {
             //     $checker_name = null;
             // } else {
             //     $checker_name = $checker_name->name;
             // }
-            $supervier_name = User::where('id', $pull['supervisor_id'])->get();
-            dd($supervier_name);
+            $supervier_name = User::where('id', $pull['supervisor_id'])->select('name')->get();
+            dd($checker_name, $supervier_name);
             if ($supervier_name->count() == 0) {
                 $supervier_name = null;
             } else {
