@@ -41,7 +41,9 @@ class CampaignSolaSystemsController extends Controller
             ];
         }
         array_push($data, $data1);
-        echo $data;
+        echo '<pre>';
+        print_r($data);
+        echo '</pre>';
         // return ["data" => $data];
     }
 
