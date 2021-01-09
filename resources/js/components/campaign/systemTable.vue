@@ -401,9 +401,9 @@
                     </template>
                 </v-data-table>
             </v-card-text>
-            <div v-if="$can('super')" class=" ml-10">
+            <div v-if="$can('super')" class=" ml-5 mb-5">
                 <v-btn class="mr-4" color="green">System Checked</v-btn>
-                <span> This is spam </span>
+                <span> [name] checked [hh:mm:ss] ago </span>
                 <!-- <VueCountUptimer
                     :v-if="showCounter()"
                     :start-time="moment.utc(this.lastchecked).unix()"
