@@ -271,7 +271,7 @@ export default new Vuex.Store({
             });
             // debugger
             // console.log(res.data.timers)
-            commit("SET_CAMPAIGN_SOLA_SYSTEMS", res.data.campaignSolaSystems);
+            commit("SET_CAMPAIGN_SOLA_SYSTEMS", res.data.data);
         },
 
 
