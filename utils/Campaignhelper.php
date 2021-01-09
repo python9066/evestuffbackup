@@ -7,6 +7,7 @@ use App\Models\CampaignJoin;
 use App\Models\CampaignSystem;
 use App\Models\CampaignSystemUsers;
 use App\Models\CampaignUser;
+use App\Models\System;
 use GuzzleHttp\Client;
 use GuzzleHttp\Utils;
 use utils\Helper\Helper;
@@ -94,8 +95,9 @@ class Campaignhelper
                         Campaign::where('id', $id)->update(['defenders_score_old' => $defenders_old, 'attackers_score_old' => $attackers_old]);
                     };
                 } else {
-                    dd($var);
-                }
+                    $constellation = System::where('id', $var['solar_system_id'])->value('constellation_id');
+                    dd($constellation);
+                };
             }
         }
         // dd("fwefe");
