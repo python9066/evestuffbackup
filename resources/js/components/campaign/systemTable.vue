@@ -969,7 +969,8 @@ export default {
             "getSystemReadyToGoCount",
             "getSystemOnTheWayCount",
             "getCampaignUsersReadyToGoAll",
-            "getCampaignUsersOnTheWayAll"
+            "getCampaignUsersOnTheWayAll",
+            "getCampaignSolaSystemFilter"
         ]),
 
         fabOnTheWayDisbale() {
@@ -1131,6 +1132,14 @@ export default {
                 campaign_id: this.campaign_id
             };
             return this.getSystemOnTheWayCount(payload);
+        },
+
+        CampaignSolaSystem() {
+            let payload = {
+                system_id: this.system_id,
+                campaign_id: this.campaign_id
+            };
+            return this.getCampaignSolaSystemFilter(payload);
         }
     }
 };
