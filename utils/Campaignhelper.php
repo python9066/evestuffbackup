@@ -4,6 +4,7 @@ namespace utils\Campaignhelper;
 
 use App\Models\Campaign;
 use App\Models\CampaignJoin;
+use App\Models\CampaignSolaSystem;
 use App\Models\CampaignSystem;
 use App\Models\CampaignSystemUsers;
 use App\Models\CampaignUser;
@@ -97,7 +98,9 @@ class Campaignhelper
                 } else {
                     $constellation = System::where('id', $var['solar_system_id'])->value('constellation_id');
                     $systems = System::where('constellation_id', $constellation)->select('id')->get();
-                    dd($systems);
+                    foreach ($systems as $system) {
+                        CampaignSolaSystem::create(['system_id' => $system['id'], 'campaign_id' => $id]);
+                    }
                 };
             }
         }
