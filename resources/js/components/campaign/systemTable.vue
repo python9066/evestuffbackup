@@ -402,9 +402,29 @@
                 </v-data-table>
             </v-card-text>
             <div v-if="$can('super')">
-                <btn> </btn>
-                <span> </span>
-                <countup> </countup>
+                <v-btn class="mr-4" color="green">System Checked</v-btn>
+                <span> This is spam </span>
+                <VueCountUptimer
+                    :v-if="showCounter()"
+                    :start-time="moment.utc(this.lastchecked).unix()"
+                    :end-text="'Window Closed'"
+                    :interval="1000"
+                >
+                    <template slot="countup" slot-scope="scope">
+                        <span
+                            v-if="scope.props.minutes < 5"
+                            class="green--text pl-3"
+                            >{{ scope.props.hours }}:{{
+                                scope.props.minutes
+                            }}:{{ scope.props.seconds }}</span
+                        >
+                        <span v-else class="red--text pl-3"
+                            >{{ scope.props.hours }}:{{
+                                scope.props.minutes
+                            }}:{{ scope.props.seconds }}</span
+                        >
+                    </template>
+                </VueCountUptimer>
             </div>
         </v-card>
     </v-col>
@@ -413,7 +433,6 @@
 <script>
 import { mapState, mapGetters } from "vuex";
 import moment from "moment";
-import countup from "../countup/countup.vue";
 export default {
     components: { countup },
     props: {
