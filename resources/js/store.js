@@ -259,10 +259,10 @@ export default new Vuex.Store({
             commit("SET_USERS_CHARS", res.data.users);
         },
 
-        async getCampaignSolaSystems({ commit, state }, user_id) {
+        async getCampaignSolaSystems({ commit, state }) {
             let res = await axios({
                 method: "get",
-                url: "/api/campaignusersrecordsbychar/" + user_id,
+                url: "/api/campaignsolasystems/",
                 headers: {
                     Authorization: "Bearer " + state.token,
                     Accept: "application/json",
