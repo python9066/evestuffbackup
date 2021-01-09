@@ -400,8 +400,6 @@
                         No nodes have shown up here..... yet!!!!
                     </template>
                 </v-data-table>
-                There is nothing stopping me puttin somthere here. Why did I
-                forget this.
             </v-card-text>
         </v-card>
     </v-col>
