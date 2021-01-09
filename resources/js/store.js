@@ -13,7 +13,8 @@ Vue.use(Vuex);
 export default new Vuex.Store({
     state: {
         campaigns: [],
-        campaignJoin:[],
+        campaignJoin: [],
+        campaignSolaSystems:[],
         campaignslist: [],
         campaignusers: [],
         campaignsystems: [],
@@ -44,6 +45,10 @@ export default new Vuex.Store({
 
         SET_TOWERS(state, towers) {
             state.towers = towers;
+        },
+
+        SET_CAMPAIGN_SOLA_SYSTEMS(state, campaignSolaSystems) {
+            state.campaignSolaSystems = campaignSolaSystems;
         },
 
         SET_STATIONS(state, stations) {
@@ -253,6 +258,24 @@ export default new Vuex.Store({
             // console.log(res.data.timers)
             commit("SET_USERS_CHARS", res.data.users);
         },
+
+        async getCampaignSolaSystems({ commit, state }, user_id) {
+            let res = await axios({
+                method: "get",
+                url: "/api/campaignusersrecordsbychar/" + user_id,
+                headers: {
+                    Authorization: "Bearer " + state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                }
+            });
+            // debugger
+            // console.log(res.data.timers)
+            commit("SET_CAMPAIGN_SOLA_SYSTEMS", res.data.campaignSolaSystems);
+        },
+
+
+
 
 
         async getUsers({ commit, state }) {

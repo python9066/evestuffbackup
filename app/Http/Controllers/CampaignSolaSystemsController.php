@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CampaignSolaSystem;
 use Illuminate\Http\Request;
 
 class CampaignSolaSystemsController extends Controller
@@ -13,7 +14,11 @@ class CampaignSolaSystemsController extends Controller
      */
     public function index()
     {
-        //
+        $data = CampaignSolaSystem::all();
+        dd($data);
+
+
+        // return ['data' =>]
     }
 
     /**
