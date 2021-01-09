@@ -401,7 +401,7 @@
                     </template>
                 </v-data-table>
             </v-card-text>
-            <div v-if="$can('super')">
+            <div v-if="$can('super')" class=" ml-10">
                 <v-btn class="mr-4" color="green">System Checked</v-btn>
                 <span> This is spam </span>
                 <!-- <VueCountUptimer
