@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\CampaignSolaSystem;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class CampaignSolaSystemsController extends Controller
@@ -14,14 +15,41 @@ class CampaignSolaSystemsController extends Controller
      */
     public function index()
     {
-        $data = CampaignSolaSystem::get()->users()->select('name');
 
-        // dd($data);
+        $data = [];
+        $pull = CampaignSolaSystem::all();
+        foreach ($pull as $pull) {
+            $checker_name = User::where('id', $pull['last_checked_user_id'])->select('name')->get();
+            if ($checker_name->count() == 0) {
+                $checker_name = null;
+            }
+            $supervier_name = User::where('id', $pull['supervisor_id'])->select('name')->get();
+            if ($supervier_name->count() == 0) {
+                $supervier_name = null;
+            }
+            $count = $user->count();
+            $data1 = [];
+            $data1 = [
+                "id" => $pull['id'],
+                "system_id" => $pull['system_id'],
+                "campagin_id" => $pull['campagin_id'],
+                "supervisor_id" => $pull['supervisor_id'],
+                "supervier_user_name" => $supervier_name,
+                "last_checked_user_id" => $pull['last_checked_user_id'],
+                "last_checked_user_name" => $checker_name,
+                "last_checked" => $pull['last_checked'],
+            ];
+        }
+        array_push($data, $data1);
         echo $data;
-
-
-        // return ['data' =>]
+        // return ["data" => $data];
     }
+
+    // dd($data);
+
+
+    // return ['data' =>]
+
 
     /**
      * Store a newly created resource in storage.
