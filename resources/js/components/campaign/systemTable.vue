@@ -533,7 +533,7 @@ export default {
         },
 
         checkClick() {
-            this.test1 = this.CampaignSolaSystem;
+            this.test1 = this.CampaignSolaSystem[0]["id"];
         },
 
         async clickOnTheWay() {
