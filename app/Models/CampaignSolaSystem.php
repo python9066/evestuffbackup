@@ -15,12 +15,7 @@ class CampaignSolaSystem extends Model
         return $this->belongsTo(System::class);
     }
 
-    public function checker()
-    {
-        return $this->belongsTo(User::class);
-    }
-
-    public function supervier()
+    public function users()
     {
         return $this->belongsTo(User::class);
     }
