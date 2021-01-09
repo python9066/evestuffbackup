@@ -401,6 +401,11 @@
                     </template>
                 </v-data-table>
             </v-card-text>
+            <div v-if="$can('super')">
+                <btn> </btn>
+                <span> </span>
+                <countup> </countup>
+            </div>
         </v-card>
     </v-col>
 </template>
@@ -408,7 +413,9 @@
 <script>
 import { mapState, mapGetters } from "vuex";
 import moment from "moment";
+import countup from "../countup/countup.vue";
 export default {
+    components: { countup },
     props: {
         system_name: String,
         system_id: Number,
