@@ -14,7 +14,7 @@ class CampaignSolaSystemsController extends Controller
      */
     public function index()
     {
-        $data = CampaignSolaSystem::all();
+        $data = CampaignSolaSystem::get();
         dd($data);
 
 
