@@ -434,7 +434,6 @@
 import { mapState, mapGetters } from "vuex";
 import moment from "moment";
 export default {
-    components: { countup },
     props: {
         system_name: String,
         system_id: Number,
