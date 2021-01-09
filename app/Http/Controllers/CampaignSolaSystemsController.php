@@ -27,7 +27,7 @@ class CampaignSolaSystemsController extends Controller
             if ($supervier_name->count() == 0) {
                 $supervier_name = null;
             }
-            $count = $user->count();
+
             $data1 = [];
             $data1 = [
                 "id" => $pull['id'],
