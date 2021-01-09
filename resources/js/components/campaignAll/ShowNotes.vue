@@ -1,5 +1,13 @@
 <template>
-    <v-card tile min-width="700px" min-height="14000px"> </v-card>
+    <v-card tile min-width="1400px" min-height="700px">
+        <v-card-title> </v-card-title>
+        <v-card-text> </v-card-text
+        ><v-card-actions
+            ><v-btn class="white--text" color="teal" @click="close()">
+                Close
+            </v-btn></v-card-actions
+        >
+    </v-card>
 </template>
 
 <script>
@@ -13,7 +21,11 @@ export default {
         return {};
     },
 
-    methods: {},
+    methods: {
+        close() {
+            this.$emit("closeNotes", "yo");
+        }
+    },
 
     computed: {}
 };
