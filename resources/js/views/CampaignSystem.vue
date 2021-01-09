@@ -384,7 +384,10 @@
                                 page. Press when hack is over.
                             </span>
                         </v-tooltip>
-                        <v-btn v-if="$can('super')" @click="overlay = !overlay">
+                        <v-btn
+                            v-if="$can('super')"
+                            @click="showNotes = !showNotes"
+                        >
                             test
                         </v-btn>
                         <v-tooltip bottom>
@@ -546,6 +549,13 @@
             >
             </UsersChars>
         </v-overlay>
+        <v-overlay z-index="0" :value="showNotes">
+            <ShowNotes
+                :campaign_id="campaign.id"
+                @closeNotes="showNotes = false"
+            >
+            </ShowNotes>
+        </v-overlay>
     </div>
 </template>
 <!-- {{ $route.params.id }} - {{ test }} -  -->
@@ -609,6 +619,7 @@ export default {
             systemLoaded: false,
             campaignId: 0,
             showUsers: false,
+            showNotes: false,
             channel: "",
             overlay: false,
             bullhorn: false,

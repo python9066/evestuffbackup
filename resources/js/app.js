@@ -46,6 +46,7 @@ Vue.component('TitleBar', require('./components/multicampaigns/TitleBar.vue').de
 Vue.component('MultiSystemTable', require('./components/multicampaigns/MultiSystemTable.vue').default);
 Vue.component('UsersChars', require('./components/campaignAll/UsersChars.vue').default);
 Vue.component('UsersCharsEdit', require('./components/campaignAll/UsersCharsEdit.vue').default);
+Vue.component('ShowNotes', require('./components/campaignAll/ShowNotes.vue').default);
 
 
 
