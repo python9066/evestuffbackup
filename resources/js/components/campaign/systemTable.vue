@@ -402,7 +402,7 @@
                 </v-data-table>
             </v-card-text>
             <div v-if="$can('super')" class=" ml-5 mb-5">
-                <v-btn class="mr-4" color="green" small>
+                <v-btn class="mr-4" color="green" small @click="checkClick()">
                     <v-icon small left dark>
                         fas fa-search-location
                     </v-icon>
@@ -410,7 +410,8 @@
                 >
                 <span>
                     [name] checked [hh:mm:ss] ago
-                    {{ CampaignSolaSystem[0]["id"] }}
+                    {{ this.test1 }}
+                    <!-- {{ CampaignSolaSystem[0]["id"] }} -->
                 </span>
                 <!-- <VueCountUptimer
                     :v-if="showCounter()"
@@ -517,7 +518,8 @@ export default {
             expanded: [],
             singleExpand: true,
             charAddNode: null,
-            noteText: ""
+            noteText: "",
+            test1: ""
         };
     },
 
@@ -528,6 +530,10 @@ export default {
             } else {
                 return true;
             }
+        },
+
+        checkClick() {
+            this.test1 = this.CampaignSolaSystem;
         },
 
         async clickOnTheWay() {
