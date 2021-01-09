@@ -404,7 +404,7 @@
             <div v-if="$can('super')">
                 <v-btn class="mr-4" color="green">System Checked</v-btn>
                 <span> This is spam </span>
-                <VueCountUptimer
+                <!-- <VueCountUptimer
                     :v-if="showCounter()"
                     :start-time="moment.utc(this.lastchecked).unix()"
                     :end-text="'Window Closed'"
@@ -424,7 +424,7 @@
                             }}:{{ scope.props.seconds }}</span
                         >
                     </template>
-                </VueCountUptimer>
+                </VueCountUptimer> -->
             </div>
         </v-card>
     </v-col>
