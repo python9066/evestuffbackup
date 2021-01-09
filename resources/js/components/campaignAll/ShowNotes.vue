@@ -1,7 +1,13 @@
 <template>
-    <v-card tile min-width="1400px" min-height="700px">
+    <v-card
+        tile
+        min-width="1400px"
+        min-height="700px"
+        class=" d-flex flex-column"
+    >
         <v-card-title>NOTES FOR ALL THE THINGS </v-card-title>
-        <v-card-text> I HAVE NO IDEA</v-card-text
+        <v-card-text> I HAVE NO IDEA</v-card-text>
+        <v-spacer></v-spacer
         ><v-card-actions class=" align-end"
             ><v-btn class="white--text" color="teal" @click="close()">
                 Close
