@@ -19,11 +19,11 @@ class CampaignSolaSystemsController extends Controller
         $data = [];
         $pull = CampaignSolaSystem::all();
         foreach ($pull as $pull) {
-            $checker_name = User::where('id', $pull['last_checked_user_id'])->select('name')->get();
+            $checker_name = User::where('id', $pull['last_checked_user_id'])->get();
             if ($checker_name->count() == 0) {
                 $checker_name = null;
             }
-            $supervier_name = User::where('id', $pull['supervisor_id'])->select('name')->get();
+            $supervier_name = User::where('id', $pull['supervisor_id'])->get();
             if ($supervier_name->count() == 0) {
                 $supervier_name = null;
             }
@@ -32,11 +32,11 @@ class CampaignSolaSystemsController extends Controller
             $data1 = [
                 "id" => $pull['id'],
                 "system_id" => $pull['system_id'],
-                "campagin_id" => $pull['campagin_id'],
+                "campaign_id" => $pull['campaign_id'],
                 "supervisor_id" => $pull['supervisor_id'],
-                "supervier_user_name" => $supervier_name,
+                "supervier_user_name" => $supervier_name['name'],
                 "last_checked_user_id" => $pull['last_checked_user_id'],
-                "last_checked_user_name" => $checker_name,
+                "last_checked_user_name" => $checker_name['name'],
                 "last_checked" => $pull['last_checked'],
             ];
             array_push($data, $data1);
