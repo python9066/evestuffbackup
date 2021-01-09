@@ -23,6 +23,7 @@ class CampaignSolaSystemsController extends Controller
             if ($checker_name->count() == 0) {
                 $checker_name = null;
             } else {
+                dd($checker_name);
                 $checker_name = $checker_name['name'];
             }
             $supervier_name = User::where('id', $pull['supervisor_id'])->get();
