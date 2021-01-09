@@ -19,4 +19,9 @@ class CampaignSolaSystem extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    protected $casts = [
+        'system_id' => 'integer',
+        'campaign_id' => 'integer',
+    ];
 }
