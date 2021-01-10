@@ -825,6 +825,9 @@ export default {
             if (item.status_id == 7) {
                 return "#801916";
             }
+            if (item.status_id == 9) {
+                return "#9C9C9C";
+            }
         },
         updatetext(item) {
             this.expanded = [];
