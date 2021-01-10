@@ -80,6 +80,7 @@ export default {
         return {
             dropdown_roles: [
                 { text: "Hacker", value: 1 },
+                { text: "Support", value: 5 },
                 { text: "Scout", value: 2 },
                 { text: "FC", value: 3 },
                 { text: "Command", value: 4 }
