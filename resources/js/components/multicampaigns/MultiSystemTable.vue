@@ -1,6 +1,6 @@
 <template>
     <v-col cols="6" align-self="stretch" v-if="campaignActiveCount">
-        <v-card tile height="100%" >
+        <v-card tile height="100%">
             <v-card-text>
                 <template>
                     <v-card flat max-width elevation="24" color="grey darken-4">
@@ -21,12 +21,16 @@
                                     :radius="20"
                                     :strokeWidth="4"
                                     :value="
-                                        (nodeCountHackingCountMultiCampagin / nodeCount) *
+                                        (nodeCountHackingCountMultiCampagin /
+                                            nodeCount) *
                                             100 || 0.000001
                                     "
                                 >
                                     <div class="caption">
-                                        {{ nodeCountHackingCountMultiCampagin }} /
+                                        {{
+                                            nodeCountHackingCountMultiCampagin
+                                        }}
+                                        /
                                         {{ nodeCount }}
                                     </div></v-progress-circular
                                 >
@@ -183,7 +187,8 @@
                             </div>
                             <v-divider class="mx-4 my-0" vertical></v-divider>
                             <div>
-                                <v-menu v-if="campaignJoinDropCount != 0"
+                                <v-menu
+                                    v-if="campaignJoinDropCount != 0"
                                     :close-on-content-click="false"
                                     :value="addShown"
                                 >
@@ -213,13 +218,18 @@
                                                 item-text="text"
                                                 item-value="campaign_id"
                                                 :items="campaignJoinDrop"
-                                                :autofocus="campaignActiveCountsingle"
-
+                                                :autofocus="
+                                                    campaignActiveCountsingle
+                                                "
                                             >
                                             </v-select>
                                             <v-text-field
                                                 v-else
-                                                :value="campaignJoinDrop.map(a => a.text)"
+                                                :value="
+                                                    campaignJoinDrop.map(
+                                                        a => a.text
+                                                    )
+                                                "
                                                 class=" mt-2"
                                                 label="Campaign"
                                                 placeholder="Which Hack is this for"
@@ -232,7 +242,9 @@
                                                 label="Node"
                                                 placeholder="Enter Node"
                                                 flat
-                                                :autofocus="!campaignActiveCountsingle"
+                                                :autofocus="
+                                                    !campaignActiveCountsingle
+                                                "
                                                 v-mask="'AA##'"
                                                 v-model="nodeText"
                                                 @keyup.enter="addNode()"
@@ -500,6 +512,7 @@ export default {
                 { title: "Warm up", value: 2 },
                 { title: "Hacking", value: 3 },
                 { title: "Friendly Hacking", value: 8 },
+                { title: "Passive", value: 9 },
                 { title: "Success", value: 4 },
                 { title: "Pushed off", value: 6 },
                 { title: "Hostile Hacking", value: 7 },
@@ -848,15 +861,17 @@ export default {
         async addNode() {
             let node = this.nodeText.toUpperCase();
             if (this.campaignActiveCountsingle == false) {
-            this.nodeCampaignID = this.campaignJoinDrop.map(a => a.campaign_id)
-            this.nodeCampaignID = this.nodeCampaignID[0]
+                this.nodeCampaignID = this.campaignJoinDrop.map(
+                    a => a.campaign_id
+                );
+                this.nodeCampaignID = this.nodeCampaignID[0];
             }
-                var request = {
-                    campaign_id: this.nodeCampaignID,
-                    custom_campaign_id: this.campaign_id,
-                    system_id: this.system_id,
-                    node_id: node
-                };
+            var request = {
+                campaign_id: this.nodeCampaignID,
+                custom_campaign_id: this.campaign_id,
+                system_id: this.system_id,
+                node_id: node
+            };
             this.nodeText = "";
             // this.nodeCampaignID = "";
             this.addShown = false;
