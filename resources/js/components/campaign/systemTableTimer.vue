@@ -211,26 +211,30 @@ export default {
         },
 
         checkHackUser(item) {
+            // if (
+            //     item.site_id == this.$store.state.user_id &&
+            //     item.end == null &&
+            //     item.status_id == 3
+            // ) {
+            //     return true;
+            // } else if (
+            //     item.end == null &&
+            //     (item.status_id == 7 || item.status_id == 8)
+            // ) {
+            //     return true;
+            // } else {
+            //     return false;
+            // }
+
             if (
-                item.site_id == this.$store.state.user_id &&
-                item.end == null &&
+                item.status_id == 7 ||
+                item.status_id == 8 ||
                 item.status_id == 3
-            ) {
-                return true;
-            } else if (
-                item.end == null &&
-                (item.status_id == 7 || item.status_id == 8)
             ) {
                 return true;
             } else {
                 return false;
             }
-
-            // if (item.end == null) {
-            //     return true;
-            // } else {
-            //     return false;
-            // }
         },
         endText(item) {
             if (item.status_id == 7 || item.status_id == 8) {
