@@ -257,8 +257,7 @@ export default {
             if (
                 item.status_id == 7 ||
                 item.status_id == 8 ||
-                item.status_id == 3 ||
-                item.status_id == 10
+                item.status_id == 3
             ) {
                 return true;
             } else {
