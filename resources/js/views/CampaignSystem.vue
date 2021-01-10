@@ -670,6 +670,11 @@ export default {
                     //  console.log(6);
                     this.$router.push("/campaignfinished");
                 }
+
+                if (e.flag.flag == 8) {
+                    //  console.log(6);
+                    this.loadCampaignSolaSystems();
+                }
             },
 
             window.addEventListener("beforeunload", this.leaving)
@@ -729,6 +734,10 @@ export default {
 
         loadUsersRecords() {
             this.$store.dispatch("getCampaignUsersRecords", this.campaign.id);
+        },
+
+        loadCampaignSolaSystems() {
+            this.$store.dispatch("getCampaignSolaSystems");
         },
 
         loadCampaignSystemRecords() {

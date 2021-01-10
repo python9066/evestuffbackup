@@ -47,7 +47,9 @@
                             v-mask="'##:##'"
                             autofocus
                             placeholder="mm:ss"
-                            @keyup.enter="(timerShown = false), addHacktime(item)"
+                            @keyup.enter="
+                                (timerShown = false), addHacktime(item)
+                            "
                             @keyup.esc="(timerShown = false), (hackTime = null)"
                         ></v-text-field>
                     </v-card-title>
@@ -106,9 +108,12 @@
                                     autofocus
                                     v-mask="'##:##'"
                                     placeholder="mm:ss"
-                                    @keyup.enter="(timerShown = false), addHacktime(item)"
-                                    @keyup.esc="(timerShown = false), (hackTime = null)"
-
+                                    @keyup.enter="
+                                        (timerShown = false), addHacktime(item)
+                                    "
+                                    @keyup.esc="
+                                        (timerShown = false), (hackTime = null)
+                                    "
                                 ></v-text-field>
                             </v-card-title>
                             <v-card-text>
@@ -152,7 +157,7 @@ import { mapState, mapGetters } from "vuex";
 import moment from "moment";
 export default {
     props: {
-        item:Object
+        item: Object
     },
     data() {
         return {
@@ -161,12 +166,10 @@ export default {
                 mm: "",
                 ss: ""
             }
-
         };
     },
 
     methods: {
-
         async addHacktime(item) {
             var min = parseInt(this.hackTime.substr(0, 2));
             var sec = parseInt(this.hackTime.substr(3, 2));
@@ -199,84 +202,70 @@ export default {
             this.$store.dispatch("getCampaignSystemsRecords");
         },
 
+        hackCountDownTextColor(item) {
+            if (item.status_id == 7) {
+                return "white--text pl-3";
+            } else {
+                return "blue--text pl-3";
+            }
+        },
 
         checkHackUser(item) {
+            // if (
+            //     item.site_id == this.$store.state.user_id &&
+            //     item.end == null &&
+            //     item.status_id == 3
+            // ) {
+            //     return true;
+            // } else if (
+            //     item.end == null &&
+            //     (item.status_id == 7 || item.status_id == 8)
+            // ) {
+            //     return true;
+            // } else {
+            //     return false;
+            // }
+            return true;
+        },
+        endText(item) {
+            if (item.status_id == 7 || item.status_id == 8) {
+                return "Did they Finish?";
+            } else if (item.status_id == 3) {
+                return "Did you Finish?";
+            } else {
+                return "Finished!!! ";
+            }
+        },
+
+        checkHackUserEdit(item) {
             if (
                 item.site_id == this.$store.state.user_id &&
-                item.end == null &&
                 item.status_id == 3
             ) {
                 return true;
-            } else if (item.end == null && item.status_id == 7) {
+            } else if (item.status_id == 7 || item.status_id == 8) {
                 return true;
             } else {
                 return false;
             }
         },
 
-        hackCountDownTextColor(item){
-            if(item.status_id == 7){
-                return "white--text pl-3"
-            }else{
-                return "blue--text pl-3"
-            }
-
-        },
-
-        checkHackUser(item) {
-            if (
-                item.site_id == this.$store.state.user_id &&
-                item.end == null &&
-                item.status_id == 3
-            ) {
-                return true;
-            } else if (item.end == null && (item.status_id == 7 || item.status_id == 8)) {
-                return true;
+        hackTextColor(item) {
+            if (item.status_id == 7) {
+                return "color: while";
             } else {
-                return false;
-            }
-        },
-    endText(item){
-            if(item.status_id == 7 || item.status_id == 8){
-                return "Did they Finish?"
-            }else if (item.status_id == 3){
-                return "Did you Finish?"
-            }else{
-                return "Finished!!! "
+                return "color: green";
             }
         },
 
-    checkHackUserEdit(item) {
-        if (
-            item.site_id == this.$store.state.user_id &&
-            item.status_id == 3
-        ) {
-            return true;
-        } else if (item.status_id == 7 || item.status_id == 8) {
-            return true;
-        } else {
-            return false;
+        pillOutlined(item) {
+            if (item.status_id == 7) {
+                return false;
+            } else {
+                return true;
+            }
         }
     },
-
-    hackTextColor(item){
-            if(item.status_id == 7){
-                return "color: while"
-            }else{
-                return "color: green"
-            }
-        },
-
-    pillOutlined(item){
-
-            if (item.status_id == 7){
-                return false
-            }else{
-                return true
-            }
-        },
-    },
-
 
     computed: {}
 };
