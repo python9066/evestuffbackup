@@ -13,7 +13,7 @@
         </div>
         <div>
             <v-btn
-                v-if="(CampaignSolaSystem[0]['supervisor_id'] = null)"
+                v-if="CampaignSolaSystem[0]['supervisor_id'] == null"
                 class=""
                 color="blue"
                 x-small
