@@ -13,10 +13,11 @@
                 class="mr-4 ml-4 mb-4 "
                 color="blue"
                 x-small
+                left
                 outlined
                 @click="checkClick()"
             >
-                <v-icon x-small right dark>
+                <v-icon x-small dark>
                     fas fa-plus
                 </v-icon>
                 Add</v-btn
