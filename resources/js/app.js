@@ -47,6 +47,7 @@ Vue.component('MultiSystemTable', require('./components/multicampaigns/MultiSyst
 Vue.component('UsersChars', require('./components/campaignAll/UsersChars.vue').default);
 Vue.component('UsersCharsEdit', require('./components/campaignAll/UsersCharsEdit.vue').default);
 Vue.component('ShowNotes', require('./components/campaignAll/ShowNotes.vue').default);
+Vue.component('LastedChecked', require('./components/campaignAll/LastedChecked.vue').default);
 
 
 
