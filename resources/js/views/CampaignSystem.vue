@@ -687,11 +687,11 @@ export default {
         this.addMember();
     },
 
-    beforeMonunt() {},
-
-    async beforeCreate() {
+    async beforeMonunt() {
         await this.$store.dispatch("getCampaignSolaSystems");
     },
+
+    beforeCreate() {},
 
     async mounted() {
         if (this.$store.getters.getCampaignsCount == 0) {
