@@ -535,6 +535,9 @@ export default {
 
         checkClick() {
             this.test1 = this.CampaignSolaSystem[0]["id"];
+            var user = this.$store.state.user_id;
+            var timeStamp = moment.utc(now).unix();
+            console.log(timeStamp);
         },
 
         async clickOnTheWay() {
