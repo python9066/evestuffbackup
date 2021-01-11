@@ -404,7 +404,10 @@
 
             <LastedChecked :CampaignSolaSystem="CampaignSolaSystem">
             </LastedChecked>
-            <SystemScout :CampaignSolaSystem="CampaignSolaSystem">
+            <SystemScout
+                v-if="$can('super')"
+                :CampaignSolaSystem="CampaignSolaSystem"
+            >
             </SystemScout>
         </v-card>
     </v-col>
