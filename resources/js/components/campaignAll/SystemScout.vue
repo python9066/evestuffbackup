@@ -1,7 +1,7 @@
 <template>
     <div class=" d-inline-flex align-items-md-center ">
         <div>
-            <span>
+            <span class="d-inline-flex align-items-md-center">
                 System Scout:
                 <span v-if="CampaignSolaSystem[0]['supervisor_id'] != null">
                     {{ CampaignSolaSystem[0]["supervier_user_name"] }} </span
