@@ -15,7 +15,7 @@
         </div>
         <div>
             <span
-                :v-if="CampaignSolaSystem[0]['last_checked_user_name'] != null"
+                v-if="CampaignSolaSystem[0]['last_checked_user_name'] != null"
                 class=" d-inline-flex mb-4"
             >
                 Checked by {{ CampaignSolaSystem[0]["last_checked_user_name"] }}
