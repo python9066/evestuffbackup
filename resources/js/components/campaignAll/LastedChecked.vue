@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class=" d-inline-flex">
         <div v-if="$can('super')">
             <v-btn class="mr-4 ml-4" color="green" small @click="checkClick()">
                 <v-icon small left dark>
@@ -9,7 +9,7 @@
             >
         </div>
         <div>
-            <span :v-if="showCounter()" class=" d-flex flex-column">
+            <span :v-if="showCounter()">
                 Checked by {{ CampaignSolaSystem[0]["last_checked_user_name"] }}
                 <VueCountUptimer
                     :start-time="
