@@ -402,13 +402,17 @@
                 </v-data-table>
             </v-card-text>
             <div>
-                <LastedChecked :CampaignSolaSystem="CampaignSolaSystem">
-                </LastedChecked>
-                <SystemScout
-                    v-if="$can('super')"
-                    :CampaignSolaSystem="CampaignSolaSystem"
-                >
-                </SystemScout>
+                <div>
+                    <LastedChecked :CampaignSolaSystem="CampaignSolaSystem">
+                    </LastedChecked>
+                </div>
+                <div>
+                    <SystemScout
+                        v-if="$can('super')"
+                        :CampaignSolaSystem="CampaignSolaSystem"
+                    >
+                    </SystemScout>
+                </div>
             </div>
         </v-card>
     </v-col>
