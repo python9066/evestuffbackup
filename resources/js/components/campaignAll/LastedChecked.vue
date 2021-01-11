@@ -9,7 +9,7 @@
         >
         <span>
             {{ CampaignSolaSystem[0]["last_checked_user_name"] }}
-            checked at {{ CampaignSolaSystem[0]["Last_checked"] }}
+            checked at {{ CampaignSolaSystem[0]["last_checked"] }}
             <!-- {{ CampaignSolaSystem[0]["id"] }} -->
         </span>
     </div>
