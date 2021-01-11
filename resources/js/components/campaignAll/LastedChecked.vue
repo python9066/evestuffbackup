@@ -11,7 +11,9 @@
             {{ CampaignSolaSystem[0]["last_checked_user_name"] }}
             checked at {{ CampaignSolaSystem[0]["last_checked"] }}
             <VueCountUptimer
-                :start-time="moment.utc(this.lastchecked).unix()"
+                :start-time="
+                    moment.utc(CampaignSolaSystem[0]['last_checked']).unix()
+                "
                 :end-text="'Window Closed'"
                 :interval="1000"
             >
