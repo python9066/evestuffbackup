@@ -16,7 +16,7 @@
                 outlined
                 @click="checkClick()"
             >
-                <v-icon x-small left dark>
+                <v-icon x-small right dark>
                     fas fa-plus
                 </v-icon>
                 Add</v-btn
