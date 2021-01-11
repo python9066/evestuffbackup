@@ -6,7 +6,7 @@
             </v-icon>
             System Checked</v-btn
         >
-        <span :v-if="showCounter()">
+        <span :v-if="showCounter()" class=" ml-5 mb-5 d-flex flex-column">
             {{ CampaignSolaSystem[0]["last_checked_user_name"] }} checked
             <VueCountUptimer
                 :start-time="
