@@ -481,6 +481,11 @@ export default {
                 if (e.flag.flag == 7) {
                     this.$router.push("/campaignfinished");
                 }
+
+                if (e.flag.flag == 8) {
+                    //  console.log(6);
+                    this.loadCampaignSolaSystems();
+                }
             },
 
             window.addEventListener("beforeunload", this.leaving)
@@ -497,6 +502,7 @@ export default {
     },
 
     async mounted() {
+        await this.$store.dispatch("getCampaignSolaSystems");
         if (this.$store.getters.getCampaignsCount == 0) {
             await this.$store.dispatch("getCampaigns");
         }
