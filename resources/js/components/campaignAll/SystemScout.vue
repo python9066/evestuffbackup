@@ -27,7 +27,10 @@
                 Add</v-btn
             >
             <v-icon
-                v-if="$can('super')"
+                v-if="
+                    $can('super') &&
+                        CampaignSolaSystem[0]['supervisor_id'] != null
+                "
                 color="orange darken-3"
                 small
                 @click="scoutRemove()"
