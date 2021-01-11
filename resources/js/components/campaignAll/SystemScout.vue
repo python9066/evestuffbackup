@@ -50,6 +50,7 @@ export default {
 
     methods: {
         async scoutAdd() {
+            var request = null;
             request = {
                 supervisor_id: this.$store.state.user_id
             };
@@ -74,6 +75,7 @@ export default {
         },
 
         async scoutRemove() {
+            var request = null;
             request = {
                 supervisor_id: null
             };
