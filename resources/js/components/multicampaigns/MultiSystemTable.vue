@@ -531,7 +531,7 @@ export default {
 
     methods: {
         pillOutlined(item) {
-            if (item.status_id == 7) {
+            if (item.status_id == 7 || item.status_id == 9) {
                 return false;
             } else {
                 return true;
