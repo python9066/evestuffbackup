@@ -247,7 +247,6 @@
                                     </v-card>
                                 </v-menu>
                             </div>
-                            </div>
                         </v-card-title>
                     </v-card>
                 </template>
@@ -405,6 +404,28 @@
 
                 <LastedChecked :CampaignSolaSystem="CampaignSolaSystem">
                 </LastedChecked>
+
+                <!-- <VueCountUptimer
+                    :v-if="showCounter()"
+                    :start-time="moment.utc(this.lastchecked).unix()"
+                    :end-text="'Window Closed'"
+                    :interval="1000"
+                >
+                    <template slot="countup" slot-scope="scope">
+                        <span
+                            v-if="scope.props.minutes < 5"
+                            class="green--text pl-3"
+                            >{{ scope.props.hours }}:{{
+                                scope.props.minutes
+                            }}:{{ scope.props.seconds }}</span
+                        >
+                        <span v-else class="red--text pl-3"
+                            >{{ scope.props.hours }}:{{
+                                scope.props.minutes
+                            }}:{{ scope.props.seconds }}</span
+                        >
+                    </template>
+                </VueCountUptimer> -->
             </div>
         </v-card>
     </v-col>
