@@ -12,10 +12,10 @@
             <v-btn
                 class="mr-4 ml-4 mb-4 "
                 color="green"
-                small
+                x-small
                 @click="checkClick()"
             >
-                <v-icon small left dark>
+                <v-icon x-small left dark>
                     fas fa-search-location
                 </v-icon>
                 Add</v-btn
