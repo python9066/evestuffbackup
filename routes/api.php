@@ -97,5 +97,5 @@ Route::middleware('auth:api')->group(function () {
     Route::get('/campaignjoinsystems/{id}', 'CampaignJoinsController@campaignSystems');
 
     Route::get('/campaignsolasystems', 'CampaignSolaSystemsController@index');
-    Route::put('/campaignsolasystems/{sysid}', 'CampaignSolaSystemsController@update');
+    Route::put('/campaignsolasystems/{solaid}', 'CampaignSolaSystemsController@update');
 });

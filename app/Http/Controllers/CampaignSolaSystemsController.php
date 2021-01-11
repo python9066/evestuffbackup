@@ -74,9 +74,10 @@ class CampaignSolaSystemsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $solaid)
     {
-        //
+        //CampaignSystemRecords::find($id)->update($request->all());
+        CampaignSolaSystem::find($id)->update($request->all());
     }
 
     /**
