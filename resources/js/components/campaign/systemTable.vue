@@ -401,7 +401,7 @@
                     </template>
                 </v-data-table>
             </v-card-text>
-            <div>
+            <div class=" d-flex flex-column">
                 <div>
                     <LastedChecked :CampaignSolaSystem="CampaignSolaSystem">
                     </LastedChecked>
