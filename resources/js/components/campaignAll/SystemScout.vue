@@ -7,8 +7,8 @@
                     class="pl-2"
                     v-if="CampaignSolaSystem[0]['supervisor_id'] != null"
                 >
-                    {{ CampaignSolaSystem[0]["supervier_user_name"] }} </span
-                ><span class="pl-2" v-else> None </span>
+                    {{ CampaignSolaSystem[0]["supervier_user_name"] }}
+                </span>
             </span>
         </div>
         <div>
