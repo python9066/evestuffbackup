@@ -7,29 +7,31 @@
             System Checked</v-btn
         >
         <span :v-if="showCounter()">
-            Checked by {{ CampaignSolaSystem[0]["last_checked_user_name"] }}
-            <VueCountUptimer
-                :start-time="
-                    moment.utc(CampaignSolaSystem[0]['last_checked']).unix()
-                "
-                :end-text="'Window Closed'"
-                :interval="1000"
-                ><template slot="countup" slot-scope="scope"
-                    ><span
-                        v-if="scope.props.minutes < 5"
-                        class="green--text pl-3"
-                        >{{ scope.props.hours }}:{{ scope.props.minutes }}:{{
-                            scope.props.seconds
-                        }}</span
-                    >
-                    <span v-else class="red--text pl-3"
-                        >{{ scope.props.hours }}:{{ scope.props.minutes }}:{{
-                            scope.props.seconds
-                        }}</span
-                    >
-                </template>
-            </VueCountUptimer>
-            ago
+            <p>
+                Checked by {{ CampaignSolaSystem[0]["last_checked_user_name"] }}
+                <VueCountUptimer
+                    :start-time="
+                        moment.utc(CampaignSolaSystem[0]['last_checked']).unix()
+                    "
+                    :end-text="'Window Closed'"
+                    :interval="1000"
+                    ><template slot="countup" slot-scope="scope"
+                        ><span
+                            v-if="scope.props.minutes < 5"
+                            class="green--text pl-3"
+                            >{{ scope.props.hours }}:{{
+                                scope.props.minutes
+                            }}:{{ scope.props.seconds }}</span
+                        >
+                        <span v-else class="red--text pl-3"
+                            >{{ scope.props.hours }}:{{
+                                scope.props.minutes
+                            }}:{{ scope.props.seconds }}</span
+                        >
+                    </template>
+                </VueCountUptimer>
+                ago
+            </p>
         </span>
     </div>
 </template>
