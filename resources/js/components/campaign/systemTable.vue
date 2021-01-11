@@ -537,7 +537,7 @@ export default {
             this.test1 = this.CampaignSolaSystem[0]["id"];
             var timeStamp = moment.utc().format("YYYY-MM-DD HH:mm:ss");
 
-            request = null;
+            var request = null;
             request = {
                 last_checked_user_id: this.$$store.state.user_id,
                 last_checked: timeStamp
