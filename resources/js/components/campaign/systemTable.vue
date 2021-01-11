@@ -400,8 +400,9 @@
                         No nodes have shown up here..... yet!!!!
                     </template>
                 </v-data-table>
-                <v-spacer></v-spacer>
-                <div class=" pt-4 ">
+            </v-card-text>
+            <v-card-actions>
+                <div class=" pt-4  align-end">
                     <div>
                         <LastedChecked :CampaignSolaSystem="CampaignSolaSystem">
                         </LastedChecked>
@@ -414,7 +415,7 @@
                         </SystemScout>
                     </div>
                 </div>
-            </v-card-text>
+            </v-card-actions>
         </v-card>
     </v-col>
 </template>
