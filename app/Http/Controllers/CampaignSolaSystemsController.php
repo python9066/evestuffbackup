@@ -77,7 +77,7 @@ class CampaignSolaSystemsController extends Controller
     public function update(Request $request, $solaid)
     {
         //CampaignSystemRecords::find($id)->update($request->all());
-        CampaignSolaSystem::find($id)->update($request->all());
+        CampaignSolaSystem::find($solaid)->update($request->all());
     }
 
     /**
