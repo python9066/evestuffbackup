@@ -219,7 +219,9 @@ export default {
                 return true;
             } else if (
                 item.end == null &&
-                (item.status_id == 7 || item.status_id == 8)
+                (item.status_id == 7 ||
+                    item.status_id == 8 ||
+                    item.status_id == 9)
             ) {
                 return true;
             } else {
@@ -237,6 +239,8 @@ export default {
                 return "Did they Finish?";
             } else if (item.status_id == 3) {
                 return "Did you Finish?";
+            } else if (item.status_id == 9) {
+                return "Did it Finish?";
             } else {
                 return "Finished!!! ";
             }
