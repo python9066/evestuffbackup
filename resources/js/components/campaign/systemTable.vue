@@ -1169,7 +1169,7 @@ export default {
 
 <style>
 .style-3 {
-    background-color: rgb(165, 165, 165);
+    background-color: rgba(165, 165, 165, 0.473);
 }
 .style-2 {
     background-color: rgb(30, 30, 30, 1);
