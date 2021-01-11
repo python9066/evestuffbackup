@@ -1,5 +1,5 @@
 <template>
-    <div class=" d-inline-flex align-items-md-center  pl-4 pb-4">
+    <div class=" d-inline-flex align-items-md-center  pl-4">
         <div>
             <span class="d-inline-flex align-items-md-center pr-2">
                 System Scout:
