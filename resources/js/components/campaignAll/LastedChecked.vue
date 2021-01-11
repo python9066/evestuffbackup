@@ -7,7 +7,7 @@
             System Checked</v-btn
         >
         <span :v-if="showCounter()">
-            {{ CampaignSolaSystem[0]["last_checked_user_name"] }} checked
+            Checked by {{ CampaignSolaSystem[0]["last_checked_user_name"] }}
             <VueCountUptimer
                 :start-time="
                     moment.utc(CampaignSolaSystem[0]['last_checked']).unix()
