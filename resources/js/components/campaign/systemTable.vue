@@ -543,22 +543,20 @@ export default {
                 last_checked: timeStamp
             };
 
-            await axios({
-                method: "put", //you can set what request you want to be
-                url:
-                    "/api/campaignsolasystems/" +
-                    this.campaign_id +
-                    "/" +
-                    this.system_id,
-                data: request,
-                headers: {
-                    Authorization: "Bearer " + this.$store.state.token,
-                    Accept: "application/json",
-                    "Content-Type": "application/json"
-                }
-            });
+            // await axios({
+            //     method: "put", //you can set what request you want to be
+            //     url:
+            //         "/api/campaignsolasystems/" +
+            //         this.CampaignSolaSystem[0]["id"],
+            //     data: request,
+            //     headers: {
+            //         Authorization: "Bearer " + this.$store.state.token,
+            //         Accept: "application/json",
+            //         "Content-Type": "application/json"
+            //     }
+            // });
 
-            console.log(timeStamp);
+            console.log(timeStamp + " - " + this.CampaignSolaSystem[0]["id"]);
         },
 
         async clickOnTheWay() {
