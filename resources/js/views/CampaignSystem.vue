@@ -689,14 +689,15 @@ export default {
 
     beforeMonunt() {},
 
-    beforeCreate() {},
+    async beforeCreate() {
+        await this.$store.dispatch("getCampaignSolaSystems");
+    },
 
     async mounted() {
         if (this.$store.getters.getCampaignsCount == 0) {
             await this.$store.dispatch("getCampaigns");
         }
         // console.log(this.$route.params.id)
-        await this.$store.dispatch("getCampaignSolaSystems");
         await this.getSystems(this.campaign.constellation_id);
         await this.$store.dispatch("getCampaignUsersRecords", this.campaign.id);
         await this.$store.dispatch("getCampaignSystemsRecords");
