@@ -3,9 +3,12 @@
         <div>
             <span class="d-inline-flex align-items-md-center pr-2">
                 System Scout:
-                <span v-if="CampaignSolaSystem[0]['supervisor_id'] != null">
+                <span
+                    class="pl-2"
+                    v-if="CampaignSolaSystem[0]['supervisor_id'] != null"
+                >
                     {{ CampaignSolaSystem[0]["supervier_user_name"] }} </span
-                ><span v-else> None </span>
+                ><span class="pl-2" v-else> None </span>
             </span>
         </div>
         <div>
