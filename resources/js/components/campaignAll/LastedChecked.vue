@@ -14,7 +14,10 @@
             >
         </div>
         <div>
-            <span :v-if="showCounter()" class=" d-inline-flex mb-4">
+            <span
+                :v-if="CampaignSolaSystem[0]['last_checked_user_name'] != null"
+                class=" d-inline-flex mb-4"
+            >
                 Checked by {{ CampaignSolaSystem[0]["last_checked_user_name"] }}
                 <VueCountUptimer
                     :start-time="
@@ -82,21 +85,6 @@ export default {
 
             console.log(timeStamp);
             await this.$store.dispatch("getCampaignSolaSystems");
-        },
-        showCounter() {
-            if (this.CampaignSolaSystem[0]["last_checked_user_name"] == null) {
-                console.log("fasle");
-                console.log(
-                    this.CampaignSolaSystem[0]["last_checked_user_name"]
-                );
-                return false;
-            } else {
-                console.log("ture");
-                console.log(
-                    this.CampaignSolaSystem[0]["last_checked_user_name"]
-                );
-                return true;
-            }
         }
     },
 
