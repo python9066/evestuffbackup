@@ -722,7 +722,13 @@ export default {
         },
 
         itemRowBackground: function(item) {
-            return item.status_id == 7 ? "style-1" : "style-2";
+            if (item.status_id == 7) {
+                return "style-1";
+            } else if (item.status_id == 8) {
+                return "style-2";
+            } else if (item.status_id == 9) {
+                return "style-3";
+            }
         },
 
         async statusClick(item) {
@@ -917,6 +923,7 @@ export default {
             } else if (
                 item.status_id == 1 ||
                 item.status_id == 7 ||
+                item.status_id == 9 ||
                 item.status_id == 8
             ) {
                 request = {
@@ -1203,6 +1210,9 @@ export default {
 </script>
 
 <style>
+.style-3 {
+    background-color: rgb(165, 165, 165);
+}
 .style-2 {
     background-color: rgb(30, 30, 30, 1);
 }
