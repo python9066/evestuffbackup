@@ -11,7 +11,7 @@
         <div>
             <v-btn
                 class="mr-4 ml-4 mb-4 "
-                color="green"
+                color="blue"
                 x-small
                 outlined
                 @click="checkClick()"
