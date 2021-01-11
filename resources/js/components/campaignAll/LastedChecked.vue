@@ -85,8 +85,16 @@ export default {
         },
         showCounter() {
             if (this.CampaignSolaSystem[0]["last_checked_user_name"] == null) {
+                console.log("fasle");
+                console.log(
+                    this.CampaignSolaSystem[0]["last_checked_user_name"]
+                );
                 return false;
             } else {
+                console.log("ture");
+                console.log(
+                    this.CampaignSolaSystem[0]["last_checked_user_name"]
+                );
                 return true;
             }
         }
