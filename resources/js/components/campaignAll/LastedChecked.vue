@@ -7,17 +7,15 @@
             System Checked</v-btn
         >
         <span :v-if="showCounter()">
-            {{ CampaignSolaSystem[0]["last_checked_user_name"] }}
-            checked
+            {{ CampaignSolaSystem[0]["last_checked_user_name"] }} checked
             <VueCountUptimer
                 :start-time="
                     moment.utc(CampaignSolaSystem[0]['last_checked']).unix()
                 "
                 :end-text="'Window Closed'"
                 :interval="1000"
-            >
-                <template slot="countup" slot-scope="scope">
-                    <span
+                ><template slot="countup" slot-scope="scope"
+                    ><span
                         v-if="scope.props.minutes < 5"
                         class="green--text pl-3"
                         >{{ scope.props.hours }}:{{ scope.props.minutes }}:{{
