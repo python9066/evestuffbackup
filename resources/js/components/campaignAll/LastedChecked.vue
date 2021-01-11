@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class=" d-inline-flex align-items-md-center ">
         <div v-if="$can('super')">
             <v-btn class="mr-4 ml-4" color="green" small @click="checkClick()">
                 <v-icon small left dark>
