@@ -16,8 +16,8 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
-import { mapState } from "vuex";
+import { mapState, mapGetters } from "vuex";
+import moment from "moment";
 export default {
     props: {
         CampaignSolaSystem: Array
