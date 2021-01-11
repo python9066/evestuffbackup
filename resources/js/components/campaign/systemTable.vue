@@ -405,7 +405,7 @@
                         <LastedChecked :CampaignSolaSystem="CampaignSolaSystem">
                         </LastedChecked>
                     </div>
-                    <div>
+                    <div class=" align-end">
                         <SystemScout
                             v-if="$can('super')"
                             :CampaignSolaSystem="CampaignSolaSystem"
