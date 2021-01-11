@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\CampaignJoin;
+use App\Models\CampaignSolaSystem;
 use App\Models\CampaignSystem;
 use App\Models\CampaignSystemUsers;
 use App\Models\CampaignUser;
@@ -48,6 +49,12 @@ class CustomCampaignsController extends Controller
         foreach ($data as $data) {
             // dd($data);
             CampaignJoin::create(['custom_campaign_id' => $campid, 'campaign_id' => $data]);
+            $solas = CampaignSolaSystem::where('campaign_id', $data)->get();
+            foreach ($solas as $sola) {
+                if (CampaignSolaSystem::where('campagin_id', $campid)->where('system_id', $sola['system_id'])->count() < 1) {
+                    CampaignSolaSystem::create(['system_id' => $sola['system_id'], 'campaign_id' => $campid]);
+                };
+            }
         }
     }
 
