@@ -726,8 +726,6 @@ export default {
                 return "style-1";
             } else if (item.status_id == 8) {
                 return "style-2";
-            } else if (item.status_id == 9) {
-                return "style-3";
             }
         },
 
