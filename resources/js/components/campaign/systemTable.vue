@@ -400,20 +400,20 @@
                         No nodes have shown up here..... yet!!!!
                     </template>
                 </v-data-table>
+                <div>
+                    <div>
+                        <LastedChecked :CampaignSolaSystem="CampaignSolaSystem">
+                        </LastedChecked>
+                    </div>
+                    <div>
+                        <SystemScout
+                            v-if="$can('super')"
+                            :CampaignSolaSystem="CampaignSolaSystem"
+                        >
+                        </SystemScout>
+                    </div>
+                </div>
             </v-card-text>
-            <div class=" d-flex flex-column">
-                <div>
-                    <LastedChecked :CampaignSolaSystem="CampaignSolaSystem">
-                    </LastedChecked>
-                </div>
-                <div>
-                    <SystemScout
-                        v-if="$can('super')"
-                        :CampaignSolaSystem="CampaignSolaSystem"
-                    >
-                    </SystemScout>
-                </div>
-            </div>
         </v-card>
     </v-col>
 </template>
