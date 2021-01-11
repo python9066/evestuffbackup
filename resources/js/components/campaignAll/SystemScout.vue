@@ -10,7 +10,7 @@
         </div>
         <div>
             <v-btn
-                class="mr-4 ml-4 mb-4 "
+                class=""
                 color="blue"
                 x-small
                 left
