@@ -401,13 +401,6 @@
                     </template>
                 </v-data-table>
             </v-card-text>
-            <div v-if="$can('super')" class=" ml-5 mb-5">
-                <v-btn class="mr-4" color="green" small @click="checkClick()">
-                    <v-icon small left dark>
-                        fas fa-search-location
-                    </v-icon>
-                    System Checked</v-btn
-                >
 
                 <LastedChecked :CampaignSolaSystem="CampaignSolaSystem">
                 </LastedChecked>

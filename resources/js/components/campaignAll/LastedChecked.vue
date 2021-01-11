@@ -1,9 +1,18 @@
 <template>
-    <span>
-        {{ CampaignSolaSystem[0]["last_checked_user_name"] }}
-        checked [hh:mm:ss] ago
-        <!-- {{ CampaignSolaSystem[0]["id"] }} -->
-    </span>
+    <div v-if="$can('super')" class=" ml-5 mb-5">
+        <v-btn class="mr-4" color="green" small @click="checkClick()">
+            <v-icon small left dark>
+                fas fa-search-location
+            </v-icon>
+            System Checked</v-btn
+        >
+        >
+        <span>
+            {{ CampaignSolaSystem[0]["last_checked_user_name"] }}
+            checked [hh:mm:ss] ago
+            <!-- {{ CampaignSolaSystem[0]["id"] }} -->
+        </span>
+    </div>
 </template>
 
 <script>
@@ -14,10 +23,39 @@ export default {
         CampaignSolaSystem: Object
     },
     data() {
-        return {};
+        return {
+            test1: ""
+        };
     },
 
-    methods: {},
+    methods: {
+        async checkClick() {
+            this.test1 = this.CampaignSolaSystem[0]["id"];
+            var timeStamp = moment.utc().format("YYYY-MM-DD HH:mm:ss");
+
+            var request = null;
+            request = {
+                last_checked_user_id: this.$store.state.user_id,
+                last_checked: timeStamp
+            };
+
+            await axios({
+                method: "put", //you can set what request you want to be
+                url:
+                    "/api/campaignsolasystems/" +
+                    this.CampaignSolaSystem[0]["id"],
+                data: request,
+                headers: {
+                    Authorization: "Bearer " + this.$store.state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                }
+            });
+
+            console.log(timeStamp);
+            await this.$store.dispatch("getCampaignSolaSystems");
+        }
+    },
 
     computed: {}
 };
