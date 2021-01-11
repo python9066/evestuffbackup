@@ -9,7 +9,7 @@
             >
         </div>
         <div class=" d-inline-flex">
-            <span :v-if="showCounter()">
+            <span :v-if="showCounter()" class=" d-inline-flex">
                 Checked by {{ CampaignSolaSystem[0]["last_checked_user_name"] }}
                 <VueCountUptimer
                     :start-time="
