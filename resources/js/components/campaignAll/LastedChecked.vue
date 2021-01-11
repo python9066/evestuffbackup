@@ -84,7 +84,7 @@ export default {
             await this.$store.dispatch("getCampaignSolaSystems");
         },
         showCounter() {
-            if (this.CampaignSolaSystem[0]["last_checked_user_name"] == null) {
+            if ((this.CampaignSolaSystem[0]["last_checked_user_name"] = null)) {
                 return false;
             } else {
                 return true;
