@@ -8,7 +8,7 @@
                 System Checked</v-btn
             >
         </div>
-        <div>
+        <div class=" d-inline-flex">
             <span :v-if="showCounter()">
                 Checked by {{ CampaignSolaSystem[0]["last_checked_user_name"] }}
                 <VueCountUptimer
