@@ -1,5 +1,5 @@
 <template>
-    <div v-if="$can('super')" class=" ml-5 mb-5 d-flex flex-column">
+    <div v-if="$can('super')">
         <v-btn class="mr-4" color="green" small @click="checkClick()">
             <v-icon small left dark>
                 fas fa-search-location
