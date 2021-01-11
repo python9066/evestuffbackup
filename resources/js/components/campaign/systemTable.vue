@@ -402,31 +402,8 @@
                 </v-data-table>
             </v-card-text>
 
-                <LastedChecked :CampaignSolaSystem="CampaignSolaSystem">
-                </LastedChecked>
-
-                <!-- <VueCountUptimer
-                    :v-if="showCounter()"
-                    :start-time="moment.utc(this.lastchecked).unix()"
-                    :end-text="'Window Closed'"
-                    :interval="1000"
-                >
-                    <template slot="countup" slot-scope="scope">
-                        <span
-                            v-if="scope.props.minutes < 5"
-                            class="green--text pl-3"
-                            >{{ scope.props.hours }}:{{
-                                scope.props.minutes
-                            }}:{{ scope.props.seconds }}</span
-                        >
-                        <span v-else class="red--text pl-3"
-                            >{{ scope.props.hours }}:{{
-                                scope.props.minutes
-                            }}:{{ scope.props.seconds }}</span
-                        >
-                    </template>
-                </VueCountUptimer> -->
-            </div>
+            <LastedChecked :CampaignSolaSystem="CampaignSolaSystem">
+            </LastedChecked>
         </v-card>
     </v-col>
 </template>
@@ -524,8 +501,6 @@ export default {
                 return true;
             }
         },
-
-
 
         async clickOnTheWay() {
             this.OnTheWayColor = "green";
@@ -980,7 +955,7 @@ export default {
             "getSystemReadyToGoCount",
             "getSystemOnTheWayCount",
             "getCampaignUsersReadyToGoAll",
-            "getCampaignUsersOnTheWayAll",
+            "getCampaignUsersOnTheWayAll"
         ]),
 
         fabOnTheWayDisbale() {

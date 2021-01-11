@@ -438,6 +438,8 @@
                     </template>
                 </v-data-table>
             </v-card-text>
+            <LastedChecked :CampaignSolaSystem="CampaignSolaSystem">
+            </LastedChecked>
         </v-card>
     </v-col>
 </template>
@@ -988,6 +990,7 @@ export default {
             "getCampaignUsersByUserIdEntosis",
             "getCampaignUsersByUserIdEntosisCount",
             "getCampaignUsersByUserIdEntosisFree",
+            "getCampaignSolaSystemFilter",
             "getTotalNodeCountBySystem",
             "getHackingNodeCountBySystemByMultiCampaign",
             "getNodeValue",
@@ -1202,6 +1205,13 @@ export default {
                 campaign_id: this.campaign_id
             };
             return this.getSystemOnTheWayCount(payload);
+        },
+        CampaignSolaSystem() {
+            let payload = {
+                system_id: this.system_id,
+                campaign_id: this.campaign_id
+            };
+            return this.getCampaignSolaSystemFilter(payload);
         }
     }
 };
