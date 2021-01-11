@@ -404,6 +404,8 @@
 
             <LastedChecked :CampaignSolaSystem="CampaignSolaSystem">
             </LastedChecked>
+            <SystemScout :CampaignSolaSystem="CampaignSolaSystem">
+            </SystemScout>
         </v-card>
     </v-col>
 </template>
