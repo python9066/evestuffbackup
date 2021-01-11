@@ -7,10 +7,29 @@
             System Checked</v-btn
         >
         >
-        <span>
+        <span :v-if="showCounter()">
             {{ CampaignSolaSystem[0]["last_checked_user_name"] }}
             checked at {{ CampaignSolaSystem[0]["last_checked"] }}
-            <!-- {{ CampaignSolaSystem[0]["id"] }} -->
+            <VueCountUptimer
+                :start-time="moment.utc(this.lastchecked).unix()"
+                :end-text="'Window Closed'"
+                :interval="1000"
+            >
+                <template slot="countup" slot-scope="scope">
+                    <span
+                        v-if="scope.props.minutes < 5"
+                        class="green--text pl-3"
+                        >{{ scope.props.hours }}:{{ scope.props.minutes }}:{{
+                            scope.props.seconds
+                        }}</span
+                    >
+                    <span v-else class="red--text pl-3"
+                        >{{ scope.props.hours }}:{{ scope.props.minutes }}:{{
+                            scope.props.seconds
+                        }}</span
+                    >
+                </template>
+            </VueCountUptimer>
         </span>
     </div>
 </template>
@@ -54,6 +73,13 @@ export default {
 
             console.log(timeStamp);
             await this.$store.dispatch("getCampaignSolaSystems");
+        },
+        showCounter() {
+            if (CampaignSolaSystem[0]["last_checked_user_name"] == null) {
+                return false;
+            } else {
+                return true;
+            }
         }
     },
 
