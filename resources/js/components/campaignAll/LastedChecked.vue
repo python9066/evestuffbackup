@@ -1,36 +1,40 @@
 <template>
-    <div v-if="$can('super')">
-        <v-btn class="mr-4 ml-4" color="green" small @click="checkClick()">
-            <v-icon small left dark>
-                fas fa-search-location
-            </v-icon>
-            System Checked</v-btn
-        >
-        <span :v-if="showCounter()" class=" d-flex flex-column">
-            Checked by {{ CampaignSolaSystem[0]["last_checked_user_name"] }}
-            <VueCountUptimer
-                :start-time="
-                    moment.utc(CampaignSolaSystem[0]['last_checked']).unix()
-                "
-                :end-text="'Window Closed'"
-                :interval="1000"
-                ><template slot="countup" slot-scope="scope"
-                    ><span
-                        v-if="scope.props.minutes < 5"
-                        class="green--text pl-3"
-                        >{{ scope.props.hours }}:{{ scope.props.minutes }}:{{
-                            scope.props.seconds
-                        }}</span
-                    >
-                    <span v-else class="red--text pl-3"
-                        >{{ scope.props.hours }}:{{ scope.props.minutes }}:{{
-                            scope.props.seconds
-                        }}</span
-                    >
-                </template>
-            </VueCountUptimer>
-            ago
-        </span>
+    <div>
+        <div v-if="$can('super')">
+            <v-btn class="mr-4 ml-4" color="green" small @click="checkClick()">
+                <v-icon small left dark>
+                    fas fa-search-location
+                </v-icon>
+                System Checked</v-btn
+            >
+        </div>
+        <div>
+            <span :v-if="showCounter()" class=" d-flex flex-column">
+                Checked by {{ CampaignSolaSystem[0]["last_checked_user_name"] }}
+                <VueCountUptimer
+                    :start-time="
+                        moment.utc(CampaignSolaSystem[0]['last_checked']).unix()
+                    "
+                    :end-text="'Window Closed'"
+                    :interval="1000"
+                    ><template slot="countup" slot-scope="scope"
+                        ><span
+                            v-if="scope.props.minutes < 5"
+                            class="green--text pl-3"
+                            >{{ scope.props.hours }}:{{
+                                scope.props.minutes
+                            }}:{{ scope.props.seconds }}</span
+                        >
+                        <span v-else class="red--text pl-3"
+                            >{{ scope.props.hours }}:{{
+                                scope.props.minutes
+                            }}:{{ scope.props.seconds }}</span
+                        >
+                    </template>
+                </VueCountUptimer>
+                ago
+            </span>
+        </div>
     </div>
 </template>
 
