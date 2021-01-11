@@ -1,6 +1,6 @@
 <template>
     <div v-if="$can('super')">
-        <v-btn class="mr-4" color="green" small @click="checkClick()">
+        <v-btn class="mr-4 ml-4" color="green" small @click="checkClick()">
             <v-icon small left dark>
                 fas fa-search-location
             </v-icon>
