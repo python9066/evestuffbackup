@@ -400,7 +400,7 @@
                         No nodes have shown up here..... yet!!!!
                     </template>
                 </v-data-table>
-                <div class=" pt-4 d-flex align-end">
+                <div class=" pt-4 d-inline-flex align-end">
                     <div>
                         <LastedChecked :CampaignSolaSystem="CampaignSolaSystem">
                         </LastedChecked>
