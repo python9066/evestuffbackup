@@ -539,7 +539,7 @@ export default {
 
             var request = null;
             request = {
-                last_checked_user_id: this.$$store.state.user_id,
+                last_checked_user_id: this.$store.state.user_id,
                 last_checked: timeStamp
             };
 
