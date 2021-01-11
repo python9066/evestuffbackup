@@ -409,7 +409,7 @@
                     System Checked</v-btn
                 >
                 <span>
-                    {{ lastCheckedUserName() }}
+                    {{ CampaignSolaSystem[0]["last_checked_user_name"] }}
                     checked [hh:mm:ss] ago
                     {{ this.test1 }}
                     <!-- {{ CampaignSolaSystem[0]["id"] }} -->
@@ -531,14 +531,6 @@ export default {
                 return false;
             } else {
                 return true;
-            }
-        },
-
-        lastCheckedUserName() {
-            if (CampaignSolaSystem[0]["last_checked_user_name"] == null) {
-                return "";
-            } else {
-                return CampaignSolaSystem[0]["last_checked_user_name"];
             }
         },
 
