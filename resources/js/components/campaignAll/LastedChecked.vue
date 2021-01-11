@@ -74,7 +74,9 @@ export default {
                 method: "put", //you can set what request you want to be
                 url:
                     "/api/campaignsolasystems/" +
-                    this.CampaignSolaSystem[0]["id"],
+                    this.CampaignSolaSystem[0]["id"] +
+                    "/" +
+                    this.CampaignSolaSystem[0]["campaign_id"],
                 data: request,
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
