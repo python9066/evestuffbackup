@@ -401,19 +401,17 @@
                     </template>
                 </v-data-table>
             </v-card-text>
-            <v-card-actions>
-                <div class=" pt-4  align-end">
-                    <div>
-                        <LastedChecked :CampaignSolaSystem="CampaignSolaSystem">
-                        </LastedChecked>
-                    </div>
-                    <div class=" align-end">
-                        <SystemScout
-                            v-if="$can('super')"
-                            :CampaignSolaSystem="CampaignSolaSystem"
-                        >
-                        </SystemScout>
-                    </div>
+            <v-card-actions class=" pt-4  align-end">
+                <div>
+                    <LastedChecked :CampaignSolaSystem="CampaignSolaSystem">
+                    </LastedChecked>
+                </div>
+                <div class=" align-end">
+                    <SystemScout
+                        v-if="$can('super')"
+                        :CampaignSolaSystem="CampaignSolaSystem"
+                    >
+                    </SystemScout>
                 </div>
             </v-card-actions>
         </v-card>
