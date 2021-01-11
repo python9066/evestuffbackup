@@ -18,7 +18,7 @@
                 <v-icon small left dark>
                     fas fa-search-location
                 </v-icon>
-                System Checked</v-btn
+                Add</v-btn
             >
         </div>
     </div>
