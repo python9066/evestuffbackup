@@ -557,6 +557,7 @@ export default {
             });
 
             console.log(timeStamp);
+            await this.$store.dispatch("getCampaignSolaSystems");
         },
 
         async clickOnTheWay() {
