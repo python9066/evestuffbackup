@@ -401,7 +401,7 @@
                     </template>
                 </v-data-table>
             </v-card-text>
-            <v-card-actions class=" pt-4  align-end">
+            <v-card-actions class=" pt-4">
                 <div>
                     <LastedChecked :CampaignSolaSystem="CampaignSolaSystem">
                     </LastedChecked>
