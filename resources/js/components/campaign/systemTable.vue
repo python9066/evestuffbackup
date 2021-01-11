@@ -536,7 +536,7 @@ export default {
         checkClick() {
             this.test1 = this.CampaignSolaSystem[0]["id"];
             var user = this.$store.state.user_id;
-            var timeStamp = moment.utc();
+            var timeStamp = new date();
             console.log(timeStamp);
         },
 
