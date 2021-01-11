@@ -533,10 +533,31 @@ export default {
             }
         },
 
-        checkClick() {
+        async checkClick() {
             this.test1 = this.CampaignSolaSystem[0]["id"];
-            var user = this.$store.state.user_id;
             var timeStamp = moment.utc().format("YYYY-MM-DD HH:mm:ss");
+
+            request = null;
+            request = {
+                last_checked_user_id: this.$$store.state.user_id,
+                last_checked: timeStamp
+            };
+
+            await axios({
+                method: "put", //you can set what request you want to be
+                url:
+                    "/api/campaignsolasystems/" +
+                    this.campaign_id +
+                    "/" +
+                    this.system_id,
+                data: request,
+                headers: {
+                    Authorization: "Bearer " + this.$store.state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                }
+            });
+
             console.log(timeStamp);
         },
 
