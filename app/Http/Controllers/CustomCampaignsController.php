@@ -51,7 +51,7 @@ class CustomCampaignsController extends Controller
             CampaignJoin::create(['custom_campaign_id' => $campid, 'campaign_id' => $data]);
             $solas = CampaignSolaSystem::where('campaign_id', $data)->get();
             foreach ($solas as $sola) {
-                if (CampaignSolaSystem::where('campagin_id', $campid)->where('system_id', $sola['system_id'])->count() < 1) {
+                if (CampaignSolaSystem::where('campaign_id', $campid)->where('system_id', $sola['system_id'])->count() < 1) {
                     CampaignSolaSystem::create(['system_id' => $sola['system_id'], 'campaign_id' => $campid]);
                 };
             }
