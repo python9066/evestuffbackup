@@ -535,6 +535,9 @@ export default {
             this.$store.dispatch("getCampaignUsersRecords", this.campaignId);
         },
 
+        loadCampaignSolaSystems() {
+            this.$store.dispatch("getCampaignSolaSystems");
+        },
         loadCampaignSystemRecords() {
             this.$store.dispatch("getCampaignSystemsRecords");
         },
