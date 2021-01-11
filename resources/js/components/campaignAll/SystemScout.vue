@@ -25,6 +25,14 @@
                 </v-icon>
                 Add</v-btn
             >
+            <v-icon
+                v-if="$can('super')"
+                color="orange darken-3"
+                small
+                @click="checkRemove()"
+            >
+                fas fa-trash-alt
+            </v-icon>
         </div>
     </div>
 </template>
@@ -37,9 +45,7 @@ export default {
         CampaignSolaSystem: Array
     },
     data() {
-        return {
-            test1: ""
-        };
+        return {};
     },
 
     methods: {
