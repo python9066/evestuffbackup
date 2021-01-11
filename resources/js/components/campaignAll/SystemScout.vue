@@ -18,7 +18,7 @@
                 x-small
                 left
                 outlined
-                @click="checkClick()"
+                @click="scoutAdd()"
             >
                 <v-icon x-small dark>
                     fas fa-plus
@@ -29,7 +29,7 @@
                 v-if="$can('super')"
                 color="orange darken-3"
                 small
-                @click="checkRemove()"
+                @click="scoutRemove()"
             >
                 fas fa-trash-alt
             </v-icon>
