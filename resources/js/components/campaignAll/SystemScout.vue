@@ -5,7 +5,7 @@
                 System Scout:
                 <span v-if="CampaignSolaSystem[0]['supervisor_id'] != null">
                     {{ CampaignSolaSystem[0]["supervier_user_name"] }} </span
-                ><span v-else> None</span>
+                ><span v-else> None </span>
             </span>
         </div>
         <div>
