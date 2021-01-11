@@ -62,12 +62,19 @@ class CustomCampaignsController extends Controller
     {
 
         CampaignJoin::where('custom_campaign_id', $campid)->delete();
+        CampaignSolaSystem::where('campaign_id', $campid)->delete();
         $data = $request->all();
         // dd($data);
         CustomCampaign::find($campid)->update(['name' => $name]);
         foreach ($data as $data) {
             // dd($data);
             CampaignJoin::create(['custom_campaign_id' => $campid, 'campaign_id' => $data]);
+            $solas = CampaignSolaSystem::where('campaign_id', $data)->get();
+            foreach ($solas as $sola) {
+                if (CampaignSolaSystem::where('campaign_id', $campid)->where('system_id', $sola['system_id'])->count() < 1) {
+                    CampaignSolaSystem::create(['system_id' => $sola['system_id'], 'campaign_id' => $campid]);
+                };
+            }
         }
     }
 
@@ -102,10 +109,12 @@ class CustomCampaignsController extends Controller
      */
     public function destroy($id)
     {
+
         CustomCampaign::destroy($id);
         CampaignJoin::where('custom_campaign_id', $id)->delete();
         CampaignSystem::where('custom_campaign_id', $id)->delete();
         CampaignSystemUsers::where('custom_campaign_id', $id)->delete();
         CampaignUser::where('campaign_id', $id)->update(["system_id" => null, "status_id" => 1]);
+        CampaignSolaSystem::where('campaign_id', $id)->delete();
     }
 }
