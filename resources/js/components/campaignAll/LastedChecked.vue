@@ -1,6 +1,6 @@
 <template>
     <div class=" d-inline-flex align-items-md-center ">
-        <div>
+        <div v-if="$can('super')">
             <v-btn
                 class="mr-4 ml-4 mb-4 "
                 color="green"
