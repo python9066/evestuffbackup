@@ -27,7 +27,9 @@
                                 label="Tidi %"
                                 autofocus
                                 v-mask="'###'"
-                                :placeholder="CampaignSolaSystem[0]['tidi']"
+                                :placeholder="
+                                    toString(CampaignSolaSystem[0]['tidi'])
+                                "
                                 @keyup.enter="tidiShow = false"
                                 @keyup.esc="
                                     (tidiShow = false), (tidiEdit = null)
