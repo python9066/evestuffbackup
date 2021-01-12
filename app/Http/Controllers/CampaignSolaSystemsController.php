@@ -33,6 +33,7 @@ class CampaignSolaSystemsController extends Controller
                 "last_checked_user_id" => $pull['last_checked_user_id'],
                 "last_checked_user_name" => $checker_name,
                 "last_checked" => $pull['last_checked'],
+                "tidi" => $pull['tidi'],
             ];
             array_push($data, $data1);
         }
