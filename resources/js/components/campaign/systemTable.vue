@@ -349,7 +349,11 @@
                         >
                     </template>
                     <template v-slot:item.count="{ item }">
-                        <systemTableTimer :item="item"> </systemTableTimer>
+                        <systemTableTimer
+                            :item="item"
+                            :CampaignSolaSystem="CampaignSolaSystem"
+                        >
+                        </systemTableTimer>
                     </template>
 
                     <template v-slot:expanded-item="{ headers, item }">
