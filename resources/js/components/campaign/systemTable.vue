@@ -407,7 +407,7 @@
                     <div class=" d-inline-flex">
                         <LastedChecked :CampaignSolaSystem="CampaignSolaSystem">
                         </LastedChecked>
-                        test
+                        <span class=" align-end"> test </span>
                     </div>
                     <div>
                         <SystemScout :CampaignSolaSystem="CampaignSolaSystem">
