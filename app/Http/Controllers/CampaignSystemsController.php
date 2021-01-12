@@ -57,7 +57,8 @@ class CampaignSystemsController extends Controller
     public function update(Request $request, $id, $campid)
     {
         // dd($request->notes);
-        echo $difference_in_seconds = strtotime($request->end_time) - strtotime($request->input_time); //28800
+        $difference_in_seconds = strtotime($request->end_time) - strtotime($request->input_time); //28800
+        dd($difference_in_seconds);
         CampaignSystem::where('id', $id)->update($request->all());
         $flag = collect([
             'flag' => 2,
