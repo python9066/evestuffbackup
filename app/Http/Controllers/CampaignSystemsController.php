@@ -73,7 +73,7 @@ class CampaignSystemsController extends Controller
             'id' => $campid
         ]);
         broadcast(new CampaignSystemUpdate($flag));
-        dd($difference_in_seconds, $system_id, $camp, $tidi, $timeadd);
+        dd($difference_in_seconds, $system_id, $camp, $tidi, $timeadd, $test);
     }
 
     public function removechar(Request $request, $campid)
