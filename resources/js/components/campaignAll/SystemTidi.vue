@@ -74,7 +74,9 @@ export default {
         };
     },
 
-    mounted() {},
+    mounted() {
+        console.log(this.CampaignSolaSystem);
+    },
     methods: {
         placeHolder() {
             return "" + this.CampaignSolaSystem[0]["tidi"];
