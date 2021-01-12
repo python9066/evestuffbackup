@@ -28,7 +28,7 @@
                                 autofocus
                                 v-mask="'###'"
                                 :placeholder="placeHolder()"
-                                @keyup.enter="tidiShow = false"
+                                @keyup.enter="(tidiShow = false), editTidi()"
                                 @keyup.esc="
                                     (tidiShow = false), (tidiEdit = null)
                                 "
@@ -40,7 +40,7 @@
                                 fixed
                                 left
                                 color="success"
-                                @click="tidiShow = false"
+                                @click="(tidiShow = false), editTidi()"
                                 ><v-icon>fas fa-check</v-icon></v-btn
                             >
 
@@ -78,6 +78,10 @@ export default {
     methods: {
         placeHolder() {
             return "" + this.CampaignSolaSystem[0]["tidi"];
+        },
+
+        editTidi() {
+            console.log(this.tidiEdit);
         }
     },
 
