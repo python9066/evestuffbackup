@@ -3,11 +3,6 @@
         <v-card tile height="100%" class="d-flex flex-column">
             <v-card-text>
                 <template>
-                    <SystemTidi
-                        :CampaignSolaSystem="CampaignSolaSystem"
-                        v-if="$can('super')"
-                    >
-                    </SystemTidi>
                     <v-card flat max-width elevation="24" color="grey darken-4">
                         <v-card-title
                             max-width
