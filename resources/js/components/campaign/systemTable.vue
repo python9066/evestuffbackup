@@ -409,13 +409,19 @@
             <v-card-actions class=" pt-4">
                 <div>
                     <div>
-                        <LastedChecked :CampaignSolaSystem="CampaignSolaSystem">
-                        </LastedChecked>
-                        <SystemTidi
-                            :CampaignSolaSystem="CampaignSolaSystem"
-                            v-if="$can('super')"
-                        >
-                        </SystemTidi>
+                        <div>
+                            <LastedChecked
+                                :CampaignSolaSystem="CampaignSolaSystem"
+                            >
+                            </LastedChecked>
+                        </div>
+                        <div>
+                            <SystemTidi
+                                :CampaignSolaSystem="CampaignSolaSystem"
+                                v-if="$can('super')"
+                            >
+                            </SystemTidi>
+                        </div>
                     </div>
                     <div>
                         <SystemScout :CampaignSolaSystem="CampaignSolaSystem">
