@@ -1,5 +1,7 @@
 <template>
-    <div class=" d-inline-flex align-items-md-center  pl-4"></div>
+    <div class=" d-inline-flex align-items-md-center  pl-4">
+        I have no idea
+    </div>
 </template>
 
 <script>
