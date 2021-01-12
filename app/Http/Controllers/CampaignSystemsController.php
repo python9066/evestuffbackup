@@ -66,6 +66,7 @@ class CampaignSystemsController extends Controller
         }
         $difference_in_seconds = strtotime($request->end_time) - strtotime($request->input_time); //28800
         $timeadd = (($difference_in_seconds / 100) * $tidi) + $difference_in_seconds;
+        $test = now()->modify('+ ' . $timeadd . ' seconds');
         CampaignSystem::where('id', $id)->update($request->all());
         $flag = collect([
             'flag' => 2,
