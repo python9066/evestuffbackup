@@ -173,6 +173,9 @@ export default {
         async addHacktime(item) {
             var min = parseInt(this.hackTime.substr(0, 2));
             var sec = parseInt(this.hackTime.substr(3, 2));
+            sec = min * 60 + sec;
+            sec = sec / (tidi / 100);
+            console.log(sec);
             var finishTime = moment
                 .utc()
                 .add(sec, "seconds")
