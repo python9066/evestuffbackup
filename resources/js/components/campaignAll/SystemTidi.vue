@@ -27,7 +27,7 @@
                                 label="Tidi %"
                                 autofocus
                                 v-mask="'###'"
-                                :placeholder="placeHolder()"
+                                :placeholder="this.placeHolder"
                                 @keyup.enter="tidiShow = false"
                                 @keyup.esc="
                                     (tidiShow = false), (tidiEdit = null)
@@ -70,16 +70,15 @@ export default {
     data() {
         return {
             tidiShow: false,
-            tidiEdit: null
+            tidiEdit: null,
+            placeHolder: ""
         };
     },
 
-    methods: {
-        placeHolder() {
-            console.log(toString(this.CampaignSolaSystem[0]["tidi"]));
-            return toString(this.CampaignSolaSystem[0]["tidi"]);
-        }
+    mounted() {
+        this.placeHolder = this.CampaignSolaSystem[0]["tidi"];
     },
+    methods: {},
 
     computed: {}
 };
