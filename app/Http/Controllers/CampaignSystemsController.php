@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\CampaignSystem;
 use App\Events\CampaignSystemUpdate;
+use App\Models\CampaignSolaSystem;
 use App\Models\CampaignUser;
 use Illuminate\Http\Request;
 
@@ -69,8 +70,8 @@ class CampaignSystemsController extends Controller
     {
         $system_id = CampaignSystem::where('id', $id)->value('system_id');
         $camp = CampaignSystem::where('id', $id)->value('campaign_id');
-        // $tidi = CampaignSolaSystem::where('campaign_id', $camp)->where('system_id', $system_id)->value('tidi');
-        $tidi = 50;
+        $tidi = CampaignSolaSystem::where('campaign_id', $camp)->where('system_id', $system_id)->value('tidi');
+
         if ($tidi != 100) {
             $tidi = 100 - $tidi;
         }
