@@ -188,7 +188,7 @@ export default {
             await axios({
                 method: "put", //you can set what request you want to be
                 url:
-                    "/api/campaignsystems/" +
+                    "/api/campaignsystemsupdatetime/" +
                     item.id +
                     "/" +
                     this.$route.params.id,

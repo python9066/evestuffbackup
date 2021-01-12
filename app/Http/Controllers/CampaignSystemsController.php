@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\CampaignSystem;
 use App\Events\CampaignSystemUpdate;
-use App\Models\CampaignSolaSystem;
 use App\Models\CampaignUser;
 use Illuminate\Http\Request;
 
@@ -56,6 +55,17 @@ class CampaignSystemsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id, $campid)
+    {
+        // dd($request->notes);
+        CampaignSystem::where('id', $id)->update($request->all());
+        $flag = collect([
+            'flag' => 2,
+            'id' => $campid
+        ]);
+        broadcast(new CampaignSystemUpdate($flag))->toOthers();
+    }
+
+    public function updatetime(Request $request, $id, $campid)
     {
         $system_id = CampaignSystem::where('id', $id)->value('system_id');
         $camp = CampaignSystem::where('id', $id)->value('campaign_id');
