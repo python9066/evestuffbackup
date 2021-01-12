@@ -14,7 +14,7 @@ class AddTidiColoumnnToCampaignSolaSystemsTable extends Migration
     public function up()
     {
         Schema::table('campaign_sola_systems', function (Blueprint $table) {
-            $table->dateTime('tidi')->after('last_checked')->default(100);
+            $table->integer('tidi')->after('last_checked')->default(100);
         });
     }
 
