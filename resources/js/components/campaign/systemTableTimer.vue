@@ -177,7 +177,7 @@ export default {
             var tidi = this.CampaignSolaSystem[0]["tidi"] / 100;
             var sec = min * 60 + sec;
             var sec = sec / tidi;
-            console.log(sec);
+            console.log(sec + " - " + tidi);
             var finishTime = moment
                 .utc()
                 .add(sec, "seconds")
