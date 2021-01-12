@@ -1,5 +1,8 @@
 <template>
-    <div class=" pl-4">System TiDi: {{ CampaignSolaSystem[0]["tidi"] }}</div>
+    <div class=" pr-4">
+        System TiDi:
+        <span class="green--text">{{ CampaignSolaSystem[0]["tidi"] }}</span>
+    </div>
 </template>
 
 <script>
