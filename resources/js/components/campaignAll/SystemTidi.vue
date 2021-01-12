@@ -7,6 +7,7 @@
         <v-menu :close-on-content-click="false" :value="tidiShow">
             <template v-slot:activator="{ on, attrs }">
                 <v-btn
+                    class="pb-1"
                     v-bind="attrs"
                     v-on="on"
                     @click="(tidiShow = true), (tidiEdit = null)"
