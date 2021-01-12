@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class=" ml-auto">
         I have no idea
     </div>
 </template>
