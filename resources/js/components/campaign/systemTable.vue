@@ -408,7 +408,7 @@
             <v-spacer></v-spacer>
             <v-card-actions class=" pt-4">
                 <div>
-                    <div>
+                    <div class=" d-inline-flex">
                         <div>
                             <LastedChecked
                                 :CampaignSolaSystem="CampaignSolaSystem"
