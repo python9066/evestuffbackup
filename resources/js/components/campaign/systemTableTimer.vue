@@ -175,13 +175,12 @@ export default {
             var min = parseInt(this.hackTime.substr(0, 2));
             var sec = parseInt(this.hackTime.substr(3, 2));
             var sec = min * 60 + sec;
-            // var sec = sec / (this.CampaignSolaSystem[0]["tidi"] / 100);
-            var sec = sec / (10 / 100);
+            var sec = sec / (this.CampaignSolaSystem[0]["tidi"] / 100);
+            // var sec = sec / (10 / 100);
             console.log(sec);
             var finishTime = moment
                 .utc()
                 .add(sec, "seconds")
-                .add(min, "minutes")
                 .format("YYYY-MM-DD HH:mm:ss");
             item.end = finishTime;
             // this.$store.dispatch("updateCampaignSystem", item);
@@ -193,7 +192,7 @@ export default {
             await axios({
                 method: "put", //you can set what request you want to be
                 url:
-                    "/api/campaignsystemsupdatetime/" +
+                    "/api/campaignsystems/" +
                     item.id +
                     "/" +
                     this.$route.params.id,
