@@ -9,7 +9,7 @@
                             class="d-flex justify-space-between align-center"
                             style=" width: 100%;"
                         >
-                            <div>
+                            <div style=" width:100%">
                                 <div>
                                     <SystemTidi
                                         :CampaignSolaSystem="CampaignSolaSystem"
