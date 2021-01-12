@@ -77,9 +77,8 @@ export default {
     methods: {
         placeHolder() {
             var placeHolder = this.CampaignSolaSystem[0]["tidi"];
-            console.log(placeHolder);
-            placeHolder = toString(placeHolder);
-            return placeHolder;
+            console.log(toString(placeHolder));
+            return toString(placeHolder);
         }
     },
 
