@@ -71,12 +71,12 @@ export default {
         return {
             tidiShow: false,
             tidiEdit: null,
-            placeHolder: ""
+            placeHolder: 0
         };
     },
 
     mounted() {
-        this.placeHolder = toString(this.CampaignSolaSystem[0]["tidi"]);
+        this.placeHolder = this.CampaignSolaSystem[0]["tidi"];
     },
     methods: {},
 
