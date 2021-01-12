@@ -1,5 +1,5 @@
 <template>
-    <div class=" pr-4 h5">
+    <div class=" pr-4 h4">
         System TiDi:
         <span class="green--text font-weight-bold"
             >{{ CampaignSolaSystem[0]["tidi"] }}%</span
