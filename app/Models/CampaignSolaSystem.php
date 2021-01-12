@@ -23,5 +23,6 @@ class CampaignSolaSystem extends Model
     protected $casts = [
         'system_id' => 'integer',
         'campaign_id' => 'integer',
+        'tidi' => 'integer'
     ];
 }
