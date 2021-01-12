@@ -76,7 +76,7 @@ export default {
     },
 
     mounted() {
-        this.placeHolder = this.CampaignSolaSystem[0]["tidi"];
+        this.placeHolder = toSting(this.CampaignSolaSystem[0]["tidi"]);
     },
     methods: {},
 
