@@ -6,7 +6,7 @@
                     <v-card flat max-width elevation="24" color="grey darken-4">
                         <v-card-title
                             max-width
-                            class="d-flex justify-space-between align-center"
+                            class="d-flex"
                             style=" width: 100%;"
                         >
                             <div style=" width:100%">
