@@ -1,5 +1,7 @@
 <template>
-    <div>System TiDi: {{ CampaignSolaSystem[0]["tidi"] }}</div>
+    <div class=" d-flex justify-content-end">
+        System TiDi: {{ CampaignSolaSystem[0]["tidi"] }}
+    </div>
 </template>
 
 <script>
