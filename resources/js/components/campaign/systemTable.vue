@@ -404,10 +404,14 @@
             <v-spacer></v-spacer>
             <v-card-actions class=" pt-4">
                 <div>
-                    <div class=" d-inline-flex">
+                    <div>
                         <LastedChecked :CampaignSolaSystem="CampaignSolaSystem">
                         </LastedChecked>
-                        <span class=" align-end"> test </span>
+                        <SystemTidi
+                            :CampaignSolaSystem="CampaignSolaSystem"
+                            v-if="$can('Super')"
+                        >
+                        </SystemTidi>
                     </div>
                     <div>
                         <SystemScout :CampaignSolaSystem="CampaignSolaSystem">
