@@ -57,9 +57,9 @@ class CampaignSystemsController extends Controller
      */
     public function update(Request $request, $id, $campid)
     {
-        $system_id = CampaignSystem::where('id', $id)->value('system_id')->get();
-        $camp = CampaignSystem::where('id', $id)->value('campaign_id')->get();
-        $tidi = CampaignSolaSystem::where('campaign_id', $camp)->where('system_id', $system_id)->value('tidi')->get();
+        $system_id = CampaignSystem::where('id', $id)->value('system_id');
+        $camp = CampaignSystem::where('id', $id)->value('campaign_id');
+        $tidi = CampaignSolaSystem::where('campaign_id', $camp)->where('system_id', $system_id)->value('tidi');
         $difference_in_seconds = strtotime($request->end_time) - strtotime($request->input_time); //28800
 
         CampaignSystem::where('id', $id)->update($request->all());
