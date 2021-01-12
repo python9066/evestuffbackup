@@ -3,17 +3,17 @@
         <v-card tile height="100%" class="d-flex flex-column">
             <v-card-text>
                 <template>
-                    <SystemTidi
-                        :CampaignSolaSystem="CampaignSolaSystem"
-                        v-if="$can('super')"
-                    >
-                    </SystemTidi>
                     <v-card flat max-width elevation="24" color="grey darken-4">
                         <v-card-title
                             max-width
                             class="d-flex justify-space-between align-center"
                             style=" width: 100%;"
                         >
+                            <SystemTidi
+                                :CampaignSolaSystem="CampaignSolaSystem"
+                                v-if="$can('super')"
+                            >
+                            </SystemTidi>
                             <div>{{ system_name }}</div>
                             <v-divider class="mx-4 my-0" vertical></v-divider>
                             <p v-if="nodeCount > 0" class=" pt-4 pr-3">
