@@ -406,7 +406,7 @@
                 </v-data-table>
             </v-card-text>
             <v-spacer></v-spacer>
-            <v-card-actions class=" pt-4 d-inline-flex">
+            <v-card-actions max-width class=" pt-4 d-inline-flex">
                 <div class=" d-flex full-width">
                     <div class=" d-inline-flex">
                         <LastedChecked :CampaignSolaSystem="CampaignSolaSystem">
