@@ -438,8 +438,19 @@
                     </template>
                 </v-data-table>
             </v-card-text>
-            <LastedChecked :CampaignSolaSystem="CampaignSolaSystem">
-            </LastedChecked>
+            <v-spacer></v-spacer>
+            <v-card-actions class=" pt-4">
+                <div>
+                    <div>
+                        <LastedChecked :CampaignSolaSystem="CampaignSolaSystem">
+                        </LastedChecked>
+                    </div>
+                    <div>
+                        <SystemScout :CampaignSolaSystem="CampaignSolaSystem">
+                        </SystemScout>
+                    </div>
+                </div>
+            </v-card-actions>
         </v-card>
     </v-col>
 </template>
