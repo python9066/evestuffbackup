@@ -57,8 +57,9 @@ class CampaignSystemsController extends Controller
      */
     public function update(Request $request, $id, $campid)
     {
-        // $system_id = CampaignSolaSystem::where('id', $id)->select('system_id')->get();
-        // $tidi = CampaignSolaSystem::where('campaign_id', $campid)->where('system_id', $system_id)->select('tidi')->get();
+        $system_id = CampaignSystem::where('id', $id)->select('system_id')->get();
+        $camp = CampaignSystem::where('id', $id)->select('campaign_id')->get();
+        $tidi = CampaignSolaSystem::where('campaign_id', $camp)->where('system_id', $system_id)->select('tidi')->get();
         $difference_in_seconds = strtotime($request->end_time) - strtotime($request->input_time); //28800
 
         CampaignSystem::where('id', $id)->update($request->all());
@@ -67,7 +68,7 @@ class CampaignSystemsController extends Controller
             'id' => $campid
         ]);
         broadcast(new CampaignSystemUpdate($flag));
-        dd($difference_in_seconds, $request, $id, $campid);
+        dd($difference_in_seconds, $system_id, $camp, $tidi);
     }
 
     public function removechar(Request $request, $campid)
