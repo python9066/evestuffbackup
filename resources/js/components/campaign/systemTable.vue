@@ -408,14 +408,14 @@
             <v-spacer></v-spacer>
             <v-card-actions class=" pt-4">
                 <div>
-                    <div class=" d-inline-flex justify-space-between">
+                    <div class=" d-inline-flex">
                         <div>
                             <LastedChecked
                                 :CampaignSolaSystem="CampaignSolaSystem"
                             >
                             </LastedChecked>
                         </div>
-                        <div>
+                        <div class=" ml-auto">
                             <SystemTidi
                                 :CampaignSolaSystem="CampaignSolaSystem"
                                 v-if="$can('super')"
