@@ -13,7 +13,7 @@
                     icon
                     color="warning"
                 >
-                    <v-icon x-small>fas fa-edit</v-icon>
+                    <v-icon>fas fa-edit</v-icon>
                 </v-btn>
             </template>
 
@@ -22,7 +22,7 @@
                     <v-card-title class=" pb-0">
                         <v-text-field
                             v-model="tidiEdit"
-                            label="Hack Time mm:ss"
+                            label="Tidi %"
                             autofocus
                             v-mask="'###'"
                             :placeholder="CampaignSolaSystem[0]['tidi']"
