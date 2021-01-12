@@ -66,25 +66,6 @@ class CampaignSystemsController extends Controller
         broadcast(new CampaignSystemUpdate($flag))->toOthers();
     }
 
-    public function updatetime(Request $request, $id, $campid)
-    {
-        $system_id = CampaignSystem::where('id', $id)->value('system_id');
-        $camp = CampaignSystem::where('id', $id)->value('campaign_id');
-        $tidi = CampaignSolaSystem::where('campaign_id', $camp)->where('system_id', $system_id)->value('tidi');
-        // $tidi = 10;
-        $tidi = $tidi / 100;
-        $difference_in_seconds = strtotime($request->end_time) - strtotime($request->input_time); //28800
-        $timeadd = $difference_in_seconds / $tidi;
-        $end_time = now()->modify('+ ' . $timeadd . ' seconds');
-        CampaignSystem::where('id', $id)->update(['end_time' => $end_time, 'input_time' => $request->input_time]);
-        $flag = collect([
-            'flag' => 2,
-            'id' => $campid
-        ]);
-        broadcast(new CampaignSystemUpdate($flag));
-        dd($request);
-    }
-
     public function removechar(Request $request, $campid)
     {
         $node = CampaignSystem::where('campaign_id', $request->campaign_id)

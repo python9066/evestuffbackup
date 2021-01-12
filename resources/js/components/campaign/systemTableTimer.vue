@@ -175,8 +175,8 @@ export default {
             var min = parseInt(this.hackTime.substr(0, 2));
             var sec = parseInt(this.hackTime.substr(3, 2));
             var sec = min * 60 + sec;
-            var sec = sec / (this.CampaignSolaSystem[0]["tidi"] / 100);
-            // var sec = sec / (10 / 100);
+            // var sec = sec / (this.CampaignSolaSystem[0]["tidi"] / 100);
+            var sec = sec / (10 / 100);
             console.log(sec);
             var finishTime = moment
                 .utc()
