@@ -181,7 +181,8 @@ export default {
             item.end = finishTime;
             this.$store.dispatch("updateCampaignSystem", item);
             var request = {
-                end_time: finishTime
+                end_time: finishTime,
+                input_time: moment.utc().format("YYYY-MM-DD HH:mm:ss")
             };
 
             await axios({
