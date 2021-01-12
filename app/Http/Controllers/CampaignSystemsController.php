@@ -70,8 +70,8 @@ class CampaignSystemsController extends Controller
     {
         $system_id = CampaignSystem::where('id', $id)->value('system_id');
         $camp = CampaignSystem::where('id', $id)->value('campaign_id');
-        // $tidi = CampaignSolaSystem::where('campaign_id', $camp)->where('system_id', $system_id)->value('tidi');
-        $tidi = 10;
+        $tidi = CampaignSolaSystem::where('campaign_id', $camp)->where('system_id', $system_id)->value('tidi');
+        // $tidi = 10;
         $tidi = $tidi / 100;
         $difference_in_seconds = strtotime($request->end_time) - strtotime($request->input_time); //28800
         $timeadd = $difference_in_seconds / $tidi;
