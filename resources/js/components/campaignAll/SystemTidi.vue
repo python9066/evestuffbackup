@@ -1,6 +1,6 @@
 <template>
-    <div class=" ml-auto">
-        I have no idea
+    <div>
+        {{ CampaignSolaSystem }}
     </div>
 </template>
 
