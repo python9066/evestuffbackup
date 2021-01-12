@@ -4,13 +4,12 @@
         <span class="green--text font-weight-bold"
             >{{ CampaignSolaSystem[0]["tidi"] }}%</span
         >
-        <v-menu :close-on-content-click="false" :value="timerShown">
+        <v-menu :close-on-content-click="false" :value="tidiShow">
             <template v-slot:activator="{ on, attrs }">
                 <v-btn
-                    v-if="checkHackUserEdit(item)"
                     v-bind="attrs"
                     v-on="on"
-                    @click="(timerShown = true), (hackTime = null)"
+                    @click="(tidiShow = true), (tidiEdit = null)"
                     icon
                     color="warning"
                 >
@@ -22,15 +21,13 @@
                 <v-card tile min-height="150px">
                     <v-card-title class=" pb-0">
                         <v-text-field
-                            v-model="hackTime"
+                            v-model="tidiEdit"
                             label="Hack Time mm:ss"
                             autofocus
-                            v-mask="'##:##'"
-                            placeholder="mm:ss"
-                            @keyup.enter="
-                                (timerShown = false), addHacktime(item)
-                            "
-                            @keyup.esc="(timerShown = false), (hackTime = null)"
+                            v-mask="'###'"
+                            :placeholder="CampaignSolaSystem[0]['tidi']"
+                            @keyup.enter="tidiShow = false"
+                            @keyup.esc="(tidiShow = false), (tidiEdit = null)"
                         ></v-text-field>
                     </v-card-title>
                     <v-card-text>
@@ -39,7 +36,7 @@
                             fixed
                             left
                             color="success"
-                            @click="(timerShown = false), addHacktime(item)"
+                            @click="tidiShow = false"
                             ><v-icon>fas fa-check</v-icon></v-btn
                         >
 
@@ -48,7 +45,7 @@
                             right
                             icon
                             color="warning"
-                            @click="(timerShown = false), (hackTime = null)"
+                            @click="(tidiShow = false), (tidiEdit = null)"
                             ><v-icon>fas fa-times</v-icon></v-btn
                         >
                     </v-card-text>
@@ -66,7 +63,10 @@ export default {
         CampaignSolaSystem: Array
     },
     data() {
-        return {};
+        return {
+            tidiShow: false,
+            tidiEdit: null
+        };
     },
 
     methods: {},
