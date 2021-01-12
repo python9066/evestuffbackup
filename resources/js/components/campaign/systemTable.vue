@@ -18,7 +18,7 @@
                                     </SystemTidi>
                                 </div>
                                 <div
-                                    class=" d-inline-flex justify-space-between align-center"
+                                    class="d-flex justify-space-between align-center"
                                 >
                                     <div>{{ system_name }}</div>
                                     <v-divider
