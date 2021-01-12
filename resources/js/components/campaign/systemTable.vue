@@ -408,7 +408,7 @@
             <v-spacer></v-spacer>
             <v-card-actions class=" pt-4 d-inline-flex">
                 <div class=" d-flex-block full-width">
-                    <div class=" d-inline-flex">
+                    <div class=" d-inline-flex justify-space-around">
                         <LastedChecked :CampaignSolaSystem="CampaignSolaSystem">
                         </LastedChecked>
                         <SystemTidi
