@@ -409,10 +409,7 @@
                         </LastedChecked>
                     </div>
                     <div>
-                        <SystemScout
-                            v-if="$can('super')"
-                            :CampaignSolaSystem="CampaignSolaSystem"
-                        >
+                        <SystemScout :CampaignSolaSystem="CampaignSolaSystem">
                         </SystemScout>
                     </div>
                 </div>
