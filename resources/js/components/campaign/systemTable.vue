@@ -413,7 +413,7 @@
                         </LastedChecked>
                         <SystemTidi
                             :CampaignSolaSystem="CampaignSolaSystem"
-                            v-if="$can('Super')"
+                            v-if="$can('super')"
                         >
                         </SystemTidi>
                     </div>
