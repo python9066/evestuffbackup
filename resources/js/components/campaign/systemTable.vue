@@ -408,14 +408,13 @@
             <v-spacer></v-spacer>
             <v-card-actions class=" pt-4">
                 <div>
-                    <div class=" d-inline-flex">
+                    <div class=" d-inline-flex justify-space-between">
                         <div>
                             <LastedChecked
                                 :CampaignSolaSystem="CampaignSolaSystem"
                             >
                             </LastedChecked>
                         </div>
-                        <v-spacer></v-spacer>
                         <div>
                             <SystemTidi
                                 :CampaignSolaSystem="CampaignSolaSystem"
