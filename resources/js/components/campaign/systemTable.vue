@@ -407,8 +407,8 @@
             </v-card-text>
             <v-spacer></v-spacer>
             <v-card-actions class=" pt-4">
-                <div class=" full-width">
-                    <div class=" d-inline-flex full-width">
+                <div max-width>
+                    <div class=" d-inline-flex" max-width>
                         <div>
                             <LastedChecked
                                 :CampaignSolaSystem="CampaignSolaSystem"
