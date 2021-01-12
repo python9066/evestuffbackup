@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\CampaignSystem;
 use App\Events\CampaignSystemUpdate;
+use App\Models\CampaignSolaSystem;
 use App\Models\CampaignUser;
 use Illuminate\Http\Request;
 
@@ -56,15 +57,17 @@ class CampaignSystemsController extends Controller
      */
     public function update(Request $request, $id, $campid)
     {
-        // dd($request->notes);
+        $system_id = CampaignSolaSystem::where('id', $id)->selete('system_id')->get();
+        $tidi = CampaignSolaSystem::where('campaign_id', $campid)->where('system_id', $system_id)->select('tidi')->get();
         $difference_in_seconds = strtotime($request->end_time) - strtotime($request->input_time); //28800
+
         CampaignSystem::where('id', $id)->update($request->all());
         $flag = collect([
             'flag' => 2,
             'id' => $campid
         ]);
         broadcast(new CampaignSystemUpdate($flag));
-        dd($difference_in_seconds);
+        dd($difference_in_seconds, $system_id, $tidi);
     }
 
     public function removechar(Request $request, $campid)
