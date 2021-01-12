@@ -1,5 +1,5 @@
 <template>
-    <div class=" pr-4 h4 align-items-baseline justify-sm-end">
+    <div class=" pr-4 h4  d-flex align-items-baseline justify-end">
         <div>
             System TiDi:
             <span class="green--text font-weight-bold"
