@@ -407,7 +407,7 @@
             </v-card-text>
             <v-spacer></v-spacer>
             <v-card-actions class=" pt-4">
-                <div>
+                <div class=" full-width">
                     <div class=" d-inline-flex">
                         <div>
                             <LastedChecked
