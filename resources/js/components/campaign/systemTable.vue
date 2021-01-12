@@ -10,13 +10,12 @@
                             style=" width: 100%;"
                         >
                             <div style=" width:100%">
-                                <div>
-                                    <SystemTidi
-                                        :CampaignSolaSystem="CampaignSolaSystem"
-                                        v-if="$can('super')"
-                                    >
-                                    </SystemTidi>
-                                </div>
+                                <SystemTidi
+                                    :CampaignSolaSystem="CampaignSolaSystem"
+                                    v-if="$can('super')"
+                                >
+                                </SystemTidi>
+
                                 <div
                                     class="d-flex justify-space-between align-center"
                                 >
