@@ -76,7 +76,7 @@ export default {
 
     methods: {
         placeHolder() {
-            var placeHolder = CampaignSolaSystem[0]["tidi"];
+            var placeHolder = this.CampaignSolaSystem[0]["tidi"];
             placeHolder = toString(placeHolder);
             return placeHolder;
         }
