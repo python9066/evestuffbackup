@@ -1,8 +1,8 @@
 <template>
     <div class=" pr-4">
         System TiDi:
-        <span class="green--text"
-            ><strong>{{ CampaignSolaSystem[0]["tidi"] }}%</strong></span
+        <span class="green--text font-weight-bold"
+            >{{ CampaignSolaSystem[0]["tidi"] }}%</span
         >
     </div>
 </template>
