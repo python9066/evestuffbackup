@@ -17,7 +17,7 @@
                                     >
                                     </SystemTidi>
                                 </div>
-                                <div>
+                                <div class=" d-inline-flex">
                                     <div>{{ system_name }}</div>
                                     <v-divider
                                         class="mx-4 my-0"
