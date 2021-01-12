@@ -15,7 +15,7 @@
                                     v-if="$can('super')"
                                 >
                                 </SystemTidi>
-
+                                <v-divider></v-divider>
                                 <div
                                     class="d-flex justify-space-between align-center"
                                 >
