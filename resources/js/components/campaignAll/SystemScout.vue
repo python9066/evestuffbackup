@@ -29,7 +29,10 @@
             <v-icon
                 v-if="
                     $can('super') &&
-                        CampaignSolaSystem[0]['supervisor_id'] != null
+                        CampaignSolaSystem[0]['supervisor_id'] != null &&
+                        ($can('edit_system_scout') ||
+                            this.$store.state.user_id ==
+                                CampaignSolaSystem[0]['supervisor_id'])
                 "
                 color="orange darken-3"
                 small
