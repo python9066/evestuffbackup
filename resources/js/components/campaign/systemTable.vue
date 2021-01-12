@@ -411,7 +411,7 @@
                     <div class=" d-inline-flex">
                         <LastedChecked :CampaignSolaSystem="CampaignSolaSystem">
                         </LastedChecked>
-
+                        <v-spacer></v-spacer>
                         <SystemTidi
                             :CampaignSolaSystem="CampaignSolaSystem"
                             v-if="$can('super')"

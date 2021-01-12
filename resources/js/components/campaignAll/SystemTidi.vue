@@ -1,7 +1,5 @@
 <template>
-    <div>
-        {{ CampaignSolaSystem }}
-    </div>
+    <div>System TiDi: {{ CampaignSolaSystem[0]["tidi"] }}</div>
 </template>
 
 <script>
