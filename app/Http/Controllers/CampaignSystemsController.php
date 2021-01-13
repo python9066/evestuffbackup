@@ -175,7 +175,9 @@ class CampaignSystemsController extends Controller
         if ($systems->count() != 0) {
             foreach ($systems as $system) {
                 $time_passed = strtotime(now()) - strtotime($system->input_time);
-                $time_passed = $time_passed * ($request->oldTidi / 100);
+                // $time_passed = $time_passed * ($request->oldTidi / 100);
+                // $time_passed = $time_passed * ($request->oldTidi / 100);
+                $time_passed = 0;
                 $time_left = strtotime($system->end_time) - strtotime(now());
                 $time_left = $time_left * ($request->oldTidi / 100);
                 $time_left = $time_left / ($request->newTidi / 100);
