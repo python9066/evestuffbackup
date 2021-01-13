@@ -34,7 +34,8 @@ class LoggingController extends Controller
         ]);
 
         $node_id = CampaignSystem::where('campaign_id', $request->campaign_id)->where('node_id', $request->node_id)->value('id');
-        dd($node_id, $log);
+        $log->update(['node_id' => $node_id]);
+        $log->save();
     }
 
     public function store(Request $request, $campid)
