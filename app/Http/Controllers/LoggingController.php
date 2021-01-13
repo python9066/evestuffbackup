@@ -29,7 +29,7 @@ class LoggingController extends Controller
     {
         $log = Logging::create([
             'campaign_id' => $request->campaign_id,
-            'sola_id' => $request->sola_id,
+            'campaign_sola_systems_id' => $request->campaign_sola_systems_id,
             'user_id' => $request->user_id,
             'logging_type_id' => 1
         ]);
