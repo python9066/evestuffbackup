@@ -631,6 +631,7 @@ export default {
         },
 
         async deleteNode(item) {
+            console.log("startremove");
             await axios({
                 method: "DELETE", //you can set what request you want to be
                 url: "/api/campaignsystems/" + item.id + "/" + this.campaign_id,
@@ -649,7 +650,7 @@ export default {
                 campaign_sola_systems_id: this.CampaignSolaSystem[0]["id"],
                 user_id: this.$store.state.user_id
             };
-
+            console.log("logremove");
             axios({
                 method: "POST", //you can set what request you want to be
                 url: "/api/checkdeletenode/" + this.campaign_id,
