@@ -89,21 +89,22 @@ export default {
                 oldTidi: this.CampaignSolaSystem[0]["tidi"],
                 solaID: this.CampaignSolaSystem[0]["id"]
             };
+            console.log(this.CampaignSolaSystem);
 
-            // await axios({
-            //     method: "put", //you can set what request you want to be
-            //     url:
-            //         "/api/campaignsystemstidi/" +
-            //         this.CampaignSolaSystem[0]["system_id"] +
-            //         "/" +
-            //         this.CampaignSolaSystem[0]["campaign_id"],
-            //     data: request,
-            //     headers: {
-            //         Authorization: "Bearer " + this.$store.state.token,
-            //         Accept: "application/json",
-            //         "Content-Type": "application/json"
-            //     }
-            // });
+            await axios({
+                method: "put", //you can set what request you want to be
+                url:
+                    "/api/campaignsystemstidi/" +
+                    this.CampaignSolaSystem[0]["system_id"] +
+                    "/" +
+                    this.CampaignSolaSystem[0]["campaign_id"],
+                data: request,
+                headers: {
+                    Authorization: "Bearer " + this.$store.state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                }
+            });
         }
     },
 
