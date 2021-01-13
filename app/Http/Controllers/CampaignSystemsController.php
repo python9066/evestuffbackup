@@ -179,8 +179,9 @@ class CampaignSystemsController extends Controller
                 $end_time = now()->modify("+ " . $time_left . " seconds");
                 $system->update(['end_time' => $end_time]);
                 $system->save();
-                dd($end_time);
             }
+
+            CampaignSolaSystem::where('id', $request->solaID)->uodate(['tidi' => $request->newTidi]);
         }
 
         // $flag = collect([
