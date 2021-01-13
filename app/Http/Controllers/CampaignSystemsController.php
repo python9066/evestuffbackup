@@ -168,6 +168,7 @@ class CampaignSystemsController extends Controller
             foreach ($systems as $system) {
                 $time_left = strtotime($system->end_time) - strtotime(now());
                 $time_left = $time_left * ($request->oldTidi / 100);
+                $time_left = $time_left / ($request->newTidi / 100);
                 $end_time = now()->modify("+ " . $time_left . " seconds");
                 dd($end_time);
             }
