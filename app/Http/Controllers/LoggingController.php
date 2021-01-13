@@ -46,14 +46,14 @@ class LoggingController extends Controller
 
     public function nodeDelete(Request $request, $campid)
     {
-        $log = Logging::create($request->all());
-        $log->update(['logging_type_id' => 2]);
-        $log->save();
-        $flag = collect([
-            'flag' => 10,
-            'id' => $campid,
-        ]);
-        broadcast(new CampaignSystemUpdate($flag));
+        // $log = Logging::create($request->all());
+        // $log->update(['logging_type_id' => 2]);
+        // $log->save();
+        // $flag = collect([
+        //     'flag' => 10,
+        //     'id' => $campid,
+        // ]);
+        // broadcast(new CampaignSystemUpdate($flag));
     }
 
     public function store(Request $request, $campid)

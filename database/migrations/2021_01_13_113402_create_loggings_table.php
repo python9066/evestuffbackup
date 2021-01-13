@@ -16,8 +16,10 @@ class CreateLoggingsTable extends Migration
         Schema::create('loggings', function (Blueprint $table) {
             $table->id();
             $table->foreignId('campaign_id');
-            $table->foreignId('sola_id')->references('id')->on('campaign_sola_systems');
-            $table->foreignId('node_id')->nullable()->references('id')->on('campaign_systems');
+            $table->foreignId('sola_id')->references('id')->on('campaign_sola_systems')->onUpdate('no action')
+                ->onDelete('no action');
+            $table->foreignId('node_id')->nullable()->references('id')->on('campaign_systems')->onUpdate('no action')
+                ->onDelete('no action');;
             $table->foreignId('user_id');
             $table->foreignId('logging_type_id')->nullable();
             $table->text('text')->nullable();
