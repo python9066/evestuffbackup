@@ -180,9 +180,8 @@ class CampaignSystemsController extends Controller
                 $system->update(['end_time' => $end_time]);
                 $system->save();
             }
-
-            CampaignSolaSystem::where('id', $request->solaID)->update(['tidi' => $request->newTidi]);
         }
+        CampaignSolaSystem::where('id', $request->solaID)->update(['tidi' => $request->newTidi]);
 
         // $flag = collect([
         //     'flag' => 7,
