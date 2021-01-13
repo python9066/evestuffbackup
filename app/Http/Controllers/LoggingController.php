@@ -31,12 +31,9 @@ class LoggingController extends Controller
             'campaign_id' => $request->campaign_id,
             'campaign_sola_systems_id' => $request->campaign_sola_systems_id,
             'user_id' => $request->user_id,
+            'campaign_systems_id' => $request->campaign_systems_id,
             'logging_type_id' => 1
         ]);
-
-        $node_id = CampaignSystem::where('campaign_id', $request->campaign_id)->where('node_id', $request->campaign_sola_systems_id)->value('id');
-        $log->update(['campaign_systems_id' => $node_id]);
-        $log->save();
         $flag = collect([
             'flag' => 10,
             'id' => $campid,
