@@ -166,8 +166,8 @@ class CampaignSystemsController extends Controller
 
         if ($systems->count() != 0) {
             foreach ($systems as $system) {
-
-                dd($system->end_time);
+                $difference_in_seconds = strtotime($system->end_time) - strtotime(now());
+                dd($difference_in_seconds);
             }
         }
 
