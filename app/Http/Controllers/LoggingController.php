@@ -26,8 +26,8 @@ class LoggingController extends Controller
      */
     public function store(Request $request, $campid)
     {
-        Logging::created($request->all());
-        //dd($log);
+        Logging::create($request->all());
+        dd($log);
     }
 
     /**
