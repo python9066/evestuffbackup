@@ -561,7 +561,6 @@ export default {
                 system_id: this.system_id,
                 campaign_id: this.campaign_id
             };
-            console.log(request);
 
             await axios({
                 method: "put", //you can set what request you want to be
@@ -831,7 +830,7 @@ export default {
                     this.noteText +
                     item.notes;
             }
-            console.log(note);
+
             item.notes = note;
             let request = {
                 notes: note
@@ -960,22 +959,27 @@ export default {
                     }
                 });
             }
+
+            request = null;
+            request = {
+                campaign_id: this.campaign_id,
+                system_id: this.system_id,
+                node_id: item.id,
+                sola_id: this.CampaignSolaSystem[0]["id"],
+                user_id: this.$store.state.user_id
+            };
+
+            axios({
+                method: "POST", //you can set what request you want to be
+                url: "/api/checkdeletenode/" + this.campaign_id,
+                data: request,
+                headers: {
+                    Authorization: "Bearer " + this.$store.state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                }
+            });
         }
-
-        // if (item.site_id == null) {
-        //     return false;
-        // }
-
-        // if (
-        //     item.site_id == this.$store.state.user_id && item.end_time == null
-        // ) {
-        //     if (item.status_id == 2 || item.status_id == 3) {
-        //         return true;
-        //     }
-        //     return false;
-        // } else {
-        //     return false;
-        // }
     },
 
     computed: {

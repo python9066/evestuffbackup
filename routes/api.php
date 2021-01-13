@@ -101,5 +101,6 @@ Route::middleware('auth:api')->group(function () {
     Route::get('/campaignsolasystems', 'CampaignSolaSystemsController@index');
     Route::put('/campaignsolasystems/{solaid}/{campid}', 'CampaignSolaSystemsController@update');
 
-    Route::post('/checkaddnode/{campid}', 'LoggingController@add');
+    Route::post('/checkaddnode/{campid}', 'LoggingController@NodeAdd');
+    Route::post('/checkdeletenode/{campid}', 'LoggingController@NodeDelete');
 });

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\CampaignSystem;
 use App\Models\Logging;
 use Illuminate\Http\Request;
+use App\Events\CampaignSystemUpdate;
 
 class LoggingController extends Controller
 {
@@ -24,7 +25,7 @@ class LoggingController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function add(Request $request, $campid)
+    public function nodeAdd(Request $request, $campid)
     {
         $log = Logging::create([
             'campaign_id' => $request->campaign_id,
@@ -36,6 +37,23 @@ class LoggingController extends Controller
         $node_id = CampaignSystem::where('campaign_id', $request->campaign_id)->where('node_id', $request->node_id)->value('id');
         $log->update(['node_id' => $node_id]);
         $log->save();
+        $flag = collect([
+            'flag' => 10,
+            'id' => $campid,
+        ]);
+        broadcast(new CampaignSystemUpdate($flag));
+    }
+
+    public function nodeDelete(Request $request, $campid)
+    {
+        $log = Logging::create($request->all());
+        $log->update(['node_id' => $request->node_id]);
+        $log->save();
+        $flag = collect([
+            'flag' => 10,
+            'id' => $campid,
+        ]);
+        broadcast(new CampaignSystemUpdate($flag));
     }
 
     public function store(Request $request, $campid)
