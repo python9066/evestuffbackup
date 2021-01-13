@@ -223,7 +223,7 @@
                             <v-row no-gutters>
                                 <div style="width: 400px;">
                                     <watchUserTable
-                                        :campaign_id="this.campaignId"
+                                        :campaign_id="this.campaign_id"
                                     >
                                     </watchUserTable>
                                 </div>
