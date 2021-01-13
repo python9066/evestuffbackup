@@ -2,7 +2,7 @@
     <v-col cols="10">
         <v-card tile min-width="700px">
             <v-card-title class="d-flex justify-space-between align-center ">
-                <div>Table of all your saved Charaters</div>
+                <div>Table of all your saved Characters</div>
                 <div>
                     <v-menu
                         :close-on-content-click="false"
