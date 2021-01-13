@@ -70,8 +70,7 @@ export default {
     data() {
         return {
             tidiShow: false,
-            tidiEdit: null,
-            solaID: this.CampaignSolaSystem[0]["id"]
+            tidiEdit: null
         };
     },
 
@@ -87,7 +86,8 @@ export default {
             console.log(this.tidiEdit);
             var request = {
                 newTidi: this.tidiEdit,
-                oldTidi: this.CampaignSolaSystem[0]["tidi"]
+                oldTidi: this.CampaignSolaSystem[0]["tidi"],
+                solaID: this.CampaignSolaSystem[0]["id"]
             };
 
             await axios({
