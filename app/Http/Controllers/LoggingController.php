@@ -32,7 +32,9 @@ class LoggingController extends Controller
             'user_id' => $request->user_id,
             'logging_type_id' => 1
         ]);
-        dd($log);
+
+        $node_id = CampaignSystem::where('campaign_id', $request->campaign_id)->where('node_id', $request->node_id)->value('id');
+        dd($node_id, $log);
     }
 
     public function store(Request $request, $campid)
