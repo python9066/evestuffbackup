@@ -179,7 +179,7 @@ class CampaignSystemsController extends Controller
                 $time_left = strtotime($system->end_time) - strtotime(now());
                 $time_left = $time_left * ($request->oldTidi / 100);
                 $time_left = $time_left / ($request->newTidi / 100);
-                // $time_left = $time_left + $time_passed;
+                $time_left = $time_left - $time_passed;
                 $end_time = now()->modify("+ " . round($time_left) . " seconds");
                 $system->update(['end_time' => $end_time, 'input_time' => now()]);
                 $system->save();
