@@ -184,10 +184,10 @@ class CampaignSystemsController extends Controller
         CampaignSolaSystem::where('id', $request->solaID)->update(['tidi' => $request->newTidi]);
         dd($request);
 
-        // $flag = collect([
-        //     'flag' => 7,
-        //     'id' => $campid,
-        // ]);
-        // broadcast(new CampaignSystemUpdate($flag));
+        $flag = collect([
+            'flag' => 9,
+            'id' => $campid,
+        ]);
+        broadcast(new CampaignSystemUpdate($flag));
     }
 }
