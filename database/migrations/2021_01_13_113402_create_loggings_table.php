@@ -13,7 +13,7 @@ class CreateLoggingsTable extends Migration
      */
     public function up()
     {
-        Schema::disableForeignKeyConstraints();
+
         Schema::create('loggings', function (Blueprint $table) {
             $table->id();
             $table->foreignId('campaign_id');
@@ -24,6 +24,7 @@ class CreateLoggingsTable extends Migration
             $table->text('text')->nullable();
             $table->timestamps();
         });
+        Schema::disableForeignKeyConstraints();
     }
 
     /**
