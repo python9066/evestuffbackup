@@ -70,7 +70,8 @@ export default {
     data() {
         return {
             tidiShow: false,
-            tidiEdit: null
+            tidiEdit: null,
+            solaID: this.CampaignSolaSystem[0]["id"]
         };
     },
 
