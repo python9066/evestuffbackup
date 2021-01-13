@@ -17,7 +17,7 @@ class CreateLoggingsTable extends Migration
             $table->id();
             $table->foreignId('campaign_id');
             $table->foreignId('sola_id')->references('id')->on('campaign_sola_systems');
-            $table->foreignId('node_id')->references('id')->on('campaign_systems');
+            $table->foreignId('node_id')->nullable()->references('node_id')->on('campaign_systems');
             $table->foreignId('user_id');
             $table->foreignId('logging_type_id');
             $table->text('text');
