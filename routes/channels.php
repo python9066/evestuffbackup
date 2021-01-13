@@ -20,31 +20,34 @@ Broadcast::channel('App.User.{id}', function ($user, $id) {
 
 Broadcast::channel('notes', function () {
     return Auth::check();
-  });
+});
 
-  Broadcast::channel('campaigns', function () {
+Broadcast::channel('campaigns', function () {
     return Auth::check();
-  });
+});
 
-  Broadcast::channel('campaignsystem.{id}', function () {
+Broadcast::channel('campaignsystem.{id}', function () {
     return Auth::check();
-  });
+});
 
-  Broadcast::channel('userupdate', function () {
+Broadcast::channel('userupdate', function () {
     return Auth::check();
-  });
+});
 
-  Broadcast::channel('campaignsystemmembers.{id}', function () {
+Broadcast::channel('campaignsystemmembers.{id}', function () {
     return Auth::check();
-  });
+});
 
-  Broadcast::channel('stations', function () {
+Broadcast::channel('stations', function () {
     return Auth::check();
-  });
+});
 
-  Broadcast::channel('towers', function () {
+Broadcast::channel('towers', function () {
     return Auth::check();
-  });
+});
+
+
+
 
   /////---------------------/////
 

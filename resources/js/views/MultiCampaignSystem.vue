@@ -491,6 +491,14 @@ export default {
                     this.loadCampaignSolaSystems();
                     this.loadCampaignSystemRecords();
                 }
+                if (e.flag.flag == 11) {
+                    //  console.log(6);
+                    this.$store.dispatch("getCampaignJoinData");
+                    this.loadUsersRecords();
+                    this.loadcampaigns();
+                    this.loadCampaignSolaSystems();
+                    this.loadCampaignSystemRecords();
+                }
             },
 
             window.addEventListener("beforeunload", this.leaving)

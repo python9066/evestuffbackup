@@ -9,6 +9,7 @@ use App\Models\CampaignSystemUsers;
 use App\Models\CampaignUser;
 use App\Models\CustomCampaign;
 use Illuminate\Http\Request;
+use App\Events\CampaignSystemUpdate;
 
 class CustomCampaignsController extends Controller
 {
@@ -76,6 +77,12 @@ class CustomCampaignsController extends Controller
                 };
             }
         }
+
+        $flag = collect([
+            'flag' => 11,
+            'id' => $campid,
+        ]);
+        broadcast(new CampaignSystemUpdate($flag));
     }
 
     /**
