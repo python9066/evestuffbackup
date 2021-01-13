@@ -486,6 +486,11 @@ export default {
                     //  console.log(6);
                     this.loadCampaignSolaSystems();
                 }
+                if (e.flag.flag == 9) {
+                    //  console.log(6);
+                    this.loadCampaignSolaSystems();
+                    this.loadCampaignSystemRecords();
+                }
             },
 
             window.addEventListener("beforeunload", this.leaving)
