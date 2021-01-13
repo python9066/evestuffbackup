@@ -1,6 +1,6 @@
 <?php
 
-namespace utils\Timerhelper;
+namespace utils\Loghelper;
 
 use App\Models\Structure;
 use App\Models\System;
@@ -10,7 +10,7 @@ use GuzzleHttp\Utils;
 
 use function GuzzleHttp\json_decode;
 
-class Timerhelper
+class Loghelper
 {
 
     public static function update()
