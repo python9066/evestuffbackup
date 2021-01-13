@@ -100,4 +100,6 @@ Route::middleware('auth:api')->group(function () {
 
     Route::get('/campaignsolasystems', 'CampaignSolaSystemsController@index');
     Route::put('/campaignsolasystems/{solaid}/{campid}', 'CampaignSolaSystemsController@update');
+
+    Route::post('/checkaddnode', 'LoggingController@store');
 });

@@ -873,6 +873,26 @@ export default {
             });
 
             this.$store.dispatch("getCampaignSystemsRecords");
+
+            request = null;
+            request = {
+                campaign_id: this.campaign_id,
+                system_id: this.system_id,
+                node_id: node,
+                sola_id: this.CampaignSolaSystem[0]["id"],
+                user_id: this.$store.stat.user_id
+            };
+
+            axios({
+                method: "POST", //you can set what request you want to be
+                url: "/api/checkaddnode/" + this.campaign_id,
+                data: request,
+                headers: {
+                    Authorization: "Bearer " + this.$store.state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                }
+            });
         },
 
         removeCharNode(item) {
