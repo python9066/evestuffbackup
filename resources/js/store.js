@@ -262,7 +262,7 @@ export default new Vuex.Store({
         async getCampaignSolaSystems({ commit, state }) {
             let res = await axios({
                 method: "get",
-                url: "/api/campaignsolasystems/",
+                url: "/api/campaignsolasystems",
                 headers: {
                     Authorization: "Bearer " + state.token,
                     Accept: "application/json",
