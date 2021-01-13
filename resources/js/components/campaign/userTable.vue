@@ -2,7 +2,7 @@
     <v-col cols="10">
         <v-card tile>
             <v-card-title class="d-flex justify-space-between align-center ">
-                <div>Table of all Chars involed in this Campaign</div>
+                <div>Table of all Characters involved in this Campaign</div>
                 <div>
                     <v-btn-toggle
                         right-align
