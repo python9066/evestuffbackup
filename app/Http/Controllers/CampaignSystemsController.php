@@ -164,10 +164,10 @@ class CampaignSystemsController extends Controller
         $systems = CampaignSystem::where('system_id', $sysid)
             ->where('campaign_id', $campid)
             ->where('end_time', "!=", null)
-            ->orwhere('end_time', ">", now())
-            ->orwhere('campaign_system_status_id', '!=', 4)
-            ->orwhere('campaign_system_status_id', '!=', 5)
-            ->orwhere('campaign_system_status_id', '!=', 10)
+            ->where('end_time', ">", now())
+            ->where('campaign_system_status_id', '!=', 4)
+            ->where('campaign_system_status_id', '!=', 5)
+            ->where('campaign_system_status_id', '!=', 10)
             ->get();
 
         dd($systems->count());
