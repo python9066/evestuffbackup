@@ -334,7 +334,7 @@
         </v-row>
 
         <v-row no-gutters justify="space-around" v-if="showTable == true">
-            <userTable :campaign_id="campaign_id"> </userTable>
+            <userTable :campaign_id="campaignId"> </userTable>
         </v-row>
 
         <v-row no-gutters justify="center" :v-if="systemLoaded == true">
@@ -451,6 +451,8 @@ export default {
     async created() {
         this.campaignId = this.$route.params.id;
         this.campaign_id = parseInt(this.$route.params.id);
+        console.log(this.campaignId);
+        console.log(this.campaign_id);
 
         Echo.private("campaignsystem." + this.$route.params.id).listen(
             "CampaignSystemUpdate",
