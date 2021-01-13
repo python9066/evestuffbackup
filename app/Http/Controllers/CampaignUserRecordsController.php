@@ -36,12 +36,12 @@ class CampaignUserRecordsController extends Controller
      */
     public function show($id)
     {
-        return [ 'users' => CampaignUserRecords::where('campaign_id',$id)->get()];
+        return ['users' => CampaignUserRecords::where('campaign_id', $id)->get()];
     }
 
     public function bychar($id)
     {
-        return [ 'users' => CampaignUserRecords::where('site_id',$id)->get()];
+        return ['users' => CampaignUserRecords::where('site_id', $id)->get()];
     }
 
     /**

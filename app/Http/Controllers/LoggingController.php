@@ -27,30 +27,30 @@ class LoggingController extends Controller
      */
     public function nodeAdd(Request $request, $campid)
     {
-        $log = Logging::create([
-            'campaign_id' => $request->campaign_id,
-            'campaign_sola_systems_id' => $request->campaign_sola_systems_id,
-            'user_id' => $request->user_id,
-            'campaign_systems_id' => $request->campaign_systems_id,
-            'logging_type_id' => 1
-        ]);
-        $flag = collect([
-            'flag' => 10,
-            'id' => $campid,
-        ]);
-        broadcast(new CampaignSystemUpdate($flag));
+        // $log = Logging::create([
+        //     'campaign_id' => $request->campaign_id,
+        //     'campaign_sola_systems_id' => $request->campaign_sola_systems_id,
+        //     'user_id' => $request->user_id,
+        //     'campaign_systems_id' => $request->campaign_systems_id,
+        //     'logging_type_id' => 1
+        // ]);
+        // $flag = collect([
+        //     'flag' => 10,
+        //     'id' => $campid,
+        // ]);
+        // broadcast(new CampaignSystemUpdate($flag));
     }
 
     public function nodeDelete(Request $request, $campid)
     {
-        $log = Logging::create($request->all());
-        $log->update(['logging_type_id' => 2]);
-        $log->save();
-        $flag = collect([
-            'flag' => 10,
-            'id' => $campid,
-        ]);
-        broadcast(new CampaignSystemUpdate($flag));
+        // $log = Logging::create($request->all());
+        // $log->update(['logging_type_id' => 2]);
+        // $log->save();
+        // $flag = collect([
+        //     'flag' => 10,
+        //     'id' => $campid,
+        // ]);
+        // broadcast(new CampaignSystemUpdate($flag));
     }
 
     public function store(Request $request, $campid)
