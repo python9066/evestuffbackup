@@ -334,7 +334,7 @@
         </v-row>
 
         <v-row no-gutters justify="space-around" v-if="showTable == true">
-            <userTable :campaign_id="campaignId"> </userTable>
+            <userTable :campaign_id="campaign_id"> </userTable>
         </v-row>
 
         <v-row no-gutters justify="center" :v-if="systemLoaded == true">

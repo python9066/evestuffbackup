@@ -20,9 +20,4 @@ class CustomCampaign extends Model
     {
         return $this->belongsTo(CampaignStatus::class);
     }
-
-
-    protected $casts = [
-        'id' => 'integer'
-    ];
 }
