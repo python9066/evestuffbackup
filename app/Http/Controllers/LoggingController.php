@@ -26,7 +26,12 @@ class LoggingController extends Controller
      */
     public function store(Request $request, $campid)
     {
-        $log = Logging::create(['campaign_id' => $request->campaign_id, 'sola_id' => $request->sola_id, 'user_id' => $request->user_id]);
+        $log = Logging::create([
+            'campaign_id' => $request->campaign_id,
+            'sola_id' => $request->sola_id,
+            'user_id' => $request->user_id,
+            'logging_type_id' => 1
+        ]);
         dd($log);
     }
 
