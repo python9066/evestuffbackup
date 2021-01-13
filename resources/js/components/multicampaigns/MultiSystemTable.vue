@@ -439,11 +439,16 @@
                 </v-data-table>
             </v-card-text>
             <v-spacer></v-spacer>
-            <v-card-actions class=" pt-4">
-                <div>
-                    <div>
+            <v-card-actions class=" pt-4 d-inline-flex">
+                <div class=" d-flex-block" style="width:100%;">
+                    <div
+                        class=" d-inline-flex justify-md-space-between"
+                        style="width:100%;"
+                    >
                         <LastedChecked :CampaignSolaSystem="CampaignSolaSystem">
                         </LastedChecked>
+                        <SystemTidi :CampaignSolaSystem="CampaignSolaSystem">
+                        </SystemTidi>
                     </div>
                     <div>
                         <SystemScout :CampaignSolaSystem="CampaignSolaSystem">
