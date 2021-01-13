@@ -17,14 +17,13 @@ class CreateLoggingsTable extends Migration
         Schema::create('loggings', function (Blueprint $table) {
             $table->id();
             $table->foreignId('campaign_id');
-            $table->foreignId('sola_id')->references('id')->on('campaign_sola_systems');
-            $table->foreignId('node_id')->nullable()->references('id')->on('campaign_systems');
+            $table->foreignId('campaign_sola_systems_id');
+            $table->foreignId('campaign_systems_id')->nullable();
             $table->foreignId('user_id');
             $table->foreignId('logging_type_id')->nullable();
             $table->text('text')->nullable();
             $table->timestamps();
         });
-        Schema::disableForeignKeyConstraints();
     }
 
     /**
