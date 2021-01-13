@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class CustomCampaign extends Model
 {
-    protected $guarded =[];
+    protected $guarded = [];
     public $timestamps = false;
 
 
@@ -20,4 +20,9 @@ class CustomCampaign extends Model
     {
         return $this->belongsTo(CampaignStatus::class);
     }
+
+
+    protected $casts = [
+        'id' => 'integer'
+    ];
 }
