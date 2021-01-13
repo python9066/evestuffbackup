@@ -2,18 +2,21 @@
 
 namespace utils\Loghelper;
 
-use App\Models\Structure;
-use App\Models\System;
-use GuzzleHttp\Client;
-use utils\Helper\Helper;
-use GuzzleHttp\Utils;
+use App\Events\CampaignSystemUpdate;
+use App\Models\Logging;
 
 use function GuzzleHttp\json_decode;
 
 class Loghelper
 {
 
-    public static function update()
+    public static function logadd($logging)
     {
+        Logging::create($logging->all());
+        $flag = collect([
+            'flag' => 10,
+            'id' => $campid,
+        ]);
+        broadcast(new CampaignSystemUpdate($flag));
     }
 }
