@@ -28,16 +28,8 @@ class CampaignSystemsController extends Controller
      */
     public function store(Request $request, $campid)
     {
-        $data = [
-            'campaign_id' => $request->campaign_id,
-            'custom_campaign_id' => $request->custom_campaign_id,
-            'system_id' => $request->system_id,
-            'node_id' => $request->node_id,
-        ];
 
-        $object = json_decode(json_encode($data), false);
-        dd($request, $object);
-        CampaignSystem::create($object->all());
+        CampaignSystem::create($request->all());
         $flag = collect([
             'flag' => 2,
             'id' => $campid,

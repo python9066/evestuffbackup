@@ -857,11 +857,7 @@ export default {
             var request = {
                 campaign_id: this.campaign_id,
                 system_id: this.system_id,
-                node_id: node,
-                custom_campaign_id: null,
-                sola_id: this.CampaignSolaSystem[0]["id"],
-                user_id: this.$store.state.user_id,
-                logType_id: 1
+                node_id: node
             };
             this.nodeText = "";
             this.addShown = false;
