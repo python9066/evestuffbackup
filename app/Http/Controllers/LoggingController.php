@@ -24,7 +24,7 @@ class LoggingController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, $campid)
+    public function add(Request $request, $campid)
     {
         $log = Logging::create([
             'campaign_id' => $request->campaign_id,
@@ -33,6 +33,10 @@ class LoggingController extends Controller
             'logging_type_id' => 1
         ]);
         dd($log);
+    }
+
+    public function store(Request $request, $campid)
+    {
     }
 
     /**
