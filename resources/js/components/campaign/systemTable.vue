@@ -644,6 +644,7 @@ export default {
 
             this.$store.dispatch("getCampaignSystemsRecords");
             this.$store.dispatch("getCampaignUsersRecords", this.campaign_id);
+            var request = null;
             request = {
                 campaign_id: this.campaign_id,
                 campaign_systems_id: item.node_id,
