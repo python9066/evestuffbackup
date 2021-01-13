@@ -168,6 +168,7 @@ export default {
                     droprole => droprole.value == role
                 ).text;
             }
+
             if (this.oldChar.ship != this.editShip) {
                 var ship = this.editShip;
             }
@@ -177,6 +178,10 @@ export default {
 
             if (this.oldChar.char_name != this.editCharName) {
                 var char_name = this.editCharName;
+            }
+            if (role == 1) {
+                ship = null;
+                link = null;
             }
             // console.log(role_name);
             var request = {
