@@ -166,8 +166,10 @@ class CampaignSystemsController extends Controller
 
         if ($systems->count() != 0) {
             foreach ($systems as $system) {
-                $difference_in_seconds = strtotime($system->end_time) - strtotime(now());
-                dd($difference_in_seconds);
+                $time_left = strtotime($system->end_time) - strtotime(now());
+                $time_left = $time_left * ($request->oldTidi / 100);
+                $end_time = now()->modify("+ " . $time_left . " seconds");
+                dd($end_time);
             }
         }
 
