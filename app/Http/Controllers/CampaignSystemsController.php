@@ -36,6 +36,7 @@ class CampaignSystemsController extends Controller
         ];
 
         $object = json_decode(json_encode($data), false);
+        dd($request, $object);
         CampaignSystem::create($object->all());
         $flag = collect([
             'flag' => 2,
