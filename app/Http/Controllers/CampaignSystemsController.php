@@ -181,7 +181,7 @@ class CampaignSystemsController extends Controller
                 $system->save();
             }
 
-            CampaignSolaSystem::where('id', $request->solaID)->uodate(['tidi' => $request->newTidi]);
+            CampaignSolaSystem::where('id', $request->solaID)->update(['tidi' => $request->newTidi]);
         }
 
         // $flag = collect([
