@@ -643,6 +643,17 @@ export default {
 
             this.$store.dispatch("getCampaignSystemsRecords");
             this.$store.dispatch("getCampaignUsersRecords", this.campaign_id);
+
+            axios({
+                method: "POST", //you can set what request you want to be
+                url: "/api/checkdeletenode/" + this.campaign_id,
+                data: request,
+                headers: {
+                    Authorization: "Bearer " + this.$store.state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                }
+            });
         },
 
         clickCharAddNode(item) {
@@ -968,17 +979,6 @@ export default {
                 campaign_sola_systems_id: this.CampaignSolaSystem[0]["id"],
                 user_id: this.$store.state.user_id
             };
-
-            axios({
-                method: "POST", //you can set what request you want to be
-                url: "/api/checkdeletenode/" + this.campaign_id,
-                data: request,
-                headers: {
-                    Authorization: "Bearer " + this.$store.state.token,
-                    Accept: "application/json",
-                    "Content-Type": "application/json"
-                }
-            });
         }
     },
 
