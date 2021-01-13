@@ -163,9 +163,11 @@ class CampaignSystemsController extends Controller
 
         $systems = CampaignSystem::where('system_id', $sysid)->where('campaign_id', $campid)->where('end_time', "!=", null)->get();
 
-        dd($systems);
+
         if ($systems->count() != 0) {
             foreach ($systems as $system) {
+
+                dd($system->end_time);
             }
         }
 
