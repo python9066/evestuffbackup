@@ -414,10 +414,7 @@
                     >
                         <LastedChecked :CampaignSolaSystem="CampaignSolaSystem">
                         </LastedChecked>
-                        <SystemTidi
-                            :CampaignSolaSystem="CampaignSolaSystem"
-                            v-if="$can('super')"
-                        >
+                        <SystemTidi :CampaignSolaSystem="CampaignSolaSystem">
                         </SystemTidi>
                     </div>
                     <div>
