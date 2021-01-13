@@ -183,7 +183,6 @@ class CampaignSystemsController extends Controller
                 $end_time = now()->modify("+ " . round($time_left) . " seconds");
                 $system->update(['end_time' => $end_time, 'input_time' => now()]);
                 $system->save();
-                dd($time_passed);
             }
         }
         CampaignSolaSystem::where('id', $request->solaID)->update(['tidi' => $request->newTidi]);
