@@ -194,8 +194,9 @@ export default {
                 role_id: role,
                 role_name: role_name
             };
-
-            this.$store.dispatch("updateCampaignUsers", item);
+            if (item.campaign_id != null) {
+                this.$store.dispatch("updateCampaignUsers", item);
+            }
             this.$store.dispatch("updateUsersChars", item);
 
             await axios({
