@@ -29,7 +29,8 @@ class CampaignSystemsController extends Controller
     public function store(Request $request, $campid)
     {
 
-        CampaignSystem::create($request->all());
+        $system = CampaignSystem::create($request->all());
+        $system->update(['input_time' => now()]);
         $flag = collect([
             'flag' => 2,
             'id' => $campid,
