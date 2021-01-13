@@ -163,7 +163,7 @@ class CampaignSystemsController extends Controller
 
         $system = CampaignSystem::where('system_id', $sysid)->where('campaign_id', $campid);
         foreach ($system as $system) {
-            dd($system->end_time);
+            dd($request);
         }
 
         // $flag = collect([
