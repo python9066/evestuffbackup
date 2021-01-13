@@ -190,4 +190,37 @@ class CampaignSystemsController extends Controller
         ]);
         broadcast(new CampaignSystemUpdate($flag));
     }
+
+    public function tidimulti(Request $request, $sysid, $campid)
+    {
+
+        $systems = CampaignSystem::where('system_id', $sysid)
+            ->where('custom_campaign_id', $campid)
+            ->where('end_time', "!=", null)
+            ->where('end_time', ">", now())
+            ->where('campaign_system_status_id', '!=', 4)
+            ->where('campaign_system_status_id', '!=', 5)
+            ->where('campaign_system_status_id', '!=', 10)
+            ->get();
+
+        // dd($systems->count());
+        if ($systems->count() != 0) {
+            foreach ($systems as $system) {
+                $time_left = strtotime($system->end_time) - strtotime(now());
+                $time_left = round($time_left * ($request->oldTidi / 100));
+                $time_left = round($time_left / ($request->newTidi / 100));
+                $end_time = now()->modify("+ " . $time_left . " seconds");
+                $system->update(['end_time' => $end_time]);
+                $system->save();
+            }
+        }
+        CampaignSolaSystem::where('id', $request->solaID)->update(['tidi' => $request->newTidi]);
+
+
+        $flag = collect([
+            'flag' => 9,
+            'id' => $campid,
+        ]);
+        broadcast(new CampaignSystemUpdate($flag));
+    }
 }

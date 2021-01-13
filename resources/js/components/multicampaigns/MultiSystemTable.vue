@@ -451,8 +451,10 @@
                     >
                         <LastedChecked :CampaignSolaSystem="CampaignSolaSystem">
                         </LastedChecked>
-                        <SystemTidi :CampaignSolaSystem="CampaignSolaSystem">
-                        </SystemTidi>
+                        <SystemTidiMulti
+                            :CampaignSolaSystem="CampaignSolaSystem"
+                        >
+                        </SystemTidiMulti>
                     </div>
                     <div>
                         <SystemScout :CampaignSolaSystem="CampaignSolaSystem">
