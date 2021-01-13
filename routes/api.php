@@ -64,6 +64,7 @@ Route::middleware('auth:api')->group(function () {
     Route::get('/campaignsystemcheckaddchar/{campid}', 'CampaignSystemsController@checkAddChar');
     Route::post('/campaignsystemuserskick/{campid}', 'CampaignSystemsController@kickUser');
     Route::get('/campaignsystemfinished/{campid}', 'CampaignSystemsController@finishCampaign');
+    Route::put('campaignsystemstidi/{sysid}/{campid}', 'CampaignSystemsController@tidi');
 
     Route::get('/users', 'AuthController@index');
     Route::get('/userrolerecord', 'UserRolesRecordsController@index');

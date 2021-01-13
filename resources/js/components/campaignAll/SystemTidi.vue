@@ -82,8 +82,27 @@ export default {
             return "" + this.CampaignSolaSystem[0]["tidi"];
         },
 
-        editTidi() {
+        async editTidi() {
             console.log(this.tidiEdit);
+            var request = {
+                newTidi: this.tidiEdit,
+                oldTidi: this.CampaignSolaSystem[0]["tidi"]
+            };
+
+            await axios({
+                method: "put", //you can set what request you want to be
+                url:
+                    "/api/campaignsystemstidi/" +
+                    this.CampaignSolaSystem[0]["system_id"] +
+                    "/" +
+                    this.CampaignSolaSystem[0]["campaign_id"],
+                data: request,
+                headers: {
+                    Authorization: "Bearer " + this.$store.state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                }
+            });
         }
     },
 

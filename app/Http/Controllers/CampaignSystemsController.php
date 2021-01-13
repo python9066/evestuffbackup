@@ -157,25 +157,19 @@ class CampaignSystemsController extends Controller
         ]);
         broadcast(new CampaignSystemUpdate($flag))->toOthers();
     }
-    // public function destroy($id)
-    // {
 
-    //
-    //     dd($data);
-    //     $flag = $data->campaigan_id;
-    // $flag = collect([
-    //     'flag' => 2,
-    //     'id' => $data->campaigan_id
-    // ]);
-    //     CampaignSystem::destroy($id);
-    //     CampaignUser::where('campaign_system_id',$id)->update(['campaign_system_id' => null]);
-    //
-    //     $flag =null;
-    //     $flag = collect([
-    //         'flag' => 3,
-    //         'id' => $data->campaigan_id
-    //     ]);
-    //     broadcast(new CampaignSystemUpdate($flag))->toOthers();
+    public function tidi(Request $request, $sysid, $campid)
+    {
 
-    // }
+        $system = CampaignSystem::where('system_id', $sysid)->where('campaign_id', $campid);
+        foreach ($system as $system) {
+            dd($system->end_time);
+        }
+
+        // $flag = collect([
+        //     'flag' => 7,
+        //     'id' => $campid,
+        // ]);
+        // broadcast(new CampaignSystemUpdate($flag));
+    }
 }
