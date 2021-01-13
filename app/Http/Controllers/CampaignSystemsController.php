@@ -170,7 +170,7 @@ class CampaignSystemsController extends Controller
             ->where('campaign_system_status_id', '!=', 10)
             ->get();
 
-        dd($systems->count());
+        // dd($systems->count());
         if ($systems->count() != 0) {
             foreach ($systems as $system) {
                 $time_left = strtotime($system->end_time) - strtotime(now());
