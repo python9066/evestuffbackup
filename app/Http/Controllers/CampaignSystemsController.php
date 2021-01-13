@@ -161,9 +161,10 @@ class CampaignSystemsController extends Controller
     public function tidi(Request $request, $sysid, $campid)
     {
 
-        dd($request);
-        $system = CampaignSystem::where('system_id', $sysid)->where('campaign_id', $campid);
+        $system = CampaignSystem::where('system_id', $sysid)->where('campaign_id', $campid)->get();
+
         foreach ($system as $system) {
+            dd($system->end_time);
         }
 
         // $flag = collect([
