@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CampaignSystem;
+use App\Models\Logging;
 use Illuminate\Http\Request;
 
 class LoggingController extends Controller
@@ -24,7 +26,8 @@ class LoggingController extends Controller
      */
     public function store(Request $request, $campid)
     {
-        dd($request);
+        $log = Logging::created($request->all());
+        dd($log);
     }
 
     /**
