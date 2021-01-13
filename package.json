@@ -10,9 +10,9 @@
         "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
     },
     "devDependencies": {
-        "@fortawesome/fontawesome-free": "^5.15.1",
-        "@fortawesome/fontawesome-svg-core": "^1.2.32",
-        "@fortawesome/free-solid-svg-icons": "^5.15.1",
+        "@fortawesome/fontawesome-free": "^5.15.2",
+        "@fortawesome/fontawesome-svg-core": "^1.2.34",
+        "@fortawesome/free-solid-svg-icons": "^5.15.2",
         "@fortawesome/vue-fontawesome": "^0.1.10",
         "@mdi/js": "^5.8.55",
         "axios": "^0.21.1",
@@ -31,8 +31,8 @@
     },
     "dependencies": {
         "@chenfengyuan/vue-countdown": "^1.1.5",
-        "@fortawesome/free-brands-svg-icons": "^5.15.1",
-        "@fortawesome/free-regular-svg-icons": "^5.15.1",
+        "@fortawesome/free-brands-svg-icons": "^5.15.2",
+        "@fortawesome/free-regular-svg-icons": "^5.15.2",
         "easy-circular-progress": "^1.0.4",
         "laravel-echo": "^1.10.0",
         "moment": "^2.29.1",
