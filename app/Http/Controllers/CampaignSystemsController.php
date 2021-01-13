@@ -177,7 +177,7 @@ class CampaignSystemsController extends Controller
                 $time_left = round($time_left * ($request->oldTidi / 100));
                 $time_left = round($time_left / ($request->newTidi / 100));
                 $end_time = now()->modify("+ " . $time_left . " seconds");
-                $system->update(['end_time' => $end_time]);
+                $system->update(['end_time' => $end_time, 'input_time' => now()]);
                 $system->save();
             }
         }
@@ -210,7 +210,7 @@ class CampaignSystemsController extends Controller
                 $time_left = round($time_left * ($request->oldTidi / 100));
                 $time_left = round($time_left / ($request->newTidi / 100));
                 $end_time = now()->modify("+ " . $time_left . " seconds");
-                $system->update(['end_time' => $end_time]);
+                $system->update(['end_time' => $end_time, 'input_time' => now()]);
                 $system->save();
             }
         }
