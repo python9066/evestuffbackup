@@ -520,7 +520,7 @@
                 :campaign_id="campaign.id"
                 :index="index"
                 :key="system.id"
-                @openAdd="showAdd = false"
+                @openAdd="openAdd($event)"
             >
             </systemTable>
         </v-row>
@@ -560,7 +560,7 @@
 
         <v-overlay z-index="0" :value="showAdd">
             <!-- campaignAll/admin/UserTable.vue -->
-            <AdminHackUserTable @closeAdd="showAdd = false">
+            <AdminHackUserTable @closeAdd="showAdd = false" :item="nodeItem">
             </AdminHackUserTable>
         </v-overlay>
     </div>
@@ -632,7 +632,8 @@ export default {
             overlay: false,
             bullhorn: false,
             link: "",
-            showAdd: false
+            showAdd: false,
+            nodeItem: null
         };
     },
 
@@ -721,6 +722,11 @@ export default {
             if (this.userCount == 0) {
                 this.bullhorn = true;
             }
+        },
+
+        openAdd(item) {
+            this.nodeItem = item;
+            this.showAdd = true;
         },
 
         async finishCampaign() {
