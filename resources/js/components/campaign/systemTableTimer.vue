@@ -190,6 +190,7 @@ export default {
                 input_time: moment.utc().format("YYYY-MM-DD HH:mm:ss"),
                 base_time: base
             };
+            console.log(base);
 
             await axios({
                 method: "put", //you can set what request you want to be
