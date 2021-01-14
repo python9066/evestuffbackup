@@ -351,7 +351,7 @@
                                 ></span
                             >
                             <AdminHack
-                                :v-if="$can('super')"
+                                v-if="$can('super')"
                                 :item="item"
                                 @openAdd="openAdd($event)"
                             ></AdminHack>
