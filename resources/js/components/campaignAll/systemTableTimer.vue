@@ -83,6 +83,8 @@
         >
             <template slot="countdown" slot-scope="scope">
                 <span :class="hackCountDownTextColor(item)"
+                    ><span v-if="scope.props.hours > 0"
+                        >{{ scope.props.hours }}:</span
                     >{{ scope.props.minutes }}:{{ scope.props.seconds }}</span
                 >
                 <v-menu :close-on-content-click="false" :value="timerShown">

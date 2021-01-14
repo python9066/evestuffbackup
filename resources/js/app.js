@@ -33,7 +33,7 @@ Vue.component('userTable', require('./components/campaign/userTable.vue').defaul
 Vue.component('hackingToolMessage', require('./components/random/hackingToolMessage.vue').default);
 Vue.component('v-progress-circular', require('easy-circular-progress/src/index.vue').default);
 Vue.component('messageNotification', require('./components/random/messageNotification.vue').default);
-Vue.component('systemTableTimer', require('./components/campaign/systemTableTimer.vue').default);
+Vue.component('systemTableTimer', require('./components/campaignAll/systemTableTimer.vue').default);
 Vue.component('watchUserTable', require('./components/campaign/watchUserTable.vue').default);
 Vue.component('messageStations', require('./components/random/messageStations.vue').default);
 Vue.component('testingMessage', require('./components/random/testingMessage.vue').default);
