@@ -818,6 +818,9 @@ export default {
                 item.status_id != 8
             ) {
                 return true;
+            } else if ($can("access_multi_campaigns")) {
+                console.log("access_multi_campaigns");
+                return true;
             } else {
                 return false;
             }
