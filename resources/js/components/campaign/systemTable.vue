@@ -350,10 +350,10 @@
                                     ></v-btn
                                 ></span
                             >
-                            <AdminHack
+                            <!-- <AdminHack
                                 :v-if="$can('super')"
                                 :item="item"
-                            ></AdminHack>
+                            ></AdminHack> -->
                         </div>
                     </template>
                     <template v-slot:item.count="{ item }">
