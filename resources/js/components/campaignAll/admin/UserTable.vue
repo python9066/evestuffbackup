@@ -44,7 +44,15 @@ export default {
         nodeItem: Object
     },
     data() {
-        return {};
+        return {
+            headers: [
+                { text: "Name", value: "char_name" },
+                { text: "Main", value: "main_name" },
+                { text: "", value: "actions" }
+
+                // { text: "Vulernable End Time", value: "vulnerable_end_time" }
+            ]
+        };
     },
 
     methods: {
