@@ -32,7 +32,6 @@ class StationChanged implements ShouldBroadcast
     public function __construct(StationRecords $stations)
     {
         $this->stations = $stations;
-
     }
 
     // public function __construct($notifications)

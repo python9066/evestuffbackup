@@ -31,7 +31,6 @@ class NotificationChanged implements ShouldBroadcast
     public function __construct(NotificationRecords $notifications)
     {
         $this->notifications = $notifications;
-
     }
 
     // public function __construct($notifications)

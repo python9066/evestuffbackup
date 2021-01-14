@@ -76,5 +76,3 @@ class CreateOrReplaceCampaignRecordsViewCommand extends Command
         WHERE (campaigns.attackers_score != 1 OR campaigns.attackers_score != 0) AND campaigns.status_id != 10");
     }
 }
-
-

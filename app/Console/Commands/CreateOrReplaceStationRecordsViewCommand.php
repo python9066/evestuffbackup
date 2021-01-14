@@ -38,7 +38,7 @@ class CreateOrReplaceStationRecordsViewCommand extends Command
      */
     public function handle()
     {
-       DB::statement("CREATE VIEW station_records AS SELECT stations.id AS 'id',
+        DB::statement("CREATE VIEW station_records AS SELECT stations.id AS 'id',
        stations.name AS 'station_name',
        stations.station_status_id AS 'system_id',
        systems.system_name AS 'system_name',

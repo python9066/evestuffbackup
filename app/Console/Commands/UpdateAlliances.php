@@ -40,8 +40,8 @@ class UpdateAlliances extends Command
     public function handle()
     {
         $status = Helper::checkeve();
-        if ($status == 1){
-        Alliancehelper::updateAlliances();
+        if ($status == 1) {
+            Alliancehelper::updateAlliances();
         }
     }
 }

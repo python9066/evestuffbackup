@@ -40,8 +40,8 @@ class UpdateTimers extends Command
     public function handle()
     {
         $status = Helper::checkeve();
-        if ($status == 1){
-        Timerhelper::update();
+        if ($status == 1) {
+            Timerhelper::update();
         }
     }
 }

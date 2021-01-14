@@ -6,11 +6,12 @@ use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
 
 class CreateOrReplaceCampaignUserRecordsViewCommand extends Command
-{/**
-    * The name and signature of the console command.
-    *
-    * @var string
-    */
+{
+    /**
+     * The name and signature of the console command.
+     *
+     * @var string
+     */
     protected $signature = 'view:CreateOrReplaceCampaignUserRecordsView';
 
     /**

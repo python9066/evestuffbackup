@@ -6,38 +6,39 @@ use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
 
 class CreateOrReplaceCampaignSystemRecordsViewCommand extends Command
-{ /**
-    * The name and signature of the console command.
-    *
-    * @var string
-    */
-   protected $signature = 'view:CreateOrReplaceCampaignSystemRecordsView';
+{
+    /**
+     * The name and signature of the console command.
+     *
+     * @var string
+     */
+    protected $signature = 'view:CreateOrReplaceCampaignSystemRecordsView';
 
-   /**
-    * The console command description.
-    *
-    * @var string
-    */
-   protected $description = 'Will make the view table for Campaign Systems';
+    /**
+     * The console command description.
+     *
+     * @var string
+     */
+    protected $description = 'Will make the view table for Campaign Systems';
 
-   /**
-    * Create a new command instance.
-    *
-    * @return void
-    */
-   public function __construct()
-   {
-       parent::__construct();
-   }
+    /**
+     * Create a new command instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        parent::__construct();
+    }
 
-   /**
-    * Execute the console command.
-    *
-    * @return int
-    */
-   public function handle()
-   {
-       DB::statement("CREATE VIEW campaign_system_records AS SELECT campaign_systems.id AS id,
+    /**
+     * Execute the console command.
+     *
+     * @return int
+     */
+    public function handle()
+    {
+        DB::statement("CREATE VIEW campaign_system_records AS SELECT campaign_systems.id AS id,
        campaign_systems.node_id AS node,
        campaign_systems.campaign_id AS campaign_id,
        campaign_systems.system_id AS system_id,
@@ -64,5 +65,5 @@ class CreateOrReplaceCampaignSystemRecordsViewCommand extends Command
        JOIN campaign_records ON campaign_records.id = campaign_systems.campaign_id
        JOIN campaigns ON campaigns.id = campaign_systems.campaign_id
        WHERE campaign_systems.campaign_system_status_id != 10");
-   }
+    }
 }

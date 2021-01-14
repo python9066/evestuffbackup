@@ -66,5 +66,4 @@ class CreateOrReplaceTowerRecordsViewCommand extends Command
         LEFT JOIN users ON users.id = towers.user_id
         WHERE towers.tower_status_id != 10");
     }
-
 }

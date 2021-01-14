@@ -73,6 +73,4 @@ class UpdateCampaigns extends Command
             }
         }
     }
-
-
 }

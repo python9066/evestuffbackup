@@ -32,7 +32,6 @@ class TowerChanged implements ShouldBroadcast
     public function __construct(TowerRecord $towers)
     {
         $this->towers = $towers;
-
     }
 
     // public function __construct($notifications)
