@@ -25,7 +25,12 @@
                 hide-details
             ></v-text-field>
 
-            <v-btn-toggle v-model="toggle_exclusive1" mandatory :value="2">
+            <v-btn-toggle
+                v-model="toggle_exclusive1"
+                mandatory
+                :value="2"
+                v-if="$can('super')"
+            >
                 <v-btn
                     :loading="loadingf"
                     :disabled="loadingf"
