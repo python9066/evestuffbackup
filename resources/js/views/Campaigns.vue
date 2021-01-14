@@ -25,6 +25,30 @@
                 hide-details
             ></v-text-field>
 
+            <v-btn-toggle v-model="toggle_exclusive1" mandatory :value="2">
+                <v-btn
+                    :loading="loadingf"
+                    :disabled="loadingf"
+                    @click="itemFlag = 1"
+                >
+                    All
+                </v-btn>
+                <v-btn
+                    :loading="loadingf"
+                    :disabled="loadingf"
+                    @click="itemFlag = 2"
+                >
+                    IHUBs
+                </v-btn>
+                <v-btn
+                    :loading="loadingf"
+                    :disabled="loadingf"
+                    @click="itemFlag = 3"
+                >
+                    TCUs
+                </v-btn>
+            </v-btn-toggle>
+
             <v-btn-toggle v-model="toggle_exclusive" mandatory :value="1">
                 <v-btn
                     :loading="loadingf"
@@ -335,7 +359,9 @@ export default {
             search: "",
             componentKey: 0,
             toggle_exclusive: 0,
+            toggle_exclusive1: 0,
             colorflag: 4,
+            itemFlag: 2,
             name: "Timer",
 
             headers: [
@@ -539,6 +565,10 @@ export default {
                         campaigns.status_id == 1 || campaigns.status_id == 2
                 );
             }
+        },
+
+        test(filteredItems) {
+            return filteredItems.filter(c => c.alliance_id == 99008376);
         }
     },
     beforeDestroy() {

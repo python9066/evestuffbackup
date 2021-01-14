@@ -214,38 +214,6 @@ export default {
 
             return props;
         },
-
-        // endCounterDown(item) {
-        //     var today = new Date();
-        //     var date =
-        //         today.getUTCFullYear() +
-        //         "-" +
-        //         (today.getUTCMonth() + 1) +
-        //         "-" +
-        //         today.getUTCDate();
-        //     var time =
-        //         today.getUTCHours() +
-        //         ":" +
-        //         today.getUTCMinutes() +
-        //         ":" +
-        //         today.getUTCSeconds();
-        //     var dateTime = date + " " + time;
-        //     var a = moment(item.end);
-        //     var b = moment(dateTime);
-        //     var data = a.diff(b);
-        //     console.log(data);
-        //     return data;
-        // },
-        // fromNowStart(item) {
-        //     return moment(item.start);
-        // },
-        // fromNowEnd(item) {
-        //     return moment(item.end);
-        // },
-
-        // handleCountdownEnd() {
-        //     console.log("hi");
-        // }
         handleCountdownEnd(item) {
             this.$store.dispatch("markOver", item);
         }

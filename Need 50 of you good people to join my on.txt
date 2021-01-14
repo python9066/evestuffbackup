@@ -1,0 +1,16 @@
+Need 50 of you good people to join my on an adventure
+
+FC Name: Mhairi
+Formup Location: 1DQ
+Pap Type: Strategic
+Comms: Op 8 maybe, will be in MOTD
+Doctrine: Hound pilots, ships handed out in 1DQ
+
+
+
+/usr/bin/php7.4-cli artisan
+
+tidi = 100-[input_tidi] 
+time_left(ms) = [current_time(real)]-[saved_end_time]
+
+new_time = ((time_left/100)*tidi)+time_left
