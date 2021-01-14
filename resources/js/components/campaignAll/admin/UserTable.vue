@@ -6,8 +6,27 @@
         class=" d-flex flex-column"
         color="red"
     >
-        <v-card-title>NOTES FOR ALL THE THINGS </v-card-title>
-        <v-card-text> I HAVE NO IDEA</v-card-text>
+        <v-card-title class="d-flex justify-space-between align-center ">
+            <div>
+                Add a Character to node {{ nodeItem.node }} in
+                {{ nodeItem.system_name }}
+            </div>
+        </v-card-title>
+        <v-card-text>
+            <v-data-table
+                :headers="headers"
+                :items="filteredItems"
+                item-key="id"
+                disable-pagination
+                hide-default-footer
+                class="elevation-24"
+                dense
+            >
+                <template slot="no-data">
+                    No one is here
+                </template>
+            </v-data-table>
+        </v-card-text>
         <v-spacer></v-spacer
         ><v-card-actions
             ><v-btn class="white--text" color="teal" @click="close()">
@@ -22,7 +41,7 @@ import { mapGetters } from "vuex";
 import { mapState } from "vuex";
 export default {
     props: {
-        item: Object
+        nodeItem: Object
     },
     data() {
         return {};
@@ -34,7 +53,17 @@ export default {
         }
     },
 
-    computed: {}
+    computed: {
+        ...mapState(["campaignusers"]),
+        filteredItems() {
+            return this.campaignusers.filter(
+                campaignusers =>
+                    campaignusers.role_id == 1 &&
+                    campaignusers.campaign_id == this.campaign_id &&
+                    campaignusers.node_id == null
+            );
+        }
+    }
 };
 </script>
 
