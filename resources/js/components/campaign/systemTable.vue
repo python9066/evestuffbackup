@@ -353,7 +353,7 @@
                             <AdminHack
                                 :v-if="$can('super')"
                                 :item="item"
-                                @openadd="openAdd(payload)"
+                                @openAdd="openAdd(payload)"
                             ></AdminHack>
                         </div>
                     </template>
