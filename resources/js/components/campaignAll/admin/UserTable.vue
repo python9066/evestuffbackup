@@ -127,7 +127,7 @@ export default {
                     "/api/campaignsystems/" +
                     this.nodeItem.id +
                     "/" +
-                    this.campaign_id,
+                    this.nodeItemcampaign_id,
                 data: request,
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
@@ -138,7 +138,11 @@ export default {
 
             axios({
                 method: "put", //you can set what request you want to be
-                url: "/api/campaignusers/" + item.id + "/" + this.campaign_id,
+                url:
+                    "/api/campaignusers/" +
+                    item.id +
+                    "/" +
+                    this.nodeItemcampaign_id,
                 data: request1,
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
