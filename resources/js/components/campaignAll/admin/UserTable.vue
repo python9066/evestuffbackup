@@ -23,7 +23,7 @@
                 dense
             >
                 <template slot="no-data">
-                    No one is here
+                    No Free Characters
                 </template>
             </v-data-table>
         </v-card-text>
