@@ -1,11 +1,15 @@
 <template>
     <div>
-        <v-btn :v-if="showAddIcon" icon color="green darken-3">
-            <v-icon small>fas fa-plus</v-icon></v-btn
-        >
-        <v-btn :v-if="showRemoveIcon" icon color="red darken-3">
-            <v-icon small>fas fa-trash-alt</v-icon></v-btn
-        >
+        <span :v-if="showAddIcon">
+            <v-btn icon color="green darken-3">
+                <v-icon small>fas fa-plus</v-icon></v-btn
+            >
+        </span>
+        <span :v-if="showRemoveIcon">
+            <v-btn icon color="red darken-3">
+                <v-icon small>fas fa-trash-alt</v-icon></v-btn
+            >
+        </span>
         <!-- <v-card
         tile
         min-width="1400px"
