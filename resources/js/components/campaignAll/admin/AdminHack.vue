@@ -26,7 +26,7 @@
             </v-btn></v-card-actions
         >
     </v-card> -->
-        <v-overlay z-index="0" :value="showAdd">
+        <v-overlay z-index="0" :value="showAdd" absolute="false">
             <!-- campaignAll/admin/UserTable.vue -->
             <AdminHackUserTable :item="item" @closeAdd="showAdd = false">
             </AdminHackUserTable>
