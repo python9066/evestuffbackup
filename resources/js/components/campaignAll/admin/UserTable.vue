@@ -89,7 +89,7 @@ export default {
 
         addChar(item) {
             var data = {
-                id: nodeItem.id,
+                id: this.nodeItem.id,
                 user_id: item.id,
                 site_id: this.$store.state.user_id,
                 user_name: item.char_name,
@@ -106,17 +106,17 @@ export default {
             data = null;
             data = {
                 id: item.id,
-                campaign_system_id: nodeItem.id,
-                node_id: nodeItem.node,
-                system_id: nodeItem.system_id,
-                system_name: nodeItem.system_name,
+                campaign_system_id: this.nodeItem.id,
+                node_id: this.nodeItem.node,
+                system_id: this.nodeItem.system_id,
+                system_name: this.nodeItem.system_name,
                 status_id: 4,
                 user_status_name: "Hacking"
             };
 
             var request1 = {
-                campaign_system_id: nodeItem.id,
-                system_id: nodeItem.system_id,
+                campaign_system_id: this.nodeItem.id,
+                system_id: this.nodeItem.system_id,
                 status_id: 4
             };
             this.$store.dispatch("updateCampaignUsers", data);
@@ -125,7 +125,7 @@ export default {
                 method: "put", //you can set what request you want to be
                 url:
                     "/api/campaignsystems/" +
-                    nodeItem.id +
+                    this.nodeItem.id +
                     "/" +
                     this.campaign_id,
                 data: request,
