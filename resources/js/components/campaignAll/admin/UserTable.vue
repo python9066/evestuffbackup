@@ -4,7 +4,6 @@
         max-width="1200px"
         max-height="500px"
         class=" d-flex flex-column"
-        color="red"
     >
         <v-card-title
             class=" d-lg-inline-block justify-space-between align-center "

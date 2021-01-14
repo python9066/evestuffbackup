@@ -25,21 +25,15 @@ export default {
 
     computed: {
         showAddIcon() {
-            if (this.item.user_id == null) {
-                console.log("addTrue");
+            if (
+                this.item.user_id == null &&
+                this.item.status_id != 4 &&
+                this.item.status_id != 5 &&
+                this.item.status_id != 7 &&
+                this.item.status_id != 8
+            ) {
                 return true;
             } else {
-                console.log("addFalse");
-                return false;
-            }
-        },
-
-        showRemoveIcon() {
-            if (this.item.user_id != null) {
-                console.log("removeTrue");
-                return true;
-            } else {
-                console.log("removeFalse");
                 return false;
             }
         }

@@ -819,7 +819,6 @@ export default {
             ) {
                 return true;
             } else if (this.$can("access_multi_campaigns")) {
-                console.log("access_multi_campaigns");
                 return true;
             } else {
                 return false;
