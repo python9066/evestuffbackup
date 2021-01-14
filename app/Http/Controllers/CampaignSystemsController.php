@@ -179,11 +179,11 @@ class CampaignSystemsController extends Controller
                 $base_time = $system->base_time - $time_passed;
                 $time_left = $base_time / ($request->newTidi / 100);
                 $end_time = now()->modify("+ " . round($time_left) . " seconds");
-                $system->update(['end_time' => $end_time, 'input_time' => now()]);
+                $system->update(['end_time' => $end_time, 'input_time' => now(), 'base_time' => $base_time]);
                 $system->save();
             }
         }
-        CampaignSolaSystem::where('id', $request->solaID)->update(['tidi' => $request->newTidi, 'base_time' => $base_time]);
+        CampaignSolaSystem::where('id', $request->solaID)->update(['tidi' => $request->newTidi]);
 
 
         $flag = collect([
