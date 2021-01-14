@@ -2,7 +2,7 @@
     <v-card
         tile
         min-width="1400px"
-        min-height="700px"
+        max-height="500px"
         class=" d-flex flex-column"
         color="red"
     >
