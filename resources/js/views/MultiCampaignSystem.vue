@@ -453,7 +453,8 @@ export default {
             channel: "",
             overlay: false,
             bullhorn: false,
-            showAdd: false
+            showAdd: false,
+            nodeItem: null
         };
     },
 
