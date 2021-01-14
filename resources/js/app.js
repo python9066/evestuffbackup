@@ -52,7 +52,7 @@ Vue.component('SystemScout', require('./components/campaignAll/SystemScout.vue')
 Vue.component('SystemTidi', require('./components/campaign/SystemTidi.vue').default);
 Vue.component('SystemTidiMulti', require('./components/multicampaigns/SystemTidiMulti.vue').default);
 Vue.component('AdminHack', require('./components/campaignAll/admin/AdminHack.vue').default);
-Vue.component('AdminHack', require('./components/campaignAll/admin/UserTable.vue').default);
+Vue.component('AdminHackUserTable', require('./components/campaignAll/admin/UserTable.vue').default);
 
 
 
