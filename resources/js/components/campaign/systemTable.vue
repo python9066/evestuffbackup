@@ -353,7 +353,7 @@
                             <AdminHack
                                 :v-if="$can('super')"
                                 :item="item"
-                                @openAdd="openAdd(payload)"
+                                @openAdd="openAdd($event)"
                             ></AdminHack>
                         </div>
                     </template>
@@ -530,8 +530,8 @@ export default {
             }
         },
 
-        openAdd(payload) {
-            console.log(payload);
+        openAdd(item) {
+            console.log(item);
         },
 
         async clickOnTheWay() {

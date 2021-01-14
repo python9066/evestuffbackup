@@ -22,7 +22,7 @@ export default {
 
     methods: {
         showAdd() {
-            this.$emit("openAdd", { item: this.item });
+            this.$emit("openAdd", this.item);
         }
     },
 
