@@ -51,6 +51,7 @@ Vue.component('LastedChecked', require('./components/campaignAll/LastedChecked.v
 Vue.component('SystemScout', require('./components/campaignAll/SystemScout.vue').default);
 Vue.component('SystemTidi', require('./components/campaign/SystemTidi.vue').default);
 Vue.component('SystemTidiMulti', require('./components/multicampaigns/SystemTidiMulti.vue').default);
+Vue.component('AdminHack', require('./components/campaignAll/AdminHack.vue').default);
 
 
 

@@ -299,6 +299,7 @@
                                 </v-list-item>
                             </v-list>
                         </v-menu>
+                        <AdminHack :v-if="$can('super')" item:item></AdminHack>
                     </template>
                     <template v-slot:item.user_name="{ item }">
                         <v-menu offset-y v-if="checkShowAdd(item)">
