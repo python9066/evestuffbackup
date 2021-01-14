@@ -6,7 +6,9 @@
         class=" d-flex flex-column"
         color="red"
     >
-        <v-card-title class="d-flex justify-space-between align-center ">
+        <v-card-title
+            class=" d-lg-inline-block justify-space-between align-center "
+        >
             <div>
                 Add a Character to node {{ nodeItem.node }} in
                 {{ nodeItem.system_name }}
