@@ -79,9 +79,9 @@ export default {
     },
     methods: {
         colorTidi() {
-            if (this.CampaignSolaSystem[0]["tidi"] < 31) {
+            if (this.CampaignSolaSystem[0]["tidi"] > 59) {
                 return "green--text font-weight-bold";
-            } else if (this.CampaignSolaSystem[0]["tidi"] < 61) {
+            } else if (this.CampaignSolaSystem[0]["tidi"] > 29) {
                 return "orange--text font-weight-bold";
             } else {
                 return "red--text font-weight-bold";
