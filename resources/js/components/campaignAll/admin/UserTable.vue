@@ -35,7 +35,13 @@
                 dense
             >
                 <template v-slot:item.actions="{ item }">
-                    <v-btn rounded :outlined="true" x-small color="green">
+                    <v-btn
+                        rounded
+                        :outlined="true"
+                        x-small
+                        color="green"
+                        @click="addChar(item)"
+                    >
                         <v-icon x-small left dark>
                             fas fa-plus
                         </v-icon>
@@ -79,6 +85,68 @@ export default {
     methods: {
         close() {
             this.$emit("closeAdd", "yo");
+        },
+
+        addChar(item) {
+            var addChar = this.chars.find(user => user.id == this.charAddNode);
+            var data = {
+                id: nodeItem.id,
+                user_id: item.id,
+                site_id: this.$store.state.user_id,
+                user_name: item.char_name,
+                main_name: item.main_name,
+                user_ship: item.ship,
+                user_link: item.link
+            };
+
+            var request = {
+                campaign_user_id: item.id
+            };
+            this.$store.dispatch("updateCampaignSystem", data);
+
+            data = null;
+            data = {
+                id: item.id,
+                campaign_system_id: nodeItem.id,
+                node_id: nodeItem.node,
+                system_id: nodeItem.system_id,
+                system_name: nodeItem.system_name,
+                status_id: 4,
+                user_status_name: "Hacking"
+            };
+
+            var request1 = {
+                campaign_system_id: nodeItem.id,
+                system_id: nodeItem.system_id,
+                status_id: 4
+            };
+            this.$store.dispatch("updateCampaignUsers", data);
+
+            axios({
+                method: "put", //you can set what request you want to be
+                url:
+                    "/api/campaignsystems/" +
+                    nodeItem.id +
+                    "/" +
+                    this.campaign_id,
+                data: request,
+                headers: {
+                    Authorization: "Bearer " + this.$store.state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                }
+            });
+
+            axios({
+                method: "put", //you can set what request you want to be
+                url: "/api/campaignusers/" + item.id + "/" + this.campaign_id,
+                data: request1,
+                headers: {
+                    Authorization: "Bearer " + this.$store.state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                }
+            });
         }
     },
 
