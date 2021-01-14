@@ -301,7 +301,7 @@
                         </v-menu>
                     </template>
                     <template v-slot:item.user_name="{ item }">
-                        <div class=" d-inline-flex">
+                        <div class=" d-inline-flex align-items-center">
                             <v-menu offset-y v-if="checkShowAdd(item)">
                                 <template v-slot:activator="{ on, attrs }">
                                     <div>
