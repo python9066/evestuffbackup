@@ -531,7 +531,7 @@ export default {
         },
 
         openAdd(item) {
-            console.log(item);
+            this.$emit("openAdd", item);
         },
 
         async clickOnTheWay() {
