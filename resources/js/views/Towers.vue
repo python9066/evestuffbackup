@@ -351,7 +351,7 @@ export default {
     async mounted() {},
     methods: {
         checkexpanded(towers) {
-            console.log(towers);
+            // console.log(towers);
             if (towers.tower_status_id == 1 || towers.tower_status_id == 6) {
                 if (towers.id == this.expanded_id) {
                     this.expanded = [];
