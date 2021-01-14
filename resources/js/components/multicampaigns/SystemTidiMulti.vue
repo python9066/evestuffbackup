@@ -2,7 +2,7 @@
     <div class=" pr-4 h4  d-flex align-items-baseline justify-end">
         <div>
             System TiDi:
-            <span class="green--text font-weight-bold"
+            <span :class="colorTidi()"
                 >{{ CampaignSolaSystem[0]["tidi"] }}%</span
             >
             <v-menu :close-on-content-click="false" :value="tidiShow">
@@ -78,6 +78,16 @@ export default {
         // console.log(this.CampaignSolaSystem);
     },
     methods: {
+        colorTidi() {
+            if (this.CampaignSolaSystem[0]["tidi"] > 59) {
+                return "green--text font-weight-bold";
+            } else if (this.CampaignSolaSystem[0]["tidi"] > 34) {
+                return "orange--text font-weight-bold";
+            } else {
+                return "red--text font-weight-bold";
+            }
+        },
+
         placeHolder() {
             return "" + this.CampaignSolaSystem[0]["tidi"];
         },
