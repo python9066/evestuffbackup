@@ -1,9 +1,9 @@
 <template>
     <div>
-        <v-btn :v-if="item.user_id == null" icon color="green darken-3">
+        <v-btn :v-if="this.item.user_id == null" icon color="green darken-3">
             <v-icon small>fas fa-plus</v-icon></v-btn
         >
-        <v-btn :v-if="item.user_id != null" icon color="redd darken-3">
+        <v-btn :v-if="this.item.user_id != null" icon color="red darken-3">
             <v-icon small>fas fa-trash-alt</v-icon></v-btn
         >
         <!-- <v-card
