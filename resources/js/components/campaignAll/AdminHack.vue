@@ -1,9 +1,9 @@
 <template>
     <div>
-        <v-btn :v-if="this.item.user_id == null" icon color="green darken-3">
+        <v-btn :v-if="showAddIcon()" icon color="green darken-3">
             <v-icon small>fas fa-plus</v-icon></v-btn
         >
-        <v-btn :v-if="this.item.user_id != null" icon color="red darken-3">
+        <v-btn :v-if="showDeleteIcon()" icon color="red darken-3">
             <v-icon small>fas fa-trash-alt</v-icon></v-btn
         >
         <!-- <v-card
@@ -38,6 +38,22 @@ export default {
     methods: {
         close() {
             this.$emit("closeNotes", "yo");
+        },
+
+        showAddIcon() {
+            if (this.item.user_id == null) {
+                return true;
+            } else {
+                return false;
+            }
+        },
+
+        showRemoveIcon() {
+            if (this.item.user_id != null) {
+                return true;
+            } else {
+                return false;
+            }
         }
     },
 
