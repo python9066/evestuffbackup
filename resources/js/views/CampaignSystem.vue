@@ -520,6 +520,7 @@
                 :campaign_id="campaign.id"
                 :index="index"
                 :key="system.id"
+                @openAdd="showAdd = false"
             >
             </systemTable>
         </v-row>
@@ -555,6 +556,12 @@
                 @closeNotes="showNotes = false"
             >
             </ShowNotes>
+        </v-overlay>
+
+        <v-overlay z-index="0" :value="showAdd">
+            <!-- campaignAll/admin/UserTable.vue -->
+            <AdminHackUserTable :item="item" @closeAdd="showAdd = false">
+            </AdminHackUserTable>
         </v-overlay>
     </div>
 </template>
@@ -624,7 +631,8 @@ export default {
             channel: "",
             overlay: false,
             bullhorn: false,
-            link: ""
+            link: "",
+            showAdd: false
         };
     },
 
