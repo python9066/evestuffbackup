@@ -818,7 +818,7 @@ export default {
                 item.status_id != 8
             ) {
                 return true;
-            } else if (this.$can("access_multi_campaigns")) {
+            } else if (this.$can("campaigns_admin_access")) {
                 return true;
             } else {
                 return false;
