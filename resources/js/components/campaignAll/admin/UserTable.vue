@@ -88,7 +88,6 @@ export default {
         },
 
         addChar(item) {
-            var addChar = this.chars.find(user => user.id == this.charAddNode);
             var data = {
                 id: nodeItem.id,
                 user_id: item.id,
