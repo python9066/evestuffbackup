@@ -560,7 +560,7 @@
 
         <v-overlay z-index="0" :value="showAdd">
             <!-- campaignAll/admin/UserTable.vue -->
-            <AdminHackUserTable :item="item" @closeAdd="showAdd = false">
+            <AdminHackUserTable @closeAdd="showAdd = false">
             </AdminHackUserTable>
         </v-overlay>
     </div>
