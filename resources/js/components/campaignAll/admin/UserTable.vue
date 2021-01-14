@@ -4,6 +4,7 @@
         min-width="1400px"
         min-height="700px"
         class=" d-flex flex-column"
+        color="red"
     >
         <v-card-title>NOTES FOR ALL THE THINGS </v-card-title>
         <v-card-text> I HAVE NO IDEA</v-card-text>
