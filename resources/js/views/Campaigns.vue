@@ -572,8 +572,8 @@ export default {
             }
         },
 
-        test(filteredItems) {
-            return filteredItems.filter(c => c.alliance_id == 99008376);
+        test() {
+            return this.filteredItems.filter(c => c.alliance_id == 99008376);
         }
     },
     beforeDestroy() {
