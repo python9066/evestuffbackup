@@ -3,6 +3,9 @@
         <v-btn :v-if="item.user_id == null" icon color="green darken-3">
             <v-icon small>fas fa-plus</v-icon></v-btn
         >
+        <v-btn :v-if="item.user_id != null" icon color="redd darken-3">
+            <v-icon small>fas fa-trash-alt</v-icon></v-btn
+        >
         <!-- <v-card
         tile
         min-width="1400px"
