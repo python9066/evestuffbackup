@@ -1,6 +1,17 @@
 <template>
     <div>
-        noidea
+        <v-btn
+            v-if="checkShowAddRemove(item)"
+            icon
+            @click="
+                (item.user_name = null),
+                    (item.main_name = null),
+                    removeCharNode(item)
+            "
+            color="orange darken-3"
+        >
+            <v-icon small>fas fa-plus</v-icon></v-btn
+        >
         <!-- <v-card
         tile
         min-width="1400px"

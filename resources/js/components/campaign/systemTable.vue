@@ -352,7 +352,7 @@
                             >
                             <AdminHack
                                 :v-if="$can('super')"
-                                item:item
+                                :item="item"
                                 class=" pl-4"
                             ></AdminHack>
                         </div>
