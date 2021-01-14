@@ -27,10 +27,10 @@ export default {
         showAddIcon() {
             if (
                 this.item.user_id == null &&
-                (this.item.status_id != 4 ||
-                    this.item.status_id != 5 ||
-                    this.item.status_id != 7 ||
-                    this.item.status_id != 8)
+                this.item.status_id != 4 &&
+                this.item.status_id != 5 &&
+                this.item.status_id != 7 &&
+                this.item.status_id != 8
             ) {
                 return true;
             } else {
