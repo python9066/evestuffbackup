@@ -1,7 +1,7 @@
 <template>
     <div>
         <v-btn
-            v-if="checkShowAddRemove(item)"
+            :v-if="item.user_id == null"
             icon
             @click="
                 (item.user_name = null),
