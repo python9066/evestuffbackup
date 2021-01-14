@@ -191,6 +191,7 @@ class CampaignSystemsController extends Controller
             'id' => $campid,
         ]);
         broadcast(new CampaignSystemUpdate($flag));
+        dd("time_passed", $time_passed, "base_time", $base_time, "time_left", $time_left, "end_time", $end_time);
     }
 
     public function tidimulti(Request $request, $sysid, $campid)
