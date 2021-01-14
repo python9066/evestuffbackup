@@ -347,6 +347,7 @@
                 :constellation_id="system.constellation_id"
                 :index="index"
                 :key="system.id"
+                @openAdd="openAdd($event)"
             >
             </MultiSystemTable>
         </v-row>
