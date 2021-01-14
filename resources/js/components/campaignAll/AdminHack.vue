@@ -42,16 +42,20 @@ export default {
 
         showAddIcon() {
             if (this.item.user_id == null) {
+                console.log("addTrue");
                 return true;
             } else {
+                console.log("addFalse");
                 return false;
             }
         },
 
         showRemoveIcon() {
             if (this.item.user_id != null) {
+                console.log("removeTrue");
                 return true;
             } else {
+                console.log("removeFalse");
                 return false;
             }
         }
