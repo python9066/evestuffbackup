@@ -67,7 +67,7 @@ export default {
             return this.campaignusers.filter(
                 campaignusers =>
                     campaignusers.role_id == 1 &&
-                    campaignusers.campaign_id == this.campaign_id &&
+                    campaignusers.campaign_id == this.nodeItem.campaign_id &&
                     campaignusers.node_id == null
             );
         }
