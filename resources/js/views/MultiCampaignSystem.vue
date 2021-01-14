@@ -377,6 +377,14 @@
             >
             </UsersChars>
         </v-overlay>
+        <v-overlay z-index="0" :value="showAdd">
+            <!-- campaignAll/admin/UserTable.vue -->
+            <AdminHackUserTable
+                @closeAdd="showAdd = false"
+                :nodeItem="nodeItem"
+            >
+            </AdminHackUserTable>
+        </v-overlay>
     </div>
 </template>
 <!-- {{ $route.params.id }} - {{ test }} -  -->
@@ -444,7 +452,8 @@ export default {
             showUsers: false,
             channel: "",
             overlay: false,
-            bullhorn: false
+            bullhorn: false,
+            showAdd: false
         };
     },
 
@@ -534,6 +543,11 @@ export default {
             if (this.userCount == 0) {
                 this.bullhorn = true;
             }
+        },
+
+        openAdd(item) {
+            this.nodeItem = item;
+            this.showAdd = true;
         },
 
         kickUser(user_id) {

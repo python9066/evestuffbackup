@@ -384,6 +384,11 @@
                                 <v-icon small>fas fa-trash-alt</v-icon></v-btn
                             ></span
                         >
+                        <AdminHack
+                            v-if="$can('super')"
+                            :item="item"
+                            @openAdd="openAdd($event)"
+                        ></AdminHack>
                     </template>
                     <template v-slot:item.count="{ item }">
                         <systemTableTimer
@@ -560,6 +565,10 @@ export default {
             } else {
                 return true;
             }
+        },
+
+        openAdd(item) {
+            this.$emit("openAdd", item);
         },
 
         async clickOnTheWay() {
