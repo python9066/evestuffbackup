@@ -27,7 +27,7 @@
         >
     </v-card> -->
         <v-overlay z-index="0" :value="showAdd">
-            <ShowNotes :item="item" @closeAdd="showAdd = false"> </ShowNotes>
+            <UserTable :item="item" @closeAdd="showAdd = false"> </UserTable>
         </v-overlay>
     </div>
 </template>
