@@ -11,6 +11,15 @@
                 Add a Character to node {{ nodeItem.node }} in
                 {{ nodeItem.system_name }}
             </div>
+            <div>
+                <v-text-field
+                    v-model="search"
+                    append-icon="mdi-magnify"
+                    label="Search"
+                    single-line
+                    hide-details
+                ></v-text-field>
+            </div>
         </v-card-title>
         <v-card-text>
             <v-data-table
@@ -19,6 +28,7 @@
                 item-key="id"
                 disable-pagination
                 hide-default-footer
+                :search="search"
                 class="elevation-24"
                 dense
             >
@@ -51,7 +61,8 @@ export default {
                 { text: "", value: "actions" }
 
                 // { text: "Vulernable End Time", value: "vulnerable_end_time" }
-            ]
+            ],
+            search: ""
         };
     },
 
