@@ -1,15 +1,6 @@
 <template>
     <div>
-        <v-btn
-            :v-if="item.user_id == null"
-            icon
-            @click="
-                (item.user_name = null),
-                    (item.main_name = null),
-                    removeCharNode(item)
-            "
-            color="orange darken-3"
-        >
+        <v-btn :v-if="item.user_id == null" icon color="green darken-3">
             <v-icon small>fas fa-plus</v-icon></v-btn
         >
         <!-- <v-card
