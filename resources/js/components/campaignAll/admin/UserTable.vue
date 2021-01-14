@@ -127,7 +127,7 @@ export default {
                     "/api/campaignsystems/" +
                     this.nodeItem.id +
                     "/" +
-                    this.nodeItemcampaign_id,
+                    this.nodeItem.campaign_id,
                 data: request,
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
@@ -142,7 +142,7 @@ export default {
                     "/api/campaignusers/" +
                     item.id +
                     "/" +
-                    this.nodeItemcampaign_id,
+                    this.nodeItem.campaign_id,
                 data: request1,
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
