@@ -155,12 +155,23 @@ export default {
     computed: {
         ...mapState(["campaignusers"]),
         filteredItems() {
-            return this.campaignusers.filter(
-                campaignusers =>
-                    campaignusers.role_id == 1 &&
-                    campaignusers.campaign_id == this.nodeItem.campaign_id &&
-                    campaignusers.node_id == null
-            );
+            if (this.nodeItem.custom_campaign_id == null) {
+                return this.campaignusers.filter(
+                    campaignusers =>
+                        campaignusers.role_id == 1 &&
+                        campaignusers.campaign_id ==
+                            this.nodeItem.campaign_id &&
+                        campaignusers.node_id == null
+                );
+            } else {
+                return this.campaignusers.filter(
+                    campaignusers =>
+                        campaignusers.role_id == 1 &&
+                        campaignusers.campaign_id ==
+                            this.nodeItem.custom_campaign_id &&
+                        campaignusers.node_id == null
+                );
+            }
         }
     }
 };
