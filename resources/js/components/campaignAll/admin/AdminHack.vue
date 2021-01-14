@@ -26,9 +26,11 @@
             </v-btn></v-card-actions
         >
     </v-card> -->
-        <!-- <v-overlay z-index="0" :value="showAdd">
-            <UserTable :item="item" @closeAdd="showAdd = false"> </UserTable>
-        </v-overlay> -->
+        <v-overlay z-index="0" :value="showAdd">
+            <!-- campaignAll/admin/UserTable.vue -->
+            <AdminHackUserTable :item="item" @closeAdd="showAdd = false">
+            </AdminHackUserTable>
+        </v-overlay>
     </div>
 </template>
 
