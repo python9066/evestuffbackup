@@ -175,6 +175,7 @@ export default {
             var min = parseInt(this.hackTime.substr(0, 2));
             var sec = parseInt(this.hackTime.substr(3, 2));
             var sec = min * 60 + sec;
+            var base = min * 60 + sec;
             var sec = sec / (this.CampaignSolaSystem[0]["tidi"] / 100);
             // var sec = sec / (10 / 100);
             // console.log(sec);
@@ -186,7 +187,8 @@ export default {
             this.$store.dispatch("updateCampaignSystem", item);
             var request = {
                 end_time: finishTime,
-                input_time: moment.utc().format("YYYY-MM-DD HH:mm:ss")
+                input_time: moment.utc().format("YYYY-MM-DD HH:mm:ss"),
+                base_time: base
             };
 
             await axios({

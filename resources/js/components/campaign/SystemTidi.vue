@@ -87,7 +87,8 @@ export default {
             var request = {
                 newTidi: this.tidiEdit,
                 oldTidi: this.CampaignSolaSystem[0]["tidi"],
-                solaID: this.CampaignSolaSystem[0]["id"]
+                solaID: this.CampaignSolaSystem[0]["id"],
+                baseTime: this.CampaignSolaSystem[0]["base_time"]
             };
 
             await axios({
