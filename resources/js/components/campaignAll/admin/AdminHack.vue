@@ -26,7 +26,7 @@
             </v-btn></v-card-actions
         >
     </v-card> -->
-        <v-overlay z-index="0" :value="showNotes">
+        <v-overlay z-index="0" :value="showAdd">
             <ShowNotes :item="item" @closeAdd="showAdd = false"> </ShowNotes>
         </v-overlay>
     </div>
