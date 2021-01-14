@@ -1,5 +1,7 @@
 <template>
-    <v-card
+    <div>
+        noidea
+        <!-- <v-card
         tile
         min-width="1400px"
         min-height="700px"
@@ -13,7 +15,8 @@
                 Close
             </v-btn></v-card-actions
         >
-    </v-card>
+    </v-card> -->
+    </div>
 </template>
 
 <script>
