@@ -1,6 +1,6 @@
 <template>
     <div>
-        <v-card min-width=1200 max-width=1200>
+        <v-card min-width="1200" max-width="1200">
             <v-card-title>
                 Make your Mulit-Campaign Here
             </v-card-title>
@@ -54,32 +54,27 @@ export default {
     },
 
     methods: {
-
-       async addCampaignDone(){
-            let id = moment().format('x')
+        async addCampaignDone() {
+            let id = moment().format("x");
 
             await axios({
                 method: "POST",
-                url:
-                    "/api/multicampaigns/"+id+"/"+this.name,
+                url: "/api/multicampaigns/" + id + "/" + this.name,
                 data: this.picked,
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
                     Accept: "application/json",
                     "Content-Type": "application/json"
                 }
-            })
-            this.$emit("closeAddNew")
-
+            });
+            this.$emit("closeAddNew");
         },
 
-        addCampaignClose(){
-            this.picked = []
-            this.name = ""
-            this.$emit("closeAdd")
-
-        },
-
+        addCampaignClose() {
+            this.picked = [];
+            this.name = "";
+            this.$emit("closeAdd");
+        }
     },
 
     computed: {

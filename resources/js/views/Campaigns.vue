@@ -100,7 +100,10 @@
 
             <template v-slot:item.start="{ item }">
                 <span v-if="item.status_id == 1"> {{ item.start }} </span>
-                <span v-else-if="item.status_id  != 3 && item.status_id  !=4" class="d-flex full-width align-content-center">
+                <span
+                    v-else-if="item.status_id != 3 && item.status_id != 4"
+                    class="d-flex full-width align-content-center"
+                >
                     <span>
                         <v-icon
                             v-if="
@@ -212,13 +215,20 @@
                             <strong> {{item.defenders_score * 100}} / {{item.attackers_score * 100}} :start-time="item.start + ' UTC'" </strong>
                         </v-progress-linear> -->
                 </span>
-                <span v-else-if="item.status_id  == 3 || item.status_id  == 4">
-                <p v-if="item.attackers_score == 0" class=" text-md-center green--text" >
-                    {{item.alliance}} <span class = "font-weight-bold"> WON </span> the {{item.item_name}} timer.
-                </p>
-                <p v-else class=" text-md-center red--text">
-                    {{item.alliance}} <span class = "font-weight-bold"> LOST </span> the {{item.item_name}} timer.
-                </p>
+                <span v-else-if="item.status_id == 3 || item.status_id == 4">
+                    <p
+                        v-if="item.attackers_score == 0"
+                        class=" text-md-center green--text"
+                    >
+                        {{ item.alliance }}
+                        <span class="font-weight-bold"> WON </span> the
+                        {{ item.item_name }} timer.
+                    </p>
+                    <p v-else class=" text-md-center red--text">
+                        {{ item.alliance }}
+                        <span class="font-weight-bold"> LOST </span> the
+                        {{ item.item_name }} timer.
+                    </p>
                 </span>
             </template>
 
@@ -401,8 +411,6 @@ export default {
             }
         },
 
-
-
         // rowClick(item){
 
         //     var left = (moment.utc(item.start).unix() -  moment.utc().unix())
@@ -494,23 +502,31 @@ export default {
             if (this.colorflag == 1) {
                 return this.campaigns.filter(
                     campaigns =>
-                        campaigns.color == 1 && campaigns.status_id != 3 && campaigns.status_id !=4
+                        campaigns.color == 1 &&
+                        campaigns.status_id != 3 &&
+                        campaigns.status_id != 4
                 );
             }
             if (this.colorflag == 2) {
                 return this.campaigns.filter(
-                    campaigns => campaigns.color > 1 && campaigns.status_id != 3 && campaigns.status_id !=4
+                    campaigns =>
+                        campaigns.color > 1 &&
+                        campaigns.status_id != 3 &&
+                        campaigns.status_id != 4
                 );
             }
             if (this.colorflag == 3) {
                 return this.campaigns.filter(
                     campaigns =>
-                        campaigns.color == 3 && campaigns.status_id != 3 && campaigns.status_id !=4
+                        campaigns.color == 3 &&
+                        campaigns.status_id != 3 &&
+                        campaigns.status_id != 4
                 );
             }
             if (this.colorflag == 6) {
                 return this.campaigns.filter(
-                    campaigns => campaigns.status_id == 3 || campaigns.status_id == 4
+                    campaigns =>
+                        campaigns.status_id == 3 || campaigns.status_id == 4
                 );
             }
             if (this.colorflag == 5) {

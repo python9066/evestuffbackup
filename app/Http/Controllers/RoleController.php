@@ -22,27 +22,27 @@ class RoleController extends Controller
      */
     public function index()
     {
-        return['roles' => Role::where("name","!=","Super Admin")->where("name","!=","Wizard")->select('id','name')->orderBy('name', 'asc')->get()];
+        return ['roles' => Role::where("name", "!=", "Super Admin")->where("name", "!=", "Wizard")->select('id', 'name')->orderBy('name', 'asc')->get()];
     }
 
 
     public function removeRole(Request $request)
     {
-        $check=Auth::user();
+        $check = Auth::user();
         $check->hasRole("edit_users");
-        if($check){
-        $user = User::find($request->userId);
-        $user->removeRole($request->roleId);
-        $flag = 1;
-        broadcast(new UserUpdate($flag))->toOthers();
-            }
+        if ($check) {
+            $user = User::find($request->userId);
+            $user->removeRole($request->roleId);
+            $flag = 1;
+            broadcast(new UserUpdate($flag))->toOthers();
+        }
     }
 
     public function addRole(Request $request)
     {
-        $check=Auth::user();
+        $check = Auth::user();
         $check->hasRole("edit_users");
-        if($check){
+        if ($check) {
             $user = User::find($request->userId);
             $user->assignRole($request->roleId);
             $flag = 1;
@@ -52,7 +52,7 @@ class RoleController extends Controller
 
     public function getAllUsersRoles()
     {
-        return ['usersroles' => User::with('roles')->select('id','name')->get()];
+        return ['usersroles' => User::with('roles')->select('id', 'name')->get()];
     }
 
     public function Wizard()
@@ -75,8 +75,8 @@ class RoleController extends Controller
     public function remove()
     {
 
-        $role = User::where('name','Coord')->get();
-        $permission = Permission::where('name','edit_all_users')->get();
+        $role = User::where('name', 'Coord')->get();
+        $permission = Permission::where('name', 'edit_all_users')->get();
         $role->revokePermissionTo($permission);
         // $permissions = $user->getAllPermissions()->pluck("name");
         // // if($permissions == true){
@@ -135,6 +135,4 @@ class RoleController extends Controller
     {
         //
     }
-
-
 }

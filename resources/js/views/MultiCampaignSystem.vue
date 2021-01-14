@@ -451,8 +451,8 @@ export default {
     async created() {
         this.campaignId = this.$route.params.id;
         this.campaign_id = parseInt(this.$route.params.id);
-        console.log(this.campaignId);
-        console.log(this.campaign_id);
+        // console.log(this.campaignId);
+        // console.log(this.campaign_id);
 
         Echo.private("campaignsystem." + this.$route.params.id).listen(
             "CampaignSystemUpdate",

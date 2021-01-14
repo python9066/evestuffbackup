@@ -65,15 +65,11 @@ class CampaignJoinsController extends Controller
                     $data = [
                         "id" => $sys['id'],
                         "system_name" => $sys['system_name'],
-                        "constellation_id" =>$sys['constellation_id']
+                        "constellation_id" => $sys['constellation_id']
                     ];
                     array_push($list, $data);
                 }
-
             }
-
-
-
         }
         $list = array_unique($list, SORT_REGULAR);
         return ["systems" => $list];

@@ -650,7 +650,7 @@ export default {
                 campaign_sola_systems_id: this.CampaignSolaSystem[0]["id"],
                 user_id: this.$store.state.user_id
             };
-            console.log(item);
+            // console.log(item);
             axios({
                 method: "POST", //you can set what request you want to be
                 url: "/api/checkdeletenode/" + this.campaign_id,

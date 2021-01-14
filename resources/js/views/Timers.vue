@@ -69,10 +69,8 @@
             multi-sort
             class="elevation-1"
         >
-        <template slot="no-data">
-
-                    No open Windows
-
+            <template slot="no-data">
+                No open Windows
             </template>
             <template v-slot:item.alliance="{ item }">
                 <!-- <v-img src="https://images.evetech.net/Alliance/1354830081_64.png"  style="height: inherit"></v-img> -->
@@ -110,17 +108,19 @@
             <template v-slot:item.age="{ item }">
                 <template>
                     <VueCountUptimer
-                    :start-time="moment.utc(item.age).unix()"
-                    :end-text="'Window Closed'"
-                    :interval="1000"
-                    :leadingZero="false"
-                >
-                    <template slot="countup" slot-scope="scope">
-                        <span class="green--text pl-3"
-                            ><span v-if="scope.props.days != 0"> {{ scope.props.days }} Days - </span>{{scope.props.hours}} Hours</span
-                        >
-                    </template>
-                </VueCountUptimer>
+                        :start-time="moment.utc(item.age).unix()"
+                        :end-text="'Window Closed'"
+                        :interval="1000"
+                        :leadingZero="false"
+                    >
+                        <template slot="countup" slot-scope="scope">
+                            <span class="green--text pl-3"
+                                ><span v-if="scope.props.days != 0">
+                                    {{ scope.props.days }} Days - </span
+                                >{{ scope.props.hours }} Hours</span
+                            >
+                        </template>
+                    </VueCountUptimer>
                 </template>
             </template>
         </v-data-table>
@@ -166,7 +166,7 @@ export default {
                 { text: "ADM", value: "adm" },
                 { text: "End", value: "end" },
                 { text: "Countdown", value: "count", sortable: false },
-                { text: "Age", value: "age"}
+                { text: "Age", value: "age" }
 
                 // { text: "Vulernable End Time", value: "vulnerable_end_time" }
             ]

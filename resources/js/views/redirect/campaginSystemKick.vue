@@ -1,18 +1,26 @@
 <template>
     <div class=" pr-16 pl-16 d-flex justify-center">
-
-<div cols="8">
-    <v-card>
-        <v-card-title class=" justify-center"><h1>Why am I on this page?</h1></v-card-title>
-        <v-card-text>
-            <span class=" body-1">
-        <p class=" text-md-center">You have been kicked from the active campaign page.  Most likey you were kicked for not adding a character to the page </p>
-        <p class=" text-md-center">Check MotD in your fleet to gain access to the page again and remember to add a character.  If you fail to do so you may get a temp ban</p>
-            </span>
-        </v-card-text>
-    </v-card>
-</div>
-
+        <div cols="8">
+            <v-card>
+                <v-card-title class=" justify-center"
+                    ><h1>Why am I on this page?</h1></v-card-title
+                >
+                <v-card-text>
+                    <span class=" body-1">
+                        <p class=" text-md-center">
+                            You have been kicked from the active campaign page.
+                            Most likey you were kicked for not adding a
+                            character to the page
+                        </p>
+                        <p class=" text-md-center">
+                            Check MotD in your fleet to gain access to the page
+                            again and remember to add a character. If you fail
+                            to do so you may get a temp ban
+                        </p>
+                    </span>
+                </v-card-text>
+            </v-card>
+        </div>
     </div>
 </template>
 <script>
@@ -28,19 +36,14 @@ export default {
     data() {
         return {
             //timersAll: [],
-
-
-
         };
     },
 
-    created() {
-    },
+    created() {},
 
     async mounted() {},
     methods: {},
     computed: {},
-    beforeDestroy() {
-    }
+    beforeDestroy() {}
 };
 </script>

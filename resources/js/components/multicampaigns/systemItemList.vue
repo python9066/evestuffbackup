@@ -1,16 +1,16 @@
 <template>
     <div class=" d-inline-flex">
         <span v-if="systemcount">
-        <span  v-for="(system, index) in systems" :key="index" class=" pr-2">
-            <v-chip pill :color="pillcolor(system)" dark>
-                <span> {{ system.text }}</span>
-            </v-chip>
-        </span>
+            <span v-for="(system, index) in systems" :key="index" class=" pr-2">
+                <v-chip pill :color="pillcolor(system)" dark>
+                    <span> {{ system.text }}</span>
+                </v-chip>
+            </span>
         </span>
         <span v-else>
-        <div>
-            All Campaigns have finished
-        </div>
+            <div>
+                All Campaigns have finished
+            </div>
         </span>
     </div>
 </template>
@@ -24,13 +24,12 @@ export default {
     },
     data() {
         return {
-            test: "",
+            test: ""
         };
     },
 
     created() {},
-    async mounted() {
-    },
+    async mounted() {},
 
     methods: {
         addCampaignClose() {
@@ -38,33 +37,30 @@ export default {
             this.name = "";
         },
 
-        pillcolor(system){
-        if(system.color == 1){
-            return "red darken-4"
-        }else{
-            return "blue darken-4"
-        }
+        pillcolor(system) {
+            if (system.color == 1) {
+                return "red darken-4";
+            } else {
+                return "blue darken-4";
+            }
         }
     },
 
     computed: {
         ...mapGetters(["getCampaignJoinById"]),
 
-        systems(){
-            return this.getCampaignJoinById(this.campaignID)
+        systems() {
+            return this.getCampaignJoinById(this.campaignID);
         },
 
-        systemcount(){
-            let count = this.getCampaignJoinById(this.campaignID).length
-            if(count == 0){
-
-                return false
-            }else{
-
-                return true
+        systemcount() {
+            let count = this.getCampaignJoinById(this.campaignID).length;
+            if (count == 0) {
+                return false;
+            } else {
+                return true;
             }
         }
-
     }
 };
 </script>

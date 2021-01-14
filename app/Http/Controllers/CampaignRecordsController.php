@@ -22,11 +22,11 @@ class CampaignRecordsController extends Controller
     public function campaignslist()
     {
         $data = [];
-        $pull = CampaignRecords::where('status_id',"<",3)->orderBy('start', 'asc')->get();
-        foreach($pull as $pull){
+        $pull = CampaignRecords::where('status_id', "<", 3)->orderBy('start', 'asc')->get();
+        foreach ($pull as $pull) {
             $data1 = [];
-            $data1= [
-                "text" => $pull['region'] ." - ". $pull['constellation']. " - ". $pull['system']. " - " .$pull['alliance']. " - " .$pull['item_name']." - " .$pull['start'],
+            $data1 = [
+                "text" => $pull['region'] . " - " . $pull['constellation'] . " - " . $pull['system'] . " - " . $pull['alliance'] . " - " . $pull['item_name'] . " - " . $pull['start'],
                 'value' => $pull['id']
             ];
 
@@ -57,7 +57,7 @@ class CampaignRecordsController extends Controller
      */
     public function show($id)
     {
-        return ['campaign' => Campaign::where('id',$id)];
+        return ['campaign' => Campaign::where('id', $id)];
     }
 
     /**

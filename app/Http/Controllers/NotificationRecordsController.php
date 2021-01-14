@@ -25,7 +25,7 @@ class NotificationRecordsController extends Controller
         ////========API FOR NOTIFICATIONS=========
         // return ['notifications' => NotificationRecords::all()];
         $now = Now('-3 hours');
-        return [ 'notifications' => NotificationRecords::where('timestamp','>=',$now)->get()];
+        return ['notifications' => NotificationRecords::where('timestamp', '>=', $now)->get()];
     }
 
     /**
@@ -53,7 +53,7 @@ class NotificationRecordsController extends Controller
                 $http = $http . $region->region_name . "/";
             }
         }
-        $link = NotificationRecords::where('region_id', $region_id)->where('timestamp','>=',$now)->where('status_id','<',10)->get()->pluck('system_name');
+        $link = NotificationRecords::where('region_id', $region_id)->where('timestamp', '>=', $now)->where('status_id', '<', 10)->get()->pluck('system_name');
         $count = $link->count();
         // dd($count);
         if ($count == 0) {
@@ -98,8 +98,8 @@ class NotificationRecordsController extends Controller
         // dd($request,$id);
         NotificationRecords::find($id)->update($request->all());
         $notifications = NotificationRecords::find($id);
-        if($notifications->status_id != 10){
-        broadcast(new NotificationChanged($notifications))->toOthers();
+        if ($notifications->status_id != 10) {
+            broadcast(new NotificationChanged($notifications))->toOthers();
         }
         // broadcast(new NotificationChanged($notifications));
 

@@ -85,7 +85,7 @@ export default {
                 }
             });
 
-            console.log(timeStamp);
+            // console.log(timeStamp);
             await this.$store.dispatch("getCampaignSolaSystems");
         }
     },

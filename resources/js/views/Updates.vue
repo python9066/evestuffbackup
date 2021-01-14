@@ -26,8 +26,8 @@ export default {
             system_data: [],
             system_data_length: 0,
             check: null,
-            limt:100,
-            limtTime:100,
+            limt: 100,
+            limtTime: 100,
 
             headers: [
                 { text: "Designation", value: "name", width: "35%" },

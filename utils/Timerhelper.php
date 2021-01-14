@@ -44,10 +44,10 @@ class Timerhelper
             }
             $data1 = array();
 
-            $check = Structure::where('id',$var['structure_id'])->get()->count();
-            if($check > 0){
+            $check = Structure::where('id', $var['structure_id'])->get()->count();
+            if ($check > 0) {
                 $status = 1;
-            }else{
+            } else {
                 $status = 2;
             }
 
@@ -63,12 +63,12 @@ class Timerhelper
             );
 
             // array_push($data, $data1);
-        Structure::updateOrCreate(['id' => $var['structure_id']], $data1);
+            Structure::updateOrCreate(['id' => $var['structure_id']], $data1);
         }
         $now = now();
-        Structure::where('status',0)->delete();
-        Structure::where('status',2)->update(['age' => $now]);
-        Structure::where('id','>',0)->update(['status' => 0]);
+        Structure::where('status', 0)->delete();
+        Structure::where('status', 2)->update(['age' => $now]);
+        Structure::where('id', '>', 0)->update(['status' => 0]);
         $system = Structure::where('adm', '>', 0)->select('system_id', 'adm')->get();
         $system = $system->unique('system_id');
         // System::where('id', '>', 0)->update(['adm' => 0]);

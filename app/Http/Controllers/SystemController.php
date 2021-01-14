@@ -42,7 +42,7 @@ class SystemController extends Controller
     public function systemsinconstellation($id)
     {
 
-        return ['systems' => System::where('constellation_id',$id)->select('id','system_name')->get()];
+        return ['systems' => System::where('constellation_id', $id)->select('id', 'system_name')->get()];
     }
 
     /**

@@ -28,8 +28,8 @@ class AuthController extends Controller
     {
         $flag = 0;
         $userGice = Socialite::with('gice')->user();
-        $check = User::where('id',$userGice->id)->get()->count();
-        if($check != 1 ){
+        $check = User::where('id', $userGice->id)->get()->count();
+        if ($check != 1) {
             $flag = 1;
         };
         // dd($userGice);
@@ -38,7 +38,7 @@ class AuthController extends Controller
         $user = User::where('id', $userGice->id)->first();
         Auth::login($user, true);
 
-        if($flag == 1){
+        if ($flag == 1) {
             broadcast(new UserUpdate($flag))->toOthers();
         }
         $url = session('url');
@@ -71,6 +71,6 @@ class AuthController extends Controller
 
     public function index()
     {
-        return ['users' => User::select('id','name')->get()];
+        return ['users' => User::select('id', 'name')->get()];
     }
 }

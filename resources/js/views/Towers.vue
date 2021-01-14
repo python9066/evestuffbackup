@@ -24,7 +24,12 @@
                 hide-details
             ></v-text-field>
 
-            <v-btn-toggle right-align v-model="toggle_exclusive" mandatory :value="0">
+            <v-btn-toggle
+                right-align
+                v-model="toggle_exclusive"
+                mandatory
+                :value="0"
+            >
                 <v-btn
                     :loading="loadingf"
                     :disabled="loadingf"
@@ -113,36 +118,48 @@
                 <v-menu offset-y>
                     <template v-slot:activator="{ on, attrs }">
                         <div class="align-items-center">
-
                             <v-btn
                                 class="ma-2"
                                 v-bind="attrs"
                                 v-on="on"
                                 tile
                                 outlined
-                                :color='pillColor(item.tower_status_id)'
+                                :color="pillColor(item.tower_status_id)"
                             >
-                                <v-icon v-if="item.tower_status_id == 1" left>faSvg fa-plus</v-icon>
+                                <v-icon v-if="item.tower_status_id == 1" left
+                                    >faSvg fa-plus</v-icon
+                                >
 
-                                <v-icon v-if="item.tower_status_id == 2" left>faSvg fa-search</v-icon>
+                                <v-icon v-if="item.tower_status_id == 2" left
+                                    >faSvg fa-search</v-icon
+                                >
 
-                                <v-icon v-if="item.tower_status_id == 3" left>faSvg fa-anchor</v-icon>
+                                <v-icon v-if="item.tower_status_id == 3" left
+                                    >faSvg fa-anchor</v-icon
+                                >
 
-                                <v-icon v-if="item.tower_status_id == 4" left>faSvg fa-broadcast-tower</v-icon>
+                                <v-icon v-if="item.tower_status_id == 4" left
+                                    >faSvg fa-broadcast-tower</v-icon
+                                >
 
-                                <v-icon v-if="item.tower_status_id == 5" left>faSvg fa-shield-alt</v-icon>
+                                <v-icon v-if="item.tower_status_id == 5" left
+                                    >faSvg fa-shield-alt</v-icon
+                                >
 
-                                <v-icon v-if="item.tower_status_id == 6" left>faSvg fa-skull-crossbones</v-icon>
+                                <v-icon v-if="item.tower_status_id == 6" left
+                                    >faSvg fa-skull-crossbones</v-icon
+                                >
                                 {{ item.tower_status_name }}
                             </v-btn>
-
-
 
                             <!-- EXTRA BUTTON -->
                             <v-fab-transition>
                                 <v-btn
                                     icon
-                                    @click="expanded = [item], expanded_id = item.id"
+                                    @click="
+                                        (expanded = [item]),
+                                            (expanded_id = item.id)
+                                    "
                                     v-if="
                                         item.tower_status_id == 3 &&
                                             !expanded.includes(item)
@@ -152,7 +169,7 @@
                                 >
                                 <v-btn
                                     icon
-                                    @click="expanded = [], expanded_id = 0"
+                                    @click="(expanded = []), (expanded_id = 0)"
                                     v-if="
                                         item.tower_status_id == 3 &&
                                             expanded.includes(item)
@@ -163,7 +180,6 @@
                             </v-fab-transition>
                         </div>
                     </template>
-
 
                     <v-list>
                         <v-list-item
@@ -206,12 +222,14 @@
                     <div
                         v-if="
                             item.text != null &&
-                                item.text.includes('https://adashboard.info/intel/dscan/')
+                                item.text.includes(
+                                    'https://adashboard.info/intel/dscan/'
+                                )
                         "
                     >
                         <v-card class="mx-auto" elevation="24">
                             <iframe
-                            :name="'ifram'+ item.id"
+                                :name="'ifram' + item.id"
                                 :src="item.text"
                                 style="left:0; bottom:0; right:0; width:100%; height:600px; border:none; margin:0; padding:0; overflow:hidden; z-index:999999;"
                             >
@@ -231,7 +249,6 @@
                 <v-btn v-bind="attrs" text @click="snack = false">Close</v-btn>
             </template>
         </v-snackbar>
-
     </div>
 </template>
 <script>
@@ -255,12 +272,12 @@ export default {
             diff: 0,
             delve: 0,
             endcount: "",
-            expanded:[],
-            expanded_id:0,
+            expanded: [],
+            expanded_id: 0,
             icon: "justify",
-            loadingt:true,
-            loadingf:true,
-            loadingr:true,
+            loadingt: true,
+            loadingf: true,
+            loadingr: true,
             name: "Timer",
             poll: null,
             periodbasis: 0,
@@ -286,14 +303,27 @@ export default {
 
             headers: [
                 { text: "Region", value: "region_name", width: "10%" },
-                { text: "Constellation", value: "constellation_name", width: "8%" },
+                {
+                    text: "Constellation",
+                    value: "constellation_name",
+                    width: "8%"
+                },
                 { text: "System", value: "system_name", width: "8%" },
-                { text: "Alliance", value: "alliance_name",width: "5%"  },
+                { text: "Alliance", value: "alliance_name", width: "5%" },
                 { text: "Moon", value: "moon_name", width: "25%" },
-                { text: "Type", value: "item_name", align: "center",width: "15%" },
-                { text: "Status", value: "tower_status_name", width: "15%",},
-                { text: "Edited By", value: "user_name", width: "10%", align: "start"}
-
+                {
+                    text: "Type",
+                    value: "item_name",
+                    align: "center",
+                    width: "15%"
+                },
+                { text: "Status", value: "tower_status_name", width: "15%" },
+                {
+                    text: "Edited By",
+                    value: "user_name",
+                    width: "10%",
+                    align: "start"
+                }
 
                 // { text: "Vulernable End Time", value: "vulnerable_end_time" }
             ]
@@ -301,68 +331,55 @@ export default {
     },
 
     created() {
+        Echo.private("towers")
+            .listen("TowerChanged", e => {
+                this.checkexpanded(e.towers);
+                this.$store.dispatch("updateTowers", e.towers);
+            })
 
-        Echo.private('towers')
-        .listen('TowerChanged', (e) => {
-        this.checkexpanded(e.towers)
-        this.$store.dispatch('updateTowers',e.towers);
-    })
-
-        .listen('TowerNew', (e) => {
-        this.loadtowers();
-
-        })
-
+            .listen("TowerNew", e => {
+                this.loadtowers();
+            });
 
         this.$store.dispatch("getTowerData").then(() => {
             this.loadingt = false;
             this.loadingf = false;
             this.loadingr = false;
         });
-
     },
 
-
-    async mounted() {
-    },
+    async mounted() {},
     methods: {
-
-
-        checkexpanded(towers){
+        checkexpanded(towers) {
             console.log(towers);
-            if(towers.tower_status_id == 1 ||towers.tower_status_id == 6){
-                if(towers.id == this.expanded_id)
-                {
+            if (towers.tower_status_id == 1 || towers.tower_status_id == 6) {
+                if (towers.id == this.expanded_id) {
                     this.expanded = [];
                     this.expanded_id = 0;
                 }
             }
         },
 
-
-
-        updatetext(payload, item){
+        updatetext(payload, item) {
             // console.log(item);
-            if(item.text != payload){
-                item.text = payload
-                 var request = {
-                text: item.text
-            };
-                this.$store.dispatch('updateTowers',item)
+            if (item.text != payload) {
+                item.text = payload;
+                var request = {
+                    text: item.text
+                };
+                this.$store.dispatch("updateTowers", item);
                 axios({
-                method: 'put', //you can set what request you want to be
-                url: "api/towerrecords/" + item.id,
-                data: request,
-                headers: {
-                    Authorization: 'Bearer ' + this.$store.state.token,
-                    Accept: "application/json",
-                    "Content-Type": "application/json",
-                }
-                })
-
-                                    }
-
-            },
+                    method: "put", //you can set what request you want to be
+                    url: "api/towerrecords/" + item.id,
+                    data: request,
+                    headers: {
+                        Authorization: "Bearer " + this.$store.state.token,
+                        Accept: "application/json",
+                        "Content-Type": "application/json"
+                    }
+                });
+            }
+        },
 
         loadtowers() {
             this.loadingr = true;
@@ -372,29 +389,26 @@ export default {
             // console.log("30secs");
         },
 
-        pillColor(statusId){
-
-            if (statusId == 1){
-                return "light-green accent-3"
+        pillColor(statusId) {
+            if (statusId == 1) {
+                return "light-green accent-3";
             }
-            if (statusId == 2){
-                return "light-blue darken-2"
+            if (statusId == 2) {
+                return "light-blue darken-2";
             }
-            if (statusId == 3){
-                return "deep-orange darken-2"
+            if (statusId == 3) {
+                return "deep-orange darken-2";
             }
-            if (statusId == 4){
-                return "red accent-4"
+            if (statusId == 4) {
+                return "red accent-4";
             }
-            if (statusId == 5){
-                return "blue darken-4"
+            if (statusId == 5) {
+                return "blue darken-4";
             }
-            if (statusId == 6){
-                return "light-green accent-3"
+            if (statusId == 6) {
+                return "light-green accent-3";
             }
-
         },
-
 
         save() {
             this.snack = true;
@@ -411,32 +425,28 @@ export default {
             this.snackColor = "info";
             this.snackText = "Dialog opened";
         },
-        close() {
-
-        },
+        close() {},
 
         click(item) {
-
-            if(item.tower_status_id == 1 ||item.tower_status_id == 6){
+            if (item.tower_status_id == 1 || item.tower_status_id == 6) {
                 this.expanded = [];
                 item.text = null;
             }
 
             var request = {
                 tower_status_id: item.tower_status_id,
-                user_id: this.$store.state.user_id,
+                user_id: this.$store.state.user_id
             };
             axios({
-                method: 'put', //you can set what request you want to be
+                method: "put", //you can set what request you want to be
                 url: "api/towerrecords/" + item.id,
                 data: request,
                 headers: {
-                    Authorization: 'Bearer ' + this.$store.state.token,
+                    Authorization: "Bearer " + this.$store.state.token,
                     Accept: "application/json",
-                    "Content-Type": "application/json",
+                    "Content-Type": "application/json"
                 }
-            })
-
+            });
         },
 
         sec(item) {
@@ -456,9 +466,7 @@ export default {
     },
 
     computed: {
-        ...mapState([
-            "towers",
-        ]),
+        ...mapState(["towers"]),
 
         filteredItems() {
             // var timers = this.$store.state.timers;
@@ -486,31 +494,21 @@ export default {
                 return this.towers.filter(
                     towers => towers.tower_status_id == 3
                 );
-            }
-            else {
+            } else {
                 return this.towers.filter(
                     towers => towers.tower_status_id != 10
                 );
             }
         },
 
-
-
-        user_name(){
-            return this.$store.state.user_name
-        },
-
+        user_name() {
+            return this.$store.state.user_name;
+        }
     },
     beforeDestroy() {
-
         // clearInterval(this.poll);
         // console.log('KILL THEM ALL');
-        Echo.leave('towers');
-
-    },
-
-
-
-
+        Echo.leave("towers");
+    }
 };
 </script>

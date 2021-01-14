@@ -337,7 +337,7 @@ export default {
     async mounted() {},
     methods: {
         checkexpanded(stations) {
-            console.log(stations);
+            // console.log(stations);
             if (stations.station_status_id != 3) {
                 if (stations.id == this.expanded_id) {
                     this.expanded = [];

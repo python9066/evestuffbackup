@@ -18,7 +18,7 @@ class FeedBackController extends Controller
     {
         $feedback = [];
         $feed = FeedBack::with('user')->get();
-        foreach ($feed as $feed){
+        foreach ($feed as $feed) {
             $data = [];
             $time = Helper::fixtime($feed->created_at);
             $data = [

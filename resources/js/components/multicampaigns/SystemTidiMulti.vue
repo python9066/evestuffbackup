@@ -75,7 +75,7 @@ export default {
     },
 
     mounted() {
-        console.log(this.CampaignSolaSystem);
+        // console.log(this.CampaignSolaSystem);
     },
     methods: {
         placeHolder() {
@@ -83,14 +83,14 @@ export default {
         },
 
         async editTidi() {
-            console.log(this.tidiEdit);
+            // console.log(this.tidiEdit);
             var request = {
                 newTidi: this.tidiEdit,
                 oldTidi: this.CampaignSolaSystem[0]["tidi"],
                 solaID: this.CampaignSolaSystem[0]["id"],
                 baseTime: this.CampaignSolaSystem[0]["base_time"]
             };
-            console.log(this.CampaignSolaSystem);
+            // console.log(this.CampaignSolaSystem);
 
             await axios({
                 method: "put", //you can set what request you want to be

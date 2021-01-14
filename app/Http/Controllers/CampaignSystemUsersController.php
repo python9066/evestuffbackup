@@ -19,8 +19,8 @@ class CampaignSystemUsersController extends Controller
     public function index($campid)
     {
         $users = [];
-        $member = CampaignSystemUsers::with('user')->where('campaign_id',$campid)->get();
-        foreach($member as $member){
+        $member = CampaignSystemUsers::with('user')->where('campaign_id', $campid)->get();
+        foreach ($member as $member) {
             $data = [];
             $data = [
                 "id" => $member->id,
@@ -29,9 +29,9 @@ class CampaignSystemUsersController extends Controller
                 "campaign_id" => $member->campaign_id,
             ];
             array_push($users, $data);
-           }
+        }
         // dd( ['users' => $users]);
-        return [ 'users' => $users];
+        return ['users' => $users];
     }
 
     /**
@@ -82,7 +82,7 @@ class CampaignSystemUsersController extends Controller
      */
     public function destroy($id, $campid)
     {
-        CampaignSystemUsers::where('user_id',$id)->delete();
+        CampaignSystemUsers::where('user_id', $id)->delete();
         $flag = collect([
             'flag' => 5,
             'id' => $campid

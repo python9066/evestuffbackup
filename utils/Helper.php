@@ -46,15 +46,14 @@ class Helper
                     'headers' => $headers,
                     'body' => $body
                 ]);
-                    $data = Utils::jsonDecode($response->getBody(), true);
-                    // dd($data);
-                    $date = new DateTime();
-                    $date = $date->modify("+19 minutes");
-                    $auth->refresh_token = $data['refresh_token'];
-                    $auth->access_token = $data['access_token'];
-                    $auth->expire_date = $date;
-                    $auth->save();
-
+                $data = Utils::jsonDecode($response->getBody(), true);
+                // dd($data);
+                $date = new DateTime();
+                $date = $date->modify("+19 minutes");
+                $auth->refresh_token = $data['refresh_token'];
+                $auth->access_token = $data['access_token'];
+                $auth->expire_date = $date;
+                $auth->save();
             }
         }
     }
@@ -76,7 +75,7 @@ class Helper
                 $token->update(['flag_standing' => 1]);
                 $url = 'https://esi.evetech.net/latest/alliances/1354830081/contacts/?datasource=tranquility';
             }
-        } elseif($type == "note") {
+        } elseif ($type == "note") {
             $token = Auth::where('flag_note', 0)->first();
 
             if ($token == null) {
@@ -92,7 +91,7 @@ class Helper
                 $url = "https://esi.evetech.net/latest/characters/" . $token->char_id . "/notifications/";
                 // dd($url);
             }
-        } elseif($type == "station"){
+        } elseif ($type == "station") {
             $token = Auth::where('flag_station', 0)->first();
 
             if ($token == null) {
@@ -100,11 +99,11 @@ class Helper
                 $token = Auth::where('flag_station', 0)->first();
                 $token->update(['flag_station' => 1]);
 
-                $url = "https://esi.evetech.net/latest/universe/structures/". $station_id ."/?datasource=tranquility";
+                $url = "https://esi.evetech.net/latest/universe/structures/" . $station_id . "/?datasource=tranquility";
                 // dd($url);
             } else {
                 $token->update(['flag_station' => 1]);
-                $url = "https://esi.evetech.net/latest/universe/structures/". $station_id ."/?datasource=tranquility";
+                $url = "https://esi.evetech.net/latest/universe/structures/" . $station_id . "/?datasource=tranquility";
                 // dd($url);
             }
         }

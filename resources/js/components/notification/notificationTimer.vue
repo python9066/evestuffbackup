@@ -1,7 +1,11 @@
 <template>
     <v-col>
         <span
-            v-if="item.end_time == null && item.status_id == 3 && $can('edit_notifications')"
+            v-if="
+                item.end_time == null &&
+                    item.status_id == 3 &&
+                    $can('edit_notifications')
+            "
         >
             <v-menu :close-on-content-click="false" :value="timerShown">
                 <template v-slot:activator="{ on, attrs }">
@@ -184,8 +188,7 @@ export default {
             });
 
             this.$store.dispatch("getNotifications");
-        },
-
+        }
     },
 
     computed: {}

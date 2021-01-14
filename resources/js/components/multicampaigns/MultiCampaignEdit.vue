@@ -1,6 +1,6 @@
 <template>
     <div>
-        <v-card min-width=1200 max-width=1200>
+        <v-card min-width="1200" max-width="1200">
             <v-card-title>
                 Edit your Mulit-Campaign Here
             </v-card-title>
@@ -44,7 +44,7 @@ function sleep(ms) {
 export default {
     props: {
         campaignID: Number,
-        nameProp: String,
+        nameProp: String
     },
     data() {
         return {
@@ -56,53 +56,47 @@ export default {
     created() {
         this.$store.dispatch("getCampaignsList");
         this.eidtCampaignLoad();
-        this.name = this.nameProp
+        this.name = this.nameProp;
     },
 
     methods: {
-
-       async eidtCampaignLoad(){
-
-           let res = await axios({
+        async eidtCampaignLoad() {
+            let res = await axios({
                 method: "get",
-                url:
-                    "/api/campaignjoinlist/"+this.campaignID,
+                url: "/api/campaignjoinlist/" + this.campaignID,
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
                     Accept: "application/json",
                     "Content-Type": "application/json"
                 }
-            })
-            sleep(500)
+            });
+            sleep(500);
 
-            this.picked = res.data.value
-
+            this.picked = res.data.value;
         },
 
-        async editCampaignDone(){
-
+        async editCampaignDone() {
             await axios({
                 method: "POST",
                 url:
-                    "/api/multicampaignsedit/"+this.campaignID+"/"+this.name,
+                    "/api/multicampaignsedit/" +
+                    this.campaignID +
+                    "/" +
+                    this.name,
                 data: this.picked,
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
                     Accept: "application/json",
                     "Content-Type": "application/json"
                 }
-            })
-            sleep(500)
-            this.$emit("closeEditNew")
-
+            });
+            sleep(500);
+            this.$emit("closeEditNew");
         },
 
-        editCampaignClose(){
-
-            this.$emit("closeEdit")
-
-        },
-
+        editCampaignClose() {
+            this.$emit("closeEdit");
+        }
     },
 
     computed: {

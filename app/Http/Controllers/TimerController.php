@@ -18,8 +18,8 @@ class TimerController extends Controller
     public function updateTimerData()
     {
         $status = Helper::checkeve();
-        if ($status == 1){
-       Timerhelper::update();
+        if ($status == 1) {
+            Timerhelper::update();
         }
     }
 }

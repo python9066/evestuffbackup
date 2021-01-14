@@ -23,25 +23,25 @@ class NotificationController extends Controller
         $status = Helper::checkeve();
         if ($status == 1) {
             echo " status 1 - ";
-            $type = "note";Helper::authcheck();
-                $data = Helper::authpull($type,0);
-                $flag = Notifications::update($data);
-                if ($flag['notificationflag']) {
-                    broadcast(new NotificationNew($flag['notificationflag']))->toOthers();
-                }
-                if ($flag['stationflag'] == 1) {
-                    broadcast(new StationNew($flag['stationflag']))->toOthers();
-                }
+            $type = "note";
+            Helper::authcheck();
+            $data = Helper::authpull($type, 0);
+            $flag = Notifications::update($data);
+            if ($flag['notificationflag']) {
+                broadcast(new NotificationNew($flag['notificationflag']))->toOthers();
+            }
+            if ($flag['stationflag'] == 1) {
+                broadcast(new StationNew($flag['stationflag']))->toOthers();
+            }
 
-                if ($flag['tower'] == 1) {
-                    broadcast(new TowerNew($flag['towerflag']))->toOthers();
-                }
+            if ($flag['tower'] == 1) {
+                broadcast(new TowerNew($flag['towerflag']))->toOthers();
+            }
         }
     }
 
     public function test()
     {
-
     }
 
     public function update(Request $request, $id)

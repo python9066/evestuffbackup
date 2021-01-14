@@ -14,7 +14,7 @@ class CampaignSystemRecordsController extends Controller
      */
     public function index()
     {
-        return [ 'systems' => CampaignSystemRecords::all()];
+        return ['systems' => CampaignSystemRecords::all()];
     }
 
     /**
@@ -36,7 +36,6 @@ class CampaignSystemRecordsController extends Controller
      */
     public function show($id)
     {
-
     }
 
     /**

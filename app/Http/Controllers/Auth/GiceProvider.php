@@ -68,7 +68,9 @@ class GiceProvider extends AbstractProvider implements ProviderInterface
     {
 
         return Arr::add(
-            parent::getTokenFields($code), 'grant_type', 'authorization_code'
+            parent::getTokenFields($code),
+            'grant_type',
+            'authorization_code'
         );
     }
 
@@ -80,13 +82,13 @@ class GiceProvider extends AbstractProvider implements ProviderInterface
         $response = $this->getHttpClient()->get('https://esi.goonfleet.com/oauth/userinfo', [
             'headers' => [
                 'Accept' => 'application/json',
-                'Authorization' => 'Bearer '.$token,
+                'Authorization' => 'Bearer ' . $token,
             ],
         ]);
 
-            // dd(json_decode($response->getBody(), true));
+        // dd(json_decode($response->getBody(), true));
 
-                return json_decode($response->getBody(), true);
+        return json_decode($response->getBody(), true);
     }
 
     /**

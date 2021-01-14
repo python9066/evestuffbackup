@@ -20,10 +20,8 @@ class AllianceController extends Controller
 
     {
         $status = Helper::checkeve();
-        if ($status == 1){
-        Alliancehelper::updateAlliances();
+        if ($status == 1) {
+            Alliancehelper::updateAlliances();
         }
     }
-
-
 }
