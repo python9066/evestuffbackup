@@ -301,53 +301,60 @@
                         </v-menu>
                     </template>
                     <template v-slot:item.user_name="{ item }">
-                        <v-menu offset-y v-if="checkShowAdd(item)">
-                            <template v-slot:activator="{ on, attrs }">
-                                <div>
-                                    <v-chip
-                                        v-bind="attrs"
-                                        v-on="on"
-                                        pill
-                                        outlined
-                                        small
-                                        color="light-green accent-3"
-                                    >
-                                        Add
-                                    </v-chip>
-                                </div>
-                            </template>
+                        <div class=" d-inline-flex">
+                            <v-menu offset-y v-if="checkShowAdd(item)">
+                                <template v-slot:activator="{ on, attrs }">
+                                    <div>
+                                        <v-chip
+                                            v-bind="attrs"
+                                            v-on="on"
+                                            pill
+                                            outlined
+                                            small
+                                            color="light-green accent-3"
+                                        >
+                                            Add
+                                        </v-chip>
+                                    </div>
+                                </template>
 
-                            <v-list>
-                                <v-list-item
-                                    v-for="(list, index) in charsFree"
-                                    :key="index"
+                                <v-list>
+                                    <v-list-item
+                                        v-for="(list, index) in charsFree"
+                                        :key="index"
+                                        @click="
+                                            (charAddNode = list.id),
+                                                clickCharAddNode(item)
+                                        "
+                                    >
+                                        <v-list-item-title>{{
+                                            list.char_name
+                                        }}</v-list-item-title>
+                                    </v-list-item>
+                                </v-list>
+                            </v-menu>
+                            <span v-else-if="item.user_name != null"
+                                >{{ item.user_name }}
+                                <v-btn
+                                    v-if="checkShowAddRemove(item)"
+                                    icon
                                     @click="
-                                        (charAddNode = list.id),
-                                            clickCharAddNode(item)
+                                        (item.user_name = null),
+                                            (item.main_name = null),
+                                            removeCharNode(item)
                                     "
+                                    color="orange darken-3"
                                 >
-                                    <v-list-item-title>{{
-                                        list.char_name
-                                    }}</v-list-item-title>
-                                </v-list-item>
-                            </v-list>
-                        </v-menu>
-                        <span v-else-if="item.user_name != null"
-                            >{{ item.user_name }}
-                            <v-btn
-                                v-if="checkShowAddRemove(item)"
-                                icon
-                                @click="
-                                    (item.user_name = null),
-                                        (item.main_name = null),
-                                        removeCharNode(item)
-                                "
-                                color="orange darken-3"
+                                    <v-icon small
+                                        >fas fa-trash-alt</v-icon
+                                    ></v-btn
+                                ></span
                             >
-                                <v-icon small>fas fa-trash-alt</v-icon></v-btn
-                            ></span
-                        >
-                        <AdminHack :v-if="$can('super')" item:item></AdminHack>
+                            <AdminHack
+                                :v-if="$can('super')"
+                                item:item
+                            ></AdminHack>
+                        </div>
                     </template>
                     <template v-slot:item.count="{ item }">
                         <systemTableTimer
