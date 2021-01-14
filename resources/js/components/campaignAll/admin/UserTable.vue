@@ -1,7 +1,7 @@
 <template>
     <v-card
         tile
-        min-width="1400px"
+        max-width="700px"
         max-height="500px"
         class=" d-flex flex-column"
         color="red"
