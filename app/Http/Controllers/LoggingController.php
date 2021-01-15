@@ -45,6 +45,12 @@ class LoggingController extends Controller
 
         $campaignname = Helper::campaignName($log->campaign_id);
         $log->update(['campaign_name' => $campaignname['campaign_name'], 'sola_system_name' => $campaignname['system_name']]);
+        $log->save();
+
+        $text = "";
+
+        $name = $log->user->name;
+        dd($name);
     }
 
     public function nodeDelete(Request $request, $campid)
@@ -59,6 +65,7 @@ class LoggingController extends Controller
         broadcast(new CampaignSystemUpdate($flag));
         $campaignname = Helper::campaignName($campid);
         $log->update(['campaign_name' => $campaignname['campaign_name'], 'sola_system_name' => $campaignname['system_name']]);
+        $log->save();
     }
 
     public function store(Request $request, $campid)
