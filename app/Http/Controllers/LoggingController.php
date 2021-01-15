@@ -132,7 +132,7 @@ class LoggingController extends Controller
 
     public function lastchecked(Request $request, $campid)
     {
-        dd($request);
+
         $log = Logging::create($request->all());
         $log->save();
         $campaignname = Helper::campaignName($campid);
