@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Events\CampaignSystemUpdate;
 use App\Models\Campaign;
 use App\Models\System;
+use utils\Helper\Helper;
 
 class LoggingController extends Controller
 {
@@ -41,15 +42,8 @@ class LoggingController extends Controller
             'id' => $campid,
         ]);
         broadcast(new CampaignSystemUpdate($flag));
-        $campaign = Campaign::where('id', $log->campaign_id)->first();
-        $systemname = $campaign->system->system_name;
-        if ($campaign->event_type == 32226) {
-            $itemname = "TCU";
-        } else {
-            $itemname = "IHUB";
-        }
 
-        $campaignname = $itemname . " in " . $systemname;
+        $campaignname = Helper::campaignName($log->campaign_id);
         // $systemname = System::where('id', $campaign->system_id)->value('system_name');
 
         // $test = $systemname->system;

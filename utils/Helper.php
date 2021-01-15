@@ -3,6 +3,7 @@
 namespace utils\Helper;
 
 use App\Models\Auth;
+use App\Models\Campaign;
 use App\Models\Client;
 use App\Models\User;
 use DateTime;
@@ -170,5 +171,18 @@ class Helper
         }
 
         return 1;
+    }
+
+    public function campaignName($campaignID)
+    {
+        $campaign = Campaign::where('id', $campaignID)->first();
+        $systemname = $campaign->system->system_name;
+        if ($campaign->event_type == 32226) {
+            $itemname = "TCU";
+        } else {
+            $itemname = "IHUB";
+        }
+        $campaignname = $itemname . " in " . $systemname;
+        return $campaignname;
     }
 }
