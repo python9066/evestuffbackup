@@ -14,7 +14,7 @@ class AddCampaignNameColoumnToLoggingsTable extends Migration
     public function up()
     {
         Schema::table('loggings', function (Blueprint $table) {
-            //
+            $table->string('campaign_name')->after('campaign_id')->nullable();
         });
     }
 
