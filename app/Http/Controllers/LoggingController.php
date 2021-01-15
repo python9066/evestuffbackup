@@ -91,7 +91,7 @@ class LoggingController extends Controller
 
     public function joinleaveCampaign($campid, $charid, $logtype)
     {
-        dd($campid, $charid, $logtype);
+
         $log = Logging::create(['campaign_id' => $campid, 'user_id' => $charid, 'logging_type_id' => $logtype]);
         $log->save();
         $campaignname = Helper::campaignName($campid);
