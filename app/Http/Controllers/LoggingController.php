@@ -6,6 +6,7 @@ use App\Models\CampaignSystem;
 use App\Models\Logging;
 use Illuminate\Http\Request;
 use App\Events\CampaignSystemUpdate;
+use App\Models\Campaign;
 
 class LoggingController extends Controller
 {
@@ -39,7 +40,8 @@ class LoggingController extends Controller
             'id' => $campid,
         ]);
         broadcast(new CampaignSystemUpdate($flag));
-        dd($request);
+        $systemname = Campaign::where('id', $log->campaign_id)->system()->get();
+        dd($request, $systemname);
     }
 
     public function nodeDelete(Request $request, $campid)
