@@ -121,7 +121,7 @@ class LoggingController extends Controller
         }
         $campaignname = CustomCampaign::where('id', $campid)->value('name');
         $text = $name . " " . $type . " the " . $campaignname . " multi-campaign at" . $log->created_at;
-        $log->update(['campaign_name' => $campaignname['campaign_name'], 'text' => $text]);
+        $log->update(['campaign_name' => $campaignname, 'text' => $text]);
         $log->save();
         Helper::logUpdate($campid);
     }
