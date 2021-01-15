@@ -104,4 +104,6 @@ Route::middleware('auth:api')->group(function () {
 
     Route::post('/checkaddnode/{campid}', 'LoggingController@NodeAdd');
     Route::post('/checkdeletenode/{campid}', 'LoggingController@NodeDelete');
+    Route::post('/mcheckaddnode/{campid}', 'LoggingController@NodeAddMulti');
+    Route::post('/mcheckdeletenode/{campid}', 'LoggingController@NodeDeleteMulti');
 });

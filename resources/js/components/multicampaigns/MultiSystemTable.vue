@@ -706,7 +706,7 @@ export default {
             };
             axios({
                 method: "POST", //you can set what request you want to be
-                url: "/api/checkdeletenode/" + this.campaign_id,
+                url: "/api/mcheckdeletenode/" + this.campaign_id,
                 data: request,
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
@@ -963,7 +963,7 @@ export default {
 
             axios({
                 method: "POST", //you can set what request you want to be
-                url: "/api/checkaddnode/" + this.campaign_id,
+                url: "/api/mcheckaddnode/" + this.campaign_id,
                 data: request,
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,

@@ -30,6 +30,7 @@ class LoggingController extends Controller
      */
     public function nodeAdd(Request $request, $campid)
     {
+
         $log = Logging::create([
             'campaign_id' => $request->campaign_id,
             'campaign_sola_systems_id' => $request->campaign_sola_systems_id,
@@ -50,6 +51,44 @@ class LoggingController extends Controller
     }
 
     public function nodeDelete(Request $request, $campid)
+    {
+        $log = Logging::create($request->all());
+        $log->update(['logging_type_id' => 2]);
+        $log->save();
+        $flag = collect([
+            'flag' => 10,
+            'id' => $campid,
+        ]);
+        broadcast(new CampaignSystemUpdate($flag));
+        $campaignname = Helper::campaignName($campid);
+        $text = $log->user->name . " removed node " . $request->campaign_systems_id . " for the " . $campaignname['campaign_name'] . " at " . $log->created_at;
+        $log->update(['campaign_name' => $campaignname['campaign_name'], 'sola_system_name' => $campaignname['system_name'], 'text' => $text]);
+        $log->save();
+    }
+
+    public function nodeAddMulti(Request $request, $campid)
+    {
+
+        $log = Logging::create([
+            'campaign_id' => $request->campaign_id,
+            'campaign_sola_systems_id' => $request->campaign_sola_systems_id,
+            'user_id' => $request->user_id,
+            'campaign_systems_id' => $request->campaign_systems_id,
+            'logging_type_id' => 1
+        ]);
+        $flag = collect([
+            'flag' => 10,
+            'id' => $campid,
+        ]);
+        broadcast(new CampaignSystemUpdate($flag));
+
+        $campaignname = Helper::campaignName($log->campaign_id);
+        $text = $log->user->name . " added node " . $request->campaign_systems_id . " for the " . $campaignname['campaign_name'] . " at " . $log->created_at;
+        $log->update(['campaign_name' => $campaignname['campaign_name'], 'sola_system_name' => $campaignname['system_name'], 'text' => $text]);
+        $log->save();
+    }
+
+    public function nodeDeleteMulti(Request $request, $campid)
     {
         $log = Logging::create($request->all());
         $log->update(['logging_type_id' => 2]);
