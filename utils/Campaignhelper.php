@@ -109,6 +109,7 @@ class Campaignhelper
         $now = now();
         $warmup = now()->modify(' -1 hour');
         $now10 = now()->modify('-12 hours');
+        $now2m = now()->modify('-2 minutes');
         $now10m = now()->modify('-10 minutes');
         $yesterday = now('-8 hours');
         $check = Campaign::where('start_time', '<=', $now)->where('status_id', 1)->count();
@@ -128,6 +129,8 @@ class Campaignhelper
             echo "warm";
             $changed->push($warmcheck['id']);
         };
+
+
 
         $check = Campaign::where('check', 0)->count();
 
@@ -153,6 +156,8 @@ class Campaignhelper
                 ->update(['status_id' => 10]);
         }
 
+
+
         $finished = Campaign::where('status_id', 3)
             ->get();
         foreach ($finished as $finished) {
@@ -169,6 +174,18 @@ class Campaignhelper
             $flag = 1;
             echo " finished";
             $changed->push($finished->id);
+
+
+
+            $multiRemove = CampaignJoin::where('campaign_id', $finished->id)->get();
+            foreach ($multiRemove as $multiRemove) {
+                $multiCampSys = CampaignSystem::where('custom_campaign_id', $multiRemove->custom_campaign_id)->where('campaign_id', $multiRemove->campaign_id)->get();
+                foreach ($multiCampSys as $multiCampSys) {
+                    $multiUser = CampaignUser::where('id', $multiCampSys->campaign_user_id)->update(['campaign_system_id' => null, 'status_id' => null, 'system_id' => null]);
+                }
+                $multiCampSys->delete();
+            }
+            $multiRemove->delete();
         }
 
         echo "yay";
@@ -180,7 +197,7 @@ class Campaignhelper
     {
 
 
-        echo "in change";
+
         $campaign = Campaign::find($check);
         // dd($check);
         $b_node_add = $campaign->campaignsystems()
