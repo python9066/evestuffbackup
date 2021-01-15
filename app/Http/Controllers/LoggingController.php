@@ -108,7 +108,7 @@ class LoggingController extends Controller
         Helper::logUpdate($campid);
     }
 
-    public function joinleaveCampaign($campid, $charid, $logtype)
+    public function mjoinleaveCampaign($campid, $charid, $logtype)
     {
 
         $log = Logging::create(['campaign_id' => $campid, 'user_id' => $charid, 'logging_type_id' => $logtype]);
