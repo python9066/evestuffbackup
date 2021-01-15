@@ -185,7 +185,9 @@ class Campaignhelper
                 }
                 $multiCampSys->delete();
             }
-            $multiRemove->delete();
+            if ($multiRemove->cout() > 0) {
+                $multiRemove->delete();
+            }
         }
 
         echo "yay";
