@@ -71,7 +71,7 @@ class LoggingController extends Controller
 
         $log = Logging::create([
             'campaign_id' => $request->campaign_id,
-            'campaign_sola_systems_id' => $request->campaign_sola_systems_id,
+            'campaign_sola_systems_id' => $request->sola_id,
             'user_id' => $request->user_id,
             'campaign_systems_id' => $request->campaign_systems_id,
             'logging_type_id' => 1
