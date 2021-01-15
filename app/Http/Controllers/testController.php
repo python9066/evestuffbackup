@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Events\StationNew;
 use App\Events\TowerNew;
 use App\Models\Logging;
-use App\Models\test;
 use Illuminate\Http\Request;
 use utils\Helper\Helper;
 use utils\Notificationhelper\Notifications;
@@ -22,7 +21,7 @@ class testController extends Controller
     {
 
         Logging::create(['campaign_id' => 1, 'campaign_sola_system_id' => 1, 'user_id' => 1]);
-        test($request)
+        $this->test($request);
         // $data =  $request->toArray();
         // $flag = Notifications::test($data);
 
@@ -40,7 +39,7 @@ class testController extends Controller
     public function test($data)
     {
 
-        Logging::create(['campaign_id' => 1, 'campaign_sola_system_id' => 1, 'user_id' => 1,'text' =>$data]);
+        Logging::create(['campaign_id' => 1, 'campaign_sola_system_id' => 1, 'user_id' => 1, 'text' => $data]);
         // $data =  $request->toArray();
         // $flag = Notifications::test($data);
 
