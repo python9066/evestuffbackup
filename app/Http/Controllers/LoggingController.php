@@ -46,7 +46,7 @@ class LoggingController extends Controller
         $campaignname = Helper::campaignName($log->campaign_id);
         $sola_name = CampaignSolaSystem::where('id', $request->campaign_sola_systems_id)->first();
 
-        dd($sola_name->system);
+        dd($sola_name->system->system_name);
         $text = $log->user->name . " added node " . $request->campaign_systems_id . " for the " . $campaignname['campaign_name'] . " at " . $log->created_at;
         $log->update(['campaign_name' => $campaignname['campaign_name'], 'sola_system_name' => $campaignname['system_name'], 'text' => $text]);
         $log->save();
