@@ -496,6 +496,21 @@ export default {
                     "Content-Type": "application/json"
                 }
             });
+
+            await axios({
+                method: "GET", //you can set what request you want to be
+                url:
+                    "/api/checkjoinleavecampaign/" +
+                    this.campaignId +
+                    "/" +
+                    this.$store.state.user_id +
+                    "/4",
+                headers: {
+                    Authorization: "Bearer " + this.$store.state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                }
+            });
         },
 
         async leaving() {
@@ -507,6 +522,21 @@ export default {
                     this.$store.state.user_id +
                     "/" +
                     this.campaignId,
+                headers: {
+                    Authorization: "Bearer " + this.$store.state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                }
+            });
+
+            await axios({
+                method: "GET", //you can set what request you want to be
+                url:
+                    "/api/checkjoinleavecampaign/" +
+                    this.campaignId +
+                    "/" +
+                    this.$store.state.user_id +
+                    "/5",
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
                     Accept: "application/json",
