@@ -174,20 +174,6 @@ class Campaignhelper
             $flag = 1;
             echo " finished";
             $changed->push($finished->id);
-
-
-
-            $multiRemove = CampaignJoin::where('campaign_id', $finished->id)->get();
-            foreach ($multiRemove as $multiRemove) {
-                $multiCampSys = CampaignSystem::where('custom_campaign_id', $multiRemove->custom_campaign_id)->where('campaign_id', $multiRemove->campaign_id)->get();
-                foreach ($multiCampSys as $multiCampSys) {
-                    $multiUser = CampaignUser::where('id', $multiCampSys->campaign_user_id)->update(['campaign_system_id' => null, 'status_id' => null, 'system_id' => null]);
-                }
-                $multiCampSys->delete();
-            }
-            if ($multiRemove->cout() > 0) {
-                $multiRemove->delete();
-            }
         }
 
         echo "yay";
