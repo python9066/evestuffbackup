@@ -28,6 +28,7 @@
             <v-btn-toggle
                 v-model="toggle_exclusive1"
                 mandatory
+                class=" ml-4 mr-4"
                 :value="2"
                 v-if="$can('super')"
             >
