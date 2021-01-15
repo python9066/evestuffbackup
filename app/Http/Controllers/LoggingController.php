@@ -47,7 +47,7 @@ class LoggingController extends Controller
         // $systemname = System::where('id', $campaign->system_id)->value('system_name');
 
         // $test = $systemname->system;
-        dd($campaign, $itemname);
+        dd($itemname);
     }
 
     public function nodeDelete(Request $request, $campid)
