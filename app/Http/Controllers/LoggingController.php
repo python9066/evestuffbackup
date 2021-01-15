@@ -40,9 +40,9 @@ class LoggingController extends Controller
             'id' => $campid,
         ]);
         broadcast(new CampaignSystemUpdate($flag));
-        $systemname = Campaign::where('id', $log->campaign_id)->with('system')->get();
+        $systemname = Campaign::where('id', $log->campaign_id)->with('system')->with('structure')->get();
         // $test = $systemname->system;
-        dd($request, $systemname);
+        dd($systemname);
     }
 
     public function nodeDelete(Request $request, $campid)
