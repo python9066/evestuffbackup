@@ -30,7 +30,6 @@
                 mandatory
                 class=" ml-4 mr-15"
                 :value="2"
-                v-if="$can('super')"
             >
                 <v-btn
                     :loading="loadingf"
