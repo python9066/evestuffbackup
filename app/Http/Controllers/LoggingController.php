@@ -139,7 +139,7 @@ class LoggingController extends Controller
         $name = User::where('id', $request->user_id)->value('name');
         $sola_name = CampaignSolaSystem::where('id', $request->campaign_sola_systems_id)->first()->system->system_name;
         $text = $name . " updated last checked in " . $campaignname['system_name'] . " for the " . $campaignname['campaign_name'] . " campaign at" . $log->created_at;
-        $log->update(['campaign_id' => $campid, 'campaign_name' => $campaignname['campaign_name'], 'sola_system_name' => $campaignname['system_name'], 'logging_type_id' => 8, 'text' => $text]);
+        $log->update(['campaign_id' => $campid, 'campaign_name' => $campaignname['campaign_name'], 'sola_system_name' => $sola_name, 'logging_type_id' => 8, 'text' => $text]);
         $log->save();
         Helper::logUpdate($campid);
     }
