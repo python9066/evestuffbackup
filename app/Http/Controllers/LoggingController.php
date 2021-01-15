@@ -126,8 +126,16 @@ class LoggingController extends Controller
         Helper::logUpdate($campid);
     }
 
-    public function store(Request $request, $campid)
+    public function lastchecked(Request $request, $campid)
     {
+        $log = Logging::create([$request->all()]);
+        $log->save();
+        $campaignname = Helper::campaignName($campid);
+        $name = User::where('id', $request->user_id)->value('name');
+        $text = $name . " updated last checked in " . $campaignname['system_name'] . " for the " . $campaignname['campaign_name'] . " campaign at" . $log->created_at;
+        $log->update(['campaign_id' => $campid, 'campaign_name' => $campaignname['campaign_name'], 'sola_system_name' => $campaignname['system_name'], 'logging_type_id' => 8, 'text' => $text]);
+        $log->save();
+        Helper::logUpdate($campid);
     }
 
     /**
