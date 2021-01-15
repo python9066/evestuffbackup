@@ -39,6 +39,7 @@ class LoggingController extends Controller
             'id' => $campid,
         ]);
         broadcast(new CampaignSystemUpdate($flag));
+        dd($request);
     }
 
     public function nodeDelete(Request $request, $campid)
@@ -51,6 +52,7 @@ class LoggingController extends Controller
             'id' => $campid,
         ]);
         broadcast(new CampaignSystemUpdate($flag));
+        dd($request);
     }
 
     public function store(Request $request, $campid)
