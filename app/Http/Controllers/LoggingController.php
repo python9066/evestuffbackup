@@ -41,12 +41,12 @@ class LoggingController extends Controller
             'campaign_systems_id' => $request->campaign_systems_id,
             'logging_type_id' => 1
         ]);
-        Helper::logUpdate($campid);
         $campaignname = Helper::campaignName($log->campaign_id);
         $sola_name = CampaignSolaSystem::where('id', $request->campaign_sola_systems_id)->first()->system->system_name;
         $text = $log->user->name . " added node " . $request->campaign_systems_id . " for the " . $campaignname['campaign_name'] . " at " . $log->created_at;
         $log->update(['campaign_name' => $campaignname['campaign_name'], 'sola_system_name' => $sola_name, 'text' => $text]);
         $log->save();
+        Helper::logUpdate($campid);
     }
 
     public function nodeDelete(Request $request, $campid)
@@ -55,16 +55,17 @@ class LoggingController extends Controller
         $log = Logging::create($request->all());
         $log->update(['logging_type_id' => 2]);
         $log->save();
-        Helper::logUpdate($campid);
+        $sola_name = CampaignSolaSystem::where('id', $request->campaign_sola_systems_id)->first()->system->system_name;
         $campaignname = Helper::campaignName($campid);
         $text = $log->user->name . " removed node " . $request->campaign_systems_id . " for the " . $campaignname['campaign_name'] . " at " . $log->created_at;
-        $log->update(['campaign_name' => $campaignname['campaign_name'], 'sola_system_name' => $campaignname['system_name'], 'text' => $text]);
+        $log->update(['campaign_name' => $campaignname['campaign_name'], 'sola_system_name' => $sola_name, 'text' => $text]);
         $log->save();
+        Helper::logUpdate($campid);
     }
 
     public function nodeAddMulti(Request $request, $campid)
     {
-        dd($request);
+
         $log = Logging::create([
             'campaign_id' => $request->campaign_id,
             'campaign_sola_systems_id' => $request->campaign_sola_systems_id,
@@ -72,12 +73,12 @@ class LoggingController extends Controller
             'campaign_systems_id' => $request->campaign_systems_id,
             'logging_type_id' => 1
         ]);
-        Helper::logUpdate($campid);
-
         $campaignname = Helper::campaignName($log->campaign_id);
+        $sola_name = CampaignSolaSystem::where('id', $request->campaign_sola_systems_id)->first()->system->system_name;
         $text = $log->user->name . " added node " . $request->campaign_systems_id . " for the " . $campaignname['campaign_name'] . " at " . $log->created_at;
-        $log->update(['campaign_name' => $campaignname['campaign_name'], 'sola_system_name' => $campaignname['system_name'], 'text' => $text]);
+        $log->update(['campaign_name' => $campaignname['campaign_name'], 'sola_system_name' => $sola_name, 'text' => $text]);
         $log->save();
+        Helper::logUpdate($campid);
     }
 
     public function nodeDeleteMulti(Request $request, $campid)
@@ -85,11 +86,12 @@ class LoggingController extends Controller
         $log = Logging::create($request->all());
         $log->update(['logging_type_id' => 2]);
         $log->save();
-        Helper::logUpdate($campid);
         $campaignname = Helper::campaignName($campid);
+        $sola_name = CampaignSolaSystem::where('id', $request->campaign_sola_systems_id)->first()->system->system_name;
         $text = $log->user->name . " removed node " . $request->campaign_systems_id . " for the " . $campaignname['campaign_name'] . " at " . $log->created_at;
-        $log->update(['campaign_name' => $campaignname['campaign_name'], 'sola_system_name' => $campaignname['system_name'], 'text' => $text]);
+        $log->update(['campaign_name' => $campaignname['campaign_name'], 'sola_system_name' => $sola_name, 'text' => $text]);
         $log->save();
+        Helper::logUpdate($campid);
     }
 
     public function joinleaveCampaign($campid, $charid, $logtype)
@@ -130,10 +132,12 @@ class LoggingController extends Controller
 
     public function lastchecked(Request $request, $campid)
     {
+        dd($request);
         $log = Logging::create($request->all());
         $log->save();
         $campaignname = Helper::campaignName($campid);
         $name = User::where('id', $request->user_id)->value('name');
+        $sola_name = CampaignSolaSystem::where('id', $request->campaign_sola_systems_id)->first()->system->system_name;
         $text = $name . " updated last checked in " . $campaignname['system_name'] . " for the " . $campaignname['campaign_name'] . " campaign at" . $log->created_at;
         $log->update(['campaign_id' => $campid, 'campaign_name' => $campaignname['campaign_name'], 'sola_system_name' => $campaignname['system_name'], 'logging_type_id' => 8, 'text' => $text]);
         $log->save();
