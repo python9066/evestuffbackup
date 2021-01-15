@@ -47,10 +47,8 @@ class LoggingController extends Controller
         $log->update(['campaign_name' => $campaignname['campaign_name'], 'sola_system_name' => $campaignname['system_name']]);
         $log->save();
 
-        $text = "";
-
-        $name = $log->user->name;
-        dd($name);
+        $text = $log->user->name . " added a " . $campaignname['campaign_name'] . " node at " . $log->created_at;
+        dd($text);
     }
 
     public function nodeDelete(Request $request, $campid)
