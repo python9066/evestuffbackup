@@ -832,7 +832,7 @@ export default {
             await axios({
                 method: "GET", //you can set what request you want to be
                 url:
-                    "/api/checkjoincampaign/" +
+                    "/api/checkjoinleavecampaign/" +
                     this.campaign.id +
                     "/" +
                     user_id +
@@ -864,7 +864,7 @@ export default {
             await axios({
                 method: "GET", //you can set what request you want to be
                 url:
-                    "/api/checkjoincampaign/" +
+                    "/api/checkjoinleavecampaign/" +
                     this.campaign.id +
                     "/" +
                     this.$store.state.user_id +

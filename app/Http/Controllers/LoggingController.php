@@ -92,6 +92,7 @@ class LoggingController extends Controller
     public function joinleaveCampaign($campid, $charid, $logtype)
     {
         $log = Logging::create(['campaign_id' => $campid, 'user_id' => $charid, 'logging_type_id' => $logtype]);
+        $log->save();
         $campaignname = Helper::campaignName($campid);
         $name = User::where('id', $charid)->value('name')->first();
         if ($logtype == 4) {
@@ -101,6 +102,7 @@ class LoggingController extends Controller
         }
         $text = $name . " " . $type . " the " . $campaignname['campaign_name'] . " campaign at" . $log->created_at;
         $log->update(['campaign_name' => $campaignname['campaign_name'], 'text' => $text]);
+        $log->save();
         Helper::logUpdate($campid);
     }
 
