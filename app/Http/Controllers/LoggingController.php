@@ -75,7 +75,7 @@ class LoggingController extends Controller
         ]);
         $campaignname = Helper::campaignName($log->campaign_id);
         $sola_name = CampaignSolaSystem::where('id', $request->campaign_sola_systems_id)->first()->system->system_name;
-        $text = $log->user->name . " added node " . $request->campaign_systems_id . " for the " . $campaignname['campaign_name'] . " at " . $log->created_at;
+        $text = $log->user->name . " added node " . $request->campaign_systems_id . " in " . $sola_name . " for the " . $campaignname['campaign_name'] . " at " . $log->created_at;
         $log->update(['campaign_name' => $campaignname['campaign_name'], 'sola_system_name' => $sola_name, 'text' => $text]);
         $log->save();
         Helper::logUpdate($campid);
@@ -88,7 +88,7 @@ class LoggingController extends Controller
         $log->save();
         $campaignname = Helper::campaignName($campid);
         $sola_name = CampaignSolaSystem::where('id', $request->campaign_sola_systems_id)->first()->system->system_name;
-        $text = $log->user->name . " removed node " . $request->campaign_systems_id . " for the " . $campaignname['campaign_name'] . " at " . $log->created_at;
+        $text = $log->user->name . " removed node " . $request->campaign_systems_id . " in " . $sola_name . " for the " . $campaignname['campaign_name'] . " at " . $log->created_at;
         $log->update(['campaign_name' => $campaignname['campaign_name'], 'sola_system_name' => $sola_name, 'text' => $text]);
         $log->save();
         Helper::logUpdate($campid);
@@ -138,7 +138,7 @@ class LoggingController extends Controller
         $campaignname = Helper::campaignName($campid);
         $name = User::where('id', $request->user_id)->value('name');
         $sola_name = CampaignSolaSystem::where('id', $request->campaign_sola_systems_id)->first()->system->system_name;
-        $text = $name . " updated last checked in " . $campaignname['system_name'] . " for the " . $campaignname['campaign_name'] . " campaign at" . $log->created_at;
+        $text = $name . " updated last checked in " . $sola_name . " for the " . $campaignname['campaign_name'] . " campaign at" . $log->created_at;
         $log->update(['campaign_id' => $campid, 'campaign_name' => $campaignname['campaign_name'], 'sola_system_name' => $sola_name, 'logging_type_id' => 8, 'text' => $text]);
         $log->save();
         Helper::logUpdate($campid);
