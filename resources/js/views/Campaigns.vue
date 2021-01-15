@@ -528,7 +528,7 @@ export default {
     computed: {
         ...mapState(["campaigns"]),
 
-        filteredItems() {
+        filteredItems_start() {
             // var timers = this.$store.state.timers;
             if (this.colorflag == 1) {
                 return this.campaigns.filter(
@@ -572,8 +572,18 @@ export default {
             }
         },
 
-        test() {
-            return this.filteredItems.filter(c => c.alliance_id == 99008376);
+        filteredItems() {
+            if (this.itemFlag == 1) {
+                return this.filteredItems_start;
+            } else if (this.itemFlag == 2) {
+                return this.filteredItems_start.filter(
+                    c => c.item_name == "Ihub"
+                );
+            } else {
+                return this.filteredItems_start.filter(
+                    c => c.item_name == "TCU"
+                );
+            }
         }
     },
     beforeDestroy() {
