@@ -57,7 +57,8 @@ class LoggingController extends Controller
             'id' => $campid,
         ]);
         broadcast(new CampaignSystemUpdate($flag));
-        dd($request);
+        $campaignname = Helper::campaignName($campid);
+        $log->update(['campaign_name' => $campaignname['campaign_name'], 'sola_system_name' => $campaignname['system_name']]);
     }
 
     public function store(Request $request, $campid)
