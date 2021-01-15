@@ -89,7 +89,7 @@ export default {
             var request = null;
             request = {
                 user_id: this.$store.state.user_id,
-                campaign_sola_system_id: this.CampaignSolaSystem[0]["id"]
+                campaign_sola_systems_id: this.CampaignSolaSystem[0]["id"]
             };
 
             await axios({
