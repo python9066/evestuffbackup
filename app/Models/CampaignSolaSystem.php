@@ -12,7 +12,7 @@ class CampaignSolaSystem extends Model
 
     public function system()
     {
-        return $this->belongsTo(System::class, 'system_id', 'system_id');
+        return $this->belongsTo(System::class, 'id', 'system_id');
     }
 
     public function users()
