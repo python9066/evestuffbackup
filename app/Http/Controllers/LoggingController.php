@@ -48,10 +48,12 @@ class LoggingController extends Controller
         } else {
             $itemname = "IHUB";
         }
+
+        $campaignname = $itemname . " in " . $systemname;
         // $systemname = System::where('id', $campaign->system_id)->value('system_name');
 
         // $test = $systemname->system;
-        dd($itemname);
+        dd($campaignname);
     }
 
     public function nodeDelete(Request $request, $campid)
