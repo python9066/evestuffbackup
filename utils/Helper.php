@@ -183,6 +183,9 @@ class Helper
             $itemname = "IHUB";
         }
         $campaignname = $itemname . " in " . $systemname;
-        return $campaignname;
+        return $date = [
+            'campaign_name' => $campaignname,
+            'system_name' => $systemname
+        ];
     }
 }
