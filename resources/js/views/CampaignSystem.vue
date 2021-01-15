@@ -836,7 +836,8 @@ export default {
                     this.campaign.id +
                     "/" +
                     user_id +
-                    "/4",
+                    "/" +
+                    4,
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
                     Accept: "application/json",
