@@ -95,7 +95,7 @@ class LoggingController extends Controller
         $log = Logging::create(['campaign_id' => $campid, 'user_id' => $charid, 'logging_type_id' => $logtype]);
         $log->save();
         $campaignname = Helper::campaignName($campid);
-        $name = User::where('id', $charid)->value('name')->first();
+        $name = User::where('id', $charid)->value('name');
         if ($logtype == 4) {
             $type = "joined";
         } else {
