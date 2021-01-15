@@ -364,7 +364,7 @@ export default {
             search: "",
             componentKey: 0,
             toggle_exclusive: 0,
-            toggle_exclusive1: 0,
+            toggle_exclusive1: 1,
             colorflag: 4,
             itemFlag: 2,
             name: "Timer",
