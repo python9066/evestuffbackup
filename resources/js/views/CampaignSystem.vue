@@ -830,7 +830,7 @@ export default {
             });
 
             await axios({
-                method: "PUT", //you can set what request you want to be
+                method: "GET", //you can set what request you want to be
                 url:
                     "/api/checkjoinleavecampaign/" +
                     this.campaign.id +
