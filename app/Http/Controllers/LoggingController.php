@@ -44,7 +44,7 @@ class LoggingController extends Controller
         broadcast(new CampaignSystemUpdate($flag));
 
         $campaignname = Helper::campaignName($log->campaign_id);
-        $text = $log->user->name . " added node" . $request->campaign_systems_id . " for the " . $campaignname['campaign_name'] . " at " . $log->created_at;
+        $text = $log->user->name . " added node " . $request->campaign_systems_id . " for the " . $campaignname['campaign_name'] . " at " . $log->created_at;
         $log->update(['campaign_name' => $campaignname['campaign_name'], 'sola_system_name' => $campaignname['system_name'], 'text' => $text]);
         $log->save();
     }
@@ -60,7 +60,7 @@ class LoggingController extends Controller
         ]);
         broadcast(new CampaignSystemUpdate($flag));
         $campaignname = Helper::campaignName($campid);
-        $text = $log->user->name . " removed node" . $request->campaign_systems_id . " for the " . $campaignname['campaign_name'] . " at " . $log->created_at;
+        $text = $log->user->name . " removed node " . $request->campaign_systems_id . " for the " . $campaignname['campaign_name'] . " at " . $log->created_at;
         $log->update(['campaign_name' => $campaignname['campaign_name'], 'sola_system_name' => $campaignname['system_name'], 'text' => $text]);
         $log->save();
     }
