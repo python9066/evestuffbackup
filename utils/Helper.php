@@ -173,7 +173,7 @@ class Helper
         return 1;
     }
 
-    public function campaignName($campaignID)
+    public static function campaignName($campaignID)
     {
         $campaign = Campaign::where('id', $campaignID)->first();
         $systemname = $campaign->system->system_name;
