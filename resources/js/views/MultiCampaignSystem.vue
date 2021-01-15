@@ -500,7 +500,7 @@ export default {
             await axios({
                 method: "GET", //you can set what request you want to be
                 url:
-                    "/api/checkjoinleavecampaign/" +
+                    "/api/mcheckjoinleavecampaign/" +
                     this.campaignId +
                     "/" +
                     this.$store.state.user_id +
@@ -532,7 +532,7 @@ export default {
             await axios({
                 method: "GET", //you can set what request you want to be
                 url:
-                    "/api/checkjoinleavecampaign/" +
+                    "/api/mcheckjoinleavecampaign/" +
                     this.campaignId +
                     "/" +
                     this.$store.state.user_id +

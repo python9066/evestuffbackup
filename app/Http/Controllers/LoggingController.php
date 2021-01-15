@@ -7,6 +7,7 @@ use App\Models\Logging;
 use Illuminate\Http\Request;
 use App\Events\CampaignSystemUpdate;
 use App\Models\Campaign;
+use App\Models\CustomCampaign;
 use App\Models\System;
 use App\Models\User;
 use utils\Helper\Helper;
@@ -90,6 +91,24 @@ class LoggingController extends Controller
     }
 
     public function joinleaveCampaign($campid, $charid, $logtype)
+    {
+
+        $log = Logging::create(['campaign_id' => $campid, 'user_id' => $charid, 'logging_type_id' => $logtype]);
+        $log->save();
+        $name = User::where('id', $charid)->value('name');
+        if ($logtype == 4) {
+            $type = "joined";
+        } else {
+            $type = "left";
+        }
+        $campaignname = CustomCampaign::where('id', $campid)->value('name');
+        $text = $name . " " . $type . " the " . $campaignname . " multi-campaign at" . $log->created_at;
+        $log->update(['campaign_name' => $campaignname['campaign_name'], 'text' => $text]);
+        $log->save();
+        Helper::logUpdate($campid);
+    }
+
+    public function mjoinleaveCampaign($campid, $charid, $logtype)
     {
 
         $log = Logging::create(['campaign_id' => $campid, 'user_id' => $charid, 'logging_type_id' => $logtype]);
