@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Structure extends Model
 {
-    protected $guarded =[];
+    protected $guarded = [];
 
 
 
@@ -17,7 +17,7 @@ class Structure extends Model
 
     public function campaign()
     {
-        return $this->hasOne(Campaign::class);
+        return $this->hasMany(Campaign::class);
     }
 
     protected $casts = [
