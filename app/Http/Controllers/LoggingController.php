@@ -41,7 +41,7 @@ class LoggingController extends Controller
         ]);
         broadcast(new CampaignSystemUpdate($flag));
         $systemname = Campaign::where('id', $log->campaign_id)->get();
-        $test = $systemname->system();
+        $test = $systemname->system;
         dd($request, $test);
     }
 
