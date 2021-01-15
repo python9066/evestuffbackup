@@ -17,7 +17,7 @@ class Structure extends Model
 
     public function campaign()
     {
-        return $this->hasMany(Campaign::class);
+        return $this->hasOne(Campaign::class);
     }
 
     protected $casts = [

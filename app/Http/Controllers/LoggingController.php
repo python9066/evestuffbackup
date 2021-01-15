@@ -43,7 +43,11 @@ class LoggingController extends Controller
         broadcast(new CampaignSystemUpdate($flag));
         $campaign = Campaign::where('id', $log->campaign_id)->first();
         $systemname = $campaign->system->system_name;
-        $itemname = $campaign->structure();
+        if ($campaign->event_type == 32226) {
+            $itemname = "TCU";
+        } else {
+            $itemname = "IHUB";
+        }
         // $systemname = System::where('id', $campaign->system_id)->value('system_name');
 
         // $test = $systemname->system;
