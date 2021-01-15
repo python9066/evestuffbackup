@@ -128,7 +128,7 @@ class LoggingController extends Controller
 
     public function lastchecked(Request $request, $campid)
     {
-        $log = Logging::create([$request->all()]);
+        $log = Logging::create($request->all());
         $log->save();
         $campaignname = Helper::campaignName($campid);
         $name = User::where('id', $request->user_id)->value('name');
