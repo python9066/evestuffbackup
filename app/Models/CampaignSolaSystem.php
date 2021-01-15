@@ -10,7 +10,7 @@ class CampaignSolaSystem extends Model
     protected $guarded = [];
     public $timestamps = false;
 
-    public function systems()
+    public function system()
     {
         return $this->belongsTo(System::class);
     }

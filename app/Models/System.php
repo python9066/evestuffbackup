@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class System extends Model
 {
-    protected $guarded =[];
+    protected $guarded = [];
 
     public function region()
     {
@@ -38,11 +38,15 @@ class System extends Model
         return $this->hasMany(Moon::class);
     }
 
+    public function solasystem()
+    {
+        return $this->hasMany(CampaignSolaSystem::class);
+    }
+
     protected $casts = [
         'region_id ' => 'integer',
         'constellation_id' => 'integer',
         'id' => 'integer',
         'adm' => 'double',
     ];
-
 }
