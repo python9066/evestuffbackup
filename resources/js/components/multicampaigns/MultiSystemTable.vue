@@ -957,7 +957,7 @@ export default {
                 campaign_id: this.campaign_id,
                 system_id: this.system_id,
                 node_id: node,
-                sola_id: this.CampaignSolaSystem[0]["id"],
+                campaign_sola_systems_id: this.CampaignSolaSystem[0]["id"],
                 user_id: this.$store.state.user_id
             };
 

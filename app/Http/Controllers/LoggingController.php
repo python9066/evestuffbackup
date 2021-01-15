@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Events\CampaignSystemUpdate;
 use App\Models\Campaign;
 use App\Models\System;
+use App\Models\User;
 use utils\Helper\Helper;
 
 class LoggingController extends Controller
@@ -38,11 +39,7 @@ class LoggingController extends Controller
             'campaign_systems_id' => $request->campaign_systems_id,
             'logging_type_id' => 1
         ]);
-        $flag = collect([
-            'flag' => 10,
-            'id' => $campid,
-        ]);
-        broadcast(new CampaignSystemUpdate($flag));
+        Helper::logUpdate($campid);
 
         $campaignname = Helper::campaignName($log->campaign_id);
         $text = $log->user->name . " added node " . $request->campaign_systems_id . " for the " . $campaignname['campaign_name'] . " at " . $log->created_at;
@@ -55,11 +52,7 @@ class LoggingController extends Controller
         $log = Logging::create($request->all());
         $log->update(['logging_type_id' => 2]);
         $log->save();
-        $flag = collect([
-            'flag' => 10,
-            'id' => $campid,
-        ]);
-        broadcast(new CampaignSystemUpdate($flag));
+        Helper::logUpdate($campid);
         $campaignname = Helper::campaignName($campid);
         $text = $log->user->name . " removed node " . $request->campaign_systems_id . " for the " . $campaignname['campaign_name'] . " at " . $log->created_at;
         $log->update(['campaign_name' => $campaignname['campaign_name'], 'sola_system_name' => $campaignname['system_name'], 'text' => $text]);
@@ -76,11 +69,7 @@ class LoggingController extends Controller
             'campaign_systems_id' => $request->campaign_systems_id,
             'logging_type_id' => 1
         ]);
-        $flag = collect([
-            'flag' => 10,
-            'id' => $campid,
-        ]);
-        broadcast(new CampaignSystemUpdate($flag));
+        Helper::logUpdate($campid);
 
         $campaignname = Helper::campaignName($log->campaign_id);
         $text = $log->user->name . " added node " . $request->campaign_systems_id . " for the " . $campaignname['campaign_name'] . " at " . $log->created_at;
@@ -93,15 +82,26 @@ class LoggingController extends Controller
         $log = Logging::create($request->all());
         $log->update(['logging_type_id' => 2]);
         $log->save();
-        $flag = collect([
-            'flag' => 10,
-            'id' => $campid,
-        ]);
-        broadcast(new CampaignSystemUpdate($flag));
+        Helper::logUpdate($campid);
         $campaignname = Helper::campaignName($campid);
         $text = $log->user->name . " removed node " . $request->campaign_systems_id . " for the " . $campaignname['campaign_name'] . " at " . $log->created_at;
         $log->update(['campaign_name' => $campaignname['campaign_name'], 'sola_system_name' => $campaignname['system_name'], 'text' => $text]);
         $log->save();
+    }
+
+    public function joinleaveCampaign($campid, $charid, $logtype)
+    {
+        $log = Logging::create(['campaign_id' => $campid, 'user_id' => $charid, 'logging_type_id' => $logtype]);
+        $campaignname = Helper::campaignName($campid);
+        $name = User::where('id', $charid)->value('name')->first();
+        if ($logtype == 4) {
+            $type = "joined";
+        } else {
+            $type = "left";
+        }
+        $text = $name . " " . $type . " the " . $campaignname['campaign_name'] . " campaign at" . $log->created_at;
+        $log->update(['campaign_name' => $campaignname['campaign_name'], 'text' => $text]);
+        Helper::logUpdate($campid);
     }
 
     public function store(Request $request, $campid)

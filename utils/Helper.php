@@ -9,6 +9,7 @@ use App\Models\User;
 use DateTime;
 use GuzzleHttp\Client as GuzzleHttpClient;
 use GuzzleHttp\Utils;
+use App\Events\CampaignSystemUpdate;
 
 use function GuzzleHttp\json_decode;
 
@@ -187,5 +188,14 @@ class Helper
             'campaign_name' => $campaignname,
             'system_name' => $systemname
         ];
+    }
+
+    public static function logUpdate($campid)
+    {
+        $flag = collect([
+            'flag' => 10,
+            'id' => $campid,
+        ]);
+        broadcast(new CampaignSystemUpdate($flag));
     }
 }
