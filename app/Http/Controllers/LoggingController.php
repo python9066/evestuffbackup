@@ -44,6 +44,7 @@ class LoggingController extends Controller
         broadcast(new CampaignSystemUpdate($flag));
 
         $campaignname = Helper::campaignName($log->campaign_id);
+        $log->update(['campaign_name' => $campaignname]);
         // $systemname = System::where('id', $campaign->system_id)->value('system_name');
 
         // $test = $systemname->system;
