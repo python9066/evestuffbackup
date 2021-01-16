@@ -88,9 +88,12 @@ class LoggingController extends Controller
 
         $log = Logging::create($request->all());
         $log->save();
-        $campaign = Campaign::where('id', $campid)->count();
-        dd($campaign);
-        $campaignname = Helper::campaignName($campid);
+
+        if (Campaign::where('id', $campid)->count() != 0) {
+        } else {
+            $campaignname = Helper::campaignName($campid);
+        }
+
         $name = User::where('id', $request->user_id)->value('name');
         $sola_name = CampaignSolaSystem::where('id', $request->campaign_sola_systems_id)->first()->system->system_name;
         $text = $name . " updated last checked in " . $sola_name . " for the " . $campaignname['campaign_name'] . " campaign at" . $log->created_at;
