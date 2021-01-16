@@ -107,6 +107,34 @@ class LoggingController extends Controller
         Helper::logUpdate($campid);
     }
 
+    public function systemmscout(Request $request, $campid)
+    {
+        if ($request->type == "added") {
+            $logging_type_id = 9;
+        } else {
+            $logging_type_id = 10;
+        }
+        $log = Logging::create(['campaign_id' => $campid, 'user_id' => $request->user_id, 'campaign_sola_system_id' => $request->campaign_sola_system_id, 'logging_type_id' => $logging_type_id]);
+        $log->save();
+
+        $name = User::where('id', $request->user_id)->value('name');
+        $sola_name = CampaignSolaSystem::where('id', $request->campaign_sola_systems_id)->first()->system->system_name;
+
+        if (Campaign::where('id', $campid)->count() == 0) {
+            $campaignname = CustomCampaign::where('id', $campid)->value('name');
+            $text = $name . " " . $request->type . " as system scout of" . $sola_name . " for the " . $campaignname . " multi campaign at " . $log->created_at;
+            $log->update(['campaign_name' => $campaignname, 'sola_system_name' => $sola_name, 'text' => $text]);
+            $log->save();
+        } else {
+            $campaignname = Helper::campaignName($campid);
+            $text = $name . " " . $request->type . " as system scout of" . $sola_name . " for the " . $campaignname['campaign_name'] . " campaign at " . $log->created_at;
+            $log->update(['campaign_name' => $campaignname['campaign_name'], 'sola_system_name' => $sola_name, 'text' => $text]);
+            $log->save();
+        }
+
+        Helper::logUpdate($campid);
+    }
+
     public function nodeDeleteMulti(Request $request, $campid)
     {
         $log = Logging::create($request->all());

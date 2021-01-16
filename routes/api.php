@@ -109,4 +109,5 @@ Route::middleware('auth:api')->group(function () {
     Route::get('/checkjoinleavecampaign/{campid}/{charid}/{logtype}', 'LoggingController@joinleaveCampaign');
     Route::get('/mcheckjoinleavecampaign/{campid}/{charid}/{logtype}', 'LoggingController@mjoinleaveCampaign');
     Route::put('/checklastedchecked/{campid}', 'LoggingController@lastchecked');
+    Route::put('/checkscout/{campid}', 'LoggingController@systemscout');
 });

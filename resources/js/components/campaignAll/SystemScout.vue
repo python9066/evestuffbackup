@@ -77,6 +77,26 @@ export default {
             });
 
             await this.$store.dispatch("getCampaignSolaSystems");
+
+            var request = null;
+            request = {
+                user_id: this.$store.state.user_id,
+                campaign_sola_systems_id: this.CampaignSolaSystem[0]["id"],
+                type: "added"
+            };
+
+            await axios({
+                method: "put", //you can set what request you want to be
+                url:
+                    "/api/checkscout/" +
+                    this.CampaignSolaSystem[0]["campaign_id"],
+                data: request,
+                headers: {
+                    Authorization: "Bearer " + this.$store.state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                }
+            });
         },
 
         async scoutRemove() {
@@ -101,6 +121,26 @@ export default {
             });
 
             await this.$store.dispatch("getCampaignSolaSystems");
+
+            var request = null;
+            request = {
+                user_id: this.$store.state.user_id,
+                campaign_sola_systems_id: this.CampaignSolaSystem[0]["id"],
+                type: "removed"
+            };
+
+            await axios({
+                method: "put", //you can set what request you want to be
+                url:
+                    "/api/checkscout/" +
+                    this.CampaignSolaSystem[0]["campaign_id"],
+                data: request,
+                headers: {
+                    Authorization: "Bearer " + this.$store.state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                }
+            });
         }
     },
 
