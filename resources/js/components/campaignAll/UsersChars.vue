@@ -362,6 +362,25 @@ export default {
                 "getUsersChars",
                 this.$store.state.user_id
             );
+
+            request = null;
+            request = {
+                user_id: this.$store.user_id,
+                type: "added",
+                char_name: this.newCharName
+            };
+
+            await axios({
+                method: "put", //you can set what request you want to be
+                url: "/api/checkaddremovechar/" + this.campaign_id,
+                data: request,
+                headers: {
+                    Authorization: "Bearer " + this.$store.state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                }
+            });
+
             this.role = null;
             this.newCharName = null;
             this.newLink = null;
@@ -393,6 +412,24 @@ export default {
             );
             this.$store.dispatch("getCampaignUsersRecords", this.campaign_id);
             this.$store.dispatch("getCampaignSystemsRecords");
+
+            request = null;
+            request = {
+                user_id: this.$store.user_id,
+                type: "removed",
+                char_name: this.newCharName
+            };
+
+            await axios({
+                method: "put", //you can set what request you want to be
+                url: "/api/checkaddremovechar/" + this.campaign_id,
+                data: request,
+                headers: {
+                    Authorization: "Bearer " + this.$store.state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                }
+            });
         }
     },
 
