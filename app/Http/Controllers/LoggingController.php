@@ -92,7 +92,7 @@ class LoggingController extends Controller
         $name = User::where('id', $request->user_id)->value('name');
         $sola_name = CampaignSolaSystem::where('id', $request->campaign_sola_systems_id)->first()->system->system_name;
 
-        if (Campaign::where('id', $campid)->count() != 0) {
+        if (Campaign::where('id', $campid)->count() > 0) {
             $campaignname = CustomCampaign::where('id', $campid)->value('name');
             $text = $name . " updated last checked in " . $sola_name . " for the " . $campaignname . " multi campaign at" . $log->created_at;
             $log->update(['campaign_id' => $campid, 'campaign_name' => $campaignname, 'sola_system_name' => $sola_name, 'logging_type_id' => 8, 'text' => $text]);
