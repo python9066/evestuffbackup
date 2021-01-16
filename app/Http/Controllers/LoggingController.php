@@ -91,6 +91,7 @@ class LoggingController extends Controller
 
         $name = User::where('id', $request->user_id)->value('name');
         $sola_name = CampaignSolaSystem::where('id', $request->campaign_sola_systems_id)->first()->system->system_name;
+        dd(Campaign::where('id', $campid)->count());
 
         if (Campaign::where('id', $campid)->count() > 0) {
             $campaignname = CustomCampaign::where('id', $campid)->value('name');
