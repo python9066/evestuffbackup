@@ -107,7 +107,7 @@ class LoggingController extends Controller
         Helper::logUpdate($campid);
     }
 
-    public function systemmscout(Request $request, $campid)
+    public function systemscout(Request $request, $campid)
     {
         if ($request->type == "added") {
             $logging_type_id = 9;
