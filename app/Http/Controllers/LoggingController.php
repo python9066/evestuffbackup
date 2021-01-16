@@ -88,7 +88,7 @@ class LoggingController extends Controller
 
         $log = Logging::create($request->all());
         $log->save();
-        $campaign = Campaign::where('id', $campid)->first()->count();
+        $campaign = Campaign::where('id', $campid)->count();
         dd($campaign);
         $campaignname = Helper::campaignName($campid);
         $name = User::where('id', $request->user_id)->value('name');
