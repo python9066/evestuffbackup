@@ -288,7 +288,7 @@ export default {
 
                 request = null;
                 request = {
-                    user_id: this.$store.user_id,
+                    user_id: this.$store.state.user_id,
                     type: "removed",
                     char_name: this.newCharName
                 };
@@ -351,7 +351,7 @@ export default {
                 this.$store.dispatch("getCampaignSystemsRecords");
                 request = null;
                 request = {
-                    user_id: this.$store.user_id,
+                    user_id: this.$store.state.user_id,
                     type: "added",
                     char_name: this.newCharName
                 };
