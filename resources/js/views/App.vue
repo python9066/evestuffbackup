@@ -1,78 +1,6 @@
 <template>
     <v-app id="teamfcat">
         <font-awesome-icon icon="user-secret" />
-        <!-- <v-navigation-drawer
-            stateless
-            v-model="navdrawer"
-            app
-            fixed
-            clipped
-            floating
-            :background-color = c93535
-        >
-            <v-list dense nav shaped>
-                <v-list-item link to="/">
-                    <v-list-item-action>
-                        <v-icon class="grey--icon grey--text"
-                            >fas fa-arrow-right fa-xs</v-icon
-                        >
-                    </v-list-item-action>
-                    <v-list-item-content>
-                        <v-list-item-title class="grey--text"
-                            >Home</v-list-item-title
-                        >
-                    </v-list-item-content>
-                </v-list-item>
-                <v-list-item link to="/updates">
-                    <v-list-item-action>
-                        <v-icon class="grey--icon grey--text"
-                            >fas fa-arrow-right fa-xs</v-icon
-                        >
-                    </v-list-item-action>
-                    <v-list-item-content>
-                        <v-list-item-title class="grey--text"
-                            >Updates</v-list-item-title
-                        >
-                    </v-list-item-content>
-                </v-list-item>
-                <v-list-item link to="/alliances">
-                    <v-list-item-action>
-                        <v-icon class="grey--icon grey--text"
-                            >fas fa-arrow-right fa-xs</v-icon
-                        >
-                    </v-list-item-action>
-                    <v-list-item-content>
-                        <v-list-item-title class="grey--text"
-                            >Alliances</v-list-item-title
-                        >
-                    </v-list-item-content>
-                </v-list-item>
-                <v-list-item link to="/systems">
-                    <v-list-item-action>
-                        <v-icon class="grey--icon grey--text"
-                            >fas fa-arrow-right fa-xs</v-icon
-                        >
-                    </v-list-item-action>
-                    <v-list-item-content>
-                        <v-list-item-title class="grey--text"
-                            >Systems</v-list-item-title
-                        >
-                    </v-list-item-content>
-                </v-list-item>
-                <v-list-item link>
-                    <v-list-item-action>
-                        <v-icon class="grey--icon grey--text"
-                            >fas fa-arrow-right fa-xs</v-icon
-                        >
-                    </v-list-item-action>
-                    <v-list-item-content>
-                        <v-list-item-title class="grey--text"
-                            >Menu</v-list-item-title
-                        >
-                    </v-list-item-content>
-                </v-list-item>
-            </v-list>
-        </v-navigation-drawer> -->
 
         <v-app-bar
             height="100px"
@@ -81,16 +9,11 @@
             elevate-on-scroll
             class="align-items-baseline"
         >
-            <!-- <v-app-bar app clipped-left flat hide-on-scroll scroll-threshold="500" class="top-border--teal"> -->
-            <!-- <v-app-bar-nav-icon
-                @click.stop="navdrawer = !navdrawer"
-            ></v-app-bar-nav-icon> -->
             <v-toolbar-title class="pl-15">
                 <span class>EveStuff - {{ this.username }}</span>
 
                 <v-avatar :size="avatarsize" tile class="">
                     <v-icon color="">fa fa-rocket fa-sm </v-icon>
-                    <!-- <v-icon color=""><font-awesome-icon icon="user-secret" /></v-icon> -->
                 </v-avatar>
             </v-toolbar-title>
             <v-spacer></v-spacer>
@@ -158,68 +81,6 @@
                 <v-icon class="mr-2 grey--text lighten-1">fa fa-rocket</v-icon
                 >Logout
             </v-btn>
-
-            <!-- <v-menu :nudge-width="200" offset-y>
-                <template v-slot:activator="{ on }">
-                    <v-btn icon v-on="on">
-                        <v-icon>fas fa-ellipsis-v</v-icon>
-                    </v-btn>
-                </template>
-
-                <v-card class="top-border--teal">
-                    <v-list>
-                        <v-list-item>
-                            <v-list-item-avatar>
-                                <img
-                                    src="https://cdn.vuetifyjs.com/images/john.jpg"
-                                    alt="John"
-                                />
-                            </v-list-item-avatar>
-
-                            <v-list-item-content>
-                                <v-list-item-title
-                                    >User Details</v-list-item-title
-                                >
-                                <v-list-item-subtitle
-                                    >Academy Name Here</v-list-item-subtitle
-                                >
-                            </v-list-item-content>
-                        </v-list-item>
-                    </v-list>
-                    <v-divider></v-divider>
-                    <v-list>
-                        <v-list-item>
-                            <v-list-item-title>
-                                <v-icon class="mr-2 grey--text lighten-2"
-                                    >far fa-check-circle</v-icon
-                                >Menu choice
-                            </v-list-item-title>
-                        </v-list-item>
-                        <v-list-item>
-                            <v-list-item-title>
-                                <v-icon class="mr-2 grey--text lighten-2"
-                                    >far fa-check-circle</v-icon
-                                >Menu choice
-                            </v-list-item-title>
-                        </v-list-item>
-                        <v-list-item>
-                            <v-list-item-title>
-                                <v-icon class="mr-2 grey--text lighten-2"
-                                    >far fa-check-circle</v-icon
-                                >Menu choice
-                            </v-list-item-title>
-                        </v-list-item>
-                    </v-list>
-                    <v-divider></v-divider>
-                    <v-card-actions>
-                        <v-spacer></v-spacer>
-
-                        <v-btn small text @click.prevent="logout()">
-                            <v-icon class="mr-2">fa-sign-out-alt</v-icon>Log Out
-                        </v-btn>
-                    </v-card-actions>
-                </v-card>
-            </v-menu> -->
         </v-app-bar>
 
         <!-- MAIN ROUTER-VIEW ------------------------------------->
@@ -288,11 +149,6 @@ export default {
         feedBackText: ""
     }),
     async created() {
-        // EventBus.$on("buttonupdate", payload => {
-        //     this.loading2 = payload;
-        // });
-        // console.log(this.username)
-        // Echo.channel('orderss');
         await this.$store.dispatch("setToken", this.token);
         await this.$store.dispatch("setUser_id", this.user_id);
         await this.$store.dispatch("setUser_name", this.username);

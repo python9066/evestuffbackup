@@ -36,13 +36,13 @@ class LoggingController extends Controller
 
         $log = Logging::create([
             'campaign_id' => $request->campaign_id,
-            'campaign_sola_systems_id' => $request->campaign_sola_systems_id,
+            'campaign_sola_system_id' => $request->campaign_sola_system_id,
             'user_id' => $request->user_id,
             'campaign_systems_id' => $request->campaign_systems_id,
             'logging_type_id' => 1
         ]);
         $campaignname = Helper::campaignName($log->campaign_id);
-        $sola_name = CampaignSolaSystem::where('id', $request->campaign_sola_systems_id)->first()->system->system_name;
+        $sola_name = CampaignSolaSystem::where('id', $request->campaign_sola_system_id)->first()->system->system_name;
         $text = $log->user->name . " added node " . $request->campaign_systems_id . " for the " . $campaignname['campaign_name'] . " at " . $log->created_at;
         $log->update(['campaign_name' => $campaignname['campaign_name'], 'sola_system_name' => $sola_name, 'text' => $text]);
         $log->save();
@@ -55,7 +55,7 @@ class LoggingController extends Controller
         $log = Logging::create($request->all());
         $log->update(['logging_type_id' => 2]);
         $log->save();
-        $sola_name = CampaignSolaSystem::where('id', $request->campaign_sola_systems_id)->first()->system->system_name;
+        $sola_name = CampaignSolaSystem::where('id', $request->campaign_sola_system_id)->first()->system->system_name;
         $campaignname = Helper::campaignName($campid);
         $text = $log->user->name . " removed node " . $request->campaign_systems_id . " for the " . $campaignname['campaign_name'] . " at " . $log->created_at;
         $log->update(['campaign_name' => $campaignname['campaign_name'], 'sola_system_name' => $sola_name, 'text' => $text]);
@@ -90,7 +90,7 @@ class LoggingController extends Controller
         $log->save();
 
         $name = User::where('id', $request->user_id)->value('name');
-        $sola_name = CampaignSolaSystem::where('id', $request->campaign_sola_systems_id)->first()->system->system_name;
+        $sola_name = CampaignSolaSystem::where('id', $request->campaign_sola_system_id)->first()->system->system_name;
 
         if (Campaign::where('id', $campid)->count() == 0) {
             $campaignname = CustomCampaign::where('id', $campid)->value('name');
@@ -118,7 +118,7 @@ class LoggingController extends Controller
         $log->save();
 
         $name = User::where('id', $request->user_id)->value('name');
-        $sola_name = CampaignSolaSystem::where('id', $request->campaign_sola_systems_id)->first()->system->system_name;
+        $sola_name = CampaignSolaSystem::where('id', $request->campaign_sola_system_id)->first()->system->system_name;
 
         if (Campaign::where('id', $campid)->count() == 0) {
             $campaignname = CustomCampaign::where('id', $campid)->value('name');
@@ -141,7 +141,7 @@ class LoggingController extends Controller
         $log->update(['logging_type_id' => 2]);
         $log->save();
         $campaignname = Helper::campaignName($campid);
-        $sola_name = CampaignSolaSystem::where('id', $request->campaign_sola_systems_id)->first()->system->system_name;
+        $sola_name = CampaignSolaSystem::where('id', $request->campaign_sola_system_id)->first()->system->system_name;
         $text = $log->user->name . " removed node " . $request->campaign_systems_id . " in " . $sola_name . " for the " . $campaignname['campaign_name'] . " at " . $log->created_at;
         $log->update(['campaign_name' => $campaignname['campaign_name'], 'sola_system_name' => $sola_name, 'text' => $text]);
         $log->save();
@@ -171,13 +171,13 @@ class LoggingController extends Controller
 
         $log = Logging::create([
             'campaign_id' => $request->campaign_id,
-            'campaign_sola_systems_id' => $request->campaign_sola_systems_id,
+            'campaign_sola_system_id' => $request->campaign_sola_system_id,
             'user_id' => $request->user_id,
             'campaign_systems_id' => $request->campaign_systems_id,
             'logging_type_id' => 1
         ]);
         $campaignname = Helper::campaignName($log->campaign_id);
-        $sola_name = CampaignSolaSystem::where('id', $request->campaign_sola_systems_id)->first()->system->system_name;
+        $sola_name = CampaignSolaSystem::where('id', $request->campaign_sola_system_id)->first()->system->system_name;
         $text = $log->user->name . " added node " . $request->campaign_systems_id . " in " . $sola_name . " for the " . $campaignname['campaign_name'] . " at " . $log->created_at;
         $log->update(['campaign_name' => $campaignname['campaign_name'], 'sola_system_name' => $sola_name, 'text' => $text]);
         $log->save();

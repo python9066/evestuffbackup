@@ -701,7 +701,7 @@ export default {
             request = {
                 campaign_id: this.campaign_id,
                 campaign_systems_id: item.node_id,
-                campaign_sola_systems_id: this.CampaignSolaSystem[0]["id"],
+                campaign_sola_system_id: this.CampaignSolaSystem[0]["id"],
                 user_id: this.$store.state.user_id
             };
             axios({
@@ -957,7 +957,7 @@ export default {
                 campaign_id: this.campaign_id,
                 system_id: this.system_id,
                 node_id: node,
-                campaign_sola_systems_id: this.CampaignSolaSystem[0]["id"],
+                campaign_sola_system_id: this.CampaignSolaSystem[0]["id"],
                 user_id: this.$store.state.user_id
             };
 

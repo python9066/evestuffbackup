@@ -125,10 +125,6 @@
             </template>
         </v-data-table>
     </div>
-
-    <!-- <template>
-  <v-data-table item-key="name" class="elevation-1" loading loading-text="Loading... Please wait"></v-data-table>
-</template> -->
 </template>
 <script>
 import Axios from "axios";
@@ -138,12 +134,9 @@ import { mapState } from "vuex";
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
-// import VueFilterDateFormat from "@vuejs-community/vue-filter-date-format";
-// import VueFilterDateParse from "@vuejs-community/vue-filter-date-parse";
 export default {
     data() {
         return {
-            //timersAll: [],
             check: "not here",
             loading: true,
             loading3: true,
@@ -167,38 +160,13 @@ export default {
                 { text: "End", value: "end" },
                 { text: "Countdown", value: "count", sortable: false },
                 { text: "Age", value: "age" }
-
-                // { text: "Vulernable End Time", value: "vulnerable_end_time" }
             ]
         };
     },
     async mounted() {
-        // await this.getLatest();
         this.loadtimers();
-        // await this.getSystems();
-        //await this.getTimerDataAll();
-        // await this.saveAlliancesID();
-        // await this.getNewAllianceIDs();
-        // await this.getNewAlliacneData();
-        // await this.saveNewAlliacneData();
-        // await this.getTimers();
-        // await this.sameTimers();
-        // await this.setStructureTypes();
-        // await this.matchLatesttoNames();
     },
     methods: {
-        // async getTimerDataAll() {
-        //     this.loading = true;
-        //     await axios.get("/getTimerData").then(res => {
-        //         if (res.status == 200) {
-        //             this.timersAll = res.data.timers;
-        //         }
-        //     this.loading = false;
-        //     this.loading3 = false;
-
-        //     });
-        // },
-
         async loadtimers() {
             await this.$store.dispatch("getTimerDataAll");
             this.loading3 = false;
@@ -221,7 +189,6 @@ export default {
     computed: {
         ...mapState(["timers"]),
         filteredItems() {
-            // var timers = this.$store.state.timers;
             if (this.colorflag == 1) {
                 return this.timers.filter(
                     timers => timers.color == 1 && timers.status == 0

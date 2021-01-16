@@ -660,7 +660,7 @@ export default {
             request = {
                 campaign_id: this.campaign_id,
                 campaign_systems_id: item.node,
-                campaign_sola_systems_id: this.CampaignSolaSystem[0]["id"],
+                campaign_sola_system_id: this.CampaignSolaSystem[0]["id"],
                 user_id: this.$store.state.user_id
             };
             // console.log(item);
@@ -910,7 +910,7 @@ export default {
             request = {
                 campaign_id: this.campaign_id,
                 campaign_systems_id: node,
-                campaign_sola_systems_id: this.CampaignSolaSystem[0]["id"],
+                campaign_sola_system_id: this.CampaignSolaSystem[0]["id"],
                 user_id: this.$store.state.user_id
             };
 
@@ -998,7 +998,7 @@ export default {
                 campaign_id: this.campaign_id,
                 system_id: this.system_id,
                 campaign_systems_id: item.id,
-                campaign_sola_systems_id: this.CampaignSolaSystem[0]["id"],
+                campaign_sola_system_id: this.CampaignSolaSystem[0]["id"],
                 user_id: this.$store.state.user_id
             };
         }

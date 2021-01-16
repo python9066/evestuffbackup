@@ -441,21 +441,12 @@ export default {
             this.diff = a.diff(b);
             return this.diff;
         }
-
-        // handleCountdownEnd() {
-        //     console.log("hi");
-        // }
-        // handleCountdownEnd(item) {
-        //     console.log('hi')
-        //     this.$store.dispatch('markOver',item);
-        // },
     },
 
     computed: {
         ...mapState(["stations"]),
 
         filteredItems() {
-            // var timers = this.$store.state.timers;
             if (this.statusflag == 2) {
                 return this.stations.filter(
                     stations => stations.station_status_id == 2
@@ -477,8 +468,6 @@ export default {
         }
     },
     beforeDestroy() {
-        // clearInterval(this.poll);
-        // console.log('KILL THEM ALL');
         Echo.leave("stations");
     }
 };

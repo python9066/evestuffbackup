@@ -324,8 +324,6 @@ export default {
                     width: "10%",
                     align: "start"
                 }
-
-                // { text: "Vulernable End Time", value: "vulnerable_end_time" }
             ]
         };
     },
@@ -351,7 +349,6 @@ export default {
     async mounted() {},
     methods: {
         checkexpanded(towers) {
-            // console.log(towers);
             if (towers.tower_status_id == 1 || towers.tower_status_id == 6) {
                 if (towers.id == this.expanded_id) {
                     this.expanded = [];
@@ -361,7 +358,6 @@ export default {
         },
 
         updatetext(payload, item) {
-            // console.log(item);
             if (item.text != payload) {
                 item.text = payload;
                 var request = {
@@ -455,21 +451,12 @@ export default {
             this.diff = a.diff(b);
             return this.diff;
         }
-
-        // handleCountdownEnd() {
-        //     console.log("hi");
-        // }
-        // handleCountdownEnd(item) {
-        //     console.log('hi')
-        //     this.$store.dispatch('markOver',item);
-        // },
     },
 
     computed: {
         ...mapState(["towers"]),
 
         filteredItems() {
-            // var timers = this.$store.state.timers;
             if (this.statusflag == 2) {
                 return this.towers.filter(
                     towers => towers.tower_status_id == 2
@@ -506,8 +493,6 @@ export default {
         }
     },
     beforeDestroy() {
-        // clearInterval(this.poll);
-        // console.log('KILL THEM ALL');
         Echo.leave("towers");
     }
 };

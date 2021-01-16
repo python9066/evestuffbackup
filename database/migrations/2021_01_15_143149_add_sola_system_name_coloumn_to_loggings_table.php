@@ -14,7 +14,7 @@ class AddSolaSystemNameColoumnToLoggingsTable extends Migration
     public function up()
     {
         Schema::table('loggings', function (Blueprint $table) {
-            $table->string('sola_system_name')->after('campaign_sola_systems_id')->nullable();
+            $table->string('sola_system_name')->after('campaign_sola_system_id')->nullable();
         });
     }
 
