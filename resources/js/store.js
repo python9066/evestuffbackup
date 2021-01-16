@@ -159,8 +159,8 @@ export default new Vuex.Store({
             state.campaignusers = data;
         },
 
-        SET_CAMPAIGN_SYSTEMS(state, data) {
-            state.campaignsystems = data;
+        SET_CAMPAIGN_SYSTEMS(state, systems) {
+            state.campaignsystems = systems;
         },
 
         SET_USERS_CHARS(state, data) {
