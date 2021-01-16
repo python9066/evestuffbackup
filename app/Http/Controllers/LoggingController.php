@@ -88,6 +88,10 @@ class LoggingController extends Controller
 
         $log = Logging::create($request->all());
         $log->save();
+
+        $test =
+            $campaign = Campaign::where('id', $campaignID)->first()->count();
+        dd($campaign);
         $campaignname = Helper::campaignName($campid);
         $name = User::where('id', $request->user_id)->value('name');
         $sola_name = CampaignSolaSystem::where('id', $request->campaign_sola_systems_id)->first()->system->system_name;
