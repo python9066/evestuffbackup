@@ -198,8 +198,10 @@
                             </template>
                             <v-row no-gutters>
                                 <div style="width: 400px;">
-                                    <!-- <watchUserTable :campaign_id="campaign.id">
-                                    </watchUserTable> -->
+                                    <watchUserTable
+                                        :campaign_id="propCampaignId()"
+                                    >
+                                    </watchUserTable>
                                 </div>
                             </v-row>
                         </v-menu>
@@ -346,21 +348,21 @@
         </v-row>
 
         <v-row no-gutters justify="space-around" v-if="showTable == true">
-            <!-- <userTable :campaign_id="campaign.id"> </userTable> -->
+            <userTable :campaign_id="propCampaignId()"> </userTable>
         </v-row>
 
         <v-row no-gutters justify="center" :v-if="systemLoaded == true">
-            <!-- <systemTable
+            <systemTable
                 class=" px-5 pt-5"
                 v-for="(system, index) in systems"
                 :system_name="system.system_name"
                 :system_id="system.id"
-                :campaign_id="campaign.id"
+                :campaign_id="propCampaignId()"
                 :index="index"
                 :key="system.id"
                 @openAdd="openAdd($event)"
             >
-            </systemTable> -->
+            </systemTable>
         </v-row>
 
         <v-overlay z-index="0" :value="bullhorn">
@@ -383,17 +385,17 @@
         </v-overlay>
         <v-overlay z-index="0" :value="overlay" min-width="1000px">
             <UsersChars
-                :campaign_id="campaign.id"
+                :campaign_id="propCampaignId()"
                 @closeAddChar="overlay = false"
             >
             </UsersChars>
         </v-overlay>
         <v-overlay z-index="0" :value="showNotes">
-            <!-- <ShowNotes
-                :campaign_id="campaign.id"
+            <ShowNotes
+                :campaign_id="propCampaignId()"
                 @closeNotes="showNotes = false"
             >
-            </ShowNotes> -->
+            </ShowNotes>
         </v-overlay>
 
         <v-overlay z-index="0" :value="showAdd">
@@ -552,12 +554,12 @@ export default {
     async beforeCreate() {},
 
     async mounted() {
-        // await this.$store.dispatch("getCampaignSolaSystems");
-        // await this.getSystems(this.campaign.constellation_id);
-        // await this.$store.dispatch("getCampaignUsersRecords", this.campaign.id);
-        // await this.$store.dispatch("getCampaignSystemsRecords");
-        // await this.$store.dispatch("getUsersChars", this.$store.state.user_id);
-        // await this.loadCampaignlogs();
+        await this.$store.dispatch("getCampaignSolaSystems");
+        await this.getSystems(this.campaign.constellation_id);
+        await this.$store.dispatch("getCampaignUsersRecords", this.campaign.id);
+        await this.$store.dispatch("getCampaignSystemsRecords");
+        await this.$store.dispatch("getUsersChars", this.$store.state.user_id);
+        await this.loadCampaignlogs();
     },
     methods: {
         checkAddUser() {
@@ -569,6 +571,10 @@ export default {
         openAdd(item) {
             this.nodeItem = item;
             this.showAdd = true;
+        },
+
+        async propCampaignId() {
+            return await this.campaign.id;
         },
 
         async finishCampaign() {
