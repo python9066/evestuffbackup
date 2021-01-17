@@ -39,7 +39,7 @@ class LoggingController extends Controller
                 'user_name' => $log->user()->value('name'),
                 'logging_type_id' => $log['logging_type_id'],
                 'logging_type_name' => LoggingType::where('id', $log['logging_type_id'])->value('name'),
-                'logging_type_name_test' => $log->type->name,
+                'logging_type_name_test' => $log->type()->value('name'),
                 'text' => $log['text'],
                 'created_at' => $log['created_at']
             ];
