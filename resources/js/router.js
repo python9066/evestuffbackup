@@ -42,7 +42,7 @@ export default new Router({
             component: Campaign,
             props: route => {
                 const id = route.params.id;
-                const campaign = this.store.dispatch('getCampaignByLink', route.params.id);
+                const campaign = store.dispatch('getCampaignByLink', route.params.id);
                 return { id, campaign };
             }
             //   beforeEnter(to, from, next) {
