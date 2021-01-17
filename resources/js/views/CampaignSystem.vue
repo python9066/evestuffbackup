@@ -1,410 +1,5 @@
 <template>
-    <div>
-        <hackingToolMessage></hackingToolMessage>
-        <v-row
-            no-gutters
-            v-if="this.getCampaignsCount > 1"
-            class="pt-5"
-            justify="space-around"
-        >
-            <v-col md="10">
-                <v-card class="pa-2" tile width="100%">
-                    <v-card-title align="center" class="justify-center">
-                        <h1>
-                            Campaign page for the
-                            {{ this.campaign.item_name }} in
-                            {{ this.campaign.system }} -
-                            <v-avatar size="35"
-                                ><img :src="this.campaign.url"
-                            /></v-avatar>
-                            -
-                            {{ this.campaign.alliance }}
-                        </h1>
-                    </v-card-title>
-                    <div
-                        class="d-flex full-width align-content-center"
-                        v-if="this.campaign.status_id > 1"
-                    >
-                        <v-icon
-                            v-if="
-                                this.campaign.defenders_score >
-                                    this.campaign.defenders_score_old &&
-                                    this.campaign.defenders_score_old > 0
-                            "
-                            small
-                            left
-                            dark
-                            color="blue darken-4"
-                        >
-                            fas fa-arrow-alt-circle-up
-                        </v-icon>
-                        <v-icon
-                            v-if="
-                                this.campaign.defenders_score <
-                                    this.campaign.defenders_score_old &&
-                                    this.campaign.defenders_score_old > 0
-                            "
-                            small
-                            left
-                            dark
-                            color="blue darken-4"
-                        >
-                            fas fa-arrow-alt-circle-down
-                        </v-icon>
-                        <v-icon
-                            v-if="
-                                this.campaign.defenders_score ==
-                                    this.campaign.defenders_score_old ||
-                                    this.campaign.defenders_score_old === null
-                            "
-                            small
-                            left
-                            dark
-                            color="grey darken-3"
-                        >
-                            fas fa-minus-circle
-                        </v-icon>
-
-                        <v-progress-linear
-                            :color="this.barColor"
-                            :value="this.barScoure"
-                            height="20"
-                            rounded
-                            :active="this.barActive"
-                            :reverse="this.barReverse"
-                            :background-color="this.barBgcolor"
-                            background-opacity="0.2"
-                        >
-                            <strong>
-                                {{ this.campaign.defenders_score * 100 }} /
-                                {{ this.campaign.attackers_score * 100 }}
-                            </strong>
-                        </v-progress-linear>
-
-                        <v-icon
-                            v-if="
-                                this.campaign.attackers_score >
-                                    this.campaign.attackers_score_old &&
-                                    this.campaign.attackers_score_old > 0
-                            "
-                            small
-                            right
-                            dark
-                            color="red darken-4"
-                        >
-                            fas fa-arrow-alt-circle-up
-                        </v-icon>
-                        <v-icon
-                            v-if="
-                                this.campaign.attackers_score <
-                                    this.campaign.attackers_score_old &&
-                                    this.campaign.attackers_score_old > 0
-                            "
-                            small
-                            right
-                            dark
-                            color="red darken-4"
-                        >
-                            fas fa-arrow-alt-circle-down
-                        </v-icon>
-                        <v-icon
-                            v-if="
-                                this.campaign.attackers_score ==
-                                    this.campaign.attackers_score_old ||
-                                    this.campaign.attackers_score_old == null
-                            "
-                            small
-                            right
-                            dark
-                            color="grey darken-3"
-                        >
-                            fas fa-minus-circle
-                        </v-icon>
-                    </div>
-                    <div
-                        class="d-flex full-width align-content-center"
-                        v-if="this.campaign.status_id == 1"
-                    >
-                        <CountDowntimer
-                            :start-time="moment.utc(this.campaign.start).unix()"
-                            :end-text="'Campaign Started'"
-                            :interval="1000"
-                            @campaignStart="campaignStart()"
-                        >
-                            <template slot="countdown" slot-scope="scope">
-                                <span
-                                    class="red--text pl-3 text-h3 justify-content"
-                                    >{{ scope.props.minutes }}:{{
-                                        scope.props.seconds
-                                    }}</span
-                                >
-                            </template>
-                        </CountDowntimer>
-                    </div>
-                </v-card>
-            </v-col>
-        </v-row>
-        <v-row
-            no-gutters
-            v-if="this.getCampaignsCount > 1"
-            justify="space-around"
-        >
-            <v-col md="10">
-                <v-card
-                    class="pa-2 d-flex justify-space-between full-width align-center"
-                    tile
-                >
-                    <div class=" d-md-inline-flex">
-                        <v-btn
-                            class="mr-4"
-                            color="blue darken-2"
-                            v-if="showTable == false"
-                            @click="showTable = true"
-                            >Show Char table</v-btn
-                        >
-                        <v-btn
-                            class="mr-4"
-                            color="orange darken-2"
-                            v-if="showTable == true"
-                            @click="showTable = false"
-                            >Hide Char table</v-btn
-                        >
-
-                        <v-btn
-                            class="mr-4"
-                            color="green lighten-1"
-                            @click="overlay = !overlay"
-                            >characters</v-btn
-                        >
-                        <v-menu
-                            :close-on-content-click="false"
-                            transition="fab-transition"
-                            origin="100% -30%"
-                            :nudge-width="200"
-                            offset-x
-                        >
-                            <template
-                                v-slot:activator="{ on, attrs }"
-                                v-if="$can('view_campaign_members')"
-                            >
-                                <v-btn
-                                    class="mr-4"
-                                    @click="showUsers = !showUsers"
-                                    v-bind="attrs"
-                                    color="warning"
-                                    v-on="on"
-                                    >People Watching</v-btn
-                                >
-                            </template>
-                            <v-row no-gutters>
-                                <div style="width: 400px;">
-                                    <watchUserTable :campaign_id="campaign.id">
-                                    </watchUserTable>
-                                </div>
-                            </v-row>
-                        </v-menu>
-                        <v-tooltip bottom>
-                            <template v-slot:activator="{ on, attrs }">
-                                <v-btn
-                                    v-if="$can('view_campaign_members')"
-                                    dark
-                                    color="red"
-                                    class="mr-4"
-                                    v-bind="attrs"
-                                    v-on="on"
-                                    @click="finishCampaign()"
-                                >
-                                    Campaign Over
-                                </v-btn>
-                            </template>
-                            <span>
-                                This will kicked everyone (you also) from the
-                                page. Press when hack is over.
-                            </span>
-                        </v-tooltip>
-                        <v-btn
-                            v-if="$can('super')"
-                            @click="showNotes = !showNotes"
-                        >
-                            test
-                        </v-btn>
-                        <v-tooltip bottom>
-                            <template v-slot:activator="{ on, attrs }">
-                                <v-btn
-                                    v-if="$can('access_campaigns')"
-                                    fab
-                                    dark
-                                    small
-                                    v-bind="attrs"
-                                    v-on="on"
-                                    @click="sendAddCharMessage()"
-                                >
-                                    <v-icon>fas fa-bullhorn</v-icon>
-                                </v-btn>
-                            </template>
-                            <span>
-                                Send a message to all Users without a Char added
-                            </span>
-                        </v-tooltip>
-                    </div>
-                    <v-spacer></v-spacer>
-                    <div
-                        class="d-flex full-width align-content-center"
-                        v-if="this.campaign.status_id == 2"
-                    >
-                        <VueCountUptimer
-                            :start-time="moment.utc(this.campaign.start).unix()"
-                            :end-text="'Campaign Started'"
-                            :interval="1000"
-                        >
-                            <template slot="countup" slot-scope="scope">
-                                <span class="red--text pl-3"
-                                    >{{ scope.props.hours }}:{{
-                                        scope.props.minutes
-                                    }}:{{ scope.props.seconds }}</span
-                                >
-                            </template>
-                        </VueCountUptimer>
-                    </div>
-                    <div
-                        class=" ml-auto d-inline-flex align-center"
-                        v-if="nodeCountAll > 0"
-                    >
-                        <v-divider class="mx-4 my-0" vertical></v-divider>
-                        <p class=" pt-4 pr-3">Active Nodes -</p>
-                        <v-progress-circular
-                            class=" pr-3"
-                            :transitionDuration="5000"
-                            :radius="25"
-                            :strokeWidth="5"
-                            :value="
-                                (nodeCountHackingCountAll / nodeCountAll) *
-                                    100 || 0.000001
-                            "
-                        >
-                            <div class="caption">
-                                {{ nodeCountHackingCountAll }} /
-                                {{ nodeCountAll }}
-                            </div></v-progress-circular
-                        >
-                        <v-progress-circular
-                            :transitionDuration="5000"
-                            :radius="25"
-                            :strokeWidth="5"
-                            strokeColor="#FF3D00"
-                            :value="
-                                (nodeRedCountHackingCountAll / nodeCountAll) *
-                                    100 || 0.000001
-                            "
-                        >
-                            <div class="caption">
-                                {{ nodeRedCountHackingCountAll }} /
-                                {{ nodeCountAll }}
-                            </div></v-progress-circular
-                        >
-                    </div>
-                    <div
-                        v-if="campaign.total_node > 0"
-                        class=" ml-auto d-inline-flex align-center"
-                    >
-                        <v-divider class="mx-4 my-0" vertical></v-divider>
-                        <p class=" pt-4 pr-3">Finished Nodes -</p>
-                        <v-progress-circular
-                            class=" pr-3"
-                            :transitionDuration="5000"
-                            :radius="25"
-                            :strokeWidth="5"
-                            :value="
-                                (campaign.b_node / campaign.total_node) * 100 ||
-                                    0.000001
-                            "
-                        >
-                            <div class="caption">
-                                {{ campaign.b_node }} /
-                                {{ campaign.total_node }}
-                            </div></v-progress-circular
-                        >
-                        <v-progress-circular
-                            class=" pr-3"
-                            :transitionDuration="5000"
-                            :radius="25"
-                            :strokeWidth="5"
-                            strokeColor="#FF3D00"
-                            :value="
-                                (campaign.r_node / campaign.total_node) * 100 ||
-                                    0.000001
-                            "
-                        >
-                            <div class="caption">
-                                {{ campaign.r_node }} /
-                                {{ campaign.total_node }}
-                            </div></v-progress-circular
-                        >
-                    </div>
-                </v-card>
-            </v-col>
-        </v-row>
-
-        <v-row no-gutters justify="space-around" v-if="showTable == true">
-            <userTable :campaign_id="campaign.id"> </userTable>
-        </v-row>
-
-        <v-row no-gutters justify="center" :v-if="systemLoaded == true">
-            <systemTable
-                class=" px-5 pt-5"
-                v-for="(system, index) in systems"
-                :system_name="system.system_name"
-                :system_id="system.id"
-                :campaign_id="campaign.id"
-                :index="index"
-                :key="system.id"
-                @openAdd="openAdd($event)"
-            >
-            </systemTable>
-        </v-row>
-
-        <v-overlay z-index="0" :value="bullhorn">
-            <v-card>
-                <v-card-title> MAKE SURE TO ADD A CHARACTER </v-card-title>
-                <v-card-text>
-                    Remeber to add any chars you have in the campaign by
-                    pressing the green "CHARACTER" button</v-card-text
-                >
-                <v-card-actions>
-                    <v-btn
-                        class="white--text"
-                        color="teal"
-                        @click="(bullhorn = false), (overlay = true)"
-                    >
-                        Close
-                    </v-btn>
-                </v-card-actions>
-            </v-card>
-        </v-overlay>
-        <v-overlay z-index="0" :value="overlay" min-width="1000px">
-            <UsersChars
-                :campaign_id="campaign.id"
-                @closeAddChar="overlay = false"
-            >
-            </UsersChars>
-        </v-overlay>
-        <v-overlay z-index="0" :value="showNotes">
-            <ShowNotes
-                :campaign_id="campaign.id"
-                @closeNotes="showNotes = false"
-            >
-            </ShowNotes>
-        </v-overlay>
-
-        <v-overlay z-index="0" :value="showAdd">
-            <!-- campaignAll/admin/UserTable.vue -->
-            <AdminHackUserTable
-                @closeAdd="showAdd = false"
-                :nodeItem="nodeItem"
-            >
-            </AdminHackUserTable>
-        </v-overlay>
-    </div>
+    <div></div>
 </template>
 <!-- {{ $route.params.id }} - {{ test }} -  -->
 <script>
@@ -896,82 +491,97 @@ export default {
     },
 
     computed: {
-        // ...mapGetters([
-        //     "getCampaignById",
-        //     "getCampaignByLink",
-        //     "getActiveCampaigns",
-        //     "getCampaignsCount",
-        //     "getCampaignUsersByUserId",
-        //     "getCampaignUsersByUserIdCount",
-        //     "getTotalNodeCountByCampaign",
-        //     "getHackingNodeCountByCampaign",
-        //     "getRedHackingNodeCountByCampaign"
-        // ]),
-        // campaign() {
-        //     return this.getCampaignByLink(this.$route.params.id);
-        // },
-        // userCharsDrop() {
-        //     // let payload = {
-        //     //     id: this.$store.state.user_id,
-        //     //     campaignID: this.$route.params.id}
-        //     return this.getCampaignUsersByUserId(this.$store.state.user_id);
-        // },
-        // userCount() {
-        //     return this.getCampaignUsersByUserIdCount(
-        //         this.$store.state.user_id
-        //     );
-        // },
-        // barScoure() {
-        //     var d =
-        //         this.getCampaignById(this.campaign.id).defenders_score * 100;
-        //     var a =
-        //         this.getCampaignById(this.campaign.id).attackers_score * 100;
-        //     if (d > 50) {
-        //         return d;
-        //     }
-        //     return a;
-        // },
-        // barBgcolor() {
-        //     var d =
-        //         this.getCampaignById(this.campaign.id).defenders_score * 100;
-        //     var a =
-        //         this.getCampaignById(this.campaign.id).attackers_score * 100;
-        //     if (d > 50) {
-        //         return "red darken-4";
-        //     }
-        //     return "blue darken-4";
-        // },
-        // barColor() {
-        //     var d =
-        //         this.getCampaignById(this.campaign.id).defenders_score * 100;
-        //     if (d > 50) {
-        //         return "blue darken-4";
-        //     }
-        //     return "red darken-4";
-        // },
-        // barReverse() {
-        //     var d =
-        //         this.getCampaignById(this.campaign.id).defenders_score * 100;
-        //     if (d > 50) {
-        //         return false;
-        //     }
-        //     return true;
-        // },
-        // barActive() {
-        //     if (this.getCampaignById(this.campaign.id).status_id > 1) {
-        //         return true;
-        //     }
-        //     return false;
-        // },
-        // nodeCountAll() {
-        //     return this.getTotalNodeCountByCampaign(this.campaign.id);
-        // },
-        // nodeCountHackingCountAll() {
-        //     return this.getHackingNodeCountByCampaign(this.campaign.id);
-        // },
-        // nodeRedCountHackingCountAll() {
-        //     return this.getRedHackingNodeCountByCampaign(this.campaign.id);
-        // }
+        ...mapGetters([
+            "getCampaignById",
+            "getCampaignByLink",
+            "getActiveCampaigns",
+            "getCampaignsCount",
+            "getCampaignUsersByUserId",
+            "getCampaignUsersByUserIdCount",
+            "getTotalNodeCountByCampaign",
+            "getHackingNodeCountByCampaign",
+            "getRedHackingNodeCountByCampaign"
+        ]),
+
+        campaign() {
+            return this.getCampaignByLink(this.$route.params.id);
+        },
+
+        userCharsDrop() {
+            // let payload = {
+            //     id: this.$store.state.user_id,
+            //     campaignID: this.$route.params.id}
+            return this.getCampaignUsersByUserId(this.$store.state.user_id);
+        },
+
+        userCount() {
+            return this.getCampaignUsersByUserIdCount(
+                this.$store.state.user_id
+            );
+        },
+        barScoure() {
+            var d =
+                this.getCampaignById(this.campaign.id).defenders_score * 100;
+            var a =
+                this.getCampaignById(this.campaign.id).attackers_score * 100;
+
+            if (d > 50) {
+                return d;
+            }
+
+            return a;
+        },
+
+        barBgcolor() {
+            var d =
+                this.getCampaignById(this.campaign.id).defenders_score * 100;
+            var a =
+                this.getCampaignById(this.campaign.id).attackers_score * 100;
+
+            if (d > 50) {
+                return "red darken-4";
+            }
+
+            return "blue darken-4";
+        },
+
+        barColor() {
+            var d =
+                this.getCampaignById(this.campaign.id).defenders_score * 100;
+            if (d > 50) {
+                return "blue darken-4";
+            }
+
+            return "red darken-4";
+        },
+
+        barReverse() {
+            var d =
+                this.getCampaignById(this.campaign.id).defenders_score * 100;
+            if (d > 50) {
+                return false;
+            }
+
+            return true;
+        },
+
+        barActive() {
+            if (this.getCampaignById(this.campaign.id).status_id > 1) {
+                return true;
+            }
+            return false;
+        },
+        nodeCountAll() {
+            return this.getTotalNodeCountByCampaign(this.campaign.id);
+        },
+
+        nodeCountHackingCountAll() {
+            return this.getHackingNodeCountByCampaign(this.campaign.id);
+        },
+
+        nodeRedCountHackingCountAll() {
+            return this.getRedHackingNodeCountByCampaign(this.campaign.id);
+        }
     },
     beforeDestroy() {
         this.leaving();
