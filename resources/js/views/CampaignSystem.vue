@@ -911,10 +911,6 @@ export default {
             "getRedHackingNodeCountByCampaign"
         ]),
 
-        // campaign() {
-        //     return this.getCampaignById(this.$route.params.id);
-        // },
-
         campaign() {
             return this.getCampaignByLink(this.$route.params.id);
         },
