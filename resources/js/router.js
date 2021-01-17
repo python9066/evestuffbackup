@@ -26,6 +26,7 @@ function sleep(ms) {
 Vue.use(Router);
 
 export default new Router({
+    ...mapGetters(['getCampaignByLink']),
     mode: "history",
     routes: [
         // {
