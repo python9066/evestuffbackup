@@ -920,8 +920,8 @@ export default {
         //     return this.getCampaignById(this.$route.params.id);
         // },
 
-        campaign() {
-            return this.getCampaignByLink(this.$route.params.id);
+        async campaign() {
+            return await this.getCampaignByLink(this.$route.params.id);
         },
 
         userCharsDrop() {
