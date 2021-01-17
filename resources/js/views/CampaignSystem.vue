@@ -198,8 +198,8 @@
                             </template>
                             <v-row no-gutters>
                                 <div style="width: 400px;">
-                                    <watchUserTable :campaign_id="campaign.id">
-                                    </watchUserTable>
+                                    <!-- <watchUserTable :campaign_id="campaign.id">
+                                    </watchUserTable> -->
                                 </div>
                             </v-row>
                         </v-menu>
@@ -346,11 +346,11 @@
         </v-row>
 
         <v-row no-gutters justify="space-around" v-if="showTable == true">
-            <userTable :campaign_id="campaign.id"> </userTable>
+            <!-- <userTable :campaign_id="campaign.id"> </userTable> -->
         </v-row>
 
         <v-row no-gutters justify="center" :v-if="systemLoaded == true">
-            <systemTable
+            <!-- <systemTable
                 class=" px-5 pt-5"
                 v-for="(system, index) in systems"
                 :system_name="system.system_name"
@@ -360,7 +360,7 @@
                 :key="system.id"
                 @openAdd="openAdd($event)"
             >
-            </systemTable>
+            </systemTable> -->
         </v-row>
 
         <v-overlay z-index="0" :value="bullhorn">
@@ -382,18 +382,18 @@
             </v-card>
         </v-overlay>
         <v-overlay z-index="0" :value="overlay" min-width="1000px">
-            <UsersChars
+            <!-- <UsersChars
                 :campaign_id="campaign.id"
                 @closeAddChar="overlay = false"
             >
-            </UsersChars>
+            </UsersChars> -->
         </v-overlay>
         <v-overlay z-index="0" :value="showNotes">
-            <ShowNotes
+            <!-- <ShowNotes
                 :campaign_id="campaign.id"
                 @closeNotes="showNotes = false"
             >
-            </ShowNotes>
+            </ShowNotes> -->
         </v-overlay>
 
         <v-overlay z-index="0" :value="showAdd">
