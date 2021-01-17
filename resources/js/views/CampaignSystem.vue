@@ -557,6 +557,7 @@ export default {
         await this.$store.dispatch("getCampaignUsersRecords", this.campaign.id);
         await this.$store.dispatch("getCampaignSystemsRecords");
         await this.$store.dispatch("getUsersChars", this.$store.state.user_id);
+        await this.$store.dispatch("getLoggingCampaign", this.campaign.id);
     },
     methods: {
         checkAddUser() {
