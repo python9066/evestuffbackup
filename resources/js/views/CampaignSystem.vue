@@ -482,68 +482,68 @@ export default {
         if (this.$store.getters.getCampaignsCount == 0) {
             await this.$store.dispatch("getCampaigns");
         }
-        // this.campaignId = this.campaign.id;
-        // Echo.private("campaignsystem." + this.campaign.id).listen(
-        //     "CampaignSystemUpdate",
-        //     e => {
-        //         // console.log(e);
-        //         if (e.flag.flag == 1) {
-        //             // console.log(1);
-        //             this.loadUsersRecords();
-        //         }
-        //         if (e.flag.flag == 2) {
-        //             // console.log(2);
-        //             this.loadCampaignSystemRecords();
-        //         }
-        //         if (e.flag.flag == 3) {
-        //             // console.log(3);
-        //             this.loadCampaignSystemRecords();
-        //             this.loadUsersRecords();
-        //         }
-        //         if (e.flag.flag == 4) {
-        //             // console.log(4);
-        //             this.loadcampaigns();
-        //             this.loadCampaignSystemRecords();
-        //             this.loadUsersRecords();
-        //         }
-        //         if (e.flag.flag == 5) {
-        //             // console.log(4);
-        //             this.checkAddUser();
-        //         }
+        this.campaignId = this.campaign.id;
+        Echo.private("campaignsystem." + this.campaign.id).listen(
+            "CampaignSystemUpdate",
+            e => {
+                // console.log(e);
+                if (e.flag.flag == 1) {
+                    // console.log(1);
+                    this.loadUsersRecords();
+                }
+                if (e.flag.flag == 2) {
+                    // console.log(2);
+                    this.loadCampaignSystemRecords();
+                }
+                if (e.flag.flag == 3) {
+                    // console.log(3);
+                    this.loadCampaignSystemRecords();
+                    this.loadUsersRecords();
+                }
+                if (e.flag.flag == 4) {
+                    // console.log(4);
+                    this.loadcampaigns();
+                    this.loadCampaignSystemRecords();
+                    this.loadUsersRecords();
+                }
+                if (e.flag.flag == 5) {
+                    // console.log(4);
+                    this.checkAddUser();
+                }
 
-        //         if (e.flag.flag == 6) {
-        //             //  console.log(6);
-        //             this.kickUser(e.flag.user_id);
-        //         }
+                if (e.flag.flag == 6) {
+                    //  console.log(6);
+                    this.kickUser(e.flag.user_id);
+                }
 
-        //         if (e.flag.flag == 7) {
-        //             //  console.log(6);
-        //             this.$router.push("/campaignfinished");
-        //         }
+                if (e.flag.flag == 7) {
+                    //  console.log(6);
+                    this.$router.push("/campaignfinished");
+                }
 
-        //         if (e.flag.flag == 8) {
-        //             //  console.log(6);
-        //             this.loadCampaignSolaSystems();
-        //         }
+                if (e.flag.flag == 8) {
+                    //  console.log(6);
+                    this.loadCampaignSolaSystems();
+                }
 
-        //         if (e.flag.flag == 9) {
-        //             //  console.log(6);
-        //             this.loadCampaignSolaSystems();
-        //             this.loadCampaignSystemRecords();
-        //         }
+                if (e.flag.flag == 9) {
+                    //  console.log(6);
+                    this.loadCampaignSolaSystems();
+                    this.loadCampaignSystemRecords();
+                }
 
-        //         if (e.flag.flag == 10) {
-        //             this.loadCampaignlogs();
-        //         }
-        //     },
+                if (e.flag.flag == 10) {
+                    this.loadCampaignlogs();
+                }
+            },
 
-        //     window.addEventListener("beforeunload", this.leaving)
-        // );
-        // this.channel = "campaignsystem." + this.campaign.id;
-        // this.test = 2;
-        // this.test2 = 1;
-        // this.navdrawer = true;
-        // this.addMember();
+            window.addEventListener("beforeunload", this.leaving)
+        );
+        this.channel = "campaignsystem." + this.campaign.id;
+        this.test = 2;
+        this.test2 = 1;
+        this.navdrawer = true;
+        this.addMember();
     },
 
     beforeMonunt() {},
