@@ -9,4 +9,9 @@ class LoggingType extends Model
 {
     use HasFactory;
     protected $guarded = [];
+
+    public function logs()
+    {
+        return $this->hasMany(Logging::class);
+    }
 }
