@@ -382,11 +382,11 @@
             </v-card>
         </v-overlay>
         <v-overlay z-index="0" :value="overlay" min-width="1000px">
-            <UsersChars
+            <!-- <UsersChars
                 :campaign_id="campaign.id"
                 @closeAddChar="overlay = false"
             >
-            </UsersChars>
+            </UsersChars> -->
         </v-overlay>
         <v-overlay z-index="0" :value="showNotes">
             <ShowNotes
