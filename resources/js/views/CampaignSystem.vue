@@ -548,12 +548,7 @@ export default {
 
     beforeMonunt() {},
 
-    async beforeCreate() {
-        if (this.campaign == null) {
-            console.log("wait");
-            await sleep(5000);
-        }
-    },
+    async beforeCreate() {},
 
     async mounted() {
         await this.$store.dispatch("getCampaignSolaSystems");
