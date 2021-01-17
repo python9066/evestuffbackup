@@ -50,10 +50,10 @@ class LoggingController extends Controller
 
     public function logCampaign($campid)
     {
+        dd($campid);
         $data = [];
         $logs = Logging::where('campaign_id', $campid)->get();
         foreach ($logs as $log) {
-            dd($log);
             $data1 = null;
             $data1 = [
                 'id' => $log['id'],
