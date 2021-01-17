@@ -700,7 +700,7 @@ export default {
             var request = null;
             request = {
                 campaign_id: this.campaign_id,
-                campaign_systems_id: item.node_id,
+                campaign_system_id: item.node_id,
                 campaign_sola_system_id: this.CampaignSolaSystem[0]["id"],
                 user_id: this.$store.state.user_id
             };

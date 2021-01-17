@@ -20,7 +20,7 @@ export default new Vuex.Store({
         campaignsystems: [],
         campaignmembers:[],
         delveLink: "",
-        logging:[],
+        loggingsystem:[],
         multicampaigns:[],
         notifications: [],
         periodbasisLink: "",
@@ -80,8 +80,8 @@ export default new Vuex.Store({
             state.campaignslist = campaignslist;
         },
 
-        SET_LOGGING(state, logs) {
-            state.logging = logs;
+        SET_LOGGING_SYSTEM(state, logs) {
+            state.loggingsystem = logs;
         },
 
         UPDATE_CAMPAIGNS(state, data) {
@@ -362,7 +362,7 @@ export default new Vuex.Store({
             commit("SET_CAMPAIGNSLIST", res.data.campaignslist);
         },
 
-        async getLogging({ commit, state }) {
+        async getLoggingSystem({ commit, state }) {
             let res = await axios({
                 method: "get",
                 url: "/api/check",
@@ -373,7 +373,7 @@ export default new Vuex.Store({
                 }
             });
             // console.log(res.data.campaigns);
-            commit("SET_LOGGING", res.data.logs);
+            commit("SET_LOGGING_SYSTEM", res.data.logs);
         },
 
         markOver({ commit }, timer) {
