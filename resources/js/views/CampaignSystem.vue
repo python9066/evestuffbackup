@@ -608,7 +608,9 @@ export default {
         },
 
         loadCampaignlogs() {
-            this.$store.dispatch("getLoggingCampaign", this.campaign.id);
+            if (this.$can("super")) {
+                this.$store.dispatch("getLoggingCampaign", this.campaign.id);
+            }
         },
 
         loadCampaignSystemRecords() {
