@@ -920,7 +920,7 @@ export default {
         //     return this.getCampaignById(this.$route.params.id);
         // },
 
-        async campaign() {
+        campaign() {
             return this.getCampaignByLink(this.$route.params.id);
         },
 
