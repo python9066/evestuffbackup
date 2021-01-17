@@ -199,7 +199,7 @@
                             <v-row no-gutters>
                                 <div style="width: 400px;">
                                     <watchUserTable
-                                        :campaign_id="propCampaignId()"
+                                        :campaign_id="propCampaignId"
                                     >
                                     </watchUserTable>
                                 </div>
@@ -348,7 +348,7 @@
         </v-row>
 
         <v-row no-gutters justify="space-around" v-if="showTable == true">
-            <userTable :campaign_id="propCampaignId()"> </userTable>
+            <userTable :campaign_id="propCampaignId"> </userTable>
         </v-row>
 
         <v-row no-gutters justify="center" :v-if="systemLoaded == true">
@@ -357,7 +357,7 @@
                 v-for="(system, index) in systems"
                 :system_name="system.system_name"
                 :system_id="system.id"
-                :campaign_id="propCampaignId()"
+                :campaign_id="propCampaignId"
                 :index="index"
                 :key="system.id"
                 @openAdd="openAdd($event)"
@@ -385,14 +385,14 @@
         </v-overlay>
         <v-overlay z-index="0" :value="overlay" min-width="1000px">
             <UsersChars
-                :campaign_id="propCampaignId()"
+                :campaign_id="propCampaignId"
                 @closeAddChar="overlay = false"
             >
             </UsersChars>
         </v-overlay>
         <v-overlay z-index="0" :value="showNotes">
             <ShowNotes
-                :campaign_id="propCampaignId()"
+                :campaign_id="propCampaignId"
                 @closeNotes="showNotes = false"
             >
             </ShowNotes>
@@ -571,10 +571,6 @@ export default {
         openAdd(item) {
             this.nodeItem = item;
             this.showAdd = true;
-        },
-
-        async propCampaignId() {
-            return await this.campaign.id;
         },
 
         async finishCampaign() {
@@ -916,6 +912,10 @@ export default {
 
         campaign() {
             return this.getCampaignByLink(this.$route.params.id);
+        },
+
+        propCampaignId() {
+            this.campaign.id;
         },
 
         userCharsDrop() {
