@@ -896,97 +896,82 @@ export default {
     },
 
     computed: {
-        ...mapGetters([
-            "getCampaignById",
-            "getCampaignByLink",
-            "getActiveCampaigns",
-            "getCampaignsCount",
-            "getCampaignUsersByUserId",
-            "getCampaignUsersByUserIdCount",
-            "getTotalNodeCountByCampaign",
-            "getHackingNodeCountByCampaign",
-            "getRedHackingNodeCountByCampaign"
-        ]),
-
-        campaign() {
-            return this.getCampaignByLink(this.$route.params.id);
-        },
-
-        userCharsDrop() {
-            // let payload = {
-            //     id: this.$store.state.user_id,
-            //     campaignID: this.$route.params.id}
-            return this.getCampaignUsersByUserId(this.$store.state.user_id);
-        },
-
-        userCount() {
-            return this.getCampaignUsersByUserIdCount(
-                this.$store.state.user_id
-            );
-        },
-        barScoure() {
-            var d =
-                this.getCampaignById(this.campaign.id).defenders_score * 100;
-            var a =
-                this.getCampaignById(this.campaign.id).attackers_score * 100;
-
-            if (d > 50) {
-                return d;
-            }
-
-            return a;
-        },
-
-        barBgcolor() {
-            var d =
-                this.getCampaignById(this.campaign.id).defenders_score * 100;
-            var a =
-                this.getCampaignById(this.campaign.id).attackers_score * 100;
-
-            if (d > 50) {
-                return "red darken-4";
-            }
-
-            return "blue darken-4";
-        },
-
-        barColor() {
-            var d =
-                this.getCampaignById(this.campaign.id).defenders_score * 100;
-            if (d > 50) {
-                return "blue darken-4";
-            }
-
-            return "red darken-4";
-        },
-
-        barReverse() {
-            var d =
-                this.getCampaignById(this.campaign.id).defenders_score * 100;
-            if (d > 50) {
-                return false;
-            }
-
-            return true;
-        },
-
-        barActive() {
-            if (this.getCampaignById(this.campaign.id).status_id > 1) {
-                return true;
-            }
-            return false;
-        },
-        nodeCountAll() {
-            return this.getTotalNodeCountByCampaign(this.campaign.id);
-        },
-
-        nodeCountHackingCountAll() {
-            return this.getHackingNodeCountByCampaign(this.campaign.id);
-        },
-
-        nodeRedCountHackingCountAll() {
-            return this.getRedHackingNodeCountByCampaign(this.campaign.id);
-        }
+        // ...mapGetters([
+        //     "getCampaignById",
+        //     "getCampaignByLink",
+        //     "getActiveCampaigns",
+        //     "getCampaignsCount",
+        //     "getCampaignUsersByUserId",
+        //     "getCampaignUsersByUserIdCount",
+        //     "getTotalNodeCountByCampaign",
+        //     "getHackingNodeCountByCampaign",
+        //     "getRedHackingNodeCountByCampaign"
+        // ]),
+        // campaign() {
+        //     return this.getCampaignByLink(this.$route.params.id);
+        // },
+        // userCharsDrop() {
+        //     // let payload = {
+        //     //     id: this.$store.state.user_id,
+        //     //     campaignID: this.$route.params.id}
+        //     return this.getCampaignUsersByUserId(this.$store.state.user_id);
+        // },
+        // userCount() {
+        //     return this.getCampaignUsersByUserIdCount(
+        //         this.$store.state.user_id
+        //     );
+        // },
+        // barScoure() {
+        //     var d =
+        //         this.getCampaignById(this.campaign.id).defenders_score * 100;
+        //     var a =
+        //         this.getCampaignById(this.campaign.id).attackers_score * 100;
+        //     if (d > 50) {
+        //         return d;
+        //     }
+        //     return a;
+        // },
+        // barBgcolor() {
+        //     var d =
+        //         this.getCampaignById(this.campaign.id).defenders_score * 100;
+        //     var a =
+        //         this.getCampaignById(this.campaign.id).attackers_score * 100;
+        //     if (d > 50) {
+        //         return "red darken-4";
+        //     }
+        //     return "blue darken-4";
+        // },
+        // barColor() {
+        //     var d =
+        //         this.getCampaignById(this.campaign.id).defenders_score * 100;
+        //     if (d > 50) {
+        //         return "blue darken-4";
+        //     }
+        //     return "red darken-4";
+        // },
+        // barReverse() {
+        //     var d =
+        //         this.getCampaignById(this.campaign.id).defenders_score * 100;
+        //     if (d > 50) {
+        //         return false;
+        //     }
+        //     return true;
+        // },
+        // barActive() {
+        //     if (this.getCampaignById(this.campaign.id).status_id > 1) {
+        //         return true;
+        //     }
+        //     return false;
+        // },
+        // nodeCountAll() {
+        //     return this.getTotalNodeCountByCampaign(this.campaign.id);
+        // },
+        // nodeCountHackingCountAll() {
+        //     return this.getHackingNodeCountByCampaign(this.campaign.id);
+        // },
+        // nodeRedCountHackingCountAll() {
+        //     return this.getRedHackingNodeCountByCampaign(this.campaign.id);
+        // }
     },
     beforeDestroy() {
         this.leaving();
