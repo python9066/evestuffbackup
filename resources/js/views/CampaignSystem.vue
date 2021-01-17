@@ -1,5 +1,5 @@
 <template>
-    <div v-if="campaign > 0">
+    <div v-if="load == 1">
         <hackingToolMessage></hackingToolMessage>
         <v-row
             no-gutters
@@ -474,7 +474,8 @@ export default {
             bullhorn: false,
             link: "",
             showAdd: false,
-            nodeItem: null
+            nodeItem: null,
+            load: 0
         };
     },
 
@@ -909,7 +910,9 @@ export default {
         ]),
 
         campaign() {
-            return this.getCampaignByLink(this.$route.params.id);
+            var d = this.getCampaignByLink(this.$route.params.id);
+            load = 1;
+            return d;
         },
 
         userCharsDrop() {
