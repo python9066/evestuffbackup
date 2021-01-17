@@ -1,5 +1,5 @@
 <template>
-    <div v-if="load == 1">
+    <div v-if="this.load == 1">
         <hackingToolMessage></hackingToolMessage>
         <v-row
             no-gutters
