@@ -362,7 +362,7 @@ export default new Vuex.Store({
             commit("SET_CAMPAIGNSLIST", res.data.campaignslist);
         },
 
-        async getLoggingCampaign({ commit, state },campaign_id) {
+        async getLoggingCampaign({ commit, state }, campaign_id) {
             let res = await axios({
                 method: "get",
                 url: "/api/checkcampaign/" + campaign_id,
