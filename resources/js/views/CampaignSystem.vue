@@ -479,7 +479,6 @@ export default {
     },
 
     async created() {
-        this.link = this.$route.params.id;
         if (this.$store.getters.getCampaignsCount == 0) {
             await this.$store.dispatch("getCampaigns");
         }
@@ -917,7 +916,7 @@ export default {
         // },
 
         campaign() {
-            return this.getCampaignByLink(this.link);
+            return this.getCampaignByLink(this.$route.params.id);
         },
 
         userCharsDrop() {
