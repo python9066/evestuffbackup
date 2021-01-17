@@ -365,7 +365,7 @@ export default new Vuex.Store({
         async getLoggingCampaign({ commit, state },campaign_id) {
             let res = await axios({
                 method: "get",
-                url: "/api/check/" + campaign_id,
+                url: "/api/checkcampaign/" + campaign_id,
                 headers: {
                     Authorization: "Bearer " + state.token,
                     Accept: "application/json",
