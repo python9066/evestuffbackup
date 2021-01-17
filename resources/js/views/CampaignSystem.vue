@@ -484,6 +484,7 @@ export default {
         }
         if (this.campaign == null) {
             await sleep(5000);
+            console.log(this.campaign);
         }
         console.log(this.campaign);
         this.campaignId = this.campaign.id;
@@ -905,14 +906,14 @@ export default {
     computed: {
         ...mapGetters([
             "getCampaignById",
+            "getCampaignByLink",
             "getActiveCampaigns",
             "getCampaignsCount",
             "getCampaignUsersByUserId",
             "getCampaignUsersByUserIdCount",
             "getTotalNodeCountByCampaign",
             "getHackingNodeCountByCampaign",
-            "getRedHackingNodeCountByCampaign",
-            "getCampaignByLink"
+            "getRedHackingNodeCountByCampaign"
         ]),
 
         // campaign() {
