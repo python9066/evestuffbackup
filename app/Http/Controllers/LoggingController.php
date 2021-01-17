@@ -26,6 +26,7 @@ class LoggingController extends Controller
         $data = [];
         $logs = Logging::all();
         foreach ($logs as $log) {
+            dd($log);
             $data1 = null;
             $data1 = [
                 'id' => $log['id'],
