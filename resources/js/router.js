@@ -43,7 +43,7 @@ export default new Router({
             component: Campaign,
             props: route => {
                 const id = route.params.id;
-                const campaign = store.getter.getCampaignByLink(route.params.id);
+                const campaign = store.getter.getCampaignByLink(id);
                 return { id, campaign };
             }
 
