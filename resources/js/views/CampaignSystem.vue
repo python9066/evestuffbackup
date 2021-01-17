@@ -921,7 +921,7 @@ export default {
         // },
 
         async campaign() {
-            return await this.getCampaignByLink(this.$route.params.id);
+            return this.getCampaignByLink(this.$route.params.id);
         },
 
         userCharsDrop() {
