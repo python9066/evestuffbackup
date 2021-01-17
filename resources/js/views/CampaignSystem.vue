@@ -482,11 +482,7 @@ export default {
         if (this.$store.getters.getCampaignsCount == 0) {
             await this.$store.dispatch("getCampaigns");
         }
-        if (this.campaign == undefined) {
-            await sleep(500);
-            console.log(this.campaign + "1");
-        }
-        console.log(this.campaign);
+
         this.campaignId = this.campaign.id;
         Echo.private("campaignsystem." + this.campaign.id).listen(
             "CampaignSystemUpdate",
