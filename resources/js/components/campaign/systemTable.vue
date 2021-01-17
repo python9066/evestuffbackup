@@ -429,6 +429,10 @@
                     <div>
                         <SystemScout :CampaignSolaSystem="CampaignSolaSystem">
                         </SystemScout>
+                        <SolaSystemLogging
+                            :solaID="CampaignSolaSystem[0]['id']"
+                        >
+                        </SolaSystemLogging>
                     </div>
                 </div>
             </v-card-actions>

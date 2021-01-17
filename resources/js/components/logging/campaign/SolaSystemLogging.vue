@@ -6,7 +6,7 @@
             max-height="500px"
             class=" d-flex flex-column"
         >
-            <v-card-title
+            <!-- <v-card-title
                 class=" d-lg-inline-block justify-space-between align-center "
             >
                 <div>
@@ -58,7 +58,7 @@
                 ><v-btn class="white--text" color="teal" @click="close()">
                     Close
                 </v-btn></v-card-actions
-            >
+            > -->
         </v-card>
     </v-overlay>
 </template>
@@ -90,7 +90,11 @@ export default {
         // },
     },
 
-    computed: {}
+    computed: {
+        filtereditems() {
+            return this.$store.dispatch("getLoggingSystem", this.solaID);
+        }
+    }
 };
 </script>
 
