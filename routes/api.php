@@ -111,5 +111,5 @@ Route::middleware('auth:api')->group(function () {
     Route::put('/checklastedchecked/{campid}', 'LoggingController@lastchecked');
     Route::put('/checkscout/{campid}', 'LoggingController@systemscout');
     Route::put('/checkaddremovechar/{campid}', 'LoggingController@addremovechar');
-    Route::get('/checkcampaign/{$campid}', 'LoggingController@logCampaign');
+    Route::get('/checkcampaign/{campid}', 'LoggingController@logCampaign');
 });
