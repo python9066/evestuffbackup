@@ -482,7 +482,7 @@ export default {
         if (this.$store.getters.getCampaignsCount == 0) {
             await this.$store.dispatch("getCampaigns");
         }
-        if (this.campaign == undefined) {
+        if (this.campaign == null) {
             await sleep(5000);
         }
         console.log(this.campaign);
