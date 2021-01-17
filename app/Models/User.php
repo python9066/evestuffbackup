@@ -24,7 +24,7 @@ class User extends Authenticatable
      *
      * @var array
      */
-    protected $guarded =[];
+    protected $guarded = [];
 
     /**
      * The attributes that should be hidden for arrays.
@@ -61,31 +61,37 @@ class User extends Authenticatable
         return $this->hasMany(FeedBack::class);
     }
 
+    public function logs()
+    {
+        return $this->hasMany(Logging::class);
+    }
 
 
 
-    public function getAllPermissionsAttribute() {
+
+    public function getAllPermissionsAttribute()
+    {
         $permissions = [];
-          foreach (Permission::all() as $permission) {
+        foreach (Permission::all() as $permission) {
 
             //   dd($name);
             if (Auth::user()->can($permission->name)) {
-              $permissions[] = $permission->name;
+                $permissions[] = $permission->name;
             }
-          }
-          return $permissions;
-      }
+        }
+        return $permissions;
+    }
 
-      public function getAllRolesAttribute() {
+    public function getAllRolesAttribute()
+    {
         $roles = [];
-          foreach (Role::all() as $role) {
+        foreach (Role::all() as $role) {
 
             //   dd($name);
             if (Auth::user()->can($role->name)) {
-              $roles[] = $role->name;
+                $roles[] = $role->name;
             }
-          }
-          return $roles;
-      }
-
+        }
+        return $roles;
+    }
 }
