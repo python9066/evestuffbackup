@@ -18,6 +18,7 @@ import MultiCampagins from "./views/MultiCampaigns.vue";
 import campaignFinished from "./views/redirect/campaignOver.vue";
 import { mapGetters, mapState } from "vuex";
 
+
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
@@ -41,7 +42,7 @@ export default new Router({
             component: Campaign,
             props: route => {
                 const id = route.params.id;
-                const campaign = this.$store.dispatch('getCampaignByLink', route.params.id);
+                const campaign = this.store.dispatch('getCampaignByLink', route.params.id);
                 return { id, campaign };
             }
             //   beforeEnter(to, from, next) {
