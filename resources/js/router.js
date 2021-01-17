@@ -16,6 +16,8 @@ import FeedBack from "./views/FeedBack.vue";
 import campaginSystemKick from "./views/redirect/campaginSystemKick.vue";
 import MultiCampagins from "./views/MultiCampaigns.vue";
 import campaignFinished from "./views/redirect/campaignOver.vue";
+import { mapGetters, mapState } from "vuex";
+
 
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
@@ -24,6 +26,7 @@ function sleep(ms) {
 Vue.use(Router);
 
 export default new Router({
+    ...mapGetters(['getCampaignByLink']),
     mode: "history",
     routes: [
         // {
@@ -40,8 +43,20 @@ export default new Router({
             component: Campaign,
             props: route => {
                 const id = route.params.id;
-                return { id };
+                const campaign = store.dispatch('getCampaignByLink', route.params.id);
+                return { id, campaign };
             }
+
+            //   beforeEnter(to, from, next) {
+
+            //     // console.log(Permissions.indexOf('access_campaigns' )!== -1)
+            //     if(Permissions.indexOf('campaign ' )!== -1){
+            //         next()
+            //     }else{
+            //        next("/redirect/campagin")
+            //     }
+
+            //   }
             //   beforeEnter(to, from, next) {
 
             //     // console.log(Permissions.indexOf('access_campaigns' )!== -1)
