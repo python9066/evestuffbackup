@@ -53,6 +53,7 @@ Vue.component('SystemTidi', require('./components/campaign/SystemTidi.vue').defa
 Vue.component('SystemTidiMulti', require('./components/multicampaigns/SystemTidiMulti.vue').default);
 Vue.component('AdminHack', require('./components/campaignAll/admin/AdminHack.vue').default);
 Vue.component('AdminHackUserTable', require('./components/campaignAll/admin/UserTable.vue').default);
+Vue.component('SolaSystemLogging', require('./components/logging/campaign/SolaSystemLogging.vue').default);
 
 
 

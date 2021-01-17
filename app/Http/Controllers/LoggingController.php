@@ -9,6 +9,7 @@ use App\Events\CampaignSystemUpdate;
 use App\Models\Campaign;
 use App\Models\CampaignSolaSystem;
 use App\Models\CustomCampaign;
+use App\Models\LoggingType;
 use App\Models\System;
 use App\Models\User;
 use utils\Helper\Helper;
@@ -22,7 +23,29 @@ class LoggingController extends Controller
      */
     public function index()
     {
-        //
+        $data = [];
+        $logs = Logging::all();
+        foreach ($logs as $log) {
+            $data1 = null;
+            $data1 = [
+                'id' => $log['id'],
+                'campaign_id' => $log['campaign_id'],
+                'campaign_name' => $log['campaign_name'],
+                'campaign_sola_system_id' => $log['campaign_sola_system_id'],
+                'sola_system_name' => $log['sola_system_name'],
+                'campaign_system_id' => $log['campaign_system_id'],
+                'user_id' => $log['user_id'],
+                'user_name' => User::where($log['user_id'])->value('name'),
+                'user_name_test' => $log->user->user_name,
+                'logging_type_id' => $log['logging_type_id'],
+                'logging_type_name' => LoggingType::where('id', $log['logging_type_id'])->value('name'),
+                'text' => $log['text'],
+                'created_at' => $log['created_at']
+            ];
+            array_push($data, $data1);
+        }
+
+        return ["logging" => $data];
     }
 
     /**
