@@ -90,11 +90,7 @@ export default {
         // },
     },
 
-    computed: {
-        filtereditems() {
-            return this.$store.dispatch("getLoggingSystem", this.solaID);
-        }
-    }
+    computed: {}
 };
 </script>
 

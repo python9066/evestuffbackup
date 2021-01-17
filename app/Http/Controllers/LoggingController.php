@@ -48,10 +48,10 @@ class LoggingController extends Controller
         return ["logs" => $data];
     }
 
-    public function logSystem($solaid)
+    public function logCampaign($campid)
     {
         $data = [];
-        $logs = Logging::where('campaign_sola_system_id', $solaid)->get();
+        $logs = Logging::where('campaign_id', $campid)->get();
         foreach ($logs as $log) {
             // dd($log);
             $data1 = null;
