@@ -198,9 +198,7 @@
                             </template>
                             <v-row no-gutters>
                                 <div style="width: 400px;">
-                                    <watchUserTable
-                                        :campaign_id="propCampaignId"
-                                    >
+                                    <watchUserTable :campaign_id="campaign.id">
                                     </watchUserTable>
                                 </div>
                             </v-row>
@@ -348,7 +346,7 @@
         </v-row>
 
         <v-row no-gutters justify="space-around" v-if="showTable == true">
-            <userTable :campaign_id="propCampaignId"> </userTable>
+            <userTable :campaign_id="campaign.id"> </userTable>
         </v-row>
 
         <v-row no-gutters justify="center" :v-if="systemLoaded == true">
@@ -357,7 +355,7 @@
                 v-for="(system, index) in systems"
                 :system_name="system.system_name"
                 :system_id="system.id"
-                :campaign_id="propCampaignId"
+                :campaign_id="campaign.id"
                 :index="index"
                 :key="system.id"
                 @openAdd="openAdd($event)"
@@ -385,14 +383,14 @@
         </v-overlay>
         <v-overlay z-index="0" :value="overlay" min-width="1000px">
             <UsersChars
-                :campaign_id="propCampaignId"
+                :campaign_id="campaign.id"
                 @closeAddChar="overlay = false"
             >
             </UsersChars>
         </v-overlay>
         <v-overlay z-index="0" :value="showNotes">
             <ShowNotes
-                :campaign_id="propCampaignId"
+                :campaign_id="campaign.id"
                 @closeNotes="showNotes = false"
             >
             </ShowNotes>
@@ -912,10 +910,6 @@ export default {
 
         campaign() {
             return this.getCampaignByLink(this.$route.params.id);
-        },
-
-        propCampaignId() {
-            this.campaign.id;
         },
 
         userCharsDrop() {
