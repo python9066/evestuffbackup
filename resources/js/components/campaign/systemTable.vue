@@ -429,11 +429,11 @@
                     <div>
                         <SystemScout :CampaignSolaSystem="CampaignSolaSystem">
                         </SystemScout>
-                        <SolaSystemLogging
+                        <!-- <SolaSystemLogging
                             :solaID="CampaignSolaSystem[0]['id']"
                             v-if="$can('super')"
                         >
-                        </SolaSystemLogging>
+                        </SolaSystemLogging> -->
                     </div>
                 </div>
             </v-card-actions>
