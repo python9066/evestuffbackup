@@ -911,7 +911,7 @@ export default {
 
         campaign() {
             var d = this.getCampaignByLink(this.$route.params.id);
-            load = 1;
+            this.load = 1;
             return d;
         },
 
