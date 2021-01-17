@@ -532,6 +532,10 @@ export default {
                     this.loadCampaignSolaSystems();
                     this.loadCampaignSystemRecords();
                 }
+
+                if (e.flag.flag == 10) {
+                    this.loadCampaignlogs();
+                }
             },
 
             window.addEventListener("beforeunload", this.leaving)
@@ -601,6 +605,10 @@ export default {
 
         loadCampaignSolaSystems() {
             this.$store.dispatch("getCampaignSolaSystems");
+        },
+
+        loadCampaignlogs() {
+            this.$store.dispatch("getLoggingCampaign", this.campaign.id);
         },
 
         loadCampaignSystemRecords() {
