@@ -550,8 +550,8 @@ export default {
 
     async beforeCreate() {
         if (this.campaign == null) {
-            await sleep(5000);
             console.log("wait");
+            await sleep(5000);
         }
     },
 
