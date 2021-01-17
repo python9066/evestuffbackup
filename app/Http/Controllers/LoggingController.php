@@ -45,7 +45,7 @@ class LoggingController extends Controller
             array_push($data, $data1);
         }
 
-        return ["logging" => $data];
+        return ["logs" => $data];
     }
 
     /**
