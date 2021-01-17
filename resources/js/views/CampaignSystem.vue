@@ -711,7 +711,7 @@ export default {
                 method: "GET", //you can set what request you want to be
                 url:
                     "/api/checkjoinleavecampaign/" +
-                    this.campaign.id +
+                    this.campaignId +
                     "/" +
                     this.$store.state.user_id +
                     "/5",
