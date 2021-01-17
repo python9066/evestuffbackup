@@ -431,6 +431,7 @@
                         </SystemScout>
                         <SolaSystemLogging
                             :solaID="CampaignSolaSystem[0]['id']"
+                            v-if="$can('super')"
                         >
                         </SolaSystemLogging>
                     </div>
