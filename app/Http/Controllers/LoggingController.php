@@ -53,7 +53,7 @@ class LoggingController extends Controller
         $data = [];
         $logs = Logging::where('campaign_id', $campid)->get();
         foreach ($logs as $log) {
-            // dd($log);
+            dd($log);
             $data1 = null;
             $data1 = [
                 'id' => $log['id'],
