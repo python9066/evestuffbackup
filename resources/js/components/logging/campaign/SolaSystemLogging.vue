@@ -72,7 +72,7 @@ export default {
     },
     data() {
         return {
-            overlay: false,
+            overlay: true,
             headers: [
                 { text: "Time Stamp", value: "created_at" },
                 { text: "Type", value: "logging_type_name" },
