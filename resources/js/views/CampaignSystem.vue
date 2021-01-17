@@ -479,6 +479,7 @@ export default {
     },
 
     async created() {
+        console.log(this.campaign);
         this.campaignId = this.campaign.id;
         Echo.private("campaignsystem." + this.campaign.id).listen(
             "CampaignSystemUpdate",
