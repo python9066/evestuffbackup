@@ -484,7 +484,7 @@ export default {
         }
         if (this.campaign == undefined) {
             await sleep(500);
-            console.log(this.campaign);
+            console.log(this.campaign + "1");
         }
         console.log(this.campaign);
         this.campaignId = this.campaign.id;
