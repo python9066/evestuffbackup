@@ -486,6 +486,7 @@ export default {
             await sleep(500);
             console.log(this.campaign);
         }
+        console.log(this.campaign);
         this.campaignId = this.campaign.id;
         Echo.private("campaignsystem." + this.campaign.id).listen(
             "CampaignSystemUpdate",
