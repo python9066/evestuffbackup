@@ -479,9 +479,6 @@ export default {
     },
 
     async created() {
-        if (this.$store.getters.getCampaignsCount == 0) {
-            await this.$store.dispatch("getCampaigns");
-        }
         this.campaignId = this.campaign.id;
         Echo.private("campaignsystem." + this.campaign.id).listen(
             "CampaignSystemUpdate",
@@ -548,7 +545,11 @@ export default {
 
     beforeMonunt() {},
 
-    async beforeCreate() {},
+    async beforeCreate() {
+        if (this.$store.getters.getCampaignsCount == 0) {
+            await this.$store.dispatch("getCampaigns");
+        }
+    },
 
     async mounted() {
         await this.$store.dispatch("getCampaignSolaSystems");
