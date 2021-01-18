@@ -407,7 +407,7 @@ export default {
         if (this.$store.getters.getCampaignsCount == 0) {
             await this.$store.dispatch("getCampaigns");
         }
-        if (this.$store.getters.getCampaignsCount == 0) {
+        if (this.$store.getters.getMultiCampaignsCount == 0) {
             await this.$store.dispatch("getMultiCampaigns");
         }
 

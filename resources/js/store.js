@@ -518,6 +518,10 @@ export default new Vuex.Store({
             return state.campaigns.length;
         },
 
+        getMultiCampaignsCount: state => {
+            return state.multicampaigns.length;
+        },
+
 
 
         getSystemReadyToGoCount: state => payload => {
