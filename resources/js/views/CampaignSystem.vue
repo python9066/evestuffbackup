@@ -422,6 +422,14 @@
             >
             </CampaignLogging>
         </v-overlay>
+        <v-overlay z-index="0" :value="solalog">
+            <SolaSystemLogging
+                :solaID="CampaignSolaSystem[0]['id']"
+                v-if="$can('super')"
+                @openSolaLog="solalog = false"
+            >
+            </SolaSystemLogging>
+        </v-overlay>
     </div>
 </template>
 <!-- {{ $route.params.id }} - {{ test }} -  -->
@@ -494,7 +502,8 @@ export default {
             showAdd: false,
             nodeItem: null,
             load: 0,
-            showLog: false
+            showLog: false,
+            solalog: false
         };
     },
 

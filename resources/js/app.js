@@ -91,12 +91,12 @@ Vue.use(Vuetify);
 
 export default new Vuetify({
     theme: {
-        // light: {
-        //   a: colors.teal,
-        //     warning: "#F57C00",
-        //     secondary:"#65F5FC",
-        //     "dark-orange": "#F57C00"
-        // },
+        light: {
+          a: colors.teal,
+            warning: "#F57C00",
+            secondary:"#65F5FC",
+            "dark-orange": "#F57C00"
+        },
       dark: true,
     },
     icons: {

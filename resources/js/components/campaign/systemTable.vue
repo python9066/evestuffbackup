@@ -429,26 +429,18 @@
                     <div class=" d-inline-flex justify-md-space-between">
                         <SystemScout :CampaignSolaSystem="CampaignSolaSystem">
                         </SystemScout>
-                        <!-- <v-btn
+                        <v-btn
                             v-if="$can('super')"
-                            @click="solalog = true"
+                            @click="solaLog()"
                             class=" mr-4"
                             color="blue"
                         >
                             System Logs
-                        </v-btn> -->
+                        </v-btn>
                     </div>
                 </div>
             </v-card-actions>
         </v-card>
-        <v-overlay z-index="0" :value="solalog">
-            <SolaSystemLogging
-                :solaID="CampaignSolaSystem[0]['id']"
-                v-if="$can('super')"
-                @closeSolaLog="solalog = false"
-            >
-            </SolaSystemLogging>
-        </v-overlay>
     </v-col>
 </template>
 
@@ -549,6 +541,10 @@ export default {
 
         openAdd(item) {
             this.$emit("openAdd", item);
+        },
+
+        solaLog() {
+            this.$emit("openSolaLog", this.CampaignSolaSystem[0]["id"]);
         },
 
         async clickOnTheWay() {
