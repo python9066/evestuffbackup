@@ -418,6 +418,7 @@ export default {
         await this.$store.dispatch("getCampaignSystemsRecords");
         await this.$store.dispatch("getUsersChars", this.$store.state.user_id);
         await this.loadCampaignlogs();
+        await this.setCampName();
     },
     methods: {
         updateBar() {
@@ -432,6 +433,13 @@ export default {
         openSolaLog(solaid) {
             this.solaid = solaid;
             this.solalog = true;
+        },
+
+        async setCampName() {
+            let d = await this.$store.getters.getMultiCampaignName(
+                this.$store.params.id
+            );
+            this.logName = d[0]["name"];
         },
 
         openAdd(item) {
