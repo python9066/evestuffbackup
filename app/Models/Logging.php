@@ -34,4 +34,8 @@ class Logging extends Model
     {
         return $this->belongsTo(LoggingType::class);
     }
+
+    protected $casts = [
+        'campaign_id' => 'integer',
+    ];
 }
