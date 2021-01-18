@@ -429,15 +429,26 @@
                     <div>
                         <SystemScout :CampaignSolaSystem="CampaignSolaSystem">
                         </SystemScout>
-                        <!-- <SolaSystemLogging
-                            :solaID="CampaignSolaSystem[0]['id']"
+                        <v-btn
                             v-if="$can('super')"
+                            @click="solalog = true"
+                            class=" mr-4"
+                            color="blue"
                         >
-                        </SolaSystemLogging> -->
+                            System Logs
+                        </v-btn>
                     </div>
                 </div>
             </v-card-actions>
         </v-card>
+        <v-overlay z-index="0" :value="solalog">
+            <SolaSystemLogging
+                :solaID="CampaignSolaSystem[0]['id']"
+                v-if="$can('super')"
+                @closeSolaLog="solalog = false"
+            >
+            </SolaSystemLogging>
+        </v-overlay>
     </v-col>
 </template>
 
@@ -522,7 +533,8 @@ export default {
             singleExpand: true,
             charAddNode: null,
             noteText: "",
-            test1: ""
+            test1: "",
+            solalog: false
         };
     },
 
