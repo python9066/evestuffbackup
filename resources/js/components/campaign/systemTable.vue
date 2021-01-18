@@ -426,17 +426,17 @@
                         <SystemTidi :CampaignSolaSystem="CampaignSolaSystem">
                         </SystemTidi>
                     </div>
-                    <div>
+                    <div class=" d-inline-flex justify-md-space-between">
                         <SystemScout :CampaignSolaSystem="CampaignSolaSystem">
                         </SystemScout>
-                        <v-btn
+                        <!-- <v-btn
                             v-if="$can('super')"
                             @click="solalog = true"
                             class=" mr-4"
                             color="blue"
                         >
                             System Logs
-                        </v-btn>
+                        </v-btn> -->
                     </div>
                 </div>
             </v-card-actions>

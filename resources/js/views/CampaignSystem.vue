@@ -413,7 +413,7 @@
             >
             </AdminHackUserTable>
         </v-overlay>
-        <!-- <v-overlay z-index="5" :value="showLog">
+        <v-overlay z-index="5" :value="showLog">
             <CampaignLogging
                 v-if="$can('view_campaign_logs')"
                 @closeLog="showLog = false"
@@ -421,7 +421,7 @@
                 :campaign="campaign"
             >
             </CampaignLogging>
-        </v-overlay> -->
+        </v-overlay>
     </div>
 </template>
 <!-- {{ $route.params.id }} - {{ test }} -  -->
