@@ -439,7 +439,7 @@ export default {
             let d = await this.$store.getters.getMultiCampaignName(
                 this.$route.params.id
             );
-            console.log(d.name);
+            console.log(d[0]["name"]);
             this.logName = d[0]["name"];
         },
 
