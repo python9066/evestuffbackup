@@ -8,7 +8,7 @@
         <v-card-title
             class=" d-lg-inline-block justify-space-between align-center "
         >
-            <div>Logs for the {{ this.name }} Campaign</div>
+            <div>Logs for the {{ setName() }} Campaign</div>
             <div>
                 <v-text-field
                     v-model="search"
@@ -92,6 +92,12 @@ export default {
     methods: {
         close() {
             this.$emit("closeLog", "yo");
+        },
+
+        setName() {
+            if (this.name != null) {
+                return this.name;
+            }
         }
     },
 
