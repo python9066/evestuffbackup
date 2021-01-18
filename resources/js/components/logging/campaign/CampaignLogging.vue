@@ -9,7 +9,8 @@
             class=" d-lg-inline-block justify-space-between align-center "
         >
             <div>
-                Add a Character to node
+                Logs for the {{ this.campaign.item_name }} in
+                {{ this.campaign.system }} Campaign
             </div>
             <div>
                 <v-text-field
