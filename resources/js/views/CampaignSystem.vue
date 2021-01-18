@@ -426,7 +426,7 @@
         <v-overlay z-index="0" :value="solalog">
             <SolaSystemLogging
                 :solaID="solaid"
-                :campaign="campaign"
+                :name="solaName"
                 v-if="$can('view_campaign_logs')"
                 @closeSolaLog="solalog = false"
             >
@@ -506,7 +506,8 @@ export default {
             load: 0,
             showLog: false,
             solalog: false,
-            solaid: 0
+            solaid: 0,
+            solName: null
         };
     },
 
@@ -603,8 +604,9 @@ export default {
             this.showAdd = true;
         },
 
-        openSolaLog(solaid) {
-            this.solaid = solaid;
+        openSolaLog(item) {
+            this.solaid = item.SolaID;
+            this.solName = item.solaNamel;
             this.solalog = true;
         },
 

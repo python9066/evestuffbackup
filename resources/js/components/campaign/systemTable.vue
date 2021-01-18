@@ -547,7 +547,11 @@ export default {
         },
 
         openSolaLog() {
-            this.$emit("openSolaLog", this.CampaignSolaSystem[0]["id"]);
+            let item = {
+                solaID: this.CampaignSolaSystem[0]["id"],
+                solaName: this.system_name
+            };
+            this.$emit("openSolaLog", item);
         },
 
         async clickOnTheWay() {
