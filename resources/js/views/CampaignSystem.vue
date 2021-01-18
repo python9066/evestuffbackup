@@ -427,7 +427,7 @@
             <SolaSystemLogging
                 :solaID="solaid"
                 :campaign="campaign"
-                v-if="$can('super')"
+                v-if="$can('view_campaign_logs')"
                 @closeSolaLog="solalog = false"
             >
             </SolaSystemLogging>
