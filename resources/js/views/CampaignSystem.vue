@@ -993,7 +993,9 @@ export default {
         },
 
         logging() {
-            return this.getLoggingCampaignByCampaign(this.campaign.id);
+            if (this.$can("super")) {
+                return this.getLoggingCampaignByCampaign(this.campaign.id);
+            }
         }
     },
     beforeDestroy() {
