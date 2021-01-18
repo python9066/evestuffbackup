@@ -101,7 +101,7 @@ export default {
     computed: {
         ...mapGetters(["getLoggingCampaignByCampaign"]),
         logging() {
-            if (this.$can("super")) {
+            if (this.$can("view_campaign_logs")) {
                 return this.getLoggingCampaignByCampaign(this.campaign_id);
             }
         }

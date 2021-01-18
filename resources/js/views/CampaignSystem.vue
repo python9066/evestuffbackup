@@ -204,7 +204,7 @@
                             </v-row>
                         </v-menu>
                         <v-btn
-                            v-if="$can('super')"
+                            v-if="$can('view_campaign_logs')"
                             @click="showLog = true"
                             class=" mr-4"
                             color="blue"
@@ -416,7 +416,7 @@
         <v-overlay z-index="5" :value="showLog">
             <!-- campaignAll/admin/UserTable.vue -->
             <CampaignLogging
-                v-if="$can('super')"
+                v-if="$can('view_campaign_logs')"
                 @closeLog="showLog = false"
                 :campaign_id="campaign.id"
                 :campaign="campaign"
@@ -625,7 +625,7 @@ export default {
         },
 
         loadCampaignlogs() {
-            if (this.$can("super")) {
+            if (this.$can("view_campaign_logs")) {
                 this.$store.dispatch("getLoggingCampaign", this.campaign.id);
             }
         },
