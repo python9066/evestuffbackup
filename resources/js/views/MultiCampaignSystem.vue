@@ -328,7 +328,8 @@ export default {
             showLog: false,
             solalog: false,
             solaid: null,
-            load: 0
+            load: 0,
+            LogName: ""
         };
     },
 
@@ -776,11 +777,8 @@ export default {
         customCampaign() {
             var d = this.getMultiCampaignName(this.$route.params.id);
             this.load = 1;
+            this.logName = d[0]["name"];
             return d;
-        },
-
-        logName() {
-            return this.customCampaign[0]["name"];
         },
 
         campaignWarmup() {
