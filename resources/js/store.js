@@ -522,6 +522,11 @@ export default new Vuex.Store({
             return state.multicampaigns.length;
         },
 
+        getMultiCampaignName: state => campid => {
+            var name = state.multicampaigns.filter(m => m.id == campid)
+            return name.name
+        },
+
 
 
         getSystemReadyToGoCount: state => payload => {

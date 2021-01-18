@@ -762,13 +762,20 @@ export default {
             "getCampaignUsersByUserIdCount",
             "getTotalNodeCountByMultiCampaign",
             "getHackingNodeCountByMultiCampaign",
-            "getRedHackingNodeCountByMultiCampaign"
+            "getRedHackingNodeCountByMultiCampaign",
+            "getMultiCampaignName"
         ]),
 
         ...mapState(["campaignJoin"]),
 
         sCampaigns() {
             return this.getsCampaignById(this.campaignId);
+        },
+
+        logCampaignName() {
+            var d = this.getMultiCampaignName(this.$route.params.id);
+            this.load = 1;
+            return d;
         },
 
         campaignWarmup() {
