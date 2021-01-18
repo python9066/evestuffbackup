@@ -91,6 +91,7 @@ export default {
     },
 
     computed: {
+        ...mapGetters(["getLoggingCampaignByCampaign"]),
         logging() {
             if (this.$can("super")) {
                 return this.getLoggingCampaignByCampaign(this.campid);
