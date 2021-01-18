@@ -203,6 +203,39 @@
                                 </div>
                             </v-row>
                         </v-menu>
+                        <v-btn
+                            v-if="$can('super')"
+                            @click="showLog = true"
+                            class=" mr-4"
+                            color="blue"
+                        >
+                            Campaign Logs
+                        </v-btn>
+                        <v-btn
+                            v-if="$can('super')"
+                            @click="showNotes = !showNotes"
+                        >
+                            test
+                        </v-btn>
+                        <v-tooltip bottom>
+                            <template v-slot:activator="{ on, attrs }">
+                                <v-btn
+                                    v-if="$can('access_campaigns')"
+                                    fab
+                                    dark
+                                    class="mr-4"
+                                    small
+                                    v-bind="attrs"
+                                    v-on="on"
+                                    @click="sendAddCharMessage()"
+                                >
+                                    <v-icon>fas fa-bullhorn</v-icon>
+                                </v-btn>
+                            </template>
+                            <span>
+                                Send a message to all Users without a Char added
+                            </span>
+                        </v-tooltip>
                         <v-tooltip bottom>
                             <template v-slot:activator="{ on, attrs }">
                                 <v-btn
@@ -220,37 +253,6 @@
                             <span>
                                 This will kicked everyone (you also) from the
                                 page. Press when hack is over.
-                            </span>
-                        </v-tooltip>
-                        <v-btn
-                            v-if="$can('super')"
-                            @click="showLog = true"
-                            class=" pl-4"
-                        >
-                            Campaign Logs
-                        </v-btn>
-                        <v-btn
-                            v-if="$can('super')"
-                            @click="showNotes = !showNotes"
-                        >
-                            test
-                        </v-btn>
-                        <v-tooltip bottom>
-                            <template v-slot:activator="{ on, attrs }">
-                                <v-btn
-                                    v-if="$can('access_campaigns')"
-                                    fab
-                                    dark
-                                    small
-                                    v-bind="attrs"
-                                    v-on="on"
-                                    @click="sendAddCharMessage()"
-                                >
-                                    <v-icon>fas fa-bullhorn</v-icon>
-                                </v-btn>
-                            </template>
-                            <span>
-                                Send a message to all Users without a Char added
                             </span>
                         </v-tooltip>
                     </div>
