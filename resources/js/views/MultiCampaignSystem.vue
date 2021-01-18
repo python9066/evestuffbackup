@@ -1,6 +1,5 @@
 <template>
     <div>
-        {{ logCampaignName[0]["name"] }}
         <span v-for="(sCampaign, index) in sCampaigns" :key="index">
             <TitleBar
                 :sCampaignID="sCampaign.campaign_id"
@@ -774,7 +773,8 @@ export default {
         },
 
         logCampaignName() {
-            return this.getMultiCampaignName(this.$route.params.id);
+            name = this.getMultiCampaignName(this.$route.params.id);
+            return name.logCampaignName[0]["name"];
         },
 
         campaignWarmup() {
