@@ -1,5 +1,5 @@
 <template>
-    <div v-if="this.load == 1">
+    <div>
         <span v-for="(sCampaign, index) in sCampaigns" :key="index">
             <TitleBar
                 :sCampaignID="sCampaign.campaign_id"
