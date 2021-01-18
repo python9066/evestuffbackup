@@ -224,12 +224,16 @@
                         </v-tooltip>
                         <v-btn
                             v-if="$can('super')"
+                            @click="showLog = true"
+                            class=" pl-4"
+                        >
+                            Campaign Logs
+                        </v-btn>
+                        <v-btn
+                            v-if="$can('super')"
                             @click="showNotes = !showNotes"
                         >
                             test
-                        </v-btn>
-                        <v-btn v-if="$can('super')" @click="showLog = true">
-                            Campaign Logs
                         </v-btn>
                         <v-tooltip bottom>
                             <template v-slot:activator="{ on, attrs }">
