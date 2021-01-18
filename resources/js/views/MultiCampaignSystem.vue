@@ -439,7 +439,7 @@ export default {
 
         loadCampaignlogs() {
             if (this.$can("view_campaign_logs")) {
-                this.$store.dispatch("getLoggingCampaign", this.campaign.id);
+                this.$store.dispatch("getLoggingCampaign", this.campaignId);
             }
         },
 
