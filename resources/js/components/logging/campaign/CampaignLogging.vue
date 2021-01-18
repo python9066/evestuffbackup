@@ -102,6 +102,7 @@ export default {
                     this.campaign_id
                 );
                 console.log(d);
+                return d[0]["name"];
             }
         }
     },
