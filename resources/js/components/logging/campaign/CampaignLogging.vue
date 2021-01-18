@@ -28,6 +28,9 @@
                 item-key="id"
                 disable-pagination
                 height="700"
+                :sort-by="['created_at']"
+                :sort-desc="[false, true]"
+                :fixed-header="true"
                 hide-default-footer
                 :search="search"
                 class="elevation-24"
