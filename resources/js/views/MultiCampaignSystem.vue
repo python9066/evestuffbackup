@@ -241,7 +241,7 @@
             <CampaignLogging
                 v-if="$can('super')"
                 @closeLog="showLog = false"
-                :campaign_id="campaign.id"
+                :campaign_id="campaign_id"
                 :campaign="campaign"
             >
             </CampaignLogging>
