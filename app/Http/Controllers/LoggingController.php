@@ -12,6 +12,7 @@ use App\Models\CustomCampaign;
 use App\Models\LoggingType;
 use App\Models\System;
 use App\Models\User;
+use PHPUnit\TextUI\Help;
 use utils\Helper\Helper;
 
 class LoggingController extends Controller
@@ -26,6 +27,7 @@ class LoggingController extends Controller
         $data = [];
         $logs = Logging::all();
         foreach ($logs as $log) {
+            $time =  Helper::fixtime($log['created_at']);
             // dd($log);
             $data1 = null;
             $data1 = [
@@ -40,7 +42,7 @@ class LoggingController extends Controller
                 'logging_type_id' => $log['logging_type_id'],
                 'logging_type_name' => LoggingType::where('id', $log['logging_type_id'])->value('name'),
                 'text' => $log['text'],
-                'created_at' => $log['created_at']
+                'created_at' => $time
             ];
             array_push($data, $data1);
         }
