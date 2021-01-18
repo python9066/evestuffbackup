@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div v-if="this.load == 1">
         <span v-for="(sCampaign, index) in sCampaigns" :key="index">
             <TitleBar
                 :sCampaignID="sCampaign.campaign_id"
@@ -327,7 +327,8 @@ export default {
             nodeItem: null,
             showLog: false,
             solalog: false,
-            solaid: null
+            solaid: null,
+            load: 0
         };
     },
 
@@ -773,14 +774,13 @@ export default {
         },
 
         customCampaign() {
-            let customCampaign = this.getMultiCampaignName(
-                this.$route.params.id
-            );
-            return customCampaign;
+            return this.getMultiCampaignName(this.$route.params.id);
         },
 
         logName() {
-            return this.customCampaign[0]["name"];
+            let logName = this.customCampaign[0]["name"];
+            this.load = 1;
+            return logName;
         },
 
         campaignWarmup() {
