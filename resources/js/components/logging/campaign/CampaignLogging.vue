@@ -31,10 +31,9 @@
                 hide-default-footer
                 :search="search"
                 class="elevation-24"
-                dense
             >
                 <template slot="no-data">
-                    No Free Characters
+                    No Logs
                 </template>
             </v-data-table>
         </v-card-text>
