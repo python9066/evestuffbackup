@@ -437,7 +437,7 @@ export default {
 
         async setCampName() {
             let d = await this.$store.getters.getMultiCampaignName(
-                this.$store.params.id
+                this.$route.params.id
             );
             this.logName = d[0]["name"];
         },
