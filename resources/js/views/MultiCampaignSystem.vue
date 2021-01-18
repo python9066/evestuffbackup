@@ -242,7 +242,7 @@
                 v-if="$can('super')"
                 @closeLog="showLog = false"
                 :campaign_id="campaign_id"
-                :name="this.logName"
+                :name="setCampName()"
             >
             </CampaignLogging>
         </v-overlay>
@@ -414,11 +414,11 @@ export default {
         }
 
         await this.getSystems(this.campaignId);
+        await this.setCampName();
         await this.$store.dispatch("getCampaignUsersRecords", this.campaignId);
         await this.$store.dispatch("getCampaignSystemsRecords");
         await this.$store.dispatch("getUsersChars", this.$store.state.user_id);
         await this.loadCampaignlogs();
-        await this.setCampName();
     },
     methods: {
         updateBar() {
@@ -440,7 +440,7 @@ export default {
                 this.$route.params.id
             );
             console.log(d[0]["name"]);
-            this.logName = d[0]["name"];
+            return d[0]["name"];
         },
 
         openAdd(item) {
