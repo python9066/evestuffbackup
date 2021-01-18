@@ -9,8 +9,7 @@
             class=" d-lg-inline-block justify-space-between align-center "
         >
             <div>
-                Logs for the {{ this.campaign.item_name }} in
-                {{ this.campaign.system }} Campaign
+                Logs for the
             </div>
             <div>
                 <v-text-field
