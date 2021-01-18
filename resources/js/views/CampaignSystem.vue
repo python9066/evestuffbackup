@@ -368,6 +368,7 @@
                 :index="index"
                 :key="system.id"
                 @openAdd="openAdd($event)"
+                @openSolaLog="openSolaLog($event)"
             >
             </systemTable>
         </v-row>
@@ -426,7 +427,7 @@
             <SolaSystemLogging
                 :solaID="newCharName"
                 v-if="$can('super')"
-                @openSolaLog="solalog = false"
+                @closeSolaLog="solalog = false"
             >
             </SolaSystemLogging>
         </v-overlay>
@@ -598,6 +599,10 @@ export default {
         openAdd(item) {
             this.nodeItem = item;
             this.showAdd = true;
+        },
+
+        openSolaLog(solaid) {
+            console.log(solaid);
         },
 
         async finishCampaign() {
