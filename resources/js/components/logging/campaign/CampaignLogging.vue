@@ -29,7 +29,7 @@
                 disable-pagination
                 height="700"
                 :sort-by="['created_at']"
-                :sort-desc="[false, true]"
+                :sort-desc="[true, false]"
                 :fixed-header="true"
                 hide-default-footer
                 :search="search"
