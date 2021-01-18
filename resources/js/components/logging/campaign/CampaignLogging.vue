@@ -37,23 +37,23 @@
                 class="elevation-24"
             >
                 <template v-slot:item.created_at="{ item }">
-                    <div>
-                        <subtitle-1>{{ item.created_at }}</subtitle-1>
+                    <div class=" subtitle-1">
+                        {{ item.created_at }}
                     </div>
                 </template>
                 <template v-slot:item.logging_type_name="{ item }">
-                    <div>
-                        <subtitle-1>{{ item.logging_type_name }}</subtitle-1>
+                    <div class=" subtitle-1">
+                        {{ item.logging_type_name }}
                     </div>
                 </template>
                 <template v-slot:item.user_name="{ item }">
-                    <div>
-                        <subtitle-1>{{ item.user_name }}</subtitle-1>
+                    <div class=" subtitle-1">
+                        {{ item.user_name }}
                     </div>
                 </template>
                 <template v-slot:item.text="{ item }">
-                    <div>
-                        <subtitle-1>{{ item.text }}</subtitle-1>
+                    <div class=" subtitle-1">
+                        {{ item.text }}
                     </div>
                 </template>
                 <template slot="no-data">
