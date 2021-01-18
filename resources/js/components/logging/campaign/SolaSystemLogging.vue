@@ -9,7 +9,7 @@
         <v-card-title
             class=" d-lg-inline-block justify-space-between align-center "
         >
-            <div>Logs for {{ this.campaign.system }}</div>
+            <div>Logs for {{ name }}</div>
             <div>
                 <v-text-field
                     v-model="search"
@@ -74,7 +74,7 @@ import { mapState } from "vuex";
 export default {
     props: {
         solaID: Number,
-        campaign: Object
+        name: String
     },
     data() {
         return {
