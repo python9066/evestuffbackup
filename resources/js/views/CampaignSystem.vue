@@ -604,7 +604,7 @@ export default {
         },
 
         openSolaLog(solaid) {
-            this.solaid = solalog;
+            this.solaid = solaid;
             this.solalog = true;
         },
 

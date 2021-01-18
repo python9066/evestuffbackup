@@ -528,8 +528,7 @@ export default {
             singleExpand: true,
             charAddNode: null,
             noteText: "",
-            test1: "",
-            solalog: false
+            test1: ""
         };
     },
 
