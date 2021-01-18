@@ -778,6 +778,7 @@ export default {
             var d = this.getMultiCampaignName(this.$route.params.id);
             this.load = 1;
             this.logName = d[0]["name"];
+            console.log(this.logName);
             return d;
         },
 
