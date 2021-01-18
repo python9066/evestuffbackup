@@ -25,7 +25,7 @@
         <v-card-text>
             <v-data-table
                 :headers="headers"
-                :items="filteredItems"
+                :items="logging"
                 item-key="id"
                 disable-pagination
                 hide-default-footer
