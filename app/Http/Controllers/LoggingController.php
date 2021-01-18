@@ -27,7 +27,7 @@ class LoggingController extends Controller
         $data = [];
         $logs = Logging::all();
         foreach ($logs as $log) {
-            $timne = strtotime($log['created_at']);
+            $timne = Helper::fixtime($log['created_at']);
             // dd($log);
             $data1 = null;
             $data1 = [
