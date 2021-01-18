@@ -228,6 +228,9 @@
                         >
                             test
                         </v-btn>
+                        <v-btn v-if="$can('super')" @click="showLog = true">
+                            Campaign Logs
+                        </v-btn>
                         <v-tooltip bottom>
                             <template v-slot:activator="{ on, attrs }">
                                 <v-btn
@@ -404,6 +407,15 @@
             >
             </AdminHackUserTable>
         </v-overlay>
+        <v-overlay z-index="0" :value="showLog">
+            <!-- campaignAll/admin/UserTable.vue -->
+            <CampaignLogging
+                v-if="$can('super')"
+                @closeAdd="showLog = false"
+                :campaign_id="campaign.id"
+            >
+            </CampaignLogging>
+        </v-overlay>
     </div>
 </template>
 <!-- {{ $route.params.id }} - {{ test }} -  -->
@@ -475,7 +487,8 @@ export default {
             link: "",
             showAdd: false,
             nodeItem: null,
-            load: 0
+            load: 0,
+            showLog: false
         };
     },
 
@@ -990,12 +1003,6 @@ export default {
 
         nodeRedCountHackingCountAll() {
             return this.getRedHackingNodeCountByCampaign(this.campaign.id);
-        },
-
-        logging() {
-            if (this.$can("super")) {
-                return this.getLoggingCampaignByCampaign(this.campaign.id);
-            }
         }
     },
     beforeDestroy() {
