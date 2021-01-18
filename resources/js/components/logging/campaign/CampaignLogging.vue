@@ -8,7 +8,9 @@
         <v-card-title
             class=" d-lg-inline-block justify-space-between align-center "
         >
-            <div>Logs for the {{ setName() }} Campaign (campagin logs)</div>
+            <div>
+                Logs for the <strong>{{ setName() }}</strong> Campaign
+            </div>
             <div>
                 <v-text-field
                     v-model="search"
@@ -101,7 +103,6 @@ export default {
                 let d = this.$store.getters.getMultiCampaignName(
                     this.campaign_id
                 );
-                console.log(d);
                 return d[0]["name"];
             }
         }
