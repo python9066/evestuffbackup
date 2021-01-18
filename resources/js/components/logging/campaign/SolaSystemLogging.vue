@@ -101,6 +101,7 @@ export default {
         ...mapGetters(["getLoggingCampaignBySola"]),
         logging() {
             if (this.$can("super")) {
+                console.log(this.sola_id);
                 return this.getLoggingCampaignBySola(this.sola_id);
             }
         }
