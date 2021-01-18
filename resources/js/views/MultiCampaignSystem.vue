@@ -774,13 +774,13 @@ export default {
         },
 
         customCampaign() {
-            return this.getMultiCampaignName(this.$route.params.id);
+            var d = this.getMultiCampaignName(this.$route.params.id);
+            this.load = 1;
+            return d;
         },
 
         logName() {
-            let logName = this.customCampaign[0]["name"];
-            this.load = 1;
-            return logName;
+            return this.customCampaign[0]["name"];
         },
 
         campaignWarmup() {
