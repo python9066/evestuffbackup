@@ -589,7 +589,7 @@ export default {
 
         openSolaLog() {
             let item = {
-                solaID: this.CampaignSolaSystem[0]["id"],
+                solaid: this.CampaignSolaSystem[0]["id"],
                 solaName: this.system_name
             };
             this.$emit("openSolaLog", item);
