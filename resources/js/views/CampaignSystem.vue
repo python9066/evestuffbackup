@@ -605,7 +605,7 @@ export default {
         },
 
         openSolaLog(item) {
-            this.solaid = item.solaID;
+            this.solaid = item.solaid;
             this.solaName = item.solaName;
             this.solalog = true;
         },

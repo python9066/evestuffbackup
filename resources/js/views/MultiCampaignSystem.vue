@@ -245,7 +245,7 @@
             >
             </CampaignLogging>
         </v-overlay>
-        <!-- <v-overlay z-index="0" :value="solalog">
+        <v-overlay z-index="0" :value="solalog">
             <SolaSystemLogging
                 :solaID="solaid"
                 :name="solaName"
@@ -253,7 +253,7 @@
                 @closeSolaLog="solalog = false"
             >
             </SolaSystemLogging>
-        </v-overlay> -->
+        </v-overlay>
     </div>
 </template>
 <!-- {{ $route.params.id }} - {{ test }} -  -->
@@ -428,7 +428,7 @@ export default {
             }
         },
 
-        openSolaLog(solaid) {
+        openSolaLog(item) {
             this.solaid = solaid;
             this.solalog = true;
         },

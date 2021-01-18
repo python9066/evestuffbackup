@@ -468,6 +468,15 @@
                     <div>
                         <SystemScout :CampaignSolaSystem="CampaignSolaSystem">
                         </SystemScout>
+                        <v-btn
+                            v-if="$can('super')"
+                            @click="openSolaLog()"
+                            small
+                            class=" mr-4"
+                            color="blue"
+                        >
+                            System Logs
+                        </v-btn>
                     </div>
                 </div>
             </v-card-actions>
@@ -573,6 +582,14 @@ export default {
 
         openAdd(item) {
             this.$emit("openAdd", item);
+        },
+
+        openSolaLog() {
+            let item = {
+                solaID: this.CampaignSolaSystem[0]["id"],
+                solaName: this.system_name
+            };
+            this.$emit("openSolaLog", item);
         },
 
         async clickOnTheWay() {
