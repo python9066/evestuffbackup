@@ -28,7 +28,7 @@ class LoggingController extends Controller
         $logs = Logging::all();
         foreach ($logs as $log) {
             $timne = Helper::fixtime($log['created_at']);
-            dd($timne);
+            // dd($log);
             $data1 = null;
             $data1 = [
                 'id' => $log['id'],
@@ -56,6 +56,7 @@ class LoggingController extends Controller
         $data = [];
         $logs = Logging::where('campaign_id', $campid)->get();
         foreach ($logs as $log) {
+            $timne = Helper::fixtime($log['created_at']);
             $data1 = null;
             $data1 = [
                 'id' => $log['id'],
@@ -69,7 +70,7 @@ class LoggingController extends Controller
                 'logging_type_id' => $log['logging_type_id'],
                 'logging_type_name' => LoggingType::where('id', $log['logging_type_id'])->value('name'),
                 'text' => $log['text'],
-                'created_at' => $log['created_at']
+                'created_at' => $timne
             ];
             array_push($data, $data1);
         }
