@@ -424,7 +424,7 @@
         </v-overlay>
         <v-overlay z-index="0" :value="solalog">
             <SolaSystemLogging
-                :solaID="CampaignSolaSystem[0]['id']"
+                :solaID="newCharName"
                 v-if="$can('super')"
                 @openSolaLog="solalog = false"
             >
