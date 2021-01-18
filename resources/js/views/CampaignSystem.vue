@@ -906,7 +906,8 @@ export default {
             "getCampaignUsersByUserIdCount",
             "getTotalNodeCountByCampaign",
             "getHackingNodeCountByCampaign",
-            "getRedHackingNodeCountByCampaign"
+            "getRedHackingNodeCountByCampaign",
+            "getLoggingCampaignByCampaign"
         ]),
 
         campaign() {
@@ -989,6 +990,10 @@ export default {
 
         nodeRedCountHackingCountAll() {
             return this.getRedHackingNodeCountByCampaign(this.campaign.id);
+        },
+
+        logging() {
+            return this.getLoggingCampaignByCampaign(this.campaign.id);
         }
     },
     beforeDestroy() {
