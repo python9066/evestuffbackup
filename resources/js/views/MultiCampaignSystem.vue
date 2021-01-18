@@ -773,7 +773,7 @@ export default {
         },
 
         logCampaignName() {
-            name = this.getMultiCampaignName(this.$route.params.id);
+            var name = this.getMultiCampaignName(this.$route.params.id);
             return name.logCampaignName[0]["name"];
         },
 
