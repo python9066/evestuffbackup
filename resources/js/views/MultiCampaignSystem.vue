@@ -69,6 +69,37 @@
                                 </div>
                             </v-row>
                         </v-menu>
+                        <v-btn
+                            v-if="$can('view_campaign_logs')"
+                            @click="showLog = true"
+                            class=" mr-4"
+                            color="blue"
+                        >
+                            Campaign Logs
+                        </v-btn>
+
+                        <v-btn v-if="$can('super')" @click="overlay = !overlay">
+                            test
+                        </v-btn>
+                        <v-tooltip bottom>
+                            <template v-slot:activator="{ on, attrs }">
+                                <v-btn
+                                    v-if="$can('access_campaigns')"
+                                    fab
+                                    dark
+                                    small
+                                    class="mr-4"
+                                    v-bind="attrs"
+                                    v-on="on"
+                                    @click="sendAddCharMessage()"
+                                >
+                                    <v-icon>fas fa-bullhorn</v-icon>
+                                </v-btn>
+                            </template>
+                            <span>
+                                Send a message to all Users without a Char added
+                            </span>
+                        </v-tooltip>
                         <v-tooltip bottom>
                             <template v-slot:activator="{ on, attrs }">
                                 <v-btn
@@ -90,27 +121,6 @@
                                         >Press when hack is over.</strong
                                     >
                                 </p>
-                            </span>
-                        </v-tooltip>
-                        <v-btn v-if="$can('super')" @click="overlay = !overlay">
-                            test
-                        </v-btn>
-                        <v-tooltip bottom>
-                            <template v-slot:activator="{ on, attrs }">
-                                <v-btn
-                                    v-if="$can('access_campaigns')"
-                                    fab
-                                    dark
-                                    small
-                                    v-bind="attrs"
-                                    v-on="on"
-                                    @click="sendAddCharMessage()"
-                                >
-                                    <v-icon>fas fa-bullhorn</v-icon>
-                                </v-btn>
-                            </template>
-                            <span>
-                                Send a message to all Users without a Char added
                             </span>
                         </v-tooltip>
                     </div>
@@ -188,6 +198,7 @@
                 :index="index"
                 :key="system.id"
                 @openAdd="openAdd($event)"
+                @openSolaLog="openSolaLog($event)"
             >
             </MultiSystemTable>
         </v-row>
@@ -225,6 +236,24 @@
                 :nodeItem="nodeItem"
             >
             </AdminHackUserTable>
+        </v-overlay>
+        <v-overlay z-index="5" :value="showLog">
+            <CampaignLogging
+                v-if="$can('super')"
+                @closeLog="showLog = false"
+                :campaign_id="campaign.id"
+                :campaign="campaign"
+            >
+            </CampaignLogging>
+        </v-overlay>
+        <v-overlay z-index="0" :value="solalog">
+            <SolaSystemLogging
+                :solaID="solaid"
+                :campaign="campaign"
+                v-if="$can('super')"
+                @closeSolaLog="solalog = false"
+            >
+            </SolaSystemLogging>
         </v-overlay>
     </div>
 </template>
@@ -295,7 +324,10 @@ export default {
             overlay: false,
             bullhorn: false,
             showAdd: false,
-            nodeItem: null
+            nodeItem: null,
+            showLog: false,
+            solalog: false,
+            solaid: null
         };
     },
 
@@ -344,6 +376,9 @@ export default {
                     this.loadCampaignSolaSystems();
                     this.loadCampaignSystemRecords();
                 }
+                if (e.flag.flag == 10) {
+                    this.loadCampaignlogs();
+                }
                 if (e.flag.flag == 11) {
                     //  console.log(6);
                     this.$store.dispatch("getCampaignJoinData");
@@ -376,6 +411,7 @@ export default {
         await this.$store.dispatch("getCampaignUsersRecords", this.campaignId);
         await this.$store.dispatch("getCampaignSystemsRecords");
         await this.$store.dispatch("getUsersChars", this.$store.state.user_id);
+        await this.loadCampaignlogs();
     },
     methods: {
         updateBar() {
@@ -387,9 +423,20 @@ export default {
             }
         },
 
+        openSolaLog(solaid) {
+            this.solaid = solaid;
+            this.solalog = true;
+        },
+
         openAdd(item) {
             this.nodeItem = item;
             this.showAdd = true;
+        },
+
+        loadCampaignlogs() {
+            if (this.$can("view_campaign_logs")) {
+                this.$store.dispatch("getLoggingCampaign", this.campaign.id);
+            }
         },
 
         kickUser(user_id) {
