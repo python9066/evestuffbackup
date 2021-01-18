@@ -772,9 +772,12 @@ export default {
             return this.getsCampaignById(this.campaignId);
         },
 
-        logCampaignName() {
-            let name = this.getMultiCampaignName(this.$route.params.id);
-            return name.logCampaignName[0]["name"];
+        customCampaign() {
+            return this.getMultiCampaignName(this.$route.params.id);
+        },
+
+        logName() {
+            return this.customCampaign[0]["name"];
         },
 
         campaignWarmup() {
