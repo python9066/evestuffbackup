@@ -326,7 +326,7 @@ export default {
             nodeItem: null,
             showLog: false,
             solalog: false,
-            solaid: null,
+            solaid: 0,
             load: 0,
             logName: null,
             solaName: null
