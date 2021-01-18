@@ -426,7 +426,10 @@
                         <SystemTidi :CampaignSolaSystem="CampaignSolaSystem">
                         </SystemTidi>
                     </div>
-                    <div class=" d-inline-flex justify-md-space-between">
+                    <div
+                        class=" d-inline-flex justify-md-space-between"
+                        style="width:100%;"
+                    >
                         <SystemScout :CampaignSolaSystem="CampaignSolaSystem">
                         </SystemScout>
                         <v-btn
