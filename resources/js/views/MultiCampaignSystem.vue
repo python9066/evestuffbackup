@@ -1,6 +1,6 @@
 <template>
     <div>
-        {{ logCampaignName.name }}
+        {{ logCampaignName[0]["name"] }}
         <span v-for="(sCampaign, index) in sCampaigns" :key="index">
             <TitleBar
                 :sCampaignID="sCampaign.campaign_id"
