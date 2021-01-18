@@ -413,6 +413,7 @@
                 v-if="$can('super')"
                 @closeAdd="showLog = false"
                 :campaign_id="campaign.id"
+                :campaign="campaign"
             >
             </CampaignLogging>
         </v-overlay>
