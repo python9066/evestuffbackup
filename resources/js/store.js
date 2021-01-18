@@ -523,8 +523,7 @@ export default new Vuex.Store({
         },
 
         getMultiCampaignName: state => campid => {
-            var name = state.multicampaigns.filter(m => m.id == campid)
-            return name.name
+            return state.multicampaigns.filter(m => m.id == campid)
         },
 
 
