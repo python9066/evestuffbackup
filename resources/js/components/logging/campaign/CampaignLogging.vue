@@ -98,7 +98,9 @@ export default {
             if (this.name != null) {
                 return this.name;
             } else {
-                d = this.$store.getters.getMultiCampaignName(this.campaign_id);
+                let d = this.$store.getters.getMultiCampaignName(
+                    this.campaign_id
+                );
                 console.log(d);
             }
         }
