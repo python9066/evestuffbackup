@@ -399,8 +399,8 @@ export default {
 
     beforeMonunt() {},
 
-    beforeCreate() {
-        this.$store.dispatch("getCampaignJoinData");
+    async beforeCreate() {
+        await this.$store.dispatch("getCampaignJoinData");
     },
 
     async mounted() {
