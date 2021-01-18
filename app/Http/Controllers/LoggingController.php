@@ -195,10 +195,10 @@ class LoggingController extends Controller
         } else {
             $logging_type_id = 7;
         }
+        $name = User::where('id', $request->user_id)->value('name');
         $log = Logging::create(['campaign_id' => $campid, 'user_id' => $request->user_id, 'logging_type_id' => $logging_type_id]);
         $log->save();
 
-        $name = User::where('id', $request->user_id)->value('name');
 
         if (Campaign::where('id', $campid)->count() == 0) {
             $campaignname = CustomCampaign::where('id', $campid)->value('name');
