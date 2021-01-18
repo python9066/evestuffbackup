@@ -77,8 +77,8 @@ export default {
                 { text: "User", value: "user_name" },
                 { text: "Text", value: "text" }
                 // { text: "Vulernable End Time", value: "vulnerable_end_time" }
-            ]
-            // search: ""
+            ],
+            search: ""
         };
     },
 
