@@ -952,6 +952,10 @@ export default {
             return d;
         },
 
+        campaignName() {
+            return this.campaign.item_name + " in " + this.campaign.system;
+        },
+
         userCharsDrop() {
             // let payload = {
             //     id: this.$store.state.user_id,
