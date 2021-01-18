@@ -435,6 +435,7 @@
                         <v-btn
                             v-if="$can('super')"
                             @click="openSolaLog()"
+                            small
                             class=" mr-4"
                             color="blue"
                         >

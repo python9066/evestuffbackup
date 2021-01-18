@@ -3,14 +3,13 @@
         tile
         max-width="1500px"
         max-height="1000px"
+        min-width="800px"
         class=" d-flex flex-column"
     >
         <v-card-title
             class=" d-lg-inline-block justify-space-between align-center "
         >
-            <div>
-                Logs for the
-            </div>
+            <div>Logs for the {{ this.campaign.system }}</div>
             <div>
                 <v-text-field
                     v-model="search"
