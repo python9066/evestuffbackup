@@ -1,7 +1,7 @@
 <template>
     <v-card
         tile
-        max-width="1200px"
+        max-width="1500px"
         max-height="500px"
         class=" d-flex flex-column"
     >
@@ -27,7 +27,9 @@
                 :items="logging"
                 item-key="id"
                 disable-pagination
+                height="400"
                 hide-default-footer
+                fixed-header="true"
                 :search="search"
                 class="elevation-24"
                 dense
