@@ -407,6 +407,10 @@ export default {
         if (this.$store.getters.getCampaignsCount == 0) {
             await this.$store.dispatch("getCampaigns");
         }
+        if (this.$store.getters.getCampaignsCount == 0) {
+            await this.$store.dispatch("getMultiCampaigns");
+        }
+
         await this.getSystems(this.campaignId);
         await this.$store.dispatch("getCampaignUsersRecords", this.campaignId);
         await this.$store.dispatch("getCampaignSystemsRecords");
