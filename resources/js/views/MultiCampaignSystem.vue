@@ -328,7 +328,8 @@ export default {
             solalog: false,
             solaid: null,
             load: 0,
-            logName: null
+            logName: null,
+            solaName: null
         };
     },
 
