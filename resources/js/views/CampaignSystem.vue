@@ -407,7 +407,7 @@
             >
             </AdminHackUserTable>
         </v-overlay>
-        <v-overlay z-index="-10" :value="showLog">
+        <v-overlay z-index="5" :value="showLog">
             <!-- campaignAll/admin/UserTable.vue -->
             <CampaignLogging
                 v-if="$can('super')"
