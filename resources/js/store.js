@@ -719,7 +719,14 @@ export default new Vuex.Store({
         },
 
         getLoggingCampaignBySola: state => sola_id => {
-            return state.loggingcampaign.filter(log => log.campaign_sola_system_id == sola_id)
+            if (state.loggingcampaign.filter(log => log.campaign_sola_system_id == sola_id).length > 0) {
+                 return state.loggingcampaign.filter(log => log.campaign_sola_system_id == sola_id)
+
+             } else {
+                 return null
+             }
+
+
         },
 
         getLoggingCampaignByCampaign: state => campid => {
