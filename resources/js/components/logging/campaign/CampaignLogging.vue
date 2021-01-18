@@ -32,6 +32,26 @@
                 :search="search"
                 class="elevation-24"
             >
+                <template v-slot:item.created_at="{ item }">
+                    <div>
+                        <h1>{{ item.created_at }}</h1>
+                    </div>
+                </template>
+                <template v-slot:item.logging_type_name="{ item }">
+                    <div>
+                        <h1>{{ item.logging_type_name }}</h1>
+                    </div>
+                </template>
+                <template v-slot:item.user_name="{ item }">
+                    <div>
+                        <h1>{{ item.user_name }}</h1>
+                    </div>
+                </template>
+                <template v-slot:item.text="{ item }">
+                    <div>
+                        <h1>{{ item.text }}</h1>
+                    </div>
+                </template>
                 <template slot="no-data">
                     No Logs
                 </template>
