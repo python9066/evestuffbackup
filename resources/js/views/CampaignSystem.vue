@@ -411,7 +411,7 @@
             <!-- campaignAll/admin/UserTable.vue -->
             <CampaignLogging
                 v-if="$can('super')"
-                @closeAdd="showLog = false"
+                @closeLog="showLog = false"
                 :campaign_id="campaign.id"
                 :campaign="campaign"
             >

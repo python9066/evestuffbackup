@@ -71,7 +71,7 @@ export default {
 
     methods: {
         close() {
-            this.$emit("showLog", "yo");
+            this.$emit("closeLog", "yo");
         }
     },
 
