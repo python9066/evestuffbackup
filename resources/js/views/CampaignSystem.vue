@@ -605,6 +605,7 @@ export default {
         },
 
         openSolaLog(item) {
+            console.log(item);
             this.solaid = item.SolaID;
             this.solaName = item.solaName;
             this.solalog = true;
