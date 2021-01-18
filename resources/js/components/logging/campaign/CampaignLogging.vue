@@ -97,12 +97,15 @@ export default {
         setName() {
             if (this.name != null) {
                 return this.name;
+            } else {
+                d = this.$store.getters.getMultiCampaignName(this.campaign_id);
+                console.log(d);
             }
         }
     },
 
     computed: {
-        ...mapGetters(["getLoggingCampaignByCampaign"]),
+        ...mapGetters(["getLoggingCampaignByCampaign", "getMultiCampaignName"]),
         logging() {
             if (this.$can("view_campaign_logs")) {
                 return this.getLoggingCampaignByCampaign(this.campaign_id);
