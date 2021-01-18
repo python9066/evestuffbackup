@@ -129,7 +129,7 @@ class LoggingController extends Controller
         } else {
             $type = "left";
         }
-        $text = $name . " " . $type . " the " . $campaignname['campaign_name'] . " campaign at" . $log->created_at;
+        $text = $name . " " . $type . " the " . $campaignname['campaign_name'] . " campaign at " . $log->created_at;
         $log->update(['campaign_name' => $campaignname['campaign_name'], 'text' => $text]);
         $log->save();
         Helper::logUpdate($campid);
