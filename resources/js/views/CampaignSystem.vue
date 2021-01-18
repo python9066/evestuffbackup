@@ -419,7 +419,7 @@
                 v-if="$can('view_campaign_logs')"
                 @closeLog="showLog = false"
                 :campaign_id="campaign.id"
-                :campaign="campaign"
+                :name="campaignName"
             >
             </CampaignLogging>
         </v-overlay>

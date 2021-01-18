@@ -8,10 +8,7 @@
         <v-card-title
             class=" d-lg-inline-block justify-space-between align-center "
         >
-            <div>
-                Logs for the {{ this.campaign.item_name }} in
-                {{ this.campaign.system }} Campaign
-            </div>
+            <div>Logs for the {{ this.name }} Campaign</div>
             <div>
                 <v-text-field
                     v-model="search"
@@ -76,7 +73,7 @@ import { mapState } from "vuex";
 export default {
     props: {
         campaign_id: Number,
-        campaign: Object
+        name: String
     },
     data() {
         return {
