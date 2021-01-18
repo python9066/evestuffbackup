@@ -242,7 +242,6 @@
                 v-if="$can('super')"
                 @closeLog="showLog = false"
                 :campaign_id="campaign_id"
-                :name="setCampName()"
             >
             </CampaignLogging>
         </v-overlay>
@@ -433,14 +432,6 @@ export default {
         openSolaLog(solaid) {
             this.solaid = solaid;
             this.solalog = true;
-        },
-
-        async setCampName() {
-            let d = await this.$store.getters.getMultiCampaignName(
-                this.$route.params.id
-            );
-            console.log(d[0]["name"]);
-            return d[0]["name"];
         },
 
         openAdd(item) {
