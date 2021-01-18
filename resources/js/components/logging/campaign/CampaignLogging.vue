@@ -9,8 +9,7 @@
             class=" d-lg-inline-block justify-space-between align-center "
         >
             <div>
-                Add a Character to node {{ nodeItem.node }} in
-                {{ nodeItem.system_name }}
+                Add a Character to node
             </div>
             <div>
                 <v-text-field
