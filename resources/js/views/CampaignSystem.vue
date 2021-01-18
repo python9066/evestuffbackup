@@ -425,7 +425,8 @@
         </v-overlay>
         <v-overlay z-index="0" :value="solalog">
             <SolaSystemLogging
-                :solaID="newCharName"
+                :solaID="solaid"
+                :campaign="campaign"
                 v-if="$can('super')"
                 @closeSolaLog="solalog = false"
             >
@@ -504,7 +505,8 @@ export default {
             nodeItem: null,
             load: 0,
             showLog: false,
-            solalog: false
+            solalog: false,
+            solaid: 0
         };
     },
 
@@ -602,7 +604,8 @@ export default {
         },
 
         openSolaLog(solaid) {
-            console.log(solaid);
+            this.solaid = solalog;
+            this.solalog = true;
         },
 
         async finishCampaign() {

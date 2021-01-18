@@ -434,7 +434,7 @@
                         </SystemScout>
                         <v-btn
                             v-if="$can('super')"
-                            @click="solaLog()"
+                            @click="openSolaLog()"
                             class=" mr-4"
                             color="blue"
                         >
@@ -546,7 +546,7 @@ export default {
             this.$emit("openAdd", item);
         },
 
-        solaLog() {
+        openSolaLog() {
             this.$emit("openSolaLog", this.CampaignSolaSystem[0]["id"]);
         },
 
