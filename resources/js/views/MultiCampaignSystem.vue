@@ -237,19 +237,19 @@
             >
             </AdminHackUserTable>
         </v-overlay>
-        <!-- <v-overlay z-index="5" :value="showLog">
+        <v-overlay z-index="5" :value="showLog">
             <CampaignLogging
                 v-if="$can('super')"
                 @closeLog="showLog = false"
                 :campaign_id="campaign_id"
-                :campaign="campaign"
+                :name="logName"
             >
             </CampaignLogging>
         </v-overlay>
-        <v-overlay z-index="0" :value="solalog">
+        <!-- <v-overlay z-index="0" :value="solalog">
             <SolaSystemLogging
                 :solaID="solaid"
-                :campaign="campaign"
+                :name="solaName"
                 v-if="$can('super')"
                 @closeSolaLog="solalog = false"
             >
