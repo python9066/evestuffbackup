@@ -9,7 +9,7 @@
         <v-card-title
             class=" d-lg-inline-block justify-space-between align-center "
         >
-            <div>Logs for {{ name }}</div>
+            <div>Logs for {{ name }} (systemlogs)</div>
             <div>
                 <v-text-field
                     v-model="search"
