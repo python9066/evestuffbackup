@@ -27,7 +27,7 @@ class LoggingController extends Controller
         $data = [];
         $logs = Logging::all();
         foreach ($logs as $log) {
-            $time =  Helper::fixtime($log['created_at']);
+            $timne = strtotime($log['created_at']);
             // dd($log);
             $data1 = null;
             $data1 = [
@@ -42,7 +42,7 @@ class LoggingController extends Controller
                 'logging_type_id' => $log['logging_type_id'],
                 'logging_type_name' => LoggingType::where('id', $log['logging_type_id'])->value('name'),
                 'text' => $log['text'],
-                'created_at' => $time
+                'created_at' => $timne
             ];
             array_push($data, $data1);
         }
