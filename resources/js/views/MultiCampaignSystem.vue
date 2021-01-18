@@ -237,7 +237,7 @@
             >
             </AdminHackUserTable>
         </v-overlay>
-        <v-overlay z-index="5" :value="showLog">
+        <!-- <v-overlay z-index="5" :value="showLog">
             <CampaignLogging
                 v-if="$can('super')"
                 @closeLog="showLog = false"
@@ -254,7 +254,7 @@
                 @closeSolaLog="solalog = false"
             >
             </SolaSystemLogging>
-        </v-overlay>
+        </v-overlay> -->
     </div>
 </template>
 <!-- {{ $route.params.id }} - {{ test }} -  -->
