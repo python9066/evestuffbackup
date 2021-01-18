@@ -32,20 +32,6 @@
                 class="elevation-24"
                 dense
             >
-                <template v-slot:item.actions="{ item }">
-                    <v-btn
-                        rounded
-                        :outlined="true"
-                        x-small
-                        color="green"
-                        @click="addChar(item)"
-                    >
-                        <v-icon x-small left dark>
-                            fas fa-plus
-                        </v-icon>
-                        Add
-                    </v-btn></template
-                >
                 <template slot="no-data">
                     No Free Characters
                 </template>
@@ -83,9 +69,9 @@ export default {
     },
 
     methods: {
-        // close() {
-        //     this.$emit("closeAdd", "yo");
-        // },
+        close() {
+            this.$emit("showLog", "yo");
+        }
     },
 
     computed: {
