@@ -239,7 +239,7 @@
         </v-overlay>
         <v-overlay z-index="5" :value="showLog">
             <CampaignLogging
-                v-if="$can('super')"
+                v-if="$can('view_campaign_logs')"
                 @closeLog="showLog = false"
                 :campaign_id="campaign_id"
             >
@@ -249,7 +249,7 @@
             <SolaSystemLogging
                 :solaID="solaid"
                 :name="solaName"
-                v-if="$can('super')"
+                v-if="$can('view_campaign_logs')"
                 @closeSolaLog="solalog = false"
             >
             </SolaSystemLogging>

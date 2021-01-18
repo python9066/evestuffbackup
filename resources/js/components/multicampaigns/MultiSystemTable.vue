@@ -472,7 +472,7 @@
                         <SystemScout :CampaignSolaSystem="CampaignSolaSystem">
                         </SystemScout>
                         <v-btn
-                            v-if="$can('super')"
+                            v-if="$can('view_campaign_logs')"
                             @click="openSolaLog()"
                             small
                             class=" mr-4"
