@@ -74,7 +74,7 @@ import { mapGetters } from "vuex";
 import { mapState } from "vuex";
 export default {
     props: {
-        sola_id: Number,
+        solaID: Number,
         campaign: Object
     },
     data() {
@@ -101,8 +101,8 @@ export default {
         ...mapGetters(["getLoggingCampaignBySola"]),
         logging() {
             if (this.$can("super")) {
-                console.log(this.sola_id);
-                return this.getLoggingCampaignBySola(this.sola_id);
+                console.log(this.solaID);
+                return this.getLoggingCampaignBySola(this.solaID);
             }
         }
     }
