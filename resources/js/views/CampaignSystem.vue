@@ -631,30 +631,36 @@ export default {
         },
 
         async loadCampaigns() {
-            this.$store.dispatch("getCampaigns");
+            await this.$store.dispatch("getCampaigns");
         },
 
-        loadUsersRecords() {
-            this.$store.dispatch("getCampaignUsersRecords", this.campaign.id);
+        async loadUsersRecords() {
+            await this.$store.dispatch(
+                "getCampaignUsersRecords",
+                this.campaign.id
+            );
         },
 
-        loadCampaignSolaSystems() {
-            this.$store.dispatch("getCampaignSolaSystems");
+        async loadCampaignSolaSystems() {
+            await this.$store.dispatch("getCampaignSolaSystems");
         },
 
-        loadCampaignlogs() {
+        async loadCampaignlogs() {
             if (this.$can("view_campaign_logs")) {
-                this.$store.dispatch("getLoggingCampaign", this.campaign.id);
+                await this.$store.dispatch(
+                    "getLoggingCampaign",
+                    this.campaign.id
+                );
             }
         },
 
-        loadCampaignSystemRecords() {
+        async loadCampaignSystemRecords() {
             this.$store.dispatch("getCampaignSystemsRecords");
         },
 
         async loadcampaigns() {
             this.loadingr = true;
-            this.$store.dispatch("getCampaigns").then(() => {
+            await this.$store.dispatch("getCampaigns").then(() => {
                 this.loadingr = false;
             });
         },
