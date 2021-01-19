@@ -124,12 +124,12 @@ class Campaignhelper
 
         $warmcheck = Campaign::where('warmup', 0)->where('status_id', 1)->get();
         foreach ($warmcheck as $warmcheck) {
-            if (($warmcheck['start_time'] - now()) > 0 && ($warmcheck['start_time'] - now()) < 3601) {
-                Campaign::where('id', $warmcheck['id'])->where('status_id', 1)->where('warmup', 0)->update(['warmup' => 1]);
-                $flag = 1;
-                echo "warm";
-                $changed->push($warmcheck['id']);
-            }
+            $test = $warmcheck['start_time'] - now();
+            dd($test);
+            Campaign::where('id', $warmcheck['id'])->where('status_id', 1)->where('warmup', 0)->update(['warmup' => 1]);
+            $flag = 1;
+            echo "warm";
+            $changed->push($warmcheck['id']);
         };
 
 
