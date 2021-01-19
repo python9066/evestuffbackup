@@ -440,9 +440,12 @@ export default {
             this.showAdd = true;
         },
 
-        loadCampaignlogs() {
+        async loadCampaignlogs() {
             if (this.$can("view_campaign_logs")) {
-                this.$store.dispatch("getLoggingCampaign", this.campaignId);
+                await this.$store.dispatch(
+                    "getLoggingCampaign",
+                    this.campaignId
+                );
             }
         },
 
@@ -453,15 +456,18 @@ export default {
         },
 
         async loadCampaigns() {
-            this.$store.dispatch("getCampaigns");
+            await this.$store.dispatch("getCampaigns");
         },
 
-        loadUsersRecords() {
-            this.$store.dispatch("getCampaignUsersRecords", this.campaignId);
+        async loadUsersRecords() {
+            await this.$store.dispatch(
+                "getCampaignUsersRecords",
+                this.campaignId
+            );
         },
 
-        loadCampaignSolaSystems() {
-            this.$store.dispatch("getCampaignSolaSystems");
+        async loadCampaignSolaSystems() {
+            await this.$store.dispatch("getCampaignSolaSystems");
         },
         async loadCampaignSystemRecords() {
             await this.$store.dispatch("getCampaignSystemsRecords");
@@ -469,7 +475,7 @@ export default {
 
         async loadcampaigns() {
             this.loadingr = true;
-            this.$store.dispatch("getCampaigns").then(() => {
+            await this.$store.dispatch("getCampaigns").then(() => {
                 this.loadingr = false;
             });
         },
