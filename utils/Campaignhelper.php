@@ -124,7 +124,7 @@ class Campaignhelper
 
         $warmchecks = Campaign::where('warmup', 0)->where('status_id', 1)->get();
         foreach ($warmchecks as $warmcheck) {
-            $time = $warmcheck->start_time;
+            $time = $warmcheck['start_time'];
             $test = strtotime($time)  - now();
             dd($test);
             Campaign::where('id', $warmcheck['id'])->where('status_id', 1)->where('warmup', 0)->update(['warmup' => 1]);
