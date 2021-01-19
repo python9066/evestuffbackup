@@ -346,15 +346,18 @@ export default {
                     this.loadUsersRecords();
                 }
                 if (e.flag.flag == 2) {
-                    this.loadCampaignSystemRecords();
+                    // this.loadCampaignSystemRecords();
+                    this.$store.dispatch("getCampaignSystemsRecords");
                 }
                 if (e.flag.flag == 3) {
-                    this.loadCampaignSystemRecords();
+                    // this.loadCampaignSystemRecords();
+                    this.$store.dispatch("getCampaignSystemsRecords");
                     this.loadUsersRecords();
                 }
                 if (e.flag.flag == 4) {
                     this.loadcampaigns();
-                    this.loadCampaignSystemRecords();
+                    // this.loadCampaignSystemRecords();
+                    this.$store.dispatch("getCampaignSystemsRecords");
                     this.loadUsersRecords();
                 }
                 if (e.flag.flag == 5) {
@@ -376,7 +379,8 @@ export default {
                 if (e.flag.flag == 9) {
                     //  console.log(6);
                     this.loadCampaignSolaSystems();
-                    this.loadCampaignSystemRecords();
+                    // this.loadCampaignSystemRecords();
+                    this.$store.dispatch("getCampaignSystemsRecords");
                 }
                 if (e.flag.flag == 10) {
                     this.loadCampaignlogs();
@@ -387,7 +391,8 @@ export default {
                     this.loadUsersRecords();
                     this.loadcampaigns();
                     this.loadCampaignSolaSystems();
-                    this.loadCampaignSystemRecords();
+                    // this.loadCampaignSystemRecords();
+                    this.$store.dispatch("getCampaignSystemsRecords");
                 }
             },
 
