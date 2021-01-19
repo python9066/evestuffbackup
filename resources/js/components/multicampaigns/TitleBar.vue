@@ -1,7 +1,7 @@
 <template>
     <v-row
         no-gutters
-        v-if="this.getCampaignsCount > 1"
+        v-if="this.getCampaignsCount > 1 && Campaign.status_id < 3"
         class="pb-2"
         justify="space-around"
     >
