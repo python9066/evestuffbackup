@@ -138,9 +138,11 @@ class Campaignhelper
 
         if ($check > 0) {
 
-            Campaign::where('end', '!=', null)
-                ->where('check', 0)
-                ->update(['status_id' => 3, 'warmup' => 0]);
+            $warms = Campaign::where('end', '!=', null)->where('check', 0)->get();
+            foreach ($warms as $warm) {
+                $warm->update(['status_id' => 3, 'warmup' => 0]);
+                $changed->push($warmcheck['id']);
+            }
 
             Campaign::where('end', null)
                 ->where('check', 0)
