@@ -346,18 +346,15 @@ export default {
                     this.loadUsersRecords();
                 }
                 if (e.flag.flag == 2) {
-                    // this.loadCampaignSystemRecords();
-                    this.$store.dispatch("getCampaignSystemsRecords");
+                    this.loadCampaignSystemRecords();
                 }
                 if (e.flag.flag == 3) {
-                    // this.loadCampaignSystemRecords();
-                    this.$store.dispatch("getCampaignSystemsRecords");
+                    this.loadCampaignSystemRecords();
                     this.loadUsersRecords();
                 }
                 if (e.flag.flag == 4) {
                     this.loadcampaigns();
-                    // this.loadCampaignSystemRecords();
-                    this.$store.dispatch("getCampaignSystemsRecords");
+                    this.loadCampaignSystemRecords();
                     this.loadUsersRecords();
                 }
                 if (e.flag.flag == 5) {
@@ -379,8 +376,7 @@ export default {
                 if (e.flag.flag == 9) {
                     //  console.log(6);
                     this.loadCampaignSolaSystems();
-                    // this.loadCampaignSystemRecords();
-                    this.$store.dispatch("getCampaignSystemsRecords");
+                    this.loadCampaignSystemRecords();
                 }
                 if (e.flag.flag == 10) {
                     this.loadCampaignlogs();
@@ -391,8 +387,7 @@ export default {
                     this.loadUsersRecords();
                     this.loadcampaigns();
                     this.loadCampaignSolaSystems();
-                    // this.loadCampaignSystemRecords();
-                    this.$store.dispatch("getCampaignSystemsRecords");
+                    this.loadCampaignSystemRecords();
                 }
             },
 
@@ -468,8 +463,8 @@ export default {
         loadCampaignSolaSystems() {
             this.$store.dispatch("getCampaignSolaSystems");
         },
-        loadCampaignSystemRecords() {
-            this.$store.dispatch("getCampaignSystemsRecords");
+        async loadCampaignSystemRecords() {
+            await this.$store.dispatch("getCampaignSystemsRecords");
         },
 
         async loadcampaigns() {
