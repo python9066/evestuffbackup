@@ -3,7 +3,6 @@
 namespace App\Http;
 
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
-use MyApp\Http\Middleware\HttpsProtocol;
 
 class Kernel extends HttpKernel
 {
@@ -23,7 +22,6 @@ class Kernel extends HttpKernel
         \App\Http\Middleware\TrimStrings::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
 
-        HttpsProtocol::class
     ];
 
     /**
