@@ -978,12 +978,13 @@ export default {
                 system_id: this.system_id,
                 node_id: node,
                 campaign_sola_system_id: this.CampaignSolaSystem[0]["id"],
-                user_id: this.$store.state.user_id
+                user_id: this.$store.state.user_id,
+                type: 2
             };
 
             axios({
                 method: "POST", //you can set what request you want to be
-                url: "/api/mcheckaddnode/" + this.campaign_id,
+                url: "/api/checkaddnode/" + this.campaign_id,
                 data: request,
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
