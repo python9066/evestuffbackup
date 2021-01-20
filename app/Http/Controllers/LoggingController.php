@@ -102,7 +102,7 @@ class LoggingController extends Controller
             $text = $log->user->name . " added node " . $request->campaign_system_id . " for the " . $campaignname['campaign_name'] . " at " . $log->created_at;
             $log->update(['campaign_name' => $campaignname['campaign_name'], 'sola_system_name' => $sola_name, 'text' => $text]);
         } else {
-            $campaignname = CustomCampaign::where('id', $request->campaign_id)->value('name')->first();
+            $campaignname = CustomCampaign::where('id', $request->campaign_id)->value('name');
             $text = $log->user->name . " added node " . $request->node_id . " for the " . $campaignname . " multi campaign at " . $log->created_at;
         }
 
