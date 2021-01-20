@@ -113,7 +113,11 @@ class LoggingController extends Controller
 
     public function nodeDelete(Request $request, $campid)
     {
-        $log = Logging::create($request->all());
+        $log = Logging::create([
+            'campaign_id' => $request->campaign_id,
+            'campaign_sola_system_id' => $request->campaign_sola_system_id,
+            'user_id' => $request->user_id,
+        ]);
         $log->update(['logging_type_id' => 2]);
         $log->save();
         $sola_name = CampaignSolaSystem::where('id', $request->campaign_sola_system_id)->first()->system->system_name;
