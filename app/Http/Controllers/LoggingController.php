@@ -117,9 +117,16 @@ class LoggingController extends Controller
         $log->update(['logging_type_id' => 2]);
         $log->save();
         $sola_name = CampaignSolaSystem::where('id', $request->campaign_sola_system_id)->first()->system->system_name;
-        $campaignname = Helper::campaignName($campid);
-        $text = $log->user->name . " removed node " . $request->campaign_system_id . " for the " . $campaignname['campaign_name'] . " at " . $log->created_at;
-        $log->update(['campaign_name' => $campaignname['campaign_name'], 'sola_system_name' => $sola_name, 'text' => $text]);
+        if ($request->type == 1) {
+            $campaignname = Helper::campaignName($campid);
+            $text = $log->user->name . " removed node " . $request->campaign_system_id . " for the " . $campaignname['campaign_name'] . " at " . $log->created_at;
+            $log->update(['campaign_name' => $campaignname['campaign_name'], 'sola_system_name' => $sola_name, 'text' => $text]);
+        } else {
+            $campaignname = CustomCampaign::where('id', $request->campaign_id)->value('name');
+            $text = $log->user->name . " removed node " . $request->campaign_system_id . " for the " . $campaignname . " multi campaign at " . $log->created_at;
+            $log->update(['campaign_name' => $campaignname, 'sola_system_name' => $sola_name, 'text' => $text]);
+        }
+
         $log->save();
         Helper::logUpdate($campid);
     }

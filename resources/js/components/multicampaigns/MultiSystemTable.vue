@@ -722,11 +722,12 @@ export default {
                 campaign_id: this.campaign_id,
                 campaign_system_id: item.node_id,
                 campaign_sola_system_id: this.CampaignSolaSystem[0]["id"],
-                user_id: this.$store.state.user_id
+                user_id: this.$store.state.user_id,
+                type: 2
             };
             axios({
                 method: "POST", //you can set what request you want to be
-                url: "/api/mcheckdeletenode/" + this.campaign_id,
+                url: "/api/checkdeletenode/" + this.campaign_id,
                 data: request,
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,

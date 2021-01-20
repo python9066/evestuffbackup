@@ -682,7 +682,8 @@ export default {
                 campaign_id: this.campaign_id,
                 campaign_system_id: item.node,
                 campaign_sola_system_id: this.CampaignSolaSystem[0]["id"],
-                user_id: this.$store.state.user_id
+                user_id: this.$store.state.user_id,
+                type: 1
             };
             // console.log(item);
             axios({
