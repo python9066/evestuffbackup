@@ -26,7 +26,7 @@
                         hide-details
                     ></v-text-field>
                 </v-card>
-                <v-card tile flat color="#121212" class=" pt-4">
+                <v-card tile flat color="#121212" class=" pt-2 pl-2">
                     <v-btn
                         v-if="$can('view_admin_logs')"
                         @click="logs = true"
