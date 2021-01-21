@@ -248,7 +248,7 @@ class LoggingController extends Controller
         $name = User::where('id', $request->user_id)->value('name');
         $admin_name = User::where('id', $request->userId)->value('name');
         $role_name = Role::where('id', $request->roleId)->value('name');
-        dd($role_name . " and " . $request->roleId . " and " . $request);
+        // dd($role_name . " and " . $request->roleId . " and " . $request);
         $log = Logging::create(['user_id' => $request->user_id, 'logging_type_id' => $request->type, 'admin_role_id' => $request->roleId, 'admin_user_id' => $request->userId]);
         $text = $name . " " . $logging_type_name . " " . $role_name . " " . $text1 . $admin_name . " at " . $log->created_at;
         $log->update(['text' => $text]);
