@@ -351,8 +351,7 @@ export default {
                 }
             });
             this.$store.dispatch("getUsers");
-            console.log(item);
-            console.log(item.id);
+            console.log(this.userAddRoleText);
             request = null;
             request = {
                 roleId: this.userAddRole,
