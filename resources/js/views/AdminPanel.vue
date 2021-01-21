@@ -25,6 +25,8 @@
                         single-line
                         hide-details
                     ></v-text-field>
+                </v-card>
+                <v-card>
                     <v-btn
                         v-if="$can('view_admin_logs')"
                         @click="logs = true"
