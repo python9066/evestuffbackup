@@ -15,7 +15,7 @@ class AddAdminRoleIdAndAdminUserIdColoumnToLoggingsTable extends Migration
     {
         Schema::table('loggings', function (Blueprint $table) {
             $table->integer('admin_role_id')->after('logging_type_id')->nullable();
-            $table->integer('admin_user_id')->after('_admin_role_id')->nullable();
+            $table->integer('admin_user_id')->after('admin_role_id')->nullable();
         });
     }
 
