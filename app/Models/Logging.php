@@ -41,6 +41,11 @@ class Logging extends Model
         return $this->belongsTo(Role::class);
     }
 
+    public function adminUser()
+    {
+        return $this->belongsTo(User::class, 'admin_user_name');
+    }
+
     protected $casts = [
         'campaign_id' => 'integer',
         'logging_type_id' => 'integer',
