@@ -240,14 +240,17 @@ class LoggingController extends Controller
     {
         if ($request->type == 15) {
             $logging_type_name = "added";
+            $text1 = "to";
         } else {
             $logging_type_name = "removed";
+            $text1 = "from";
         }
         $name = User::where('id', $request->user_id)->value('name');
         $admin_name = User::where('id', $request->userId)->value('name');
         $role_name = Role::where('id', $request->roleId)->value('name');
+        dd($role_name . " and " . $request->roleId);
         $log = Logging::create(['user_id' => $request->user_id, 'logging_type_id' => $request->type, 'admin_role_id' => $request->roleId, 'admin_user_id' => $request->userId]);
-        $text = $name . " " . $logging_type_name . " " . $role_name . " from " . $admin_name . " at " . $log->created_at;
+        $text = $name . " " . $logging_type_name . " " . $role_name . " " . $text1 . $admin_name . " at " . $log->created_at;
         $log->update(['text' => $text]);
         $log->save();
     }
