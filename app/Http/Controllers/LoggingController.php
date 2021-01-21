@@ -13,6 +13,7 @@ use App\Models\LoggingType;
 use App\Models\System;
 use App\Models\User;
 use PHPUnit\TextUI\Help;
+use Spatie\Permission\Models\Role;
 use utils\Helper\Helper;
 
 class LoggingController extends Controller
@@ -235,58 +236,22 @@ class LoggingController extends Controller
         Helper::logUpdate($campid);
     }
 
-    public function addremovechar(Request $request, $campid)
+    public function addRemoveRoles(Request $request)
     {
-        if ($request->type == "added") {
-            $logging_type_id = 6;
+        if ($request->type == 15) {
+            $logging_type_name = "added";
         } else {
-            $logging_type_id = 7;
+            $logging_type_name = "removed";
         }
         $name = User::where('id', $request->user_id)->value('name');
-        $log = Logging::create(['campaign_id' => $campid, 'user_id' => $request->user_id, 'logging_type_id' => $logging_type_id]);
+        $admin_name = User::where('id', $request->userId)->value('name');
+        $role_name = Role::where('id', $request->roleId)->value('name');
+        $log = Logging::create(['user_id' => $request->user_id, 'logging_type_id' => $request->type, 'admin_role_id' => $request->roleId, 'admin_user_id' => $request->userId]);
+        $text = $name . " " . $logging_type_name . " " . $role_name . " from " . $admin_name . " at " . $log->created_at;
+        $log->update(['text' => $text]);
         $log->save();
-
-
-        if (Campaign::where('id', $campid)->count() == 0) {
-            $campaignname = CustomCampaign::where('id', $campid)->value('name');
-            $text = $name . " " . $request->type . " a characters to the " . $campaignname . " multi campaign at " . $log->created_at;
-            $log->update(['campaign_name' => $campaignname, 'text' => $text]);
-            $log->save();
-        } else {
-            $campaignname = Helper::campaignName($campid);
-            $text = $name . " " . $request->type . " a characters to the " . $campaignname['campaign_name'] . " campaign at " . $log->created_at;
-            $log->update(['campaign_name' => $campaignname['campaign_name'], 'text' => $text]);
-            $log->save();
-        }
-
-        Helper::logUpdate($campid);
     }
-    public function addRemoveRoles(Request $request, $campid)
-    {
-        if ($request->type == "added") {
-            $logging_type_id = 6;
-        } else {
-            $logging_type_id = 7;
-        }
-        $name = User::where('id', $request->user_id)->value('name');
-        $log = Logging::create(['campaign_id' => $campid, 'user_id' => $request->user_id, 'logging_type_id' => $logging_type_id]);
-        $log->save();
 
-
-        if (Campaign::where('id', $campid)->count() == 0) {
-            $campaignname = CustomCampaign::where('id', $campid)->value('name');
-            $text = $name . " " . $request->type . " a characters to the " . $campaignname . " multi campaign at " . $log->created_at;
-            $log->update(['campaign_name' => $campaignname, 'text' => $text]);
-            $log->save();
-        } else {
-            $campaignname = Helper::campaignName($campid);
-            $text = $name . " " . $request->type . " a characters to the " . $campaignname['campaign_name'] . " campaign at " . $log->created_at;
-            $log->update(['campaign_name' => $campaignname['campaign_name'], 'text' => $text]);
-            $log->save();
-        }
-
-        Helper::logUpdate($campid);
-    }
 
 
     public function nodeDeleteMulti(Request $request, $campid)

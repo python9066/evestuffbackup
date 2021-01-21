@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Permission\Models\Role;
 
 class Logging extends Model
 {
@@ -33,6 +34,11 @@ class Logging extends Model
     public function type()
     {
         return $this->belongsTo(LoggingType::class);
+    }
+
+    public function role()
+    {
+        return $this->belongsTo(Role::class);
     }
 
     protected $casts = [
