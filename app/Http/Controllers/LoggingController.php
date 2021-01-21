@@ -96,7 +96,7 @@ class LoggingController extends Controller
                 'role_id' => $log['role_id'],
                 'admin_role_name' => $log->role()->value('name'),
                 'admin_user_id' => $log['admin_user_id'],
-                'admin_user_name' => $log->user()->value('name'),
+                'admin_user_name' => $log->adminUser()->value('name'),
                 'text' => $log['text'],
                 'created_at' => $timne
             ];
