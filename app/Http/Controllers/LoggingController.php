@@ -83,7 +83,7 @@ class LoggingController extends Controller
     {
         // dd($campid);
         $data = [];
-        $logs = Logging::where('admin_role_id', '!=', null)->get();
+        $logs = Logging::where('role_id', '!=', null)->get();
         foreach ($logs as $log) {
             $timne = Helper::fixtime($log['created_at']);
             $data1 = null;
@@ -93,7 +93,7 @@ class LoggingController extends Controller
                 'user_name' => $log->user()->value('name'),
                 'logging_type_id' => $log['logging_type_id'],
                 'logging_type_name' => LoggingType::where('id', $log['logging_type_id'])->value('name'),
-                'admin_role_id' => $log['admin_role_id'],
+                'role_id' => $log['role_id'],
                 'admin_role_name' => $log->role()->value('name'),
                 'admin_user_id' => $log['admin_user_id'],
                 'admin_user_name' => $log->user()->value('name'),
@@ -275,7 +275,7 @@ class LoggingController extends Controller
         $name = User::where('id', $request->user_id)->value('name');
         $admin_name = User::where('id', $request->userId)->value('name');
         $role_name = Role::where('id', $request->roleId)->value('name');
-        $log = Logging::create(['user_id' => $request->user_id, 'logging_type_id' => $request->type, 'admin_role_id' => $request->roleId, 'admin_user_id' => $request->userId]);
+        $log = Logging::create(['user_id' => $request->user_id, 'logging_type_id' => $request->type, 'role_id' => $request->roleId, 'admin_user_id' => $request->userId]);
         $text = $name . " " . $logging_type_name . " " . $role_name . " " . $text1 . " " . $admin_name . " at " . $log->created_at;
         $log->update(['text' => $text]);
         $log->save();
