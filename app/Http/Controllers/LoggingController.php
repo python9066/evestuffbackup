@@ -94,7 +94,7 @@ class LoggingController extends Controller
                 'logging_type_id' => $log['logging_type_id'],
                 'logging_type_name' => LoggingType::where('id', $log['logging_type_id'])->value('name'),
                 'admin_role_id' => $log['admin_role_id'],
-                'admin_role_id' => $log->role()->value('name'),
+                'admin_role_name' => $log->role()->value('name'),
                 'admin_user_id' => $log['admin_user_id'],
                 'admin_user_name' => $log->user()->value('name'),
                 'text' => $log['text'],
