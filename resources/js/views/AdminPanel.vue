@@ -264,15 +264,14 @@ export default {
         Echo.private("userupdate").listen("UserUpdate", e => {
             this.refresh();
         });
-
-        await this.$store.dispatch("getLoggingAdmin");
+        if (this.$can("view_admin_logs")) {
+            await this.$store.dispatch("getLoggingAdmin");
+        }
     },
 
     async mounted() {
         await this.$store.dispatch("getUsers");
-        if (this.$can("view_admin_logs")) {
-            await this.$store.dispatch("getRoles");
-        }
+        await this.$store.dispatch("getRoles");
     },
 
     methods: {
@@ -391,7 +390,7 @@ export default {
             });
 
             if (this.$can("view_admin_logs")) {
-                await this.$store.dispatch("getRoles");
+                await this.$store.dispatch("getLoggingAdmin");
             }
         },
 
@@ -441,7 +440,7 @@ export default {
             });
 
             if (this.$can("view_admin_logs")) {
-                await this.$store.dispatch("getRoles");
+                await this.$store.dispatch("getLoggingAdmin");
             }
         }
     },
