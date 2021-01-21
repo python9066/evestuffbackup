@@ -55,6 +55,7 @@ Vue.component('AdminHack', require('./components/campaignAll/admin/AdminHack.vue
 Vue.component('AdminHackUserTable', require('./components/campaignAll/admin/UserTable.vue').default);
 Vue.component('SolaSystemLogging', require('./components/logging/campaign/SolaSystemLogging.vue').default);
 Vue.component('CampaignLogging', require('./components/logging/campaign/CampaignLogging.vue').default);
+Vue.component('AdminLogging', require('./components/logging/adminpanel/AdminLogging.vue').default);
 
 
 

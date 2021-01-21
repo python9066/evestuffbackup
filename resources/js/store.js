@@ -732,6 +732,10 @@ export default new Vuex.Store({
 
         getLoggingCampaignByCampaign: state => campid => {
             return state.loggingcampaign.filter(log => log.campaign_sola_system_id == null && log.campaign_id == campid)
+        },
+
+        getLoggingAdmin: state => campid => {
+            return state.loggingcampaign.filter(log => log.campaign_sola_system_id == null && log.campaign_id == campid)
         }
 
     }
