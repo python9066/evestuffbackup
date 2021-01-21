@@ -254,7 +254,7 @@ export default {
 
     async mounted() {
         await this.$store.dispatch("getUsers");
-        if (this.$can("super")) {
+        if (this.$can("view_admin_logs")) {
             await this.$store.dispatch("getRoles");
         }
     },
