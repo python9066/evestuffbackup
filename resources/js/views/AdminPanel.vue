@@ -389,6 +389,10 @@ export default {
                     "Content-Type": "application/json"
                 }
             });
+
+            if (this.$can("view_admin_logs")) {
+                await this.$store.dispatch("getRoles");
+            }
         },
 
         mittin(item) {
@@ -435,6 +439,10 @@ export default {
                     "Content-Type": "application/json"
                 }
             });
+
+            if (this.$can("view_admin_logs")) {
+                await this.$store.dispatch("getRoles");
+            }
         }
     },
 
