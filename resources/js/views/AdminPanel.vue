@@ -354,7 +354,7 @@ export default {
 
             request = null;
             request = {
-                roleId: this.userAddRoleText,
+                roleId: this.userAddRole,
                 userId: item.id,
                 user_id: this.$store.state.user_id,
                 type: 15
