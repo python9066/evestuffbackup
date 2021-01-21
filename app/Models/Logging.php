@@ -43,7 +43,7 @@ class Logging extends Model
 
     public function adminUser()
     {
-        return $this->belongsTo(User::class, 'admin_user_name');
+        return $this->belongsTo(User::class, 'admin_user_id');
     }
 
     protected $casts = [
