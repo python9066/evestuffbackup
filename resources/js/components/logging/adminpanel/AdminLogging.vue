@@ -52,7 +52,7 @@
                 </template>
                 <template v-slot:item.admin_user_name="{ item }">
                     <div class=" subtitle-1">
-                        {{ item.text }}
+                        {{ item.admin_user_name }}
                     </div>
                 </template>
                 <template v-slot:item.text="{ item }">
