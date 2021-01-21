@@ -351,7 +351,7 @@ export default {
                 }
             });
             this.$store.dispatch("getUsers");
-            dd(item);
+            console.log(item);
             request = null;
             request = {
                 roleId: this.userAddRole,
