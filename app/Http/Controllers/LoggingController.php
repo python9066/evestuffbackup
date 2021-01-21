@@ -267,10 +267,10 @@ class LoggingController extends Controller
     {
         if ($request->type == 15) {
             $logging_type_name = "added";
-            $text1 = "to";
+            $text1 = "role to";
         } else {
             $logging_type_name = "removed";
-            $text1 = "from";
+            $text1 = "role from";
         }
         $name = User::where('id', $request->user_id)->value('name');
         $admin_name = User::where('id', $request->userId)->value('name');
