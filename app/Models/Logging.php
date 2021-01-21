@@ -43,5 +43,8 @@ class Logging extends Model
 
     protected $casts = [
         'campaign_id' => 'integer',
+        'logging_type_id' => 'integer',
+        'role_id' => 'integer',
+
     ];
 }
