@@ -332,28 +332,6 @@ export default {
                     return false;
                 }
             }
-
-            // if(this.$can("edit_all_users")){
-
-            //     if(name == "Wizhard"){
-
-            //     }else{
-
-            //     }
-
-            // }else if(this.$can("edit_scout_users")){
-
-            //     if(name == "Scout"){
-
-            //     }else{
-
-            //     }
-            // }else if(this.$can("edit_hack_users")){
-
-            //     if(name == "Hacker"){
-
-            //     }else
-            // }
         },
 
         async userAddRole(item) {
@@ -373,6 +351,25 @@ export default {
                 }
             });
             this.$store.dispatch("getUsers");
+
+            request = null;
+            request = {
+                roleId: this.userAddRole,
+                userId: item.id,
+                user_id: this.$store.state.user_id,
+                type: 15
+            };
+
+            await axios({
+                method: "put", //you can set what request you want to be
+                url: "/api/rolesadd",
+                data: request,
+                headers: {
+                    Authorization: "Bearer " + this.$store.state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                }
+            });
         },
 
         mittin(item) {

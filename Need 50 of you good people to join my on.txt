@@ -1,10 +1,23 @@
-Need 50 of you good people to join my on an adventure
-
-FC Name: Mhairi
-Formup Location: 1DQ
+!all  Lets go have some fun
+FC Name: Luke Toir
+Formup Location: 1DQ1-A
 Pap Type: Strategic
-Comms: Op 8 maybe, will be in MOTD
-Doctrine: Hound pilots, ships handed out in 1DQ
+Comms: Op 10 https://gnf.lt/Sy12pKS.html
+Doctrine: Jackdaw Fleet (Boosters > Scalpel / Kirin > Jackdaw > Keres / Hyena > Tackle)
+
+
+let's gooooooooooo
+22:54 <arza_ara>  
+22:54 <arza_ara> FC Name: Arza Ara
+22:54 <arza_ara> Formup Location: 1DQ
+22:54 <arza_ara> Pap Type: Strategic
+22:54 <arza_ara> Comms: Op 11
+22:54 <arza_ara> Doctrine: Ares > Ares > Interceptors 
+
+
+
+
+
 
 
 
@@ -14,3 +27,29 @@ tidi = 100-[input_tidi]
 time_left(ms) = [current_time(real)]-[saved_end_time]
 
 new_time = ((time_left/100)*tidi)+time_left
+
+
+
+
+<IfModule mod_rewrite.c>
+    <IfModule mod_negotiation.c>
+        Options -MultiViews -Indexes
+    </IfModule>
+
+    RewriteEngine On
+    RewriteBase /
+    # Handle Authorization Header
+    RewriteCond %{HTTP:Authorization} .
+    RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+
+    # Redirect Trailing Slashes If Not A Folder...
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_URI} (.+)/$
+    RewriteRule ^ %1 [L,R=301]
+
+    # Send Requests To Front Controller...
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^ index.php [L]
+</IfModule>
+

@@ -235,6 +235,59 @@ class LoggingController extends Controller
         Helper::logUpdate($campid);
     }
 
+    public function addremovechar(Request $request, $campid)
+    {
+        if ($request->type == "added") {
+            $logging_type_id = 6;
+        } else {
+            $logging_type_id = 7;
+        }
+        $name = User::where('id', $request->user_id)->value('name');
+        $log = Logging::create(['campaign_id' => $campid, 'user_id' => $request->user_id, 'logging_type_id' => $logging_type_id]);
+        $log->save();
+
+
+        if (Campaign::where('id', $campid)->count() == 0) {
+            $campaignname = CustomCampaign::where('id', $campid)->value('name');
+            $text = $name . " " . $request->type . " a characters to the " . $campaignname . " multi campaign at " . $log->created_at;
+            $log->update(['campaign_name' => $campaignname, 'text' => $text]);
+            $log->save();
+        } else {
+            $campaignname = Helper::campaignName($campid);
+            $text = $name . " " . $request->type . " a characters to the " . $campaignname['campaign_name'] . " campaign at " . $log->created_at;
+            $log->update(['campaign_name' => $campaignname['campaign_name'], 'text' => $text]);
+            $log->save();
+        }
+
+        Helper::logUpdate($campid);
+    }
+    public function addRemoveRoles(Request $request, $campid)
+    {
+        if ($request->type == "added") {
+            $logging_type_id = 6;
+        } else {
+            $logging_type_id = 7;
+        }
+        $name = User::where('id', $request->user_id)->value('name');
+        $log = Logging::create(['campaign_id' => $campid, 'user_id' => $request->user_id, 'logging_type_id' => $logging_type_id]);
+        $log->save();
+
+
+        if (Campaign::where('id', $campid)->count() == 0) {
+            $campaignname = CustomCampaign::where('id', $campid)->value('name');
+            $text = $name . " " . $request->type . " a characters to the " . $campaignname . " multi campaign at " . $log->created_at;
+            $log->update(['campaign_name' => $campaignname, 'text' => $text]);
+            $log->save();
+        } else {
+            $campaignname = Helper::campaignName($campid);
+            $text = $name . " " . $request->type . " a characters to the " . $campaignname['campaign_name'] . " campaign at " . $log->created_at;
+            $log->update(['campaign_name' => $campaignname['campaign_name'], 'text' => $text]);
+            $log->save();
+        }
+
+        Helper::logUpdate($campid);
+    }
+
 
     public function nodeDeleteMulti(Request $request, $campid)
     {
