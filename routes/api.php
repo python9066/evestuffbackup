@@ -111,4 +111,5 @@ Route::middleware('auth:api')->group(function () {
     Route::put('/checkaddremovechar/{campid}', 'LoggingController@addremovechar');
     Route::put('/checkroleaddremove', 'LoggingController@addRemoveRoles');
     Route::get('/checkcampaign/{campid}', 'LoggingController@logCampaign');
+    Route::get('/checkadmin', 'LoggingController@logAdmin');
 });

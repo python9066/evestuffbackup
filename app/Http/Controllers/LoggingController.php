@@ -79,6 +79,33 @@ class LoggingController extends Controller
         return ["logs" => $data];
     }
 
+    public function logAdmin($campid)
+    {
+        // dd($campid);
+        $data = [];
+        $logs = Logging::where('admin_role_id', '!=', null)->get();
+        foreach ($logs as $log) {
+            $timne = Helper::fixtime($log['created_at']);
+            $data1 = null;
+            $data1 = [
+                'id' => $log['id'],
+                'user_id' => $log['user_id'],
+                'user_name' => $log->user()->value('name'),
+                'logging_type_id' => $log['logging_type_id'],
+                'logging_type_name' => LoggingType::where('id', $log['logging_type_id'])->value('name'),
+                'admin_role_id' => $log['admin_role_id'],
+                'admin_role_id' => $log->role()->value('name'),
+                'admin_user_id' => $log['admin_user_id'],
+                'admin_user_name' => $log->user()->value('name'),
+                'text' => $log['text'],
+                'created_at' => $timne
+            ];
+            array_push($data, $data1);
+        }
+
+        return ["logs" => $data];
+    }
+
     /**
      * Store a newly created resource in storage.
      *

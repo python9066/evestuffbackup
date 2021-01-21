@@ -248,6 +248,8 @@ export default {
         Echo.private("userupdate").listen("UserUpdate", e => {
             this.refresh();
         });
+
+        await this.$store.dispatch("getLoggingAdmin");
     },
 
     async mounted() {

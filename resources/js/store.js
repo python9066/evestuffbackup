@@ -20,6 +20,7 @@ export default new Vuex.Store({
         campaignsystems: [],
         campaignmembers:[],
         delveLink: "",
+        loggingAdmin:[],
         loggingcampaign:[],
         multicampaigns:[],
         notifications: [],
@@ -82,6 +83,10 @@ export default new Vuex.Store({
 
         SET_LOGGING_CAMPAIGN(state, logs) {
             state.loggingcampaign = logs;
+        },
+
+        SET_LOGGING_ADMIN(state, logs) {
+            state.loggingAdmin = logs;
         },
 
         UPDATE_CAMPAIGNS(state, data) {
@@ -374,6 +379,20 @@ export default new Vuex.Store({
             });
             // console.log(res.data.campaigns);
             commit("SET_LOGGING_CAMPAIGN", res.data.logs);
+        },
+
+        async getLoggingAdmin({ commit, state }) {
+            let res = await axios({
+                method: "get",
+                url: "/api/checkadmin",
+                headers: {
+                    Authorization: "Bearer " + state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                }
+            });
+            // console.log(res.data.campaigns);
+            commit("SET_LOGGING_ADMIN", res.data.logs);
         },
 
         markOver({ commit }, timer) {
