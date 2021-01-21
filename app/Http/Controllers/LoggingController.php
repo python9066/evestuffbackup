@@ -79,7 +79,7 @@ class LoggingController extends Controller
         return ["logs" => $data];
     }
 
-    public function logAdmin($campid)
+    public function logAdmin()
     {
         // dd($campid);
         $data = [];
