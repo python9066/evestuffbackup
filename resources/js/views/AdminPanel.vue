@@ -25,6 +25,14 @@
                         single-line
                         hide-details
                     ></v-text-field>
+                    <v-btn
+                        v-if="$can('view_admin_logs')"
+                        @click="logs = true"
+                        class=" mr-4"
+                        color="blue"
+                    >
+                        Role Logs
+                    </v-btn>
                 </v-card>
             </v-col>
         </v-row>
@@ -212,6 +220,13 @@
                 </v-card>
             </v-col>
         </v-row>
+        <v-overlay z-index="0" :value="logs">
+            <AdminLogging
+                v-if="$can('view_admin_logs')"
+                @closeLog="logs = false"
+            >
+            </AdminLogging>
+        </v-overlay>
     </div>
 </template>
 <script>
@@ -240,7 +255,8 @@ export default {
             addShown: false,
             userAddRoleText: "",
             userRemoveRoleText: "",
-            roleflag: 10
+            roleflag: 10,
+            logs: false
         };
     },
 

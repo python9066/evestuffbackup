@@ -78,10 +78,7 @@
 import { mapGetters } from "vuex";
 import { mapState } from "vuex";
 export default {
-    props: {
-        campaign_id: Number,
-        name: String
-    },
+    props: {},
     data() {
         return {
             overlay: true,
