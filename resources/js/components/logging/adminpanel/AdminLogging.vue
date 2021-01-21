@@ -101,10 +101,10 @@ export default {
     },
 
     computed: {
-        ...mapGetters(["getLoggingCampaignByCampaign", "getMultiCampaignName"]),
+        ...mapState(["loggingAdmin"]),
         logging() {
-            if (this.$can("view_campaign_logs")) {
-                return this.getLoggingCampaignByCampaign(this.campaign_id);
+            if (this.$can("view_admin_logs")) {
+                return this.loggingAdmin;
             }
         }
     }
