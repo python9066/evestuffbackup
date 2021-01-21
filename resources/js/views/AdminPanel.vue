@@ -362,7 +362,7 @@ export default {
 
             await axios({
                 method: "put", //you can set what request you want to be
-                url: "/api/rolesadd",
+                url: "/api/checkroleaddremove",
                 data: request,
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
