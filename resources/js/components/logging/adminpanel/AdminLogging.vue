@@ -50,6 +50,11 @@
                         {{ item.user_name }}
                     </div>
                 </template>
+                <template v-slot:item.admin_user_name="{ item }">
+                    <div class=" subtitle-1">
+                        {{ item.text }}
+                    </div>
+                </template>
                 <template v-slot:item.text="{ item }">
                     <div class=" subtitle-1">
                         {{ item.text }}
@@ -83,7 +88,8 @@ export default {
             headers: [
                 { text: "Time Stamp", value: "created_at" },
                 { text: "Type", value: "logging_type_name" },
-                { text: "User", value: "user_name" },
+                { text: "Admin", value: "user_name" },
+                { text: "User", value: "admin_user_name" },
                 { text: "Text", value: "text" }
                 // { text: "Vulernable End Time", value: "vulnerable_end_time" }
             ],

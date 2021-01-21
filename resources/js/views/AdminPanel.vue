@@ -254,7 +254,9 @@ export default {
 
     async mounted() {
         await this.$store.dispatch("getUsers");
-        await this.$store.dispatch("getRoles");
+        if (this.$can("super")) {
+            await this.$store.dispatch("getRoles");
+        }
     },
 
     methods: {
