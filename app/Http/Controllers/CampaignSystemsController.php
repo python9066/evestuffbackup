@@ -215,7 +215,7 @@ class CampaignSystemsController extends Controller
                 $system->save();
             }
         }
-        CampaignSolaSystem::where('id', $request->solaID)->update(['tidi' => $request->newTidi, 'base_time' => $base_time]);
+        CampaignSolaSystem::where('id', $request->solaID)->update(['tidi' => $request->newTidi]);
 
 
         $flag = collect([
