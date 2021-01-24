@@ -6,14 +6,14 @@ Comms: Op 10 https://gnf.lt/Sy12pKS.html
 Doctrine: Jackdaw Fleet (Boosters > Scalpel / Kirin > Jackdaw > Keres / Hyena > Tackle)
 
 
-let's gooooooooooo
-22:54 <arza_ara>  
-22:54 <arza_ara> FC Name: Arza Ara
-22:54 <arza_ara> Formup Location: 1DQ
-22:54 <arza_ara> Pap Type: Strategic
-22:54 <arza_ara> Comms: Op 11
-22:54 <arza_ara> Doctrine: Ares > Ares > Interceptors 
 
+Kill Kill Kill, Eat Eat Eat
+  
+ FC Name: Opsy Naari
+ Formup Location: 1DQ1
+ Pap Type: Strategic
+ Comms: Op 9 https://gnf.lt/pgyZ4xp.html
+ Doctrine: Jackdaw Fleet (Boosters > Scalpel / Kirin > Jackdaw > Keres / Hyena > Tackle)
 
 
 
@@ -23,7 +23,7 @@ let's gooooooooooo
 
 /usr/bin/php7.4-cli artisan
 
-tidi = 100-[input_tidi] 
+tidi = 100-[input_tidi]
 time_left(ms) = [current_time(real)]-[saved_end_time]
 
 new_time = ((time_left/100)*tidi)+time_left
