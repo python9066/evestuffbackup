@@ -20,7 +20,7 @@ class testController extends Controller
     public function notifications(Request $request)
     {
 
-        Logging::create(['campaign_id' => 1, 'campaign_sola_system_id' => 1, 'user_id' => 1, 'text' => $request]);
+        Logging::create(['campaign_id' => 1, 'campaign_sola_system_id' => 1, 'user_id' => 1]);
         return "this is a test";
         // $this->test($request);
         // $data =  $request->toArray();
