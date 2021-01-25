@@ -338,6 +338,21 @@
                         :region_name="item.region"
                     >
                     </campaignMap>
+                    <VueCountUptimer
+                        v-if="item.age != null"
+                        :start-time="moment.utc(item.age).unix()"
+                        :end-text="'Window Closed'"
+                        :interval="1000"
+                        :leadingZero="false"
+                    >
+                        <template slot="countup" slot-scope="scope">
+                            <span class="green--text pl-3"
+                                ><span v-if="scope.props.days != 0">
+                                    {{ scope.props.days }} Days - </span
+                                >{{ scope.props.hours }} Hours</span
+                            >
+                        </template>
+                    </VueCountUptimer>
                 </div>
             </template>
         </v-data-table>

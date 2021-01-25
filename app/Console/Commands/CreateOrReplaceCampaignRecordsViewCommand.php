@@ -65,7 +65,8 @@ class CreateOrReplaceCampaignRecordsViewCommand extends Command
         campaigns.b_node + campaigns.r_node AS 'total_node',
         campaigns.warmup AS 'warmup',
         systems.adm AS 'adm',
-        campaigns.link AS 'link'
+        campaigns.link AS 'link',
+        structures.age AS 'Age'
         FROM campaigns
         JOIN systems ON systems.id = campaigns.system_id
         JOIN constellations ON constellations.id = campaigns.constellation_id
@@ -73,6 +74,7 @@ class CreateOrReplaceCampaignRecordsViewCommand extends Command
         JOIN items ON items.id = campaigns.event_type
         JOIN regions ON regions.id = systems.region_id
         JOIN campaign_statuses ON campaign_statuses.id = campaigns.status_id
+        JOIN structures on structures.id = campaigns.structure_id
         WHERE (campaigns.attackers_score != 1 OR campaigns.attackers_score != 0) AND campaigns.status_id != 10");
     }
 }
