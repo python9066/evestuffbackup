@@ -107,9 +107,23 @@
                                         >
                                             <v-list-item-title>
                                                 {{ list.char_name }} -
-                                                {{ list.ship }} - T{{
-                                                    list.link
-                                                }}</v-list-item-title
+                                                {{ list.ship }} - T{{ list.link
+                                                }}<span
+                                                    class=" pl-3"
+                                                    v-if="$can('super')"
+                                                >
+                                                    <v-icon
+                                                        color="orange darken-3"
+                                                        small
+                                                        @click="
+                                                            removeReadyToGoOnTheWay(
+                                                                list
+                                                            )
+                                                        "
+                                                    >
+                                                        fas fa-trash-alt
+                                                    </v-icon></span
+                                                ></v-list-item-title
                                             >
                                         </v-list-item>
                                     </v-list>
@@ -176,7 +190,10 @@
                                                 {{ list.ship }} - T{{
                                                     list.link
                                                 }}
-                                                <span v-if="$can('super')">
+                                                <span
+                                                    class=" pl-3"
+                                                    v-if="$can('super')"
+                                                >
                                                     <v-icon
                                                         color="orange darken-3"
                                                         small
