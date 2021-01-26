@@ -16,6 +16,7 @@ class CreateTestNotesTable extends Migration
         Schema::create('test_notes', function (Blueprint $table) {
             $table->id();
             $table->text('text')->nullable();
+            $table->timestamps();
         });
     }
 
