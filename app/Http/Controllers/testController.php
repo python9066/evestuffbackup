@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Events\StationNew;
 use App\Events\TowerNew;
 use App\Models\Logging;
+use App\Models\testNote;
 use Illuminate\Http\Request;
 use utils\Helper\Helper;
 use utils\Notificationhelper\Notifications;
@@ -20,7 +21,7 @@ class testController extends Controller
     public function notifications(Request $request)
     {
 
-        Logging::create(['campaign_id' => 1, 'campaign_sola_system_id' => 1, 'user_id' => 1, 'text' => $request]);
+        testNote::create(['campaign_id' => 1, 'campaign_sola_system_id' => 1, 'user_id' => 1, 'text' => $request]);
 
         // $this->test($request);
         // $data =  $request->toArray();
