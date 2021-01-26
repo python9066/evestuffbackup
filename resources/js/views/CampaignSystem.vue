@@ -937,17 +937,6 @@ export default {
             };
             this.$store.dispatch("updateCampaignSystem", data);
             this.$store.dispatch("updateCampaign", data);
-        },
-
-        seeReadyToGoOnTheWay(item) {
-            if (
-                this.$can("campaigns_admin_access") ||
-                this.$store.state.user_id == item.site_id
-            ) {
-                return true;
-            } else {
-                false;
-            }
         }
     },
 

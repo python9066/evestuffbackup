@@ -1081,6 +1081,17 @@ export default {
                     "Content-Type": "application/json"
                 }
             });
+        },
+
+        seeReadyToGoOnTheWay(item) {
+            if (
+                this.$can("campaigns_admin_access") ||
+                this.$store.state.user_id == item.site_id
+            ) {
+                return true;
+            } else {
+                false;
+            }
         }
     },
 
