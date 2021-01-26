@@ -177,7 +177,17 @@
                                                     list.link
                                                 }}
                                                 <span v-if="$can('super')">
-                                                    {{ list }}</span
+                                                    <v-btn
+                                                        @click="
+                                                            removeReadyToGoOnTheWay(
+                                                                item
+                                                            )
+                                                        "
+                                                        color="success"
+                                                        ><v-icon left small
+                                                            >fas fa-plus</v-icon
+                                                        >
+                                                    </v-btn></span
                                                 ></v-list-item-title
                                             >
                                         </v-list-item>
@@ -1027,6 +1037,25 @@ export default {
                 campaign_sola_system_id: this.CampaignSolaSystem[0]["id"],
                 user_id: this.$store.state.user_id
             };
+        },
+
+        async removeReadyToGoOnTheWay(item) {
+            var request = null;
+            var request = {
+                system_id: null,
+                status_id: 1
+            };
+
+            await axios({
+                method: "POST", //you can set what request you want to be
+                url: "/api/campaignusers/" + item.id + "/" + this.campaign_id,
+                data: request,
+                headers: {
+                    Authorization: "Bearer " + this.$store.state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                }
+            });
         }
     },
 
