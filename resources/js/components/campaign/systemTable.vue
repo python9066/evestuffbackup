@@ -180,7 +180,7 @@
                                                     <v-btn
                                                         @click="
                                                             removeReadyToGoOnTheWay(
-                                                                item
+                                                                list
                                                             )
                                                         "
                                                         color="success"
