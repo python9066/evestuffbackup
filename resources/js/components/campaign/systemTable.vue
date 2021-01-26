@@ -110,7 +110,11 @@
                                                 {{ list.ship }} - T{{ list.link
                                                 }}<span
                                                     class=" pl-3"
-                                                    v-if="$can('super')"
+                                                    v-if="
+                                                        seeReadyToGoOnTheWay(
+                                                            list
+                                                        )
+                                                    "
                                                 >
                                                     <v-icon
                                                         color="orange darken-3"
@@ -192,7 +196,11 @@
                                                 }}
                                                 <span
                                                     class=" pl-3"
-                                                    v-if="$can('super')"
+                                                    v-if="
+                                                        seeReadyToGoOnTheWay(
+                                                            list
+                                                        )
+                                                    "
                                                 >
                                                     <v-icon
                                                         color="orange darken-3"
