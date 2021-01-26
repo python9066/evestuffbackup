@@ -178,12 +178,6 @@
                                                 }}
                                                 <span v-if="$can('super')">
                                                     <v-icon
-                                                        v-if="
-                                                            item.status_id !=
-                                                                4 &&
-                                                                item.status_id !=
-                                                                    5
-                                                        "
                                                         color="orange darken-3"
                                                         small
                                                         @click="
