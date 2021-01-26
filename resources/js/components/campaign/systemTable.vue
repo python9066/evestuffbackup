@@ -175,10 +175,10 @@
                                                 {{ list.char_name }} -
                                                 {{ list.ship }} - T{{
                                                     list.link
-                                                }}</v-list-item-title
-                                            >
-                                            <span v-if="$can('super')">
-                                                test</span
+                                                }}
+                                                <span v-if="$can('super')">
+                                                    test</span
+                                                ></v-list-item-title
                                             >
                                         </v-list-item>
                                     </v-list>
