@@ -177,6 +177,9 @@
                                                     list.link
                                                 }}</v-list-item-title
                                             >
+                                            <span v-if="$can('super')">
+                                                test</span
+                                            >
                                         </v-list-item>
                                     </v-list>
                                 </v-menu>
