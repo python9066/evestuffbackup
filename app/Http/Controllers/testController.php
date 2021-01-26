@@ -21,7 +21,7 @@ class testController extends Controller
     {
 
         Logging::create(['campaign_id' => 1, 'campaign_sola_system_id' => 1, 'user_id' => 1, 'text' => $request]);
-        return "this is a test";
+
         // $this->test($request);
         // $data =  $request->toArray();
         // $flag = Notifications::test($data);
