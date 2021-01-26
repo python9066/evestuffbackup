@@ -177,7 +177,7 @@
                                                     list.link
                                                 }}
                                                 <span v-if="$can('super')">
-                                                    test</span
+                                                    {{ list }}</span
                                                 ></v-list-item-title
                                             >
                                         </v-list-item>
