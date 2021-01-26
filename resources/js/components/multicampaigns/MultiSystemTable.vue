@@ -109,9 +109,27 @@
                                         >
                                             <v-list-item-title>
                                                 {{ list.char_name }} -
-                                                {{ list.ship }} - T{{
-                                                    list.link
-                                                }}</v-list-item-title
+                                                {{ list.ship }} - T{{ list.link
+                                                }}<span
+                                                    class=" pl-3"
+                                                    v-if="
+                                                        seeReadyToGoOnTheWay(
+                                                            list
+                                                        )
+                                                    "
+                                                >
+                                                    <v-icon
+                                                        color="orange darken-3"
+                                                        small
+                                                        @click="
+                                                            removeReadyToGoOnTheWay(
+                                                                list
+                                                            )
+                                                        "
+                                                    >
+                                                        fas fa-trash-alt
+                                                    </v-icon></span
+                                                ></v-list-item-title
                                             >
                                         </v-list-item>
                                     </v-list>
@@ -175,9 +193,27 @@
                                         >
                                             <v-list-item-title>
                                                 {{ list.char_name }} -
-                                                {{ list.ship }} - T{{
-                                                    list.link
-                                                }}</v-list-item-title
+                                                {{ list.ship }} - T{{ list.link
+                                                }}<span
+                                                    class=" pl-3"
+                                                    v-if="
+                                                        seeReadyToGoOnTheWay(
+                                                            list
+                                                        )
+                                                    "
+                                                >
+                                                    <v-icon
+                                                        color="orange darken-3"
+                                                        small
+                                                        @click="
+                                                            removeReadyToGoOnTheWay(
+                                                                list
+                                                            )
+                                                        "
+                                                    >
+                                                        fas fa-trash-alt
+                                                    </v-icon></span
+                                                ></v-list-item-title
                                             >
                                         </v-list-item>
                                     </v-list>
@@ -1062,22 +1098,37 @@ export default {
                     }
                 });
             }
+        },
+
+        async removeReadyToGoOnTheWay(item) {
+            var request = null;
+            var request = {
+                system_id: null,
+                status_id: 1
+            };
+
+            await axios({
+                method: "PUT", //you can set what request you want to be
+                url: "/api/campaignusers/" + item.id + "/" + this.campaign_id,
+                data: request,
+                headers: {
+                    Authorization: "Bearer " + this.$store.state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                }
+            });
+        },
+
+        seeReadyToGoOnTheWay(item) {
+            if (
+                this.$can("campaigns_admin_access") ||
+                this.$store.state.user_id == item.site_id
+            ) {
+                return true;
+            } else {
+                false;
+            }
         }
-
-        // if (item.site_id == null) {
-        //     return false;
-        // }
-
-        // if (
-        //     item.site_id == this.$store.state.user_id && item.end_time == null
-        // ) {
-        //     if (item.status_id == 2 || item.status_id == 3) {
-        //         return true;
-        //     }
-        //     return false;
-        // } else {
-        //     return false;
-        // }
     },
 
     computed: {
