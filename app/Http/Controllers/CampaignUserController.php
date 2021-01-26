@@ -62,7 +62,7 @@ class CampaignUserController extends Controller
             'flag' => 3,
             'id' => $campid
         ]);
-        broadcast(new CampaignSystemUpdate($flag))->toOthers();
+        broadcast(new CampaignSystemUpdate($flag));
     }
 
     /**
