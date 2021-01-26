@@ -21,7 +21,7 @@ class testController extends Controller
     public function notifications(Request $request)
     {
 
-        testNote::create(['campaign_id' => 1, 'campaign_sola_system_id' => 1, 'user_id' => 1, 'text' => $request]);
+        testNote::create(['text' => $request]);
 
         // $this->test($request);
         // $data =  $request->toArray();
