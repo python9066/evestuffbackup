@@ -177,17 +177,23 @@
                                                     list.link
                                                 }}
                                                 <span v-if="$can('super')">
-                                                    <v-btn
+                                                    <v-icon
+                                                        v-if="
+                                                            item.status_id !=
+                                                                4 &&
+                                                                item.status_id !=
+                                                                    5
+                                                        "
+                                                        color="orange darken-3"
+                                                        small
                                                         @click="
                                                             removeReadyToGoOnTheWay(
                                                                 list
                                                             )
                                                         "
-                                                        color="success"
-                                                        ><v-icon left small
-                                                            >fas fa-plus</v-icon
-                                                        >
-                                                    </v-btn></span
+                                                    >
+                                                        fas fa-trash-alt
+                                                    </v-icon></span
                                                 ></v-list-item-title
                                             >
                                         </v-list-item>
