@@ -29,7 +29,7 @@ class NodeJoinsController extends Controller
             $mainname = User::where('id', $siteid)->value('name');
             $ship = $join->campaignUser->ship;
             $link = $join->campaignUser->link;
-            $statusName = CampaignSystemStatus::where('id', $join->campaign_system_status_id);
+            $statusName = CampaignSystemStatus::where('id', $join->campaign_system_status_id)->value('name');
 
 
 
