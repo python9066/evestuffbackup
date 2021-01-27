@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CampaignSystemStatus;
 use App\Models\NodeJoin;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -28,7 +29,7 @@ class NodeJoinsController extends Controller
             $mainname = User::where('id', $siteid)->value('name');
             $ship = $join->campaignUser->ship;
             $link = $join->campaignUser->link;
-            $statusName = $join->campaignStatus()->name;
+            $statusName = CampaignSystemStatus::where('id', $join->campaign_system_status_id);
 
 
 
