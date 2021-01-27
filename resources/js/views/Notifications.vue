@@ -276,12 +276,15 @@
                                     <v-icon>fas fa-minus</v-icon></v-btn
                                 >
                             </v-fab-transition>
-                            <notificationTimer
-                                :item="item"
-                                v-if="
-                                    item.status_id == 5 || item.status_id == 3
-                                "
-                            ></notificationTimer>
+                            <v-fab-transition>
+                                <notificationTimer
+                                    :item="item"
+                                    v-if="
+                                        item.status_id == 5 ||
+                                            item.status_id == 3
+                                    "
+                                ></notificationTimer>
+                            </v-fab-transition>
                         </div>
                     </template>
 
