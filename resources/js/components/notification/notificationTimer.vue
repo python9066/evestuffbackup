@@ -194,7 +194,6 @@ export default {
         },
 
         timeColor(item) {
-            console.log(item);
             if (item == 3) {
                 return "blue--text pl-3";
             } else {
