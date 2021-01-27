@@ -234,18 +234,19 @@
                     <template v-slot:activator="{ on, attrs }">
                         <div class="align-items-center d-inline-flex">
                             <v-btn
-                                v-if="item.status_id == 1"
                                 class="ma-2"
                                 v-bind="attrs"
                                 v-on="on"
                                 tile
                                 outlined
-                                color="success"
+                                :color="statusButtonColor(item)"
                             >
-                                <v-icon left>fas fa-plus</v-icon>
+                                <v-icon left>{{
+                                    statusButtonIcon(item)
+                                }}</v-icon>
                                 {{ item.status_name }}
                             </v-btn>
-                            <v-btn
+                            <!-- <v-btn
                                 v-if="item.status_id == 2"
                                 class="ma-2"
                                 v-bind="attrs"
@@ -305,7 +306,7 @@
                             >
                                 <v-icon left>fas fa-search</v-icon>
                                 {{ item.status_name }}
-                            </v-btn>
+                            </v-btn> -->
 
                             <!-- EXTRA BUTTON -->
                             <v-fab-transition>
@@ -693,6 +694,38 @@ export default {
             this.snackText = "Dialog opened";
         },
         close() {},
+
+        statusButtonColor(item) {
+            if (item.status.id == 1) {
+                return "success";
+            } else if (item.status.id == 2) {
+                return "error";
+            } else if (item.status.id == 3) {
+                return "dark-orange";
+            } else if (item.status.id == 4) {
+                return "primary";
+            } else if (item.status.id == 5) {
+                return "warning";
+            } else if (item.status.id == 6) {
+                return "light-green darken-1";
+            }
+        },
+
+        statusButtonIcon(item) {
+            if (item.status.id == 1) {
+                return "fas fa-plus";
+            } else if (item.status.id == 2) {
+                return "fas fa-fire fa-sm";
+            } else if (item.status.id == 3) {
+                return "fas fa-toolbox";
+            } else if (item.status.id == 4) {
+                return "fas fa-thumbs-up";
+            } else if (item.status.id == 5) {
+                return "fas fa-exclamation-circle";
+            } else if (item.status.id == 6) {
+                return "fas fa-search";
+            }
+        },
 
         click(item) {
             if (item.status_id != 5) {
