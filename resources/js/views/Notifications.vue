@@ -276,7 +276,11 @@
                                     <v-icon>fas fa-minus</v-icon></v-btn
                                 >
                             </v-fab-transition>
-                            <notificationTimer :item="item"></notificationTimer>
+                            <v-fab-transition>
+                                <notificationTimer
+                                    :item="item"
+                                ></notificationTimer>
+                            </v-fab-transition>
                         </div>
                     </template>
 
