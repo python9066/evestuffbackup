@@ -20,7 +20,7 @@ class NodeJoinsController extends Controller
         //
     }
 
-    public function tableindex($campid)
+    public function tableindex()
     {
         $data = [];
         $joins = NodeJoin::where('campaign_id', 88661)->get();
