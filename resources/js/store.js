@@ -200,7 +200,7 @@ export default new Vuex.Store({
         async getNodeJoinByCampaignId({ commit, state }, campaign_id) {
             let res = await axios({
                 method: "get",
-                url: "/api/campaignsystemusers/" + campaign_id,
+                url: "/api/nodejoin/" + campaign_id,
                 headers: {
                     Authorization: "Bearer " + state.token,
                     Accept: "application/json",
