@@ -541,7 +541,7 @@ export default {
                 { title: "Reffed", value: 2 },
                 { title: "Repairing", value: 3 },
                 { title: "Secured", value: 4 },
-                { title: "Contested", value: 5 },
+                { title: "Hostile", value: 5 },
                 { title: "New", value: 1 }
             ],
 
