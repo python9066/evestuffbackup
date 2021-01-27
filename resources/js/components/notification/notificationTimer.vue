@@ -76,7 +76,7 @@
             :interval="1000"
         >
             <template slot="countdown" slot-scope="scope">
-                <span class="blue--text pl-3"
+                <span :class="timeColor(item.status_id)"
                     >{{ scope.props.minutes }}:{{ scope.props.seconds }}</span
                 >
                 <v-menu :close-on-content-click="false" :value="timerShown">
@@ -191,6 +191,15 @@ export default {
             });
 
             this.$store.dispatch("getNotifications");
+        },
+
+        timeColor(item) {
+            console.log(item);
+            if (item == 3) {
+                return "blue--text pl-3";
+            } else {
+                return "red--text pl-3";
+            }
         }
     },
 

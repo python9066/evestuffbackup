@@ -426,7 +426,7 @@
                                 end-text="Is it Secured?"
                             >
                                 <template slot="countdown" slot-scope="scope">
-                                    <span :class="timeColor(item.status_id)"
+                                    <span class="blue--text pl-3"
                                         >{{ scope.props.minutes }}:{{
                                             scope.props.seconds
                                         }}</span
@@ -598,14 +598,6 @@ export default {
 
     async mounted() {},
     methods: {
-        timeColor(id) {
-            console.log(id);
-            if (id == 3) {
-                return "blue--text pl-3";
-            } else {
-                return "red--text pl-3";
-            }
-        },
         timecheck(item) {
             if (item.status_id == 4 || item.status_id == 2) {
                 item.status_id = 10;
