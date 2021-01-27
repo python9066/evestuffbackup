@@ -26,9 +26,12 @@ class NodeJoinsController extends Controller
             $charname = $join->campaignUser->char_name;
             $siteid = $join->campaignUser->site_id;
             $mainname = User::where('id', $siteid)->value('name');
+            $ship = $join->campaignUser->ship;
+            $link = $join->campaignUser->link;
 
 
-            dd($charname, $siteid, $mainname);
+
+            dd($charname, $siteid, $mainname, $ship, $link);
         };
         // echo '<pre>';
         // print_r($join);
