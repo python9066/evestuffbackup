@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class CampaignSystemStatus extends Model
 {
-    protected $guarded =[];
+    protected $guarded = [];
     public $timestamps = false;
 
 
@@ -16,8 +16,12 @@ class CampaignSystemStatus extends Model
         return $this->hasMany(CampaignSystem::class);
     }
 
+    public function nodeJoin()
+    {
+        return $this->hasMany(NodeJoin::class);
+    }
+
     protected $casts = [
         'id' => 'integer',
     ];
-
 }

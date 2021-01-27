@@ -52,4 +52,9 @@ class CampaignUser extends Model
     {
         return $this->belongsTo(CampaignUserRole::class);
     }
+
+    public function nodeJoin()
+    {
+        return $this->hasMany(NodeJoin::class);
+    }
 }

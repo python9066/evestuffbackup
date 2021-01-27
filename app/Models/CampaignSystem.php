@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class CampaignSystem extends Model
 {
 
-    protected $guarded =[];
+    protected $guarded = [];
 
     public function campaignstatus()
     {
@@ -30,6 +30,11 @@ class CampaignSystem extends Model
         return $this->belongsTo(System::class);
     }
 
+    public function nodeJoin()
+    {
+        return $this->hasMany(NodeJoin::class);
+    }
+
     protected $casts = [
         'id' => 'integer',
         'campaigan_id' => 'integer',
@@ -37,5 +42,4 @@ class CampaignSystem extends Model
         'campaigan_user_id' => 'integer',
         'campaigan_system_status_id' => 'integer',
     ];
-
 }

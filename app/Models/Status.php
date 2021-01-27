@@ -6,15 +6,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class Status extends Model
 {
-    protected $guarded =[];
+    protected $guarded = [];
 
 
     public function notifications()
-   {
-       return $this->hasMany(Notification::class);
-   }
-   protected $casts = [
-    'id' => 'integer',
-];
-}
+    {
+        return $this->hasMany(Notification::class);
+    }
 
+
+    protected $casts = [
+        'id' => 'integer',
+    ];
+}
