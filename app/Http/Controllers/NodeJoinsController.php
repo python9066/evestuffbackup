@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CampaignSolaSystem;
 use App\Models\CampaignSystemStatus;
 use App\Models\NodeJoin;
 use App\Models\User;
@@ -34,7 +35,7 @@ class NodeJoinsController extends Controller
             $link = intval($join->campaignUser->link);
             $campaign_system_status_id = $join->campaign_system_status_id;
             $statusName = CampaignSystemStatus::where('id', $join->campaign_system_status_id)->value('name');
-            $campaign_sola_system = $join->campaignSystem->system_id;
+            $campaign_sola_system = CampaignSolaSystem::where('campaign_id', $join->campaignSystem->campaign_id)->where('system_id', $join->campaignSystem->system_id)->value('id');
 
 
             $data = [
