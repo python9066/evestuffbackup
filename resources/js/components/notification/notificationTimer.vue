@@ -3,7 +3,7 @@
         <span
             v-if="
                 item.end_time == null &&
-                    item.status_id == 3 &&
+                    (item.status_id == 3 || item.status_id == 5) &&
                     $can('edit_notifications')
             "
         >
@@ -67,7 +67,10 @@
             </v-menu>
         </span>
         <CountDowntimer
-            v-else-if="item.status_id == 3 && $can('edit_notifications')"
+            v-else-if="
+                (item.status_id == 3 || item.status_id == 5) &&
+                    $can('edit_notifications')
+            "
             :start-time="moment.utc(item.end_time).unix()"
             end-text="Is it Secured?"
             :interval="1000"
