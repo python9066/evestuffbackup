@@ -696,33 +696,33 @@ export default {
         close() {},
 
         statusButtonColor(item) {
-            if (item.status.id == 1) {
+            if (item.status_id == 1) {
                 return "success";
-            } else if (item.status.id == 2) {
+            } else if (item.status_id == 2) {
                 return "error";
-            } else if (item.status.id == 3) {
+            } else if (item.status_id == 3) {
                 return "dark-orange";
-            } else if (item.status.id == 4) {
+            } else if (item.status_id == 4) {
                 return "primary";
-            } else if (item.status.id == 5) {
+            } else if (item.status_id == 5) {
                 return "warning";
-            } else if (item.status.id == 6) {
+            } else if (item.status_id == 6) {
                 return "light-green darken-1";
             }
         },
 
         statusButtonIcon(item) {
-            if (item.status.id == 1) {
+            if (item.status_id == 1) {
                 return "fas fa-plus";
-            } else if (item.status.id == 2) {
+            } else if (item.status_id == 2) {
                 return "fas fa-fire fa-sm";
-            } else if (item.status.id == 3) {
+            } else if (item.status_id == 3) {
                 return "fas fa-toolbox";
-            } else if (item.status.id == 4) {
+            } else if (item.status_id == 4) {
                 return "fas fa-thumbs-up";
-            } else if (item.status.id == 5) {
+            } else if (item.status_id == 5) {
                 return "fas fa-exclamation-circle";
-            } else if (item.status.id == 6) {
+            } else if (item.status_id == 6) {
                 return "fas fa-search";
             }
         },
