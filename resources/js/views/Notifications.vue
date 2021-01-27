@@ -599,7 +599,7 @@ export default {
     async mounted() {},
     methods: {
         timeColor(id) {
-            if (condition) {
+            if (id == 3) {
                 return "blue--text pl-3";
             } else {
                 return "red--text pl-3";
