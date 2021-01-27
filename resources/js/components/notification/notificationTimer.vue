@@ -8,8 +8,15 @@
             "
         >
             <v-menu :close-on-content-click="false" :value="timerShown">
-                <template v-slot:activator="{ on, attrs }">
-                    <span>
+                <v-fab-transition>
+                    <template
+                        v-slot:activator="{ on, attrs }"
+                        v-if="
+                            item.end_time == null &&
+                                (item.status_id == 3 || item.status_id == 5) &&
+                                $can('edit_notifications')
+                        "
+                    >
                         <v-chip
                             v-bind="attrs"
                             v-on="on"
@@ -19,12 +26,10 @@
                             small
                             color="warning"
                         >
-                            <v-fab-transition>
-                                Add Time
-                            </v-fab-transition>
+                            Add Time
                         </v-chip>
-                    </span>
-                </template>
+                    </template>
+                </v-fab-transition>
 
                 <template>
                     <v-card tile min-height="150px">
