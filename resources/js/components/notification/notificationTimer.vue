@@ -1,13 +1,13 @@
 <template>
     <v-col>
-        <v-fab-transition>
-            <span
-                v-if="
-                    item.end_time == null &&
-                        (item.status_id == 3 || item.status_id == 5) &&
-                        $can('edit_notifications')
-                "
-            >
+        <span
+            v-if="
+                item.end_time == null &&
+                    (item.status_id == 3 || item.status_id == 5) &&
+                    $can('edit_notifications')
+            "
+        >
+            <v-fab-transition>
                 <v-menu :close-on-content-click="false" :value="timerShown">
                     <template v-slot:activator="{ on, attrs }">
                         <v-chip
@@ -70,8 +70,8 @@
                         </v-card>
                     </template>
                 </v-menu>
-            </span>
-        </v-fab-transition>
+            </v-fab-transition>
+        </span>
         <v-fab-transition>
             <CountDowntimer
                 v-if="
