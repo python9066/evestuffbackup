@@ -262,7 +262,7 @@
                                             !expanded.includes(item)
                                     "
                                     color="success"
-                                    >Add aDash</v-chip
+                                    >aDash</v-chip
                                 >
                                 <v-btn
                                     icon
