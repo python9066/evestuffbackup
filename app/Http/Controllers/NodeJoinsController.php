@@ -22,6 +22,7 @@ class NodeJoinsController extends Controller
 
     public function tableindex()
     {
+        $data = [];
         $joins = NodeJoin::all();
         foreach ($joins as $join) {
 
@@ -38,7 +39,7 @@ class NodeJoinsController extends Controller
             // $campaign_sola_system = CampaignSolaSystem::where('campaign_id', $join->campaignSystem->campaign_id)->where('system_id', $join->campaignSystem->system_id)->value('id');
 
 
-            $data = [
+            $pull = [
                 'id' => $join->id,
                 'campaign_system_id' => $join->campaign_system_id,
                 'campaign_user_id' => $join->campaign_user_id,
@@ -52,10 +53,10 @@ class NodeJoinsController extends Controller
                 'campaign_sola_system_id' => CampaignSolaSystem::where('campaign_id', $join->campaignSystem->campaign_id)->where('system_id', $join->campaignSystem->system_id)->value('id')
             ];
 
-
-
-            dd($data);
+            array_push($data, $pull);
         };
+        return ["data" => $data];
+        dd($data);
         // echo '<pre>';
         // print_r($join);
         // echo '</pre>';
