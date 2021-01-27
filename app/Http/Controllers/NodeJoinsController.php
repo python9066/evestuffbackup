@@ -20,6 +20,9 @@ class NodeJoinsController extends Controller
     public function tableindex()
     {
         $join = NodeJoin::all();
+        echo '<pre>';
+        print_r($join);
+        echo '</pre>';
         dd($join);
     }
 
