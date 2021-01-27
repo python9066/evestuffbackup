@@ -22,7 +22,7 @@ class NodeJoinsController extends Controller
         $joins = NodeJoin::all();
         foreach ($joins as $join) {
 
-            $data = $join->campaignUser->name;
+            $data = $join->campaignUser->char_name;
 
             dd($data);
         };
