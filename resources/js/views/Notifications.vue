@@ -599,7 +599,7 @@ export default {
     async mounted() {},
     methods: {
         timeColor(id) {
-            console(id);
+            console.log(id);
             if (id == 3) {
                 return "blue--text pl-3";
             } else {
