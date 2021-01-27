@@ -417,14 +417,16 @@
                             </v-chip>
                             <CountDowntimer
                                 v-if="
-                                    item.status_id == 3 && item.end_time != null
+                                    (item.status_id == 3 ||
+                                        item.status_id == 5) &&
+                                        item.end_time != null
                                 "
                                 :start-time="moment.utc(item.end_time).unix()"
                                 :interval="1000"
                                 end-text="Is it Secured?"
                             >
                                 <template slot="countdown" slot-scope="scope">
-                                    <span class="blue--text pl-3"
+                                    <span :class="timeColor(item.status_id)"
                                         >{{ scope.props.minutes }}:{{
                                             scope.props.seconds
                                         }}</span
@@ -596,6 +598,13 @@ export default {
 
     async mounted() {},
     methods: {
+        timeColor(id) {
+            if (condition) {
+                return "blue--text pl-3";
+            } else {
+                return "red--text pl-3";
+            }
+        },
         timecheck(item) {
             if (item.status_id == 4 || item.status_id == 2) {
                 item.status_id = 10;
