@@ -15,6 +15,7 @@ class CreateNodeJoinsTable extends Migration
     {
         Schema::create('node_joins', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('campaign_id');
             $table->foreignId('campaign_system_id');
             $table->foreignId('campaign_user_id')->nullable();
             $table->foreignId('campaign_system_status_id')->nullable();

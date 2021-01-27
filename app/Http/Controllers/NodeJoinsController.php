@@ -20,24 +20,11 @@ class NodeJoinsController extends Controller
         //
     }
 
-    public function tableindex()
+    public function tableindex($campid)
     {
         $data = [];
-        $joins = NodeJoin::all();
+        $joins = NodeJoin::where('campaign_id', 88661)->get();
         foreach ($joins as $join) {
-
-            // $id = $join->id;
-            // $campaign_system_id = $join->campaign_system_id;
-            // $campaign_user_id = $join->campaign_user_id;
-            // $charname = $join->campaignUser->char_name;
-            // $siteid = $join->campaignUser->site_id;
-            // $mainname = User::where('id', $siteid)->value('name');
-            // $ship = $join->campaignUser->ship;
-            // $link = intval($join->campaignUser->link);
-            // $campaign_system_status_id = $join->campaign_system_status_id;
-            // $statusName = CampaignSystemStatus::where('id', $join->campaign_system_status_id)->value('name');
-            // $campaign_sola_system = CampaignSolaSystem::where('campaign_id', $join->campaignSystem->campaign_id)->where('system_id', $join->campaignSystem->system_id)->value('id');
-
 
             $pull = [
                 'id' => $join->id,
@@ -56,11 +43,6 @@ class NodeJoinsController extends Controller
         };
         return ["data" => $data];
         dd($pull);
-
-        // echo '<pre>';
-        // print_r($join);
-        // echo '</pre>';
-
     }
 
     /**
