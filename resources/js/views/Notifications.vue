@@ -252,6 +252,7 @@
                                 <v-chip
                                     pill
                                     outlined
+                                    small
                                     @click="
                                         (expanded = [item]),
                                             (expanded_id = item.id)
@@ -261,7 +262,7 @@
                                             !expanded.includes(item)
                                     "
                                     color="success"
-                                    ><v-icon left>fas fa-plus</v-icon>Add
+                                    ><v-icon small left>fas fa-plus</v-icon>Add
                                     aDash</v-chip
                                 >
                                 <v-btn
