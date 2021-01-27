@@ -112,4 +112,6 @@ Route::middleware('auth:api')->group(function () {
     Route::put('/checkroleaddremove', 'LoggingController@addRemoveRoles');
     Route::get('/checkcampaign/{campid}', 'LoggingController@logCampaign');
     Route::get('/checkadmin', 'LoggingController@logAdmin');
+
+    Route::get('/nodejoin/{campid}', 'NodeJoinsController@tableindex');
 });

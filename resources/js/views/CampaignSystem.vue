@@ -587,6 +587,7 @@ export default {
     async mounted() {
         await this.$store.dispatch("getCampaignSolaSystems");
         await this.getSystems(this.campaign.constellation_id);
+        await this.$store.dispatch("getNodeJoinByCampaignId", this.campaign.id);
         await this.$store.dispatch("getCampaignUsersRecords", this.campaign.id);
         await this.$store.dispatch("getCampaignSystemsRecords");
         await this.$store.dispatch("getUsersChars", this.$store.state.user_id);

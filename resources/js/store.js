@@ -22,7 +22,8 @@ export default new Vuex.Store({
         delveLink: "",
         loggingAdmin:[],
         loggingcampaign:[],
-        multicampaigns:[],
+        multicampaigns: [],
+        nodeJoin: [],
         notifications: [],
         periodbasisLink: "",
         queriousLink: "",
@@ -39,6 +40,10 @@ export default new Vuex.Store({
     mutations: {
         SET_TIMERS(state, timers) {
             state.timers = timers;
+        },
+
+        SET_JOIN_NODE(state, nodeJoin) {
+            state.nodeJoin = nodeJoin;
         },
 
         SET_CAMPAIGN_JOIN(state, campaignJoin) {
@@ -190,6 +195,21 @@ export default new Vuex.Store({
             });
             // console.log(res.data.timers)
             commit("SET_TIMERS", res.data.timers);
+        },
+
+        async getNodeJoinByCampaignId({ commit, state }, campaign_id) {
+            let res = await axios({
+                method: "get",
+                url: "/api/campaignsystemusers/" + campaign_id,
+                headers: {
+                    Authorization: "Bearer " + state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                }
+            });
+            // debugger
+            // console.log(res.data.timers)
+            commit("SET_NODE_JOIN", res.data.nodeJoin);
         },
 
         async getTowerData({ commit, state }) {
