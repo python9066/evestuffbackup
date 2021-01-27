@@ -56,7 +56,8 @@ class CreateOrReplaceCampaignSystemRecordsViewCommand extends Command
        campaign_systems.created_at AS 'start',
        campaign_systems.end_time AS 'end',
        campaigns.warmup AS 'warmup',
-       CONCAT(campaign_records.system, ' - ',campaign_records.item_name) AS 'text'
+       CONCAT(campaign_records.system, ' - ',campaign_records.item_name) AS 'text',
+       campaign_systems.node_join_id AS 'node_join_id'
        FROM campaign_systems
        JOIN systems ON systems.id = campaign_systems.system_id
        JOIN campaign_system_statuses ON campaign_system_statuses.id = campaign_systems.campaign_system_status_id
