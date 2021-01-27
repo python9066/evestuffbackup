@@ -1,6 +1,6 @@
 <template>
     <v-col>
-        <v-slide-y-transition>
+        <v-fab-transition>
             <span
                 v-if="
                     item.end_time == null &&
@@ -71,8 +71,10 @@
                     </template>
                 </v-menu>
             </span>
+        </v-fab-transition>
+        <v-fab-transition>
             <CountDowntimer
-                v-else-if="
+                v-if="
                     (item.status_id == 3 || item.status_id == 5) &&
                         $can('edit_notifications')
                 "
@@ -153,7 +155,7 @@
                     <span style="color: green">{{ scope.props.endText }}</span>
                 </template>
             </CountDowntimer>
-        </v-slide-y-transition>
+        </v-fab-transition>
     </v-col>
 </template>
 
