@@ -47,7 +47,7 @@ class NodeJoinsController extends Controller
                 'mainname' => User::where('id', $join->campaignUser->site_id)->value('name'),
                 'ship' => $join->campaignUser->ship,
                 'link' => intval($join->campaignUser->link),
-                'campaign_system_status_id' => $join->campaign_system_status_id,
+                'campaign_system_status_id' => intval($join->campaign_system_status_id),
                 'statusName' => CampaignSystemStatus::where('id', $join->campaign_system_status_id)->value('name'),
                 'campaign_sola_system_id' => CampaignSolaSystem::where('campaign_id', $join->campaignSystem->campaign_id)->where('system_id', $join->campaignSystem->system_id)->value('id')
             ];
