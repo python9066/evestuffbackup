@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\NodeJoin;
 use Illuminate\Http\Request;
 
 class NodeJoinsController extends Controller
@@ -14,6 +15,12 @@ class NodeJoinsController extends Controller
     public function index()
     {
         //
+    }
+
+    public function tableindex()
+    {
+        $join = NodeJoin::all();
+        dd($join);
     }
 
     /**
