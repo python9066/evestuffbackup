@@ -52,10 +52,10 @@ class NodeJoinsController extends Controller
                 'statusName' => CampaignSystemStatus::where('id', $join->campaign_system_status_id)->value('name'),
                 'campaign_sola_system_id' => CampaignSolaSystem::where('campaign_id', $join->campaignSystem->campaign_id)->where('system_id', $join->campaignSystem->system_id)->value('id')
             ];
-            // dd($pull);
-            // array_push($data, $pull);
+            array_push($data, $pull);
         };
-        // return ["data" => $data];
+        return ["data" => $data];
+        dd($pull);
 
         // echo '<pre>';
         // print_r($join);
