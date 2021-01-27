@@ -25,21 +25,21 @@ class NodeJoinsController extends Controller
         foreach ($joins as $join) {
 
             $id = $join->id;
-            $campaign_system_id = $join->campaign_system_id ;
-            $campaign_user_id = $join->campaign_user_id ;
+            $campaign_system_id = $join->campaign_system_id;
+            $campaign_user_id = $join->campaign_user_id;
             $charname = $join->campaignUser->char_name;
             $siteid = $join->campaignUser->site_id;
             $mainname = User::where('id', $siteid)->value('name');
             $ship = $join->campaignUser->ship;
             $link = intval($join->campaignUser->link);
-            $campaign_system_status_id = $join->campaign_system_status_id ;
+            $campaign_system_status_id = $join->campaign_system_status_id;
             $statusName = CampaignSystemStatus::where('id', $join->campaign_system_status_id)->value('name');
             $campaign_sola_system = $join->campaignSystem->system_id;
 
 
             $data = [
                 'id' => $join->id,
-                'campaign_system_id' => $join->campaign_system_id ,
+                'campaign_system_id' => $join->campaign_system_id,
                 'campaign_user_id' => $join->campaign_user_id,
                 'charname' => $join->campaignUser->char_name,
                 'siteid' => $join->campaignUser->site_id,
@@ -48,7 +48,7 @@ class NodeJoinsController extends Controller
                 'link' => intval($join->campaignUser->link),
                 'campaign_system_status_id' => $join->campaign_system_status_id,
                 'statusName' => CampaignSystemStatus::where('id', $join->campaign_system_status_id)->value('name')
-            ],
+            ];
 
 
 
