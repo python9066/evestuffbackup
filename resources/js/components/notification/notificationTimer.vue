@@ -9,21 +9,21 @@
         >
             <v-menu :close-on-content-click="false" :value="timerShown">
                 <template v-slot:activator="{ on, attrs }">
-                    <v-fab-transition>
-                        <span>
-                            <v-chip
-                                v-bind="attrs"
-                                v-on="on"
-                                pill
-                                outlined
-                                @click="timerShown = true"
-                                small
-                                color="warning"
-                            >
+                    <span>
+                        <v-chip
+                            v-bind="attrs"
+                            v-on="on"
+                            pill
+                            outlined
+                            @click="timerShown = true"
+                            small
+                            color="warning"
+                        >
+                            <v-fab-transition>
                                 Add Time
-                            </v-chip>
-                        </span>
-                    </v-fab-transition>
+                            </v-fab-transition>
+                        </v-chip>
+                    </span>
                 </template>
 
                 <template>
