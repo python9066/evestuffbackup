@@ -8,8 +8,8 @@
             "
         >
             <v-menu :close-on-content-click="false" :value="timerShown">
-                <v-fab-transition>
-                    <template v-slot:activator="{ on, attrs }">
+                <template v-slot:activator="{ on, attrs }">
+                    <v-fab-transition>
                         <v-chip
                             v-bind="attrs"
                             v-on="on"
@@ -21,8 +21,8 @@
                         >
                             Add Time
                         </v-chip>
-                    </template>
-                </v-fab-transition>
+                    </v-fab-transition>
+                </template>
 
                 <template>
                     <v-card tile min-height="150px">
