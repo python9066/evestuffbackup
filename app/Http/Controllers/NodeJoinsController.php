@@ -22,7 +22,7 @@ class NodeJoinsController extends Controller
 
     public function tableindex($campid)
     {
-        $data = [];
+        $nodeJoin = [];
         $joins = NodeJoin::where('campaign_id', $campid)->get();
         foreach ($joins as $join) {
 
