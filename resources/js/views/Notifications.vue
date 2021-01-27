@@ -246,71 +246,10 @@
                                 }}</v-icon>
                                 {{ item.status_name }}
                             </v-btn>
-                            <!-- <v-btn
-                                v-if="item.status_id == 2"
-                                class="ma-2"
-                                v-bind="attrs"
-                                v-on="on"
-                                tile
-                                outlined
-                                color="error"
-                            >
-                                <v-icon left>fas fa-fire fa-sm</v-icon>
-                                {{ item.status_name }}
-                            </v-btn>
-                            <v-btn
-                                v-if="item.status_id == 3"
-                                class="ma-2"
-                                v-bind="attrs"
-                                v-on="on"
-                                tile
-                                outlined
-                                color="dark-orange"
-                            >
-                                <v-icon left>fas fa-toolbox</v-icon>
-                                {{ item.status_name }}
-                            </v-btn>
-                            <v-btn
-                                v-if="item.status_id == 4"
-                                class="ma-2"
-                                v-bind="attrs"
-                                v-on="on"
-                                tile
-                                outlined
-                                color="primary"
-                            >
-                                <v-icon left>fas fa-thumbs-up</v-icon>
-                                {{ item.status_name }}
-                            </v-btn>
-                            <v-btn
-                                v-if="item.status_id == 5"
-                                class="ma-2"
-                                v-bind="attrs"
-                                v-on="on"
-                                tile
-                                outlined
-                                color="warning"
-                            >
-                                <v-icon left>fas fa-exclamation-circle</v-icon>
-                                {{ item.status_name }}
-                            </v-btn>
-
-                            <v-btn
-                                v-if="item.status_id == 6"
-                                class="ma-2"
-                                v-bind="attrs"
-                                v-on="on"
-                                tile
-                                outlined
-                                color="light-green darken-1"
-                            >
-                                <v-icon left>fas fa-search</v-icon>
-                                {{ item.status_name }}
-                            </v-btn> -->
 
                             <!-- EXTRA BUTTON -->
                             <v-fab-transition>
-                                <v-btn
+                                <v-chip
                                     pill
                                     outlined
                                     @click="
@@ -323,7 +262,7 @@
                                     "
                                     color="success"
                                     ><v-icon left>fas fa-plus</v-icon>Add
-                                    aDash</v-btn
+                                    aDash</v-chip
                                 >
                                 <v-btn
                                     icon
