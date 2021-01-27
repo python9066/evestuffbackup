@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\NodeJoin;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class NodeJoinsController extends Controller
@@ -22,9 +23,12 @@ class NodeJoinsController extends Controller
         $joins = NodeJoin::all();
         foreach ($joins as $join) {
 
-            $data = $join->campaignUser->char_name;
+            $charname = $join->campaignUser->char_name;
+            $siteid = $join->campaignUser->site_id;
+            $mainname = User::where('id', $siteid)->value('name');
 
-            dd($data);
+
+            dd($charname, $siteid, $mainname);
         };
         // echo '<pre>';
         // print_r($join);
