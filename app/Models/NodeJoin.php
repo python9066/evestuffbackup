@@ -23,6 +23,6 @@ class NodeJoin extends Model
 
     public function status()
     {
-        return $this->belongsTo(CampaignStatus::class);
+        return $this->belongsTo(CampaignSystemStatus::class);
     }
 }
