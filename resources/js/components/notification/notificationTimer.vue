@@ -8,21 +8,19 @@
             "
         >
             <v-menu :close-on-content-click="false" :value="timerShown">
-                <v-fab-transition>
-                    <template v-slot:activator="{ on, attrs }">
-                        <v-chip
-                            v-bind="attrs"
-                            v-on="on"
-                            pill
-                            outlined
-                            @click="timerShown = true"
-                            small
-                            color="warning"
-                        >
-                            Add Time
-                        </v-chip>
-                    </template>
-                </v-fab-transition>
+                <template v-slot:activator="{ on, attrs }">
+                    <v-chip
+                        v-bind="attrs"
+                        v-on="on"
+                        pill
+                        outlined
+                        @click="timerShown = true"
+                        small
+                        color="warning"
+                    >
+                        Add Time
+                    </v-chip>
+                </template>
 
                 <template>
                     <v-card tile min-height="150px">
