@@ -42,7 +42,7 @@ export default new Vuex.Store({
             state.timers = timers;
         },
 
-        SET_JOIN_NODE(state, nodeJoin) {
+        SET_NODE_JOIN(state, nodeJoin) {
             state.nodeJoin = nodeJoin;
         },
 
