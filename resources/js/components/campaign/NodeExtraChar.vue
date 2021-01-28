@@ -40,17 +40,25 @@ export default {
 
         clickCharAddNode(item) {
             var addChar = this.chars.find(user => user.id == this.charAddNode);
-            var data = {
+            var request = {
                 campaign_id: item.campaign_id,
                 campaign_system_id: item.id,
                 campaign_user_id: addChar.id,
                 campaign_system_status_id: item.status_id
             };
 
-            var request = {
-                campaign_user_id: addChar.id
-            };
-            console.log(data);
+            axios({
+                method: "post", //you can set what request you want to be
+                url: "/api/nodejoin/" + this.campaign_id,
+                data: request,
+                headers: {
+                    Authorization: "Bearer " + this.$store.state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                }
+            });
+
+            console.log(request);
             console.log(item);
             console.log(addChar);
             // this.$store.dispatch("updateCampaignSystem", data);
@@ -73,16 +81,16 @@ export default {
             // };
             // this.$store.dispatch("updateCampaignUsers", data);
 
-            // axios({
-            //     method: "put", //you can set what request you want to be
-            //     url: "/api/campaignsystems/" + item.id + "/" + this.campaign_id,
-            //     data: request,
-            //     headers: {
-            //         Authorization: "Bearer " + this.$store.state.token,
-            //         Accept: "application/json",
-            //         "Content-Type": "application/json"
-            //     }
-            // });
+            axios({
+                method: "put", //you can set what request you want to be
+                url: "/api/campaignsystems/" + item.id + "/" + this.campaign_id,
+                data: request,
+                headers: {
+                    Authorization: "Bearer " + this.$store.state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                }
+            });
 
             // axios({
             //     method: "put", //you can set what request you want to be
