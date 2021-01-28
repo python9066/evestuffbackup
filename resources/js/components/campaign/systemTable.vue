@@ -386,12 +386,12 @@
                                     <v-icon small
                                         >fas fa-trash-alt</v-icon
                                     ></v-btn
-                                ></span
-                            >
-                            <NodeExtraChar
-                                v-if="$can('super') && item.user_id != null"
-                                :item="item"
-                            ></NodeExtraChar>
+                                >
+                                <NodeExtraChar
+                                    v-if="$can('super')"
+                                    :item="item"
+                                ></NodeExtraChar
+                            ></span>
 
                             <AdminHack
                                 v-if="$can('campaigns_admin_access')"
