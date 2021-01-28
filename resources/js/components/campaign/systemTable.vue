@@ -388,6 +388,11 @@
                                     ></v-btn
                                 ></span
                             >
+                            <NodeExtraChar
+                                v-if="$can('super') && item.user_id == null"
+                                :item="item"
+                            ></NodeExtraChar>
+
                             <AdminHack
                                 v-if="$can('campaigns_admin_access')"
                                 :item="item"

@@ -56,6 +56,7 @@ Vue.component('AdminHackUserTable', require('./components/campaignAll/admin/User
 Vue.component('SolaSystemLogging', require('./components/logging/campaign/SolaSystemLogging.vue').default);
 Vue.component('CampaignLogging', require('./components/logging/campaign/CampaignLogging.vue').default);
 Vue.component('AdminLogging', require('./components/logging/adminpanel/AdminLogging.vue').default);
+Vue.component('NodeExtraChar', require('./components/campaign/NodeExtraChar.vue').default);
 
 
 
