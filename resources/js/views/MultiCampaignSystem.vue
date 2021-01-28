@@ -347,15 +347,18 @@ export default {
                 }
                 if (e.flag.flag == 2) {
                     this.loadCampaignSystemRecords();
+                    this.loadCampaignNodeJoin();
                 }
                 if (e.flag.flag == 3) {
                     this.loadCampaignSystemRecords();
                     this.loadUsersRecords();
+                    this.loadCampaignNodeJoin();
                 }
                 if (e.flag.flag == 4) {
                     this.loadcampaigns();
                     this.loadCampaignSystemRecords();
                     this.loadUsersRecords();
+                    this.loadCampaignNodeJoin();
                 }
                 if (e.flag.flag == 5) {
                     this.checkAddUser();
@@ -377,6 +380,7 @@ export default {
                     //  console.log(6);
                     this.loadCampaignSolaSystems();
                     this.loadCampaignSystemRecords();
+                    this.loadCampaignNodeJoin();
                 }
                 if (e.flag.flag == 10) {
                     this.loadCampaignlogs();
@@ -478,6 +482,13 @@ export default {
             await this.$store.dispatch("getCampaigns").then(() => {
                 this.loadingr = false;
             });
+        },
+
+        async loadCampaignNodeJoin() {
+            await this.$store.dispatch(
+                "getNodeJoinByCampaignId",
+                this.campaign.id
+            );
         },
 
         async sendAddCharMessage() {

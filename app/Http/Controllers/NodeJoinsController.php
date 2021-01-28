@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\CampaignSolaSystem;
+use App\Events\CampaignUsersChanged;
 use App\Models\CampaignSystemStatus;
 use App\Models\NodeJoin;
 use App\Models\User;
@@ -51,9 +52,14 @@ class NodeJoinsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $campid)
     {
-        //
+        NodeJoin::create($request->all());
+        $flag = collect([
+            'flag' => 3,
+            'id' => $campid
+        ]);
+        broadcast(new CampaignUsersChanged($flag))->toOthers();
     }
 
     /**

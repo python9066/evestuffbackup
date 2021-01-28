@@ -528,17 +528,20 @@ export default {
                 if (e.flag.flag == 2) {
                     // console.log(2);
                     this.loadCampaignSystemRecords();
+                    this.loadCampaignNodeJoin();
                 }
                 if (e.flag.flag == 3) {
                     // console.log(3);
                     this.loadCampaignSystemRecords();
                     this.loadUsersRecords();
+                    this.loadCampaignNodeJoin();
                 }
                 if (e.flag.flag == 4) {
                     // console.log(4);
                     this.loadcampaigns();
                     this.loadCampaignSystemRecords();
                     this.loadUsersRecords();
+                    this.loadCampaignNodeJoin();
                 }
                 if (e.flag.flag == 5) {
                     // console.log(4);
@@ -564,6 +567,7 @@ export default {
                     //  console.log(6);
                     this.loadCampaignSolaSystems();
                     this.loadCampaignSystemRecords();
+                    this.loadCampaignNodeJoin();
                 }
 
                 if (e.flag.flag == 10) {
@@ -656,7 +660,14 @@ export default {
         },
 
         async loadCampaignSystemRecords() {
-            this.$store.dispatch("getCampaignSystemsRecords");
+            await this.$store.dispatch("getCampaignSystemsRecords");
+        },
+
+        async loadCampaignNodeJoin() {
+            await this.$store.dispatch(
+                "getNodeJoinByCampaignId",
+                this.campaign.id
+            );
         },
 
         async loadcampaigns() {
