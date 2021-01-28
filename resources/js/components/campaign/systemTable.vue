@@ -397,7 +397,6 @@
                             </div>
 
                             <AdminHack
-                                v-if="$can('campaigns_admin_access')"
                                 :item="item"
                                 @openAdd="openAdd($event)"
                             ></AdminHack>
