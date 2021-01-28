@@ -373,7 +373,7 @@
                             </v-menu>
                             <div
                                 v-else-if="item.user_name != null"
-                                class=" d-flex-block"
+                                class=" d-inline-flex"
                             >
                                 {{ item.user_name }}
                                 <v-btn
