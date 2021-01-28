@@ -41,18 +41,16 @@ export default {
         clickCharAddNode(item) {
             var addChar = this.chars.find(user => user.id == this.charAddNode);
             var data = {
-                id: item.id,
-                user_id: addChar.id,
-                site_id: this.$store.state.user_id,
-                user_name: addChar.char_name,
-                main_name: addChar.main_name,
-                user_ship: addChar.ship,
-                user_link: addChar.link
+                campaign_id: item.campaign_id,
+                campaign_system_id: item.id,
+                campaign_user_id: addChar.id,
+                campaign_system_status_id: item.status_id
             };
 
             var request = {
                 campaign_user_id: addChar.id
             };
+            console.log(data);
             console.log(item);
             console.log(addChar);
             // this.$store.dispatch("updateCampaignSystem", data);

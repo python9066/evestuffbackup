@@ -114,4 +114,5 @@ Route::middleware('auth:api')->group(function () {
     Route::get('/checkadmin', 'LoggingController@logAdmin');
 
     Route::get('/nodejoin/{campid}', 'NodeJoinsController@tableindex');
+    Route::post('/nodejoin/{campid}', 'NodeJoinsController@store');
 });
