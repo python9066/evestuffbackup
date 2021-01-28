@@ -31,7 +31,6 @@ export default {
     computed: {
         showAddIcon() {
             if (
-                this.item.user_id == null &&
                 this.item.status_id != 4 &&
                 this.item.status_id != 5 &&
                 this.item.status_id != 7 &&

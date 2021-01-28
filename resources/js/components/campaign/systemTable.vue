@@ -395,12 +395,12 @@
                                     :item="item"
                                 ></NodeExtraChar>
                             </div>
+                            <AdminHack
+                                v-if="$can('campaigns_admin_access')"
+                                :item="item"
+                                @openAdd="openAdd($event)"
+                            ></AdminHack>
                         </div>
-                        <AdminHack
-                            v-if="$can('campaigns_admin_access')"
-                            :item="item"
-                            @openAdd="openAdd($event)"
-                        ></AdminHack>
                     </template>
                     <template v-slot:item.count="{ item }">
                         <systemTableTimer
