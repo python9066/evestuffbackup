@@ -100,7 +100,7 @@ export default {
         checkShowAdd(item) {
             if (
                 item.user_name != null &&
-                this.charCount != 0 &&
+                this.freecharCount != 0 &&
                 item.status_id != 4 &&
                 item.status_id != 5 &&
                 item.status_id != 7 &&
