@@ -102,13 +102,9 @@ export default {
                     "Content-Type": "application/json"
                 }
             });
-        }
-    },
+        },
 
-    computed: {
-        ...mapGetters(["getCampaignUsersByUserIdEntosisFree"]),
-
-        checkShowAdd(item) {
+        checkShowAddRemove(item) {
             if (
                 item.user_name != null &&
                 this.charCount != 0 &&
@@ -118,13 +114,28 @@ export default {
                 item.status_id != 8
             ) {
                 return true;
+            } else if (this.$can("campaigns_admin_access")) {
+                return true;
             } else {
                 return false;
             }
-        },
+        }
+    },
+
+    computed: {
+        ...mapGetters([
+            "getCampaignUsersByUserIdEntosisFree",
+            "getCampaignUsersByUserIdEntosisCount"
+        ]),
 
         charsFree() {
             return this.getCampaignUsersByUserIdEntosisFree(
+                this.$store.state.user_id
+            );
+        },
+
+        charCount() {
+            return this.getCampaignUsersByUserIdEntosisCount(
                 this.$store.state.user_id
             );
         }
