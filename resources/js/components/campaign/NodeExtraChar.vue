@@ -49,7 +49,7 @@ export default {
 
             axios({
                 method: "post", //you can set what request you want to be
-                url: "/api/nodejoin/" + this.campaign_id,
+                url: "/api/nodejoin/" + item.campaign_id,
                 data: request,
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
@@ -81,16 +81,16 @@ export default {
             // };
             // this.$store.dispatch("updateCampaignUsers", data);
 
-            axios({
-                method: "put", //you can set what request you want to be
-                url: "/api/campaignsystems/" + item.id + "/" + this.campaign_id,
-                data: request,
-                headers: {
-                    Authorization: "Bearer " + this.$store.state.token,
-                    Accept: "application/json",
-                    "Content-Type": "application/json"
-                }
-            });
+            // axios({
+            //     method: "put", //you can set what request you want to be
+            //     url: "/api/campaignsystems/" + item.id + "/" + this.campaign_id,
+            //     data: request,
+            //     headers: {
+            //         Authorization: "Bearer " + this.$store.state.token,
+            //         Accept: "application/json",
+            //         "Content-Type": "application/json"
+            //     }
+            // });
 
             // axios({
             //     method: "put", //you can set what request you want to be
