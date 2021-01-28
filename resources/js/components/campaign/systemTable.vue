@@ -371,8 +371,8 @@
                                     </v-list-item>
                                 </v-list>
                             </v-menu>
-                            <span v-else-if="item.user_name != null"
-                                >{{ item.user_name }}
+                            <div v-else-if="item.user_name != null">
+                                {{ item.user_name }}
                                 <v-btn
                                     v-if="checkShowAddRemove(item)"
                                     icon
@@ -390,8 +390,8 @@
                                 <NodeExtraChar
                                     v-if="$can('super')"
                                     :item="item"
-                                ></NodeExtraChar
-                            ></span>
+                                ></NodeExtraChar>
+                            </div>
 
                             <AdminHack
                                 v-if="$can('campaigns_admin_access')"
