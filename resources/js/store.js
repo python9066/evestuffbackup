@@ -181,6 +181,10 @@ export default new Vuex.Store({
         SET_USERS_CHARS(state, data) {
             state.userschars = data;
         },
+
+        ADD_NODE_JOIN(state, data) {
+            state.nodeJoin.push(data)
+        }
     },
     actions: {
         async getTimerDataAll({ commit, state }) {
@@ -453,6 +457,10 @@ export default new Vuex.Store({
 
         updateUsersChars({ commit }, data) {
             commit("UPDATE_USERS_CHARS", data);
+        },
+
+        addNodeJoin({ commit }, data) {
+            commit("ADD_NODE_JOIN", data)
         },
 
         async getNotifications({ commit, state }) {

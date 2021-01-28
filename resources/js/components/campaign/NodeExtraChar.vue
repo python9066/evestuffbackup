@@ -53,48 +53,51 @@ export default {
             var request = {
                 campaign_user_id: addChar.id
             };
-            this.$store.dispatch("updateCampaignSystem", data);
 
-            data = null;
-            data = {
-                id: addChar.id,
-                campaign_system_id: item.id,
-                node_id: item.node,
-                system_id: item.system_id,
-                system_name: item.system_name,
-                status_id: 4,
-                user_status_name: "Hacking"
-            };
+            console.log(addChar);
+            console.log(data);
+            // this.$store.dispatch("updateCampaignSystem", data);
 
-            var request1 = {
-                campaign_system_id: item.id,
-                system_id: item.system_id,
-                status_id: 4
-            };
-            this.$store.dispatch("updateCampaignUsers", data);
+            // data = null;
+            // data = {
+            //     id: addChar.id,
+            //     campaign_system_id: item.id,
+            //     node_id: item.node,
+            //     system_id: item.system_id,
+            //     system_name: item.system_name,
+            //     status_id: 4,
+            //     user_status_name: "Hacking"
+            // };
 
-            axios({
-                method: "put", //you can set what request you want to be
-                url: "/api/campaignsystems/" + item.id + "/" + this.campaign_id,
-                data: request,
-                headers: {
-                    Authorization: "Bearer " + this.$store.state.token,
-                    Accept: "application/json",
-                    "Content-Type": "application/json"
-                }
-            });
+            // var request1 = {
+            //     campaign_system_id: item.id,
+            //     system_id: item.system_id,
+            //     status_id: 4
+            // };
+            // this.$store.dispatch("updateCampaignUsers", data);
 
-            axios({
-                method: "put", //you can set what request you want to be
-                url:
-                    "/api/campaignusers/" + addChar.id + "/" + this.campaign_id,
-                data: request1,
-                headers: {
-                    Authorization: "Bearer " + this.$store.state.token,
-                    Accept: "application/json",
-                    "Content-Type": "application/json"
-                }
-            });
+            // axios({
+            //     method: "put", //you can set what request you want to be
+            //     url: "/api/campaignsystems/" + item.id + "/" + this.campaign_id,
+            //     data: request,
+            //     headers: {
+            //         Authorization: "Bearer " + this.$store.state.token,
+            //         Accept: "application/json",
+            //         "Content-Type": "application/json"
+            //     }
+            // });
+
+            // axios({
+            //     method: "put", //you can set what request you want to be
+            //     url:
+            //         "/api/campaignusers/" + addChar.id + "/" + this.campaign_id,
+            //     data: request1,
+            //     headers: {
+            //         Authorization: "Bearer " + this.$store.state.token,
+            //         Accept: "application/json",
+            //         "Content-Type": "application/json"
+            //     }
+            // });
         },
 
         checkShowAdd(item) {
@@ -117,7 +120,8 @@ export default {
         ...mapGetters([
             "getCampaignUsersByUserIdEntosisFree",
             "getCampaignUsersByUserIdEntosisCount",
-            "getCampaignUsersByUserIdEntosisFreeCount"
+            "getCampaignUsersByUserIdEntosisFreeCount",
+            "getCampaignUsersByUserIdEntosis"
         ]),
 
         charsFree() {
@@ -134,6 +138,12 @@ export default {
 
         freecharCount() {
             return this.getCampaignUsersByUserIdEntosisFreeCount(
+                this.$store.state.user_id
+            );
+        },
+
+        chars() {
+            return this.getCampaignUsersByUserIdEntosis(
                 this.$store.state.user_id
             );
         }
