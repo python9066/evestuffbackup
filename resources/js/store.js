@@ -655,6 +655,14 @@ export default new Vuex.Store({
                 campaignusers => campaignusers.site_id == id && campaignusers.role_id == 1 && campaignusers.node_id == null
             );
         },
+
+        getCampaignUsersByUserIdEntosisFreeCount: state => id => {
+            // console.log("poo",state.campaignusers.filter(campaignusers => campaignusers.site_id == id))
+            return state.campaignusers.filter(
+                campaignusers => campaignusers.site_id == id && campaignusers.role_id == 1 && campaignusers.node_id == null
+            ).length;
+        },
+
         getCampaignUsersByUserIdEntosisCount: state => id => {
             // console.log("poo",state.campaignusers.filter(campaignusers => campaignusers.site_id == id))
             return state.campaignusers.filter(

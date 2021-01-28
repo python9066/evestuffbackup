@@ -116,7 +116,8 @@ export default {
     computed: {
         ...mapGetters([
             "getCampaignUsersByUserIdEntosisFree",
-            "getCampaignUsersByUserIdEntosisCount"
+            "getCampaignUsersByUserIdEntosisCount",
+            "getCampaignUsersByUserIdEntosisFreeCount"
         ]),
 
         charsFree() {
@@ -132,9 +133,9 @@ export default {
         },
 
         freecharCount() {
-            return this.getCampaignUsersByUserIdEntosisCount(
+            return this.getCampaignUsersByUserIdEntosisFreeCount(
                 this.$store.state.user_id
-            ).length;
+            );
         }
     }
 };
