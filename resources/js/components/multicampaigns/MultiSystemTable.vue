@@ -894,7 +894,7 @@ export default {
         checkShowAdd(item) {
             if (
                 item.user_name == null &&
-                this.charCount != 0 &&
+                this.freecharCount != 0 &&
                 item.status_id != 4 &&
                 item.status_id != 5 &&
                 item.status_id != 7 &&
@@ -1149,7 +1149,8 @@ export default {
             "getCampaignUsersOnTheWayAll",
             "getsActiveCampaignById",
             "getsActiveCampaignByIdDrop",
-            "getTotalNodeCountBySystemByMultiCampaign"
+            "getTotalNodeCountBySystemByMultiCampaign",
+            "getCampaignUsersByUserIdEntosisFreeCount"
         ]),
 
         campaignJoinDrop() {
@@ -1360,6 +1361,12 @@ export default {
                 campaign_id: this.campaign_id
             };
             return this.getCampaignSolaSystemFilter(payload);
+        },
+
+        freecharCount() {
+            return this.getCampaignUsersByUserIdEntosisFreeCount(
+                this.$store.state.user_id
+            );
         }
     }
 };
