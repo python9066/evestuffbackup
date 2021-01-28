@@ -1117,7 +1117,8 @@ export default {
             "getSystemReadyToGoCount",
             "getSystemOnTheWayCount",
             "getCampaignUsersReadyToGoAll",
-            "getCampaignUsersOnTheWayAll"
+            "getCampaignUsersOnTheWayAll",
+            "getCampaignUsersByUserIdEntosisFreeCount"
         ]),
 
         fabOnTheWayDisbale() {
