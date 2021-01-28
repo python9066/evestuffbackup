@@ -389,7 +389,7 @@
                                 ></span
                             >
                             <NodeExtraChar
-                                v-if="$can('super') && item.user_id == null"
+                                v-if="$can('super') && item.user_id != null"
                                 :item="item"
                             ></NodeExtraChar>
 
