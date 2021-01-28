@@ -387,7 +387,10 @@
                                         >fas fa-trash-alt</v-icon
                                     ></v-btn
                                 >
-                                <NodeExtraChar :item="item"></NodeExtraChar
+                                <NodeExtraChar
+                                    v-if="$can('super')"
+                                    :item="item"
+                                ></NodeExtraChar
                             ></span>
 
                             <AdminHack
