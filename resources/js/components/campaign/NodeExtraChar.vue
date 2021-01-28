@@ -104,7 +104,7 @@ export default {
             });
         },
 
-        checkShowAddRemove(item) {
+        checkShowAdd(item) {
             if (
                 item.user_name != null &&
                 this.charCount != 0 &&
@@ -113,8 +113,6 @@ export default {
                 item.status_id != 7 &&
                 item.status_id != 8
             ) {
-                return true;
-            } else if (this.$can("campaigns_admin_access")) {
                 return true;
             } else {
                 return false;
