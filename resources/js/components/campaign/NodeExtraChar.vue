@@ -53,9 +53,8 @@ export default {
             var request = {
                 campaign_user_id: addChar.id
             };
-
+            console.log(item);
             console.log(addChar);
-            console.log(data);
             // this.$store.dispatch("updateCampaignSystem", data);
 
             // data = null;
