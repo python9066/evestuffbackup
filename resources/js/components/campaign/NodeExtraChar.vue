@@ -3,14 +3,7 @@
         <v-menu offset-y v-if="checkShowAdd(item)">
             <template v-slot:activator="{ on, attrs }">
                 <div>
-                    <v-btn
-                        v-bind="attrs"
-                        v-on="on"
-                        pill
-                        outlined
-                        small
-                        color="green darken-3"
-                    >
+                    <v-btn v-bind="attrs" v-on="on" icon color="green darken-3">
                         <v-icon small>fas fa-plus</v-icon>
                     </v-btn>
                 </div>
