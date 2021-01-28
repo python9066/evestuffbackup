@@ -371,7 +371,10 @@
                                     </v-list-item>
                                 </v-list>
                             </v-menu>
-                            <div v-else-if="item.user_name != null">
+                            <div
+                                v-else-if="item.user_name != null"
+                                class=" d-flex-block"
+                            >
                                 {{ item.user_name }}
                                 <v-btn
                                     v-if="checkShowAddRemove(item)"
