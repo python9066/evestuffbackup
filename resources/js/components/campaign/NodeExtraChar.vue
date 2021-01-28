@@ -129,6 +129,12 @@ export default {
             return this.getCampaignUsersByUserIdEntosisCount(
                 this.$store.state.user_id
             );
+        },
+
+        freecharCount() {
+            return this.getCampaignUsersByUserIdEntosisCount(
+                this.$store.state.user_id
+            ).length;
         }
     }
 };
