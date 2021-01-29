@@ -95,7 +95,7 @@
         <!-- MAIN ROUTER-VIEW ------------------------------------->
         <v-main class="pb-10">
             <v-overlay :value="tidiCalc">
-                <TidiCalc> </TidiCalc>
+                <TidiCalc @closeCalc="closeCalc()"> </TidiCalc>
             </v-overlay>
             <v-overlay :value="overlay">
                 <v-row no-gutters>
@@ -173,6 +173,10 @@ export default {
 
         logout() {
             window.location.href = "/logout";
+        },
+
+        closeCalc() {
+            tidiCalc == true;
         },
 
         async submitFeedBack() {
