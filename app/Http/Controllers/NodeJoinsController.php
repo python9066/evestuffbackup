@@ -33,7 +33,9 @@ class NodeJoinsController extends Controller
 
             $user_id = $node->campaign_user_id;
             $campaign_system_status_id = $node->campaign_system_status_id;
-            $CampaignSystem = CampaignSystem::where('id', $id)->get();
+            $CampaignSystem = CampaignSystem::where('id', $id)->first();
+            $test = $CampaignSystem->campaign_user_id;
+            dd($test);
             $oldUser_id = CampaignSystem::where('id', $id)->value('campaign_user_id');
             CampaignUser::where('id', $oldUser_id)->update(['campaign_system_id' => null, 'status_id' => 3]);
             $CampaignSystem->update(['campaign_user_id' => $user_id, 'campaign_system_status_id' => $campaign_system_status_id]);
