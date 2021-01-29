@@ -11,7 +11,7 @@
             <div>
                 Tidi Calculator
             </div>
-            <div class=" pt-4" v-if="(base_time = null)">
+            <div class=" pt-4" v-if="showAddButton()">
                 <v-menu :close-on-content-click="false" :value="timerShown">
                     <template v-slot:activator="{ on, attrs }">
                         <v-chip
@@ -204,6 +204,14 @@ export default {
                 .add(sec, "seconds")
                 .format("YYYY-MM-DD HH:mm:ss");
             this.input_time = moment.utc().format("YYYY-MM-DD HH:mm:ss");
+        },
+
+        showAddButton() {
+            if (this.base_time == null) {
+                return true;
+            } else {
+                return false;
+            }
         }
     },
 
