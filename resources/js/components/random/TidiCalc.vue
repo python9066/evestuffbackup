@@ -295,11 +295,9 @@ export default {
 
         editTidi() {
             var now = moment.utc();
-
-            var time_passed = moment.duration(now.diff(this.input_time));
-            this.test = time_passed.asSeconds();
-
-            this.base_time = this.base_time - time_passed;
+            var diff = moment.duration(now.diff(this.input_time));
+            var diffSec = diff.asSeconds();
+            this.base_time = this.base_time - diffSec;
             var time_left = this.base_time / (this.tidiEdit / 100);
             this.finishTime = moment
                 .utc()
