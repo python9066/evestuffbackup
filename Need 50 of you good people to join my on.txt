@@ -6,20 +6,22 @@ Comms: Op 10 https://gnf.lt/Sy12pKS.html
 Doctrine: Jackdaw Fleet (Boosters > Scalpel / Kirin > Jackdaw > Keres / Hyena > Tackle)
 
 
+!bping coord Space to save
 
-Kill Kill Kill, Eat Eat Eat
-  
- FC Name: Opsy Naari
- Formup Location: 1DQ1
- Pap Type: Strategic
- Comms: Op 9 https://gnf.lt/pgyZ4xp.html
- Doctrine: Jackdaw Fleet (Boosters > Scalpel / Kirin > Jackdaw > Keres / Hyena > Tackle)
-
+FC Name: Kretin Valefor
+Formup Location: 1DQ1-A
+Pap Type: Strategic
+Comms: Op 9 https://gnf.lt/pgyZ4xp.html
+Doctrine: Ares > Ares > Interceptors
 
 
+Here we go, gotta keep our space safe!
 
-
-
+FC Name: Xanos Xellos
+Formup Location: 1DQ
+Pap Type: Strategic
+Comms: Op 9 https://gnf.lt/l7zng0s.html
+Doctrine: Jackdaw Fleet (Boosters > Scalpel / Kirin > Jackdaw > Keres / Hyena > Tackle)
 
 /usr/bin/php7.4-cli artisan
 
@@ -52,4 +54,7 @@ new_time = ((time_left/100)*tidi)+time_left
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^ index.php [L]
 </IfModule>
+
+
+Welcome to coord :sun: Current Primaries :  M2- Gate Camp, Bubbles are in FC Hangar :siren:                                     1DQ Const should be 4.0 ADM :siren:                                     Stop Jammer/JB attacks :siren: :siren: ALL TIMERS ARE ON RC2 NOW :siren: -> left to add timer put in "abandoned" -> go to last page -> Structure Names have ARMOR: HULL: infront of them  Meeting Notes & Important Docs: https://drive.google.com/drive
 

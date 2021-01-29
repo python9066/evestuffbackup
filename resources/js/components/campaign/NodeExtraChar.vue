@@ -58,6 +58,28 @@ export default {
                 }
             });
 
+            request = null;
+            request = {
+                campaign_system_id: item.id,
+                status_id: 4,
+                system_id: item.system_id
+            };
+
+            axios({
+                method: "put", //you can set what request you want to be
+                url:
+                    "/api/campaignusersrecords/" +
+                    addChar.id +
+                    "/" +
+                    item.campaign_id,
+                data: request,
+                headers: {
+                    Authorization: "Bearer " + this.$store.state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                }
+            });
+
             console.log(request);
             console.log(item);
             console.log(addChar);
