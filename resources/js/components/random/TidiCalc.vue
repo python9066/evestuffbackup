@@ -201,7 +201,7 @@ export default {
             var sec = sec / (this.tidi / 100);
             this.finishTime = moment
                 .utc()
-                .add(this.sec, "seconds")
+                .add(sec, "seconds")
                 .format("YYYY-MM-DD HH:mm:ss");
             this.input_time = moment.utc().format("YYYY-MM-DD HH:mm:ss");
         }
