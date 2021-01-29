@@ -3,7 +3,7 @@
         tile
         max-width="1500px"
         max-height="1000px"
-        class=" d-flex flex-column"
+        class=" d-inline-flex flex-column"
     >
         <v-card-title
             class=" d-lg-inline-block justify-space-between align-center "
