@@ -25,25 +25,26 @@ class NodeJoinsController extends Controller
     {
         $nodeJoin = [];
         $joins = NodeJoin::where('campaign_id', $campid)->get();
-        foreach ($joins as $join) {
+        if ($joins->count() > 0) {
+            foreach ($joins as $join) {
 
-            $pull = [
-                'id' => $join->id,
-                'campaign_system_id' => $join->campaign_system_id,
-                'campaign_user_id' => $join->campaign_user_id,
-                'charname' => $join->campaignUser->char_name,
-                'siteid' => $join->campaignUser->site_id,
-                'mainname' => User::where('id', $join->campaignUser->site_id)->value('name'),
-                'ship' => $join->campaignUser->ship,
-                'link' => intval($join->campaignUser->link),
-                'campaign_system_status_id' => intval($join->campaign_system_status_id),
-                'statusName' => CampaignSystemStatus::where('id', $join->campaign_system_status_id)->value('name'),
-                'campaign_sola_system_id' => CampaignSolaSystem::where('campaign_id', $join->campaignSystem->campaign_id)->where('system_id', $join->campaignSystem->system_id)->value('id')
-            ];
-            array_push($nodeJoin, $pull);
-        };
-        return ["nodeJoin" => $nodeJoin];
-        dd($pull);
+                $pull = [
+                    'id' => $join->id,
+                    'campaign_system_id' => $join->campaign_system_id,
+                    'campaign_user_id' => $join->campaign_user_id,
+                    'charname' => $join->campaignUser->char_name,
+                    'siteid' => $join->campaignUser->site_id,
+                    'mainname' => User::where('id', $join->campaignUser->site_id)->value('name'),
+                    'ship' => $join->campaignUser->ship,
+                    'link' => intval($join->campaignUser->link),
+                    'campaign_system_status_id' => intval($join->campaign_system_status_id),
+                    'statusName' => CampaignSystemStatus::where('id', $join->campaign_system_status_id)->value('name'),
+                    'campaign_sola_system_id' => CampaignSolaSystem::where('campaign_id', $join->campaignSystem->campaign_id)->where('system_id', $join->campaignSystem->system_id)->value('id')
+                ];
+                array_push($nodeJoin, $pull);
+            };
+            return ["nodeJoin" => $nodeJoin];
+        }
     }
 
     /**
