@@ -1033,7 +1033,7 @@ export default {
                     campaign_user_id: null
                 };
             }
-
+            console.log(request);
             axios({
                 method: "PUT", //you can set what request you want to be
                 url:
