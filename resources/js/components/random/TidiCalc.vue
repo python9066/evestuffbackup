@@ -13,7 +13,7 @@
             </div>
         </v-card-title>
         <v-card-text class="body-1 d-inline-flex align-items-center">
-            <div class=" pt-4">
+            <div class=" pt-4 pr-10">
                 <v-menu
                     :close-on-content-click="false"
                     :value="timerShown"
