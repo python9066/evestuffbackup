@@ -124,7 +124,7 @@ class CampaignSystemsController extends Controller
 
         $users = CampaignUser::where('campaign_system_id', $id)->get();
         foreach ($users as $user) {
-            $user->update(['campaign_system_id' => null, 'status_id' => 2]);
+            $user->update(['campaign_system_id' => null, 'status_id' => 3]);
         }
         NodeJoin::where('campaign_system_id', $id)->delete();
         CampaignSystem::destroy($id);
