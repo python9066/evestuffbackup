@@ -654,6 +654,7 @@ export default {
             this.$store.dispatch("getCampaignSystemsRecords");
             this.charOnTheWay = null;
         },
+
         async clickReadyToGo() {
             var item = {
                 id: this.charReadyToGo,
@@ -995,6 +996,7 @@ export default {
         },
 
         removeCharNode(item) {
+            console.log(item);
             var userId = item.user_id;
             item.user_id = null;
             item.user_ship = null;
