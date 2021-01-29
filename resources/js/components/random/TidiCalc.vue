@@ -69,12 +69,12 @@
                     </template>
                 </v-menu>
                 <CountDowntimer
-                    :start-time="moment.utc(item.end).unix()"
-                    :end-text="endText(item)"
+                    :start-time="moment.utc(finishTime).unix()"
+                    end-text="Time is over"
                     :interval="1000"
                 >
                     <template slot="countdown" slot-scope="scope">
-                        <span :class="hackCountDownTextColor(item)"
+                        <span
                             ><span v-if="scope.props.hours > 0"
                                 >{{ scope.props.hours }}:</span
                             >{{ scope.props.minutes }}:{{
@@ -87,7 +87,6 @@
                         >
                             <template v-slot:activator="{ on, attrs }">
                                 <v-btn
-                                    v-if="checkHackUserEdit(item)"
                                     v-bind="attrs"
                                     v-on="on"
                                     @click="
