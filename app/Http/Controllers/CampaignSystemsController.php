@@ -121,6 +121,11 @@ class CampaignSystemsController extends Controller
     public function destroy($id, $campid)
     {
 
+        $users = CampaignUser::where('campaign_system_id', $id)->get();
+        foreach ($users as $user) {
+            $user->update(['campaign_system_id' => null, 'status_id' => 1]);
+        }
+
         CampaignSystem::destroy($id);
         $flag = collect([
             'flag' => 3,
