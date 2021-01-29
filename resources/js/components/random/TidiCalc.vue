@@ -11,8 +11,12 @@
             <div>
                 Tidi Calculator
             </div>
-            <div class=" pt-4" v-if="showAddButton()">
-                <v-menu :close-on-content-click="false" :value="timerShown">
+            <div class=" pt-4">
+                <v-menu
+                    :close-on-content-click="false"
+                    :value="timerShown"
+                    v-if="showAddButton()"
+                >
                     <template v-slot:activator="{ on, attrs }">
                         <v-chip
                             v-bind="attrs"
