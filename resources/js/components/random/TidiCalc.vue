@@ -162,7 +162,7 @@
                     </template>
                 </CountDowntimer>
             </div>
-            <div>
+            <div class=" pt-4">
                 TiDi:
                 <span :class="colorTidi()">{{ tidi }}%</span>
                 <v-menu :close-on-content-click="false" :value="tidiShow">
