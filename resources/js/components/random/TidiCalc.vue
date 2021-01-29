@@ -12,7 +12,7 @@
                 Tidi Calculator
             </div>
         </v-card-title>
-        <v-card-text>
+        <v-card-text class="body-1">
             <div class=" pt-4">
                 <v-menu
                     :close-on-content-click="false"
