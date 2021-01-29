@@ -18,7 +18,7 @@
                             v-bind="attrs"
                             v-on="on"
                             pill
-                            :outlined="pillOutlined(item)"
+                            outlined
                             @click="timerShown = true"
                             small
                             color="warning"
@@ -37,7 +37,7 @@
                                     autofocus
                                     placeholder="mm:ss"
                                     @keyup.enter="
-                                        (timerShown = false), addHacktime(item)
+                                        (timerShown = false), addHacktime()
                                     "
                                     @keyup.esc="
                                         (timerShown = false), (hackTime = null)
@@ -50,9 +50,7 @@
                                     fixed
                                     left
                                     color="success"
-                                    @click="
-                                        (timerShown = false), addHacktime(item)
-                                    "
+                                    @click="(timerShown = false), addHacktime()"
                                     ><v-icon>fas fa-check</v-icon></v-btn
                                 >
 
@@ -113,7 +111,7 @@
                                             placeholder="mm:ss"
                                             @keyup.enter="
                                                 (timerShown = false),
-                                                    addHacktime(item)
+                                                    addHacktime()
                                             "
                                             @keyup.esc="
                                                 (timerShown = false),
@@ -129,7 +127,7 @@
                                             color="success"
                                             @click="
                                                 (timerShown = false),
-                                                    addHacktime(item)
+                                                    addHacktime()
                                             "
                                             ><v-icon
                                                 >fas fa-check</v-icon
@@ -182,13 +180,30 @@ export default {
             hackTime: {
                 mm: "",
                 ss: ""
-            }
+            },
+            base_time: null,
+            finishTime: null,
+            sec: null,
+            input_time: null
         };
     },
 
     methods: {
         close() {
             this.$emit("closeCalc", "yo");
+        },
+
+        async addHacktime() {
+            var min = parseInt(this.hackTime.substr(0, 2));
+            var sec = parseInt(this.hackTime.substr(3, 2));
+            this.base_time = min * 60 + sec;
+            this.sec = min * 60 + sec;
+            this.sec = sec / (this.CampaignSolaSystem[0]["tidi"] / 100);
+            this.finishTime = moment
+                .utc()
+                .add(sec, "seconds")
+                .format("YYYY-MM-DD HH:mm:ss");
+            this.input_time = moment.utc().format("YYYY-MM-DD HH:mm:ss");
         }
     },
 
