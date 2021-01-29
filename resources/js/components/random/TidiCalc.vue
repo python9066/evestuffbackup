@@ -13,7 +13,6 @@
             </div>
             <div>
                 <v-text-field
-                    v-model="search"
                     append-icon="mdi-magnify"
                     label="Search"
                     single-line
