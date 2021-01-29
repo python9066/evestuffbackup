@@ -160,6 +160,65 @@
                     </template>
                 </CountDowntimer>
             </div>
+            <div>
+                TiDi:
+                <span :class="colorTidi()">{{ tidi }}%</span>
+                <v-menu :close-on-content-click="false" :value="tidiShow">
+                    <template v-slot:activator="{ on, attrs }">
+                        <v-btn
+                            class="pb-1"
+                            v-bind="attrs"
+                            v-on="on"
+                            @click="(tidiShow = true), (tidiEdit = null)"
+                            icon
+                            color="warning"
+                        >
+                            <v-icon>fas fa-edit</v-icon>
+                        </v-btn>
+                    </template>
+
+                    <template>
+                        <v-card tile min-height="150px">
+                            <v-card-title class=" pb-0">
+                                <v-text-field
+                                    v-model="tidiEdit"
+                                    label="Tidi %"
+                                    autofocus
+                                    v-mask="'###'"
+                                    :placeholder="placeHolder()"
+                                    @keyup.enter="
+                                        (tidiShow = false), editTidi()
+                                    "
+                                    @keyup.esc="
+                                        (tidiShow = false), (tidiEdit = null)
+                                    "
+                                ></v-text-field>
+                            </v-card-title>
+                            <v-card-text>
+                                <v-btn
+                                    icon
+                                    fixed
+                                    left
+                                    color="success"
+                                    @click="(tidiShow = false), editTidi()"
+                                    ><v-icon>fas fa-check</v-icon></v-btn
+                                >
+
+                                <v-btn
+                                    fixed
+                                    right
+                                    icon
+                                    color="warning"
+                                    @click="
+                                        (tidiShow = false), (tidiEdit = null)
+                                    "
+                                    ><v-icon>fas fa-times</v-icon></v-btn
+                                >
+                            </v-card-text>
+                        </v-card>
+                    </template>
+                </v-menu>
+            </div>
         </v-card-title>
         <v-card-text> </v-card-text>
         <v-spacer></v-spacer
@@ -181,6 +240,7 @@ export default {
         return {
             overlay: true,
             timerShown: false,
+            tidiShow: false,
             hackTime: {
                 mm: "",
                 ss: ""
@@ -188,7 +248,8 @@ export default {
             base_time: null,
             finishTime: null,
             input_time: null,
-            tidi: 100
+            tidi: 100,
+            tidiEdit: null
         };
     },
 
@@ -216,7 +277,38 @@ export default {
             } else {
                 return false;
             }
+        },
+        colorTidi() {
+            if (this.tidi > 59) {
+                return "green--text font-weight-bold";
+            } else if (this.tidi > 34) {
+                return "orange--text font-weight-bold";
+            } else {
+                return "red--text font-weight-bold";
+            }
+        },
+
+        placeHolder() {
+            return "" + this.tidi;
         }
+    },
+
+    async editTidi() {
+        // console.log(this.tidiEdit);
+        var request = {
+            newTidi: this.tidiEdit,
+            oldTidi: this.tidi,
+            baseTime: this.base_time
+        };
+
+        var time_passed =
+            moment.utc().format("YYYY-MM-DD HH:mm:ss") - this.input_time;
+        this.base_time = this.base_time - time_passed;
+        var time_left = this.base_time / (this.tidiEdit / 100);
+        this.finishTime = moment
+            .utc()
+            .add(time_left, "seconds")
+            .format("YYYY-MM-DD HH:mm:ss");
     },
 
     computed: {}
