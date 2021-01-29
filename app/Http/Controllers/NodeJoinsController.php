@@ -27,10 +27,10 @@ class NodeJoinsController extends Controller
 
     public function removeCharForNode(Request $request, $id, $campid)
     {
-        $node = NodeJoin::where('campaign_system_id', $id)->get();
-        dd($node->count());
+        $node = NodeJoin::where('campaign_system_id', $id)->get();;
         if ($node->count() > 0) {
             $node = $node->first();
+            dd($node);
             $user_id = $node->campaign_user_id;
             $campaign_system_status_id = $node->campaign_system_status_id;
             $CampaignSystem = CampaignSystem::where('id', $id)->get();
