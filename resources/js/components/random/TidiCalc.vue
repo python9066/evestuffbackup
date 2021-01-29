@@ -233,7 +233,7 @@
 <script>
 import { mapGetters } from "vuex";
 import { mapState } from "vuex";
-import moment from "moment";
+import moment, { duration } from "moment";
 export default {
     props: {},
     data() {
@@ -249,7 +249,8 @@ export default {
             finishTime: null,
             input_time: null,
             tidi: 100,
-            tidiEdit: null
+            tidiEdit: null,
+            test: null
         };
     },
 
@@ -295,7 +296,8 @@ export default {
         editTidi() {
             var now = moment.utc();
 
-            var time_passed = this.input_time.diff(now);
+            var time_passed = moment.duration(now.diff(this.input_time));
+            this.test = time_passed.asSeconds();
 
             this.base_time = this.base_time - time_passed;
             var time_left = this.base_time / (this.tidiEdit / 100);
