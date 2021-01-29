@@ -295,16 +295,17 @@ export default {
         },
 
         editTidi() {
-            var now = moment.utc();
-            var diff = moment.duration(now.diff(this.input_time));
-            var diffSec = diff.asSeconds();
-            this.base_time = this.base_time - diffSec;
-            var time_left = this.base_time / (this.tidiEdit / 100);
-            this.finishTime = moment
-                .utc()
-                .add(time_left, "seconds")
-                .format("YYYY-MM-DD HH:mm:ss");
-
+            if (this.input_time != null) {
+                var now = moment.utc();
+                var diff = moment.duration(now.diff(this.input_time));
+                var diffSec = diff.asSeconds();
+                this.base_time = this.base_time - diffSec;
+                var time_left = this.base_time / (this.tidiEdit / 100);
+                this.finishTime = moment
+                    .utc()
+                    .add(time_left, "seconds")
+                    .format("YYYY-MM-DD HH:mm:ss");
+            }
             this.tidi = this.tidiEdit;
             this.tidiEdit = null;
         }
