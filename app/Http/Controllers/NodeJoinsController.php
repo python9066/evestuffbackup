@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\CampaignSolaSystem;
+use App\Events\CampaignSystemUpdate;
 use App\Events\CampaignUsersChanged;
+use App\Models\CampaignSystem;
 use App\Models\CampaignSystemStatus;
+use App\Models\CampaignUser;
 use App\Models\NodeJoin;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -19,6 +22,33 @@ class NodeJoinsController extends Controller
     public function index()
     {
         //
+    }
+
+
+    public function removeCharForNode(Request $request, $id, $campid)
+    {
+        $node = NodeJoin::where('campaign_system_id', $id)->get();
+        if ($node->count() > 0) {
+            $node = $node->first();
+            $user_id = $node->campaign_user_id;
+            $campaign_system_status_id = $node->campaign_system_status_id;
+            $CampaignSystem = CampaignSystem::where('id', $id)->get();
+            CampaignUser::where('id', $CampaignSystem)->update(['campaign_system_id' => null, 'status_id' => 3]);
+            $CampaignSystem->update(['campaign_user_id' => $user_id, 'campaign_system_status_id' => $campaign_system_status_id]);
+        } else {
+
+            CampaignSystem::where('id', $id)->update($request->all());
+        };
+
+
+
+
+
+        $flag = collect([
+            'flag' => 3,
+            'id' => $campid
+        ]);
+        broadcast(new CampaignSystemUpdate($flag));
     }
 
     public function tableindex($campid)

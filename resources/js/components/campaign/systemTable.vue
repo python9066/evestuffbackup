@@ -1036,7 +1036,11 @@ export default {
 
             axios({
                 method: "PUT", //you can set what request you want to be
-                url: "/api/campaignsystems/" + item.id + "/" + this.campaign_id,
+                url:
+                    "/api/removecharfromnode/" +
+                    item.id +
+                    "/" +
+                    this.campaign_id,
                 data: request,
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
@@ -1045,23 +1049,34 @@ export default {
                 }
             });
 
-            var request1 = {
-                campaign_system_id: null,
-                status_id: 3
-            };
-            if (userId != null) {
-                axios({
-                    method: "PUT", //you can set what request you want to be
-                    url:
-                        "/api/campaignusers/" + userId + "/" + this.campaign_id,
-                    data: request1,
-                    headers: {
-                        Authorization: "Bearer " + this.$store.state.token,
-                        Accept: "application/json",
-                        "Content-Type": "application/json"
-                    }
-                });
-            }
+            // axios({
+            //     method: "PUT", //you can set what request you want to be
+            //     url: "/api/campaignsystems/" + item.id + "/" + this.campaign_id,
+            //     data: request,
+            //     headers: {
+            //         Authorization: "Bearer " + this.$store.state.token,
+            //         Accept: "application/json",
+            //         "Content-Type": "application/json"
+            //     }
+            // });
+
+            // var request1 = {
+            //     campaign_system_id: null,
+            //     status_id: 3
+            // };
+            // if (userId != null) {
+            //     axios({
+            //         method: "PUT", //you can set what request you want to be
+            //         url:
+            //             "/api/campaignusers/" + userId + "/" + this.campaign_id,
+            //         data: request1,
+            //         headers: {
+            //             Authorization: "Bearer " + this.$store.state.token,
+            //             Accept: "application/json",
+            //             "Content-Type": "application/json"
+            //         }
+            //     });
+            // }
         },
 
         async removeReadyToGoOnTheWay(item) {
