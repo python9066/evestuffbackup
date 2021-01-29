@@ -57,6 +57,7 @@ Vue.component('SolaSystemLogging', require('./components/logging/campaign/SolaSy
 Vue.component('CampaignLogging', require('./components/logging/campaign/CampaignLogging.vue').default);
 Vue.component('AdminLogging', require('./components/logging/adminpanel/AdminLogging.vue').default);
 Vue.component('NodeExtraChar', require('./components/campaign/NodeExtraChar.vue').default);
+Vue.component('TidiCalc', require('./components/random/TidiCalc.vue').default);
 
 
 

@@ -67,6 +67,15 @@
                 text
                 class="mr-2"
                 v-if="this.$vuetify.breakpoint.mdAndUp"
+                @click="tidiCalc = !tidiCalc"
+            >
+                <v-icon class="mr-2 grey--text lighten-1">fa fa-clock</v-icon
+                >Tidi
+            </v-btn>
+            <v-btn
+                text
+                class="mr-2"
+                v-if="this.$vuetify.breakpoint.mdAndUp"
                 @click="overlay = !overlay"
             >
                 <v-icon class="mr-2 grey--text lighten-1">fa fa-comment</v-icon
@@ -85,6 +94,9 @@
 
         <!-- MAIN ROUTER-VIEW ------------------------------------->
         <v-main class="pb-10">
+            <v-overlay :value="tidiCalc">
+                <TidiCalc> </TidiCalc>
+            </v-overlay>
             <v-overlay :value="overlay">
                 <v-row no-gutters>
                     <v-col cols="auto">
@@ -146,7 +158,8 @@ export default {
         loading2: false,
         navdrawer: null,
         overlay: false,
-        feedBackText: ""
+        feedBackText: "",
+        tidiCalc: false
     }),
     async created() {
         await this.$store.dispatch("setToken", this.token);
