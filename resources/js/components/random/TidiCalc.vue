@@ -11,6 +11,8 @@
             <div>
                 Tidi Calculator
             </div>
+        </v-card-title>
+        <v-card-text>
             <div class=" pt-4">
                 <v-menu
                     :close-on-content-click="false"
@@ -219,8 +221,7 @@
                     </template>
                 </v-menu>
             </div>
-        </v-card-title>
-        <v-card-text> </v-card-text>
+        </v-card-text>
         <v-spacer></v-spacer
         ><v-card-actions
             ><v-btn class="white--text" color="teal" @click="close()">
