@@ -38,7 +38,7 @@ export default {
             this.$emit("openAdd", this.item);
         },
 
-        clickCharAddNode(item) {
+        async clickCharAddNode(item) {
             var addChar = this.chars.find(user => user.id == this.charAddNode);
             var request = {
                 campaign_id: item.campaign_id,
@@ -47,7 +47,7 @@ export default {
                 campaign_system_status_id: item.status_id
             };
 
-            axios({
+            await axios({
                 method: "post", //you can set what request you want to be
                 url: "/api/nodejoin/" + item.campaign_id,
                 data: request,
@@ -65,7 +65,7 @@ export default {
                 system_id: item.system_id
             };
 
-            axios({
+            await axios({
                 method: "put", //you can set what request you want to be
                 url:
                     "/api/campaignusersrecords/" +
