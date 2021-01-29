@@ -60,12 +60,15 @@ class CampaignSystemsController extends Controller
     public function update(Request $request, $id, $campid)
     {
         // dd($request->notes);
-        CampaignSystem::where('id', $id)->update($request->all());
-        $flag = collect([
-            'flag' => 2,
-            'id' => $campid
-        ]);
-        broadcast(new CampaignSystemUpdate($flag))->toOthers();
+        $nodejoin = NodeJoin::where('campaign_id', $id);
+        if ($nodejoin->count < 1) {
+            CampaignSystem::where('id', $id)->update($request->all());
+            $flag = collect([
+                'flag' => 2,
+                'id' => $campid
+            ]);
+            broadcast(new CampaignSystemUpdate($flag))->toOthers();
+        }
     }
 
     public function removechar(Request $request, $campid)

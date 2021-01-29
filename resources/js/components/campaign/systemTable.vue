@@ -1060,15 +1060,6 @@ export default {
                     }
                 });
             }
-
-            request = null;
-            request = {
-                campaign_id: this.campaign_id,
-                system_id: this.system_id,
-                campaign_system_id: item.id,
-                campaign_sola_system_id: this.CampaignSolaSystem[0]["id"],
-                user_id: this.$store.state.user_id
-            };
         },
 
         async removeReadyToGoOnTheWay(item) {
