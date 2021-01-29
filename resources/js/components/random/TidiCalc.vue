@@ -183,8 +183,8 @@ export default {
             },
             base_time: null,
             finishTime: null,
-            sec: null,
-            input_time: null
+            input_time: null,
+            tidi: 100
         };
     },
 
@@ -197,8 +197,8 @@ export default {
             var min = parseInt(this.hackTime.substr(0, 2));
             var sec = parseInt(this.hackTime.substr(3, 2));
             this.base_time = min * 60 + sec;
-            this.sec = min * 60 + sec;
-            this.sec = sec / (this.CampaignSolaSystem[0]["tidi"] / 100);
+            var sec = min * 60 + sec;
+            var sec = sec / (this.tidi / 100);
             this.finishTime = moment
                 .utc()
                 .add(this.sec, "seconds")
