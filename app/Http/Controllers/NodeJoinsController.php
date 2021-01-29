@@ -28,6 +28,7 @@ class NodeJoinsController extends Controller
     public function removeCharForNode(Request $request, $id, $campid)
     {
         $node = NodeJoin::where('campaign_system_id', $id)->get();
+        dd($node);
         if ($node->count() > 0) {
             $node = $node->first();
             $user_id = $node->campaign_user_id;
