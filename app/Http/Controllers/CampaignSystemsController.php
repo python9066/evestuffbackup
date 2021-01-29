@@ -6,6 +6,7 @@ use App\Models\CampaignSystem;
 use App\Events\CampaignSystemUpdate;
 use App\Models\CampaignSolaSystem;
 use App\Models\CampaignUser;
+use App\Models\NodeJoin;
 use Illuminate\Http\Request;
 
 class CampaignSystemsController extends Controller
@@ -125,7 +126,7 @@ class CampaignSystemsController extends Controller
         foreach ($users as $user) {
             $user->update(['campaign_system_id' => null, 'status_id' => 1]);
         }
-
+        NodeJoin::where('campaign_system_id', $id)->delete();
         CampaignSystem::destroy($id);
         $flag = collect([
             'flag' => 3,
