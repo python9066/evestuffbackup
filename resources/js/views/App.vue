@@ -95,7 +95,7 @@
         <!-- MAIN ROUTER-VIEW ------------------------------------->
         <v-main class="pb-10">
             <v-overlay :value="tidiCalc">
-                <TidiCalc @closeCalc="closeCalc()"> </TidiCalc>
+                <TidiCalc @closeCalc="tidiCalc = false"> </TidiCalc>
             </v-overlay>
             <v-overlay :value="overlay">
                 <v-row no-gutters>
