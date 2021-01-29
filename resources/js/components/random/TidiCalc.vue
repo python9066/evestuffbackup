@@ -303,6 +303,9 @@ export default {
                 .utc()
                 .add(time_left, "seconds")
                 .format("YYYY-MM-DD HH:mm:ss");
+
+            this.tidi = this.tidiEdit;
+            this.tidiEdit = null;
         }
     },
 
