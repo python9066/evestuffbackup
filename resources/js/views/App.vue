@@ -66,7 +66,7 @@
             <v-btn
                 text
                 class="mr-2"
-                v-if="this.$vuetify.breakpoint.mdAndUp"
+                v-if="this.$vuetify.breakpoint.mdAndUp && $can('super')"
                 @click="tidiCalc = !tidiCalc"
             >
                 <v-icon class="mr-2 grey--text lighten-1">fa fa-clock</v-icon
