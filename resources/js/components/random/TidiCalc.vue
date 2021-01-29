@@ -11,7 +11,7 @@
             <div>
                 Tidi Calculator
             </div>
-            <div class=" pt-4" v-if="this.base_time != null">
+            <div class=" pt-4" v-if="(this.base_time = null)">
                 <v-menu :close-on-content-click="false" :value="timerShown">
                     <template v-slot:activator="{ on, attrs }">
                         <v-chip
