@@ -200,7 +200,7 @@ export default {
             this.sec = sec / (this.CampaignSolaSystem[0]["tidi"] / 100);
             this.finishTime = moment
                 .utc()
-                .add(sec, "seconds")
+                .add(this.sec, "seconds")
                 .format("YYYY-MM-DD HH:mm:ss");
             this.input_time = moment.utc().format("YYYY-MM-DD HH:mm:ss");
         }
