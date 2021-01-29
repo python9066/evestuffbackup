@@ -290,25 +290,25 @@ export default {
 
         placeHolder() {
             return "" + this.tidi;
+        },
+
+        editTidi() {
+            // console.log(this.tidiEdit);
+            var request = {
+                newTidi: this.tidiEdit,
+                oldTidi: this.tidi,
+                baseTime: this.base_time
+            };
+
+            var time_passed =
+                moment.utc().format("YYYY-MM-DD HH:mm:ss") - this.input_time;
+            this.base_time = this.base_time - time_passed;
+            var time_left = this.base_time / (this.tidiEdit / 100);
+            this.finishTime = moment
+                .utc()
+                .add(time_left, "seconds")
+                .format("YYYY-MM-DD HH:mm:ss");
         }
-    },
-
-    async editTidi() {
-        // console.log(this.tidiEdit);
-        var request = {
-            newTidi: this.tidiEdit,
-            oldTidi: this.tidi,
-            baseTime: this.base_time
-        };
-
-        var time_passed =
-            moment.utc().format("YYYY-MM-DD HH:mm:ss") - this.input_time;
-        this.base_time = this.base_time - time_passed;
-        var time_left = this.base_time / (this.tidiEdit / 100);
-        this.finishTime = moment
-            .utc()
-            .add(time_left, "seconds")
-            .format("YYYY-MM-DD HH:mm:ss");
     },
 
     computed: {}
