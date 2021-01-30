@@ -61,11 +61,6 @@
                     >
                         fas fa-trash-alt
                     </v-icon>
-                    <div>
-                        <span class=" #1e1e1e--text">
-                            HEDFJUIOEFHUIWEAHFUEIWOHFUEIWOHF
-                        </span>
-                    </div>
                 </div>
             </template>
             <template v-slot:item.ship="{ item }" class=" pl-0">
