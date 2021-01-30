@@ -97,6 +97,12 @@ export default {
                     align: "start"
                 },
                 {
+                    text: "",
+                    value: "a",
+                    width: "20%",
+                    align: "start"
+                },
+                {
                     text: "Main",
                     value: "mainname",
                     width: "20%",
