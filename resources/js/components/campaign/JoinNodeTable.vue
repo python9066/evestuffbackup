@@ -1,7 +1,6 @@
 <template>
     <div>
         <v-data-table
-            :headers="headers"
             :items="filteredItems"
             :single-expand="singleExpand"
             item-key="node"
