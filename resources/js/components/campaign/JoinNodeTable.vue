@@ -6,8 +6,8 @@
             :items="filteredItems"
             item-key="node"
             disable-sort
+            dense
             hide-default-footer
-            :hide-default-header="true"
             disable-pagination
             class=" ml-15"
         >
