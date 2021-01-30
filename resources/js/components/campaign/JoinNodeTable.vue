@@ -124,6 +124,12 @@ export default {
                     value: "a",
                     width: "10%",
                     align: "start"
+                },
+                {
+                    text: "",
+                    value: "a",
+                    width: "10%",
+                    align: "start"
                 }
                 // { text: "", value: "actions", width: "5%", align: "center" },
                 // {
