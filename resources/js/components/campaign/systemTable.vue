@@ -581,7 +581,7 @@ export default {
     },
 
     async created() {
-        Echo.private("campaignsystem." + this.campaign.id).listen(
+        Echo.private("campaignsystem." + this.campaign_id).listen(
             "CampaignSystemUpdate",
             e => {
                 if (e.flag.flag == 3) {
