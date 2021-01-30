@@ -1,6 +1,6 @@
 <template>
     <div>
-        <v-btn v-if="showAddIcon" icon color="light-blue darken-4">
+        <v-btn icon color="light-blue darken-4">
             <v-icon small>fas fa-plus</v-icon></v-btn
         >
     </div>
