@@ -581,11 +581,14 @@ export default {
     },
 
     async created() {
-        Echo.listen("CampaignSystemUpdate", e => {
-            if (e.flag.flag == 3) {
-                this.setExpand;
+        Echo.private("campaignsystem." + this.campaign.id).listen(
+            "CampaignSystemUpdate",
+            e => {
+                if (e.flag.flag == 3) {
+                    this.setExpand;
+                }
             }
-        });
+        );
     },
 
     async mounted() {
