@@ -33,7 +33,6 @@ class NodeJoinsController extends Controller
             $user_id = $node->campaign_user_id;
             $campaign_system_status_id = $node->campaign_system_status_id;
             $CampaignSystem = CampaignSystem::where('id', $id)->first();
-            $test = $CampaignSystem->campaign_user_id;
             CampaignUser::where('id', $CampaignSystem->campaign_user_id)->update(['campaign_system_id' => null, 'status_id' => 3]);
             $CampaignSystem->update(['campaign_user_id' => $user_id, 'campaign_system_status_id' => $campaign_system_status_id]);
             $node->delete();
@@ -111,6 +110,9 @@ class NodeJoinsController extends Controller
     public function store(Request $request, $campid)
     {
         NodeJoin::create($request->all());
+        $camp = CampaignSystem::where('id', $request['campaign_system_id'])->first();
+        $count = $camp->node_join_id + 1;
+        $camp->update(['node_join_id' => $count]);
         $flag = collect([
             'flag' => 3,
             'id' => $campid
