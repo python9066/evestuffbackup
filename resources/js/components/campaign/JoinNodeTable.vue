@@ -103,9 +103,9 @@ export default {
                     text: "Status",
                     value: "statusName",
                     width: "30%",
-                    align: "center"
+                    align: "start"
                 },
-                { text: "", value: "actions", align: "end" }
+                { text: "", value: "actions", align: "start" }
             ],
 
             dropdown_edit: [
