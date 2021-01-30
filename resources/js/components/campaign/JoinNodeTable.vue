@@ -27,16 +27,7 @@
                         >
                             <v-icon small>fas fa-trash-alt</v-icon></v-btn
                         >
-                        <NodeExtraChar
-                            v-if="$can('super')"
-                            :item="item"
-                        ></NodeExtraChar>
                     </div>
-                    <AdminHack
-                        v-if="$can('campaigns_admin_access')"
-                        :item="item"
-                        @openAdd="openAdd($event)"
-                    ></AdminHack>
                 </div>
             </template>
             <template v-slot:item.satatusName="{ item }">
