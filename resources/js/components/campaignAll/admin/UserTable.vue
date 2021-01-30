@@ -96,7 +96,7 @@ export default {
                 axios({
                     method: "put", //you can set what request you want to be
                     url:
-                        "/api/addcharfromnodeadmin/" +
+                        "/api/addchartonodeadmin/" +
                         this.nodeItem.id +
                         "/" +
                         this.nodeItem.campaign_id,
