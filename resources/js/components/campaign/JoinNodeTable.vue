@@ -106,7 +106,8 @@ export default {
             dropdown_edit: [
                 { title: "New", value: 1 },
                 { title: "Warm up", value: 2 },
-                { title: "Hacking", value: 3 }
+                { title: "Hacking", value: 3 },
+                { title: "Pushed off", value: 6 }
             ],
             expanded: [],
             singleExpand: false
@@ -123,6 +124,9 @@ export default {
             }
             if (item.campaign_system_status_id == 3) {
                 return "green darken-3";
+            }
+            if (item.campaign_system_status_id == 6) {
+                return "FF5EEA";
             }
         },
 
@@ -163,7 +167,7 @@ export default {
                     campaign_system_status_id: item.status_id
                 };
             }
-            if (item.status_id == 4 || item.status_id == 5) {
+            if (item.status_id == 6) {
                 await this.deleteNode(item);
                 return;
             }
