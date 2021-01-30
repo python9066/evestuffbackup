@@ -30,7 +30,7 @@
                     </div>
                 </div>
             </template>
-            <template v-slot:item.satatusName="{ item }">
+            <template v-slot:item.Status="{ item }">
                 <v-menu offset-y>
                     <template v-slot:activator="{ on, attrs }">
                         <div>
