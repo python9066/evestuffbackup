@@ -91,7 +91,7 @@ export default {
                 {
                     text: "",
                     value: "charname",
-                    width: "25%",
+                    width: "20%",
                     align: "start"
                 },
 
@@ -110,25 +110,7 @@ export default {
                 {
                     text: "",
                     value: "statusName",
-                    width: "20%",
-                    align: "start"
-                },
-                {
-                    text: "",
-                    value: "a",
-                    width: "20%",
-                    align: "start"
-                },
-                {
-                    text: "",
-                    value: "a",
-                    width: "10%",
-                    align: "start"
-                },
-                {
-                    text: "",
-                    value: "a",
-                    width: "10%",
+                    width: "50%",
                     align: "start"
                 }
                 // { text: "", value: "actions", width: "5%", align: "center" },
