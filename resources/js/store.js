@@ -791,6 +791,14 @@ export default new Vuex.Store({
 
         getLoggingAdmin: state => campid => {
             return state.loggingcampaign.filter(log => log.campaign_sola_system_id == null && log.campaign_id == campid)
+        },
+
+        getNodeJoinByNode: state => sysid => {
+            return state.nodeJoin.filter(node => node.campaign_system_id == sysid)
+        },
+
+        getNodeJoinByNodeCount: state => sysid => {
+            return state.nodeJoin.filter(node => node.campaign_system_id == sysid).length
         }
 
     }
