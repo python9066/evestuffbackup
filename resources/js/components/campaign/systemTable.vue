@@ -294,7 +294,7 @@
                     :single-expand="singleExpand"
                     item-key="node"
                     disable-sort
-                    :expanded.sync="expanded"
+                    :expanded="expanded"
                     :item-class="itemRowBackground"
                     hide-default-footer
                     disable-pagination
