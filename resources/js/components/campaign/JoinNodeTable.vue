@@ -163,10 +163,9 @@ export default {
             }
         },
 
-        deleteNode(item) {
+        async deleteNode(item) {
             console.log(item);
             // await axios({
-
             //     method: "PUT", //you can set what request you want to be
             //     url: "/api/deleteextranode/" + item.id + "/" + this.campaign_id,
             //     headers: {
@@ -232,53 +231,50 @@ export default {
         },
 
         async statusClick(item) {
-            var request = [];
-
-            if (
-                item.status_id == 1 ||
-                item.status_id == 7 ||
-                item.status_id == 9 ||
-                item.status_id == 8
-            ) {
-                item.end = null;
-                this.removeCharNode(item);
-                item.user_name = null;
-                item.main_name = null;
-                return;
-            }
-            if (
-                item.status_id == 2 ||
-                item.status_id == 3 ||
-                item.status_id == 8 ||
-                item.status_id == 9 ||
-                item.status_id == 6
-            ) {
-                item.end = null;
-                request = {
-                    campaign_system_status_id: item.status_id,
-                    end_time: null
-                };
-            }
-            if (item.status_id == 4 || item.status_id == 5) {
-                await this.removeCharNode(item);
-                item.user_name = null;
-                item.main_name = null;
-                return;
-            }
-
-            await axios({
-                method: "put", //you can set what request you want to be
-                url: "/api/campaignsystems/" + item.id + "/" + this.campaign_id,
-                data: request,
-                headers: {
-                    Authorization: "Bearer " + this.$store.state.token,
-                    Accept: "application/json",
-                    "Content-Type": "application/json"
-                }
-            });
-
-            this.$store.dispatch("getCampaignSystemsRecords");
-            this.$store.dispatch("getCampaignUsersRecords", this.campaign_id);
+            // var request = [];
+            // if (
+            //     item.status_id == 1 ||
+            //     item.status_id == 7 ||
+            //     item.status_id == 9 ||
+            //     item.status_id == 8
+            // ) {
+            //     item.end = null;
+            //     this.removeCharNode(item);
+            //     item.user_name = null;
+            //     item.main_name = null;
+            //     return;
+            // }
+            // if (
+            //     item.status_id == 2 ||
+            //     item.status_id == 3 ||
+            //     item.status_id == 8 ||
+            //     item.status_id == 9 ||
+            //     item.status_id == 6
+            // ) {
+            //     item.end = null;
+            //     request = {
+            //         campaign_system_status_id: item.status_id,
+            //         end_time: null
+            //     };
+            // }
+            // if (item.status_id == 4 || item.status_id == 5) {
+            //     await this.removeCharNode(item);
+            //     item.user_name = null;
+            //     item.main_name = null;
+            //     return;
+            // }
+            // await axios({
+            //     method: "put", //you can set what request you want to be
+            //     url: "/api/campaignsystems/" + item.id + "/" + this.campaign_id,
+            //     data: request,
+            //     headers: {
+            //         Authorization: "Bearer " + this.$store.state.token,
+            //         Accept: "application/json",
+            //         "Content-Type": "application/json"
+            //     }
+            // });
+            // this.$store.dispatch("getCampaignSystemsRecords");
+            // this.$store.dispatch("getCampaignUsersRecords", this.campaign_id);
         }
     },
 
