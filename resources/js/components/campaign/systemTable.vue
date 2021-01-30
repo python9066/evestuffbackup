@@ -412,7 +412,6 @@
 
                     <template v-slot:expanded-item="{ headers, item }">
                         <td :colspan="headers.length" align="center">
-                            <JoinNodeTable></JoinNodeTable>
                             <!-- <div>
                                 <v-col class="align-center">
                                     <v-text-field
