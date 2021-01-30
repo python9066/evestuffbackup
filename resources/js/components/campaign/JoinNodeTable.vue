@@ -165,15 +165,15 @@ export default {
 
         async deleteNode(item) {
             console.log(item);
-            // await axios({
-            //     method: "PUT", //you can set what request you want to be
-            //     url: "/api/deleteextranode/" + item.id + "/" + this.campaign_id,
-            //     headers: {
-            //         Authorization: "Bearer " + this.$store.state.token,
-            //         Accept: "application/json",
-            //         "Content-Type": "application/json"
-            //     }
-            // });
+            await axios({
+                method: "PUT", //you can set what request you want to be
+                url: "/api/deleteextranode/" + item.id + "/" + item.campaign_id,
+                headers: {
+                    Authorization: "Bearer " + this.$store.state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                }
+            });
         },
 
         removeCharNode(item) {
