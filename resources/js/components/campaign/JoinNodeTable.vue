@@ -33,7 +33,7 @@ export default {
                 {
                     text: "Main",
                     value: "mainname",
-                    width: "10%",
+                    width: "5%",
                     align: "start"
                 },
                 { text: "Ship", value: "ship", width: "15%", align: "start" },
