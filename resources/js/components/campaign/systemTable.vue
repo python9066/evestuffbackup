@@ -1026,13 +1026,13 @@ export default {
                 item.status_id == 8
             ) {
                 request = {
-                    campaign_user_id: userId,
+                    campaign_user_id: null,
                     campaign_system_status_id: item.status_id,
                     end_time: null
                 };
             } else {
                 request = {
-                    campaign_user_id: userId
+                    campaign_user_id: null
                 };
             }
             console.log(request);
