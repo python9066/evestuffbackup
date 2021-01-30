@@ -93,7 +93,6 @@ export default {
                 {
                     text: "Main",
                     value: "mainname",
-                    width: "10%",
                     align: "start"
                 },
                 { text: "Ship", value: "ship", width: "10%", align: "start" },
