@@ -87,7 +87,6 @@ export default {
                 {
                     text: "Pilot",
                     value: "charname",
-                    width: "50%",
                     align: "start"
                 },
                 {
@@ -95,14 +94,18 @@ export default {
                     value: "mainname",
                     align: "start"
                 },
-                { text: "Ship", value: "ship", width: "10%", align: "start" },
+                {
+                    text: "Ship",
+                    value: "ship",
+                    align: "start"
+                },
                 {
                     text: "Status",
                     value: "statusName",
                     width: "30%",
                     align: "center"
                 },
-                { text: "", value: "actions", width: "10%", align: "end" }
+                { text: "", value: "actions", align: "end" }
             ],
 
             dropdown_edit: [
