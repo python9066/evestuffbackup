@@ -46,6 +46,7 @@ export default {
         ...mapGetters(["getNodeJoinByNode", "getNodeJoinByNodeCount"]),
 
         filteredItems() {
+            console.log(sysid);
             return this.getNodeJoinByNode(this.sysid);
         }
     }
