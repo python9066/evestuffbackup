@@ -799,6 +799,10 @@ export default new Vuex.Store({
 
         getNodeJoinByNodeCount: state => sysid => {
             return state.nodeJoin.filter(node => node.campaign_system_id == sysid).length
+        },
+
+        getSystemTableExpandable: state => payload => {
+            return state.campaignsystems.filter(node => node.system_id == payload.system_id && node.campaign_id == payload.campid && node.node_join_count > 0)
         }
 
     }

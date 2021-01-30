@@ -295,7 +295,7 @@
                     item-key="node"
                     show-expand
                     disable-sort
-                    :expanded.sync="expanded"
+                    :expanded.sync="Expandable"
                     :item-class="itemRowBackground"
                     hide-default-footer
                     disable-pagination
@@ -1099,7 +1099,8 @@ export default {
             "getSystemOnTheWayCount",
             "getCampaignUsersReadyToGoAll",
             "getCampaignUsersOnTheWayAll",
-            "getCampaignUsersByUserIdEntosisFreeCount"
+            "getCampaignUsersByUserIdEntosisFreeCount",
+            "getSystemTableExpandable"
         ]),
 
         fabOnTheWayDisbale() {
@@ -1275,6 +1276,14 @@ export default {
             return this.getCampaignUsersByUserIdEntosisFreeCount(
                 this.$store.state.user_id
             );
+        },
+
+        Expandable() {
+            let payload = {
+                system_id: this.system_id,
+                campid: this.campaign_id
+            };
+            return this.getSystemTableExpandable(payload);
         }
     }
 };
