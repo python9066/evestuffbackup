@@ -294,7 +294,7 @@
                     :single-expand="singleExpand"
                     item-key="node"
                     disable-sort
-                    :expanded.sync="Expandable"
+                    :expanded.sync="expanded"
                     :item-class="itemRowBackground"
                     hide-default-footer
                     disable-pagination
@@ -575,11 +575,35 @@ export default {
             singleExpand: false,
             charAddNode: null,
             noteText: "",
-            test1: ""
+            test1: "",
+            expanded: []
         };
     },
 
+    async created() {
+        Echo.listen("CampaignSystemUpdate", e => {
+            if (e.flag.flag == 3) {
+                this.setExpand;
+            }
+        });
+    },
+
+    async mounted() {
+        await this.setExpand;
+    },
+
     methods: {
+        setExpand() {
+            let payload = {
+                system_id: this.system_id,
+                campid: this.campaign_id
+            };
+            this.expanded = this.$store.dispatch(
+                "getSystemTableExpandable",
+                payload
+            );
+        },
+
         pillOutlined(item) {
             if (item.status_id == 7 || item.status_id == 9) {
                 return false;
@@ -921,7 +945,6 @@ export default {
             }
         },
         updatetext(item) {
-            this.expanded = [];
             this.noteText = this.noteText + "\n";
             if (item.notes == null) {
                 var note = this.$store.state.user_name + ": " + this.noteText;
@@ -1275,13 +1298,7 @@ export default {
             );
         },
 
-        Expandable() {
-            let payload = {
-                system_id: this.system_id,
-                campid: this.campaign_id
-            };
-            return this.getSystemTableExpandable(payload);
-        }
+        Expandable() {}
     }
 };
 </script>
