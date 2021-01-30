@@ -409,7 +409,7 @@
                     </template>
 
                     <template v-slot:expanded-item="{ headers, item }">
-                        <td :colspan="6" align="start">
+                        <td :colspan="5" align="start">
                             <JoinNodeTable
                                 :sysid="item.id"
                                 v-if="$can('super')"
