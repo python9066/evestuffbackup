@@ -293,14 +293,12 @@
                     :items="filteredItems"
                     :single-expand="singleExpand"
                     item-key="node"
-                    show-expand
                     disable-sort
                     :expanded.sync="Expandable"
                     :item-class="itemRowBackground"
                     hide-default-footer
                     disable-pagination
                     class="elevation-12"
-                    expand-icon="fas fa-pen green--text"
                 >
                     >
 
