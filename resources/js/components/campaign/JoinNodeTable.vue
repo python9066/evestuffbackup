@@ -148,7 +148,6 @@ export default {
         },
 
         async deleteNode(item) {
-            console.log(item);
             await axios({
                 method: "PUT", //you can set what request you want to be
                 url: "/api/deleteextranode/" + item.id + "/" + item.campaign_id,
@@ -172,7 +171,7 @@ export default {
                 return;
             }
             await axios({
-                method: "put", //you can set what request you want to be
+                method: "post", //you can set what request you want to be
                 url: "/api/nodejoin/" + item.id + "/" + item.campaign_id,
                 data: request,
                 headers: {
