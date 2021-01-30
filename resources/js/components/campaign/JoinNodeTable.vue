@@ -41,7 +41,7 @@
                                 small
                                 :color="pillColor(item)"
                             >
-                                {{ item.satatusName }}
+                                {{ item.statusName }}
                             </v-chip>
                         </div>
                     </template>
@@ -52,7 +52,7 @@
                             :key="index"
                             @click="
                                 (item.campaign_system_status_id = list.value),
-                                    (item.satatusName = list.title),
+                                    (item.statusName = list.title),
                                     statusClick(item)
                             "
                         >
@@ -174,7 +174,7 @@ export default {
             //     id: userId,
             //     node_id: null,
             //     campaign_system_status_id: 3,
-            //     user_satatusName: "Ready to go"
+            //     user_statusName: "Ready to go"
             // };
             // if (userId != null) {
             //     this.$store.dispatch("updateCampaignUsers", data);
