@@ -54,10 +54,7 @@
                         </v-list>
                     </v-menu>
                     <v-icon
-                        v-if="
-                            item.campaign_system_status_id != 4 &&
-                                item.campaign_system_status_id != 5
-                        "
+                        class=" pl-4"
                         color="orange darken-3"
                         small
                         @click="deleteNode(item)"
@@ -119,15 +116,15 @@ export default {
                     text: "",
                     value: "statusName",
                     width: "5%",
-                    align: "center"
-                },
-                { text: "", value: "actions", width: "5%", align: "center" },
-                {
-                    text: "",
-                    value: "b",
-                    width: "5%",
                     align: "start"
                 }
+                // { text: "", value: "actions", width: "5%", align: "center" },
+                // {
+                //     text: "",
+                //     value: "b",
+                //     width: "5%",
+                //     align: "start"
+                // }
             ],
 
             dropdown_edit: [
