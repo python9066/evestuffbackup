@@ -68,6 +68,11 @@
                     {{ item.ship }} - T{{ item.link }}
                 </span>
             </template>
+            <template v-slot:item.a="{ item }" class=" pl-0">
+                <span v-if="item.charname != null">
+                    LALALALALAL
+                </span>
+            </template>
         </v-data-table>
     </div>
 </template>
@@ -91,13 +96,7 @@ export default {
                 {
                     text: "",
                     value: "charname",
-                    width: "10%",
-                    align: "start"
-                },
-                {
-                    text: "",
-                    value: "a",
-                    width: "5%",
+                    width: "20%",
                     align: "start"
                 },
 
