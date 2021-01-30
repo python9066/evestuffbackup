@@ -87,6 +87,8 @@ export default {
         },
 
         addChar(item) {
+            console.log(nodeItem);
+            console.log(item);
             if (this.nodeItem.custom_campaign_id == null) {
                 var data = {
                     id: this.nodeItem.id,
@@ -101,7 +103,7 @@ export default {
                 var request = {
                     campaign_user_id: item.id
                 };
-                this.$store.dispatch("updateCampaignSystem", data);
+                // this.$store.dispatch("updateCampaignSystem", data);
 
                 data = null;
                 data = {
@@ -119,37 +121,37 @@ export default {
                     system_id: this.nodeItem.system_id,
                     status_id: 4
                 };
-                this.$store.dispatch("updateCampaignUsers", data);
+                // this.$store.dispatch("updateCampaignUsers", data);
 
-                axios({
-                    method: "put", //you can set what request you want to be
-                    url:
-                        "/api/campaignsystems/" +
-                        this.nodeItem.id +
-                        "/" +
-                        this.nodeItem.campaign_id,
-                    data: request,
-                    headers: {
-                        Authorization: "Bearer " + this.$store.state.token,
-                        Accept: "application/json",
-                        "Content-Type": "application/json"
-                    }
-                });
+                // axios({
+                //     method: "put", //you can set what request you want to be
+                //     url:
+                //         "/api/campaignsystems/" +
+                //         this.nodeItem.id +
+                //         "/" +
+                //         this.nodeItem.campaign_id,
+                //     data: request,
+                //     headers: {
+                //         Authorization: "Bearer " + this.$store.state.token,
+                //         Accept: "application/json",
+                //         "Content-Type": "application/json"
+                //     }
+                // });
 
-                axios({
-                    method: "put", //you can set what request you want to be
-                    url:
-                        "/api/campaignusers/" +
-                        item.id +
-                        "/" +
-                        this.nodeItem.campaign_id,
-                    data: request1,
-                    headers: {
-                        Authorization: "Bearer " + this.$store.state.token,
-                        Accept: "application/json",
-                        "Content-Type": "application/json"
-                    }
-                });
+                // axios({
+                //     method: "put", //you can set what request you want to be
+                //     url:
+                //         "/api/campaignusers/" +
+                //         item.id +
+                //         "/" +
+                //         this.nodeItem.campaign_id,
+                //     data: request1,
+                //     headers: {
+                //         Authorization: "Bearer " + this.$store.state.token,
+                //         Accept: "application/json",
+                //         "Content-Type": "application/json"
+                //     }
+                // });
             }
             // else {
             //     var data = {
