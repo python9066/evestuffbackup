@@ -87,7 +87,7 @@ export default {
         },
 
         addChar(item) {
-            console.log(nodeItem);
+            console.log(this.nodeItem);
             console.log(item);
             if (this.nodeItem.custom_campaign_id == null) {
                 var data = {
