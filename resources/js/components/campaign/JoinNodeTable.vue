@@ -38,6 +38,7 @@
                                 v-bind="attrs"
                                 v-on="on"
                                 pill
+                                outlined
                                 small
                                 :color="pillColor(item)"
                             >
