@@ -96,6 +96,12 @@ export default {
                 },
                 {
                     text: "",
+                    value: "a",
+                    width: "5%",
+                    align: "start"
+                },
+                {
+                    text: "",
                     value: "mainname",
                     width: "10%",
                     align: "start"
