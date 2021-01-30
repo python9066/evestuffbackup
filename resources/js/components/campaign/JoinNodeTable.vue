@@ -51,7 +51,7 @@
                             v-for="(list, index) in dropdown_edit"
                             :key="index"
                             @click="
-                                (item.status_id = list.value),
+                                (item.campaign_system_status_id = list.value),
                                     (item.satatusName = list.title),
                                     statusClick(item)
                             "
@@ -65,7 +65,7 @@
             </template>
             <template v-slot:item.ship="{ item }">
                 <span v-if="item.charname != null">
-                    {{ item.ship }} - T{{ item.user_link }}
+                    {{ item.ship }} - T{{ item.link }}
                 </span>
             </template>
         </v-data-table>
@@ -118,28 +118,31 @@ export default {
 
     methods: {
         pillColor(item) {
-            if (item.status_id == 1) {
+            if (item.campaign_system_status_id == 1) {
                 return "deep-orange lighten-1";
             }
-            if (item.status_id == 2) {
+            if (item.campaign_system_status_id == 2) {
                 return "lime darken-4";
             }
-            if (item.status_id == 3 || item.status_id == 8) {
+            if (
+                item.campaign_system_status_id == 3 ||
+                item.campaign_system_status_id == 8
+            ) {
                 return "green darken-3";
             }
-            if (item.status_id == 4) {
+            if (item.campaign_system_status_id == 4) {
                 return "green accent-4";
             }
-            if (item.status_id == 5) {
+            if (item.campaign_system_status_id == 5) {
                 return "red darken-4";
             }
-            if (item.status_id == 6) {
+            if (item.campaign_system_status_id == 6) {
                 return "#FF5EEA";
             }
-            if (item.status_id == 7) {
+            if (item.campaign_system_status_id == 7) {
                 return "#801916";
             }
-            if (item.status_id == 9) {
+            if (item.campaign_system_status_id == 9) {
                 return "#9C9C9C";
             }
         },
@@ -148,10 +151,10 @@ export default {
             if (
                 item.charname != null &&
                 this.charCount != 0 &&
-                item.status_id != 4 &&
-                item.status_id != 5 &&
-                item.status_id != 7 &&
-                item.status_id != 8
+                item.campaign_system_status_id != 4 &&
+                item.campaign_system_status_id != 5 &&
+                item.campaign_system_status_id != 7 &&
+                item.campaign_system_status_id != 8
             ) {
                 return true;
             } else if (this.$can("campaigns_admin_access")) {
@@ -165,32 +168,32 @@ export default {
             // var userId = item.user_id;
             // item.user_id = null;
             // item.ship = null;
-            // item.user_link = null;
+            // item.link = null;
             // this.$store.dispatch("updateCampaignSystem", item);
             // var data = {
             //     id: userId,
             //     node_id: null,
-            //     status_id: 3,
+            //     campaign_system_status_id: 3,
             //     user_satatusName: "Ready to go"
             // };
             // if (userId != null) {
             //     this.$store.dispatch("updateCampaignUsers", data);
             // }
             // var request = null;
-            // if (item.status_id == 4 || item.status_id == 5) {
+            // if (item.campaign_system_status_id == 4 || item.campaign_system_status_id == 5) {
             //     request = {
             //         campaign_user_id: null,
-            //         campaign_system_status_id: item.status_id
+            //         campaign_system_campaign_system_status_id: item.campaign_system_status_id
             //     };
             // } else if (
-            //     item.status_id == 1 ||
-            //     item.status_id == 7 ||
-            //     item.status_id == 9 ||
-            //     item.status_id == 8
+            //     item.campaign_system_status_id == 1 ||
+            //     item.campaign_system_status_id == 7 ||
+            //     item.campaign_system_status_id == 9 ||
+            //     item.campaign_system_status_id == 8
             // ) {
             //     request = {
             //         campaign_user_id: null,
-            //         campaign_system_status_id: item.status_id,
+            //         campaign_system_campaign_system_status_id: item.campaign_system_status_id,
             //         end_time: null
             //     };
             // } else {
