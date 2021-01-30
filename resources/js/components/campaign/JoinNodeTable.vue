@@ -6,6 +6,7 @@
             item-key="node"
             disable-sort
             hide-default-footer
+            :hide-default-header="true"
             disable-pagination
             class="elevation-12"
         >
