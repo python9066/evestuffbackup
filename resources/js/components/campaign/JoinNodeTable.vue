@@ -89,20 +89,20 @@ export default {
                     align: "start"
                 },
                 {
-                    text: "",
+                    text: "Pilot",
                     value: "charname",
                     width: "20%",
                     align: "start"
                 },
 
                 {
-                    text: "",
+                    text: "Main",
                     value: "mainname",
                     width: "10%",
                     align: "center"
                 },
                 {
-                    text: "",
+                    text: "Ship",
                     value: "ship",
                     width: "15%",
                     align: "start"
