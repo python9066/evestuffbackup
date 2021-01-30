@@ -98,8 +98,8 @@ class NodeJoinsController extends Controller
                 ];
                 array_push($nodeJoin, $pull);
             };
-            return ["nodeJoin" => $nodeJoin];
         }
+        return ["nodeJoin" => $nodeJoin];
     }
 
     /**
