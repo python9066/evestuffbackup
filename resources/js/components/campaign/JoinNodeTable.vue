@@ -8,7 +8,7 @@
             hide-default-footer
             :hide-default-header="true"
             disable-pagination
-            class="elevation-12"
+            class="elevation-12 pl-15"
         >
         </v-data-table>
     </div>
@@ -36,7 +36,7 @@ export default {
                     width: "10%",
                     align: "start"
                 },
-                { text: "Ship", value: "ship,", width: "15%", align: "start" },
+                { text: "Ship", value: "ship", width: "15%", align: "start" },
                 {
                     text: "Status",
                     value: "statusName",
