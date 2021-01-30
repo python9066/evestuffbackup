@@ -71,7 +71,7 @@ class NodeJoinsController extends Controller
         $count = $CampaignSystem->node_join_count - 1;
         $CampaignSystem->update(['node_join_count' => $count]);
         $CampaignUser = CampaignUser::where('id', $node->campaign_user_id)->first();
-        $CampaignUser->update(['site_id' => null, 'status_id' => 3]);
+        $CampaignUser->update(['campaign_system_id' => null, 'status_id' => 3]);
         $node->delete();
         $flag = collect([
             'flag' => 3,
