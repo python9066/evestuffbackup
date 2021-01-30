@@ -8,7 +8,7 @@
             hide-default-footer
             :hide-default-header="true"
             disable-pagination
-            class="elevation-12 pl-15"
+            class="pl-15"
         >
         </v-data-table>
     </div>
