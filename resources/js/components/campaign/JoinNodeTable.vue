@@ -61,16 +61,16 @@
                     >
                         fas fa-trash-alt
                     </v-icon>
+                    <div>
+                        <span class=" text--1e1e1e">
+                            HEDFJUIOEFHUIWEAHFUEIWOHFUEIWOHFUIWEOHFUEWIOHFUEWI
+                        </span>
+                    </div>
                 </div>
             </template>
             <template v-slot:item.ship="{ item }" class=" pl-0">
                 <span v-if="item.charname != null">
                     {{ item.ship }} - T{{ item.link }}
-                </span>
-            </template>
-            <template v-slot:item.a="{ item }" class=" pl-0">
-                <span v-if="item.charname != null">
-                    LALALALALAL
                 </span>
             </template>
         </v-data-table>
