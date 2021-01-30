@@ -15,18 +15,6 @@
                 <div class=" d-inline-flex align-items-center">
                     <div class=" d-inline-flex align-items-center">
                         {{ item.charname }}
-                        <v-btn
-                            v-if="checkShowAddRemove(item)"
-                            icon
-                            @click="
-                                (item.charname = null),
-                                    (item.main_name = null),
-                                    removeCharNode(item)
-                            "
-                            color="orange darken-3"
-                        >
-                            <v-icon small>fas fa-trash-alt</v-icon></v-btn
-                        >
                     </div>
                 </div>
             </template>
