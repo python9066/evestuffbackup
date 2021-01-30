@@ -111,7 +111,7 @@ export default {
                 {
                     text: "Status",
                     value: "statusName",
-                    width: "20%",
+                    width: "5%",
                     align: "start"
                 },
                 { text: "", value: "actions", width: "20%", align: "start" },
