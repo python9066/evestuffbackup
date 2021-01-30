@@ -85,6 +85,12 @@ export default {
         return {
             headers: [
                 {
+                    text: "",
+                    value: "a",
+                    width: "20%",
+                    align: "start"
+                },
+                {
                     text: "Pilot",
                     value: "charname",
                     width: "20%",
@@ -108,7 +114,13 @@ export default {
                     width: "20%",
                     align: "start"
                 },
-                { text: "", value: "actions", width: "20%", align: "start" }
+                { text: "", value: "actions", width: "20%", align: "start" },
+                {
+                    text: "",
+                    value: "b",
+                    width: "20%",
+                    align: "start"
+                }
             ],
 
             dropdown_edit: [
