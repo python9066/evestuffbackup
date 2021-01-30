@@ -9,7 +9,7 @@
             dense
             hide-default-footer
             disable-pagination
-            class=" ml-15"
+            class=""
         >
             <template v-slot:item.charname="{ item }">
                 <div class=" d-inline-flex align-items-center">
