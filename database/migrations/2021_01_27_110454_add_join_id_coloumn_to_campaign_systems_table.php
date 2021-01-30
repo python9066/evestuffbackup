@@ -14,7 +14,7 @@ class AddJoinIdColoumnToCampaignSystemsTable extends Migration
     public function up()
     {
         Schema::table('campaign_systems', function (Blueprint $table) {
-            $table->foreignId('node_join_id')->nullable()->after('id');
+            $table->foreignId('node_join_count')->default(0)->after('id');
         });
     }
 
