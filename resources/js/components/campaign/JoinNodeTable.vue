@@ -11,15 +11,15 @@
             disable-pagination
             class="pl-15"
         >
-            <template v-slot:item.user_name="{ item }">
+            <template v-slot:item.charname="{ item }">
                 <div class=" d-inline-flex align-items-center">
                     <div class=" d-inline-flex align-items-center">
-                        {{ item.user_name }}
+                        {{ item.charname }}
                         <v-btn
                             v-if="checkShowAddRemove(item)"
                             icon
                             @click="
-                                (item.user_name = null),
+                                (item.charname = null),
                                     (item.main_name = null),
                                     removeCharNode(item)
                             "
@@ -39,7 +39,7 @@
                     ></AdminHack>
                 </div>
             </template>
-            <template v-slot:item.status_name="{ item }">
+            <template v-slot:item.satatusName="{ item }">
                 <v-menu offset-y>
                     <template v-slot:activator="{ on, attrs }">
                         <div>
@@ -50,7 +50,7 @@
                                 small
                                 :color="pillColor(item)"
                             >
-                                {{ item.status_name }}
+                                {{ item.satatusName }}
                             </v-chip>
                         </div>
                     </template>
@@ -61,7 +61,7 @@
                             :key="index"
                             @click="
                                 (item.status_id = list.value),
-                                    (item.status_name = list.title),
+                                    (item.satatusName = list.title),
                                     statusClick(item)
                             "
                         >
@@ -72,9 +72,9 @@
                     </v-list>
                 </v-menu>
             </template>
-            <template v-slot:item.user_ship="{ item }">
-                <span v-if="item.user_name != null">
-                    {{ item.user_ship }} - T{{ item.user_link }}
+            <template v-slot:item.ship="{ item }">
+                <span v-if="item.charname != null">
+                    {{ item.ship }} - T{{ item.user_link }}
                 </span>
             </template>
         </v-data-table>
@@ -155,7 +155,7 @@ export default {
 
         checkShowAddRemove(item) {
             if (
-                item.user_name != null &&
+                item.charname != null &&
                 this.charCount != 0 &&
                 item.status_id != 4 &&
                 item.status_id != 5 &&
@@ -173,14 +173,14 @@ export default {
         removeCharNode(item) {
             // var userId = item.user_id;
             // item.user_id = null;
-            // item.user_ship = null;
+            // item.ship = null;
             // item.user_link = null;
             // this.$store.dispatch("updateCampaignSystem", item);
             // var data = {
             //     id: userId,
             //     node_id: null,
             //     status_id: 3,
-            //     user_status_name: "Ready to go"
+            //     user_satatusName: "Ready to go"
             // };
             // if (userId != null) {
             //     this.$store.dispatch("updateCampaignUsers", data);
