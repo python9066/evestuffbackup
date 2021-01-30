@@ -19,7 +19,7 @@
                 </div>
             </template>
             <template v-slot:item.statusName="{ item }">
-                <div class=" d-inline-flex align-items-center">
+                <div class=" d-inline-flex  align-content-space-between">
                     <v-menu offset-y>
                         <template v-slot:activator="{ on, attrs }">
                             <div>
