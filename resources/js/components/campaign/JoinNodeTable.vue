@@ -1,6 +1,7 @@
 <template>
     <div>
         <v-data-table
+            v-if="showTable"
             :headers="headers"
             :items="filteredItems"
             item-key="node"
@@ -59,6 +60,14 @@ export default {
         filteredItems() {
             console.log(this.sysid);
             return this.getNodeJoinByNode(this.sysid);
+        },
+
+        showTable() {
+            if (this.getNodeJoinByNodeCount(this.sysid) > 0) {
+                return true;
+            } else {
+                return false;
+            }
         }
     }
 };
