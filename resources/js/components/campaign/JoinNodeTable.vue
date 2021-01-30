@@ -87,44 +87,44 @@ export default {
                 {
                     text: "",
                     value: "a",
-                    width: "12%",
+                    width: "5%",
                     align: "start"
                 },
                 {
                     text: "Pilot",
                     value: "charname",
-                    width: "12%",
+                    width: "5%",
                     align: "start"
                 },
                 {
                     text: "",
                     value: "a",
-                    width: "12%",
+                    width: "20%",
                     align: "start"
                 },
                 {
                     text: "Main",
                     value: "mainname",
-                    width: "12%",
+                    width: "5%",
                     align: "start"
                 },
                 {
                     text: "Ship",
                     value: "ship",
-                    width: "12%",
+                    width: "5%",
                     align: "start"
                 },
                 {
                     text: "Status",
                     value: "statusName",
-                    width: "12%",
+                    width: "5%",
                     align: "center"
                 },
-                { text: "", value: "actions", width: "12%", align: "center" },
+                { text: "", value: "actions", width: "5%", align: "center" },
                 {
                     text: "",
                     value: "b",
-                    width: "12%",
+                    width: "5%",
                     align: "start"
                 }
             ],
