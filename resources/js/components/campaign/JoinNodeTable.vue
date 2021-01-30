@@ -1,6 +1,7 @@
 <template>
     <div>
         <v-data-table
+            :headers="headers"
             :items="filteredItems"
             item-key="node"
             disable-sort
