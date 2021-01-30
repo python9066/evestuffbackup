@@ -91,7 +91,7 @@ export default {
                     align: "start"
                 },
                 {
-                    text: "Pilot",
+                    text: "",
                     value: "charname",
                     width: "5%",
                     align: "start"
@@ -103,19 +103,19 @@ export default {
                     align: "start"
                 },
                 {
-                    text: "Main",
+                    text: "",
                     value: "mainname",
                     width: "5%",
                     align: "start"
                 },
                 {
-                    text: "Ship",
+                    text: "",
                     value: "ship",
                     width: "5%",
                     align: "start"
                 },
                 {
-                    text: "Status",
+                    text: "",
                     value: "statusName",
                     width: "5%",
                     align: "center"
