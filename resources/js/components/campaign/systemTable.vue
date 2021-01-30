@@ -575,7 +575,7 @@ export default {
             nodeText: "",
             addShown: false,
             expanded: [],
-            singleExpand: true,
+            singleExpand: false,
             charAddNode: null,
             noteText: "",
             test1: ""
