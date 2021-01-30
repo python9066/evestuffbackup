@@ -575,38 +575,15 @@ export default {
             singleExpand: false,
             charAddNode: null,
             noteText: "",
-            test1: "",
-            expanded: []
+            test1: ""
         };
     },
 
-    async created() {
-        Echo.private("campaignsystem." + this.campaign_id).listen(
-            "CampaignSystemUpdate",
-            e => {
-                if (e.flag.flag == 3) {
-                    this.setExpand;
-                }
-            }
-        );
-    },
+    async created() {},
 
-    async mounted() {
-        await this.setExpand;
-    },
+    async mounted() {},
 
     methods: {
-        setExpand() {
-            let payload = {
-                system_id: this.system_id,
-                campid: this.campaign_id
-            };
-            this.expanded = this.$store.dispatch(
-                "getSystemTableExpandable",
-                payload
-            );
-        },
-
         pillOutlined(item) {
             if (item.status_id == 7 || item.status_id == 9) {
                 return false;
@@ -1301,7 +1278,13 @@ export default {
             );
         },
 
-        Expandable() {}
+        expanded() {
+            let payload = {
+                system_id: this.system_id,
+                campid: this.campaign_id
+            };
+            return this.getSystemTableExpandable(payload);
+        }
     }
 };
 </script>
