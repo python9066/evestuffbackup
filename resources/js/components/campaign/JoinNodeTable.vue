@@ -50,18 +50,18 @@
                             }}</v-list-item-title>
                         </v-list-item>
                     </v-list>
-                    <v-icon
-                        v-if="
-                            item.campaign_system_status_id != 4 &&
-                                item.campaign_system_status_id != 5
-                        "
-                        color="orange darken-3"
-                        small
-                        @click="deleteNode(item)"
-                    >
-                        fas fa-trash-alt
-                    </v-icon>
                 </v-menu>
+                <v-icon
+                    v-if="
+                        item.campaign_system_status_id != 4 &&
+                            item.campaign_system_status_id != 5
+                    "
+                    color="orange darken-3"
+                    small
+                    @click="deleteNode(item)"
+                >
+                    fas fa-trash-alt
+                </v-icon>
             </template>
             <template v-slot:item.ship="{ item }">
                 <span v-if="item.charname != null">
