@@ -87,7 +87,7 @@ export default {
                 {
                     text: "Pilot",
                     value: "charname",
-                    width: "35%",
+                    width: "50%",
                     align: "start"
                 },
                 {
@@ -100,7 +100,7 @@ export default {
                 {
                     text: "Status",
                     value: "statusName",
-                    width: "35%",
+                    width: "30%",
                     align: "center"
                 },
                 { text: "", value: "actions", width: "10%", align: "end" }
