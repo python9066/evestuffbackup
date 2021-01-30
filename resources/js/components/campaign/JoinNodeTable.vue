@@ -63,7 +63,7 @@
                     </v-icon>
                 </div>
             </template>
-            <template v-slot:item.ship="{ item }">
+            <template v-slot:item.ship="{ item }" class=" pl-0">
                 <span v-if="item.charname != null">
                     {{ item.ship }} - T{{ item.link }}
                 </span>
