@@ -2,7 +2,6 @@
     <div>
         <v-data-table
             :items="filteredItems"
-            :single-expand="singleExpand"
             item-key="node"
             disable-sort
             hide-default-footer
