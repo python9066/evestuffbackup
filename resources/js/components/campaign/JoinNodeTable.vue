@@ -24,11 +24,26 @@ export default {
     data() {
         return {
             headers: [
-                { text: "Pilot", value: "charname" },
-                { text: "Main", value: "mainname" },
-                { text: "Ship", value: "ship" },
-                { text: "Status", value: "statusName" },
-                { text: "", value: "actions" }
+                {
+                    text: "Pilot",
+                    value: "charname",
+                    width: "25%",
+                    align: "start"
+                },
+                {
+                    text: "Main",
+                    value: "mainname",
+                    width: "10%",
+                    align: "start"
+                },
+                { text: "Ship", value: "ship,", width: "15%", align: "start" },
+                {
+                    text: "Status",
+                    value: "statusName",
+                    width: "20%",
+                    align: "center"
+                },
+                { text: "", value: "actions", width: "5%", align: "end" }
             ]
         };
     },
