@@ -412,7 +412,7 @@
 
                     <template v-slot:expanded-item="{ headers, item }">
                         <td :colspan="headers.length" align="center">
-                            <div>
+                            <!-- <div>
                                 <v-col class="align-center">
                                     <v-text-field
                                         v-model="noteText"
@@ -434,7 +434,7 @@
                                         v-model="item.notes"
                                     ></v-textarea>
                                 </v-col>
-                            </div>
+                            </div> -->
                         </td>
                     </template>
                     <template v-slot:item.actions="{ item }">
@@ -936,8 +936,6 @@ export default {
             let request = {
                 notes: note
             };
-            // console.log(item);
-            // console.log(item);
             this.$store.dispatch("updateCampaignSystem", item);
             axios({
                 method: "put", //you can set what request you want to be
@@ -1048,35 +1046,6 @@ export default {
                     "Content-Type": "application/json"
                 }
             });
-
-            // axios({
-            //     method: "PUT", //you can set what request you want to be
-            //     url: "/api/campaignsystems/" + item.id + "/" + this.campaign_id,
-            //     data: request,
-            //     headers: {
-            //         Authorization: "Bearer " + this.$store.state.token,
-            //         Accept: "application/json",
-            //         "Content-Type": "application/json"
-            //     }
-            // });
-
-            // var request1 = {
-            //     campaign_system_id: null,
-            //     status_id: 3
-            // };
-            // if (userId != null) {
-            //     axios({
-            //         method: "PUT", //you can set what request you want to be
-            //         url:
-            //             "/api/campaignusers/" + userId + "/" + this.campaign_id,
-            //         data: request1,
-            //         headers: {
-            //             Authorization: "Bearer " + this.$store.state.token,
-            //             Accept: "application/json",
-            //             "Content-Type": "application/json"
-            //         }
-            //     });
-            // }
         },
 
         async removeReadyToGoOnTheWay(item) {
