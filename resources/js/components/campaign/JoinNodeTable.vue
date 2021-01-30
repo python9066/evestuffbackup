@@ -91,7 +91,7 @@ export default {
                 {
                     text: "",
                     value: "charname",
-                    width: "20%",
+                    width: "10%",
                     align: "start"
                 },
 
