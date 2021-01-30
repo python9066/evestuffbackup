@@ -9,7 +9,7 @@
             hide-default-footer
             :hide-default-header="true"
             disable-pagination
-            class=""
+            class=" mr-2"
         >
             <template v-slot:item.charname="{ item }">
                 <div class=" d-inline-flex align-items-center">
