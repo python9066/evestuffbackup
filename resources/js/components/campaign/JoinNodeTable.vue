@@ -59,7 +59,10 @@
             </template>
             <template v-slot:item.actions="{ item }">
                 <v-icon
-                    v-if="item.status_id != 4 && item.status_id != 5"
+                    v-if="
+                        item.campaign_system_status_id != 4 &&
+                            item.campaign_system_status_id != 5
+                    "
                     color="orange darken-3"
                     small
                     @click="deleteNode(item)"
@@ -161,12 +164,15 @@ export default {
 
         async statusClick(item) {
             var request = [];
-            if (item.status_id == 2 || item.status_id == 3) {
+            if (
+                item.campaign_system_status_id == 2 ||
+                item.campaign_system_status_id == 3
+            ) {
                 request = {
-                    campaign_system_status_id: item.status_id
+                    campaign_system_status_id: item.campaign_system_status_id
                 };
             }
-            if (item.status_id == 6) {
+            if (item.campaign_system_status_id == 6) {
                 await this.deleteNode(item);
                 return;
             }
