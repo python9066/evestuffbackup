@@ -164,9 +164,14 @@ class NodeJoinsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id, $campid)
     {
-        //
+        NodeJoin::where('id', $id)->update($request->all());
+
+        $flag = collect([
+            'flag' => 3,
+            'id' => $campid
+        ]);
     }
 
     /**

@@ -106,9 +106,7 @@ export default {
             dropdown_edit: [
                 { title: "New", value: 1 },
                 { title: "Warm up", value: 2 },
-                { title: "Hacking", value: 3 },
-                { title: "Friendly Hacking", value: 8 },
-                { title: "Pushed off", value: 6 }
+                { title: "Hacking", value: 3 }
             ],
             expanded: [],
             singleExpand: false
@@ -123,26 +121,8 @@ export default {
             if (item.campaign_system_status_id == 2) {
                 return "lime darken-4";
             }
-            if (
-                item.campaign_system_status_id == 3 ||
-                item.campaign_system_status_id == 8
-            ) {
+            if (item.campaign_system_status_id == 3) {
                 return "green darken-3";
-            }
-            if (item.campaign_system_status_id == 4) {
-                return "green accent-4";
-            }
-            if (item.campaign_system_status_id == 5) {
-                return "red darken-4";
-            }
-            if (item.campaign_system_status_id == 6) {
-                return "#FF5EEA";
-            }
-            if (item.campaign_system_status_id == 7) {
-                return "#801916";
-            }
-            if (item.campaign_system_status_id == 9) {
-                return "#9C9C9C";
             }
         },
 
@@ -176,105 +156,27 @@ export default {
             });
         },
 
-        removeCharNode(item) {
-            // var userId = item.user_id;
-            // item.user_id = null;
-            // item.ship = null;
-            // item.link = null;
-            // this.$store.dispatch("updateCampaignSystem", item);
-            // var data = {
-            //     id: userId,
-            //     node_id: null,
-            //     campaign_system_status_id: 3,
-            //     user_statusName: "Ready to go"
-            // };
-            // if (userId != null) {
-            //     this.$store.dispatch("updateCampaignUsers", data);
-            // }
-            // var request = null;
-            // if (item.campaign_system_status_id == 4 || item.campaign_system_status_id == 5) {
-            //     request = {
-            //         campaign_user_id: null,
-            //         campaign_system_campaign_system_status_id: item.campaign_system_status_id
-            //     };
-            // } else if (
-            //     item.campaign_system_status_id == 1 ||
-            //     item.campaign_system_status_id == 7 ||
-            //     item.campaign_system_status_id == 9 ||
-            //     item.campaign_system_status_id == 8
-            // ) {
-            //     request = {
-            //         campaign_user_id: null,
-            //         campaign_system_campaign_system_status_id: item.campaign_system_status_id,
-            //         end_time: null
-            //     };
-            // } else {
-            //     request = {
-            //         campaign_user_id: null
-            //     };
-            // }
-            // console.log(request);
-            // axios({
-            //     method: "PUT", //you can set what request you want to be
-            //     url:
-            //         "/api/removecharfromnode/" +
-            //         item.id +
-            //         "/" +
-            //         this.campaign_id,
-            //     data: request,
-            //     headers: {
-            //         Authorization: "Bearer " + this.$store.state.token,
-            //         Accept: "application/json",
-            //         "Content-Type": "application/json"
-            //     }
-            // });
-        },
-
         async statusClick(item) {
-            // var request = [];
-            // if (
-            //     item.status_id == 1 ||
-            //     item.status_id == 7 ||
-            //     item.status_id == 9 ||
-            //     item.status_id == 8
-            // ) {
-            //     item.end = null;
-            //     this.removeCharNode(item);
-            //     item.user_name = null;
-            //     item.main_name = null;
-            //     return;
-            // }
-            // if (
-            //     item.status_id == 2 ||
-            //     item.status_id == 3 ||
-            //     item.status_id == 8 ||
-            //     item.status_id == 9 ||
-            //     item.status_id == 6
-            // ) {
-            //     item.end = null;
-            //     request = {
-            //         campaign_system_status_id: item.status_id,
-            //         end_time: null
-            //     };
-            // }
-            // if (item.status_id == 4 || item.status_id == 5) {
-            //     await this.removeCharNode(item);
-            //     item.user_name = null;
-            //     item.main_name = null;
-            //     return;
-            // }
-            // await axios({
-            //     method: "put", //you can set what request you want to be
-            //     url: "/api/campaignsystems/" + item.id + "/" + this.campaign_id,
-            //     data: request,
-            //     headers: {
-            //         Authorization: "Bearer " + this.$store.state.token,
-            //         Accept: "application/json",
-            //         "Content-Type": "application/json"
-            //     }
-            // });
-            // this.$store.dispatch("getCampaignSystemsRecords");
-            // this.$store.dispatch("getCampaignUsersRecords", this.campaign_id);
+            var request = [];
+            if (item.status_id == 2 || item.status_id == 3) {
+                request = {
+                    campaign_system_status_id: item.status_id
+                };
+            }
+            if (item.status_id == 4 || item.status_id == 5) {
+                await this.deleteNode(item);
+                return;
+            }
+            await axios({
+                method: "put", //you can set what request you want to be
+                url: "/api/campaignsystems/" + item.id + "/" + item.campaign_id,
+                data: request,
+                headers: {
+                    Authorization: "Bearer " + this.$store.state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                }
+            });
         }
     },
 
