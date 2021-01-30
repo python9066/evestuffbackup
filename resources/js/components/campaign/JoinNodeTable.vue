@@ -91,7 +91,25 @@ export default {
                 {
                     text: "",
                     value: "charname",
-                    width: "5%",
+                    width: "25%",
+                    align: "start"
+                },
+                {
+                    text: "",
+                    value: "mainname",
+                    width: "10%",
+                    align: "start"
+                },
+                {
+                    text: "",
+                    value: "ship",
+                    width: "15%",
+                    align: "start"
+                },
+                {
+                    text: "",
+                    value: "statusName",
+                    width: "20%",
                     align: "start"
                 },
                 {
@@ -102,20 +120,8 @@ export default {
                 },
                 {
                     text: "",
-                    value: "mainname",
-                    width: "5%",
-                    align: "start"
-                },
-                {
-                    text: "",
-                    value: "ship",
-                    width: "5%",
-                    align: "start"
-                },
-                {
-                    text: "",
-                    value: "statusName",
-                    width: "5%",
+                    value: "a",
+                    width: "10%",
                     align: "start"
                 }
                 // { text: "", value: "actions", width: "5%", align: "center" },
