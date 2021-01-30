@@ -56,6 +56,26 @@ class NodeJoinsController extends Controller
         broadcast(new CampaignSystemUpdate($flag));
     }
 
+    public function removeCharForNodeAdmin(Request $request, $id, $campid)
+    {
+        $campaignSystemID = $request['campaignSystemID'];
+        $campaignUserID = $request['campaignUserID'];
+
+        $campaignSystem = CampaignSystem::where('id', $id)->first();
+        if ($campaignSystem->value('campaign_user_id') == null) {
+            $campaignSystem->update(['campaign_user_id' => $campaignUserID]);
+        } else {
+            NodeJoin::create(['campaign_id' => $campid, 'campaign_system_id' => $id, 'campaign_user_id' => $campaignUserID, 'campaign_system_status_id' => 1]);
+        }
+        CampaignUser::where('id', $campaignUserID)->update(['campaign_system_id' => $campaignSystemID, 'status_id' => 4]);
+
+        $flag = collect([
+            'flag' => 3,
+            'id' => $campid
+        ]);
+        broadcast(new CampaignSystemUpdate($flag));
+    }
+
     public function tableindex($campid)
     {
         $nodeJoin = [];

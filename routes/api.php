@@ -116,4 +116,5 @@ Route::middleware('auth:api')->group(function () {
     Route::get('/nodejoin/{campid}', 'NodeJoinsController@tableindex');
     Route::post('/nodejoin/{campid}', 'NodeJoinsController@store');
     Route::put('/removecharfromnode/{id}/{campid}', 'NodeJoinsController@removeCharForNode');
+    Route::put('/removecharfromnodeadmin/{id}/{campid}', 'NodeJoinsController@removeCharForNodeAdmin');
 });
