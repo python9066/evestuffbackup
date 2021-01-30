@@ -27,13 +27,14 @@ class NodeJoinsController extends Controller
 
     public function removeCharForNode(Request $request, $id, $campid)
     {
+        $status = null;
         $node = NodeJoin::where('campaign_system_id', $id)->get();;
         if ($node->count() > 0) {
             if ($node->where('campaign_system_status_id', 3)->count() > 0) {
-
+                $status = 1;
                 $node = $node->where('campaign_system_status_id', 3)->first();
             } else if ($node->where('campaign_system_status_id', 2)->count() > 0) {
-
+                $status = 2;
                 $node = $node->where('campaign_system_status_id', 2)->first();
             } else {
                 $node = $node->first();
@@ -47,8 +48,18 @@ class NodeJoinsController extends Controller
             } else {
                 $count = $count - 1;
             }
+
+
+            if ($status == 1) {
+
+                $CampaignSystem->update(['campaign_user_id' => $user_id, 'campaign_system_status_id' => $campaign_system_status_id, 'node_join_count' => $count]);
+            } else {
+
+                $CampaignSystem->update(['campaign_user_id' => $user_id, 'campaign_system_status_id' => $campaign_system_status_id, 'node_join_count' => $count, 'input_time' => null, 'base_time' => null, 'end_time' => null]);
+            };
+
             CampaignUser::where('id', $CampaignSystem->campaign_user_id)->update(['campaign_system_id' => null, 'status_id' => 3]);
-            $CampaignSystem->update(['campaign_user_id' => $user_id, 'campaign_system_status_id' => $campaign_system_status_id, 'node_join_count' => $count]);
+
             $node->delete();
         } else {
 
