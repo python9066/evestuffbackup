@@ -19,49 +19,52 @@
                 </div>
             </template>
             <template v-slot:item.statusName="{ item }">
-                <v-menu offset-y>
-                    <template v-slot:activator="{ on, attrs }">
-                        <div>
-                            <v-chip
-                                v-bind="attrs"
-                                v-on="on"
-                                pill
-                                outlined
-                                small
-                                :color="pillColor(item)"
-                            >
-                                {{ item.statusName }}
-                            </v-chip>
-                        </div>
-                    </template>
+                <div>
+                    <v-menu offset-y>
+                        <template v-slot:activator="{ on, attrs }">
+                            <div>
+                                <v-chip
+                                    v-bind="attrs"
+                                    v-on="on"
+                                    pill
+                                    outlined
+                                    small
+                                    :color="pillColor(item)"
+                                >
+                                    {{ item.statusName }}
+                                </v-chip>
+                            </div>
+                        </template>
 
-                    <v-list>
-                        <v-list-item
-                            v-for="(list, index) in dropdown_edit"
-                            :key="index"
-                            @click="
-                                (item.campaign_system_status_id = list.value),
-                                    (item.statusName = list.title),
-                                    statusClick(item)
-                            "
-                        >
-                            <v-list-item-title>{{
-                                list.title
-                            }}</v-list-item-title>
-                        </v-list-item>
-                    </v-list>
-                </v-menu>
-                <v-icon
-                    v-if="
-                        item.campaign_system_status_id != 4 &&
-                            item.campaign_system_status_id != 5
-                    "
-                    color="orange darken-3"
-                    small
-                    @click="deleteNode(item)"
-                >
-                    fas fa-trash-alt
-                </v-icon>
+                        <v-list>
+                            <v-list-item
+                                v-for="(list, index) in dropdown_edit"
+                                :key="index"
+                                @click="
+                                    (item.campaign_system_status_id =
+                                        list.value),
+                                        (item.statusName = list.title),
+                                        statusClick(item)
+                                "
+                            >
+                                <v-list-item-title>{{
+                                    list.title
+                                }}</v-list-item-title>
+                            </v-list-item>
+                        </v-list>
+                    </v-menu>
+                    <v-icon
+                        v-if="
+                            item.campaign_system_status_id != 4 &&
+                                item.campaign_system_status_id != 5
+                        "
+                        color="orange darken-3"
+                        small
+                        @click="deleteNode(item)"
+                    >
+                        fas fa-trash-alt
+                    </v-icon>
+                </div>
             </template>
             <template v-slot:item.ship="{ item }">
                 <span v-if="item.charname != null">
