@@ -29,7 +29,15 @@ class NodeJoinsController extends Controller
     {
         $node = NodeJoin::where('campaign_system_id', $id)->get();;
         if ($node->count() > 0) {
-            $node = $node->first();
+            if ($node->where('campaign_system_status_id', 3)->count() > 0) {
+
+                $node = $node->where('campaign_system_status_id', 3)->first();
+            } else if ($node->where('campaign_system_status_id', 2)->count() > 0) {
+
+                $node = $node->where('campaign_system_status_id', 2)->first();
+            } else {
+                $node = $node->first();
+            };
             $user_id = $node->campaign_user_id;
             $campaign_system_status_id = $node->campaign_system_status_id;
             $CampaignSystem = CampaignSystem::where('id', $id)->first();
