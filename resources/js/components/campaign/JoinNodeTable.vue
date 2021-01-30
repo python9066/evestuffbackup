@@ -62,7 +62,7 @@
                         fas fa-trash-alt
                     </v-icon>
                     <div>
-                        <span class=" #1e1e1e--text">
+                        <span class=" red--text">
                             HEDFJUIOEFHUIWEAHFUEIWOHFUEIWOHFUIWEOHFUEWIOHFUEWI
                         </span>
                     </div>
