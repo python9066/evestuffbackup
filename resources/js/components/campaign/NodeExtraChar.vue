@@ -76,10 +76,6 @@ export default {
                     "Content-Type": "application/json"
                 }
             });
-
-            console.log(request);
-            console.log(item);
-            console.log(addChar);
             // this.$store.dispatch("updateCampaignSystem", data);
 
             // data = null;

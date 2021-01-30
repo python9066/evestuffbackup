@@ -173,7 +173,7 @@ export default {
             }
             await axios({
                 method: "put", //you can set what request you want to be
-                url: "/api/campaignsystems/" + item.id + "/" + item.campaign_id,
+                url: "/api/nodejoin/" + item.id + "/" + item.campaign_id,
                 data: request,
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
