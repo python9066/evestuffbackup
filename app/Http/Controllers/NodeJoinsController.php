@@ -80,62 +80,6 @@ class NodeJoinsController extends Controller
         broadcast(new CampaignSystemUpdate($flag));
     }
 
-    public function removeCharForNodeMulti(Request $request, $id, $campid)
-    {
-        $status = null;
-        $node = NodeJoin::where('campaign_system_id', $id)->get();;
-        if ($node->count() > 0) {
-            if ($node->where('campaign_system_status_id', 3)->count() > 0) {
-                $status = 1;
-                $node = $node->where('campaign_system_status_id', 3)->first();
-            } else if ($node->where('campaign_system_status_id', 2)->count() > 0) {
-                $status = 2;
-                $node = $node->where('campaign_system_status_id', 2)->first();
-            } else {
-                $node = $node->first();
-            };
-            $user_id = $node->campaign_user_id;
-            $campaign_system_status_id = $node->campaign_system_status_id;
-            $CampaignSystem = CampaignSystem::where('id', $id)->first();
-            $count = $CampaignSystem->node_join_count;
-            if ($count == 1) {
-                $count = 0;
-            } else {
-                $count = $count - 1;
-            }
-
-
-            if ($status == 1) {
-
-                $CampaignSystem->update(['campaign_user_id' => $user_id, 'campaign_system_status_id' => $campaign_system_status_id, 'node_join_count' => $count]);
-            } else {
-
-                $CampaignSystem->update(['campaign_user_id' => $user_id, 'campaign_system_status_id' => $campaign_system_status_id, 'node_join_count' => $count, 'input_time' => null, 'base_time' => null, 'end_time' => null]);
-            };
-
-            CampaignUser::where('id', $CampaignSystem->campaign_user_id)->update(['campaign_system_id' => null, 'status_id' => 3]);
-
-            $node->delete();
-        } else {
-
-            $user_id = CampaignSystem::where('id', $id)->value('campaign_user_id');
-            CampaignUser::where('id', intval($user_id))->update(['campaign_system_id' => null, 'status_id' => 3]);
-            CampaignSystem::where('id', $id)->update($request->all());
-            CampaignSystem::where('id', $id)->update(['campaign_system_status_id' => $request['campaign_system_status_id'], 'base_time' => null, 'input_time' => null, 'end_time' => null]);
-        };
-
-
-
-
-
-        $flag = collect([
-            'flag' => 3,
-            'id' => $campid
-        ]);
-        broadcast(new CampaignSystemUpdate($flag));
-    }
-
-
 
 
 
