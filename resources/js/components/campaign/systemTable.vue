@@ -995,7 +995,6 @@ export default {
         },
 
         removeCharNode(item) {
-            console.log(item);
             var userId = item.user_id;
             item.user_id = null;
             item.user_ship = null;
@@ -1032,7 +1031,6 @@ export default {
                     campaign_user_id: null
                 };
             }
-            console.log(request);
             axios({
                 method: "PUT", //you can set what request you want to be
                 url:
