@@ -1155,17 +1155,17 @@ export default {
 
         //changeback
 
-        // campaignJoinDropCount() {
-        //     let payload = {
-        //         constellation_id: this.constellation_id,
-        //         id: this.campaign_id
-        //     };
-        //     return this.getsActiveCampaignByIdDrop(payload).length;
-        // },
-
         campaignJoinDropCount() {
-            return 3;
+            let payload = {
+                constellation_id: this.constellation_id,
+                id: this.campaign_id
+            };
+            return this.getsActiveCampaignByIdDrop(payload).length;
         },
+
+        // campaignJoinDropCount() {
+        //     return 3;
+        // },
 
         campaignActiveCount() {
             let payload = {

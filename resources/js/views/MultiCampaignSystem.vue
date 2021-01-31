@@ -793,19 +793,15 @@ export default {
             return this.getsCampaignById(this.campaignId);
         },
         //changeback
-        // campaignWarmup() {
-        //     let count = this.getsCampaignById(this.campaignId).filter(
-        //         c => c.warmup == 1
-        //     ).length;
-        //     if (count > 0) {
-        //         return true;
-        //     } else {
-        //         return false;
-        //     }
-        // },
-
         campaignWarmup() {
-            return true;
+            let count = this.getsCampaignById(this.campaignId).filter(
+                c => c.warmup == 1
+            ).length;
+            if (count > 0) {
+                return true;
+            } else {
+                return false;
+            }
         },
 
         userCharsDrop() {
