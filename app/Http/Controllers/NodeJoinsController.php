@@ -106,7 +106,7 @@ class NodeJoinsController extends Controller
         $campaignUserID = $request['campaignUserID'];
 
         $campaignSystem = CampaignSystem::where('id', $id)->first();
-        // dd($campaignSystemID, $campaignUserID, $campaignSystem);
+        dd($campaignSystemID, $campaignUserID, $campaignSystem, $request, $id, $campid);
         if ($campaignSystem->campaign_user_id == null) {
             $campaignSystem->update(['campaign_user_id' => $campaignUserID]);
         } else {
