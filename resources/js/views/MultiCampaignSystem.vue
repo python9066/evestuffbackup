@@ -793,29 +793,22 @@ export default {
             return this.getsCampaignById(this.campaignId);
         },
 
-        // customCampaign() {
-        //     var d = this.getMultiCampaignName(this.$route.params.id);
-        //     this.load = 1;
-        //     this.logName = d[0]["name"];
-        //     console.log(this.logName);
-        //     return d;
+        // campaignWarmup() {
+        //     let count = this.getsCampaignById(this.campaignId).filter(
+        //         c => c.warmup == 1
+        //     ).length;
+        //     if (count > 0) {
+        //         return true;
+        //     } else {
+        //         return false;
+        //     }
         // },
 
         campaignWarmup() {
-            let count = this.getsCampaignById(this.campaignId).filter(
-                c => c.warmup == 1
-            ).length;
-            if (count > 0) {
-                return true;
-            } else {
-                return false;
-            }
+            return true;
         },
 
         userCharsDrop() {
-            // let payload = {
-            //     id: this.$store.state.user_id,
-            //     campaignID: this.$route.params.id}
             return this.getCampaignUsersByUserId(this.$store.state.user_id);
         },
 
