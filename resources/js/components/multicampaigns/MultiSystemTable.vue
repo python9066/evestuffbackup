@@ -327,15 +327,13 @@
                     :items="filteredItems"
                     :single-expand="singleExpand"
                     item-key="node"
-                    show-expand
                     dense
                     disable-sort
-                    :expanded.sync="expanded"
+                    :expanded="expanded"
                     :item-class="itemRowBackground"
                     hide-default-footer
                     disable-pagination
                     class="elevation-12"
-                    expand-icon="fas fa-pen green--text"
                 >
                     >
 
@@ -611,8 +609,7 @@ export default {
             nodeText: "",
             nodeCampaignID: "",
             addShown: false,
-            expanded: [],
-            singleExpand: true,
+            singleExpand: false,
             charAddNode: null,
             noteText: ""
         };
@@ -1144,7 +1141,8 @@ export default {
             "getsActiveCampaignById",
             "getsActiveCampaignByIdDrop",
             "getTotalNodeCountBySystemByMultiCampaign",
-            "getCampaignUsersByUserIdEntosisFreeCount"
+            "getCampaignUsersByUserIdEntosisFreeCount",
+            "getSystemTableExpandable"
         ]),
 
         campaignJoinDrop() {
@@ -1371,6 +1369,14 @@ export default {
             return this.getCampaignUsersByUserIdEntosisFreeCount(
                 this.$store.state.user_id
             );
+        },
+
+        expanded() {
+            let payload = {
+                system_id: this.system_id,
+                campid: this.campaign_id
+            };
+            return this.getSystemTableExpandable(payload);
         }
     }
 };
