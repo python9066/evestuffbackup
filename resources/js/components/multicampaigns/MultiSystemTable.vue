@@ -1081,7 +1081,7 @@ export default {
             axios({
                 method: "PUT", //you can set what request you want to be
                 url:
-                    "/api/removecharfromnodemulti/" +
+                    "/api/removecharfromnode/" +
                     item.id +
                     "/" +
                     this.campaign_id,
