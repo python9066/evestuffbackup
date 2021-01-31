@@ -444,7 +444,11 @@
 
                     <template v-slot:expanded-item="{ headers, item }">
                         <td :colspan="headers.length" align="center">
-                            <div>
+                            <JoinNodeTable
+                                :sysid="item.id"
+                                v-if="$can('super')"
+                            ></JoinNodeTable>
+                            <!-- <div>
                                 <v-col class="align-center">
                                     <v-text-field
                                         v-model="noteText"
@@ -466,7 +470,7 @@
                                         v-model="item.notes"
                                     ></v-textarea>
                                 </v-col>
-                            </div>
+                            </div> -->
                         </td>
                     </template>
                     <template v-slot:item.actions="{ item }">
