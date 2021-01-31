@@ -100,7 +100,7 @@ class NodeJoinsController extends Controller
         broadcast(new CampaignSystemUpdate($flag));
     }
 
-    public function removeCharForNodeAdmin(Request $request, $id, $campid)
+    public function addCharToNodeAdmin(Request $request, $id, $campid)
     {
         $campaignSystemID = $request['campaignSystemID'];
         $campaignUserID = $request['campaignUserID'];
