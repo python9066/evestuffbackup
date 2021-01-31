@@ -1155,6 +1155,8 @@ export default {
             return this.getsActiveCampaignByIdDrop(payload);
         },
 
+        //changeback
+
         // campaignJoinDropCount() {
         //     let payload = {
         //         constellation_id: this.constellation_id,
@@ -1184,21 +1186,17 @@ export default {
             return true;
         },
 
-        // campaignActiveCountsingle() {
-        //     let payload = {
-        //         constellation_id: this.constellation_id,
-        //         id: this.campaign_id
-        //     };
-        //     let count = this.getsActiveCampaignById(payload).length;
-        //     if (count == 1) {
-        //         return false;
-        //     } else {
-        //         return true;
-        //     }
-        // },
-
         campaignActiveCountsingle() {
-            return true;
+            let payload = {
+                constellation_id: this.constellation_id,
+                id: this.campaign_id
+            };
+            let count = this.getsActiveCampaignById(payload).length;
+            if (count == 1) {
+                return false;
+            } else {
+                return true;
+            }
         },
 
         fabOnTheWayDisbale() {

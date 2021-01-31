@@ -792,7 +792,7 @@ export default {
         sCampaigns() {
             return this.getsCampaignById(this.campaignId);
         },
-
+        //changeback
         // campaignWarmup() {
         //     let count = this.getsCampaignById(this.campaignId).filter(
         //         c => c.warmup == 1
