@@ -59,6 +59,8 @@ Vue.component('AdminLogging', require('./components/logging/adminpanel/AdminLogg
 Vue.component('NodeExtraChar', require('./components/campaign/NodeExtraChar.vue').default);
 Vue.component('TidiCalc', require('./components/random/TidiCalc.vue').default);
 Vue.component('JoinNodeTable', require('./components/campaign/JoinNodeTable.vue').default);
+Vue.component('NodeExtraCharMulti', require('./components/multicampaigns/NodeExtraCharMulti.vue').default);
+
 
 
 

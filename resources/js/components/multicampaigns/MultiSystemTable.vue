@@ -423,10 +423,10 @@
                                     ></v-btn
                                 ></span
                             >
-                            <NodeExtraChar
+                            <NodeExtraCharMulti
                                 :item="item"
                                 v-if="$can('super')"
-                            ></NodeExtraChar>
+                            ></NodeExtraCharMulti>
                             <AdminHack
                                 v-if="$can('campaigns_admin_access')"
                                 :item="item"
