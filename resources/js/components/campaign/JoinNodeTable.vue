@@ -83,34 +83,28 @@ export default {
         return {
             headers: [
                 {
-                    text: "",
-                    value: "a",
-                    width: "5%",
-                    align: "start"
-                },
-                {
                     text: "Pilot",
                     value: "charname",
-                    width: "20%",
+                    width: "25%",
                     align: "start"
                 },
 
                 {
                     text: "Main",
                     value: "mainname",
-                    width: "10%",
+                    width: "25%",
                     align: "center"
                 },
                 {
                     text: "Ship",
                     value: "ship",
-                    width: "15%",
+                    width: "25%",
                     align: "start"
                 },
                 {
                     text: "",
                     value: "statusName",
-                    width: "50%",
+                    width: "25%",
                     align: "start"
                 }
                 // { text: "", value: "actions", width: "5%", align: "center" },
