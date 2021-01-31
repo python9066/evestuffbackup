@@ -488,7 +488,7 @@ export default {
         async loadCampaignNodeJoin() {
             await this.$store.dispatch(
                 "getNodeJoinByCampaignId",
-                this.campaign.id
+                this.campaignId
             );
         },
 
