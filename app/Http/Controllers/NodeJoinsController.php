@@ -106,10 +106,12 @@ class NodeJoinsController extends Controller
 
         $campaignSystem = CampaignSystem::where('id', $id)->first();
         dd($campaignSystemID, $campaignUserID, $campaignSystem);
-        if ($campaignSystem->value('campaign_user_id') == null) {
+        if ($campaignSystem->campaign_user_id == null) {
             $campaignSystem->update(['campaign_user_id' => $campaignUserID]);
         } else {
             NodeJoin::create(['campaign_id' => $campid, 'campaign_system_id' => $id, 'campaign_user_id' => $campaignUserID, 'campaign_system_status_id' => 1]);
+            $count = $campaignSystem->node_join_count + 1;
+            $campaignSystem->update(['node_join_count' => $count]);
         }
         CampaignUser::where('id', $campaignUserID)->update(['campaign_system_id' => $campaignSystemID, 'status_id' => 4]);
 
