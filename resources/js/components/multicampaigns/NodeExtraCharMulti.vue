@@ -41,14 +41,14 @@ export default {
         async clickCharAddNode(item) {
             var addChar = this.chars.find(user => user.id == this.charAddNode);
             var request = {
-                campaign_id: item.campaign_id,
+                campaign_id: item.custom_campaign_id,
                 campaign_system_id: item.id,
                 campaign_user_id: addChar.id
             };
 
             await axios({
                 method: "post", //you can set what request you want to be
-                url: "/api/nodejoin/" + item.campaign_id,
+                url: "/api/nodejoin/" + item.custom_campaign_id,
                 data: request,
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
@@ -67,7 +67,10 @@ export default {
             await axios({
                 method: "put", //you can set what request you want to be
                 url:
-                    "/api/campaignusers/" + addChar.id + "/" + item.campaign_id,
+                    "/api/campaignusers/" +
+                    addChar.id +
+                    "/" +
+                    item.custom_campaign_id,
                 data: request,
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
