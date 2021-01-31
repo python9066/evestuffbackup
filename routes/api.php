@@ -117,6 +117,7 @@ Route::middleware('auth:api')->group(function () {
     Route::post('/nodejoin/{campid}', 'NodeJoinsController@store');
     Route::put('/nodejoinupdate/{id}/{campid}', 'NodeJoinsController@update');
     Route::put('/removecharfromnode/{id}/{campid}', 'NodeJoinsController@removeCharForNode');
+    Route::put('/removecharfromnodemulti/{id}/{campid}', 'NodeJoinsController@removeCharForNodeMulti');
     Route::put('/addchartonodeadmin/{id}/{campid}', 'NodeJoinsController@removeCharForNodeAdmin');
     Route::put('/deleteextranode/{id}/{campid}', 'NodeJoinsController@deleteExtraNode');
 });
