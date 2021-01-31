@@ -1173,7 +1173,6 @@ export default {
                 id: this.campaign_id
             };
             let count = this.getsActiveCampaignById(payload).length;
-            console.log(count);
             if (count == 0) {
                 return false;
             } else {
@@ -1181,9 +1180,9 @@ export default {
             }
         },
 
-        campaignActiveCount() {
-            return true;
-        },
+        // campaignActiveCount() {
+        //     return true;
+        // },
 
         campaignActiveCountsingle() {
             let payload = {
