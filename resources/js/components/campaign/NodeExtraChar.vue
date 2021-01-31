@@ -43,8 +43,7 @@ export default {
             var request = {
                 campaign_id: item.campaign_id,
                 campaign_system_id: item.id,
-                campaign_user_id: addChar.id,
-                campaign_system_status_id: item.status_id
+                campaign_user_id: addChar.id
             };
 
             await axios({
