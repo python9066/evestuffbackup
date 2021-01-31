@@ -609,13 +609,13 @@ export default new Vuex.Store({
 
         //changeback
 
-        // getsActiveCampaignByIdDrop: state => payload => {
-        //     return state.campaignJoin.filter(c => c.custom_campaign_id == payload.id && c.status_id == 2 && c.constellation_id == payload.constellation_id && c.warmup == 1);
-        // },
-
         getsActiveCampaignByIdDrop: state => payload => {
-            return state.campaignJoin.filter(c => c.custom_campaign_id == payload.id && c.constellation_id == payload.constellation_id);
+            return state.campaignJoin.filter(c => c.custom_campaign_id == payload.id && c.status_id == 2 && c.constellation_id == payload.constellation_id && c.warmup == 1);
         },
+
+        // getsActiveCampaignByIdDrop: state => payload => {
+        //     return state.campaignJoin.filter(c => c.custom_campaign_id == payload.id && c.constellation_id == payload.constellation_id);
+        // },
 
 
         getCampaignJoinById: state => id => {
