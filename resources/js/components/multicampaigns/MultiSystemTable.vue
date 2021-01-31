@@ -1142,7 +1142,7 @@ export default {
             "getsActiveCampaignByIdDrop",
             "getTotalNodeCountBySystemByMultiCampaign",
             "getCampaignUsersByUserIdEntosisFreeCount",
-            "getSystemTableExpandable"
+            "getSystemTableExpandableMulti"
         ]),
 
         campaignJoinDrop() {
@@ -1376,7 +1376,7 @@ export default {
                 system_id: this.system_id,
                 campid: this.campaign_id
             };
-            return this.getSystemTableExpandable(payload);
+            return this.getSystemTableExpandableMulti(payload);
         }
     }
 };

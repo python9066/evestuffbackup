@@ -814,6 +814,15 @@ export default new Vuex.Store({
             } else {
                 return []
             }
+        },
+
+        getSystemTableExpandableMulti: state => payload => {
+            let count = state.campaignsystems.filter(node => node.system_id == payload.system_id && node.custom_campaign_id == payload.campid && node.node_join_count > 0)
+            if (count != null) {
+                return count
+            } else {
+                return []
+            }
         }
 
     }
