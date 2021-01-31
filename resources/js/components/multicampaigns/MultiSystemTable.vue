@@ -1176,6 +1176,10 @@ export default {
             }
         },
 
+        campaignActiveCount() {
+            return true;
+        },
+
         campaignActiveCountsingle() {
             let payload = {
                 constellation_id: this.constellation_id,
