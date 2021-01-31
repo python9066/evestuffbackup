@@ -1173,6 +1173,7 @@ export default {
                 id: this.campaign_id
             };
             let count = this.getsActiveCampaignById(payload).length;
+            console.log(count);
             if (count == 0) {
                 return false;
             } else {
