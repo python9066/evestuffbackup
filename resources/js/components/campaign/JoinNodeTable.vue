@@ -92,19 +92,19 @@ export default {
                 {
                     text: "Main",
                     value: "mainname",
-                    width: "25%",
+
                     align: "center"
                 },
                 {
                     text: "Ship",
                     value: "ship",
-                    width: "25%",
+
                     align: "start"
                 },
                 {
                     text: "",
                     value: "statusName",
-                    width: "25%",
+
                     align: "start"
                 }
                 // { text: "", value: "actions", width: "5%", align: "center" },
