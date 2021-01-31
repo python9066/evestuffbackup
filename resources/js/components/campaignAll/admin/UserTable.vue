@@ -109,7 +109,7 @@ export default {
                 });
             } else {
                 var request = {
-                    campaign_user_id: item.id,
+                    campaignUserID: item.id,
                     campaignSystemID: this.nodeItem.id
                 };
 
