@@ -417,6 +417,7 @@ export default {
             await this.$store.dispatch("getMultiCampaigns");
         }
 
+        await this.$store.dispatch("getNodeJoinByCampaignId", this.campaign_id);
         await this.getSystems(this.campaignId);
         await this.$store.dispatch("getCampaignUsersRecords", this.campaignId);
         await this.$store.dispatch("getCampaignSystemsRecords");
