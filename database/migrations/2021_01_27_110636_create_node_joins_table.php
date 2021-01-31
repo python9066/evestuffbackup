@@ -18,7 +18,7 @@ class CreateNodeJoinsTable extends Migration
             $table->foreignId('campaign_id');
             $table->foreignId('campaign_system_id');
             $table->foreignId('campaign_user_id')->nullable();
-            $table->foreignId('campaign_system_status_id')->nullable();
+            $table->foreignId('campaign_system_status_id')->default(1);
             $table->timestamps();
         });
     }
