@@ -33,7 +33,7 @@ class CampaignSystemsController extends Controller
         $system = CampaignSystem::create($request->all());
         $system->update(['input_time' => now()]);
         $flag = collect([
-            'flag' => 2,
+            'flag' => 3,
             'id' => $campid,
         ]);
         broadcast(new CampaignSystemUpdate($flag))->toOthers();
