@@ -43,7 +43,7 @@ window.Pusher = require('pusher-js');
 
 window.Echo = new Echo({
     broadcaster: 'pusher',
-    key: 'b68a7bfafda4661aa486',
+    key: process.env.MIX_PUSHER_APP_KEY,
     cluster: 'eu',
     wsHost: 'socket.evestuff.online',
     wsPort: 443,
