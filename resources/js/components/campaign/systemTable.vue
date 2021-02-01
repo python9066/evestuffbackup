@@ -423,7 +423,7 @@
                                         Submit
                                     </v-btn>
                                     <v-textarea
-                                        solo
+                                        sologggg
                                         name="Log"
                                         auto-grow
                                         disabled
