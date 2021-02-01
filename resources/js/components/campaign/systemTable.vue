@@ -26,7 +26,6 @@
                                     "
                                 >
                                     <div class="caption">
-                                        {{ nodeCountHackingCount }}
                                         {{ nodeCountHackingCount }} /
                                         {{ nodeCount }}
                                     </div></v-progress-circular
