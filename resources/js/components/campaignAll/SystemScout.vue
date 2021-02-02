@@ -59,7 +59,7 @@ export default {
             var data = {
                 id: this.CampaignSolaSystem[0]["id"],
                 supervisor_id: this.$store.state.user_id,
-                supervisor_user_name: this.$store.state.user_name
+                supervier_user_name: this.$store.state.user_name
             };
 
             this.$store.dispatch("updateCampaignSolaSystem", data);
@@ -113,7 +113,7 @@ export default {
             var data = {
                 id: this.CampaignSolaSystem[0]["id"],
                 supervisor_id: null,
-                supervisor_user_name: null
+                supervier_user_name: null
             };
 
             this.$store.dispatch("updateCampaignSolaSystem", data);
