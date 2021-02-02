@@ -121,7 +121,7 @@ class CampaignUserController extends Controller
         CampaignUser::find($id)->update($request->all());
         $user_id = CampaignUserRecords::where('id', $id)->value('id');
         $flag = collect([
-            'message' => $user_id,
+            'userid' => $user_id,
             'id' => $campid
         ]);
         broadcast(new CampaignUserDelete($flag))->toOthers();
