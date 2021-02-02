@@ -31,6 +31,6 @@ class CampaignUserUpdate implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new PrivateChannel('campaignsystem.' . $this->flag['message']);
+        return new PrivateChannel('campaignsystem.' . $this->flag['id']);
     }
 }
