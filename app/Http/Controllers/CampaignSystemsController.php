@@ -26,7 +26,6 @@ class CampaignSystemsController extends Controller
     {
         $campid = Campaign::where('link', $request['campaign_id'])->value('id');
         $userid = $request['user_id'];
-        dd($request);
         $dataSola = [];
         $pull = CampaignSolaSystem::where('campaign_id', $campid)->get();
         foreach ($pull as $pull) {
