@@ -3292,7 +3292,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 data.system_name = null;
                 data.user_status_name = "None";
 
-                _this.$store.dispatch("deleteCampaignUser", e.flag.userid); //remove char from campaign
+                _this.$store.dispatch("deleteCampaignUser", data.id); //remove char from campaign
 
 
                 _this.$store.dispatch("updateUsersChars", data); // update user char

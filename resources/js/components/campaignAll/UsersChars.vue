@@ -250,7 +250,7 @@ export default {
                 data.node_id = null;
                 data.system_name = null;
                 data.user_status_name = "None";
-                this.$store.dispatch("deleteCampaignUser", e.flag.userid); //remove char from campaign
+                this.$store.dispatch("deleteCampaignUser", data.id); //remove char from campaign
                 this.$store.dispatch("updateUsersChars", data); // update user char
 
                 data = null;
