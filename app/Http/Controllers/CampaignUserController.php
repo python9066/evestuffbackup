@@ -94,11 +94,11 @@ class CampaignUserController extends Controller
         ]);
 
         broadcast(new CampaignUserDelete($flag))->toOthers();
-        $flag = null;
-        $flag = collect([
-            'flag' => 1,
-            'id' => $campid
-        ]);
-        broadcast(new CampaignSystemUpdate($flag))->toOthers();
+        // $flag = null;
+        // $flag = collect([
+        //     'flag' => 1,
+        //     'id' => $campid
+        // ]);
+        // broadcast(new CampaignSystemUpdate($flag))->toOthers();
     }
 }
