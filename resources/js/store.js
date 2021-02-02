@@ -98,6 +98,13 @@ export default new Vuex.Store({
             Object.assign(item, data);
         },
 
+        DELETE_USER_CHAR(state, id) {
+            let index = state.userschars.findIndex(user => user.id == id)
+            console.log(index);
+            if(index >= 0){state.userschars.splice(index, 1)}
+
+        },
+
         SET_ROLES(state, roles) {
             state.rolesList = roles;
         },
@@ -175,6 +182,8 @@ export default new Vuex.Store({
             if(index >= 0){state.campaignusers.splice(index, 1)}
 
         },
+
+
 
         SET_TOKEN(state, token) {
             state.token = token;
@@ -488,6 +497,12 @@ export default new Vuex.Store({
         deleteCampaignUser({ commit }, id) {
             commit("DELETE_CAMPAIGN_USER", id)
         },
+
+        deleteUsersChars({ commit }, id) {
+            commit ("DELETE_USER_CHAR",id)
+        },
+
+
 
         async getNotifications({ commit, state }) {
             let res = await axios({
