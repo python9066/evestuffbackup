@@ -594,7 +594,7 @@ export default {
             user_id: this.$store.state.user_id
         };
         // await this.$store.dispatch("getCampaignSolaSystems");
-        await this.getSystems(this.campaign.constellation_id);
+        // await this.getSystems(this.campaign.constellation_id);
         // await this.$store.dispatch("getNodeJoinByCampaignId", this.campaign.id);
         // await this.$store.dispatch("getCampaignUsersRecords", this.campaign.id);
         // await this.$store.dispatch("getCampaignSystemsRecords");
