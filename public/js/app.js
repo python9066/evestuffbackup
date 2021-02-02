@@ -9726,7 +9726,7 @@ function sleep(ms) {
 
             case 6:
               _this.campaignId = _this.campaign.id;
-              Echo["private"]("campaignsystem." + _this.campaign.id).listen(["CampaignSystemUpdate", function (e) {
+              Echo["private"]("campaignsystem." + _this.campaign.id).listen("CampaignSystemUpdate", function (e) {
                 // console.log(e);
                 if (e.flag.flag == 1) {
                   // console.log(1);
@@ -9792,7 +9792,7 @@ function sleep(ms) {
                 if (e.flag.flag == 10) {
                   _this.loadCampaignlogs();
                 }
-              }]);
+              });
               window.addEventListener("beforeunload", _this.leaving);
               _this.channel = "campaignsystem." + _this.campaign.id;
               _this.test = 2;
