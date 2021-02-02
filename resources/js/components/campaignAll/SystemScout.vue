@@ -140,14 +140,13 @@ export default {
 
             // await this.$store.dispatch("getCampaignSolaSystems");
 
-            // var request = null;
-            // request = {
-            //     user_id: this.$store.state.user_id,
-            //     campaign_sola_system_id: this.CampaignSolaSystem[0]["id"],
-            //     type: "removed"
-            // };
-
             //------logging start -----//
+            var request = null;
+            request = {
+                user_id: this.$store.state.user_id,
+                campaign_sola_system_id: this.CampaignSolaSystem[0]["id"],
+                type: "removed"
+            };
 
             await axios({
                 method: "put",

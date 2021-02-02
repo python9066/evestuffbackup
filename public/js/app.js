@@ -2967,7 +2967,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 });
 
               case 6:
-                _context2.next = 8;
+                // await this.$store.dispatch("getCampaignSolaSystems");
+                //------logging start -----//
+                request = null;
+                request = {
+                  user_id: _this2.$store.state.user_id,
+                  campaign_sola_system_id: _this2.CampaignSolaSystem[0]["id"],
+                  type: "removed"
+                };
+                _context2.next = 10;
                 return axios({
                   method: "put",
                   url: "/api/checkscout/" + _this2.CampaignSolaSystem[0]["campaign_id"],
@@ -2979,7 +2987,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   }
                 });
 
-              case 8:
+              case 10:
               case "end":
                 return _context2.stop();
             }
