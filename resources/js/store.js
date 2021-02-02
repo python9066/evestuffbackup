@@ -104,6 +104,10 @@ export default new Vuex.Store({
 
         },
 
+        ADD_USER_CHAR(state, data) {
+            state.userschars.push(data);
+        },
+
         SET_ROLES(state, roles) {
             state.rolesList = roles;
         },
@@ -473,6 +477,10 @@ export default new Vuex.Store({
 
         addCampaignUserNew({ commit }, data) {
             commit("ADD_CAMPAIGN_USERS", data)
+        },
+
+        addUserChar({ commit }, data) {
+            commit("ADD_USER_CHAR", data)
         },
 
         deleteCampaignUser({ commit }, id) {
