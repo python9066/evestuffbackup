@@ -100,7 +100,6 @@ export default new Vuex.Store({
 
         DELETE_USER_CHAR(state, id) {
             let index = state.userschars.findIndex(user => user.id == id)
-            console.log("user char " +index);
             if(index >= 0){state.userschars.splice(index, 1)}
 
         },
@@ -178,7 +177,6 @@ export default new Vuex.Store({
 
         DELETE_CAMPAIGN_USER(state, id) {
             let index = state.campaignusers.findIndex(user => user.id == id)
-            console.log(index);
             if(index >= 0){state.campaignusers.splice(index, 1)}
 
         },
@@ -224,7 +222,6 @@ export default new Vuex.Store({
                     "Content-Type": "application/json"
                 }
             });
-            // console.log(res.data.timers)
             commit("SET_TIMERS", res.data.timers);
         },
 
@@ -238,8 +235,6 @@ export default new Vuex.Store({
                     "Content-Type": "application/json"
                 }
             });
-            // debugger
-            // console.log(res.data.timers)
             commit("SET_NODE_JOIN", res.data.nodeJoin);
         },
 
@@ -253,7 +248,6 @@ export default new Vuex.Store({
                     "Content-Type": "application/json"
                 }
             });
-            // console.log(res.data.timers)
             commit("SET_TOWERS", res.data.towers);
         },
 
@@ -269,7 +263,6 @@ export default new Vuex.Store({
                     "Content-Type": "application/json"
                 }
             });
-            // console.log(res.data.timers)
             commit("SET_STATIONS", res.data.stations);
         },
 
@@ -284,7 +277,6 @@ export default new Vuex.Store({
                     "Content-Type": "application/json"
                 }
             });
-            // console.log(res.data.timers)
             commit("SET_CAMPAIGN_JOIN", res.data.value);
         },
 
@@ -299,8 +291,6 @@ export default new Vuex.Store({
                     "Content-Type": "application/json"
                 }
             });
-            // debugger
-            // console.log(res.data.timers)
             commit("SET_CAMPAIGN_MEMBERS", res.data.users);
         },
 
@@ -315,8 +305,6 @@ export default new Vuex.Store({
                     "Content-Type": "application/json"
                 }
             });
-            // debugger
-            // console.log(res.data.timers)
             commit("SET_USERS_CHARS", res.data.users);
         },
 
@@ -330,8 +318,6 @@ export default new Vuex.Store({
                     "Content-Type": "application/json"
                 }
             });
-            // debugger
-            // console.log(res.data.timers)
             commit("SET_CAMPAIGN_SOLA_SYSTEMS", res.data.data);
         },
 
@@ -383,7 +369,6 @@ export default new Vuex.Store({
                     "Content-Type": "application/json"
                 }
             });
-            // console.log(res.data.campaigns);
             commit("SET_CAMPAIGNS", res.data.campaigns);
         },
 
@@ -397,7 +382,6 @@ export default new Vuex.Store({
                     "Content-Type": "application/json"
                 }
             });
-            // console.log(res.data.campaigns);
             commit("SET_MULTI_CAMPAIGNS", res.data.campaigns);
         },
 
@@ -414,7 +398,6 @@ export default new Vuex.Store({
                     "Content-Type": "application/json"
                 }
             });
-            // console.log(res.data.campaigns);
             commit("SET_CAMPAIGNSLIST", res.data.campaignslist);
         },
 
@@ -428,7 +411,6 @@ export default new Vuex.Store({
                     "Content-Type": "application/json"
                 }
             });
-            // console.log(res.data.campaigns);
             commit("SET_LOGGING_CAMPAIGN", res.data.logs);
         },
 
@@ -442,7 +424,6 @@ export default new Vuex.Store({
                     "Content-Type": "application/json"
                 }
             });
-            // console.log(res.data.campaigns);
             commit("SET_LOGGING_ADMIN", res.data.logs);
         },
 
@@ -519,7 +500,6 @@ export default new Vuex.Store({
         },
 
         async getdelveLink({ commit, state }) {
-            // console.log('Bearer ' + state.token)
             let res = await axios({
                 method: "get", //you can set what request you want to be
                 url: "/api/notifications/10000060",
@@ -529,7 +509,6 @@ export default new Vuex.Store({
                     "Content-Type": "application/json"
                 }
             });
-            // console.log(res.data)
             commit("SET_DELVE_LINK", res.data.link);
         },
 
@@ -601,7 +580,6 @@ export default new Vuex.Store({
         },
 
         async loadCampaignSystemData({ commit, state }, payload) {
-            console.log('here')
             let request = {
                 user_id: payload.user_id,
                 campaign_id: payload.campaign_id,
@@ -695,7 +673,6 @@ export default new Vuex.Store({
         },
 
         getCampaignUsersReadyToGoAll: state => id => {
-            // console.log("poo",state.campaignusers.filter(campaignusers => campaignusers.site_id == id))
             return state.campaignusers.filter(
                 campaignusers => campaignusers.system_id == id && campaignusers.status_id == 3
             );
@@ -703,7 +680,6 @@ export default new Vuex.Store({
         },
 
         getCampaignUsersOnTheWayAll: state => id => {
-            // console.log("poo",state.campaignusers.filter(campaignusers => campaignusers.site_id == id))
             return state.campaignusers.filter(
                 campaignusers => campaignusers.system_id == id && campaignusers.status_id == 2
             );
@@ -711,7 +687,6 @@ export default new Vuex.Store({
         },
 
         getCampaignUsersByUserId: state => id => {
-            // console.log("poo",state.campaignusers.filter(campaignusers => campaignusers.site_id == id))
             return state.campaignusers.filter(
                 campaignusers => campaignusers.site_id == id
             );
@@ -725,28 +700,24 @@ export default new Vuex.Store({
         },
 
         getCampaignUsersByUserIdEntosis: state => id => {
-            // console.log("poo",state.campaignusers.filter(campaignusers => campaignusers.site_id == id))
             return state.campaignusers.filter(
                 campaignusers => campaignusers.site_id == id && campaignusers.role_id == 1
             );
         },
 
         getCampaignUsersByUserIdEntosisFree: state => id => {
-            // console.log("poo",state.campaignusers.filter(campaignusers => campaignusers.site_id == id))
             return state.campaignusers.filter(
                 campaignusers => campaignusers.site_id == id && campaignusers.role_id == 1 && campaignusers.node_id == null
             );
         },
 
         getCampaignUsersByUserIdEntosisFreeCount: state => id => {
-            // console.log("poo",state.campaignusers.filter(campaignusers => campaignusers.site_id == id))
             return state.campaignusers.filter(
                 campaignusers => campaignusers.site_id == id && campaignusers.role_id == 1 && campaignusers.node_id == null
             ).length;
         },
 
         getCampaignUsersByUserIdEntosisCount: state => id => {
-            // console.log("poo",state.campaignusers.filter(campaignusers => campaignusers.site_id == id))
             return state.campaignusers.filter(
                 campaignusers => campaignusers.site_id == id && campaignusers.role_id == 1
             ).length;

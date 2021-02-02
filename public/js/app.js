@@ -34629,7 +34629,6 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
       var index = state.userschars.findIndex(function (user) {
         return user.id == id;
       });
-      console.log("user char " + index);
 
       if (index >= 0) {
         state.userschars.splice(index, 1);
@@ -34705,7 +34704,6 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
       var index = state.campaignusers.findIndex(function (user) {
         return user.id == id;
       });
-      console.log(index);
 
       if (index >= 0) {
         state.campaignusers.splice(index, 1);
@@ -34752,7 +34750,6 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
 
               case 3:
                 res = _context.sent;
-                // console.log(res.data.timers)
                 commit("SET_TIMERS", res.data.timers);
 
               case 5:
@@ -34784,8 +34781,6 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
 
               case 3:
                 res = _context2.sent;
-                // debugger
-                // console.log(res.data.timers)
                 commit("SET_NODE_JOIN", res.data.nodeJoin);
 
               case 5:
@@ -34817,7 +34812,6 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
 
               case 3:
                 res = _context3.sent;
-                // console.log(res.data.timers)
                 commit("SET_TOWERS", res.data.towers);
 
               case 5:
@@ -34849,7 +34843,6 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
 
               case 3:
                 res = _context4.sent;
-                // console.log(res.data.timers)
                 commit("SET_STATIONS", res.data.stations);
 
               case 5:
@@ -34884,7 +34877,6 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
 
               case 3:
                 res = _context5.sent;
-                // console.log(res.data.timers)
                 commit("SET_CAMPAIGN_JOIN", res.data.value);
 
               case 5:
@@ -34916,8 +34908,6 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
 
               case 3:
                 res = _context6.sent;
-                // debugger
-                // console.log(res.data.timers)
                 commit("SET_CAMPAIGN_MEMBERS", res.data.users);
 
               case 5:
@@ -34949,8 +34939,6 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
 
               case 3:
                 res = _context7.sent;
-                // debugger
-                // console.log(res.data.timers)
                 commit("SET_USERS_CHARS", res.data.users);
 
               case 5:
@@ -34982,8 +34970,6 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
 
               case 3:
                 res = _context8.sent;
-                // debugger
-                // console.log(res.data.timers)
                 commit("SET_CAMPAIGN_SOLA_SYSTEMS", res.data.data);
 
               case 5:
@@ -35088,7 +35074,6 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
 
               case 3:
                 res = _context11.sent;
-                // console.log(res.data.campaigns);
                 commit("SET_CAMPAIGNS", res.data.campaigns);
 
               case 5:
@@ -35120,7 +35105,6 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
 
               case 3:
                 res = _context12.sent;
-                // console.log(res.data.campaigns);
                 commit("SET_MULTI_CAMPAIGNS", res.data.campaigns);
 
               case 5:
@@ -35152,7 +35136,6 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
 
               case 3:
                 res = _context13.sent;
-                // console.log(res.data.campaigns);
                 commit("SET_CAMPAIGNSLIST", res.data.campaignslist);
 
               case 5:
@@ -35184,7 +35167,6 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
 
               case 3:
                 res = _context14.sent;
-                // console.log(res.data.campaigns);
                 commit("SET_LOGGING_CAMPAIGN", res.data.logs);
 
               case 5:
@@ -35216,7 +35198,6 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
 
               case 3:
                 res = _context15.sent;
-                // console.log(res.data.campaigns);
                 commit("SET_LOGGING_ADMIN", res.data.logs);
 
               case 5:
@@ -35338,7 +35319,6 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
 
               case 3:
                 res = _context17.sent;
-                // console.log(res.data)
                 commit("SET_DELVE_LINK", res.data.link);
 
               case 5:
@@ -35503,13 +35483,12 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
             switch (_context22.prev = _context22.next) {
               case 0:
                 commit = _ref39.commit, state = _ref39.state;
-                console.log('here');
                 request = {
                   user_id: payload.user_id,
                   campaign_id: payload.campaign_id,
                   type: payload.type
                 };
-                _context22.next = 5;
+                _context22.next = 4;
                 return axios({
                   method: "post",
                   //you can set what request you want to be
@@ -35522,7 +35501,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
                   }
                 });
 
-              case 5:
+              case 4:
                 res = _context22.sent;
 
                 if (res.data.length != 0) {
@@ -35534,7 +35513,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
                   commit("SET_LOGGING_CAMPAIGN", res.data.logs);
                 }
 
-              case 7:
+              case 6:
               case "end":
                 return _context22.stop();
             }
@@ -35633,7 +35612,6 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
     },
     getCampaignUsersReadyToGoAll: function getCampaignUsersReadyToGoAll(state) {
       return function (id) {
-        // console.log("poo",state.campaignusers.filter(campaignusers => campaignusers.site_id == id))
         return state.campaignusers.filter(function (campaignusers) {
           return campaignusers.system_id == id && campaignusers.status_id == 3;
         });
@@ -35641,7 +35619,6 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
     },
     getCampaignUsersOnTheWayAll: function getCampaignUsersOnTheWayAll(state) {
       return function (id) {
-        // console.log("poo",state.campaignusers.filter(campaignusers => campaignusers.site_id == id))
         return state.campaignusers.filter(function (campaignusers) {
           return campaignusers.system_id == id && campaignusers.status_id == 2;
         });
@@ -35649,7 +35626,6 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
     },
     getCampaignUsersByUserId: function getCampaignUsersByUserId(state) {
       return function (id) {
-        // console.log("poo",state.campaignusers.filter(campaignusers => campaignusers.site_id == id))
         return state.campaignusers.filter(function (campaignusers) {
           return campaignusers.site_id == id;
         });
@@ -35664,7 +35640,6 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
     },
     getCampaignUsersByUserIdEntosis: function getCampaignUsersByUserIdEntosis(state) {
       return function (id) {
-        // console.log("poo",state.campaignusers.filter(campaignusers => campaignusers.site_id == id))
         return state.campaignusers.filter(function (campaignusers) {
           return campaignusers.site_id == id && campaignusers.role_id == 1;
         });
@@ -35672,7 +35647,6 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
     },
     getCampaignUsersByUserIdEntosisFree: function getCampaignUsersByUserIdEntosisFree(state) {
       return function (id) {
-        // console.log("poo",state.campaignusers.filter(campaignusers => campaignusers.site_id == id))
         return state.campaignusers.filter(function (campaignusers) {
           return campaignusers.site_id == id && campaignusers.role_id == 1 && campaignusers.node_id == null;
         });
@@ -35680,7 +35654,6 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
     },
     getCampaignUsersByUserIdEntosisFreeCount: function getCampaignUsersByUserIdEntosisFreeCount(state) {
       return function (id) {
-        // console.log("poo",state.campaignusers.filter(campaignusers => campaignusers.site_id == id))
         return state.campaignusers.filter(function (campaignusers) {
           return campaignusers.site_id == id && campaignusers.role_id == 1 && campaignusers.node_id == null;
         }).length;
@@ -35688,7 +35661,6 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
     },
     getCampaignUsersByUserIdEntosisCount: function getCampaignUsersByUserIdEntosisCount(state) {
       return function (id) {
-        // console.log("poo",state.campaignusers.filter(campaignusers => campaignusers.site_id == id))
         return state.campaignusers.filter(function (campaignusers) {
           return campaignusers.site_id == id && campaignusers.role_id == 1;
         }).length;
