@@ -160,6 +160,13 @@ export default new Vuex.Store({
             Object.assign(item, data);
         },
 
+        UPDATE_CAMPAIGN_SYSTEM_BY_USER_ID(state, payload) {
+            const item = state.campaignsystems.find(item => item.user_id == payload.user_id);
+            if (item > 0) {
+                Object.assign(item, payload.data);
+            }
+        },
+
         UPDATE_CAMPAIGN_SYSTEM_UPDATE(state, data) {
             const item = state.campaignsystems.find(item => item.campaign_id === data.id);
             Object.assign(item, data);
@@ -453,6 +460,10 @@ export default new Vuex.Store({
 
         updateCampaignSystem({ commit }, data) {
             commit("UPDATE_CAMPAIGN_SYSTEM", data);
+        },
+
+        updateCampaignSystemByUserID({ commit }, payload) {
+            commit("UPDATE_CAMPAIGN_SYSTEM_BY_USER_ID", payload);
         },
 
         updateCampaignSystemBar({ commit }, data) {
