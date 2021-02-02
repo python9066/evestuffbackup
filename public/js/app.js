@@ -9702,6 +9702,23 @@ function sleep(ms) {
               return _this.$store.dispatch("getCampaigns");
 
             case 3:
+              if (!(_this.$store.state.user_id == 0)) {
+                _context.next = 10;
+                break;
+              }
+
+              _context.next = 6;
+              return _this.$store.dispatch("setToken", _this.token);
+
+            case 6:
+              _context.next = 8;
+              return _this.$store.dispatch("setUser_id", _this.user_id);
+
+            case 8:
+              _context.next = 10;
+              return _this.$store.dispatch("setUser_name", _this.username);
+
+            case 10:
               _this.campaignId = _this.campaign.id;
               Echo["private"]("campaignsystem." + _this.campaign.id).listen("CampaignSystemUpdate", function (e) {
                 // console.log(e);
@@ -9777,7 +9794,7 @@ function sleep(ms) {
 
               _this.addMember();
 
-            case 10:
+            case 17:
             case "end":
               return _context.stop();
           }
@@ -9808,15 +9825,6 @@ function sleep(ms) {
         while (1) {
           switch (_context3.prev = _context3.next) {
             case 0:
-              if (!(_this2.$$store.state.user_id < 1)) {
-                _context3.next = 3;
-                break;
-              }
-
-              _context3.next = 3;
-              return sleep(1000);
-
-            case 3:
               payload = {
                 campaign_id: _this2.$route.params.id,
                 user_id: _this2.$store.state.user_id
@@ -9826,18 +9834,18 @@ function sleep(ms) {
               // await this.$store.dispatch("getCampaignSystemsRecords");
               // await this.$store.dispatch("getUsersChars", this.$store.state.user_id);
 
-              _context3.next = 6;
+              _context3.next = 3;
               return _this2.$store.dispatch("loadCampaignSystemData", payload);
 
-            case 6:
-              _context3.next = 8;
+            case 3:
+              _context3.next = 5;
               return _this2.getSystems();
 
-            case 8:
-              _context3.next = 10;
+            case 5:
+              _context3.next = 7;
               return _this2.loadCampaignlogs();
 
-            case 10:
+            case 7:
             case "end":
               return _context3.stop();
           }

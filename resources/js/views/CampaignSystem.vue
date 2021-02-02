@@ -516,6 +516,12 @@ export default {
             await this.$store.dispatch("getCampaigns");
         }
 
+        if (this.$store.state.user_id == 0) {
+            await this.$store.dispatch("setToken", this.token);
+            await this.$store.dispatch("setUser_id", this.user_id);
+            await this.$store.dispatch("setUser_name", this.username);
+        }
+
         this.campaignId = this.campaign.id;
         Echo.private("campaignsystem." + this.campaign.id).listen(
             "CampaignSystemUpdate",
@@ -589,9 +595,6 @@ export default {
     async beforeCreate() {},
 
     async mounted() {
-        if (this.$$store.state.user_id < 1) {
-            await sleep(1000);
-        }
         let payload = {
             campaign_id: this.$route.params.id,
             user_id: this.$store.state.user_id
