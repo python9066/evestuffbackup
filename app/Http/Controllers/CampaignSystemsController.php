@@ -42,7 +42,6 @@ class CampaignSystemsController extends Controller
 
 
         $check = Auth::user();
-        dd($check);
 
         $dataSola = [];
         $pull = CampaignSolaSystem::where('campaign_id', $campid)->get();
@@ -57,9 +56,9 @@ class CampaignSystemsController extends Controller
                 $supervier_name = User::where('id', $pull['supervisor_id'])->value('name');
             }
 
-            // if ($check->hasPermissionTo('view_campaign_logs ')) {
-            //     dd('yay');
-            // };
+            if ($check->hasPermissionTo('view_campaign_logs')) {
+                dd('yay');
+            };
 
             $dataSola1 = [];
             $dataSola1 = [
