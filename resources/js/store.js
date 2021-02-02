@@ -563,7 +563,8 @@ export default new Vuex.Store({
             console.log('here')
             let request = {
                 user_id: payload.user_id,
-                campaign_id: payload.campaign_id
+                campaign_id: payload.campaign_id,
+                type: payload.type
             }
 
             let res = await axios({
