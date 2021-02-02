@@ -35463,7 +35463,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
                 };
                 _context22.next = 4;
                 return axios({
-                  method: "get",
+                  method: "post",
                   //you can set what request you want to be
                   url: "/api/campaignsystemload",
                   data: request,

@@ -566,7 +566,7 @@ export default new Vuex.Store({
             }
 
             let res = await axios({
-                method: "get", //you can set what request you want to be
+                method: "post", //you can set what request you want to be
                 url: "/api/campaignsystemload",
                 data: request,
                 headers: {
