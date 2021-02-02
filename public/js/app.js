@@ -35457,11 +35457,12 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
             switch (_context22.prev = _context22.next) {
               case 0:
                 commit = _ref36.commit, state = _ref36.state;
+                console.log('here');
                 request = {
                   user_id: payload.user_id,
                   campaign_id: payload.campaign_id
                 };
-                _context22.next = 4;
+                _context22.next = 5;
                 return axios({
                   method: "post",
                   //you can set what request you want to be
@@ -35474,7 +35475,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
                   }
                 });
 
-              case 4:
+              case 5:
                 res = _context22.sent;
 
                 if (res.data.length != 0) {
@@ -35485,7 +35486,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
                   commit("SET_USERS_CHARS", res.data.usersbyid);
                 }
 
-              case 6:
+              case 7:
               case "end":
                 return _context22.stop();
             }

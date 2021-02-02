@@ -560,6 +560,7 @@ export default new Vuex.Store({
         },
 
         async loadCampaignSystemData({ commit, state }, payload) {
+            console.log('here')
             let request = {
                 user_id: payload.user_id,
                 campaign_id: payload.campaign_id
