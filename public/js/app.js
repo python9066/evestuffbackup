@@ -9802,6 +9802,8 @@ function sleep(ms) {
               }).listen("CampaignUserDelete", function (e) {
                 _this.$store.dispatch("deleteCampaignUser", e.flag.userid);
               }).listen("KickUserFromCampaign", function (e) {
+                console.log(e);
+
                 if (_this.$store.state.user_id == e.user_id) {
                   _this.$router.push("/campaignkick");
                 }

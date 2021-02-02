@@ -567,6 +567,7 @@ export default {
                 this.$store.dispatch("deleteCampaignUser", e.flag.userid);
             })
             .listen("KickUserFromCampaign", e => {
+                console.log(e);
                 if (this.$store.state.user_id == e.user_id) {
                     this.$router.push("/campaignkick");
                 }
