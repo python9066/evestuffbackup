@@ -51,13 +51,13 @@ class CampaignSystemsController extends Controller
         foreach ($pull as $pull) {
             $checker_name = null;
             $supervier_name = null;
-            // if ($pull['last_checked_user_id'] != null) {
-            //     $checker_name = User::where('id', $pull['last_checked_user_id']->value('name'));
-            // }
+            if ($pull['last_checked_user_id'] != null) {
+                $checker_name = User::where('id', $pull['last_checked_user_id']->value('name'));
+            }
 
-            // if ($pull['supervisor_id'] != null) {
-            //     $supervier_name = User::where('id', $pull['supervisor_id'])->value('name');
-            // }
+            if ($pull['supervisor_id'] != null) {
+                $supervier_name = User::where('id', $pull['supervisor_id'])->value('name');
+            }
 
 
 
