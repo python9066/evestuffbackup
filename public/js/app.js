@@ -9829,7 +9829,7 @@ function sleep(ms) {
               }).listen("CampaignUserUpdate", function (e) {
                 console.log(e.flag.message);
 
-                _this.$store.dispatch("updateUsersChars", e.flag.message);
+                _this.$store.dispatch("addCampaignUserNew", e.flag.message);
               });
               window.addEventListener("beforeunload", _this.leaving);
               _this.channel = "campaignsystem." + _this.campaign.id;

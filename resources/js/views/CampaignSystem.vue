@@ -585,7 +585,7 @@ export default {
             })
             .listen("CampaignUserUpdate", e => {
                 console.log(e.flag.message);
-                this.$store.dispatch("updateUsersChars", e.flag.message);
+                this.$store.dispatch("addCampaignUserNew", e.flag.message);
             });
         window.addEventListener("beforeunload", this.leaving);
         this.channel = "campaignsystem." + this.campaign.id;
