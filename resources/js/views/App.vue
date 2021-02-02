@@ -93,7 +93,7 @@
         </v-app-bar>
 
         <!-- MAIN ROUTER-VIEW ------------------------------------->
-        <v-main class="pb-10">
+        <v-main class="pb-10" v-if="ready == true">
             <v-overlay :value="tidiCalc">
                 <TidiCalc @closeCalc="tidiCalc = false"> </TidiCalc>
             </v-overlay>
@@ -155,6 +155,7 @@ export default {
     props: ["username", "token", "user_id"],
     mounted() {},
     data: () => ({
+        ready: false,
         loading2: false,
         navdrawer: null,
         overlay: false,
@@ -165,7 +166,9 @@ export default {
     async beforeCreate() {},
     async created() {
         await this.$store.dispatch("setToken", this.token);
-        await this.$store.dispatch("setUser_id", this.user_id);
+        await this.$store
+            .dispatch("setUser_id", this.user_id)
+            .then((this.ready = true));
         await this.$store.dispatch("setUser_name", this.username);
     },
     methods: {

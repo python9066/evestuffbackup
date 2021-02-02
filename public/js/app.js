@@ -9024,6 +9024,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   mounted: function mounted() {},
   data: function data() {
     return {
+      ready: false,
       loading2: false,
       navdrawer: null,
       overlay: false,
@@ -9057,7 +9058,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
             case 2:
               _context2.next = 4;
-              return _this.$store.dispatch("setUser_id", _this.user_id);
+              return _this.$store.dispatch("setUser_id", _this.user_id).then(_this.ready = true);
 
             case 4:
               _context2.next = 6;
@@ -24987,105 +24988,111 @@ var render = function() {
         1
       ),
       _vm._v(" "),
-      _c(
-        "v-main",
-        { staticClass: "pb-10" },
-        [
-          _c(
-            "v-overlay",
-            { attrs: { value: _vm.tidiCalc } },
-            [
-              _c("TidiCalc", {
-                on: {
-                  closeCalc: function($event) {
-                    _vm.tidiCalc = false
-                  }
-                }
-              })
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "v-overlay",
-            { attrs: { value: _vm.overlay } },
+      _vm.ready == true
+        ? _c(
+            "v-main",
+            { staticClass: "pb-10" },
             [
               _c(
-                "v-row",
-                { attrs: { "no-gutters": "" } },
+                "v-overlay",
+                { attrs: { value: _vm.tidiCalc } },
+                [
+                  _c("TidiCalc", {
+                    on: {
+                      closeCalc: function($event) {
+                        _vm.tidiCalc = false
+                      }
+                    }
+                  })
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-overlay",
+                { attrs: { value: _vm.overlay } },
                 [
                   _c(
-                    "v-col",
-                    { attrs: { cols: "auto" } },
+                    "v-row",
+                    { attrs: { "no-gutters": "" } },
                     [
                       _c(
-                        "v-card",
-                        { attrs: { "min-width": "800" } },
+                        "v-col",
+                        { attrs: { cols: "auto" } },
                         [
-                          _c("v-card-title", [_vm._v(" Give your feedback ")]),
-                          _vm._v(" "),
-                          _c("v-card-subtitle", [
-                            _vm._v("All suggestions welcome")
-                          ]),
-                          _vm._v(" "),
                           _c(
-                            "v-card-text",
+                            "v-card",
+                            { attrs: { "min-width": "800" } },
                             [
-                              _c("v-textarea", {
-                                attrs: {
-                                  label: "Enter your feedback here",
-                                  outlined: "",
-                                  shaped: ""
-                                },
-                                model: {
-                                  value: _vm.feedBackText,
-                                  callback: function($$v) {
-                                    _vm.feedBackText = $$v
-                                  },
-                                  expression: "feedBackText"
-                                }
-                              })
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "v-card-actions",
-                            [
+                              _c("v-card-title", [
+                                _vm._v(" Give your feedback ")
+                              ]),
+                              _vm._v(" "),
+                              _c("v-card-subtitle", [
+                                _vm._v("All suggestions welcome")
+                              ]),
+                              _vm._v(" "),
                               _c(
-                                "v-btn",
-                                {
-                                  attrs: { color: "success" },
-                                  on: {
-                                    click: function($event) {
-                                      ;(_vm.overlay = false),
-                                        _vm.submitFeedBack()
-                                    }
-                                  }
-                                },
+                                "v-card-text",
                                 [
-                                  _vm._v(
-                                    "\n                                Submit\n                            "
-                                  )
-                                ]
+                                  _c("v-textarea", {
+                                    attrs: {
+                                      label: "Enter your feedback here",
+                                      outlined: "",
+                                      shaped: ""
+                                    },
+                                    model: {
+                                      value: _vm.feedBackText,
+                                      callback: function($$v) {
+                                        _vm.feedBackText = $$v
+                                      },
+                                      expression: "feedBackText"
+                                    }
+                                  })
+                                ],
+                                1
                               ),
                               _vm._v(" "),
                               _c(
-                                "v-btn",
-                                {
-                                  attrs: { color: "warning" },
-                                  on: {
-                                    click: function($event) {
-                                      ;(_vm.overlay = false),
-                                        (_vm.feedBackText = "")
-                                    }
-                                  }
-                                },
+                                "v-card-actions",
                                 [
-                                  _vm._v(
-                                    "\n                                Close\n                            "
+                                  _c(
+                                    "v-btn",
+                                    {
+                                      attrs: { color: "success" },
+                                      on: {
+                                        click: function($event) {
+                                          ;(_vm.overlay = false),
+                                            _vm.submitFeedBack()
+                                        }
+                                      }
+                                    },
+                                    [
+                                      _vm._v(
+                                        "\n                                Submit\n                            "
+                                      )
+                                    ]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "v-btn",
+                                    {
+                                      attrs: { color: "warning" },
+                                      on: {
+                                        click: function($event) {
+                                          ;(_vm.overlay = false),
+                                            (_vm.feedBackText = "")
+                                        }
+                                      }
+                                    },
+                                    [
+                                      _vm._v(
+                                        "\n                                Close\n                            "
+                                      )
+                                    ]
                                   )
-                                ]
+                                ],
+                                1
                               )
                             ],
                             1
@@ -25098,20 +25105,18 @@ var render = function() {
                   )
                 ],
                 1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-fade-transition",
+                { attrs: { mode: "out-in" } },
+                [_c("router-view", { key: _vm.$route.path })],
+                1
               )
             ],
             1
-          ),
-          _vm._v(" "),
-          _c(
-            "v-fade-transition",
-            { attrs: { mode: "out-in" } },
-            [_c("router-view", { key: _vm.$route.path })],
-            1
           )
-        ],
-        1
-      ),
+        : _vm._e(),
       _vm._v(" "),
       _c(
         "v-footer",
