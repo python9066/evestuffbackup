@@ -33,7 +33,7 @@ new_time = ((time_left/100)*tidi)+time_left
 
 
 !all Bads in our space
- 
+
 FC Name: XoB Codie
 Formup Location: 1DQ1-A
 Pap Type: Strategic
@@ -63,8 +63,16 @@ Doctrine: Harpy Fleet (Boosters > Scalpel / Kirin > Burst > Harpy > Else)
 </IfModule>
 
 
-Welcome to coord :sun: Current Primaries :  M2- Gate Camp, Bubbles are in FC Hangar :siren: 
+Welcome to coord :sun: Current Primaries :  M2- Gate Camp, Bubbles are in FC Hangar :siren:
 1DQ Const should be 4.0 ADM :siren:
-Stop Jammer/JB attacks :siren: :siren: ALL TIMERS ARE ON RC2 NOW :siren: -> left to add timer put in "abandoned" -> go to last page -> Structure Names have ARMOR: HULL: infront of them  
+Stop Jammer/JB attacks :siren: :siren: ALL TIMERS ARE ON RC2 NOW :siren: -> left to add timer put in "abandoned" -> go to last page -> Structure Names have ARMOR: HULL: infront of them
 Meeting Notes & Important Docs: https://drive.google.com/drive
 
+
+!all Lets protect our friends
+
+FC Name: mowie2
+Formup Location: 1dq1
+Pap Type: Strategic
+Comms: Op 9 https://gnf.lt/l7zng0s.html
+Doctrine: Jackdaw Fleet (Boosters > Scalpel / Kirin > Jackdaw > Keres / Hyena > Tackle)

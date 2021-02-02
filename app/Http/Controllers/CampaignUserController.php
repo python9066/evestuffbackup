@@ -91,6 +91,29 @@ class CampaignUserController extends Controller
         // broadcast(new CampaignSystemUpdate($flag));
     }
 
+    public function updateadd(Request $request, $id, $campid)
+    {
+
+        CampaignUser::find($id)->update($request->all());
+        $message = CampaignUserRecords::where('id', $id)->first();
+        $flag = collect([
+            'message' => $message,
+            'id' => $campid
+        ]);
+        broadcast(new CampaignUserUpdate($flag))->toOthers();
+
+
+
+
+
+        // $flag = null;
+        // $flag = collect([
+        //     'flag' => 3,
+        //     'id' => $campid
+        // ]);
+        // broadcast(new CampaignSystemUpdate($flag));
+    }
+
     /**
      * Remove the specified resource from storage.
      *

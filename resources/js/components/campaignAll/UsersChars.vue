@@ -293,6 +293,8 @@ export default {
                     char_name: this.newCharName
                 };
 
+                //------logging---////
+
                 await axios({
                     method: "put", //you can set what request you want to be
                     url: "/api/checkaddremovechar/" + this.campaign_id,
@@ -343,7 +345,7 @@ export default {
                 await axios({
                     method: "PUT", //you can set what request you want to be
                     url:
-                        "/api/campaignusers/" +
+                        "/api/campaignusersadd/" +
                         item.id +
                         "/" +
                         this.campaign_id,
@@ -435,6 +437,8 @@ export default {
                 type: "added",
                 char_name: this.newCharName
             };
+
+            //------logging-----//
 
             await axios({
                 method: "put", //you can set what request you want to be

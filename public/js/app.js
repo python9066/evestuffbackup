@@ -3333,7 +3333,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   user_id: _this.$store.state.user_id,
                   type: "removed",
                   char_name: _this.newCharName
-                };
+                }; //------logging---////
+
                 _context.next = 16;
                 return axios({
                   method: "put",
@@ -3393,7 +3394,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return axios({
                   method: "PUT",
                   //you can set what request you want to be
-                  url: "/api/campaignusers/" + item.id + "/" + _this.campaign_id,
+                  url: "/api/campaignusersadd/" + item.id + "/" + _this.campaign_id,
                   data: request,
                   headers: {
                     Authorization: "Bearer " + _this.$store.state.token,
@@ -3501,7 +3502,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   user_id: _this2.$store.state.user_id,
                   type: "added",
                   char_name: _this2.newCharName
-                };
+                }; //------logging-----//
+
                 _context2.next = 11;
                 return axios({
                   method: "put",
