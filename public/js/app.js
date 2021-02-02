@@ -12346,35 +12346,11 @@ function sleep(ms) {
             switch (_context14.prev = _context14.next) {
               case 0:
                 user_id = _this14.$store.state.user_id;
-
-                if (!(user_id == 0)) {
-                  _context14.next = 9;
-                  break;
-                }
-
-                _context14.next = 4;
-                return sleep(1000);
-
-              case 4:
-                user_id = _this14.$store.state.user_id;
-
-                if (!(user_id == 0)) {
-                  _context14.next = 9;
-                  break;
-                }
-
-                _context14.next = 8;
-                return sleep(1000);
-
-              case 8:
-                user_id = _this14.$store.state.user_id;
-
-              case 9:
                 request = {
                   user_id: user_id,
                   campaign_id: _this14.campaignId
                 };
-                _context14.next = 12;
+                _context14.next = 4;
                 return axios({
                   method: "POST",
                   //you can set what request you want to be
@@ -12387,8 +12363,8 @@ function sleep(ms) {
                   }
                 });
 
-              case 12:
-                _context14.next = 14;
+              case 4:
+                _context14.next = 6;
                 return axios({
                   method: "GET",
                   //you can set what request you want to be
@@ -12400,7 +12376,7 @@ function sleep(ms) {
                   }
                 });
 
-              case 14:
+              case 6:
               case "end":
                 return _context14.stop();
             }

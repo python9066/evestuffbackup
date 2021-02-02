@@ -551,14 +551,6 @@ export default {
 
         async addMember() {
             let user_id = this.$store.state.user_id;
-            if (user_id == 0) {
-                await sleep(1000);
-                user_id = this.$store.state.user_id;
-                if (user_id == 0) {
-                    await sleep(1000);
-                    user_id = this.$store.state.user_id;
-                }
-            }
             var request = {
                 user_id: user_id,
                 campaign_id: this.campaignId
