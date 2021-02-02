@@ -11975,6 +11975,8 @@ function sleep(ms) {
                 if (_this.$store.state.user_id == e.flag.user_id) {
                   _this.$router.push("/campaignkick");
                 }
+              }).listen("CampaignSolaSystemUpdate", function (e) {
+                _this.$store.dispatch("updateCampaignSolaSystem", e.flag.message);
               });
               window.addEventListener("beforeunload", _this.leaving);
               _this.channel = "campaignsystem." + _this.campaignId;
