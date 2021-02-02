@@ -9834,7 +9834,7 @@ function sleep(ms) {
               payload = {
                 campaign_id: _this2.$route.params.id,
                 user_id: _this2.$store.state.user_id,
-                type: "solo"
+                type: 1
               }; // await this.$store.dispatch("getCampaignSolaSystems");
               // await this.$store.dispatch("getNodeJoinByCampaignId", this.campaign.id);
               // await this.$store.dispatch("getCampaignUsersRecords", this.campaign.id);
@@ -12037,7 +12037,7 @@ function sleep(ms) {
               payload = {
                 campaign_id: _this3.$route.params.id,
                 user_id: _this3.$store.state.user_id,
-                type: "multi"
+                type: 2
               }; // await this.$store.dispatch("getNodeJoinByCampaignId", this.campaign_id);
               // await this.$store.dispatch("getCampaignUsersRecords", this.campaignId);
               // await this.$store.dispatch("getCampaignSystemsRecords");

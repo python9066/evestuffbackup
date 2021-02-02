@@ -596,7 +596,7 @@ export default {
         let payload = {
             campaign_id: this.$route.params.id,
             user_id: this.$store.state.user_id,
-            type: "solo"
+            type: 1
         };
         // await this.$store.dispatch("getCampaignSolaSystems");
         // await this.$store.dispatch("getNodeJoinByCampaignId", this.campaign.id);

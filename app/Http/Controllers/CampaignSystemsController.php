@@ -34,12 +34,13 @@ class CampaignSystemsController extends Controller
 
     public function load(Request $request)
     {
-        $campid = $request['campaign_id'];
-        $userid = $request['user_id'];
-        if ($request['type'] = 'solo') {
+
+        if ($request['type'] == 1) {
             $campid = Campaign::where('link', $request['campaign_id'])->value('id');
             $userid = $request['user_id'];
-            dd("yoyoyoyoyoyo");
+        } else {
+            $campid = $request['campaign_id'];
+            $userid = $request['user_id'];
         }
 
 

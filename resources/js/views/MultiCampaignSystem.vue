@@ -420,7 +420,7 @@ export default {
         let payload = {
             campaign_id: this.$route.params.id,
             user_id: this.$store.state.user_id,
-            type: "multi"
+            type: 2
         };
         // await this.$store.dispatch("getNodeJoinByCampaignId", this.campaign_id);
         // await this.$store.dispatch("getCampaignUsersRecords", this.campaignId);
