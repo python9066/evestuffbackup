@@ -294,15 +294,15 @@ export default {
                     }
                 });
 
-                await this.$store.dispatch(
-                    "getCampaignUsersRecords",
-                    this.campaign_id
-                );
-                await this.$store.dispatch(
-                    "getUsersChars",
-                    this.$store.state.user_id
-                );
-                this.$store.dispatch("getCampaignSystemsRecords");
+                // await this.$store.dispatch(
+                //     "getCampaignUsersRecords",
+                //     this.campaign_id
+                // );
+                // await this.$store.dispatch(
+                //     "getUsersChars",
+                //     this.$store.state.user_id
+                // );
+                // this.$store.dispatch("getCampaignSystemsRecords");
 
                 //------logging---////
                 request = null;
@@ -326,7 +326,7 @@ export default {
                 //------logging End-----//
             } else {
                 //--add char to campaign--//
-                data = item;
+                let data = item;
                 data.campaign_id = this.campaign_id;
                 data.campaign_system_id = null;
                 data.system_id = null;

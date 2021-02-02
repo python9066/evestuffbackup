@@ -3271,109 +3271,20 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var _this = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-        var _data, payload, request;
+        var data, payload, request, _data;
 
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
                 if (!(item.campaign_id == _this.campaign_id)) {
-                  _context.next = 29;
+                  _context.next = 24;
                   break;
                 }
 
                 //removeing char from campaign
-                _data = item;
-                _data.campaign_id = null;
-                _data.campaign_system_id = null;
-                _data.system_id = null;
-                _data.status_id = 1;
-                _data.node_id = null;
-                _data.system_name = null;
-                _data.user_status_name = "None";
-
-                _this.$store.dispatch("deleteCampaignUser", e.flag.userid); //remove char from campaign
-
-
-                _this.$store.dispatch("updateUsersChars", _data); // update user char
-
-
-                _data = null;
-                _data = {
-                  campaign_system_status_id: 1,
-                  end_time: null,
-                  main_name: null,
-                  site_id: null,
-                  user_id: null,
-                  user_link: null,
-                  user_name: null,
-                  user_ship: null
-                };
-                payload = {
-                  user_id: item.id,
-                  data: _data
-                };
-
-                _this.$store.dispatch("updateCampaignSystemByUserID", payload); // removes from old node for new campaign
-
-
-                request = {
-                  campaign_id: null,
-                  campaign_system_id: null,
-                  system_id: null,
-                  status_id: 1
-                };
-                _context.next = 18;
-                return axios({
-                  //removes char from campaign
-                  method: "PUT",
-                  url: "/api/campaignusersremove/" + item.id + "/" + _this.campaign_id,
-                  data: request,
-                  headers: {
-                    Authorization: "Bearer " + _this.$store.state.token,
-                    Accept: "application/json",
-                    "Content-Type": "application/json"
-                  }
-                });
-
-              case 18:
-                _context.next = 20;
-                return _this.$store.dispatch("getCampaignUsersRecords", _this.campaign_id);
-
-              case 20:
-                _context.next = 22;
-                return _this.$store.dispatch("getUsersChars", _this.$store.state.user_id);
-
-              case 22:
-                _this.$store.dispatch("getCampaignSystemsRecords"); //------logging---////
-
-
-                request = null;
-                request = {
-                  user_id: _this.$store.state.user_id,
-                  type: "removed",
-                  char_name: _this.newCharName
-                };
-                _context.next = 27;
-                return axios({
-                  method: "put",
-                  url: "/api/checkaddremovechar/" + _this.campaign_id,
-                  data: request,
-                  headers: {
-                    Authorization: "Bearer " + _this.$store.state.token,
-                    Accept: "application/json",
-                    "Content-Type": "application/json"
-                  }
-                });
-
-              case 27:
-                _context.next = 50;
-                break;
-
-              case 29:
-                //--add char to campaign--//
                 data = item;
-                data.campaign_id = _this.campaign_id;
+                data.campaign_id = null;
                 data.campaign_system_id = null;
                 data.system_id = null;
                 data.status_id = 1;
@@ -3381,7 +3292,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 data.system_name = null;
                 data.user_status_name = "None";
 
-                _this.$store.dispatch("addCampaignUserNew", data); //add char to campaign
+                _this.$store.dispatch("deleteCampaignUser", e.flag.userid); //remove char from campaign
 
 
                 _this.$store.dispatch("updateUsersChars", data); // update user char
@@ -3407,16 +3318,16 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 
                 request = {
-                  campaign_id: _this.campaign_id,
+                  campaign_id: null,
                   campaign_system_id: null,
                   system_id: null,
                   status_id: 1
-                }; // add char to campaign
-
-                _context.next = 46;
+                };
+                _context.next = 18;
                 return axios({
+                  //removes char from campaign
                   method: "PUT",
-                  url: "/api/campaignusersadd/" + item.id + "/" + _this.campaign_id,
+                  url: "/api/campaignusersremove/" + item.id + "/" + _this.campaign_id,
                   data: request,
                   headers: {
                     Authorization: "Bearer " + _this.$store.state.token,
@@ -3425,15 +3336,24 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   }
                 });
 
-              case 46:
-                //--------LOGGING START------------//
+              case 18:
+                // await this.$store.dispatch(
+                //     "getCampaignUsersRecords",
+                //     this.campaign_id
+                // );
+                // await this.$store.dispatch(
+                //     "getUsersChars",
+                //     this.$store.state.user_id
+                // );
+                // this.$store.dispatch("getCampaignSystemsRecords");
+                //------logging---////
                 request = null;
                 request = {
                   user_id: _this.$store.state.user_id,
-                  type: "added",
+                  type: "removed",
                   char_name: _this.newCharName
                 };
-                _context.next = 50;
+                _context.next = 22;
                 return axios({
                   method: "put",
                   url: "/api/checkaddremovechar/" + _this.campaign_id,
@@ -3445,7 +3365,86 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   }
                 });
 
-              case 50:
+              case 22:
+                _context.next = 45;
+                break;
+
+              case 24:
+                //--add char to campaign--//
+                _data = item;
+                _data.campaign_id = _this.campaign_id;
+                _data.campaign_system_id = null;
+                _data.system_id = null;
+                _data.status_id = 1;
+                _data.node_id = null;
+                _data.system_name = null;
+                _data.user_status_name = "None";
+
+                _this.$store.dispatch("addCampaignUserNew", _data); //add char to campaign
+
+
+                _this.$store.dispatch("updateUsersChars", _data); // update user char
+
+
+                _data = null;
+                _data = {
+                  campaign_system_status_id: 1,
+                  end_time: null,
+                  main_name: null,
+                  site_id: null,
+                  user_id: null,
+                  user_link: null,
+                  user_name: null,
+                  user_ship: null
+                };
+                payload = {
+                  user_id: item.id,
+                  data: _data
+                };
+
+                _this.$store.dispatch("updateCampaignSystemByUserID", payload); // removes from old node for new campaign
+
+
+                request = {
+                  campaign_id: _this.campaign_id,
+                  campaign_system_id: null,
+                  system_id: null,
+                  status_id: 1
+                }; // add char to campaign
+
+                _context.next = 41;
+                return axios({
+                  method: "PUT",
+                  url: "/api/campaignusersadd/" + item.id + "/" + _this.campaign_id,
+                  data: request,
+                  headers: {
+                    Authorization: "Bearer " + _this.$store.state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                  }
+                });
+
+              case 41:
+                //--------LOGGING START------------//
+                request = null;
+                request = {
+                  user_id: _this.$store.state.user_id,
+                  type: "added",
+                  char_name: _this.newCharName
+                };
+                _context.next = 45;
+                return axios({
+                  method: "put",
+                  url: "/api/checkaddremovechar/" + _this.campaign_id,
+                  data: request,
+                  headers: {
+                    Authorization: "Bearer " + _this.$store.state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                  }
+                });
+
+              case 45:
               case "end":
                 return _context.stop();
             }
