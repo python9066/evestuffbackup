@@ -313,7 +313,7 @@ export default {
                 data.system_name = null;
                 data.user_status_name = "None";
                 this.$store.dispatch("addCampaignUserNew", data);
-                this.$store.dispatch("addUserChar", data);
+                this.$store.dispatch("updateUsersChars", data);
 
                 data = null;
 

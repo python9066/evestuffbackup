@@ -70,6 +70,7 @@ class CampaignUserController extends Controller
      */
     public function update(Request $request, $id, $campid)
     {
+
         CampaignUser::find($id)->update($request->all());
         $message = CampaignUserRecords::where('id', $id)->first();
         $flag = collect([
@@ -77,6 +78,8 @@ class CampaignUserController extends Controller
             'id' => $campid
         ]);
         broadcast(new CampaignUserUpdate($flag))->toOthers();
+
+
 
 
 
