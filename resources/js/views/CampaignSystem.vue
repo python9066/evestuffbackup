@@ -589,6 +589,9 @@ export default {
     async beforeCreate() {},
 
     async mounted() {
+        if (this.$$store.state.user_id < 1) {
+            await sleep(1000);
+        }
         let payload = {
             campaign_id: this.$route.params.id,
             user_id: this.$store.state.user_id
