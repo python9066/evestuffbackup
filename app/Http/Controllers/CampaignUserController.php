@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Events\CampaignSystemUpdate;
 use App\Events\CampaignUserDelete;
 use App\Events\CampaignUserNew;
+use App\Events\CampaignUserUpdate;
 use App\Models\CampaignSystem;
 use App\Models\CampaignSystemUsers;
 use App\Models\CampaignUser;
@@ -71,7 +72,13 @@ class CampaignUserController extends Controller
     {
         CampaignUser::find($id)->update($request->all());
         $message = CampaignUserRecords::where('id', $id)->first();
-        dd($message);
+        $flag = collect([
+            'message' => $message,
+            'id' => $campid
+        ]);
+        broadcast(new CampaignUserUpdate($flag))->toOthers();
+
+        $flag = null;
         $flag = collect([
             'flag' => 3,
             'id' => $campid
