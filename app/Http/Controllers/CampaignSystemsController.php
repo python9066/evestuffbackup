@@ -31,6 +31,7 @@ class CampaignSystemsController extends Controller
             $campid = $request['campaign_id'];
             $userid = $request['user_id'];
         }
+        dd($campid, $userid);
         $dataSola = [];
         $pull = CampaignSolaSystem::where('campaign_id', $campid)->get();
         foreach ($pull as $pull) {
