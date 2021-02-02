@@ -34692,7 +34692,10 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
       var index = state.campaignusers.findIndex(function (user) {
         return user.id == id;
       });
-      state.campaignusers.splice(index, 1);
+
+      if (index != null) {
+        state.campaignusers.splice(index, 1);
+      }
     },
     SET_TOKEN: function SET_TOKEN(state, token) {
       state.token = token;
