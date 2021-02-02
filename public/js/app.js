@@ -9818,10 +9818,6 @@ function sleep(ms) {
                 _this.$store.dispatch("addCampaignUserNew", e.flag.message);
               }).listen("CampaignUserDelete", function (e) {
                 _this.$store.dispatch("deleteCampaignUser", e.flag.userid);
-              }).listen("CampaignUserUpdate", function (e) {
-                console.log(e.flag.message);
-
-                _this.$store.dispatch("addCampaignUserNew", e.flag.message);
               });
               window.addEventListener("beforeunload", _this.leaving);
               _this.channel = "campaignsystem." + _this.campaign.id;

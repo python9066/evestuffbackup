@@ -582,10 +582,6 @@ export default {
             })
             .listen("CampaignUserDelete", e => {
                 this.$store.dispatch("deleteCampaignUser", e.flag.userid);
-            })
-            .listen("CampaignUserUpdate", e => {
-                console.log(e.flag.message);
-                this.$store.dispatch("addCampaignUserNew", e.flag.message);
             });
         window.addEventListener("beforeunload", this.leaving);
         this.channel = "campaignsystem." + this.campaign.id;
