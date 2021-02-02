@@ -532,19 +532,26 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var _this = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-        var request;
+        var data, request;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                // console.log(this.tidiEdit);
+                data = {
+                  id: _this.CampaignSolaSystem[0]["id"],
+                  tidi: _this.tidi
+                };
+
+                _this.$store.dispatch("updateCampaignSolaSystem", data); // console.log(this.tidiEdit);
+
+
                 request = {
                   newTidi: _this.tidiEdit,
                   oldTidi: _this.CampaignSolaSystem[0]["tidi"],
                   solaID: _this.CampaignSolaSystem[0]["id"],
                   baseTime: _this.CampaignSolaSystem[0]["base_time"]
                 };
-                _context.next = 3;
+                _context.next = 5;
                 return axios({
                   method: "put",
                   //you can set what request you want to be
@@ -557,7 +564,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   }
                 });
 
-              case 3:
+              case 5:
               case "end":
                 return _context.stop();
             }

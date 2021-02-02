@@ -93,6 +93,12 @@ export default {
         },
 
         async editTidi() {
+            var data = {
+                id: this.CampaignSolaSystem[0]["id"],
+                tidi: this.tidi
+            };
+            this.$store.dispatch("updateCampaignSolaSystem", data);
+
             // console.log(this.tidiEdit);
             var request = {
                 newTidi: this.tidiEdit,
