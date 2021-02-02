@@ -69,7 +69,8 @@ class CampaignUserController extends Controller
      */
     public function update(Request $request, $id, $campid)
     {
-        $message = CampaignUser::find($id)->update($request->all())->get();
+        CampaignUser::find($id)->update($request->all());
+        $message = CampaignUserRecords::where('id', $id)->first();
         dd($message);
         $flag = collect([
             'flag' => 3,
