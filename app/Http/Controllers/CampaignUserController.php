@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Events\CampaignSystemUpdate;
+use App\Events\CampaignUserNew;
 use App\Models\CampaignSystem;
 use App\Models\CampaignSystemUsers;
 use App\Models\CampaignUser;
+use App\Models\CampaignUserRecords;
 use Illuminate\Http\Request;
 
 class CampaignUserController extends Controller
@@ -29,7 +31,16 @@ class CampaignUserController extends Controller
     public function store(Request $request, $campid)
     {
 
-        CampaignUser::create($request->all());
+        $new = CampaignUser::create($request->all());
+        $userid = $new->id;
+        $user = CampaignUserRecords::where('id', $userid)->first();
+        $flag = null;
+        $flag = collect([
+            'message' => $user,
+            'id' => $campid
+        ]);
+        broadcast(new CampaignUserNew($flag));
+        $flag = null;
         $flag = collect([
             'flag' => 1,
             'id' => $campid

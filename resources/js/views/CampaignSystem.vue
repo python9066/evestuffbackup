@@ -521,7 +521,7 @@ export default {
         }
 
         this.campaignId = this.campaign.id;
-        Echo.private("campaignsystem." + this.campaign.id).listen(
+        Echo.private("campaignsystem." + this.campaign.id).listen([
             "CampaignSystemUpdate",
             e => {
                 // console.log(e);
@@ -577,10 +577,9 @@ export default {
                 if (e.flag.flag == 10) {
                     this.loadCampaignlogs();
                 }
-            },
-
-            window.addEventListener("beforeunload", this.leaving)
-        );
+            }
+        ]);
+        window.addEventListener("beforeunload", this.leaving);
         this.channel = "campaignsystem." + this.campaign.id;
         this.test = 2;
         this.test2 = 1;
