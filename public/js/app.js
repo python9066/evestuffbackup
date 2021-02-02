@@ -9750,21 +9750,13 @@ function sleep(ms) {
             case 6:
               _this.campaignId = _this.campaign.id;
               Echo["private"]("campaignsystem." + _this.campaign.id).listen("CampaignSystemUpdate", function (e) {
-                // console.log(e);
-                if (e.flag.flag == 1) {
-                  // console.log(1);
-                  _this.loadUsersRecords();
-                }
-
                 if (e.flag.flag == 2) {
-                  // console.log(2);
                   _this.loadCampaignSystemRecords();
 
                   _this.loadCampaignNodeJoin();
                 }
 
                 if (e.flag.flag == 3) {
-                  // console.log(3);
                   _this.loadCampaignSystemRecords();
 
                   _this.loadUsersRecords();
@@ -9773,7 +9765,6 @@ function sleep(ms) {
                 }
 
                 if (e.flag.flag == 4) {
-                  // console.log(4);
                   _this.loadcampaigns();
 
                   _this.loadCampaignSystemRecords();
@@ -9784,27 +9775,22 @@ function sleep(ms) {
                 }
 
                 if (e.flag.flag == 5) {
-                  // console.log(4);
                   _this.checkAddUser();
                 }
 
                 if (e.flag.flag == 6) {
-                  //  console.log(6);
                   _this.kickUser(e.flag.user_id);
                 }
 
                 if (e.flag.flag == 7) {
-                  //  console.log(6);
                   _this.$router.push("/campaignfinished");
                 }
 
                 if (e.flag.flag == 8) {
-                  //  console.log(6);
                   _this.loadCampaignSolaSystems();
                 }
 
                 if (e.flag.flag == 9) {
-                  //  console.log(6);
                   _this.loadCampaignSolaSystems();
 
                   _this.loadCampaignSystemRecords();
@@ -11908,14 +11894,8 @@ function sleep(ms) {
           switch (_context.prev = _context.next) {
             case 0:
               _this.campaignId = _this.$route.params.id;
-              _this.campaign_id = parseInt(_this.$route.params.id); // console.log(this.campaignId);
-              // console.log(this.campaign_id);
-
+              _this.campaign_id = parseInt(_this.$route.params.id);
               Echo["private"]("campaignsystem." + _this.$route.params.id).listen("CampaignSystemUpdate", function (e) {
-                if (e.flag.flag == 1) {
-                  _this.loadUsersRecords();
-                }
-
                 if (e.flag.flag == 2) {
                   _this.loadCampaignSystemRecords();
 
@@ -11953,12 +11933,10 @@ function sleep(ms) {
                 }
 
                 if (e.flag.flag == 8) {
-                  //  console.log(6);
                   _this.loadCampaignSolaSystems();
                 }
 
                 if (e.flag.flag == 9) {
-                  //  console.log(6);
                   _this.loadCampaignSolaSystems();
 
                   _this.loadCampaignSystemRecords();
@@ -11971,7 +11949,6 @@ function sleep(ms) {
                 }
 
                 if (e.flag.flag == 11) {
-                  //  console.log(6);
                   _this.$store.dispatch("getCampaignJoinData");
 
                   _this.loadUsersRecords();
@@ -12253,7 +12230,6 @@ function sleep(ms) {
                 _context11.next = 2;
                 return axios({
                   method: "get",
-                  //you can set what request you want to be
                   url: "/api/campaignsystemcheckaddchar/" + _this11.campaignId,
                   headers: {
                     Authorization: "Bearer " + _this11.$store.state.token,
@@ -12282,7 +12258,6 @@ function sleep(ms) {
                 _context12.next = 2;
                 return axios({
                   method: "get",
-                  //you can set what request you want to be
                   url: "/api/campaignjoinsystems/" + id,
                   headers: {
                     Authorization: "Bearer " + _this12.$store.state.token,
@@ -12315,7 +12290,6 @@ function sleep(ms) {
                 _context13.next = 2;
                 return axios({
                   method: "get",
-                  //you can set what request you want to be
                   url: "/api/campaignsystemfinished/" + _this13.$route.params.id,
                   headers: {
                     Authorization: "Bearer " + _this13.$store.state.token,
@@ -12328,7 +12302,6 @@ function sleep(ms) {
                 _context13.next = 4;
                 return axios({
                   method: "delete",
-                  //you can set what request you want to be
                   url: "/api/multicampaigns/" + _this13.$route.params.id,
                   headers: {
                     Authorization: "Bearer " + _this13.$store.state.token,
@@ -12365,7 +12338,6 @@ function sleep(ms) {
                 _context14.next = 4;
                 return axios({
                   method: "POST",
-                  //you can set what request you want to be
                   url: "/api/campaignsystemusers/" + _this14.campaignId,
                   data: request,
                   headers: {
@@ -12379,7 +12351,6 @@ function sleep(ms) {
                 _context14.next = 6;
                 return axios({
                   method: "GET",
-                  //you can set what request you want to be
                   url: "/api/mcheckjoinleavecampaign/" + _this14.campaignId + "/" + _this14.$store.state.user_id + "/4",
                   headers: {
                     Authorization: "Bearer " + _this14.$store.state.token,
@@ -12408,7 +12379,6 @@ function sleep(ms) {
                 _context15.next = 3;
                 return axios({
                   method: "delete",
-                  //you can set what request you want to be
                   url: "/api/campaignsystemusers/" + _this15.$store.state.user_id + "/" + _this15.campaignId,
                   headers: {
                     Authorization: "Bearer " + _this15.$store.state.token,
@@ -12421,7 +12391,6 @@ function sleep(ms) {
                 _context15.next = 5;
                 return axios({
                   method: "GET",
-                  //you can set what request you want to be
                   url: "/api/mcheckjoinleavecampaign/" + _this15.campaignId + "/" + _this15.$store.state.user_id + "/5",
                   headers: {
                     Authorization: "Bearer " + _this15.$store.state.token,
@@ -12496,7 +12465,6 @@ function sleep(ms) {
                 _context16.next = 3;
                 return axios({
                   method: "POST",
-                  //you can set what request you want to be
                   url: "/api/campaignusers/" + _this16.campaignId,
                   data: request,
                   headers: {
@@ -12561,7 +12529,6 @@ function sleep(ms) {
       this.$store.dispatch("updateCampaignUsers", item);
       axios({
         method: "PUT",
-        //you can set what request you want to be
         url: "/api/campaignusers/" + this.oldChar.id + "/" + this.campaignId,
         data: request,
         headers: {
@@ -12589,7 +12556,6 @@ function sleep(ms) {
                 _context17.next = 2;
                 return axios({
                   method: "DELETE",
-                  //you can set what request you want to be
                   url: "/api/campaignusers/" + _this17.oldChar.id + "/" + _this17.campaignId,
                   headers: {
                     Authorization: "Bearer " + _this17.$store.state.token,

@@ -336,14 +336,9 @@ export default {
     async created() {
         this.campaignId = this.$route.params.id;
         this.campaign_id = parseInt(this.$route.params.id);
-        // console.log(this.campaignId);
-        // console.log(this.campaign_id);
 
         Echo.private("campaignsystem." + this.$route.params.id)
             .listen("CampaignSystemUpdate", e => {
-                if (e.flag.flag == 1) {
-                    this.loadUsersRecords();
-                }
                 if (e.flag.flag == 2) {
                     this.loadCampaignSystemRecords();
                     this.loadCampaignNodeJoin();
@@ -372,11 +367,9 @@ export default {
                 }
 
                 if (e.flag.flag == 8) {
-                    //  console.log(6);
                     this.loadCampaignSolaSystems();
                 }
                 if (e.flag.flag == 9) {
-                    //  console.log(6);
                     this.loadCampaignSolaSystems();
                     this.loadCampaignSystemRecords();
                     this.loadCampaignNodeJoin();
@@ -385,7 +378,6 @@ export default {
                     this.loadCampaignlogs();
                 }
                 if (e.flag.flag == 11) {
-                    //  console.log(6);
                     this.$store.dispatch("getCampaignJoinData");
                     this.loadUsersRecords();
                     this.loadcampaigns();
@@ -504,7 +496,7 @@ export default {
 
         async sendAddCharMessage() {
             await axios({
-                method: "get", //you can set what request you want to be
+                method: "get",
                 url: "/api/campaignsystemcheckaddchar/" + this.campaignId,
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
@@ -516,7 +508,7 @@ export default {
 
         async getSystems(id) {
             let res = await axios({
-                method: "get", //you can set what request you want to be
+                method: "get",
                 url: "/api/campaignjoinsystems/" + id,
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
@@ -531,7 +523,7 @@ export default {
 
         async finishCampaign() {
             await axios({
-                method: "get", //you can set what request you want to be
+                method: "get",
                 url: "/api/campaignsystemfinished/" + this.$route.params.id,
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
@@ -541,7 +533,7 @@ export default {
             });
 
             await axios({
-                method: "delete", //you can set what request you want to be
+                method: "delete",
                 url: "/api/multicampaigns/" + this.$route.params.id,
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
@@ -561,7 +553,7 @@ export default {
             };
 
             await axios({
-                method: "POST", //you can set what request you want to be
+                method: "POST",
                 url: "/api/campaignsystemusers/" + this.campaignId,
                 data: request,
                 headers: {
@@ -572,7 +564,7 @@ export default {
             });
 
             await axios({
-                method: "GET", //you can set what request you want to be
+                method: "GET",
                 url:
                     "/api/mcheckjoinleavecampaign/" +
                     this.campaignId +
@@ -590,7 +582,7 @@ export default {
         async leaving() {
             Echo.leave(this.channel);
             await axios({
-                method: "delete", //you can set what request you want to be
+                method: "delete",
                 url:
                     "/api/campaignsystemusers/" +
                     this.$store.state.user_id +
@@ -604,7 +596,7 @@ export default {
             });
 
             await axios({
-                method: "GET", //you can set what request you want to be
+                method: "GET",
                 url:
                     "/api/mcheckjoinleavecampaign/" +
                     this.campaignId +
@@ -670,7 +662,7 @@ export default {
             };
 
             await axios({
-                method: "POST", //you can set what request you want to be
+                method: "POST",
                 url: "/api/campaignusers/" + this.campaignId,
                 data: request,
                 headers: {
@@ -725,7 +717,7 @@ export default {
             this.$store.dispatch("updateCampaignUsers", item);
 
             axios({
-                method: "PUT", //you can set what request you want to be
+                method: "PUT",
                 url:
                     "/api/campaignusers/" +
                     this.oldChar.id +
@@ -750,7 +742,7 @@ export default {
 
         async editFormRemove() {
             await axios({
-                method: "DELETE", //you can set what request you want to be
+                method: "DELETE",
                 url:
                     "/api/campaignusers/" +
                     this.oldChar.id +
