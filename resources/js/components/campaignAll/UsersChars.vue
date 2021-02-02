@@ -304,34 +304,34 @@ export default {
                     }
                 });
             } else {
-                let data = item;
-                data.campaign_id = this.campaign_id;
-                data.campaign_system_id = null;
-                data.system_id = null;
-                data.status_id = 1;
-                data.node_id = null;
-                data.system_name = null;
-                data.user_status_name = "None";
-                this.$store.dispatch("addCampaignUserNew", data);
-                this.$store.dispatch("addUserChar", data);
+                // let data = item;
+                // data.campaign_id = this.campaign_id;
+                // data.campaign_system_id = null;
+                // data.system_id = null;
+                // data.status_id = 1;
+                // data.node_id = null;
+                // data.system_name = null;
+                // data.user_status_name = "None";
+                // this.$store.dispatch("addCampaignUserNew", data);
+                // this.$store.dispatch("addUserChar", data);
 
-                data = null;
+                // data = null;
 
-                data = {
-                    campaign_system_status_id: 1,
-                    end_time: null,
-                    main_name: null,
-                    site_id: null,
-                    user_id: null,
-                    user_link: null,
-                    user_name: null,
-                    user_ship: null
-                };
-                var payload = {
-                    user_id: item.id,
-                    data: data
-                };
-                this.$store.dispatch("updateCampaignSystemByUserID", payload);
+                // data = {
+                //     campaign_system_status_id: 1,
+                //     end_time: null,
+                //     main_name: null,
+                //     site_id: null,
+                //     user_id: null,
+                //     user_link: null,
+                //     user_name: null,
+                //     user_ship: null
+                // };
+                // var payload = {
+                //     user_id: item.id,
+                //     data: data
+                // };
+                // this.$store.dispatch("updateCampaignSystemByUserID", payload);
 
                 var request = {
                     campaign_id: this.campaign_id,

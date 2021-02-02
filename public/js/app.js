@@ -3271,7 +3271,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var _this = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-        var request, request2, data, payload;
+        var request, request2;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
@@ -3348,48 +3348,43 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 });
 
               case 16:
-                _context.next = 47;
+                _context.next = 33;
                 break;
 
               case 18:
-                data = item;
-                data.campaign_id = _this.campaign_id;
-                data.campaign_system_id = null;
-                data.system_id = null;
-                data.status_id = 1;
-                data.node_id = null;
-                data.system_name = null;
-                data.user_status_name = "None";
-
-                _this.$store.dispatch("addCampaignUserNew", data);
-
-                _this.$store.dispatch("addUserChar", data);
-
-                data = null;
-                data = {
-                  campaign_system_status_id: 1,
-                  end_time: null,
-                  main_name: null,
-                  site_id: null,
-                  user_id: null,
-                  user_link: null,
-                  user_name: null,
-                  user_ship: null
-                };
-                payload = {
-                  user_id: item.id,
-                  data: data
-                };
-
-                _this.$store.dispatch("updateCampaignSystemByUserID", payload);
-
+                // let data = item;
+                // data.campaign_id = this.campaign_id;
+                // data.campaign_system_id = null;
+                // data.system_id = null;
+                // data.status_id = 1;
+                // data.node_id = null;
+                // data.system_name = null;
+                // data.user_status_name = "None";
+                // this.$store.dispatch("addCampaignUserNew", data);
+                // this.$store.dispatch("addUserChar", data);
+                // data = null;
+                // data = {
+                //     campaign_system_status_id: 1,
+                //     end_time: null,
+                //     main_name: null,
+                //     site_id: null,
+                //     user_id: null,
+                //     user_link: null,
+                //     user_name: null,
+                //     user_ship: null
+                // };
+                // var payload = {
+                //     user_id: item.id,
+                //     data: data
+                // };
+                // this.$store.dispatch("updateCampaignSystemByUserID", payload);
                 request = {
                   campaign_id: _this.campaign_id,
                   campaign_system_id: null,
                   system_id: null,
                   status_id: 1
                 };
-                _context.next = 35;
+                _context.next = 21;
                 return axios({
                   method: "PUT",
                   //you can set what request you want to be
@@ -3402,11 +3397,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   }
                 });
 
-              case 35:
+              case 21:
                 request2 = {
                   id: item.id
                 };
-                _context.next = 38;
+                _context.next = 24;
                 return axios({
                   method: "PUT",
                   //you can set what request you want to be
@@ -3419,15 +3414,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   }
                 });
 
-              case 38:
-                _context.next = 40;
+              case 24:
+                _context.next = 26;
                 return _this.$store.dispatch("getCampaignUsersRecords", _this.campaign_id);
 
-              case 40:
-                _context.next = 42;
+              case 26:
+                _context.next = 28;
                 return _this.$store.dispatch("getUsersChars", _this.$store.state.user_id);
 
-              case 42:
+              case 28:
                 _this.$store.dispatch("getCampaignSystemsRecords");
 
                 request = null;
@@ -3436,7 +3431,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   type: "added",
                   char_name: _this.newCharName
                 };
-                _context.next = 47;
+                _context.next = 33;
                 return axios({
                   method: "put",
                   //you can set what request you want to be
@@ -3449,7 +3444,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   }
                 });
 
-              case 47:
+              case 33:
               case "end":
                 return _context.stop();
             }
