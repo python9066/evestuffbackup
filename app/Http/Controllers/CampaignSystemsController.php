@@ -52,8 +52,7 @@ class CampaignSystemsController extends Controller
             $supervier_name = null;
             if ($pull['last_checked_user_id'] != null) {
 
-                dd($pull['last_checked_user_id']);
-                $checker_name = User::where('id', $pull['last_checked_user_id']->value('name'));
+                $checker_name = User::where('id', $pull['last_checked_user_id'])->value('name');
             }
 
             if ($pull['supervisor_id'] != null) {
