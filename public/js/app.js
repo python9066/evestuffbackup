@@ -9811,20 +9811,35 @@ function sleep(ms) {
               payload = {
                 campaign_id: _this2.campaign.id,
                 user_id: _this2.$store.state.user_id
-              }; // await this.$store.dispatch("getCampaignSolaSystems");
-
+              };
               _context3.next = 3;
-              return _this2.getSystems(_this2.campaign.constellation_id);
+              return _this2.$store.dispatch("getCampaignSolaSystems");
 
             case 3:
               _context3.next = 5;
-              return _this2.loadCampaignSystemData(payload);
+              return _this2.getSystems(_this2.campaign.constellation_id);
 
             case 5:
               _context3.next = 7;
-              return _this2.loadCampaignlogs();
+              return _this2.$store.dispatch("getNodeJoinByCampaignId", _this2.campaign.id);
 
             case 7:
+              _context3.next = 9;
+              return _this2.$store.dispatch("getCampaignUsersRecords", _this2.campaign.id);
+
+            case 9:
+              _context3.next = 11;
+              return _this2.$store.dispatch("getCampaignSystemsRecords");
+
+            case 11:
+              _context3.next = 13;
+              return _this2.$store.dispatch("getUsersChars", _this2.$store.state.user_id);
+
+            case 13:
+              _context3.next = 15;
+              return _this2.loadCampaignlogs();
+
+            case 15:
             case "end":
               return _context3.stop();
           }
