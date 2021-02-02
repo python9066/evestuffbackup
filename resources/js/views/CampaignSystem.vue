@@ -601,14 +601,8 @@ export default {
             user_id: this.$store.state.user_id,
             type: 1
         };
-        // await this.$store.dispatch("getCampaignSolaSystems");
-        // await this.$store.dispatch("getNodeJoinByCampaignId", this.campaign.id);
-        // await this.$store.dispatch("getCampaignUsersRecords", this.campaign.id);
-        // await this.$store.dispatch("getCampaignSystemsRecords");
-        // await this.$store.dispatch("getUsersChars", this.$store.state.user_id);
         await this.$store.dispatch("loadCampaignSystemData", payload);
         await this.getSystems();
-        // await this.loadCampaignlogs();
     },
     methods: {
         checkAddUser() {
@@ -630,7 +624,7 @@ export default {
 
         async finishCampaign() {
             await axios({
-                method: "get", //you can set what request you want to be
+                method: "get",
                 url: "/api/campaignsystemfinished/" + this.campaign.id,
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
@@ -692,7 +686,7 @@ export default {
 
         async sendAddCharMessage() {
             await axios({
-                method: "get", //you can set what request you want to be
+                method: "get",
                 url: "/api/campaignsystemcheckaddchar/" + this.campaign.id,
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
@@ -705,7 +699,7 @@ export default {
         async getSystems() {
             // console.log(id, this.$store.state.token);
             let res = await axios({
-                method: "get", //you can set what request you want to be
+                method: "get",
                 url: "/api/systemsinconstellation/" + this.$route.params.id,
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
@@ -734,7 +728,7 @@ export default {
             };
 
             await axios({
-                method: "POST", //you can set what request you want to be
+                method: "POST",
                 url: "/api/campaignsystemusers/" + this.campaign.id,
                 data: request,
                 headers: {
@@ -745,7 +739,7 @@ export default {
             });
 
             await axios({
-                method: "GET", //you can set what request you want to be
+                method: "GET",
                 url:
                     "/api/checkjoinleavecampaign/" +
                     this.campaign.id +
@@ -763,7 +757,7 @@ export default {
         async leaving() {
             Echo.leave(this.channel);
             await axios({
-                method: "delete", //you can set what request you want to be
+                method: "delete",
                 url:
                     "/api/campaignsystemusers/" +
                     this.$store.state.user_id +
@@ -777,7 +771,7 @@ export default {
             });
 
             await axios({
-                method: "GET", //you can set what request you want to be
+                method: "GET",
                 url:
                     "/api/checkjoinleavecampaign/" +
                     this.campaignId +
@@ -847,7 +841,7 @@ export default {
             };
 
             await axios({
-                method: "POST", //you can set what request you want to be
+                method: "POST",
                 url: "/api/campaignusers/" + this.campaign.id,
                 data: request,
                 headers: {
@@ -903,7 +897,7 @@ export default {
             this.$store.dispatch("updateCampaignUsers", item);
 
             axios({
-                method: "PUT", //you can set what request you want to be
+                method: "PUT",
                 url:
                     "/api/campaignusers/" +
                     this.oldChar.id +
@@ -928,7 +922,7 @@ export default {
 
         async editFormRemove() {
             await axios({
-                method: "DELETE", //you can set what request you want to be
+                method: "DELETE",
                 url:
                     "/api/campaignusers/" +
                     this.oldChar.id +

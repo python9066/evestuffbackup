@@ -241,6 +241,36 @@ export default {
         async pillClick(item) {
             if (item.campaign_id == this.campaign_id) {
                 //removeing char from campaign
+
+                let data = item;
+                data.campaign_id = null;
+                data.campaign_system_id = null;
+                data.system_id = null;
+                data.status_id = 1;
+                data.node_id = null;
+                data.system_name = null;
+                data.user_status_name = "None";
+                this.$store.dispatch("deleteCampaignUser", e.flag.userid); //remove char from campaign
+                this.$store.dispatch("updateUsersChars", data); // update user char
+
+                data = null;
+
+                data = {
+                    campaign_system_status_id: 1,
+                    end_time: null,
+                    main_name: null,
+                    site_id: null,
+                    user_id: null,
+                    user_link: null,
+                    user_name: null,
+                    user_ship: null
+                };
+                var payload = {
+                    user_id: item.id,
+                    data: data
+                };
+                this.$store.dispatch("updateCampaignSystemByUserID", payload); // removes from old node for new campaign
+
                 var request = {
                     campaign_id: null,
                     campaign_system_id: null,
@@ -263,20 +293,6 @@ export default {
                         "Content-Type": "application/json"
                     }
                 });
-                var request2 = {
-                    id: item.id
-                };
-
-                // await axios({
-                //     method: "PUT",
-                //     url: "/api/campaignsystemmovechar/" + this.campaign_id,
-                //     data: request2,
-                //     headers: {
-                //         Authorization: "Bearer " + this.$store.state.token,
-                //         Accept: "application/json",
-                //         "Content-Type": "application/json"
-                //     }
-                // });
 
                 await this.$store.dispatch(
                     "getCampaignUsersRecords",
@@ -288,14 +304,13 @@ export default {
                 );
                 this.$store.dispatch("getCampaignSystemsRecords");
 
+                //------logging---////
                 request = null;
                 request = {
                     user_id: this.$store.state.user_id,
                     type: "removed",
                     char_name: this.newCharName
                 };
-
-                //------logging---////
 
                 await axios({
                     method: "put",
@@ -307,8 +322,11 @@ export default {
                         "Content-Type": "application/json"
                     }
                 });
+
+                //------logging End-----//
             } else {
-                let data = item;
+                //--add char to campaign--//
+                data = item;
                 data.campaign_id = this.campaign_id;
                 data.campaign_system_id = null;
                 data.system_id = null;
@@ -316,8 +334,8 @@ export default {
                 data.node_id = null;
                 data.system_name = null;
                 data.user_status_name = "None";
-                this.$store.dispatch("addCampaignUserNew", data);
-                this.$store.dispatch("updateUsersChars", data);
+                this.$store.dispatch("addCampaignUserNew", data); //add char to campaign
+                this.$store.dispatch("updateUsersChars", data); // update user char
 
                 data = null;
 
@@ -359,33 +377,8 @@ export default {
                         "Content-Type": "application/json"
                     }
                 });
-                // var request2 = {
-                //     id: item.id
-                // };
 
-                // //-- removes from old node for new campaign --//
-                // await axios({
-                //     method: "PUT",
-                //     url: "/api/campaignsystemmovechar/" + this.campaign_id,
-                //     data: request2,
-                //     headers: {
-                //         Authorization: "Bearer " + this.$store.state.token,
-                //         Accept: "application/json",
-                //         "Content-Type": "application/json"
-                //     }
-                // });
-
-                // await this.$store.dispatch(
-                //     "getCampaignUsersRecords",
-                //     this.campaign_id
-                // );
-                // await this.$store.dispatch(
-                //     "getUsersChars",
-                //     this.$store.state.user_id
-                // );
-                // this.$store.dispatch("getCampaignSystemsRecords");
-
-                //--------LOGGING------------//
+                //--------LOGGING START------------//
                 request = null;
                 request = {
                     user_id: this.$store.state.user_id,
@@ -403,6 +396,8 @@ export default {
                         "Content-Type": "application/json"
                     }
                 });
+
+                //------logging End-----//
             }
         },
 
@@ -435,14 +430,13 @@ export default {
                 this.$store.state.user_id
             );
 
+            //------logging Start-----//
             request = null;
             request = {
                 user_id: this.$store.state.user_id,
                 type: "added",
                 char_name: this.newCharName
             };
-
-            //------logging-----//
 
             await axios({
                 method: "put",
@@ -455,6 +449,8 @@ export default {
                 }
             });
 
+            //------logging End-----//
+
             this.role = null;
             this.newCharName = null;
             this.newLink = null;
@@ -464,8 +460,6 @@ export default {
         },
 
         async removeChar(item) {
-            // console.log(item);
-
             this.$store.dispatch("deleteUsersChars", item.id);
             this.$store.dispatch("deleteCampaignUser", item.id);
             await axios({
