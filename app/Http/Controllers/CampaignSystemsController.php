@@ -35,6 +35,8 @@ class CampaignSystemsController extends Controller
     public function load(Request $request)
     {
         $campid = null;
+        $test = $request['type'];
+        dd($test);
         if ($request['type'] = 1) {
             $campid = Campaign::where('link', $request['campaign_id'])->value('id');
             $userid = $request['user_id'];
