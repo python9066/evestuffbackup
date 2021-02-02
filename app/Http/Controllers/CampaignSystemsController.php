@@ -220,9 +220,6 @@ class CampaignSystemsController extends Controller
         if ($node != null) {
             $node->update(['campaign_user_id' =>  null, 'campaign_system_status_id' => 1, 'end_time' => null]);
             $node->save();
-            $test = CampaignSystem::where('campaign_id', $request->campaign_id)
-                ->where('system_id', $request->system_id)->get();
-
             $flag = collect([
                 'flag' => 2,
                 'id' => $campid

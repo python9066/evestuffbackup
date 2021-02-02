@@ -305,7 +305,14 @@ export default {
                 });
             } else {
                 let data = item;
-                console.log(data);
+                data.campaign_id = this.campaign_id;
+                data.campaign_system_id = null;
+                data.system_id = null;
+                data.status_id = 1;
+                data.node_id = null;
+                data.system_name = null;
+                data.user_status_name = "None";
+                this.$store.dispatch("updateCampaignUsers", data);
 
                 var request = {
                     campaign_id: this.campaign_id,
