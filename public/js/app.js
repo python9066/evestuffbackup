@@ -11978,6 +11978,10 @@ function sleep(ms) {
                 }
               }).listen("CampaignUserNew", function (e) {
                 _this.$store.dispatch("addCampaignUserNew", e.flag.message);
+              }).listen("CampaignUserDelete", function (e) {
+                console.log(e.flag.userid);
+
+                _this.$store.dispatch("deleteCampaignUser", e.flag.userid);
               });
               window.addEventListener("beforeunload", _this.leaving);
               _this.channel = "campaignsystem." + _this.campaignId;
