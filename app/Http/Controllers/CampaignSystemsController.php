@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\CampaignSystem;
 use App\Events\CampaignSystemUpdate;
-use App\Models\Auth;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Campaign;
 use App\Models\CampaignSolaSystem;
 use App\Models\CampaignSystemRecords;
@@ -31,7 +31,7 @@ class CampaignSystemsController extends Controller
 
     public function load(Request $request)
     {
-        $check = Auth::User();
+
         if ($request['type'] = 'solo') {
             $campid = Campaign::where('link', $request['campaign_id'])->value('id');
             $userid = $request['user_id'];
@@ -40,6 +40,9 @@ class CampaignSystemsController extends Controller
             $userid = $request['user_id'];
         }
 
+
+        $check = Auth::user();
+        dd($check);
 
         $dataSola = [];
         $pull = CampaignSolaSystem::where('campaign_id', $campid)->get();
