@@ -56,13 +56,21 @@ export default {
 
     methods: {
         async scoutAdd() {
+            var data = {
+                id: this.CampaignSolaSystem[0]["id"],
+                supervisor_id: this.$store.state.user_id,
+                supervisor_name: this.$store.state.user_name
+            };
+
+            this.$store.dispatch("updateCampaignSolaSystem", data);
+
             var request = null;
             request = {
                 supervisor_id: this.$store.state.user_id
             };
 
             await axios({
-                method: "put", //you can set what request you want to be
+                method: "put",
                 url:
                     "/api/campaignsolasystems/" +
                     this.CampaignSolaSystem[0]["id"] +
@@ -76,7 +84,8 @@ export default {
                 }
             });
 
-            await this.$store.dispatch("getCampaignSolaSystems");
+            //------logging start -----//
+            // await this.$store.dispatch("getCampaignSolaSystems");
 
             var request = null;
             request = {
@@ -86,7 +95,7 @@ export default {
             };
 
             await axios({
-                method: "put", //you can set what request you want to be
+                method: "put",
                 url:
                     "/api/checkscout/" +
                     this.CampaignSolaSystem[0]["campaign_id"],
@@ -97,16 +106,25 @@ export default {
                     "Content-Type": "application/json"
                 }
             });
+            //-----loggin end-----//
         },
 
         async scoutRemove() {
+            var data = {
+                id: this.CampaignSolaSystem[0]["id"],
+                supervisor_id: null,
+                supervisor_name: null
+            };
+
+            this.$store.dispatch("updateCampaignSolaSystem", data);
+
             var request = null;
             request = {
                 supervisor_id: null
             };
 
             await axios({
-                method: "put", //you can set what request you want to be
+                method: "put",
                 url:
                     "/api/campaignsolasystems/" +
                     this.CampaignSolaSystem[0]["id"] +
@@ -120,17 +138,19 @@ export default {
                 }
             });
 
-            await this.$store.dispatch("getCampaignSolaSystems");
+            // await this.$store.dispatch("getCampaignSolaSystems");
 
-            var request = null;
-            request = {
-                user_id: this.$store.state.user_id,
-                campaign_sola_system_id: this.CampaignSolaSystem[0]["id"],
-                type: "removed"
-            };
+            // var request = null;
+            // request = {
+            //     user_id: this.$store.state.user_id,
+            //     campaign_sola_system_id: this.CampaignSolaSystem[0]["id"],
+            //     type: "removed"
+            // };
+
+            //------logging start -----//
 
             await axios({
-                method: "put", //you can set what request you want to be
+                method: "put",
                 url:
                     "/api/checkscout/" +
                     this.CampaignSolaSystem[0]["campaign_id"],
@@ -141,6 +161,8 @@ export default {
                     "Content-Type": "application/json"
                 }
             });
+
+            //------logging end -----//
         }
     },
 

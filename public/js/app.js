@@ -2875,19 +2875,26 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var _this = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-        var request;
+        var data, request;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
+                data = {
+                  id: _this.CampaignSolaSystem[0]["id"],
+                  supervisor_id: _this.$store.state.user_id,
+                  supervisor_name: _this.$store.state.user_name
+                };
+
+                _this.$store.dispatch("updateCampaignSolaSystem", data);
+
                 request = null;
                 request = {
                   supervisor_id: _this.$store.state.user_id
                 };
-                _context.next = 4;
+                _context.next = 6;
                 return axios({
                   method: "put",
-                  //you can set what request you want to be
                   url: "/api/campaignsolasystems/" + _this.CampaignSolaSystem[0]["id"] + "/" + _this.CampaignSolaSystem[0]["campaign_id"],
                   data: request,
                   headers: {
@@ -2897,11 +2904,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   }
                 });
 
-              case 4:
-                _context.next = 6;
-                return _this.$store.dispatch("getCampaignSolaSystems");
-
               case 6:
+                //------logging start -----//
+                // await this.$store.dispatch("getCampaignSolaSystems");
                 request = null;
                 request = {
                   user_id: _this.$store.state.user_id,
@@ -2911,7 +2916,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 _context.next = 10;
                 return axios({
                   method: "put",
-                  //you can set what request you want to be
                   url: "/api/checkscout/" + _this.CampaignSolaSystem[0]["campaign_id"],
                   data: request,
                   headers: {
@@ -2933,19 +2937,26 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var _this2 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
-        var request;
+        var data, request;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
+                data = {
+                  id: _this2.CampaignSolaSystem[0]["id"],
+                  supervisor_id: null,
+                  supervisor_name: null
+                };
+
+                _this2.$store.dispatch("updateCampaignSolaSystem", data);
+
                 request = null;
                 request = {
                   supervisor_id: null
                 };
-                _context2.next = 4;
+                _context2.next = 6;
                 return axios({
                   method: "put",
-                  //you can set what request you want to be
                   url: "/api/campaignsolasystems/" + _this2.CampaignSolaSystem[0]["id"] + "/" + _this2.CampaignSolaSystem[0]["campaign_id"],
                   data: request,
                   headers: {
@@ -2955,21 +2966,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   }
                 });
 
-              case 4:
-                _context2.next = 6;
-                return _this2.$store.dispatch("getCampaignSolaSystems");
-
               case 6:
-                request = null;
-                request = {
-                  user_id: _this2.$store.state.user_id,
-                  campaign_sola_system_id: _this2.CampaignSolaSystem[0]["id"],
-                  type: "removed"
-                };
-                _context2.next = 10;
+                _context2.next = 8;
                 return axios({
                   method: "put",
-                  //you can set what request you want to be
                   url: "/api/checkscout/" + _this2.CampaignSolaSystem[0]["campaign_id"],
                   data: request,
                   headers: {
@@ -2979,7 +2979,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   }
                 });
 
-              case 10:
+              case 8:
               case "end":
                 return _context2.stop();
             }
