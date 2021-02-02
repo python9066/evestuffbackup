@@ -57,7 +57,6 @@ class CampaignSystemsController extends Controller
             }
 
             if ($check->hasPermissionTo('view_campaign_logs')) {
-                dd('yay');
             };
 
             $dataSola1 = [];
