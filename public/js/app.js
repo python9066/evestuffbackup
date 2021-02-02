@@ -9715,6 +9715,15 @@ function sleep(ms) {
               return _this.$store.dispatch("getCampaigns");
 
             case 3:
+              if (!(_this.$store.getters.getCampaignsCount == 0)) {
+                _context.next = 6;
+                break;
+              }
+
+              _context.next = 6;
+              return _this.$store.dispatch("getCampaigns");
+
+            case 6:
               _this.campaignId = _this.campaign.id;
               Echo["private"]("campaignsystem." + _this.campaign.id).listen("CampaignSystemUpdate", function (e) {
                 // console.log(e);
@@ -9790,7 +9799,7 @@ function sleep(ms) {
 
               _this.addMember();
 
-            case 10:
+            case 13:
             case "end":
               return _context.stop();
           }
