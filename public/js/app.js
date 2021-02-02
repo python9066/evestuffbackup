@@ -9792,6 +9792,8 @@ function sleep(ms) {
                 if (e.flag.flag == 10) {
                   _this.loadCampaignlogs();
                 }
+              }).listen("CampaignUserNew", function (e) {
+                console.log(e);
               });
               window.addEventListener("beforeunload", _this.leaving);
               _this.channel = "campaignsystem." + _this.campaign.id;
