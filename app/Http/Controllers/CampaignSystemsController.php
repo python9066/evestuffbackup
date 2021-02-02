@@ -26,7 +26,7 @@ class CampaignSystemsController extends Controller
     {
         $campid = Campaign::where('link', $request['campaign_id'])->value('id');
         $dataSola = [];
-        $pull = CampaignSolaSystem::all();
+        $pull = CampaignSolaSystem::where('campaign_id', $campid)->get();
         foreach ($pull as $pull) {
             $checker_name = null;
             $supervier_name = null;
