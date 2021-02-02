@@ -78,21 +78,45 @@ class CampaignUserController extends Controller
             'id' => $campid
         ]);
         broadcast(new CampaignUserUpdate($flag))->toOthers();
-
-
-
-
-
-        // $flag = null;
-        // $flag = collect([
-        //     'flag' => 3,
-        //     'id' => $campid
-        // ]);
-        // broadcast(new CampaignSystemUpdate($flag));
     }
 
     public function updateadd(Request $request, $id, $campid)
     {
+        $node = CampaignSystem::where('campaign_user_id', $id)->first();
+
+        if ($node != null) {
+            $node->update(['campaign_user_id' =>  null, 'campaign_system_status_id' => 1, 'end_time' => null]);
+            $node->save();
+            $flag = collect([
+                'flag' => 2,
+                'id' => $campid
+            ]);
+        }
+
+
+        CampaignUser::find($id)->update($request->all());
+        $message = CampaignUserRecords::where('id', $id)->first();
+        $flag = null;
+        $flag = collect([
+            'message' => $message,
+            'id' => $campid
+        ]);
+        broadcast(new CampaignUserNew($flag))->toOthers();
+    }
+
+    public function updateremove(Request $request, $id, $campid)
+    {
+
+        $node = CampaignSystem::where('campaign_user_id', $id)->first();
+
+        if ($node != null) {
+            $node->update(['campaign_user_id' =>  null, 'campaign_system_status_id' => 1, 'end_time' => null]);
+            $node->save();
+            $flag = collect([
+                'flag' => 2,
+                'id' => $campid
+            ]);
+        }
 
         CampaignUser::find($id)->update($request->all());
         $message = CampaignUserRecords::where('id', $id)->first();
@@ -100,18 +124,7 @@ class CampaignUserController extends Controller
             'message' => $message,
             'id' => $campid
         ]);
-        broadcast(new CampaignUserNew($flag))->toOthers();
-
-
-
-
-
-        // $flag = null;
-        // $flag = collect([
-        //     'flag' => 3,
-        //     'id' => $campid
-        // ]);
-        // broadcast(new CampaignSystemUpdate($flag));
+        broadcast(new CampaignUserDelete($flag))->toOthers();
     }
 
     /**

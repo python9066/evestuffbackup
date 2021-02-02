@@ -3277,10 +3277,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context.prev = _context.next) {
               case 0:
                 if (!(item.campaign_id == _this.campaign_id)) {
-                  _context.next = 18;
+                  _context.next = 16;
                   break;
                 }
 
+                //removeing char from campaign
                 request = {
                   campaign_id: null,
                   campaign_system_id: null,
@@ -3289,8 +3290,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 };
                 _context.next = 4;
                 return axios({
+                  //removes char from campaign
                   method: "PUT",
-                  url: "/api/campaignusers/" + item.id + "/" + _this.campaign_id,
+                  url: "/api/campaignusersremove/" + item.id + "/" + _this.campaign_id,
                   data: request,
                   headers: {
                     Authorization: "Bearer " + _this.$store.state.token,
@@ -3302,28 +3304,25 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 4:
                 request2 = {
                   id: item.id
-                };
+                }; // await axios({
+                //     method: "PUT",
+                //     url: "/api/campaignsystemmovechar/" + this.campaign_id,
+                //     data: request2,
+                //     headers: {
+                //         Authorization: "Bearer " + this.$store.state.token,
+                //         Accept: "application/json",
+                //         "Content-Type": "application/json"
+                //     }
+                // });
+
                 _context.next = 7;
-                return axios({
-                  method: "PUT",
-                  url: "/api/campaignsystemmovechar/" + _this.campaign_id,
-                  data: request2,
-                  headers: {
-                    Authorization: "Bearer " + _this.$store.state.token,
-                    Accept: "application/json",
-                    "Content-Type": "application/json"
-                  }
-                });
+                return _this.$store.dispatch("getCampaignUsersRecords", _this.campaign_id);
 
               case 7:
                 _context.next = 9;
-                return _this.$store.dispatch("getCampaignUsersRecords", _this.campaign_id);
-
-              case 9:
-                _context.next = 11;
                 return _this.$store.dispatch("getUsersChars", _this.$store.state.user_id);
 
-              case 11:
+              case 9:
                 _this.$store.dispatch("getCampaignSystemsRecords");
 
                 request = null;
@@ -3333,7 +3332,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   char_name: _this.newCharName
                 }; //------logging---////
 
-                _context.next = 16;
+                _context.next = 14;
                 return axios({
                   method: "put",
                   url: "/api/checkaddremovechar/" + _this.campaign_id,
@@ -3345,11 +3344,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   }
                 });
 
-              case 16:
-                _context.next = 42;
+              case 14:
+                _context.next = 37;
                 break;
 
-              case 18:
+              case 16:
                 data = item;
                 data.campaign_id = _this.campaign_id;
                 data.campaign_system_id = null;
@@ -3389,7 +3388,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   status_id: 1
                 }; // add char to campaign
 
-                _context.next = 35;
+                _context.next = 33;
                 return axios({
                   method: "PUT",
                   url: "/api/campaignusersadd/" + item.id + "/" + _this.campaign_id,
@@ -3401,24 +3400,21 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   }
                 });
 
-              case 35:
-                request2 = {
-                  id: item.id
-                }; // removes from old node for new campaign
-
-                _context.next = 38;
-                return axios({
-                  method: "PUT",
-                  url: "/api/campaignsystemmovechar/" + _this.campaign_id,
-                  data: request2,
-                  headers: {
-                    Authorization: "Bearer " + _this.$store.state.token,
-                    Accept: "application/json",
-                    "Content-Type": "application/json"
-                  }
-                });
-
-              case 38:
+              case 33:
+                // var request2 = {
+                //     id: item.id
+                // };
+                // //-- removes from old node for new campaign --//
+                // await axios({
+                //     method: "PUT",
+                //     url: "/api/campaignsystemmovechar/" + this.campaign_id,
+                //     data: request2,
+                //     headers: {
+                //         Authorization: "Bearer " + this.$store.state.token,
+                //         Accept: "application/json",
+                //         "Content-Type": "application/json"
+                //     }
+                // });
                 // await this.$store.dispatch(
                 //     "getCampaignUsersRecords",
                 //     this.campaign_id
@@ -3435,7 +3431,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   type: "added",
                   char_name: _this.newCharName
                 };
-                _context.next = 42;
+                _context.next = 37;
                 return axios({
                   method: "put",
                   url: "/api/checkaddremovechar/" + _this.campaign_id,
@@ -3447,7 +3443,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   }
                 });
 
-              case 42:
+              case 37:
               case "end":
                 return _context.stop();
             }

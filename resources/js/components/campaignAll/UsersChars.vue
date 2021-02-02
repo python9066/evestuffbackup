@@ -240,6 +240,7 @@ export default {
 
         async pillClick(item) {
             if (item.campaign_id == this.campaign_id) {
+                //removeing char from campaign
                 var request = {
                     campaign_id: null,
                     campaign_system_id: null,
@@ -248,9 +249,10 @@ export default {
                 };
 
                 await axios({
+                    //removes char from campaign
                     method: "PUT",
                     url:
-                        "/api/campaignusers/" +
+                        "/api/campaignusersremove/" +
                         item.id +
                         "/" +
                         this.campaign_id,
@@ -265,16 +267,16 @@ export default {
                     id: item.id
                 };
 
-                await axios({
-                    method: "PUT",
-                    url: "/api/campaignsystemmovechar/" + this.campaign_id,
-                    data: request2,
-                    headers: {
-                        Authorization: "Bearer " + this.$store.state.token,
-                        Accept: "application/json",
-                        "Content-Type": "application/json"
-                    }
-                });
+                // await axios({
+                //     method: "PUT",
+                //     url: "/api/campaignsystemmovechar/" + this.campaign_id,
+                //     data: request2,
+                //     headers: {
+                //         Authorization: "Bearer " + this.$store.state.token,
+                //         Accept: "application/json",
+                //         "Content-Type": "application/json"
+                //     }
+                // });
 
                 await this.$store.dispatch(
                     "getCampaignUsersRecords",
@@ -357,21 +359,21 @@ export default {
                         "Content-Type": "application/json"
                     }
                 });
-                var request2 = {
-                    id: item.id
-                };
+                // var request2 = {
+                //     id: item.id
+                // };
 
-                // removes from old node for new campaign
-                await axios({
-                    method: "PUT",
-                    url: "/api/campaignsystemmovechar/" + this.campaign_id,
-                    data: request2,
-                    headers: {
-                        Authorization: "Bearer " + this.$store.state.token,
-                        Accept: "application/json",
-                        "Content-Type": "application/json"
-                    }
-                });
+                // //-- removes from old node for new campaign --//
+                // await axios({
+                //     method: "PUT",
+                //     url: "/api/campaignsystemmovechar/" + this.campaign_id,
+                //     data: request2,
+                //     headers: {
+                //         Authorization: "Bearer " + this.$store.state.token,
+                //         Accept: "application/json",
+                //         "Content-Type": "application/json"
+                //     }
+                // });
 
                 // await this.$store.dispatch(
                 //     "getCampaignUsersRecords",
