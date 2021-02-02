@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Campaign;
 use App\Models\System;
 use Illuminate\Http\Request;
 
@@ -41,8 +42,8 @@ class SystemController extends Controller
 
     public function systemsinconstellation($id)
     {
-
-        return ['systems' => System::where('constellation_id', $id)->select('id', 'system_name')->get()];
+        $constid = Campaign::where('link', $id)->value('constellation_id');
+        return ['systems' => System::where('constellation_id', $constid)->select('id', 'system_name')->get()];
     }
 
     /**

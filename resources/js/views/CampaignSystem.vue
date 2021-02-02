@@ -599,7 +599,7 @@ export default {
         // await this.$store.dispatch("getCampaignSystemsRecords");
         // await this.$store.dispatch("getUsersChars", this.$store.state.user_id);
         await this.$store.dispatch("loadCampaignSystemData", payload);
-        await this.getSystems(this.campaign.constellation_id);
+        await this.getSystems();
         await this.loadCampaignlogs();
     },
     methods: {
@@ -698,7 +698,7 @@ export default {
             // console.log(id, this.$store.state.token);
             let res = await axios({
                 method: "get", //you can set what request you want to be
-                url: "/api/systemsinconstellation/" + id,
+                url: "/api/systemsinconstellation/" + this.$route.params.id,
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
                     Accept: "application/json",

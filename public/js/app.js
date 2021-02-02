@@ -9822,7 +9822,7 @@ function sleep(ms) {
 
             case 3:
               _context3.next = 5;
-              return _this2.getSystems(_this2.campaign.constellation_id);
+              return _this2.getSystems();
 
             case 5:
               _context3.next = 7;
@@ -10069,7 +10069,7 @@ function sleep(ms) {
                 return axios({
                   method: "get",
                   //you can set what request you want to be
-                  url: "/api/systemsinconstellation/" + id,
+                  url: "/api/systemsinconstellation/" + _this12.$route.params.id,
                   headers: {
                     Authorization: "Bearer " + _this12.$store.state.token,
                     Accept: "application/json",
