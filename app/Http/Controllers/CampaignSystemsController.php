@@ -11,6 +11,8 @@ use App\Models\CampaignSystemRecords;
 use App\Models\CampaignSystemStatus;
 use App\Models\CampaignUser;
 use App\Models\CampaignUserRecords;
+use App\Models\Logging;
+use App\Models\LoggingType;
 use App\Models\NodeJoin;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -18,6 +20,7 @@ use Spatie\Permission\Traits\HasPermissions;
 use Spatie\Permission\Traits\HasRoles;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
+use utils\Helper\Helper;
 
 class CampaignSystemsController extends Controller
 {
@@ -56,8 +59,8 @@ class CampaignSystemsController extends Controller
                 $supervier_name = User::where('id', $pull['supervisor_id'])->value('name');
             }
 
-            if ($check->hasPermissionTo('view_campaign_logs')) {
-            };
+
+
 
             $dataSola1 = [];
             $dataSola1 = [
@@ -96,13 +99,39 @@ class CampaignSystemsController extends Controller
                 array_push($nodeJoin, $pull);
             }
         }
+        if ($check->hasPermissionTo('view_campaign_logs')) {
+            $dataLog = [];
+            $logs = Logging::where('campaign_id', $campid)->get();
+            foreach ($logs as $log) {
+                $time = Helper::fixtime($log['created_at']);
+                $dataLog1 = null;
+                $dataLog1 = [
+                    'id' => $log['id'],
+                    'campaign_id' => $log['campaign_id'],
+                    'campaign_name' => $log['campaign_name'],
+                    'campaign_sola_system_id' => $log['campaign_sola_system_id'],
+                    'sola_system_name' => $log['sola_system_name'],
+                    'campaign_system_id' => $log['campaign_system_id'],
+                    'user_id' => $log['user_id'],
+                    'user_name' => $log->user()->value('name'),
+                    'logging_type_id' => $log['logging_type_id'],
+                    'logging_type_name' => LoggingType::where('id', $log['logging_type_id'])->value('name'),
+                    'text' => $log['text'],
+                    'created_at' => $time
+                ];
+                array_push($dataLog, $dataLog1);
+            }
+        } else {
+            $dataLog = [];
+        }
 
         return [
             'users' => CampaignUserRecords::where('campaign_id', $campid)->get(),
             'sola' => $dataSola,
             'nodejoin' => $nodeJoin,
             'systems' => CampaignSystemRecords::all(),
-            'usersbyid' => CampaignUserRecords::where('site_id', $userid)->get()
+            'usersbyid' => CampaignUserRecords::where('site_id', $userid)->get(),
+            'logs' => $dataLog,
         ];
     }
 
