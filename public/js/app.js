@@ -2883,7 +2883,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 data = {
                   id: _this.CampaignSolaSystem[0]["id"],
                   supervisor_id: _this.$store.state.user_id,
-                  supervisor_name: _this.$store.state.user_name
+                  supervisor_user_name: _this.$store.state.user_name
                 };
 
                 _this.$store.dispatch("updateCampaignSolaSystem", data);
@@ -2945,7 +2945,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 data = {
                   id: _this2.CampaignSolaSystem[0]["id"],
                   supervisor_id: null,
-                  supervisor_name: null
+                  supervisor_user_name: null
                 };
 
                 _this2.$store.dispatch("updateCampaignSolaSystem", data);
