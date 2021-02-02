@@ -490,12 +490,8 @@ export default new Vuex.Store({
             commit("ADD_CAMPAIGN_USERS", data)
         },
 
-        addUserChar({ commit }, data) {
-            commit("ADD_USER_CHAR", data)
-        },
-
         updateUserChar({ commit }, data) {
-            commit("ADD_USER_CHAR", data)
+            commit("UPDATE_USER_CHAR", data)
         },
 
         deleteCampaignUser({ commit }, id) {
