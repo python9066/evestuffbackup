@@ -417,11 +417,17 @@ export default {
             await this.$store.dispatch("getMultiCampaigns");
         }
 
-        await this.$store.dispatch("getNodeJoinByCampaignId", this.campaign_id);
+        let payload = {
+            campaign_id: this.$route.params.id,
+            user_id: this.$store.state.user_id,
+            type: "multi"
+        };
+        // await this.$store.dispatch("getNodeJoinByCampaignId", this.campaign_id);
+        // await this.$store.dispatch("getCampaignUsersRecords", this.campaignId);
+        // await this.$store.dispatch("getCampaignSystemsRecords");
+        // await this.$store.dispatch("getUsersChars", this.$store.state.user_id);
+        await this.$store.dispatch("loadCampaignSystemData", payload);
         await this.getSystems(this.campaignId);
-        await this.$store.dispatch("getCampaignUsersRecords", this.campaignId);
-        await this.$store.dispatch("getCampaignSystemsRecords");
-        await this.$store.dispatch("getUsersChars", this.$store.state.user_id);
         await this.loadCampaignlogs();
     },
     methods: {

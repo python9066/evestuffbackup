@@ -595,7 +595,8 @@ export default {
     async mounted() {
         let payload = {
             campaign_id: this.$route.params.id,
-            user_id: this.$store.state.user_id
+            user_id: this.$store.state.user_id,
+            type: "solo"
         };
         // await this.$store.dispatch("getCampaignSolaSystems");
         // await this.$store.dispatch("getNodeJoinByCampaignId", this.campaign.id);

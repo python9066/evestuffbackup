@@ -9833,7 +9833,8 @@ function sleep(ms) {
             case 0:
               payload = {
                 campaign_id: _this2.$route.params.id,
-                user_id: _this2.$store.state.user_id
+                user_id: _this2.$store.state.user_id,
+                type: "solo"
               }; // await this.$store.dispatch("getCampaignSolaSystems");
               // await this.$store.dispatch("getNodeJoinByCampaignId", this.campaign.id);
               // await this.$store.dispatch("getCampaignUsersRecords", this.campaign.id);
@@ -12010,6 +12011,7 @@ function sleep(ms) {
     var _this3 = this;
 
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
+      var payload;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
         while (1) {
           switch (_context3.prev = _context3.next) {
@@ -12036,30 +12038,27 @@ function sleep(ms) {
               return _this3.$store.dispatch("getMultiCampaigns");
 
             case 8:
-              _context3.next = 10;
-              return _this3.$store.dispatch("getNodeJoinByCampaignId", _this3.campaign_id);
+              payload = {
+                campaign_id: _this3.$route.params.id,
+                user_id: _this3.$store.state.user_id,
+                type: "multi"
+              }; // await this.$store.dispatch("getNodeJoinByCampaignId", this.campaign_id);
+              // await this.$store.dispatch("getCampaignUsersRecords", this.campaignId);
+              // await this.$store.dispatch("getCampaignSystemsRecords");
+              // await this.$store.dispatch("getUsersChars", this.$store.state.user_id);
 
-            case 10:
-              _context3.next = 12;
+              _context3.next = 11;
+              return _this3.$store.dispatch("loadCampaignSystemData", payload);
+
+            case 11:
+              _context3.next = 13;
               return _this3.getSystems(_this3.campaignId);
 
-            case 12:
-              _context3.next = 14;
-              return _this3.$store.dispatch("getCampaignUsersRecords", _this3.campaignId);
-
-            case 14:
-              _context3.next = 16;
-              return _this3.$store.dispatch("getCampaignSystemsRecords");
-
-            case 16:
-              _context3.next = 18;
-              return _this3.$store.dispatch("getUsersChars", _this3.$store.state.user_id);
-
-            case 18:
-              _context3.next = 20;
+            case 13:
+              _context3.next = 15;
               return _this3.loadCampaignlogs();
 
-            case 20:
+            case 15:
             case "end":
               return _context3.stop();
           }

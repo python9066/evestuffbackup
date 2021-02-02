@@ -24,8 +24,13 @@ class CampaignSystemsController extends Controller
 
     public function load(Request $request)
     {
-        $campid = Campaign::where('link', $request['campaign_id'])->value('id');
-        $userid = $request['user_id'];
+        if ($request['type'] == 'solo') {
+            $campid = Campaign::where('link', $request['campaign_id'])->value('id');
+            $userid = $request['user_id'];
+        } else {
+            $campid = $request['campaign_id'];
+            $userid = $request['user_id'];
+        }
         $dataSola = [];
         $pull = CampaignSolaSystem::where('campaign_id', $campid)->get();
         foreach ($pull as $pull) {
