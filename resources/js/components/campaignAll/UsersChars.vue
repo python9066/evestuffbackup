@@ -312,6 +312,7 @@ export default {
                 data.node_id = null;
                 data.system_name = null;
                 data.user_status_name = "None";
+                console.log(data);
                 this.$store.dispatch("updateCampaignUsers", data);
 
                 var request = {

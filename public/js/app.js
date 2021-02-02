@@ -3348,7 +3348,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 });
 
               case 16:
-                _context.next = 42;
+                _context.next = 43;
                 break;
 
               case 18:
@@ -3360,6 +3360,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 data.node_id = null;
                 data.system_name = null;
                 data.user_status_name = "None";
+                console.log(data);
 
                 _this.$store.dispatch("updateCampaignUsers", data);
 
@@ -3369,7 +3370,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   system_id: null,
                   status_id: 1
                 };
-                _context.next = 30;
+                _context.next = 31;
                 return axios({
                   method: "PUT",
                   //you can set what request you want to be
@@ -3382,11 +3383,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   }
                 });
 
-              case 30:
+              case 31:
                 request2 = {
                   id: item.id
                 };
-                _context.next = 33;
+                _context.next = 34;
                 return axios({
                   method: "PUT",
                   //you can set what request you want to be
@@ -3399,15 +3400,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   }
                 });
 
-              case 33:
-                _context.next = 35;
+              case 34:
+                _context.next = 36;
                 return _this.$store.dispatch("getCampaignUsersRecords", _this.campaign_id);
 
-              case 35:
-                _context.next = 37;
+              case 36:
+                _context.next = 38;
                 return _this.$store.dispatch("getUsersChars", _this.$store.state.user_id);
 
-              case 37:
+              case 38:
                 _this.$store.dispatch("getCampaignSystemsRecords");
 
                 request = null;
@@ -3416,7 +3417,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   type: "added",
                   char_name: _this.newCharName
                 };
-                _context.next = 42;
+                _context.next = 43;
                 return axios({
                   method: "put",
                   //you can set what request you want to be
@@ -3429,7 +3430,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   }
                 });
 
-              case 42:
+              case 43:
               case "end":
                 return _context.stop();
             }
