@@ -394,7 +394,6 @@ export default {
                 }
             })
             .listen("CampaignUserNew", e => {
-                console.log(e.flag.message);
                 this.$store.dispatch("addCampaignUserNew", e.flag.message);
             });
         window.addEventListener("beforeunload", this.leaving);

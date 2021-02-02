@@ -169,6 +169,11 @@ export default new Vuex.Store({
             state.campaignusers.push(data);
         },
 
+        DELETE_CAMPAIGN_USER(state, id) {
+            index = state.campaignusers.findIndex(user => user.id == id)
+            state.campaignusers.splice(index, 1)
+        },
+
         SET_TOKEN(state, token) {
             state.token = token;
         },
@@ -476,6 +481,10 @@ export default new Vuex.Store({
 
         addCampaignUserNew({ commit }, data) {
             commit("ADD_CAMPAIGN_USERS", data)
+        },
+
+        deleteCampaignUser({ commit }, id) {
+            commit("DELETE_CAMPAIGN_USER", id)
         },
 
         async getNotifications({ commit, state }) {

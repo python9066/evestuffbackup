@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Events\CampaignSystemUpdate;
+use App\Events\CampaignUserDelete;
 use App\Events\CampaignUserNew;
 use App\Models\CampaignSystem;
 use App\Models\CampaignSystemUsers;
@@ -87,6 +88,13 @@ class CampaignUserController extends Controller
 
         CampaignUser::destroy($id);
         // dd($remove,$siteid);
+        $flag = collect([
+            'userid' => $id,
+            'id' => $campid
+        ]);
+
+        broadcast(new CampaignUserDelete($flag))->toOthers();
+        $flag = null;
         $flag = collect([
             'flag' => 1,
             'id' => $campid
