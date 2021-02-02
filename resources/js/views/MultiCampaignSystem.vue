@@ -339,9 +339,8 @@ export default {
         // console.log(this.campaignId);
         // console.log(this.campaign_id);
 
-        Echo.private("campaignsystem." + this.$route.params.id).listen(
-            "CampaignSystemUpdate",
-            e => {
+        Echo.private("campaignsystem." + this.$route.params.id)
+            .listen("CampaignSystemUpdate", e => {
                 if (e.flag.flag == 1) {
                     this.loadUsersRecords();
                 }
@@ -393,10 +392,12 @@ export default {
                     this.loadCampaignSolaSystems();
                     this.loadCampaignSystemRecords();
                 }
-            },
-
-            window.addEventListener("beforeunload", this.leaving)
-        );
+            })
+            .listen("CampaignUserNew", e => {
+                console.log(e.flag.message);
+                this.$store.dispatch("addCampaignUserNew", e.flag.message);
+            });
+        window.addEventListener("beforeunload", this.leaving);
         this.channel = "campaignsystem." + this.campaignId;
         this.navdrawer = true;
         this.addMember();

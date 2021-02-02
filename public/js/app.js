@@ -11974,13 +11974,18 @@ function sleep(ms) {
 
                   _this.loadCampaignSystemRecords();
                 }
-              }, window.addEventListener("beforeunload", _this.leaving));
+              }).listen("CampaignUserNew", function (e) {
+                console.log(e.flag.message);
+
+                _this.$store.dispatch("addCampaignUserNew", e.flag.message);
+              });
+              window.addEventListener("beforeunload", _this.leaving);
               _this.channel = "campaignsystem." + _this.campaignId;
               _this.navdrawer = true;
 
               _this.addMember();
 
-            case 6:
+            case 7:
             case "end":
               return _context.stop();
           }
