@@ -578,7 +578,8 @@ export default {
                 }
             })
             .listen("CampaignUserNew", e => {
-                console.log(e);
+                console.log(e.flag.message);
+                console.log("ho therefff");
             });
         window.addEventListener("beforeunload", this.leaving);
         this.channel = "campaignsystem." + this.campaign.id;

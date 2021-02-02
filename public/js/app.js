@@ -9793,7 +9793,8 @@ function sleep(ms) {
                   _this.loadCampaignlogs();
                 }
               }).listen("CampaignUserNew", function (e) {
-                console.log(e);
+                console.log(e.flag.message);
+                console.log("ho therefff");
               });
               window.addEventListener("beforeunload", _this.leaving);
               _this.channel = "campaignsystem." + _this.campaign.id;
