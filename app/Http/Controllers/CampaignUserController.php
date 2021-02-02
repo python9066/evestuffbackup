@@ -39,13 +39,13 @@ class CampaignUserController extends Controller
             'message' => $user,
             'id' => $campid
         ]);
-        broadcast(new CampaignUserNew($flag));
-        $flag = null;
-        $flag = collect([
-            'flag' => 1,
-            'id' => $campid
-        ]);
-        broadcast(new CampaignSystemUpdate($flag))->toOthers();
+        broadcast(new CampaignUserNew($flag))->toOthers();
+        // $flag = null;
+        // $flag = collect([
+        //     'flag' => 1,
+        //     'id' => $campid
+        // ]);
+        // broadcast(new CampaignSystemUpdate($flag))->toOthers();
     }
 
     /**

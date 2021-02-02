@@ -474,6 +474,10 @@ export default new Vuex.Store({
             commit("ADD_NODE_JOIN", data)
         },
 
+        addCampaignUserNew({ commit }, data) {
+            commit("ADD_CAMPAIGN_USERS", data)
+        },
+
         async getNotifications({ commit, state }) {
             let res = await axios({
                 method: "get", //you can set what request you want to be
