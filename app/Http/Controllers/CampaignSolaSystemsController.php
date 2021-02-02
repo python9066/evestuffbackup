@@ -81,7 +81,20 @@ class CampaignSolaSystemsController extends Controller
     {
         //CampaignSystemRecords::find($id)->update($request->all());
         CampaignSolaSystem::find($solaid)->update($request->all());
-        $message = CampaignSolaSystem::where('id', $solaid)->first();
+        $pull = CampaignSolaSystem::where('id', $solaid)->first();
+        $checker_name = User::where('id', $pull['last_checked_user_id'])->value('name');
+        $supervier_name = User::where('id', $pull['supervisor_id'])->value('name');
+        $message = [
+            "id" => $pull['id'],
+            "system_id" => $pull['system_id'],
+            "campaign_id" => $pull['campaign_id'],
+            "supervisor_id" => $pull['supervisor_id'],
+            "supervier_user_name" => $supervier_name,
+            "last_checked_user_id" => $pull['last_checked_user_id'],
+            "last_checked_user_name" => $checker_name,
+            "last_checked" => $pull['last_checked'],
+            "tidi" => $pull['tidi'],
+        ];
 
         $flag = collect([
             'message' => $message,
