@@ -225,7 +225,7 @@ class CampaignSystemsController extends Controller
                 'flag' => 2,
                 'id' => $campid
             ]);
-            broadcast(new CampaignSystemUpdate($flag))->toOthers();
+            // broadcast(new CampaignSystemUpdate($flag))->toOthers();
         }
     }
 
