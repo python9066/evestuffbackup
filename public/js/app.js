@@ -9803,38 +9803,28 @@ function sleep(ms) {
     var _this2 = this;
 
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
+      var payload;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
         while (1) {
           switch (_context3.prev = _context3.next) {
             case 0:
-              _context3.next = 2;
-              return _this2.$store.dispatch("getCampaignSolaSystems");
+              payload = {
+                campaign_id: _this2.$route.params.id,
+                user_id: _this2.$store.state.user_id
+              }; // await this.$store.dispatch("getCampaignSolaSystems");
 
-            case 2:
-              _context3.next = 4;
+              _context3.next = 3;
               return _this2.getSystems(_this2.campaign.constellation_id);
 
-            case 4:
-              _context3.next = 6;
-              return _this2.$store.dispatch("getNodeJoinByCampaignId", _this2.campaign.id);
+            case 3:
+              _context3.next = 5;
+              return _this2.loadCampaignSystemData(payload);
 
-            case 6:
-              _context3.next = 8;
-              return _this2.$store.dispatch("getCampaignUsersRecords", _this2.campaign.id);
-
-            case 8:
-              _context3.next = 10;
-              return _this2.$store.dispatch("getCampaignSystemsRecords");
-
-            case 10:
-              _context3.next = 12;
-              return _this2.$store.dispatch("getUsersChars", _this2.$store.state.user_id);
-
-            case 12:
-              _context3.next = 14;
+            case 5:
+              _context3.next = 7;
               return _this2.loadCampaignlogs();
 
-            case 14:
+            case 7:
             case "end":
               return _context3.stop();
           }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\CampaignSystem;
 use App\Events\CampaignSystemUpdate;
+use App\Models\Campaign;
 use App\Models\CampaignSolaSystem;
 use App\Models\CampaignSystemRecords;
 use App\Models\CampaignSystemStatus;
@@ -23,6 +24,7 @@ class CampaignSystemsController extends Controller
 
     public function load(Request $request)
     {
+        $campid = Campaign::where('link', $request['campaign_id'])->value('id');
         $dataSola = [];
         $pull = CampaignSolaSystem::all();
         foreach ($pull as $pull) {
@@ -45,7 +47,7 @@ class CampaignSystemsController extends Controller
         }
         $pull = [];
         $nodeJoin = [];
-        $joins = NodeJoin::where('campaign_id', $request['campaign_id'])->get();
+        $joins = NodeJoin::where('campaign_id', $campid)->get();
         if ($joins->count() > 0) {
             foreach ($joins as $join) {
 
@@ -61,7 +63,7 @@ class CampaignSystemsController extends Controller
                     'campaign_system_status_id' => intval($join->campaign_system_status_id),
                     'statusName' => CampaignSystemStatus::where('id', $join->campaign_system_status_id)->value('name'),
                     'campaign_sola_system_id' => CampaignSolaSystem::where('campaign_id', $join->campaignSystem->campaign_id)->where('system_id', $join->campaignSystem->system_id)->value('id'),
-                    'campaign_id' => $request['campaign_id']
+                    'campaign_id' => $campid
                 ];
                 array_push($nodeJoin, $pull);
             }
@@ -69,7 +71,7 @@ class CampaignSystemsController extends Controller
 
 
         return [
-            'users' => CampaignUserRecords::where('campaign_id', $request['campaign_id'])->get(),
+            'users' => CampaignUserRecords::where('campaign_id', $campid)->get(),
             'sola' => $dataSola,
             'nodejoin' => $nodeJoin,
             'systems' => CampaignSystemRecords::all(),
