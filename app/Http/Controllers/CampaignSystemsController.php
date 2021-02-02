@@ -76,9 +76,6 @@ class CampaignSystemsController extends Controller
             }
         }
 
-        $test = CampaignUserRecords::where('site_id', $request['user_id'])->get();
-        dd($test);
-
         return [
             'users' => CampaignUserRecords::where('campaign_id', $campid)->get(),
             'sola' => $dataSola,
