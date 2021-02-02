@@ -7,6 +7,7 @@ use App\Events\CampaignSystemUpdate;
 use App\Models\CampaignSolaSystem;
 use App\Models\CampaignUser;
 use App\Models\NodeJoin;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class CampaignSystemsController extends Controller
@@ -16,6 +17,31 @@ class CampaignSystemsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function load(Request $request)
+    {
+        $dataSola = [];
+        $pull = CampaignSolaSystem::all();
+        foreach ($pull as $pull) {
+            $checker_name = User::where('id', $pull['last_checked_user_id']->value('name'));
+            $supervier_name = User::where('id', $pull['supervisor_id'])->value('name');
+
+            $dataSola1 = [];
+            $dataSola1 = [
+                "id" => $pull['id'],
+                "system_id" => $pull['system_id'],
+                "campaign_id" => $pull['campaign_id'],
+                "supervisor_id" => $pull['supervisor_id'],
+                "supervier_user_name" => $supervier_name,
+                "last_checked_user_id" => $pull['last_checked_user_id'],
+                "last_checked_user_name" => $checker_name,
+                "last_checked" => $pull['last_checked'],
+                "tidi" => $pull['tidi'],
+            ];
+            array_push($dataSola, $dataSola1);
+        }
+    }
+
     public function index()
     {
         //

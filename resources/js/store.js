@@ -576,8 +576,6 @@ export default new Vuex.Store({
 
 
         getSystemReadyToGoCount: state => payload => {
-            // console.log(payload, " - ", state.campaignusers)
-            // console.log(state.campaignusers.filter(u => u.id == payload.campaign_id && u.system_id == payload.system_id && u.status_id ==  3))
 
             return state.campaignusers.filter(u => u.campaign_id == payload.campaign_id && u.system_id == payload.system_id && u.status_id ==  3).length
         },
