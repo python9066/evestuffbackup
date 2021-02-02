@@ -3290,7 +3290,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 _context.next = 4;
                 return axios({
                   method: "PUT",
-                  //you can set what request you want to be
                   url: "/api/campaignusers/" + item.id + "/" + _this.campaign_id,
                   data: request,
                   headers: {
@@ -3307,7 +3306,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 _context.next = 7;
                 return axios({
                   method: "PUT",
-                  //you can set what request you want to be
                   url: "/api/campaignsystemmovechar/" + _this.campaign_id,
                   data: request2,
                   headers: {
@@ -3338,7 +3336,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 _context.next = 16;
                 return axios({
                   method: "put",
-                  //you can set what request you want to be
                   url: "/api/checkaddremovechar/" + _this.campaign_id,
                   data: request,
                   headers: {
@@ -3382,18 +3379,19 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   data: data
                 };
 
-                _this.$store.dispatch("updateCampaignSystemByUserID", payload);
+                _this.$store.dispatch("updateCampaignSystemByUserID", payload); // removes from old node for new campaign
+
 
                 request = {
                   campaign_id: _this.campaign_id,
                   campaign_system_id: null,
                   system_id: null,
                   status_id: 1
-                };
+                }; // add char to campaign
+
                 _context.next = 35;
                 return axios({
                   method: "PUT",
-                  //you can set what request you want to be
                   url: "/api/campaignusersadd/" + item.id + "/" + _this.campaign_id,
                   data: request,
                   headers: {
@@ -3406,11 +3404,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 35:
                 request2 = {
                   id: item.id
-                };
+                }; // removes from old node for new campaign
+
                 _context.next = 38;
                 return axios({
                   method: "PUT",
-                  //you can set what request you want to be
                   url: "/api/campaignsystemmovechar/" + _this.campaign_id,
                   data: request2,
                   headers: {
@@ -3440,7 +3438,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 _context.next = 42;
                 return axios({
                   method: "put",
-                  //you can set what request you want to be
                   url: "/api/checkaddremovechar/" + _this.campaign_id,
                   data: request,
                   headers: {
@@ -3478,7 +3475,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 _context2.next = 3;
                 return axios({
                   method: "POST",
-                  //you can set what request you want to be
                   url: "/api/campaignusers/" + _this2.campaign_id,
                   data: request,
                   headers: {
@@ -3507,7 +3503,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 _context2.next = 11;
                 return axios({
                   method: "put",
-                  //you can set what request you want to be
                   url: "/api/checkaddremovechar/" + _this2.campaign_id,
                   data: request,
                   headers: {
@@ -3549,7 +3544,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 _context3.next = 4;
                 return axios({
                   method: "DELETE",
-                  //you can set what request you want to be
                   url: "/api/campaignusers/" + item.id + "/" + _this3.campaign_id + "/" + _this3.$store.state.user_id,
                   headers: {
                     Authorization: "Bearer " + _this3.$store.state.token,

@@ -248,7 +248,7 @@ export default {
                 };
 
                 await axios({
-                    method: "PUT", //you can set what request you want to be
+                    method: "PUT",
                     url:
                         "/api/campaignusers/" +
                         item.id +
@@ -266,7 +266,7 @@ export default {
                 };
 
                 await axios({
-                    method: "PUT", //you can set what request you want to be
+                    method: "PUT",
                     url: "/api/campaignsystemmovechar/" + this.campaign_id,
                     data: request2,
                     headers: {
@@ -296,7 +296,7 @@ export default {
                 //------logging---////
 
                 await axios({
-                    method: "put", //you can set what request you want to be
+                    method: "put",
                     url: "/api/checkaddremovechar/" + this.campaign_id,
                     data: request,
                     headers: {
@@ -333,7 +333,7 @@ export default {
                     user_id: item.id,
                     data: data
                 };
-                this.$store.dispatch("updateCampaignSystemByUserID", payload);
+                this.$store.dispatch("updateCampaignSystemByUserID", payload); // removes from old node for new campaign
 
                 var request = {
                     campaign_id: this.campaign_id,
@@ -342,8 +342,9 @@ export default {
                     status_id: 1
                 };
 
+                // add char to campaign
                 await axios({
-                    method: "PUT", //you can set what request you want to be
+                    method: "PUT",
                     url:
                         "/api/campaignusersadd/" +
                         item.id +
@@ -360,8 +361,9 @@ export default {
                     id: item.id
                 };
 
+                // removes from old node for new campaign
                 await axios({
-                    method: "PUT", //you can set what request you want to be
+                    method: "PUT",
                     url: "/api/campaignsystemmovechar/" + this.campaign_id,
                     data: request2,
                     headers: {
@@ -390,7 +392,7 @@ export default {
                 };
 
                 await axios({
-                    method: "put", //you can set what request you want to be
+                    method: "put",
                     url: "/api/checkaddremovechar/" + this.campaign_id,
                     data: request,
                     headers: {
@@ -413,7 +415,7 @@ export default {
             };
 
             await axios({
-                method: "POST", //you can set what request you want to be
+                method: "POST",
                 url: "/api/campaignusers/" + this.campaign_id,
                 data: request,
                 headers: {
@@ -441,7 +443,7 @@ export default {
             //------logging-----//
 
             await axios({
-                method: "put", //you can set what request you want to be
+                method: "put",
                 url: "/api/checkaddremovechar/" + this.campaign_id,
                 data: request,
                 headers: {
@@ -465,7 +467,7 @@ export default {
             this.$store.dispatch("deleteUsersChars", item.id);
             this.$store.dispatch("deleteCampaignUser", item.id);
             await axios({
-                method: "DELETE", //you can set what request you want to be
+                method: "DELETE",
                 url:
                     "/api/campaignusers/" +
                     item.id +

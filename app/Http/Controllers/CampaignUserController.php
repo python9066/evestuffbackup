@@ -100,7 +100,7 @@ class CampaignUserController extends Controller
             'message' => $message,
             'id' => $campid
         ]);
-        broadcast(new CampaignUserUpdate($flag))->toOthers();
+        broadcast(new CampaignUserNew($flag))->toOthers();
 
 
 
