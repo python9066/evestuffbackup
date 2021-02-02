@@ -3271,7 +3271,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var _this = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-        var request, request2;
+        var request, request2, data;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
@@ -3348,17 +3348,19 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 });
 
               case 16:
-                _context.next = 33;
+                _context.next = 35;
                 break;
 
               case 18:
+                data = item;
+                console.log(data);
                 request = {
                   campaign_id: _this.campaign_id,
                   campaign_system_id: null,
                   system_id: null,
                   status_id: 1
                 };
-                _context.next = 21;
+                _context.next = 23;
                 return axios({
                   method: "PUT",
                   //you can set what request you want to be
@@ -3371,11 +3373,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   }
                 });
 
-              case 21:
+              case 23:
                 request2 = {
                   id: item.id
                 };
-                _context.next = 24;
+                _context.next = 26;
                 return axios({
                   method: "PUT",
                   //you can set what request you want to be
@@ -3388,15 +3390,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   }
                 });
 
-              case 24:
-                _context.next = 26;
-                return _this.$store.dispatch("getCampaignUsersRecords", _this.campaign_id);
-
               case 26:
                 _context.next = 28;
-                return _this.$store.dispatch("getUsersChars", _this.$store.state.user_id);
+                return _this.$store.dispatch("getCampaignUsersRecords", _this.campaign_id);
 
               case 28:
+                _context.next = 30;
+                return _this.$store.dispatch("getUsersChars", _this.$store.state.user_id);
+
+              case 30:
                 _this.$store.dispatch("getCampaignSystemsRecords");
 
                 request = null;
@@ -3405,7 +3407,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   type: "added",
                   char_name: _this.newCharName
                 };
-                _context.next = 33;
+                _context.next = 35;
                 return axios({
                   method: "put",
                   //you can set what request you want to be
@@ -3418,7 +3420,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   }
                 });
 
-              case 33:
+              case 35:
               case "end":
                 return _context.stop();
             }

@@ -304,6 +304,9 @@ export default {
                     }
                 });
             } else {
+                let data = item;
+                console.log(data);
+
                 var request = {
                     campaign_id: this.campaign_id,
                     campaign_system_id: null,
