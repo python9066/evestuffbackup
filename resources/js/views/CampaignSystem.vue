@@ -589,10 +589,10 @@ export default {
     async beforeCreate() {},
 
     async mounted() {
-        let payload = {
-            campaign_id: this.campaign.id,
-            user_id: this.$store.state.user_id
-        };
+        // let payload = {
+        //     campaign_id: this.campaign.id,
+        //     user_id: this.$store.state.user_id
+        // };
         await this.$store.dispatch("getCampaignSolaSystems");
         await this.getSystems(this.campaign.constellation_id);
         await this.$store.dispatch("getNodeJoinByCampaignId", this.campaign.id);
