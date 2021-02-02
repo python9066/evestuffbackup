@@ -100,7 +100,7 @@ export default new Vuex.Store({
 
         DELETE_USER_CHAR(state, id) {
             let index = state.userschars.findIndex(user => user.id == id)
-            console.log(index);
+            console.log("user char " +index);
             if(index >= 0){state.userschars.splice(index, 1)}
 
         },

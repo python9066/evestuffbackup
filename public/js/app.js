@@ -34629,7 +34629,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
       var index = state.userschars.findIndex(function (user) {
         return user.id == id;
       });
-      console.log(index);
+      console.log("user char " + index);
 
       if (index >= 0) {
         state.userschars.splice(index, 1);
