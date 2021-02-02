@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\CampaignSystem;
 use App\Events\CampaignSystemUpdate;
+use App\Events\KickUserFromCampaign;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Campaign;
 use App\Models\CampaignSolaSystem;
@@ -267,11 +268,10 @@ class CampaignSystemsController extends Controller
     public function kickUser(Request $request, $campid)
     {
         $flag = collect([
-            'flag' => 6,
             'id' => $campid,
             'user_id' => $request['user_id']
         ]);
-        broadcast(new CampaignSystemUpdate($flag))->toOthers();
+        broadcast(new KickUserFromCampaign($flag))->toOthers();
     }
 
     public function finishCampaign($campid)

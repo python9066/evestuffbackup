@@ -9778,10 +9778,6 @@ function sleep(ms) {
                   _this.checkAddUser();
                 }
 
-                if (e.flag.flag == 6) {
-                  _this.kickUser(e.flag.user_id);
-                }
-
                 if (e.flag.flag == 7) {
                   _this.$router.push("/campaignfinished");
                 }
@@ -9805,6 +9801,10 @@ function sleep(ms) {
                 _this.$store.dispatch("addCampaignUserNew", e.flag.message);
               }).listen("CampaignUserDelete", function (e) {
                 _this.$store.dispatch("deleteCampaignUser", e.flag.userid);
+              }).listen("KickUserFromCampaign", function (e) {
+                if (_this.$store.state.user_id == e.user_id) {
+                  _this.$router.push("/campaignkick");
+                }
               });
               window.addEventListener("beforeunload", _this.leaving);
               _this.channel = "campaignsystem." + _this.campaign.id;
@@ -9909,11 +9909,6 @@ function sleep(ms) {
           }
         }, _callee4);
       }))();
-    },
-    kickUser: function kickUser(user_id) {
-      if (this.$store.state.user_id == user_id) {
-        this.$router.push("/campaignkick");
-      }
     },
     loadCampaigns: function loadCampaigns() {
       var _this4 = this;
@@ -11924,10 +11919,6 @@ function sleep(ms) {
                   _this.checkAddUser();
                 }
 
-                if (e.flag.flag == 6) {
-                  _this.kickUser(e.flag.user_id);
-                }
-
                 if (e.flag.flag == 7) {
                   _this.$router.push("/campaignfinished");
                 }
@@ -11965,6 +11956,10 @@ function sleep(ms) {
                 console.log(e.flag.userid);
 
                 _this.$store.dispatch("deleteCampaignUser", e.flag.userid);
+              }).listen("KickUserFromCampaign", function (e) {
+                if (_this.$store.state.user_id == e.user_id) {
+                  _this.$router.push("/campaignkick");
+                }
               });
               window.addEventListener("beforeunload", _this.leaving);
               _this.channel = "campaignsystem." + _this.campaignId;
@@ -12096,11 +12091,6 @@ function sleep(ms) {
           }
         }, _callee4);
       }))();
-    },
-    kickUser: function kickUser(user_id) {
-      if (this.$store.state.user_id == user_id) {
-        this.$router.push("/campaignkick");
-      }
     },
     loadCampaigns: function loadCampaigns() {
       var _this5 = this;

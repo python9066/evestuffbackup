@@ -542,10 +542,6 @@ export default {
                     this.checkAddUser();
                 }
 
-                if (e.flag.flag == 6) {
-                    this.kickUser(e.flag.user_id);
-                }
-
                 if (e.flag.flag == 7) {
                     this.$router.push("/campaignfinished");
                 }
@@ -569,6 +565,11 @@ export default {
             })
             .listen("CampaignUserDelete", e => {
                 this.$store.dispatch("deleteCampaignUser", e.flag.userid);
+            })
+            .listen("KickUserFromCampaign", e => {
+                if (this.$store.state.user_id == e.user_id) {
+                    this.$router.push("/campaignkick");
+                }
             });
         window.addEventListener("beforeunload", this.leaving);
         this.channel = "campaignsystem." + this.campaign.id;
@@ -621,12 +622,6 @@ export default {
             });
 
             this.$router.push("/campaignfinished");
-        },
-
-        kickUser(user_id) {
-            if (this.$store.state.user_id == user_id) {
-                this.$router.push("/campaignkick");
-            }
         },
 
         async loadCampaigns() {
