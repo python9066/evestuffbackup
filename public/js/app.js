@@ -539,7 +539,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 0:
                 data = {
                   id: _this.CampaignSolaSystem[0]["id"],
-                  tidi: _this.tidi
+                  tidi: _this.tidiEdit
                 };
 
                 _this.$store.dispatch("updateCampaignSolaSystem", data); // console.log(this.tidiEdit);
@@ -6824,7 +6824,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 0:
                 data = {
                   id: _this.CampaignSolaSystem[0]["id"],
-                  tidi: _this.tidi
+                  tidi: _this.tidiEdit
                 };
 
                 _this.$store.dispatch("updateCampaignSolaSystem", data);
