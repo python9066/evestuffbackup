@@ -25,6 +25,7 @@ class CampaignSystemsController extends Controller
     public function load(Request $request)
     {
         $campid = Campaign::where('link', $request['campaign_id'])->value('id');
+        $userid = $request['user_id'];
         $dataSola = [];
         $pull = CampaignSolaSystem::where('campaign_id', $campid)->get();
         foreach ($pull as $pull) {
@@ -81,7 +82,7 @@ class CampaignSystemsController extends Controller
             'sola' => $dataSola,
             'nodejoin' => $nodeJoin,
             'systems' => CampaignSystemRecords::all(),
-            'usersbyid' => CampaignUserRecords::where('site_id', $request['user_id'])->get()
+            'usersbyid' => CampaignUserRecords::where('site_id', $userid)->get()
         ];
     }
 
