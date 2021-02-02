@@ -39,6 +39,7 @@ class CampaignSystemsController extends Controller
         if ($request['type'] = 'solo') {
             $campid = Campaign::where('link', $request['campaign_id'])->value('id');
             $userid = $request['user_id'];
+            dd("yoyoyoyoyoyo");
         }
 
 
