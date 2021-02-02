@@ -583,6 +583,7 @@ export default new Vuex.Store({
                 commit("SET_CAMPAIGN_USERS", res.data.users);
                 commit("SET_CAMPAIGN_SYSTEMS", res.data.systems);
                 commit("SET_USERS_CHARS", res.data.usersbyid);
+                commit("SET_LOGGING_CAMPAIGN", res.data.logs);
             }
         },
     },

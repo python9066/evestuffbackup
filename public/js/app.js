@@ -9849,10 +9849,6 @@ function sleep(ms) {
               return _this2.getSystems();
 
             case 5:
-              _context3.next = 7;
-              return _this2.loadCampaignlogs();
-
-            case 7:
             case "end":
               return _context3.stop();
           }
@@ -12055,10 +12051,6 @@ function sleep(ms) {
               return _this3.getSystems(_this3.campaignId);
 
             case 13:
-              _context3.next = 15;
-              return _this3.loadCampaignlogs();
-
-            case 15:
             case "end":
               return _context3.stop();
           }
@@ -35490,6 +35482,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
                   commit("SET_CAMPAIGN_USERS", res.data.users);
                   commit("SET_CAMPAIGN_SYSTEMS", res.data.systems);
                   commit("SET_USERS_CHARS", res.data.usersbyid);
+                  commit("SET_LOGGING_CAMPAIGN", res.data.logs);
                 }
 
               case 7:

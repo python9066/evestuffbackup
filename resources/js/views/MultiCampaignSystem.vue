@@ -428,7 +428,7 @@ export default {
         // await this.$store.dispatch("getUsersChars", this.$store.state.user_id);
         await this.$store.dispatch("loadCampaignSystemData", payload);
         await this.getSystems(this.campaignId);
-        await this.loadCampaignlogs();
+        // await this.loadCampaignlogs();
     },
     methods: {
         updateBar() {
