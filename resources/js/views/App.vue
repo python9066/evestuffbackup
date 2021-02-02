@@ -161,11 +161,13 @@ export default {
         feedBackText: "",
         tidiCalc: false
     }),
-    async created() {
+
+    async beforeCreate() {
         await this.$store.dispatch("setToken", this.token);
         await this.$store.dispatch("setUser_id", this.user_id);
         await this.$store.dispatch("setUser_name", this.username);
     },
+    async created() {},
     methods: {
         gotoCovid() {
             this.$router.push("/covid");

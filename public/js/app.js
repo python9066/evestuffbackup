@@ -9031,7 +9031,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       tidiCalc: false
     };
   },
-  created: function created() {
+  beforeCreate: function beforeCreate() {
     var _this = this;
 
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
@@ -9058,6 +9058,19 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }, _callee);
     }))();
   },
+  created: function created() {
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      }, _callee2);
+    }))();
+  },
   methods: {
     gotoCovid: function gotoCovid() {
       this.$router.push("/covid");
@@ -9071,17 +9084,17 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     submitFeedBack: function submitFeedBack() {
       var _this2 = this;
 
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
         var request;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
           while (1) {
-            switch (_context2.prev = _context2.next) {
+            switch (_context3.prev = _context3.next) {
               case 0:
                 request = {
                   user_id: _this2.$store.state.user_id,
                   text: _this2.feedBackText
                 };
-                _context2.next = 3;
+                _context3.next = 3;
                 return axios({
                   method: "post",
                   //you can set what request you want to be
@@ -9096,10 +9109,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               case 3:
               case "end":
-                return _context2.stop();
+                return _context3.stop();
             }
           }
-        }, _callee2);
+        }, _callee3);
       }))();
     }
   },
@@ -9702,23 +9715,6 @@ function sleep(ms) {
               return _this.$store.dispatch("getCampaigns");
 
             case 3:
-              if (!(_this.$store.state.user_id == 0)) {
-                _context.next = 10;
-                break;
-              }
-
-              _context.next = 6;
-              return _this.$store.dispatch("setToken", _this.token);
-
-            case 6:
-              _context.next = 8;
-              return _this.$store.dispatch("setUser_id", _this.user_id);
-
-            case 8:
-              _context.next = 10;
-              return _this.$store.dispatch("setUser_name", _this.username);
-
-            case 10:
               _this.campaignId = _this.campaign.id;
               Echo["private"]("campaignsystem." + _this.campaign.id).listen("CampaignSystemUpdate", function (e) {
                 // console.log(e);
@@ -9794,7 +9790,7 @@ function sleep(ms) {
 
               _this.addMember();
 
-            case 17:
+            case 10:
             case "end":
               return _context.stop();
           }
