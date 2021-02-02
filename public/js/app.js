@@ -9831,7 +9831,6 @@ function sleep(ms) {
 
                 _this.$store.dispatch("updateUsersChars", e.flag.message);
               });
-              CampaignUserUpdate;
               window.addEventListener("beforeunload", _this.leaving);
               _this.channel = "campaignsystem." + _this.campaign.id;
               _this.test = 2;
@@ -9840,7 +9839,7 @@ function sleep(ms) {
 
               _this.addMember();
 
-            case 15:
+            case 14:
             case "end":
               return _context.stop();
           }
