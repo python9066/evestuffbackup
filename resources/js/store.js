@@ -557,7 +557,33 @@ export default new Vuex.Store({
             if (res.data.length != 0) {
                 commit("SET_CAMPAIGN_SYSTEMS", res.data.systems);
             }
-        }
+        },
+
+        async loadCampaignSystemData({ commit, state }, payload) {
+            let request = {
+                user_id: payload.user_id,
+                campaign_id: payload.campaign_id
+            }
+
+            let res = await axios({
+                method: "get", //you can set what request you want to be
+                url: "/api/campaignsystemload",
+                data: request,
+                headers: {
+                    Authorization: "Bearer " + this.$store.state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                }
+            });
+
+            if (res.data.length != 0) {
+                commit("SET_CAMPAIGN_SOLA_SYSTEMS", res.data.sola);
+                commit("SET_NODE_JOIN", res.data.nodejoin);
+                commit("SET_CAMPAIGN_USERS", res.data.users);
+                commit("SET_CAMPAIGN_SYSTEMS", res.data.systems);
+                commit("SET_USERS_CHARS", res.data.usersbyid);
+            }
+        },
     },
     getters: {
 

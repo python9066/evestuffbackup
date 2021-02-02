@@ -590,16 +590,16 @@ export default {
 
     async mounted() {
         let payload = {
-            constellation_id: this.campaign.constellation_id,
             campaign_id: this.campaign.id,
             user_id: this.$store.state.user_id
         };
-        await this.$store.dispatch("getCampaignSolaSystems");
+        // await this.$store.dispatch("getCampaignSolaSystems");
         await this.getSystems(this.campaign.constellation_id);
-        await this.$store.dispatch("getNodeJoinByCampaignId", this.campaign.id);
-        await this.$store.dispatch("getCampaignUsersRecords", this.campaign.id);
-        await this.$store.dispatch("getCampaignSystemsRecords");
-        await this.$store.dispatch("getUsersChars", this.$store.state.user_id);
+        // await this.$store.dispatch("getNodeJoinByCampaignId", this.campaign.id);
+        // await this.$store.dispatch("getCampaignUsersRecords", this.campaign.id);
+        // await this.$store.dispatch("getCampaignSystemsRecords");
+        // await this.$store.dispatch("getUsersChars", this.$store.state.user_id);
+        await this.loadCampaignSystemData(payload);
         await this.loadCampaignlogs();
     },
     methods: {

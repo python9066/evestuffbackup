@@ -5,7 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\CampaignSystem;
 use App\Events\CampaignSystemUpdate;
 use App\Models\CampaignSolaSystem;
+use App\Models\CampaignSystemRecords;
+use App\Models\CampaignSystemStatus;
 use App\Models\CampaignUser;
+use App\Models\CampaignUserRecords;
 use App\Models\NodeJoin;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -40,6 +43,38 @@ class CampaignSystemsController extends Controller
             ];
             array_push($dataSola, $dataSola1);
         }
+        $pull = [];
+        $nodeJoin = [];
+        $joins = NodeJoin::where('campaign_id', $request['campaign_id'])->get();
+        if ($joins->count() > 0) {
+            foreach ($joins as $join) {
+
+                $pull = [
+                    'id' => $join->id,
+                    'campaign_system_id' => $join->campaign_system_id,
+                    'campaign_user_id' => $join->campaign_user_id,
+                    'charname' => $join->campaignUser->char_name,
+                    'siteid' => $join->campaignUser->site_id,
+                    'mainname' => User::where('id', $join->campaignUser->site_id)->value('name'),
+                    'ship' => $join->campaignUser->ship,
+                    'link' => intval($join->campaignUser->link),
+                    'campaign_system_status_id' => intval($join->campaign_system_status_id),
+                    'statusName' => CampaignSystemStatus::where('id', $join->campaign_system_status_id)->value('name'),
+                    'campaign_sola_system_id' => CampaignSolaSystem::where('campaign_id', $join->campaignSystem->campaign_id)->where('system_id', $join->campaignSystem->system_id)->value('id'),
+                    'campaign_id' => $request['campaign_id']
+                ];
+                array_push($nodeJoin, $pull);
+            }
+        }
+
+
+        return [
+            'users' => CampaignUserRecords::where('campaign_id', $request['campaign_id'])->get(),
+            'sola' => $dataSola,
+            'nodejoin' => $nodeJoin,
+            'systems' => CampaignSystemRecords::all(),
+            'usersbyid' => CampaignUserRecords::where('site_id', $request['user_id'])->get()
+        ];
     }
 
     public function index()

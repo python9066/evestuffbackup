@@ -9809,38 +9809,22 @@ function sleep(ms) {
           switch (_context3.prev = _context3.next) {
             case 0:
               payload = {
-                constellation_id: _this2.campaign.constellation_id,
                 campaign_id: _this2.campaign.id,
                 user_id: _this2.$store.state.user_id
-              };
+              }; // await this.$store.dispatch("getCampaignSolaSystems");
+
               _context3.next = 3;
-              return _this2.$store.dispatch("getCampaignSolaSystems");
+              return _this2.getSystems(_this2.campaign.constellation_id);
 
             case 3:
               _context3.next = 5;
-              return _this2.getSystems(_this2.campaign.constellation_id);
+              return _this2.loadCampaignSystemData(payload);
 
             case 5:
               _context3.next = 7;
-              return _this2.$store.dispatch("getNodeJoinByCampaignId", _this2.campaign.id);
-
-            case 7:
-              _context3.next = 9;
-              return _this2.$store.dispatch("getCampaignUsersRecords", _this2.campaign.id);
-
-            case 9:
-              _context3.next = 11;
-              return _this2.$store.dispatch("getCampaignSystemsRecords");
-
-            case 11:
-              _context3.next = 13;
-              return _this2.$store.dispatch("getUsersChars", _this2.$store.state.user_id);
-
-            case 13:
-              _context3.next = 15;
               return _this2.loadCampaignlogs();
 
-            case 15:
+            case 7:
             case "end":
               return _context3.stop();
           }
@@ -35463,6 +35447,52 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
             }
           }
         }, _callee21);
+      }))();
+    },
+    loadCampaignSystemData: function loadCampaignSystemData(_ref36, payload) {
+      var _this2 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee22() {
+        var commit, state, request, res;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee22$(_context22) {
+          while (1) {
+            switch (_context22.prev = _context22.next) {
+              case 0:
+                commit = _ref36.commit, state = _ref36.state;
+                request = {
+                  user_id: payload.user_id,
+                  campaign_id: payload.campaign_id
+                };
+                _context22.next = 4;
+                return axios({
+                  method: "get",
+                  //you can set what request you want to be
+                  url: "/api/campaignsystemload",
+                  data: request,
+                  headers: {
+                    Authorization: "Bearer " + _this2.$store.state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                  }
+                });
+
+              case 4:
+                res = _context22.sent;
+
+                if (res.data.length != 0) {
+                  commit("SET_CAMPAIGN_SOLA_SYSTEMS", res.data.sola);
+                  commit("SET_NODE_JOIN", res.data.nodejoin);
+                  commit("SET_CAMPAIGN_USERS", res.data.users);
+                  commit("SET_CAMPAIGN_SYSTEMS", res.data.systems);
+                  commit("SET_USERS_CHARS", res.data.usersbyid);
+                }
+
+              case 6:
+              case "end":
+                return _context22.stop();
+            }
+          }
+        }, _callee22);
       }))();
     }
   },
