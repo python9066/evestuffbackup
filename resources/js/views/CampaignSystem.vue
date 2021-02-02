@@ -694,7 +694,7 @@ export default {
             });
         },
 
-        async getSystems(id) {
+        async getSystems() {
             // console.log(id, this.$store.state.token);
             let res = await axios({
                 method: "get", //you can set what request you want to be

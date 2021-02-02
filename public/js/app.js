@@ -10056,7 +10056,7 @@ function sleep(ms) {
         }, _callee12);
       }))();
     },
-    getSystems: function getSystems(id) {
+    getSystems: function getSystems() {
       var _this12 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee13() {
