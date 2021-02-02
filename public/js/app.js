@@ -34565,8 +34565,17 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
     SET_TIMERS: function SET_TIMERS(state, timers) {
       state.timers = timers;
     },
+    MARK_TIMER_OVER: function MARK_TIMER_OVER(state, timer) {
+      var item = state.timers.find(function (item) {
+        return item.id === timer.id;
+      });
+      Object.assign(item, timer);
+    },
     SET_NODE_JOIN: function SET_NODE_JOIN(state, nodeJoin) {
       state.nodeJoin = nodeJoin;
+    },
+    ADD_NODE_JOIN: function ADD_NODE_JOIN(state, data) {
+      state.nodeJoin.push(data);
     },
     SET_CAMPAIGN_JOIN: function SET_CAMPAIGN_JOIN(state, campaignJoin) {
       state.campaignJoin = campaignJoin;
@@ -34574,11 +34583,23 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
     SET_TOWERS: function SET_TOWERS(state, towers) {
       state.towers = towers;
     },
+    UPDATE_TOWERS: function UPDATE_TOWERS(state, data) {
+      var item = state.towers.find(function (c) {
+        return c.id === data.id;
+      });
+      Object.assign(item, data);
+    },
     SET_CAMPAIGN_SOLA_SYSTEMS: function SET_CAMPAIGN_SOLA_SYSTEMS(state, campaignSolaSystems) {
       state.campaignSolaSystems = campaignSolaSystems;
     },
     SET_STATIONS: function SET_STATIONS(state, stations) {
       state.stations = stations;
+    },
+    UPDATE_STATIONS: function UPDATE_STATIONS(state, data) {
+      var item = state.stations.find(function (item) {
+        return item.id === data.id;
+      });
+      Object.assign(item, data);
     },
     SET_CAMPAIGN_MEMBERS: function SET_CAMPAIGN_MEMBERS(state, users) {
       state.campaignmembers = users;
@@ -34586,11 +34607,32 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
     SET_USERS: function SET_USERS(state, users) {
       state.users = users;
     },
+    SET_USERS_CHARS: function SET_USERS_CHARS(state, data) {
+      state.userschars = data;
+    },
+    UPDATE_USERS_CHARS: function UPDATE_USERS_CHARS(state, data) {
+      var item = state.userschars.find(function (item) {
+        return item.id === data.id;
+      });
+      Object.assign(item, data);
+    },
     SET_ROLES: function SET_ROLES(state, roles) {
       state.rolesList = roles;
     },
     SET_CAMPAIGNS: function SET_CAMPAIGNS(state, campaigns) {
       state.campaigns = campaigns;
+    },
+    UPDATE_CAMPAIGNS: function UPDATE_CAMPAIGNS(state, data) {
+      var item = state.campaigns.find(function (c) {
+        return c.id === data.id;
+      });
+      Object.assign(item, data);
+    },
+    UPDATE_CAMPAIGN: function UPDATE_CAMPAIGN(state, data) {
+      var item = state.campaigns.find(function (item) {
+        return item.id === data.id;
+      });
+      Object.assign(item, data);
     },
     SET_MULTI_CAMPAIGNS: function SET_MULTI_CAMPAIGNS(state, multicampaigns) {
       state.multicampaigns = multicampaigns;
@@ -34604,23 +34646,8 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
     SET_LOGGING_ADMIN: function SET_LOGGING_ADMIN(state, logs) {
       state.loggingAdmin = logs;
     },
-    UPDATE_CAMPAIGNS: function UPDATE_CAMPAIGNS(state, data) {
-      var item = state.campaigns.find(function (c) {
-        return c.id === data.id;
-      });
-      Object.assign(item, data);
-    },
-    UPDATE_TOWERS: function UPDATE_TOWERS(state, data) {
-      var item = state.towers.find(function (c) {
-        return c.id === data.id;
-      });
-      Object.assign(item, data);
-    },
-    MARK_TIMER_OVER: function MARK_TIMER_OVER(state, timer) {
-      var item = state.timers.find(function (item) {
-        return item.id === timer.id;
-      });
-      Object.assign(item, timer);
+    SET_NOTIFICATIONS: function SET_NOTIFICATIONS(state, notifications) {
+      state.notifications = notifications;
     },
     UPDATE_NOTIFICATIONS: function UPDATE_NOTIFICATIONS(state, data) {
       var item = state.notifications.find(function (item) {
@@ -34628,11 +34655,8 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
       });
       Object.assign(item, data);
     },
-    UPDATE_STATIONS: function UPDATE_STATIONS(state, data) {
-      var item = state.stations.find(function (item) {
-        return item.id === data.id;
-      });
-      Object.assign(item, data);
+    SET_CAMPAIGN_SYSTEMS: function SET_CAMPAIGN_SYSTEMS(state, systems) {
+      state.campaignsystems = systems;
     },
     UPDATE_CAMPAIGN_SYSTEM: function UPDATE_CAMPAIGN_SYSTEM(state, data) {
       var item = state.campaignsystems.find(function (item) {
@@ -34646,11 +34670,8 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
       });
       Object.assign(item, data);
     },
-    UPDATE_CAMPAIGN: function UPDATE_CAMPAIGN(state, data) {
-      var item = state.campaigns.find(function (item) {
-        return item.id === data.id;
-      });
-      Object.assign(item, data);
+    SET_CAMPAIGN_USERS: function SET_CAMPAIGN_USERS(state, data) {
+      state.campaignusers = data;
     },
     UPDATE_CAMPAIGN_USERS: function UPDATE_CAMPAIGN_USERS(state, data) {
       var item = state.campaignusers.find(function (item) {
@@ -34658,11 +34679,8 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
       });
       Object.assign(item, data);
     },
-    UPDATE_USERS_CHARS: function UPDATE_USERS_CHARS(state, data) {
-      var item = state.userschars.find(function (item) {
-        return item.id === data.id;
-      });
-      Object.assign(item, data);
+    ADD_CAMPAIGN_USERS: function ADD_CAMPAIGN_USERS(state, data) {
+      state.campaignusers.push(data);
     },
     SET_TOKEN: function SET_TOKEN(state, token) {
       state.token = token;
@@ -34673,9 +34691,6 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
     SET_USER_NAME: function SET_USER_NAME(state, user_name) {
       state.user_name = user_name;
     },
-    SET_NOTIFICATIONS: function SET_NOTIFICATIONS(state, notifications) {
-      state.notifications = notifications;
-    },
     SET_DELVE_LINK: function SET_DELVE_LINK(state, delveLink) {
       state.delveLink = delveLink;
     },
@@ -34684,18 +34699,6 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
     },
     SET_PERIOD_BASIS_LINK: function SET_PERIOD_BASIS_LINK(state, periodbasisLink) {
       state.periodbasisLink = periodbasisLink;
-    },
-    SET_CAMPAIGN_USERS: function SET_CAMPAIGN_USERS(state, data) {
-      state.campaignusers = data;
-    },
-    SET_CAMPAIGN_SYSTEMS: function SET_CAMPAIGN_SYSTEMS(state, systems) {
-      state.campaignsystems = systems;
-    },
-    SET_USERS_CHARS: function SET_USERS_CHARS(state, data) {
-      state.userschars = data;
-    },
-    ADD_NODE_JOIN: function ADD_NODE_JOIN(state, data) {
-      state.nodeJoin.push(data);
     }
   },
   actions: {

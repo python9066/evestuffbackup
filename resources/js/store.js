@@ -42,8 +42,17 @@ export default new Vuex.Store({
             state.timers = timers;
         },
 
+        MARK_TIMER_OVER(state, timer) {
+            const item = state.timers.find(item => item.id === timer.id);
+            Object.assign(item, timer);
+        },
+
         SET_NODE_JOIN(state, nodeJoin) {
             state.nodeJoin = nodeJoin;
+        },
+
+        ADD_NODE_JOIN(state, data) {
+            state.nodeJoin.push(data)
         },
 
         SET_CAMPAIGN_JOIN(state, campaignJoin) {
@@ -54,12 +63,22 @@ export default new Vuex.Store({
             state.towers = towers;
         },
 
+        UPDATE_TOWERS(state, data) {
+            const item = state.towers.find(c => c.id === data.id);
+            Object.assign(item, data);
+        },
+
         SET_CAMPAIGN_SOLA_SYSTEMS(state, campaignSolaSystems) {
             state.campaignSolaSystems = campaignSolaSystems;
         },
 
         SET_STATIONS(state, stations) {
             state.stations = stations;
+        },
+
+        UPDATE_STATIONS(state, data) {
+            const item = state.stations.find(item => item.id === data.id);
+            Object.assign(item, data);
         },
 
         SET_CAMPAIGN_MEMBERS(state, users) {
@@ -70,12 +89,31 @@ export default new Vuex.Store({
             state.users = users;
         },
 
+        SET_USERS_CHARS(state, data) {
+            state.userschars = data;
+        },
+
+        UPDATE_USERS_CHARS(state, data) {
+            const item = state.userschars.find(item => item.id === data.id);
+            Object.assign(item, data);
+        },
+
         SET_ROLES(state, roles) {
             state.rolesList = roles;
         },
 
         SET_CAMPAIGNS(state, campaigns) {
             state.campaigns = campaigns;
+        },
+
+        UPDATE_CAMPAIGNS(state, data) {
+            const item = state.campaigns.find(c => c.id === data.id);
+            Object.assign(item, data);
+        },
+
+        UPDATE_CAMPAIGN(state, data) {
+            const item = state.campaigns.find(item => item.id === data.id);
+            Object.assign(item, data);
         },
 
         SET_MULTI_CAMPAIGNS(state, multicampaigns) {
@@ -94,19 +132,8 @@ export default new Vuex.Store({
             state.loggingAdmin = logs;
         },
 
-        UPDATE_CAMPAIGNS(state, data) {
-            const item = state.campaigns.find(c => c.id === data.id);
-            Object.assign(item, data);
-        },
-
-        UPDATE_TOWERS(state, data) {
-            const item = state.towers.find(c => c.id === data.id);
-            Object.assign(item, data);
-        },
-
-        MARK_TIMER_OVER(state, timer) {
-            const item = state.timers.find(item => item.id === timer.id);
-            Object.assign(item, timer);
+        SET_NOTIFICATIONS(state, notifications) {
+            state.notifications = notifications;
         },
 
         UPDATE_NOTIFICATIONS(state, data) {
@@ -114,9 +141,8 @@ export default new Vuex.Store({
             Object.assign(item, data);
         },
 
-        UPDATE_STATIONS(state, data) {
-            const item = state.stations.find(item => item.id === data.id);
-            Object.assign(item, data);
+        SET_CAMPAIGN_SYSTEMS(state, systems) {
+            state.campaignsystems = systems;
         },
 
         UPDATE_CAMPAIGN_SYSTEM(state, data) {
@@ -129,9 +155,9 @@ export default new Vuex.Store({
             Object.assign(item, data);
         },
 
-        UPDATE_CAMPAIGN(state, data) {
-            const item = state.campaigns.find(item => item.id === data.id);
-            Object.assign(item, data);
+
+        SET_CAMPAIGN_USERS(state, data) {
+            state.campaignusers = data;
         },
 
         UPDATE_CAMPAIGN_USERS(state, data) {
@@ -139,9 +165,8 @@ export default new Vuex.Store({
             Object.assign(item, data);
         },
 
-        UPDATE_USERS_CHARS(state, data) {
-            const item = state.userschars.find(item => item.id === data.id);
-            Object.assign(item, data);
+        ADD_CAMPAIGN_USERS(state, data) {
+            state.campaignusers.push(data);
         },
 
         SET_TOKEN(state, token) {
@@ -152,10 +177,6 @@ export default new Vuex.Store({
         },
         SET_USER_NAME(state, user_name) {
             state.user_name = user_name;
-        },
-
-        SET_NOTIFICATIONS(state, notifications) {
-            state.notifications = notifications;
         },
 
         SET_DELVE_LINK(state, delveLink) {
@@ -170,22 +191,12 @@ export default new Vuex.Store({
             state.periodbasisLink = periodbasisLink;
         },
 
-        SET_CAMPAIGN_USERS(state, data) {
-            state.campaignusers = data;
-        },
 
-        SET_CAMPAIGN_SYSTEMS(state, systems) {
-            state.campaignsystems = systems;
-        },
-
-        SET_USERS_CHARS(state, data) {
-            state.userschars = data;
-        },
-
-        ADD_NODE_JOIN(state, data) {
-            state.nodeJoin.push(data)
-        }
     },
+
+
+
+
     actions: {
         async getTimerDataAll({ commit, state }) {
             let res = await axios({
