@@ -314,6 +314,7 @@ export default {
                 data.user_status_name = "None";
                 console.log(data);
                 this.$store.dispatch("addCampaignUserNew", data);
+                this.$store.dispatch("addUserChar", data);
 
                 var request = {
                     campaign_id: this.campaign_id,
