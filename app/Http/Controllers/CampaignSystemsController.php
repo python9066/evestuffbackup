@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\CampaignSystem;
 use App\Events\CampaignSystemUpdate;
+use App\Models\Auth;
 use App\Models\Campaign;
 use App\Models\CampaignSolaSystem;
 use App\Models\CampaignSystemRecords;
@@ -13,6 +14,10 @@ use App\Models\CampaignUserRecords;
 use App\Models\NodeJoin;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Spatie\Permission\Traits\HasPermissions;
+use Spatie\Permission\Traits\HasRoles;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 
 class CampaignSystemsController extends Controller
 {
@@ -21,9 +26,12 @@ class CampaignSystemsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    use HasPermissions;
+    use HasRoles;
 
     public function load(Request $request)
     {
+        $check = Auth::user();
         if ($request['type'] = 'solo') {
             $campid = Campaign::where('link', $request['campaign_id'])->value('id');
             $userid = $request['user_id'];
@@ -31,6 +39,8 @@ class CampaignSystemsController extends Controller
             $campid = $request['campaign_id'];
             $userid = $request['user_id'];
         }
+
+
         $dataSola = [];
         $pull = CampaignSolaSystem::where('campaign_id', $campid)->get();
         foreach ($pull as $pull) {
@@ -43,6 +53,10 @@ class CampaignSystemsController extends Controller
             if ($pull['supervisor_id'] != null) {
                 $supervier_name = User::where('id', $pull['supervisor_id'])->value('name');
             }
+
+            if ($check->hasPermissionTo('view_campaign_logs ')) {
+                dd('yay');
+            };
 
             $dataSola1 = [];
             $dataSola1 = [
