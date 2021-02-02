@@ -3362,7 +3362,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 data.user_status_name = "None";
                 console.log(data);
 
-                _this.$store.dispatch("updateCampaignUsers", data);
+                _this.$store.dispatch("addCampaignUserNew", data);
 
                 request = {
                   campaign_id: _this.campaign_id,

@@ -313,7 +313,7 @@ export default {
                 data.system_name = null;
                 data.user_status_name = "None";
                 console.log(data);
-                this.$store.dispatch("updateCampaignUsers", data);
+                this.$store.dispatch("addCampaignUserNew", data);
 
                 var request = {
                     campaign_id: this.campaign_id,
