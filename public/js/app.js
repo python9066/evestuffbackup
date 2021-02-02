@@ -34689,7 +34689,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
       state.campaignusers.push(data);
     },
     DELETE_CAMPAIGN_USER: function DELETE_CAMPAIGN_USER(state, id) {
-      index = state.campaignusers.findIndex(function (user) {
+      var index = state.campaignusers.findIndex(function (user) {
         return user.id == id;
       });
       state.campaignusers.splice(index, 1);
