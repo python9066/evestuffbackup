@@ -38,7 +38,6 @@ class CampaignSystemsController extends Controller
         if ($request['type'] == 1) {
             $campid = Campaign::where('link', $request['campaign_id'])->value('id');
             $userid = $request['user_id'];
-            dd('1', $campid, $userid);
         } else {
             $campid = $request['campaign_id'];
             $userid = $request['user_id'];
