@@ -172,7 +172,7 @@ export default new Vuex.Store({
         DELETE_CAMPAIGN_USER(state, id) {
             let index = state.campaignusers.findIndex(user => user.id == id)
             console.log(index);
-            if(index != null){state.campaignusers.splice(index, 1)}
+            if(index != 0){state.campaignusers.splice(index, 1)}
 
         },
 
