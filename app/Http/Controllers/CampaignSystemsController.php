@@ -28,8 +28,15 @@ class CampaignSystemsController extends Controller
         $dataSola = [];
         $pull = CampaignSolaSystem::all();
         foreach ($pull as $pull) {
-            $checker_name = User::where('id', $pull['last_checked_user_id']->value('name'));
-            $supervier_name = User::where('id', $pull['supervisor_id'])->value('name');
+            $checker_name = null;
+            $supervier_name = null;
+            if ($pull['last_checked_user_id'] != null) {
+                $checker_name = User::where('id', $pull['last_checked_user_id']->value('name'));
+            }
+
+            if ($pull['supervisor_id'] != null) {
+                $supervier_name = User::where('id', $pull['supervisor_id'])->value('name');
+            }
 
             $dataSola1 = [];
             $dataSola1 = [
