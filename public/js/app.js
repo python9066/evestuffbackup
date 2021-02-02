@@ -35450,8 +35450,6 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
       }))();
     },
     loadCampaignSystemData: function loadCampaignSystemData(_ref36, payload) {
-      var _this2 = this;
-
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee22() {
         var commit, state, request, res;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee22$(_context22) {
@@ -35470,7 +35468,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
                   url: "/api/campaignsystemload",
                   data: request,
                   headers: {
-                    Authorization: "Bearer " + _this2.$store.state.token,
+                    Authorization: "Bearer " + state.token,
                     Accept: "application/json",
                     "Content-Type": "application/json"
                   }

@@ -570,7 +570,7 @@ export default new Vuex.Store({
                 url: "/api/campaignsystemload",
                 data: request,
                 headers: {
-                    Authorization: "Bearer " + this.$store.state.token,
+                    Authorization: "Bearer " + state.token,
                     Accept: "application/json",
                     "Content-Type": "application/json"
                 }
