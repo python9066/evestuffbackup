@@ -9812,20 +9812,23 @@ function sleep(ms) {
                 campaign_id: _this2.$route.params.id,
                 user_id: _this2.$store.state.user_id
               }; // await this.$store.dispatch("getCampaignSolaSystems");
-              // await this.getSystems(this.campaign.constellation_id);
               // await this.$store.dispatch("getNodeJoinByCampaignId", this.campaign.id);
               // await this.$store.dispatch("getCampaignUsersRecords", this.campaign.id);
               // await this.$store.dispatch("getCampaignSystemsRecords");
               // await this.$store.dispatch("getUsersChars", this.$store.state.user_id);
 
               _context3.next = 3;
-              return _this2.loadCampaignSystemData(payload);
+              return _this2.$store.dispatch("loadCampaignSystemData", payload);
 
             case 3:
               _context3.next = 5;
-              return _this2.loadCampaignlogs();
+              return _this2.getSystems(_this2.campaign.constellation_id);
 
             case 5:
+              _context3.next = 7;
+              return _this2.loadCampaignlogs();
+
+            case 7:
             case "end":
               return _context3.stop();
           }
