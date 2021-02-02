@@ -570,7 +570,14 @@ export default {
                 if (this.$store.state.user_id == e.flag.user_id) {
                     this.$router.push("/campaignkick");
                 }
+            })
+            .listen("CampaignSolaSystemUpdate", e => {
+                this.$store.dispatch(
+                    "updateCampaignSolaSystem",
+                    e.flag.message
+                );
             });
+
         window.addEventListener("beforeunload", this.leaving);
         this.channel = "campaignsystem." + this.campaign.id;
         this.test = 2;

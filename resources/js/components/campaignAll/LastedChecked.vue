@@ -64,6 +64,15 @@ export default {
             this.test1 = this.CampaignSolaSystem[0]["id"];
             var timeStamp = moment.utc().format("YYYY-MM-DD HH:mm:ss");
 
+            var data = {
+                id: this.CampaignSolaSystem[0]["id"],
+                last_checked_user_id: this.$store.state.user_id,
+                last_checked_user_name: this.$store.state.user_name,
+                last_checked: timeStamp
+            };
+
+            this.$store.dispatch("updateCampaignSolaSystem", data);
+
             var request = null;
             request = {
                 last_checked_user_id: this.$store.state.user_id,
@@ -71,7 +80,8 @@ export default {
             };
 
             await axios({
-                method: "put", //you can set what request you want to be
+                //adds user name of last checked
+                method: "put",
                 url:
                     "/api/campaignsolasystems/" +
                     this.CampaignSolaSystem[0]["id"] +
@@ -85,7 +95,7 @@ export default {
                 }
             });
 
-            await this.$store.dispatch("getCampaignSolaSystems");
+            //------logging start------//
             var request = null;
             request = {
                 user_id: this.$store.state.user_id,
@@ -93,7 +103,7 @@ export default {
             };
 
             await axios({
-                method: "put", //you can set what request you want to be
+                method: "put",
                 url:
                     "/api/checklastedchecked/" +
                     this.CampaignSolaSystem[0]["campaign_id"],
@@ -104,6 +114,8 @@ export default {
                     "Content-Type": "application/json"
                 }
             });
+
+            //--------logging end------//
 
             // console.log(timeStamp);
         }

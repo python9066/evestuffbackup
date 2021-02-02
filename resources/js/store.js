@@ -72,6 +72,11 @@ export default new Vuex.Store({
             state.campaignSolaSystems = campaignSolaSystems;
         },
 
+        UPDATE_CAMPAIGN_SOLA_SYSTEMS(state, data) {
+            const item = state.campaignSolaSystems.find(c => c.id === data.id);
+            Object.assign(item, data);
+        },
+
         SET_STATIONS(state, stations) {
             state.stations = stations;
         },
@@ -464,6 +469,10 @@ export default new Vuex.Store({
 
         updateCampaignSystemByUserID({ commit }, payload) {
             commit("UPDATE_CAMPAIGN_SYSTEM_BY_USER_ID", payload);
+        },
+
+        updateCampaignSolaSystem({ commit }, data) {
+            commit("UPDATE_CAMPAIGN_SOLA_SYSTEMS", data);
         },
 
         updateCampaignSystemBar({ commit }, data) {
@@ -881,7 +890,7 @@ export default new Vuex.Store({
             } else {
                 return []
             }
-        }
+        },
 
     }
 });

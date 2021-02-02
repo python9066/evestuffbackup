@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\CampaignSolaSystemUpdate;
 use App\Models\CampaignSolaSystem;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -80,11 +81,20 @@ class CampaignSolaSystemsController extends Controller
     {
         //CampaignSystemRecords::find($id)->update($request->all());
         CampaignSolaSystem::find($solaid)->update($request->all());
+        $message = CampaignSolaSystem::where('id', $solaid)->first();
+
         $flag = collect([
-            'flag' => 8,
+            'message' => $message,
             'id' => $campid,
         ]);
-        broadcast(new CampaignSystemUpdate($flag))->toOthers();
+        broadcast(new CampaignSolaSystemUpdate($flag))->toOthers();
+
+        // $flag = null;
+        // $flag = collect([
+        //     'flag' => 8,
+        //     'id' => $campid,
+        // ]);
+        // broadcast(new CampaignSystemUpdate($flag))->toOthers();
     }
 
     /**
