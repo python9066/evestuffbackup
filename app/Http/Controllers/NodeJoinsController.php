@@ -286,11 +286,11 @@ class NodeJoinsController extends Controller
         broadcast(new CampaignSystemUpdate($flag))->toOthers();
 
         //done just wating to remove//
-        $flag = collect([
-            'flag' => 3,
-            'id' => $campid
-        ]);
-        broadcast(new CampaignSystemUpdate($flag));
+        // $flag = collect([
+        //     'flag' => 3,
+        //     'id' => $campid
+        // ]);
+        // broadcast(new CampaignSystemUpdate($flag));
     }
 
     /**
