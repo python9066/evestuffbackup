@@ -315,7 +315,6 @@ class NodeJoinsController extends Controller
     {
         NodeJoin::where('id', $id)->update($request->all());
         $message = Campaignhelper::nodeJoinRecords($id);
-        dd($message);
 
 
         $flag = collect([

@@ -35366,6 +35366,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
     },
     updateNodeJoin: function updateNodeJoin(_ref28, data) {
       var commit = _ref28.commit;
+      console.log(data);
       commit('UPDATE_NODE_JOIN', data);
     },
     addNodeJoin: function addNodeJoin(_ref29, data) {
