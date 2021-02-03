@@ -283,13 +283,15 @@ class CampaignSystemsController extends Controller
         }
 
         $node = NodeJoin::where('campaign_system_id', $id)->first();
-        $flag = null;
-        $flag = collect([
-            'joinNodeID' => $node->id,
-            'id' => $campid
-        ]);
-        broadcast(new NodeJoinDelete($flag))->toOthers();
-        $node->delete();
+        if ($node->count() != 0) {
+            $flag = null;
+            $flag = collect([
+                'joinNodeID' => $node->id,
+                'id' => $campid
+            ]);
+            broadcast(new NodeJoinDelete($flag))->toOthers();
+            $node->delete();
+        }
 
 
         $flag = null;
