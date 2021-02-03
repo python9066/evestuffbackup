@@ -313,7 +313,8 @@ class NodeJoinsController extends Controller
      */
     public function update(Request $request, $id, $campid)
     {
-        NodeJoin::where('id', $id)->update($request->all());
+        NodeJoin::where('id', $id)->update($request->all())->save();
+
         $message = Campaignhelper::nodeJoinRecords($id);
 
 
