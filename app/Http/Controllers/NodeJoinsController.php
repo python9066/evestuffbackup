@@ -41,11 +41,7 @@ class NodeJoinsController extends Controller
 
 
         if ($node->count() > 0) {
-            $flag = collect([
-                "joinNodeID" => $node->id,
-                "id" => $campid
-            ]);
-            broadcast(new NodeJoinDelete($flag));
+
 
             if ($node->where('campaign_system_status_id', 3)->count() > 0) {
                 $status = 1;
@@ -56,6 +52,13 @@ class NodeJoinsController extends Controller
             } else {
                 $node = $node->first();
             };
+
+            $flag = collect([
+                "joinNodeID" => $node->id,
+                "id" => $campid
+            ]);
+            broadcast(new NodeJoinDelete($flag));
+
             $user_id = $node->campaign_user_id;
             $campaign_system_status_id = $node->campaign_system_status_id;
             $CampaignSystem = CampaignSystem::where('id', $id)->first();
