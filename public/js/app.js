@@ -1540,13 +1540,18 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var _this3 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee5() {
-        var request;
+        var test, request;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee5$(_context5) {
           while (1) {
             switch (_context5.prev = _context5.next) {
               case 0:
                 console.log(item);
-                _context5.next = 3;
+
+                _this3.$store.dispatch("deleteCampaignSystem", item.id);
+
+                test = _this3.$store.getters("getUsersOnNodeByID", item.id);
+                console.log(test);
+                _context5.next = 6;
                 return axios({
                   method: "DELETE",
                   url: "/api/campaignsystems/" + item.id + "/" + _this3.campaign_id,
@@ -1557,7 +1562,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   }
                 });
 
-              case 3:
+              case 6:
                 _this3.$store.dispatch("getCampaignSystemsRecords");
 
                 _this3.$store.dispatch("getCampaignUsersRecords", _this3.campaign_id); //---- Loggin start ----//
@@ -1582,7 +1587,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   }
                 }); //------ loggin end-----//
 
-              case 8:
+              case 11:
               case "end":
                 return _context5.stop();
             }
