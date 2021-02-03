@@ -256,7 +256,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(["getNodeJoinByNode", "getNodeJoinByNodeCount", "getCampaignUsersByUserIdEntosisCount"])), {}, {
     filteredItems: function filteredItems() {
-      console.log(this.sysid);
       return this.getNodeJoinByNode(this.sysid);
     },
     showTable: function showTable() {
@@ -12059,8 +12058,6 @@ function sleep(ms) {
               }).listen("CampaignUserNew", function (e) {
                 _this.$store.dispatch("addCampaignUserNew", e.flag.message);
               }).listen("CampaignUserDelete", function (e) {
-                console.log(e.flag.userid);
-
                 _this.$store.dispatch("deleteCampaignUser", e.flag.userid);
               }).listen("KickUserFromCampaign", function (e) {
                 if (_this.$store.state.user_id == e.flag.user_id) {
@@ -12077,8 +12074,6 @@ function sleep(ms) {
               }).listen("NodeJoinNew", function (e) {
                 _this.$store.dispatch("addNodeJoin", e.flag.message);
               }).listen("NodeJoinUpdate", function (e) {
-                console.log(e);
-
                 _this.$store.dispatch("updateNodeJoin", e.flag.message);
               }).listen("CampaignSystemDelete", function (e) {
                 _this.$store.dispatch("deleteCampaignSystem", e.flag.campSysID);

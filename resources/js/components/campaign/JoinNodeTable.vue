@@ -208,7 +208,6 @@ export default {
         ]),
 
         filteredItems() {
-            console.log(this.sysid);
             return this.getNodeJoinByNode(this.sysid);
         },
 

@@ -392,7 +392,6 @@ export default {
                 this.$store.dispatch("addCampaignUserNew", e.flag.message);
             })
             .listen("CampaignUserDelete", e => {
-                console.log(e.flag.userid);
                 this.$store.dispatch("deleteCampaignUser", e.flag.userid);
             })
             .listen("KickUserFromCampaign", e => {
@@ -418,7 +417,6 @@ export default {
                 this.$store.dispatch("addNodeJoin", e.flag.message);
             })
             .listen("NodeJoinUpdate", e => {
-                console.log(e);
                 this.$store.dispatch("updateNodeJoin", e.flag.message);
             })
             .listen("CampaignSystemDelete", e => {
