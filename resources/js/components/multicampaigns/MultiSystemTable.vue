@@ -652,7 +652,7 @@ export default {
             };
 
             await axios({
-                method: "put", //you can set what request you want to be
+                method: "put",
                 url:
                     "/api/campaignusers/" +
                     this.charOnTheWay +
@@ -674,7 +674,7 @@ export default {
             };
 
             await axios({
-                method: "put", //you can set what request you want to be
+                method: "put",
                 url: "/api/campaignsystemremovechar/" + this.campaign_id,
                 data: request,
                 headers: {
@@ -705,7 +705,7 @@ export default {
             };
 
             await axios({
-                method: "put", //you can set what request you want to be
+                method: "put",
                 url:
                     "/api/campaignusers/" +
                     this.charReadyToGo +
@@ -727,7 +727,7 @@ export default {
             };
 
             await axios({
-                method: "put", //you can set what request you want to be
+                method: "put",
                 url: "/api/campaignsystemremovechar/" + this.campaign_id,
                 data: request,
                 headers: {
@@ -743,7 +743,7 @@ export default {
 
         async deleteNode(item) {
             await axios({
-                method: "DELETE", //you can set what request you want to be
+                method: "DELETE",
                 url: "/api/campaignsystems/" + item.id + "/" + this.campaign_id,
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
@@ -764,7 +764,7 @@ export default {
                 type: 2
             };
             axios({
-                method: "POST", //you can set what request you want to be
+                method: "POST",
                 url: "/api/checkdeletenode/" + this.campaign_id,
                 data: request,
                 headers: {
@@ -811,7 +811,7 @@ export default {
             this.$store.dispatch("updateCampaignUsers", data);
 
             axios({
-                method: "put", //you can set what request you want to be
+                method: "put",
                 url: "/api/campaignsystems/" + item.id + "/" + this.campaign_id,
                 data: request,
                 headers: {
@@ -822,7 +822,7 @@ export default {
             });
 
             axios({
-                method: "put", //you can set what request you want to be
+                method: "put",
                 url:
                     "/api/campaignusers/" + addChar.id + "/" + this.campaign_id,
                 data: request1,
@@ -878,7 +878,7 @@ export default {
             }
 
             await axios({
-                method: "put", //you can set what request you want to be
+                method: "put",
                 url: "/api/campaignsystems/" + item.id + "/" + this.campaign_id,
                 data: request,
                 headers: {
@@ -969,7 +969,7 @@ export default {
             };
             this.$store.dispatch("updateCampaignSystem", item);
             axios({
-                method: "put", //you can set what request you want to be
+                method: "put",
                 url: "/api/campaignsystems/" + item.id + "/" + this.campaign_id,
                 data: request,
                 headers: {
@@ -996,10 +996,9 @@ export default {
                 node_id: node
             };
             this.nodeText = "";
-            // this.nodeCampaignID = "";
             this.addShown = false;
             await axios({
-                method: "POST", //you can set what request you want to be
+                method: "POST",
                 url: "/api/campaignsystems/" + this.campaign_id,
                 data: request,
                 headers: {
@@ -1010,6 +1009,8 @@ export default {
             });
 
             this.$store.dispatch("getCampaignSystemsRecords");
+
+            //---- Logging start-----//
 
             request = null;
             request = {
@@ -1022,7 +1023,7 @@ export default {
             };
 
             axios({
-                method: "POST", //you can set what request you want to be
+                method: "POST",
                 url: "/api/checkaddnode/" + this.campaign_id,
                 data: request,
                 headers: {
@@ -1031,6 +1032,8 @@ export default {
                     "Content-Type": "application/json"
                 }
             });
+
+            //------ logging end ----//
         },
 
         removeCharNode(item) {
@@ -1072,7 +1075,7 @@ export default {
             }
 
             axios({
-                method: "PUT", //you can set what request you want to be
+                method: "PUT",
                 url:
                     "/api/removecharfromnode/" +
                     item.id +
@@ -1095,7 +1098,7 @@ export default {
             };
 
             await axios({
-                method: "PUT", //you can set what request you want to be
+                method: "PUT",
                 url: "/api/campaignusers/" + item.id + "/" + this.campaign_id,
                 data: request,
                 headers: {

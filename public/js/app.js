@@ -1425,7 +1425,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 _context3.next = 6;
                 return axios({
                   method: "put",
-                  //you can set what request you want to be
                   url: "/api/campaignusers/" + _this.charOnTheWay + "/" + _this.campaign_id,
                   data: request,
                   headers: {
@@ -1445,7 +1444,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 _context3.next = 10;
                 return axios({
                   method: "put",
-                  //you can set what request you want to be
                   url: "/api/campaignsystemremovechar/" + _this.campaign_id,
                   data: request,
                   headers: {
@@ -1497,7 +1495,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 _context4.next = 5;
                 return axios({
                   method: "put",
-                  //you can set what request you want to be
                   url: "/api/campaignusers/" + _this2.charReadyToGo + "/" + _this2.campaign_id,
                   data: request,
                   headers: {
@@ -1517,7 +1514,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 _context4.next = 9;
                 return axios({
                   method: "put",
-                  //you can set what request you want to be
                   url: "/api/campaignsystemremovechar/" + _this2.campaign_id,
                   data: request,
                   headers: {
@@ -1549,10 +1545,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context5.prev = _context5.next) {
               case 0:
-                _context5.next = 2;
+                console.log(item);
+                _context5.next = 3;
                 return axios({
                   method: "DELETE",
-                  //you can set what request you want to be
                   url: "/api/campaignsystems/" + item.id + "/" + _this3.campaign_id,
                   headers: {
                     Authorization: "Bearer " + _this3.$store.state.token,
@@ -1561,10 +1557,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   }
                 });
 
-              case 2:
+              case 3:
                 _this3.$store.dispatch("getCampaignSystemsRecords");
 
-                _this3.$store.dispatch("getCampaignUsersRecords", _this3.campaign_id);
+                _this3.$store.dispatch("getCampaignUsersRecords", _this3.campaign_id); //---- Loggin start ----//
+
 
                 request = null;
                 request = {
@@ -1573,11 +1570,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   campaign_sola_system_id: _this3.CampaignSolaSystem[0]["id"],
                   user_id: _this3.$store.state.user_id,
                   type: 1
-                }; // console.log(item);
-
+                };
                 axios({
                   method: "POST",
-                  //you can set what request you want to be
                   url: "/api/checkdeletenode/" + _this3.campaign_id,
                   data: request,
                   headers: {
@@ -1585,9 +1580,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                     Accept: "application/json",
                     "Content-Type": "application/json"
                   }
-                });
+                }); //------ loggin end-----//
 
-              case 7:
+              case 8:
               case "end":
                 return _context5.stop();
             }
@@ -1632,7 +1627,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       this.$store.dispatch("updateCampaignUsers", data);
       axios({
         method: "put",
-        //you can set what request you want to be
         url: "/api/campaignsystems/" + item.id + "/" + this.campaign_id,
         data: request,
         headers: {
@@ -1643,7 +1637,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       });
       axios({
         method: "put",
-        //you can set what request you want to be
         url: "/api/campaignusers/" + addChar.id + "/" + this.campaign_id,
         data: request1,
         headers: {
@@ -1710,7 +1703,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 _context6.next = 16;
                 return axios({
                   method: "put",
-                  //you can set what request you want to be
                   url: "/api/campaignsystems/" + item.id + "/" + _this5.campaign_id,
                   data: request,
                   headers: {
@@ -1798,7 +1790,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       this.$store.dispatch("updateCampaignSystem", item);
       axios({
         method: "put",
-        //you can set what request you want to be
         url: "/api/campaignsystems/" + item.id + "/" + this.campaign_id,
         data: request,
         headers: {
@@ -1829,7 +1820,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 _context7.next = 6;
                 return axios({
                   method: "POST",
-                  //you can set what request you want to be
                   url: "/api/campaignsystems/" + _this6.campaign_id,
                   data: request,
                   headers: {
@@ -1840,7 +1830,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 });
 
               case 6:
-                _this6.$store.dispatch("getCampaignSystemsRecords");
+                _this6.$store.dispatch("getCampaignSystemsRecords"); //----Logging Start-----//
+
 
                 request = null;
                 request = {
@@ -1852,7 +1843,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 };
                 axios({
                   method: "POST",
-                  //you can set what request you want to be
                   url: "/api/checkaddnode/" + _this6.campaign_id,
                   data: request,
                   headers: {
@@ -1860,7 +1850,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                     Accept: "application/json",
                     "Content-Type": "application/json"
                   }
-                });
+                }); //----Logging End-----//
 
               case 10:
               case "end":
@@ -1908,7 +1898,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
       axios({
         method: "PUT",
-        //you can set what request you want to be
         url: "/api/removecharfromnode/" + item.id + "/" + this.campaign_id,
         data: request,
         headers: {
@@ -1935,7 +1924,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 _context8.next = 4;
                 return axios({
                   method: "PUT",
-                  //you can set what request you want to be
                   url: "/api/campaignusers/" + item.id + "/" + _this7.campaign_id,
                   data: request,
                   headers: {
@@ -5812,7 +5800,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 _context.next = 6;
                 return axios({
                   method: "put",
-                  //you can set what request you want to be
                   url: "/api/campaignusers/" + _this.charOnTheWay + "/" + _this.campaign_id,
                   data: request,
                   headers: {
@@ -5832,7 +5819,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 _context.next = 10;
                 return axios({
                   method: "put",
-                  //you can set what request you want to be
                   url: "/api/campaignsystemremovechar/" + _this.campaign_id,
                   data: request,
                   headers: {
@@ -5884,7 +5870,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 _context2.next = 5;
                 return axios({
                   method: "put",
-                  //you can set what request you want to be
                   url: "/api/campaignusers/" + _this2.charReadyToGo + "/" + _this2.campaign_id,
                   data: request,
                   headers: {
@@ -5904,7 +5889,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 _context2.next = 9;
                 return axios({
                   method: "put",
-                  //you can set what request you want to be
                   url: "/api/campaignsystemremovechar/" + _this2.campaign_id,
                   data: request,
                   headers: {
@@ -5939,7 +5923,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 _context3.next = 2;
                 return axios({
                   method: "DELETE",
-                  //you can set what request you want to be
                   url: "/api/campaignsystems/" + item.id + "/" + _this3.campaign_id,
                   headers: {
                     Authorization: "Bearer " + _this3.$store.state.token,
@@ -5963,7 +5946,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 };
                 axios({
                   method: "POST",
-                  //you can set what request you want to be
                   url: "/api/checkdeletenode/" + _this3.campaign_id,
                   data: request,
                   headers: {
@@ -6018,7 +6000,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       this.$store.dispatch("updateCampaignUsers", data);
       axios({
         method: "put",
-        //you can set what request you want to be
         url: "/api/campaignsystems/" + item.id + "/" + this.campaign_id,
         data: request,
         headers: {
@@ -6029,7 +6010,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       });
       axios({
         method: "put",
-        //you can set what request you want to be
         url: "/api/campaignusers/" + addChar.id + "/" + this.campaign_id,
         data: request1,
         headers: {
@@ -6096,7 +6076,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 _context4.next = 16;
                 return axios({
                   method: "put",
-                  //you can set what request you want to be
                   url: "/api/campaignsystems/" + item.id + "/" + _this5.campaign_id,
                   data: request,
                   headers: {
@@ -6185,7 +6164,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       this.$store.dispatch("updateCampaignSystem", item);
       axios({
         method: "put",
-        //you can set what request you want to be
         url: "/api/campaignsystems/" + item.id + "/" + this.campaign_id,
         data: request,
         headers: {
@@ -6220,13 +6198,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   system_id: _this6.system_id,
                   node_id: node
                 };
-                _this6.nodeText = ""; // this.nodeCampaignID = "";
-
+                _this6.nodeText = "";
                 _this6.addShown = false;
                 _context5.next = 7;
                 return axios({
                   method: "POST",
-                  //you can set what request you want to be
                   url: "/api/campaignsystems/" + _this6.campaign_id,
                   data: request,
                   headers: {
@@ -6237,7 +6213,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 });
 
               case 7:
-                _this6.$store.dispatch("getCampaignSystemsRecords");
+                _this6.$store.dispatch("getCampaignSystemsRecords"); //---- Logging start-----//
+
 
                 request = null;
                 request = {
@@ -6250,7 +6227,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 };
                 axios({
                   method: "POST",
-                  //you can set what request you want to be
                   url: "/api/checkaddnode/" + _this6.campaign_id,
                   data: request,
                   headers: {
@@ -6258,7 +6234,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                     Accept: "application/json",
                     "Content-Type": "application/json"
                   }
-                });
+                }); //------ logging end ----//
 
               case 11:
               case "end":
@@ -6306,7 +6282,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
       axios({
         method: "PUT",
-        //you can set what request you want to be
         url: "/api/removecharfromnode/" + item.id + "/" + this.campaign_id,
         data: request,
         headers: {
@@ -6333,7 +6308,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 _context6.next = 4;
                 return axios({
                   method: "PUT",
-                  //you can set what request you want to be
                   url: "/api/campaignusers/" + item.id + "/" + _this7.campaign_id,
                   data: request,
                   headers: {
