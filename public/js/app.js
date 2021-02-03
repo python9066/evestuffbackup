@@ -339,7 +339,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var _this = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-        var addChar, request;
+        var addChar, request, payload;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
@@ -386,6 +386,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 });
 
               case 8:
+                payload = {
+                  campaign_id: _this.$route.params.id,
+                  user_id: _this.$store.state.user_id,
+                  type: 1
+                };
+                _context.next = 11;
+                return _this.$store.dispatch("loadCampaignSystemData", payload);
+
+              case 11:
               case "end":
                 return _context.stop();
             }

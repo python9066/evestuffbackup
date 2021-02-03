@@ -670,6 +670,8 @@ export default new Vuex.Store({
                 commit("SET_LOGGING_CAMPAIGN", res.data.logs);
             }
         },
+
+
     },
     getters: {
 
