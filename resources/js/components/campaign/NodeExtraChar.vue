@@ -47,7 +47,7 @@ export default {
             };
 
             await axios({
-                method: "post", //you can set what request you want to be
+                method: "post",
                 url: "/api/nodejoin/" + item.campaign_id,
                 data: request,
                 headers: {
@@ -65,7 +65,7 @@ export default {
             };
 
             await axios({
-                method: "put", //you can set what request you want to be
+                method: "put",
                 url:
                     "/api/campaignusers/" + addChar.id + "/" + item.campaign_id,
                 data: request,

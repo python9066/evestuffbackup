@@ -47,7 +47,7 @@ export default {
             };
 
             await axios({
-                method: "post", //you can set what request you want to be
+                method: "post",
                 url: "/api/nodejoin/" + item.custom_campaign_id,
                 data: request,
                 headers: {
@@ -65,7 +65,7 @@ export default {
             };
 
             await axios({
-                method: "put", //you can set what request you want to be
+                method: "put",
                 url:
                     "/api/campaignusers/" +
                     addChar.id +
@@ -78,6 +78,13 @@ export default {
                     "Content-Type": "application/json"
                 }
             });
+
+            let payload = {
+                campaign_id: this.$route.params.id,
+                user_id: this.$store.state.user_id,
+                type: 2
+            };
+            await this.$store.dispatch("loadCampaignSystemData", payload);
         },
 
         checkShowAdd(item) {
