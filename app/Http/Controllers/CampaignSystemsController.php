@@ -284,7 +284,7 @@ class CampaignSystemsController extends Controller
 
         $node = NodeJoin::where('campaign_system_id', $id)->first();
         $flag = null;
-        $flag([
+        $flag = collect([
             'joinNodeID' => $node->id,
             'id' => $campid
         ]);
@@ -293,7 +293,7 @@ class CampaignSystemsController extends Controller
 
 
         $flag = null;
-        $flag([
+        $flag = collect([
             'campSysID' => $id,
             'id' => $campid
         ]);
