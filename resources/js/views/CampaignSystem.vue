@@ -523,6 +523,13 @@ export default {
         this.campaignId = this.campaign.id;
         Echo.private("campaignsystem." + this.campaign.id)
             .listen("CampaignSystemUpdate", e => {
+                if (e.flag.message != null) {
+                    this.$store.dispatch(
+                        "updateCampaignSystem",
+                        e.flag.message
+                    );
+                }
+
                 if (e.flag.flag == 2) {
                     this.loadCampaignSystemRecords();
                     this.loadCampaignNodeJoin();

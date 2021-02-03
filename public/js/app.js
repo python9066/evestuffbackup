@@ -9813,6 +9813,10 @@ function sleep(ms) {
             case 6:
               _this.campaignId = _this.campaign.id;
               Echo["private"]("campaignsystem." + _this.campaign.id).listen("CampaignSystemUpdate", function (e) {
+                if (e.flag.message != null) {
+                  _this.$store.dispatch("updateCampaignSystem", e.flag.message);
+                }
+
                 if (e.flag.flag == 2) {
                   _this.loadCampaignSystemRecords();
 
