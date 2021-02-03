@@ -710,8 +710,6 @@ export default {
         },
 
         async deleteNode(item) {
-            console.log(item);
-
             this.$store.dispatch("deleteCampaignSystem", item.id);
             var users = this.$store.getters.getUsersOnNodeByID(item.id);
             var chars = this.$store.getters.getCharsOnNodeByID(item.id);
@@ -1065,6 +1063,7 @@ export default {
                     campaign_user_id: null
                 };
             }
+            console.log(request);
             axios({
                 method: "PUT",
                 url:

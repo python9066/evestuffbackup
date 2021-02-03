@@ -1545,8 +1545,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context5.prev = _context5.next) {
               case 0:
-                console.log(item);
-
                 _this3.$store.dispatch("deleteCampaignSystem", item.id);
 
                 users = _this3.$store.getters.getUsersOnNodeByID(item.id);
@@ -1580,7 +1578,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   });
                 }
 
-                _context5.next = 8;
+                _context5.next = 7;
                 return axios({
                   method: "DELETE",
                   url: "/api/campaignsystems/" + item.id + "/" + _this3.campaign_id,
@@ -1591,7 +1589,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   }
                 });
 
-              case 8:
+              case 7:
                 // this.$store.dispatch("getCampaignSystemsRecords");
                 // this.$store.dispatch("getCampaignUsersRecords", this.campaign_id);
                 //---- Loggin start ----//
@@ -1614,7 +1612,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   }
                 }); //------ loggin end-----//
 
-              case 11:
+              case 10:
               case "end":
                 return _context5.stop();
             }
@@ -1928,6 +1926,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         };
       }
 
+      console.log(request);
       axios({
         method: "PUT",
         url: "/api/removecharfromnode/" + item.id + "/" + this.campaign_id,
@@ -5947,12 +5946,45 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var _this3 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
-        var request;
+        var users, chars, request;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
           while (1) {
             switch (_context3.prev = _context3.next) {
               case 0:
-                _context3.next = 2;
+                _this3.$store.dispatch("deleteCampaignSystem", item.id);
+
+                users = _this3.$store.getters.getUsersOnNodeByID(item.id);
+                chars = _this3.$store.getters.getCharsOnNodeByID(item.id);
+
+                if (users.length > 0) {
+                  users.forEach(function (user) {
+                    var data = {
+                      id: user.id,
+                      campaign_system_id: null,
+                      status_id: 3,
+                      user_status_name: "Ready to go",
+                      node_id: null
+                    };
+
+                    _this3.$store.dispatch("updateCampaignUsers", data);
+                  });
+                }
+
+                if (chars.length > 0) {
+                  chars.forEach(function (chars) {
+                    var data = {
+                      id: chars.id,
+                      campaign_system_id: null,
+                      status_id: 3,
+                      user_status_name: "Ready to go",
+                      node_id: null
+                    };
+
+                    _this3.$store.dispatch("updateUsersChars", data);
+                  });
+                }
+
+                _context3.next = 7;
                 return axios({
                   method: "DELETE",
                   url: "/api/campaignsystems/" + item.id + "/" + _this3.campaign_id,
@@ -5963,11 +5995,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   }
                 });
 
-              case 2:
-                _this3.$store.dispatch("getCampaignSystemsRecords");
-
-                _this3.$store.dispatch("getCampaignUsersRecords", _this3.campaign_id);
-
+              case 7:
+                // this.$store.dispatch("getCampaignSystemsRecords");
+                // this.$store.dispatch("getCampaignUsersRecords", this.campaign_id);
+                //---- Loggin start ----//
                 request = null;
                 request = {
                   campaign_id: _this3.campaign_id,
@@ -5985,9 +6016,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                     Accept: "application/json",
                     "Content-Type": "application/json"
                   }
-                });
+                }); //------ loggin end-----//
 
-              case 7:
+              case 10:
               case "end":
                 return _context3.stop();
             }
