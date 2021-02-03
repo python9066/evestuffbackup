@@ -193,14 +193,10 @@ export default {
                 base_time: base
             };
             // console.log(base);
-            console.log(item);
-            console.log(this.item);
             if (this.item.custom_campaign_id != null) {
-                console.log("yay");
-                var campid = this.item.campaign_id;
-            } else {
-                console.log("nan");
                 var campid = this.$route.params.id;
+            } else {
+                var campid = this.item.campaign_id;
             }
 
             await axios({
