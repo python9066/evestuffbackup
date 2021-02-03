@@ -712,7 +712,7 @@ export default {
         async deleteNode(item) {
             console.log(item);
             this.$store.dispatch("deleteCampaignSystem", item.id);
-            var test = this.$store.getters("getUsersOnNodeByID", item.id);
+            var test = this.$store.getters[("getUsersOnNodeByID", item.id)];
             console.log(test);
             await axios({
                 method: "DELETE",
