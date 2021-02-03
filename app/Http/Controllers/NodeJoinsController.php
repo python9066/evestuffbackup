@@ -36,12 +36,8 @@ class NodeJoinsController extends Controller
     public function removeCharForNode(Request $request, $id, $campid)
     {
         $status = null;
-        $node = NodeJoin::where('campaign_system_id', $id)->get();;
-
-
-
+        $node = NodeJoin::where('campaign_system_id', $id)->get();
         if ($node->count() > 0) {
-
 
             if ($node->where('campaign_system_status_id', 3)->count() > 0) {
                 $status = 1;
@@ -99,6 +95,9 @@ class NodeJoinsController extends Controller
             $node->delete();
         } else {
 
+            if ($request['campaign_system_status_id'] == null) {
+                $campaign_system_status_id = 1;
+            }
             $user_id = CampaignSystem::where('id', $id)->value('campaign_user_id');
             CampaignUser::where('id', intval($user_id))->update(['campaign_system_id' => null, 'status_id' => 3]);
             CampaignSystem::where('id', $id)->update($request->all());
