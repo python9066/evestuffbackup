@@ -526,10 +526,6 @@ export default new Vuex.Store({
             commit("ADD_CAMPAIGN_SYSTEM",data)
         },
 
-        updateUserChar({ commit }, data) {
-            commit("UPDATE_USER_CHAR", data)
-        },
-
         deleteCampaignUser({ commit }, id) {
             commit("DELETE_CAMPAIGN_USER", id)
         },
@@ -932,6 +928,18 @@ export default new Vuex.Store({
                 return []
             }
         },
+
+        getCharsOnNodeByID: state => nodeid => {
+            let pull = state.userschars.filter(char => char.campaign_system_id == nodeid)
+            let count = pull.length
+            if (count != 0) {
+                return pull
+            } else {
+                return []
+            }
+        },
+
+
 
         getSystemTableExpandableMulti: state => payload => {
             let count = state.campaignsystems.filter(node => node.system_id == payload.system_id && node.custom_campaign_id == payload.campid && node.node_join_count > 0)

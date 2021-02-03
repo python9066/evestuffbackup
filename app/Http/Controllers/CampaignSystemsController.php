@@ -304,12 +304,12 @@ class CampaignSystemsController extends Controller
         CampaignSystem::destroy($id);
 
         //done just waiting to remove//
-        $flag = null;
-        $flag = collect([
-            'flag' => 3,
-            'id' => $campid
-        ]);
-        broadcast(new CampaignSystemUpdate($flag))->toOthers();
+        // $flag = null;
+        // $flag = collect([
+        //     'flag' => 3,
+        //     'id' => $campid
+        // ]);
+        // broadcast(new CampaignSystemUpdate($flag))->toOthers();
     }
 
     public function checkAddChar($campid)

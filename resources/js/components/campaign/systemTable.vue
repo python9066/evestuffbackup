@@ -711,12 +711,36 @@ export default {
 
         async deleteNode(item) {
             console.log(item);
+
             this.$store.dispatch("deleteCampaignSystem", item.id);
             var users = this.$store.getters.getUsersOnNodeByID(item.id);
-            users.forEach(user => {
-                console.log(user.char_name);
-            });
-            console.log(test);
+            var chars = this.$store.getters.getCharsOnNodeByID(item.id);
+
+            if (users.length > 0) {
+                users.forEach(user => {
+                    var data = {
+                        id: user.id,
+                        campaign_system_id: null,
+                        status_id: 3,
+                        user_status_name: "Ready to go",
+                        node_id: null
+                    };
+                    this.$store.dispatch("updateCampaignUsers", data);
+                });
+            }
+
+            if (chars.length > 0) {
+                chars.forEach(chars => {
+                    var data = {
+                        id: chars.id,
+                        campaign_system_id: null,
+                        status_id: 3,
+                        user_status_name: "Ready to go",
+                        node_id: null
+                    };
+                    this.$store.dispatch("updateUsersChars", data);
+                });
+            }
             await axios({
                 method: "DELETE",
                 url: "/api/campaignsystems/" + item.id + "/" + this.campaign_id,
@@ -727,8 +751,8 @@ export default {
                 }
             });
 
-            this.$store.dispatch("getCampaignSystemsRecords");
-            this.$store.dispatch("getCampaignUsersRecords", this.campaign_id);
+            // this.$store.dispatch("getCampaignSystemsRecords");
+            // this.$store.dispatch("getCampaignUsersRecords", this.campaign_id);
 
             //---- Loggin start ----//
             var request = null;
