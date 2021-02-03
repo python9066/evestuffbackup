@@ -283,7 +283,7 @@ class CampaignSystemsController extends Controller
         }
 
         $node = NodeJoin::where('campaign_system_id', $id)->first();
-        if ($node->count() != 0) {
+        if ($node != null) {
             $flag = null;
             $flag = collect([
                 'joinNodeID' => $node->id,
