@@ -1549,7 +1549,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                 _this3.$store.dispatch("deleteCampaignSystem", item.id);
 
-                test = _this3.$store.getters.getUsersOnNodeByID(item.id);
+                test = _this3.$store.getters("getUsersOnNodeByID", item.id);
                 console.log(test);
                 _context5.next = 6;
                 return axios({
