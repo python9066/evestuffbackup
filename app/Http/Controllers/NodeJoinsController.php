@@ -290,7 +290,7 @@ class NodeJoinsController extends Controller
             'flag' => 3,
             'id' => $campid
         ]);
-        broadcast(new CampaignUsersChanged($flag))->toOthers();
+        broadcast(new CampaignSystemUpdate($flag));
     }
 
     /**
