@@ -578,7 +578,7 @@ export default {
                 );
             })
             .listen("CampaignUserUpdate", e => {
-                constole.log(e.flag.message);
+                console.log(e.flag.message);
                 this.$store.dispatch("updateCampaignUsers", e.flag.message);
             })
             .listen("NodeJoinDelete", e => {

@@ -9834,7 +9834,7 @@ function sleep(ms) {
               }).listen("CampaignSolaSystemUpdate", function (e) {
                 _this.$store.dispatch("updateCampaignSolaSystem", e.flag.message);
               }).listen("CampaignUserUpdate", function (e) {
-                constole.log(e.flag.message);
+                console.log(e.flag.message);
 
                 _this.$store.dispatch("updateCampaignUsers", e.flag.message);
               }).listen("NodeJoinDelete", function (e) {
