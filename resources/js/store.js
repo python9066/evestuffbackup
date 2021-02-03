@@ -523,7 +523,7 @@ export default new Vuex.Store({
         },
 
         addCampaignSystem({ commit }, data) {
-            commit("ADD_CAMPAIGN_SYSTEM")
+            commit("ADD_CAMPAIGN_SYSTEM",data)
         },
 
         updateUserChar({ commit }, data) {

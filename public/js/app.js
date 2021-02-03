@@ -35328,7 +35328,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
     },
     addCampaignSystem: function addCampaignSystem(_ref31, data) {
       var commit = _ref31.commit;
-      commit("ADD_CAMPAIGN_SYSTEM");
+      commit("ADD_CAMPAIGN_SYSTEM", data);
     },
     updateUserChar: function updateUserChar(_ref32, data) {
       var commit = _ref32.commit;
