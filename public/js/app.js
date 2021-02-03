@@ -4340,8 +4340,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 }; // console.log(base);
 
                 if (_this.item.custom_campaign_id != null) {
+                  console.log("yay");
                   campid = _this.item.campaign_id;
                 } else {
+                  console.log("nan");
                   campid = _this.$route.params.id;
                 }
 

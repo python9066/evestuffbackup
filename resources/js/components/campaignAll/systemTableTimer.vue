@@ -195,8 +195,10 @@ export default {
             // console.log(base);
 
             if (this.item.custom_campaign_id != null) {
+                console.log("yay");
                 var campid = this.item.campaign_id;
             } else {
+                console.log("nan");
                 var campid = this.$route.params.id;
             }
 
