@@ -4342,7 +4342,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 _context.next = 11;
                 return axios({
                   method: "put",
-                  //you can set what request you want to be
                   url: "/api/campaignsystems/" + item.id + "/" + _this.$route.params.id,
                   data: request,
                   headers: {

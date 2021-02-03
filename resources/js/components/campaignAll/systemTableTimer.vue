@@ -195,7 +195,7 @@ export default {
             // console.log(base);
 
             await axios({
-                method: "put", //you can set what request you want to be
+                method: "put",
                 url:
                     "/api/campaignsystems/" +
                     item.id +
