@@ -398,6 +398,9 @@ export default {
                     "updateCampaignSolaSystem",
                     e.flag.message
                 );
+            })
+            .listen("CampaignUserUpdate", e => {
+                this.$store.dispatch("updateCampaignUsers", e.flag.message);
             });
         window.addEventListener("beforeunload", this.leaving);
         this.channel = "campaignsystem." + this.campaignId;

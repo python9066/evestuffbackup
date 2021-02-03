@@ -579,6 +579,12 @@ export default {
             })
             .listen("CampaignUserUpdate", e => {
                 this.$store.dispatch("updateCampaignUsers", e.flag.message);
+            })
+            .listen("NodeJoinDelete", e => {
+                this.$store.dispatch("deleteNodeJoin", e.flag.joinNodeID);
+            })
+            .listen("CampaignSystemDelete", e => {
+                this.$store.dispatch("deleteCampaignSystem", e.flag.campSysID);
             });
 
         window.addEventListener("beforeunload", this.leaving);

@@ -55,6 +55,11 @@ export default new Vuex.Store({
             state.nodeJoin.push(data)
         },
 
+        DELETE_NODE_JOIN(state, id) {
+            let index = state.nodeJoin.findIndex(e => e.id == id)
+            if(index >= 0){state.nodeJoin.splice(index, 1)}
+        },
+
         SET_CAMPAIGN_JOIN(state, campaignJoin) {
             state.campaignJoin = campaignJoin;
         },
@@ -175,6 +180,11 @@ export default new Vuex.Store({
         UPDATE_CAMPAIGN_SYSTEM_UPDATE(state, data) {
             const item = state.campaignsystems.find(item => item.campaign_id === data.id);
             Object.assign(item, data);
+        },
+
+        DELETE_CAMPAIGN_SYSTEM(state, id) {
+            let index = state.campaignsystems.findIndex(e => e.id == id)
+            if(index >= 0){state.campaignsystems.splice(index, 1)}
         },
 
 
@@ -508,8 +518,21 @@ export default new Vuex.Store({
         },
 
         deleteUsersChars({ commit }, id) {
-            commit ("DELETE_USER_CHAR",id)
+            commit("DELETE_USER_CHAR",id)
         },
+
+        deleteNodeJoin({ commit }, id) {
+            commit("DELETE_NODE_JOIN",id)
+        },
+
+
+        deleteCampaignSystem({ commit }, id) {
+            commit("DELETE_CAMPAIGN_SYSTEM",id)
+        },
+
+
+
+
 
 
 

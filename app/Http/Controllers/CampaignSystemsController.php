@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Events\CampaignSolaSystemUpdate;
+use App\Events\CampaignSystemDelete;
 use App\Models\CampaignSystem;
 use App\Events\CampaignSystemUpdate;
+use App\Events\CampaignUserUpdate;
 use App\Events\KickUserFromCampaign;
+use App\Events\NodeJoinDelete;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Campaign;
 use App\Models\CampaignSolaSystem;
@@ -217,11 +220,9 @@ class CampaignSystemsController extends Controller
         if ($node != null) {
             $node->update(['campaign_user_id' =>  null]);
             $node->save();
-            $test = CampaignSystem::where('campaign_id', $request->campaign_id)
-                ->where('system_id', $request->system_id)->get();
-
+            $message = CampaignSystemRecords::where('id', $node->id)->first();
             $flag = collect([
-                'message' => $node,
+                'message' => $message,
                 'id' => $campid
             ]);
             broadcast(new CampaignSystemUpdate($flag))->toOthers();
@@ -242,8 +243,9 @@ class CampaignSystemsController extends Controller
         if ($node != null) {
             $node->update(['campaign_user_id' =>  null, 'campaign_system_status_id' => 1, 'end_time' => null]);
             $node->save();
+            $message = CampaignSystemRecords::where('id', $node->id)->first();
             $flag = collect([
-                'message' => $node,
+                'message' => $message,
                 'id' => $campid
             ]);
             broadcast(new CampaignSystemUpdate($flag))->toOthers();
@@ -269,11 +271,35 @@ class CampaignSystemsController extends Controller
     {
 
         $users = CampaignUser::where('campaign_system_id', $id)->get();
+
         foreach ($users as $user) {
             $user->update(['campaign_system_id' => null, 'status_id' => 3]);
+            $message = CampaignUserRecords::where('id', $user->id)->first();
+            $flag = collect([
+                'message' => $message,
+                'id' => $campid
+            ]);
+            broadcast(new CampaignUserUpdate($flag))->toOthers();
         }
-        NodeJoin::where('campaign_system_id', $id)->delete();
+
+        $node = NodeJoin::where('campaign_system_id', $id)->first();
+        $flag = null;
+        $flag([
+            'joinNodeID' => $node->id,
+            'id' => $campid
+        ]);
+        broadcast(new NodeJoinDelete($flag))->toOthers();
+        $node->delete();
+
+
+        $flag = null;
+        $flag([
+            'campSysID' => $id,
+            'id' => $campid
+        ]);
+        broadcast(new CampaignSystemDelete($flag))->toOthers();
         CampaignSystem::destroy($id);
+        $flag = null;
         $flag = collect([
             'flag' => 3,
             'id' => $campid

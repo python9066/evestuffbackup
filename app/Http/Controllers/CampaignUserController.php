@@ -7,6 +7,7 @@ use App\Events\CampaignUserDelete;
 use App\Events\CampaignUserNew;
 use App\Events\CampaignUserUpdate;
 use App\Models\CampaignSystem;
+use App\Models\CampaignSystemRecords;
 use App\Models\CampaignSystemUsers;
 use App\Models\CampaignUser;
 use App\Models\CampaignUserRecords;
@@ -81,11 +82,11 @@ class CampaignUserController extends Controller
         if ($node != null) {
             $node->update(['campaign_user_id' =>  null, 'campaign_system_status_id' => 1, 'end_time' => null]);
             $node->save();
+            $message = CampaignSystemRecords::where('id', $node->id)->first();
             $flag = collect([
-                'message' => $node,
+                'message' => $message,
                 'id' => $campid
             ]);
-            broadcast(new CampaignSystemUpdate($flag))->toOthers();
             $flag = null;
             $flag = collect([
                 'flag' => 2,
@@ -112,8 +113,9 @@ class CampaignUserController extends Controller
         if ($node != null) {
             $node->update(['campaign_user_id' =>  null, 'campaign_system_status_id' => 1, 'end_time' => null]);
             $node->save();
+            $message = CampaignSystemRecords::where('id', $node->id)->first();
             $flag = collect([
-                'message' => $node,
+                'message' => $message,
                 'id' => $campid
             ]);
             broadcast(new CampaignSystemUpdate($flag))->toOthers();
