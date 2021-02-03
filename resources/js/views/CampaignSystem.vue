@@ -578,6 +578,7 @@ export default {
                 );
             })
             .listen("CampaignUserUpdate", e => {
+                constole.log(e.flag.message);
                 this.$store.dispatch("updateCampaignUsers", e.flag.message);
             })
             .listen("NodeJoinDelete", e => {
@@ -593,7 +594,6 @@ export default {
                 this.$store.dispatch("deleteCampaignSystem", e.flag.campSysID);
             })
             .listen("CampaignSystemNew", e => {
-                console.log(e.flag.message);
                 this.$store.dispatch("addCampaignSystem", e.flag.message);
             });
 

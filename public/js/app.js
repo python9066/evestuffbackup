@@ -9834,6 +9834,8 @@ function sleep(ms) {
               }).listen("CampaignSolaSystemUpdate", function (e) {
                 _this.$store.dispatch("updateCampaignSolaSystem", e.flag.message);
               }).listen("CampaignUserUpdate", function (e) {
+                constole.log(e.flag.message);
+
                 _this.$store.dispatch("updateCampaignUsers", e.flag.message);
               }).listen("NodeJoinDelete", function (e) {
                 _this.$store.dispatch("deleteNodeJoin", e.flag.joinNodeID);
@@ -9844,8 +9846,6 @@ function sleep(ms) {
               }).listen("CampaignSystemDelete", function (e) {
                 _this.$store.dispatch("deleteCampaignSystem", e.flag.campSysID);
               }).listen("CampaignSystemNew", function (e) {
-                console.log(e.flag.message);
-
                 _this.$store.dispatch("addCampaignSystem", e.flag.message);
               });
               window.addEventListener("beforeunload", _this.leaving);
