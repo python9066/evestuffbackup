@@ -173,9 +173,9 @@ export default {
         },
 
         async statusClick(item) {
-            console.log(item);
             var request = [];
             if (
+                item.campaign_system_status_id == 1 ||
                 item.campaign_system_status_id == 2 ||
                 item.campaign_system_status_id == 3
             ) {

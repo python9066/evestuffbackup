@@ -212,28 +212,27 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                console.log(item);
                 request = [];
 
-                if (item.campaign_system_status_id == 2 || item.campaign_system_status_id == 3) {
+                if (item.campaign_system_status_id == 1 || item.campaign_system_status_id == 2 || item.campaign_system_status_id == 3) {
                   request = {
                     campaign_system_status_id: item.campaign_system_status_id
                   };
                 }
 
                 if (!(item.campaign_system_status_id == 6)) {
-                  _context2.next = 7;
+                  _context2.next = 6;
                   break;
                 }
 
-                _context2.next = 6;
+                _context2.next = 5;
                 return _this2.deleteNode(item);
 
-              case 6:
+              case 5:
                 return _context2.abrupt("return");
 
-              case 7:
-                _context2.next = 9;
+              case 6:
+                _context2.next = 8;
                 return axios({
                   method: "put",
                   //you can set what request you want to be
@@ -246,7 +245,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   }
                 });
 
-              case 9:
+              case 8:
               case "end":
                 return _context2.stop();
             }
