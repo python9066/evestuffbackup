@@ -318,7 +318,7 @@ class NodeJoinsController extends Controller
 
 
         $flag = collect([
-            'mesage' => "message",
+            'mesage' => $message,
             'id' => $campid
         ]);
         broadcast(new NodeJoinUpdate($flag))->toOthers();
