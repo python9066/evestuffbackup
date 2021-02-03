@@ -1104,7 +1104,6 @@ export default {
                 this.$can("campaigns_admin_access") ||
                 this.$store.state.user_id == item.site_id
             ) {
-                console.log(item);
                 return true;
             } else {
                 false;
