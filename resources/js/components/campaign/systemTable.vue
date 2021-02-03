@@ -191,10 +191,8 @@
                                         >
                                             <v-list-item-title>
                                                 {{ list.char_name }} -
-                                                {{ list.ship }} - T{{
-                                                    list.link
-                                                }}
-                                                <span
+                                                {{ list.ship }} - T{{ list.link
+                                                }}<span
                                                     class=" pl-3"
                                                     v-if="
                                                         seeReadyToGoOnTheWay(

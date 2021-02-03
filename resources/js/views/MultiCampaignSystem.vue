@@ -339,6 +339,13 @@ export default {
 
         Echo.private("campaignsystem." + this.$route.params.id)
             .listen("CampaignSystemUpdate", e => {
+                if (e.flag.message != null) {
+                    this.$store.dispatch(
+                        "updateCampaignSystem",
+                        e.flag.message
+                    );
+                }
+
                 if (e.flag.flag == 2) {
                     this.loadCampaignSystemRecords();
                     this.loadCampaignNodeJoin();
@@ -400,13 +407,25 @@ export default {
                 );
             })
             .listen("CampaignUserUpdate", e => {
-                this.$store.dispatch("updateCampaignUsers", e.flag.message);
+                if (e.flag.message != null) {
+                    this.$store.dispatch("updateCampaignUsers", e.flag.message);
+                }
             })
             .listen("NodeJoinDelete", e => {
                 this.$store.dispatch("deleteNodeJoin", e.flag.joinNodeID);
             })
+            .listen("NodeJoinNew", e => {
+                this.$store.dispatch("addNodeJoin", e.flag.message);
+            })
+            .listen("NodeJoinUpdate", e => {
+                console.log(e);
+                this.$store.dispatch("updateNodeJoin", e.flag.message);
+            })
             .listen("CampaignSystemDelete", e => {
                 this.$store.dispatch("deleteCampaignSystem", e.flag.campSysID);
+            })
+            .listen("CampaignSystemNew", e => {
+                this.$store.dispatch("addCampaignSystem", e.flag.message);
             });
         window.addEventListener("beforeunload", this.leaving);
         this.channel = "campaignsystem." + this.campaignId;

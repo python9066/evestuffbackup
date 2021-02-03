@@ -1264,8 +1264,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -11990,6 +11988,10 @@ function sleep(ms) {
               _this.campaignId = _this.$route.params.id;
               _this.campaign_id = parseInt(_this.$route.params.id);
               Echo["private"]("campaignsystem." + _this.$route.params.id).listen("CampaignSystemUpdate", function (e) {
+                if (e.flag.message != null) {
+                  _this.$store.dispatch("updateCampaignSystem", e.flag.message);
+                }
+
                 if (e.flag.flag == 2) {
                   _this.loadCampaignSystemRecords();
 
@@ -12062,11 +12064,21 @@ function sleep(ms) {
               }).listen("CampaignSolaSystemUpdate", function (e) {
                 _this.$store.dispatch("updateCampaignSolaSystem", e.flag.message);
               }).listen("CampaignUserUpdate", function (e) {
-                _this.$store.dispatch("updateCampaignUsers", e.flag.message);
+                if (e.flag.message != null) {
+                  _this.$store.dispatch("updateCampaignUsers", e.flag.message);
+                }
               }).listen("NodeJoinDelete", function (e) {
                 _this.$store.dispatch("deleteNodeJoin", e.flag.joinNodeID);
+              }).listen("NodeJoinNew", function (e) {
+                _this.$store.dispatch("addNodeJoin", e.flag.message);
+              }).listen("NodeJoinUpdate", function (e) {
+                console.log(e);
+
+                _this.$store.dispatch("updateNodeJoin", e.flag.message);
               }).listen("CampaignSystemDelete", function (e) {
                 _this.$store.dispatch("deleteCampaignSystem", e.flag.campSysID);
+              }).listen("CampaignSystemNew", function (e) {
+                _this.$store.dispatch("addCampaignSystem", e.flag.message);
               });
               window.addEventListener("beforeunload", _this.leaving);
               _this.channel = "campaignsystem." + _this.campaignId;
@@ -17083,8 +17095,7 @@ var render = function() {
                                               " -\n                                            " +
                                               _vm._s(list.ship) +
                                               " - T" +
-                                              _vm._s(list.link) +
-                                              "\n                                            "
+                                              _vm._s(list.link)
                                           ),
                                           _vm.seeReadyToGoOnTheWay(list)
                                             ? _c(
