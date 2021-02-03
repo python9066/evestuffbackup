@@ -9892,7 +9892,7 @@ function sleep(ms) {
               }).listen("NodeJoinNew", function (e) {
                 _this.$store.dispatch("addNodeJoin", e.flag.message);
               }).listen("NodeJoinUpdate", function (e) {
-                console.log(e.flag.message);
+                console.log(e);
 
                 _this.$store.dispatch("updateNodeJoin", e.flag.message);
               }).listen("CampaignSystemDelete", function (e) {

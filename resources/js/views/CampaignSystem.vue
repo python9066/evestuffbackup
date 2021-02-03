@@ -596,7 +596,7 @@ export default {
                 this.$store.dispatch("addNodeJoin", e.flag.message);
             })
             .listen("NodeJoinUpdate", e => {
-                console.log(e.flag.message);
+                console.log(e);
                 this.$store.dispatch("updateNodeJoin", e.flag.message);
             })
             .listen("CampaignSystemDelete", e => {
