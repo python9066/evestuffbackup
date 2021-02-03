@@ -11998,6 +11998,10 @@ function sleep(ms) {
                 _this.$store.dispatch("updateCampaignSolaSystem", e.flag.message);
               }).listen("CampaignUserUpdate", function (e) {
                 _this.$store.dispatch("updateCampaignUsers", e.flag.message);
+              }).listen("NodeJoinDelete", function (e) {
+                _this.$store.dispatch("deleteNodeJoin", e.flag.joinNodeID);
+              }).listen("CampaignSystemDelete", function (e) {
+                _this.$store.dispatch("deleteCampaignSystem", e.flag.campSysID);
               });
               window.addEventListener("beforeunload", _this.leaving);
               _this.channel = "campaignsystem." + _this.campaignId;
