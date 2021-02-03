@@ -511,7 +511,6 @@ export default new Vuex.Store({
         },
 
         updateNodeJoin({ commit }, data) {
-            console.log(data)
             commit('UPDATE_NODE_JOIN', data)
         },
 

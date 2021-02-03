@@ -9892,6 +9892,8 @@ function sleep(ms) {
               }).listen("NodeJoinNew", function (e) {
                 _this.$store.dispatch("addNodeJoin", e.flag.message);
               }).listen("NodeJoinUpdate", function (e) {
+                console.log(e.flag.message);
+
                 _this.$store.dispatch("updateNodeJoin", e.flag.message);
               }).listen("CampaignSystemDelete", function (e) {
                 _this.$store.dispatch("deleteCampaignSystem", e.flag.campSysID);
@@ -35366,7 +35368,6 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
     },
     updateNodeJoin: function updateNodeJoin(_ref28, data) {
       var commit = _ref28.commit;
-      console.log(data);
       commit('UPDATE_NODE_JOIN', data);
     },
     addNodeJoin: function addNodeJoin(_ref29, data) {
