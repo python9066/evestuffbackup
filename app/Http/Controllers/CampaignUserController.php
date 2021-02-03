@@ -82,6 +82,12 @@ class CampaignUserController extends Controller
             $node->update(['campaign_user_id' =>  null, 'campaign_system_status_id' => 1, 'end_time' => null]);
             $node->save();
             $flag = collect([
+                'message' => $node,
+                'id' => $campid
+            ]);
+            broadcast(new CampaignSystemUpdate($flag))->toOthers();
+            $flag = null;
+            $flag = collect([
                 'flag' => 2,
                 'id' => $campid
             ]);
@@ -107,6 +113,12 @@ class CampaignUserController extends Controller
             $node->update(['campaign_user_id' =>  null, 'campaign_system_status_id' => 1, 'end_time' => null]);
             $node->save();
             $flag = collect([
+                'message' => $node,
+                'id' => $campid
+            ]);
+            broadcast(new CampaignSystemUpdate($flag))->toOthers();
+            $flag = null;
+            $flag = collect([
                 'flag' => 2,
                 'id' => $campid
             ]);
@@ -131,18 +143,11 @@ class CampaignUserController extends Controller
     {
 
         CampaignUser::destroy($id);
-        // dd($remove,$siteid);
         $flag = collect([
             'userid' => $id,
             'id' => $campid
         ]);
 
         broadcast(new CampaignUserDelete($flag))->toOthers();
-        // $flag = null;
-        // $flag = collect([
-        //     'flag' => 1,
-        //     'id' => $campid
-        // ]);
-        // broadcast(new CampaignSystemUpdate($flag))->toOthers();
     }
 }

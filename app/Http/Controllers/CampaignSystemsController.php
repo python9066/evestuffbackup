@@ -154,6 +154,15 @@ class CampaignSystemsController extends Controller
 
         $system = CampaignSystem::create($request->all());
         $system->update(['input_time' => now()]);
+
+        $message = CampaignSystemRecords::where('id', $system->id)->first();
+        $flag = collect([
+            'message' => $message,
+            'id' => $campid
+        ]);
+        broadcast(new CampaignSystemUpdate($flag))->toOthers();
+        $flag = null;
+
         $flag = collect([
             'flag' => 3,
             'id' => $campid,
@@ -184,6 +193,14 @@ class CampaignSystemsController extends Controller
         // dd($request->notes);
 
         CampaignSystem::where('id', $id)->update($request->all());
+
+        $message = CampaignSystemRecords::where('id', $id)->first();
+        $flag = collect([
+            'message' => $message,
+            'id' => $campid
+        ]);
+        broadcast(new CampaignSystemUpdate($flag))->toOthers();
+        $flag = null;
         $flag = collect([
             'flag' => 2,
             'id' => $campid
@@ -197,16 +214,18 @@ class CampaignSystemsController extends Controller
             ->where('system_id', $request->system_id)
             ->where('campaign_user_id', $request->campaign_user_id)->first();
 
-
-
         if ($node != null) {
             $node->update(['campaign_user_id' =>  null]);
             $node->save();
             $test = CampaignSystem::where('campaign_id', $request->campaign_id)
                 ->where('system_id', $request->system_id)->get();
 
-
-
+            $flag = collect([
+                'message' => $node,
+                'id' => $campid
+            ]);
+            broadcast(new CampaignSystemUpdate($flag))->toOthers();
+            $flag = null;
             $flag = collect([
                 'flag' => 2,
                 'id' => $campid
@@ -224,10 +243,17 @@ class CampaignSystemsController extends Controller
             $node->update(['campaign_user_id' =>  null, 'campaign_system_status_id' => 1, 'end_time' => null]);
             $node->save();
             $flag = collect([
+                'message' => $node,
+                'id' => $campid
+            ]);
+            broadcast(new CampaignSystemUpdate($flag))->toOthers();
+            $flag = null;
+
+            $flag = collect([
                 'flag' => 2,
                 'id' => $campid
             ]);
-            // broadcast(new CampaignSystemUpdate($flag))->toOthers();
+            broadcast(new CampaignSystemUpdate($flag))->toOthers();
         }
     }
 
