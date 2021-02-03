@@ -4339,6 +4339,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   base_time: base
                 }; // console.log(base);
 
+                console.log(item);
+                console.log(_this.item);
+
                 if (_this.item.custom_campaign_id != null) {
                   console.log("yay");
                   campid = _this.item.campaign_id;
@@ -4347,7 +4350,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   campid = _this.$route.params.id;
                 }
 
-                _context.next = 12;
+                _context.next = 14;
                 return axios({
                   method: "put",
                   url: "/api/campaignsystems/" + item.id + "/" + campid,
@@ -4359,10 +4362,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   }
                 });
 
-              case 12:
+              case 14:
                 _this.$store.dispatch("getCampaignSystemsRecords");
 
-              case 13:
+              case 15:
               case "end":
                 return _context.stop();
             }
