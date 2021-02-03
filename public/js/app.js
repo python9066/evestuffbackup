@@ -9844,6 +9844,8 @@ function sleep(ms) {
               }).listen("CampaignSystemDelete", function (e) {
                 _this.$store.dispatch("deleteCampaignSystem", e.flag.campSysID);
               }).listen("CampaignSystemNew", function (e) {
+                console.log(e.flag.message);
+
                 _this.$store.dispatch("addCampaignSystem", e.flag.message);
               });
               window.addEventListener("beforeunload", _this.leaving);

@@ -593,6 +593,7 @@ export default {
                 this.$store.dispatch("deleteCampaignSystem", e.flag.campSysID);
             })
             .listen("CampaignSystemNew", e => {
+                console.log(e.flag.message);
                 this.$store.dispatch("addCampaignSystem", e.flag.message);
             });
 
