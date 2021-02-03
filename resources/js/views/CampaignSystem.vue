@@ -578,8 +578,9 @@ export default {
                 );
             })
             .listen("CampaignUserUpdate", e => {
-                console.log(e.flag.message);
-                this.$store.dispatch("updateCampaignUsers", e.flag.message);
+                if (e.flag.message != null) {
+                    this.$store.dispatch("updateCampaignUsers", e.flag.message);
+                }
             })
             .listen("NodeJoinDelete", e => {
                 this.$store.dispatch("deleteNodeJoin", e.flag.joinNodeID);

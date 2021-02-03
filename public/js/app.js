@@ -9834,9 +9834,9 @@ function sleep(ms) {
               }).listen("CampaignSolaSystemUpdate", function (e) {
                 _this.$store.dispatch("updateCampaignSolaSystem", e.flag.message);
               }).listen("CampaignUserUpdate", function (e) {
-                console.log(e.flag.message);
-
-                _this.$store.dispatch("updateCampaignUsers", e.flag.message);
+                if (e.flag.message != null) {
+                  _this.$store.dispatch("updateCampaignUsers", e.flag.message);
+                }
               }).listen("NodeJoinDelete", function (e) {
                 _this.$store.dispatch("deleteNodeJoin", e.flag.joinNodeID);
               }).listen("NodeJoinNew", function (e) {
