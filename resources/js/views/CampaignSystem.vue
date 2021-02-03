@@ -583,8 +583,17 @@ export default {
             .listen("NodeJoinDelete", e => {
                 this.$store.dispatch("deleteNodeJoin", e.flag.joinNodeID);
             })
+            .listen("NodeJoinNew", e => {
+                this.$store.dispatch("addNodeJoin", e.flag.message);
+            })
+            .listen("NodeJoinUpdate", e => {
+                this.$store.dispatch("updateNodeJoin", e.flag.message);
+            })
             .listen("CampaignSystemDelete", e => {
                 this.$store.dispatch("deleteCampaignSystem", e.flag.campSysID);
+            })
+            .listen("CampaignSystemNew", e => {
+                this.$store.dispatch("addCampaignSystem", e.flag.message);
             });
 
         window.addEventListener("beforeunload", this.leaving);

@@ -6,9 +6,12 @@ use App\Models\Campaign;
 use App\Models\CampaignJoin;
 use App\Models\CampaignSolaSystem;
 use App\Models\CampaignSystem;
+use App\Models\CampaignSystemStatus;
 use App\Models\CampaignSystemUsers;
 use App\Models\CampaignUser;
+use App\Models\NodeJoin;
 use App\Models\System;
+use App\Models\User;
 use GuzzleHttp\Client;
 use GuzzleHttp\Utils;
 use utils\Helper\Helper;
@@ -17,6 +20,29 @@ use function GuzzleHttp\json_decode;
 
 class Campaignhelper
 {
+
+    public static function nodeJoinRecords($id)
+    {
+        $join = NodeJoin::where('id', $id)->first();
+        $data = [
+
+            'id' => $join->id,
+            'campaign_system_id' => $join->campaign_system_id,
+            'campaign_user_id' => $join->campaign_user_id,
+            'charname' => $join->campaignUser->char_name,
+            'siteid' => $join->campaignUser->site_id,
+            'mainname' => User::where('id', $join->campaignUser->site_id)->value('name'),
+            'ship' => $join->campaignUser->ship,
+            'link' => intval($join->campaignUser->link),
+            'campaign_system_status_id' => intval($join->campaign_system_status_id),
+            'statusName' => CampaignSystemStatus::where('id', $join->campaign_system_status_id)->value('name'),
+            'campaign_sola_system_id' => CampaignSolaSystem::where('campaign_id', $join->campaignSystem->campaign_id)->where('system_id', $join->campaignSystem->systemm_id)->value('id'),
+            'campaign_id' => $join->campaign_id
+
+        ];
+
+        return $data;
+    }
 
     public static function update()
     {

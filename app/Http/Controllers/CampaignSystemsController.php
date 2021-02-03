@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Events\CampaignSolaSystemUpdate;
 use App\Events\CampaignSystemDelete;
+use App\Events\CampaignSystemNew;
 use App\Models\CampaignSystem;
 use App\Events\CampaignSystemUpdate;
 use App\Events\CampaignUserUpdate;
@@ -163,9 +164,9 @@ class CampaignSystemsController extends Controller
             'message' => $message,
             'id' => $campid
         ]);
-        broadcast(new CampaignSystemUpdate($flag))->toOthers();
+        broadcast(new CampaignSystemNew($flag))->toOthers();
         $flag = null;
-
+        //done just waiting to remove//
         $flag = collect([
             'flag' => 3,
             'id' => $campid,
@@ -301,6 +302,8 @@ class CampaignSystemsController extends Controller
         ]);
         broadcast(new CampaignSystemDelete($flag))->toOthers();
         CampaignSystem::destroy($id);
+
+        //done just waiting to remove//
         $flag = null;
         $flag = collect([
             'flag' => 3,

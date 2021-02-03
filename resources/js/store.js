@@ -55,6 +55,11 @@ export default new Vuex.Store({
             state.nodeJoin.push(data)
         },
 
+        UPDATE_NODE_JOIN(state, data) {
+            const item = state.nodeJoin.find(c => c.id === data.id);
+            Object.assign(item, data);
+        },
+
         DELETE_NODE_JOIN(state, id) {
             let index = state.nodeJoin.findIndex(e => e.id == id)
             if(index >= 0){state.nodeJoin.splice(index, 1)}
@@ -168,6 +173,10 @@ export default new Vuex.Store({
         UPDATE_CAMPAIGN_SYSTEM(state, data) {
             const item = state.campaignsystems.find(item => item.id === data.id);
             Object.assign(item, data);
+        },
+
+        ADD_CAMPAIGN_SYSTEM(state, data) {
+            state.campaignsystems.push(data)
         },
 
         UPDATE_CAMPAIGN_SYSTEM_BY_USER_ID(state, payload) {
@@ -501,12 +510,20 @@ export default new Vuex.Store({
             commit("UPDATE_USERS_CHARS", data);
         },
 
+        updateNodeJoin({ commit }, data) {
+            commit('UPDATE_NODE_JOIN', data)
+        },
+
         addNodeJoin({ commit }, data) {
             commit("ADD_NODE_JOIN", data)
         },
 
         addCampaignUserNew({ commit }, data) {
             commit("ADD_CAMPAIGN_USERS", data)
+        },
+
+        addCampaignSystem({ commit }, data) {
+            commit("ADD_CAMPAIGN_SYSTEM")
         },
 
         updateUserChar({ commit }, data) {
