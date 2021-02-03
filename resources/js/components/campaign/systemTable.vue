@@ -714,7 +714,7 @@ export default {
             this.$store.dispatch("deleteCampaignSystem", item.id);
             var users = this.$store.getters.getUsersOnNodeByID(item.id);
             users.forEach(user => {
-                console.log(user.name);
+                console.log(user.char_name);
             });
             console.log(test);
             await axios({

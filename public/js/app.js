@@ -1551,7 +1551,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                 users = _this3.$store.getters.getUsersOnNodeByID(item.id);
                 users.forEach(function (user) {
-                  console.log(user.name);
+                  console.log(user.char_name);
                 });
                 console.log(test);
                 _context5.next = 7;
