@@ -1540,7 +1540,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var _this3 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee5() {
-        var test, request;
+        var users, request;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee5$(_context5) {
           while (1) {
             switch (_context5.prev = _context5.next) {
@@ -1549,9 +1549,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                 _this3.$store.dispatch("deleteCampaignSystem", item.id);
 
-                test = _this3.$store.getters.getUsersOnNodeByID(item.id);
+                users = _this3.$store.getters.getUsersOnNodeByID(item.id);
+                users.forEach(function (user) {
+                  console.log(user.name);
+                });
                 console.log(test);
-                _context5.next = 6;
+                _context5.next = 7;
                 return axios({
                   method: "DELETE",
                   url: "/api/campaignsystems/" + item.id + "/" + _this3.campaign_id,
@@ -1562,7 +1565,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   }
                 });
 
-              case 6:
+              case 7:
                 _this3.$store.dispatch("getCampaignSystemsRecords");
 
                 _this3.$store.dispatch("getCampaignUsersRecords", _this3.campaign_id); //---- Loggin start ----//
@@ -1587,7 +1590,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   }
                 }); //------ loggin end-----//
 
-              case 11:
+              case 12:
               case "end":
                 return _context5.stop();
             }
