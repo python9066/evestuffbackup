@@ -194,13 +194,15 @@ export default {
             };
             // console.log(base);
 
+            if (this.item.custom_campaign_id != null) {
+                var campid = this.item.campaign_id;
+            } else {
+                var campid = this.$route.params.id;
+            }
+
             await axios({
                 method: "put",
-                url:
-                    "/api/campaignsystems/" +
-                    item.id +
-                    "/" +
-                    this.$route.params.id,
+                url: "/api/campaignsystems/" + item.id + "/" + campid,
                 data: request,
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,

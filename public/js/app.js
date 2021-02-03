@@ -4316,7 +4316,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var _this = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-        var min, sec, base, finishTime, request;
+        var min, sec, base, finishTime, request, campid;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
@@ -4339,10 +4339,16 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   base_time: base
                 }; // console.log(base);
 
-                _context.next = 11;
+                if (_this.item.custom_campaign_id != null) {
+                  campid = _this.item.campaign_id;
+                } else {
+                  campid = _this.$route.params.id;
+                }
+
+                _context.next = 12;
                 return axios({
                   method: "put",
-                  url: "/api/campaignsystems/" + item.id + "/" + _this.$route.params.id,
+                  url: "/api/campaignsystems/" + item.id + "/" + campid,
                   data: request,
                   headers: {
                     Authorization: "Bearer " + _this.$store.state.token,
@@ -4351,10 +4357,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   }
                 });
 
-              case 11:
+              case 12:
                 _this.$store.dispatch("getCampaignSystemsRecords");
 
-              case 12:
+              case 13:
               case "end":
                 return _context.stop();
             }
