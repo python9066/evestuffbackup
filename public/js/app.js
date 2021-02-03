@@ -9833,6 +9833,8 @@ function sleep(ms) {
                 }
               }).listen("CampaignSolaSystemUpdate", function (e) {
                 _this.$store.dispatch("updateCampaignSolaSystem", e.flag.message);
+              }).listen("CampaignUserUpdate", function (e) {
+                _this.$store.dispatch("updateCampaignSolaSystem", e.flag.message);
               });
               window.addEventListener("beforeunload", _this.leaving);
               _this.channel = "campaignsystem." + _this.campaign.id;

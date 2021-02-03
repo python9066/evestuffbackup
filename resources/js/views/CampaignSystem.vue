@@ -576,6 +576,12 @@ export default {
                     "updateCampaignSolaSystem",
                     e.flag.message
                 );
+            })
+            .listen("CampaignUserUpdate", e => {
+                this.$store.dispatch(
+                    "updateCampaignSolaSystem",
+                    e.flag.message
+                );
             });
 
         window.addEventListener("beforeunload", this.leaving);
