@@ -1549,7 +1549,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                 _this3.$store.dispatch("deleteCampaignSystem", item.id);
 
-                test = _this3.$store.getters.getUsersOnNodeByID[item.id];
+                test = _this3.$store.getters("getUsersOnNodeByID", item.id);
                 console.log(test);
                 _context5.next = 6;
                 return axios({
@@ -35880,6 +35880,20 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
 
         if (count != null) {
           return count;
+        } else {
+          return [];
+        }
+      };
+    },
+    getUsersOnNodeByID: function getUsersOnNodeByID(state) {
+      return function (nodeid) {
+        var pull = state.campaignusers.filter(function (user) {
+          return user.campaign_system_id == nodeid;
+        });
+        var count = pull.length;
+
+        if (count != 0) {
+          return pull;
         } else {
           return [];
         }

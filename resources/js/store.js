@@ -923,6 +923,16 @@ export default new Vuex.Store({
             }
         },
 
+        getUsersOnNodeByID: state => nodeid => {
+            let pull = state.campaignusers.filter(user => user.campaign_system_id == nodeid)
+            let count = pull.length
+            if (count != 0) {
+                return pull
+            } else {
+                return []
+            }
+        },
+
         getSystemTableExpandableMulti: state => payload => {
             let count = state.campaignsystems.filter(node => node.system_id == payload.system_id && node.custom_campaign_id == payload.campid && node.node_join_count > 0)
             if (count != null) {
