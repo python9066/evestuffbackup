@@ -270,7 +270,7 @@ class NodeJoinsController extends Controller
             'message' => $message,
             'id' => $campid,
         ]);
-        broadcast(new NodeJoinNew($flag))->toOthers();
+        broadcast(new NodeJoinNew($flag));
 
 
         $camp = CampaignSystem::where('id', $request['campaign_system_id'])->first();
@@ -283,7 +283,7 @@ class NodeJoinsController extends Controller
             'message' => $message,
             'id' => $campid
         ]);
-        broadcast(new CampaignSystemUpdate($flag))->toOthers();
+        broadcast(new CampaignSystemUpdate($flag));
 
         //done just wating to remove//
         // $flag = collect([

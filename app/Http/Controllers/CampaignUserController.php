@@ -72,7 +72,7 @@ class CampaignUserController extends Controller
             'message' => $message,
             'id' => $campid
         ]);
-        broadcast(new CampaignUserUpdate($flag))->toOthers();
+        broadcast(new CampaignUserUpdate($flag));
     }
 
     public function updateadd(Request $request, $id, $campid)

@@ -387,11 +387,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   campaign_id: _this.$route.params.id,
                   user_id: _this.$store.state.user_id,
                   type: 1
-                };
-                _context.next = 11;
-                return _this.$store.dispatch("loadCampaignSystemData", payload);
+                }; // await this.$store.dispatch("loadCampaignSystemData", payload);
 
-              case 11:
+              case 9:
               case "end":
                 return _context.stop();
             }
@@ -6719,11 +6717,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   campaign_id: _this.$route.params.id,
                   user_id: _this.$store.state.user_id,
                   type: 2
-                };
-                _context.next = 11;
-                return _this.$store.dispatch("loadCampaignSystemData", payload);
+                }; // await this.$store.dispatch("loadCampaignSystemData", payload);
 
-              case 11:
+              case 9:
               case "end":
                 return _context.stop();
             }
