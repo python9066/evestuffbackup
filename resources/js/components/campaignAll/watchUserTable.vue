@@ -11,6 +11,7 @@
                 item-key="id"
                 disable-pagination
                 fixed-header
+                height="500"
                 hide-default-footer
                 class="elevation-24"
                 dense
