@@ -190,7 +190,6 @@ class Campaignhelper
                     'message' => $message,
                     'id' => $check
                 ]);
-                echo "1";
                 broadcast(new CampaignUpdate($flag));
                 $warmflag = 1;
             }
@@ -221,7 +220,6 @@ class Campaignhelper
                     'message' => $message,
                     'id' => $a->id
                 ]);
-                echo "2";
                 broadcast(new CampaignUpdate($flag));
             }
 
@@ -239,8 +237,6 @@ class Campaignhelper
                     'message' => $message,
                     'id' => $b->id
                 ]);
-                echo " - 4 - ";
-                echo $b->id;
                 broadcast(new CampaignUpdate($flag));
             }
 
@@ -259,7 +255,6 @@ class Campaignhelper
                     'message' => $message,
                     'id' => $c->id
                 ]);
-                echo "5";
                 broadcast(new CampaignUpdate($flag));
             }
         }
@@ -285,7 +280,6 @@ class Campaignhelper
                 'message' => $message,
                 'id' => $c->id
             ]);
-            echo "6";
             broadcast(new CampaignUpdate($flag));
             $warmflag = 1;
         }
@@ -293,7 +287,7 @@ class Campaignhelper
 
 
         if ($warmflag == 1 || $campaignNew == 1 || $scoreChanged == 1 || $checkflag == 1) {
-            echo "-yo-";
+            echo "warmflag= " . $warmflag . " campaignnew = " . $campaignNew . "score= " . $scoreChanged . "check= " . $checkflag;
             broadcast(new CampaignChanged($flag))->toOthers();
         }
     }
