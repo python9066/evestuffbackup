@@ -9906,6 +9906,8 @@ function sleep(ms) {
                 _this.$store.dispatch("deleteCampaignSystem", e.flag.campSysID);
               }).listen("CampaignSystemNew", function (e) {
                 _this.$store.dispatch("addCampaignSystem", e.flag.message);
+              }).listen("CampaignUpdate", function (e) {
+                _this.$store.dispatch("updateCampaign", e.flag.message);
               });
               window.addEventListener("beforeunload", _this.leaving);
               _this.channel = "campaignsystem." + _this.campaign.id;
@@ -12000,7 +12002,7 @@ function sleep(ms) {
               _this.campaign_id = parseInt(_this.$route.params.id);
 
               if (_this.$can("view_campaign_logs")) {
-                Echo["private"]("campaignlogs." + _this.campaign.id).listen("LoggingUpdate", function (e) {
+                Echo["private"]("campaignlogs." + _this.campaignId).listen("LoggingUpdate", function (e) {
                   _this.$store.dispatch("addLoggingCampaign", e.flag.message);
                 });
               }
@@ -12093,14 +12095,17 @@ function sleep(ms) {
                 _this.$store.dispatch("deleteCampaignSystem", e.flag.campSysID);
               }).listen("CampaignSystemNew", function (e) {
                 _this.$store.dispatch("addCampaignSystem", e.flag.message);
+              }).listen("CampaignUpdate", function (e) {
+                _this.$store.dispatch("updateCampaign", e.flag.message);
               });
               window.addEventListener("beforeunload", _this.leaving);
               _this.channel = "campaignsystem." + _this.campaignId;
+              _this.logchannel = "campaignlogs." + _this.campaignId;
               _this.navdrawer = true;
 
               _this.addMember();
 
-            case 8:
+            case 9:
             case "end":
               return _context.stop();
           }
@@ -12499,7 +12504,8 @@ function sleep(ms) {
             switch (_context15.prev = _context15.next) {
               case 0:
                 Echo.leave(_this15.channel);
-                _context15.next = 3;
+                Echo.leave(_this15.logchannel);
+                _context15.next = 4;
                 return axios({
                   method: "delete",
                   url: "/api/campaignsystemusers/" + _this15.$store.state.user_id + "/" + _this15.campaignId,
@@ -12510,8 +12516,8 @@ function sleep(ms) {
                   }
                 });
 
-              case 3:
-                _context15.next = 5;
+              case 4:
+                _context15.next = 6;
                 return axios({
                   method: "GET",
                   url: "/api/mcheckjoinleavecampaign/" + _this15.campaignId + "/" + _this15.$store.state.user_id + "/5",
@@ -12522,7 +12528,7 @@ function sleep(ms) {
                   }
                 });
 
-              case 5:
+              case 6:
               case "end":
                 return _context15.stop();
             }

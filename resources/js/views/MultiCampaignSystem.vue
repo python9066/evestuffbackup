@@ -337,7 +337,7 @@ export default {
         this.campaignId = this.$route.params.id;
         this.campaign_id = parseInt(this.$route.params.id);
         if (this.$can("view_campaign_logs")) {
-            Echo.private("campaignlogs." + this.campaign.id).listen(
+            Echo.private("campaignlogs." + this.campaignId).listen(
                 "LoggingUpdate",
                 e => {
                     this.$store.dispatch("addLoggingCampaign", e.flag.message);
@@ -432,9 +432,14 @@ export default {
             })
             .listen("CampaignSystemNew", e => {
                 this.$store.dispatch("addCampaignSystem", e.flag.message);
+            })
+            .listen("CampaignUpdate", e => {
+                this.$store.dispatch("updateCampaign", e.flag.message);
             });
+
         window.addEventListener("beforeunload", this.leaving);
         this.channel = "campaignsystem." + this.campaignId;
+        this.logchannel = "campaignlogs." + this.campaignId;
         this.navdrawer = true;
         this.addMember();
     },
@@ -616,6 +621,7 @@ export default {
 
         async leaving() {
             Echo.leave(this.channel);
+            Echo.leave(this.logchannel);
             await axios({
                 method: "delete",
                 url:

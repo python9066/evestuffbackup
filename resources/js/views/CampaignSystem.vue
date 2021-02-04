@@ -613,6 +613,9 @@ export default {
             })
             .listen("CampaignSystemNew", e => {
                 this.$store.dispatch("addCampaignSystem", e.flag.message);
+            })
+            .listen("CampaignUpdate", e => {
+                this.$store.dispatch("updateCampaign", e.flag.message);
             });
 
         window.addEventListener("beforeunload", this.leaving);

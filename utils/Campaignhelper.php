@@ -2,13 +2,18 @@
 
 namespace utils\Campaignhelper;
 
+use App\Events\CampaignSystemDelete;
+use App\Events\CampaignUpdate;
+use App\Events\CampaignUserUpdate;
 use App\Models\Campaign;
 use App\Models\CampaignJoin;
 use App\Models\CampaignSolaSystem;
 use App\Models\CampaignSystem;
+use App\Models\CampaignSystemRecords;
 use App\Models\CampaignSystemStatus;
 use App\Models\CampaignSystemUsers;
 use App\Models\CampaignUser;
+use App\Models\CampaignUserRecords;
 use App\Models\NodeJoin;
 use App\Models\System;
 use App\Models\User;
@@ -47,21 +52,29 @@ class Campaignhelper
     public static function update()
     {
 
+        //Removing old Campaigns and all data from databae -- start////
+
         $toDelete = Campaign::where('status_id', 10)
             ->get();
 
         if ($toDelete->count() != 0) {
             foreach ($toDelete as $toDelete) {
                 CampaignUser::where('campaign_id', $toDelete->id)->update(["system_id" => null, "status_id" => 1]);
-                CampaignSystemUsers::where('campaign_id', $toDelete->id)->delete();
-                CampaignSystem::where('campaign_id', $toDelete->id)->delete();
-                Campaign::where('id', $toDelete->id)->delete();
-                CampaignJoin::where('campaign_id', $toDelete->id)->delete();
-                CampaignSolaSystem::where('campaign_id', $toDelete->id)->delete();
+                CampaignSystemUsers::where('campaign_id', $toDelete->id)->delete(); //
+                CampaignSystem::where('campaign_id', $toDelete->id)->delete(); //
+                Campaign::where('id', $toDelete->id)->delete(); //
+                CampaignJoin::where('campaign_id', $toDelete->id)->delete(); //
+                CampaignSolaSystem::where('campaign_id', $toDelete->id)->delete(); //
             }
         }
+
+        //-----end----//
+
+        //-----set all checks to 0 for start---///
         Campaign::where('id', '>', 0)->update(['check' => 0]);
-        // dd("fwefe");
+        //-----end----//
+
+
         $flag = 0;
         $changed = collect([]);
         $client = new Client();
@@ -107,6 +120,10 @@ class Campaignhelper
                     $string = $id . $var['solar_system_id'] . $var['structure_id'] . substr(md5(rand()), 0, 7);
                     Campaign::where('id', $id)->update(['link' => hash('ripemd128', $string)]);
                 }
+
+
+
+
                 $after = Campaign::where('id', $id)->get();
 
                 if ($before->count() > 0) {
@@ -206,6 +223,8 @@ class Campaignhelper
             $changed->push($finished->id);
         }
 
+
+
         echo "yay";
 
         return array($flag, $changed);
@@ -231,6 +250,14 @@ class Campaignhelper
         $campaign->update(["b_node" => $b_node_new]);
         $campaign->update(["r_node" => $r_node_new]);
 
+        $message = Campaign::where('id', $check)->first();
+        $flag = null;
+        $flag = collect([
+            'message' => $message,
+            'id' => $check
+        ]);
+        broadcast(new CampaignUpdate($flag));
+
         $campaign->campaignsystems()
             ->where('campaign_system_status_id', 4)
             ->update(['campaign_system_status_id' => 10]);
@@ -252,7 +279,28 @@ class Campaignhelper
                     'campaign_system_id' => null,
                     'status_id' => 3
                 ]);
+
+            $message = CampaignUserRecords::where('id', $user->campaignusers()->value('id'))->first();
+            $flag = null;
+            $flag = collect([
+                'message' => $message,
+                'id' => $check
+            ]);
+            broadcast(new CampaignUserUpdate($flag));
         }
+
+        $dels = $campaign->campaignsystems()
+            ->where('campaign_system_status_id', 10)->get();
+        foreach ($dels as $del) {
+
+            $id = CampaignSystemRecords::where('id', $del->id)->value('id');
+            $flag = null;
+            $flag = collect([
+                'campSysID' => $id,
+                'id' => $check
+            ]);
+            broadcast(new CampaignSystemDelete($flag));
+        };
 
         $campaign->campaignsystems()
             ->where('campaign_system_status_id', 10)
