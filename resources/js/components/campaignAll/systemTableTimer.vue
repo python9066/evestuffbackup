@@ -210,7 +210,7 @@ export default {
                 }
             });
 
-            this.$store.dispatch("getCampaignSystemsRecords");
+            // this.$store.dispatch("getCampaignSystemsRecords");
         },
 
         hackCountDownTextColor(item) {
