@@ -1061,7 +1061,6 @@ export default {
                     campaign_user_id: null
                 };
             }
-            console.log(request);
             axios({
                 method: "PUT",
                 url:
