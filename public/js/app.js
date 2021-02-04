@@ -9821,12 +9821,11 @@ function sleep(ms) {
               return _this.$store.dispatch("getCampaigns");
 
             case 6:
-              _this.campaignId = _this.campaign.id;
+              _this.campaignId = _this.campaign.id; // if (this.$can("view_campaign_logs")) {
+              //     Echo.private("campaignlogs." + this.campaign.id);
+              // }
 
-              if (_this.$can("view_campaign_logs")) {
-                Echo["private"]("campaignlogs." + _this.campaign.id);
-              }
-
+              Echo["private"]("campaignlogs." + _this.campaign.id);
               Echo["private"]("campaignsystem." + _this.campaign.id).listen("CampaignSystemUpdate", function (e) {
                 if (e.flag.message != null) {
                   _this.$store.dispatch("updateCampaignSystem", e.flag.message);
