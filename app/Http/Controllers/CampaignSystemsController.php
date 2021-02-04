@@ -208,13 +208,13 @@ class CampaignSystemsController extends Controller
             'message' => $message,
             'id' => $campid
         ]);
-        broadcast(new CampaignSystemUpdate($flag))->toOthers();
-        $flag = null;
-        $flag = collect([
-            'flag' => 2,
-            'id' => $campid
-        ]);
-        broadcast(new CampaignSystemUpdate($flag))->toOthers();
+        broadcast(new CampaignSystemUpdate($flag));
+        // $flag = null;
+        // $flag = collect([
+        //     'flag' => 2,
+        //     'id' => $campid
+        // ]);
+        // broadcast(new CampaignSystemUpdate($flag))->toOthers();
     }
 
     public function removechar(Request $request, $campid)
