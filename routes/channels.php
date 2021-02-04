@@ -46,6 +46,10 @@ Broadcast::channel('towers', function () {
     return Auth::check();
 });
 
+Broadcast::channel('campaignlogs.{id}', function () {
+    return Auth::check();
+});
+
 
 
 

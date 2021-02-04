@@ -9822,6 +9822,11 @@ function sleep(ms) {
 
             case 6:
               _this.campaignId = _this.campaign.id;
+
+              if (_this.$can("view_campaign_logs")) {
+                Echo["private"]("campaignlogs." + _this.campaign.id);
+              }
+
               Echo["private"]("campaignsystem." + _this.campaign.id).listen("CampaignSystemUpdate", function (e) {
                 if (e.flag.message != null) {
                   _this.$store.dispatch("updateCampaignSystem", e.flag.message);
@@ -9903,13 +9908,14 @@ function sleep(ms) {
               });
               window.addEventListener("beforeunload", _this.leaving);
               _this.channel = "campaignsystem." + _this.campaign.id;
+              _this.logchannel = "campaignlogs." + _this.campaign.id;
               _this.test = 2;
               _this.test2 = 1;
               _this.navdrawer = true;
 
               _this.addMember();
 
-            case 14:
+            case 16:
             case "end":
               return _context.stop();
           }
@@ -10285,7 +10291,8 @@ function sleep(ms) {
             switch (_context15.prev = _context15.next) {
               case 0:
                 Echo.leave(_this14.channel);
-                _context15.next = 3;
+                Echo.leave(_this14.logchannel);
+                _context15.next = 4;
                 return axios({
                   method: "delete",
                   url: "/api/campaignsystemusers/" + _this14.$store.state.user_id + "/" + _this14.campaignId,
@@ -10296,8 +10303,8 @@ function sleep(ms) {
                   }
                 });
 
-              case 3:
-                _context15.next = 5;
+              case 4:
+                _context15.next = 6;
                 return axios({
                   method: "GET",
                   url: "/api/checkjoinleavecampaign/" + _this14.campaignId + "/" + _this14.$store.state.user_id + "/5",
@@ -10308,7 +10315,7 @@ function sleep(ms) {
                   }
                 });
 
-              case 5:
+              case 6:
               case "end":
                 return _context15.stop();
             }

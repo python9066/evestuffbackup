@@ -521,6 +521,9 @@ export default {
         }
 
         this.campaignId = this.campaign.id;
+        if (this.$can("view_campaign_logs")) {
+            Echo.private("campaignlogs." + this.campaign.id);
+        }
         Echo.private("campaignsystem." + this.campaign.id)
             .listen("CampaignSystemUpdate", e => {
                 if (e.flag.message != null) {
@@ -608,6 +611,7 @@ export default {
 
         window.addEventListener("beforeunload", this.leaving);
         this.channel = "campaignsystem." + this.campaign.id;
+        this.logchannel = "campaignlogs." + this.campaign.id;
         this.test = 2;
         this.test2 = 1;
         this.navdrawer = true;
@@ -773,6 +777,7 @@ export default {
 
         async leaving() {
             Echo.leave(this.channel);
+            Echo.leave(this.logchannel);
             await axios({
                 method: "delete",
                 url:
