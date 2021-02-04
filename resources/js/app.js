@@ -58,7 +58,7 @@ Vue.component('CampaignLogging', require('./components/logging/campaign/Campaign
 Vue.component('AdminLogging', require('./components/logging/adminpanel/AdminLogging.vue').default);
 Vue.component('NodeExtraChar', require('./components/campaign/NodeExtraChar.vue').default);
 Vue.component('TidiCalc', require('./components/random/TidiCalc.vue').default);
-Vue.component('JoinNodeTable', require('./components/campaign/JoinNodeTable.vue').default);
+Vue.component('JoinNodeTable', require('./components/campaignAll/JoinNodeTable.vue').default);
 Vue.component('NodeExtraCharMulti', require('./components/multicampaigns/NodeExtraCharMulti.vue').default);
 
 
