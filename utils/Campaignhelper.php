@@ -312,7 +312,7 @@ class Campaignhelper
         $campaign->update(["b_node" => $b_node_new]);
         $campaign->update(["r_node" => $r_node_new]);
 
-        $message = Campaign::where('id', $check)->first();
+        $message = CampaignRecords::where('id', $check)->first();
         $flag = null;
         $flag = collect([
             'message' => $message,
