@@ -1927,7 +1927,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         };
       }
 
-      console.log(request);
       axios({
         method: "PUT",
         url: "/api/removecharfromnode/" + item.id + "/" + this.campaign_id,

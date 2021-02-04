@@ -73,7 +73,7 @@ class NodeJoinsController extends Controller
                 "message" => $message,
                 "id" => $campid
             ]);
-            broadcast(new CampaignUserUpdate($flag))->toOthers();
+            broadcast(new CampaignUserUpdate($flag));
 
             if ($status == 1) {
 
@@ -89,7 +89,7 @@ class NodeJoinsController extends Controller
                 "message" => $message,
                 "id" => $campid
             ]);
-            broadcast(new CampaignSystemUpdate($flag))->toOthers();
+            broadcast(new CampaignSystemUpdate($flag));
 
 
             $node->delete();
@@ -108,25 +108,25 @@ class NodeJoinsController extends Controller
                 "message" => $message,
                 "id" => $campid
             ]);
-            broadcast(new CampaignUserUpdate($flag))->toOthers();
+            broadcast(new CampaignUserUpdate($flag));
             $flag = null;
             $message = CampaignSystemRecords::where('id', $id)->first();
             $flag = collect([
                 "message" => $message,
                 "id" => $campid
             ]);
-            broadcast(new CampaignSystemUpdate($flag))->toOthers();
+            broadcast(new CampaignSystemUpdate($flag));
         };
 
 
 
         //done - Just waiting to finish rest before removing this call//
-        $flag = null;
-        $flag = collect([
-            'flag' => 3,
-            'id' => $campid
-        ]);
-        broadcast(new CampaignSystemUpdate($flag));
+        // $flag = null;
+        // $flag = collect([
+        //     'flag' => 3,
+        //     'id' => $campid
+        // ]);
+        // broadcast(new CampaignSystemUpdate($flag));
     }
 
 
