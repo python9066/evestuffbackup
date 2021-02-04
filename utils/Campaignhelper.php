@@ -351,6 +351,8 @@ class Campaignhelper
             broadcast(new CampaignUserUpdate($flag));
         }
 
+
+
         $dels = $campaign->campaignsystems()
             ->where('campaign_system_status_id', 10)->get();
         foreach ($dels as $del) {
@@ -365,5 +367,13 @@ class Campaignhelper
         $campaign->campaignsystems()
             ->where('campaign_system_status_id', 10)
             ->delete();
+
+        $message = CampaignRecords::where('id', $check)->get();
+        $flag = null;
+        $flag = collect([
+            'message' => $message,
+            'id' => $check
+        ]);
+        broadcast(new CampaignUpdate($flag));
     }
 }
