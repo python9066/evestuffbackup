@@ -136,7 +136,7 @@ class LoggingController extends Controller
         }
 
         $log->save();
-        Helper::logUpdate($campid);
+        Helper::logUpdate($campid, $log->id);
     }
 
     public function nodeDelete(Request $request, $campid)
@@ -160,7 +160,7 @@ class LoggingController extends Controller
         }
 
         $log->save();
-        Helper::logUpdate($campid);
+        Helper::logUpdate($campid, $log->id);
     }
 
 
@@ -180,7 +180,7 @@ class LoggingController extends Controller
         $text = $name . " " . $type . " the " . $campaignname['campaign_name'] . " campaign at " . $log->created_at;
         $log->update(['campaign_name' => $campaignname['campaign_name'], 'text' => $text]);
         $log->save();
-        Helper::logUpdate($campid);
+        Helper::logUpdate($campid, $log->id);
     }
 
     public function lastchecked(Request $request, $campid)
@@ -204,7 +204,7 @@ class LoggingController extends Controller
             $log->save();
         }
 
-        Helper::logUpdate($campid);
+        Helper::logUpdate($campid, $log->id);
     }
 
     public function systemscout(Request $request, $campid)
@@ -232,7 +232,7 @@ class LoggingController extends Controller
             $log->save();
         }
 
-        Helper::logUpdate($campid);
+        Helper::logUpdate($campid, $log->id);
     }
 
 
@@ -260,7 +260,7 @@ class LoggingController extends Controller
             $log->save();
         }
 
-        Helper::logUpdate($campid);
+        Helper::logUpdate($campid, $log->id);
     }
 
     public function addRemoveRoles(Request $request)
@@ -293,7 +293,7 @@ class LoggingController extends Controller
         $text = $log->user->name . " removed node " . $request->campaign_system_id . " in " . $sola_name . " for the " . $campaignname['campaign_name'] . " at " . $log->created_at;
         $log->update(['campaign_name' => $campaignname['campaign_name'], 'sola_system_name' => $sola_name, 'text' => $text]);
         $log->save();
-        Helper::logUpdate($campid);
+        Helper::logUpdate($campid, $log->id);
     }
 
     public function mjoinleaveCampaign($campid, $charid, $logtype)
@@ -311,7 +311,7 @@ class LoggingController extends Controller
         $text = $name . " " . $type . " the " . $campaignname . " multi-campaign at " . $log->created_at;
         $log->update(['campaign_name' => $campaignname, 'text' => $text]);
         $log->save();
-        Helper::logUpdate($campid);
+        Helper::logUpdate($campid, $log->id);
     }
 
     public function nodeAddMulti(Request $request, $campid)
@@ -329,7 +329,7 @@ class LoggingController extends Controller
         $text = $log->user->name . " added node " . $request->campaign_system_id . " in " . $sola_name . " for the " . $campaignname['campaign_name'] . " at " . $log->created_at;
         $log->update(['campaign_name' => $campaignname['campaign_name'], 'sola_system_name' => $sola_name, 'text' => $text]);
         $log->save();
-        Helper::logUpdate($campid);
+        Helper::logUpdate($campid, $log->id);
     }
 
     /**

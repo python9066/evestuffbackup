@@ -521,7 +521,10 @@ export default {
         }
 
         this.campaignId = this.campaign.id;
-        this.joinlogchannel();
+        if (this.$can("view_campaign_logs")) {
+            Echo.private("campaignlogs." + this.campaign.id);
+        }
+        // this.joinlogchannel();
         Echo.private("campaignsystem." + this.campaign.id)
             .listen("CampaignSystemUpdate", e => {
                 if (e.flag.message != null) {

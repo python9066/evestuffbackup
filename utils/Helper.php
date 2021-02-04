@@ -10,6 +10,9 @@ use DateTime;
 use GuzzleHttp\Client as GuzzleHttpClient;
 use GuzzleHttp\Utils;
 use App\Events\CampaignSystemUpdate;
+use App\Events\LoggingUpdate;
+use App\Models\Logging;
+use App\Models\LoggingType;
 
 use function GuzzleHttp\json_decode;
 
@@ -190,12 +193,32 @@ class Helper
         ];
     }
 
-    public static function logUpdate($campid)
+    public static function logUpdate($campid, $log)
     {
+
+        $log = Logging::where('id', $log)->first();
+        $timne = Helper::fixtime($log['created_at']);
+        $message = [
+            'id' => $log['id'],
+            'campaign_id' => $log['campaign_id'],
+            'campaign_name' => $log['campaign_name'],
+            'campaign_sola_system_id' => $log['campaign_sola_system_id'],
+            'sola_system_name' => $log['sola_system_name'],
+            'campaign_system_id' => $log['campaign_system_id'],
+            'user_id' => $log['user_id'],
+            'user_name' => $log->user()->value('name'),
+            'logging_type_id' => $log['logging_type_id'],
+            'logging_type_name' => LoggingType::where('id', $log['logging_type_id'])->value('name'),
+            'text' => $log['text'],
+            'created_at' => $timne
+        ];
+
+
+
         $flag = collect([
-            'flag' => 10,
+            'message' => $message,
             'id' => $campid,
         ]);
-        broadcast(new CampaignSystemUpdate($flag));
+        broadcast(new LoggingUpdate($flag));
     }
 }

@@ -153,6 +153,10 @@ export default new Vuex.Store({
             state.loggingcampaign = logs;
         },
 
+        ADD_LOGGING_CAMPGIN(state, data) {
+            state.loggingcampaign.push(data)
+        },
+
         SET_LOGGING_ADMIN(state, logs) {
             state.loggingAdmin = logs;
         },
@@ -516,6 +520,10 @@ export default new Vuex.Store({
 
         addNodeJoin({ commit }, data) {
             commit("ADD_NODE_JOIN", data)
+        },
+
+        addLoggingCampaign({ commit }, data) {
+            commit("ADD_LOGGING_CAMPGIN",data)
         },
 
         addCampaignUserNew({ commit }, data) {
