@@ -239,7 +239,7 @@ class Campaignhelper
                     'message' => $message,
                     'id' => $b->id
                 ]);
-                echo "4";
+                echo " - 4 - ";
                 echo $b->id;
                 broadcast(new CampaignUpdate($flag));
             }
