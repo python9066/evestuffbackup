@@ -205,7 +205,7 @@ class Campaignhelper
             $warms = Campaign::where('end', '!=', null)->where('check', 0)->get();
             foreach ($warms as $warm) {
                 $warm->update(['status_id' => 3, 'warmup' => 0]);
-                Campaignhelper::removeNode($warm->id);
+                // Campaignhelper::removeNode($warm->id);
                 $warmflag = 1;
             }
 
@@ -228,7 +228,7 @@ class Campaignhelper
 
             $b = Campaign::where('end', '<=', $now10m)
                 ->where('check', 0)
-                ->where('status_id', 3)->get();
+                ->where('status_id', 3)->where('status_id', '!=', 4)->get();
             foreach ($b as $b) {
 
                 $b->update(['status_id' => 4]);
@@ -292,6 +292,7 @@ class Campaignhelper
 
 
         if ($warmflag == 1 || $campaignNew == 1 || $scoreChanged == 1 || $checkflag == 1) {
+            echo "yoyoyoyo";
             broadcast(new CampaignChanged($flag))->toOthers();
         }
     }
