@@ -521,7 +521,7 @@ export default {
         }
 
         this.campaignId = this.campaign.id;
-        joinlogchannel();
+        this.joinlogchannel();
         Echo.private("campaignsystem." + this.campaign.id)
             .listen("CampaignSystemUpdate", e => {
                 if (e.flag.message != null) {
