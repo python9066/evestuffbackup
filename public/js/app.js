@@ -9821,11 +9821,8 @@ function sleep(ms) {
               return _this.$store.dispatch("getCampaigns");
 
             case 6:
-              _this.campaignId = _this.campaign.id; // if (this.$can("view_campaign_logs")) {
-              //     Echo.private("campaignlogs." + this.campaign.id);
-              // }
-
-              Echo["private"]("campaignlogs." + _this.campaign.id);
+              _this.campaignId = _this.campaign.id;
+              joinlogchannel();
               Echo["private"]("campaignsystem." + _this.campaign.id).listen("CampaignSystemUpdate", function (e) {
                 if (e.flag.message != null) {
                   _this.$store.dispatch("updateCampaignSystem", e.flag.message);
@@ -10210,6 +10207,11 @@ function sleep(ms) {
           }
         }, _callee13);
       }))();
+    },
+    joinlogchannel: function joinlogchannel() {
+      if (this.$can("view_campaign_logs")) {
+        Echo["private"]("campaignlogs." + this.campaign.id);
+      }
     },
     addMember: function addMember() {
       var _this13 = this;

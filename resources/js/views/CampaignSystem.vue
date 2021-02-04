@@ -521,10 +521,7 @@ export default {
         }
 
         this.campaignId = this.campaign.id;
-        // if (this.$can("view_campaign_logs")) {
-        //     Echo.private("campaignlogs." + this.campaign.id);
-        // }
-        Echo.private("campaignlogs." + this.campaign.id);
+        joinlogchannel();
         Echo.private("campaignsystem." + this.campaign.id)
             .listen("CampaignSystemUpdate", e => {
                 if (e.flag.message != null) {
@@ -732,6 +729,12 @@ export default {
 
             this.systems = res.data.systems;
             this.systemLoaded = true;
+        },
+
+        joinlogchannel() {
+            if (this.$can("view_campaign_logs")) {
+                Echo.private("campaignlogs." + this.campaign.id);
+            }
         },
 
         async addMember() {
