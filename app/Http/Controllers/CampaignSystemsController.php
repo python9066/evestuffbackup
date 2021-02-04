@@ -169,14 +169,14 @@ class CampaignSystemsController extends Controller
             'message' => $message,
             'id' => $campid
         ]);
-        broadcast(new CampaignSystemNew($flag))->toOthers();
+        broadcast(new CampaignSystemNew($flag));
         $flag = null;
         //done just waiting to remove//
-        $flag = collect([
-            'flag' => 3,
-            'id' => $campid,
-        ]);
-        broadcast(new CampaignSystemUpdate($flag))->toOthers();
+        // $flag = collect([
+        //     'flag' => 3,
+        //     'id' => $campid,
+        // ]);
+        // broadcast(new CampaignSystemUpdate($flag))->toOthers();
     }
 
     /**
