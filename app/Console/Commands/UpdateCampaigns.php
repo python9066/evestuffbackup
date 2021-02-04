@@ -51,26 +51,36 @@ class UpdateCampaigns extends Command
     //     }
     // }
 
+    // public function handle()
+    // {
+    //     $status = Helper::checkeve();
+    //     if ($status == 1) {
+    //         $request = Campaignhelper::update();
+    //         $flag = $request[0];
+    //         if ($flag == 1) {
+    //             broadcast(new CampaignChanged($flag))->toOthers();
+    //         }
+    //         $flag = null;
+    //         $check = $request[1];
+    //         foreach ($check as $check) {
+    //             Campaignhelper::removeNode($check);
+    //             $flag = collect([
+    //                 'flag' => 4,
+    //                 'id' => $check
+    //             ]);
+    //             broadcast(new CampaignSystemUpdate($flag))->toOthers();
+    //             // }
+    //         }
+    //     }
+
+
+    // }
+
     public function handle()
     {
         $status = Helper::checkeve();
         if ($status == 1) {
-            $request = Campaignhelper::update();
-            $flag = $request[0];
-            if ($flag == 1) {
-                broadcast(new CampaignChanged($flag))->toOthers();
-            }
-            $flag = null;
-            $check = $request[1];
-            foreach ($check as $check) {
-                Campaignhelper::removeNode($check);
-                $flag = collect([
-                    'flag' => 4,
-                    'id' => $check
-                ]);
-                broadcast(new CampaignSystemUpdate($flag))->toOthers();
-                // }
-            }
-        }
+            Campaignhelper::update();
+        };
     }
 }

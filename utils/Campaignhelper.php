@@ -4,6 +4,7 @@ namespace utils\Campaignhelper;
 
 use App\Events\CampaignChanged;
 use App\Events\CampaignSystemDelete;
+use App\Events\CampaignSystemUpdate;
 use App\Events\CampaignUpdate;
 use App\Events\CampaignUserUpdate;
 use App\Models\Campaign;
@@ -89,7 +90,7 @@ class Campaignhelper
             'headers' => $headers
         ]);
         $response = Utils::jsonDecode($response->getBody(), true);
-
+        $campaignNew = null;
 
         foreach ($response as $var) {
 
@@ -121,13 +122,14 @@ class Campaignhelper
                 if (Campaign::where('id', $id)->where('link', "!=", null)->count() == 0) {
                     $string = $id . $var['solar_system_id'] . $var['structure_id'] . substr(md5(rand()), 0, 7);
                     Campaign::where('id', $id)->update(['link' => hash('ripemd128', $string)]);
+                    $campaignNew = 1;
                 }
 
 
 
 
                 $after = Campaign::where('id', $id)->get();
-
+                $scoreChanged = null;
                 if ($before->count() > 0) {
                     $attackers_old = $before->toArray();
                     $attackers_old = floatval($attackers_old[0]['attackers_score']);
@@ -138,8 +140,9 @@ class Campaignhelper
                         echo "diffurent";
                         $flag = 1;
                         $changed->push($id);
-
                         Campaign::where('id', $id)->update(['defenders_score_old' => $defenders_old, 'attackers_score_old' => $attackers_old]);
+                        Campaignhelper::removeNode($id);
+                        $scoreChanged = 1;
                     };
                 } else {
                     $constellation = System::where('id', $var['solar_system_id'])->value('constellation_id');
@@ -157,13 +160,22 @@ class Campaignhelper
         $now2m = now()->modify('-2 minutes');
         $now10m = now()->modify('-10 minutes');
         $yesterday = now('-8 hours');
+        $checkflag = null;
         $check = Campaign::where('start_time', '<=', $now)->where('status_id', 1)->count();
         if ($check > 0) {
-            Campaign::where('start_time', '<=', $now)
-                ->where('status_id', 1)
-                ->update(['status_id' => 2, 'check' => 1]);
-            echo "started";
-            $flag = 1;
+            $starting = Campaign::where('start_time', '<=', $now)->where('status_id', 1)->get();
+            foreach ($starting as $start) {
+                $start->update(['status_id' => 2, 'check' => 1]);
+                $message = CampaignSystemRecords::where('id', $start->id);
+                $flag = null;
+                $flag = collect([
+                    'message' => $message,
+                    'id' => $start->id
+                ]);
+                broadcast(new CampaignSystemUpdate($flag));
+            }
+
+            $checkflag = 1;
         }
 
 
@@ -183,10 +195,6 @@ class Campaignhelper
             }
         };
 
-        if ($warmflag == 1) {
-            broadcast(new CampaignChanged($flag))->toOthers();
-        }
-
 
 
         $check = Campaign::where('check', 0)->count();
@@ -196,48 +204,91 @@ class Campaignhelper
             $warms = Campaign::where('end', '!=', null)->where('check', 0)->get();
             foreach ($warms as $warm) {
                 $warm->update(['status_id' => 3, 'warmup' => 0]);
-                $changed->push($warmcheck['id']);
+                Campaignhelper::removeNode($warm->id);
+                $warmflag = 1;
             }
 
-            Campaign::where('end', null)
-                ->where('check', 0)
-                ->update(['end' => $now, 'status_id' => 3]);
+            $a = Campaign::where('end', null)
+                ->where('check', 0)->get();
+            foreach ($a as $a) {
 
-            Campaign::where('end', '<=', $now10m)
+                $a->update(['end' => $now, 'status_id' => 3]);
+                $warmflag = 1;
+                $message = CampaignRecords::where('id', $a->id)->first();
+                $flag = null;
+                $flag = collect([
+                    'message' => $message,
+                    'id' => $a->id
+                ]);
+                broadcast(new CampaignUpdate($flag));
+            }
+
+
+            $b = Campaign::where('end', '<=', $now10m)
                 ->where('check', 0)
-                ->where('status_id', 3)
-                ->update(['status_id' => 4]);
+                ->where('status_id', 3)->get();
+            foreach ($b as $b) {
+
+                $b->update(['status_id' => 4]);
+                $warmflag = 1;
+                $message = CampaignRecords::where('id', $b->id)->first();
+                $flag = null;
+                $flag = collect([
+                    'message' => $message,
+                    'id' => $b->id
+                ]);
+                broadcast(new CampaignUpdate($flag));
+            }
+
 
             // ->update(['check' => 1]);
-            Campaign::where('end', '<=', $now10)
+            $c = Campaign::where('end', '<=', $now10)
                 ->where('check', 0)
-                ->where('status_id', 4)
-                ->update(['status_id' => 10]);
+                ->where('status_id', 4)->get();
+            foreach ($c as $c) {
+
+                $c->update(['status_id' => 10]);
+                $warmflag = 1;
+                $message = CampaignRecords::where('id', $c->id)->first();
+                $flag = null;
+                $flag = collect([
+                    'message' => $message,
+                    'id' => $c->id
+                ]);
+                broadcast(new CampaignUpdate($flag));
+            }
         }
 
 
 
         $finished = Campaign::where('status_id', 3)
             ->get();
-        foreach ($finished as $finished) {
+        foreach ($finished as $finish) {
 
-            $a = $finished->attackers_score;
-            $d = $finished->defenders_score;
+            $a = $finish->attackers_score;
+            $d = $finish->defenders_score;
 
             if ($a > $d) {
-                Campaign::where('id', $finished->id)->update(['attackers_score' => 1, 'defenders_score' => 0]);
+                Campaign::where('id', $finish->id)->update(['attackers_score' => 1, 'defenders_score' => 0]);
             } else {
-                Campaign::where('id', $finished->id)->update(['attackers_score' => 0, 'defenders_score' => 1]);
+                Campaign::where('id', $finish->id)->update(['attackers_score' => 0, 'defenders_score' => 1]);
             }
 
-            $flag = 1;
-            echo " finished";
-            $changed->push($finished->id);
+            $message = CampaignRecords::where('id', $finish->id)->first();
+            $flag = null;
+            $flag = collect([
+                'message' => $message,
+                'id' => $c->id
+            ]);
+            broadcast(new CampaignUpdate($flag));
+            $warmflag = 1;
         }
 
 
 
-        echo "yay";
+        if ($warmflag == 1 || $campaignNew == 1 || $scoreChanged == 1 || $checkflag == 1) {
+            broadcast(new CampaignChanged($flag))->toOthers();
+        }
 
         return array($flag, $changed);
     }
@@ -248,7 +299,6 @@ class Campaignhelper
 
 
         $campaign = Campaign::find($check);
-        // dd($check);
         $b_node_add = $campaign->campaignsystems()
             ->where('campaign_system_status_id', 4)
             ->count();
