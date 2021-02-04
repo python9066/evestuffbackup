@@ -2,11 +2,13 @@
 
 namespace utils\Campaignhelper;
 
+use App\Events\CampaignChanged;
 use App\Events\CampaignSystemDelete;
 use App\Events\CampaignUpdate;
 use App\Events\CampaignUserUpdate;
 use App\Models\Campaign;
 use App\Models\CampaignJoin;
+use App\Models\CampaignRecords;
 use App\Models\CampaignSolaSystem;
 use App\Models\CampaignSystem;
 use App\Models\CampaignSystemRecords;
@@ -166,14 +168,24 @@ class Campaignhelper
 
 
         $warmchecks = Campaign::where('warmup', 0)->where('status_id', 1)->get();
+        $warmflag = null;
         foreach ($warmchecks as $warmcheck) {
             if (strtotime($warmcheck->start_time) - strtotime(now()) > 0 && strtotime($warmcheck->start_time)  - strtotime(now()) < 3601) {
                 Campaign::where('id', $warmcheck['id'])->where('status_id', 1)->where('warmup', 0)->update(['warmup' => 1]);
-                $flag = 1;
-                echo "warm";
-                $changed->push($warmcheck['id']);
+                $message = CampaignRecords::where('id', $warmcheck['id']);
+                $flag = null;
+                $flag = collect([
+                    'message' => $message,
+                    'id' => $check
+                ]);
+                broadcast(new CampaignUpdate($flag));
+                $warmflag = 1;
             }
         };
+
+        if ($warmflag == 1) {
+            broadcast(new CampaignChanged($flag))->toOthers();
+        }
 
 
 
