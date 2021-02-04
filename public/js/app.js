@@ -34777,7 +34777,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
     },
     UPDATE_CAMPAIGN: function UPDATE_CAMPAIGN(state, data) {
       var item = state.campaigns.find(function (item) {
-        return item.id === data.id;
+        return item.id == data.id;
       });
       Object.assign(item, data);
     },

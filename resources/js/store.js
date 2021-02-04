@@ -139,7 +139,7 @@ export default new Vuex.Store({
         },
 
         UPDATE_CAMPAIGN(state, data) {
-            const item = state.campaigns.find(item => item.id === data.id);
+            const item = state.campaigns.find(item => item.id == data.id);
             Object.assign(item, data);
         },
 
