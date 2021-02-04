@@ -1862,9 +1862,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 });
 
               case 6:
-                _this6.$store.dispatch("getCampaignSystemsRecords"); //----Logging Start-----//
-
-
+                // this.$store.dispatch("getCampaignSystemsRecords");
+                //----Logging Start-----//
                 request = null;
                 request = {
                   campaign_id: _this6.campaign_id,
@@ -1884,7 +1883,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   }
                 }); //----Logging End-----//
 
-              case 10:
+              case 9:
               case "end":
                 return _context7.stop();
             }
