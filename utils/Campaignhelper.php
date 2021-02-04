@@ -240,6 +240,7 @@ class Campaignhelper
                     'id' => $b->id
                 ]);
                 echo "4";
+                echo $b->id;
                 broadcast(new CampaignUpdate($flag));
             }
 
@@ -292,7 +293,7 @@ class Campaignhelper
 
 
         if ($warmflag == 1 || $campaignNew == 1 || $scoreChanged == 1 || $checkflag == 1) {
-            echo "yoyoyoyo";
+            echo "-yo-";
             broadcast(new CampaignChanged($flag))->toOthers();
         }
     }
