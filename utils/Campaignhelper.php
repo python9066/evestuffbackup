@@ -190,6 +190,7 @@ class Campaignhelper
                     'message' => $message,
                     'id' => $check
                 ]);
+                echo "1";
                 broadcast(new CampaignUpdate($flag));
                 $warmflag = 1;
             }
@@ -220,6 +221,7 @@ class Campaignhelper
                     'message' => $message,
                     'id' => $a->id
                 ]);
+                echo "2";
                 broadcast(new CampaignUpdate($flag));
             }
 
@@ -237,6 +239,7 @@ class Campaignhelper
                     'message' => $message,
                     'id' => $b->id
                 ]);
+                echo "4";
                 broadcast(new CampaignUpdate($flag));
             }
 
@@ -255,6 +258,7 @@ class Campaignhelper
                     'message' => $message,
                     'id' => $c->id
                 ]);
+                echo "5";
                 broadcast(new CampaignUpdate($flag));
             }
         }
@@ -280,6 +284,7 @@ class Campaignhelper
                 'message' => $message,
                 'id' => $c->id
             ]);
+            echo "6";
             broadcast(new CampaignUpdate($flag));
             $warmflag = 1;
         }
@@ -289,8 +294,6 @@ class Campaignhelper
         if ($warmflag == 1 || $campaignNew == 1 || $scoreChanged == 1 || $checkflag == 1) {
             broadcast(new CampaignChanged($flag))->toOthers();
         }
-
-        return array($flag, $changed);
     }
 
     public static function removeNode($check)
@@ -318,6 +321,7 @@ class Campaignhelper
             'message' => $message,
             'id' => $check
         ]);
+        echo "7";
         broadcast(new CampaignUpdate($flag));
 
         $campaign->campaignsystems()
@@ -374,6 +378,7 @@ class Campaignhelper
             'message' => $message,
             'id' => $check
         ]);
+        echo "8";
         broadcast(new CampaignUpdate($flag));
     }
 }
