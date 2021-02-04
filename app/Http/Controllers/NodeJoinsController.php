@@ -142,7 +142,7 @@ class NodeJoinsController extends Controller
             'joinNodeID' => $id,
             'id' => $campid
         ]);
-        broadcast(new NodeJoinDelete($flag))->toOthers();
+        broadcast(new NodeJoinDelete($flag));
 
 
         $CampaignSystem = CampaignSystem::where('id', $node->campaign_system_id)->first();
@@ -155,7 +155,7 @@ class NodeJoinsController extends Controller
             'message' => $message,
             'id' => $campid
         ]);
-        broadcast(new CampaignSystemUpdate($flag))->toOthers();
+        broadcast(new CampaignSystemUpdate($flag));
 
         $CampaignUser = CampaignUser::where('id', $node->campaign_user_id)->first();
         $CampaignUser->update(['campaign_system_id' => null, 'status_id' => 3]);
@@ -166,16 +166,16 @@ class NodeJoinsController extends Controller
             'message' => $message,
             'id' => $campid
         ]);
-        broadcast(new CampaignUserUpdate($flag))->toOthers();
+        broadcast(new CampaignUserUpdate($flag));
 
         $node->delete();
 
         //done - just waiting to remove//
-        $flag = collect([
-            'flag' => 3,
-            'id' => $campid
-        ]);
-        broadcast(new CampaignSystemUpdate($flag));
+        // $flag = collect([
+        //     'flag' => 3,
+        //     'id' => $campid
+        // ]);
+        // broadcast(new CampaignSystemUpdate($flag));
     }
 
     public function addCharToNodeAdmin(Request $request, $id, $campid)
