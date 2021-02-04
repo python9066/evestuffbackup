@@ -367,6 +367,12 @@ class CampaignSystemsController extends Controller
                 $end_time = now()->modify("+ " . round($time_left) . " seconds");
                 $system->update(['end_time' => $end_time, 'input_time' => now(), 'base_time' => $base_time]);
                 $system->save();
+                $message = CampaignSystemRecords::where('id', $system->id)->first();
+                $flag = collect([
+                    'message' => $message,
+                    'id' => $campid
+                ]);
+                broadcast(new CampaignSystemUpdate($flag));
             }
         }
         CampaignSolaSystem::where('id', $request->solaID)->update(['tidi' => $request->newTidi]);
@@ -389,15 +395,15 @@ class CampaignSystemsController extends Controller
             'message' => $message,
             'id' => $campid,
         ]);
-        broadcast(new CampaignSolaSystemUpdate($flag))->toOthers();
+        broadcast(new CampaignSolaSystemUpdate($flag));
 
 
 
-        $flag = collect([
-            'flag' => 9,
-            'id' => $campid,
-        ]);
-        broadcast(new CampaignSystemUpdate($flag));
+        // $flag = collect([
+        //     'flag' => 9,
+        //     'id' => $campid,
+        // ]);
+        // broadcast(new CampaignSystemUpdate($flag));
     }
 
     public function tidimulti(Request $request, $sysid, $campid)
@@ -421,6 +427,12 @@ class CampaignSystemsController extends Controller
                 $end_time = now()->modify("+ " . round($time_left) . " seconds");
                 $system->update(['end_time' => $end_time, 'input_time' => now(), 'base_time' => $base_time]);
                 $system->save();
+                $message = CampaignSystemRecords::where('id', $system->id)->first();
+                $flag = collect([
+                    'message' => $message,
+                    'id' => $campid
+                ]);
+                broadcast(new CampaignSystemUpdate($flag));
             }
         }
         CampaignSolaSystem::where('id', $request->solaID)->update(['tidi' => $request->newTidi]);
@@ -444,13 +456,13 @@ class CampaignSystemsController extends Controller
             'message' => $message,
             'id' => $campid,
         ]);
-        broadcast(new CampaignSolaSystemUpdate($flag))->toOthers();
+        broadcast(new CampaignSolaSystemUpdate($flag));
 
 
-        $flag = collect([
-            'flag' => 9,
-            'id' => $campid,
-        ]);
-        broadcast(new CampaignSystemUpdate($flag));
+        // $flag = collect([
+        //     'flag' => 9,
+        //     'id' => $campid,
+        // ]);
+        // broadcast(new CampaignSystemUpdate($flag));
     }
 }
