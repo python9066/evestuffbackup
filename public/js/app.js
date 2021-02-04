@@ -4242,7 +4242,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -19544,7 +19543,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "v-card",
-    { attrs: { tile: "" } },
+    { attrs: { tile: "", "max-height": "500" } },
     [
       _c(
         "v-card-title",
@@ -19565,7 +19564,6 @@ var render = function() {
                 "item-key": "id",
                 "disable-pagination": "",
                 "fixed-header": "",
-                height: "500",
                 "hide-default-footer": "",
                 dense: ""
               },

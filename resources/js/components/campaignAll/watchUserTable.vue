@@ -1,5 +1,5 @@
 <template>
-    <v-card tile>
+    <v-card tile max-height="500">
         <v-card-title class="d-flex justify-space-between align-center ">
             <div>Table of all Users on this page</div>
         </v-card-title>
@@ -11,7 +11,6 @@
                 item-key="id"
                 disable-pagination
                 fixed-header
-                height="500"
                 hide-default-footer
                 class="elevation-24"
                 dense
@@ -132,7 +131,6 @@ export default {
                 m => m.campaign_id == this.campaign_id
             );
         }
-
         // tableHight() {
         //     // var timers = this.$store.state.timers;
         //     if (this.statusflag == 1) {
