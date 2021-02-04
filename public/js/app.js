@@ -1657,6 +1657,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         status_id: 4
       };
       this.$store.dispatch("updateCampaignUsers", data);
+      this.$store.dispatch("updateUsersChars", data);
       axios({
         method: "put",
         url: "/api/campaignsystems/" + item.id + "/" + this.campaign_id,
@@ -1906,6 +1907,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
       if (userId != null) {
         this.$store.dispatch("updateCampaignUsers", data);
+        this.$store.dispatch("updateUsersChars", data);
       }
 
       var request = null;
@@ -34742,7 +34744,10 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
       var item = state.userschars.find(function (item) {
         return item.id === data.id;
       });
-      Object.assign(item, data);
+
+      if (item.length > 0) {
+        Object.assign(item, data);
+      }
     },
     DELETE_USER_CHAR: function DELETE_USER_CHAR(state, id) {
       var index = state.userschars.findIndex(function (user) {

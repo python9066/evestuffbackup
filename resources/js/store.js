@@ -110,7 +110,9 @@ export default new Vuex.Store({
 
         UPDATE_USERS_CHARS(state, data) {
             const item = state.userschars.find(item => item.id === data.id);
-            Object.assign(item, data);
+            if (item.length > 0) {
+                Object.assign(item, data);
+            }
         },
 
         DELETE_USER_CHAR(state, id) {
