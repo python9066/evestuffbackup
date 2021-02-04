@@ -19567,7 +19567,7 @@ var render = function() {
                 "fixed-header": "",
                 "hide-default-footer": "",
                 dense: "",
-                "sort-by": "Name"
+                "sort-by": ["user_name"]
               },
               scopedSlots: _vm._u([
                 {

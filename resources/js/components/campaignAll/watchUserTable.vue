@@ -14,7 +14,7 @@
                 hide-default-footer
                 class="elevation-24"
                 dense
-                sort-by="Name"
+                :sort-by="['user_name']"
             >
                 <template v-slot:item.check="{ item }">
                     <span v-if="userCheck(item)">Yes</span>
