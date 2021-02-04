@@ -336,6 +336,14 @@ export default {
     async created() {
         this.campaignId = this.$route.params.id;
         this.campaign_id = parseInt(this.$route.params.id);
+        if (this.$can("view_campaign_logs")) {
+            Echo.private("campaignlogs." + this.campaign.id).listen(
+                "LoggingUpdate",
+                e => {
+                    this.$store.dispatch("addLoggingCampaign", e.flag.message);
+                }
+            );
+        }
 
         Echo.private("campaignsystem." + this.$route.params.id)
             .listen("CampaignSystemUpdate", e => {

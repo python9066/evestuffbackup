@@ -522,7 +522,12 @@ export default {
 
         this.campaignId = this.campaign.id;
         if (this.$can("view_campaign_logs")) {
-            Echo.private("campaignlogs." + this.campaign.id);
+            Echo.private("campaignlogs." + this.campaign.id).listen(
+                "LoggingUpdate",
+                e => {
+                    this.$store.dispatch("addLoggingCampaign", e.flag.message);
+                }
+            );
         }
         // this.joinlogchannel();
         Echo.private("campaignsystem." + this.campaign.id)

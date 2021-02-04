@@ -9824,7 +9824,9 @@ function sleep(ms) {
               _this.campaignId = _this.campaign.id;
 
               if (_this.$can("view_campaign_logs")) {
-                Echo["private"]("campaignlogs." + _this.campaign.id);
+                Echo["private"]("campaignlogs." + _this.campaign.id).listen("LoggingUpdate", function (e) {
+                  _this.$store.dispatch("addLoggingCampaign", e.flag.message);
+                });
               } // this.joinlogchannel();
 
 
@@ -11998,6 +12000,13 @@ function sleep(ms) {
             case 0:
               _this.campaignId = _this.$route.params.id;
               _this.campaign_id = parseInt(_this.$route.params.id);
+
+              if (_this.$can("view_campaign_logs")) {
+                Echo["private"]("campaignlogs." + _this.campaign.id).listen("LoggingUpdate", function (e) {
+                  _this.$store.dispatch("addLoggingCampaign", e.flag.message);
+                });
+              }
+
               Echo["private"]("campaignsystem." + _this.$route.params.id).listen("CampaignSystemUpdate", function (e) {
                 if (e.flag.message != null) {
                   _this.$store.dispatch("updateCampaignSystem", e.flag.message);
@@ -12093,7 +12102,7 @@ function sleep(ms) {
 
               _this.addMember();
 
-            case 7:
+            case 8:
             case "end":
               return _context.stop();
           }
