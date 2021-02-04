@@ -1039,7 +1039,6 @@ export default {
             };
             if (userId != null) {
                 this.$store.dispatch("updateCampaignUsers", data);
-                this.$store.dispatch("updateUsersChars", data);
             }
             var request = null;
             if (item.status_id == 4 || item.status_id == 5) {

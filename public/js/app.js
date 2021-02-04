@@ -1907,7 +1907,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
       if (userId != null) {
         this.$store.dispatch("updateCampaignUsers", data);
-        this.$store.dispatch("updateUsersChars", data);
       }
 
       var request = null;
