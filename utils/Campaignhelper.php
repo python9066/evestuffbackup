@@ -292,8 +292,7 @@ class Campaignhelper
         $dels = $campaign->campaignsystems()
             ->where('campaign_system_status_id', 10)->get();
         foreach ($dels as $del) {
-            dd($del['id']);
-            $id = CampaignSystemRecords::where('id', $del->id)->value('id');
+            $id = CampaignSystemRecords::where('id', $del['id'])->value('id');
             $flag = null;
             $flag = collect([
                 'campSysID' => $id,
