@@ -291,6 +291,7 @@ class Campaignhelper
 
         if ($checkflag == 1) {
             $flag = null;
+            $message = "hi";
             $flag = collect([
                 'message' => $message,
                 'id' => $check
