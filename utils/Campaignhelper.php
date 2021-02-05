@@ -207,9 +207,9 @@ class Campaignhelper
 
 
 
-            $a = Campaign::where('end', null)
+            $as = Campaign::where('end', null)
                 ->where('check', 0)->get();
-            foreach ($a as $a) {
+            foreach ($as as $a) {
 
                 $a->update(['end' => $now, 'status_id' => 3]);
                 $checkflag = 1;
@@ -224,10 +224,10 @@ class Campaignhelper
             }
 
 
-            $b = Campaign::where('end', '<=', $now10m)
+            $bs = Campaign::where('end', '<=', $now10m)
                 ->where('check', 0)
                 ->where('status_id', 3)->where('status_id', '!=', 4)->get();
-            foreach ($b as $b) {
+            foreach ($bs as $b) {
 
                 $b->update(['status_id' => 4]);
                 $checkflag = 1;
@@ -243,10 +243,10 @@ class Campaignhelper
 
 
             // ->update(['check' => 1]);
-            $c = Campaign::where('end', '<=', $now10)
+            $cs = Campaign::where('end', '<=', $now10)
                 ->where('check', 0)
                 ->where('status_id', 4)->get();
-            foreach ($c as $c) {
+            foreach ($cs as $c) {
 
                 $c->update(['status_id' => 10]);
                 $checkflag = 1;
@@ -280,7 +280,7 @@ class Campaignhelper
             $flag = null;
             $flag = collect([
                 'message' => $message,
-                'id' => $c->id
+                'id' => $finish->id
             ]);
             broadcast(new CampaignUpdate($flag));
             $checkflag = 1;
