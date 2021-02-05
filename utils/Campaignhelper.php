@@ -290,7 +290,11 @@ class Campaignhelper
 
 
         if ($checkflag == 1) {
-            $flag = 1;
+            $flag = null;
+            $flag = collect([
+                'message' => $message,
+                'id' => $check
+            ]);
             echo "yoyo";
             broadcast(new CampaignChanged($flag))->toOthers();
         }
