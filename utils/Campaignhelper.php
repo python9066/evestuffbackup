@@ -169,7 +169,7 @@ class Campaignhelper
                     'message' => $message,
                     'id' => $start->id
                 ]);
-                broadcast(new CampaignSystemUpdate($flag));
+                broadcast(new CampaignSystemUpdate($flag))->toOthers();
             }
 
             $checkflag = 1;
@@ -186,7 +186,7 @@ class Campaignhelper
                     'message' => $message,
                     'id' => $check
                 ]);
-                broadcast(new CampaignUpdate($flag));
+                broadcast(new CampaignUpdate($flag))->toOthers();
                 $checkflag = 1;
             }
         };
@@ -219,7 +219,7 @@ class Campaignhelper
                     'message' => $message,
                     'id' => $a->id
                 ]);
-                broadcast(new CampaignUpdate($flag));
+                broadcast(new CampaignUpdate($flag))->toOthers();
                 echo "2";
             }
 
@@ -237,7 +237,7 @@ class Campaignhelper
                     'message' => $message,
                     'id' => $b->id
                 ]);
-                broadcast(new CampaignUpdate($flag));
+                broadcast(new CampaignUpdate($flag))->toOthers();
                 echo "3";
             }
 
@@ -256,7 +256,7 @@ class Campaignhelper
                     'message' => $message,
                     'id' => $c->id
                 ]);
-                broadcast(new CampaignUpdate($flag));
+                broadcast(new CampaignUpdate($flag))->toOthers();
                 echo "4";
             }
         }
@@ -282,7 +282,7 @@ class Campaignhelper
                 'message' => $message,
                 'id' => $finish->id
             ]);
-            broadcast(new CampaignUpdate($flag));
+            broadcast(new CampaignUpdate($flag))->toOthers();
             $checkflag = 1;
             echo "5";
         }
@@ -296,7 +296,7 @@ class Campaignhelper
                 'id' => $check
             ]);
             echo "yoyo";
-            broadcast(new CampaignChanged($flag))->toOthers();
+            broadcast(new CampaignChanged($flag))->toOthers()->toOthers();
         }
     }
 
@@ -349,7 +349,7 @@ class Campaignhelper
                 'message' => $message,
                 'id' => $check
             ]);
-            broadcast(new CampaignUserUpdate($flag));
+            broadcast(new CampaignUserUpdate($flag))->toOthers();
         }
 
 
@@ -362,7 +362,7 @@ class Campaignhelper
                 'campSysID' => $del['id'],
                 'id' => $check
             ]);
-            broadcast(new CampaignSystemDelete($flag));
+            broadcast(new CampaignSystemDelete($flag))->toOthers();
         };
 
         $campaign->campaignsystems()
@@ -376,7 +376,7 @@ class Campaignhelper
             'id' => $check
         ]);
         echo "8";
-        broadcast(new CampaignUpdate($flag));
+        broadcast(new CampaignUpdate($flag))->toOthers();
         return;
     }
 }
