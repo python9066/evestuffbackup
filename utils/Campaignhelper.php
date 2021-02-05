@@ -54,7 +54,7 @@ class Campaignhelper
 
     public static function update()
     {
-
+        $checkflag = null;
         //Removing old Campaigns and all data from databae -- start////
 
         $toDelete = Campaign::where('status_id', 10)
@@ -90,7 +90,6 @@ class Campaignhelper
             'headers' => $headers
         ]);
         $response = Utils::jsonDecode($response->getBody(), true);
-        $campaignNew = null;
 
         foreach ($response as $var) {
 
@@ -122,14 +121,13 @@ class Campaignhelper
                 if (Campaign::where('id', $id)->where('link', "!=", null)->count() == 0) {
                     $string = $id . $var['solar_system_id'] . $var['structure_id'] . substr(md5(rand()), 0, 7);
                     Campaign::where('id', $id)->update(['link' => hash('ripemd128', $string)]);
-                    $campaignNew = 1;
+                    $checkflag = 1;
                 }
 
 
 
 
                 $after = Campaign::where('id', $id)->get();
-                $scoreChanged = null;
                 if ($before->count() > 0) {
                     $attackers_old = $before->toArray();
                     $attackers_old = floatval($attackers_old[0]['attackers_score']);
@@ -142,7 +140,6 @@ class Campaignhelper
                         $changed->push($id);
                         Campaign::where('id', $id)->update(['defenders_score_old' => $defenders_old, 'attackers_score_old' => $attackers_old]);
                         Campaignhelper::removeNode($id);
-                        $scoreChanged = 1;
                     };
                 } else {
                     $constellation = System::where('id', $var['solar_system_id'])->value('constellation_id');
@@ -160,7 +157,7 @@ class Campaignhelper
         $now2m = now()->modify('-2 minutes');
         $now10m = now()->modify('-10 minutes');
         $yesterday = now('-8 hours');
-        $checkflag = null;
+
         $check = Campaign::where('start_time', '<=', $now)->where('status_id', 1)->count();
         if ($check > 0) {
             $starting = Campaign::where('start_time', '<=', $now)->where('status_id', 1)->get();
@@ -180,7 +177,6 @@ class Campaignhelper
 
 
         $warmchecks = Campaign::where('warmup', 0)->where('status_id', 1)->get();
-        $warmflag = null;
         foreach ($warmchecks as $warmcheck) {
             if (strtotime($warmcheck->start_time) - strtotime(now()) > 0 && strtotime($warmcheck->start_time)  - strtotime(now()) < 3601) {
                 Campaign::where('id', $warmcheck['id'])->where('status_id', 1)->where('warmup', 0)->update(['warmup' => 1]);
@@ -191,7 +187,7 @@ class Campaignhelper
                     'id' => $check
                 ]);
                 broadcast(new CampaignUpdate($flag));
-                $warmflag = 1;
+                $checkflag = 1;
             }
         };
 
@@ -205,7 +201,7 @@ class Campaignhelper
             foreach ($warms as $warm) {
                 $warm->update(['status_id' => 3, 'warmup' => 0]);
                 // Campaignhelper::removeNode($warm->id);
-                $warmflag = 1;
+                $checkflag = 1;
                 echo "1";
             }
 
@@ -216,7 +212,7 @@ class Campaignhelper
             foreach ($a as $a) {
 
                 $a->update(['end' => $now, 'status_id' => 3]);
-                $warmflag = 1;
+                $checkflag = 1;
                 $message = CampaignRecords::where('id', $a->id)->first();
                 $flag = null;
                 $flag = collect([
@@ -234,7 +230,7 @@ class Campaignhelper
             foreach ($b as $b) {
 
                 $b->update(['status_id' => 4]);
-                $warmflag = 1;
+                $checkflag = 1;
                 $message = CampaignRecords::where('id', $b->id)->first();
                 $flag = null;
                 $flag = collect([
@@ -253,7 +249,7 @@ class Campaignhelper
             foreach ($c as $c) {
 
                 $c->update(['status_id' => 10]);
-                $warmflag = 1;
+                $checkflag = 1;
                 $message = CampaignRecords::where('id', $c->id)->first();
                 $flag = null;
                 $flag = collect([
@@ -287,14 +283,14 @@ class Campaignhelper
                 'id' => $c->id
             ]);
             broadcast(new CampaignUpdate($flag));
-            $warmflag = 1;
+            $checkflag = 1;
             echo "5";
         }
 
 
 
-        if ($warmflag == 1 || $campaignNew == 1 || $scoreChanged == 1 || $checkflag == 1) {
-            echo "warmflag= " . $warmflag . " campaignnew = " . $campaignNew . "score= " . $scoreChanged . "check= " . $checkflag;
+        if ($checkflag == 1) {
+            echo "yoyo";
             broadcast(new CampaignChanged($flag))->toOthers();
         }
     }
