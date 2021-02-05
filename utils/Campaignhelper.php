@@ -319,13 +319,6 @@ class Campaignhelper
         $campaign->update(["r_node" => $r_node_new]);
 
         $message = CampaignRecords::where('id', $check)->first();
-        $flag = null;
-        $flag = collect([
-            'message' => $message,
-            'id' => $check
-        ]);
-        echo "7";
-        broadcast(new CampaignUpdate($flag));
 
         $campaign->campaignsystems()
             ->where('campaign_system_status_id', 4)
@@ -383,5 +376,6 @@ class Campaignhelper
         ]);
         echo "8";
         broadcast(new CampaignUpdate($flag));
+        return;
     }
 }
