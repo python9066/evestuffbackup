@@ -369,7 +369,7 @@ class Campaignhelper
             ->where('campaign_system_status_id', 10)
             ->delete();
 
-        $message = CampaignRecords::where('id', $check)->get();
+        $message = CampaignRecords::where('id', $check)->first();
         $flag = null;
         $flag = collect([
             'message' => $message,
