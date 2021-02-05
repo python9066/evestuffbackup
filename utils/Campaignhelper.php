@@ -180,7 +180,7 @@ class Campaignhelper
         foreach ($warmchecks as $warmcheck) {
             if (strtotime($warmcheck->start_time) - strtotime(now()) > 0 && strtotime($warmcheck->start_time)  - strtotime(now()) < 3601) {
                 Campaign::where('id', $warmcheck['id'])->where('status_id', 1)->where('warmup', 0)->update(['warmup' => 1]);
-                $message = CampaignRecords::where('id', $warmcheck['id']);
+                $message = CampaignRecords::where('id', $warmcheck['id'])->first();
                 $flag = null;
                 $flag = collect([
                     'message' => $message,
