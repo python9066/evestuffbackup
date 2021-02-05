@@ -163,7 +163,7 @@ class Campaignhelper
             $starting = Campaign::where('start_time', '<=', $now)->where('status_id', 1)->get();
             foreach ($starting as $start) {
                 $start->update(['status_id' => 2, 'check' => 1]);
-                $message = CampaignSystemRecords::where('id', $start->id);
+                $message = CampaignSystemRecords::where('id', $start->id)->first();
                 $flag = null;
                 $flag = collect([
                     'message' => $message,
