@@ -137,7 +137,7 @@ class Campaignhelper
                     if ($new != $attackers_old) {
                         echo "diffurent";
                         $flag = 1;
-                        $changed->push($id);
+                        $checkflag = 1;
                         Campaign::where('id', $id)->update(['defenders_score_old' => $defenders_old, 'attackers_score_old' => $attackers_old]);
                         Campaignhelper::removeNode($id);
                     };
