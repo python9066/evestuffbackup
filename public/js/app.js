@@ -34847,7 +34847,10 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
       var item = state.campaignusers.find(function (item) {
         return item.id === data.id;
       });
-      Object.assign(item, data);
+
+      if (item != null) {
+        Object.assign(item, data);
+      }
     },
     ADD_CAMPAIGN_USERS: function ADD_CAMPAIGN_USERS(state, data) {
       state.campaignusers.push(data);

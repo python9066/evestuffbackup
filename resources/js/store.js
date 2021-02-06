@@ -209,7 +209,9 @@ export default new Vuex.Store({
 
         UPDATE_CAMPAIGN_USERS(state, data) {
             const item = state.campaignusers.find(item => item.id === data.id);
-            Object.assign(item, data);
+            if (item != null) {
+                Object.assign(item, data);
+            }
         },
 
         ADD_CAMPAIGN_USERS(state, data) {
