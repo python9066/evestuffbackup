@@ -3440,7 +3440,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
-    item: Object,
+    "char": Object,
     campaign_id: Number
   },
   data: function data() {
@@ -3504,10 +3504,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   methods: {
     setEditCharname: function setEditCharname() {
-      this.editCharName = this.item.char_name;
+      this.editCharName = this["char"].char_name;
     },
     charEditForm: function charEditForm(item) {
-      this.oldChar = this.item;
+      this.oldChar = this["char"];
       this.editCharName = this.oldChar.char_name;
       this.editRole = this.oldChar.role_id;
       this.editTextShip = this.oldChar.ship;
@@ -3598,10 +3598,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   role_name: role_name
                 };
 
-                if (_this.item.campaign_id != null) {
-                  console.log(_this.item);
-                  console.log(item);
-
+                if (_this["char"].campaign_id == _this.campaign_id) {
                   _this.$store.dispatch("updateCampaignUsers", item);
                 } // this.$store.dispatch("updateCampaignUsers", item);
 
@@ -18595,7 +18592,7 @@ var render = function() {
                             [
                               _c("UsersCharsEdit", {
                                 attrs: {
-                                  item: item,
+                                  char: item,
                                   campaign_id: _vm.campaign_id
                                 }
                               }),
@@ -18754,7 +18751,7 @@ var render = function() {
                       attrs: {
                         label: "Name",
                         required: "",
-                        placehoder: this.item.char_name
+                        placehoder: this.char.char_name
                       },
                       model: {
                         value: _vm.editCharName,

@@ -25,7 +25,7 @@
                             v-model="editCharName"
                             label="Name"
                             required
-                            :placehoder="this.item.char_name"
+                            :placehoder="this.char.char_name"
                         ></v-text-field>
                         <v-select
                             v-model="editRole"
@@ -73,7 +73,7 @@ import { mapGetters } from "vuex";
 import { mapState } from "vuex";
 export default {
     props: {
-        item: Object,
+        char: Object,
         campaign_id: Number
     },
     data() {
@@ -113,11 +113,11 @@ export default {
 
     methods: {
         setEditCharname() {
-            this.editCharName = this.item.char_name;
+            this.editCharName = this.char.char_name;
         },
 
         charEditForm(item) {
-            this.oldChar = this.item;
+            this.oldChar = this.char;
             this.editCharName = this.oldChar.char_name;
             this.editRole = this.oldChar.role_id;
             this.editTextShip = this.oldChar.ship;
@@ -199,9 +199,7 @@ export default {
                 role_id: role,
                 role_name: role_name
             };
-            if (this.item.campaign_id != null) {
-                console.log(this.item);
-                console.log(item);
+            if (this.char.campaign_id == this.campaign_id) {
                 this.$store.dispatch("updateCampaignUsers", item);
             }
             // this.$store.dispatch("updateCampaignUsers", item);

@@ -118,7 +118,7 @@
                     <template v-slot:item.actions="{ item }">
                         <span>
                             <UsersCharsEdit
-                                :item="item"
+                                :char="item"
                                 :campaign_id="campaign_id"
                             >
                             </UsersCharsEdit>
