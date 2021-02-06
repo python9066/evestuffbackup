@@ -200,6 +200,9 @@ export default {
                 role_name: role_name
             };
             if (this.char.campaign_id == this.campaign_id) {
+                console.log(this.char);
+                console.log(this.campaign_id);
+                console.log(item);
                 this.$store.dispatch("updateCampaignUsers", item);
             }
             // this.$store.dispatch("updateCampaignUsers", item);

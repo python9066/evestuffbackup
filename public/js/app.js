@@ -3599,6 +3599,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 };
 
                 if (_this["char"].campaign_id == _this.campaign_id) {
+                  console.log(_this["char"]);
+                  console.log(_this.campaign_id);
+                  console.log(item);
+
                   _this.$store.dispatch("updateCampaignUsers", item);
                 } // this.$store.dispatch("updateCampaignUsers", item);
 
