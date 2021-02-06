@@ -18709,7 +18709,7 @@ var render = function() {
                       attrs: { color: "orange darken-3", small: "" },
                       on: {
                         click: function($event) {
-                          _vm.charEditForm(_vm.item), (_vm.editShown = true)
+                          _vm.charEditForm(_vm.char), (_vm.editShown = true)
                         }
                       }
                     },
@@ -18742,7 +18742,7 @@ var render = function() {
                     on: {
                       submit: function($event) {
                         $event.preventDefault()
-                        return _vm.editCharForm(_vm.item)
+                        return _vm.editCharForm(_vm.char)
                       }
                     }
                   },

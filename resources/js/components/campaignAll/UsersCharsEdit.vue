@@ -11,7 +11,7 @@
                 v-bind="attrs"
                 v-on="on"
                 small
-                @click="charEditForm(item), (editShown = true)"
+                @click="charEditForm(char), (editShown = true)"
             >
                 fas fa-edit
             </v-icon>
@@ -20,7 +20,7 @@
         <v-row no-gutters>
             <div>
                 <v-card class="pa-2" tile width="100%">
-                    <v-form @submit.prevent="editCharForm(item)">
+                    <v-form @submit.prevent="editCharForm(char)">
                         <v-text-field
                             v-model="editCharName"
                             label="Name"
