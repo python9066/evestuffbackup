@@ -205,7 +205,6 @@ export default {
                 console.log(item);
                 this.$store.dispatch("updateCampaignUsers", item);
             }
-            // this.$store.dispatch("updateCampaignUsers", item);
 
             this.$store.dispatch("updateUsersChars", item);
 

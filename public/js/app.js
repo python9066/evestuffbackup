@@ -3604,8 +3604,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   console.log(item);
 
                   _this.$store.dispatch("updateCampaignUsers", item);
-                } // this.$store.dispatch("updateCampaignUsers", item);
-
+                }
 
                 _this.$store.dispatch("updateUsersChars", item);
 
