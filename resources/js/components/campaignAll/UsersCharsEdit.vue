@@ -20,7 +20,7 @@
         <v-row no-gutters>
             <div>
                 <v-card class="pa-2" tile width="100%">
-                    <v-form @submit.prevent="editCharForm()">
+                    <v-form @submit.prevent="editCharForm(item)">
                         <v-text-field
                             v-model="editCharName"
                             label="Name"
@@ -200,6 +200,7 @@ export default {
                 role_name: role_name
             };
             if (this.item.campaign_id != null) {
+                console.log(item);
                 this.$store.dispatch("updateCampaignUsers", item);
             }
             // this.$store.dispatch("updateCampaignUsers", item);
