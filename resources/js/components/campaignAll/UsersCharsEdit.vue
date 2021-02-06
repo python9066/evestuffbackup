@@ -199,10 +199,10 @@ export default {
                 role_id: role,
                 role_name: role_name
             };
-            if (this.item.campaign_id != null) {
-                console.log(item);
-                this.$store.dispatch("updateCampaignUsers", item);
-            }
+            // if (this.item.campaign_id != null) {
+            //     console.log(item);
+            //     this.$store.dispatch("updateCampaignUsers", item);
+            // }
             // this.$store.dispatch("updateCampaignUsers", item);
 
             this.$store.dispatch("updateUsersChars", item);

@@ -3596,18 +3596,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   ship: ship,
                   role_id: role,
                   role_name: role_name
-                };
-
-                if (_this.item.campaign_id != null) {
-                  console.log(item);
-
-                  _this.$store.dispatch("updateCampaignUsers", item);
-                } // this.$store.dispatch("updateCampaignUsers", item);
-
+                }; // if (this.item.campaign_id != null) {
+                //     console.log(item);
+                //     this.$store.dispatch("updateCampaignUsers", item);
+                // }
+                // this.$store.dispatch("updateCampaignUsers", item);
 
                 _this.$store.dispatch("updateUsersChars", item);
 
-                _context2.next = 17;
+                _context2.next = 16;
                 return axios({
                   method: "PUT",
                   //you can set what request you want to be
@@ -3620,7 +3617,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   }
                 });
 
-              case 17:
+              case 16:
                 _this.editCharName = null;
                 _this.editRole = null;
                 _this.editTextRole = null;
@@ -3631,7 +3628,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                 _this.$store.dispatch("getCampaignSystemsRecords");
 
-              case 25:
+              case 24:
               case "end":
                 return _context2.stop();
             }
