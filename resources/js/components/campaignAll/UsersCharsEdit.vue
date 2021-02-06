@@ -201,23 +201,25 @@ export default {
             };
             this.$store.dispatch("updateUsersChars", item);
             if (this.char.campaign_id == this.campaign_id) {
+                console;
                 this.$store.dispatch("updateCampaignUsers", item);
-
-                await axios({
-                    method: "PUT", //you can set what request you want to be
-                    url:
-                        "/api/campaignusers/" +
-                        this.oldChar.id +
-                        "/" +
-                        this.campaign_id,
-                    data: request,
-                    headers: {
-                        Authorization: "Bearer " + this.$store.state.token,
-                        Accept: "application/json",
-                        "Content-Type": "application/json"
-                    }
-                });
             }
+
+            await axios({
+                method: "PUT", //you can set what request you want to be
+                url:
+                    "/api/campaignusers/" +
+                    this.oldChar.id +
+                    "/" +
+                    this.campaign_id,
+                data: request,
+                headers: {
+                    Authorization: "Bearer " + this.$store.state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                }
+            });
+
             this.editCharName = null;
             this.editRole = null;
             this.editTextRole = null;

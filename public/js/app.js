@@ -3600,14 +3600,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                 _this.$store.dispatch("updateUsersChars", item);
 
-                if (!(_this["char"].campaign_id == _this.campaign_id)) {
-                  _context2.next = 18;
-                  break;
+                if (_this["char"].campaign_id == _this.campaign_id) {
+                  console;
+
+                  _this.$store.dispatch("updateCampaignUsers", item);
                 }
 
-                _this.$store.dispatch("updateCampaignUsers", item);
-
-                _context2.next = 18;
+                _context2.next = 17;
                 return axios({
                   method: "PUT",
                   //you can set what request you want to be
@@ -3620,7 +3619,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   }
                 });
 
-              case 18:
+              case 17:
                 _this.editCharName = null;
                 _this.editRole = null;
                 _this.editTextRole = null;
@@ -3629,7 +3628,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 _this.editLink = null;
                 _this.editTextLink = null; // this.$store.dispatch("getCampaignSystemsRecords");
 
-              case 25:
+              case 24:
               case "end":
                 return _context2.stop();
             }
