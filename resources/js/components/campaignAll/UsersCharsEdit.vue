@@ -200,28 +200,25 @@ export default {
                 role_name: role_name
             };
             if (this.char.campaign_id == this.campaign_id) {
-                console.log(this.char);
-                console.log(this.campaign_id);
-                console.log(item);
                 this.$store.dispatch("updateCampaignUsers", item);
             }
 
             this.$store.dispatch("updateUsersChars", item);
 
-            await axios({
-                method: "PUT", //you can set what request you want to be
-                url:
-                    "/api/campaignusers/" +
-                    this.oldChar.id +
-                    "/" +
-                    this.campaign_id,
-                data: request,
-                headers: {
-                    Authorization: "Bearer " + this.$store.state.token,
-                    Accept: "application/json",
-                    "Content-Type": "application/json"
-                }
-            });
+            // await axios({
+            //     method: "PUT", //you can set what request you want to be
+            //     url:
+            //         "/api/campaignusers/" +
+            //         this.oldChar.id +
+            //         "/" +
+            //         this.campaign_id,
+            //     data: request,
+            //     headers: {
+            //         Authorization: "Bearer " + this.$store.state.token,
+            //         Accept: "application/json",
+            //         "Content-Type": "application/json"
+            //     }
+            // });
             this.editCharName = null;
             this.editRole = null;
             this.editTextRole = null;
@@ -229,7 +226,7 @@ export default {
             this.editTextShip = null;
             this.editLink = null;
             this.editTextLink = null;
-            this.$store.dispatch("getCampaignSystemsRecords");
+            // this.$store.dispatch("getCampaignSystemsRecords");
         }
     },
 

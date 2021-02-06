@@ -3599,40 +3599,34 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 };
 
                 if (_this["char"].campaign_id == _this.campaign_id) {
-                  console.log(_this["char"]);
-                  console.log(_this.campaign_id);
-                  console.log(item);
-
                   _this.$store.dispatch("updateCampaignUsers", item);
                 }
 
-                _this.$store.dispatch("updateUsersChars", item);
+                _this.$store.dispatch("updateUsersChars", item); // await axios({
+                //     method: "PUT", //you can set what request you want to be
+                //     url:
+                //         "/api/campaignusers/" +
+                //         this.oldChar.id +
+                //         "/" +
+                //         this.campaign_id,
+                //     data: request,
+                //     headers: {
+                //         Authorization: "Bearer " + this.$store.state.token,
+                //         Accept: "application/json",
+                //         "Content-Type": "application/json"
+                //     }
+                // });
 
-                _context2.next = 17;
-                return axios({
-                  method: "PUT",
-                  //you can set what request you want to be
-                  url: "/api/campaignusers/" + _this.oldChar.id + "/" + _this.campaign_id,
-                  data: request,
-                  headers: {
-                    Authorization: "Bearer " + _this.$store.state.token,
-                    Accept: "application/json",
-                    "Content-Type": "application/json"
-                  }
-                });
 
-              case 17:
                 _this.editCharName = null;
                 _this.editRole = null;
                 _this.editTextRole = null;
                 _this.editShip = null;
                 _this.editTextShip = null;
                 _this.editLink = null;
-                _this.editTextLink = null;
+                _this.editTextLink = null; // this.$store.dispatch("getCampaignSystemsRecords");
 
-                _this.$store.dispatch("getCampaignSystemsRecords");
-
-              case 25:
+              case 22:
               case "end":
                 return _context2.stop();
             }
