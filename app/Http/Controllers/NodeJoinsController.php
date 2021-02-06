@@ -101,7 +101,7 @@ class NodeJoinsController extends Controller
             $user_id = CampaignSystem::where('id', $id)->value('campaign_user_id');
             CampaignUser::where('id', intval($user_id))->update(['campaign_system_id' => null, 'status_id' => 3]);
             CampaignSystem::where('id', $id)->update($request->all());
-            CampaignSystem::where('id', $id)->update(['campaign_system_status_id' => $request['campaign_system_status_id'], 'base_time' => null, 'input_time' => null, 'end_time' => null]);
+            CampaignSystem::where('id', $id)->update(['campaign_system_status_id' => $campaign_system_status_id, 'base_time' => null, 'input_time' => null, 'end_time' => null]);
             $flag = null;
             $message = CampaignUserRecords::where('id', $user_id)->first();
             $flag = collect([
