@@ -3598,26 +3598,29 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   role_name: role_name
                 };
 
-                if (_this["char"].campaign_id == _this.campaign_id) {
-                  _this.$store.dispatch("updateCampaignUsers", item);
+                _this.$store.dispatch("updateUsersChars", item);
+
+                if (!(_this["char"].campaign_id == _this.campaign_id)) {
+                  _context2.next = 18;
+                  break;
                 }
 
-                _this.$store.dispatch("updateUsersChars", item); // await axios({
-                //     method: "PUT", //you can set what request you want to be
-                //     url:
-                //         "/api/campaignusers/" +
-                //         this.oldChar.id +
-                //         "/" +
-                //         this.campaign_id,
-                //     data: request,
-                //     headers: {
-                //         Authorization: "Bearer " + this.$store.state.token,
-                //         Accept: "application/json",
-                //         "Content-Type": "application/json"
-                //     }
-                // });
+                _this.$store.dispatch("updateCampaignUsers", item);
 
+                _context2.next = 18;
+                return axios({
+                  method: "PUT",
+                  //you can set what request you want to be
+                  url: "/api/campaignusers/" + _this.oldChar.id + "/" + _this.campaign_id,
+                  data: request,
+                  headers: {
+                    Authorization: "Bearer " + _this.$store.state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                  }
+                });
 
+              case 18:
                 _this.editCharName = null;
                 _this.editRole = null;
                 _this.editTextRole = null;
@@ -3626,7 +3629,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 _this.editLink = null;
                 _this.editTextLink = null; // this.$store.dispatch("getCampaignSystemsRecords");
 
-              case 22:
+              case 25:
               case "end":
                 return _context2.stop();
             }
@@ -34743,8 +34746,6 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
       var item = state.userschars.find(function (item) {
         return item.id == data.id;
       });
-      console.log(item);
-      console.log(item.length);
 
       if (item != null) {
         Object.assign(item, data);

@@ -110,8 +110,6 @@ export default new Vuex.Store({
 
         UPDATE_USERS_CHARS(state, data) {
             const item = state.userschars.find(item => item.id == data.id);
-            console.log(item)
-            console.log(item.length)
             if (item != null) {
                 Object.assign(item, data);
             }
