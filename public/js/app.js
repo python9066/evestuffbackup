@@ -34741,7 +34741,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
     },
     UPDATE_USERS_CHARS: function UPDATE_USERS_CHARS(state, data) {
       var item = state.userschars.find(function (item) {
-        return item.id === data.id;
+        return item.id == data.id;
       });
 
       if (item.length > 0) {
