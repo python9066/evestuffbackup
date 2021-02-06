@@ -34746,7 +34746,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
       console.log(item);
       console.log(item.length);
 
-      if (item.length > 0) {
+      if (item != null) {
         Object.assign(item, data);
       }
     },
