@@ -34743,6 +34743,8 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
       var item = state.userschars.find(function (item) {
         return item.id == data.id;
       });
+      console.log(item);
+      console.log(item.length);
 
       if (item.length > 0) {
         Object.assign(item, data);
