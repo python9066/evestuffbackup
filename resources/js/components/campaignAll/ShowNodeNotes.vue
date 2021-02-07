@@ -11,7 +11,7 @@
         </v-card-title>
         <v-card-text>
             <v-textarea
-                :vlaue="nodeNoteItem.notes"
+                :v-model="nodeNoteItem.notes"
                 auto-grow
                 outlined
                 disabled
@@ -19,7 +19,7 @@
             ><v-divider></v-divider>
             <div>
                 <v-textarea
-                    :value="editText"
+                    v-model="editText"
                     auto-grow
                     filled
                     label="Enter New Nodes Here"

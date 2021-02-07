@@ -18034,7 +18034,7 @@ var render = function() {
         [
           _c("v-textarea", {
             attrs: {
-              vlaue: _vm.nodeNoteItem.notes,
+              "v-model": _vm.nodeNoteItem.notes,
               "auto-grow": "",
               outlined: "",
               disabled: ""
@@ -18047,10 +18047,16 @@ var render = function() {
             [
               _c("v-textarea", {
                 attrs: {
-                  value: _vm.editText,
                   "auto-grow": "",
                   filled: "",
                   label: "Enter New Nodes Here"
+                },
+                model: {
+                  value: _vm.editText,
+                  callback: function($$v) {
+                    _vm.editText = $$v
+                  },
+                  expression: "editText"
                 }
               })
             ],
