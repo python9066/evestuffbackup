@@ -18045,7 +18045,7 @@ var render = function() {
             { attrs: { "min-height": "200px", "max-height": "700px" } },
             [
               _c("v-textarea", {
-                attrs: { outlined: "", disabled: "" },
+                attrs: { readonly: "", outlined: "" },
                 model: {
                   value: _vm.nodeNoteItem.notes,
                   callback: function($$v) {
