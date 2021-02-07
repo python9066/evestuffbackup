@@ -17490,7 +17490,7 @@ var render = function() {
                                     "v-badge",
                                     {
                                       attrs: {
-                                        color: "suggest",
+                                        color: "blue",
                                         content: _vm.messageCount
                                       }
                                     },
@@ -17498,7 +17498,7 @@ var render = function() {
                                       _c(
                                         "v-icon",
                                         {
-                                          staticClass: " pl-5",
+                                          staticClass: " pr-5",
                                           attrs: { small: "" }
                                         },
                                         [

@@ -435,10 +435,10 @@
                         <div class=" d-inline-flex">
                             <v-badge
                                 v-if="$can('super')"
-                                color="suggest"
+                                color="blue"
                                 :content="messageCount"
                             >
-                                <v-icon small class=" pl-5">
+                                <v-icon small class=" pr-5">
                                     fas fa-comment-alt
                                 </v-icon>
                             </v-badge>
