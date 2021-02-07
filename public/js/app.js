@@ -976,42 +976,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -9900,20 +9864,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -10574,11 +10524,6 @@ function sleep(ms) {
     roleEditForm: function roleEditForm(a) {
       this.editrole = a; // console.log("LALAL");
       // console.log(a);
-    },
-    showMessage: function showMessage(item) {
-      console.log(item);
-      this.nodeNoteItem = item;
-      this.showNodeNotes = true;
     },
     charEditForm: function charEditForm($event) {
       this.oldChar = this.userCharsDrop.find(function (user) {
@@ -17845,36 +17790,7 @@ var render = function() {
                 )
               ]
             )
-          ]),
-          _vm._v(" "),
-          _c(
-            "v-dialog",
-            {
-              attrs: {
-                "max-width": "700px",
-                "z-index": "0",
-                value: _vm.showNodeNotes
-              },
-              on: {
-                "click:outside": function($event) {
-                  return _vm.closeNodeMessage()
-                }
-              }
-            },
-            [
-              _vm.$can("super")
-                ? _c("ShowNodeNotes", {
-                    attrs: { nodeNoteItem: _vm.nodeNoteItem },
-                    on: {
-                      closeMessage: function($event) {
-                        _vm.showNodeNotes = false
-                      }
-                    }
-                  })
-                : _vm._e()
-            ],
-            1
-          )
+          ])
         ],
         1
       )
@@ -26560,9 +26476,6 @@ var render = function() {
                   },
                   openSolaLog: function($event) {
                     return _vm.openSolaLog($event)
-                  },
-                  openMessage: function($event) {
-                    return _vm.showMessage($event)
                   }
                 }
               })

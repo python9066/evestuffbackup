@@ -369,7 +369,6 @@
                 :key="system.id"
                 @openAdd="openAdd($event)"
                 @openSolaLog="openSolaLog($event)"
-                @openMessage="showMessage($event)"
             >
             </systemTable>
         </v-row>
@@ -433,19 +432,6 @@
             >
             </SolaSystemLogging>
         </v-overlay>
-        <!-- <v-dialog
-            max-width="700px"
-            z-index="0"
-            :value="showNodeNotes"
-            @click:outside="closeNodeMessage()"
-        >
-            <ShowNodeNotes
-                :nodeNoteItem="nodeNoteItem"
-                v-if="$can('super')"
-                @closeMessage="showNodeNotes = false"
-            >
-            </ShowNodeNotes>
-        </v-dialog> -->
     </div>
 </template>
 <!-- {{ $route.params.id }} - {{ test }} -  -->
@@ -870,12 +856,6 @@ export default {
             this.editrole = a;
             // console.log("LALAL");
             // console.log(a);
-        },
-
-        showMessage(item) {
-            console.log(item);
-            this.nodeNoteItem = item;
-            this.showNodeNotes = true;
         },
 
         charEditForm($event) {
