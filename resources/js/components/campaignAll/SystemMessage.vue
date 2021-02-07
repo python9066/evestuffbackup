@@ -100,6 +100,7 @@ export default {
         close() {
             this.editText = null;
             this.showNodeNotes = false;
+            console.log("close");
         },
 
         updatetext() {

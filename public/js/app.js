@@ -2314,6 +2314,7 @@ __webpack_require__.r(__webpack_exports__);
     close: function close() {
       this.editText = null;
       this.showNodeNotes = false;
+      console.log("close");
     },
     updatetext: function updatetext() {
       this.editText = this.editText + "\n";
