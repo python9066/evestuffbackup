@@ -9890,6 +9890,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
 
 
 
@@ -26664,6 +26668,11 @@ var render = function() {
                 "max-width": "700px",
                 "z-index": "0",
                 value: _vm.showNodeNotes
+              },
+              on: {
+                "click:outside": function($event) {
+                  return _vm.closeNodeMessage()
+                }
               }
             },
             [
@@ -26673,9 +26682,6 @@ var render = function() {
                     on: {
                       closeMessage: function($event) {
                         _vm.showNodeNotes = false
-                      },
-                      "click:outside": function($event) {
-                        return _vm.closeNodeMessage()
                       }
                     }
                   })
