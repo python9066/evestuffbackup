@@ -2318,17 +2318,17 @@ __webpack_require__.r(__webpack_exports__);
     updatetext: function updatetext() {
       this.editText = this.editText + "\n";
 
-      if (this.nodeNoteItem.notes == null) {
+      if (this.item.notes == null) {
         var note = moment__WEBPACK_IMPORTED_MODULE_1___default.a.utc().format("HH:mm:ss") + " - " + this.$store.state.user_name + ": " + this.editText;
       } else {
-        var note = moment__WEBPACK_IMPORTED_MODULE_1___default.a.utc().format("HH:mm:ss") + " - " + this.$store.state.user_name + ": " + this.editText + this.nodeNoteItem.notes;
+        var note = moment__WEBPACK_IMPORTED_MODULE_1___default.a.utc().format("HH:mm:ss") + " - " + this.$store.state.user_name + ": " + this.editText + this.item.notes;
       }
 
-      this.nodeNoteItem.notes = note;
+      this.item.notes = note;
       var request = {
         notes: note
       };
-      this.$store.dispatch("updateCampaignSystem", this.nodeNoteItem); // axios({
+      this.$store.dispatch("updateCampaignSystem", this.item); // axios({
       //     method: "put",
       //     url: "/api/campaignsystems/" + item.id + "/" + this.campaign_id,
       //     data: request,

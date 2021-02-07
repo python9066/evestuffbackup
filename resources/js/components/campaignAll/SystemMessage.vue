@@ -104,7 +104,7 @@ export default {
 
         updatetext() {
             this.editText = this.editText + "\n";
-            if (this.nodeNoteItem.notes == null) {
+            if (this.item.notes == null) {
                 var note =
                     moment.utc().format("HH:mm:ss") +
                     " - " +
@@ -118,14 +118,14 @@ export default {
                     this.$store.state.user_name +
                     ": " +
                     this.editText +
-                    this.nodeNoteItem.notes;
+                    this.item.notes;
             }
 
-            this.nodeNoteItem.notes = note;
+            this.item.notes = note;
             let request = {
                 notes: note
             };
-            this.$store.dispatch("updateCampaignSystem", this.nodeNoteItem);
+            this.$store.dispatch("updateCampaignSystem", this.item);
             // axios({
             //     method: "put",
             //     url: "/api/campaignsystems/" + item.id + "/" + this.campaign_id,
