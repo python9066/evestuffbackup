@@ -11,7 +11,7 @@
         </v-card-title>
         <v-card-text>
             <v-textarea
-                :v-model="nodeNoteItem.notes"
+                v-model="nodeNoteItem.notes"
                 auto-grow
                 outlined
                 disabled

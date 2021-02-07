@@ -18033,11 +18033,13 @@ var render = function() {
         "v-card-text",
         [
           _c("v-textarea", {
-            attrs: {
-              "v-model": _vm.nodeNoteItem.notes,
-              "auto-grow": "",
-              outlined: "",
-              disabled: ""
+            attrs: { "auto-grow": "", outlined: "", disabled: "" },
+            model: {
+              value: _vm.nodeNoteItem.notes,
+              callback: function($$v) {
+                _vm.$set(_vm.nodeNoteItem, "notes", $$v)
+              },
+              expression: "nodeNoteItem.notes"
             }
           }),
           _c("v-divider"),
