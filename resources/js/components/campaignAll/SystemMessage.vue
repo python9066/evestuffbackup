@@ -27,15 +27,15 @@
                 class=" d-flex flex-column"
             >
                 <v-card-title
-                    >Notes for node {{ nodeNoteItem.node }}. Campaign
-                    {{ nodeNoteItem.text }}
+                    >Notes for node {{ item.node }}. Campaign
+                    {{ item.text }}
                 </v-card-title>
                 <v-card-text>
                     <v-textarea
                         height="400px"
                         readonly
                         no-resize
-                        v-model="nodeNoteItem.notes"
+                        v-model="item.notes"
                         outlined
                         placeholder="No Nodes"
                     ></v-textarea>

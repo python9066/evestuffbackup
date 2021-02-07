@@ -18257,9 +18257,9 @@ var render = function() {
               _c("v-card-title", [
                 _vm._v(
                   "Notes for node " +
-                    _vm._s(_vm.nodeNoteItem.node) +
+                    _vm._s(_vm.item.node) +
                     ". Campaign\n                " +
-                    _vm._s(_vm.nodeNoteItem.text) +
+                    _vm._s(_vm.item.text) +
                     "\n            "
                 )
               ]),
@@ -18276,11 +18276,11 @@ var render = function() {
                       placeholder: "No Nodes"
                     },
                     model: {
-                      value: _vm.nodeNoteItem.notes,
+                      value: _vm.item.notes,
                       callback: function($$v) {
-                        _vm.$set(_vm.nodeNoteItem, "notes", $$v)
+                        _vm.$set(_vm.item, "notes", $$v)
                       },
-                      expression: "nodeNoteItem.notes"
+                      expression: "item.notes"
                     }
                   }),
                   _vm._v(" "),
