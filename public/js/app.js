@@ -18069,7 +18069,7 @@ var render = function() {
           _c(
             "div",
             [
-              _c("v-textarea", {
+              _c("v-text-field", {
                 attrs: {
                   "auto-grow": "",
                   filled: "",

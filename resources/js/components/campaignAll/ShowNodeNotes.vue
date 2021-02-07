@@ -19,12 +19,12 @@
             ></v-textarea>
             <v-divider></v-divider>
             <div>
-                <v-textarea
+                <v-text-field
                     v-model="editText"
                     auto-grow
                     filled
                     label="Enter New Nodes Here"
-                ></v-textarea>
+                ></v-text-field>
             </div>
         </v-card-text>
         <v-spacer></v-spacer
