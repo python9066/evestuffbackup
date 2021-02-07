@@ -17490,7 +17490,7 @@ var render = function() {
                                     "v-badge",
                                     {
                                       attrs: {
-                                        color: "green",
+                                        color: "suggest",
                                         content: _vm.messageCount
                                       }
                                     },

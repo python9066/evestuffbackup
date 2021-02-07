@@ -435,7 +435,7 @@
                         <div class=" d-inline-flex">
                             <v-badge
                                 v-if="$can('super')"
-                                color="green"
+                                color="suggest"
                                 :content="messageCount"
                             >
                                 <v-icon small class=" pl-5">
