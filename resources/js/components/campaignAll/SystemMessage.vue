@@ -105,6 +105,14 @@ export default {
             } else {
                 return "fas fa-comment-alt";
             }
+        },
+
+        submitActive() {
+            if (this.editText != null) {
+                return false;
+            } else {
+                return true;
+            }
         }
     }
 };
