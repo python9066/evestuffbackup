@@ -29,7 +29,12 @@
         </v-card-text>
         <v-spacer></v-spacer
         ><v-card-actions>
-            <v-btn class="white--text" color="green" @click="updatetext()">
+            <v-btn
+                class="white--text"
+                color="green"
+                @click="updatetext()"
+                :disabled="submitActive"
+            >
                 Submit
             </v-btn>
 
@@ -57,6 +62,7 @@ export default {
 
     methods: {
         close() {
+            this.editText = null;
             this.$emit("closeMessage", "yo");
         },
 
@@ -98,7 +104,15 @@ export default {
         }
     },
 
-    computed: {}
+    computed: {
+        submitActive() {
+            if (this.editText != null) {
+                return "false";
+            } else {
+                return "true";
+            }
+        }
+    }
 };
 </script>
 

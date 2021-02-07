@@ -2158,6 +2158,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 
@@ -2173,6 +2178,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     close: function close() {
+      this.editText = null;
       this.$emit("closeMessage", "yo");
     },
     updatetext: function updatetext() {
@@ -2202,7 +2208,15 @@ __webpack_require__.r(__webpack_exports__);
       this.editText = null;
     }
   },
-  computed: {}
+  computed: {
+    submitActive: function submitActive() {
+      if (this.editText != null) {
+        return "false";
+      } else {
+        return "true";
+      }
+    }
+  }
 });
 
 /***/ }),
@@ -18084,7 +18098,7 @@ var render = function() {
             "v-btn",
             {
               staticClass: "white--text",
-              attrs: { color: "green" },
+              attrs: { color: "green", disabled: _vm.submitActive },
               on: {
                 click: function($event) {
                   return _vm.updatetext()
