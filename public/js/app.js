@@ -1001,6 +1001,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -17490,17 +17492,14 @@ var render = function() {
                                     "v-badge",
                                     {
                                       attrs: {
-                                        color: "blue",
+                                        color: "green",
                                         content: _vm.messageCount
                                       }
                                     },
                                     [
                                       _c(
                                         "v-icon",
-                                        {
-                                          staticClass: " pr-5",
-                                          attrs: { small: "" }
-                                        },
+                                        { attrs: { small: "", color: "blue" } },
                                         [
                                           _vm._v(
                                             "\n                                fas fa-comment-alt\n                            "
@@ -17516,6 +17515,7 @@ var render = function() {
                                 ? _c(
                                     "v-icon",
                                     {
+                                      staticClass: "pl-5",
                                       attrs: {
                                         color: "orange darken-3",
                                         small: ""

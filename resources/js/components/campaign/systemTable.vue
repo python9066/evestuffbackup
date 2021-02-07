@@ -435,19 +435,21 @@
                         <div class=" d-inline-flex">
                             <v-badge
                                 v-if="$can('super')"
-                                color="blue"
+                                color="green"
                                 :content="messageCount"
                             >
-                                <v-icon small class=" pr-5">
+                                <v-icon small color="blue">
                                     fas fa-comment-alt
                                 </v-icon>
                             </v-badge>
+
                             <v-icon
                                 v-if="
                                     item.status_id != 4 && item.status_id != 5
                                 "
                                 color="orange darken-3"
                                 small
+                                class="pl-5"
                                 @click="deleteNode(item)"
                             >
                                 fas fa-trash-alt
