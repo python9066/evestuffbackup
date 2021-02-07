@@ -2114,6 +2114,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_1__);
 //
 //
 //
@@ -2160,6 +2162,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2180,9 +2183,9 @@ __webpack_require__.r(__webpack_exports__);
       this.editText = this.editText + "\n";
 
       if (this.nodeNoteItem.notes == null) {
-        var note = moment.utc().format("HH:mm:ss") + ": " + this.$store.state.user_name + ": " + this.editText;
+        var note = moment__WEBPACK_IMPORTED_MODULE_1___default.a.utc().format("HH:mm:ss") + ": " + this.$store.state.user_name + ": " + this.editText;
       } else {
-        var note = moment.utc().format("HH:mm:ss") + ": " + this.$store.state.user_name + ": " + this.editText + this.nodeNoteItem.notes;
+        var note = moment__WEBPACK_IMPORTED_MODULE_1___default.a.utc().format("HH:mm:ss") + ": " + this.$store.state.user_name + ": " + this.editText + this.nodeNoteItem.notes;
       }
 
       this.nodeNoteItem.notes = note;
