@@ -4,7 +4,7 @@
             color="green"
             overlap
             :content="messageCount"
-            :value="showMessage"
+            :value="showNumber"
         >
             <v-icon color="blue" @click="showMessage(item)">
                 {{ icon }}
@@ -23,7 +23,7 @@ export default {
     data() {
         return {
             messageCount: 0,
-            showMessage: false
+            showNumber: false
         };
     },
 

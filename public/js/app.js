@@ -2140,7 +2140,7 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       messageCount: 0,
-      showMessage: false
+      showNumber: false
     };
   },
   methods: {
@@ -17899,7 +17899,7 @@ var render = function() {
             color: "green",
             overlap: "",
             content: _vm.messageCount,
-            value: _vm.showMessage
+            value: _vm.showNumber
           }
         },
         [
