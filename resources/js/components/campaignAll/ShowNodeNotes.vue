@@ -14,6 +14,7 @@
                 :vlaue="nodeNoteItem.notes"
                 auto-grow
                 filled
+                placeholder="No notes"
                 disabled
             ></v-textarea
         ></v-card-text>
