@@ -13,8 +13,8 @@
             <v-textarea
                 :vlaue="nodeNoteItem.notes"
                 auto-grow
+                filled
                 disabled
-                :label="nodeNoteItem.node + ' - ' + nodeNoteItem.text"
             ></v-textarea
         ></v-card-text>
         <v-spacer></v-spacer
