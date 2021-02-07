@@ -61,7 +61,6 @@ Vue.component('TidiCalc', require('./components/random/TidiCalc.vue').default);
 Vue.component('JoinNodeTable', require('./components/campaignAll/JoinNodeTable.vue').default);
 Vue.component('NodeExtraCharMulti', require('./components/multicampaigns/NodeExtraCharMulti.vue').default);
 Vue.component('SystemMessage', require('./components/campaignALL/SystemMessage.vue').default);
-Vue.component('ShowNodeNotes', require('./components/campaignALL/ShowNodeNotes.vue').default);
 
 
 
