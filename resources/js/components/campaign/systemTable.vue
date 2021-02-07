@@ -612,6 +612,7 @@ export default {
 
         openMessage(item) {
             // this.$emit("openMessage", item);
+            this.showNodeNotes = true;
         },
 
         openAdd(item) {
