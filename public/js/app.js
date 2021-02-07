@@ -997,6 +997,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -1087,7 +1092,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       charAddNode: null,
       noteText: "",
       test1: "",
-      message: 0,
+      messageCount: 0,
       showMessage: false
     };
   },
@@ -17506,7 +17511,13 @@ var render = function() {
                               _vm.$can("super")
                                 ? _c(
                                     "v-badge",
-                                    { attrs: { color: "green", dot: "" } },
+                                    {
+                                      attrs: {
+                                        color: "green",
+                                        dot: "",
+                                        content: _vm.messageCount
+                                      }
+                                    },
                                     [
                                       _c(
                                         "v-icon",

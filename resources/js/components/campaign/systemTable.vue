@@ -443,7 +443,12 @@
                             >
                                 fas fa-trash-alt
                             </v-icon>
-                            <v-badge v-if="$can('super')" color="green" dot>
+                            <v-badge
+                                v-if="$can('super')"
+                                color="green"
+                                dot
+                                :content="messageCount"
+                            >
                                 <v-icon small class=" pl-5">
                                     fas fa-comment-alt
                                 </v-icon>
@@ -577,7 +582,7 @@ export default {
             charAddNode: null,
             noteText: "",
             test1: "",
-            message: 0,
+            messageCount: 0,
             showMessage: false
         };
     },
