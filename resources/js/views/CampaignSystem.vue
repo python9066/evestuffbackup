@@ -434,7 +434,10 @@
             </SolaSystemLogging>
         </v-overlay>
         <v-overlay z-index="0" :value="showNodeNotes">
-            <ShowNodeNotes v-if="$can('super')" @closeSolaLog="solalog = false">
+            <ShowNodeNotes
+                v-if="$can('super')"
+                @closeMessage="showNodeNotes = false"
+            >
             </ShowNodeNotes>
         </v-overlay>
     </div>
@@ -500,6 +503,7 @@ export default {
             newLinkRules: [v => !!v || "T1 or T2?"],
 
             nodeItem: null,
+            nodeNoteItem: [],
 
             oldChar: [],
             overlay: false,
@@ -620,7 +624,6 @@ export default {
                 this.$store.dispatch("addNodeJoin", e.flag.message);
             })
             .listen("NodeJoinUpdate", e => {
-                console.log(e);
                 this.$store.dispatch("updateNodeJoin", e.flag.message);
             })
             .listen("CampaignSystemDelete", e => {
@@ -860,6 +863,7 @@ export default {
 
         showMessage(item) {
             console.log(item);
+            this.nodeNoteItem = item;
             this.showNodeNotes = true;
         },
 

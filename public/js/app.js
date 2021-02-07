@@ -2132,18 +2132,23 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
-    campaign_id: Number
+    campaign_id: Number,
+    nodeNoteItem: Object
   },
   data: function data() {
     return {};
   },
   methods: {
     close: function close() {
-      this.$emit("closeNotes", "yo");
+      this.$emit("closeMessage", "yo");
     }
   },
   computed: {}
@@ -9811,6 +9816,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
 
 
 
@@ -9896,6 +9904,7 @@ function sleep(ms) {
         return !!v || "T1 or T2?";
       }],
       nodeItem: null,
+      nodeNoteItem: [],
       oldChar: [],
       overlay: false,
       removeShown: false,
@@ -10022,8 +10031,6 @@ function sleep(ms) {
               }).listen("NodeJoinNew", function (e) {
                 _this.$store.dispatch("addNodeJoin", e.flag.message);
               }).listen("NodeJoinUpdate", function (e) {
-                console.log(e);
-
                 _this.$store.dispatch("updateNodeJoin", e.flag.message);
               }).listen("CampaignSystemDelete", function (e) {
                 _this.$store.dispatch("deleteCampaignSystem", e.flag.campSysID);
@@ -10471,6 +10478,7 @@ function sleep(ms) {
     },
     showMessage: function showMessage(item) {
       console.log(item);
+      this.nodeNoteItem = item;
       this.showNodeNotes = true;
     },
     charEditForm: function charEditForm($event) {
@@ -17950,10 +17958,18 @@ var render = function() {
     "v-card",
     {
       staticClass: " d-flex flex-column",
-      attrs: { tile: "", "min-width": "1400px", "min-height": "700px" }
+      attrs: { tile: "", "min-width": "700px", "min-height": "700px" }
     },
     [
-      _c("v-card-title", [_vm._v("NOTES FOR ALL THE THINGS ")]),
+      _c("v-card-title", [
+        _vm._v(
+          "Notes for node " +
+            _vm._s(_vm.nodeNoteItem.node) +
+            " from the\n        " +
+            _vm._s(_vm.nodeNoteItem.text) +
+            "\n        Campaign\n    "
+        )
+      ]),
       _vm._v(" "),
       _c("v-card-text", [_vm._v(" I HAVE NO IDEA")]),
       _vm._v(" "),
@@ -26509,8 +26525,8 @@ var render = function() {
               _vm.$can("super")
                 ? _c("ShowNodeNotes", {
                     on: {
-                      closeSolaLog: function($event) {
-                        _vm.solalog = false
+                      closeMessage: function($event) {
+                        _vm.showNodeNotes = false
                       }
                     }
                   })

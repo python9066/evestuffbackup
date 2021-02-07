@@ -1,11 +1,15 @@
 <template>
     <v-card
         tile
-        min-width="1400px"
+        min-width="700px"
         min-height="700px"
         class=" d-flex flex-column"
     >
-        <v-card-title>NOTES FOR ALL THE THINGS </v-card-title>
+        <v-card-title
+            >Notes for node {{ nodeNoteItem.node }} from the
+            {{ nodeNoteItem.text }}
+            Campaign
+        </v-card-title>
         <v-card-text> I HAVE NO IDEA</v-card-text>
         <v-spacer></v-spacer
         ><v-card-actions
@@ -21,7 +25,8 @@ import { mapGetters } from "vuex";
 import { mapState } from "vuex";
 export default {
     props: {
-        campaign_id: Number
+        campaign_id: Number,
+        nodeNoteItem: Object
     },
     data() {
         return {};
@@ -29,7 +34,7 @@ export default {
 
     methods: {
         close() {
-            this.$emit("closeNotes", "yo");
+            this.$emit("closeMessage", "yo");
         }
     },
 
