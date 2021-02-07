@@ -686,6 +686,7 @@ export default {
 
         closeNodeMessage() {
             this.nodeEditText = null;
+            this.showNodeNotes = false;
         },
 
         async finishCampaign() {

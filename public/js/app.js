@@ -10192,6 +10192,7 @@ function sleep(ms) {
     },
     closeNodeMessage: function closeNodeMessage() {
       this.nodeEditText = null;
+      this.showNodeNotes = false;
     },
     finishCampaign: function finishCampaign() {
       var _this3 = this;
