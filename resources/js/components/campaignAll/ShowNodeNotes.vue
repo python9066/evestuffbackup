@@ -70,17 +70,19 @@ export default {
             this.editText = this.editText + "\n";
             if (this.nodeNoteItem.notes == null) {
                 var note =
+                    "<stong>" +
                     moment.utc().format("HH:mm:ss") +
-                    ": " +
+                    " - " +
                     this.$store.state.user_name +
-                    ": " +
+                    ": </strong> " +
                     this.editText;
             } else {
                 var note =
+                    "<stong>" +
                     moment.utc().format("HH:mm:ss") +
-                    ": " +
+                    " - " +
                     this.$store.state.user_name +
-                    ": " +
+                    ": </strong>" +
                     this.editText +
                     this.nodeNoteItem.notes;
             }
