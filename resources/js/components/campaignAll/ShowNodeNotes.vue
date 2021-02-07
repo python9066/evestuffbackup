@@ -11,12 +11,16 @@
             {{ nodeNoteItem.text }}
         </v-card-title>
         <v-card-text>
+            <v-card
+            min-height="200px"
+            max-height="700px">
             <v-textarea
                 v-model="nodeNoteItem.notes"
                 outlined
                 disabled
             ></v-textarea
-            ><v-divider></v-divider>
+            >
+            </v-card><v-divider></v-divider>
             <div>
                 <v-textarea
                     v-model="editText"
