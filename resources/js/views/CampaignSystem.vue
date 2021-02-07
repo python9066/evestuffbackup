@@ -433,6 +433,10 @@
             >
             </SolaSystemLogging>
         </v-overlay>
+        <v-overlay z-index="0" :value="showNodeNotes">
+            <ShowNodeNotes v-if="$can('super')" @closeSolaLog="solalog = false">
+            </ShowNodeNotes>
+        </v-overlay>
     </div>
 </template>
 <!-- {{ $route.params.id }} - {{ test }} -  -->
@@ -461,14 +465,12 @@ export default {
                 { text: "Ready to go", value: 3 }
             ],
 
-            newCharName: null,
-            newNameRules: [v => !!v || "Name is required"],
-            newRole: null,
-            newRoleRules: [v => !!v || "You need to pick a role"],
-            newShip: null,
-            newShipRules: [v => !!v || "Ship is required"],
-            newLink: null,
-            newLinkRules: [v => !!v || "T1 or T2?"],
+            addShown: false,
+
+            bullhorn: false,
+
+            campaignId: 0,
+            channel: "",
 
             editCharName: null,
             editNameRules: [v => !!v || "Name is required"],
@@ -483,32 +485,44 @@ export default {
             editLinkRules: [v => !!v || "T1 or T2?"],
             editUserForm: 1,
             editrole_name: null,
+            editrole: 0,
+
+            link: "",
+            load: 0,
+
+            newCharName: null,
+            newNameRules: [v => !!v || "Name is required"],
+            newRole: null,
+            newRoleRules: [v => !!v || "You need to pick a role"],
+            newShip: null,
+            newShipRules: [v => !!v || "Ship is required"],
+            newLink: null,
+            newLinkRules: [v => !!v || "T1 or T2?"],
+
+            nodeItem: null,
 
             oldChar: [],
-            role: 0,
-            editrole: 0,
-            systems: [],
-            test: 1,
-            test2: "",
-            valid: false,
-            addShown: false,
-            removeShown: false,
-            showTable: false,
-            systemLoaded: false,
-            campaignId: 0,
-            showUsers: false,
-            showNotes: false,
-            channel: "",
             overlay: false,
-            bullhorn: false,
-            link: "",
+
+            removeShown: false,
+            role: 0,
+
             showAdd: false,
-            nodeItem: null,
-            load: 0,
+            showNotes: false,
+            showTable: false,
+            showUsers: false,
             showLog: false,
+            showNodeNotes: false,
             solalog: false,
             solaid: 0,
-            solaName: null
+            solaName: null,
+            systemLoaded: false,
+            systems: [],
+
+            test: 1,
+            test2: "",
+
+            valid: false
         };
     },
 
