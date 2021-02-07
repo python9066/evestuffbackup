@@ -2303,7 +2303,8 @@ __webpack_require__.r(__webpack_exports__);
     return {
       messageCount: 0,
       showNumber: false,
-      showNodeNotes: false
+      showNodeNotes: false,
+      editText: null
     };
   },
   methods: {

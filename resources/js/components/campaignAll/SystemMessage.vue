@@ -87,7 +87,8 @@ export default {
         return {
             messageCount: 0,
             showNumber: false,
-            showNodeNotes: false
+            showNodeNotes: false,
+            editText: null
         };
     },
 
