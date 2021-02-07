@@ -438,7 +438,7 @@
                 :nodeNoteItem="nodeNoteItem"
                 v-if="$can('super')"
                 @closeMessage="showNodeNotes = false"
-                @click:outside="console.log('I closed this')"
+                @click:outside="closeNodeMessage()"
             >
             </ShowNodeNotes>
         </v-dialog>
@@ -677,6 +677,10 @@ export default {
             this.solaid = item.solaID;
             this.solaName = item.solaName;
             this.solalog = true;
+        },
+
+        closeNodeMessage() {
+            console.log("I closed a thing");
         },
 
         async finishCampaign() {

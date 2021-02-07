@@ -10186,6 +10186,9 @@ function sleep(ms) {
       this.solaName = item.solaName;
       this.solalog = true;
     },
+    closeNodeMessage: function closeNodeMessage() {
+      console.log("I closed a thing");
+    },
     finishCampaign: function finishCampaign() {
       var _this3 = this;
 
@@ -26672,7 +26675,7 @@ var render = function() {
                         _vm.showNodeNotes = false
                       },
                       "click:outside": function($event) {
-                        return _vm.console.log("I closed this")
+                        return _vm.closeNodeMessage()
                       }
                     }
                   })
