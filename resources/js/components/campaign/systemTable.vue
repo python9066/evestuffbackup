@@ -433,18 +433,9 @@
                     </template>
                     <template v-slot:item.actions="{ item }">
                         <div class=" d-inline-flex">
-                            <v-badge
-                                v-if="$can('super')"
-                                color="green"
-                                left
-                                overlap
-                                :content="messageCount"
-                            >
-                                <v-icon color="blue">
-                                    fas fa-comment-alt
-                                </v-icon>
-                            </v-badge>
-
+                            <SystemMessage  v-if="$can('super')"
+                            item: item >
+                             </SystemMessage>
                             <v-icon
                                 v-if="
                                     item.status_id != 4 && item.status_id != 5
@@ -584,9 +575,7 @@ export default {
             singleExpand: false,
             charAddNode: null,
             noteText: "",
-            test1: "",
-            messageCount: 0,
-            showMessage: false
+            test1: ""
         };
     },
 
