@@ -2,15 +2,21 @@
     <v-card
         tile
         min-width="700px"
-        min-height="700px"
+        min-height="200px"
         class=" d-flex flex-column"
     >
         <v-card-title
-            >Notes for the {{ nodeNoteItem.node }} node for the
+            >Notes for node {{ nodeNoteItem.node }}. Campaign
             {{ nodeNoteItem.text }}
-            Campaign
         </v-card-title>
-        <v-card-text> I HAVE NO IDEA</v-card-text>
+        <v-card-text>
+            <v-textarea
+                :vlaue="nodeNoteItem.notes"
+                auto-grow
+                disabled
+                :label="nodeNoteItem.node + ' - ' + nodeNoteItem.text"
+            ></v-textarea
+        ></v-card-text>
         <v-spacer></v-spacer
         ><v-card-actions
             ><v-btn class="white--text" color="teal" @click="close()">

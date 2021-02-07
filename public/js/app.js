@@ -2136,6 +2136,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -17959,20 +17965,33 @@ var render = function() {
     "v-card",
     {
       staticClass: " d-flex flex-column",
-      attrs: { tile: "", "min-width": "700px", "min-height": "700px" }
+      attrs: { tile: "", "min-width": "700px", "min-height": "200px" }
     },
     [
       _c("v-card-title", [
         _vm._v(
-          "Notes for the " +
+          "Notes for node " +
             _vm._s(_vm.nodeNoteItem.node) +
-            " node for the\n        " +
+            ". Campaign\n        " +
             _vm._s(_vm.nodeNoteItem.text) +
-            "\n        Campaign\n    "
+            "\n    "
         )
       ]),
       _vm._v(" "),
-      _c("v-card-text", [_vm._v(" I HAVE NO IDEA")]),
+      _c(
+        "v-card-text",
+        [
+          _c("v-textarea", {
+            attrs: {
+              vlaue: _vm.nodeNoteItem.notes,
+              "auto-grow": "",
+              disabled: "",
+              label: _vm.nodeNoteItem.node + " - " + _vm.nodeNoteItem.text
+            }
+          })
+        ],
+        1
+      ),
       _vm._v(" "),
       _c("v-spacer"),
       _c(
