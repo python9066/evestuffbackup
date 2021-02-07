@@ -2,7 +2,7 @@
     <div>
         <v-badge color="green" overlap :content="messageCount">
             <v-icon color="blue">
-                fas fa-comment-alt
+                {{ icon }}
             </v-icon>
         </v-badge>
     </div>
@@ -25,7 +25,13 @@ export default {
     methods: {},
 
     computed: {
-        icon() {}
+        icon() {
+            if (this.item.notes == null) {
+                return "far fa-comment-alt";
+            } else {
+                return "fas fa-comment-alt";
+            }
+        }
     }
 };
 </script>

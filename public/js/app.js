@@ -2133,7 +2133,13 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {},
   computed: {
-    icon: function icon() {}
+    icon: function icon() {
+      if (this.item.notes == null) {
+        return "far fa-comment-alt";
+      } else {
+        return "fas fa-comment-alt";
+      }
+    }
   }
 });
 
@@ -17868,7 +17874,7 @@ var render = function() {
         { attrs: { color: "green", overlap: "", content: _vm.messageCount } },
         [
           _c("v-icon", { attrs: { color: "blue" } }, [
-            _vm._v("\n            fas fa-comment-alt\n        ")
+            _vm._v("\n            " + _vm._s(_vm.icon) + "\n        ")
           ])
         ],
         1
