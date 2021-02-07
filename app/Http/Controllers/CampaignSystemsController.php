@@ -224,7 +224,7 @@ class CampaignSystemsController extends Controller
             'id' => $id
         ]);
 
-        dd($request, $id, $flag);
+        // dd($request, $id, $flag);
         broadcast(new NodeMessageUpdate($flag))->toOthers();
     }
 
