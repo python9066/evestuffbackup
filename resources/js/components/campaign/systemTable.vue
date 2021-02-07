@@ -589,6 +589,7 @@ export default {
             nodeText: "",
             showNodeNotes: false,
             addShown: false,
+            nodeNoteItem: [],
             singleExpand: false,
             charAddNode: null,
             noteText: "",

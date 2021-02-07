@@ -1099,6 +1099,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       nodeText: "",
       showNodeNotes: false,
       addShown: false,
+      nodeNoteItem: [],
       singleExpand: false,
       charAddNode: null,
       noteText: "",
