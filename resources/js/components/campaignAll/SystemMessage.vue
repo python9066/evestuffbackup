@@ -1,6 +1,11 @@
 <template>
     <div>
-        <v-badge color="green" overlap :content="messageCount">
+        <v-badge
+            color="green"
+            overlap
+            :content="messageCount"
+            :value="showMessage"
+        >
             <v-icon color="blue">
                 {{ icon }}
             </v-icon>

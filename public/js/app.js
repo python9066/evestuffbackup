@@ -2119,6 +2119,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -17871,7 +17876,14 @@ var render = function() {
     [
       _c(
         "v-badge",
-        { attrs: { color: "green", overlap: "", content: _vm.messageCount } },
+        {
+          attrs: {
+            color: "green",
+            overlap: "",
+            content: _vm.messageCount,
+            value: _vm.showMessage
+          }
+        },
         [
           _c("v-icon", { attrs: { color: "blue" } }, [
             _vm._v("\n            " + _vm._s(_vm.icon) + "\n        ")
