@@ -17501,7 +17501,7 @@ var render = function() {
                               )
                             : _vm._e(),
                           _vm._v(" "),
-                          this.$can("super")
+                          _vm.$can("super")
                             ? _c(
                                 "v-badge",
                                 {

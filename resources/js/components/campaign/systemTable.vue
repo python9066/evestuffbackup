@@ -441,7 +441,7 @@
                             fas fa-trash-alt
                         </v-icon>
                         <v-badge
-                            v-if="this.$can('super')"
+                            v-if="$can('super')"
                             :content="messages"
                             :value="messages"
                             color="green"
