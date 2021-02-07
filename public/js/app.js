@@ -9889,6 +9889,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 
@@ -26669,6 +26670,9 @@ var render = function() {
                     on: {
                       closeMessage: function($event) {
                         _vm.showNodeNotes = false
+                      },
+                      "click:outside": function($event) {
+                        return _vm.console.log("I closed this")
                       }
                     }
                   })

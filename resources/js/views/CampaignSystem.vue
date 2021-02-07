@@ -438,6 +438,7 @@
                 :nodeNoteItem="nodeNoteItem"
                 v-if="$can('super')"
                 @closeMessage="showNodeNotes = false"
+                @click:outside="console.log('I closed this')"
             >
             </ShowNodeNotes>
         </v-dialog>
