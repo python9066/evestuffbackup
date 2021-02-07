@@ -9880,6 +9880,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
 
 
 
@@ -26645,7 +26649,13 @@ var render = function() {
           _vm._v(" "),
           _c(
             "v-overlay",
-            { attrs: { "z-index": "0", value: _vm.showNodeNotes } },
+            {
+              attrs: {
+                "z-index": "0",
+                value: _vm.showNodeNotes,
+                translate: "dialog-bottom-transition"
+              }
+            },
             [
               _vm.$can("super")
                 ? _c("ShowNodeNotes", {
