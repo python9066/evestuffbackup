@@ -22,7 +22,7 @@
             <v-divider></v-divider>
             <div>
                 <v-text-field
-                    v-model="editText"
+                    v-model="nodeEditText"
                     auto-grow
                     filled
                     label="Enter New Nodes Here"
@@ -54,36 +54,35 @@ import moment from "moment";
 export default {
     props: {
         campaign_id: Number,
-        nodeNoteItem: Object
+        nodeNoteItem: Object,
+        nodeEditText: String
     },
     data() {
-        return {
-            editText: null
-        };
+        return {};
     },
 
     methods: {
         close() {
-            this.editText = null;
+            this.nodeEditText = null;
             this.$emit("closeMessage", "yo");
         },
 
         updatetext() {
-            this.editText = this.editText + "\n";
+            this.nodeEditText = this.nodeEditText + "\n";
             if (this.nodeNoteItem.notes == null) {
                 var note =
                     moment.utc().format("HH:mm:ss") +
                     " - " +
                     this.$store.state.user_name +
                     ": " +
-                    this.editText;
+                    this.nodeEditText;
             } else {
                 var note =
                     moment.utc().format("HH:mm:ss") +
                     " - " +
                     this.$store.state.user_name +
                     ": " +
-                    this.editText +
+                    this.nodeEditText +
                     this.nodeNoteItem.notes;
             }
 
@@ -102,13 +101,13 @@ export default {
             //         "Content-Type": "application/json"
             //     }
             // });
-            this.editText = null;
+            this.nodeEditText = null;
         }
     },
 
     computed: {
         submitActive() {
-            if (this.editText != null) {
+            if (this.nodeEditText != null) {
                 return false;
             } else {
                 return true;

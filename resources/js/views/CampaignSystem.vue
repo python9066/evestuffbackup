@@ -511,6 +511,7 @@ export default {
 
             nodeItem: null,
             nodeNoteItem: [],
+            nodeEditText: null,
 
             oldChar: [],
             overlay: false,
@@ -684,7 +685,7 @@ export default {
         },
 
         closeNodeMessage() {
-            console.log("I closed a thing");
+            this.nodeEditText = null;
         },
 
         async finishCampaign() {

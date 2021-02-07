@@ -2171,25 +2171,24 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     campaign_id: Number,
-    nodeNoteItem: Object
+    nodeNoteItem: Object,
+    nodeEditText: String
   },
   data: function data() {
-    return {
-      editText: null
-    };
+    return {};
   },
   methods: {
     close: function close() {
-      this.editText = null;
+      this.nodeEditText = null;
       this.$emit("closeMessage", "yo");
     },
     updatetext: function updatetext() {
-      this.editText = this.editText + "\n";
+      this.nodeEditText = this.nodeEditText + "\n";
 
       if (this.nodeNoteItem.notes == null) {
-        var note = moment__WEBPACK_IMPORTED_MODULE_1___default.a.utc().format("HH:mm:ss") + " - " + this.$store.state.user_name + ": " + this.editText;
+        var note = moment__WEBPACK_IMPORTED_MODULE_1___default.a.utc().format("HH:mm:ss") + " - " + this.$store.state.user_name + ": " + this.nodeEditText;
       } else {
-        var note = moment__WEBPACK_IMPORTED_MODULE_1___default.a.utc().format("HH:mm:ss") + " - " + this.$store.state.user_name + ": " + this.editText + this.nodeNoteItem.notes;
+        var note = moment__WEBPACK_IMPORTED_MODULE_1___default.a.utc().format("HH:mm:ss") + " - " + this.$store.state.user_name + ": " + this.nodeEditText + this.nodeNoteItem.notes;
       }
 
       this.nodeNoteItem.notes = note;
@@ -2207,12 +2206,12 @@ __webpack_require__.r(__webpack_exports__);
       //     }
       // });
 
-      this.editText = null;
+      this.nodeEditText = null;
     }
   },
   computed: {
     submitActive: function submitActive() {
-      if (this.editText != null) {
+      if (this.nodeEditText != null) {
         return false;
       } else {
         return true;
@@ -9981,6 +9980,7 @@ function sleep(ms) {
       }],
       nodeItem: null,
       nodeNoteItem: [],
+      nodeEditText: null,
       oldChar: [],
       overlay: false,
       removeShown: false,
@@ -10191,7 +10191,7 @@ function sleep(ms) {
       this.solalog = true;
     },
     closeNodeMessage: function closeNodeMessage() {
-      console.log("I closed a thing");
+      this.nodeEditText = null;
     },
     finishCampaign: function finishCampaign() {
       var _this3 = this;
@@ -18087,11 +18087,11 @@ var render = function() {
                   label: "Enter New Nodes Here"
                 },
                 model: {
-                  value: _vm.editText,
+                  value: _vm.nodeEditText,
                   callback: function($$v) {
-                    _vm.editText = $$v
+                    _vm.nodeEditText = $$v
                   },
-                  expression: "editText"
+                  expression: "nodeEditText"
                 }
               })
             ],
