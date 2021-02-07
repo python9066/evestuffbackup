@@ -476,6 +476,7 @@
                                 "
                                 color="orange darken-3"
                                 small
+                                class="pl-5"
                                 @click="deleteNode(item)"
                             >
                                 fas fa-trash-alt

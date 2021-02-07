@@ -50,6 +50,7 @@
                             v-model="editText"
                             auto-grow
                             filled
+                            autofocus
                             label="Enter New Nodes Here"
                         ></v-text-field>
                     </div>
