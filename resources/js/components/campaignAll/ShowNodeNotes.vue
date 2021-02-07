@@ -17,6 +17,7 @@
                 placeholder="No notes"
                 disabled
             ></v-textarea
+            ><v-divider></v-divider
         ></v-card-text>
         <v-spacer></v-spacer
         ><v-card-actions
