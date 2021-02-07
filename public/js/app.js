@@ -5878,6 +5878,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -15931,7 +15936,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.style-3 {\r\n    background-color: rgb(255, 172, 77);\n}\n.style-2 {\r\n    background-color: rgb(30, 30, 30, 1);\n}\n.style-1 {\r\n    background-color: rgb(184, 22, 35);\n}\r\n", ""]);
+exports.push([module.i, "\n.style-3 {\n    background-color: rgb(255, 172, 77);\n}\n.style-2 {\n    background-color: rgb(30, 30, 30, 1);\n}\n.style-1 {\n    background-color: rgb(184, 22, 35);\n}\n", ""]);
 
 // exports
 
@@ -22279,27 +22284,38 @@ var render = function() {
                             fn: function(ref) {
                               var item = ref.item
                               return [
-                                item.status_id != 4 && item.status_id != 5
-                                  ? _c(
-                                      "v-icon",
-                                      {
-                                        attrs: {
-                                          color: "orange darken-3",
-                                          small: ""
-                                        },
-                                        on: {
-                                          click: function($event) {
-                                            return _vm.deleteNode(item)
-                                          }
-                                        }
-                                      },
-                                      [
-                                        _vm._v(
-                                          "\n                        fas fa-trash-alt\n                    "
+                                _c(
+                                  "div",
+                                  { staticClass: " d-inline-flex" },
+                                  [
+                                    _c("SystemMessage", {
+                                      attrs: { item: item }
+                                    }),
+                                    _vm._v(" "),
+                                    item.status_id != 4 && item.status_id != 5
+                                      ? _c(
+                                          "v-icon",
+                                          {
+                                            attrs: {
+                                              color: "orange darken-3",
+                                              small: ""
+                                            },
+                                            on: {
+                                              click: function($event) {
+                                                return _vm.deleteNode(item)
+                                              }
+                                            }
+                                          },
+                                          [
+                                            _vm._v(
+                                              "\n                            fas fa-trash-alt\n                        "
+                                            )
+                                          ]
                                         )
-                                      ]
-                                    )
-                                  : _vm._e()
+                                      : _vm._e()
+                                  ],
+                                  1
+                                )
                               ]
                             }
                           },
@@ -22325,7 +22341,7 @@ var render = function() {
                         ],
                         null,
                         false,
-                        1816759650
+                        892459640
                       )
                     },
                     [

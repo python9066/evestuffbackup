@@ -468,14 +468,19 @@
                         </td>
                     </template>
                     <template v-slot:item.actions="{ item }">
-                        <v-icon
-                            v-if="item.status_id != 4 && item.status_id != 5"
-                            color="orange darken-3"
-                            small
-                            @click="deleteNode(item)"
-                        >
-                            fas fa-trash-alt
-                        </v-icon>
+                        <div class=" d-inline-flex">
+                            <SystemMessage :item="item"> </SystemMessage>
+                            <v-icon
+                                v-if="
+                                    item.status_id != 4 && item.status_id != 5
+                                "
+                                color="orange darken-3"
+                                small
+                                @click="deleteNode(item)"
+                            >
+                                fas fa-trash-alt
+                            </v-icon>
+                        </div>
                     </template>
 
                     <template v-slot:item.user_ship="{ item }">
