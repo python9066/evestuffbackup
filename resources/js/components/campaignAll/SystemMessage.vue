@@ -1,6 +1,6 @@
 <template>
     <div>
-        <v-badge color="green" left overlap :content="messageCount">
+        <v-badge color="green" overlap :content="messageCount">
             <v-icon color="blue">
                 fas fa-comment-alt
             </v-icon>
@@ -24,7 +24,9 @@ export default {
 
     methods: {},
 
-    computed: {}
+    computed: {
+        icon() {}
+    }
 };
 </script>
 

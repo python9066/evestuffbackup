@@ -995,7 +995,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2133,7 +2132,9 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {},
-  computed: {}
+  computed: {
+    icon: function icon() {}
+  }
 });
 
 /***/ }),
@@ -17519,9 +17520,7 @@ var render = function() {
                             { staticClass: " d-inline-flex" },
                             [
                               _vm.$can("super")
-                                ? _c("SystemMessage", {
-                                    attrs: { "item:": "", item: "" }
-                                  })
+                                ? _c("SystemMessage", { attrs: { item: item } })
                                 : _vm._e(),
                               _vm._v(" "),
                               item.status_id != 4 && item.status_id != 5
@@ -17866,14 +17865,7 @@ var render = function() {
     [
       _c(
         "v-badge",
-        {
-          attrs: {
-            color: "green",
-            left: "",
-            overlap: "",
-            content: _vm.messageCount
-          }
-        },
+        { attrs: { color: "green", overlap: "", content: _vm.messageCount } },
         [
           _c("v-icon", { attrs: { color: "blue" } }, [
             _vm._v("\n            fas fa-comment-alt\n        ")
