@@ -2211,9 +2211,9 @@ __webpack_require__.r(__webpack_exports__);
   computed: {
     submitActive: function submitActive() {
       if (this.editText != null) {
-        return "false";
+        return false;
       } else {
-        return "true";
+        return true;
       }
     }
   }

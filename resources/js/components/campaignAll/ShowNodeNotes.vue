@@ -107,9 +107,9 @@ export default {
     computed: {
         submitActive() {
             if (this.editText != null) {
-                return "false";
+                return false;
             } else {
-                return "true";
+                return true;
             }
         }
     }
