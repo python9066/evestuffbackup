@@ -16,6 +16,11 @@ class NodeJoin extends Model
         return $this->belongsTo(CampaignSystem::class);
     }
 
+    public function campaignSystemMulti()
+    {
+        return $this->belongsTo(CampaignSystem::class, 'custom_campaign_id');
+    }
+
     public function campaignUser()
     {
         return $this->belongsTo(CampaignUser::class);
