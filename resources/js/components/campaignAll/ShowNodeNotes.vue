@@ -70,7 +70,7 @@ export default {
             this.editText = this.editText + "\n";
             if (this.nodeNoteItem.notes == null) {
                 var note =
-                    "<stong>" +
+                    "<strong>" +
                     moment.utc().format("HH:mm:ss") +
                     " - " +
                     this.$store.state.user_name +
@@ -78,7 +78,7 @@ export default {
                     this.editText;
             } else {
                 var note =
-                    "<stong>" +
+                    "<strong>" +
                     moment.utc().format("HH:mm:ss") +
                     " - " +
                     this.$store.state.user_name +
