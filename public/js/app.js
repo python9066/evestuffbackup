@@ -18057,7 +18057,7 @@ var render = function() {
         [
           _c("v-textarea", {
             attrs: {
-              height: "500px",
+              height: "400px",
               readonly: "",
               "no-resize": "",
               outlined: "",

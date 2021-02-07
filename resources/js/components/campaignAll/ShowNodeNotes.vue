@@ -12,7 +12,7 @@
         </v-card-title>
         <v-card-text>
             <v-textarea
-                height="500px"
+                height="400px"
                 readonly
                 no-resize
                 v-model="nodeNoteItem.notes"
