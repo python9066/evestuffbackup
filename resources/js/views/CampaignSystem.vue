@@ -433,13 +433,13 @@
             >
             </SolaSystemLogging>
         </v-overlay>
-        <v-overlay z-index="0" :value="showNodeNotes">
+        <!-- <v-overlay z-index="0" :value="showNodeNotes">
             <ShowNodeNotes
                 v-if="$can('super')"
                 @closeMessage="showNodeNotes = false"
             >
             </ShowNodeNotes>
-        </v-overlay>
+        </v-overlay> -->
     </div>
 </template>
 <!-- {{ $route.params.id }} - {{ test }} -  -->
