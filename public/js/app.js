@@ -17494,7 +17494,7 @@ var render = function() {
                                     {
                                       attrs: {
                                         color: "green",
-                                        dot: "",
+                                        left: "",
                                         content: _vm.messageCount
                                       }
                                     },

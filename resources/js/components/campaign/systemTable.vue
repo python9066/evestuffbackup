@@ -436,7 +436,7 @@
                             <v-badge
                                 v-if="$can('super')"
                                 color="green"
-                                dot
+                                left
                                 :content="messageCount"
                             >
                                 <v-icon small color="blue">
