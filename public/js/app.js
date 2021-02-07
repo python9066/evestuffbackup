@@ -18057,9 +18057,9 @@ var render = function() {
         [
           _c("v-textarea", {
             attrs: {
-              rows: "10",
-              "row-height": "15",
+              height: "500px",
               readonly: "",
+              "no-resize": "",
               outlined: "",
               placeholder: "No Nodes"
             },

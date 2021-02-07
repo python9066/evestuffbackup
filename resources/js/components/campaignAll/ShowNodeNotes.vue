@@ -12,9 +12,9 @@
         </v-card-title>
         <v-card-text>
             <v-textarea
-                rows="10"
-                row-height="15"
+                height="500px"
                 readonly
+                no-resize
                 v-model="nodeNoteItem.notes"
                 outlined
                 placeholder="No Nodes"
