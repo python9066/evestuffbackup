@@ -70,19 +70,19 @@ export default {
             this.editText = this.editText + "\n";
             if (this.nodeNoteItem.notes == null) {
                 var note =
-                    "<strong>" +
+                    "<b>" +
                     moment.utc().format("HH:mm:ss") +
                     " - " +
                     this.$store.state.user_name +
-                    ": </strong> " +
+                    ": </b> " +
                     this.editText;
             } else {
                 var note =
-                    "<strong>" +
+                    "<b>" +
                     moment.utc().format("HH:mm:ss") +
                     " - " +
                     this.$store.state.user_name +
-                    ": </strong>" +
+                    ": </b>" +
                     this.editText +
                     this.nodeNoteItem.notes;
             }

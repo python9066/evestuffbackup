@@ -2185,9 +2185,9 @@ __webpack_require__.r(__webpack_exports__);
       this.editText = this.editText + "\n";
 
       if (this.nodeNoteItem.notes == null) {
-        var note = "<strong>" + moment__WEBPACK_IMPORTED_MODULE_1___default.a.utc().format("HH:mm:ss") + " - " + this.$store.state.user_name + ": </strong> " + this.editText;
+        var note = "<b>" + moment__WEBPACK_IMPORTED_MODULE_1___default.a.utc().format("HH:mm:ss") + " - " + this.$store.state.user_name + ": </b> " + this.editText;
       } else {
-        var note = "<strong>" + moment__WEBPACK_IMPORTED_MODULE_1___default.a.utc().format("HH:mm:ss") + " - " + this.$store.state.user_name + ": </strong>" + this.editText + this.nodeNoteItem.notes;
+        var note = "<b>" + moment__WEBPACK_IMPORTED_MODULE_1___default.a.utc().format("HH:mm:ss") + " - " + this.$store.state.user_name + ": </b>" + this.editText + this.nodeNoteItem.notes;
       }
 
       this.nodeNoteItem.notes = note;
