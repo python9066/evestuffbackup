@@ -369,6 +369,7 @@
                 :key="system.id"
                 @openAdd="openAdd($event)"
                 @openSolaLog="openSolaLog($event)"
+                @openMessage="showMessage($event)"
             >
             </systemTable>
         </v-row>
@@ -841,6 +842,10 @@ export default {
             this.editrole = a;
             // console.log("LALAL");
             // console.log(a);
+        },
+
+        showMessage(item) {
+            console.log(item);
         },
 
         charEditForm($event) {

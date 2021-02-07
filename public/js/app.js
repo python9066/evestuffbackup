@@ -9759,6 +9759,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 
@@ -10415,6 +10416,9 @@ function sleep(ms) {
     roleEditForm: function roleEditForm(a) {
       this.editrole = a; // console.log("LALAL");
       // console.log(a);
+    },
+    showMessage: function showMessage(item) {
+      console.log(item);
     },
     charEditForm: function charEditForm($event) {
       this.oldChar = this.userCharsDrop.find(function (user) {
@@ -26238,6 +26242,9 @@ var render = function() {
                   },
                   openSolaLog: function($event) {
                     return _vm.openSolaLog($event)
+                  },
+                  openMessage: function($event) {
+                    return _vm.showMessage($event)
                   }
                 }
               })
