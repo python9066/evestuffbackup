@@ -26653,7 +26653,7 @@ var render = function() {
               attrs: {
                 "z-index": "0",
                 value: _vm.showNodeNotes,
-                translate: "dialog-bottom-transition"
+                translate: "overlay-bottom-transition"
               }
             },
             [
