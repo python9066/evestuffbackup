@@ -14,7 +14,6 @@
                 :vlaue="nodeNoteItem.notes"
                 auto-grow
                 outlined
-                placeholder="No notes"
                 disabled
             ></v-textarea
             ><v-divider></v-divider>

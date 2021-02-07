@@ -2161,7 +2161,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 
 
@@ -18038,7 +18037,6 @@ var render = function() {
               vlaue: _vm.nodeNoteItem.notes,
               "auto-grow": "",
               outlined: "",
-              placeholder: "No notes",
               disabled: ""
             }
           }),
