@@ -114,6 +114,11 @@ export default {
                 return true;
             }
         }
+    },
+
+    beforeDestroy() {
+        this.editText = null;
+        console.log("closing shite again");
     }
 };
 </script>

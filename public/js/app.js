@@ -2218,6 +2218,10 @@ __webpack_require__.r(__webpack_exports__);
         return true;
       }
     }
+  },
+  beforeDestroy: function beforeDestroy() {
+    this.editText = null;
+    console.log("closing shite again");
   }
 });
 
