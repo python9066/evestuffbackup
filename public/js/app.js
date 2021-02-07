@@ -993,6 +993,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -17473,42 +17477,49 @@ var render = function() {
                       fn: function(ref) {
                         var item = ref.item
                         return [
-                          item.status_id != 4 && item.status_id != 5
-                            ? _c(
-                                "v-icon",
-                                {
-                                  attrs: {
-                                    color: "orange darken-3",
-                                    small: ""
-                                  },
-                                  on: {
-                                    click: function($event) {
-                                      return _vm.deleteNode(item)
-                                    }
-                                  }
-                                },
-                                [
-                                  _vm._v(
-                                    "\n                        fas fa-trash-alt\n                    "
+                          _c(
+                            "div",
+                            { staticClass: " d-inline-flex" },
+                            [
+                              item.status_id != 4 && item.status_id != 5
+                                ? _c(
+                                    "v-icon",
+                                    {
+                                      attrs: {
+                                        color: "orange darken-3",
+                                        small: ""
+                                      },
+                                      on: {
+                                        click: function($event) {
+                                          return _vm.deleteNode(item)
+                                        }
+                                      }
+                                    },
+                                    [
+                                      _vm._v(
+                                        "\n                            fas fa-trash-alt\n                        "
+                                      )
+                                    ]
                                   )
-                                ]
-                              )
-                            : _vm._e(),
-                          _vm._v(" "),
-                          _vm.$can("super")
-                            ? _c(
-                                "v-badge",
-                                { attrs: { color: "green", overlap: "" } },
-                                [
-                                  _c("v-icon", { attrs: { large: "" } }, [
-                                    _vm._v(
-                                      "\n                            fas fa-comment-alt\n                        "
-                                    )
-                                  ])
-                                ],
-                                1
-                              )
-                            : _vm._e()
+                                : _vm._e(),
+                              _vm._v(" "),
+                              _vm.$can("super")
+                                ? _c(
+                                    "v-badge",
+                                    { attrs: { color: "green", overlap: "" } },
+                                    [
+                                      _c("v-icon", { attrs: { large: "" } }, [
+                                        _vm._v(
+                                          "\n                                fas fa-comment-alt\n                            "
+                                        )
+                                      ])
+                                    ],
+                                    1
+                                  )
+                                : _vm._e()
+                            ],
+                            1
+                          )
                         ]
                       }
                     },
