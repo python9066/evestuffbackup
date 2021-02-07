@@ -440,13 +440,7 @@
                         >
                             fas fa-trash-alt
                         </v-icon>
-                        <v-badge
-                            v-if="$can('super')"
-                            :content="messages"
-                            :value="messages"
-                            color="green"
-                            overlap
-                        >
+                        <v-badge v-if="$can('super')" color="green" overlap>
                             <v-icon large>
                                 mdi-vuetify
                             </v-icon>
