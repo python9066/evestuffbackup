@@ -17508,11 +17508,18 @@ var render = function() {
                                     "v-badge",
                                     { attrs: { color: "green", overlap: "" } },
                                     [
-                                      _c("v-icon", { attrs: { large: "" } }, [
-                                        _vm._v(
-                                          "\n                                fas fa-comment-alt\n                            "
-                                        )
-                                      ])
+                                      _c(
+                                        "v-icon",
+                                        {
+                                          staticClass: " pl-5",
+                                          attrs: { small: "" }
+                                        },
+                                        [
+                                          _vm._v(
+                                            "\n                                fas fa-comment-alt\n                            "
+                                          )
+                                        ]
+                                      )
                                     ],
                                     1
                                   )

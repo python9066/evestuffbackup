@@ -444,7 +444,7 @@
                                 fas fa-trash-alt
                             </v-icon>
                             <v-badge v-if="$can('super')" color="green" overlap>
-                                <v-icon large>
+                                <v-icon small class=" pl-5">
                                     fas fa-comment-alt
                                 </v-icon>
                             </v-badge>
