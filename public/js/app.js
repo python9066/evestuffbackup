@@ -2310,6 +2310,10 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     showMessage: function showMessage(item) {
       this.$emit("openMessage", item);
+    },
+    close: function close() {
+      this.editText = null;
+      this.showNodeNotes = false;
     }
   },
   computed: {

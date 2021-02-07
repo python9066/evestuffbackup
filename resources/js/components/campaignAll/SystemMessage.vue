@@ -95,6 +95,11 @@ export default {
     methods: {
         showMessage(item) {
             this.$emit("openMessage", item);
+        },
+
+        close() {
+            this.editText = null;
+            this.showNodeNotes = false;
         }
     },
 
