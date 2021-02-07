@@ -17,8 +17,17 @@
                 placeholder="No notes"
                 disabled
             ></v-textarea
-            ><v-divider></v-divider
-        ></v-card-text>
+            ><v-divider></v-divider>
+            <div>
+                <v-subheader>New Notes</v-subheader>
+                <v-textarea
+                    :value="editText"
+                    auto-grow
+                    filled
+                    label="Enter New Nodes Here"
+                ></v-textarea>
+            </div>
+        </v-card-text>
         <v-spacer></v-spacer
         ><v-card-actions
             ><v-btn class="white--text" color="teal" @click="close()">
@@ -37,7 +46,9 @@ export default {
         nodeNoteItem: Object
     },
     data() {
-        return {};
+        return {
+            editText: null
+        };
     },
 
     methods: {

@@ -2144,6 +2144,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2152,7 +2161,9 @@ __webpack_require__.r(__webpack_exports__);
     nodeNoteItem: Object
   },
   data: function data() {
-    return {};
+    return {
+      editText: null
+    };
   },
   methods: {
     close: function close() {
@@ -17992,7 +18003,24 @@ var render = function() {
               disabled: ""
             }
           }),
-          _c("v-divider")
+          _c("v-divider"),
+          _vm._v(" "),
+          _c(
+            "div",
+            [
+              _c("v-subheader", [_vm._v("New Notes")]),
+              _vm._v(" "),
+              _c("v-textarea", {
+                attrs: {
+                  value: _vm.editText,
+                  "auto-grow": "",
+                  filled: "",
+                  label: "Enter New Nodes Here"
+                }
+              })
+            ],
+            1
+          )
         ],
         1
       ),
