@@ -10471,6 +10471,7 @@ function sleep(ms) {
     },
     showMessage: function showMessage(item) {
       console.log(item);
+      this.showNodeNotes = true;
     },
     charEditForm: function charEditForm($event) {
       this.oldChar = this.userCharsDrop.find(function (user) {

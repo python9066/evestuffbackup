@@ -860,6 +860,7 @@ export default {
 
         showMessage(item) {
             console.log(item);
+            this.showNodeNotes = true;
         },
 
         charEditForm($event) {
