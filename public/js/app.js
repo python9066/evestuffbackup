@@ -2161,6 +2161,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 
@@ -18016,7 +18017,12 @@ var render = function() {
     "v-card",
     {
       staticClass: " d-flex flex-column",
-      attrs: { tile: "", "min-width": "700px", "min-height": "200px" }
+      attrs: {
+        tile: "",
+        "min-width": "700px",
+        "min-height": "200px",
+        "max-height": "700px"
+      }
     },
     [
       _c("v-card-title", [
