@@ -2248,7 +2248,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       this.$store.dispatch("updateCampaignSystem", this.item);
       axios({
         method: "put",
-        url: "/api/campaignsystemsnodemessage/" + item.id,
+        url: "/api/campaignsystemsnodemessage/" + this.item.id,
         data: request,
         headers: {
           Authorization: "Bearer " + this.$store.state.token,
