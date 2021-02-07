@@ -595,7 +595,7 @@ export default {
             }
         },
 
-        showMessage(item) {
+        openMessage(item) {
             this.$emit("openMessage", item);
         },
 

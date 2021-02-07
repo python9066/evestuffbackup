@@ -1125,7 +1125,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         return true;
       }
     },
-    showMessage: function showMessage(item) {
+    openMessage: function openMessage(item) {
       this.$emit("openMessage", item);
     },
     openAdd: function openAdd(item) {
