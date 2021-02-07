@@ -972,10 +972,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2219,6 +2215,69 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 /* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
 /* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_1__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -17651,14 +17710,7 @@ var render = function() {
                             { staticClass: " d-inline-flex" },
                             [
                               _vm.$can("super")
-                                ? _c("SystemMessage", {
-                                    attrs: { item: item },
-                                    on: {
-                                      openMessage: function($event) {
-                                        return _vm.openMessage($event)
-                                      }
-                                    }
-                                  })
+                                ? _c("SystemMessage", { attrs: { item: item } })
                                 : _vm._e(),
                               _vm._v(" "),
                               item.status_id != 4 && item.status_id != 5
@@ -18130,28 +18182,169 @@ var render = function() {
     "div",
     [
       _c(
-        "v-badge",
+        "v-dialog",
         {
           attrs: {
-            color: "green",
-            overlap: "",
-            content: _vm.messageCount,
-            value: _vm.showNumber
-          }
+            "max-width": "700px",
+            "z-index": "0",
+            value: _vm.showNodeNotes
+          },
+          on: {
+            "click:outside": function($event) {
+              return _vm.closeNodeMessage()
+            }
+          },
+          scopedSlots: _vm._u([
+            {
+              key: "activator",
+              fn: function(ref) {
+                var on = ref.on
+                var attrs = ref.attrs
+                return [
+                  _c(
+                    "v-badge",
+                    {
+                      attrs: {
+                        color: "green",
+                        overlap: "",
+                        content: _vm.messageCount,
+                        value: _vm.showNumber
+                      }
+                    },
+                    [
+                      _c(
+                        "v-icon",
+                        _vm._g(
+                          _vm._b(
+                            { attrs: { color: "blue" } },
+                            "v-icon",
+                            attrs,
+                            false
+                          ),
+                          on
+                        ),
+                        [
+                          _vm._v(
+                            "\n                    " +
+                              _vm._s(_vm.icon) +
+                              "\n                "
+                          )
+                        ]
+                      )
+                    ],
+                    1
+                  )
+                ]
+              }
+            }
+          ])
         },
         [
+          _vm._v(" "),
           _c(
-            "v-icon",
+            "v-card",
             {
-              attrs: { color: "blue" },
-              on: {
-                click: function($event) {
-                  $event.stopPropagation()
-                  return _vm.showMessage(_vm.item)
-                }
+              staticClass: " d-flex flex-column",
+              attrs: {
+                tile: "",
+                "max-width": "700px",
+                "min-height": "200px",
+                "max-height": "700px"
               }
             },
-            [_vm._v("\n            " + _vm._s(_vm.icon) + "\n        ")]
+            [
+              _c("v-card-title", [
+                _vm._v(
+                  "Notes for node " +
+                    _vm._s(_vm.nodeNoteItem.node) +
+                    ". Campaign\n                " +
+                    _vm._s(_vm.nodeNoteItem.text) +
+                    "\n            "
+                )
+              ]),
+              _vm._v(" "),
+              _c(
+                "v-card-text",
+                [
+                  _c("v-textarea", {
+                    attrs: {
+                      height: "400px",
+                      readonly: "",
+                      "no-resize": "",
+                      outlined: "",
+                      placeholder: "No Nodes"
+                    },
+                    model: {
+                      value: _vm.nodeNoteItem.notes,
+                      callback: function($$v) {
+                        _vm.$set(_vm.nodeNoteItem, "notes", $$v)
+                      },
+                      expression: "nodeNoteItem.notes"
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("v-divider"),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    [
+                      _c("v-text-field", {
+                        attrs: {
+                          "auto-grow": "",
+                          filled: "",
+                          label: "Enter New Nodes Here"
+                        },
+                        model: {
+                          value: _vm.editText,
+                          callback: function($$v) {
+                            _vm.editText = $$v
+                          },
+                          expression: "editText"
+                        }
+                      })
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c("v-spacer"),
+              _c(
+                "v-card-actions",
+                [
+                  _c(
+                    "v-btn",
+                    {
+                      staticClass: "white--text",
+                      attrs: { color: "green", disabled: _vm.submitActive },
+                      on: {
+                        click: function($event) {
+                          return _vm.updatetext()
+                        }
+                      }
+                    },
+                    [_vm._v("\n                    Submit\n                ")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-btn",
+                    {
+                      staticClass: "white--text",
+                      attrs: { color: "teal" },
+                      on: {
+                        click: function($event) {
+                          return _vm.close()
+                        }
+                      }
+                    },
+                    [_vm._v("\n                    Close\n                ")]
+                  )
+                ],
+                1
+              )
+            ],
+            1
           )
         ],
         1
