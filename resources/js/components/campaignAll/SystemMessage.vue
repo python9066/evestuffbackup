@@ -177,6 +177,10 @@ export default {
                 return true;
             }
         }
+    },
+
+    beforeDestroy() {
+        Echo.leave("nodemessage." + this.item.id);
     }
 };
 </script>

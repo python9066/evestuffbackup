@@ -2273,6 +2273,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         return true;
       }
     }
+  },
+  beforeDestroy: function beforeDestroy() {
+    Echo.leave("nodemessage." + this.item.id);
   }
 });
 
