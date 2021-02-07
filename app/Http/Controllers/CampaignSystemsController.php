@@ -209,12 +209,20 @@ class CampaignSystemsController extends Controller
             'id' => $campid
         ]);
         broadcast(new CampaignSystemUpdate($flag));
-        // $flag = null;
-        // $flag = collect([
-        //     'flag' => 2,
-        //     'id' => $campid
-        // ]);
-        // broadcast(new CampaignSystemUpdate($flag))->toOthers();
+    }
+
+    public function updateMessage(Request $request, $id)
+    {
+        // dd($request->notes);
+
+        CampaignSystem::where('id', $id)->update($request->all());
+
+        $message = CampaignSystemRecords::where('id', $id)->first();
+        $flag = collect([
+            'message' => $message,
+            'id' => $id
+        ]);
+        broadcast(new CampaignSystemUpdate($flag));
     }
 
     public function removechar(Request $request, $campid)

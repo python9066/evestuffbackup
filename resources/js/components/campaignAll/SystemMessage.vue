@@ -13,7 +13,12 @@
                     :content="messageCount"
                     :value="showNumber"
                 >
-                    <v-icon color="blue" v-bind="attrs" v-on="on">
+                    <v-icon
+                        color="blue"
+                        v-bind="attrs"
+                        v-on="on"
+                        @click="open()"
+                    >
                         {{ icon }}
                     </v-icon>
                 </v-badge>
@@ -92,6 +97,17 @@ export default {
         };
     },
 
+    async created() {
+        Echo.private("nodemessage." + this.item.id).listen(
+            "NodeMessageUpdate",
+            e => {
+                this.showNumber = true;
+                this.messageCount = this.messageCount + 1;
+                this.$store.dispatch("updateCampaignSystem", this.item);
+            }
+        );
+    },
+
     methods: {
         showMessage(item) {
             this.$emit("openMessage", item);
@@ -101,6 +117,10 @@ export default {
             this.editText = null;
             this.showNodeNotes = false;
             console.log("close");
+        },
+
+        open() {
+            (this.showNumber = false), (this.messageCount = 0);
         },
 
         updatetext() {
@@ -127,16 +147,16 @@ export default {
                 notes: note
             };
             this.$store.dispatch("updateCampaignSystem", this.item);
-            // axios({
-            //     method: "put",
-            //     url: "/api/campaignsystems/" + item.id + "/" + this.campaign_id,
-            //     data: request,
-            //     headers: {
-            //         Authorization: "Bearer " + this.$store.state.token,
-            //         Accept: "application/json",
-            //         "Content-Type": "application/json"
-            //     }
-            // });
+            axios({
+                method: "put",
+                url: "/api/campaignsystemsnodemessage/" + item.id,
+                data: request,
+                headers: {
+                    Authorization: "Bearer " + this.$store.state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                }
+            });
             this.editText = null;
         }
     },

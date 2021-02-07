@@ -2089,9 +2089,22 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
-/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
-/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_2__);
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+//
+//
+//
+//
+//
 //
 //
 //
@@ -2184,6 +2197,29 @@ __webpack_require__.r(__webpack_exports__);
       editText: null
     };
   },
+  created: function created() {
+    var _this = this;
+
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              Echo["private"]("nodemessage." + _this.item.id).listen("NodeMessageUpdate", function (e) {
+                _this.showNumber = true;
+                _this.messageCount = _this.messageCount + 1;
+
+                _this.$store.dispatch("updateCampaignSystem", _this.item);
+              });
+
+            case 1:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    }))();
+  },
   methods: {
     showMessage: function showMessage(item) {
       this.$emit("openMessage", item);
@@ -2193,30 +2229,33 @@ __webpack_require__.r(__webpack_exports__);
       this.showNodeNotes = false;
       console.log("close");
     },
+    open: function open() {
+      this.showNumber = false, this.messageCount = 0;
+    },
     updatetext: function updatetext() {
       this.editText = this.editText + "\n";
 
       if (this.item.notes == null) {
-        var note = moment__WEBPACK_IMPORTED_MODULE_1___default.a.utc().format("HH:mm:ss") + " - " + this.$store.state.user_name + ": " + this.editText;
+        var note = moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc().format("HH:mm:ss") + " - " + this.$store.state.user_name + ": " + this.editText;
       } else {
-        var note = moment__WEBPACK_IMPORTED_MODULE_1___default.a.utc().format("HH:mm:ss") + " - " + this.$store.state.user_name + ": " + this.editText + this.item.notes;
+        var note = moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc().format("HH:mm:ss") + " - " + this.$store.state.user_name + ": " + this.editText + this.item.notes;
       }
 
       this.item.notes = note;
       var request = {
         notes: note
       };
-      this.$store.dispatch("updateCampaignSystem", this.item); // axios({
-      //     method: "put",
-      //     url: "/api/campaignsystems/" + item.id + "/" + this.campaign_id,
-      //     data: request,
-      //     headers: {
-      //         Authorization: "Bearer " + this.$store.state.token,
-      //         Accept: "application/json",
-      //         "Content-Type": "application/json"
-      //     }
-      // });
-
+      this.$store.dispatch("updateCampaignSystem", this.item);
+      axios({
+        method: "put",
+        url: "/api/campaignsystemsnodemessage/" + item.id,
+        data: request,
+        headers: {
+          Authorization: "Bearer " + this.$store.state.token,
+          Accept: "application/json",
+          "Content-Type": "application/json"
+        }
+      });
       this.editText = null;
     }
   },
@@ -18001,7 +18040,14 @@ var render = function() {
                         "v-icon",
                         _vm._g(
                           _vm._b(
-                            { attrs: { color: "blue" } },
+                            {
+                              attrs: { color: "blue" },
+                              on: {
+                                click: function($event) {
+                                  return _vm.open()
+                                }
+                              }
+                            },
                             "v-icon",
                             attrs,
                             false

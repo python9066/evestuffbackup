@@ -50,6 +50,10 @@ Broadcast::channel('campaignlogs.{id}', function () {
     return Auth::check();
 });
 
+Broadcast::channel('nodemessage.{id}', function () {
+    return Auth::check();
+});
+
 
 
 
