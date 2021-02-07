@@ -6,7 +6,7 @@
             :content="messageCount"
             :value="showMessage"
         >
-            <v-icon color="blue">
+            <v-icon color="blue" @click="showMessage(item)">
                 {{ icon }}
             </v-icon>
         </v-badge>
@@ -27,7 +27,11 @@ export default {
         };
     },
 
-    methods: {},
+    methods: {
+        showMessage(item) {
+            this.$emit("openMessage", item);
+        }
+    },
 
     computed: {
         icon() {

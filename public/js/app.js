@@ -995,6 +995,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -1120,6 +1124,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       } else {
         return true;
       }
+    },
+    showMessage: function showMessage(item) {
+      this.$emit("openMessage", item);
     },
     openAdd: function openAdd(item) {
       this.$emit("openAdd", item);
@@ -2136,7 +2143,11 @@ __webpack_require__.r(__webpack_exports__);
       showMessage: false
     };
   },
-  methods: {},
+  methods: {
+    showMessage: function showMessage(item) {
+      this.$emit("openMessage", item);
+    }
+  },
   computed: {
     icon: function icon() {
       if (this.item.notes == null) {
@@ -17531,7 +17542,14 @@ var render = function() {
                             { staticClass: " d-inline-flex" },
                             [
                               _vm.$can("super")
-                                ? _c("SystemMessage", { attrs: { item: item } })
+                                ? _c("SystemMessage", {
+                                    attrs: { item: item },
+                                    on: {
+                                      openMessage: function($event) {
+                                        return _vm.openMessage($event)
+                                      }
+                                    }
+                                  })
                                 : _vm._e(),
                               _vm._v(" "),
                               item.status_id != 4 && item.status_id != 5
@@ -17885,9 +17903,18 @@ var render = function() {
           }
         },
         [
-          _c("v-icon", { attrs: { color: "blue" } }, [
-            _vm._v("\n            " + _vm._s(_vm.icon) + "\n        ")
-          ])
+          _c(
+            "v-icon",
+            {
+              attrs: { color: "blue" },
+              on: {
+                click: function($event) {
+                  return _vm.showMessage(_vm.item)
+                }
+              }
+            },
+            [_vm._v("\n            " + _vm._s(_vm.icon) + "\n        ")]
+          )
         ],
         1
       )
