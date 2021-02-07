@@ -100,6 +100,11 @@ export default {
         close() {
             this.editText = null;
             this.showNodeNotes = false;
+        },
+
+        closeNodeMessage() {
+            this.editText = null;
+            console.log("123456");
         }
     },
 

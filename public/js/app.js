@@ -2314,6 +2314,10 @@ __webpack_require__.r(__webpack_exports__);
     close: function close() {
       this.editText = null;
       this.showNodeNotes = false;
+    },
+    closeNodeMessage: function closeNodeMessage() {
+      this.editText = null;
+      console.log("123456");
     }
   },
   computed: {
