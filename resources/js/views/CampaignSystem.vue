@@ -433,7 +433,7 @@
             >
             </SolaSystemLogging>
         </v-overlay>
-        <v-overlay
+        <v-dialog
             z-index="0"
             :value="showNodeNotes"
             translate="overlay-bottom-transition"
@@ -444,7 +444,7 @@
                 @closeMessage="showNodeNotes = false"
             >
             </ShowNodeNotes>
-        </v-overlay>
+        </v-dialog>
     </div>
 </template>
 <!-- {{ $route.params.id }} - {{ test }} -  -->
