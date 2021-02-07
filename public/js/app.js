@@ -2170,25 +2170,26 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
-    campaign_id: Number,
     nodeNoteItem: Object,
     nodeEditText: String
   },
   data: function data() {
-    return {};
+    return {
+      editText: null
+    };
   },
   methods: {
     close: function close() {
-      this.nodeEditText = null;
+      this.editText = null;
       this.$emit("closeMessage", "yo");
     },
     updatetext: function updatetext() {
-      this.nodeEditText = this.nodeEditText + "\n";
+      this.editText = this.editText + "\n";
 
       if (this.nodeNoteItem.notes == null) {
-        var note = moment__WEBPACK_IMPORTED_MODULE_1___default.a.utc().format("HH:mm:ss") + " - " + this.$store.state.user_name + ": " + this.nodeEditText;
+        var note = moment__WEBPACK_IMPORTED_MODULE_1___default.a.utc().format("HH:mm:ss") + " - " + this.$store.state.user_name + ": " + this.editText;
       } else {
-        var note = moment__WEBPACK_IMPORTED_MODULE_1___default.a.utc().format("HH:mm:ss") + " - " + this.$store.state.user_name + ": " + this.nodeEditText + this.nodeNoteItem.notes;
+        var note = moment__WEBPACK_IMPORTED_MODULE_1___default.a.utc().format("HH:mm:ss") + " - " + this.$store.state.user_name + ": " + this.editText + this.nodeNoteItem.notes;
       }
 
       this.nodeNoteItem.notes = note;
@@ -2206,12 +2207,12 @@ __webpack_require__.r(__webpack_exports__);
       //     }
       // });
 
-      this.nodeEditText = null;
+      this.editText = null;
     }
   },
   computed: {
     submitActive: function submitActive() {
-      if (this.nodeEditText != null) {
+      if (this.editText != null) {
         return false;
       } else {
         return true;
@@ -9893,6 +9894,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 
@@ -10191,7 +10193,6 @@ function sleep(ms) {
       this.solalog = true;
     },
     closeNodeMessage: function closeNodeMessage() {
-      this.nodeEditText = null;
       this.showNodeNotes = false;
     },
     finishCampaign: function finishCampaign() {
@@ -18088,11 +18089,11 @@ var render = function() {
                   label: "Enter New Nodes Here"
                 },
                 model: {
-                  value: _vm.nodeEditText,
+                  value: _vm.editText,
                   callback: function($$v) {
-                    _vm.nodeEditText = $$v
+                    _vm.editText = $$v
                   },
-                  expression: "nodeEditText"
+                  expression: "editText"
                 }
               })
             ],
@@ -26679,7 +26680,10 @@ var render = function() {
             [
               _vm.$can("super")
                 ? _c("ShowNodeNotes", {
-                    attrs: { nodeNoteItem: _vm.nodeNoteItem },
+                    attrs: {
+                      nodeNoteItem: _vm.nodeNoteItem,
+                      nodeEditText: _vm.nodeEditText
+                    },
                     on: {
                       closeMessage: function($event) {
                         _vm.showNodeNotes = false

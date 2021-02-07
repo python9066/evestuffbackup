@@ -441,6 +441,7 @@
         >
             <ShowNodeNotes
                 :nodeNoteItem="nodeNoteItem"
+                :nodeEditText="nodeEditText"
                 v-if="$can('super')"
                 @closeMessage="showNodeNotes = false"
             >
@@ -685,7 +686,6 @@ export default {
         },
 
         closeNodeMessage() {
-            this.nodeEditText = null;
             this.showNodeNotes = false;
         },
 
