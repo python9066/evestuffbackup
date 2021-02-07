@@ -410,8 +410,7 @@
                     </template>
                     <template v-slot:item.actions="{ item }">
                         <div class=" d-inline-flex">
-                            <SystemMessage v-if="$can('super')" :item="item">
-                            </SystemMessage>
+                            <SystemMessage :item="item"> </SystemMessage>
                             <v-icon
                                 v-if="
                                     item.status_id != 4 && item.status_id != 5

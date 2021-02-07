@@ -971,7 +971,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -17665,9 +17664,7 @@ var render = function() {
                             "div",
                             { staticClass: " d-inline-flex" },
                             [
-                              _vm.$can("super")
-                                ? _c("SystemMessage", { attrs: { item: item } })
-                                : _vm._e(),
+                              _c("SystemMessage", { attrs: { item: item } }),
                               _vm._v(" "),
                               item.status_id != 4 && item.status_id != 5
                                 ? _c(
