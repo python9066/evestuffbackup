@@ -13,7 +13,6 @@
         <v-card-text>
             <v-textarea
                 v-model="nodeNoteItem.notes"
-                auto-grow
                 outlined
                 disabled
             ></v-textarea

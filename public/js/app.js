@@ -2161,7 +2161,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 
 
@@ -18039,7 +18038,7 @@ var render = function() {
         "v-card-text",
         [
           _c("v-textarea", {
-            attrs: { "auto-grow": "", outlined: "", disabled: "" },
+            attrs: { outlined: "", disabled: "" },
             model: {
               value: _vm.nodeNoteItem.notes,
               callback: function($$v) {
