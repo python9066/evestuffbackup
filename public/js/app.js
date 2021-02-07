@@ -17502,7 +17502,7 @@ var render = function() {
                                 [
                                   _c("v-icon", { attrs: { large: "" } }, [
                                     _vm._v(
-                                      "\n                            mdi-vuetify\n                        "
+                                      "\n                            fas fa-comment-alt\n                        "
                                     )
                                   ])
                                 ],

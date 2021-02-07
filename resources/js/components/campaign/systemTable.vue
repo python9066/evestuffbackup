@@ -442,7 +442,7 @@
                         </v-icon>
                         <v-badge v-if="$can('super')" color="green" overlap>
                             <v-icon large>
-                                mdi-vuetify
+                                fas fa-comment-alt
                             </v-icon>
                         </v-badge>
                     </template>
