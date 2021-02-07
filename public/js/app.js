@@ -2158,13 +2158,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -18104,23 +18097,23 @@ var render = function() {
               }
             },
             [_vm._v("\n            Submit\n        ")]
+          ),
+          _vm._v(" "),
+          _c(
+            "v-btn",
+            {
+              staticClass: "white--text",
+              attrs: { color: "teal" },
+              on: {
+                click: function($event) {
+                  return _vm.close()
+                }
+              }
+            },
+            [_vm._v("\n            Close\n        ")]
           )
         ],
         1
-      ),
-      _vm._v(" "),
-      _c(
-        "v-btn",
-        {
-          staticClass: "white--text",
-          attrs: { color: "teal" },
-          on: {
-            click: function($event) {
-              return _vm.close()
-            }
-          }
-        },
-        [_vm._v("\n            Close\n        ")]
       )
     ],
     1
@@ -18168,6 +18161,7 @@ var render = function() {
               attrs: { color: "blue" },
               on: {
                 click: function($event) {
+                  $event.stopPropagation()
                   return _vm.showMessage(_vm.item)
                 }
               }
@@ -26499,7 +26493,6 @@ var render = function() {
                     return _vm.openSolaLog($event)
                   },
                   openMessage: function($event) {
-                    $event.stopPropagation()
                     return _vm.showMessage($event)
                   }
                 }

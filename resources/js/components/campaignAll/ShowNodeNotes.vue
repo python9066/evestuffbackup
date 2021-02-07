@@ -11,16 +11,13 @@
             {{ nodeNoteItem.text }}
         </v-card-title>
         <v-card-text>
-            <v-card
-            min-height="200px"
-            max-height="700px">
-            <v-textarea
-                v-model="nodeNoteItem.notes"
-                outlined
-                disabled
-            ></v-textarea
-            >
-            </v-card><v-divider></v-divider>
+            <v-card min-height="200px" max-height="700px">
+                <v-textarea
+                    v-model="nodeNoteItem.notes"
+                    outlined
+                    disabled
+                ></v-textarea> </v-card
+            ><v-divider></v-divider>
             <div>
                 <v-textarea
                     v-model="editText"
@@ -31,14 +28,10 @@
             </div>
         </v-card-text>
         <v-spacer></v-spacer
-        ><v-card-actions
-            >
-
+        ><v-card-actions>
             <v-btn class="white--text" color="green" @click="updatetext()">
                 Submit
-            </v-btn></v-card-actions
-        >
-
+            </v-btn>
 
             <v-btn class="white--text" color="teal" @click="close()">
                 Close

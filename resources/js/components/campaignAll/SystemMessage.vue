@@ -6,7 +6,7 @@
             :content="messageCount"
             :value="showNumber"
         >
-            <v-icon color="blue" @click="showMessage(item)">
+            <v-icon color="blue" @click.stop="showMessage(item)">
                 {{ icon }}
             </v-icon>
         </v-badge>

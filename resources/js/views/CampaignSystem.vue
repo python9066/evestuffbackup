@@ -369,7 +369,7 @@
                 :key="system.id"
                 @openAdd="openAdd($event)"
                 @openSolaLog="openSolaLog($event)"
-                @openMessage.stop="showMessage($event)"
+                @openMessage="showMessage($event)"
             >
             </systemTable>
         </v-row>
