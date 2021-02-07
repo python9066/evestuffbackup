@@ -2185,9 +2185,9 @@ __webpack_require__.r(__webpack_exports__);
       this.editText = this.editText + "\n";
 
       if (this.nodeNoteItem.notes == null) {
-        var note = "<b>" + moment__WEBPACK_IMPORTED_MODULE_1___default.a.utc().format("HH:mm:ss") + " - " + this.$store.state.user_name + ": </b> " + this.editText;
+        var note = moment__WEBPACK_IMPORTED_MODULE_1___default.a.utc().format("HH:mm:ss") + " - " + this.$store.state.user_name + ": " + this.editText;
       } else {
-        var note = "<b>" + moment__WEBPACK_IMPORTED_MODULE_1___default.a.utc().format("HH:mm:ss") + " - " + this.$store.state.user_name + ": </b>" + this.editText + this.nodeNoteItem.notes;
+        var note = moment__WEBPACK_IMPORTED_MODULE_1___default.a.utc().format("HH:mm:ss") + " - " + this.$store.state.user_name + ": " + this.editText + this.nodeNoteItem.notes;
       }
 
       this.nodeNoteItem.notes = note;
@@ -9441,6 +9441,11 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
+//
+//
+//
+//
+//
 //
 //
 //
@@ -26651,7 +26656,8 @@ var render = function() {
               attrs: {
                 "max-width": "700px",
                 "z-index": "0",
-                value: _vm.showNodeNotes
+                value: _vm.showNodeNotes,
+                transition: "dialog-bottom-transition"
               }
             },
             [

@@ -433,7 +433,12 @@
             >
             </SolaSystemLogging>
         </v-overlay>
-        <v-dialog max-width="700px" z-index="0" :value="showNodeNotes">
+        <v-dialog
+            max-width="700px"
+            z-index="0"
+            :value="showNodeNotes"
+            transition="dialog-bottom-transition"
+        >
             <ShowNodeNotes
                 :nodeNoteItem="nodeNoteItem"
                 v-if="$can('super')"
