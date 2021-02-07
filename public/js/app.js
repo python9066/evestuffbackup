@@ -9889,11 +9889,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
 
 
 
@@ -26664,8 +26659,7 @@ var render = function() {
               attrs: {
                 "max-width": "700px",
                 "z-index": "0",
-                value: _vm.showNodeNotes,
-                transition: "dialog-bottom-transition"
+                value: _vm.showNodeNotes
               }
             },
             [
