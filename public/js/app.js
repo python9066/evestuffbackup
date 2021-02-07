@@ -9819,6 +9819,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 
@@ -26524,6 +26525,7 @@ var render = function() {
             [
               _vm.$can("super")
                 ? _c("ShowNodeNotes", {
+                    attrs: { nodeNoteItem: _vm.nodeNoteItem },
                     on: {
                       closeMessage: function($event) {
                         _vm.showNodeNotes = false

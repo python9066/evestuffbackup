@@ -435,6 +435,7 @@
         </v-overlay>
         <v-overlay z-index="0" :value="showNodeNotes">
             <ShowNodeNotes
+                :nodeNoteItem="nodeNoteItem"
                 v-if="$can('super')"
                 @closeMessage="showNodeNotes = false"
             >
