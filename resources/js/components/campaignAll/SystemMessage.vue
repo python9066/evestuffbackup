@@ -13,7 +13,12 @@
                     :content="messageCount"
                     :value="showNumber"
                 >
-                    <v-icon color="blue" v-bind="attrs" v-on="on">
+                    <v-icon
+                        color="blue"
+                        v-bind="attrs"
+                        v-on="on"
+                        @click="showNodeNotes != showNodeNotes"
+                    >
                         {{ icon }}
                     </v-icon>
                 </v-badge>
@@ -37,7 +42,7 @@
                         no-resize
                         v-model="item.notes"
                         outlined
-                        placeholder="No Nodes"
+                        placeholder="No Notes"
                     ></v-textarea>
                     <v-divider></v-divider>
                     <div>

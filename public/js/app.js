@@ -2293,6 +2293,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -18256,7 +18261,14 @@ var render = function() {
                         "v-icon",
                         _vm._g(
                           _vm._b(
-                            { attrs: { color: "blue" } },
+                            {
+                              attrs: { color: "blue" },
+                              on: {
+                                click: function($event) {
+                                  _vm.showNodeNotes != _vm.showNodeNotes
+                                }
+                              }
+                            },
                             "v-icon",
                             attrs,
                             false
@@ -18312,7 +18324,7 @@ var render = function() {
                       readonly: "",
                       "no-resize": "",
                       outlined: "",
-                      placeholder: "No Nodes"
+                      placeholder: "No Notes"
                     },
                     model: {
                       value: _vm.item.notes,
