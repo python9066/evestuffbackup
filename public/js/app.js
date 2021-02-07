@@ -997,6 +997,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -17506,7 +17511,13 @@ var render = function() {
                               _vm.$can("super")
                                 ? _c(
                                     "v-badge",
-                                    { attrs: { color: "green", overlap: "" } },
+                                    {
+                                      attrs: {
+                                        color: "green",
+                                        overlap: "",
+                                        dot: ""
+                                      }
+                                    },
                                     [
                                       _c(
                                         "v-icon",
