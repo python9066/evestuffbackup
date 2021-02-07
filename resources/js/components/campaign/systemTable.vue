@@ -437,9 +437,10 @@
                                 v-if="$can('super')"
                                 color="green"
                                 left
+                                overlap
                                 :content="messageCount"
                             >
-                                <v-icon small color="blue">
+                                <v-icon color="blue">
                                     fas fa-comment-alt
                                 </v-icon>
                             </v-badge>
