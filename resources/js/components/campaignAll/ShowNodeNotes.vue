@@ -15,6 +15,7 @@
                 readonly
                 v-model="nodeNoteItem.notes"
                 outlined
+                placeholder="No Nodes"
             ></v-textarea>
             <v-divider></v-divider>
             <div>

@@ -2157,6 +2157,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 
@@ -18038,7 +18039,7 @@ var render = function() {
         "v-card-text",
         [
           _c("v-textarea", {
-            attrs: { readonly: "", outlined: "" },
+            attrs: { readonly: "", outlined: "", placeholder: "No Nodes" },
             model: {
               value: _vm.nodeNoteItem.notes,
               callback: function($$v) {
@@ -26640,7 +26641,7 @@ var render = function() {
               attrs: {
                 "z-index": "0",
                 value: _vm.showNodeNotes,
-                translate: "overlay-bottom-transition"
+                translate: "dialog-bottom-transition"
               }
             },
             [

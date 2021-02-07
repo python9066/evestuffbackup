@@ -436,7 +436,7 @@
         <v-dialog
             z-index="0"
             :value="showNodeNotes"
-            translate="overlay-bottom-transition"
+            translate="dialog-bottom-transition"
         >
             <ShowNodeNotes
                 :nodeNoteItem="nodeNoteItem"
