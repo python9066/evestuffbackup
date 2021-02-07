@@ -440,6 +440,17 @@
                         >
                             fas fa-trash-alt
                         </v-icon>
+                        <v-badge
+                            v-if="this.$can('super')"
+                            :content="messages"
+                            :value="messages"
+                            color="green"
+                            overlap
+                        >
+                            <v-icon large>
+                                mdi-vuetify
+                            </v-icon>
+                        </v-badge>
                     </template>
 
                     <template v-slot:item.user_ship="{ item }">
@@ -567,7 +578,9 @@ export default {
             singleExpand: false,
             charAddNode: null,
             noteText: "",
-            test1: ""
+            test1: "",
+            message: 0,
+            showMessage: false
         };
     },
 
@@ -952,9 +965,16 @@ export default {
         updatetext(item) {
             this.noteText = this.noteText + "\n";
             if (item.notes == null) {
-                var note = this.$store.state.user_name + ": " + this.noteText;
+                var note =
+                    moment.utc().format("HH:mm:ss") +
+                    ": " +
+                    this.$store.state.user_name +
+                    ": " +
+                    this.noteText;
             } else {
                 var note =
+                    moment.utc().format("HH:mm:ss") +
+                    ": " +
                     this.$store.state.user_name +
                     ": " +
                     this.noteText +
