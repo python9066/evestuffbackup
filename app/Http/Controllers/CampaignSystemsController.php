@@ -223,7 +223,9 @@ class CampaignSystemsController extends Controller
             'message' => $message,
             'id' => $id
         ]);
-        broadcast(new NodeMessageUpdate($flag));
+
+        dd($request, $id, $flag);
+        broadcast(new NodeMessageUpdate($flag))->toOthers();
     }
 
     public function removechar(Request $request, $campid)
