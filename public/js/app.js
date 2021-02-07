@@ -2293,11 +2293,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -18229,11 +18224,7 @@ var render = function() {
       _c(
         "v-dialog",
         {
-          attrs: {
-            "max-width": "700px",
-            "z-index": "0",
-            value: _vm.showNodeNotes
-          },
+          attrs: { "max-width": "700px", "z-index": "0" },
           on: {
             "click:outside": function($event) {
               return _vm.close()
@@ -18261,14 +18252,7 @@ var render = function() {
                         "v-icon",
                         _vm._g(
                           _vm._b(
-                            {
-                              attrs: { color: "blue" },
-                              on: {
-                                click: function($event) {
-                                  _vm.showNodeNotes != _vm.showNodeNotes
-                                }
-                              }
-                            },
+                            { attrs: { color: "blue" } },
                             "v-icon",
                             attrs,
                             false
@@ -18289,7 +18273,14 @@ var render = function() {
                 ]
               }
             }
-          ])
+          ]),
+          model: {
+            value: _vm.showNodeNotes,
+            callback: function($$v) {
+              _vm.showNodeNotes = $$v
+            },
+            expression: "showNodeNotes"
+          }
         },
         [
           _vm._v(" "),

@@ -3,7 +3,7 @@
         <v-dialog
             max-width="700px"
             z-index="0"
-            :value="showNodeNotes"
+            v-model="showNodeNotes"
             @click:outside="close()"
         >
             <template v-slot:activator="{ on, attrs }">
@@ -13,12 +13,7 @@
                     :content="messageCount"
                     :value="showNumber"
                 >
-                    <v-icon
-                        color="blue"
-                        v-bind="attrs"
-                        v-on="on"
-                        @click="showNodeNotes != showNodeNotes"
-                    >
+                    <v-icon color="blue" v-bind="attrs" v-on="on">
                         {{ icon }}
                     </v-icon>
                 </v-badge>
