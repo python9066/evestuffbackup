@@ -103,7 +103,7 @@ export default {
             e => {
                 this.showNumber = true;
                 this.messageCount = this.messageCount + 1;
-                this.$store.dispatch("updateCampaignSystem", this.item);
+                this.$store.dispatch("updateCampaignSystem", e.flag.message);
             }
         );
     },

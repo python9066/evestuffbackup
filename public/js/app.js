@@ -2208,7 +2208,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 _this.showNumber = true;
                 _this.messageCount = _this.messageCount + 1;
 
-                _this.$store.dispatch("updateCampaignSystem", _this.item);
+                _this.$store.dispatch("updateCampaignSystem", e.flag.message);
               });
 
             case 1:
