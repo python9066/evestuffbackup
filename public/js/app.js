@@ -26499,6 +26499,7 @@ var render = function() {
                     return _vm.openSolaLog($event)
                   },
                   openMessage: function($event) {
+                    $event.stopPropagation()
                     return _vm.showMessage($event)
                   }
                 }
