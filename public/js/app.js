@@ -2315,9 +2315,31 @@ __webpack_require__.r(__webpack_exports__);
       this.editText = null;
       this.showNodeNotes = false;
     },
-    closeNodeMessage: function closeNodeMessage() {
+    updatetext: function updatetext() {
+      this.editText = this.editText + "\n";
+
+      if (this.nodeNoteItem.notes == null) {
+        var note = moment__WEBPACK_IMPORTED_MODULE_1___default.a.utc().format("HH:mm:ss") + " - " + this.$store.state.user_name + ": " + this.editText;
+      } else {
+        var note = moment__WEBPACK_IMPORTED_MODULE_1___default.a.utc().format("HH:mm:ss") + " - " + this.$store.state.user_name + ": " + this.editText + this.nodeNoteItem.notes;
+      }
+
+      this.nodeNoteItem.notes = note;
+      var request = {
+        notes: note
+      };
+      this.$store.dispatch("updateCampaignSystem", this.nodeNoteItem); // axios({
+      //     method: "put",
+      //     url: "/api/campaignsystems/" + item.id + "/" + this.campaign_id,
+      //     data: request,
+      //     headers: {
+      //         Authorization: "Bearer " + this.$store.state.token,
+      //         Accept: "application/json",
+      //         "Content-Type": "application/json"
+      //     }
+      // });
+
       this.editText = null;
-      console.log("123456");
     }
   },
   computed: {
@@ -18208,7 +18230,7 @@ var render = function() {
           },
           on: {
             "click:outside": function($event) {
-              return _vm.closeNodeMessage()
+              return _vm.close()
             }
           },
           scopedSlots: _vm._u([

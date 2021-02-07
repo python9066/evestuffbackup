@@ -4,7 +4,7 @@
             max-width="700px"
             z-index="0"
             :value="showNodeNotes"
-            @click:outside="closeNodeMessage()"
+            @click:outside="close()"
         >
             <template v-slot:activator="{ on, attrs }">
                 <v-badge
@@ -102,9 +102,41 @@ export default {
             this.showNodeNotes = false;
         },
 
-        closeNodeMessage() {
+        updatetext() {
+            this.editText = this.editText + "\n";
+            if (this.nodeNoteItem.notes == null) {
+                var note =
+                    moment.utc().format("HH:mm:ss") +
+                    " - " +
+                    this.$store.state.user_name +
+                    ": " +
+                    this.editText;
+            } else {
+                var note =
+                    moment.utc().format("HH:mm:ss") +
+                    " - " +
+                    this.$store.state.user_name +
+                    ": " +
+                    this.editText +
+                    this.nodeNoteItem.notes;
+            }
+
+            this.nodeNoteItem.notes = note;
+            let request = {
+                notes: note
+            };
+            this.$store.dispatch("updateCampaignSystem", this.nodeNoteItem);
+            // axios({
+            //     method: "put",
+            //     url: "/api/campaignsystems/" + item.id + "/" + this.campaign_id,
+            //     data: request,
+            //     headers: {
+            //         Authorization: "Bearer " + this.$store.state.token,
+            //         Accept: "application/json",
+            //         "Content-Type": "application/json"
+            //     }
+            // });
             this.editText = null;
-            console.log("123456");
         }
     },
 
