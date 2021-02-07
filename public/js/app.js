@@ -26516,6 +26516,23 @@ var render = function() {
                 : _vm._e()
             ],
             1
+          ),
+          _vm._v(" "),
+          _c(
+            "v-overlay",
+            { attrs: { "z-index": "0", value: _vm.showNodeNotes } },
+            [
+              _vm.$can("super")
+                ? _c("ShowNodeNotes", {
+                    on: {
+                      closeMessage: function($event) {
+                        _vm.showNodeNotes = false
+                      }
+                    }
+                  })
+                : _vm._e()
+            ],
+            1
           )
         ],
         1
