@@ -17964,9 +17964,9 @@ var render = function() {
     [
       _c("v-card-title", [
         _vm._v(
-          "Notes for node " +
+          "Notes for the " +
             _vm._s(_vm.nodeNoteItem.node) +
-            " from the\n        " +
+            " node for the\n        " +
             _vm._s(_vm.nodeNoteItem.text) +
             "\n        Campaign\n    "
         )

@@ -6,7 +6,7 @@
         class=" d-flex flex-column"
     >
         <v-card-title
-            >Notes for node {{ nodeNoteItem.node }} from the
+            >Notes for the {{ nodeNoteItem.node }} node for the
             {{ nodeNoteItem.text }}
             Campaign
         </v-card-title>
