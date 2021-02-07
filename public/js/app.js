@@ -2152,7 +2152,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -18008,8 +18007,6 @@ var render = function() {
           _c(
             "div",
             [
-              _c("v-subheader", [_vm._v("New Notes")]),
-              _vm._v(" "),
               _c("v-textarea", {
                 attrs: {
                   value: _vm.editText,

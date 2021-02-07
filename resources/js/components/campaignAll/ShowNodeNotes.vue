@@ -19,7 +19,6 @@
             ></v-textarea
             ><v-divider></v-divider>
             <div>
-                <v-subheader>New Notes</v-subheader>
                 <v-textarea
                     :value="editText"
                     auto-grow
