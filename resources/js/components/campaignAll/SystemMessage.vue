@@ -86,7 +86,8 @@ export default {
     data() {
         return {
             messageCount: 0,
-            showNumber: false
+            showNumber: false,
+            showNodeNotes: false
         };
     },
 

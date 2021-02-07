@@ -2302,7 +2302,8 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       messageCount: 0,
-      showNumber: false
+      showNumber: false,
+      showNodeNotes: false
     };
   },
   methods: {
