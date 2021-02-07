@@ -433,7 +433,7 @@
             >
             </SolaSystemLogging>
         </v-overlay>
-        <v-dialog
+        <!-- <v-dialog
             max-width="700px"
             z-index="0"
             :value="showNodeNotes"
@@ -441,12 +441,11 @@
         >
             <ShowNodeNotes
                 :nodeNoteItem="nodeNoteItem"
-                :nodeEditText="nodeEditText"
                 v-if="$can('super')"
                 @closeMessage="showNodeNotes = false"
             >
             </ShowNodeNotes>
-        </v-dialog>
+        </v-dialog> -->
     </div>
 </template>
 <!-- {{ $route.params.id }} - {{ test }} -  -->
@@ -512,7 +511,6 @@ export default {
 
             nodeItem: null,
             nodeNoteItem: [],
-            nodeEditText: null,
 
             oldChar: [],
             overlay: false,

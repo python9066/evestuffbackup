@@ -494,6 +494,19 @@
                     </div>
                 </div>
             </v-card-actions>
+            <v-dialog
+                max-width="700px"
+                z-index="0"
+                :value="showNodeNotes"
+                @click:outside="closeNodeMessage()"
+            >
+                <ShowNodeNotes
+                    :nodeNoteItem="nodeNoteItem"
+                    v-if="$can('super')"
+                    @closeMessage="showNodeNotes = false"
+                >
+                </ShowNodeNotes>
+            </v-dialog>
         </v-card>
     </v-col>
 </template>
@@ -574,6 +587,7 @@ export default {
             charReadyToGo: 0,
             OnTheWayColor: "teal",
             nodeText: "",
+            showNodeNotes: false,
             addShown: false,
             singleExpand: false,
             charAddNode: null,
@@ -596,7 +610,7 @@ export default {
         },
 
         openMessage(item) {
-            this.$emit("openMessage", item);
+            // this.$emit("openMessage", item);
         },
 
         openAdd(item) {

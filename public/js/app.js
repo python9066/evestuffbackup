@@ -999,6 +999,19 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -1084,6 +1097,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       charReadyToGo: 0,
       OnTheWayColor: "teal",
       nodeText: "",
+      showNodeNotes: false,
       addShown: false,
       singleExpand: false,
       charAddNode: null,
@@ -1125,8 +1139,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         return true;
       }
     },
-    openMessage: function openMessage(item) {
-      this.$emit("openMessage", item);
+    openMessage: function openMessage(item) {// this.$emit("openMessage", item);
     },
     openAdd: function openAdd(item) {
       this.$emit("openAdd", item);
@@ -9898,7 +9911,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
 
 
 
@@ -9986,7 +9998,6 @@ function sleep(ms) {
       }],
       nodeItem: null,
       nodeNoteItem: [],
-      nodeEditText: null,
       oldChar: [],
       overlay: false,
       removeShown: false,
@@ -17831,7 +17842,36 @@ var render = function() {
                 )
               ]
             )
-          ])
+          ]),
+          _vm._v(" "),
+          _c(
+            "v-dialog",
+            {
+              attrs: {
+                "max-width": "700px",
+                "z-index": "0",
+                value: _vm.showNodeNotes
+              },
+              on: {
+                "click:outside": function($event) {
+                  return _vm.closeNodeMessage()
+                }
+              }
+            },
+            [
+              _vm.$can("super")
+                ? _c("ShowNodeNotes", {
+                    attrs: { nodeNoteItem: _vm.nodeNoteItem },
+                    on: {
+                      closeMessage: function($event) {
+                        _vm.showNodeNotes = false
+                      }
+                    }
+                  })
+                : _vm._e()
+            ],
+            1
+          )
         ],
         1
       )
@@ -26659,38 +26699,6 @@ var render = function() {
                     on: {
                       closeSolaLog: function($event) {
                         _vm.solalog = false
-                      }
-                    }
-                  })
-                : _vm._e()
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "v-dialog",
-            {
-              attrs: {
-                "max-width": "700px",
-                "z-index": "0",
-                value: _vm.showNodeNotes
-              },
-              on: {
-                "click:outside": function($event) {
-                  return _vm.closeNodeMessage()
-                }
-              }
-            },
-            [
-              _vm.$can("super")
-                ? _c("ShowNodeNotes", {
-                    attrs: {
-                      nodeNoteItem: _vm.nodeNoteItem,
-                      nodeEditText: _vm.nodeEditText
-                    },
-                    on: {
-                      closeMessage: function($event) {
-                        _vm.showNodeNotes = false
                       }
                     }
                   })
