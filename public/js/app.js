@@ -2158,6 +2158,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 
 
@@ -18042,19 +18044,12 @@ var render = function() {
             "v-card",
             { attrs: { "min-height": "200px", "max-height": "700px" } },
             [
-              _c("v-textarea", {
-                attrs: { outlined: "", disabled: "" },
-                model: {
-                  value: _vm.nodeNoteItem.notes,
-                  callback: function($$v) {
-                    _vm.$set(_vm.nodeNoteItem, "notes", $$v)
-                  },
-                  expression: "nodeNoteItem.notes"
-                }
-              })
-            ],
-            1
+              _vm._v(
+                "\n            " + _vm._s(_vm.nodeNoteItem.notes) + "\n        "
+              )
+            ]
           ),
+          _vm._v(" "),
           _c("v-divider"),
           _vm._v(" "),
           _c(
