@@ -13,7 +13,7 @@
             <v-textarea
                 :vlaue="nodeNoteItem.notes"
                 auto-grow
-                filled
+                outlined
                 placeholder="No notes"
                 disabled
             ></v-textarea

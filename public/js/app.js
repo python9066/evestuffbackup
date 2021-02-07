@@ -17986,7 +17986,7 @@ var render = function() {
             attrs: {
               vlaue: _vm.nodeNoteItem.notes,
               "auto-grow": "",
-              filled: "",
+              outlined: "",
               placeholder: "No notes",
               disabled: ""
             }
