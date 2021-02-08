@@ -85,7 +85,7 @@ class NodeJoinsController extends Controller
 
 
                 $nodes->delete();
-                return;
+                exit;
             }
 
             if ($nodes->where('campaign_system_status_id', 3)->count() > 0) {
