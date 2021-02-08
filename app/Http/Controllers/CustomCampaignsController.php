@@ -73,7 +73,7 @@ class CustomCampaignsController extends Controller
         // dd($data);
         CustomCampaign::find($campid)->update(['name' => $name]);
         foreach ($data as $data) {
-            // dd($data);
+            dd($data);
             CampaignJoin::create(['custom_campaign_id' => $campid, 'campaign_id' => $data]);
             $solas = CampaignSolaSystem::where('campaign_id', $data)->get();
             foreach ($solas as $sola) {
