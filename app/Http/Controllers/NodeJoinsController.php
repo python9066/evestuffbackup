@@ -42,7 +42,7 @@ class NodeJoinsController extends Controller
 
 
             if ($request['campaign_systemn_status_id'] == 4 || $request['campaign_systemn_status_id'] == 5) {
-
+                dd($request);
                 foreach ($nodes as $node) {
 
                     $flag = collect([
@@ -85,7 +85,6 @@ class NodeJoinsController extends Controller
 
 
                 $nodes->delete();
-                dd($flag);
             }
 
             if ($nodes->where('campaign_system_status_id', 3)->count() > 0) {
