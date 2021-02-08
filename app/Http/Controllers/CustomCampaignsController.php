@@ -71,24 +71,11 @@ class CustomCampaignsController extends Controller
         foreach ($data as $data) {
             CampaignJoin::where('custom_campaign_id', $campid)->where('campaign_id', $data)->delete();
         }
-        $oldCampaignID = CampaignJoin::where('custom_campaign_id', $campid)->select('campaign_id')->get();
-        // CampaignJoin::where('custom_campaign_id', $campid)->delete();
-        // CampaignSolaSystem::where('campaign_id', $campid)->delete();
-        dd($oldCampaignID);
-        CustomCampaign::find($campid)->update(['name' => $name]);
-        foreach ($data as $data) {
-            // dd($data);
-            CampaignJoin::create(['custom_campaign_id' => $campid, 'campaign_id' => $data]);
-            $solas = CampaignSolaSystem::where('campaign_id', $data)->get();
-            foreach ($solas as $sola) {
-                if (CampaignSolaSystem::where('campaign_id', $campid)->where('system_id', $sola['system_id'])->count() < 1) {
-                    CampaignSolaSystem::create(['system_id' => $sola['system_id'], 'campaign_id' => $campid]);
-                };
-            }
-            $systemNodes = CampaignSystem::where('campaign_id', $data)->get();
-            $systemNodesaa = $systemNodes->where('custom_campaign_id')->get();
+        $oldCampaignIDs = CampaignJoin::where('custom_campaign_id', $campid)->get();
 
-            dd($systemNodes, $systemNodesaa);
+        foreach ($oldCampaignIDs as $oldCampaignID) {
+            $systemNodes = CampaignSystem::where('campaign_id', $oldCampaignID->campaign_id)->get();
+            $systemNodesaa = $systemNodes->where('custom_campaign_id')->get();
             if ($systemNodes != null) {
                 foreach ($systemNodes as $systemNode) {
 
@@ -135,6 +122,19 @@ class CustomCampaignsController extends Controller
 
                     $systemNode->delete();
                 }
+            }
+        }
+        CampaignJoin::where('custom_campaign_id', $campid)->delete();
+        CampaignSolaSystem::where('campaign_id', $campid)->delete();
+        CustomCampaign::find($campid)->update(['name' => $name]);
+        foreach ($data as $data) {
+            // dd($data);
+            CampaignJoin::create(['custom_campaign_id' => $campid, 'campaign_id' => $data]);
+            $solas = CampaignSolaSystem::where('campaign_id', $data)->get();
+            foreach ($solas as $sola) {
+                if (CampaignSolaSystem::where('campaign_id', $campid)->where('system_id', $sola['system_id'])->count() < 1) {
+                    CampaignSolaSystem::create(['system_id' => $sola['system_id'], 'campaign_id' => $campid]);
+                };
             }
         }
 
