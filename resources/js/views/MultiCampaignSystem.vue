@@ -445,9 +445,7 @@ export default {
 
     beforeMonunt() {},
 
-    async beforeCreate() {
-
-    },
+    async beforeCreate() {},
 
     async mounted() {
         if (this.$store.getters.getCampaignsCount == 0) {
@@ -455,7 +453,7 @@ export default {
         }
         if (this.$store.getters.getMultiCampaignsCount == 0) {
             await this.$store.dispatch("getMultiCampaigns");
-        },
+        }
 
         await this.$store.dispatch(
             "getCampaignJoinDataByCampaign",
