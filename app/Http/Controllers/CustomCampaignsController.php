@@ -95,7 +95,7 @@ class CustomCampaignsController extends Controller
 
                     $user =  CampaignUser::where('campaign_system_id', $systemNode->id)->first();
                     if ($user != null) {
-                        $user->update(['campaign_system_id' => null, 'status_id' => null]);
+                        $user->update(['campaign_system_id' => null, 'status_id' => 3]);
                         $message = CampaignUserRecords::where('id', $user->id)->first();
                         $flag = collect([
                             'message' => $message,
@@ -114,7 +114,7 @@ class CustomCampaignsController extends Controller
                                 broadcast(new NodeJoinDelete($flag));
 
                                 $user = CampaignUser::where('campaign_system_id', $node->campaign_system_id)->first();
-                                $user->update(['campaign_system_id' => null, 'status_id' => null]);
+                                $user->update(['campaign_system_id' => null, 'status_id' => 3]);
                                 $message = CampaignUserRecords::where('id', $user->id)->first();
                                 $flag = collect([
                                     'message' => $message,
