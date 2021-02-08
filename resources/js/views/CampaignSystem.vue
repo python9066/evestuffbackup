@@ -169,11 +169,7 @@
                             @click="showTable = false"
                             >Hide Char table</v-btn
                         >
-                        <UsersChars
-                            :campaign_id="campaign.id"
-                            @closeAddChar="overlay = false"
-                        >
-                        </UsersChars>
+                        <UsersChars :campaign_id="campaign.id"> </UsersChars>
 
                         <v-menu
                             :close-on-content-click="false"

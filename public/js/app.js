@@ -3145,6 +3145,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -3218,7 +3223,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   methods: {
     close: function close() {
-      this.$emit("closeAddChar", "yo");
+      this.overlay = false;
     },
     newCharFormClose: function newCharFormClose() {
       this.addShown = false;
@@ -9450,10 +9455,6 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
-//
-//
-//
-//
 //
 //
 //
@@ -18710,6 +18711,11 @@ var render = function() {
         "v-dialog",
         {
           attrs: { "max-width": "700px", "z-index": "0" },
+          on: {
+            "click:outside": function($event) {
+              return _vm.close()
+            }
+          },
           scopedSlots: _vm._u([
             {
               key: "activator",
@@ -26072,12 +26078,7 @@ var render = function() {
                                 : _vm._e(),
                               _vm._v(" "),
                               _c("UsersChars", {
-                                attrs: { campaign_id: _vm.campaign.id },
-                                on: {
-                                  closeAddChar: function($event) {
-                                    _vm.overlay = false
-                                  }
-                                }
+                                attrs: { campaign_id: _vm.campaign.id }
                               }),
                               _vm._v(" "),
                               _c(

@@ -1,6 +1,11 @@
 <template>
     <div>
-        <v-dialog v-model="overlay" max-width="700px" z-index="0">
+        <v-dialog
+            v-model="overlay"
+            max-width="700px"
+            z-index="0"
+            @click:outside="close()"
+        >
             <template v-slot:activator="{ on, attrs }">
                 <v-btn
                     class="mr-4"
@@ -211,7 +216,7 @@ export default {
 
     methods: {
         close() {
-            this.$emit("closeAddChar", "yo");
+            this.overlay = false;
         },
 
         newCharFormClose() {
