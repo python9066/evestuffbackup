@@ -110,7 +110,7 @@ class CampaignSystemsController extends Controller
         } else {
             if ($joins->count() > 0) {
                 foreach ($joins as $join) {
-                    dd($join);
+                    // dd($join);
                     $pull = [
                         'id' => $join->id,
                         'campaign_system_id' => $join->campaign_system_id,
