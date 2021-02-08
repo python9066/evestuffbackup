@@ -74,55 +74,44 @@ class CustomCampaignsController extends Controller
         $oldCampaignIDs = CampaignJoin::where('custom_campaign_id', $campid)->get();
 
         foreach ($oldCampaignIDs as $oldCampaignID) {
-            $systemNodes = CampaignSystem::where('campaign_id', $oldCampaignID->campaign_id)->where('custom_campaign_id', $campid)->get();
-            if ($systemNodes != null) {
-                foreach ($systemNodes as $systemNode) {
-
-                    $flag = null;
-                    $flag = collect([
-                        'campSysID' => $systemNode->id,
-                        'id' => $campid
-                    ]);
-                    broadcast(new CampaignSystemDelete($flag));
 
 
-                    $user =  CampaignUser::where('campaign_system_id', $systemNode->id)->first();
-                    if ($user != null) {
-                        $user->update(['campaign_system_id' => null, 'status_id' => 3]);
-                        $message = CampaignUserRecords::where('id', $user->id)->first();
+            $systemNodes = CampaignSystem::where('campaign_id', $oldCampaignID->id)->where('custom_campaign_id', $campid)->get();
+            foreach ($systemNodes as $systemNode) {
+                $flag = null;
+                $flag = collect([
+                    'campSysID' => $systemNode->id,
+                    'id' => $campid
+                ]);
+                broadcast(new CampaignSystemDelete($flag))->toOthers();
+
+                if ($systemNode->node_join_count > 0) {
+                    $nodes =  NodeJoin::where('campaign_system_id', $systemNode->id);
+                    foreach ($nodes as $node) {
+                        $flag = null;
                         $flag = collect([
-                            'message' => $message,
+                            'joinNodeID' => $node->id,
                             'id' => $campid
                         ]);
-                        broadcast(new CampaignUserUpdate($flag));
-
-                        if ($systemNode->node_join_count > 0) {
-                            $nodes = NodeJoin::where('campaign_system_id', $systemNode->id);
-                            foreach ($nodes as $node) {
-                                $flag = null;
-                                $flag = collect([
-                                    'joinNodeID' => $node->id,
-                                    'id' => $campid
-                                ]);
-                                broadcast(new NodeJoinDelete($flag));
-
-                                $user = CampaignUser::where('campaign_system_id', $node->campaign_system_id)->first();
-                                $user->update(['campaign_system_id' => null, 'status_id' => 3]);
-                                $message = CampaignUserRecords::where('id', $user->id)->first();
-                                $flag = collect([
-                                    'message' => $message,
-                                    'id' => $campid
-                                ]);
-                                broadcast(new CampaignUserUpdate($flag));
-                                $node->delete();
-                            }
-                        }
+                        broadcast(new NodeJoinDelete($flag))->toOthers();
+                        $node->delete();
                     }
-
-                    $systemNode->delete();
+                }
+                $users = CampaignUser::where('campaign_system_id', $systemNode->id)->get();
+                foreach ($users as $user) {
+                    $user->update(['campaign_system_id' => null, 'status_id' => 3]);
+                    $message = CampaignUserRecords::where('id', $user->id)->first();
+                    $flag = collect([
+                        'message' => $message,
+                        'id' => $campid
+                    ]);
+                    broadcast(new CampaignUserUpdate($flag));
                 }
             }
+            $oldCampaignID->delete();
         }
+
+
         $data = $request->all();
         CampaignJoin::where('custom_campaign_id', $campid)->delete();
         CampaignSolaSystem::where('campaign_id', $campid)->delete();
