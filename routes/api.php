@@ -100,7 +100,7 @@ Route::middleware('auth:api')->group(function () {
     Route::delete('/multicampaigns/{id}', 'CustomCampaignsController@destroy');
     Route::post('/multicampaignsedit/{campid}/{name}', 'CustomCampaignsController@edit');
 
-    Route::get('/campaignjoin', 'CampaignJoinsController@index');
+    Route::get('/campaignjoinindex/{campid}', 'CampaignJoinsController@index');
     Route::get('/campaignjoin/{id}', 'CampaignJoinsController@show');
     Route::get('/campaignjoinlist/{id}', 'CampaignJoinsController@list');
     Route::get('/campaignjoinsystems/{id}', 'CampaignJoinsController@campaignSystems');

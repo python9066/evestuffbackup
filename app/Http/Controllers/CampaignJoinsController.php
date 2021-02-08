@@ -18,8 +18,8 @@ class CampaignJoinsController extends Controller
     public function index($campid)
     {
         $list = [];
-        $pull = CampaignJoin::where('custom_campaign_id', $campid);
-        foreach ($pull as $pull) {
+        $pulls = CampaignJoin::where('custom_campaign_id', $campid)->get();
+        foreach ($pulls as $pull) {
             $camp = CampaignRecords::where('id', $pull['campaign_id'])->get();
             $count = $camp->count();
             if ($count != 0) {
