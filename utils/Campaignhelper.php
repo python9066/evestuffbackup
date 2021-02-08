@@ -220,7 +220,14 @@ class Campaignhelper
                     'id' => $a->id
                 ]);
                 broadcast(new CampaignUpdate($flag))->toOthers();
-                echo "2";
+
+                // $dNotes = CampaignSystem::where('id', $a->id)->get();
+                // foreach ($dNotes as $dNote) {
+                //     NodeJoin::where('campaign_system_id', $dNote->id)->delete();
+                //     CampaignUser::where('campaign_system_id', $dNote->id)->update(['campaign_system_id' => null, 'status_id' => 3]);
+                //     $dNote->delete;
+                // }
+                // CampaignJoin::where('campaign_id', $a->id)->delete();
             }
 
 
