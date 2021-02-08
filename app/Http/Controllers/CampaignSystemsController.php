@@ -122,7 +122,7 @@ class CampaignSystemsController extends Controller
                         'link' => intval($join->campaignUser->link),
                         'campaign_system_status_id' => intval($join->campaign_system_status_id),
                         'statusName' => CampaignSystemStatus::where('id', $join->campaign_system_status_id)->value('name'),
-                        'campaign_sola_system_id' => CampaignSolaSystem::where('campaign_id', $join->campaignSystemMulti->campaign_id)->where('system_id', $join->campaignSystemMulti->system_id)->value('id'),
+                        'campaign_sola_system_id' => CampaignSolaSystem::where('campaign_id', $campid)->where('system_id', $join->campaignSystem->system_id)->value('id'),
                         'campaign_id' => $campid
                     ];
                     array_push($nodeJoin, $pull);
