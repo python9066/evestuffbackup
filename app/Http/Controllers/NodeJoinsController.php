@@ -59,6 +59,7 @@ class NodeJoinsController extends Controller
                     broadcast(new CampaignUserUpdate($flag));
 
                     $campaign_system_status_id = $node->campaign_system_status_id;
+                    $node->delete();
                 }
 
                 $CampaignSystem = CampaignSystem::where('id', $id)->first();
@@ -78,10 +79,6 @@ class NodeJoinsController extends Controller
                     "id" => $campid
                 ]);
                 broadcast(new CampaignSystemUpdate($flag));
-
-
-
-                $nodes->delete();
                 return;
             }
 
