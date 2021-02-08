@@ -95,6 +95,7 @@ class CustomCampaignsController extends Controller
 
                     $user =  CampaignUser::where('campaign_system_id', $systemNode->id)->first();
                     if ($user != null) {
+                        DD("not null");
                         $user->update(['campaign_system_id' => null, 'status_id' => 3]);
                         $message = CampaignUserRecords::where('id', $user->id)->first();
                         $flag = collect([
