@@ -9867,11 +9867,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
 
 
 
@@ -26011,66 +26006,19 @@ var render = function() {
                                   )
                                 : _vm._e(),
                               _vm._v(" "),
-                              _c("v-dialog", {
-                                attrs: { "min-width": "1000px" },
-                                scopedSlots: _vm._u(
-                                  [
-                                    {
-                                      key: "activator",
-                                      fn: function(ref) {
-                                        var on = ref.on
-                                        var attrs = ref.attrs
-                                        return [
-                                          _c(
-                                            "v-btn",
-                                            _vm._g(
-                                              _vm._b(
-                                                {
-                                                  staticClass: "mr-4",
-                                                  attrs: {
-                                                    color: "green lighten-1"
-                                                  },
-                                                  on: {
-                                                    click: function($event) {
-                                                      _vm.overlay = !_vm.overlay
-                                                    }
-                                                  }
-                                                },
-                                                "v-btn",
-                                                attrs,
-                                                false
-                                              ),
-                                              on
-                                            ),
-                                            [_vm._v("characters")]
-                                          ),
-                                          _vm._v(" "),
-                                          _c("UsersChars", {
-                                            attrs: {
-                                              campaign_id: _vm.campaign.id
-                                            },
-                                            on: {
-                                              closeAddChar: function($event) {
-                                                _vm.overlay = false
-                                              }
-                                            }
-                                          })
-                                        ]
-                                      }
+                              _c(
+                                "v-btn",
+                                {
+                                  staticClass: "mr-4",
+                                  attrs: { color: "green lighten-1" },
+                                  on: {
+                                    click: function($event) {
+                                      _vm.overlay = !_vm.overlay
                                     }
-                                  ],
-                                  null,
-                                  false,
-                                  237340860
-                                ),
-                                model: {
-                                  value: _vm.overlay,
-                                  callback: function($$v) {
-                                    _vm.overlay = $$v
-                                  },
-                                  expression: "overlay"
-                                }
-                              }),
+                                  }
+                                },
+                                [_vm._v("characters")]
+                              ),
                               _vm._v(" "),
                               _c(
                                 "v-menu",
@@ -26620,6 +26568,28 @@ var render = function() {
                 ],
                 1
               )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "v-overlay",
+            {
+              attrs: {
+                "z-index": "0",
+                value: _vm.overlay,
+                "min-width": "1000px"
+              }
+            },
+            [
+              _c("UsersChars", {
+                attrs: { campaign_id: _vm.campaign.id },
+                on: {
+                  closeAddChar: function($event) {
+                    _vm.overlay = false
+                  }
+                }
+              })
             ],
             1
           ),
