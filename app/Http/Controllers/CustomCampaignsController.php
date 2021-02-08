@@ -82,7 +82,7 @@ class CustomCampaignsController extends Controller
                 };
             }
             $systemNodes = CampaignSystem::where('campaign_id', $data)->where('custom_campaign_id')->get();
-            if ($systemNodes->count() > 0) {
+            if ($systemNodes != null) {
                 foreach ($systemNodes as $systemNode) {
 
                     $flag = null;
