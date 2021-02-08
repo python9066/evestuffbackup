@@ -176,6 +176,12 @@
                             @click="overlay = !overlay"
                             >characters</v-btn
                         >
+                        <UsersChars
+                            :campaign_id="campaign.id"
+                            @closeAddChar="overlay = false"
+                        >
+                        </UsersChars>
+
                         <v-menu
                             :close-on-content-click="false"
                             transition="fab-transition"
@@ -391,13 +397,7 @@
                 </v-card-actions>
             </v-card>
         </v-overlay>
-        <v-overlay z-index="0" :value="overlay" min-width="1000px">
-            <UsersChars
-                :campaign_id="campaign.id"
-                @closeAddChar="overlay = false"
-            >
-            </UsersChars>
-        </v-overlay>
+
         <v-overlay z-index="0" :value="showNotes">
             <ShowNotes
                 :campaign_id="campaign.id"
