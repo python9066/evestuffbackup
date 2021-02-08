@@ -3147,6 +3147,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -18711,7 +18716,7 @@ var render = function() {
       _c(
         "v-dialog",
         {
-          attrs: { "min-width": "700px" },
+          attrs: { "max-width": "700px", "z-index": "0" },
           scopedSlots: _vm._u([
             {
               key: "activator",
@@ -18755,7 +18760,14 @@ var render = function() {
             [
               _c(
                 "v-card",
-                { attrs: { tile: "", "min-width": "700px" } },
+                {
+                  attrs: {
+                    tile: "",
+                    "max-width": "700px",
+                    "min-height": "200px",
+                    "max-height": "700px"
+                  }
+                },
                 [
                   _c(
                     "v-card-title",

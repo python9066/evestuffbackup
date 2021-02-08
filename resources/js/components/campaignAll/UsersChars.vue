@@ -1,6 +1,6 @@
 <template>
     <div>
-        <v-dialog v-model="overlay" min-width="700px">
+        <v-dialog v-model="overlay" max-width="700px" z-index="0">
             <template v-slot:activator="{ on, attrs }">
                 <v-btn
                     class="mr-4"
@@ -11,7 +11,12 @@
                 >
             </template>
             <v-col cols="10">
-                <v-card tile min-width="700px">
+                <v-card
+                    tile
+                    max-width="700px"
+                    min-height="200px"
+                    max-height="700px"
+                >
                     <v-card-title
                         class="d-flex justify-space-between align-center "
                     >
