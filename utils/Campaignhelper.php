@@ -7,6 +7,7 @@ use App\Events\CampaignSystemDelete;
 use App\Events\CampaignSystemUpdate;
 use App\Events\CampaignUpdate;
 use App\Events\CampaignUserUpdate;
+use App\Events\NodeJoinDelete;
 use App\Models\Campaign;
 use App\Models\CampaignJoin;
 use App\Models\CampaignRecords;
@@ -221,13 +222,42 @@ class Campaignhelper
                 ]);
                 broadcast(new CampaignUpdate($flag))->toOthers();
 
-                // $dNotes = CampaignSystem::where('id', $a->id)->get();
-                // foreach ($dNotes as $dNote) {
-                //     NodeJoin::where('campaign_system_id', $dNote->id)->delete();
-                //     CampaignUser::where('campaign_system_id', $dNote->id)->update(['campaign_system_id' => null, 'status_id' => 3]);
-                //     $dNote->delete;
-                // }
-                // CampaignJoin::where('campaign_id', $a->id)->delete();
+                $dCampaignSystems = CampaignSystem::where('campaign_id', $a->id)->get();
+                foreach ($dCampaignSystems as $dCampaignSystem) {
+                    $dNodes = NodeJoin::where('campaign_system_id', $dCampaignSystem->id)->get();
+                    if ($dNodes->count() > 0) {
+                        foreach ($dNodes as $dNode) {
+                            $flag = collect([
+                                "joinNodeID" => $dNode->id,
+                                "id" => $dNode->campaign_id
+                            ]);
+                            broadcast(new NodeJoinDelete($flag));
+
+                            $dNode->delete();
+                        }
+                    }
+
+                    $dCampaignUsers = CampaignUser::where('campaign_system_id', $dCampaignSystem->id)->get();
+                    foreach ($dCampaignUsers as $dCampaignUser) {
+                        $dCampaignUser->update(['campaign_system_id' => null, 'status_id' => 3]);
+                        $message = CampaignUserRecords::where('id', $dCampaignUser->id)->first();
+                        $flag = null;
+                        $flag = collect([
+                            "message" => $message,
+                            "id" => $dCampaignUser->campaign_id
+                        ]);
+                        broadcast(new CampaignUserUpdate($flag));
+                    }
+
+
+                    $flag = null;
+                    $flag = collect([
+                        'campSysID' => $dCampaignSystem->id,
+                        'id' => $a->id
+                    ]);
+                    broadcast(new CampaignSystemDelete($flag))->toOthers();
+                    $dCampaignSystem->delete();
+                }
             }
 
 
