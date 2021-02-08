@@ -41,8 +41,8 @@ class NodeJoinsController extends Controller
         if ($nodes->count() > 0) {
 
 
+            dd($request);
             if ($request['campaign_systemn_status_id'] == 4 || $request['campaign_systemn_status_id'] == 5) {
-                dd($request);
                 foreach ($nodes as $node) {
 
                     $flag = collect([
