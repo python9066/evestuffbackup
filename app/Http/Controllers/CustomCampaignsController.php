@@ -119,10 +119,6 @@ class CustomCampaignsController extends Controller
                             'id' => $campid
                         ]);
                         broadcast(new CampaignUserUpdate($flag));
-
-
-
-
                         $node->delete();
                     }
                 }
