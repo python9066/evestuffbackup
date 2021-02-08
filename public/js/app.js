@@ -1172,11 +1172,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 });
 
               case 10:
-                _this.$store.dispatch("getCampaignSystemsRecords");
-
+                // this.$store.dispatch("getCampaignSystemsRecords");
                 _this.charOnTheWay = null;
 
-              case 12:
+              case 11:
               case "end":
                 return _context3.stop();
             }
@@ -1242,11 +1241,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 });
 
               case 9:
-                _this2.$store.dispatch("getCampaignSystemsRecords");
-
                 _this2.charReadyToGo = null;
 
-              case 11:
+              case 10:
               case "end":
                 return _context4.stop();
             }
@@ -6065,11 +6062,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 });
 
               case 10:
-                _this.$store.dispatch("getCampaignSystemsRecords");
-
                 _this.charOnTheWay = null;
 
-              case 12:
+              case 11:
               case "end":
                 return _context.stop();
             }
@@ -6135,11 +6130,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 });
 
               case 9:
-                _this2.$store.dispatch("getCampaignSystemsRecords");
-
                 _this2.charReadyToGo = null;
 
-              case 11:
+              case 10:
               case "end":
                 return _context2.stop();
             }

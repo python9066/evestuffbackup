@@ -638,7 +638,7 @@ export default {
                     "Content-Type": "application/json"
                 }
             });
-            this.$store.dispatch("getCampaignSystemsRecords");
+            // this.$store.dispatch("getCampaignSystemsRecords");
             this.charOnTheWay = null;
         },
 
@@ -692,8 +692,6 @@ export default {
                     "Content-Type": "application/json"
                 }
             });
-
-            this.$store.dispatch("getCampaignSystemsRecords");
             this.charReadyToGo = null;
         },
 

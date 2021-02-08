@@ -669,7 +669,7 @@ export default {
                     "Content-Type": "application/json"
                 }
             });
-            this.$store.dispatch("getCampaignSystemsRecords");
+
             this.charOnTheWay = null;
         },
         async clickReadyToGo() {
@@ -723,7 +723,6 @@ export default {
                 }
             });
 
-            this.$store.dispatch("getCampaignSystemsRecords");
             this.charReadyToGo = null;
         },
 
