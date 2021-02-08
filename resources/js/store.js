@@ -341,7 +341,7 @@ export default new Vuex.Store({
         async getCampaignMembers({ commit, state }, campaign_id) {
             let res = await axios({
                 method: "get",
-                url: "/api/campaignsystemusers/" + campaign_id,
+                url: "/api/campaignsystemusersget/" + campaign_id,
                 headers: {
                     Authorization: "Bearer " + state.token,
                     Accept: "application/json",

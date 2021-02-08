@@ -35568,7 +35568,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
                 _context7.next = 3;
                 return axios({
                   method: "get",
-                  url: "/api/campaignsystemusers/" + campaign_id,
+                  url: "/api/campaignsystemusersget/" + campaign_id,
                   headers: {
                     Authorization: "Bearer " + state.token,
                     Accept: "application/json",
