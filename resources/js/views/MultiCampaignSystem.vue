@@ -441,7 +441,6 @@ export default {
         this.channel = "campaignsystem." + this.campaignId;
         this.logchannel = "campaignlogs." + this.campaignId;
         this.navdrawer = true;
-        this.addMember();
     },
 
     beforeMonunt() {},
@@ -473,6 +472,7 @@ export default {
         // await this.$store.dispatch("getUsersChars", this.$store.state.user_id);
         await this.$store.dispatch("loadCampaignSystemData", payload);
         await this.getSystems(this.campaignId);
+        await this.addMember();
         // await this.loadCampaignlogs();
     },
     methods: {

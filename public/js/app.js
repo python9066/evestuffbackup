@@ -12283,9 +12283,7 @@ function sleep(ms) {
               _this.logchannel = "campaignlogs." + _this.campaignId;
               _this.navdrawer = true;
 
-              _this.addMember();
-
-            case 9:
+            case 8:
             case "end":
               return _context.stop();
           }
@@ -12361,6 +12359,10 @@ function sleep(ms) {
               return _this3.getSystems(_this3.campaignId);
 
             case 13:
+              _context3.next = 15;
+              return _this3.addMember();
+
+            case 15:
             case "end":
               return _context3.stop();
           }
