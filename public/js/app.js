@@ -1413,7 +1413,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 0:
                 request = [];
 
-                if (!(item.status_id == 1 || item.status_id == 7 || item.status_id == 9 || item.status_id == 8)) {
+                if (!(item.status_id == 1 || item.status_id == 7 || item.status_id == 6 || item.status_id == 9 || item.status_id == 8)) {
                   _context6.next = 7;
                   break;
                 }
@@ -1427,7 +1427,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return _context6.abrupt("return");
 
               case 7:
-                if (item.status_id == 2 || item.status_id == 3 || item.status_id == 8 || item.status_id == 9 || item.status_id == 6) {
+                if (item.status_id == 2 || item.status_id == 3 || item.status_id == 8) {
                   item.end = null;
                   request = {
                     campaign_system_status_id: item.status_id,
@@ -6281,7 +6281,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 0:
                 request = [];
 
-                if (!(item.status_id == 1 || item.status_id == 7 || item.status_id == 9 || item.status_id == 8)) {
+                if (!(item.status_id == 1 || item.status_id == 7 || item.status_id == 6 || item.status_id == 9 || item.status_id == 8)) {
                   _context4.next = 7;
                   break;
                 }
@@ -6295,7 +6295,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return _context4.abrupt("return");
 
               case 7:
-                if (item.status_id == 2 || item.status_id == 3 || item.status_id == 8 || item.status_id == 9 || item.status_id == 6) {
+                if (item.status_id == 2 || item.status_id == 3 || item.status_id == 8) {
                   item.end = null;
                   request = {
                     campaign_system_status_id: item.status_id,

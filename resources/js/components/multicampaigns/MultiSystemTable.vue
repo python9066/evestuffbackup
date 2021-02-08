@@ -868,6 +868,7 @@ export default {
             if (
                 item.status_id == 1 ||
                 item.status_id == 7 ||
+                item.status_id == 6 ||
                 item.status_id == 9 ||
                 item.status_id == 8
             ) {
@@ -880,9 +881,7 @@ export default {
             if (
                 item.status_id == 2 ||
                 item.status_id == 3 ||
-                item.status_id == 8 ||
-                item.status_id == 9 ||
-                item.status_id == 6
+                item.status_id == 8
             ) {
                 item.end = null;
                 request = {
