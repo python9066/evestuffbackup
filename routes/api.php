@@ -82,7 +82,7 @@ Route::middleware('auth:api')->group(function () {
     Route::put('/rolesremove', 'RoleController@removeRole');
 
     Route::post('/campaignsystemusers/{campid}', 'CampaignSystemUsersController@store');
-    Route::get('/campaignsystemusersget/{campid}', 'CampaignSystemUsersController@index');
+    Route::get('/campaignsystemusers/{campid}', 'CampaignSystemUsersController@index');
     Route::delete('/campaignsystemusers/{id}/{campid}', 'CampaignSystemUsersController@destroy');
 
     Route::get('/stationrecords', 'StationRecordsController@index');
