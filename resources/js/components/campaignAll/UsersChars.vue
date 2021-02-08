@@ -10,161 +10,154 @@
                     >characters</v-btn
                 >
             </template>
-            <v-col cols="10">
-                <v-card
-                    tile
-                    max-width="700px"
-                    min-height="200px"
-                    max-height="700px"
+
+            <v-card
+                tile
+                max-width="700px"
+                min-height="200px"
+                max-height="700px"
+            >
+                <v-card-title
+                    class="d-flex justify-space-between align-center "
                 >
-                    <v-card-title
-                        class="d-flex justify-space-between align-center "
-                    >
-                        <div>Table of all your saved Characters</div>
-                        <div>
-                            <v-menu
-                                :close-on-content-click="false"
-                                :value="addShown"
-                                transition="fab-transition"
-                                origin="100% -30%"
-                            >
-                                <template v-slot:activator="{ on, attrs }">
-                                    <v-btn
-                                        text
-                                        v-bind="attrs"
-                                        v-on="on"
-                                        @click="addShown = true"
-                                        color="success"
-                                        ><v-icon left small>fas fa-plus</v-icon>
-                                        Char</v-btn
-                                    >
-                                </template>
-                                <v-row no-gutters>
-                                    <div>
-                                        <v-card class="pa-2" tile width="100%">
-                                            <v-form
-                                                @submit.prevent="newCharForm()"
+                    <div>Table of all your saved Characters</div>
+                    <div>
+                        <v-menu
+                            :close-on-content-click="false"
+                            :value="addShown"
+                            transition="fab-transition"
+                            origin="100% -30%"
+                        >
+                            <template v-slot:activator="{ on, attrs }">
+                                <v-btn
+                                    text
+                                    v-bind="attrs"
+                                    v-on="on"
+                                    @click="addShown = true"
+                                    color="success"
+                                    ><v-icon left small>fas fa-plus</v-icon>
+                                    Char</v-btn
+                                >
+                            </template>
+                            <v-row no-gutters>
+                                <div>
+                                    <v-card class="pa-2" tile width="100%">
+                                        <v-form @submit.prevent="newCharForm()">
+                                            <v-text-field
+                                                v-model="newCharName"
+                                                label="Char Name"
+                                                required
+                                                autofocus
+                                                :rules="newNameRules"
+                                            ></v-text-field>
+                                            <v-select
+                                                v-model="newRole"
+                                                @change="roleForm($event)"
+                                                :rules="newRoleRules"
+                                                :items="dropdown_roles"
+                                                label="Role"
+                                                required
+                                            ></v-select>
+                                            <v-text-field
+                                                v-model="newShip"
+                                                :rules="newShipRules"
+                                                v-if="this.role == 1"
+                                                label="Ship"
+                                                required
+                                            ></v-text-field>
+                                            <v-radio-group
+                                                v-model="newLink"
+                                                :rules="newLinkRules"
+                                                v-if="this.role == 1"
+                                                row
+                                                label="Entosis Link"
+                                                required
                                             >
-                                                <v-text-field
-                                                    v-model="newCharName"
-                                                    label="Char Name"
-                                                    required
-                                                    autofocus
-                                                    :rules="newNameRules"
-                                                ></v-text-field>
-                                                <v-select
-                                                    v-model="newRole"
-                                                    @change="roleForm($event)"
-                                                    :rules="newRoleRules"
-                                                    :items="dropdown_roles"
-                                                    label="Role"
-                                                    required
-                                                ></v-select>
-                                                <v-text-field
-                                                    v-model="newShip"
-                                                    :rules="newShipRules"
-                                                    v-if="this.role == 1"
-                                                    label="Ship"
-                                                    required
-                                                ></v-text-field>
-                                                <v-radio-group
-                                                    v-model="newLink"
-                                                    :rules="newLinkRules"
-                                                    v-if="this.role == 1"
-                                                    row
-                                                    label="Entosis Link"
-                                                    required
-                                                >
-                                                    <v-radio
-                                                        label="Tech 1"
-                                                        value="1"
-                                                    ></v-radio>
-                                                    <v-radio
-                                                        label="Tech 2"
-                                                        value="2"
-                                                    ></v-radio>
-                                                </v-radio-group>
+                                                <v-radio
+                                                    label="Tech 1"
+                                                    value="1"
+                                                ></v-radio>
+                                                <v-radio
+                                                    label="Tech 2"
+                                                    value="2"
+                                                ></v-radio>
+                                            </v-radio-group>
 
-                                                <v-btn
-                                                    color="success"
-                                                    class="mr-4"
-                                                    type="submit"
-                                                    >submit</v-btn
-                                                >
-                                                <v-btn
-                                                    color="warning"
-                                                    class="mr-4"
-                                                    @click="newCharFormClose()"
-                                                    >Close</v-btn
-                                                >
-                                                <!-- <v-btn @click="clear">clear</v-btn> -->
-                                            </v-form>
-                                        </v-card>
-                                    </div>
-                                </v-row>
-                            </v-menu>
-                        </div>
-                    </v-card-title>
-                    <v-card-text>
-                        <v-data-table
-                            :headers="headers"
-                            :items="filteredItems"
-                            item-key="id"
-                            disable-pagination
-                            fixed-header
-                            hide-default-footer
-                            class="elevation-24"
-                        >
-                            <template slot="no-data">
-                                You have no saved Chars
-                            </template>
-                            <!-- :color="pillColor(item)" -->
-                            <template v-slot:item.addRemove="{ item }">
-                                <span>
-                                    <v-btn
-                                        rounded
-                                        :outlined="true"
-                                        x-small
-                                        :color="pillColor(item)"
-                                        @click="pillClick(item)"
-                                    >
-                                        <v-icon x-small left dark>
-                                            {{ pillIcon(item) }}
-                                        </v-icon>
-                                        {{ pillText(item) }}
-                                    </v-btn>
-                                </span>
-                            </template>
-                            <template v-slot:item.actions="{ item }">
-                                <span>
-                                    <UsersCharsEdit
-                                        :char="item"
-                                        :campaign_id="campaign_id"
-                                    >
-                                    </UsersCharsEdit>
-
-                                    <v-icon
-                                        color="orange darken-3"
-                                        small
-                                        @click="removeChar(item)"
-                                    >
-                                        fas fa-trash-alt
+                                            <v-btn
+                                                color="success"
+                                                class="mr-4"
+                                                type="submit"
+                                                >submit</v-btn
+                                            >
+                                            <v-btn
+                                                color="warning"
+                                                class="mr-4"
+                                                @click="newCharFormClose()"
+                                                >Close</v-btn
+                                            >
+                                            <!-- <v-btn @click="clear">clear</v-btn> -->
+                                        </v-form>
+                                    </v-card>
+                                </div>
+                            </v-row>
+                        </v-menu>
+                    </div>
+                </v-card-title>
+                <v-card-text>
+                    <v-data-table
+                        :headers="headers"
+                        :items="filteredItems"
+                        item-key="id"
+                        disable-pagination
+                        fixed-header
+                        hide-default-footer
+                        class="elevation-24"
+                    >
+                        <template slot="no-data">
+                            You have no saved Chars
+                        </template>
+                        <!-- :color="pillColor(item)" -->
+                        <template v-slot:item.addRemove="{ item }">
+                            <span>
+                                <v-btn
+                                    rounded
+                                    :outlined="true"
+                                    x-small
+                                    :color="pillColor(item)"
+                                    @click="pillClick(item)"
+                                >
+                                    <v-icon x-small left dark>
+                                        {{ pillIcon(item) }}
                                     </v-icon>
-                                </span>
-                            </template>
-                        </v-data-table>
-                    </v-card-text>
-                    <v-card-actions>
-                        <v-btn
-                            class="white--text"
-                            color="teal"
-                            @click="close()"
-                        >
-                            Close
-                        </v-btn>
-                    </v-card-actions>
-                </v-card>
-            </v-col>
+                                    {{ pillText(item) }}
+                                </v-btn>
+                            </span>
+                        </template>
+                        <template v-slot:item.actions="{ item }">
+                            <span>
+                                <UsersCharsEdit
+                                    :char="item"
+                                    :campaign_id="campaign_id"
+                                >
+                                </UsersCharsEdit>
+
+                                <v-icon
+                                    color="orange darken-3"
+                                    small
+                                    @click="removeChar(item)"
+                                >
+                                    fas fa-trash-alt
+                                </v-icon>
+                            </span>
+                        </template>
+                    </v-data-table>
+                </v-card-text>
+                <v-card-actions>
+                    <v-btn class="white--text" color="teal" @click="close()">
+                        Close
+                    </v-btn>
+                </v-card-actions>
+            </v-card>
         </v-dialog>
     </div>
 </template>
