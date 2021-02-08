@@ -12303,7 +12303,7 @@ function sleep(ms) {
           switch (_context2.prev = _context2.next) {
             case 0:
               _context2.next = 2;
-              return _this2.$store.dispatch("getCampaignJoinData", _this2.$route.params.id);
+              return _this2.$store.dispatch("getCampaignJoinDataByCampaign", _this2.$route.params.id);
 
             case 2:
             case "end":

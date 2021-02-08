@@ -448,7 +448,7 @@ export default {
 
     async beforeCreate() {
         await this.$store.dispatch(
-            "getCampaignJoinData",
+            "getCampaignJoinDataByCampaign",
             this.$route.params.id
         );
     },
