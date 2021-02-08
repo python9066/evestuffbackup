@@ -876,7 +876,7 @@ export default {
                 }
             });
 
-            this.$store.dispatch("getCampaignSystemsRecords");
+            // this.$store.dispatch("getCampaignSystemsRecords");
             this.$store.dispatch("getCampaignUsersRecords", this.campaign_id);
         },
 

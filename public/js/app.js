@@ -1462,11 +1462,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 });
 
               case 16:
-                _this5.$store.dispatch("getCampaignSystemsRecords");
-
+                // this.$store.dispatch("getCampaignSystemsRecords");
                 _this5.$store.dispatch("getCampaignUsersRecords", _this5.campaign_id);
 
-              case 18:
+              case 17:
               case "end":
                 return _context6.stop();
             }
