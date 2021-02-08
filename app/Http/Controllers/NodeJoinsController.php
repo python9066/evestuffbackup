@@ -39,10 +39,7 @@ class NodeJoinsController extends Controller
         $nodes = NodeJoin::where('campaign_system_id', $id)->get();
 
         if ($nodes->count() > 0) {
-
-
-            dd($request);
-            if ($request['campaign_systemn_status_id'] == 4 || $request['campaign_systemn_status_id'] == 5) {
+            if ($request['campaign_system_status_id'] == 4 || $request['campaign_system_status_id'] == 5) {
                 foreach ($nodes as $node) {
 
                     $flag = collect([
