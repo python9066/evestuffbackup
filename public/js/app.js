@@ -3126,6 +3126,27 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -3193,6 +3214,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       role: 0,
       editrole: 0,
       oldChar: [],
+      overlay: false,
       addShown: false
     };
   },
@@ -9430,7 +9452,6 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
-//
 //
 //
 //
@@ -18692,371 +18713,432 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c(
-    "v-col",
-    { attrs: { cols: "10" } },
+    "div",
     [
       _c(
-        "v-card",
-        { attrs: { tile: "", "min-width": "700px" } },
+        "v-dialog",
+        {
+          attrs: { "min-width": "1000px" },
+          scopedSlots: _vm._u([
+            {
+              key: "activator",
+              fn: function(ref) {
+                var on = ref.on
+                var attrs = ref.attrs
+                return [
+                  _c(
+                    "v-btn",
+                    _vm._g(
+                      _vm._b(
+                        {
+                          staticClass: "mr-4",
+                          attrs: { color: "green lighten-1" }
+                        },
+                        "v-btn",
+                        attrs,
+                        false
+                      ),
+                      on
+                    ),
+                    [_vm._v("characters")]
+                  )
+                ]
+              }
+            }
+          ]),
+          model: {
+            value: _vm.overlay,
+            callback: function($$v) {
+              _vm.overlay = $$v
+            },
+            expression: "overlay"
+          }
+        },
         [
+          _vm._v(" "),
           _c(
-            "v-card-title",
-            { staticClass: "d-flex justify-space-between align-center " },
+            "v-col",
+            { attrs: { cols: "10" } },
             [
-              _c("div", [_vm._v("Table of all your saved Characters")]),
-              _vm._v(" "),
               _c(
-                "div",
+                "v-card",
+                { attrs: { tile: "", "min-width": "700px" } },
                 [
                   _c(
-                    "v-menu",
+                    "v-card-title",
                     {
-                      attrs: {
-                        "close-on-content-click": false,
-                        value: _vm.addShown,
-                        transition: "fab-transition",
-                        origin: "100% -30%"
-                      },
-                      scopedSlots: _vm._u([
-                        {
-                          key: "activator",
-                          fn: function(ref) {
-                            var on = ref.on
-                            var attrs = ref.attrs
-                            return [
-                              _c(
-                                "v-btn",
-                                _vm._g(
-                                  _vm._b(
-                                    {
-                                      attrs: { text: "", color: "success" },
-                                      on: {
-                                        click: function($event) {
-                                          _vm.addShown = true
-                                        }
-                                      }
-                                    },
-                                    "v-btn",
-                                    attrs,
-                                    false
-                                  ),
-                                  on
-                                ),
-                                [
-                                  _c(
-                                    "v-icon",
-                                    { attrs: { left: "", small: "" } },
-                                    [_vm._v("fas fa-plus")]
-                                  ),
-                                  _vm._v("\n                            Char")
-                                ],
-                                1
-                              )
-                            ]
-                          }
-                        }
-                      ])
+                      staticClass: "d-flex justify-space-between align-center "
                     },
                     [
+                      _c("div", [_vm._v("Table of all your saved Characters")]),
                       _vm._v(" "),
-                      _c("v-row", { attrs: { "no-gutters": "" } }, [
-                        _c(
-                          "div",
-                          [
-                            _c(
-                              "v-card",
-                              {
-                                staticClass: "pa-2",
-                                attrs: { tile: "", width: "100%" }
+                      _c(
+                        "div",
+                        [
+                          _c(
+                            "v-menu",
+                            {
+                              attrs: {
+                                "close-on-content-click": false,
+                                value: _vm.addShown,
+                                transition: "fab-transition",
+                                origin: "100% -30%"
                               },
-                              [
-                                _c(
-                                  "v-form",
-                                  {
-                                    on: {
-                                      submit: function($event) {
-                                        $event.preventDefault()
-                                        return _vm.newCharForm()
-                                      }
-                                    }
-                                  },
-                                  [
-                                    _c("v-text-field", {
-                                      attrs: {
-                                        label: "Char Name",
-                                        required: "",
-                                        autofocus: "",
-                                        rules: _vm.newNameRules
-                                      },
-                                      model: {
-                                        value: _vm.newCharName,
-                                        callback: function($$v) {
-                                          _vm.newCharName = $$v
-                                        },
-                                        expression: "newCharName"
-                                      }
-                                    }),
-                                    _vm._v(" "),
-                                    _c("v-select", {
-                                      attrs: {
-                                        rules: _vm.newRoleRules,
-                                        items: _vm.dropdown_roles,
-                                        label: "Role",
-                                        required: ""
-                                      },
-                                      on: {
-                                        change: function($event) {
-                                          return _vm.roleForm($event)
-                                        }
-                                      },
-                                      model: {
-                                        value: _vm.newRole,
-                                        callback: function($$v) {
-                                          _vm.newRole = $$v
-                                        },
-                                        expression: "newRole"
-                                      }
-                                    }),
-                                    _vm._v(" "),
-                                    this.role == 1
-                                      ? _c("v-text-field", {
-                                          attrs: {
-                                            rules: _vm.newShipRules,
-                                            label: "Ship",
-                                            required: ""
-                                          },
-                                          model: {
-                                            value: _vm.newShip,
-                                            callback: function($$v) {
-                                              _vm.newShip = $$v
-                                            },
-                                            expression: "newShip"
-                                          }
-                                        })
-                                      : _vm._e(),
-                                    _vm._v(" "),
-                                    this.role == 1
-                                      ? _c(
-                                          "v-radio-group",
-                                          {
-                                            attrs: {
-                                              rules: _vm.newLinkRules,
-                                              row: "",
-                                              label: "Entosis Link",
-                                              required: ""
-                                            },
-                                            model: {
-                                              value: _vm.newLink,
-                                              callback: function($$v) {
-                                                _vm.newLink = $$v
+                              scopedSlots: _vm._u([
+                                {
+                                  key: "activator",
+                                  fn: function(ref) {
+                                    var on = ref.on
+                                    var attrs = ref.attrs
+                                    return [
+                                      _c(
+                                        "v-btn",
+                                        _vm._g(
+                                          _vm._b(
+                                            {
+                                              attrs: {
+                                                text: "",
+                                                color: "success"
                                               },
-                                              expression: "newLink"
+                                              on: {
+                                                click: function($event) {
+                                                  _vm.addShown = true
+                                                }
+                                              }
+                                            },
+                                            "v-btn",
+                                            attrs,
+                                            false
+                                          ),
+                                          on
+                                        ),
+                                        [
+                                          _c(
+                                            "v-icon",
+                                            { attrs: { left: "", small: "" } },
+                                            [_vm._v("fas fa-plus")]
+                                          ),
+                                          _vm._v(
+                                            "\n                                    Char"
+                                          )
+                                        ],
+                                        1
+                                      )
+                                    ]
+                                  }
+                                }
+                              ])
+                            },
+                            [
+                              _vm._v(" "),
+                              _c("v-row", { attrs: { "no-gutters": "" } }, [
+                                _c(
+                                  "div",
+                                  [
+                                    _c(
+                                      "v-card",
+                                      {
+                                        staticClass: "pa-2",
+                                        attrs: { tile: "", width: "100%" }
+                                      },
+                                      [
+                                        _c(
+                                          "v-form",
+                                          {
+                                            on: {
+                                              submit: function($event) {
+                                                $event.preventDefault()
+                                                return _vm.newCharForm()
+                                              }
                                             }
                                           },
                                           [
-                                            _c("v-radio", {
+                                            _c("v-text-field", {
                                               attrs: {
-                                                label: "Tech 1",
-                                                value: "1"
+                                                label: "Char Name",
+                                                required: "",
+                                                autofocus: "",
+                                                rules: _vm.newNameRules
+                                              },
+                                              model: {
+                                                value: _vm.newCharName,
+                                                callback: function($$v) {
+                                                  _vm.newCharName = $$v
+                                                },
+                                                expression: "newCharName"
                                               }
                                             }),
                                             _vm._v(" "),
-                                            _c("v-radio", {
+                                            _c("v-select", {
                                               attrs: {
-                                                label: "Tech 2",
-                                                value: "2"
+                                                rules: _vm.newRoleRules,
+                                                items: _vm.dropdown_roles,
+                                                label: "Role",
+                                                required: ""
+                                              },
+                                              on: {
+                                                change: function($event) {
+                                                  return _vm.roleForm($event)
+                                                }
+                                              },
+                                              model: {
+                                                value: _vm.newRole,
+                                                callback: function($$v) {
+                                                  _vm.newRole = $$v
+                                                },
+                                                expression: "newRole"
                                               }
-                                            })
+                                            }),
+                                            _vm._v(" "),
+                                            this.role == 1
+                                              ? _c("v-text-field", {
+                                                  attrs: {
+                                                    rules: _vm.newShipRules,
+                                                    label: "Ship",
+                                                    required: ""
+                                                  },
+                                                  model: {
+                                                    value: _vm.newShip,
+                                                    callback: function($$v) {
+                                                      _vm.newShip = $$v
+                                                    },
+                                                    expression: "newShip"
+                                                  }
+                                                })
+                                              : _vm._e(),
+                                            _vm._v(" "),
+                                            this.role == 1
+                                              ? _c(
+                                                  "v-radio-group",
+                                                  {
+                                                    attrs: {
+                                                      rules: _vm.newLinkRules,
+                                                      row: "",
+                                                      label: "Entosis Link",
+                                                      required: ""
+                                                    },
+                                                    model: {
+                                                      value: _vm.newLink,
+                                                      callback: function($$v) {
+                                                        _vm.newLink = $$v
+                                                      },
+                                                      expression: "newLink"
+                                                    }
+                                                  },
+                                                  [
+                                                    _c("v-radio", {
+                                                      attrs: {
+                                                        label: "Tech 1",
+                                                        value: "1"
+                                                      }
+                                                    }),
+                                                    _vm._v(" "),
+                                                    _c("v-radio", {
+                                                      attrs: {
+                                                        label: "Tech 2",
+                                                        value: "2"
+                                                      }
+                                                    })
+                                                  ],
+                                                  1
+                                                )
+                                              : _vm._e(),
+                                            _vm._v(" "),
+                                            _c(
+                                              "v-btn",
+                                              {
+                                                staticClass: "mr-4",
+                                                attrs: {
+                                                  color: "success",
+                                                  type: "submit"
+                                                }
+                                              },
+                                              [_vm._v("submit")]
+                                            ),
+                                            _vm._v(" "),
+                                            _c(
+                                              "v-btn",
+                                              {
+                                                staticClass: "mr-4",
+                                                attrs: { color: "warning" },
+                                                on: {
+                                                  click: function($event) {
+                                                    return _vm.newCharFormClose()
+                                                  }
+                                                }
+                                              },
+                                              [_vm._v("Close")]
+                                            )
                                           ],
                                           1
                                         )
-                                      : _vm._e(),
-                                    _vm._v(" "),
-                                    _c(
-                                      "v-btn",
-                                      {
-                                        staticClass: "mr-4",
-                                        attrs: {
-                                          color: "success",
-                                          type: "submit"
-                                        }
-                                      },
-                                      [_vm._v("submit")]
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "v-btn",
-                                      {
-                                        staticClass: "mr-4",
-                                        attrs: { color: "warning" },
-                                        on: {
-                                          click: function($event) {
-                                            return _vm.newCharFormClose()
-                                          }
-                                        }
-                                      },
-                                      [_vm._v("Close")]
+                                      ],
+                                      1
                                     )
                                   ],
                                   1
                                 )
-                              ],
-                              1
+                              ])
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-card-text",
+                    [
+                      _c(
+                        "v-data-table",
+                        {
+                          staticClass: "elevation-24",
+                          attrs: {
+                            headers: _vm.headers,
+                            items: _vm.filteredItems,
+                            "item-key": "id",
+                            "disable-pagination": "",
+                            "fixed-header": "",
+                            "hide-default-footer": ""
+                          },
+                          scopedSlots: _vm._u([
+                            {
+                              key: "item.addRemove",
+                              fn: function(ref) {
+                                var item = ref.item
+                                return [
+                                  _c(
+                                    "span",
+                                    [
+                                      _c(
+                                        "v-btn",
+                                        {
+                                          attrs: {
+                                            rounded: "",
+                                            outlined: true,
+                                            "x-small": "",
+                                            color: _vm.pillColor(item)
+                                          },
+                                          on: {
+                                            click: function($event) {
+                                              return _vm.pillClick(item)
+                                            }
+                                          }
+                                        },
+                                        [
+                                          _c(
+                                            "v-icon",
+                                            {
+                                              attrs: {
+                                                "x-small": "",
+                                                left: "",
+                                                dark: ""
+                                              }
+                                            },
+                                            [
+                                              _vm._v(
+                                                "\n                                        " +
+                                                  _vm._s(_vm.pillIcon(item)) +
+                                                  "\n                                    "
+                                              )
+                                            ]
+                                          ),
+                                          _vm._v(
+                                            "\n                                    " +
+                                              _vm._s(_vm.pillText(item)) +
+                                              "\n                                "
+                                          )
+                                        ],
+                                        1
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ]
+                              }
+                            },
+                            {
+                              key: "item.actions",
+                              fn: function(ref) {
+                                var item = ref.item
+                                return [
+                                  _c(
+                                    "span",
+                                    [
+                                      _c("UsersCharsEdit", {
+                                        attrs: {
+                                          char: item,
+                                          campaign_id: _vm.campaign_id
+                                        }
+                                      }),
+                                      _vm._v(" "),
+                                      _c(
+                                        "v-icon",
+                                        {
+                                          attrs: {
+                                            color: "orange darken-3",
+                                            small: ""
+                                          },
+                                          on: {
+                                            click: function($event) {
+                                              return _vm.removeChar(item)
+                                            }
+                                          }
+                                        },
+                                        [
+                                          _vm._v(
+                                            "\n                                    fas fa-trash-alt\n                                "
+                                          )
+                                        ]
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ]
+                              }
+                            }
+                          ])
+                        },
+                        [
+                          _c("template", { slot: "no-data" }, [
+                            _vm._v(
+                              "\n                            You have no saved Chars\n                        "
                             )
-                          ],
-                          1
-                        )
-                      ])
+                          ])
+                        ],
+                        2
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-card-actions",
+                    [
+                      _c(
+                        "v-btn",
+                        {
+                          staticClass: "white--text",
+                          attrs: { color: "teal" },
+                          on: {
+                            click: function($event) {
+                              return _vm.close()
+                            }
+                          }
+                        },
+                        [
+                          _vm._v(
+                            "\n                        Close\n                    "
+                          )
+                        ]
+                      )
                     ],
                     1
                   )
                 ],
                 1
-              )
-            ]
-          ),
-          _vm._v(" "),
-          _c(
-            "v-card-text",
-            [
-              _c(
-                "v-data-table",
-                {
-                  staticClass: "elevation-24",
-                  attrs: {
-                    headers: _vm.headers,
-                    items: _vm.filteredItems,
-                    "item-key": "id",
-                    "disable-pagination": "",
-                    "fixed-header": "",
-                    "hide-default-footer": ""
-                  },
-                  scopedSlots: _vm._u([
-                    {
-                      key: "item.addRemove",
-                      fn: function(ref) {
-                        var item = ref.item
-                        return [
-                          _c(
-                            "span",
-                            [
-                              _c(
-                                "v-btn",
-                                {
-                                  attrs: {
-                                    rounded: "",
-                                    outlined: true,
-                                    "x-small": "",
-                                    color: _vm.pillColor(item)
-                                  },
-                                  on: {
-                                    click: function($event) {
-                                      return _vm.pillClick(item)
-                                    }
-                                  }
-                                },
-                                [
-                                  _c(
-                                    "v-icon",
-                                    {
-                                      attrs: {
-                                        "x-small": "",
-                                        left: "",
-                                        dark: ""
-                                      }
-                                    },
-                                    [
-                                      _vm._v(
-                                        "\n                                " +
-                                          _vm._s(_vm.pillIcon(item)) +
-                                          "\n                            "
-                                      )
-                                    ]
-                                  ),
-                                  _vm._v(
-                                    "\n                            " +
-                                      _vm._s(_vm.pillText(item)) +
-                                      "\n                        "
-                                  )
-                                ],
-                                1
-                              )
-                            ],
-                            1
-                          )
-                        ]
-                      }
-                    },
-                    {
-                      key: "item.actions",
-                      fn: function(ref) {
-                        var item = ref.item
-                        return [
-                          _c(
-                            "span",
-                            [
-                              _c("UsersCharsEdit", {
-                                attrs: {
-                                  char: item,
-                                  campaign_id: _vm.campaign_id
-                                }
-                              }),
-                              _vm._v(" "),
-                              _c(
-                                "v-icon",
-                                {
-                                  attrs: {
-                                    color: "orange darken-3",
-                                    small: ""
-                                  },
-                                  on: {
-                                    click: function($event) {
-                                      return _vm.removeChar(item)
-                                    }
-                                  }
-                                },
-                                [
-                                  _vm._v(
-                                    "\n                            fas fa-trash-alt\n                        "
-                                  )
-                                ]
-                              )
-                            ],
-                            1
-                          )
-                        ]
-                      }
-                    }
-                  ])
-                },
-                [
-                  _c("template", { slot: "no-data" }, [
-                    _vm._v(
-                      "\n                    You have no saved Chars\n                "
-                    )
-                  ])
-                ],
-                2
-              )
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "v-card-actions",
-            [
-              _c(
-                "v-btn",
-                {
-                  staticClass: "white--text",
-                  attrs: { color: "teal" },
-                  on: {
-                    click: function($event) {
-                      return _vm.close()
-                    }
-                  }
-                },
-                [_vm._v("\n                Close\n            ")]
               )
             ],
             1
@@ -26020,9 +26102,7 @@ var render = function() {
                                 },
                                 [_vm._v("characters")]
                               ),
-                              _vm._v(
-                                "\n                    >\n                    "
-                              ),
+                              _vm._v(" "),
                               _c("UsersChars", {
                                 attrs: { campaign_id: _vm.campaign.id },
                                 on: {
