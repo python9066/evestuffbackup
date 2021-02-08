@@ -9,7 +9,9 @@
                             class="d-flex justify-space-between align-center"
                             style=" width: 100%;"
                         >
-                            <div>{{ system_name }}</div>
+                            <div>
+                                {{ system_name }} - ({{ constellation_name }})
+                            </div>
                             <v-divider class="mx-4 my-0" vertical></v-divider>
                             <p v-if="nodeCount > 0" class=" pt-4 pr-3">
                                 Nodes -
@@ -516,7 +518,8 @@ export default {
         system_name: String,
         system_id: Number,
         campaign_id: String,
-        constellation_id: Number
+        constellation_id: Number,
+        constellation_name: String
     },
     data() {
         return {

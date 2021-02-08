@@ -5862,6 +5862,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -5869,7 +5871,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     system_name: String,
     system_id: Number,
     campaign_id: String,
-    constellation_id: Number
+    constellation_id: Number,
+    constellation_name: String
   },
   data: function data() {
     return {
@@ -12066,6 +12069,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 
@@ -12340,11 +12344,7 @@ function sleep(ms) {
                 campaign_id: _this2.$route.params.id,
                 user_id: _this2.$store.state.user_id,
                 type: 2
-              }; // await this.$store.dispatch("getNodeJoinByCampaignId", this.campaign_id);
-              // await this.$store.dispatch("getCampaignUsersRecords", this.campaignId);
-              // await this.$store.dispatch("getCampaignSystemsRecords");
-              // await this.$store.dispatch("getUsersChars", this.$store.state.user_id);
-
+              };
               _context3.next = 11;
               return _this2.$store.dispatch("loadCampaignSystemData", payload);
 
@@ -21148,7 +21148,15 @@ var render = function() {
                             attrs: { "max-width": "" }
                           },
                           [
-                            _c("div", [_vm._v(_vm._s(_vm.system_name))]),
+                            _c("div", [
+                              _vm._v(
+                                "\n                            " +
+                                  _vm._s(_vm.system_name) +
+                                  " - (" +
+                                  _vm._s(_vm.constellation_name) +
+                                  ")\n                        "
+                              )
+                            ]),
                             _vm._v(" "),
                             _c("v-divider", {
                               staticClass: "mx-4 my-0",
@@ -28116,6 +28124,7 @@ var render = function() {
             staticClass: " px-5 pt-5",
             attrs: {
               system_name: system.system_name,
+              constellation_name: system.constellation_name,
               system_id: system.id,
               campaign_id: _vm.campaignId,
               constellation_id: system.constellation_id,

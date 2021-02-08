@@ -192,6 +192,7 @@
                 class=" px-5 pt-5"
                 v-for="(system, index) in systems"
                 :system_name="system.system_name"
+                :constellation_name="system.constellation_name"
                 :system_id="system.id"
                 :campaign_id="campaignId"
                 :constellation_id="system.constellation_id"
@@ -465,15 +466,10 @@ export default {
             user_id: this.$store.state.user_id,
             type: 2
         };
-        // await this.$store.dispatch("getNodeJoinByCampaignId", this.campaign_id);
-        // await this.$store.dispatch("getCampaignUsersRecords", this.campaignId);
-        // await this.$store.dispatch("getCampaignSystemsRecords");
-        // await this.$store.dispatch("getUsersChars", this.$store.state.user_id);
         await this.$store.dispatch("loadCampaignSystemData", payload);
         await this.getSystems(this.campaignId);
         await this.addMember();
         await this.$store.dispatch("getCampaignSolaSystems");
-        // await this.loadCampaignlogs();
     },
     methods: {
         updateBar() {
