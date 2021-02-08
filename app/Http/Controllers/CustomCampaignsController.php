@@ -123,6 +123,7 @@ class CustomCampaignsController extends Controller
                 }
             }
         }
+        $data = $request->all();
         CampaignJoin::where('custom_campaign_id', $campid)->delete();
         CampaignSolaSystem::where('campaign_id', $campid)->delete();
         CustomCampaign::find($campid)->update(['name' => $name]);
