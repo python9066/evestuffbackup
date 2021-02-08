@@ -453,7 +453,6 @@ export default {
     },
 
     async mounted() {
-        await this.$store.dispatch("getCampaignSolaSystems");
         if (this.$store.getters.getCampaignsCount == 0) {
             await this.$store.dispatch("getCampaigns");
         }
@@ -473,6 +472,7 @@ export default {
         await this.$store.dispatch("loadCampaignSystemData", payload);
         await this.getSystems(this.campaignId);
         await this.addMember();
+        await this.$store.dispatch("getCampaignSolaSystems");
         // await this.loadCampaignlogs();
     },
     methods: {

@@ -12320,28 +12320,24 @@ function sleep(ms) {
         while (1) {
           switch (_context3.prev = _context3.next) {
             case 0:
-              _context3.next = 2;
-              return _this3.$store.dispatch("getCampaignSolaSystems");
-
-            case 2:
               if (!(_this3.$store.getters.getCampaignsCount == 0)) {
-                _context3.next = 5;
+                _context3.next = 3;
                 break;
               }
 
-              _context3.next = 5;
+              _context3.next = 3;
               return _this3.$store.dispatch("getCampaigns");
 
-            case 5:
+            case 3:
               if (!(_this3.$store.getters.getMultiCampaignsCount == 0)) {
-                _context3.next = 8;
+                _context3.next = 6;
                 break;
               }
 
-              _context3.next = 8;
+              _context3.next = 6;
               return _this3.$store.dispatch("getMultiCampaigns");
 
-            case 8:
+            case 6:
               payload = {
                 campaign_id: _this3.$route.params.id,
                 user_id: _this3.$store.state.user_id,
@@ -12351,16 +12347,20 @@ function sleep(ms) {
               // await this.$store.dispatch("getCampaignSystemsRecords");
               // await this.$store.dispatch("getUsersChars", this.$store.state.user_id);
 
-              _context3.next = 11;
+              _context3.next = 9;
               return _this3.$store.dispatch("loadCampaignSystemData", payload);
+
+            case 9:
+              _context3.next = 11;
+              return _this3.getSystems(_this3.campaignId);
 
             case 11:
               _context3.next = 13;
-              return _this3.getSystems(_this3.campaignId);
+              return _this3.addMember();
 
             case 13:
               _context3.next = 15;
-              return _this3.addMember();
+              return _this3.$store.dispatch("getCampaignSolaSystems");
 
             case 15:
             case "end":
