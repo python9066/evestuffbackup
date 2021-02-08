@@ -74,9 +74,7 @@ class CustomCampaignsController extends Controller
         $oldCampaignIDs = CampaignJoin::where('custom_campaign_id', $campid)->get();
 
         foreach ($oldCampaignIDs as $oldCampaignID) {
-
-            dd($oldCampaignID);
-            $systemNodes = CampaignSystem::where('campaign_id', $oldCampaignID->id)->where('custom_campaign_id', $campid)->get();
+            $systemNodes = CampaignSystem::where('campaign_id', $oldCampaignID->campaign_id)->where('custom_campaign_id', $campid)->get();
             foreach ($systemNodes as $systemNode) {
                 $flag = null;
                 $flag = collect([
