@@ -16785,7 +16785,10 @@ var render = function() {
                                     _vm._v(" "),
                                     _c(
                                       "v-list",
-                                      _vm._l(_vm.chars, function(list, index) {
+                                      _vm._l(_vm.charsFree, function(
+                                        list,
+                                        index
+                                      ) {
                                         return _c(
                                           "v-list-item",
                                           {
@@ -16987,7 +16990,10 @@ var render = function() {
                                     _vm._v(" "),
                                     _c(
                                       "v-list",
-                                      _vm._l(_vm.chars, function(list, index) {
+                                      _vm._l(_vm.charsFree, function(
+                                        list,
+                                        index
+                                      ) {
                                         return _c(
                                           "v-list-item",
                                           {

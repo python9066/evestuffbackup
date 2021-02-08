@@ -68,7 +68,7 @@
                                     </template>
                                     <v-list>
                                         <v-list-item
-                                            v-for="(list, index) in chars"
+                                            v-for="(list, index) in charsFree"
                                             :key="index"
                                             @click="
                                                 (charOnTheWay = list.id),
@@ -152,7 +152,7 @@
                                     </template>
                                     <v-list>
                                         <v-list-item
-                                            v-for="(list, index) in chars"
+                                            v-for="(list, index) in charsFree"
                                             :key="index"
                                             @click="
                                                 (charReadyToGo = list.id),
