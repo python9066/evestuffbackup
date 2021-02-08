@@ -21307,7 +21307,7 @@ var render = function() {
                                         _vm._v(" "),
                                         _c(
                                           "v-list",
-                                          _vm._l(_vm.chars, function(
+                                          _vm._l(_vm.charsFree, function(
                                             list,
                                             index
                                           ) {
@@ -21522,7 +21522,7 @@ var render = function() {
                                         _vm._v(" "),
                                         _c(
                                           "v-list",
-                                          _vm._l(_vm.chars, function(
+                                          _vm._l(_vm.charsFree, function(
                                             list,
                                             index
                                           ) {
