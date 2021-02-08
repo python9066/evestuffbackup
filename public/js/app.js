@@ -12640,7 +12640,8 @@ function sleep(ms) {
               case 0:
                 user_id = _this13.$store.state.user_id;
                 request = {
-                  user_id: user_id
+                  user_id: user_id,
+                  campaign_id: _this13.$route.params.id
                 };
                 console.log("dance");
                 _context14.next = 5;
