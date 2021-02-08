@@ -140,6 +140,8 @@ class NodeJoinsController extends Controller
 
             if ($request['campaign_system_status_id'] == null) {
                 $campaign_system_status_id = 1;
+            } else {
+                $campaign_system_status_id = $request['campaign_system_status_id'];
             }
             $user_id = CampaignSystem::where('id', $id)->value('campaign_user_id');
             CampaignUser::where('id', intval($user_id))->update(['campaign_system_id' => null, 'status_id' => 3]);
