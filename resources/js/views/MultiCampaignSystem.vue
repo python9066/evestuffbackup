@@ -591,10 +591,9 @@ export default {
         async addMember() {
             let user_id = this.$store.state.user_id;
             var request = {
-                user_id: user_id,
-                campaign_id: this.campaignId
+                user_id: user_id
             };
-
+            console.log("dance");
             await axios({
                 method: "POST",
                 url: "/api/campaignsystemusers/" + this.$route.params.id,

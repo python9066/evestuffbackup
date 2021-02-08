@@ -12640,10 +12640,10 @@ function sleep(ms) {
               case 0:
                 user_id = _this14.$store.state.user_id;
                 request = {
-                  user_id: user_id,
-                  campaign_id: _this14.campaignId
+                  user_id: user_id
                 };
-                _context14.next = 4;
+                console.log("dance");
+                _context14.next = 5;
                 return axios({
                   method: "POST",
                   url: "/api/campaignsystemusers/" + _this14.$route.params.id,
@@ -12655,8 +12655,8 @@ function sleep(ms) {
                   }
                 });
 
-              case 4:
-                _context14.next = 6;
+              case 5:
+                _context14.next = 7;
                 return axios({
                   method: "GET",
                   url: "/api/mcheckjoinleavecampaign/" + _this14.campaignId + "/" + _this14.$store.state.user_id + "/4",
@@ -12667,7 +12667,7 @@ function sleep(ms) {
                   }
                 });
 
-              case 6:
+              case 7:
               case "end":
                 return _context14.stop();
             }
