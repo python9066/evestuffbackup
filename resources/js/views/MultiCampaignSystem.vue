@@ -33,12 +33,7 @@
                             @click="showTable = false"
                             >Hide Char table</v-btn
                         >
-                        <v-btn
-                            class="mr-4"
-                            color="green lighten-1"
-                            @click="overlay = !overlay"
-                            >characters</v-btn
-                        >
+                        <UsersChars :campaign_id="campaign_id"> </UsersChars>
 
                         <v-menu
                             :close-on-content-click="false"
@@ -221,14 +216,6 @@
                     </v-btn>
                 </v-card-actions>
             </v-card>
-        </v-overlay>
-
-        <v-overlay z-index="0" :value="overlay" min-width="1000px">
-            <UsersChars
-                :campaign_id="campaign_id"
-                @closeAddChar="overlay = false"
-            >
-            </UsersChars>
         </v-overlay>
         <v-overlay z-index="0" :value="showAdd">
             <!-- campaignAll/admin/UserTable.vue -->

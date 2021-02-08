@@ -12070,19 +12070,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -27766,19 +27753,9 @@ var render = function() {
                               )
                             : _vm._e(),
                           _vm._v(" "),
-                          _c(
-                            "v-btn",
-                            {
-                              staticClass: "mr-4",
-                              attrs: { color: "green lighten-1" },
-                              on: {
-                                click: function($event) {
-                                  _vm.overlay = !_vm.overlay
-                                }
-                              }
-                            },
-                            [_vm._v("characters")]
-                          ),
+                          _c("UsersChars", {
+                            attrs: { campaign_id: _vm.campaign_id }
+                          }),
                           _vm._v(" "),
                           _c(
                             "v-menu",
@@ -28224,24 +28201,6 @@ var render = function() {
             ],
             1
           )
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "v-overlay",
-        {
-          attrs: { "z-index": "0", value: _vm.overlay, "min-width": "1000px" }
-        },
-        [
-          _c("UsersChars", {
-            attrs: { campaign_id: _vm.campaign_id },
-            on: {
-              closeAddChar: function($event) {
-                _vm.overlay = false
-              }
-            }
-          })
         ],
         1
       ),
