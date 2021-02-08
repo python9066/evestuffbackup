@@ -36,17 +36,66 @@ class NodeJoinsController extends Controller
     public function removeCharForNode(Request $request, $id, $campid)
     {
         $status = null;
-        $node = NodeJoin::where('campaign_system_id', $id)->get();
-        if ($node->count() > 0) {
+        $nodes = NodeJoin::where('campaign_system_id', $id)->get();
 
-            if ($node->where('campaign_system_status_id', 3)->count() > 0) {
+        if ($nodes->count() > 0) {
+
+
+            if ($request['campaign_systemn_status_id'] == 4 || $request['campaign_systemn_status_id'] == 5) {
+
+                foreach ($nodes as $node) {
+
+                    $flag = collect([
+                        "joinNodeID" => $node->id,
+                        "id" => $campid
+                    ]);
+                    broadcast(new NodeJoinDelete($flag));
+
+
+                    CampaignUser::where('id', $node->campaign_user_id)->update(['campaign_system_id' => null, 'status_id' => 3]);
+                    $message = CampaignUserRecords::where('id', $node->campaign_user_id)->first();
+                    $flag = null;
+                    $flag = collect([
+                        "message" => $message,
+                        "id" => $campid
+                    ]);
+                    broadcast(new CampaignUserUpdate($flag));
+
+                    $campaign_system_status_id = $node->campaign_system_status_id;
+                }
+
+                $CampaignSystem = CampaignSystem::where('id', $id)->first();
+                CampaignUser::where('id', $CampaignSystem->campaign_user_id)->update(['campaign_system_id' => null, 'status_id' => 3]);
+                $message = CampaignUserRecords::where('id', $CampaignSystem->campaign_user_id)->first();
+                $flag = null;
+                $flag = collect([
+                    "message" => $message,
+                    "id" => $campid
+                ]);
+                broadcast(new CampaignUserUpdate($flag));
+                $CampaignSystem->update(['campaign_user_id' => null, 'campaign_system_status_id' => $request['campaign_system_status_id'], 'node_join_count' => 0]);
+                $message = CampaignSystemRecords::where('id', $CampaignSystem->id)->first();
+                $flag = null;
+                $flag = collect([
+                    "message" => $message,
+                    "id" => $campid
+                ]);
+                broadcast(new CampaignSystemUpdate($flag));
+
+
+
+                $nodes->delete();
+                return;
+            }
+
+            if ($nodes->where('campaign_system_status_id', 3)->count() > 0) {
                 $status = 1;
-                $node = $node->where('campaign_system_status_id', 3)->first();
-            } else if ($node->where('campaign_system_status_id', 2)->count() > 0) {
+                $node = $nodes->where('campaign_system_status_id', 3)->first();
+            } else if ($nodes->where('campaign_system_status_id', 2)->count() > 0) {
                 $status = 2;
-                $node = $node->where('campaign_system_status_id', 2)->first();
+                $node = $nodes->where('campaign_system_status_id', 2)->first();
             } else {
-                $node = $node->first();
+                $node = $nodes->first();
             };
 
             $flag = collect([
@@ -169,13 +218,6 @@ class NodeJoinsController extends Controller
         broadcast(new CampaignUserUpdate($flag));
 
         $node->delete();
-
-        //done - just waiting to remove//
-        // $flag = collect([
-        //     'flag' => 3,
-        //     'id' => $campid
-        // ]);
-        // broadcast(new CampaignSystemUpdate($flag));
     }
 
     public function addCharToNodeAdmin(Request $request, $id, $campid)
@@ -284,13 +326,6 @@ class NodeJoinsController extends Controller
             'id' => $campid
         ]);
         broadcast(new CampaignSystemUpdate($flag));
-
-        //done just wating to remove//
-        // $flag = collect([
-        //     'flag' => 3,
-        //     'id' => $campid
-        // ]);
-        // broadcast(new CampaignSystemUpdate($flag));
     }
 
     /**
@@ -323,13 +358,6 @@ class NodeJoinsController extends Controller
             'id' => $campid
         ]);
         broadcast(new NodeJoinUpdate($flag))->toOthers();
-        //node waiting to do the rest before removing //
-        $flag = null;
-        // $flag = collect([
-        //     'flag' => 3,
-        //     'id' => $campid
-        // ]);
-        // broadcast(new CampaignSystemUpdate($flag));
     }
 
     /**
