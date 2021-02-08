@@ -377,11 +377,12 @@ export default {
                     this.loadCampaignlogs();
                 }
                 if (e.flag.flag == 11) {
-                    this.$store.dispatch("getCampaignJoinData");
-                    this.loadUsersRecords();
-                    this.loadcampaigns();
-                    this.loadCampaignSolaSystems();
-                    this.loadCampaignSystemRecords();
+                    let payload = {
+                        campaign_id: this.$route.params.id,
+                        user_id: this.$store.state.user_id,
+                        type: 2
+                    };
+                    this.$store.dispatch("loadCampaignSystemData", payload);
                 }
             })
             .listen("CampaignUserNew", e => {

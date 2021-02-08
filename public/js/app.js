@@ -12238,15 +12238,13 @@ function sleep(ms) {
                 }
 
                 if (e.flag.flag == 11) {
-                  _this.$store.dispatch("getCampaignJoinData");
+                  var payload = {
+                    campaign_id: _this.$route.params.id,
+                    user_id: _this.$store.state.user_id,
+                    type: 2
+                  };
 
-                  _this.loadUsersRecords();
-
-                  _this.loadcampaigns();
-
-                  _this.loadCampaignSolaSystems();
-
-                  _this.loadCampaignSystemRecords();
+                  _this.$store.dispatch("loadCampaignSystemData", payload);
                 }
               }).listen("CampaignUserNew", function (e) {
                 _this.$store.dispatch("addCampaignUserNew", e.flag.message);
