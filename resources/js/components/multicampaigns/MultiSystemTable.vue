@@ -442,29 +442,6 @@
                     <template v-slot:expanded-item="{ headers, item }">
                         <td :colspan="headers.length" align="center">
                             <JoinNodeTable :sysid="item.id"></JoinNodeTable>
-                            <!-- <div>
-                                <v-col class="align-center">
-                                    <v-text-field
-                                        v-model="noteText"
-                                        label="Where you can put any notes"
-                                        outlined
-                                        shaped
-                                    ></v-text-field>
-                                    <v-btn
-                                        color="green"
-                                        @click="updatetext(item)"
-                                    >
-                                        Submit
-                                    </v-btn>
-                                    <v-textarea
-                                        solo
-                                        name="Log"
-                                        auto-grow
-                                        disabled
-                                        v-model="item.notes"
-                                    ></v-textarea>
-                                </v-col>
-                            </div> -->
                         </td>
                     </template>
                     <template v-slot:item.actions="{ item }">

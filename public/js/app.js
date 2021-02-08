@@ -5862,29 +5862,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -12326,7 +12303,7 @@ function sleep(ms) {
           switch (_context2.prev = _context2.next) {
             case 0:
               _context2.next = 2;
-              return _this2.$store.dispatch("getCampaignJoinData");
+              return _this2.$store.dispatch("getCampaignJoinData", _this2.$route.params.id);
 
             case 2:
             case "end":
@@ -35512,7 +35489,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
         }, _callee4);
       }))();
     },
-    getCampaignJoinData: function getCampaignJoinData(_ref5) {
+    getCampaignJoinData: function getCampaignJoinData(_ref5, campid) {
       var _this = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee5() {
@@ -35525,7 +35502,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
                 _context5.next = 3;
                 return axios({
                   method: "get",
-                  url: "/api/campaignjoin",
+                  url: "/api/campaignjoinindex/" + campid,
                   data: _this.picked,
                   headers: {
                     Authorization: "Bearer " + state.token,

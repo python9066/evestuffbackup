@@ -15,10 +15,10 @@ class CampaignJoinsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($campid)
     {
         $list = [];
-        $pull = CampaignJoin::all();
+        $pull = CampaignJoin::where('custom_campaign_id', $campid);
         foreach ($pull as $pull) {
             $camp = CampaignRecords::where('id', $pull['campaign_id'])->get();
             $count = $camp->count();

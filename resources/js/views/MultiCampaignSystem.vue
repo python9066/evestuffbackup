@@ -447,7 +447,10 @@ export default {
     beforeMonunt() {},
 
     async beforeCreate() {
-        await this.$store.dispatch("getCampaignJoinData");
+        await this.$store.dispatch(
+            "getCampaignJoinData",
+            this.$route.params.id
+        );
     },
 
     async mounted() {
