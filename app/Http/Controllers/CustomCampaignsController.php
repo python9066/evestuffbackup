@@ -67,13 +67,17 @@ class CustomCampaignsController extends Controller
     public function edit(Request $request, $campid, $name)
     {
 
+        $data = $request->all();
+        foreach ($data as $data) {
+            CampaignJoin::where('custom_campaign_id', $campid)->where('campaign_id', $data)->delete();
+        }
         CampaignJoin::where('custom_campaign_id', $campid)->delete();
         CampaignSolaSystem::where('campaign_id', $campid)->delete();
-        $data = $request->all();
-        // dd($data);
+        $oldCampaignID = CampaignJoin::where('custom_campaign_id', $campid)->select('campaign_id')->get();
+        dd($oldCampaignID);
         CustomCampaign::find($campid)->update(['name' => $name]);
         foreach ($data as $data) {
-            dd($data);
+            // dd($data);
             CampaignJoin::create(['custom_campaign_id' => $campid, 'campaign_id' => $data]);
             $solas = CampaignSolaSystem::where('campaign_id', $data)->get();
             foreach ($solas as $sola) {
