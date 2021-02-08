@@ -169,13 +169,6 @@
                             @click="showTable = false"
                             >Hide Char table</v-btn
                         >
-
-                        <v-btn
-                            class="mr-4"
-                            color="green lighten-1"
-                            @click="overlay = !overlay"
-                            >characters</v-btn
-                        >
                         <UsersChars
                             :campaign_id="campaign.id"
                             @closeAddChar="overlay = false"

@@ -9882,13 +9882,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -26088,20 +26081,6 @@ var render = function() {
                                     [_vm._v("Hide Char table")]
                                   )
                                 : _vm._e(),
-                              _vm._v(" "),
-                              _c(
-                                "v-btn",
-                                {
-                                  staticClass: "mr-4",
-                                  attrs: { color: "green lighten-1" },
-                                  on: {
-                                    click: function($event) {
-                                      _vm.overlay = !_vm.overlay
-                                    }
-                                  }
-                                },
-                                [_vm._v("characters")]
-                              ),
                               _vm._v(" "),
                               _c("UsersChars", {
                                 attrs: { campaign_id: _vm.campaign.id },
