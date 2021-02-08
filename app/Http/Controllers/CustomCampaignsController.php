@@ -81,7 +81,10 @@ class CustomCampaignsController extends Controller
                     CampaignSolaSystem::create(['system_id' => $sola['system_id'], 'campaign_id' => $campid]);
                 };
             }
-            $systemNodes = CampaignSystem::where('campaign_id', $data)->where('custom_campaign_id')->get();
+            $systemNodes = CampaignSystem::where('campaign_id', $data)->get();
+            $systemNodesaa = $systemNodes->where('custom_campaign_id')->get();
+
+            dd($systemNodes, $systemNodesaa);
             if ($systemNodes != null) {
                 foreach ($systemNodes as $systemNode) {
 
@@ -95,7 +98,6 @@ class CustomCampaignsController extends Controller
 
                     $user =  CampaignUser::where('campaign_system_id', $systemNode->id)->first();
                     if ($user != null) {
-                        DD("not null");
                         $user->update(['campaign_system_id' => null, 'status_id' => 3]);
                         $message = CampaignUserRecords::where('id', $user->id)->first();
                         $flag = collect([
