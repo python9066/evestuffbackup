@@ -82,48 +82,50 @@ class CustomCampaignsController extends Controller
                 };
             }
             $systemNodes = CampaignSystem::where('campaign_id', $data)->where('custom_campaign_id')->get();
-            foreach ($systemNodes as $systemNode) {
+            if ($systemNodes->count() > 0) {
+                foreach ($systemNodes as $systemNode) {
 
-                $flag = null;
-                $flag = collect([
-                    'campSysID' => $systemNode->id,
-                    'id' => $campid
-                ]);
-                broadcast(new CampaignSystemDelete($flag));
+                    $flag = null;
+                    $flag = collect([
+                        'campSysID' => $systemNode->id,
+                        'id' => $campid
+                    ]);
+                    broadcast(new CampaignSystemDelete($flag));
 
 
-                $user =  CampaignUser::where('campaign_system_id', $systemNode->id)->first();
-                $user->update(['campaign_system_id' => null, 'status_id' => null]);
-                $message = CampaignUserRecords::where('id', $user->id)->first();
-                $flag = collect([
-                    'message' => $message,
-                    'id' => $campid
-                ]);
-                broadcast(new CampaignUserUpdate($flag));
+                    $user =  CampaignUser::where('campaign_system_id', $systemNode->id)->first();
+                    $user->update(['campaign_system_id' => null, 'status_id' => null]);
+                    $message = CampaignUserRecords::where('id', $user->id)->first();
+                    $flag = collect([
+                        'message' => $message,
+                        'id' => $campid
+                    ]);
+                    broadcast(new CampaignUserUpdate($flag));
 
-                if ($systemNode->node_join_count > 0) {
-                    $nodes = NodeJoin::where('campaign_system_id', $systemNode->id);
-                    foreach ($nodes as $node) {
-                        $flag = null;
-                        $flag = collect([
-                            'joinNodeID' => $node->id,
-                            'id' => $campid
-                        ]);
-                        broadcast(new NodeJoinDelete($flag));
+                    if ($systemNode->node_join_count > 0) {
+                        $nodes = NodeJoin::where('campaign_system_id', $systemNode->id);
+                        foreach ($nodes as $node) {
+                            $flag = null;
+                            $flag = collect([
+                                'joinNodeID' => $node->id,
+                                'id' => $campid
+                            ]);
+                            broadcast(new NodeJoinDelete($flag));
 
-                        $user = CampaignUser::where('campaign_system_id', $node->campaign_system_id)->first();
-                        $user->update(['campaign_system_id' => null, 'status_id' => null]);
-                        $message = CampaignUserRecords::where('id', $user->id)->first();
-                        $flag = collect([
-                            'message' => $message,
-                            'id' => $campid
-                        ]);
-                        broadcast(new CampaignUserUpdate($flag));
-                        $node->delete();
+                            $user = CampaignUser::where('campaign_system_id', $node->campaign_system_id)->first();
+                            $user->update(['campaign_system_id' => null, 'status_id' => null]);
+                            $message = CampaignUserRecords::where('id', $user->id)->first();
+                            $flag = collect([
+                                'message' => $message,
+                                'id' => $campid
+                            ]);
+                            broadcast(new CampaignUserUpdate($flag));
+                            $node->delete();
+                        }
                     }
-                }
 
-                $systemNode->delete();
+                    $systemNode->delete();
+                }
             }
         }
 
