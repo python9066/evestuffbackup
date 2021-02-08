@@ -20,6 +20,7 @@ class CampaignSystemUsersController extends Controller
     {
         $users = [];
         $members = CampaignSystemUsers::with('user')->where('campaign_id', $campid)->get();
+        dd($members);
         if ($members->count() > 0) {
             foreach ($members as $member) {
                 $data = [];
