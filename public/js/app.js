@@ -12238,6 +12238,16 @@ function sleep(ms) {
                 }
 
                 if (e.flag.flag == 11) {
+                  if (_this.$store.getters.getCampaignsCount == 0) {
+                    _this.$store.dispatch("getCampaigns");
+                  }
+
+                  if (_this.$store.getters.getMultiCampaignsCount == 0) {
+                    _this.$store.dispatch("getMultiCampaigns");
+                  }
+
+                  _this.$store.dispatch("getCampaignJoinDataByCampaign", _this.$route.params.id);
+
                   var payload = {
                     campaign_id: _this.$route.params.id,
                     user_id: _this.$store.state.user_id,
@@ -12245,6 +12255,12 @@ function sleep(ms) {
                   };
 
                   _this.$store.dispatch("loadCampaignSystemData", payload);
+
+                  _this.getSystems(_this.campaignId);
+
+                  _this.addMember();
+
+                  _this.$store.dispatch("getCampaignSolaSystems");
                 }
               }).listen("CampaignUserNew", function (e) {
                 _this.$store.dispatch("addCampaignUserNew", e.flag.message);

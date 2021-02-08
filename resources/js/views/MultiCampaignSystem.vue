@@ -377,12 +377,25 @@ export default {
                     this.loadCampaignlogs();
                 }
                 if (e.flag.flag == 11) {
+                    if (this.$store.getters.getCampaignsCount == 0) {
+                        this.$store.dispatch("getCampaigns");
+                    }
+                    if (this.$store.getters.getMultiCampaignsCount == 0) {
+                        this.$store.dispatch("getMultiCampaigns");
+                    }
+                    this.$store.dispatch(
+                        "getCampaignJoinDataByCampaign",
+                        this.$route.params.id
+                    );
                     let payload = {
                         campaign_id: this.$route.params.id,
                         user_id: this.$store.state.user_id,
                         type: 2
                     };
                     this.$store.dispatch("loadCampaignSystemData", payload);
+                    this.getSystems(this.campaignId);
+                    this.addMember();
+                    this.$store.dispatch("getCampaignSolaSystems");
                 }
             })
             .listen("CampaignUserNew", e => {
