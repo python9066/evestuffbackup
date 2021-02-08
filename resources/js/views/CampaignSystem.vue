@@ -169,13 +169,24 @@
                             @click="showTable = false"
                             >Hide Char table</v-btn
                         >
+                        <v-dialog v-model="overlay" min-width="1000px">
+                            <template v-slot:activator="{ on, attrs }">
+                                <v-btn
+                                    class="mr-4"
+                                    color="green lighten-1"
+                                    v-bind="attrs"
+                                    v-on="on"
+                                    @click="overlay = !overlay"
+                                    >characters</v-btn
+                                >
+                                <UsersChars
+                                    :campaign_id="campaign.id"
+                                    @closeAddChar="overlay = false"
+                                >
+                                </UsersChars>
+                            </template>
+                        </v-dialog>
 
-                        <v-btn
-                            class="mr-4"
-                            color="green lighten-1"
-                            @click="overlay = !overlay"
-                            >characters</v-btn
-                        >
                         <v-menu
                             :close-on-content-click="false"
                             transition="fab-transition"
@@ -391,13 +402,7 @@
                 </v-card-actions>
             </v-card>
         </v-overlay>
-        <v-overlay z-index="0" :value="overlay" min-width="1000px">
-            <UsersChars
-                :campaign_id="campaign.id"
-                @closeAddChar="overlay = false"
-            >
-            </UsersChars>
-        </v-overlay>
+
         <v-overlay z-index="0" :value="showNotes">
             <ShowNotes
                 :campaign_id="campaign.id"
