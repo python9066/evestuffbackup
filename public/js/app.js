@@ -18711,7 +18711,7 @@ var render = function() {
       _c(
         "v-dialog",
         {
-          attrs: { "min-width": "1000px" },
+          attrs: { "min-width": "700px" },
           scopedSlots: _vm._u([
             {
               key: "activator",

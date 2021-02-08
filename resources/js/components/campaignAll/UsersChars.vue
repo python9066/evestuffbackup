@@ -1,6 +1,6 @@
 <template>
     <div>
-        <v-dialog v-model="overlay" min-width="1000px">
+        <v-dialog v-model="overlay" min-width="700px">
             <template v-slot:activator="{ on, attrs }">
                 <v-btn
                     class="mr-4"
