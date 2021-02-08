@@ -267,6 +267,8 @@ class CampaignSystemsController extends Controller
                 'id' => $campid
             ]);
             broadcast(new CampaignSystemUpdate($flag))->toOthers();
+
+            //waiting to be removed
             $flag = null;
             $flag = collect([
                 'flag' => 2,
@@ -290,8 +292,9 @@ class CampaignSystemsController extends Controller
                 'id' => $campid
             ]);
             broadcast(new CampaignSystemUpdate($flag))->toOthers();
-            $flag = null;
 
+            //waiting to be removed
+            $flag = null;
             $flag = collect([
                 'flag' => 2,
                 'id' => $campid
@@ -342,14 +345,6 @@ class CampaignSystemsController extends Controller
         ]);
         broadcast(new CampaignSystemDelete($flag))->toOthers();
         CampaignSystem::destroy($id);
-
-        //done just waiting to remove//
-        // $flag = null;
-        // $flag = collect([
-        //     'flag' => 3,
-        //     'id' => $campid
-        // ]);
-        // broadcast(new CampaignSystemUpdate($flag))->toOthers();
     }
 
     public function checkAddChar($campid)
@@ -434,14 +429,6 @@ class CampaignSystemsController extends Controller
             'id' => $campid,
         ]);
         broadcast(new CampaignSolaSystemUpdate($flag));
-
-
-
-        // $flag = collect([
-        //     'flag' => 9,
-        //     'id' => $campid,
-        // ]);
-        // broadcast(new CampaignSystemUpdate($flag));
     }
 
     public function tidimulti(Request $request, $sysid, $campid)
@@ -495,12 +482,5 @@ class CampaignSystemsController extends Controller
             'id' => $campid,
         ]);
         broadcast(new CampaignSolaSystemUpdate($flag));
-
-
-        // $flag = collect([
-        //     'flag' => 9,
-        //     'id' => $campid,
-        // ]);
-        // broadcast(new CampaignSystemUpdate($flag));
     }
 }
