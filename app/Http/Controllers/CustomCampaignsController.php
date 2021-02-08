@@ -87,7 +87,9 @@ class CustomCampaignsController extends Controller
 
                 if ($systemNode->node_join_count > 0) {
                     $nodes =  NodeJoin::where('campaign_system_id', $systemNode->id);
+
                     foreach ($nodes as $node) {
+                        dd($node, " delete");
                         $flag = null;
                         $flag = collect([
                             'joinNodeID' => $node->id,
