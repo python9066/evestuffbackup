@@ -172,6 +172,7 @@
                         <UsersChars :campaign_id="campaign.id"> </UsersChars>
                         <CampaignMap
                             :region_name="campaign.region"
+                            :constellation="campaign.constellation"
                         ></CampaignMap>
 
                         <v-menu

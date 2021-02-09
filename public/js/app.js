@@ -56,14 +56,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
-    system_name: String,
-    region_name: String
+    region_name: String,
+    constellation: String
   },
   data: function data() {
     return {
@@ -73,90 +71,90 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     link: function link() {
       if (this.region_name == "Black Rise") {
-        return "https://evemaps.dotlan.net/map/Black_Rise/" + this.system_name + "#const";
+        return "https://evemaps.dotlan.net/map/Black_Rise/" + this.constellation + "#const";
       }
 
       if (this.region_name == "The Bleak Lands") {
-        return "https://evemaps.dotlan.net/map/The_Bleak_Lands/" + this.system_name + "#const";
+        return "https://evemaps.dotlan.net/map/The_Bleak_Lands/" + this.constellation + "#const";
       }
 
       if (this.region_name == "The Citadel") {
-        return "https://evemaps.dotlan.net/map/The_Citadel/" + this.system_name + "#const";
+        return "https://evemaps.dotlan.net/map/The_Citadel/" + this.constellation + "#const";
       }
 
       if (this.region_name == "Cloud Ring") {
-        return "https://evemaps.dotlan.net/map/Cloud_Ring/" + this.system_name + "#const";
+        return "https://evemaps.dotlan.net/map/Cloud_Ring/" + this.constellation + "#const";
       }
 
       if (this.region_name == "Cobalt Edge") {
-        return "https://evemaps.dotlan.net/map/Cobalt_Edge/" + this.system_name + "#const";
+        return "https://evemaps.dotlan.net/map/Cobalt_Edge/" + this.constellation + "#const";
       }
 
       if (this.region_name == "Etherium Reach") {
-        return "https://evemaps.dotlan.net/map/Etherium_Reach/" + this.system_name + "#const";
+        return "https://evemaps.dotlan.net/map/Etherium_Reach/" + this.constellation + "#const";
       }
 
       if (this.region_name == "The Forge") {
-        return "https://evemaps.dotlan.net/map/The_Forge/" + this.system_name + "#const";
+        return "https://evemaps.dotlan.net/map/The_Forge/" + this.constellation + "#const";
       }
 
       if (this.region_name == "The Kalevala Expanse") {
-        return "https://evemaps.dotlan.net/map/The_Kalevala_Expanse/" + this.system_name + "#const";
+        return "https://evemaps.dotlan.net/map/The_Kalevala_Expanse/" + this.constellation + "#const";
       }
 
       if (this.region_name == "Molden Heath") {
-        return "https://evemaps.dotlan.net/map/Molden_Heath/" + this.system_name + "#const";
+        return "https://evemaps.dotlan.net/map/Molden_Heath/" + this.constellation + "#const";
       }
 
       if (this.region_name == "Outer Passage") {
-        return "https://evemaps.dotlan.net/map/Outer_Passage/" + this.system_name + "#const";
+        return "https://evemaps.dotlan.net/map/Outer_Passage/" + this.constellation + "#const";
       }
 
       if (this.region_name == "Outer Ring") {
-        return "https://evemaps.dotlan.net/map/Outer_Ring/" + this.system_name + "#const";
+        return "https://evemaps.dotlan.net/map/Outer_Ring/" + this.constellation + "#const";
       }
 
       if (this.region_name == "Paragon Soul") {
-        return "https://evemaps.dotlan.net/map/Paragon_Soul/" + this.system_name + "#const";
+        return "https://evemaps.dotlan.net/map/Paragon_Soul/" + this.constellation + "#const";
       }
 
       if (this.region_name == "Period Basis") {
-        return "https://evemaps.dotlan.net/map/Period_Basis/" + this.system_name + "#const";
+        return "https://evemaps.dotlan.net/map/Period_Basis/" + this.constellation + "#const";
       }
 
       if (this.region_name == "Perrigen Falls") {
-        return "https://evemaps.dotlan.net/map/Perrigen_Falls/" + this.system_name + "#const";
+        return "https://evemaps.dotlan.net/map/Perrigen_Falls/" + this.constellation + "#const";
       }
 
       if (this.region_name == "Pure Blind") {
-        return "https://evemaps.dotlan.net/map/Pure_Blind/" + this.system_name + "#const";
+        return "https://evemaps.dotlan.net/map/Pure_Blind/" + this.constellation + "#const";
       }
 
       if (this.region_name == "Scalding Pass") {
-        return "https://evemaps.dotlan.net/map/Scalding_Pass/" + this.system_name + "#const";
+        return "https://evemaps.dotlan.net/map/Scalding_Pass/" + this.constellation + "#const";
       }
 
       if (this.region_name == "Sinq Laison") {
-        return "https://evemaps.dotlan.net/map/Sinq_Laison/" + this.system_name + "#const";
+        return "https://evemaps.dotlan.net/map/Sinq_Laison/" + this.constellation + "#const";
       }
 
       if (this.region_name == "The Spire") {
-        return "https://evemaps.dotlan.net/map/The_Spire/" + this.system_name + "#const";
+        return "https://evemaps.dotlan.net/map/The_Spire/" + this.constellation + "#const";
       }
 
       if (this.region_name == "Vale of the Silent") {
-        return "https://evemaps.dotlan.net/map/Vale_of_the_Silent/" + this.system_name + "#const";
+        return "https://evemaps.dotlan.net/map/Vale_of_the_Silent/" + this.constellation + "#const";
       }
 
       if (this.region_name == "Verge Vendor") {
-        return "https://evemaps.dotlan.net/map/Verge_Vendor/" + this.system_name + "#const";
+        return "https://evemaps.dotlan.net/map/Verge_Vendor/" + this.constellation + "#const";
       }
 
       if (this.region_name == "Wicked Creek") {
-        return "https://evemaps.dotlan.net/map/Wicked_Creek/" + this.system_name + "#const";
+        return "https://evemaps.dotlan.net/map/Wicked_Creek/" + this.constellation + "#const";
       }
 
-      return "https://evemaps.dotlan.net/map/" + this.region_name + "/" + this.system_name + "#const";
+      return "https://evemaps.dotlan.net/map/" + this.region_name + "/" + this.constellation + "#const";
     }
   },
   computed: {}
@@ -9877,6 +9875,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 
@@ -16249,11 +16248,7 @@ var render = function() {
                     1
                   ),
                   _vm._v(" "),
-                  _c("v-toolbar-title", [
-                    _vm._v(
-                      _vm._s(_vm.region_name) + " - " + _vm._s(_vm.system_name)
-                    )
-                  ]),
+                  _c("v-toolbar-title", [_vm._v(_vm._s(_vm.region_name))]),
                   _vm._v(" "),
                   _c("v-spacer")
                 ],
@@ -26081,7 +26076,10 @@ var render = function() {
                               }),
                               _vm._v(" "),
                               _c("CampaignMap", {
-                                attrs: { region_name: _vm.campaign.region }
+                                attrs: {
+                                  region_name: _vm.campaign.region,
+                                  constellation: _vm.campaign.constellation
+                                }
                               }),
                               _vm._v(" "),
                               _c(
