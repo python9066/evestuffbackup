@@ -16207,8 +16207,8 @@ var render = function() {
                         on
                       ),
                       [
-                        _c("v-icon", { attrs: { right: "", dark: "" } }, [
-                          _vm._v("fas fa-map fa-xs")
+                        _c("v-icon", { attrs: { dark: "" } }, [
+                          _vm._v("fas fa-map")
                         ])
                       ],
                       1

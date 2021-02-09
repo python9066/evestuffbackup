@@ -16,7 +16,7 @@
                         v-on="on"
                         @click="dialog1 = true"
                     >
-                        <v-icon right dark>fas fa-map fa-xs</v-icon>
+                        <v-icon dark>fas fa-map</v-icon>
                     </v-btn>
                 </template>
             </template>
