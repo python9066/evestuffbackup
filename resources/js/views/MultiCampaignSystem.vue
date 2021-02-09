@@ -589,7 +589,8 @@ export default {
             let user_id = this.$store.state.user_id;
             var request = {
                 user_id: user_id,
-                campaign_id: this.$route.params.id
+                campaign_id: this.$route.params.id,
+                type: 2
             };
             console.log("dance");
             await axios({

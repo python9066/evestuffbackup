@@ -45,8 +45,21 @@ class CampaignSystemUsersController extends Controller
      */
     public function store(Request $request, $campid)
     {
-        // dd($request);
-        CampaignSystemUsers::create($request->all());
+        $data = null;
+        if ($request['type'] == 1) {
+            $campaign_id = Campaign::where('link', $campid)->value('id');
+            $data = [
+                'user_id' => $request['user_id'],
+                'campaign_id' => $campaign_id
+            ];
+        } else {
+
+            $data = [
+                'user_id' => $request['user_id'],
+                'campaign_id' => $request['campaign_id'],
+            ];
+        };
+        CampaignSystemUsers::create($data);
         $flag = collect([
             'flag' => 5,
             'id' => $campid

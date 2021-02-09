@@ -764,12 +764,13 @@ export default {
             }
             var request = {
                 user_id: user_id,
-                campaign_id: this.campaign.id
+                campaign_id: this.$route.params.id,
+                type: 1
             };
 
             await axios({
                 method: "POST",
-                url: "/api/campaignsystemusers/" + this.campaign.id,
+                url: "/api/campaignsystemusers/" + this.$route.params.id,
                 data: request,
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
