@@ -11,7 +11,7 @@
                     <v-btn
                         color="primary"
                         icon
-                        class=""
+                        class=" mr-2"
                         v-bind="attrs"
                         v-on="on"
                         @click="dialog1 = true"

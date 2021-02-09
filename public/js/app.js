@@ -16193,6 +16193,7 @@ var render = function() {
                       _vm._g(
                         _vm._b(
                           {
+                            staticClass: " mr-2",
                             attrs: { color: "primary", icon: "" },
                             on: {
                               click: function($event) {
