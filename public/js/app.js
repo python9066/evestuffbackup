@@ -62,6 +62,170 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
+    system_name: String,
+    region_name: String
+  },
+  data: function data() {
+    return {
+      dialog1: ""
+    };
+  },
+  methods: {
+    link: function link() {
+      if (this.region_name == "Black Rise") {
+        return "https://evemaps.dotlan.net/map/Black_Rise/" + this.system_name + "#const";
+      }
+
+      if (this.region_name == "The Bleak Lands") {
+        return "https://evemaps.dotlan.net/map/The_Bleak_Lands/" + this.system_name + "#const";
+      }
+
+      if (this.region_name == "The Citadel") {
+        return "https://evemaps.dotlan.net/map/The_Citadel/" + this.system_name + "#const";
+      }
+
+      if (this.region_name == "Cloud Ring") {
+        return "https://evemaps.dotlan.net/map/Cloud_Ring/" + this.system_name + "#const";
+      }
+
+      if (this.region_name == "Cobalt Edge") {
+        return "https://evemaps.dotlan.net/map/Cobalt_Edge/" + this.system_name + "#const";
+      }
+
+      if (this.region_name == "Etherium Reach") {
+        return "https://evemaps.dotlan.net/map/Etherium_Reach/" + this.system_name + "#const";
+      }
+
+      if (this.region_name == "The Forge") {
+        return "https://evemaps.dotlan.net/map/The_Forge/" + this.system_name + "#const";
+      }
+
+      if (this.region_name == "The Kalevala Expanse") {
+        return "https://evemaps.dotlan.net/map/The_Kalevala_Expanse/" + this.system_name + "#const";
+      }
+
+      if (this.region_name == "Molden Heath") {
+        return "https://evemaps.dotlan.net/map/Molden_Heath/" + this.system_name + "#const";
+      }
+
+      if (this.region_name == "Outer Passage") {
+        return "https://evemaps.dotlan.net/map/Outer_Passage/" + this.system_name + "#const";
+      }
+
+      if (this.region_name == "Outer Ring") {
+        return "https://evemaps.dotlan.net/map/Outer_Ring/" + this.system_name + "#const";
+      }
+
+      if (this.region_name == "Paragon Soul") {
+        return "https://evemaps.dotlan.net/map/Paragon_Soul/" + this.system_name + "#const";
+      }
+
+      if (this.region_name == "Period Basis") {
+        return "https://evemaps.dotlan.net/map/Period_Basis/" + this.system_name + "#const";
+      }
+
+      if (this.region_name == "Perrigen Falls") {
+        return "https://evemaps.dotlan.net/map/Perrigen_Falls/" + this.system_name + "#const";
+      }
+
+      if (this.region_name == "Pure Blind") {
+        return "https://evemaps.dotlan.net/map/Pure_Blind/" + this.system_name + "#const";
+      }
+
+      if (this.region_name == "Scalding Pass") {
+        return "https://evemaps.dotlan.net/map/Scalding_Pass/" + this.system_name + "#const";
+      }
+
+      if (this.region_name == "Sinq Laison") {
+        return "https://evemaps.dotlan.net/map/Sinq_Laison/" + this.system_name + "#const";
+      }
+
+      if (this.region_name == "The Spire") {
+        return "https://evemaps.dotlan.net/map/The_Spire/" + this.system_name + "#const";
+      }
+
+      if (this.region_name == "Vale of the Silent") {
+        return "https://evemaps.dotlan.net/map/Vale_of_the_Silent/" + this.system_name + "#const";
+      }
+
+      if (this.region_name == "Verge Vendor") {
+        return "https://evemaps.dotlan.net/map/Verge_Vendor/" + this.system_name + "#const";
+      }
+
+      if (this.region_name == "Wicked Creek") {
+        return "https://evemaps.dotlan.net/map/Wicked_Creek/" + this.system_name + "#const";
+      }
+
+      return "https://evemaps.dotlan.net/map/" + this.region_name + "/" + this.system_name + "#const";
+    }
+  },
+  computed: {}
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/campaign/CampaignMapSystem.vue?vue&type=script&lang=js&":
+/*!*************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/campaign/CampaignMapSystem.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_1__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: {
     region_name: String,
     constellation: String
   },
@@ -16193,6 +16357,159 @@ var render = function() {
                       _vm._g(
                         _vm._b(
                           {
+                            staticClass: "ma-2 white--text",
+                            attrs: { color: "primary", icon: "" },
+                            on: {
+                              click: function($event) {
+                                _vm.dialog1 = true
+                              }
+                            }
+                          },
+                          "v-btn",
+                          attrs,
+                          false
+                        ),
+                        on
+                      ),
+                      [
+                        _c("v-icon", { attrs: { right: "", dark: "" } }, [
+                          _vm._v("fas fa-map fa-xs")
+                        ])
+                      ],
+                      1
+                    )
+                  ]
+                ]
+              }
+            }
+          ]),
+          model: {
+            value: _vm.dialog1,
+            callback: function($$v) {
+              _vm.dialog1 = $$v
+            },
+            expression: "dialog1"
+          }
+        },
+        [
+          _vm._v(" "),
+          _c(
+            "v-card",
+            [
+              _c(
+                "v-toolbar",
+                { attrs: { dark: "", color: "primary" } },
+                [
+                  _c(
+                    "v-btn",
+                    {
+                      attrs: { icon: "", dark: "" },
+                      on: {
+                        click: function($event) {
+                          _vm.dialog1 = false
+                        }
+                      }
+                    },
+                    [_c("v-icon", [_vm._v("fas fa-times-circle")])],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c("v-toolbar-title", [
+                    _vm._v(
+                      _vm._s(_vm.region_name) + " - " + _vm._s(_vm.system_name)
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("v-spacer")
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticStyle: {
+                    position: "absolute",
+                    top: "64px",
+                    right: "0px",
+                    bottom: "0px",
+                    left: "0px"
+                  }
+                },
+                [
+                  _c("iframe", {
+                    staticStyle: {
+                      left: "0",
+                      bottom: "0",
+                      right: "0",
+                      width: "100%",
+                      height: "100%",
+                      border: "none",
+                      margin: "0",
+                      padding: "0",
+                      overflow: "hidden",
+                      "z-index": "999999"
+                    },
+                    attrs: { src: _vm.link() }
+                  })
+                ]
+              )
+            ],
+            1
+          )
+        ],
+        1
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/campaign/CampaignMapSystem.vue?vue&type=template&id=c99ea6b2&":
+/*!*****************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/campaign/CampaignMapSystem.vue?vue&type=template&id=c99ea6b2& ***!
+  \*****************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    [
+      _c(
+        "v-dialog",
+        {
+          attrs: {
+            fullscreen: "",
+            "hide-overlay": "",
+            transition: "dialog-bottom-transition"
+          },
+          scopedSlots: _vm._u([
+            {
+              key: "activator",
+              fn: function(ref) {
+                var on = ref.on
+                var attrs = ref.attrs
+                return [
+                  [
+                    _c(
+                      "v-btn",
+                      _vm._g(
+                        _vm._b(
+                          {
                             staticClass: " mr-2",
                             attrs: { color: "primary", icon: "" },
                             on: {
@@ -26081,7 +26398,7 @@ var render = function() {
                                 attrs: { campaign_id: _vm.campaign.id }
                               }),
                               _vm._v(" "),
-                              _c("CampaignMap", {
+                              _c("CampaignMapSystem", {
                                 attrs: {
                                   region_name: _vm.campaign.region,
                                   constellation: _vm.campaign.constellation
@@ -27387,7 +27704,7 @@ var render = function() {
                           )
                         : _vm._e(),
                       _vm._v(" "),
-                      _c("campaignMap", {
+                      _c("CampaignMap", {
                         attrs: {
                           system_name: item.system,
                           region_name: item.region
@@ -31339,6 +31656,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('messageStations', __webpac
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('testingMessage', __webpack_require__(/*! ./components/random/testingMessage.vue */ "./resources/js/components/random/testingMessage.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('notificationTimer', __webpack_require__(/*! ./components/notification/notificationTimer.vue */ "./resources/js/components/notification/notificationTimer.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('CampaignMap', __webpack_require__(/*! ./components/campaign/CampaignMap.vue */ "./resources/js/components/campaign/CampaignMap.vue")["default"]);
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('CampaignMapSystem', __webpack_require__(/*! ./components/campaign/CampaignMapSystem.vue */ "./resources/js/components/campaign/CampaignMapSystem.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('SystemItemList', __webpack_require__(/*! ./components/multicampaigns/systemItemList.vue */ "./resources/js/components/multicampaigns/systemItemList.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('MultiCampaignAdd', __webpack_require__(/*! ./components/multicampaigns/MultiCampaignAdd.vue */ "./resources/js/components/multicampaigns/MultiCampaignAdd.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('MultiCampaignEdit', __webpack_require__(/*! ./components/multicampaigns/MultiCampaignEdit.vue */ "./resources/js/components/multicampaigns/MultiCampaignEdit.vue")["default"]);
@@ -31540,6 +31858,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CampaignMap_vue_vue_type_template_id_1dea7dd8___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CampaignMap_vue_vue_type_template_id_1dea7dd8___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/campaign/CampaignMapSystem.vue":
+/*!****************************************************************!*\
+  !*** ./resources/js/components/campaign/CampaignMapSystem.vue ***!
+  \****************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _CampaignMapSystem_vue_vue_type_template_id_c99ea6b2___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CampaignMapSystem.vue?vue&type=template&id=c99ea6b2& */ "./resources/js/components/campaign/CampaignMapSystem.vue?vue&type=template&id=c99ea6b2&");
+/* harmony import */ var _CampaignMapSystem_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CampaignMapSystem.vue?vue&type=script&lang=js& */ "./resources/js/components/campaign/CampaignMapSystem.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _CampaignMapSystem_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _CampaignMapSystem_vue_vue_type_template_id_c99ea6b2___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _CampaignMapSystem_vue_vue_type_template_id_c99ea6b2___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/campaign/CampaignMapSystem.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/campaign/CampaignMapSystem.vue?vue&type=script&lang=js&":
+/*!*****************************************************************************************!*\
+  !*** ./resources/js/components/campaign/CampaignMapSystem.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CampaignMapSystem_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./CampaignMapSystem.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/campaign/CampaignMapSystem.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CampaignMapSystem_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/campaign/CampaignMapSystem.vue?vue&type=template&id=c99ea6b2&":
+/*!***********************************************************************************************!*\
+  !*** ./resources/js/components/campaign/CampaignMapSystem.vue?vue&type=template&id=c99ea6b2& ***!
+  \***********************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CampaignMapSystem_vue_vue_type_template_id_c99ea6b2___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./CampaignMapSystem.vue?vue&type=template&id=c99ea6b2& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/campaign/CampaignMapSystem.vue?vue&type=template&id=c99ea6b2&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CampaignMapSystem_vue_vue_type_template_id_c99ea6b2___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CampaignMapSystem_vue_vue_type_template_id_c99ea6b2___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

@@ -333,11 +333,11 @@
                             </template>
                         </VueCountUptimer>
                     </div>
-                    <campaignMap
+                    <CampaignMap
                         :system_name="item.system"
                         :region_name="item.region"
                     >
-                    </campaignMap>
+                    </CampaignMap>
                     <VueCountUptimer
                         v-if="item.Age != null"
                         :start-time="moment.utc(item.Age).unix()"

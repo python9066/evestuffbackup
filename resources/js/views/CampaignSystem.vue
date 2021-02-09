@@ -170,10 +170,10 @@
                             >Hide Char table</v-btn
                         >
                         <UsersChars :campaign_id="campaign.id"> </UsersChars>
-                        <CampaignMap
+                        <CampaignMapSystem
                             :region_name="campaign.region"
                             :constellation="campaign.constellation"
-                        ></CampaignMap>
+                        ></CampaignMapSystem>
 
                         <v-menu
                             :close-on-content-click="false"

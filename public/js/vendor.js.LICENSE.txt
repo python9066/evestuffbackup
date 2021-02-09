@@ -984,6 +984,8 @@
 
 /*! ./ru */
 
+/*! ./sanitizeDateString */
+
 /*! ./scroll */
 
 /*! ./services */
@@ -1254,7 +1256,7 @@
 
 /*! exports provided: convertToComponentDeclarations, default */
 
-/*! exports provided: createItemTypeListeners, createItemTypeNativeListeners, createNativeLocaleFormatter, monthChange, pad */
+/*! exports provided: createItemTypeListeners, createItemTypeNativeListeners, createNativeLocaleFormatter, monthChange, sanitizeDateString, pad */
 
 /*! exports provided: createItemTypeNativeListeners, createItemTypeListeners */
 
@@ -3128,6 +3130,10 @@
 
 /*!***************************************************************!*\
   !*** ./src/components/VColorPicker/VColorPickerSwatches.sass ***!
+  \***************************************************************/
+
+/*!***************************************************************!*\
+  !*** ./src/components/VDatePicker/util/sanitizeDateString.ts ***!
   \***************************************************************/
 
 /*!***************************************************************!*\
