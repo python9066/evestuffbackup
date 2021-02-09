@@ -25,7 +25,9 @@
                     <v-btn icon dark @click="dialog1 = false">
                         <v-icon>fas fa-times-circle</v-icon>
                     </v-btn>
-                    <v-toolbar-title>{{ region_name }}</v-toolbar-title>
+                    <v-toolbar-title
+                        >{{ region_name }} {{ constellation }}</v-toolbar-title
+                    >
                     <v-spacer></v-spacer>
                 </v-toolbar>
                 <div

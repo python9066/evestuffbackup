@@ -56,6 +56,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -16248,7 +16250,11 @@ var render = function() {
                     1
                   ),
                   _vm._v(" "),
-                  _c("v-toolbar-title", [_vm._v(_vm._s(_vm.region_name))]),
+                  _c("v-toolbar-title", [
+                    _vm._v(
+                      _vm._s(_vm.region_name) + " " + _vm._s(_vm.constellation)
+                    )
+                  ]),
                   _vm._v(" "),
                   _c("v-spacer")
                 ],
