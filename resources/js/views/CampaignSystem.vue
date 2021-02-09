@@ -170,6 +170,9 @@
                             >Hide Char table</v-btn
                         >
                         <UsersChars :campaign_id="campaign.id"> </UsersChars>
+                        <CampaignMap
+                            :region_name="campaign.region"
+                        ></CampaignMap>
 
                         <v-menu
                             :close-on-content-click="false"

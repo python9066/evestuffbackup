@@ -9874,6 +9874,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
 
 
 
@@ -26075,6 +26078,10 @@ var render = function() {
                               _vm._v(" "),
                               _c("UsersChars", {
                                 attrs: { campaign_id: _vm.campaign.id }
+                              }),
+                              _vm._v(" "),
+                              _c("CampaignMap", {
+                                attrs: { region_name: _vm.campaign.region }
                               }),
                               _vm._v(" "),
                               _c(
