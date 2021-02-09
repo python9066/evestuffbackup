@@ -38,7 +38,7 @@ Vue.component('watchUserTable', require('./components/campaignAll/watchUserTable
 Vue.component('messageStations', require('./components/random/messageStations.vue').default);
 Vue.component('testingMessage', require('./components/random/testingMessage.vue').default);
 Vue.component('notificationTimer', require('./components/notification/notificationTimer.vue').default);
-Vue.component('campaignMap', require('./components/campaign/campaignMap.vue').default);
+Vue.component('CampaignMap', require('./components/campaign/CampaignMap.vue').default);
 Vue.component('SystemItemList', require('./components/multicampaigns/systemItemList.vue').default);
 Vue.component('MultiCampaignAdd', require('./components/multicampaigns/MultiCampaignAdd.vue').default);
 Vue.component('MultiCampaignEdit', require('./components/multicampaigns/MultiCampaignEdit.vue').default);
