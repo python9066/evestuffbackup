@@ -202,6 +202,8 @@ class Campaignhelper
             $warms = Campaign::where('end', '!=', null)->where('check', 0)->where('status_id', '<', 3)->get();
             foreach ($warms as $warm) {
                 $warm->update(['status_id' => 3, 'warmup' => 0]);
+
+
                 // Campaignhelper::removeNode($warm->id);
                 $checkflag = 1;
                 echo "1";
@@ -248,27 +250,6 @@ class Campaignhelper
                             "id" => $dCampaignUser->campaign_id
                         ]);
                         broadcast(new CampaignUserUpdate($flag));
-                    }
-
-                    $campaignJoins = CampaignJoin::where('campaign_id', $a->id)->get();
-                    foreach ($campaignJoins as $campaignJoin) {
-                        $campid = $campaignJoin->custom_campaign_id;
-                        $campaignJoin->delete();
-                        $flag = collect([
-                            'flag' => 11,
-                            'id' => $campid,
-                        ]);
-                        broadcast(new CampaignSystemUpdate($flag));
-                        broadcast(new MultiCampaignUpdate($flag));
-
-
-                        $flag = null;
-                        $flag = collect([
-                            'campSysID' => $dCampaignSystem->id,
-                            'id' => $a->id
-                        ]);
-                        broadcast(new CampaignSystemDelete($flag))->toOthers();
-                        $dCampaignSystem->delete();
                     }
                 }
             }
@@ -317,6 +298,8 @@ class Campaignhelper
             ->get();
         foreach ($finished as $finish) {
 
+
+
             $a = $finish->attackers_score;
             $d = $finish->defenders_score;
 
@@ -324,6 +307,27 @@ class Campaignhelper
                 Campaign::where('id', $finish->id)->update(['attackers_score' => 1, 'defenders_score' => 0]);
             } else {
                 Campaign::where('id', $finish->id)->update(['attackers_score' => 0, 'defenders_score' => 1]);
+            }
+
+            $campaignJoins = CampaignJoin::where('campaign_id', $finish->id)->get();
+            foreach ($campaignJoins as $campaignJoin) {
+                $campid = $campaignJoin->custom_campaign_id;
+                $campaignJoin->delete();
+                $flag = collect([
+                    'flag' => 11,
+                    'id' => $campid,
+                ]);
+                broadcast(new CampaignSystemUpdate($flag));
+                broadcast(new MultiCampaignUpdate($flag));
+
+
+                $flag = null;
+                $flag = collect([
+                    'campSysID' => $dCampaignSystem->id,
+                    'id' => $a->id
+                ]);
+                broadcast(new CampaignSystemDelete($flag))->toOthers();
+                $dCampaignSystem->delete();
             }
 
             $message = CampaignRecords::where('id', $finish->id)->first();
