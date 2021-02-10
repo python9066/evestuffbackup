@@ -75,6 +75,8 @@ class CreateOrReplaceCampaignRecordsViewCommand extends Command
         JOIN regions ON regions.id = systems.region_id
         JOIN campaign_statuses ON campaign_statuses.id = campaigns.status_id
         JOIN structures on structures.id = campaigns.structure_id
-        WHERE (campaigns.attackers_score != 1 OR campaigns.attackers_score != 0) AND campaigns.status_id != 10");
+        WHERE campaigns.status_id != 10");
     }
 }
+
+// WHERE (campaigns.attackers_score != 1 OR campaigns.attackers_score != 0) AND campaigns.status_id != 10");
