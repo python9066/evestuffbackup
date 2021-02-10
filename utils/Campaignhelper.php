@@ -251,6 +251,14 @@ class Campaignhelper
                         ]);
                         broadcast(new CampaignUserUpdate($flag));
                     }
+
+                    $flag = null;
+                    $flag = collect([
+                        'campSysID' => $dCampaignSystem->id,
+                        'id' => $a->id
+                    ]);
+                    broadcast(new CampaignSystemDelete($flag))->toOthers();
+                    $dCampaignSystem->delete();
                 }
             }
 
@@ -319,15 +327,6 @@ class Campaignhelper
                 ]);
                 broadcast(new CampaignSystemUpdate($flag));
                 broadcast(new MultiCampaignUpdate($flag));
-
-
-                $flag = null;
-                $flag = collect([
-                    'campSysID' => $dCampaignSystem->id,
-                    'id' => $a->id
-                ]);
-                broadcast(new CampaignSystemDelete($flag))->toOthers();
-                $dCampaignSystem->delete();
             }
 
             $message = CampaignRecords::where('id', $finish->id)->first();
