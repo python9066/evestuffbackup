@@ -231,21 +231,10 @@
                             fas fa-minus-circle
                         </v-icon>
                     </span>
-
-                    <!-- <v-progress-linear
-
-                            :value="(item.attackers_score * 100)"
-                            height = 15
-                            rounded
-                            color = "red darken-4"
-
-
-                            >
-                            <strong> {{item.defenders_score * 100}} / {{item.attackers_score * 100}} :start-time="item.start + ' UTC'" </strong>
-                        </v-progress-linear> -->
                 </span>
                 <span v-else-if="item.status_id == 3 || item.status_id == 4">
                     <p
+                        {{item.attackers_score}}
                         v-if="item.attackers_score == 0"
                         class=" text-md-center green--text"
                     >
