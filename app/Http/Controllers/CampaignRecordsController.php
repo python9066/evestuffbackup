@@ -22,7 +22,7 @@ class CampaignRecordsController extends Controller
     public function campaignslist()
     {
         $data = [];
-        $pull = CampaignRecords::where('status_id', "<", 3)->orderBy('start', 'asc')->get();
+        $pull = CampaignRecords::where('status_id', "!=", 10)->orderBy('start', 'asc')->get();
         foreach ($pull as $pull) {
             $data1 = [];
             $data1 = [
