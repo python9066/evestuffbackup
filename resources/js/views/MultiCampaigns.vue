@@ -291,6 +291,8 @@ export default {
             return this.multicampaigns;
         }
     },
-    beforeDestroy() {}
+    beforeDestroy() {
+        Echo.leave("multicampaigns");
+    }
 };
 </script>
