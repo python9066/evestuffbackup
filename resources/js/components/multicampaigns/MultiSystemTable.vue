@@ -426,11 +426,10 @@
                             <NodeExtraCharMulti
                                 :item="item"
                             ></NodeExtraCharMulti>
-                            <AdminHack
+                            <AdminHackUserTable
                                 v-if="$can('campaigns_admin_access')"
-                                :item="item"
-                                @openAdd="openAdd($event)"
-                            ></AdminHack>
+                                :nodeItem="item"
+                            ></AdminHackUserTable>
                         </div>
                     </template>
                     <template v-slot:item.count="{ item }">
@@ -604,10 +603,6 @@ export default {
             } else {
                 return true;
             }
-        },
-
-        openAdd(item) {
-            this.$emit("openAdd", item);
         },
 
         openSolaLog() {

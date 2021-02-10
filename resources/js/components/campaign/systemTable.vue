@@ -388,11 +388,6 @@
                                 >
                                 <NodeExtraChar :item="item"></NodeExtraChar>
                             </div>
-                            <!-- <AdminHack
-                                v-if="$can('campaigns_admin_access')"
-                                :item="item"
-                                @openAdd="openAdd($event)"
-                            ></AdminHack> -->
                             <AdminHackUserTable
                                 v-if="$can('campaigns_admin_access')"
                                 :nodeItem="item"
@@ -576,10 +571,6 @@ export default {
         openMessage(item) {
             // this.$emit("openMessage", item);
             this.showNodeNotes = true;
-        },
-
-        openAdd(item) {
-            this.$emit("openAdd", item);
         },
 
         openSolaLog() {

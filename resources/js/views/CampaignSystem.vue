@@ -398,15 +398,6 @@
             >
             </ShowNotes>
         </v-overlay>
-
-        <v-overlay z-index="0" :value="showAdd">
-            <!-- campaignAll/admin/UserTable.vue -->
-            <AdminHackUserTable
-                @closeAdd="showAdd = false"
-                :nodeItem="nodeItem"
-            >
-            </AdminHackUserTable>
-        </v-overlay>
         <v-overlay z-index="5" :value="showLog">
             <CampaignLogging
                 v-if="$can('view_campaign_logs')"
@@ -497,7 +488,6 @@ export default {
             removeShown: false,
             role: 0,
 
-            showAdd: false,
             showNotes: false,
             showTable: false,
             showUsers: false,
@@ -649,11 +639,6 @@ export default {
             if (this.userCount == 0) {
                 this.bullhorn = true;
             }
-        },
-
-        openAdd(item) {
-            this.nodeItem = item;
-            this.showAdd = true;
         },
 
         openSolaLog(item) {

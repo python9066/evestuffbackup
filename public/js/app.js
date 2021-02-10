@@ -1134,11 +1134,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -1270,9 +1265,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     openMessage: function openMessage(item) {
       // this.$emit("openMessage", item);
       this.showNodeNotes = true;
-    },
-    openAdd: function openAdd(item) {
-      this.$emit("openAdd", item);
     },
     openSolaLog: function openSolaLog() {
       var item = {
@@ -4023,56 +4015,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/campaignAll/admin/AdminHack.vue?vue&type=script&lang=js&":
-/*!**************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/campaignAll/admin/AdminHack.vue?vue&type=script&lang=js& ***!
-  \**************************************************************************************************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-  props: {
-    item: Object
-  },
-  data: function data() {
-    return {};
-  },
-  methods: {
-    showAdd: function showAdd() {
-      this.$emit("openAdd", this.item);
-    }
-  },
-  computed: {
-    showAddIcon: function showAddIcon() {
-      if (this.item.status_id != 4 && this.item.status_id != 5 && this.item.status_id != 7 && this.item.status_id != 8) {
-        return true;
-      } else {
-        return false;
-      }
-    }
-  }
-});
-
-/***/ }),
-
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/campaignAll/admin/UserTable.vue?vue&type=script&lang=js&":
 /*!**************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/campaignAll/admin/UserTable.vue?vue&type=script&lang=js& ***!
@@ -6066,7 +6008,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -6174,9 +6115,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       } else {
         return true;
       }
-    },
-    openAdd: function openAdd(item) {
-      this.$emit("openAdd", item);
     },
     openSolaLog: function openSolaLog() {
       var item = {
@@ -10051,15 +9989,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -10151,7 +10080,6 @@ function sleep(ms) {
       overlay: false,
       removeShown: false,
       role: 0,
-      showAdd: false,
       showNotes: false,
       showTable: false,
       showUsers: false,
@@ -10346,10 +10274,6 @@ function sleep(ms) {
       if (this.userCount == 0) {
         this.bullhorn = true;
       }
-    },
-    openAdd: function openAdd(item) {
-      this.nodeItem = item;
-      this.showAdd = true;
     },
     openSolaLog: function openSolaLog(item) {
       this.solaid = item.solaID;
@@ -12241,15 +12165,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -12344,7 +12259,6 @@ function sleep(ms) {
       channel: "",
       overlay: false,
       bullhorn: false,
-      showAdd: false,
       nodeItem: null,
       showLog: false,
       solalog: false,
@@ -12575,10 +12489,6 @@ function sleep(ms) {
       this.solaid = item.solaid;
       this.solaName = item.solaName;
       this.solalog = true;
-    },
-    openAdd: function openAdd(item) {
-      this.nodeItem = item;
-      this.showAdd = true;
     },
     loadCampaignlogs: function loadCampaignlogs() {
       var _this3 = this;
@@ -19675,46 +19585,6 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/campaignAll/admin/AdminHack.vue?vue&type=template&id=4baa4ed2&":
-/*!******************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/campaignAll/admin/AdminHack.vue?vue&type=template&id=4baa4ed2& ***!
-  \******************************************************************************************************************************************************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _vm.showAddIcon
-        ? _c(
-            "v-btn",
-            {
-              attrs: { icon: "", color: "light-blue darken-4" },
-              on: { click: _vm.showAdd }
-            },
-            [_c("v-icon", { attrs: { small: "" } }, [_vm._v("fas fa-plus")])],
-            1
-          )
-        : _vm._e()
-    ],
-    1
-  )
-}
-var staticRenderFns = []
-render._withStripped = true
-
-
-
-/***/ }),
-
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/campaignAll/admin/UserTable.vue?vue&type=template&id=3936d6ca&":
 /*!******************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/campaignAll/admin/UserTable.vue?vue&type=template&id=3936d6ca& ***!
@@ -22682,13 +22552,8 @@ var render = function() {
                                     }),
                                     _vm._v(" "),
                                     _vm.$can("campaigns_admin_access")
-                                      ? _c("AdminHack", {
-                                          attrs: { item: item },
-                                          on: {
-                                            openAdd: function($event) {
-                                              return _vm.openAdd($event)
-                                            }
-                                          }
+                                      ? _c("AdminHackUserTable", {
+                                          attrs: { nodeItem: item }
                                         })
                                       : _vm._e()
                                   ],
@@ -22798,7 +22663,7 @@ var render = function() {
                         ],
                         null,
                         false,
-                        821296284
+                        3155776374
                       )
                     },
                     [
@@ -27049,22 +26914,6 @@ var render = function() {
           _vm._v(" "),
           _c(
             "v-overlay",
-            { attrs: { "z-index": "0", value: _vm.showAdd } },
-            [
-              _c("AdminHackUserTable", {
-                attrs: { nodeItem: _vm.nodeItem },
-                on: {
-                  closeAdd: function($event) {
-                    _vm.showAdd = false
-                  }
-                }
-              })
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "v-overlay",
             { attrs: { "z-index": "5", value: _vm.showLog } },
             [
               _vm.$can("view_campaign_logs")
@@ -28563,9 +28412,6 @@ var render = function() {
               index: index
             },
             on: {
-              openAdd: function($event) {
-                return _vm.openAdd($event)
-              },
               openSolaLog: function($event) {
                 return _vm.openSolaLog($event)
               }
@@ -28612,22 +28458,6 @@ var render = function() {
             ],
             1
           )
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "v-overlay",
-        { attrs: { "z-index": "0", value: _vm.showAdd } },
-        [
-          _c("AdminHackUserTable", {
-            attrs: { nodeItem: _vm.nodeItem },
-            on: {
-              closeAdd: function($event) {
-                _vm.showAdd = false
-              }
-            }
-          })
         ],
         1
       ),
@@ -31743,7 +31573,6 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('LastedChecked', __webpack_
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('SystemScout', __webpack_require__(/*! ./components/campaignAll/SystemScout.vue */ "./resources/js/components/campaignAll/SystemScout.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('SystemTidi', __webpack_require__(/*! ./components/campaign/SystemTidi.vue */ "./resources/js/components/campaign/SystemTidi.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('SystemTidiMulti', __webpack_require__(/*! ./components/multicampaigns/SystemTidiMulti.vue */ "./resources/js/components/multicampaigns/SystemTidiMulti.vue")["default"]);
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('AdminHack', __webpack_require__(/*! ./components/campaignAll/admin/AdminHack.vue */ "./resources/js/components/campaignAll/admin/AdminHack.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('AdminHackUserTable', __webpack_require__(/*! ./components/campaignAll/admin/UserTable.vue */ "./resources/js/components/campaignAll/admin/UserTable.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('SolaSystemLogging', __webpack_require__(/*! ./components/logging/campaign/SolaSystemLogging.vue */ "./resources/js/components/logging/campaign/SolaSystemLogging.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('CampaignLogging', __webpack_require__(/*! ./components/logging/campaign/CampaignLogging.vue */ "./resources/js/components/logging/campaign/CampaignLogging.vue")["default"]);
@@ -32778,75 +32607,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_UsersCharsEdit_vue_vue_type_template_id_3ece99e8___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_UsersCharsEdit_vue_vue_type_template_id_3ece99e8___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
-
-
-
-/***/ }),
-
-/***/ "./resources/js/components/campaignAll/admin/AdminHack.vue":
-/*!*****************************************************************!*\
-  !*** ./resources/js/components/campaignAll/admin/AdminHack.vue ***!
-  \*****************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _AdminHack_vue_vue_type_template_id_4baa4ed2___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./AdminHack.vue?vue&type=template&id=4baa4ed2& */ "./resources/js/components/campaignAll/admin/AdminHack.vue?vue&type=template&id=4baa4ed2&");
-/* harmony import */ var _AdminHack_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./AdminHack.vue?vue&type=script&lang=js& */ "./resources/js/components/campaignAll/admin/AdminHack.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-
-
-
-
-
-/* normalize component */
-
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _AdminHack_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _AdminHack_vue_vue_type_template_id_4baa4ed2___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _AdminHack_vue_vue_type_template_id_4baa4ed2___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
-  false,
-  null,
-  null,
-  null
-  
-)
-
-/* hot reload */
-if (false) { var api; }
-component.options.__file = "resources/js/components/campaignAll/admin/AdminHack.vue"
-/* harmony default export */ __webpack_exports__["default"] = (component.exports);
-
-/***/ }),
-
-/***/ "./resources/js/components/campaignAll/admin/AdminHack.vue?vue&type=script&lang=js&":
-/*!******************************************************************************************!*\
-  !*** ./resources/js/components/campaignAll/admin/AdminHack.vue?vue&type=script&lang=js& ***!
-  \******************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AdminHack_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./AdminHack.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/campaignAll/admin/AdminHack.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AdminHack_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
-
-/***/ }),
-
-/***/ "./resources/js/components/campaignAll/admin/AdminHack.vue?vue&type=template&id=4baa4ed2&":
-/*!************************************************************************************************!*\
-  !*** ./resources/js/components/campaignAll/admin/AdminHack.vue?vue&type=template&id=4baa4ed2& ***!
-  \************************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AdminHack_vue_vue_type_template_id_4baa4ed2___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./AdminHack.vue?vue&type=template&id=4baa4ed2& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/campaignAll/admin/AdminHack.vue?vue&type=template&id=4baa4ed2&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AdminHack_vue_vue_type_template_id_4baa4ed2___WEBPACK_IMPORTED_MODULE_0__["render"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AdminHack_vue_vue_type_template_id_4baa4ed2___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

@@ -193,7 +193,6 @@
                 :constellation_id="system.constellation_id"
                 :index="index"
                 :key="system.id"
-                @openAdd="openAdd($event)"
                 @openSolaLog="openSolaLog($event)"
             >
             </MultiSystemTable>
@@ -216,14 +215,6 @@
                     </v-btn>
                 </v-card-actions>
             </v-card>
-        </v-overlay>
-        <v-overlay z-index="0" :value="showAdd">
-            <!-- campaignAll/admin/UserTable.vue -->
-            <AdminHackUserTable
-                @closeAdd="showAdd = false"
-                :nodeItem="nodeItem"
-            >
-            </AdminHackUserTable>
         </v-overlay>
         <v-overlay z-index="5" :value="showLog">
             <CampaignLogging
@@ -310,7 +301,6 @@ export default {
             channel: "",
             overlay: false,
             bullhorn: false,
-            showAdd: false,
             nodeItem: null,
             showLog: false,
             solalog: false,
@@ -486,11 +476,6 @@ export default {
             this.solaid = item.solaid;
             this.solaName = item.solaName;
             this.solalog = true;
-        },
-
-        openAdd(item) {
-            this.nodeItem = item;
-            this.showAdd = true;
         },
 
         async loadCampaignlogs() {
