@@ -234,10 +234,10 @@
                 </span>
                 <span v-else-if="item.status_id == 3 || item.status_id == 4">
                     <p
-                        {{item.defenders_score}}
                         v-if="item.attackers_score == 0"
                         class=" text-md-center green--text"
                     >
+                        {{ item.defenders_score }}
                         {{ item.alliance }}
                         <span class="font-weight-bold"> WON </span> the
                         {{ item.item_name }} timer.

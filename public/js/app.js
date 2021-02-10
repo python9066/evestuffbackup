@@ -27399,13 +27399,12 @@ var render = function() {
                         item.attackers_score == 0
                           ? _c(
                               "p",
-                              {
-                                staticClass: " text-md-center green--text",
-                                attrs: { "{{item.defenders_score}}": "" }
-                              },
+                              { staticClass: " text-md-center green--text" },
                               [
                                 _vm._v(
                                   "\n                    " +
+                                    _vm._s(item.defenders_score) +
+                                    "\n                    " +
                                     _vm._s(item.alliance) +
                                     "\n                    "
                                 ),
