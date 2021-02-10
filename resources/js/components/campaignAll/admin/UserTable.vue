@@ -1,5 +1,5 @@
 <template>
-    <v-dialog v-model="showAdd" width="500">
+    <v-dialog v-model="showAdd" width="500" @click:outside="close()">
         <template v-slot:activator="{ on, attrs }">
             <v-btn
                 icon
@@ -97,7 +97,7 @@ export default {
 
     methods: {
         close() {
-            this.$emit("closeAdd", "yo");
+            this.showAdd = false;
         },
 
         addChar(item) {

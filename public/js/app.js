@@ -4190,7 +4190,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   methods: {
     close: function close() {
-      this.$emit("closeAdd", "yo");
+      this.showAdd = false;
     },
     addChar: function addChar(item) {
       if (this.nodeItem.custom_campaign_id == null) {
@@ -19734,6 +19734,11 @@ var render = function() {
     "v-dialog",
     {
       attrs: { width: "500" },
+      on: {
+        "click:outside": function($event) {
+          return _vm.close()
+        }
+      },
       scopedSlots: _vm._u([
         {
           key: "activator",
