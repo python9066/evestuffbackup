@@ -257,6 +257,19 @@ class Campaignhelper
                     ]);
                     broadcast(new CampaignSystemDelete($flag))->toOthers();
                     $dCampaignSystem->delete();
+
+
+
+                    $campaignJoins = CampaignJoin::where('campaign_id', $a->id)->get();
+                    foreach ($campaignJoins as $campaignJoin) {
+                        $campid = $campaignJoin->custom_campaign_id;
+                        $campaignJoin->delete();
+                        $flag = collect([
+                            'flag' => 11,
+                            'id' => $campid,
+                        ]);
+                        broadcast(new CampaignSystemUpdate($flag));
+                    }
                 }
             }
 

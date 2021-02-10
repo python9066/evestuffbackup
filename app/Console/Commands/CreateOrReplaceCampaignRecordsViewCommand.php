@@ -38,7 +38,8 @@ class CreateOrReplaceCampaignRecordsViewCommand extends Command
      */
     public function handle()
     {
-        DB::statement("CREATE VIEW campaign_records AS SELECT campaigns.id AS 'id',
+        DB::statement(
+            "CREATE VIEW campaign_records AS SELECT campaigns.id AS 'id',
         regions.region_name AS 'region',
         regions.id AS 'region_id',
         constellations.constellation_name AS 'constellation',
@@ -74,8 +75,9 @@ class CreateOrReplaceCampaignRecordsViewCommand extends Command
         JOIN items ON items.id = campaigns.event_type
         JOIN regions ON regions.id = systems.region_id
         JOIN campaign_statuses ON campaign_statuses.id = campaigns.status_id
-        JOIN structures on structures.id = campaigns.structure_id
-        WHERE campaigns.status_id != 10");
+        LEFT JOIN structures on structures.id = campaigns.structure_id
+        WHERE (campaigns.attackers_score != 1 OR campaigns.attackers_score != 0) AND campaigns.status_id != 10"
+        );
     }
 }
 
