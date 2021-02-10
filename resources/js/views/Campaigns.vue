@@ -234,7 +234,7 @@
                 </span>
                 <span v-else-if="item.status_id == 3 || item.status_id == 4">
                     <p
-                        {{item.attackers_score}}
+                        {{item.defenders_score}}
                         v-if="item.attackers_score == 0"
                         class=" text-md-center green--text"
                     >

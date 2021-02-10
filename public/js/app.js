@@ -27401,7 +27401,7 @@ var render = function() {
                               "p",
                               {
                                 staticClass: " text-md-center green--text",
-                                attrs: { "{{item.attackers_score}}": "" }
+                                attrs: { "{{item.defenders_score}}": "" }
                               },
                               [
                                 _vm._v(
