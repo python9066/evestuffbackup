@@ -388,11 +388,15 @@
                                 >
                                 <NodeExtraChar :item="item"></NodeExtraChar>
                             </div>
-                            <AdminHack
+                            <!-- <AdminHack
                                 v-if="$can('campaigns_admin_access')"
                                 :item="item"
                                 @openAdd="openAdd($event)"
-                            ></AdminHack>
+                            ></AdminHack> -->
+                            <AdminHackUserTable
+                                v-if="$can('campaigns_admin_access')"
+                                :nodeItem="item"
+                            ></AdminHackUserTable>
                         </div>
                     </template>
                     <template v-slot:item.count="{ item }">

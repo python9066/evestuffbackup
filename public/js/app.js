@@ -1135,6 +1135,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -4148,6 +4152,19 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -4167,7 +4184,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         value: "actions"
       } // { text: "Vulernable End Time", value: "vulnerable_end_time" }
       ],
-      search: ""
+      search: "",
+      showAdd: false
     };
   },
   methods: {
@@ -17928,13 +17946,8 @@ var render = function() {
                                 : _vm._e(),
                               _vm._v(" "),
                               _vm.$can("campaigns_admin_access")
-                                ? _c("AdminHack", {
-                                    attrs: { item: item },
-                                    on: {
-                                      openAdd: function($event) {
-                                        return _vm.openAdd($event)
-                                      }
-                                    }
+                                ? _c("AdminHackUserTable", {
+                                    attrs: { nodeItem: item }
                                   })
                                 : _vm._e()
                             ],
@@ -19718,136 +19731,192 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c(
-    "v-card",
+    "v-dialog",
     {
-      staticClass: " d-flex flex-column",
-      attrs: { tile: "", "max-width": "1200px", "max-height": "500px" }
+      attrs: { width: "500" },
+      scopedSlots: _vm._u([
+        {
+          key: "activator",
+          fn: function(ref) {
+            var on = ref.on
+            var attrs = ref.attrs
+            return [
+              _c(
+                "v-btn",
+                _vm._g(
+                  _vm._b(
+                    {
+                      attrs: { icon: "", color: "light-blue darken-4" },
+                      on: { click: _vm.showAdd }
+                    },
+                    "v-btn",
+                    attrs,
+                    false
+                  ),
+                  on
+                ),
+                [
+                  _c("v-icon", { attrs: { small: "" } }, [
+                    _vm._v("fas fa-plus")
+                  ])
+                ],
+                1
+              )
+            ]
+          }
+        }
+      ]),
+      model: {
+        value: _vm.showAdd,
+        callback: function($$v) {
+          _vm.showAdd = $$v
+        },
+        expression: "showAdd"
+      }
     },
     [
+      _vm._v(" "),
       _c(
-        "v-card-title",
+        "v-card",
         {
-          staticClass: " d-lg-inline-block justify-space-between align-center "
+          staticClass: " d-flex flex-column",
+          attrs: { tile: "", "max-width": "1200px", "max-height": "500px" }
         },
         [
-          _c("div", [
-            _vm._v(
-              "\n            Add a Character to node " +
-                _vm._s(_vm.nodeItem.node) +
-                " in\n            " +
-                _vm._s(_vm.nodeItem.system_name) +
-                "\n        "
-            )
-          ]),
+          _c(
+            "v-card-title",
+            {
+              staticClass:
+                " d-lg-inline-block justify-space-between align-center "
+            },
+            [
+              _c("div", [
+                _vm._v(
+                  "\n                Add a Character to node " +
+                    _vm._s(_vm.nodeItem.node) +
+                    " in\n                " +
+                    _vm._s(_vm.nodeItem.system_name) +
+                    "\n            "
+                )
+              ]),
+              _vm._v(" "),
+              _c(
+                "div",
+                [
+                  _c("v-text-field", {
+                    attrs: {
+                      "append-icon": "mdi-magnify",
+                      label: "Search",
+                      "single-line": "",
+                      "hide-details": ""
+                    },
+                    model: {
+                      value: _vm.search,
+                      callback: function($$v) {
+                        _vm.search = $$v
+                      },
+                      expression: "search"
+                    }
+                  })
+                ],
+                1
+              )
+            ]
+          ),
           _vm._v(" "),
           _c(
-            "div",
+            "v-card-text",
             [
-              _c("v-text-field", {
-                attrs: {
-                  "append-icon": "mdi-magnify",
-                  label: "Search",
-                  "single-line": "",
-                  "hide-details": ""
-                },
-                model: {
-                  value: _vm.search,
-                  callback: function($$v) {
-                    _vm.search = $$v
+              _c(
+                "v-data-table",
+                {
+                  staticClass: "elevation-24",
+                  attrs: {
+                    headers: _vm.headers,
+                    items: _vm.filteredItems,
+                    "item-key": "id",
+                    "disable-pagination": "",
+                    "hide-default-footer": "",
+                    search: _vm.search,
+                    dense: ""
                   },
-                  expression: "search"
-                }
-              })
+                  scopedSlots: _vm._u([
+                    {
+                      key: "item.actions",
+                      fn: function(ref) {
+                        var item = ref.item
+                        return [
+                          _c(
+                            "v-btn",
+                            {
+                              attrs: {
+                                rounded: "",
+                                outlined: true,
+                                "x-small": "",
+                                color: "green"
+                              },
+                              on: {
+                                click: function($event) {
+                                  return _vm.addChar(item)
+                                }
+                              }
+                            },
+                            [
+                              _c(
+                                "v-icon",
+                                {
+                                  attrs: { "x-small": "", left: "", dark: "" }
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                            fas fa-plus\n                        "
+                                  )
+                                ]
+                              ),
+                              _vm._v(
+                                "\n                        Add\n                    "
+                              )
+                            ],
+                            1
+                          )
+                        ]
+                      }
+                    }
+                  ])
+                },
+                [
+                  _vm._v(" "),
+                  _c("template", { slot: "no-data" }, [
+                    _vm._v(
+                      "\n                    No Free Characters\n                "
+                    )
+                  ])
+                ],
+                2
+              )
             ],
             1
-          )
-        ]
-      ),
-      _vm._v(" "),
-      _c(
-        "v-card-text",
-        [
+          ),
+          _vm._v(" "),
+          _c("v-spacer"),
           _c(
-            "v-data-table",
-            {
-              staticClass: "elevation-24",
-              attrs: {
-                headers: _vm.headers,
-                items: _vm.filteredItems,
-                "item-key": "id",
-                "disable-pagination": "",
-                "hide-default-footer": "",
-                search: _vm.search,
-                dense: ""
-              },
-              scopedSlots: _vm._u([
-                {
-                  key: "item.actions",
-                  fn: function(ref) {
-                    var item = ref.item
-                    return [
-                      _c(
-                        "v-btn",
-                        {
-                          attrs: {
-                            rounded: "",
-                            outlined: true,
-                            "x-small": "",
-                            color: "green"
-                          },
-                          on: {
-                            click: function($event) {
-                              return _vm.addChar(item)
-                            }
-                          }
-                        },
-                        [
-                          _c(
-                            "v-icon",
-                            { attrs: { "x-small": "", left: "", dark: "" } },
-                            [
-                              _vm._v(
-                                "\n                        fas fa-plus\n                    "
-                              )
-                            ]
-                          ),
-                          _vm._v("\n                    Add\n                ")
-                        ],
-                        1
-                      )
-                    ]
-                  }
-                }
-              ])
-            },
+            "v-card-actions",
             [
-              _vm._v(" "),
-              _c("template", { slot: "no-data" }, [
-                _vm._v("\n                No Free Characters\n            ")
-              ])
+              _c(
+                "v-btn",
+                {
+                  staticClass: "white--text",
+                  attrs: { color: "teal" },
+                  on: {
+                    click: function($event) {
+                      return _vm.close()
+                    }
+                  }
+                },
+                [_vm._v("\n                Close\n            ")]
+              )
             ],
-            2
-          )
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c("v-spacer"),
-      _c(
-        "v-card-actions",
-        [
-          _c(
-            "v-btn",
-            {
-              staticClass: "white--text",
-              attrs: { color: "teal" },
-              on: {
-                click: function($event) {
-                  return _vm.close()
-                }
-              }
-            },
-            [_vm._v("\n            Close\n        ")]
+            1
           )
         ],
         1
