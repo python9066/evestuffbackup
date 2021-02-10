@@ -250,17 +250,6 @@ class Campaignhelper
                         broadcast(new CampaignUserUpdate($flag));
                     }
 
-
-                    $flag = null;
-                    $flag = collect([
-                        'campSysID' => $dCampaignSystem->id,
-                        'id' => $a->id
-                    ]);
-                    broadcast(new CampaignSystemDelete($flag))->toOthers();
-                    $dCampaignSystem->delete();
-
-
-
                     $campaignJoins = CampaignJoin::where('campaign_id', $a->id)->get();
                     foreach ($campaignJoins as $campaignJoin) {
                         $campid = $campaignJoin->custom_campaign_id;
@@ -271,6 +260,15 @@ class Campaignhelper
                         ]);
                         broadcast(new CampaignSystemUpdate($flag));
                         broadcast(new MultiCampaignUpdate($flag));
+
+
+                        $flag = null;
+                        $flag = collect([
+                            'campSysID' => $dCampaignSystem->id,
+                            'id' => $a->id
+                        ]);
+                        broadcast(new CampaignSystemDelete($flag))->toOthers();
+                        $dCampaignSystem->delete();
                     }
                 }
             }
