@@ -237,7 +237,6 @@
                         v-if="item.attackers_score == 0"
                         class=" text-md-center green--text"
                     >
-                        {{ item.defenders_score }}
                         {{ item.alliance }}
                         <span class="font-weight-bold"> WON </span> the
                         {{ item.item_name }} timer.
@@ -445,14 +444,6 @@ export default {
                 }
             }
         },
-
-        // rowClick(item){
-
-        //     var left = (moment.utc(item.start).unix() -  moment.utc().unix())
-        //     if(left < 1779 && item.status_id < 3){
-        //         this.$router.push({ path: `/campaign/${item.id}` }) // -> /user/123
-        //     }
-        // },
 
         barScoure(item) {
             var d = item.defenders_score * 100;

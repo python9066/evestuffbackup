@@ -11294,7 +11294,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
 
 
 
@@ -11436,12 +11435,6 @@ function sleep(ms) {
         }
       }
     },
-    // rowClick(item){
-    //     var left = (moment.utc(item.start).unix() -  moment.utc().unix())
-    //     if(left < 1779 && item.status_id < 3){
-    //         this.$router.push({ path: `/campaign/${item.id}` }) // -> /user/123
-    //     }
-    // },
     barScoure: function barScoure(item) {
       var d = item.defenders_score * 100;
       var a = item.attackers_score * 100;
@@ -27403,8 +27396,6 @@ var render = function() {
                               [
                                 _vm._v(
                                   "\n                    " +
-                                    _vm._s(item.defenders_score) +
-                                    "\n                    " +
                                     _vm._s(item.alliance) +
                                     "\n                    "
                                 ),
