@@ -13192,6 +13192,11 @@ function sleep(ms) {
       _this.loading = false;
     });
     this.loadCampaignJoinData();
+    Echo["private"]("multicampaigns").listen("MulticampaignUpdate", function (e) {
+      _this.$store.dispatch("getMultiCampaigns");
+
+      _this.loadCampaignJoinData();
+    });
   },
   mounted: function mounted() {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {

@@ -116,6 +116,11 @@ export default {
             this.loading = false;
         });
         this.loadCampaignJoinData();
+
+        Echo.private("multicampaigns").listen("MulticampaignUpdate", e => {
+            this.$store.dispatch("getMultiCampaigns");
+            this.loadCampaignJoinData();
+        });
     },
 
     async mounted() {},

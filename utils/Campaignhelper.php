@@ -7,6 +7,7 @@ use App\Events\CampaignSystemDelete;
 use App\Events\CampaignSystemUpdate;
 use App\Events\CampaignUpdate;
 use App\Events\CampaignUserUpdate;
+use App\Events\MultiCampaignUpdate;
 use App\Events\NodeJoinDelete;
 use App\Models\Campaign;
 use App\Models\CampaignJoin;
@@ -269,6 +270,7 @@ class Campaignhelper
                             'id' => $campid,
                         ]);
                         broadcast(new CampaignSystemUpdate($flag));
+                        broadcast(new MultiCampaignUpdate($flag));
                     }
                 }
             }
