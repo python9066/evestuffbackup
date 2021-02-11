@@ -2,7 +2,7 @@
     <v-row
         no-gutters
         v-if="this.getCampaignsCount > 1 && campaign.status_id < 3"
-        class="pb-2"
+        class=""
         justify="space-around"
     >
         <v-col md="10">

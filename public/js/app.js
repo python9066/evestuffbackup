@@ -23126,10 +23126,7 @@ var render = function() {
   return this.getCampaignsCount > 1 && _vm.campaign.status_id < 3
     ? _c(
         "v-row",
-        {
-          staticClass: "pb-2",
-          attrs: { "no-gutters": "", justify: "space-around" }
-        },
+        { attrs: { "no-gutters": "", justify: "space-around" } },
         [
           _c(
             "v-col",
