@@ -70,6 +70,7 @@ Route::middleware('auth:api')->group(function () {
     Route::get('/campaignsystemcheckaddchar/{campid}', 'CampaignSystemsController@checkAddChar');
     Route::post('/campaignsystemuserskick/{campid}', 'CampaignSystemsController@kickUser');
     Route::get('/campaignsystemfinished/{campid}', 'CampaignSystemsController@finishCampaign');
+    Route::get('/mcampaignsystemfinished/{campid}', 'CampaignSystemsController@mfinishCampaign');
     Route::put('campaignsystemstidi/{sysid}/{campid}', 'CampaignSystemsController@tidi');
     Route::put('campaignsystemstidimulti/{sysid}/{campid}', 'CampaignSystemsController@tidimulti');
 

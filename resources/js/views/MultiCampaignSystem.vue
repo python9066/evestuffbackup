@@ -550,7 +550,7 @@ export default {
         async finishCampaign() {
             await axios({
                 method: "get",
-                url: "/api/campaignsystemfinished/" + this.$route.params.id,
+                url: "/api/mcampaignsystemfinished/" + this.$route.params.id,
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
                     Accept: "application/json",

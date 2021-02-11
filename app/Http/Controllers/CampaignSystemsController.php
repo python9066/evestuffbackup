@@ -16,6 +16,7 @@ use App\Models\Campaign;
 use App\Models\CampaignSolaSystem;
 use App\Models\CampaignSystemRecords;
 use App\Models\CampaignSystemStatus;
+use App\Models\CampaignSystemUsers;
 use App\Models\CampaignUser;
 use App\Models\CampaignUserRecords;
 use App\Models\Logging;
@@ -364,11 +365,30 @@ class CampaignSystemsController extends Controller
 
         CampaignSystem::where('campaign_id', $campid)->delete();
         NodeJoin::where('campaign_id', $campid)->delete();
+        CampaignSystemUsers::where('campaign_id', $campid)->delete();
         CampaignUser::where('campaign_id', $campid)
             ->update([
                 'campaign_id' => null,
                 'campaign_system_id ' => null,
-                'system_id' => null,
+                'status_id' => 1
+            ]);
+        $flag = collect([
+            'flag' => 7,
+            'id' => $campid,
+        ]);
+        broadcast(new CampaignSystemUpdate($flag))->toOthers();
+    }
+
+    public function mfinishCampaign($campid)
+    {
+
+        CampaignSystem::where('custom_campaign_id', $campid)->delete();
+        NodeJoin::where('campaign_id', $campid)->delete();
+        CampaignSystemUsers::where('custom_campaign_id', $campid)->delete();
+        CampaignUser::where('campaign_id', $campid)
+            ->update([
+                'campaign_id' => null,
+                'campaign_system_id ' => null,
                 'status_id' => 1
             ]);
         $flag = collect([
