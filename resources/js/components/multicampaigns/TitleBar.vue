@@ -8,6 +8,26 @@
                 -
                 {{ this.campaign.alliance }} :
             </p>
+            <div
+                class="d-flex full-width align-content-center"
+                v-if="this.campaign.status_id == 1"
+            >
+                <CountDowntimer
+                    :start-time="moment.utc(this.campaign.start).unix()"
+                    :end-text="'Campaign Started'"
+                    :interval="1000"
+                    @campaignStart="campaignStart()"
+                >
+                    <template slot="countdown" slot-scope="scope">
+                        <span
+                            class="red--text pl-3 text-h5 justify-content align-center"
+                            >{{ scope.props.hours }}:{{
+                                scope.props.minutes
+                            }}:{{ scope.props.seconds }}</span
+                        >
+                    </template>
+                </CountDowntimer>
+            </div>
         </v-expansion-panel-header>
         <v-expansion-panel-content> boady 1 </v-expansion-panel-content>
     </div>

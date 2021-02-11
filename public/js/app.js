@@ -7601,6 +7601,26 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -23187,7 +23207,59 @@ var render = function() {
               )
             ],
             1
-          )
+          ),
+          _vm._v(" "),
+          this.campaign.status_id == 1
+            ? _c(
+                "div",
+                { staticClass: "d-flex full-width align-content-center" },
+                [
+                  _c("CountDowntimer", {
+                    attrs: {
+                      "start-time": _vm.moment.utc(this.campaign.start).unix(),
+                      "end-text": "Campaign Started",
+                      interval: 1000
+                    },
+                    on: {
+                      campaignStart: function($event) {
+                        return _vm.campaignStart()
+                      }
+                    },
+                    scopedSlots: _vm._u(
+                      [
+                        {
+                          key: "countdown",
+                          fn: function(scope) {
+                            return [
+                              _c(
+                                "span",
+                                {
+                                  staticClass:
+                                    "red--text pl-3 text-h5 justify-content align-center"
+                                },
+                                [
+                                  _vm._v(
+                                    _vm._s(scope.props.hours) +
+                                      ":" +
+                                      _vm._s(scope.props.minutes) +
+                                      ":" +
+                                      _vm._s(scope.props.seconds)
+                                  )
+                                ]
+                              )
+                            ]
+                          }
+                        }
+                      ],
+                      null,
+                      false,
+                      62371507
+                    )
+                  })
+                ],
+                1
+              )
+            : _vm._e()
         ]
       ),
       _vm._v(" "),
