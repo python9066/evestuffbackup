@@ -29,12 +29,12 @@ library.add(fas) // Include needed icons
 Vue.component('messageComponent', require('./components/random/messageComponent.vue').default);
 Vue.component('errorMessage', require('./components/random/errorMessage.vue').default); //component name should be in camel-case
 Vue.component('SystemTable', require('./components/campaign/SystemTable.vue').default);
-Vue.component('userTable', require('./components/campaign/userTable.vue').default);
+Vue.component('UserTable', require('./components/campaign/UserTable.vue').default);
 Vue.component('hackingToolMessage', require('./components/random/hackingToolMessage.vue').default);
 Vue.component('v-progress-circular', require('easy-circular-progress/src/index.vue').default);
 Vue.component('messageNotification', require('./components/random/messageNotification.vue').default);
-Vue.component('systemTableTimer', require('./components/campaignAll/systemTableTimer.vue').default);
-Vue.component('watchUserTable', require('./components/campaignAll/watchUserTable.vue').default);
+Vue.component('SystemTableTimer', require('./components/campaignAll/SystemTableTimer.vue').default);
+Vue.component('WatchUserTable', require('./components/campaignAll/WatchUserTable.vue').default);
 Vue.component('messageStations', require('./components/random/messageStations.vue').default);
 Vue.component('testingMessage', require('./components/random/testingMessage.vue').default);
 Vue.component('notificationTimer', require('./components/notification/notificationTimer.vue').default);

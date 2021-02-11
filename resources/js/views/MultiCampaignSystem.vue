@@ -58,10 +58,10 @@
                             </template>
                             <v-row no-gutters>
                                 <div style="width: 400px;">
-                                    <watchUserTable
+                                    <WatchUserTable
                                         :campaign_id="this.campaign_id"
                                     >
-                                    </watchUserTable>
+                                    </WatchUserTable>
                                 </div>
                             </v-row>
                         </v-menu>
@@ -180,7 +180,7 @@
         </v-row>
 
         <v-row no-gutters justify="space-around" v-if="showTable == true">
-            <userTable :campaign_id="campaign_id"> </userTable>
+            <UserTable :campaign_id="campaign_id"> </UserTable>
         </v-row>
 
         <v-row no-gutters justify="center" :v-if="systemLoaded == true">

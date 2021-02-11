@@ -197,8 +197,8 @@
                             </template>
                             <v-row no-gutters>
                                 <div style="width: 400px;">
-                                    <watchUserTable :campaign_id="campaign.id">
-                                    </watchUserTable>
+                                    <WatchUserTable :campaign_id="campaign.id">
+                                    </WatchUserTable>
                                 </div>
                             </v-row>
                         </v-menu>
@@ -354,11 +354,11 @@
         </v-row>
 
         <v-row no-gutters justify="space-around" v-if="showTable == true">
-            <userTable :campaign_id="campaign.id"> </userTable>
+            <UserTable :campaign_id="campaign.id"> </UserTable>
         </v-row>
 
         <v-row no-gutters justify="center" :v-if="systemLoaded == true">
-            <systemTable
+            <SystemTable
                 class=" px-5 pt-5"
                 v-for="(system, index) in systems"
                 :system_name="system.system_name"
@@ -369,7 +369,7 @@
                 @openAdd="openAdd($event)"
                 @openSolaLog="openSolaLog($event)"
             >
-            </systemTable>
+            </SystemTable>
         </v-row>
 
         <v-overlay z-index="0" :value="bullhorn">
