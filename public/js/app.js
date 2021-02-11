@@ -27535,7 +27535,7 @@ var render = function() {
               _c(
                 "v-expansion-panels",
                 {
-                  attrs: { multiple: "", accordion: "", popout: "" },
+                  attrs: { multiple: "", accordion: "" },
                   model: {
                     value: _vm.panel,
                     callback: function($$v) {

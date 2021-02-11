@@ -10,7 +10,7 @@
         </span> -->
         <v-row class="pb-2" justify="space-around" no-gutters>
             <v-col md="10">
-                <v-expansion-panels v-model="panel" multiple accordion popout>
+                <v-expansion-panels v-model="panel" multiple accordion>
                     no-gutters justify="space-around">
                     <v-expansion-panel
                         v-for="(sCampaign, index) in sCampaigns"
