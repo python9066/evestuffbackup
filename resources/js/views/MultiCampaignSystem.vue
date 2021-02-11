@@ -8,9 +8,8 @@
             >
             </TitleBar>
         </span> -->
-        <v-expansion-panels>
+        <v-expansion-panels class=" pa-0 justify-center align-center">
             <v-expansion-panel
-                class=" pa-0 justify-center align-center"
                 v-for="(sCampaign, index) in sCampaigns"
                 :key="index"
             >

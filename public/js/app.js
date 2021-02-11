@@ -12172,7 +12172,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
 
 
 
@@ -27513,10 +27512,11 @@ var render = function() {
     [
       _c(
         "v-expansion-panels",
+        { staticClass: " pa-0 justify-center align-center" },
         _vm._l(_vm.sCampaigns, function(sCampaign, index) {
           return _c(
             "v-expansion-panel",
-            { key: index, staticClass: " pa-0 justify-center align-center" },
+            { key: index },
             [
               _c("TitleBar", {
                 attrs: { sCampaignID: sCampaign.campaign_id },
