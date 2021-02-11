@@ -28,7 +28,7 @@ Vue.component('font-awesome-icon', FontAwesomeIcon)
 library.add(fas) // Include needed icons
 Vue.component('messageComponent', require('./components/random/messageComponent.vue').default);
 Vue.component('errorMessage', require('./components/random/errorMessage.vue').default); //component name should be in camel-case
-Vue.component('systemTable', require('./components/campaign/systemTable.vue').default);
+Vue.component('SystemTable', require('./components/campaign/SystemTable.vue').default);
 Vue.component('userTable', require('./components/campaign/userTable.vue').default);
 Vue.component('hackingToolMessage', require('./components/random/hackingToolMessage.vue').default);
 Vue.component('v-progress-circular', require('easy-circular-progress/src/index.vue').default);

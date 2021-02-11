@@ -6,7 +6,7 @@ import Campagins from "./views/Campaigns";
 import Campaign from "./views/CampaignSystem";
 import MultiCampaign from "./views/MultiCampaignSystem";
 import Vtest from "./components/multicampaigns/MultiCampaignAdd.vue";
-import Stest from "./components/campaign/systemTable.vue";
+import Stest from "./components/campaign/SystemTable.vue";
 import AdminPanel from "./views/AdminPanel.vue";
 import StationsRedirect from "./views/redirect/StationsRedirect.vue";
 import Stations from "./views/Stations.vue"

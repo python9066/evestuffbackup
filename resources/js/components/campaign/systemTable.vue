@@ -395,11 +395,11 @@
                         </div>
                     </template>
                     <template v-slot:item.count="{ item }">
-                        <systemTableTimer
+                        <SystemTableTimer
                             :item="item"
                             :CampaignSolaSystem="CampaignSolaSystem"
                         >
-                        </systemTableTimer>
+                        </SystemTableTimer>
                     </template>
 
                     <template v-slot:expanded-item="{ headers, item }">
