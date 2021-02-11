@@ -8,7 +8,7 @@
             justify="space-around"
         >
             <v-col md="10">
-                <v-expansion-panels>
+                <v-expansion-panels class="pa-2" tile width="100%">
                     <v-expansion-panel class="pa-2" tile width="100%">
                         <v-expansion-panel-content>
                             <v-card>

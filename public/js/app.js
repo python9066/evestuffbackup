@@ -26161,6 +26161,10 @@ var render = function() {
                     [
                       _c(
                         "v-expansion-panels",
+                        {
+                          staticClass: "pa-2",
+                          attrs: { tile: "", width: "100%" }
+                        },
                         [
                           _c(
                             "v-expansion-panel",
