@@ -23137,7 +23137,10 @@ var render = function() {
             [
               _c(
                 "v-card",
-                { staticClass: "pa-2", attrs: { tile: "", width: "100%" } },
+                {
+                  staticClass: "pr-2 pl-2",
+                  attrs: { tile: "", width: "100%" }
+                },
                 [
                   _c(
                     "v-card-title",

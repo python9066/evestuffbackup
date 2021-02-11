@@ -6,7 +6,7 @@
         justify="space-around"
     >
         <v-col md="10">
-            <v-card class="pa-2" tile width="100%">
+            <v-card class="pr-2 pl-2" tile width="100%">
                 <v-card-title
                     align="center"
                     class="justify-center align-center"
