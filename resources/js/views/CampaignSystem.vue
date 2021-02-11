@@ -10,20 +10,19 @@
             <v-col md="10">
                 <v-expansion-panels>
                     <v-expansion-panel>
-                        <v-expansion-panel-header
-                            align="center"
-                            class="justify-center"
-                        >
-                            <h1>
-                                Campaign page for the
-                                {{ this.campaign.item_name }} in
-                                {{ this.campaign.system }} -
-                                <v-avatar size="35"
-                                    ><img :src="this.campaign.url"
-                                /></v-avatar>
-                                -
-                                {{ this.campaign.alliance }}
-                            </h1>
+                        <v-expansion-panel-header>
+                            <span align="center" class="justify-center">
+                                <h1>
+                                    Campaign page for the
+                                    {{ this.campaign.item_name }} in
+                                    {{ this.campaign.system }} -
+                                    <v-avatar size="35"
+                                        ><img :src="this.campaign.url"
+                                    /></v-avatar>
+                                    -
+                                    {{ this.campaign.alliance }}
+                                </h1>
+                            </span>
                         </v-expansion-panel-header>
                         <v-expansion-panel-content>
                             even more yoyo
