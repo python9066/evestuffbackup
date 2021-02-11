@@ -12,6 +12,7 @@
             <v-expansion-panel
                 v-for="(sCampaign, index) in sCampaigns"
                 :key="index"
+                class=" background='red'"
             >
                 <TitleBar
                     :sCampaignID="sCampaign.campaign_id"
