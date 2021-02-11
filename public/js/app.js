@@ -27529,6 +27529,10 @@ var render = function() {
     [
       _c(
         "v-row",
+        {
+          staticClass: "pb-2",
+          attrs: { justify: "space-around", "no-gutters": "" }
+        },
         [
           _c(
             "v-col",

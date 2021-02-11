@@ -8,7 +8,7 @@
             >
             </TitleBar>
         </span> -->
-        <v-row>
+        <v-row class="pb-2" justify="space-around" no-gutters>
             <v-col md="10">
                 <v-expansion-panels v-model="panel" multiple accordion popout>
                     no-gutters justify="space-around">
