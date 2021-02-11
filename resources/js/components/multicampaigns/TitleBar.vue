@@ -1,6 +1,9 @@
 <template>
     <div>
-        <v-expansion-panel-header>
+        <v-expansion-panel-header
+            class=" pa-0 justify-center align-center"
+            ripple
+        >
             <p class=" pt-5">
                 Campaign page for the
                 {{ this.campaign.item_name }} in {{ this.campaign.system }} -
