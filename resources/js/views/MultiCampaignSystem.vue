@@ -8,11 +8,16 @@
             >
             </TitleBar>
         </span> -->
-        <v-expansion-panels v-model="panel" multiple accordion>
+        <v-expansion-panels
+            v-model="panel"
+            multiple
+            accordion
+            style="background-color:red"
+        >
             <v-expansion-panel
                 v-for="(sCampaign, index) in sCampaigns"
                 :key="index"
-                class=" background='red'"
+                class=""
             >
                 <TitleBar
                     :sCampaignID="sCampaign.campaign_id"

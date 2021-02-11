@@ -12173,6 +12173,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 
@@ -27515,6 +27520,7 @@ var render = function() {
       _c(
         "v-expansion-panels",
         {
+          staticStyle: { "background-color": "red" },
           attrs: { multiple: "", accordion: "" },
           model: {
             value: _vm.panel,
@@ -27527,7 +27533,7 @@ var render = function() {
         _vm._l(_vm.sCampaigns, function(sCampaign, index) {
           return _c(
             "v-expansion-panel",
-            { key: index, staticClass: " background='red'" },
+            { key: index },
             [
               _c("TitleBar", {
                 attrs: { sCampaignID: sCampaign.campaign_id },
