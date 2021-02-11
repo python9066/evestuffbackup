@@ -3,6 +3,7 @@
         <span v-for="(sCampaign, index) in sCampaigns" :key="index">
             <TitleBar
                 :sCampaignID="sCampaign.campaign_id"
+                :sCampaign="sCampaigns"
                 @updateNow="updateBar()"
             >
             </TitleBar>

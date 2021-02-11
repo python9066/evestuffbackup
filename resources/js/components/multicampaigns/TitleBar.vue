@@ -248,7 +248,8 @@ function sleep(ms) {
 }
 export default {
     props: {
-        sCampaignID: Number
+        sCampaignID: Number,
+        sCampaigns: Object
     },
     data() {
         return {};
