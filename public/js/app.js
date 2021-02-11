@@ -12178,6 +12178,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 
@@ -27535,7 +27540,12 @@ var render = function() {
               _c(
                 "v-expansion-panels",
                 {
-                  attrs: { multiple: "", accordion: "" },
+                  attrs: {
+                    multiple: "",
+                    accordion: "",
+                    "no-gutters": "",
+                    justify: "space-around"
+                  },
                   model: {
                     value: _vm.panel,
                     callback: function($$v) {
@@ -27544,29 +27554,24 @@ var render = function() {
                     expression: "panel"
                   }
                 },
-                [
-                  _vm._v(
-                    '\n                no-gutters justify="space-around">\n                '
-                  ),
-                  _vm._l(_vm.sCampaigns, function(sCampaign, index) {
-                    return _c(
-                      "v-expansion-panel",
-                      { key: index },
-                      [
-                        _c("TitleBar", {
-                          attrs: { sCampaignID: sCampaign.campaign_id },
-                          on: {
-                            updateNow: function($event) {
-                              return _vm.updateBar()
-                            }
+                _vm._l(_vm.sCampaigns, function(sCampaign, index) {
+                  return _c(
+                    "v-expansion-panel",
+                    { key: index },
+                    [
+                      _c("TitleBar", {
+                        attrs: { sCampaignID: sCampaign.campaign_id },
+                        on: {
+                          updateNow: function($event) {
+                            return _vm.updateBar()
                           }
-                        })
-                      ],
-                      1
-                    )
-                  })
-                ],
-                2
+                        }
+                      })
+                    ],
+                    1
+                  )
+                }),
+                1
               )
             ],
             1
