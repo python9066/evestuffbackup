@@ -11,7 +11,16 @@
                 <v-expansion-panels>
                     <v-expansion-panel>
                         <v-expansion-panel-header>
-                            yoyo
+                            <h1>
+                                Campaign page for the
+                                {{ this.campaign.item_name }} in
+                                {{ this.campaign.system }} -
+                                <v-avatar size="35"
+                                    ><img :src="this.campaign.url"
+                                /></v-avatar>
+                                -
+                                {{ this.campaign.alliance }}
+                            </h1>
                         </v-expansion-panel-header>
                         <v-expansion-panel-content>
                             even more yoyo
