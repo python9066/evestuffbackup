@@ -1,36 +1,13 @@
 <template>
     <div>
-        <!-- <span v-for="(sCampaign, index) in sCampaigns" :key="index">
+        <span v-for="(sCampaign, index) in sCampaigns" :key="index">
             <TitleBar
                 :sCampaignID="sCampaign.campaign_id"
                 :sCampaign="sCampaigns"
                 @updateNow="updateBar()"
             >
             </TitleBar>
-        </span> -->
-        <v-row class="pb-2" justify="space-around" no-gutters>
-            <v-col md="10">
-                <v-expansion-panels
-                    v-model="panel"
-                    multiple
-                    accordion
-                    no-gutters
-                    justify="space-around"
-                >
-                    <v-expansion-panel
-                        v-for="(sCampaign, index) in sCampaigns"
-                        :key="index"
-                        class=""
-                    >
-                        <TitleBar
-                            :sCampaignID="sCampaign.campaign_id"
-                            @updateNow="updateBar()"
-                        >
-                        </TitleBar>
-                    </v-expansion-panel>
-                </v-expansion-panels>
-            </v-col>
-        </v-row>
+        </span>
 
         <v-row
             no-gutters
@@ -331,8 +308,7 @@ export default {
             solaid: 0,
             load: 0,
             logName: null,
-            solaName: null,
-            panel: []
+            solaName: null
         };
     },
 

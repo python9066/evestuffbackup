@@ -7589,131 +7589,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -12273,29 +12148,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -12396,8 +12248,7 @@ function sleep(ms) {
       solaid: 0,
       load: 0,
       logName: null,
-      solaName: null,
-      panel: []
+      solaName: null
     };
   },
   created: function created() {
@@ -23272,278 +23123,484 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _c(
-        "v-expansion-panel-header",
+  return this.getCampaignsCount > 1 && _vm.campaign.status_id < 3
+    ? _c(
+        "v-row",
         {
-          staticClass: "justify-center align-center align-content-around",
-          attrs: { ripple: "" }
+          staticClass: "pb-2",
+          attrs: { "no-gutters": "", justify: "space-around" }
         },
         [
           _c(
-            "p",
-            { staticClass: " pt-5" },
+            "v-col",
+            { attrs: { md: "10" } },
             [
-              _vm._v(
-                "\n            Campaign page for the\n            " +
-                  _vm._s(this.campaign.item_name) +
-                  " in " +
-                  _vm._s(this.campaign.system) +
-                  " -\n            "
-              ),
-              _c("v-avatar", { attrs: { size: "35" } }, [
-                _c("img", { attrs: { src: this.campaign.url } })
-              ]),
-              _vm._v(
-                "\n            -\n            " +
-                  _vm._s(this.campaign.alliance) +
-                  " :\n        "
-              )
-            ],
-            1
-          ),
-          _vm._v(" "),
-          this.campaign.status_id == 1
-            ? _c(
-                "div",
-                { staticClass: "d-flex full-width align-content-center" },
+              _c(
+                "v-card",
+                { staticClass: "pa-2", attrs: { tile: "", width: "100%" } },
                 [
-                  _c("CountDowntimer", {
-                    attrs: {
-                      "start-time": _vm.moment.utc(this.campaign.start).unix(),
-                      "end-text": "Campaign Started",
-                      interval: 1000
+                  _c(
+                    "v-card-title",
+                    {
+                      staticClass: "justify-center align-center",
+                      attrs: { align: "center" }
                     },
-                    on: {
-                      campaignStart: function($event) {
-                        return _vm.campaignStart()
-                      }
-                    },
-                    scopedSlots: _vm._u(
-                      [
-                        {
-                          key: "countdown",
-                          fn: function(scope) {
-                            return [
+                    [
+                      _c(
+                        "p",
+                        { staticClass: " pt-5" },
+                        [
+                          _vm._v(
+                            "\n                    Campaign page for the\n                    " +
+                              _vm._s(this.campaign.item_name) +
+                              " in\n                    " +
+                              _vm._s(this.campaign.system) +
+                              " -\n                    "
+                          ),
+                          _c("v-avatar", { attrs: { size: "35" } }, [
+                            _c("img", { attrs: { src: this.campaign.url } })
+                          ]),
+                          _vm._v(
+                            "\n                    -\n                    " +
+                              _vm._s(this.campaign.alliance) +
+                              " :\n                "
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      this.campaign.status_id == 1
+                        ? _c(
+                            "div",
+                            {
+                              staticClass:
+                                "d-flex full-width align-content-center"
+                            },
+                            [
+                              _c("CountDowntimer", {
+                                attrs: {
+                                  "start-time": _vm.moment
+                                    .utc(this.campaign.start)
+                                    .unix(),
+                                  "end-text": "Campaign Started",
+                                  interval: 1000
+                                },
+                                on: {
+                                  campaignStart: function($event) {
+                                    return _vm.campaignStart()
+                                  }
+                                },
+                                scopedSlots: _vm._u(
+                                  [
+                                    {
+                                      key: "countdown",
+                                      fn: function(scope) {
+                                        return [
+                                          _c(
+                                            "span",
+                                            {
+                                              staticClass:
+                                                "red--text pl-3 text-h5 justify-content align-center"
+                                            },
+                                            [
+                                              _vm._v(
+                                                _vm._s(scope.props.hours) +
+                                                  ":" +
+                                                  _vm._s(scope.props.minutes) +
+                                                  ":" +
+                                                  _vm._s(scope.props.seconds)
+                                              )
+                                            ]
+                                          )
+                                        ]
+                                      }
+                                    }
+                                  ],
+                                  null,
+                                  false,
+                                  62371507
+                                )
+                              })
+                            ],
+                            1
+                          )
+                        : _vm._e(),
+                      _vm._v(" "),
+                      this.campaign.status_id == 2
+                        ? _c(
+                            "div",
+                            {
+                              staticClass:
+                                "d-flex full-width align-content-center"
+                            },
+                            [
+                              _c("VueCountUptimer", {
+                                attrs: {
+                                  "start-time": _vm.moment
+                                    .utc(this.campaign.start)
+                                    .unix(),
+                                  "end-text": "Campaign Started",
+                                  interval: 1000
+                                },
+                                scopedSlots: _vm._u(
+                                  [
+                                    {
+                                      key: "countup",
+                                      fn: function(scope) {
+                                        return [
+                                          _c(
+                                            "span",
+                                            { staticClass: "green--text pl-3" },
+                                            [
+                                              _vm._v(
+                                                _vm._s(scope.props.hours) +
+                                                  ":" +
+                                                  _vm._s(scope.props.minutes) +
+                                                  ":" +
+                                                  _vm._s(scope.props.seconds)
+                                              )
+                                            ]
+                                          )
+                                        ]
+                                      }
+                                    }
+                                  ],
+                                  null,
+                                  false,
+                                  4134734240
+                                )
+                              })
+                            ],
+                            1
+                          )
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _vm.nodeCountAll > 0
+                        ? _c(
+                            "div",
+                            { staticClass: "d-inline-flex align-center" },
+                            [
+                              _c("v-divider", {
+                                staticClass: "mx-4 my-0",
+                                attrs: { vertical: "" }
+                              }),
+                              _vm._v(" "),
+                              _c("p", { staticClass: " pt-4 pr-3" }, [
+                                _vm._v("Active Nodes -")
+                              ]),
+                              _vm._v(" "),
                               _c(
-                                "span",
+                                "v-progress-circular",
                                 {
-                                  staticClass:
-                                    "red--text pl-3 text-h5 justify-content align-center"
+                                  staticClass: " pr-3",
+                                  attrs: {
+                                    transitionDuration: 5000,
+                                    radius: 25,
+                                    strokeWidth: 5,
+                                    value:
+                                      (_vm.nodeCountHackingCountAll /
+                                        _vm.nodeCountAll) *
+                                        100 || 0.000001
+                                  }
+                                },
+                                [
+                                  _c("div", { staticClass: "caption" }, [
+                                    _vm._v(
+                                      "\n                            " +
+                                        _vm._s(_vm.nodeCountHackingCountAll) +
+                                        " /\n                            " +
+                                        _vm._s(_vm.nodeCountAll) +
+                                        "\n                        "
+                                    )
+                                  ])
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "v-progress-circular",
+                                {
+                                  attrs: {
+                                    transitionDuration: 5000,
+                                    radius: 25,
+                                    strokeWidth: 5,
+                                    strokeColor: "#FF3D00",
+                                    value:
+                                      (_vm.nodeRedCountHackingCountAll /
+                                        _vm.nodeCountAll) *
+                                        100 || 0.000001
+                                  }
+                                },
+                                [
+                                  _c("div", { staticClass: "caption" }, [
+                                    _vm._v(
+                                      "\n                            " +
+                                        _vm._s(
+                                          _vm.nodeRedCountHackingCountAll
+                                        ) +
+                                        " /\n                            " +
+                                        _vm._s(_vm.nodeCountAll) +
+                                        "\n                        "
+                                    )
+                                  ])
+                                ]
+                              )
+                            ],
+                            1
+                          )
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _vm.campaign.total_node > 0
+                        ? _c(
+                            "div",
+                            { staticClass: " d-inline-flex align-center" },
+                            [
+                              _c("v-divider", {
+                                staticClass: "mx-4 my-0",
+                                attrs: { vertical: "" }
+                              }),
+                              _vm._v(" "),
+                              _c("p", { staticClass: " pt-4 pr-3" }, [
+                                _vm._v("Finished Nodes -")
+                              ]),
+                              _vm._v(" "),
+                              _c(
+                                "v-progress-circular",
+                                {
+                                  staticClass: " pr-3",
+                                  attrs: {
+                                    transitionDuration: 5000,
+                                    radius: 25,
+                                    strokeWidth: 5,
+                                    value:
+                                      (_vm.campaign.b_node /
+                                        _vm.campaign.total_node) *
+                                        100 || 0.000001
+                                  }
+                                },
+                                [
+                                  _c("div", { staticClass: "caption" }, [
+                                    _vm._v(
+                                      "\n                            " +
+                                        _vm._s(_vm.campaign.b_node) +
+                                        " /\n                            " +
+                                        _vm._s(_vm.campaign.total_node) +
+                                        "\n                        "
+                                    )
+                                  ])
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "v-progress-circular",
+                                {
+                                  staticClass: " pr-3",
+                                  attrs: {
+                                    transitionDuration: 5000,
+                                    radius: 25,
+                                    strokeWidth: 5,
+                                    strokeColor: "#FF3D00",
+                                    value:
+                                      (_vm.campaign.r_node /
+                                        _vm.campaign.total_node) *
+                                        100 || 0.000001
+                                  }
+                                },
+                                [
+                                  _c("div", { staticClass: "caption" }, [
+                                    _vm._v(
+                                      "\n                            " +
+                                        _vm._s(_vm.campaign.r_node) +
+                                        " /\n                            " +
+                                        _vm._s(_vm.campaign.total_node) +
+                                        "\n                        "
+                                    )
+                                  ])
+                                ]
+                              )
+                            ],
+                            1
+                          )
+                        : _vm._e()
+                    ]
+                  ),
+                  _vm._v(" "),
+                  this.campaign.status_id > 1
+                    ? _c(
+                        "div",
+                        {
+                          staticClass: "d-flex full-width align-content-center"
+                        },
+                        [
+                          this.campaign.defenders_score >
+                            this.campaign.defenders_score_old &&
+                          this.campaign.defenders_score_old > 0
+                            ? _c(
+                                "v-icon",
+                                {
+                                  attrs: {
+                                    small: "",
+                                    left: "",
+                                    dark: "",
+                                    color: "blue darken-4"
+                                  }
                                 },
                                 [
                                   _vm._v(
-                                    _vm._s(scope.props.hours) +
-                                      ":" +
-                                      _vm._s(scope.props.minutes) +
-                                      ":" +
-                                      _vm._s(scope.props.seconds)
+                                    "\n                    fas fa-arrow-alt-circle-up\n                "
                                   )
                                 ]
                               )
-                            ]
-                          }
-                        }
-                      ],
-                      null,
-                      false,
-                      62371507
-                    )
-                  })
-                ],
-                1
-              )
-            : _vm._e(),
-          _vm._v(" "),
-          this.campaign.status_id == 2
-            ? _c(
-                "div",
-                { staticClass: "d-flex full-width align-content-center" },
-                [
-                  _c("VueCountUptimer", {
-                    attrs: {
-                      "start-time": _vm.moment.utc(this.campaign.start).unix(),
-                      "end-text": "Campaign Started",
-                      interval: 1000
-                    },
-                    scopedSlots: _vm._u(
-                      [
-                        {
-                          key: "countup",
-                          fn: function(scope) {
-                            return [
-                              _c("span", { staticClass: "green--text pl-3" }, [
+                            : _vm._e(),
+                          _vm._v(" "),
+                          this.campaign.defenders_score <
+                            this.campaign.defenders_score_old &&
+                          this.campaign.defenders_score_old > 0
+                            ? _c(
+                                "v-icon",
+                                {
+                                  attrs: {
+                                    small: "",
+                                    left: "",
+                                    dark: "",
+                                    color: "blue darken-4"
+                                  }
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                    fas fa-arrow-alt-circle-down\n                "
+                                  )
+                                ]
+                              )
+                            : _vm._e(),
+                          _vm._v(" "),
+                          this.campaign.defenders_score ==
+                            this.campaign.defenders_score_old ||
+                          this.campaign.defenders_score_old === null
+                            ? _c(
+                                "v-icon",
+                                {
+                                  attrs: {
+                                    small: "",
+                                    left: "",
+                                    dark: "",
+                                    color: "grey darken-3"
+                                  }
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                    fas fa-minus-circle\n                "
+                                  )
+                                ]
+                              )
+                            : _vm._e(),
+                          _vm._v(" "),
+                          _c(
+                            "v-progress-linear",
+                            {
+                              attrs: {
+                                color: this.barColor,
+                                value: this.barScoure,
+                                height: "20",
+                                rounded: "",
+                                active: this.barActive,
+                                reverse: this.barReverse,
+                                "background-color": this.barBgcolor,
+                                "background-opacity": "0.2"
+                              }
+                            },
+                            [
+                              _c("strong", [
                                 _vm._v(
-                                  _vm._s(scope.props.hours) +
-                                    ":" +
-                                    _vm._s(scope.props.minutes) +
-                                    ":" +
-                                    _vm._s(scope.props.seconds)
+                                  "\n                        " +
+                                    _vm._s(
+                                      this.campaign.defenders_score * 100
+                                    ) +
+                                    " /\n                        " +
+                                    _vm._s(
+                                      this.campaign.attackers_score * 100
+                                    ) +
+                                    "\n                    "
                                 )
                               ])
                             ]
-                          }
-                        }
-                      ],
-                      null,
-                      false,
-                      4134734240
-                    )
-                  })
+                          ),
+                          _vm._v(" "),
+                          this.campaign.attackers_score >
+                            this.campaign.attackers_score_old &&
+                          this.campaign.attackers_score_old > 0
+                            ? _c(
+                                "v-icon",
+                                {
+                                  attrs: {
+                                    small: "",
+                                    right: "",
+                                    dark: "",
+                                    color: "red darken-4"
+                                  }
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                    fas fa-arrow-alt-circle-up\n                "
+                                  )
+                                ]
+                              )
+                            : _vm._e(),
+                          _vm._v(" "),
+                          this.campaign.attackers_score <
+                            this.campaign.attackers_score_old &&
+                          this.campaign.attackers_score_old > 0
+                            ? _c(
+                                "v-icon",
+                                {
+                                  attrs: {
+                                    small: "",
+                                    right: "",
+                                    dark: "",
+                                    color: "red darken-4"
+                                  }
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                    fas fa-arrow-alt-circle-down\n                "
+                                  )
+                                ]
+                              )
+                            : _vm._e(),
+                          _vm._v(" "),
+                          this.campaign.attackers_score ==
+                            this.campaign.attackers_score_old ||
+                          this.campaign.attackers_score_old == null
+                            ? _c(
+                                "v-icon",
+                                {
+                                  attrs: {
+                                    small: "",
+                                    right: "",
+                                    dark: "",
+                                    color: "grey darken-3"
+                                  }
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                    fas fa-minus-circle\n                "
+                                  )
+                                ]
+                              )
+                            : _vm._e()
+                        ],
+                        1
+                      )
+                    : _vm._e()
                 ],
                 1
               )
-            : _vm._e(),
-          _vm._v(" "),
-          _vm.nodeCountAll > 0
-            ? _c(
-                "div",
-                { staticClass: "d-inline-flex align-center" },
-                [
-                  _c("v-divider", {
-                    staticClass: "mx-4 my-0",
-                    attrs: { vertical: "" }
-                  }),
-                  _vm._v(" "),
-                  _c("p", { staticClass: " pt-4 pr-3" }, [
-                    _vm._v("Active Nodes -")
-                  ]),
-                  _vm._v(" "),
-                  _c(
-                    "v-progress-circular",
-                    {
-                      staticClass: " pr-3",
-                      attrs: {
-                        transitionDuration: 5000,
-                        radius: 25,
-                        strokeWidth: 5,
-                        value:
-                          (_vm.nodeCountHackingCountAll / _vm.nodeCountAll) *
-                            100 || 0.000001
-                      }
-                    },
-                    [
-                      _c("div", { staticClass: "caption" }, [
-                        _vm._v(
-                          "\n                    " +
-                            _vm._s(_vm.nodeCountHackingCountAll) +
-                            " /\n                    " +
-                            _vm._s(_vm.nodeCountAll) +
-                            "\n                "
-                        )
-                      ])
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "v-progress-circular",
-                    {
-                      attrs: {
-                        transitionDuration: 5000,
-                        radius: 25,
-                        strokeWidth: 5,
-                        strokeColor: "#FF3D00",
-                        value:
-                          (_vm.nodeRedCountHackingCountAll / _vm.nodeCountAll) *
-                            100 || 0.000001
-                      }
-                    },
-                    [
-                      _c("div", { staticClass: "caption" }, [
-                        _vm._v(
-                          "\n                    " +
-                            _vm._s(_vm.nodeRedCountHackingCountAll) +
-                            " /\n                    " +
-                            _vm._s(_vm.nodeCountAll) +
-                            "\n                "
-                        )
-                      ])
-                    ]
-                  )
-                ],
-                1
-              )
-            : _vm._e(),
-          _vm._v(" "),
-          _vm.campaign.total_node > 0
-            ? _c(
-                "div",
-                { staticClass: " d-inline-flex align-center" },
-                [
-                  _c("v-divider", {
-                    staticClass: "mx-4 my-0",
-                    attrs: { vertical: "" }
-                  }),
-                  _vm._v(" "),
-                  _c("p", { staticClass: " pt-4 pr-3" }, [
-                    _vm._v("Finished Nodes -")
-                  ]),
-                  _vm._v(" "),
-                  _c(
-                    "v-progress-circular",
-                    {
-                      staticClass: " pr-3",
-                      attrs: {
-                        transitionDuration: 5000,
-                        radius: 25,
-                        strokeWidth: 5,
-                        value:
-                          (_vm.campaign.b_node / _vm.campaign.total_node) *
-                            100 || 0.000001
-                      }
-                    },
-                    [
-                      _c("div", { staticClass: "caption" }, [
-                        _vm._v(
-                          "\n                    " +
-                            _vm._s(_vm.campaign.b_node) +
-                            " /\n                    " +
-                            _vm._s(_vm.campaign.total_node) +
-                            "\n                "
-                        )
-                      ])
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "v-progress-circular",
-                    {
-                      staticClass: " pr-3",
-                      attrs: {
-                        transitionDuration: 5000,
-                        radius: 25,
-                        strokeWidth: 5,
-                        strokeColor: "#FF3D00",
-                        value:
-                          (_vm.campaign.r_node / _vm.campaign.total_node) *
-                            100 || 0.000001
-                      }
-                    },
-                    [
-                      _c("div", { staticClass: "caption" }, [
-                        _vm._v(
-                          "\n                    " +
-                            _vm._s(_vm.campaign.r_node) +
-                            " /\n                    " +
-                            _vm._s(_vm.campaign.total_node) +
-                            "\n                "
-                        )
-                      ])
-                    ]
-                  )
-                ],
-                1
-              )
-            : _vm._e()
-        ]
-      ),
-      _vm._v(" "),
-      _c("v-expansion-panel-content", [_vm._v(" boady 1 ")])
-    ],
-    1
-  )
+            ],
+            1
+          )
+        ],
+        1
+      )
+    : _vm._e()
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -27875,59 +27932,26 @@ var render = function() {
   return _c(
     "div",
     [
-      _c(
-        "v-row",
-        {
-          staticClass: "pb-2",
-          attrs: { justify: "space-around", "no-gutters": "" }
-        },
-        [
-          _c(
-            "v-col",
-            { attrs: { md: "10" } },
-            [
-              _c(
-                "v-expansion-panels",
-                {
-                  attrs: {
-                    multiple: "",
-                    accordion: "",
-                    "no-gutters": "",
-                    justify: "space-around"
-                  },
-                  model: {
-                    value: _vm.panel,
-                    callback: function($$v) {
-                      _vm.panel = $$v
-                    },
-                    expression: "panel"
-                  }
-                },
-                _vm._l(_vm.sCampaigns, function(sCampaign, index) {
-                  return _c(
-                    "v-expansion-panel",
-                    { key: index },
-                    [
-                      _c("TitleBar", {
-                        attrs: { sCampaignID: sCampaign.campaign_id },
-                        on: {
-                          updateNow: function($event) {
-                            return _vm.updateBar()
-                          }
-                        }
-                      })
-                    ],
-                    1
-                  )
-                }),
-                1
-              )
-            ],
-            1
-          )
-        ],
-        1
-      ),
+      _vm._l(_vm.sCampaigns, function(sCampaign, index) {
+        return _c(
+          "span",
+          { key: index },
+          [
+            _c("TitleBar", {
+              attrs: {
+                sCampaignID: sCampaign.campaign_id,
+                sCampaign: _vm.sCampaigns
+              },
+              on: {
+                updateNow: function($event) {
+                  return _vm.updateBar()
+                }
+              }
+            })
+          ],
+          1
+        )
+      }),
       _vm._v(" "),
       this.getCampaignsCount > 1
         ? _c(
@@ -28467,7 +28491,7 @@ var render = function() {
         1
       )
     ],
-    1
+    2
   )
 }
 var staticRenderFns = []
