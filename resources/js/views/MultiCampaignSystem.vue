@@ -1,13 +1,22 @@
 <template>
     <div>
-        <span v-for="(sCampaign, index) in sCampaigns" :key="index">
+        <!-- <span v-for="(sCampaign, index) in sCampaigns" :key="index">
             <TitleBar
                 :sCampaignID="sCampaign.campaign_id"
                 :sCampaign="sCampaigns"
                 @updateNow="updateBar()"
             >
             </TitleBar>
-        </span>
+        </span> -->
+        <v-expansion-panels>
+            <span v-for="(sCampaign, index) in sCampaigns" :key="index">
+                <TitleBar
+                    :sCampaignID="sCampaign.campaign_id"
+                    @updateNow="updateBar()"
+                >
+                </TitleBar>
+            </span>
+        </v-expansion-panels>
 
         <v-row
             no-gutters

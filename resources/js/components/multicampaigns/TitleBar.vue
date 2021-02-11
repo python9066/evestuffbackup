@@ -1,5 +1,14 @@
 <template>
-    <v-row
+    <v-expansion-panel
+        no-gutters
+        v-if="this.getCampaignsCount > 1 && campaign.status_id < 3"
+        class="pb-2"
+        justify="space-around"
+    >
+        <v-expansion-panel-header> header 1 </v-expansion-panel-header>
+        <v-expansion-panel-content> boady 1 </v-expansion-panel-content>
+    </v-expansion-panel>
+    <!-- <v-row
         no-gutters
         v-if="this.getCampaignsCount > 1 && campaign.status_id < 3"
         class="pb-2"
@@ -237,7 +246,7 @@
                 </div>
             </v-card>
         </v-col>
-    </v-row>
+    </v-row> -->
 </template>
 
 <script>
@@ -248,8 +257,7 @@ function sleep(ms) {
 }
 export default {
     props: {
-        sCampaignID: Number,
-        sCampaigns: Object
+        sCampaignID: Number
     },
     data() {
         return {};
