@@ -62,7 +62,7 @@ class CampaignSystemUsersController extends Controller
         CampaignSystemUsers::create($data);
         $flag = collect([
             'flag' => 5,
-            'id' => $campid
+            'id' => $campaign_id
         ]);
         broadcast(new CampaignUsersChanged($flag))->toOthers();
     }
