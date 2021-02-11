@@ -12272,7 +12272,8 @@ function sleep(ms) {
       solaid: 0,
       load: 0,
       logName: null,
-      solaName: null
+      solaName: null,
+      panel: []
     };
   },
   created: function created() {
@@ -27512,7 +27513,16 @@ var render = function() {
     [
       _c(
         "v-expansion-panels",
-        { staticClass: " pa-0 justify-center align-center" },
+        {
+          attrs: { multiple: "" },
+          model: {
+            value: _vm.panel,
+            callback: function($$v) {
+              _vm.panel = $$v
+            },
+            expression: "panel"
+          }
+        },
         _vm._l(_vm.sCampaigns, function(sCampaign, index) {
           return _c(
             "v-expansion-panel",

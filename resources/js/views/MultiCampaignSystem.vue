@@ -8,7 +8,7 @@
             >
             </TitleBar>
         </span> -->
-        <v-expansion-panels class=" pa-0 justify-center align-center">
+        <v-expansion-panels v-model="panel" multiple>
             <v-expansion-panel
                 v-for="(sCampaign, index) in sCampaigns"
                 :key="index"
@@ -320,7 +320,8 @@ export default {
             solaid: 0,
             load: 0,
             logName: null,
-            solaName: null
+            solaName: null,
+            panel: []
         };
     },
 
