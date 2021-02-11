@@ -10,6 +10,7 @@
         </span> -->
         <v-expansion-panels>
             <v-expansion-panel
+                class=" pa-0"
                 v-for="(sCampaign, index) in sCampaigns"
                 :key="index"
             >
