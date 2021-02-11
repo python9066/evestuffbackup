@@ -1,20 +1,15 @@
 <template>
     <div>
-        <v-col md="10">
-            <v-expansion-panel-header>
-                <p class=" pt-5">
-                    Campaign page for the
-                    {{ this.campaign.item_name }} in
-                    {{ this.campaign.system }} -
-                    <v-avatar size="15"
-                        ><img :src="this.campaign.url"
-                    /></v-avatar>
-                    -
-                    {{ this.campaign.alliance }} :
-                </p>
-            </v-expansion-panel-header>
-            <v-expansion-panel-content> boady 1 </v-expansion-panel-content>
-        </v-col>
+        <v-expansion-panel-header>
+            <p class=" pt-5">
+                Campaign page for the
+                {{ this.campaign.item_name }} in {{ this.campaign.system }} -
+                <v-avatar size="15"><img :src="this.campaign.url"/></v-avatar>
+                -
+                {{ this.campaign.alliance }} :
+            </p>
+        </v-expansion-panel-header>
+        <v-expansion-panel-content> boady 1 </v-expansion-panel-content>
     </div>
     <!-- <v-row
         no-gutters

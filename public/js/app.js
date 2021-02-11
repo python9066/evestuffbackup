@@ -7601,11 +7601,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
 
 
 
@@ -23156,39 +23151,32 @@ var render = function() {
   return _c(
     "div",
     [
-      _c(
-        "v-col",
-        { attrs: { md: "10" } },
-        [
-          _c("v-expansion-panel-header", [
-            _c(
-              "p",
-              { staticClass: " pt-5" },
-              [
-                _vm._v(
-                  "\n                Campaign page for the\n                " +
-                    _vm._s(this.campaign.item_name) +
-                    " in\n                " +
-                    _vm._s(this.campaign.system) +
-                    " -\n                "
-                ),
-                _c("v-avatar", { attrs: { size: "15" } }, [
-                  _c("img", { attrs: { src: this.campaign.url } })
-                ]),
-                _vm._v(
-                  "\n                -\n                " +
-                    _vm._s(this.campaign.alliance) +
-                    " :\n            "
-                )
-              ],
-              1
+      _c("v-expansion-panel-header", [
+        _c(
+          "p",
+          { staticClass: " pt-5" },
+          [
+            _vm._v(
+              "\n            Campaign page for the\n            " +
+                _vm._s(this.campaign.item_name) +
+                " in " +
+                _vm._s(this.campaign.system) +
+                " -\n            "
+            ),
+            _c("v-avatar", { attrs: { size: "15" } }, [
+              _c("img", { attrs: { src: this.campaign.url } })
+            ]),
+            _vm._v(
+              "\n            -\n            " +
+                _vm._s(this.campaign.alliance) +
+                " :\n        "
             )
-          ]),
-          _vm._v(" "),
-          _c("v-expansion-panel-content", [_vm._v(" boady 1 ")])
-        ],
-        1
-      )
+          ],
+          1
+        )
+      ]),
+      _vm._v(" "),
+      _c("v-expansion-panel-content", [_vm._v(" boady 1 ")])
     ],
     1
   )
