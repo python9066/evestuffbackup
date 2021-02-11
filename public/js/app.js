@@ -26037,7 +26037,7 @@ var render = function() {
                                         ),
                                         _c(
                                           "v-avatar",
-                                          { attrs: { size: "35" } },
+                                          { attrs: { size: "50" } },
                                           [
                                             _c("img", {
                                               attrs: { src: this.campaign.url }

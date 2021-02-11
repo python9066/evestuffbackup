@@ -16,7 +16,7 @@
                                     Campaign page for the
                                     {{ this.campaign.item_name }} in
                                     {{ this.campaign.system }} -
-                                    <v-avatar size="35"
+                                    <v-avatar size="50"
                                         ><img :src="this.campaign.url"
                                     /></v-avatar>
                                     -
