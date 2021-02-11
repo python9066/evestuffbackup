@@ -7624,6 +7624,96 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -23203,7 +23293,7 @@ var render = function() {
                   _vm._s(this.campaign.system) +
                   " -\n            "
               ),
-              _c("v-avatar", { attrs: { size: "15" } }, [
+              _c("v-avatar", { attrs: { size: "35" } }, [
                 _c("img", { attrs: { src: this.campaign.url } })
               ]),
               _vm._v(
@@ -23262,6 +23352,187 @@ var render = function() {
                       62371507
                     )
                   })
+                ],
+                1
+              )
+            : _vm._e(),
+          _vm._v(" "),
+          this.campaign.status_id == 2
+            ? _c(
+                "div",
+                { staticClass: "d-flex full-width align-content-center" },
+                [
+                  _c("VueCountUptimer", {
+                    attrs: {
+                      "start-time": _vm.moment.utc(this.campaign.start).unix(),
+                      "end-text": "Campaign Started",
+                      interval: 1000
+                    },
+                    scopedSlots: _vm._u(
+                      [
+                        {
+                          key: "countup",
+                          fn: function(scope) {
+                            return [
+                              _c("span", { staticClass: "green--text pl-3" }, [
+                                _vm._v(
+                                  _vm._s(scope.props.hours) +
+                                    ":" +
+                                    _vm._s(scope.props.minutes) +
+                                    ":" +
+                                    _vm._s(scope.props.seconds)
+                                )
+                              ])
+                            ]
+                          }
+                        }
+                      ],
+                      null,
+                      false,
+                      4134734240
+                    )
+                  })
+                ],
+                1
+              )
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.nodeCountAll > 0
+            ? _c(
+                "div",
+                { staticClass: "d-inline-flex align-center" },
+                [
+                  _c("v-divider", {
+                    staticClass: "mx-4 my-0",
+                    attrs: { vertical: "" }
+                  }),
+                  _vm._v(" "),
+                  _c("p", { staticClass: " pt-4 pr-3" }, [
+                    _vm._v("Active Nodes -")
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "v-progress-circular",
+                    {
+                      staticClass: " pr-3",
+                      attrs: {
+                        transitionDuration: 5000,
+                        radius: 25,
+                        strokeWidth: 5,
+                        value:
+                          (_vm.nodeCountHackingCountAll / _vm.nodeCountAll) *
+                            100 || 0.000001
+                      }
+                    },
+                    [
+                      _c("div", { staticClass: "caption" }, [
+                        _vm._v(
+                          "\n                    " +
+                            _vm._s(_vm.nodeCountHackingCountAll) +
+                            " /\n                    " +
+                            _vm._s(_vm.nodeCountAll) +
+                            "\n                "
+                        )
+                      ])
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-progress-circular",
+                    {
+                      attrs: {
+                        transitionDuration: 5000,
+                        radius: 25,
+                        strokeWidth: 5,
+                        strokeColor: "#FF3D00",
+                        value:
+                          (_vm.nodeRedCountHackingCountAll / _vm.nodeCountAll) *
+                            100 || 0.000001
+                      }
+                    },
+                    [
+                      _c("div", { staticClass: "caption" }, [
+                        _vm._v(
+                          "\n                    " +
+                            _vm._s(_vm.nodeRedCountHackingCountAll) +
+                            " /\n                    " +
+                            _vm._s(_vm.nodeCountAll) +
+                            "\n                "
+                        )
+                      ])
+                    ]
+                  )
+                ],
+                1
+              )
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.campaign.total_node > 0
+            ? _c(
+                "div",
+                { staticClass: " d-inline-flex align-center" },
+                [
+                  _c("v-divider", {
+                    staticClass: "mx-4 my-0",
+                    attrs: { vertical: "" }
+                  }),
+                  _vm._v(" "),
+                  _c("p", { staticClass: " pt-4 pr-3" }, [
+                    _vm._v("Finished Nodes -")
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "v-progress-circular",
+                    {
+                      staticClass: " pr-3",
+                      attrs: {
+                        transitionDuration: 5000,
+                        radius: 25,
+                        strokeWidth: 5,
+                        value:
+                          (_vm.campaign.b_node / _vm.campaign.total_node) *
+                            100 || 0.000001
+                      }
+                    },
+                    [
+                      _c("div", { staticClass: "caption" }, [
+                        _vm._v(
+                          "\n                    " +
+                            _vm._s(_vm.campaign.b_node) +
+                            " /\n                    " +
+                            _vm._s(_vm.campaign.total_node) +
+                            "\n                "
+                        )
+                      ])
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-progress-circular",
+                    {
+                      staticClass: " pr-3",
+                      attrs: {
+                        transitionDuration: 5000,
+                        radius: 25,
+                        strokeWidth: 5,
+                        strokeColor: "#FF3D00",
+                        value:
+                          (_vm.campaign.r_node / _vm.campaign.total_node) *
+                            100 || 0.000001
+                      }
+                    },
+                    [
+                      _c("div", { staticClass: "caption" }, [
+                        _vm._v(
+                          "\n                    " +
+                            _vm._s(_vm.campaign.r_node) +
+                            " /\n                    " +
+                            _vm._s(_vm.campaign.total_node) +
+                            "\n                "
+                        )
+                      ])
+                    ]
+                  )
                 ],
                 1
               )
