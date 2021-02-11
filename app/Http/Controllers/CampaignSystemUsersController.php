@@ -53,6 +53,7 @@ class CampaignSystemUsersController extends Controller
                 'campaign_id' => $campaign_id
             ];
         } else {
+            $campaign_id = $campid;
 
             $data = [
                 'user_id' => $request['user_id'],
