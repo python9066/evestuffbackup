@@ -8,7 +8,147 @@
             justify="space-around"
         >
             <v-col md="10">
-                <v-card class="pa-2" tile width="100%">
+                <v-expansion-panel class="pa-2" tile width="100%">
+                    <v-card>
+                        <v-card-title align="center" class="justify-center">
+                            <h1>
+                                Campaign page for the
+                                {{ this.campaign.item_name }} in
+                                {{ this.campaign.system }} -
+                                <v-avatar size="35"
+                                    ><img :src="this.campaign.url"
+                                /></v-avatar>
+                                -
+                                {{ this.campaign.alliance }}
+                            </h1>
+                        </v-card-title>
+                        <div
+                            class="d-flex full-width align-content-center"
+                            v-if="this.campaign.status_id > 1"
+                        >
+                            <v-icon
+                                v-if="
+                                    this.campaign.defenders_score >
+                                        this.campaign.defenders_score_old &&
+                                        this.campaign.defenders_score_old > 0
+                                "
+                                small
+                                left
+                                dark
+                                color="blue darken-4"
+                            >
+                                fas fa-arrow-alt-circle-up
+                            </v-icon>
+                            <v-icon
+                                v-if="
+                                    this.campaign.defenders_score <
+                                        this.campaign.defenders_score_old &&
+                                        this.campaign.defenders_score_old > 0
+                                "
+                                small
+                                left
+                                dark
+                                color="blue darken-4"
+                            >
+                                fas fa-arrow-alt-circle-down
+                            </v-icon>
+                            <v-icon
+                                v-if="
+                                    this.campaign.defenders_score ==
+                                        this.campaign.defenders_score_old ||
+                                        this.campaign.defenders_score_old ===
+                                            null
+                                "
+                                small
+                                left
+                                dark
+                                color="grey darken-3"
+                            >
+                                fas fa-minus-circle
+                            </v-icon>
+
+                            <v-progress-linear
+                                :color="this.barColor"
+                                :value="this.barScoure"
+                                height="20"
+                                rounded
+                                :active="this.barActive"
+                                :reverse="this.barReverse"
+                                :background-color="this.barBgcolor"
+                                background-opacity="0.2"
+                            >
+                                <strong>
+                                    {{ this.campaign.defenders_score * 100 }} /
+                                    {{ this.campaign.attackers_score * 100 }}
+                                </strong>
+                            </v-progress-linear>
+
+                            <v-icon
+                                v-if="
+                                    this.campaign.attackers_score >
+                                        this.campaign.attackers_score_old &&
+                                        this.campaign.attackers_score_old > 0
+                                "
+                                small
+                                right
+                                dark
+                                color="red darken-4"
+                            >
+                                fas fa-arrow-alt-circle-up
+                            </v-icon>
+                            <v-icon
+                                v-if="
+                                    this.campaign.attackers_score <
+                                        this.campaign.attackers_score_old &&
+                                        this.campaign.attackers_score_old > 0
+                                "
+                                small
+                                right
+                                dark
+                                color="red darken-4"
+                            >
+                                fas fa-arrow-alt-circle-down
+                            </v-icon>
+                            <v-icon
+                                v-if="
+                                    this.campaign.attackers_score ==
+                                        this.campaign.attackers_score_old ||
+                                        this.campaign.attackers_score_old ==
+                                            null
+                                "
+                                small
+                                right
+                                dark
+                                color="grey darken-3"
+                            >
+                                fas fa-minus-circle
+                            </v-icon>
+                        </div>
+                        <div
+                            class="d-flex full-width align-content-center"
+                            v-if="this.campaign.status_id == 1"
+                        >
+                            <CountDowntimer
+                                :start-time="
+                                    moment.utc(this.campaign.start).unix()
+                                "
+                                :end-text="'Campaign Started'"
+                                :interval="1000"
+                                @campaignStart="campaignStart()"
+                            >
+                                <template slot="countdown" slot-scope="scope">
+                                    <span
+                                        class="red--text pl-3 text-h3 justify-content"
+                                        >{{ scope.props.minutes }}:{{
+                                            scope.props.seconds
+                                        }}</span
+                                    >
+                                </template>
+                            </CountDowntimer>
+                        </div>
+                    </v-card>
+                </v-expansion-panel>
+                <!-- <v-card class="pa-2" tile width="100%">
                     <v-card-title align="center" class="justify-center">
                         <h1>
                             Campaign page for the
@@ -141,7 +281,7 @@
                             </template>
                         </CountDowntimer>
                     </div>
-                </v-card>
+                </v-card> -->
             </v-col>
         </v-row>
         <v-row
