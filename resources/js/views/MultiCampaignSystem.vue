@@ -9,13 +9,16 @@
             </TitleBar>
         </span> -->
         <v-expansion-panels>
-            <span v-for="(sCampaign, index) in sCampaigns" :key="index">
+            <v-expansion-panel
+                v-for="(sCampaign, index) in sCampaigns"
+                :key="index"
+            >
                 <TitleBar
                     :sCampaignID="sCampaign.campaign_id"
                     @updateNow="updateBar()"
                 >
                 </TitleBar>
-            </span>
+            </v-expansion-panel>
         </v-expansion-panels>
 
         <v-row

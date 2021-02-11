@@ -7593,11 +7593,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
 
 
 
@@ -11918,6 +11913,9 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
+//
+//
+//
 //
 //
 //
@@ -23141,21 +23139,15 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return this.getCampaignsCount > 1 && _vm.campaign.status_id < 3
-    ? _c(
-        "v-expansion-panel",
-        {
-          staticClass: "pb-2",
-          attrs: { "no-gutters": "", justify: "space-around" }
-        },
-        [
-          _c("v-expansion-panel-header", [_vm._v(" header 1 ")]),
-          _vm._v(" "),
-          _c("v-expansion-panel-content", [_vm._v(" boady 1 ")])
-        ],
-        1
-      )
-    : _vm._e()
+  return _c(
+    "div",
+    [
+      _c("v-expansion-panel-header", [_vm._v(" header 1 ")]),
+      _vm._v(" "),
+      _c("v-expansion-panel-content", [_vm._v(" boady 1 ")])
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -27491,7 +27483,7 @@ var render = function() {
         "v-expansion-panels",
         _vm._l(_vm.sCampaigns, function(sCampaign, index) {
           return _c(
-            "span",
+            "v-expansion-panel",
             { key: index },
             [
               _c("TitleBar", {
@@ -27506,7 +27498,7 @@ var render = function() {
             1
           )
         }),
-        0
+        1
       ),
       _vm._v(" "),
       this.getCampaignsCount > 1

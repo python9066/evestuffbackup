@@ -1,13 +1,8 @@
 <template>
-    <v-expansion-panel
-        no-gutters
-        v-if="this.getCampaignsCount > 1 && campaign.status_id < 3"
-        class="pb-2"
-        justify="space-around"
-    >
+    <div>
         <v-expansion-panel-header> header 1 </v-expansion-panel-header>
         <v-expansion-panel-content> boady 1 </v-expansion-panel-content>
-    </v-expansion-panel>
+    </div>
     <!-- <v-row
         no-gutters
         v-if="this.getCampaignsCount > 1 && campaign.status_id < 3"
