@@ -8,7 +8,7 @@
             >
             </TitleBar>
         </span> -->
-        <v-expansion-panels v-model="panel" multiple>
+        <v-expansion-panels v-model="panel" multiple accordion>
             <v-expansion-panel
                 v-for="(sCampaign, index) in sCampaigns"
                 :key="index"
