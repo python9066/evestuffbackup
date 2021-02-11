@@ -12,7 +12,7 @@
             v-model="panel"
             multiple
             accordion
-            style="background-color:red"
+            style="background-color:#de5246"
         >
             <v-expansion-panel
                 v-for="(sCampaign, index) in sCampaigns"

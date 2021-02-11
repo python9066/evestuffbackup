@@ -27520,7 +27520,7 @@ var render = function() {
       _c(
         "v-expansion-panels",
         {
-          staticStyle: { "background-color": "red" },
+          staticStyle: { "background-color": "#de5246" },
           attrs: { multiple: "", accordion: "" },
           model: {
             value: _vm.panel,
