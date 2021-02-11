@@ -361,6 +361,16 @@ class CampaignSystemsController extends Controller
 
     public function finishCampaign($campid)
     {
+
+        CampaignSystem::where('campaign_id', $campid)->delete();
+        NodeJoin::where('campaign_id', $campid)->delete();
+        CampaignUser::where('campaign_id', $campid)
+            ->update([
+                'campaign_id' => null,
+                'campaign_system_id ' => null,
+                'system_id' => null,
+                'status_id' => 1
+            ]);
         $flag = collect([
             'flag' => 7,
             'id' => $campid,
