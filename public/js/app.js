@@ -27528,35 +27528,52 @@ var render = function() {
     "div",
     [
       _c(
-        "v-expansion-panels",
-        {
-          staticStyle: { "background-color": "#de5246" },
-          attrs: { multiple: "", accordion: "" },
-          model: {
-            value: _vm.panel,
-            callback: function($$v) {
-              _vm.panel = $$v
-            },
-            expression: "panel"
-          }
-        },
-        _vm._l(_vm.sCampaigns, function(sCampaign, index) {
-          return _c(
-            "v-expansion-panel",
-            { key: index },
+        "v-row",
+        [
+          _c(
+            "v-col",
+            { attrs: { md: "10" } },
             [
-              _c("TitleBar", {
-                attrs: { sCampaignID: sCampaign.campaign_id },
-                on: {
-                  updateNow: function($event) {
-                    return _vm.updateBar()
+              _c(
+                "v-expansion-panels",
+                {
+                  attrs: { multiple: "", accordion: "", popout: "" },
+                  model: {
+                    value: _vm.panel,
+                    callback: function($$v) {
+                      _vm.panel = $$v
+                    },
+                    expression: "panel"
                   }
-                }
-              })
+                },
+                [
+                  _vm._v(
+                    '\n                no-gutters justify="space-around">\n                '
+                  ),
+                  _vm._l(_vm.sCampaigns, function(sCampaign, index) {
+                    return _c(
+                      "v-expansion-panel",
+                      { key: index },
+                      [
+                        _c("TitleBar", {
+                          attrs: { sCampaignID: sCampaign.campaign_id },
+                          on: {
+                            updateNow: function($event) {
+                              return _vm.updateBar()
+                            }
+                          }
+                        })
+                      ],
+                      1
+                    )
+                  })
+                ],
+                2
+              )
             ],
             1
           )
-        }),
+        ],
         1
       ),
       _vm._v(" "),

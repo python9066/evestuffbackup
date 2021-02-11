@@ -8,24 +8,24 @@
             >
             </TitleBar>
         </span> -->
-        <v-expansion-panels
-            v-model="panel"
-            multiple
-            accordion
-            style="background-color:#de5246"
-        >
-            <v-expansion-panel
-                v-for="(sCampaign, index) in sCampaigns"
-                :key="index"
-                class=""
-            >
-                <TitleBar
-                    :sCampaignID="sCampaign.campaign_id"
-                    @updateNow="updateBar()"
-                >
-                </TitleBar>
-            </v-expansion-panel>
-        </v-expansion-panels>
+        <v-row>
+            <v-col md="10">
+                <v-expansion-panels v-model="panel" multiple accordion popout>
+                    no-gutters justify="space-around">
+                    <v-expansion-panel
+                        v-for="(sCampaign, index) in sCampaigns"
+                        :key="index"
+                        class=""
+                    >
+                        <TitleBar
+                            :sCampaignID="sCampaign.campaign_id"
+                            @updateNow="updateBar()"
+                        >
+                        </TitleBar>
+                    </v-expansion-panel>
+                </v-expansion-panels>
+            </v-col>
+        </v-row>
 
         <v-row
             no-gutters
