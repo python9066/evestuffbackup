@@ -7601,9 +7601,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
 
 
 
@@ -23162,10 +23159,7 @@ var render = function() {
     [
       _c(
         "v-expansion-panel-header",
-        {
-          staticClass: " pa-0 justify-center align-center",
-          attrs: { ripple: "" }
-        },
+        { staticClass: "justify-center align-center", attrs: { ripple: "" } },
         [
           _c(
             "p",
