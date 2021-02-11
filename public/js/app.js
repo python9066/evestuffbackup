@@ -23153,7 +23153,6 @@ var render = function() {
       _c("v-expansion-panel-header", [
         _c(
           "p",
-          { staticClass: " pt-5" },
           [
             _vm._v(
               "\n            Campaign page for the\n            " +

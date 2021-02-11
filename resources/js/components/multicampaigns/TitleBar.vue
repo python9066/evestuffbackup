@@ -1,7 +1,7 @@
 <template>
     <div>
         <v-expansion-panel-header>
-            <p class=" pt-5">
+            <p>
                 Campaign page for the
                 {{ this.campaign.item_name }} in {{ this.campaign.system }} -
                 <v-avatar size="35"><img :src="this.campaign.url"/></v-avatar>
