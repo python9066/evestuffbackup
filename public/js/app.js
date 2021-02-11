@@ -10011,6 +10011,141 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -26037,7 +26172,7 @@ var render = function() {
                                         ),
                                         _c(
                                           "v-avatar",
-                                          { attrs: { size: "50" } },
+                                          { attrs: { size: "35" } },
                                           [
                                             _c("img", {
                                               attrs: { src: this.campaign.url }
@@ -26057,9 +26192,239 @@ var render = function() {
                               ]),
                               _vm._v(" "),
                               _c("v-expansion-panel-content", [
-                                _vm._v(
-                                  "\n                        even more yoyo\n                    "
-                                )
+                                this.campaign.status_id > 1
+                                  ? _c(
+                                      "div",
+                                      {
+                                        staticClass:
+                                          "d-flex full-width align-content-center"
+                                      },
+                                      [
+                                        this.campaign.defenders_score >
+                                          this.campaign.defenders_score_old &&
+                                        this.campaign.defenders_score_old > 0
+                                          ? _c(
+                                              "v-icon",
+                                              {
+                                                attrs: {
+                                                  small: "",
+                                                  left: "",
+                                                  dark: "",
+                                                  color: "blue darken-4"
+                                                }
+                                              },
+                                              [
+                                                _vm._v(
+                                                  "\n                                fas fa-arrow-alt-circle-up\n                            "
+                                                )
+                                              ]
+                                            )
+                                          : _vm._e(),
+                                        _vm._v(" "),
+                                        this.campaign.defenders_score <
+                                          this.campaign.defenders_score_old &&
+                                        this.campaign.defenders_score_old > 0
+                                          ? _c(
+                                              "v-icon",
+                                              {
+                                                attrs: {
+                                                  small: "",
+                                                  left: "",
+                                                  dark: "",
+                                                  color: "blue darken-4"
+                                                }
+                                              },
+                                              [
+                                                _vm._v(
+                                                  "\n                                fas fa-arrow-alt-circle-down\n                            "
+                                                )
+                                              ]
+                                            )
+                                          : _vm._e(),
+                                        _vm._v(" "),
+                                        this.campaign.defenders_score ==
+                                          this.campaign.defenders_score_old ||
+                                        this.campaign.defenders_score_old ===
+                                          null
+                                          ? _c(
+                                              "v-icon",
+                                              {
+                                                attrs: {
+                                                  small: "",
+                                                  left: "",
+                                                  dark: "",
+                                                  color: "grey darken-3"
+                                                }
+                                              },
+                                              [
+                                                _vm._v(
+                                                  "\n                                fas fa-minus-circle\n                            "
+                                                )
+                                              ]
+                                            )
+                                          : _vm._e(),
+                                        _vm._v(" "),
+                                        _c(
+                                          "v-progress-linear",
+                                          {
+                                            attrs: {
+                                              color: this.barColor,
+                                              value: this.barScoure,
+                                              height: "20",
+                                              rounded: "",
+                                              active: this.barActive,
+                                              reverse: this.barReverse,
+                                              "background-color": this
+                                                .barBgcolor,
+                                              "background-opacity": "0.2"
+                                            }
+                                          },
+                                          [
+                                            _c("strong", [
+                                              _vm._v(
+                                                "\n                                    " +
+                                                  _vm._s(
+                                                    this.campaign
+                                                      .defenders_score * 100
+                                                  ) +
+                                                  "\n                                    /\n                                    " +
+                                                  _vm._s(
+                                                    this.campaign
+                                                      .attackers_score * 100
+                                                  ) +
+                                                  "\n                                "
+                                              )
+                                            ])
+                                          ]
+                                        ),
+                                        _vm._v(" "),
+                                        this.campaign.attackers_score >
+                                          this.campaign.attackers_score_old &&
+                                        this.campaign.attackers_score_old > 0
+                                          ? _c(
+                                              "v-icon",
+                                              {
+                                                attrs: {
+                                                  small: "",
+                                                  right: "",
+                                                  dark: "",
+                                                  color: "red darken-4"
+                                                }
+                                              },
+                                              [
+                                                _vm._v(
+                                                  "\n                                fas fa-arrow-alt-circle-up\n                            "
+                                                )
+                                              ]
+                                            )
+                                          : _vm._e(),
+                                        _vm._v(" "),
+                                        this.campaign.attackers_score <
+                                          this.campaign.attackers_score_old &&
+                                        this.campaign.attackers_score_old > 0
+                                          ? _c(
+                                              "v-icon",
+                                              {
+                                                attrs: {
+                                                  small: "",
+                                                  right: "",
+                                                  dark: "",
+                                                  color: "red darken-4"
+                                                }
+                                              },
+                                              [
+                                                _vm._v(
+                                                  "\n                                fas fa-arrow-alt-circle-down\n                            "
+                                                )
+                                              ]
+                                            )
+                                          : _vm._e(),
+                                        _vm._v(" "),
+                                        this.campaign.attackers_score ==
+                                          this.campaign.attackers_score_old ||
+                                        this.campaign.attackers_score_old ==
+                                          null
+                                          ? _c(
+                                              "v-icon",
+                                              {
+                                                attrs: {
+                                                  small: "",
+                                                  right: "",
+                                                  dark: "",
+                                                  color: "grey darken-3"
+                                                }
+                                              },
+                                              [
+                                                _vm._v(
+                                                  "\n                                fas fa-minus-circle\n                            "
+                                                )
+                                              ]
+                                            )
+                                          : _vm._e()
+                                      ],
+                                      1
+                                    )
+                                  : _vm._e(),
+                                _vm._v(" "),
+                                this.campaign.status_id == 1
+                                  ? _c(
+                                      "div",
+                                      {
+                                        staticClass:
+                                          "d-flex full-width align-content-center"
+                                      },
+                                      [
+                                        _c("CountDowntimer", {
+                                          attrs: {
+                                            "start-time": _vm.moment
+                                              .utc(this.campaign.start)
+                                              .unix(),
+                                            "end-text": "Campaign Started",
+                                            interval: 1000
+                                          },
+                                          on: {
+                                            campaignStart: function($event) {
+                                              return _vm.campaignStart()
+                                            }
+                                          },
+                                          scopedSlots: _vm._u(
+                                            [
+                                              {
+                                                key: "countdown",
+                                                fn: function(scope) {
+                                                  return [
+                                                    _c(
+                                                      "span",
+                                                      {
+                                                        staticClass:
+                                                          "red--text pl-3 text-h3 justify-content"
+                                                      },
+                                                      [
+                                                        _vm._v(
+                                                          _vm._s(
+                                                            scope.props.minutes
+                                                          ) +
+                                                            ":" +
+                                                            _vm._s(
+                                                              scope.props
+                                                                .seconds
+                                                            )
+                                                        )
+                                                      ]
+                                                    )
+                                                  ]
+                                                }
+                                              }
+                                            ],
+                                            null,
+                                            false,
+                                            1429818878
+                                          )
+                                        })
+                                      ],
+                                      1
+                                    )
+                                  : _vm._e()
                               ])
                             ],
                             1
