@@ -10,7 +10,7 @@
         </span> -->
         <v-expansion-panels>
             <v-expansion-panel
-                class=" pa-0"
+                class=" pa-0 justify-center align-center"
                 v-for="(sCampaign, index) in sCampaigns"
                 :key="index"
             >

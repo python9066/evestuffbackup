@@ -27528,7 +27528,7 @@ var render = function() {
         _vm._l(_vm.sCampaigns, function(sCampaign, index) {
           return _c(
             "v-expansion-panel",
-            { key: index, staticClass: " pa-0" },
+            { key: index, staticClass: " pa-0 justify-center align-center" },
             [
               _c("TitleBar", {
                 attrs: { sCampaignID: sCampaign.campaign_id },
