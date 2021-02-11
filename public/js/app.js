@@ -23138,7 +23138,7 @@ var render = function() {
               _c(
                 "v-card",
                 {
-                  staticClass: "pr-2 pl-2",
+                  staticClass: "pr-2 pb-2 pl-2",
                   attrs: { tile: "", width: "100%" }
                 },
                 [
