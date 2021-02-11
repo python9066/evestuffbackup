@@ -23153,6 +23153,7 @@ var render = function() {
       _c("v-expansion-panel-header", [
         _c(
           "p",
+          { staticClass: " pt-5" },
           [
             _vm._v(
               "\n            Campaign page for the\n            " +
@@ -23161,7 +23162,7 @@ var render = function() {
                 _vm._s(this.campaign.system) +
                 " -\n            "
             ),
-            _c("v-avatar", { attrs: { size: "35" } }, [
+            _c("v-avatar", { attrs: { size: "15" } }, [
               _c("img", { attrs: { src: this.campaign.url } })
             ]),
             _vm._v(

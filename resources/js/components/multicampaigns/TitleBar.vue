@@ -1,10 +1,10 @@
 <template>
     <div>
         <v-expansion-panel-header>
-            <p>
+            <p class=" pt-5">
                 Campaign page for the
                 {{ this.campaign.item_name }} in {{ this.campaign.system }} -
-                <v-avatar size="35"><img :src="this.campaign.url"/></v-avatar>
+                <v-avatar size="15"><img :src="this.campaign.url"/></v-avatar>
                 -
                 {{ this.campaign.alliance }} :
             </p>
