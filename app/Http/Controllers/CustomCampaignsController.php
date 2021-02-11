@@ -173,7 +173,7 @@ class CustomCampaignsController extends Controller
         CampaignSystemUsers::where('custom_campaign_id', $id)->delete();
         CampaignUser::where('campaign_id', $id)->update([
             'campaign_id' => null,
-            'campaign_system_id ' => null,
+            'campaign_system_id' => null,
             'status_id' => 1
         ]);
         CampaignSolaSystem::where('campaign_id', $id)->delete();

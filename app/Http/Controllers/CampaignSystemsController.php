@@ -369,7 +369,7 @@ class CampaignSystemsController extends Controller
         CampaignUser::where('campaign_id', $campid)
             ->update([
                 'campaign_id' => null,
-                'campaign_system_id ' => null,
+                'campaign_system_id' => null,
                 'status_id' => 1
             ]);
         $flag = collect([
@@ -388,7 +388,7 @@ class CampaignSystemsController extends Controller
         CampaignUser::where('campaign_id', $campid)
             ->update([
                 'campaign_id' => null,
-                'campaign_system_id ' => null,
+                'campaign_system_id' => null,
                 'status_id' => 1
             ]);
         $flag = collect([
