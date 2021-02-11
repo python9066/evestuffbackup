@@ -10,7 +10,10 @@
             <v-col md="10">
                 <v-expansion-panels>
                     <v-expansion-panel>
-                        <v-expansion-panel-header>
+                        <v-expansion-panel-header
+                            align="center"
+                            class="justify-center"
+                        >
                             <h1>
                                 Campaign page for the
                                 {{ this.campaign.item_name }} in
