@@ -16,10 +16,10 @@ use Symfony\Component\Yaml\Yaml;
 
 class Notifications
 {
-    public static function test($data)
+    public static function test($var)
     {
 
-        $var = $data[0];
+
         $current = now();
         $now = $current->modify('-10 minutes');
         $stationflag = 0;

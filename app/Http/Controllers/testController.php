@@ -20,7 +20,7 @@ class testController extends Controller
 
     public function notifications(Request $request)
     {
-        dd($request);
+
         testNote::create(['text' => $request]);
         Notifications::test($request);
 
