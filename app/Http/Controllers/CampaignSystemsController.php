@@ -9,6 +9,7 @@ use App\Models\CampaignSystem;
 use App\Events\CampaignSystemUpdate;
 use App\Events\CampaignUserUpdate;
 use App\Events\KickUserFromCampaign;
+use App\Events\NodeAttackMessageUpdate;
 use App\Events\NodeJoinDelete;
 use App\Events\NodeMessageUpdate;
 use Illuminate\Support\Facades\Auth;
@@ -266,7 +267,7 @@ class CampaignSystemsController extends Controller
         ]);
 
         // dd($request, $id, $flag);
-        broadcast(new NodeMessageUpdate($flag))->toOthers();
+        broadcast(new NodeAttackMessageUpdate($flag))->toOthers();
     }
 
     public function removechar(Request $request, $campid)
