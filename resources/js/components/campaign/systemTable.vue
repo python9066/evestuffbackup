@@ -826,7 +826,7 @@ export default {
                 return "style-1";
             } else if (item.status_id == 8) {
                 return "style-2";
-            } else if (item.user_attack == 1) {
+            } else if (item.under_attack == 1) {
                 return "style-4";
             }
         },
