@@ -97,10 +97,10 @@ class Notifications
             );
             $stationnotenumber = StationNotification::where('station_id', $station_id)->max('id');
             if ($var['notification_id'] > $stationnotenumber) {
-                $stationcheck = Station::where('id', $station_id)->get()->count();
+                $stationcheck = Station::where('id', $text['structureID'])->get()->count();
                 if ($stationcheck == 0) {
                     Helper::authcheck();
-                    $stationdata = Helper::authpull('station', $station_id);
+                    $stationdata = Helper::authpull('station', $text['structureID']);
 
                     Station::Create([
                         'id' => $text['structureID'],
