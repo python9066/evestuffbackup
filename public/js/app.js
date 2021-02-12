@@ -2373,6 +2373,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -18659,26 +18660,38 @@ var render = function() {
                       _vm._s(_vm.item.attack_adash_link) +
                       "\n                "
                   ),
-                  _vm.showLinkButton()
-                    ? _c(
-                        "v-chip",
-                        {
-                          staticClass: " pb-2",
-                          attrs: {
-                            pill: "",
-                            small: "",
-                            outlined: "",
-                            color: "teal"
-                          },
-                          on: {
-                            click: function($event) {
-                              return _vm.openAdash(_vm.item.attack_adash_link)
-                            }
-                          }
-                        },
-                        [_vm._v("\n                    view\n                ")]
-                      )
-                    : _vm._e(),
+                  _c(
+                    "div",
+                    { staticClass: "pb-2" },
+                    [
+                      _vm.showLinkButton()
+                        ? _c(
+                            "v-chip",
+                            {
+                              attrs: {
+                                pill: "",
+                                small: "",
+                                outlined: "",
+                                color: "teal"
+                              },
+                              on: {
+                                click: function($event) {
+                                  return _vm.openAdash(
+                                    _vm.item.attack_adash_link
+                                  )
+                                }
+                              }
+                            },
+                            [
+                              _vm._v(
+                                "\n                        view\n                    "
+                              )
+                            ]
+                          )
+                        : _vm._e()
+                    ],
+                    1
+                  ),
                   _vm._v(" "),
                   _c("v-textarea", {
                     attrs: {
