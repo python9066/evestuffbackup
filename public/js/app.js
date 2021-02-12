@@ -18536,7 +18536,7 @@ var render = function() {
             [
               _c("v-card-title", [
                 _vm._v(
-                  "Notes for node " +
+                  "Under Attack report for node " +
                     _vm._s(_vm.item.node) +
                     ". Campaign\n                " +
                     _vm._s(_vm.item.text) +
@@ -18556,11 +18556,11 @@ var render = function() {
                       placeholder: "No Notes"
                     },
                     model: {
-                      value: _vm.item.notes,
+                      value: _vm.item.attack_notes,
                       callback: function($$v) {
-                        _vm.$set(_vm.item, "notes", $$v)
+                        _vm.$set(_vm.item, "attack_notes", $$v)
                       },
-                      expression: "item.notes"
+                      expression: "item.attack_notes"
                     }
                   }),
                   _vm._v(" "),

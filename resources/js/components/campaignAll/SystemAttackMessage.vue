@@ -32,7 +32,7 @@
                 class=" d-flex flex-column"
             >
                 <v-card-title
-                    >Notes for node {{ item.node }}. Campaign
+                    >Under Attack report for node {{ item.node }}. Campaign
                     {{ item.text }}
                 </v-card-title>
                 <v-card-text>
@@ -40,7 +40,7 @@
                         height="400px"
                         readonly
                         no-resize
-                        v-model="item.notes"
+                        v-model="item.attack_notes"
                         outlined
                         placeholder="No Notes"
                     ></v-textarea>
