@@ -409,6 +409,10 @@
                     </template>
                     <template v-slot:item.actions="{ item }">
                         <div class=" d-inline-flex">
+                            <SystemAttackMessage
+                                :item="item"
+                                v-if="$can('super')"
+                            ></SystemAttackMessage>
                             <SystemMessage :item="item"> </SystemMessage>
                             <v-icon
                                 v-if="

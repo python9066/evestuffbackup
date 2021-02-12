@@ -975,6 +975,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2231,6 +2235,205 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }
     }
   })
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/campaignALL/SystemAttackMessage.vue?vue&type=script&lang=js&":
+/*!******************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/campaignALL/SystemAttackMessage.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_2__);
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: {
+    item: Object
+  },
+  data: function data() {
+    return {
+      messageCount: 0,
+      showNumber: false,
+      showNodeNotes: false,
+      editText: null
+    };
+  },
+  created: function created() {
+    var _this = this;
+
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              Echo["private"]("nodemessage." + _this.item.id).listen("NodeMessageUpdate", function (e) {
+                _this.showNumber = true;
+                _this.messageCount = _this.messageCount + 1;
+
+                _this.$store.dispatch("updateCampaignSystem", e.flag.message);
+              });
+
+            case 1:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    }))();
+  },
+  methods: {
+    showMessage: function showMessage(item) {
+      this.$emit("openMessage", item);
+    },
+    close: function close() {
+      this.editText = null;
+      this.showNodeNotes = false;
+      console.log("close");
+    },
+    open: function open() {
+      this.showNumber = false, this.messageCount = 0;
+    },
+    updatetext: function updatetext() {
+      this.editText = this.editText + "\n";
+
+      if (this.item.notes == null) {
+        var note = moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc().format("HH:mm:ss") + " - " + this.$store.state.user_name + ": " + this.editText;
+      } else {
+        var note = moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc().format("HH:mm:ss") + " - " + this.$store.state.user_name + ": " + this.editText + this.item.notes;
+      }
+
+      this.item.notes = note;
+      var request = {
+        notes: note
+      };
+      this.$store.dispatch("updateCampaignSystem", this.item);
+      axios({
+        method: "put",
+        url: "/api/campaignsystemsnodemessage/" + this.item.id,
+        data: request,
+        headers: {
+          Authorization: "Bearer " + this.$store.state.token,
+          Accept: "application/json",
+          "Content-Type": "application/json"
+        }
+      });
+      this.editText = null;
+    }
+  },
+  computed: {
+    icon: function icon() {
+      return "far fa-crosshairs";
+    },
+    submitActive: function submitActive() {
+      if (this.editText != null) {
+        return false;
+      } else {
+        return true;
+      }
+    }
+  },
+  beforeDestroy: function beforeDestroy() {
+    Echo.leave("nodemessage." + this.item.id);
+  }
 });
 
 /***/ }),
@@ -17702,6 +17905,12 @@ var render = function() {
                             "div",
                             { staticClass: " d-inline-flex" },
                             [
+                              _vm.$can("super")
+                                ? _c("SystemAttackMessage", {
+                                    attrs: { item: item }
+                                  })
+                                : _vm._e(),
+                              _vm._v(" "),
                               _c("SystemMessage", { attrs: { item: item } }),
                               _vm._v(" "),
                               item.status_id != 4 && item.status_id != 5
@@ -18207,6 +18416,214 @@ var render = function() {
                   ])
                 ],
                 2
+              )
+            ],
+            1
+          )
+        ],
+        1
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/campaignALL/SystemAttackMessage.vue?vue&type=template&id=40ef2f77&":
+/*!**********************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/campaignALL/SystemAttackMessage.vue?vue&type=template&id=40ef2f77& ***!
+  \**********************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    [
+      _c(
+        "v-dialog",
+        {
+          attrs: { "max-width": "700px", "z-index": "0" },
+          on: {
+            "click:outside": function($event) {
+              return _vm.close()
+            }
+          },
+          scopedSlots: _vm._u([
+            {
+              key: "activator",
+              fn: function(ref) {
+                var on = ref.on
+                var attrs = ref.attrs
+                return [
+                  _c(
+                    "v-badge",
+                    {
+                      attrs: {
+                        color: "green",
+                        overlap: "",
+                        content: _vm.messageCount,
+                        value: _vm.showNumber
+                      }
+                    },
+                    [
+                      _c(
+                        "v-icon",
+                        _vm._g(
+                          _vm._b(
+                            {
+                              attrs: { color: "blue" },
+                              on: {
+                                click: function($event) {
+                                  return _vm.open()
+                                }
+                              }
+                            },
+                            "v-icon",
+                            attrs,
+                            false
+                          ),
+                          on
+                        ),
+                        [
+                          _vm._v(
+                            "\n                    " +
+                              _vm._s(_vm.icon) +
+                              "\n                "
+                          )
+                        ]
+                      )
+                    ],
+                    1
+                  )
+                ]
+              }
+            }
+          ]),
+          model: {
+            value: _vm.showNodeNotes,
+            callback: function($$v) {
+              _vm.showNodeNotes = $$v
+            },
+            expression: "showNodeNotes"
+          }
+        },
+        [
+          _vm._v(" "),
+          _c(
+            "v-card",
+            {
+              staticClass: " d-flex flex-column",
+              attrs: {
+                tile: "",
+                "max-width": "700px",
+                "min-height": "200px",
+                "max-height": "700px"
+              }
+            },
+            [
+              _c("v-card-title", [
+                _vm._v(
+                  "Notes for node " +
+                    _vm._s(_vm.item.node) +
+                    ". Campaign\n                " +
+                    _vm._s(_vm.item.text) +
+                    "\n            "
+                )
+              ]),
+              _vm._v(" "),
+              _c(
+                "v-card-text",
+                [
+                  _c("v-textarea", {
+                    attrs: {
+                      height: "400px",
+                      readonly: "",
+                      "no-resize": "",
+                      outlined: "",
+                      placeholder: "No Notes"
+                    },
+                    model: {
+                      value: _vm.item.notes,
+                      callback: function($$v) {
+                        _vm.$set(_vm.item, "notes", $$v)
+                      },
+                      expression: "item.notes"
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("v-divider"),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    [
+                      _c("v-text-field", {
+                        attrs: {
+                          "auto-grow": "",
+                          filled: "",
+                          autofocus: "",
+                          label: "Enter New Nodes Here"
+                        },
+                        model: {
+                          value: _vm.editText,
+                          callback: function($$v) {
+                            _vm.editText = $$v
+                          },
+                          expression: "editText"
+                        }
+                      })
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c("v-spacer"),
+              _c(
+                "v-card-actions",
+                [
+                  _c(
+                    "v-btn",
+                    {
+                      staticClass: "white--text",
+                      attrs: { color: "green", disabled: _vm.submitActive },
+                      on: {
+                        click: function($event) {
+                          return _vm.updatetext()
+                        }
+                      }
+                    },
+                    [_vm._v("\n                    Submit\n                ")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-btn",
+                    {
+                      staticClass: "white--text",
+                      attrs: { color: "teal" },
+                      on: {
+                        click: function($event) {
+                          return _vm.close()
+                        }
+                      }
+                    },
+                    [_vm._v("\n                    Close\n                ")]
+                  )
+                ],
+                1
               )
             ],
             1
@@ -31578,6 +31995,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('TidiCalc', __webpack_requi
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('JoinNodeTable', __webpack_require__(/*! ./components/campaignAll/JoinNodeTable.vue */ "./resources/js/components/campaignAll/JoinNodeTable.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('NodeExtraCharMulti', __webpack_require__(/*! ./components/multicampaigns/NodeExtraCharMulti.vue */ "./resources/js/components/multicampaigns/NodeExtraCharMulti.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('SystemMessage', __webpack_require__(/*! ./components/campaignALL/SystemMessage.vue */ "./resources/js/components/campaignALL/SystemMessage.vue")["default"]);
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('SystemAttackMessage', __webpack_require__(/*! ./components/campaignALL/SystemAttackMessage.vue */ "./resources/js/components/campaignALL/SystemAttackMessage.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.prototype.moment = moment__WEBPACK_IMPORTED_MODULE_11___default.a; // import '@fortawesome/fontawesome-f      ree/css/all.css'
 
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(_components_countdown_index__WEBPACK_IMPORTED_MODULE_14__["default"]);
@@ -32120,6 +32538,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_UserTable_vue_vue_type_template_id_5abe43ef___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_UserTable_vue_vue_type_template_id_5abe43ef___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/campaignALL/SystemAttackMessage.vue":
+/*!*********************************************************************!*\
+  !*** ./resources/js/components/campaignALL/SystemAttackMessage.vue ***!
+  \*********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _SystemAttackMessage_vue_vue_type_template_id_40ef2f77___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./SystemAttackMessage.vue?vue&type=template&id=40ef2f77& */ "./resources/js/components/campaignALL/SystemAttackMessage.vue?vue&type=template&id=40ef2f77&");
+/* harmony import */ var _SystemAttackMessage_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./SystemAttackMessage.vue?vue&type=script&lang=js& */ "./resources/js/components/campaignALL/SystemAttackMessage.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _SystemAttackMessage_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _SystemAttackMessage_vue_vue_type_template_id_40ef2f77___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _SystemAttackMessage_vue_vue_type_template_id_40ef2f77___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/campaignALL/SystemAttackMessage.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/campaignALL/SystemAttackMessage.vue?vue&type=script&lang=js&":
+/*!**********************************************************************************************!*\
+  !*** ./resources/js/components/campaignALL/SystemAttackMessage.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_SystemAttackMessage_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./SystemAttackMessage.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/campaignALL/SystemAttackMessage.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_SystemAttackMessage_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/campaignALL/SystemAttackMessage.vue?vue&type=template&id=40ef2f77&":
+/*!****************************************************************************************************!*\
+  !*** ./resources/js/components/campaignALL/SystemAttackMessage.vue?vue&type=template&id=40ef2f77& ***!
+  \****************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_SystemAttackMessage_vue_vue_type_template_id_40ef2f77___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./SystemAttackMessage.vue?vue&type=template&id=40ef2f77& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/campaignALL/SystemAttackMessage.vue?vue&type=template&id=40ef2f77&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_SystemAttackMessage_vue_vue_type_template_id_40ef2f77___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_SystemAttackMessage_vue_vue_type_template_id_40ef2f77___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
