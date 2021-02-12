@@ -39,8 +39,7 @@
                     {{ item.attack_adash_link }}
                     <v-btn
                         color="teal"
-                        :href="item.attack_adash_link"
-                        @click="openAdash()"
+                        @click="openAdash(item.attack_adash_link)"
                         v-if="showLinkButton()"
                     >
                         view
@@ -157,8 +156,8 @@ export default {
             console.log("close");
         },
 
-        openAdash() {
-            var win = window.open(this.item.adash_link, "_blank");
+        openAdash(url) {
+            var win = window.open(url, "_blank");
             win.focus();
         },
 

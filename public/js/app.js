@@ -2369,7 +2369,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2424,8 +2423,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       this.showNodeNotes = false;
       console.log("close");
     },
-    openAdash: function openAdash() {
-      var win = window.open(this.item.adash_link, "_blank");
+    openAdash: function openAdash(url) {
+      var win = window.open(url, "_blank");
       win.focus();
     },
     open: function open() {
@@ -18660,13 +18659,10 @@ var render = function() {
                     ? _c(
                         "v-btn",
                         {
-                          attrs: {
-                            color: "teal",
-                            href: _vm.item.attack_adash_link
-                          },
+                          attrs: { color: "teal" },
                           on: {
                             click: function($event) {
-                              return _vm.openAdash()
+                              return _vm.openAdash(_vm.item.attack_adash_link)
                             }
                           }
                         },
