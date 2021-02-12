@@ -2362,6 +2362,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2416,6 +2423,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       this.showNodeNotes = false;
       console.log("close");
     },
+    openAdash: function openAdash() {
+      var win = window.open(this.item.adash_link, "_blank");
+      win.focus();
+    },
     open: function open() {
       this.showAttackNumber = false, this.messageAttackCount = 0;
     },
@@ -2442,6 +2453,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           "Content-Type": "application/json"
         }
       });
+    },
+    showLinkButton: function showLinkButton() {
+      if (this.item.attack_adash_link != null) {
+        return true;
+      } else {
+        return false;
+      }
     },
     updatetext: function updatetext() {
       var request = null;
@@ -18637,6 +18655,21 @@ var render = function() {
                       _vm._s(_vm.item.attack_adash_link) +
                       "\n                "
                   ),
+                  _vm.showLinkButton()
+                    ? _c(
+                        "v-btn",
+                        {
+                          attrs: { color: "teal" },
+                          on: {
+                            click: function($event) {
+                              return _vm.openAdash()
+                            }
+                          }
+                        },
+                        [_vm._v("\n                    view\n                ")]
+                      )
+                    : _vm._e(),
+                  _vm._v(" "),
                   _c("v-textarea", {
                     attrs: {
                       height: "300px",

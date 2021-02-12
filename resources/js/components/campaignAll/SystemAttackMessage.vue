@@ -37,6 +37,13 @@
                 </v-card-title>
                 <v-card-text>
                     {{ item.attack_adash_link }}
+                    <v-btn
+                        color="teal"
+                        @click="openAdash()"
+                        v-if="showLinkButton()"
+                    >
+                        view
+                    </v-btn>
                     <v-textarea
                         height="300px"
                         readonly
@@ -149,6 +156,11 @@ export default {
             console.log("close");
         },
 
+        openAdash() {
+            var win = window.open(this.item.adash_link, "_blank");
+            win.focus();
+        },
+
         open() {
             (this.showAttackNumber = false), (this.messageAttackCount = 0);
         },
@@ -176,6 +188,14 @@ export default {
                     "Content-Type": "application/json"
                 }
             });
+        },
+
+        showLinkButton() {
+            if (this.item.attack_adash_link != null) {
+                return true;
+            } else {
+                return false;
+            }
         },
 
         updatetext() {
