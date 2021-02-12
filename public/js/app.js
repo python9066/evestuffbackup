@@ -2427,11 +2427,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }
 
         this.item.attack_notes = note;
+        this.item.under_attack = "1";
       }
 
       if (this.editAdashLink != null) {
         adashLink = this.editAdashLink;
-        item.attack_adash_link = adashLink;
+        this.item.attack_adash_link = adashLink;
+        this.item.under_attack = "1";
       }
 
       if (note == null) {
