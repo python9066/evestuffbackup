@@ -2413,20 +2413,41 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       this.showNumber = false, this.messageCount = 0;
     },
     updatetext: function updatetext() {
-      this.editText = this.editText + "\n";
+      var note = null;
+      var adashLink = null;
 
-      if (this.item.notes == null) {
-        var note = moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc().format("HH:mm:ss") + " - " + this.$store.state.user_name + ": " + this.editText;
-      } else {
-        var note = moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc().format("HH:mm:ss") + " - " + this.$store.state.user_name + ": " + this.editText + this.item.notes;
+      if (this.editAdashLink != null) {
+        this.editText = this.editText + "\n";
+
+        if (this.item.notes == null) {
+          note = moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc().format("HH:mm:ss") + " - " + this.$store.state.user_name + ": " + this.editText;
+        } else {
+          note = moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc().format("HH:mm:ss") + " - " + this.$store.state.user_name + ": " + this.editText + this.item.notes;
+        }
+
+        this.item.notes = note;
       }
 
-      this.item.notes = note;
-      this.item.attack_adash_link = this.editAdashLink;
-      var request = {
-        attack_notes: note,
-        attack_adash_link: this.editAdashLink
-      };
+      if (this.editAdashLink != null) {
+        adashLink = this.editAdashLink;
+        item.attack_adash_link = adashLink;
+      }
+
+      if (note == null) {
+        var _request = {
+          attack_adash_link: this.editAdashLink
+        };
+      } else if (adashLink == null) {
+        var _request2 = {
+          attack_notes: note
+        };
+      } else {
+        var _request3 = {
+          attack_notes: note,
+          attack_adash_link: this.editAdashLink
+        };
+      }
+
       this.$store.dispatch("updateCampaignSystem", this.item);
       axios({
         method: "put",

@@ -142,30 +142,49 @@ export default {
         },
 
         updatetext() {
-            this.editText = this.editText + "\n";
-            if (this.item.notes == null) {
-                var note =
-                    moment.utc().format("HH:mm:ss") +
-                    " - " +
-                    this.$store.state.user_name +
-                    ": " +
-                    this.editText;
-            } else {
-                var note =
-                    moment.utc().format("HH:mm:ss") +
-                    " - " +
-                    this.$store.state.user_name +
-                    ": " +
-                    this.editText +
-                    this.item.notes;
+            var note = null;
+            var adashLink = null;
+            if (this.editAdashLink != null) {
+                this.editText = this.editText + "\n";
+                if (this.item.notes == null) {
+                    note =
+                        moment.utc().format("HH:mm:ss") +
+                        " - " +
+                        this.$store.state.user_name +
+                        ": " +
+                        this.editText;
+                } else {
+                    note =
+                        moment.utc().format("HH:mm:ss") +
+                        " - " +
+                        this.$store.state.user_name +
+                        ": " +
+                        this.editText +
+                        this.item.notes;
+                }
+
+                this.item.notes = note;
+            }
+            if (this.editAdashLink != null) {
+                adashLink = this.editAdashLink;
+                item.attack_adash_link = adashLink;
             }
 
-            this.item.notes = note;
-            this.item.attack_adash_link = this.editAdashLink;
-            let request = {
-                attack_notes: note,
-                attack_adash_link: this.editAdashLink
-            };
+            if (note == null) {
+                let request = {
+                    attack_adash_link: this.editAdashLink
+                };
+            } else if (adashLink == null) {
+                let request = {
+                    attack_notes: note
+                };
+            } else {
+                let request = {
+                    attack_notes: note,
+                    attack_adash_link: this.editAdashLink
+                };
+            }
+
             this.$store.dispatch("updateCampaignSystem", this.item);
             axios({
                 method: "put",
