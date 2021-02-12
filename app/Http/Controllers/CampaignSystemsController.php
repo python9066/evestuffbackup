@@ -261,7 +261,7 @@ class CampaignSystemsController extends Controller
         CampaignSystem::where('id', $id)->update($request->all());
 
         $message = CampaignSystemRecords::where('id', $id)->first();
-        if ($message->underattack == 0) {
+        if ($message->under_attack == 0) {
             $type = 2;
         } else {
             $type = 1;
