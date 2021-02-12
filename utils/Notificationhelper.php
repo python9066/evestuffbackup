@@ -18,7 +18,8 @@ class Notifications
 {
     public static function test($data)
     {
-        dd($data[0]);
+
+        $var = $data[0];
         $current = now();
         $now = $current->modify('-10 minutes');
         $stationflag = 0;
@@ -41,215 +42,213 @@ class Notifications
         $stationarmornumber = StationNotificationArmor::max('id');
         $towernumber = Tower::max('id');
         // dd($data);
-        foreach ($data as $var) {
-            dd($var);
 
-            if ($var['type'] == 'AllAnchoringMsg') {
-                if ($var['notification_id'] > $towernumber) {
+        if ($var['type'] == 'AllAnchoringMsg') {
+            if ($var['notification_id'] > $towernumber) {
 
-                    $time = $var['timestamp'];
-                    $time = Helper::fixtime($time);
-                    $data = array();
-                    $text = $var['text'];
-                    $text = str_replace("solarSystemID", "system_id", $text);
-                    $text = str_replace("structureTypeID", "item_id", $text);
-                    $text = Yaml::parse($text);
-                    // dd($var, $text);
+                $time = $var['timestamp'];
+                $time = Helper::fixtime($time);
+                $data = array();
+                $text = $var['text'];
+                $text = str_replace("solarSystemID", "system_id", $text);
+                $text = str_replace("structureTypeID", "item_id", $text);
+                $text = Yaml::parse($text);
+                // dd($var, $text);
 
-                    $moon_id = array(
-                        'moon_id' => $text['moonID']
-                    );
+                $moon_id = array(
+                    'moon_id' => $text['moonID']
+                );
 
 
-                    $data = array(
-                        'id' => $var['notification_id'],
-                        'alliance_id' => $text['allianceID'],
-                        'item_id' => $text['typeID'],
-                        'timestamp' => $time,
-                        'tower_status_id' => 1,
-                        'user_id' => null,
+                $data = array(
+                    'id' => $var['notification_id'],
+                    'alliance_id' => $text['allianceID'],
+                    'item_id' => $text['typeID'],
+                    'timestamp' => $time,
+                    'tower_status_id' => 1,
+                    'user_id' => null,
 
-                    );
-                    // dd($var, $text, $moon_id, $data);
-                    $check = Tower::where('moon_id', $moon_id)->first();
-                    $count = Tower::where('moon_id', $moon_id)->get()->count();
-                    if ($count == 0) {
+                );
+                // dd($var, $text, $moon_id, $data);
+                $check = Tower::where('moon_id', $moon_id)->first();
+                $count = Tower::where('moon_id', $moon_id)->get()->count();
+                if ($count == 0) {
+                    Tower::updateOrCreate($moon_id, $data);
+                    $towerflag = 1;
+                } else {
+
+                    if ($var['notification_id'] > $check->id) {
+
                         Tower::updateOrCreate($moon_id, $data);
                         $towerflag = 1;
-                    } else {
-
-                        if ($var['notification_id'] > $check->id) {
-
-                            Tower::updateOrCreate($moon_id, $data);
-                            $towerflag = 1;
-                        }
                     }
                 }
-            } elseif ($var['type'] == 'StructureUnderAttack') {
-                if ($var['notification_id'] > $stationnotenumber) {
+            }
+        } elseif ($var['type'] == 'StructureUnderAttack') {
+            if ($var['notification_id'] > $stationnotenumber) {
 
-                    $time = $var['timestamp'];
-                    $time = Helper::fixtime($time);
-                    $data = array();
-                    $text = $var['text'];
-                    $text = str_replace("solarSystemID", "system_id", $text);
-                    $text = str_replace("structureTypeID", "item_id", $text);
-                    $text = Yaml::parse($text);
+                $time = $var['timestamp'];
+                $time = Helper::fixtime($time);
+                $data = array();
+                $text = $var['text'];
+                $text = str_replace("solarSystemID", "system_id", $text);
+                $text = str_replace("structureTypeID", "item_id", $text);
+                $text = Yaml::parse($text);
 
-                    $station_id = array(
-                        'station_id' => $text['structureID'],
-                    );
+                $station_id = array(
+                    'station_id' => $text['structureID'],
+                );
 
 
-                    $stationcheck = Station::where('id', $text['structureID'])->get()->count();
-                    if ($stationcheck == 0) {
-                        Helper::authcheck();
-                        $stationdata = Helper::authpull('station', $text['structureID']);
+                $stationcheck = Station::where('id', $text['structureID'])->get()->count();
+                if ($stationcheck == 0) {
+                    Helper::authcheck();
+                    $stationdata = Helper::authpull('station', $text['structureID']);
 
-                        Station::Create([
-                            'id' => $text['structureID'],
-                            'name' => $stationdata['name'],
-                            'system_id' => $stationdata['solar_system_id'],
-                            'item_id' => $stationdata['type_id'],
-                            'text' => null,
-                            'user_id' => null,
-                            'station_status_id' => 1,
-                            'timestamp' => $time,
-                        ]);
-                    }
-
-                    $data = array(
-                        'id' => $var['notification_id'],
+                    Station::Create([
+                        'id' => $text['structureID'],
+                        'name' => $stationdata['name'],
+                        'system_id' => $stationdata['solar_system_id'],
+                        'item_id' => $stationdata['type_id'],
+                        'text' => null,
+                        'user_id' => null,
+                        'station_status_id' => 1,
                         'timestamp' => $time,
-                        'status' => 0,
-                    );
-                    $check = StationNotification::where('station_id', $station_id)->first();
-                    $count = StationNotification::where('station_id', $station_id)->get()->count();
-                    if ($count == 0) {
+                    ]);
+                }
+
+                $data = array(
+                    'id' => $var['notification_id'],
+                    'timestamp' => $time,
+                    'status' => 0,
+                );
+                $check = StationNotification::where('station_id', $station_id)->first();
+                $count = StationNotification::where('station_id', $station_id)->get()->count();
+                if ($count == 0) {
+                    StationNotification::updateOrCreate($station_id, $data);
+                    $stationflag = 1;
+                } else {
+
+                    if ($var['notification_id'] > $check->id) {
+
                         StationNotification::updateOrCreate($station_id, $data);
                         $stationflag = 1;
-                    } else {
-
-                        if ($var['notification_id'] > $check->id) {
-
-                            StationNotification::updateOrCreate($station_id, $data);
-                            $stationflag = 1;
-                        }
                     }
                 }
-            } elseif ($var['type'] == 'StructureLostShields') {
+            }
+        } elseif ($var['type'] == 'StructureLostShields') {
 
-                if ($var['notification_id'] > $stationshieldnumber) {
+            if ($var['notification_id'] > $stationshieldnumber) {
 
-                    $time = $var['timestamp'];
-                    $time = Helper::fixtime($time);
-                    $data = array();
-                    $text = $var['text'];
-                    $text = str_replace("solarSystemID", "system_id", $text);
-                    $text = str_replace("structureTypeID", "item_id", $text);
-                    $text = Yaml::parse($text);
-                    // dd($var,$text);
+                $time = $var['timestamp'];
+                $time = Helper::fixtime($time);
+                $data = array();
+                $text = $var['text'];
+                $text = str_replace("solarSystemID", "system_id", $text);
+                $text = str_replace("structureTypeID", "item_id", $text);
+                $text = Yaml::parse($text);
+                // dd($var,$text);
 
 
-                    $station_id = array(
-                        'station_id' => $text['structureID'],
-                    );
+                $station_id = array(
+                    'station_id' => $text['structureID'],
+                );
 
-                    $stationcheck = Station::where('id', $text['structureID'])->get()->count();
-                    // echo $stationcheck;
-                    if ($stationcheck == 0) {
-                        Helper::authcheck();
-                        $stationdata = Helper::authpull('station', $text['structureID']);
+                $stationcheck = Station::where('id', $text['structureID'])->get()->count();
+                // echo $stationcheck;
+                if ($stationcheck == 0) {
+                    Helper::authcheck();
+                    $stationdata = Helper::authpull('station', $text['structureID']);
 
-                        Station::Create([
-                            'id' => $text['structureID'],
-                            'name' => $stationdata['name'],
-                            'system_id' => $stationdata['solar_system_id'],
-                            'item_id' => $stationdata['type_id'],
-                            'text' => null,
-                            'user_id' => null,
-                        ]);
-                    }
+                    Station::Create([
+                        'id' => $text['structureID'],
+                        'name' => $stationdata['name'],
+                        'system_id' => $stationdata['solar_system_id'],
+                        'item_id' => $stationdata['type_id'],
+                        'text' => null,
+                        'user_id' => null,
+                    ]);
+                }
 
-                    $data = array(
-                        'id' => $var['notification_id'],
-                        'timestamp' => $time,
-                        'status' => 0,
+                $data = array(
+                    'id' => $var['notification_id'],
+                    'timestamp' => $time,
+                    'status' => 0,
 
-                    );
+                );
 
-                    $check = StationNotificationShield::where('station_id', $station_id)->first();
-                    $count = StationNotificationShield::where('station_id', $station_id)->get()->count();
+                $check = StationNotificationShield::where('station_id', $station_id)->first();
+                $count = StationNotificationShield::where('station_id', $station_id)->get()->count();
 
-                    if ($count == 0) {
+                if ($count == 0) {
+                    StationNotificationShield::updateOrCreate($station_id, $data);
+                    $stationflag = 1;
+                } else {
+
+                    if ($var['notification_id'] > $check->id) {
+
                         StationNotificationShield::updateOrCreate($station_id, $data);
                         $stationflag = 1;
-                    } else {
-
-                        if ($var['notification_id'] > $check->id) {
-
-                            StationNotificationShield::updateOrCreate($station_id, $data);
-                            $stationflag = 1;
-                        }
                     }
                 }
-            } elseif ($var['type'] == 'StructureLostArmor') {
-                if ($var['notification_id'] > $stationarmornumber) {
+            }
+        } elseif ($var['type'] == 'StructureLostArmor') {
+            if ($var['notification_id'] > $stationarmornumber) {
 
-                    $time = $var['timestamp'];
-                    $time = Helper::fixtime($time);
-                    $data = array();
-                    $text = $var['text'];
-                    $text = str_replace("solarSystemID", "system_id", $text);
-                    $text = str_replace("structureTypeID", "item_id", $text);
-                    $text = Yaml::parse($text);
-                    // dd($var,$text);
+                $time = $var['timestamp'];
+                $time = Helper::fixtime($time);
+                $data = array();
+                $text = $var['text'];
+                $text = str_replace("solarSystemID", "system_id", $text);
+                $text = str_replace("structureTypeID", "item_id", $text);
+                $text = Yaml::parse($text);
+                // dd($var,$text);
 
 
-                    $station_id = array(
-                        'station_id' => $text['structureID'],
-                    );
+                $station_id = array(
+                    'station_id' => $text['structureID'],
+                );
 
-                    $stationcheck = Station::where('id', $text['structureID'])->get()->count();
-                    // echo $stationcheck;
-                    if ($stationcheck == 0) {
-                        Helper::authcheck();
-                        $stationdata = Helper::authpull('station', $text['structureID']);
+                $stationcheck = Station::where('id', $text['structureID'])->get()->count();
+                // echo $stationcheck;
+                if ($stationcheck == 0) {
+                    Helper::authcheck();
+                    $stationdata = Helper::authpull('station', $text['structureID']);
 
-                        Station::Create([
-                            'id' => $text['structureID'],
-                            'name' => $stationdata['name'],
-                            'system_id' => $stationdata['solar_system_id'],
-                            'item_id' => $stationdata['type_id'],
-                            'text' => null,
-                            'user_id' => null,
-                        ]);
-                    }
+                    Station::Create([
+                        'id' => $text['structureID'],
+                        'name' => $stationdata['name'],
+                        'system_id' => $stationdata['solar_system_id'],
+                        'item_id' => $stationdata['type_id'],
+                        'text' => null,
+                        'user_id' => null,
+                    ]);
+                }
 
-                    $data = array(
-                        'id' => $var['notification_id'],
-                        'timestamp' => $time,
-                        'status' => 0,
+                $data = array(
+                    'id' => $var['notification_id'],
+                    'timestamp' => $time,
+                    'status' => 0,
 
-                    );
+                );
 
-                    $check = StationNotificationArmor::where('station_id', $station_id)->first();
-                    $count = StationNotificationArmor::where('station_id', $station_id)->get()->count();
+                $check = StationNotificationArmor::where('station_id', $station_id)->first();
+                $count = StationNotificationArmor::where('station_id', $station_id)->get()->count();
 
-                    if ($count == 0) {
+                if ($count == 0) {
+                    StationNotificationArmor::updateOrCreate($station_id, $data);
+                    $stationflag = 1;
+                } else {
+
+                    if ($var['notification_id'] > $check->id) {
+
                         StationNotificationArmor::updateOrCreate($station_id, $data);
                         $stationflag = 1;
-                    } else {
-
-                        if ($var['notification_id'] > $check->id) {
-
-                            StationNotificationArmor::updateOrCreate($station_id, $data);
-                            $stationflag = 1;
-                        }
                     }
                 }
             }
         }
+
 
         $shield = StationNotificationShield::where('status', 0)->get();
         foreach ($shield as $shield) {
