@@ -37,14 +37,14 @@
                 </v-card-title>
                 <v-card-text>
                     {{ item.attack_adash_link }}
-                    <v-btn
+                    <v-chip
                         pill
                         color="teal"
                         @click="openAdash(item.attack_adash_link)"
                         v-if="showLinkButton()"
                     >
                         view
-                    </v-btn>
+                    </v-chip>
                     <v-textarea
                         height="300px"
                         readonly

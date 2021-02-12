@@ -18658,7 +18658,7 @@ var render = function() {
                   ),
                   _vm.showLinkButton()
                     ? _c(
-                        "v-btn",
+                        "v-chip",
                         {
                           attrs: { pill: "", color: "teal" },
                           on: {
