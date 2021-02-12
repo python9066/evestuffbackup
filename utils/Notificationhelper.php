@@ -85,20 +85,18 @@ class Notifications
                 }
             }
         } elseif ($var['type'] == 'StructureUnderAttack') {
+            $time = $var['timestamp'];
+            $time = Helper::fixtime($time);
+            $data = array();
+            $text = $var['text'];
+            $text = str_replace("solarSystemID", "system_id", $text);
+            $text = str_replace("structureTypeID", "item_id", $text);
+            $text = Yaml::parse($text);
+            $station_id = array(
+                'station_id' => $text['structureID'],
+            );
+            $stationnotenumber = StationNotification::where('station_id', $station_id)->max('id');
             if ($var['notification_id'] > $stationnotenumber) {
-
-                $time = $var['timestamp'];
-                $time = Helper::fixtime($time);
-                $data = array();
-                $text = $var['text'];
-                $text = str_replace("solarSystemID", "system_id", $text);
-                $text = str_replace("structureTypeID", "item_id", $text);
-                $text = Yaml::parse($text);
-
-                $station_id = array(
-                    'station_id' => $text['structureID'],
-                );
-
 
                 $stationcheck = Station::where('id', $text['structureID'])->get()->count();
                 if ($stationcheck == 0) {
