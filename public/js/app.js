@@ -18655,15 +18655,15 @@ var render = function() {
               _c(
                 "v-card-text",
                 [
-                  _vm._v(
-                    "\n                " +
-                      _vm._s(_vm.item.attack_adash_link) +
-                      "\n                "
-                  ),
                   _c(
                     "div",
                     { staticClass: "pb-2" },
                     [
+                      _vm._v(
+                        "\n                    " +
+                          _vm._s(_vm.item.attack_adash_link) +
+                          "\n                    "
+                      ),
                       _vm.showLinkButton()
                         ? _c(
                             "v-chip",

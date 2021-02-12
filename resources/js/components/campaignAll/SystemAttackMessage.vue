@@ -36,8 +36,8 @@
                     {{ item.text }}
                 </v-card-title>
                 <v-card-text>
-                    {{ item.attack_adash_link }}
                     <div class="pb-2">
+                        {{ item.attack_adash_link }}
                         <v-chip
                             pill
                             small
