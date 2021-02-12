@@ -39,6 +39,8 @@
                     {{ item.attack_adash_link }}
                     <v-chip
                         pill
+                        small
+                        outlined
                         color="teal"
                         @click="openAdash(item.attack_adash_link)"
                         v-if="showLinkButton()"
