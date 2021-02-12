@@ -2386,10 +2386,17 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           switch (_context.prev = _context.next) {
             case 0:
               Echo["private"]("nodemessage." + _this.item.id).listen("NodeAttackMessageUpdate", function (e) {
-                _this.showAttackNumber = true;
-                _this.messageAttackCount = _this.messageAttackCount + 1;
+                if (e.flag.type == 1) {
+                  _this.showAttackNumber = true;
+                  _this.messageAttackCount = _this.messageAttackCount + 1;
 
-                _this.$store.dispatch("updateCampaignSystem", e.flag.message);
+                  _this.$store.dispatch("updateCampaignSystem", e.flag.message);
+                } else {
+                  _this.showAttackNumber = false;
+                  _this.messageAttackCount = 0;
+
+                  _this.$store.dispatch("updateCampaignSystem", e.flag.message);
+                }
               });
 
             case 1:

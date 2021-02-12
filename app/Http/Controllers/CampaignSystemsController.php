@@ -261,7 +261,13 @@ class CampaignSystemsController extends Controller
         CampaignSystem::where('id', $id)->update($request->all());
 
         $message = CampaignSystemRecords::where('id', $id)->first();
+        if ($message->underattack == 0) {
+            $type = 2;
+        } else {
+            $type = 1;
+        }
         $flag = collect([
+            'type' => $type,
             'message' => $message,
             'id' => $id
         ]);

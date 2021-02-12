@@ -119,9 +119,21 @@ export default {
         Echo.private("nodemessage." + this.item.id).listen(
             "NodeAttackMessageUpdate",
             e => {
-                this.showAttackNumber = true;
-                this.messageAttackCount = this.messageAttackCount + 1;
-                this.$store.dispatch("updateCampaignSystem", e.flag.message);
+                if (e.flag.type == 1) {
+                    this.showAttackNumber = true;
+                    this.messageAttackCount = this.messageAttackCount + 1;
+                    this.$store.dispatch(
+                        "updateCampaignSystem",
+                        e.flag.message
+                    );
+                } else {
+                    this.showAttackNumber = false;
+                    this.messageAttackCount = 0;
+                    this.$store.dispatch(
+                        "updateCampaignSystem",
+                        e.flag.message
+                    );
+                }
             }
         );
     },
