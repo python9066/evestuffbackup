@@ -1313,7 +1313,7 @@ export default {
 
 <style>
 .style-4 {
-    background-color: rgba(248, 207, 145, 0.199);
+    background-color: rgba(255, 153, 0, 0.199);
 }
 .style-3 {
     background-color: rgb(255, 172, 77);

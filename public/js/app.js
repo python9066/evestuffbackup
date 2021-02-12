@@ -16205,7 +16205,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.style-4 {\n    background-color: rgba(248, 207, 145, 0.199);\n}\n.style-3 {\n    background-color: rgb(255, 172, 77);\n}\n.style-2 {\n    background-color: rgb(30, 30, 30, 1);\n}\n.style-1 {\n    background-color: rgb(184, 22, 35);\n}\n", ""]);
+exports.push([module.i, "\n.style-4 {\n    background-color: rgba(255, 153, 0, 0.199);\n}\n.style-3 {\n    background-color: rgb(255, 172, 77);\n}\n.style-2 {\n    background-color: rgb(30, 30, 30, 1);\n}\n.style-1 {\n    background-color: rgb(184, 22, 35);\n}\n", ""]);
 
 // exports
 
