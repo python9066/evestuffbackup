@@ -10,8 +10,8 @@
                 <v-badge
                     color="green"
                     overlap
-                    :content="messageCount"
-                    :value="showNumber"
+                    :content="messageAttackCount"
+                    :value="showAttackNumber"
                 >
                     <v-icon
                         color="red"
@@ -107,8 +107,8 @@ export default {
     },
     data() {
         return {
-            messageCount: 0,
-            showNumber: false,
+            messageAttackCount: 0,
+            showAttackNumber: false,
             showNodeNotes: false,
             editText: null,
             editAdashLink: null
@@ -117,10 +117,10 @@ export default {
 
     async created() {
         Echo.private("nodemessage." + this.item.id).listen(
-            "NodeMessageUpdate",
+            "NodeAttackMessageUpdate",
             e => {
-                this.showNumber = true;
-                this.messageCount = this.messageCount + 1;
+                this.showAttackNumber = true;
+                this.messageAttackCount = this.messageAttackCount + 1;
                 this.$store.dispatch("updateCampaignSystem", e.flag.message);
             }
         );
@@ -138,7 +138,13 @@ export default {
         },
 
         open() {
-            (this.showNumber = false), (this.messageCount = 0);
+            (this.showAttackNumber = false), (this.messageAttackCount = 0);
+        },
+
+        clear() {
+            (this.item.attack_notes = null),
+                (this.item.attack_adash_link = null),
+                (this.item.under_attack = "0");
         },
 
         updatetext() {

@@ -2370,8 +2370,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   data: function data() {
     return {
-      messageCount: 0,
-      showNumber: false,
+      messageAttackCount: 0,
+      showAttackNumber: false,
       showNodeNotes: false,
       editText: null,
       editAdashLink: null
@@ -2385,9 +2385,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              Echo["private"]("nodemessage." + _this.item.id).listen("NodeMessageUpdate", function (e) {
-                _this.showNumber = true;
-                _this.messageCount = _this.messageCount + 1;
+              Echo["private"]("nodemessage." + _this.item.id).listen("NodeAttackMessageUpdate", function (e) {
+                _this.showAttackNumber = true;
+                _this.messageAttackCount = _this.messageAttackCount + 1;
 
                 _this.$store.dispatch("updateCampaignSystem", e.flag.message);
               });
@@ -2410,7 +2410,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       console.log("close");
     },
     open: function open() {
-      this.showNumber = false, this.messageCount = 0;
+      this.showAttackNumber = false, this.messageAttackCount = 0;
+    },
+    clear: function clear() {
+      this.item.attack_notes = null, this.item.attack_adash_link = null, this.item.under_attack = "0";
     },
     updatetext: function updatetext() {
       var request = null;
@@ -18528,8 +18531,8 @@ var render = function() {
                       attrs: {
                         color: "green",
                         overlap: "",
-                        content: _vm.messageCount,
-                        value: _vm.showNumber
+                        content: _vm.messageAttackCount,
+                        value: _vm.showAttackNumber
                       }
                     },
                     [
