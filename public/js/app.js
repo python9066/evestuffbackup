@@ -979,6 +979,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -17907,6 +17908,7 @@ var render = function() {
                             [
                               _vm.$can("super")
                                 ? _c("SystemAttackMessage", {
+                                    staticClass: " pl-5",
                                     attrs: { item: item }
                                   })
                                 : _vm._e(),
