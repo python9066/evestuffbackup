@@ -16,5 +16,6 @@ class CampaignSystemRecords extends Model
         'user_id' => 'integer',
         'site_id' => 'integer',
         'status_id' => 'integer',
+        'user_attack' => 'integer'
     ];
 }
