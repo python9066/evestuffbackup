@@ -2422,13 +2422,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }
 
       this.item.notes = note;
+      this.item.attack_adash_link = this.editAdashLink;
       var request = {
-        notes: note
+        attack_notes: note,
+        attack_adash_link: this.editAdashLink
       };
       this.$store.dispatch("updateCampaignSystem", this.item);
       axios({
         method: "put",
-        url: "/api/campaignsystemsnodemessage/" + this.item.id,
+        url: "/api/campaignsystemsattackmessage/" + this.item.id,
         data: request,
         headers: {
           Authorization: "Bearer " + this.$store.state.token,

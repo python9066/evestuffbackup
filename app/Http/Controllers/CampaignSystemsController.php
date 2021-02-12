@@ -253,6 +253,22 @@ class CampaignSystemsController extends Controller
         broadcast(new NodeMessageUpdate($flag))->toOthers();
     }
 
+    public function updateAttackMessage(Request $request, $id)
+    {
+        // dd($request->notes);
+
+        CampaignSystem::where('id', $id)->update($request->all());
+
+        $message = CampaignSystemRecords::where('id', $id)->first();
+        $flag = collect([
+            'message' => $message,
+            'id' => $id
+        ]);
+
+        // dd($request, $id, $flag);
+        broadcast(new NodeMessageUpdate($flag))->toOthers();
+    }
+
     public function removechar(Request $request, $campid)
     {
         $node = CampaignSystem::where('campaign_id', $request->campaign_id)
