@@ -142,7 +142,7 @@ export default {
         },
 
         updatetext() {
-            var reqest = null;
+            var request = null;
             var note = null;
             var adashLink = null;
             if (this.editAdashLink != null) {

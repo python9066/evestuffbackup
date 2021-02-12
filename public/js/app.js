@@ -2413,7 +2413,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       this.showNumber = false, this.messageCount = 0;
     },
     updatetext: function updatetext() {
-      var reqest = null;
+      var request = null;
       var note = null;
       var adashLink = null;
 
