@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class StationNotification extends Model
 {
     use HasFactory;
-    protected $guarded =[];
+    protected $guarded = [];
 
 
     public function station()
@@ -21,4 +21,7 @@ class StationNotification extends Model
         return $this->belongsTo(User::class);
     }
 
+    protected $casts = [
+        'id' => 'integer',
+    ];
 }
