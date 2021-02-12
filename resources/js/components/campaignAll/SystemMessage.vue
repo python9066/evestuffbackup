@@ -36,7 +36,6 @@
                     {{ item.text }}
                 </v-card-title>
                 <v-card-text>
-                    {{ item.attack_adash_link }}
                     <v-textarea
                         height="400px"
                         readonly
@@ -47,13 +46,6 @@
                     ></v-textarea>
                     <v-divider></v-divider>
                     <div>
-                        <v-text-field
-                            v-model="editAdash"
-                            auto-grow
-                            filled
-                            autofocus
-                            label="Enter aDash Link here"
-                        ></v-text-field>
                         <v-text-field
                             v-model="editText"
                             auto-grow
@@ -102,8 +94,7 @@ export default {
             messageCount: 0,
             showNumber: false,
             showNodeNotes: false,
-            editText: null,
-            editAdash: null
+            editText: null
         };
     },
 

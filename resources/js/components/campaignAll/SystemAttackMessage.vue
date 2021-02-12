@@ -36,6 +36,7 @@
                     {{ item.text }}
                 </v-card-title>
                 <v-card-text>
+                    {{ item.attack_adash_link }}
                     <v-textarea
                         height="400px"
                         readonly
