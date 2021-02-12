@@ -41,6 +41,7 @@ class Notifications
         $towernumber = Tower::max('id');
         // dd($data);
         foreach ($data as $var) {
+            dd($var);
 
             if ($var['type'] == 'AllAnchoringMsg') {
                 if ($var['notification_id'] > $towernumber) {
