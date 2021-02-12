@@ -112,6 +112,13 @@ class Notifications
                         'station_status_id' => 1,
                         'timestamp' => $time,
                     ]);
+                } else {
+                    Station::where('id', $text['structureID'])->update([
+                        'text' => null,
+                        'user_id' => null,
+                        'station_status_id' => 1,
+                        'timestamp' => $time
+                    ]);
                 }
 
                 $data = array(
