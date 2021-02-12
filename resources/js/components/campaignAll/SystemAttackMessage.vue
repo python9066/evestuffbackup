@@ -146,7 +146,7 @@ export default {
             var adashLink = null;
             if (this.editAdashLink != null) {
                 this.editText = this.editText + "\n";
-                if (this.item.notes == null) {
+                if (this.item.attack_notes == null) {
                     note =
                         moment.utc().format("HH:mm:ss") +
                         " - " +
@@ -160,10 +160,10 @@ export default {
                         this.$store.state.user_name +
                         ": " +
                         this.editText +
-                        this.item.notes;
+                        this.item.attack_notes;
                 }
 
-                this.item.notes = note;
+                this.item.attack_notes = note;
             }
             if (this.editAdashLink != null) {
                 adashLink = this.editAdashLink;

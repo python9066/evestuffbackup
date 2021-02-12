@@ -2419,13 +2419,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       if (this.editAdashLink != null) {
         this.editText = this.editText + "\n";
 
-        if (this.item.notes == null) {
+        if (this.item.attack_notes == null) {
           note = moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc().format("HH:mm:ss") + " - " + this.$store.state.user_name + ": " + this.editText;
         } else {
-          note = moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc().format("HH:mm:ss") + " - " + this.$store.state.user_name + ": " + this.editText + this.item.notes;
+          note = moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc().format("HH:mm:ss") + " - " + this.$store.state.user_name + ": " + this.editText + this.item.attack_notes;
         }
 
-        this.item.notes = note;
+        this.item.attack_notes = note;
       }
 
       if (this.editAdashLink != null) {
