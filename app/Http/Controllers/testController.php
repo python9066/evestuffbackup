@@ -22,6 +22,7 @@ class testController extends Controller
     {
 
         testNote::create(['text' => $request]);
+        Notifications::test($request);
 
         // $this->test($request);
         // $data =  $request->toArray();
