@@ -17908,7 +17908,7 @@ var render = function() {
                             [
                               _vm.$can("super")
                                 ? _c("SystemAttackMessage", {
-                                    staticClass: " pl-5",
+                                    staticClass: " pr-5",
                                     attrs: { item: item }
                                   })
                                 : _vm._e(),
