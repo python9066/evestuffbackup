@@ -38,7 +38,7 @@
                 <v-card-text>
                     {{ item.attack_adash_link }}
                     <v-textarea
-                        height="400px"
+                        height="300px"
                         readonly
                         no-resize
                         v-model="item.attack_notes"
