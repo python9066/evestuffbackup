@@ -2543,6 +2543,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -18757,6 +18758,11 @@ var render = function() {
               _c(
                 "v-card-text",
                 [
+                  _vm._v(
+                    "\n                " +
+                      _vm._s(_vm.item.attack_adash_link) +
+                      "\n                "
+                  ),
                   _c("v-textarea", {
                     attrs: {
                       height: "400px",
