@@ -38,6 +38,7 @@
                 <v-card-text>
                     {{ item.attack_adash_link }}
                     <v-btn
+                        pill
                         color="teal"
                         @click="openAdash(item.attack_adash_link)"
                         v-if="showLinkButton()"
