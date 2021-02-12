@@ -246,7 +246,7 @@ export default {
         },
 
         submitActive() {
-            if (this.editText != null) {
+            if (this.editText != null || this.editAdashLink != null) {
                 return false;
             } else {
                 return true;

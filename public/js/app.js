@@ -2501,7 +2501,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       return "fas fa-crosshairs";
     },
     submitActive: function submitActive() {
-      if (this.editText != null) {
+      if (this.editText != null || this.editAdashLink != null) {
         return false;
       } else {
         return true;
