@@ -410,7 +410,7 @@
                     <template v-slot:item.actions="{ item }">
                         <div class=" d-inline-flex">
                             <SystemAttackMessage
-                                class=" pr-5"
+                                class=" pr-3"
                                 :item="item"
                                 v-if="$can('super')"
                             ></SystemAttackMessage>

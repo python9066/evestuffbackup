@@ -14,7 +14,7 @@
                     :value="showNumber"
                 >
                     <v-icon
-                        color="blue"
+                        color="red"
                         v-bind="attrs"
                         v-on="on"
                         @click="open()"

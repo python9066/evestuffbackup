@@ -17908,7 +17908,7 @@ var render = function() {
                             [
                               _vm.$can("super")
                                 ? _c("SystemAttackMessage", {
-                                    staticClass: " pr-5",
+                                    staticClass: " pr-3",
                                     attrs: { item: item }
                                   })
                                 : _vm._e(),
@@ -18486,7 +18486,7 @@ var render = function() {
                         _vm._g(
                           _vm._b(
                             {
-                              attrs: { color: "blue" },
+                              attrs: { color: "red" },
                               on: {
                                 click: function($event) {
                                   return _vm.open()
