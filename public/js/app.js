@@ -2352,6 +2352,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2435,6 +2443,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
     submitActive: function submitActive() {
       if (this.editText != null) {
+        return false;
+      } else {
+        return true;
+      }
+    },
+    clearActive: function clearActive() {
+      if (this.item.attack_notes != null || this.item.attack_adash_link != null) {
         return false;
       } else {
         return true;
@@ -18590,7 +18605,7 @@ var render = function() {
                           "auto-grow": "",
                           filled: "",
                           autofocus: "",
-                          label: "Enter aDash link here"
+                          label: "Enter/edit aDash link here"
                         },
                         model: {
                           value: _vm.editAdashLink,
@@ -18653,6 +18668,20 @@ var render = function() {
                       }
                     },
                     [_vm._v("\n                    Close\n                ")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-btn",
+                    {
+                      staticClass: "white--text",
+                      attrs: { color: "green", disabled: _vm.clearActive },
+                      on: {
+                        click: function($event) {
+                          return _vm.clear()
+                        }
+                      }
+                    },
+                    [_vm._v("\n                    Clear\n                ")]
                   )
                 ],
                 1

@@ -52,7 +52,7 @@
                             auto-grow
                             filled
                             autofocus
-                            label="Enter aDash link here"
+                            label="Enter/edit aDash link here"
                         ></v-text-field>
                         <v-text-field
                             v-model="editText"
@@ -76,6 +76,14 @@
 
                     <v-btn class="white--text" color="teal" @click="close()">
                         Close
+                    </v-btn>
+                    <v-btn
+                        class="white--text"
+                        color="green"
+                        @click="clear()"
+                        :disabled="clearActive"
+                    >
+                        Clear
                     </v-btn></v-card-actions
                 >
             </v-card>
@@ -178,6 +186,17 @@ export default {
 
         submitActive() {
             if (this.editText != null) {
+                return false;
+            } else {
+                return true;
+            }
+        },
+
+        clearActive() {
+            if (
+                this.item.attack_notes != null ||
+                this.item.attack_adash_link != null
+            ) {
                 return false;
             } else {
                 return true;
