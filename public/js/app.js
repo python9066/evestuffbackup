@@ -1403,6 +1403,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         return "style-1";
       } else if (item.status_id == 8) {
         return "style-2";
+      } else if (item.user_attack == 1) {
+        return "style-4";
       }
     },
     statusClick: function statusClick(item) {
@@ -16201,7 +16203,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.style-3 {\n    background-color: rgb(255, 172, 77);\n}\n.style-2 {\n    background-color: rgb(30, 30, 30, 1);\n}\n.style-1 {\n    background-color: rgb(184, 22, 35);\n}\n", ""]);
+exports.push([module.i, "\n.style-4 {\n    background-color: rgb(202, 29, 202);\n}\n.style-3 {\n    background-color: rgb(255, 172, 77);\n}\n.style-2 {\n    background-color: rgb(30, 30, 30, 1);\n}\n.style-1 {\n    background-color: rgb(184, 22, 35);\n}\n", ""]);
 
 // exports
 
@@ -18681,7 +18683,7 @@ var render = function() {
                         }
                       }
                     },
-                    [_vm._v("\n                    Clear\n                ")]
+                    [_vm._v("\n                    Safe\n                ")]
                   )
                 ],
                 1

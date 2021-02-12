@@ -826,6 +826,8 @@ export default {
                 return "style-1";
             } else if (item.status_id == 8) {
                 return "style-2";
+            } else if (item.user_attack == 1) {
+                return "style-4";
             }
         },
 
@@ -1310,6 +1312,9 @@ export default {
 </script>
 
 <style>
+.style-4 {
+    background-color: rgb(202, 29, 202);
+}
 .style-3 {
     background-color: rgb(255, 172, 77);
 }

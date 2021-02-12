@@ -83,7 +83,7 @@
                         @click="clear()"
                         :disabled="clearActive"
                     >
-                        Clear
+                        Safe
                     </v-btn></v-card-actions
                 >
             </v-card>
