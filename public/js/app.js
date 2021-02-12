@@ -2421,7 +2421,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   computed: {
     icon: function icon() {
-      return "far fa-crosshairs";
+      return "fas fa-crosshairs";
     },
     submitActive: function submitActive() {
       if (this.editText != null) {

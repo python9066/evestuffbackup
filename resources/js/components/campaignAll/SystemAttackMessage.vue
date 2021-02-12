@@ -164,7 +164,7 @@ export default {
 
     computed: {
         icon() {
-            return "far fa-crosshairs";
+            return "fas fa-crosshairs";
         },
 
         submitActive() {
