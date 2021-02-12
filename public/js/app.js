@@ -979,7 +979,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2384,7 +2383,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     return {
       messageAttackCount: 0,
       showAttackNumber: false,
-      showNodeNotes: false,
+      showAttackkNodeNotes: false,
       editText: null,
       editAdashLink: null
     };
@@ -2425,7 +2424,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
     close: function close() {
       this.editText = null;
-      this.showNodeNotes = false;
+      this.showAttackNodeNotes = false;
       console.log("close");
     },
     openAdash: function openAdash(url) {
@@ -2442,7 +2441,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       this.editText = null;
       this.editAdashLink = null;
       this.showAttackNumber = 0;
-      this.showNodeNotes = false;
+      this.showAttackNodeNotes = false;
       this.$store.dispatch("updateCampaignSystem", this.item);
       var request = {
         attack_notes: null,
@@ -5807,6 +5806,10 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
+//
+//
+//
+//
 //
 //
 //
@@ -18012,12 +18015,10 @@ var render = function() {
                             "div",
                             { staticClass: " d-inline-flex" },
                             [
-                              _vm.$can("super")
-                                ? _c("SystemAttackMessage", {
-                                    staticClass: " pr-3",
-                                    attrs: { item: item }
-                                  })
-                                : _vm._e(),
+                              _c("SystemAttackMessage", {
+                                staticClass: " pr-3",
+                                attrs: { item: item }
+                              }),
                               _vm._v(" "),
                               _c("SystemMessage", { attrs: { item: item } }),
                               _vm._v(" "),
@@ -18621,11 +18622,11 @@ var render = function() {
             }
           ]),
           model: {
-            value: _vm.showNodeNotes,
+            value: _vm.showAttackNodeNotes,
             callback: function($$v) {
-              _vm.showNodeNotes = $$v
+              _vm.showAttackNodeNotes = $$v
             },
-            expression: "showNodeNotes"
+            expression: "showAttackNodeNotes"
           }
         },
         [
@@ -23192,6 +23193,11 @@ var render = function() {
                                   "div",
                                   { staticClass: " d-inline-flex" },
                                   [
+                                    _c("SystemAttackMessage", {
+                                      staticClass: " pr-3",
+                                      attrs: { item: item }
+                                    }),
+                                    _vm._v(" "),
                                     _c("SystemMessage", {
                                       attrs: { item: item }
                                     }),
@@ -23246,7 +23252,7 @@ var render = function() {
                         ],
                         null,
                         false,
-                        174309462
+                        1535736181
                       )
                     },
                     [

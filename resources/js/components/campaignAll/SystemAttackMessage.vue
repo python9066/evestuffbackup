@@ -3,7 +3,7 @@
         <v-dialog
             max-width="700px"
             z-index="0"
-            v-model="showNodeNotes"
+            v-model="showAttackNodeNotes"
             @click:outside="close()"
         >
             <template v-slot:activator="{ on, attrs }">
@@ -100,12 +100,12 @@
                 >
             </v-card>
 
-            <!-- <ShowNodeNotes
+            <!-- <ShowAttackNodeNotes
                 :nodeNoteItem="nodeNoteItem"
                 v-if="$can('super')"
-                @closeMessage="showNodeNotes = false"
+                @closeMessage="showAttackNodeNotes = false"
             >
-            </ShowNodeNotes> -->
+            </ShowAttackNodeNotes> -->
         </v-dialog>
     </div>
 </template>
@@ -121,7 +121,7 @@ export default {
         return {
             messageAttackCount: 0,
             showAttackNumber: false,
-            showNodeNotes: false,
+            showAttackkNodeNotes: false,
             editText: null,
             editAdashLink: null
         };
@@ -157,7 +157,7 @@ export default {
 
         close() {
             this.editText = null;
-            this.showNodeNotes = false;
+            this.showAttackNodeNotes = false;
             console.log("close");
         },
 
@@ -177,7 +177,7 @@ export default {
             this.editText = null;
             this.editAdashLink = null;
             this.showAttackNumber = 0;
-            this.showNodeNotes = false;
+            this.showAttackNodeNotes = false;
             this.$store.dispatch("updateCampaignSystem", this.item);
             let request = {
                 attack_notes: null,

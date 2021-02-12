@@ -447,6 +447,10 @@
                     </template>
                     <template v-slot:item.actions="{ item }">
                         <div class=" d-inline-flex">
+                            <SystemAttackMessage
+                                class=" pr-3"
+                                :item="item"
+                            ></SystemAttackMessage>
                             <SystemMessage :item="item"> </SystemMessage>
                             <v-icon
                                 v-if="

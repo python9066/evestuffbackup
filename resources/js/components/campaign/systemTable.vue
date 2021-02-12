@@ -412,7 +412,6 @@
                             <SystemAttackMessage
                                 class=" pr-3"
                                 :item="item"
-                                v-if="$can('super')"
                             ></SystemAttackMessage>
                             <SystemMessage :item="item"> </SystemMessage>
                             <v-icon
