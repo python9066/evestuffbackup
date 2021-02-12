@@ -2369,6 +2369,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -18659,7 +18660,10 @@ var render = function() {
                     ? _c(
                         "v-btn",
                         {
-                          attrs: { color: "teal" },
+                          attrs: {
+                            color: "teal",
+                            href: _vm.item.attack_adash_link
+                          },
                           on: {
                             click: function($event) {
                               return _vm.openAdash()

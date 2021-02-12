@@ -39,6 +39,7 @@
                     {{ item.attack_adash_link }}
                     <v-btn
                         color="teal"
+                        :href="item.attack_adash_link"
                         @click="openAdash()"
                         v-if="showLinkButton()"
                     >
