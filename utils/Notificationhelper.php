@@ -96,9 +96,8 @@ class Notifications
                 'station_id' => $text['structureID'],
             );
             $stationnotenumber = StationNotification::where('station_id', $station_id)->max('id');
-            dd($stationnotenumber, $var['notification_id']);
             if ($var['notification_id'] > $stationnotenumber) {
-
+                dd('bigger');
                 $stationcheck = Station::where('id', $text['structureID'])->get()->count();
                 if ($stationcheck == 0) {
                     Helper::authcheck();
