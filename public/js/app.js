@@ -2417,7 +2417,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var note = null;
       var adashLink = null;
 
-      if (this.editAdashLink != null) {
+      if (this.editText != null) {
         this.editText = this.editText + "\n";
 
         if (this.item.attack_notes == null) {

@@ -145,7 +145,7 @@ export default {
             var request = null;
             var note = null;
             var adashLink = null;
-            if (this.editAdashLink != null) {
+            if (this.editText != null) {
                 this.editText = this.editText + "\n";
                 if (this.item.attack_notes == null) {
                     note =
