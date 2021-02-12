@@ -2372,6 +2372,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -18662,6 +18663,7 @@ var render = function() {
                     ? _c(
                         "v-chip",
                         {
+                          staticClass: " pb-2",
                           attrs: {
                             pill: "",
                             small: "",

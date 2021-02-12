@@ -38,6 +38,7 @@
                 <v-card-text>
                     {{ item.attack_adash_link }}
                     <v-chip
+                        class=" pb-2"
                         pill
                         small
                         outlined
