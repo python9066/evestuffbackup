@@ -119,8 +119,7 @@ class Notifications
 
                 $data = array(
                     'id' => $var['notification_id'],
-                    'timestamp' => $time,
-                    'status' => 0,
+                    'timestamp' => $time
                 );
                 $check = StationNotification::where('station_id', $station_id)->first();
                 $count = StationNotification::where('station_id', $station_id)->get()->count();
