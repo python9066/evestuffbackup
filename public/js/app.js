@@ -2413,6 +2413,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       this.showNumber = false, this.messageCount = 0;
     },
     updatetext: function updatetext() {
+      var reqest = null;
       var note = null;
       var adashLink = null;
 
@@ -2434,15 +2435,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }
 
       if (note == null) {
-        var _request = {
+        request = {
           attack_adash_link: this.editAdashLink
         };
       } else if (adashLink == null) {
-        var _request2 = {
+        request = {
           attack_notes: note
         };
       } else {
-        var _request3 = {
+        request = {
           attack_notes: note,
           attack_adash_link: this.editAdashLink
         };

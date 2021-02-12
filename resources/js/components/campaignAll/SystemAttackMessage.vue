@@ -142,6 +142,7 @@ export default {
         },
 
         updatetext() {
+            var reqest = null;
             var note = null;
             var adashLink = null;
             if (this.editAdashLink != null) {
@@ -171,15 +172,15 @@ export default {
             }
 
             if (note == null) {
-                let request = {
+                request = {
                     attack_adash_link: this.editAdashLink
                 };
             } else if (adashLink == null) {
-                let request = {
+                request = {
                     attack_notes: note
                 };
             } else {
-                let request = {
+                request = {
                     attack_notes: note,
                     attack_adash_link: this.editAdashLink
                 };
