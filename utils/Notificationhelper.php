@@ -18,6 +18,7 @@ class Notifications
 {
     public static function test($data)
     {
+        dd($data);
         $current = now();
         $now = $current->modify('-10 minutes');
         $stationflag = 0;
