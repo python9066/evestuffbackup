@@ -154,9 +154,28 @@ export default {
         },
 
         clear() {
-            (this.item.attack_notes = null),
-                (this.item.attack_adash_link = null),
-                (this.item.under_attack = "0");
+            this.item.attack_notes = null;
+            this.item.attack_adash_link = null;
+            this.item.under_attack = "0";
+            this.editText = null;
+            this.editAdashLink = null;
+            this.showAttackNumber = 0;
+            this.showNodeNotes = false;
+            this.$store.dispatch("updateCampaignSystem", this.item);
+            let request = {
+                attack_notes: null,
+                attack_adash_link: null
+            };
+            axios({
+                method: "put",
+                url: "/api/campaignsystemsattackmessage/" + this.item.id,
+                data: request,
+                headers: {
+                    Authorization: "Bearer " + this.$store.state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                }
+            });
         },
 
         updatetext() {
