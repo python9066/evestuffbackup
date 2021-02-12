@@ -2544,6 +2544,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2555,7 +2562,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       messageCount: 0,
       showNumber: false,
       showNodeNotes: false,
-      editText: null
+      editText: null,
+      editAdash: null
     };
   },
   created: function created() {
@@ -18785,6 +18793,22 @@ var render = function() {
                   _c(
                     "div",
                     [
+                      _c("v-text-field", {
+                        attrs: {
+                          "auto-grow": "",
+                          filled: "",
+                          autofocus: "",
+                          label: "Enter aDash Link here"
+                        },
+                        model: {
+                          value: _vm.editAdash,
+                          callback: function($$v) {
+                            _vm.editAdash = $$v
+                          },
+                          expression: "editAdash"
+                        }
+                      }),
+                      _vm._v(" "),
                       _c("v-text-field", {
                         attrs: {
                           "auto-grow": "",
