@@ -51,7 +51,7 @@
                             auto-grow
                             filled
                             autofocus
-                            label="Enter New Nodes Here"
+                            label="Enter New Notes Here"
                         ></v-text-field>
                     </div>
                 </v-card-text>

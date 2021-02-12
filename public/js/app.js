@@ -2345,6 +2345,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2356,7 +2363,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       messageCount: 0,
       showNumber: false,
       showNodeNotes: false,
-      editText: null
+      editText: null,
+      editAdashLink: null
     };
   },
   created: function created() {
@@ -18582,7 +18590,23 @@ var render = function() {
                           "auto-grow": "",
                           filled: "",
                           autofocus: "",
-                          label: "Enter New Nodes Here"
+                          label: "Enter aDash link here"
+                        },
+                        model: {
+                          value: _vm.editAdashLink,
+                          callback: function($$v) {
+                            _vm.editAdashLink = $$v
+                          },
+                          expression: "editAdashLink"
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("v-text-field", {
+                        attrs: {
+                          "auto-grow": "",
+                          filled: "",
+                          autofocus: "",
+                          label: "Enter New Notes Here"
                         },
                         model: {
                           value: _vm.editText,
@@ -18790,7 +18814,7 @@ var render = function() {
                           "auto-grow": "",
                           filled: "",
                           autofocus: "",
-                          label: "Enter New Nodes Here"
+                          label: "Enter New Notes Here"
                         },
                         model: {
                           value: _vm.editText,

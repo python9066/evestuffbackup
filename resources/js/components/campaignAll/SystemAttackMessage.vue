@@ -48,11 +48,18 @@
                     <v-divider></v-divider>
                     <div>
                         <v-text-field
+                            v-model="editAdashLink"
+                            auto-grow
+                            filled
+                            autofocus
+                            label="Enter aDash link here"
+                        ></v-text-field>
+                        <v-text-field
                             v-model="editText"
                             auto-grow
                             filled
                             autofocus
-                            label="Enter New Nodes Here"
+                            label="Enter New Notes Here"
                         ></v-text-field>
                     </div>
                 </v-card-text>
@@ -95,7 +102,8 @@ export default {
             messageCount: 0,
             showNumber: false,
             showNodeNotes: false,
-            editText: null
+            editText: null,
+            editAdashLink: null
         };
     },
 
