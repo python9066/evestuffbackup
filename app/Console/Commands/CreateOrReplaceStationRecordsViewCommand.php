@@ -47,7 +47,9 @@ class CreateOrReplaceStationRecordsViewCommand extends Command
        stations.item_id AS 'item_id',
        items.item_name AS 'item_name',
        stations.user_id AS 'user_id',
-       users.name AS 'user_name',
+       s.name AS 'user_name',
+       stations.gunner_id AS 'gunner_id',
+       g.name AS 'gunner_name',
        stations.station_status_id AS 'station_status_id',
        station_statuses.name AS 'station_status_name',
        stations.timestamp AS 'timestamp',
@@ -58,7 +60,8 @@ class CreateOrReplaceStationRecordsViewCommand extends Command
        JOIN regions ON regions.id = systems.region_id
        JOIN items ON items.id = stations.item_id
        JOIN station_statuses ON station_statuses.id = stations.station_status_id
-       LEFT JOIN users on users.id = stations.user_id
+       LEFT JOIN users AS s ON s.id = stations.user_id
+       LEFT JOIN users AS g ON g.id = stations.gunner_id
        WHERE stations.station_status_id != 10");
     }
 }
