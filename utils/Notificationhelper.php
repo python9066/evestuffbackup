@@ -56,7 +56,7 @@ class Notifications
             $station_id = array(
                 'station_id' => $text['structureID'],
             );
-        } else if ($var['type'] == 'StructureUnderAttack' && $text['item_id'] == 37534) {
+        } else if ($var['type'] == 'StructureUnderAttack' || $var['type'] == 'StructureLostShields' || $var['type'] == 'StructureLostArmor') {
             $stationnotenumber = StationNotification::where('station_id', $text['structureID'])->max('id');
             $stationarmornumber = StationNotificationArmor::where('station_id', $text['structureID'])->max('id');
             $maxNotificationID = max($stationnotenumber, $stationarmornumber);
