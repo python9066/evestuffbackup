@@ -16064,7 +16064,11 @@ function sleep(ms) {
         value: "system_name",
         width: "8%"
       }, {
-        text: "Station",
+        text: "Type",
+        value: "item_name",
+        width: "10%"
+      }, {
+        text: "Name",
         value: "station_name",
         width: "25%"
       }, {
@@ -31549,7 +31553,7 @@ var render = function() {
         "div",
         { staticClass: " d-flex align-items-center" },
         [
-          _c("v-card-title", [_vm._v("Stations")]),
+          _c("v-card-title", [_vm._v("Structures")]),
           _vm._v(" "),
           _vm.$can("access hacks")
             ? _c("div", [_vm._v("You can edit posts.")])

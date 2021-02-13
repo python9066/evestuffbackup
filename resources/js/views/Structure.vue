@@ -2,7 +2,7 @@
     <div class=" pr-16 pl-16">
         <messageStations></messageStations>
         <div class=" d-flex align-items-center">
-            <v-card-title>Stations</v-card-title>
+            <v-card-title>Structures</v-card-title>
             <div v-if="$can('access hacks')">You can edit posts.</div>
 
             <v-btn
@@ -295,7 +295,8 @@ export default {
                     width: "8%"
                 },
                 { text: "System", value: "system_name", width: "8%" },
-                { text: "Station", value: "station_name", width: "25%" },
+                { text: "Type", value: "item_name", width: "10%" },
+                { text: "Name", value: "station_name", width: "25%" },
                 {
                     text: "Timestamp",
                     value: "timestamp",
