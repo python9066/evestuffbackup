@@ -5,6 +5,7 @@
             <v-card-title>Structures</v-card-title>
 
             <v-text-field
+                class=" ml-5"
                 v-model="search"
                 append-icon="mdi-magnify"
                 label="Search"

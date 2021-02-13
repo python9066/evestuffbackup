@@ -15977,6 +15977,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 
@@ -31545,6 +31546,7 @@ var render = function() {
           _c("v-card-title", [_vm._v("Structures")]),
           _vm._v(" "),
           _c("v-text-field", {
+            staticClass: " ml-5",
             attrs: {
               "append-icon": "mdi-magnify",
               label: "Search",
