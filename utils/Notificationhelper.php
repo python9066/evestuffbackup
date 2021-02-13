@@ -45,7 +45,7 @@ class Notifications
 
 
 
-        if ($var['type'] == 'StructureUnderAttack' || $var['type'] == 'StructureLostShields' || $var['type'] == 'StructureLostArmor') {
+        if (($var['type'] == 'StructureUnderAttack' || $var['type'] == 'StructureLostShields' || $var['type'] == 'StructureLostArmor') && $text['item_id'] != 37534) {
             $stationnotenumber = StationNotification::where('station_id', $text['structureID'])->max('id');
             $stationshieldnumber = StationNotificationShield::where('station_id', $text['structureID'])->max('id');
             $stationarmornumber = StationNotificationArmor::where('station_id', $text['structureID'])->max('id');
@@ -100,7 +100,7 @@ class Notifications
                     }
                 }
             }
-        } elseif ($var['type'] == 'StructureUnderAttack') {
+        } elseif ($var['type'] == 'StructureUnderAttack' && $text['item_id'] != 37534) {
 
 
 
@@ -136,7 +136,7 @@ class Notifications
                 );
                 StationNotification::updateOrCreate($station_id, $data);
             }
-        } elseif ($var['type'] == 'StructureLostShields') {
+        } elseif ($var['type'] == 'StructureLostShields' && $text['item_id'] != 37534) {
 
             if ($var['notification_id'] > $maxNotificationID) {
 
@@ -171,7 +171,7 @@ class Notifications
                 );
                 StationNotificationShield::updateOrCreate($station_id, $data);
             }
-        } elseif ($var['type'] == 'StructureLostArmor') {
+        } elseif ($var['type'] == 'StructureLostArmor' && $text['item_id'] != 37534) {
             if ($var['notification_id'] > $maxNotificationID) {
 
                 $station = Station::where('id', $text['structureID'])->first();
