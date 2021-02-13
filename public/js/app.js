@@ -15977,18 +15977,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -31555,34 +31543,6 @@ var render = function() {
         { staticClass: " d-flex align-items-center" },
         [
           _c("v-card-title", [_vm._v("Structures")]),
-          _vm._v(" "),
-          _vm.$can("access hacks")
-            ? _c("div", [_vm._v("You can edit posts.")])
-            : _vm._e(),
-          _vm._v(" "),
-          _c(
-            "v-btn",
-            {
-              staticClass: "ma-2 white--text",
-              attrs: {
-                loading: _vm.loadingr,
-                disabled: _vm.loadingr,
-                color: "primary"
-              },
-              on: {
-                click: function($event) {
-                  return _vm.loadtimers()
-                }
-              }
-            },
-            [
-              _vm._v("\n            Update\n            "),
-              _c("v-icon", { attrs: { right: "", dark: "" } }, [
-                _vm._v("fas fa-sync-alt fa-xs")
-              ])
-            ],
-            1
-          ),
           _vm._v(" "),
           _c("v-text-field", {
             attrs: {

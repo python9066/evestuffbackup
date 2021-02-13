@@ -3,18 +3,6 @@
         <messageStations></messageStations>
         <div class=" d-flex align-items-center">
             <v-card-title>Structures</v-card-title>
-            <div v-if="$can('access hacks')">You can edit posts.</div>
-
-            <v-btn
-                :loading="loadingr"
-                :disabled="loadingr"
-                color="primary"
-                class="ma-2 white--text"
-                @click="loadtimers()"
-            >
-                Update
-                <v-icon right dark>fas fa-sync-alt fa-xs</v-icon>
-            </v-btn>
 
             <v-text-field
                 v-model="search"
