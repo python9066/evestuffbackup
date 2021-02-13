@@ -312,16 +312,9 @@ export default {
     },
 
     created() {
-        Echo.private("notes")
-            .listen("StationNotificationNew", e => {
-                this.$store.dispatch("addStationNotification", e.flag.message);
-            })
-            .listen("StationUpdate", e => {
-                this.$store.dispatch("updateStations", e.flag.message);
-            })
-            .list("StationNotificationDelete", e => {
-                this.$store.dispatch("deleteStation", e.flag.id);
-            });
+        Echo.private("notes").listen("StationNotificationNew", e => {
+            this.$store.dispatch("addStationNotification", e.flag.message);
+        });
 
         this.$store.dispatch("getStationData").then(() => {
             this.loadingt = false;

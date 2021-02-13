@@ -16089,10 +16089,6 @@ function sleep(ms) {
 
     Echo["private"]("notes").listen("StationNotificationNew", function (e) {
       _this.$store.dispatch("addStationNotification", e.flag.message);
-    }).listen("StationUpdate", function (e) {
-      _this.$store.dispatch("updateStations", e.flag.message);
-    }).list("StationNotificationDelete", function (e) {
-      _this.$store.dispatch("deleteStation", e.flag.id);
     });
     this.$store.dispatch("getStationData").then(function () {
       _this.loadingt = false;
