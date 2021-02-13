@@ -30,8 +30,8 @@
                         Notifications
                     </v-tab>
 
-                    <v-tab v-if="$can('gunner')" link to="/stations">
-                        Stations
+                    <v-tab v-if="$can('gunner')" link to="/structures">
+                        Structures
                     </v-tab>
 
                     <v-tab v-if="$can('view_towers')" link to="/towers">

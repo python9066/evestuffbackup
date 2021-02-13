@@ -9,7 +9,7 @@ import Vtest from "./components/multicampaigns/MultiCampaignAdd.vue";
 import Stest from "./components/campaign/SystemTable.vue";
 import AdminPanel from "./views/AdminPanel.vue";
 import StationsRedirect from "./views/redirect/StationsRedirect.vue";
-import Stations from "./views/Stations.vue"
+import Structures from "./views/structure.vue"
 import Towers from "./views/Towers.vue"
 import store from "./store";
 import FeedBack from "./views/FeedBack.vue";
@@ -84,14 +84,14 @@ export default new Router({
         },
 
         {
-            path: "/stations",
-            name: "stations",
-            component: Stations,
+            path: "/structures",
+            name: "structures",
+            component: Structures,
               beforeEnter(to, from, next) {
                 if(Permissions.indexOf('gunner' )!== -1){
                     next()
                 }else{
-                   next("/redirect/stations")
+                   next("/redirect/structures")
                 }
 
               }
