@@ -442,9 +442,9 @@ class Notifications
         $now5hour = now()->modify(' -5 hours'); //if less than
 
         $checks = Station::where('updated_at', '<', $now5hour)->where('station_status_id', 1)->get();
-
+        $checks->update(['station_status_id' => 10]);
         foreach ($checks as $check) {
-            $check->update(['station_status_id', 10]);
+
             $stationID = $check->id;
             $flag = null;
             $flag = collect([
