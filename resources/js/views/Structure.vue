@@ -314,12 +314,11 @@ export default {
     created() {
         Echo.private("notes")
             .listen("StationNotificationNew", e => {
-                this.checkexpanded(e.stations);
-                this.$store.dispatch("updateStations", e.stations);
+                this.$store.dispatch("addStationNotification", e.flag.message);
             })
 
             .listen("StationUpdate", e => {
-                this.loadstations();
+                this.$store.dispatch("updateStations", e.flag.message);
             });
 
         this.$store.dispatch("getStationData").then(() => {

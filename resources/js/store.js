@@ -218,6 +218,10 @@ export default new Vuex.Store({
             state.campaignusers.push(data);
         },
 
+        ADD_STATION_NOTIFICATION(state, data) {
+            state.stations.push(data)
+        },
+
         DELETE_CAMPAIGN_USER(state, id) {
             let index = state.campaignusers.findIndex(user => user.id == id)
             if(index >= 0){state.campaignusers.splice(index, 1)}
@@ -538,6 +542,10 @@ export default new Vuex.Store({
 
         addNodeJoin({ commit }, data) {
             commit("ADD_NODE_JOIN", data)
+        },
+
+        addStationNotification({ commit }, data) {
+            commit("ADD_STATION_NOTIFICATION", data)
         },
 
         addLoggingCampaign({ commit }, data) {
