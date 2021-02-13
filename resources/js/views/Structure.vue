@@ -304,7 +304,12 @@ export default {
                     width: "15%"
                 },
                 { text: "Age", value: "count", sortable: false, width: "5%" },
-                { text: "Status", value: "station_status_name", width: "15%" },
+                {
+                    text: "Status",
+                    value: "station_status_name",
+                    align: "center",
+                    width: "15%"
+                },
                 {
                     text: "Edited By",
                     value: "user_name",

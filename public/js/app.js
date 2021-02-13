@@ -16084,6 +16084,7 @@ function sleep(ms) {
       }, {
         text: "Status",
         value: "station_status_name",
+        align: "center",
         width: "15%"
       }, {
         text: "Edited By",
