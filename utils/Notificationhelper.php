@@ -438,7 +438,7 @@ class Notifications
     {
         $now = now();
         $now10min = now()->modify(' -10 minutes');
-        $now30min = now()->modify(' -30 minutes');
+        $now1hour = now()->modify(' -1 hour');
         $now5hour = now()->modify(' -5 hours'); //if less than
 
         $checks = Station::where('updated_at', '<', $now5hour)->where('station_status_id', 1)->get();
@@ -452,7 +452,7 @@ class Notifications
             broadcast(new StationNotificationDelete($flag))->toOthers();
         }
 
-        $checks = Station::where('updated_at', '<', $now30min)->where('station_status_id', 7)->get();
+        $checks = Station::where('updated_at', '<', $now1hour)->where('station_status_id', 7)->get();
         foreach ($checks as $check) {
             $check->update(['station_status_id' => 10]);
             $stationID = $check->id;
@@ -463,7 +463,7 @@ class Notifications
             broadcast(new StationNotificationDelete($flag))->toOthers();
         }
 
-        $checks = Station::where('updated_at', '<', $now30min)->where('station_status_id', 8)->get();
+        $checks = Station::where('updated_at', '<', $now1hour)->where('station_status_id', 8)->get();
         foreach ($checks as $check) {
             $check->update(['station_status_id' => 10]);
             $stationID = $check->id;
@@ -474,7 +474,7 @@ class Notifications
             broadcast(new StationNotificationDelete($flag))->toOthers();
         }
 
-        $checks = Station::where('updated_at', '<', $now30min)->where('station_status_id', 9)->get();
+        $checks = Station::where('updated_at', '<', $now1hour)->where('station_status_id', 9)->get();
         foreach ($checks as $check) {
             $check->update(['station_status_id' => 10]);
             $stationID = $check->id;
