@@ -3,6 +3,7 @@
 namespace utils\Notificationhelper;
 
 use App\Events\StationNew;
+use App\Events\StationNotificationDelete;
 use App\Models\Notification;
 use App\Models\Temp_notifcation;
 use utils\Helper\Helper;
@@ -431,5 +432,25 @@ class Notifications
             'towerflag' => $towerflag,
             'notificationflag' => $flag,
         );
+    }
+
+    public static function stationNotificationCheck()
+    {
+        $now = now();
+        $now10min = now()->modify(' -10 minutes');
+        $now30min = now()->modify(' -30 minutes');
+        $now5hour = now()->modify(' -5 hours'); //if less than
+
+        $checks = StationRecords::where('updated_at', '<', $now5hour)->where('station_status_id', 1)->get();
+        $checks->update(['station_status_id', 10]);
+        foreach ($checks as $check) {
+
+            $stationID = $check->id;
+            $flag = null;
+            $flag = collect([
+                'id' => $stationID
+            ]);
+            broadcast(new StationNotificationDelete($flag))->toOthers();
+        }
     }
 }

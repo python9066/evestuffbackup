@@ -228,6 +228,12 @@ export default new Vuex.Store({
 
         },
 
+        DELETE_STATION_NOTIFICATION(state, id) {
+            let index = state.stations.findIndex(s => s.id == id)
+            if(index >= 0){state.stations.splice(index, 1)}
+
+        },
+
 
 
         SET_TOKEN(state, token) {
@@ -562,6 +568,10 @@ export default new Vuex.Store({
 
         deleteCampaignUser({ commit }, id) {
             commit("DELETE_CAMPAIGN_USER", id)
+        },
+
+        deleteStation({ commit }, id) {
+            commit("DELETE_STATION_NOTIFICATION", id)
         },
 
         deleteUsersChars({ commit }, id) {
