@@ -16089,6 +16089,8 @@ function sleep(ms) {
 
     Echo["private"]("notes").listen("StationNotificationNew", function (e) {
       _this.$store.dispatch("addStationNotification", e.flag.message);
+    }).listen("StationUpdate", function (e) {
+      _this.$store.dispatch("updateStations", e.flag.message);
     });
     this.$store.dispatch("getStationData").then(function () {
       _this.loadingt = false;
@@ -16096,6 +16098,9 @@ function sleep(ms) {
       _this.loadingr = false;
     });
   },
+  // .list("StationNotificationDelete", e => {
+  //     this.$store.dispatch("deleteStation", e.flag.id);
+  // });
   mounted: function mounted() {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
