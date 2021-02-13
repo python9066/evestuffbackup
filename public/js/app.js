@@ -32016,11 +32016,7 @@ var render = function() {
                 var item = ref.item
                 return [
                   _vm._v(
-                    "\n            " +
-                      _vm._s(item.item_name) +
-                      " - " +
-                      _vm._s(item.station_name) +
-                      "\n        "
+                    "\n            " + _vm._s(item.station_name) + "\n        "
                   )
                 ]
               }
