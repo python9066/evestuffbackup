@@ -53,11 +53,15 @@ class Notifications
             $station_id = array(
                 'station_id' => $text['structureID'],
             );
-        } else {
+        } else if ($var['type'] == 'AllAnchoringMsg') {
             $towernumber = Tower::max('id');
             $moon_id = array(
                 'moon_id' => $text['moonID']
             );
+        } else if ($var['type'] == 'StructureDestroyed') {
+            Station::where('id', $text['structureID'])->delete();
+            StationNotificationShield::where('station_id', $text['structureID'])->delete();
+            StationNotificationArmor::where('station_id', $text['structureID'])->delete();
         }
 
 
@@ -172,7 +176,7 @@ class Notifications
 
                 $station = Station::where('id', $text['structureID'])->first();
                 // echo $stationcheck;
-                if ($stationcheck == null) {
+                if ($station == null) {
                     Helper::authcheck();
                     $stationdata = Helper::authpull('station', $text['structureID']);
 
