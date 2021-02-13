@@ -22,25 +22,46 @@ class Notifications
 
         $current = now();
         $now = $current->modify('-10 minutes');
-        $stationflag = 0;
-        $towerflag = 0;
-        $flag = 0;
 
-        $stationCheck = Station::where('station_status_id', '>', 3)
-            ->where('timestamp', '<=', $now)
-            ->get()
-            ->count();
-        if ($stationCheck > 0) {
+        // $stationCheck = Station::where('station_status_id', '>', 3)
+        //     ->where('timestamp', '<=', $now)
+        //     ->get()
+        //     ->count();
+        // if ($stationCheck > 0) {
 
-            Station::where('station_status_id', '>', 3)
-                ->where('timestamp', '<=', $now)
-                ->update(['station_status_id' => 10]);
+        //     Station::where('station_status_id', '>', 3)
+        //         ->where('timestamp', '<=', $now)
+        //         ->update(['station_status_id' => 10]);
+        // }
+        $time = $var['timestamp'];
+        $time = Helper::fixtime($time);
+        $data = array();
+        $text = $var['text'];
+        $text = str_replace("solarSystemID", "system_id", $text);
+        $text = str_replace("structureTypeID", "item_id", $text);
+        $text = Yaml::parse($text);
+
+
+
+
+
+        if ($var['type'] == 'StructureUnderAttack' || $var['type'] == 'StructureLostShields' || $var['type'] == 'StructureLostArmor') {
+            $stationnotenumber = StationNotification::where('station_id', $text['structureID'])->max('id');
+            $stationshieldnumber = StationNotificationShield::where('station_id', $text['structureID'])->max('id');
+            $stationarmornumber = StationNotificationArmor::where('station_id', $text['structureID'])->max('id');
+            $maxNotificationID = max($stationnotenumber, $stationshieldnumber, $stationarmornumber);
+            $station_id = array(
+                'station_id' => $text['structureID'],
+            );
+        } else {
+            $towernumber = Tower::max('id');
+            $moon_id = array(
+                'moon_id' => $text['moonID']
+            );
         }
 
-        $stationnotenumber = StationNotification::max('id');
-        $stationshieldnumber = StationNotificationShield::max('id');
-        $stationarmornumber = StationNotificationArmor::max('id');
-        $towernumber = Tower::max('id');
+
+
         // dd($data);
 
         if ($var['type'] == 'AllAnchoringMsg') {
@@ -53,12 +74,6 @@ class Notifications
                 $text = str_replace("solarSystemID", "system_id", $text);
                 $text = str_replace("structureTypeID", "item_id", $text);
                 $text = Yaml::parse($text);
-                // dd($var, $text);
-
-                $moon_id = array(
-                    'moon_id' => $text['moonID']
-                );
-
 
                 $data = array(
                     'id' => $var['notification_id'],
@@ -69,36 +84,26 @@ class Notifications
                     'user_id' => null,
 
                 );
-                // dd($var, $text, $moon_id, $data);
+
                 $check = Tower::where('moon_id', $moon_id)->first();
-                $count = Tower::where('moon_id', $moon_id)->get()->count();
-                if ($count == 0) {
+                if ($check->count() == 0) {
                     Tower::updateOrCreate($moon_id, $data);
-                    $towerflag = 1;
                 } else {
 
                     if ($var['notification_id'] > $check->id) {
 
                         Tower::updateOrCreate($moon_id, $data);
-                        $towerflag = 1;
                     }
                 }
             }
         } elseif ($var['type'] == 'StructureUnderAttack') {
-            $time = $var['timestamp'];
-            $time = Helper::fixtime($time);
-            $data = array();
-            $text = $var['text'];
-            $text = str_replace("solarSystemID", "system_id", $text);
-            $text = str_replace("structureTypeID", "item_id", $text);
-            $text = Yaml::parse($text);
-            $station_id = array(
-                'station_id' => $text['structureID'],
-            );
-            $stationnotenumber = StationNotification::where('station_id', $station_id)->max('id');
-            if ($var['notification_id'] > $stationnotenumber) {
-                $stationcheck = Station::where('id', $text['structureID'])->get()->count();
-                if ($stationcheck == 0) {
+
+
+
+            if ($var['notification_id'] > $maxNotificationID) {
+
+                $station = Station::where('id', $text['structureID'])->first();
+                if ($station == null) {
                     Helper::authcheck();
                     $stationdata = Helper::authpull('station', $text['structureID']);
 
@@ -113,7 +118,7 @@ class Notifications
                         'timestamp' => $time,
                     ]);
                 } else {
-                    Station::where('id', $text['structureID'])->update([
+                    $station->update([
                         'text' => null,
                         'user_id' => null,
                         'station_status_id' => 1,
@@ -125,41 +130,14 @@ class Notifications
                     'id' => $var['notification_id'],
                     'timestamp' => $time
                 );
-                $check = StationNotification::where('station_id', $station_id)->first();
-                $count = StationNotification::where('station_id', $station_id)->get()->count();
-                if ($count == 0) {
-                    StationNotification::updateOrCreate($station_id, $data);
-                    $stationflag = 1;
-                } else {
-
-                    if ($var['notification_id'] > $check->id) {
-
-                        StationNotification::updateOrCreate($station_id, $data);
-                        $stationflag = 1;
-                    }
-                }
+                StationNotification::updateOrCreate($station_id, $data);
             }
         } elseif ($var['type'] == 'StructureLostShields') {
 
-            if ($var['notification_id'] > $stationshieldnumber) {
+            if ($var['notification_id'] > $maxNotificationID) {
 
-                $time = $var['timestamp'];
-                $time = Helper::fixtime($time);
-                $data = array();
-                $text = $var['text'];
-                $text = str_replace("solarSystemID", "system_id", $text);
-                $text = str_replace("structureTypeID", "item_id", $text);
-                $text = Yaml::parse($text);
-                // dd($var,$text);
-
-
-                $station_id = array(
-                    'station_id' => $text['structureID'],
-                );
-
-                $stationcheck = Station::where('id', $text['structureID'])->get()->count();
-                // echo $stationcheck;
-                if ($stationcheck == 0) {
+                $station = Station::where('id', $text['structureID'])->first();
+                if ($station == null) {
                     Helper::authcheck();
                     $stationdata = Helper::authpull('station', $text['structureID']);
 
@@ -170,51 +148,31 @@ class Notifications
                         'item_id' => $stationdata['type_id'],
                         'text' => null,
                         'user_id' => null,
+                        'station_status_id' => 8,
+                        'timestamp' => $time
+                    ]);
+                } else {
+                    $station->update([
+                        'text' => null,
+                        'user_id' => null,
+                        'station_status_id' => 8,
+                        'timestamp' => $time
                     ]);
                 }
 
                 $data = array(
                     'id' => $var['notification_id'],
                     'timestamp' => $time,
-                    'status' => 0,
 
                 );
-
-                $check = StationNotificationShield::where('station_id', $station_id)->first();
-                $count = StationNotificationShield::where('station_id', $station_id)->get()->count();
-
-                if ($count == 0) {
-                    StationNotificationShield::updateOrCreate($station_id, $data);
-                    $stationflag = 1;
-                } else {
-
-                    if ($var['notification_id'] > $check->id) {
-
-                        StationNotificationShield::updateOrCreate($station_id, $data);
-                        $stationflag = 1;
-                    }
-                }
+                StationNotificationShield::updateOrCreate($station_id, $data);
             }
         } elseif ($var['type'] == 'StructureLostArmor') {
-            if ($var['notification_id'] > $stationarmornumber) {
+            if ($var['notification_id'] > $maxNotificationID) {
 
-                $time = $var['timestamp'];
-                $time = Helper::fixtime($time);
-                $data = array();
-                $text = $var['text'];
-                $text = str_replace("solarSystemID", "system_id", $text);
-                $text = str_replace("structureTypeID", "item_id", $text);
-                $text = Yaml::parse($text);
-                // dd($var,$text);
-
-
-                $station_id = array(
-                    'station_id' => $text['structureID'],
-                );
-
-                $stationcheck = Station::where('id', $text['structureID'])->get()->count();
+                $station = Station::where('id', $text['structureID'])->first();
                 // echo $stationcheck;
-                if ($stationcheck == 0) {
+                if ($stationcheck == null) {
                     Helper::authcheck();
                     $stationdata = Helper::authpull('station', $text['structureID']);
 
@@ -225,73 +183,26 @@ class Notifications
                         'item_id' => $stationdata['type_id'],
                         'text' => null,
                         'user_id' => null,
+                        'station_status_id' => 9,
+                        'timestamp' => $time
                     ]);
-                }
-
-                $data = array(
-                    'id' => $var['notification_id'],
-                    'timestamp' => $time,
-                    'status' => 0,
-
-                );
-
-                $check = StationNotificationArmor::where('station_id', $station_id)->first();
-                $count = StationNotificationArmor::where('station_id', $station_id)->get()->count();
-
-                if ($count == 0) {
-                    StationNotificationArmor::updateOrCreate($station_id, $data);
-                    $stationflag = 1;
                 } else {
+                    $station->update([
+                        'text' => null,
+                        'user_id' => null,
+                        'station_status_id' => 9,
+                        'timestamp' => $time
+                    ]);
 
-                    if ($var['notification_id'] > $check->id) {
+                    $data = array(
+                        'id' => $var['notification_id'],
+                        'timestamp' => $time,
 
-                        StationNotificationArmor::updateOrCreate($station_id, $data);
-                        $stationflag = 1;
-                    }
+                    );
+                    StationNotificationArmor::updateOrCreate($station_id, $data);
                 }
             }
         }
-
-
-        $shield = StationNotificationShield::where('status', 0)->get();
-        foreach ($shield as $shield) {
-            $station_id = $shield->station_id;
-            $check = StationNotification::where('station_id', $station_id)->get();
-            if ($check->count() == 1) {
-
-                if ($shield->id > $check->first()->id) {
-
-                    Station::where('id', $shield->station_id)->update(['station_status_id' => 8, 'user_id' => null, 'timestamp' => $shield->timestamp]);
-                }
-                StationNotificationShield::where('id', $shield->id)->update(['status' => 1]);
-            } else {
-                StationNotificationShield::where('id', $shield->id)->update(['status' => 1]);
-                echo "here";
-                Station::where('id', $shield->station_id)->update(['station_status_id' => 8, 'timestamp' => $shield->timestamp]);
-            }
-        }
-
-        $armor = StationNotificationArmor::where('status', 0)->get();
-        foreach ($armor as $armor) {
-            $station_id = $armor->station_id;
-            $check = StationNotification::where('station_id', $station_id)->get();
-            if ($check->count() == 1) {
-
-                if ($armor->id > $check->first()->id) {
-                    Station::where('id', $armor->station_id)->update(['station_status_id' => 9, 'user_id' => null, 'timestamp' => $armor->timestamp]);
-                }
-                StationNotificationArmor::where('id', $armor->id)->update(['status' => 1]);
-            } else {
-                StationNotificationArmor::where('id', $armor->id)->update(['status' => 1]);
-                Station::where('id', $armor->station_id)->update(['station_status_id' => 9, 'timestamp' => $armor->timestamp]);
-            }
-        }
-
-        return $request = array(
-            'stationflag' => $stationflag,
-            'towerflag' => $towerflag,
-            'notificationflag' => $flag,
-        );
     }
 
 
