@@ -484,5 +484,16 @@ class Notifications
             ]);
             broadcast(new StationNotificationDelete($flag))->toOthers();
         }
+
+        $checks = Station::where('updated_at', '<', $now10min)->where('station_status_id', 4)->get();
+        foreach ($checks as $check) {
+            $check->update(['station_status_id' => 10]);
+            $stationID = $check->id;
+            $flag = null;
+            $flag = collect([
+                'id' => $stationID
+            ]);
+            broadcast(new StationNotificationDelete($flag))->toOthers();
+        }
     }
 }
