@@ -317,13 +317,13 @@ export default {
     },
 
     created() {
-        Echo.private("stations")
-            .listen("StationChanged", e => {
+        Echo.private("notes")
+            .listen("StationNotificationNew", e => {
                 this.checkexpanded(e.stations);
                 this.$store.dispatch("updateStations", e.stations);
             })
 
-            .listen("StationNew", e => {
+            .listen("StationUpdate", e => {
                 this.loadstations();
             });
 
@@ -468,7 +468,7 @@ export default {
         }
     },
     beforeDestroy() {
-        Echo.leave("stations");
+        Echo.leave("notes");
     }
 };
 </script>
