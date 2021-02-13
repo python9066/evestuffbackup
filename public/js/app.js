@@ -16070,7 +16070,7 @@ function sleep(ms) {
       }, {
         text: "Name",
         value: "station_name",
-        width: "25%"
+        width: "20%"
       }, {
         text: "Timestamp",
         value: "timestamp",

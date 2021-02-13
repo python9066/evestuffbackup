@@ -296,7 +296,7 @@ export default {
                 },
                 { text: "System", value: "system_name", width: "8%" },
                 { text: "Type", value: "item_name", width: "10%" },
-                { text: "Name", value: "station_name", width: "25%" },
+                { text: "Name", value: "station_name", width: "20%" },
                 {
                     text: "Timestamp",
                     value: "timestamp",
