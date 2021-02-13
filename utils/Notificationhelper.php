@@ -464,7 +464,7 @@ class Notifications
         }
 
         $checks = Station::where('updated_at', '<', $now30min)->where('station_status_id', 8)->get();
-        foreach ($checks->where('station_status_id', 8)->get() as $check) {
+        foreach ($checks as $check) {
             $check->update(['station_status_id' => 10]);
             $stationID = $check->id;
             $flag = null;
@@ -475,7 +475,7 @@ class Notifications
         }
 
         $checks = Station::where('updated_at', '<', $now30min)->where('station_status_id', 9)->get();
-        foreach ($checks->where('station_status_id', 9)->get() as $check) {
+        foreach ($checks as $check) {
             $check->update(['station_status_id' => 10]);
             $stationID = $check->id;
             $flag = null;
