@@ -2,6 +2,7 @@
 
 namespace utils\Notificationhelper;
 
+use App\Events\StationNew;
 use App\Models\Notification;
 use App\Models\Temp_notifcation;
 use utils\Helper\Helper;
@@ -9,6 +10,7 @@ use App\Models\Station;
 use App\Models\StationNotification;
 use App\Models\StationNotificationArmor;
 use App\Models\StationNotificationShield;
+use App\Models\StationRecords;
 use App\Models\Tower;
 use GuzzleHttp\Utils;
 use Symfony\Component\Yaml\Yaml;
@@ -142,6 +144,13 @@ class Notifications
                 );
                 StationNotification::updateOrCreate($station_id, $data);
             }
+
+            $message = StationRecords::where('id', $text['structureID'])->first();
+            $flag = null;
+            $flag = collect([
+                'message' => $message
+            ]);
+            broadcast(new StationNew($flag))->toOthers();
         } elseif ($var['type'] == 'StructureLostShields') {
 
             if ($var['notification_id'] > $maxNotificationID) {
@@ -177,6 +186,12 @@ class Notifications
                 );
                 StationNotificationShield::updateOrCreate($station_id, $data);
             }
+            $message = StationRecords::where('id', $text['structureID'])->first();
+            $flag = null;
+            $flag = collect([
+                'message' => $message
+            ]);
+            broadcast(new StationNew($flag))->toOthers();
         } elseif ($var['type'] == 'StructureLostArmor') {
             if ($var['notification_id'] > $maxNotificationID) {
 
@@ -212,6 +227,12 @@ class Notifications
                     StationNotificationArmor::updateOrCreate($station_id, $data);
                 }
             }
+            $message = StationRecords::where('id', $text['structureID'])->first();
+            $flag = null;
+            $flag = collect([
+                'message' => $message
+            ]);
+            broadcast(new StationNew($flag))->toOthers();
         }
     }
 
