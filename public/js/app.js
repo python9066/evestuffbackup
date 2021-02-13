@@ -8825,6 +8825,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "messageNotification"
 });
@@ -25555,7 +25557,9 @@ var render = function() {
         [
           _c("p", [
             _c("strong", [
-              _vm._v("THIS PAGE IS 100% WORK IN PROGRESS, ATM ITS USELESS")
+              _vm._v(
+                "THIS PAGE IS 100% WORK IN PROGRESS ITS ONLY GOOD TO LOOK\n                AT. FOR THE TIME BEING TO SEE NEW DATA YOU WILL NEED TO\n                REFRESH THE PAGE.\n            "
+              )
             ])
           ])
         ]
