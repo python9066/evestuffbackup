@@ -45,7 +45,7 @@ class Notifications
 
 
 
-        if (($var['type'] == 'StructureUnderAttack' || $var['type'] == 'StructureLostShields' || $var['type'] == 'StructureLostArmor') && $text['item_id'] != 37534) {
+        if ($var['type'] == 'StructureUnderAttack' || $var['type'] == 'StructureLostShields' || $var['type'] == 'StructureLostArmor') {
             $stationnotenumber = StationNotification::where('station_id', $text['structureID'])->max('id');
             $stationshieldnumber = StationNotificationShield::where('station_id', $text['structureID'])->max('id');
             $stationarmornumber = StationNotificationArmor::where('station_id', $text['structureID'])->max('id');
@@ -56,13 +56,6 @@ class Notifications
             $station_id = array(
                 'station_id' => $text['structureID'],
             );
-        } else if ($var['type'] == 'StructureUnderAttack' || $var['type'] == 'StructureLostShields' || $var['type'] == 'StructureLostArmor') {
-            $stationnotenumber = StationNotification::where('station_id', $text['structureID'])->max('id');
-            $stationarmornumber = StationNotificationArmor::where('station_id', $text['structureID'])->max('id');
-            $maxNotificationID = max($stationnotenumber, $stationarmornumber);
-            if ($maxNotificationID == null || $maxNotificationID == 0) {
-                $maxNotificationID == 1;
-            }
         } else if ($var['type'] == 'AllAnchoringMsg') {
             $towernumber = Tower::max('id');
             if ($towernumber == null || $towernumber == 0) {
