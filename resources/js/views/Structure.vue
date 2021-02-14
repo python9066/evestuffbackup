@@ -202,7 +202,9 @@
                 v-slot:item.timestamp="{ item }"
                 class="d-inline-flex align-center"
             >
-                {{ item.timestamp }}
+                <span>
+                    {{ item.timestamp }}
+                </span>
             </template>
         </v-data-table>
         <v-snackbar v-model="snack" :timeout="3000" :color="snackColor">
