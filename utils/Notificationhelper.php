@@ -15,10 +15,37 @@ use App\Models\StationRecords;
 use App\Models\Tower;
 use GuzzleHttp\Utils;
 use Symfony\Component\Yaml\Yaml;
+use GuzzleHttp\Client as GuzzleHttpClient;
 
 
 class Notifications
 {
+    public function reconPull($id)
+    {
+        $url = "https://recon.gnf.lt/api/structure/" . $id;
+        $dance = env('RECON_TOKEN', "DANCE");
+        $dance2 = env('RECON_USER', 'DANCE2');
+
+        $client = new GuzzleHttpClient();
+        $headers = [
+            'x-gsf-user' => env('RECON_USER', 'DANCE2'),
+            'token' =>  env('RECON_TOKEN', "DANCE")
+
+        ];
+        $response = $client->request('GET', $url, [
+            'headers' => $headers,
+            'http_errors' => false
+        ]);
+        $data = Utils::jsonDecode($response->getBody(), true);
+        if ($data = "Error, Structure Not Found") {
+            echo "NO STATION";
+        } else {
+            echo $dance . " - " . $dance2;
+            echo '<pre>';
+            print_r($data);
+            echo '</pre>';
+        }
+    }
     public static function test($var)
     {
 
