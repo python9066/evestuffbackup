@@ -398,7 +398,7 @@ export default {
                 return "dark-orange";
             }
             if (statusId == 5) {
-                return "indigo darken-4";
+                return "indigo accent-4";
             }
             if (statusId == 6) {
                 return "blue-grey darken-3";

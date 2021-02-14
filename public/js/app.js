@@ -16192,7 +16192,7 @@ function sleep(ms) {
       }
 
       if (statusId == 5) {
-        return "indigo darken-4";
+        return "indigo accent-4";
       }
 
       if (statusId == 6) {
