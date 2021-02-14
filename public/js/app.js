@@ -16196,11 +16196,11 @@ function sleep(ms) {
       }
 
       if (statusId == 11) {
-        return "faSvg fa-exclamation-circle";
+        return "faSvg fa-toolbox";
       }
 
       if (statusId == 12) {
-        return "faSvg fa-toolbox";
+        return "faSvg fa-exclamation-circle";
       }
     },
     pillColor: function pillColor(statusId) {
