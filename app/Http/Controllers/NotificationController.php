@@ -49,8 +49,6 @@ class NotificationController extends Controller
         if (array_key_exists('str_structure_id_md5', $data)) {
             echo "RECON";
         }
-        $test = StationItems::where('id', 10)->get()->count();
-        dd($test);
         echo '<pre>';
         print_r($data);
         echo '</pre>';

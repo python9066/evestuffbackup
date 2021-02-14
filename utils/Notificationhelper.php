@@ -8,6 +8,8 @@ use App\Models\Notification;
 use App\Models\Temp_notifcation;
 use utils\Helper\Helper;
 use App\Models\Station;
+use App\Models\StationItemJoin;
+use App\Models\StationItems;
 use App\Models\StationNotification;
 use App\Models\StationNotificationArmor;
 use App\Models\StationNotificationShield;
@@ -162,7 +164,14 @@ class Notifications
                             'r_composite' => $stationdata['str_composite']
                         ]);
 
-                        $text = Utils::jsonDecode($stationdata['str_fitting'], true);
+                        $items = Utils::jsonDecode($stationdata['str_fitting'], true);
+                        foreach ($items as $item) {
+                            StationItems::where('id', $item['id'])->get()->count();
+                            if (StationItems::where('id', $item['id'])->get()->count() == 0) {
+                                StationItems::Create(['id' => $item['id'], 'item_name' => $item['name']]);
+                            }
+                            StationItemJoin::create(['station_item_id' => $item['id'], 'station_id' => $text['structureID']]);
+                        };
                     } else {
                         Station::Create([
                             'id' => $text['structureID'],
@@ -210,7 +219,45 @@ class Notifications
                 if ($station == null) {
                     $stationdata = Notifications::reconPull($text['structureID']);
                     if (array_key_exists('str_structure_id_md5', $data)) {
-                        echo "RECON";
+                        Station::Create([
+                            'id' => $text['structureID'],
+                            'name' => $stationdata['str_name'],
+                            'system_id' => $stationdata['str_system_id'],
+                            'item_id' => $stationdata['str_type_id'],
+                            'text' => null,
+                            'user_id' => null,
+                            'station_status_id' => 1,
+                            'timestamp' => $time,
+                            'r_updated_at' => $stationdata['updated_at'],
+                            'r_fitted' => $stationdata['str_has_no_fitting'],
+                            'r_capital_shipyard' => $stationdata['str_capital_shipyard'],
+                            'r_hyasyoda' => $stationdata['str_hyasyoda'],
+                            'r_invention' => $stationdata['str_invention'],
+                            'r_manufacturing' => $stationdata['str_manufacturing'],
+                            'r_research' => $stationdata['str_research'],
+                            'r_supercapital_shipyard' => $stationdata['str_supercapital_shipyard'],
+                            'r_biochemical' => $stationdata['str_biochemical'],
+                            'r_hybrid' => $stationdata['str_hybrid'],
+                            'r_moon_drilling' => $stationdata['str_moon_drilling'],
+                            'r_reprocessing' => $stationdata['str_reprocessing'],
+                            'r_point_defense' => $stationdata['str_point_defense'],
+                            'r_dooms_day' => $stationdata['str_dooms_day'],
+                            'r_guide_bombs' => $stationdata['str_guide_bombs'],
+                            'r_anti_cap' => $stationdata['str_anti_cap'],
+                            'r_anti_subcap' => $stationdata['str_anti_subcap'],
+                            'r_t2_rigged' => $stationdata['str_t2_rigged'],
+                            'r_cloning' => $stationdata['str_cloning'],
+                            'r_composite' => $stationdata['str_composite']
+                        ]);
+
+                        $items = Utils::jsonDecode($stationdata['str_fitting'], true);
+                        foreach ($items as $item) {
+                            StationItems::where('id', $item['id'])->get()->count();
+                            if (StationItems::where('id', $item['id'])->get()->count() == 0) {
+                                StationItems::Create(['id' => $item['id'], 'item_name' => $item['name']]);
+                            }
+                            StationItemJoin::create(['station_item_id' => $item['id'], 'station_id' => $text['structureID']]);
+                        };
                     } else {
                         Station::Create([
                             'id' => $text['structureID'],
@@ -260,7 +307,45 @@ class Notifications
                 if ($station == null) {
                     $stationdata = Notifications::reconPull($text['structureID']);
                     if (array_key_exists('str_structure_id_md5', $data)) {
-                        echo "RECON";
+                        Station::Create([
+                            'id' => $text['structureID'],
+                            'name' => $stationdata['str_name'],
+                            'system_id' => $stationdata['str_system_id'],
+                            'item_id' => $stationdata['str_type_id'],
+                            'text' => null,
+                            'user_id' => null,
+                            'station_status_id' => 1,
+                            'timestamp' => $time,
+                            'r_updated_at' => $stationdata['updated_at'],
+                            'r_fitted' => $stationdata['str_has_no_fitting'],
+                            'r_capital_shipyard' => $stationdata['str_capital_shipyard'],
+                            'r_hyasyoda' => $stationdata['str_hyasyoda'],
+                            'r_invention' => $stationdata['str_invention'],
+                            'r_manufacturing' => $stationdata['str_manufacturing'],
+                            'r_research' => $stationdata['str_research'],
+                            'r_supercapital_shipyard' => $stationdata['str_supercapital_shipyard'],
+                            'r_biochemical' => $stationdata['str_biochemical'],
+                            'r_hybrid' => $stationdata['str_hybrid'],
+                            'r_moon_drilling' => $stationdata['str_moon_drilling'],
+                            'r_reprocessing' => $stationdata['str_reprocessing'],
+                            'r_point_defense' => $stationdata['str_point_defense'],
+                            'r_dooms_day' => $stationdata['str_dooms_day'],
+                            'r_guide_bombs' => $stationdata['str_guide_bombs'],
+                            'r_anti_cap' => $stationdata['str_anti_cap'],
+                            'r_anti_subcap' => $stationdata['str_anti_subcap'],
+                            'r_t2_rigged' => $stationdata['str_t2_rigged'],
+                            'r_cloning' => $stationdata['str_cloning'],
+                            'r_composite' => $stationdata['str_composite']
+                        ]);
+
+                        $items = Utils::jsonDecode($stationdata['str_fitting'], true);
+                        foreach ($items as $item) {
+                            StationItems::where('id', $item['id'])->get()->count();
+                            if (StationItems::where('id', $item['id'])->get()->count() == 0) {
+                                StationItems::Create(['id' => $item['id'], 'item_name' => $item['name']]);
+                            }
+                            StationItemJoin::create(['station_item_id' => $item['id'], 'station_id' => $text['structureID']]);
+                        };
                     } else {
 
                         Station::Create([
