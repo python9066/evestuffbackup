@@ -60,10 +60,14 @@ class testController extends Controller
             'http_errors' => false
         ]);
         $data = Utils::jsonDecode($response->getBody(), true);
-        echo $dance . " - " . $dance2;
-        echo '<pre>';
-        print_r($data);
-        echo '</pre>';
+        if ($data = "Error, Structure Not Found") {
+            echo "NO STATION";
+        } else {
+            echo $dance . " - " . $dance2;
+            echo '<pre>';
+            print_r($data);
+            echo '</pre>';
+        }
 
         // $outTime = null;
         // $ldap = $time;
