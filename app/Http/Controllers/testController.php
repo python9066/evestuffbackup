@@ -41,18 +41,20 @@ class testController extends Controller
 
     }
 
-    public function test($id, $time)
+    public function test($id)
     {
 
+        $station_id = $id;
+        $token = env('RECON_TOKEN');
+        dd($token);
 
+        // $outTime = null;
+        // $ldap = $time;
+        // $winSecs       = (int)($ldap / 10000000);
+        // $unixTimestamp = ($winSecs - 11644473600);
+        // $outTime = date("Y-m-d H:i:s", $unixTimestamp);
 
-        $outTime = null;
-        $ldap = $time;
-        $winSecs       = (int)($ldap / 10000000);
-        $unixTimestamp = ($winSecs - 11644473600);
-        $outTime = date("Y-m-d H:i:s", $unixTimestamp);
-
-        Station::where('id', $id)->update(['out_time' => $outTime]);
+        // Station::where('id', $id)->update(['out_time' => $outTime]);
 
         // Logging::create(['campaign_id' => 1, 'campaign_sola_system_id' => 1, 'user_id' => 1, 'text' => $data]);
 
