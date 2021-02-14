@@ -202,12 +202,7 @@
                 v-slot:item.timestamp="{ item }"
                 class="d-inline-flex align-center"
             >
-                <span v-if="item.out_time == null">
-                    {{ item.timestamp }}
-                </span>
-                <span v-if="item.out_time != null">
-                    {{ item.out_time }}
-                </span>
+                {{ timeStamp(item) }}
             </template>
         </v-data-table>
         <v-snackbar v-model="snack" :timeout="3000" :color="snackColor">
@@ -333,6 +328,14 @@ export default {
                     this.expanded = [];
                     this.expanded_id = 0;
                 }
+            }
+        },
+
+        timeStamp(item) {
+            if (item.out_time != null) {
+                return item.out_time;
+            } else {
+                return item.timestamp;
             }
         },
 
