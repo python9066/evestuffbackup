@@ -198,6 +198,12 @@
             >
                 {{ item.station_name }}
             </template>
+            <template
+                v-slot:item.timestamp="{ item }"
+                class="d-inline-flex align-center"
+            >
+                {{ item.timestamp }}
+            </template>
         </v-data-table>
         <v-snackbar v-model="snack" :timeout="3000" :color="snackColor">
             {{ snackText }}

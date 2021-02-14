@@ -15960,6 +15960,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 
@@ -31976,6 +31982,17 @@ var render = function() {
                 return [
                   _vm._v(
                     "\n            " + _vm._s(item.station_name) + "\n        "
+                  )
+                ]
+              }
+            },
+            {
+              key: "item.timestamp",
+              fn: function(ref) {
+                var item = ref.item
+                return [
+                  _vm._v(
+                    "\n            " + _vm._s(item.timestamp) + "\n        "
                   )
                 ]
               }
