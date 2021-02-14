@@ -20,7 +20,7 @@ use GuzzleHttp\Client as GuzzleHttpClient;
 
 class Notifications
 {
-    public function reconPull($id)
+    public static function reconPull($id)
     {
         $url = "https://recon.gnf.lt/api/structure/" . $id;
         $dance = env('RECON_TOKEN', "DANCE");
@@ -38,12 +38,9 @@ class Notifications
         ]);
         $data = Utils::jsonDecode($response->getBody(), true);
         if ($data = "Error, Structure Not Found") {
-            echo "NO STATION";
+            return "NO STATION";
         } else {
-            echo $dance . " - " . $dance2;
-            echo '<pre>';
-            print_r($data);
-            echo '</pre>';
+            return $data;
         }
     }
     public static function test($var)

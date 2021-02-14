@@ -40,8 +40,12 @@ class NotificationController extends Controller
         }
     }
 
-    public function test()
+    public function test($id)
     {
+        $data = Notifications::reconPull($id);
+        echo '<pre>';
+        print_r($data);
+        echo '</pre>';
     }
 
     public function update(Request $request, $id)
