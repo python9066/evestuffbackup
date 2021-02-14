@@ -43,9 +43,9 @@ class testController extends Controller
 
     public function test()
     {
+        $dance = env("RECON_TOKEN", "DANCE");
 
-
-        dd(env('RECON_TOKEN'));
+        dd($dance);
 
         // $outTime = null;
         // $ldap = $time;
