@@ -16196,7 +16196,7 @@ function sleep(ms) {
       }
 
       if (statusId == 6) {
-        return "blue-grey darken-3";
+        return "primary";
       }
 
       if (statusId == 7) {

@@ -401,7 +401,7 @@ export default {
                 return "indigo accent-4";
             }
             if (statusId == 6) {
-                return "blue-grey darken-3";
+                return "primary";
             }
             if (statusId == 7) {
                 return "red";
