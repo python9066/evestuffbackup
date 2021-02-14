@@ -44,7 +44,7 @@ class NotificationController extends Controller
     public function test($id)
     {
         $data = Notifications::reconPull($id);
-        $text = Utils::jsonDecode($data['str_fitting'], true);;
+        // $text = Utils::jsonDecode($data['str_fitting'], true);;
 
         echo '<pre>';
         print_r($data);
