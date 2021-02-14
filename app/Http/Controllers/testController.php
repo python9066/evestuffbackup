@@ -43,7 +43,7 @@ class testController extends Controller
 
     public function test()
     {
-        $dance = env("RECON_TOKEN", "DANCE");
+        $dance = env('RECON_TOKEN', "DANCE");
 
         dd($dance);
 
