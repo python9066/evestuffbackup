@@ -202,8 +202,11 @@
                 v-slot:item.timestamp="{ item }"
                 class="d-inline-flex align-center"
             >
-                <span>
+                <span v-if="item.out_time == null">
                     {{ item.timestamp }}
+                </span>
+                <span v-if="item.out_time != null">
+                    {{ item.out_time }}
                 </span>
             </template>
         </v-data-table>

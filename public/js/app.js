@@ -15968,6 +15968,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
 
 
 
@@ -31993,13 +31996,25 @@ var render = function() {
               fn: function(ref) {
                 var item = ref.item
                 return [
-                  _c("span", [
-                    _vm._v(
-                      "\n                " +
-                        _vm._s(item.timestamp) +
-                        "\n            "
-                    )
-                  ])
+                  item.out_time == null
+                    ? _c("span", [
+                        _vm._v(
+                          "\n                " +
+                            _vm._s(item.timestamp) +
+                            "\n            "
+                        )
+                      ])
+                    : _vm._e(),
+                  _vm._v(" "),
+                  item.out_time != null
+                    ? _c("span", [
+                        _vm._v(
+                          "\n                " +
+                            _vm._s(item.out_time) +
+                            "\n            "
+                        )
+                      ])
+                    : _vm._e()
                 ]
               }
             }
