@@ -50,7 +50,8 @@ class Notifications
     {
 
 
-        $stations = Station::where('id', '>', 0)->value('id')->get();
+        $stations = Station::where('id', '>', 0)->value('id');
+        dd($stations);
         foreach ($stations as $station) {
             $url = "https://recon.gnf.lt/api/structure/" . $station;
             $client = new GuzzleHttpClient();
