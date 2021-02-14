@@ -16042,7 +16042,7 @@ function sleep(ms) {
       headers: [{
         text: "Region",
         value: "region_name",
-        width: "10%"
+        width: "8%"
       }, {
         text: "Constellation",
         value: "constellation_name",

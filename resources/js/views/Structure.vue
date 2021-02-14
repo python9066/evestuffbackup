@@ -278,7 +278,7 @@ export default {
             ],
 
             headers: [
-                { text: "Region", value: "region_name", width: "10%" },
+                { text: "Region", value: "region_name", width: "8%" },
                 {
                     text: "Constellation",
                     value: "constellation_name",
