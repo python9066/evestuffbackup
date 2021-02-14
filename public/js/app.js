@@ -16176,6 +16176,10 @@ function sleep(ms) {
         return "dark-orange";
       }
 
+      if (statusId == 7) {
+        return "dark-red";
+      }
+
       if (statusId == 8) {
         return "warning";
       }
