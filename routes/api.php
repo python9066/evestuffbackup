@@ -28,7 +28,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth:api')->group(function () {
     Route::post('/brois', 'testController@notifications');
-    Route::get('/timecheck', 'testController@test');
     Route::get('/notifications/{region_id}', 'NotificationRecordsController@regionLink');
     Route::get('/notifications', 'NotificationRecordsController@index');
     Route::put('/notifications/{id}', 'NotificationController@update');
