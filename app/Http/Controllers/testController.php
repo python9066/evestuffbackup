@@ -56,7 +56,8 @@ class testController extends Controller
 
         ];
         $response = $client->request('GET', $url, [
-            'headers' => $headers
+            'headers' => $headers,
+            'http_errors' => false
         ]);
         $data = Utils::jsonDecode($response->getBody(), true);
         echo $dance . " - " . $dance2;
