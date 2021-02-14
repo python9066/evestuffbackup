@@ -445,7 +445,7 @@ class Notifications
 
         $checks = Station::where('updated_at', '<', $now5hour)->where('station_status_id', 1)->get();
         foreach ($checks as $check) {
-            $check->update(['station_status_id' => 10]);
+            $check->update(['station_status_id' => 10, 'user_id' => null, 'text' => null, 'gunner_id' => null]);
             $stationID = $check->id;
             $flag = null;
             $flag = collect([
@@ -456,7 +456,7 @@ class Notifications
 
         $checks = Station::where('updated_at', '<', $now1hour)->where('station_status_id', 7)->get();
         foreach ($checks as $check) {
-            $check->update(['station_status_id' => 10]);
+            $check->update(['station_status_id' => 10, 'user_id' => null, 'text' => null, 'gunner_id' => null]);
             $stationID = $check->id;
             $flag = null;
             $flag = collect([
@@ -467,7 +467,7 @@ class Notifications
 
         $checks = Station::where('updated_at', '<', $now1hour)->where('station_status_id', 8)->get();
         foreach ($checks as $check) {
-            $check->update(['station_status_id' => 10]);
+            $check->update(['station_status_id' => 10, 'user_id' => null, 'text' => null, 'gunner_id' => null]);
             $stationID = $check->id;
             $flag = null;
             $flag = collect([
@@ -478,7 +478,7 @@ class Notifications
 
         $checks = Station::where('updated_at', '<', $now1hour)->where('station_status_id', 9)->get();
         foreach ($checks as $check) {
-            $check->update(['station_status_id' => 10]);
+            $check->update(['station_status_id' => 10, 'user_id' => null, 'text' => null, 'gunner_id' => null]);
             $stationID = $check->id;
             $flag = null;
             $flag = collect([
@@ -489,7 +489,7 @@ class Notifications
 
         $checks = Station::where('updated_at', '<', $now1hour)->where('station_status_id', 7)->get();
         foreach ($checks as $check) {
-            $check->update(['station_status_id' => 10]);
+            $check->update(['station_status_id' => 10, 'user_id' => null, 'text' => null, 'gunner_id' => null]);
             $stationID = $check->id;
             $flag = null;
             $flag = collect([
@@ -500,7 +500,7 @@ class Notifications
 
         $checks = Station::where('updated_at', '<', $now10min)->where('station_status_id', 4)->get();
         foreach ($checks as $check) {
-            $check->update(['station_status_id' => 10]);
+            $check->update(['station_status_id' => 10, 'user_id' => null, 'text' => null, 'gunner_id' => null]);
             $stationID = $check->id;
             $flag = null;
             $flag = collect([
