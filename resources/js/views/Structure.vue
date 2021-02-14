@@ -368,7 +368,7 @@ export default {
                 return "faSvg fa-thumbs-up";
             }
             if (statusId == 5) {
-                return "indigo darken-4";
+                return "faSvg fa-life-ring";
             }
             if (statusId == 6) {
                 return "blue-grey darken-3";

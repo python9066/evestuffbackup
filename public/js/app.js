@@ -16155,7 +16155,7 @@ function sleep(ms) {
       }
 
       if (statusId == 5) {
-        return "indigo darken-4";
+        return "faSvg fa-life-ring";
       }
 
       if (statusId == 6) {
