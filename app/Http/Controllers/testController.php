@@ -12,6 +12,8 @@ use Illuminate\Http\Request;
 use utils\Helper\Helper;
 use utils\Notificationhelper\Notifications;
 use Symfony\Component\Yaml\Yaml;
+use GuzzleHttp\Utils;
+use GuzzleHttp\Client as GuzzleHttpClient;
 
 class testController extends Controller
 {
@@ -41,12 +43,24 @@ class testController extends Controller
 
     }
 
-    public function test()
+    public function test($id)
     {
+        $url = "https://recon.gnf.lt/api/structure/" . $id;
         $dance = env('RECON_TOKEN', "DANCE");
         $dance2 = env('RECON_USER', 'DANCE2');
 
-        dd($dance, $dance2);
+        $client = new GuzzleHttpClient();
+        $headers = [
+            'x-gsf-user' => env('RECON_USER', 'DANCE2'),
+            'token' =>  env('RECON_TOKEN', "DANCE")
+
+        ];
+        $response = $client->request('GET', $url, [
+            'headers' => $headers
+        ]);
+        $data = Utils::jsonDecode($response->getBody(), true);
+        echo $dance . " - " . $dance2;
+        echo $data;
 
         // $outTime = null;
         // $ldap = $time;
