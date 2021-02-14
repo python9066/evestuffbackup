@@ -50,7 +50,7 @@ class Notifications
     {
 
 
-        $stations = Station::where('id', '>', 0)->value('id');
+        $stations = Station::value('id');
         dd($stations);
         foreach ($stations as $station) {
             $url = "https://recon.gnf.lt/api/structure/" . $station;
