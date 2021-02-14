@@ -64,7 +64,7 @@
             </template>
             <template v-slot:item.count="{ item }">
                 <CountDowntimer
-                    v-if="item.status_id == 5"
+                    v-if="item.station_status_id == 5"
                     :start-time="moment.utc(item.out_time).unix()"
                     :end-text="'Window Closed'"
                     :interval="1000"
