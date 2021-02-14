@@ -520,7 +520,7 @@ class Notifications
             broadcast(new StationNotificationDelete($flag))->toOthers();
         }
 
-        $checks = Station::where('out_time', ">", $soon5hour)->where('station_status_id', 10)->get();
+        $checks = Station::where('out_time', "<", $soon5hour)->where('station_status_id', 10)->get();
         foreach ($checks as $check) {
             $check->update(['station_status_id' => 5]);
             $stationID = $check->id;
