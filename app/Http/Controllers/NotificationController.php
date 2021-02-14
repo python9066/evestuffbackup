@@ -45,7 +45,7 @@ class NotificationController extends Controller
     {
         $data = Notifications::reconPull($id);
         // $text = Utils::jsonDecode($data['str_fitting'], true);;
-        if ($data['str_structure_id_md5'] != null) {
+        if (array_key_exists('str_structure_id_md5', $data)) {
             echo "RECON";
         }
 
