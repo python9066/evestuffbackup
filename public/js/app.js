@@ -16177,7 +16177,7 @@ function sleep(ms) {
       }
 
       if (statusId == 7) {
-        return "dark-red";
+        return "red";
       }
 
       if (statusId == 8) {

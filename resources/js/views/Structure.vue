@@ -390,7 +390,7 @@ export default {
                 return "dark-orange";
             }
             if (statusId == 7) {
-                return "dark-red";
+                return "red";
             }
             if (statusId == 8) {
                 return "warning";
