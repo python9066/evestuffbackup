@@ -40,7 +40,7 @@ class testController extends Controller
 
     }
 
-    public function test($data)
+    public function test()
     {
 
 
