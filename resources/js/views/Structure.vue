@@ -110,6 +110,10 @@
                                     >faSvg fa-thumbs-up</v-icon
                                 >
 
+                                <v-icon v-if="item.station_status_id == 7" left
+                                    >faSvg fa-dumpster-fire</v-icon
+                                >
+
                                 <v-icon v-if="item.station_status_id == 8" left
                                     >faSvg fa-shield-alt</v-icon
                                 >
@@ -273,6 +277,7 @@ export default {
                 { title: "Saved", value: 4 },
                 { title: "Reffed - Shield", value: 8 },
                 { title: "Reffed - Armor", value: 9 },
+                { title: "Destoryed", value: 7 },
                 { title: "New", value: 1 }
             ],
 

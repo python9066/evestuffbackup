@@ -15978,6 +15978,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
 
 
 
@@ -16036,6 +16040,9 @@ function sleep(ms) {
       }, {
         title: "Reffed - Armor",
         value: 9
+      }, {
+        title: "Destoryed",
+        value: 7
       }, {
         title: "New",
         value: 1
@@ -31756,6 +31763,14 @@ var render = function() {
                                               "v-icon",
                                               { attrs: { left: "" } },
                                               [_vm._v("faSvg fa-thumbs-up")]
+                                            )
+                                          : _vm._e(),
+                                        _vm._v(" "),
+                                        item.station_status_id == 7
+                                          ? _c(
+                                              "v-icon",
+                                              { attrs: { left: "" } },
+                                              [_vm._v("faSvg fa-dumpster-fire")]
                                             )
                                           : _vm._e(),
                                         _vm._v(" "),
