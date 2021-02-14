@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Events\StationNew;
 use App\Events\TowerNew;
 use App\Models\Logging;
+use App\Models\Station;
 use App\Models\testNote;
 use DateTime;
 use Illuminate\Http\Request;
@@ -40,14 +41,18 @@ class testController extends Controller
 
     }
 
-    public function test()
+    public function test($id, $time)
     {
 
 
-        $outTime = 132578224400000000;
-        $winSecs       = (int)($outTime / 10000000); // divide by 10 000 000 to get seconds
-        $unixTimestamp = ($winSecs - 11644473600); // 1.1.1600 -> 1.1.1970 difference in seconds
-        echo date("Y-m-d H:i:s", $unixTimestamp);
+
+        $outTime = null;
+        $ldap = $time;
+        $winSecs       = (int)($ldap / 10000000);
+        $unixTimestamp = ($winSecs - 11644473600);
+        $outTime = date("Y-m-d H:i:s", $unixTimestamp);
+
+        Station::where('id', $id)->update(['out_time' => $outTime]);
 
         // Logging::create(['campaign_id' => 1, 'campaign_sola_system_id' => 1, 'user_id' => 1, 'text' => $data]);
 

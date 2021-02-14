@@ -153,6 +153,11 @@ class Notifications
             ]);
             broadcast(new StationNew($flag))->toOthers();
         } elseif ($var['type'] == 'StructureLostShields') {
+            $outTime = null;
+            $ldap = $text['timestamp'];
+            $winSecs       = (int)($ldap / 10000000);
+            $unixTimestamp = ($winSecs - 11644473600);
+            $outTime = date("Y-m-d H:i:s", $unixTimestamp);
 
             if ($var['notification_id'] > $maxNotificationID) {
 
@@ -169,7 +174,8 @@ class Notifications
                         'text' => null,
                         'user_id' => null,
                         'station_status_id' => 8,
-                        'timestamp' => $time
+                        'timestamp' => $time,
+                        'outtime' => $outTime
                     ]);
                 } else {
                     $station->update([
@@ -194,6 +200,12 @@ class Notifications
             ]);
             broadcast(new StationNew($flag))->toOthers();
         } elseif ($var['type'] == 'StructureLostArmor') {
+            $outTime = null;
+            $ldap = $text['timestamp'];
+            $winSecs       = (int)($ldap / 10000000);
+            $unixTimestamp = ($winSecs - 11644473600);
+            $outTime = date("Y-m-d H:i:s", $unixTimestamp);
+
             if ($var['notification_id'] > $maxNotificationID) {
 
                 $station = Station::where('id', $text['structureID'])->first();
@@ -210,7 +222,8 @@ class Notifications
                         'text' => null,
                         'user_id' => null,
                         'station_status_id' => 9,
-                        'timestamp' => $time
+                        'timestamp' => $time,
+                        'outtime' => $outTime
                     ]);
                 } else {
                     $station->update([

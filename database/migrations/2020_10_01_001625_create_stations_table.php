@@ -21,6 +21,7 @@ class CreateStationsTable extends Migration
             $table->string('text')->nullable();
             $table->integer('station_status_id')->default(1)->index();
             $table->foreignId('gunner_id')->nullable();
+            $table->timestamp('out_time')->nullable();
             $table->timestamps();
         });
     }
