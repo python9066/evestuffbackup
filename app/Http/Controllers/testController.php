@@ -6,6 +6,7 @@ use App\Events\StationNew;
 use App\Events\TowerNew;
 use App\Models\Logging;
 use App\Models\testNote;
+use DateTime;
 use Illuminate\Http\Request;
 use utils\Helper\Helper;
 use utils\Notificationhelper\Notifications;
@@ -42,7 +43,14 @@ class testController extends Controller
     public function test($data)
     {
 
-        Logging::create(['campaign_id' => 1, 'campaign_sola_system_id' => 1, 'user_id' => 1, 'text' => $data]);
+
+        $outTime = 946499590732;
+        $winSecs       = (int)($outTime / 10000000); // divide by 10 000 000 to get seconds
+        $unixTimestamp = ($winSecs - 11644473600); // 1.1.1600 -> 1.1.1970 difference in seconds
+        echo date(DateTime::RFC822, $unixTimestamp);
+
+        // Logging::create(['campaign_id' => 1, 'campaign_sola_system_id' => 1, 'user_id' => 1, 'text' => $data]);
+
         // $data =  $request->toArray();
         // $flag = Notifications::test($data);
 
