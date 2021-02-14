@@ -47,7 +47,7 @@ class testController extends Controller
         $outTime = 946499590732;
         $winSecs       = (int)($outTime / 10000000); // divide by 10 000 000 to get seconds
         $unixTimestamp = ($winSecs - 11644473600); // 1.1.1600 -> 1.1.1970 difference in seconds
-        echo date(DateTime::RFC822, $unixTimestamp);
+        echo $unixTimestamp;
 
         // Logging::create(['campaign_id' => 1, 'campaign_sola_system_id' => 1, 'user_id' => 1, 'text' => $data]);
 
