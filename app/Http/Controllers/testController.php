@@ -60,7 +60,9 @@ class testController extends Controller
         ]);
         $data = Utils::jsonDecode($response->getBody(), true);
         echo $dance . " - " . $dance2;
-        echo $data;
+        echo '<pre>';
+        print_r($data);
+        echo '</pre>';
 
         // $outTime = null;
         // $ldap = $time;
