@@ -94,32 +94,10 @@
                                 outlined
                                 :color="pillColor(item.station_status_id)"
                             >
-                                <v-icon v-if="item.station_status_id == 1" left
-                                    >faSvg fa-plus</v-icon
-                                >
-
-                                <v-icon v-if="item.station_status_id == 2" left
-                                    >faSvg fa-route</v-icon
-                                >
-
-                                <v-icon v-if="item.station_status_id == 3" left
-                                    >faSvg fa-fist-raised</v-icon
-                                >
-
-                                <v-icon v-if="item.station_status_id == 4" left
-                                    >faSvg fa-thumbs-up</v-icon
-                                >
-
-                                <v-icon v-if="item.station_status_id == 7" left
-                                    >faSvg fa-dumpster-fire</v-icon
-                                >
-
-                                <v-icon v-if="item.station_status_id == 8" left
-                                    >faSvg fa-shield-alt</v-icon
-                                >
-
-                                <v-icon v-if="item.station_status_id == 9" left
-                                    >faSvg fa-house-damage</v-icon
+                                <v-icon left>
+                                    {{
+                                        pillIcon(item.station_status_id)
+                                    }}</v-icon
                                 >
                                 {{ item.station_status_name }}
                             </v-btn>
@@ -376,6 +354,36 @@ export default {
             // console.log("30secs");
         },
 
+        pillIcon(statusID) {
+            if (statusId == 1) {
+                return "faSvg fa-plus";
+            }
+            if (statusId == 2) {
+                return "faSvg fa-route";
+            }
+            if (statusId == 3) {
+                return "faSvg fa-fist-raised";
+            }
+            if (statusId == 4) {
+                return "faSvg fa-thumbs-up";
+            }
+            if (statusId == 5) {
+                return "indigo darken-4";
+            }
+            if (statusId == 6) {
+                return "blue-grey darken-3";
+            }
+            if (statusId == 7) {
+                return "faSvg fa-dumpster-fire";
+            }
+            if (statusId == 8) {
+                return "faSvg fa-shield-alt";
+            }
+            if (statusId == 9) {
+                return "faSvg fa-house-damage";
+            }
+        },
+
         pillColor(statusId) {
             if (statusId == 1) {
                 return "success";
@@ -388,6 +396,12 @@ export default {
             }
             if (statusId == 4) {
                 return "dark-orange";
+            }
+            if (statusId == 5) {
+                return "indigo darken-4";
+            }
+            if (statusId == 6) {
+                return "blue-grey darken-3";
             }
             if (statusId == 7) {
                 return "red";
