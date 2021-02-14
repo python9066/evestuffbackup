@@ -368,10 +368,10 @@ export default {
                 return "faSvg fa-thumbs-up";
             }
             if (statusId == 5) {
-                return "faSvg fa-life-ring";
+                return "faSvg fa-clock";
             }
             if (statusId == 6) {
-                return "blue-grey darken-3";
+                return "faSvg fa-life-ring";
             }
             if (statusId == 7) {
                 return "faSvg fa-dumpster-fire";

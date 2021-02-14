@@ -16155,11 +16155,11 @@ function sleep(ms) {
       }
 
       if (statusId == 5) {
-        return "faSvg fa-life-ring";
+        return "faSvg fa-clock";
       }
 
       if (statusId == 6) {
-        return "blue-grey darken-3";
+        return "faSvg fa-life-ring";
       }
 
       if (statusId == 7) {
