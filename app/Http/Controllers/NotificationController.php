@@ -12,6 +12,7 @@ use App\Events\NotificationChanged;
 use App\Models\NotificationRecords;
 use App\Events\StationNew;
 use App\Events\TowerNew;
+use App\Models\StationItems;
 use GuzzleHttp\Utils;
 
 class NotificationController extends Controller
@@ -44,11 +45,12 @@ class NotificationController extends Controller
     public function test($id)
     {
         $data = Notifications::reconPull($id);
-        // $text = Utils::jsonDecode($data['str_fitting'], true);;
+
         if (array_key_exists('str_structure_id_md5', $data)) {
             echo "RECON";
         }
-
+        $test = StationItems::where('id', 10)->get()->count();
+        dd($test);
         echo '<pre>';
         print_r($data);
         echo '</pre>';
