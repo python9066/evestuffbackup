@@ -35,14 +35,16 @@
                                     @click="dialog1 = true"
                                 >
                                     Delve
-                                    <v-icon right dark>fas fa-map fa-xs</v-icon>
+                                    <v-icon right dark
+                                        >faSvg fa-map fa-xs</v-icon
+                                    >
                                 </v-btn>
                             </template>
                         </template>
                         <v-card>
                             <v-toolbar dark color="primary">
                                 <v-btn icon dark @click="dialog1 = false">
-                                    <v-icon>fas fa-times-circle</v-icon>
+                                    <v-icon>faSvg fa-times-circle</v-icon>
                                 </v-btn>
                                 <v-toolbar-title>Delve</v-toolbar-title>
                                 <v-spacer></v-spacer>
@@ -75,13 +77,13 @@
                                 @click="dialog2 = true"
                             >
                                 Querious
-                                <v-icon right dark>fas fa-map fa-xs</v-icon>
+                                <v-icon right dark>faSvg fa-map fa-xs</v-icon>
                             </v-btn>
                         </template>
                         <v-card>
                             <v-toolbar dark color="primary">
                                 <v-btn icon dark @click="dialog2 = false">
-                                    <v-icon>fas fa-times-circle</v-icon>
+                                    <v-icon>faSvg fa-times-circle</v-icon>
                                 </v-btn>
                                 <v-toolbar-title>Querious</v-toolbar-title>
                                 <v-spacer></v-spacer>
@@ -113,13 +115,13 @@
                                 @click="dialog3 = true"
                             >
                                 Period Basis
-                                <v-icon right dark>fas fa-map fa-xs</v-icon>
+                                <v-icon right dark>faSvg fa-map fa-xs</v-icon>
                             </v-btn>
                         </template>
                         <v-card>
                             <v-toolbar dark color="primary">
                                 <v-btn icon dark @click="dialog3 = false">
-                                    <v-icon>fas fa-times-circle</v-icon>
+                                    <v-icon>faSvg fa-times-circle</v-icon>
                                 </v-btn>
                                 <v-toolbar-title>Period Basis</v-toolbar-title>
                                 <v-spacer></v-spacer>

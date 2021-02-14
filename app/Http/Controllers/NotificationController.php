@@ -12,6 +12,7 @@ use App\Events\NotificationChanged;
 use App\Models\NotificationRecords;
 use App\Events\StationNew;
 use App\Events\TowerNew;
+use GuzzleHttp\Utils;
 
 class NotificationController extends Controller
 {
@@ -43,7 +44,7 @@ class NotificationController extends Controller
     public function test($id)
     {
         $data = Notifications::reconPull($id);
-        $text = $data['str_fitting'];
+        $text = Utils::jsonDecode($data['str_fitting'], true);;
         echo '<pre>';
         print_r($data);
         echo '</pre>';

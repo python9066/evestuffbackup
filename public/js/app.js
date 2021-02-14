@@ -14203,6 +14203,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
 
 
 
@@ -29472,7 +29474,7 @@ var render = function() {
                                     _c(
                                       "v-icon",
                                       { attrs: { right: "", dark: "" } },
-                                      [_vm._v("fas fa-map fa-xs")]
+                                      [_vm._v("faSvg fa-map fa-xs")]
                                     )
                                   ],
                                   1
@@ -29509,7 +29511,11 @@ var render = function() {
                                     }
                                   }
                                 },
-                                [_c("v-icon", [_vm._v("fas fa-times-circle")])],
+                                [
+                                  _c("v-icon", [
+                                    _vm._v("faSvg fa-times-circle")
+                                  ])
+                                ],
                                 1
                               ),
                               _vm._v(" "),
@@ -29605,7 +29611,7 @@ var render = function() {
                                   _c(
                                     "v-icon",
                                     { attrs: { right: "", dark: "" } },
-                                    [_vm._v("fas fa-map fa-xs")]
+                                    [_vm._v("faSvg fa-map fa-xs")]
                                   )
                                 ],
                                 1
@@ -29641,7 +29647,11 @@ var render = function() {
                                     }
                                   }
                                 },
-                                [_c("v-icon", [_vm._v("fas fa-times-circle")])],
+                                [
+                                  _c("v-icon", [
+                                    _vm._v("faSvg fa-times-circle")
+                                  ])
+                                ],
                                 1
                               ),
                               _vm._v(" "),
@@ -29737,7 +29747,7 @@ var render = function() {
                                   _c(
                                     "v-icon",
                                     { attrs: { right: "", dark: "" } },
-                                    [_vm._v("fas fa-map fa-xs")]
+                                    [_vm._v("faSvg fa-map fa-xs")]
                                   )
                                 ],
                                 1
@@ -29773,7 +29783,11 @@ var render = function() {
                                     }
                                   }
                                 },
-                                [_c("v-icon", [_vm._v("fas fa-times-circle")])],
+                                [
+                                  _c("v-icon", [
+                                    _vm._v("faSvg fa-times-circle")
+                                  ])
+                                ],
                                 1
                               ),
                               _vm._v(" "),
