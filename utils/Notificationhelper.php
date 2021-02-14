@@ -23,8 +23,6 @@ class Notifications
     public static function reconPull($id)
     {
         $url = "https://recon.gnf.lt/api/structure/" . $id;
-        $dance = env('RECON_TOKEN', "DANCE");
-        $dance2 = env('RECON_USER', 'DANCE2');
 
         $client = new GuzzleHttpClient();
         $headers = [
@@ -38,7 +36,8 @@ class Notifications
         ]);
         $data = Utils::jsonDecode($response->getBody(), true);
         if ($data == "Error, Structure Not Found") {
-            return "NO STATION";
+            $stationdata = Helper::authpull('station', $id);
+            return $stationdata;
         } else {
             return $data;
         }
