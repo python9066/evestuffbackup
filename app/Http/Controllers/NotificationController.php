@@ -43,8 +43,12 @@ class NotificationController extends Controller
     public function test($id)
     {
         $data = Notifications::reconPull($id);
+        $text = $data['str_fitting'];
         echo '<pre>';
         print_r($data);
+        echo '</pre>';
+        echo '<pre>';
+        print_r($text);
         echo '</pre>';
     }
 
