@@ -37,7 +37,7 @@ class Notifications
             'http_errors' => false
         ]);
         $data = Utils::jsonDecode($response->getBody(), true);
-        if ($data = "Error, Structure Not Found") {
+        if ($data == "Error, Structure Not Found") {
             return "NO STATION";
         } else {
             return $data;
