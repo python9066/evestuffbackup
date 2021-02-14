@@ -63,11 +63,25 @@
                 thing?
             </template>
             <template v-slot:item.count="{ item }">
+                <CountDowntimer
+                    v-if="item.status_id == 5"
+                    :start-time="moment.utc(item.out_time).unix()"
+                    :end-text="'Window Closed'"
+                    :interval="1000"
+                >
+                    <template slot="countdown" slot-scope="scope">
+                        <span class="blue--text pl-3"
+                            >{{ scope.props.hours }}:{{
+                                scope.props.minutes
+                            }}:{{ scope.props.seconds }}</span
+                        >
+                    </template>
+                </CountDowntimer>
                 <VueCountUptimer
+                    v-else
                     :start-time="moment.utc(timeStamp(item)).unix()"
                     :end-text="'Window Closed'"
                     :interval="1000"
-                    @timecheck="timecheck(item)"
                 >
                     <template slot="countup" slot-scope="scope">
                         <span class="red--text pl-3"
@@ -281,7 +295,12 @@ export default {
                     align: "center",
                     width: "15%"
                 },
-                { text: "Age", value: "count", sortable: false, width: "5%" },
+                {
+                    text: "Age/CountDown",
+                    value: "count",
+                    sortable: false,
+                    width: "5%"
+                },
                 {
                     text: "Status",
                     value: "station_status_name",

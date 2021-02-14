@@ -15966,6 +15966,20 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -16057,7 +16071,7 @@ function sleep(ms) {
         align: "center",
         width: "15%"
       }, {
-        text: "Age",
+        text: "Age/CountDown",
         value: "count",
         sortable: false,
         width: "5%"
@@ -31695,40 +31709,75 @@ var render = function() {
               fn: function(ref) {
                 var item = ref.item
                 return [
-                  _c("VueCountUptimer", {
-                    attrs: {
-                      "start-time": _vm.moment.utc(_vm.timeStamp(item)).unix(),
-                      "end-text": "Window Closed",
-                      interval: 1000
-                    },
-                    on: {
-                      timecheck: function($event) {
-                        return _vm.timecheck(item)
-                      }
-                    },
-                    scopedSlots: _vm._u(
-                      [
-                        {
-                          key: "countup",
-                          fn: function(scope) {
-                            return [
-                              _c("span", { staticClass: "red--text pl-3" }, [
-                                _vm._v(
-                                  _vm._s(scope.props.hours) +
-                                    ":" +
-                                    _vm._s(scope.props.minutes) +
-                                    ":" +
-                                    _vm._s(scope.props.seconds)
-                                )
-                              ])
-                            ]
-                          }
-                        }
-                      ],
-                      null,
-                      true
-                    )
-                  })
+                  item.status_id == 5
+                    ? _c("CountDowntimer", {
+                        attrs: {
+                          "start-time": _vm.moment.utc(item.out_time).unix(),
+                          "end-text": "Window Closed",
+                          interval: 1000
+                        },
+                        scopedSlots: _vm._u(
+                          [
+                            {
+                              key: "countdown",
+                              fn: function(scope) {
+                                return [
+                                  _c(
+                                    "span",
+                                    { staticClass: "blue--text pl-3" },
+                                    [
+                                      _vm._v(
+                                        _vm._s(scope.props.hours) +
+                                          ":" +
+                                          _vm._s(scope.props.minutes) +
+                                          ":" +
+                                          _vm._s(scope.props.seconds)
+                                      )
+                                    ]
+                                  )
+                                ]
+                              }
+                            }
+                          ],
+                          null,
+                          true
+                        )
+                      })
+                    : _c("VueCountUptimer", {
+                        attrs: {
+                          "start-time": _vm.moment
+                            .utc(_vm.timeStamp(item))
+                            .unix(),
+                          "end-text": "Window Closed",
+                          interval: 1000
+                        },
+                        scopedSlots: _vm._u(
+                          [
+                            {
+                              key: "countup",
+                              fn: function(scope) {
+                                return [
+                                  _c(
+                                    "span",
+                                    { staticClass: "red--text pl-3" },
+                                    [
+                                      _vm._v(
+                                        _vm._s(scope.props.hours) +
+                                          ":" +
+                                          _vm._s(scope.props.minutes) +
+                                          ":" +
+                                          _vm._s(scope.props.seconds)
+                                      )
+                                    ]
+                                  )
+                                ]
+                              }
+                            }
+                          ],
+                          null,
+                          true
+                        )
+                      })
                 ]
               }
             },
