@@ -23,19 +23,7 @@ class Notifications
     {
 
 
-        $current = now();
-        $now = $current->modify('-10 minutes');
 
-        // $stationCheck = Station::where('station_status_id', '>', 3)
-        //     ->where('timestamp', '<=', $now)
-        //     ->get()
-        //     ->count();
-        // if ($stationCheck > 0) {
-
-        //     Station::where('station_status_id', '>', 3)
-        //         ->where('timestamp', '<=', $now)
-        //         ->update(['station_status_id' => 10]);
-        // }
         $time = $var['timestamp'];
         $time = Helper::fixtime($time);
         $data = array();
@@ -68,7 +56,7 @@ class Notifications
                 'moon_id' => $text['moonID']
             );
         } else if ($var['type'] == 'StructureDestroyed') {
-            Station::where('id', $text['structureID'])->delete();
+            Station::where('id', $text['structureID'])->update(['station_status_id' => 7, 'out_time' => null]);
             StationNotificationShield::where('station_id', $text['structureID'])->delete();
             StationNotificationArmor::where('station_id', $text['structureID'])->delete();
         }
@@ -453,6 +441,7 @@ class Notifications
         $now10min = now()->modify(' -10 minutes');
         $now1hour = now()->modify(' -1 hour');
         $now5hour = now()->modify(' -5 hours'); //if less than
+        $soon5hour = now()->modify(' +5 hours');
 
         $checks = Station::where('updated_at', '<', $now5hour)->where('station_status_id', 1)->get();
         foreach ($checks as $check) {
@@ -498,9 +487,42 @@ class Notifications
             broadcast(new StationNotificationDelete($flag))->toOthers();
         }
 
+        $checks = Station::where('updated_at', '<', $now1hour)->where('station_status_id', 7)->get();
+        foreach ($checks as $check) {
+            $check->update(['station_status_id' => 10]);
+            $stationID = $check->id;
+            $flag = null;
+            $flag = collect([
+                'id' => $stationID
+            ]);
+            broadcast(new StationNotificationDelete($flag))->toOthers();
+        }
+
         $checks = Station::where('updated_at', '<', $now10min)->where('station_status_id', 4)->get();
         foreach ($checks as $check) {
             $check->update(['station_status_id' => 10]);
+            $stationID = $check->id;
+            $flag = null;
+            $flag = collect([
+                'id' => $stationID
+            ]);
+            broadcast(new StationNotificationDelete($flag))->toOthers();
+        }
+
+        $checks = Station::where('out_time', "<=", $now)->where('station_status_id', 5)->get();
+        foreach ($checks as $check) {
+            $check->update(['station_status_id' => 6]);
+            $stationID = $check->id;
+            $flag = null;
+            $flag = collect([
+                'id' => $stationID
+            ]);
+            broadcast(new StationNotificationDelete($flag))->toOthers();
+        }
+
+        $checks = Station::where('out_time', ">", $soon5hour)->where('station_status_id', 10)->get();
+        foreach ($checks as $check) {
+            $check->update(['station_status_id' => 5]);
             $stationID = $check->id;
             $flag = null;
             $flag = collect([
