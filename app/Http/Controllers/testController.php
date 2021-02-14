@@ -41,12 +41,11 @@ class testController extends Controller
 
     }
 
-    public function test($id)
+    public function test()
     {
 
-        $station_id = $id;
-        $token = env('RECON_TOKEN');
-        dd($token);
+
+        dd(env('RECON_TOKEN'));
 
         // $outTime = null;
         // $ldap = $time;
