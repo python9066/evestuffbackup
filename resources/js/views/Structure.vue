@@ -354,7 +354,7 @@ export default {
             // console.log("30secs");
         },
 
-        pillIcon(statusID) {
+        pillIcon(statusId) {
             if (statusId == 1) {
                 return "faSvg fa-plus";
             }

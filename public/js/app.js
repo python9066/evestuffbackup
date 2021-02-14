@@ -16137,7 +16137,7 @@ function sleep(ms) {
         _this2.loadingr = false;
       }); // console.log("30secs");
     },
-    pillIcon: function pillIcon(statusID) {
+    pillIcon: function pillIcon(statusId) {
       if (statusId == 1) {
         return "faSvg fa-plus";
       }
