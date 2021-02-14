@@ -271,11 +271,9 @@ export default {
 
             dropdown_edit: [
                 { title: "On My Way", value: 2 },
-                { title: "Gunning", value: 3 },
+                { title: "Repairing", value: 11 },
+                { title: "Hostile", value: 12 },
                 { title: "Saved", value: 4 },
-                { title: "Reffed - Shield", value: 8 },
-                { title: "Reffed - Armor", value: 9 },
-                { title: "Destoryed", value: 7 },
                 { title: "New", value: 1 }
             ],
 
@@ -415,6 +413,12 @@ export default {
             if (statusId == 9) {
                 return "faSvg fa-house-damage";
             }
+            if (statusId == 11) {
+                return "faSvg fa-exclamation-circle";
+            }
+            if (statusId == 12) {
+                return "faSvg fa-toolbox";
+            }
         },
 
         pillColor(statusId) {
@@ -427,7 +431,7 @@ export default {
             if (statusId == 3) {
                 return "#FF5EEA";
             }
-            if (statusId == 4) {
+            if (statusId == 4 || statusId == 11) {
                 return "dark-orange";
             }
             if (statusId == 5) {
@@ -439,7 +443,7 @@ export default {
             if (statusId == 7) {
                 return "red";
             }
-            if (statusId == 8) {
+            if (statusId == 8 || statusId == 12) {
                 return "warning";
             }
             if (statusId == 9) {
