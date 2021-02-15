@@ -93,18 +93,16 @@ class Notifications
                     'r_cloning' => $stationdata['str_cloning'],
                     'r_composite' => $stationdata['str_composite']
                 ]);
-
+                if($stationdata['str_fitting'] != ''){
                 $items = Utils::jsonDecode($stationdata['str_fitting'], true);
-                if (count($items) > 0) {
-                    foreach ($items as $item) {
-                        StationItems::where('id', $item['type_id'])->get()->count();
-                        if (StationItems::where('id', $item['type_id'])->get()->count() == 0) {
-                            StationItems::Create(['id' => $item['type_id'], 'item_name' => $item['name']]);
-                        }
-                        StationItemJoin::create(['station_item_id' => $item['type_id'], 'station_id' => $station]);
-                    };
-                }
-            }
+                foreach ($items as $item) {
+                    StationItems::where('id', $item['type_id'])->get()->count();
+                    if (StationItems::where('id', $item['type_id'])->get()->count() == 0) {
+                        StationItems::Create(['id' => $item['type_id'], 'item_name' => $item['name']]);
+                    }
+                    StationItemJoin::create(['station_item_id' => $item['type_id'], 'station_id' => $station]);
+                };
+            }}
         }
     }
     public static function test($var)
@@ -226,18 +224,16 @@ class Notifications
                             'r_cloning' => $stationdata['str_cloning'],
                             'r_composite' => $stationdata['str_composite']
                         ]);
-
-                        $items = Utils::jsonDecode($stationdata['str_fitting'], true);
-                        if (count($items) > 0) {
-                            foreach ($items as $item) {
-                                StationItems::where('id', $item['type_id'])->get()->count();
-                                if (StationItems::where('id', $item['type_id'])->get()->count() == 0) {
-                                    StationItems::Create(['id' => $item['type_id'], 'item_name' => $item['name']]);
-                                }
-                                StationItemJoin::create(['station_item_id' => $item['type_id'], 'station_id' => $text['structureID']]);
-                            };
-                        } else {
-                        }
+if(){
+           $stationdata['str_fitting'] != ''             $items = Utils::jsonDecode($stationdata['str_fitting'], true);
+                        foreach ($items as $item) {
+                            StationItems::where('id', $item['type_id'])->get()->count();
+                            if (StationItems::where('id', $item['type_id'])->get()->count() == 0) {
+                                StationItems::Create(['id' => $item['type_id'], 'item_name' => $item['name']]);
+                            }
+                            StationItemJoin::create(['station_item_id' => $item['type_id'], 'station_id' => $text['structureID']]);
+                        };
+    }                } else {
                         Station::Create([
                             'id' => $text['structureID'],
                             'name' => $stationdata['name'],
@@ -314,18 +310,16 @@ class Notifications
                             'r_cloning' => $stationdata['str_cloning'],
                             'r_composite' => $stationdata['str_composite']
                         ]);
-
-                        $items = Utils::jsonDecode($stationdata['str_fitting'], true);
-                        if (count($items) > 0) {
-                            foreach ($items as $item) {
-                                StationItems::where('id', $item['type_id'])->get()->count();
-                                if (StationItems::where('id', $item['type_id'])->get()->count() == 0) {
-                                    StationItems::Create(['id' => $item['type_id'], 'item_name' => $item['name']]);
-                                }
-                                StationItemJoin::create(['station_item_id' => $item['type_id'], 'station_id' => $text['structureID']]);
-                            };
-                        } else {
-                        }
+if(){
+           $stationdata['str_fitting'] != ''             $items = Utils::jsonDecode($stationdata['str_fitting'], true);
+                        foreach ($items as $item) {
+                            StationItems::where('id', $item['type_id'])->get()->count();
+                            if (StationItems::where('id', $item['type_id'])->get()->count() == 0) {
+                                StationItems::Create(['id' => $item['type_id'], 'item_name' => $item['name']]);
+                            }
+                            StationItemJoin::create(['station_item_id' => $item['type_id'], 'station_id' => $text['structureID']]);
+                        };
+    }                } else {
                         Station::Create([
                             'id' => $text['structureID'],
                             'name' => $stationdata['name'],
@@ -404,18 +398,16 @@ class Notifications
                             'r_cloning' => $stationdata['str_cloning'],
                             'r_composite' => $stationdata['str_composite']
                         ]);
-
-                        $items = Utils::jsonDecode($stationdata['str_fitting'], true);
-                        if (count($items) > 0) {
-                            foreach ($items as $item) {
-                                StationItems::where('id', $item['type_id'])->get()->count();
-                                if (StationItems::where('id', $item['type_id'])->get()->count() == 0) {
-                                    StationItems::Create(['id' => $item['type_id'], 'item_name' => $item['name']]);
-                                }
-                                StationItemJoin::create(['station_item_id' => $item['type_id'], 'station_id' => $text['structureID']]);
-                            };
-                        } else {
-                        }
+if(){
+     $stationdata['str_fitting'] != ''                   $items = Utils::jsonDecode($stationdata['str_fitting'], true);
+                        foreach ($items as $item) {
+                            StationItems::where('id', $item['type_id'])->get()->count();
+                            if (StationItems::where('id', $item['type_id'])->get()->count() == 0) {
+                                StationItems::Create(['id' => $item['type_id'], 'item_name' => $item['name']]);
+                            }
+                            StationItemJoin::create(['station_item_id' => $item['type_id'], 'station_id' => $text['structureID']]);
+                        };
+    }                } else {
 
                         Station::Create([
                             'id' => $text['structureID'],
