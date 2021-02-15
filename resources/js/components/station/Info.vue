@@ -23,72 +23,18 @@
                     >Information about {{ station.name }}
                 </v-card-title>
                 <v-card-text>
-                    <div class="pb-2">
-                        {{ item.attack_adash_link }}
-                        <v-chip
-                            pill
-                            small
-                            outlined
-                            color="teal"
-                            @click="openAdash(item.attack_adash_link)"
-                            v-if="showLinkButton()"
-                        >
-                            view
-                        </v-chip>
-                    </div>
-                    <v-textarea
-                        height="300px"
-                        readonly
-                        no-resize
-                        v-model="item.attack_notes"
-                        outlined
-                        placeholder="No Notes"
-                    ></v-textarea>
-                    <v-divider></v-divider>
-                    <div>
-                        <v-text-field
-                            v-model="editAdashLink"
-                            auto-grow
-                            filled
-                            autofocus
-                            label="Enter/edit aDash link here"
-                        ></v-text-field>
-                        <v-text-field
-                            v-model="editText"
-                            auto-grow
-                            filled
-                            autofocus
-                            label="Enter New Notes Here"
-                        ></v-text-field>
-                    </div>
+                    erthwhteehtrehtrtehethsthesthse
                 </v-card-text>
                 <v-spacer></v-spacer
                 ><v-card-actions>
-                    <v-btn
-                        class="white--text"
-                        color="green"
-                        @click="updatetext()"
-                        :disabled="submitActive"
-                    >
-                        Submit
-                    </v-btn>
-
                     <v-btn class="white--text" color="teal" @click="close()">
                         Close
-                    </v-btn>
-                    <v-btn
-                        class="white--text"
-                        color="green"
-                        @click="clear()"
-                        :disabled="clearActive"
-                    >
-                        Safe
                     </v-btn></v-card-actions
                 >
             </v-card>
 
             <!-- <ShowInfo
-                :nodeNoteItem="nodeNoteItem"
+                :nodeNotestation="nodeNotestation"
                 v-if="$can('super')"
                 @closeMessage="showInfo = false"
             >
@@ -113,7 +59,7 @@ export default {
     },
 
     async created() {
-        Echo.private("nodemessage." + this.item.id).listen(
+        Echo.private("stationinfo." + this.station.id).listen(
             "NodeAttackMessageUpdate",
             e => {
                 if (e.flag.type == 1) {
@@ -136,12 +82,7 @@ export default {
     },
 
     methods: {
-        showMessage(item) {
-            this.$emit("openMessage", item);
-        },
-
         close() {
-            this.editText = null;
             this.showInfo = false;
             console.log("close");
         },
@@ -151,132 +92,17 @@ export default {
             win.focus();
         },
 
-        open() {
-            (this.showAttackNumber = false), (this.messageAttackCount = 0);
-        },
-
-        clear() {
-            this.item.attack_notes = null;
-            this.item.attack_adash_link = null;
-            this.item.under_attack = "0";
-            this.editText = null;
-            this.editAdashLink = null;
-            this.showAttackNumber = 0;
-            this.showInfo = false;
-            this.$store.dispatch("updateCampaignSystem", this.item);
-            let request = {
-                attack_notes: null,
-                attack_adash_link: null
-            };
-            axios({
-                method: "put",
-                url: "/api/campaignsystemsattackmessage/" + this.item.id,
-                data: request,
-                headers: {
-                    Authorization: "Bearer " + this.$store.state.token,
-                    Accept: "application/json",
-                    "Content-Type": "application/json"
-                }
-            });
-        },
-
-        showLinkButton() {
-            if (this.item.attack_adash_link != null) {
-                return true;
-            } else {
-                return false;
-            }
-        },
-
-        updatetext() {
-            var request = null;
-            var note = null;
-            var adashLink = null;
-            if (this.editText != null) {
-                this.editText = this.editText + "\n";
-                if (this.item.attack_notes == null) {
-                    note =
-                        moment.utc().format("HH:mm:ss") +
-                        " - " +
-                        this.$store.state.user_name +
-                        ": " +
-                        this.editText;
-                } else {
-                    note =
-                        moment.utc().format("HH:mm:ss") +
-                        " - " +
-                        this.$store.state.user_name +
-                        ": " +
-                        this.editText +
-                        this.item.attack_notes;
-                }
-
-                this.item.attack_notes = note;
-                this.item.under_attack = "1";
-            }
-            if (this.editAdashLink != null) {
-                adashLink = this.editAdashLink;
-                this.item.attack_adash_link = adashLink;
-                this.item.under_attack = "1";
-            }
-
-            if (note == null) {
-                request = {
-                    attack_adash_link: this.editAdashLink
-                };
-            } else if (adashLink == null) {
-                request = {
-                    attack_notes: note
-                };
-            } else {
-                request = {
-                    attack_notes: note,
-                    attack_adash_link: this.editAdashLink
-                };
-            }
-
-            this.$store.dispatch("updateCampaignSystem", this.item);
-            axios({
-                method: "put",
-                url: "/api/campaignsystemsattackmessage/" + this.item.id,
-                data: request,
-                headers: {
-                    Authorization: "Bearer " + this.$store.state.token,
-                    Accept: "application/json",
-                    "Content-Type": "application/json"
-                }
-            });
-            this.editText = null;
-        }
+        open() {}
     },
 
     computed: {
         icon() {
             return "faSvg fa-info--circle";
-        },
-
-        submitActive() {
-            if (this.editText != null || this.editAdashLink != null) {
-                return false;
-            } else {
-                return true;
-            }
-        },
-
-        clearActive() {
-            if (
-                this.item.attack_notes != null ||
-                this.item.attack_adash_link != null
-            ) {
-                return false;
-            } else {
-                return true;
-            }
         }
     },
 
     beforeDestroy() {
-        Echo.leave("nodemessage." + this.item.id);
+        Echo.leave("stationinfo." + this.station.id);
     }
 };
 </script>

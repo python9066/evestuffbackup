@@ -8929,60 +8929,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -9004,7 +8950,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              Echo["private"]("nodemessage." + _this.item.id).listen("NodeAttackMessageUpdate", function (e) {
+              Echo["private"]("stationinfo." + _this.station.id).listen("NodeAttackMessageUpdate", function (e) {
                 if (e.flag.type == 1) {
                   _this.showAttackNumber = true;
                   _this.messageAttackCount = _this.messageAttackCount + 1;
@@ -9027,11 +8973,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     }))();
   },
   methods: {
-    showMessage: function showMessage(item) {
-      this.$emit("openMessage", item);
-    },
     close: function close() {
-      this.editText = null;
       this.showInfo = false;
       console.log("close");
     },
@@ -9039,114 +8981,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var win = window.open(url, "_blank");
       win.focus();
     },
-    open: function open() {
-      this.showAttackNumber = false, this.messageAttackCount = 0;
-    },
-    clear: function clear() {
-      this.item.attack_notes = null;
-      this.item.attack_adash_link = null;
-      this.item.under_attack = "0";
-      this.editText = null;
-      this.editAdashLink = null;
-      this.showAttackNumber = 0;
-      this.showInfo = false;
-      this.$store.dispatch("updateCampaignSystem", this.item);
-      var request = {
-        attack_notes: null,
-        attack_adash_link: null
-      };
-      axios({
-        method: "put",
-        url: "/api/campaignsystemsattackmessage/" + this.item.id,
-        data: request,
-        headers: {
-          Authorization: "Bearer " + this.$store.state.token,
-          Accept: "application/json",
-          "Content-Type": "application/json"
-        }
-      });
-    },
-    showLinkButton: function showLinkButton() {
-      if (this.item.attack_adash_link != null) {
-        return true;
-      } else {
-        return false;
-      }
-    },
-    updatetext: function updatetext() {
-      var request = null;
-      var note = null;
-      var adashLink = null;
-
-      if (this.editText != null) {
-        this.editText = this.editText + "\n";
-
-        if (this.item.attack_notes == null) {
-          note = moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc().format("HH:mm:ss") + " - " + this.$store.state.user_name + ": " + this.editText;
-        } else {
-          note = moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc().format("HH:mm:ss") + " - " + this.$store.state.user_name + ": " + this.editText + this.item.attack_notes;
-        }
-
-        this.item.attack_notes = note;
-        this.item.under_attack = "1";
-      }
-
-      if (this.editAdashLink != null) {
-        adashLink = this.editAdashLink;
-        this.item.attack_adash_link = adashLink;
-        this.item.under_attack = "1";
-      }
-
-      if (note == null) {
-        request = {
-          attack_adash_link: this.editAdashLink
-        };
-      } else if (adashLink == null) {
-        request = {
-          attack_notes: note
-        };
-      } else {
-        request = {
-          attack_notes: note,
-          attack_adash_link: this.editAdashLink
-        };
-      }
-
-      this.$store.dispatch("updateCampaignSystem", this.item);
-      axios({
-        method: "put",
-        url: "/api/campaignsystemsattackmessage/" + this.item.id,
-        data: request,
-        headers: {
-          Authorization: "Bearer " + this.$store.state.token,
-          Accept: "application/json",
-          "Content-Type": "application/json"
-        }
-      });
-      this.editText = null;
-    }
+    open: function open() {}
   },
   computed: {
     icon: function icon() {
       return "faSvg fa-info--circle";
-    },
-    submitActive: function submitActive() {
-      if (this.editText != null || this.editAdashLink != null) {
-        return false;
-      } else {
-        return true;
-      }
-    },
-    clearActive: function clearActive() {
-      if (this.item.attack_notes != null || this.item.attack_adash_link != null) {
-        return false;
-      } else {
-        return true;
-      }
     }
   },
   beforeDestroy: function beforeDestroy() {
-    Echo.leave("nodemessage." + this.item.id);
+    Echo.leave("stationinfo." + this.station.id);
   }
 });
 
@@ -26066,125 +25909,16 @@ var render = function() {
                 )
               ]),
               _vm._v(" "),
-              _c(
-                "v-card-text",
-                [
-                  _c(
-                    "div",
-                    { staticClass: "pb-2" },
-                    [
-                      _vm._v(
-                        "\n                    " +
-                          _vm._s(_vm.item.attack_adash_link) +
-                          "\n                    "
-                      ),
-                      _vm.showLinkButton()
-                        ? _c(
-                            "v-chip",
-                            {
-                              attrs: {
-                                pill: "",
-                                small: "",
-                                outlined: "",
-                                color: "teal"
-                              },
-                              on: {
-                                click: function($event) {
-                                  return _vm.openAdash(
-                                    _vm.item.attack_adash_link
-                                  )
-                                }
-                              }
-                            },
-                            [
-                              _vm._v(
-                                "\n                        view\n                    "
-                              )
-                            ]
-                          )
-                        : _vm._e()
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c("v-textarea", {
-                    attrs: {
-                      height: "300px",
-                      readonly: "",
-                      "no-resize": "",
-                      outlined: "",
-                      placeholder: "No Notes"
-                    },
-                    model: {
-                      value: _vm.item.attack_notes,
-                      callback: function($$v) {
-                        _vm.$set(_vm.item, "attack_notes", $$v)
-                      },
-                      expression: "item.attack_notes"
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c("v-divider"),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    [
-                      _c("v-text-field", {
-                        attrs: {
-                          "auto-grow": "",
-                          filled: "",
-                          autofocus: "",
-                          label: "Enter/edit aDash link here"
-                        },
-                        model: {
-                          value: _vm.editAdashLink,
-                          callback: function($$v) {
-                            _vm.editAdashLink = $$v
-                          },
-                          expression: "editAdashLink"
-                        }
-                      }),
-                      _vm._v(" "),
-                      _c("v-text-field", {
-                        attrs: {
-                          "auto-grow": "",
-                          filled: "",
-                          autofocus: "",
-                          label: "Enter New Notes Here"
-                        },
-                        model: {
-                          value: _vm.editText,
-                          callback: function($$v) {
-                            _vm.editText = $$v
-                          },
-                          expression: "editText"
-                        }
-                      })
-                    ],
-                    1
-                  )
-                ],
-                1
-              ),
+              _c("v-card-text", [
+                _vm._v(
+                  "\n                erthwhteehtrehtrtehethsthesthse\n            "
+                )
+              ]),
               _vm._v(" "),
               _c("v-spacer"),
               _c(
                 "v-card-actions",
                 [
-                  _c(
-                    "v-btn",
-                    {
-                      staticClass: "white--text",
-                      attrs: { color: "green", disabled: _vm.submitActive },
-                      on: {
-                        click: function($event) {
-                          return _vm.updatetext()
-                        }
-                      }
-                    },
-                    [_vm._v("\n                    Submit\n                ")]
-                  ),
-                  _vm._v(" "),
                   _c(
                     "v-btn",
                     {
@@ -26197,20 +25931,6 @@ var render = function() {
                       }
                     },
                     [_vm._v("\n                    Close\n                ")]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "v-btn",
-                    {
-                      staticClass: "white--text",
-                      attrs: { color: "green", disabled: _vm.clearActive },
-                      on: {
-                        click: function($event) {
-                          return _vm.clear()
-                        }
-                      }
-                    },
-                    [_vm._v("\n                    Safe\n                ")]
                   )
                 ],
                 1
