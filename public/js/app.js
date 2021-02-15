@@ -16136,6 +16136,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
 
 
 
@@ -32454,7 +32457,11 @@ var render = function() {
               key: "item.actions",
               fn: function(ref) {
                 var item = ref.item
-                return [_c("Info", { attrs: { station: item } })]
+                return [
+                  _vm.$can( true && item.item_id != 37534)
+                    ? _c("Info", { attrs: { station: item } })
+                    : _vm._e()
+                ]
               }
             }
           ])
