@@ -26177,7 +26177,7 @@ var render = function() {
                                 "v-chip",
                                 {
                                   staticClass: " mt-2 mb-2",
-                                  attrs: { small: "", color: "yellow" }
+                                  attrs: { small: "", color: "blue" }
                                 },
                                 [
                                   _vm._v(
@@ -26192,7 +26192,7 @@ var render = function() {
                                 "v-chip",
                                 {
                                   staticClass: " mt-2 mb-2",
-                                  attrs: { small: "", color: "yellow" }
+                                  attrs: { small: "", color: "blue" }
                                 },
                                 [
                                   _vm._v(
@@ -26207,7 +26207,7 @@ var render = function() {
                                 "v-chip",
                                 {
                                   staticClass: " mt-2 mb-2",
-                                  attrs: { small: "", color: "yellow" }
+                                  attrs: { small: "", color: "blue" }
                                 },
                                 [
                                   _vm._v(
@@ -26222,7 +26222,7 @@ var render = function() {
                                 "v-chip",
                                 {
                                   staticClass: " mt-2 mb-2",
-                                  attrs: { small: "", color: "yellow" }
+                                  attrs: { small: "", color: "blue" }
                                 },
                                 [
                                   _vm._v(
@@ -26267,7 +26267,7 @@ var render = function() {
                                 "v-chip",
                                 {
                                   staticClass: " mt-2 mb-2",
-                                  attrs: { small: "", color: "yellow" }
+                                  attrs: { small: "", color: "blue" }
                                 },
                                 [
                                   _vm._v(
@@ -26297,7 +26297,7 @@ var render = function() {
                                 "v-chip",
                                 {
                                   staticClass: " mt-2 mb-2",
-                                  attrs: { small: "", color: "yellow" }
+                                  attrs: { small: "", color: "blue" }
                                 },
                                 [
                                   _vm._v(
@@ -26312,7 +26312,7 @@ var render = function() {
                                 "v-chip",
                                 {
                                   staticClass: " mt-2 mb-2",
-                                  attrs: { small: "", color: "yellow" }
+                                  attrs: { small: "", color: "blue" }
                                 },
                                 [
                                   _vm._v(
@@ -26327,7 +26327,7 @@ var render = function() {
                                 "v-chip",
                                 {
                                   staticClass: " mt-2 mb-2",
-                                  attrs: { small: "", color: "yellow" }
+                                  attrs: { small: "", color: "blue" }
                                 },
                                 [
                                   _vm._v(
@@ -26357,7 +26357,7 @@ var render = function() {
                                 "v-chip",
                                 {
                                   staticClass: " mt-2 mb-2",
-                                  attrs: { small: "", color: "yellow" }
+                                  attrs: { small: "", color: "blue" }
                                 },
                                 [
                                   _vm._v(
@@ -26372,7 +26372,7 @@ var render = function() {
                                 "v-chip",
                                 {
                                   staticClass: " mt-2 mb-2",
-                                  attrs: { small: "", color: "yellow" }
+                                  attrs: { small: "", color: "blue" }
                                 },
                                 [
                                   _vm._v(
@@ -26387,7 +26387,7 @@ var render = function() {
                                 "v-chip",
                                 {
                                   staticClass: " mt-2 mb-2",
-                                  attrs: { small: "", color: "yellow" }
+                                  attrs: { small: "", color: "blue" }
                                 },
                                 [
                                   _vm._v(

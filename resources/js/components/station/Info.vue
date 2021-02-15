@@ -50,7 +50,7 @@
                         </v-chip>
                         <v-chip
                             small
-                            color="yellow"
+                            color="blue"
                             class=" mt-2 mb-2"
                             v-if="fit[0]['r_biochemical'] == 1"
                         >
@@ -58,7 +58,7 @@
                         </v-chip>
                         <v-chip
                             small
-                            color="yellow"
+                            color="blue"
                             class=" mt-2 mb-2"
                             v-if="fit[0]['r_capital_shipyard'] == 1"
                         >
@@ -66,7 +66,7 @@
                         </v-chip>
                         <v-chip
                             small
-                            color="yellow"
+                            color="blue"
                             class=" mt-2 mb-2"
                             v-if="fit[0]['r_cloning'] == 1"
                         >
@@ -74,7 +74,7 @@
                         </v-chip>
                         <v-chip
                             small
-                            color="yellow"
+                            color="blue"
                             class=" mt-2 mb-2"
                             v-if="fit[0]['r_composite'] == 1"
                         >
@@ -98,7 +98,7 @@
                         </v-chip>
                         <v-chip
                             small
-                            color="yellow"
+                            color="blue"
                             class=" mt-2 mb-2"
                             v-if="fit[0]['r_hyasyoda'] == 1"
                         >
@@ -114,7 +114,7 @@
                         </v-chip>
                         <v-chip
                             small
-                            color="yellow"
+                            color="blue"
                             class=" mt-2 mb-2"
                             v-if="fit[0]['r_invention'] == 1"
                         >
@@ -122,7 +122,7 @@
                         </v-chip>
                         <v-chip
                             small
-                            color="yellow"
+                            color="blue"
                             class=" mt-2 mb-2"
                             v-if="fit[0]['r_manufacturing'] == 1"
                         >
@@ -130,7 +130,7 @@
                         </v-chip>
                         <v-chip
                             small
-                            color="yellow"
+                            color="blue"
                             class=" mt-2 mb-2"
                             v-if="fit[0]['r_moon_drilling'] == 1"
                         >
@@ -146,7 +146,7 @@
                         </v-chip>
                         <v-chip
                             small
-                            color="yellow"
+                            color="blue"
                             class=" mt-2 mb-2"
                             v-if="fit[0]['r_reprocessing'] == 1"
                         >
@@ -154,7 +154,7 @@
                         </v-chip>
                         <v-chip
                             small
-                            color="yellow"
+                            color="blue"
                             class=" mt-2 mb-2"
                             v-if="fit[0]['r_research'] == 1"
                         >
@@ -162,7 +162,7 @@
                         </v-chip>
                         <v-chip
                             small
-                            color="yellow"
+                            color="blue"
                             class=" mt-2 mb-2"
                             v-if="fit[0]['r_supercapital_shipyard'] == 1"
                         >
