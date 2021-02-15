@@ -8958,6 +8958,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -25982,97 +25990,113 @@ var render = function() {
                       [
                         _c(
                           "v-chip",
-                          { staticClass: " ma-2", attrs: { small: "" } },
+                          { staticClass: " mt-2 mb-2", attrs: { small: "" } },
                           [_vm._v(" anti cap ")]
                         ),
                         _vm._v(" "),
                         _c(
                           "v-chip",
-                          { staticClass: " ma-2", attrs: { small: "" } },
+                          { staticClass: " mt-2 mb-2", attrs: { small: "" } },
                           [_vm._v(" anti subcap ")]
                         ),
                         _vm._v(" "),
                         _c(
                           "v-chip",
-                          { staticClass: " ma-2", attrs: { small: "" } },
+                          { staticClass: " mt-2 mb-2", attrs: { small: "" } },
                           [_vm._v(" biochemical ")]
                         ),
                         _vm._v(" "),
                         _c(
                           "v-chip",
-                          { staticClass: " ma-2", attrs: { small: "" } },
-                          [_vm._v(" campital shipyard ")]
+                          { staticClass: " mt-2 mb-2", attrs: { small: "" } },
+                          [
+                            _vm._v(
+                              "\n                        campital shipyard\n                    "
+                            )
+                          ]
                         ),
                         _vm._v(" "),
                         _c(
                           "v-chip",
-                          { staticClass: " ma-2", attrs: { small: "" } },
+                          { staticClass: " mt-2 mb-2", attrs: { small: "" } },
                           [_vm._v(" cloning ")]
                         ),
                         _vm._v(" "),
                         _c(
                           "v-chip",
-                          { staticClass: " ma-2", attrs: { small: "" } },
+                          { staticClass: " mt-2 mb-2", attrs: { small: "" } },
                           [_vm._v(" composite ")]
                         ),
                         _vm._v(" "),
                         _c(
                           "v-chip",
-                          { staticClass: " ma-2", attrs: { small: "" } },
+                          { staticClass: " mt-2 mb-2", attrs: { small: "" } },
                           [_vm._v(" dooms day ")]
                         ),
                         _vm._v(" "),
                         _c(
                           "v-chip",
-                          { staticClass: " ma-2", attrs: { small: "" } },
+                          { staticClass: " mt-2 mb-2", attrs: { small: "" } },
                           [_vm._v(" guide bombs ")]
                         ),
                         _vm._v(" "),
                         _c(
                           "v-chip",
-                          { staticClass: " ma-2", attrs: { small: "" } },
+                          { staticClass: " mt-2 mb-2", attrs: { small: "" } },
                           [_vm._v(" hyasyoda ")]
                         ),
                         _vm._v(" "),
                         _c(
                           "v-chip",
-                          { staticClass: " ma-2", attrs: { small: "" } },
+                          { staticClass: " mt-2 mb-2", attrs: { small: "" } },
                           [_vm._v(" invention ")]
                         ),
                         _vm._v(" "),
                         _c(
                           "v-chip",
-                          { staticClass: " ma-2", attrs: { small: "" } },
-                          [_vm._v(" manufacturing ")]
+                          { staticClass: " mt-2 mb-2", attrs: { small: "" } },
+                          [
+                            _vm._v(
+                              "\n                        manufacturing\n                    "
+                            )
+                          ]
                         ),
                         _vm._v(" "),
                         _c(
                           "v-chip",
-                          { staticClass: " ma-2", attrs: { small: "" } },
-                          [_vm._v(" moon drilling ")]
+                          { staticClass: " mt-2 mb-2", attrs: { small: "" } },
+                          [
+                            _vm._v(
+                              "\n                        moon drilling\n                    "
+                            )
+                          ]
                         ),
                         _vm._v(" "),
                         _c(
                           "v-chip",
-                          { staticClass: " ma-2", attrs: { small: "" } },
-                          [_vm._v(" point defense ")]
+                          { staticClass: " mt-2 mb-2", attrs: { small: "" } },
+                          [
+                            _vm._v(
+                              "\n                        point defense\n                    "
+                            )
+                          ]
                         ),
                         _vm._v(" "),
                         _c(
                           "v-chip",
-                          { staticClass: " ma-2", attrs: { small: "" } },
+                          { staticClass: " mt-2 mb-2", attrs: { small: "" } },
                           [_vm._v(" reprocessing ")]
                         ),
                         _vm._v(" "),
                         _c(
                           "v-chip",
-                          { staticClass: " ma-2", attrs: { small: "" } },
+                          { staticClass: " mt-2 mb-2", attrs: { small: "" } },
                           [_vm._v(" research ")]
                         ),
                         _vm._v(" "),
                         _c(
                           "v-chip",
-                          { staticClass: " ma-2", attrs: { small: "" } },
+                          { staticClass: " mt-2 mb-2", attrs: { small: "" } },
                           [
                             _vm._v(
                               "\n                        supercapital shipyard\n                    "
