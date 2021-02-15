@@ -114,14 +114,12 @@ export default {
 
         fit() {
             var fit = this.getStationFitByStationID(this.station.id);
-            var count = this.getStationFitByStationID(this.station.id).length;
 
-            if (count > 0) {
+            if (count != "NO") {
                 this.fitted = true;
-                return fit;
-            } else {
-                return;
             }
+
+            return fit;
         },
 
         core() {

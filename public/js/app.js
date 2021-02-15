@@ -8986,14 +8986,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     fit: function fit() {
       var fit = this.getStationFitByStationID(this.station.id);
-      var count = this.getStationFitByStationID(this.station.id).length;
 
-      if (count > 0) {
+      if (count != "NO") {
         this.fitted = true;
-        return fit;
-      } else {
-        return;
       }
+
+      return fit;
     },
     core: function core() {
       var core = this.getCoreByStationID(this.station.id);
