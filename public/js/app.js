@@ -25900,7 +25900,7 @@ var render = function() {
               }
             },
             [
-              _c("v-card-title", { staticClass: " d-block" }, [
+              _c("v-card-title", { staticClass: " d-block justify-center" }, [
                 _c("p", { staticClass: " align-content-center" }, [
                   _vm._v(
                     "\n                    " +

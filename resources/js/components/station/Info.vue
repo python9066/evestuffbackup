@@ -19,7 +19,7 @@
                 max-height="700px"
                 class=" d-flex flex-column"
             >
-                <v-card-title class=" d-block"
+                <v-card-title class=" d-block justify-center"
                     ><p class=" align-content-center">
                         {{ station.station_name }}
                     </p>
