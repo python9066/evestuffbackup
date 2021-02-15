@@ -8,7 +8,7 @@
         >
             <template v-slot:activator="{ on, attrs }">
                 <v-icon color="blue" v-bind="attrs" v-on="on" @click="open()">
-                    far fa-comment-alt
+                    far fa-info--circle
                 </v-icon>
             </template>
 
