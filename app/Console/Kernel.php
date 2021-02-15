@@ -29,7 +29,7 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         // $schedule->command('inspire')->everyMinute();
-        $schedule->command('update:campaigns')->everyMinute()->unlessBetween('11:00', '11:20')->withoutOverlapping();
+        $schedule->command('update:campaigns')->everyMinute()->unlessBetween('11:00', '11:10')->withoutOverlapping();
         $schedule->command('update:reconstations')->hourly()->withoutOverlapping();
         $schedule->command('update:notifications')->everyMinute()->unlessBetween('11:00', '11:20')->withoutOverlapping();
         $schedule->command('update:stationnotifications')->everyMinute()->withoutOverlapping();
