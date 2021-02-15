@@ -8987,7 +8987,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     fit: function fit() {
       var fit = this.getStationFitByStationID(this.station.id);
 
-      if (count != "NO") {
+      if (fit != "NO") {
         this.fitted = true;
       }
 
