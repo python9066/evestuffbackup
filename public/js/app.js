@@ -25900,8 +25900,8 @@ var render = function() {
               }
             },
             [
-              _c("v-card-title", { staticClass: " d-block justify-center" }, [
-                _c("p", { staticClass: " align-content-center" }, [
+              _c("v-card-title", { staticClass: "justify-center" }, [
+                _c("p", [
                   _vm._v(
                     "\n                    " +
                       _vm._s(_vm.station.station_name) +
