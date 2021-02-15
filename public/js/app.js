@@ -16319,6 +16319,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
 
 
 
@@ -32902,7 +32905,8 @@ var render = function() {
               fn: function(ref) {
                 var item = ref.item
                 return [
-                  _vm.$can("super") && item.item_id != 37534
+                  _vm.$can("super") &&
+                  (item.item_id != 37534 || item.item_id != 35841)
                     ? _c("Info", { attrs: { station: item } })
                     : _vm._e()
                 ]
