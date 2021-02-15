@@ -249,7 +249,7 @@ export default {
         },
 
         url(item) {
-            return "https://images.evetech.net/types/" + item.id + "/icon";
+            return "https://images.evetech.net/types/" + item.item_id + "/icon";
         },
 
         open() {},

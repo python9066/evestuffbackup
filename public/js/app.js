@@ -9129,7 +9129,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       win.focus();
     },
     url: function url(item) {
-      return "https://images.evetech.net/types/" + item.id + "/icon";
+      return "https://images.evetech.net/types/" + item.item_id + "/icon";
     },
     open: function open() {},
     showfit: function showfit() {
