@@ -8966,7 +8966,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     return {
       showInfo: false,
       editText: null,
-      editAdashLink: null
+      editAdashLink: null,
+      fitted: false
     };
   },
   methods: {
@@ -8980,14 +8981,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     open: function open() {},
     showfit: function showfit() {
-      if (this.fit != "NO") {
+      if (this.fitted == true) {
         return true;
       } else {
         return false;
       }
     },
     lastUpdated: function lastUpdated() {
-      if (this.fit != "NO") {
+      if (this.fitted == true) {
         return this.fit.r_updated_at;
       } else {
         return "Never";
@@ -9009,9 +9010,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     core: function core() {
       var core = this.getCoreByStationID(this.station.id);
-      var count = this.getCoreByStationID(this.station.id).length;
 
-      if (count == 0) {
+      if (this.fit == "NO") {
         return "No Info";
       }
 

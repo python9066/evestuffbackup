@@ -83,7 +83,8 @@ export default {
         return {
             showInfo: false,
             editText: null,
-            editAdashLink: null
+            editAdashLink: null,
+            fitted: false
         };
     },
 
@@ -101,7 +102,7 @@ export default {
         open() {},
 
         showfit() {
-            if (this.fit != "NO") {
+            if (this.fitted == true) {
                 return true;
             } else {
                 return false;
@@ -109,7 +110,7 @@ export default {
         },
 
         lastUpdated() {
-            if (this.fit != "NO") {
+            if (this.fitted == true) {
                 return this.fit.r_updated_at;
             } else {
                 return "Never";
@@ -140,9 +141,8 @@ export default {
 
         core() {
             var core = this.getCoreByStationID(this.station.id);
-            var count = this.getCoreByStationID(this.station.id).length;
 
-            if (count == 0) {
+            if (this.fit == "NO") {
                 return "No Info";
             }
 
