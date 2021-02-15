@@ -15976,12 +15976,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
-//
 
 
 
@@ -16122,13 +16116,6 @@ function sleep(ms) {
           this.expanded = [];
           this.expanded_id = 0;
         }
-      }
-    },
-    timeStamp: function timeStamp(item) {
-      if (item.out_time != null) {
-        return item.out_time;
-      } else {
-        return item.timestamp;
       }
     },
     updatetext: function updatetext(payload, item) {
@@ -31728,7 +31715,7 @@ var render = function() {
                   item.station_status_id == 5
                     ? _c("CountDowntimer", {
                         attrs: {
-                          "start-time": _vm.moment.utc(item.out_time).unix(),
+                          "start-time": _vm.moment.utc(item.timestamp).unix(),
                           "end-text": "Window Closed",
                           interval: 1000
                         },
@@ -31761,9 +31748,7 @@ var render = function() {
                       })
                     : _c("VueCountUptimer", {
                         attrs: {
-                          "start-time": _vm.moment
-                            .utc(_vm.timeStamp(item))
-                            .unix(),
+                          "start-time": _vm.moment.utc(item.timestamp).unix(),
                           "end-text": "Window Closed",
                           interval: 1000
                         },
@@ -32054,19 +32039,6 @@ var render = function() {
                 return [
                   _vm._v(
                     "\n            " + _vm._s(item.station_name) + "\n        "
-                  )
-                ]
-              }
-            },
-            {
-              key: "item.timestamp",
-              fn: function(ref) {
-                var item = ref.item
-                return [
-                  _vm._v(
-                    "\n            " +
-                      _vm._s(_vm.timeStamp(item)) +
-                      "\n        "
                   )
                 ]
               }

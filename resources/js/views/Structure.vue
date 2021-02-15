@@ -65,7 +65,7 @@
             <template v-slot:item.count="{ item }">
                 <CountDowntimer
                     v-if="item.station_status_id == 5"
-                    :start-time="moment.utc(item.out_time).unix()"
+                    :start-time="moment.utc(item.timestamp).unix()"
                     :end-text="'Window Closed'"
                     :interval="1000"
                 >
@@ -79,7 +79,7 @@
                 </CountDowntimer>
                 <VueCountUptimer
                     v-else
-                    :start-time="moment.utc(timeStamp(item)).unix()"
+                    :start-time="moment.utc(item.timestamp).unix()"
                     :end-text="'Window Closed'"
                     :interval="1000"
                 >
@@ -212,12 +212,6 @@
             >
                 {{ item.station_name }}
             </template>
-            <template
-                v-slot:item.timestamp="{ item }"
-                class="d-inline-flex align-center"
-            >
-                {{ timeStamp(item) }}
-            </template>
         </v-data-table>
         <v-snackbar v-model="snack" :timeout="3000" :color="snackColor">
             {{ snackText }}
@@ -345,14 +339,6 @@ export default {
                     this.expanded = [];
                     this.expanded_id = 0;
                 }
-            }
-        },
-
-        timeStamp(item) {
-            if (item.out_time != null) {
-                return item.out_time;
-            } else {
-                return item.timestamp;
             }
         },
 

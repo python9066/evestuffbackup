@@ -52,9 +52,8 @@ class CreateOrReplaceStationRecordsViewCommand extends Command
        g.name AS 'gunner_name',
        stations.station_status_id AS 'station_status_id',
        station_statuses.name AS 'station_status_name',
-       stations.timestamp AS 'timestamp',
-       stations.text AS 'text',
-       stations.out_time AS 'out_time'
+       if(stations.out_time IS NULL,stations.timestamp, stations.out_time) AS 'timestamp',
+       stations.text AS 'text'
        FROM stations
        JOIN systems ON systems.id = stations.system_id
        JOIN constellations ON constellations.id = systems.constellation_id

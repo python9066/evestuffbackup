@@ -44,6 +44,7 @@ class CreateStationsTable extends Migration
             $table->integer('r_cloning', 1)->default(0);
             $table->integer('r_composite', 1)->default(0);
             $table->timestamp('timestamp')->nullable();
+            $table->string('r_cored')->nullable();
             $table->timestamps();
         });
     }
