@@ -719,7 +719,7 @@ class Notifications
 
         $checks = Station::where('updated_at', '<', $now10min)->where('station_status_id', 4)->get();
         foreach ($checks as $check) {
-            $check->update(['station_status_id' => 10, 'user_id' => null, 'text' => null, 'gunner_id' => null]);
+            $check->update(['station_status_id' => 10, 'user_id' => null, 'text' => null, 'gunner_id' => null, 'out_time' => null]);
             $stationID = $check->id;
             $flag = null;
             $flag = collect([
