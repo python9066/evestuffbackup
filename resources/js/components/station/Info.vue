@@ -30,7 +30,28 @@
                     </p>
                 </v-card-subtitle>
                 <v-card-text>
-                    <v-chip class=" ma-2"> </v-chip>
+                    <div v-if="fit.r_fitted == 'Fitted'">
+                        <v-chip class=" ma-2"> anti cap </v-chip>
+                        <v-chip class=" ma-2"> anti subcap </v-chip>
+                        <v-chip class=" ma-2"> biochemical </v-chip>
+                        <v-chip class=" ma-2"> campital shipyard </v-chip>
+                        <v-chip class=" ma-2"> cloning </v-chip>
+                        <v-chip class=" ma-2"> composite </v-chip>
+                        <v-chip class=" ma-2"> dooms day </v-chip>
+                        <v-chip class=" ma-2"> guide bombs </v-chip>
+                        <v-chip class=" ma-2"> hyasyoda </v-chip>
+                        <v-chip class=" ma-2"> invention </v-chip>
+                        <v-chip class=" ma-2"> manufacturing </v-chip>
+                        <v-chip class=" ma-2"> moon drilling </v-chip>
+                        <v-chip class=" ma-2"> point defense </v-chip>
+                        <v-chip class=" ma-2"> reprocessing </v-chip>
+                        <v-chip class=" ma-2"> research </v-chip>
+                        <v-chip class=" ma-2"> supercapital shipyard </v-chip>
+                        <v-chip class=" ma-2"> t2 rigged </v-chip>
+                    </div>
+                    <div v-if="fit.r_fitted != 'Fitted'">
+                        No Info
+                    </div>
                 </v-card-text>
                 <v-spacer></v-spacer
                 ><v-card-actions>
@@ -106,6 +127,7 @@ export default {
         core() {
             var core = this.getCoreByStationID(this.station.id);
             var count = this.getCoreByStationID(this.station.id).length;
+
             if (count == 0) {
                 return "No";
             }
