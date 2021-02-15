@@ -46,6 +46,7 @@ class StationController extends Controller
             $data = [
                 "station_id" => $join->station_id,
                 "item_name" => $name->item_name,
+                "item_id" => $name->id
             ];
             array_push($items, $data);
         }
