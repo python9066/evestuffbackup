@@ -9089,6 +9089,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -26420,36 +26427,61 @@ var render = function() {
                       ])
                     : _vm._e(),
                   _vm._v(" "),
-                  _c(
-                    "v-card",
-                    [
-                      _c("v-card-title", [
-                        _vm._v(
-                          "\n                        Fitting\n                    "
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c(
-                        "v-card-text",
+                  _vm.showfit()
+                    ? _c(
+                        "v-card",
                         [
-                          _c("v-data-table", {
-                            staticClass: "elevation-12",
-                            attrs: {
-                              headers: _vm.headers,
-                              items: _vm.items,
-                              "disable-sort": "",
-                              "hide-default-footer": "",
-                              "hide-default-header": "",
-                              "disable-pagination": "",
-                              height: "300px"
-                            }
-                          })
+                          _c("v-card-title", [
+                            _vm._v(
+                              "\n                        Fitting\n                    "
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c(
+                            "v-card-text",
+                            [
+                              _c("v-data-table", {
+                                staticClass: "elevation-12",
+                                attrs: {
+                                  headers: _vm.headers,
+                                  items: _vm.items,
+                                  "disable-sort": "",
+                                  "hide-default-footer": "",
+                                  "hide-default-header": "",
+                                  "disable-pagination": "",
+                                  height: "300px"
+                                },
+                                scopedSlots: _vm._u(
+                                  [
+                                    {
+                                      key: "item.icon",
+                                      fn: function(ref) {
+                                        var item = ref.item
+                                        return [
+                                          _c("v-avatar", [
+                                            _c("img", {
+                                              attrs: {
+                                                src:
+                                                  "https://cdn.vuetifyjs.com/images/john.jpg"
+                                              }
+                                            })
+                                          ])
+                                        ]
+                                      }
+                                    }
+                                  ],
+                                  null,
+                                  false,
+                                  1241005015
+                                )
+                              })
+                            ],
+                            1
+                          )
                         ],
                         1
                       )
-                    ],
-                    1
-                  )
+                    : _vm._e()
                 ],
                 1
               ),

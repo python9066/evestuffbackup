@@ -170,7 +170,7 @@
                     <div v-if="!showfit()">
                         No Info
                     </div>
-                    <v-card>
+                    <v-card v-if="showfit()">
                         <v-card-title>
                             Fitting
                         </v-card-title>
@@ -185,6 +185,13 @@
                                 class="elevation-12"
                                 height="300px"
                             >
+                                <template v-slot:item.icon="{ item }">
+                                    <v-avatar>
+                                        <img
+                                            src="https://cdn.vuetifyjs.com/images/john.jpg"
+                                        />
+                                    </v-avatar>
+                                </template>
                             </v-data-table>
                         </v-card-text>
                     </v-card>
