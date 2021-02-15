@@ -26047,7 +26047,7 @@ var render = function() {
                     )
                   : _vm._e(),
                 _vm._v(" "),
-                _vm.showfit()
+                !_vm.showfit()
                   ? _c("div", [
                       _vm._v("\n                    No Info\n                ")
                     ])
