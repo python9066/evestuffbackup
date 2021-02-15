@@ -27,7 +27,7 @@ class Helper
     {
         $auths = Auth::all();
         foreach ($auths as $auth) {
-            echo $auth->char_id;
+            echo " - " . $auth->char_id . " - ";
 
             $expire_date = new DateTime($auth->expire_date);
             $date = new DateTime();
