@@ -22,7 +22,7 @@ class StationController extends Controller
 
     public function loadStationData()
     {
-        $data = [];
+        $coreData = [];
         $stations = Station::all();
         foreach ($stations as $station) {
             if ($station->r_cored == "Yes") {
@@ -36,7 +36,7 @@ class StationController extends Controller
                 "cored" => $core
             ];
 
-            array_push($data, $data1);
+            array_push($coreData, $data1);
         }
 
         $items = [];
@@ -51,7 +51,7 @@ class StationController extends Controller
         }
 
         return [
-            'cores' => $data,
+            'cores' => $coreData,
             'fit' => Station::where('r_fitted', 'Fitted')->get(),
             'items' => $items
         ];

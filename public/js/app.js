@@ -37985,7 +37985,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
         }
       };
     },
-    getStationFit: function getStationFit(state) {
+    getStationFitByStationID: function getStationFitByStationID(state) {
       return function (id) {
         var pull = state.stationFits.filter(function (fit) {
           return fit.id == id;

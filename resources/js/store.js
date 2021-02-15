@@ -1057,7 +1057,7 @@ export default new Vuex.Store({
             }
         },
 
-        getStationFit: state => id => {
+        getStationFitByStationID: state => id => {
             let pull = state.stationFits.filter(fit => fit.id == id)
             let count = pull.length
             if (count != 0) {
