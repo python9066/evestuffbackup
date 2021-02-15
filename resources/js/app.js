@@ -62,6 +62,7 @@ Vue.component('JoinNodeTable', require('./components/campaignAll/JoinNodeTable.v
 Vue.component('NodeExtraCharMulti', require('./components/multicampaigns/NodeExtraCharMulti.vue').default);
 Vue.component('SystemMessage', require('./components/campaignALL/SystemMessage.vue').default);
 Vue.component('SystemAttackMessage', require('./components/campaignALL/SystemAttackMessage.vue').default);
+Vue.component('Info', require('./components/station/Info.vue').default);
 
 
 
