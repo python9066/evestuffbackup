@@ -8,7 +8,7 @@
         >
             <template v-slot:activator="{ on, attrs }">
                 <v-icon color="blue" v-bind="attrs" v-on="on" @click="open()">
-                    {{ icon }}
+                    faSvg fa-info--circle
                 </v-icon>
             </template>
 
@@ -95,11 +95,7 @@ export default {
         open() {}
     },
 
-    computed: {
-        icon() {
-            return "faSvg fa-info--circle";
-        }
-    },
+    computed: {},
 
     beforeDestroy() {
         Echo.leave("stationinfo." + this.station.id);

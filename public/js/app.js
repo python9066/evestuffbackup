@@ -8983,11 +8983,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
     open: function open() {}
   },
-  computed: {
-    icon: function icon() {
-      return "faSvg fa-info--circle";
-    }
-  },
+  computed: {},
   beforeDestroy: function beforeDestroy() {
     Echo.leave("stationinfo." + this.station.id);
   }
@@ -25869,9 +25865,7 @@ var render = function() {
                     ),
                     [
                       _vm._v(
-                        "\n                " +
-                          _vm._s(_vm.icon) +
-                          "\n            "
+                        "\n                faSvg fa-info--circle\n            "
                       )
                     ]
                   )
