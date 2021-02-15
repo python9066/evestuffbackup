@@ -8966,6 +8966,122 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -25983,143 +26099,329 @@ var render = function() {
                 ])
               ]),
               _vm._v(" "),
-              _c("v-card-text", [
-                _vm.showfit()
-                  ? _c(
-                      "div",
-                      [
-                        _c(
-                          "v-chip",
-                          { staticClass: " mt-2 mb-2", attrs: { small: "" } },
-                          [_vm._v(" anti cap ")]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "v-chip",
-                          { staticClass: " mt-2 mb-2", attrs: { small: "" } },
-                          [_vm._v(" anti subcap ")]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "v-chip",
-                          { staticClass: " mt-2 mb-2", attrs: { small: "" } },
-                          [_vm._v(" biochemical ")]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "v-chip",
-                          { staticClass: " mt-2 mb-2", attrs: { small: "" } },
-                          [
-                            _vm._v(
-                              "\n                        campital shipyard\n                    "
-                            )
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "v-chip",
-                          { staticClass: " mt-2 mb-2", attrs: { small: "" } },
-                          [_vm._v(" cloning ")]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "v-chip",
-                          { staticClass: " mt-2 mb-2", attrs: { small: "" } },
-                          [_vm._v(" composite ")]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "v-chip",
-                          { staticClass: " mt-2 mb-2", attrs: { small: "" } },
-                          [_vm._v(" dooms day ")]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "v-chip",
-                          { staticClass: " mt-2 mb-2", attrs: { small: "" } },
-                          [_vm._v(" guide bombs ")]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "v-chip",
-                          { staticClass: " mt-2 mb-2", attrs: { small: "" } },
-                          [_vm._v(" hyasyoda ")]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "v-chip",
-                          { staticClass: " mt-2 mb-2", attrs: { small: "" } },
-                          [_vm._v(" invention ")]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "v-chip",
-                          { staticClass: " mt-2 mb-2", attrs: { small: "" } },
-                          [
-                            _vm._v(
-                              "\n                        manufacturing\n                    "
-                            )
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "v-chip",
-                          { staticClass: " mt-2 mb-2", attrs: { small: "" } },
-                          [
-                            _vm._v(
-                              "\n                        moon drilling\n                    "
-                            )
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "v-chip",
-                          { staticClass: " mt-2 mb-2", attrs: { small: "" } },
-                          [
-                            _vm._v(
-                              "\n                        point defense\n                    "
-                            )
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "v-chip",
-                          { staticClass: " mt-2 mb-2", attrs: { small: "" } },
-                          [_vm._v(" reprocessing ")]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "v-chip",
-                          { staticClass: " mt-2 mb-2", attrs: { small: "" } },
-                          [_vm._v(" research ")]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "v-chip",
-                          { staticClass: " mt-2 mb-2", attrs: { small: "" } },
-                          [
-                            _vm._v(
-                              "\n                        supercapital shipyard\n                    "
-                            )
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "v-chip",
-                          { staticClass: " ma-2", attrs: { small: "" } },
-                          [_vm._v(" t2 rigged ")]
+              _c(
+                "v-card-text",
+                [
+                  _vm.showfit()
+                    ? _c(
+                        "div",
+                        [
+                          _vm.fit[0]["r_anti_cap"] == 1
+                            ? _c(
+                                "v-chip",
+                                {
+                                  staticClass: " mt-2 mb-2",
+                                  attrs: { small: "" }
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                        anti cap\n                    "
+                                  )
+                                ]
+                              )
+                            : _vm._e(),
+                          _vm._v(" "),
+                          _vm.fit[0]["r_anti_subcap"] == 1
+                            ? _c(
+                                "v-chip",
+                                {
+                                  staticClass: " mt-2 mb-2",
+                                  attrs: { small: "" }
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                        anti subcap\n                    "
+                                  )
+                                ]
+                              )
+                            : _vm._e(),
+                          _vm._v(" "),
+                          _vm.fit[0]["r_biochemical"] == 1
+                            ? _c(
+                                "v-chip",
+                                {
+                                  staticClass: " mt-2 mb-2",
+                                  attrs: { small: "" }
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                        biochemical\n                    "
+                                  )
+                                ]
+                              )
+                            : _vm._e(),
+                          _vm._v(" "),
+                          _vm.fit[0]["r_capital_shipyard"] == 1
+                            ? _c(
+                                "v-chip",
+                                {
+                                  staticClass: " mt-2 mb-2",
+                                  attrs: { small: "" }
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                        campital shipyard\n                    "
+                                  )
+                                ]
+                              )
+                            : _vm._e(),
+                          _vm._v(" "),
+                          _vm.fit[0]["r_cloning"] == 1
+                            ? _c(
+                                "v-chip",
+                                {
+                                  staticClass: " mt-2 mb-2",
+                                  attrs: { small: "" }
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                        cloning\n                    "
+                                  )
+                                ]
+                              )
+                            : _vm._e(),
+                          _vm._v(" "),
+                          _vm.fit[0]["r_composite"] == 1
+                            ? _c(
+                                "v-chip",
+                                {
+                                  staticClass: " mt-2 mb-2",
+                                  attrs: { small: "" }
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                        composite\n                    "
+                                  )
+                                ]
+                              )
+                            : _vm._e(),
+                          _vm._v(" "),
+                          _vm.fit[0]["r_dooms_day"] == 1
+                            ? _c(
+                                "v-chip",
+                                {
+                                  staticClass: " mt-2 mb-2",
+                                  attrs: { small: "" }
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                        dooms day\n                    "
+                                  )
+                                ]
+                              )
+                            : _vm._e(),
+                          _vm._v(" "),
+                          _vm.fit[0]["r_guide_bombs"] == 1
+                            ? _c(
+                                "v-chip",
+                                {
+                                  staticClass: " mt-2 mb-2",
+                                  attrs: { small: "" }
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                        guide bombs\n                    "
+                                  )
+                                ]
+                              )
+                            : _vm._e(),
+                          _vm._v(" "),
+                          _vm.fit[0]["r_hyasyoda"] == 1
+                            ? _c(
+                                "v-chip",
+                                {
+                                  staticClass: " mt-2 mb-2",
+                                  attrs: { small: "" }
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                        hyasyoda\n                    "
+                                  )
+                                ]
+                              )
+                            : _vm._e(),
+                          _vm._v(" "),
+                          _vm.fit[0]["r_hyasyoda"] == 1
+                            ? _c(
+                                "v-chip",
+                                {
+                                  staticClass: " mt-2 mb-2",
+                                  attrs: { small: "" }
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                        hyasyoda\n                    "
+                                  )
+                                ]
+                              )
+                            : _vm._e(),
+                          _vm._v(" "),
+                          _vm.fit[0]["r_hybrid"] == 1
+                            ? _c(
+                                "v-chip",
+                                {
+                                  staticClass: " mt-2 mb-2",
+                                  attrs: { small: "" }
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                        hybrid\n                    "
+                                  )
+                                ]
+                              )
+                            : _vm._e(),
+                          _vm._v(" "),
+                          _vm.fit[0]["r_invention"] == 1
+                            ? _c(
+                                "v-chip",
+                                {
+                                  staticClass: " mt-2 mb-2",
+                                  attrs: { small: "" }
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                        invention\n                    "
+                                  )
+                                ]
+                              )
+                            : _vm._e(),
+                          _vm._v(" "),
+                          _vm.fit[0]["r_manufacturing"] == 1
+                            ? _c(
+                                "v-chip",
+                                {
+                                  staticClass: " mt-2 mb-2",
+                                  attrs: { small: "" }
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                        manufacturing\n                    "
+                                  )
+                                ]
+                              )
+                            : _vm._e(),
+                          _vm._v(" "),
+                          _vm.fit[0]["r_moon_drilling"] == 1
+                            ? _c(
+                                "v-chip",
+                                {
+                                  staticClass: " mt-2 mb-2",
+                                  attrs: { small: "" }
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                        moon drilling\n                    "
+                                  )
+                                ]
+                              )
+                            : _vm._e(),
+                          _vm._v(" "),
+                          _vm.fit[0]["r_point_defense"] == 1
+                            ? _c(
+                                "v-chip",
+                                {
+                                  staticClass: " mt-2 mb-2",
+                                  attrs: { small: "" }
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                        point defense\n                    "
+                                  )
+                                ]
+                              )
+                            : _vm._e(),
+                          _vm._v(" "),
+                          _vm.fit[0]["r_reprocessing"] == 1
+                            ? _c(
+                                "v-chip",
+                                {
+                                  staticClass: " mt-2 mb-2",
+                                  attrs: { small: "" }
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                        reprocessing\n                    "
+                                  )
+                                ]
+                              )
+                            : _vm._e(),
+                          _vm._v(" "),
+                          _vm.fit[0]["r_research"] == 1
+                            ? _c(
+                                "v-chip",
+                                {
+                                  staticClass: " mt-2 mb-2",
+                                  attrs: { small: "" }
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                        research\n                    "
+                                  )
+                                ]
+                              )
+                            : _vm._e(),
+                          _vm._v(" "),
+                          _vm.fit[0]["r_supercapital_shipyard"] == 1
+                            ? _c(
+                                "v-chip",
+                                {
+                                  staticClass: " mt-2 mb-2",
+                                  attrs: { small: "" }
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                        supercapital shipyard\n                    "
+                                  )
+                                ]
+                              )
+                            : _vm._e(),
+                          _vm._v(" "),
+                          _vm.fit[0]["r_t2_rigged"] == 1
+                            ? _c(
+                                "v-chip",
+                                {
+                                  staticClass: " mt-2 mb-2",
+                                  attrs: { small: "" }
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                        t2 rigged\n                    "
+                                  )
+                                ]
+                              )
+                            : _vm._e()
+                        ],
+                        1
+                      )
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _c(
+                    "v-list",
+                    _vm._l(_vm.items, function(list, index) {
+                      return _c(
+                        "v-list-item",
+                        { key: index },
+                        [
+                          _c("v-list-item-title", [
+                            _vm._v(_vm._s(list.item_name))
+                          ])
+                        ],
+                        1
+                      )
+                    }),
+                    1
+                  ),
+                  _vm._v(" "),
+                  !_vm.showfit()
+                    ? _c("div", [
+                        _vm._v(
+                          "\n                    No Info\n                "
                         )
-                      ],
-                      1
-                    )
-                  : _vm._e(),
-                _vm._v(" "),
-                !_vm.showfit()
-                  ? _c("div", [
-                      _vm._v("\n                    No Info\n                ")
-                    ])
-                  : _vm._e()
-              ]),
+                      ])
+                    : _vm._e()
+                ],
+                1
+              ),
               _vm._v(" "),
               _c("v-spacer"),
               _c(

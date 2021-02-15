@@ -32,34 +32,150 @@
                 </v-card-subtitle>
                 <v-card-text>
                     <div v-if="showfit()">
-                        <v-chip small class=" mt-2 mb-2"> anti cap </v-chip>
-                        <v-chip small class=" mt-2 mb-2"> anti subcap </v-chip>
-                        <v-chip small class=" mt-2 mb-2"> biochemical </v-chip>
-                        <v-chip small class=" mt-2 mb-2">
+                        <v-chip
+                            small
+                            class=" mt-2 mb-2"
+                            v-if="fit[0]['r_anti_cap'] == 1"
+                        >
+                            anti cap
+                        </v-chip>
+                        <v-chip
+                            small
+                            class=" mt-2 mb-2"
+                            v-if="fit[0]['r_anti_subcap'] == 1"
+                        >
+                            anti subcap
+                        </v-chip>
+                        <v-chip
+                            small
+                            class=" mt-2 mb-2"
+                            v-if="fit[0]['r_biochemical'] == 1"
+                        >
+                            biochemical
+                        </v-chip>
+                        <v-chip
+                            small
+                            class=" mt-2 mb-2"
+                            v-if="fit[0]['r_capital_shipyard'] == 1"
+                        >
                             campital shipyard
                         </v-chip>
-                        <v-chip small class=" mt-2 mb-2"> cloning </v-chip>
-                        <v-chip small class=" mt-2 mb-2"> composite </v-chip>
-                        <v-chip small class=" mt-2 mb-2"> dooms day </v-chip>
-                        <v-chip small class=" mt-2 mb-2"> guide bombs </v-chip>
-                        <v-chip small class=" mt-2 mb-2"> hyasyoda </v-chip>
-                        <v-chip small class=" mt-2 mb-2"> invention </v-chip>
-                        <v-chip small class=" mt-2 mb-2">
+                        <v-chip
+                            small
+                            class=" mt-2 mb-2"
+                            v-if="fit[0]['r_cloning'] == 1"
+                        >
+                            cloning
+                        </v-chip>
+                        <v-chip
+                            small
+                            class=" mt-2 mb-2"
+                            v-if="fit[0]['r_composite'] == 1"
+                        >
+                            composite
+                        </v-chip>
+                        <v-chip
+                            small
+                            class=" mt-2 mb-2"
+                            v-if="fit[0]['r_dooms_day'] == 1"
+                        >
+                            dooms day
+                        </v-chip>
+                        <v-chip
+                            small
+                            class=" mt-2 mb-2"
+                            v-if="fit[0]['r_guide_bombs'] == 1"
+                        >
+                            guide bombs
+                        </v-chip>
+                        <v-chip
+                            small
+                            class=" mt-2 mb-2"
+                            v-if="fit[0]['r_hyasyoda'] == 1"
+                        >
+                            hyasyoda
+                        </v-chip>
+                        <v-chip
+                            small
+                            class=" mt-2 mb-2"
+                            v-if="fit[0]['r_hyasyoda'] == 1"
+                        >
+                            hyasyoda
+                        </v-chip>
+                        <v-chip
+                            small
+                            class=" mt-2 mb-2"
+                            v-if="fit[0]['r_hybrid'] == 1"
+                        >
+                            hybrid
+                        </v-chip>
+                        <v-chip
+                            small
+                            class=" mt-2 mb-2"
+                            v-if="fit[0]['r_invention'] == 1"
+                        >
+                            invention
+                        </v-chip>
+                        <v-chip
+                            small
+                            class=" mt-2 mb-2"
+                            v-if="fit[0]['r_manufacturing'] == 1"
+                        >
                             manufacturing
                         </v-chip>
-                        <v-chip small class=" mt-2 mb-2">
+                        <v-chip
+                            small
+                            class=" mt-2 mb-2"
+                            v-if="fit[0]['r_moon_drilling'] == 1"
+                        >
                             moon drilling
                         </v-chip>
-                        <v-chip small class=" mt-2 mb-2">
+                        <v-chip
+                            small
+                            class=" mt-2 mb-2"
+                            v-if="fit[0]['r_point_defense'] == 1"
+                        >
                             point defense
                         </v-chip>
-                        <v-chip small class=" mt-2 mb-2"> reprocessing </v-chip>
-                        <v-chip small class=" mt-2 mb-2"> research </v-chip>
-                        <v-chip small class=" mt-2 mb-2">
+                        <v-chip
+                            small
+                            class=" mt-2 mb-2"
+                            v-if="fit[0]['r_reprocessing'] == 1"
+                        >
+                            reprocessing
+                        </v-chip>
+                        <v-chip
+                            small
+                            class=" mt-2 mb-2"
+                            v-if="fit[0]['r_research'] == 1"
+                        >
+                            research
+                        </v-chip>
+                        <v-chip
+                            small
+                            class=" mt-2 mb-2"
+                            v-if="fit[0]['r_supercapital_shipyard'] == 1"
+                        >
                             supercapital shipyard
                         </v-chip>
-                        <v-chip small class=" ma-2"> t2 rigged </v-chip>
+                        <v-chip
+                            small
+                            class=" mt-2 mb-2"
+                            v-if="fit[0]['r_t2_rigged'] == 1"
+                        >
+                            t2 rigged
+                        </v-chip>
                     </div>
+                    <v-list>
+                        <v-list-item
+                            v-for="(list, index) in items"
+                            :key="index"
+                        >
+                            <v-list-item-title>{{
+                                list.item_name
+                            }}</v-list-item-title>
+                        </v-list-item>
+                    </v-list>
                     <div v-if="!showfit()">
                         No Info
                     </div>
