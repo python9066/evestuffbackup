@@ -52,7 +52,7 @@
             :footer-props="{ 'items-per-page-options': [15, 25, 50, 100, -1] }"
             :sort-by="['timestamp']"
             :search="search"
-            :sort-desc="[true, false]"
+            :sort-desc="[false, true]"
             multi-sort
             class="elevation-1"
         >
@@ -299,6 +299,12 @@ export default {
                     value: "station_status_name",
                     align: "center",
                     width: "15%"
+                },
+                {
+                    text: "",
+                    value: "actions",
+                    width: "10%",
+                    align: "center"
                 },
                 {
                     text: "Edited By",
