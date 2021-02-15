@@ -68,6 +68,7 @@
                     :start-time="moment.utc(item.timestamp).unix()"
                     :end-text="'Coming Out'"
                     :interval="1000"
+                    @campaignStart="campaignStart(item)"
                 >
                     <template slot="countdown" slot-scope="scope">
                         <span class="blue--text pl-3"

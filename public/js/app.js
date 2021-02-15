@@ -15976,6 +15976,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 
@@ -31718,6 +31719,11 @@ var render = function() {
                           "start-time": _vm.moment.utc(item.timestamp).unix(),
                           "end-text": "Coming Out",
                           interval: 1000
+                        },
+                        on: {
+                          campaignStart: function($event) {
+                            return _vm.campaignStart(item)
+                          }
                         },
                         scopedSlots: _vm._u(
                           [

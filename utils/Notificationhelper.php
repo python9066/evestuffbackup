@@ -658,7 +658,18 @@ class Notifications
         $now5hour = now()->modify(' -5 hours'); //if less than
         $soon5hour = now()->modify(' +5 hours');
 
-        $checks = Station::where('updated_at', '<', $now5hour)->where('station_status_id', 1)->orwhere('station_status_id', 6)->get();
+        $checks = Station::where('updated_at', '<', $now5hour)->where('station_status_id', 1)->get();
+        foreach ($checks as $check) {
+            $check->update(['station_status_id' => 10, 'user_id' => null, 'text' => null, 'gunner_id' => null, 'out_time' => null]);
+            $stationID = $check->id;
+            $flag = null;
+            $flag = collect([
+                'id' => $stationID
+            ]);
+            broadcast(new StationNotificationDelete($flag))->toOthers();
+        }
+
+        $checks = Station::where('out_time', '<', $now5hour)->where('station_status_id', 6)->get();
         foreach ($checks as $check) {
             $check->update(['station_status_id' => 10, 'user_id' => null, 'text' => null, 'gunner_id' => null, 'out_time' => null]);
             $stationID = $check->id;
