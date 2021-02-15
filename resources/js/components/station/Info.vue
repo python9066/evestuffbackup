@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div v-if="showfit()">
         <v-dialog
             max-width="700px"
             z-index="0"
@@ -166,16 +166,7 @@
                             t2 rigged
                         </v-chip>
                     </div>
-                    <v-list>
-                        <v-list-item
-                            v-for="(list, index) in items"
-                            :key="index"
-                        >
-                            <v-list-item-title>{{
-                                list.item_name
-                            }}</v-list-item-title>
-                        </v-list-item>
-                    </v-list>
+
                     <div v-if="!showfit()">
                         No Info
                     </div>
