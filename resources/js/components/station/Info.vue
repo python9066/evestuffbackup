@@ -179,7 +179,6 @@
                                 :headers="headers"
                                 :items="items"
                                 disable-sort
-                                :item-class="itemRowBackground"
                                 hide-default-footer
                                 disable-pagination
                                 class="elevation-12"
