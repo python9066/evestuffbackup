@@ -74,6 +74,12 @@ export default {
     },
 
     computed: {
+        ...mapGetters(["getStationItemsByStationID"]),
+
+        items() {
+            return this.getStationItemsByStationID(this.station.id);
+        },
+
         cored() {
             return "FIller";
         }

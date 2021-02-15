@@ -1014,5 +1014,16 @@ export default new Vuex.Store({
             }
         },
 
+
+        getStationItemsByStationID: state => id => {
+            let pull = state.items.filter(item => item.station_id == id)
+            let count = pull.length
+            if (count != 0) {
+                return pull
+            } else {
+                return []
+            }
+        }
+
     }
 });
