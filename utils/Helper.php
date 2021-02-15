@@ -55,10 +55,7 @@ class Helper
                 // dd($data);
                 $date = new DateTime();
                 $date = $date->modify("+19 minutes");
-                $auth->refresh_token = $data['refresh_token'];
-                $auth->access_token = $data['access_token'];
-                $auth->expire_date = $date;
-                $auth->save();
+                $auth->update(['access_token' => $data['access_token'], 'refresh_token' => $data['refresh_token'], 'expire_date' => $date]);
             }
         }
     }
