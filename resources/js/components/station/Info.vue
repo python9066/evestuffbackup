@@ -30,7 +30,7 @@
                     </div>
                     <div>
                         Last Updated: {{ lastUpdated() }}
-                        <v-btn @click="taskRequest()">
+                        <v-btn v-if="$can('super')" @click="taskRequest()">
                             test
                         </v-btn>
                     </div>

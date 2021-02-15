@@ -26165,21 +26165,23 @@ var render = function() {
                         _vm._s(_vm.lastUpdated()) +
                         "\n                    "
                     ),
-                    _c(
-                      "v-btn",
-                      {
-                        on: {
-                          click: function($event) {
-                            return _vm.taskRequest()
-                          }
-                        }
-                      },
-                      [
-                        _vm._v(
-                          "\n                        test\n                    "
+                    _vm.$can("super")
+                      ? _c(
+                          "v-btn",
+                          {
+                            on: {
+                              click: function($event) {
+                                return _vm.taskRequest()
+                              }
+                            }
+                          },
+                          [
+                            _vm._v(
+                              "\n                        test\n                    "
+                            )
+                          ]
                         )
-                      ]
-                    )
+                      : _vm._e()
                   ],
                   1
                 )
