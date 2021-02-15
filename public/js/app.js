@@ -8930,6 +8930,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -25899,7 +25901,13 @@ var render = function() {
             },
             [
               _c("v-card-title", { staticClass: " d-block" }, [
-                _c("p", [_vm._v(_vm._s(_vm.station.station_name))]),
+                _c("p", { staticClass: " align-content-center" }, [
+                  _vm._v(
+                    "\n                    " +
+                      _vm._s(_vm.station.station_name) +
+                      "\n                "
+                  )
+                ]),
                 _vm._v(" "),
                 _c("p", [
                   _vm._v("\n                    Cored: "),
