@@ -20,7 +20,7 @@
                 class=" d-flex flex-column"
             >
                 <v-card-title
-                    >{{ station.station_name }} - Cored:{{ core }}
+                    >{{ station.station_name }} - Cored: {{ core }}
                 </v-card-title>
                 <v-card-text>
                     <v-chip class=" ma-2"> </v-chip>
@@ -83,13 +83,13 @@ export default {
             var core = this.getCoreByStationID(this.station.id);
             var count = this.getCoreByStationID(this.station.id).length;
             if (count == 0) {
-                return "No";
+                return '<strong class="red--text"> No </strong>';
             }
 
             if (core.cored == "Yes") {
-                return "Yes";
+                return '<strong class="green--text"> Yes </strong>';
             } else {
-                return "No";
+                return '<strong class="red--text"> No </strong>';
             }
         }
     },

@@ -8960,13 +8960,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var count = this.getCoreByStationID(this.station.id).length;
 
       if (count == 0) {
-        return "No";
+        return '<strong class="red--text"> No </strong>';
       }
 
       if (core.cored == "Yes") {
-        return "Yes";
+        return '<strong class="green--text"> Yes </strong>';
       } else {
-        return "No";
+        return '<strong class="red--text"> No </strong>';
       }
     }
   }),
@@ -25891,7 +25891,7 @@ var render = function() {
               _c("v-card-title", [
                 _vm._v(
                   _vm._s(_vm.station.station_name) +
-                    " - Cored:" +
+                    " - Cored: " +
                     _vm._s(_vm.core) +
                     "\n            "
                 )
