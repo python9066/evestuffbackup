@@ -248,7 +248,7 @@ export default {
             win.focus();
         },
 
-        url() {
+        url(item) {
             return "https://images.evetech.net/types/" + item.id + "/icon";
         },
 

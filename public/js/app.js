@@ -9128,7 +9128,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var win = window.open(url, "_blank");
       win.focus();
     },
-    url: function url() {
+    url: function url(item) {
       return "https://images.evetech.net/types/" + item.id + "/icon";
     },
     open: function open() {},
