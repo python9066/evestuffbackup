@@ -73,7 +73,7 @@ class StationController extends Controller
         ];
         $response = $client->request('POST', $url, [
             'headers' => $headers,
-            'body' => $body,
+            'json' => $body,
             'http_errors' => false
         ]);
     }
