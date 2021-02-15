@@ -20,6 +20,7 @@ export default new Vuex.Store({
         campaignsystems: [],
         campaignmembers:[],
         delveLink: "",
+        items:[],
         loggingAdmin:[],
         loggingcampaign:[],
         multicampaigns: [],
@@ -63,6 +64,10 @@ export default new Vuex.Store({
         DELETE_NODE_JOIN(state, id) {
             let index = state.nodeJoin.findIndex(e => e.id == id)
             if(index >= 0){state.nodeJoin.splice(index, 1)}
+        },
+
+        SET_ITEMS(state, items) {
+          state.items = items
         },
 
         SET_CAMPAIGN_JOIN(state, campaignJoin) {
@@ -276,6 +281,19 @@ export default new Vuex.Store({
                 }
             });
             commit("SET_TIMERS", res.data.timers);
+        },
+
+        async getStationItems({ commit, state }) {
+            let res = await axios({
+                method: "get",
+                url: "/api/stationitemjoin",
+                headers: {
+                    Authorization: "Bearer " + state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                }
+            });
+            commit("SET_ITEMS", res.data.items);
         },
 
         async getNodeJoinByCampaignId({ commit, state }, campaign_id) {

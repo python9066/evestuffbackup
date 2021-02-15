@@ -20,10 +20,11 @@
                 class=" d-flex flex-column"
             >
                 <v-card-title
-                    >Information about {{ station.station_name }}
+                    >Information about {{ station.station_name }} - Cored
+                    Station:{{ cored() }};
                 </v-card-title>
                 <v-card-text>
-                    erthwhteehtrehtrtehethsthesthse
+                    <v-chip class=" ma-2"> </v-chip>
                 </v-card-text>
                 <v-spacer></v-spacer
                 ><v-card-actions>
@@ -95,7 +96,11 @@ export default {
         open() {}
     },
 
-    computed: {},
+    computed: {
+        cored() {
+            return "FIller";
+        }
+    },
 
     beforeDestroy() {
         Echo.leave("stationinfo." + this.station.id);
