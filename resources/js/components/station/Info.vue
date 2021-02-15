@@ -32,23 +32,25 @@
                 </v-card-subtitle>
                 <v-card-text>
                     <div v-if="showfit()">
-                        <v-chip class=" ma-2"> anti cap </v-chip>
-                        <v-chip class=" ma-2"> anti subcap </v-chip>
-                        <v-chip class=" ma-2"> biochemical </v-chip>
-                        <v-chip class=" ma-2"> campital shipyard </v-chip>
-                        <v-chip class=" ma-2"> cloning </v-chip>
-                        <v-chip class=" ma-2"> composite </v-chip>
-                        <v-chip class=" ma-2"> dooms day </v-chip>
-                        <v-chip class=" ma-2"> guide bombs </v-chip>
-                        <v-chip class=" ma-2"> hyasyoda </v-chip>
-                        <v-chip class=" ma-2"> invention </v-chip>
-                        <v-chip class=" ma-2"> manufacturing </v-chip>
-                        <v-chip class=" ma-2"> moon drilling </v-chip>
-                        <v-chip class=" ma-2"> point defense </v-chip>
-                        <v-chip class=" ma-2"> reprocessing </v-chip>
-                        <v-chip class=" ma-2"> research </v-chip>
-                        <v-chip class=" ma-2"> supercapital shipyard </v-chip>
-                        <v-chip class=" ma-2"> t2 rigged </v-chip>
+                        <v-chip small class=" ma-2"> anti cap </v-chip>
+                        <v-chip small class=" ma-2"> anti subcap </v-chip>
+                        <v-chip small class=" ma-2"> biochemical </v-chip>
+                        <v-chip small class=" ma-2"> campital shipyard </v-chip>
+                        <v-chip small class=" ma-2"> cloning </v-chip>
+                        <v-chip small class=" ma-2"> composite </v-chip>
+                        <v-chip small class=" ma-2"> dooms day </v-chip>
+                        <v-chip small class=" ma-2"> guide bombs </v-chip>
+                        <v-chip small class=" ma-2"> hyasyoda </v-chip>
+                        <v-chip small class=" ma-2"> invention </v-chip>
+                        <v-chip small class=" ma-2"> manufacturing </v-chip>
+                        <v-chip small class=" ma-2"> moon drilling </v-chip>
+                        <v-chip small class=" ma-2"> point defense </v-chip>
+                        <v-chip small class=" ma-2"> reprocessing </v-chip>
+                        <v-chip small class=" ma-2"> research </v-chip>
+                        <v-chip small class=" ma-2">
+                            supercapital shipyard
+                        </v-chip>
+                        <v-chip small class=" ma-2"> t2 rigged </v-chip>
                     </div>
                     <div v-if="!showfit()">
                         No Info
