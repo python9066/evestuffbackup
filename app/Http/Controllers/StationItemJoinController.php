@@ -16,17 +16,6 @@ class StationItemJoinController extends Controller
      */
     public function index()
     {
-        $items = [];
-        $joins = StationItemJoin::all();
-        foreach ($joins as $join) {
-            $name = StationItems::where('id', $join->station_item_id)->first();
-            $data = [
-                "station_id" => $join->station_id,
-                "item_name" => $name->item_name,
-            ];
-            array_push($items, $data);
-        }
-        return ['items' => $items];
     }
 
     /**

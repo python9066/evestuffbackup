@@ -129,7 +129,5 @@ Route::middleware('auth:api')->group(function () {
     Route::put('/addchartonodeadmin/{id}/{campid}', 'NodeJoinsController@addCharToNodeAdmin');
     Route::put('/deleteextranode/{id}/{campid}', 'NodeJoinsController@deleteExtraNode');
 
-    Route::get('/stationitemjoin', 'StationItemJoinController@index');
-
-    Route::get('/stationcore', 'StationController@cored');
+    Route::get('/loadstationdata', 'StationController@loadStationData');
 });

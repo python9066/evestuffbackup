@@ -61,7 +61,8 @@ export default {
         return {
             showInfo: false,
             editText: null,
-            editAdashLink: null
+            editAdashLink: null,
+            fitted: false
         };
     },
 
@@ -80,10 +81,26 @@ export default {
     },
 
     computed: {
-        ...mapGetters(["getStationItemsByStationID", "getCoreByStationID"]),
+        ...mapGetters([
+            "getStationItemsByStationID",
+            "getCoreByStationID",
+            "getStationFitByStationID"
+        ]),
 
         items() {
             return this.getStationItemsByStationID(this.station.id);
+        },
+
+        fit() {
+            var fit = this.getStationFitByStationID(this.station.id);
+            var count = this.getStationFitByStationID(this.station.id).length;
+
+            if (count > 0) {
+                this.fitted = true;
+                return fit;
+            } else {
+                return;
+            }
         },
 
         core() {

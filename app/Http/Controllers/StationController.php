@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Events\StationChanged;
 use App\Models\Station;
+use App\Models\StationItemJoin;
+use App\Models\StationItems;
 use Illuminate\Http\Request;
 
 class StationController extends Controller
@@ -18,7 +20,7 @@ class StationController extends Controller
         //
     }
 
-    public function cored()
+    public function loadStationData()
     {
         $data = [];
         $stations = Station::all();
@@ -37,7 +39,22 @@ class StationController extends Controller
             array_push($data, $data1);
         }
 
-        return ['cores' => $data];
+        $items = [];
+        $joins = StationItemJoin::all();
+        foreach ($joins as $join) {
+            $name = StationItems::where('id', $join->station_item_id)->first();
+            $data = [
+                "station_id" => $join->station_id,
+                "item_name" => $name->item_name,
+            ];
+            array_push($items, $data);
+        }
+
+        return [
+            'cores' => $data,
+            'fit' => Station::where('r_fitted', 'Fitted')->get(),
+            'items' => $items
+        ];
     }
 
     /**

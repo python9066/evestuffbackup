@@ -30,7 +30,8 @@ export default new Vuex.Store({
         periodbasisLink: "",
         queriousLink: "",
         rolesList:[],
-        stations:[],
+        stations: [],
+        stationFits:[],
         timers: [],
         token: "",
         towers:[],
@@ -96,6 +97,12 @@ export default new Vuex.Store({
         SET_STATIONS(state, stations) {
             state.stations = stations;
         },
+
+        SET_STATIONS_FIT(state, fit) {
+            state.stationFits = fit;
+        },
+
+
 
         UPDATE_STATIONS(state, data) {
             const item = state.stations.find(item => item.id === data.id);
@@ -288,19 +295,6 @@ export default new Vuex.Store({
             commit("SET_TIMERS", res.data.timers);
         },
 
-        async getStationItems({ commit, state }) {
-            let res = await axios({
-                method: "get",
-                url: "/api/stationitemjoin",
-                headers: {
-                    Authorization: "Bearer " + state.token,
-                    Accept: "application/json",
-                    "Content-Type": "application/json"
-                }
-            });
-            commit("SET_ITEMS", res.data.items);
-        },
-
         async getNodeJoinByCampaignId({ commit, state }, campaign_id) {
             let res = await axios({
                 method: "get",
@@ -340,19 +334,6 @@ export default new Vuex.Store({
                 }
             });
             commit("SET_STATIONS", res.data.stations);
-        },
-
-        async getCores({ commit, state }) {
-            let res = await axios({
-                method: "get",
-                url: "/api/stationcore",
-                headers: {
-                    Authorization: "Bearer " + state.token,
-                    Accept: "application/json",
-                    "Content-Type": "application/json"
-                }
-            });
-            commit("SET_CORES", res.data.cores);
         },
 
 
@@ -755,6 +736,26 @@ export default new Vuex.Store({
         },
 
 
+        async loadStationData({ commit, state }) {
+
+            let res = await axios({
+                method: "get", //you can set what request you want to be
+                url: "/api/loadstationdata",
+                headers: {
+                    Authorization: "Bearer " + state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                }
+            });
+
+            if (res.data.length != 0) {
+                commit("SET_CORES", res.data.cores);
+                commit("SET_ITEMS", res.data.items);
+                commit("SET_STATIONS_FIT", res.data.items);
+            }
+        },
+
+
     },
     getters: {
 
@@ -1048,6 +1049,16 @@ export default new Vuex.Store({
 
         getCoreByStationID: state => id => {
             let pull = state.cores.filter(core => core.station_id == id)
+            let count = pull.length
+            if (count != 0) {
+                return pull
+            } else {
+                return []
+            }
+        },
+
+        getStationFit: state => id => {
+            let pull = state.stationFits.filter(fit => fit.id == id)
             let count = pull.length
             if (count != 0) {
                 return pull
