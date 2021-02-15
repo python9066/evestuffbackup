@@ -1,6 +1,7 @@
 <template>
-    <div v-if="showfit()">
+    <div>
         <v-dialog
+            v-if="showfit()"
             max-width="700px"
             z-index="0"
             v-model="showInfo"
