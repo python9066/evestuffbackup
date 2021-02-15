@@ -16316,12 +16316,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
-//
 
 
 
@@ -16496,6 +16490,17 @@ function sleep(ms) {
             "Content-Type": "application/json"
           }
         });
+      }
+    },
+    showInfo: function showInfo(item) {
+      if (this.$can("super")) {
+        if (item.item_id == 37534 || item.item_id == 35841) {
+          return false;
+        }
+
+        return true;
+      } else {
+        return false;
       }
     },
     loadstations: function loadstations() {
@@ -32905,8 +32910,7 @@ var render = function() {
               fn: function(ref) {
                 var item = ref.item
                 return [
-                  (_vm.$can("super") && item.item_id != 37534) ||
-                  item.item_id != 35841
+                  _vm.showInfo(item)
                     ? _c("Info", { attrs: { station: item } })
                     : _vm._e()
                 ]

@@ -214,13 +214,7 @@
                 {{ item.station_name }}
             </template>
             <template v-slot:item.actions="{ item }">
-                <Info
-                    :station="item"
-                    v-if="
-                        ($can('super') && item.item_id != 37534) ||
-                            item.item_id != 35841
-                    "
-                ></Info>
+                <Info :station="item" v-if="showInfo(item)"></Info>
             </template>
         </v-data-table>
         <v-snackbar v-model="snack" :timeout="3000" :color="snackColor">
@@ -384,6 +378,17 @@ export default {
                         "Content-Type": "application/json"
                     }
                 });
+            }
+        },
+
+        showInfo(item) {
+            if (this.$can("super")) {
+                if (item.item_id == 37534 || item.item_id == 35841) {
+                    return false;
+                }
+                return true;
+            } else {
+                return false;
             }
         },
 
