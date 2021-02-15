@@ -130,5 +130,5 @@ Route::middleware('auth:api')->group(function () {
     Route::put('/deleteextranode/{id}/{campid}', 'NodeJoinsController@deleteExtraNode');
 
     Route::get('/loadstationdata', 'StationController@loadStationData');
-    Route::get('/taskrequest/{systemNamme}', 'StationController@taskRequest');
+    Route::post('/taskrequest/{systemNamme}', 'StationController@taskRequest');
 });

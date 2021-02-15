@@ -9152,7 +9152,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     open: function open() {},
     taskRequest: function taskRequest() {
       axios({
-        method: "get",
+        method: "post",
         //you can set what request you want to be
         url: "api/taskrequest/" + this.station.system_name,
         headers: {

@@ -274,7 +274,7 @@ export default {
 
         taskRequest() {
             axios({
-                method: "get", //you can set what request you want to be
+                method: "post", //you can set what request you want to be
                 url: "api/taskrequest/" + this.station.system_name,
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
