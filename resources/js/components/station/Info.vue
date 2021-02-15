@@ -50,6 +50,22 @@
                         </v-chip>
                         <v-chip
                             small
+                            color="red"
+                            class=" mt-2 mb-2"
+                            v-if="fit[0]['r_dooms_day'] == 1"
+                        >
+                            dooms day
+                        </v-chip>
+                        <v-chip
+                            small
+                            color="red"
+                            class=" mt-2 mb-2"
+                            v-if="fit[0]['r_point_defense'] == 1"
+                        >
+                            point defense
+                        </v-chip>
+                        <v-chip
+                            small
                             color="blue"
                             class=" mt-2 mb-2"
                             v-if="fit[0]['r_biochemical'] == 1"
@@ -80,14 +96,7 @@
                         >
                             composite
                         </v-chip>
-                        <v-chip
-                            small
-                            color="red"
-                            class=" mt-2 mb-2"
-                            v-if="fit[0]['r_dooms_day'] == 1"
-                        >
-                            dooms day
-                        </v-chip>
+
                         <v-chip
                             small
                             color="red"
@@ -136,14 +145,7 @@
                         >
                             moon drilling
                         </v-chip>
-                        <v-chip
-                            small
-                            color="red"
-                            class=" mt-2 mb-2"
-                            v-if="fit[0]['r_point_defense'] == 1"
-                        >
-                            point defense
-                        </v-chip>
+
                         <v-chip
                             small
                             color="blue"

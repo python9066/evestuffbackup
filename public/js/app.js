@@ -9105,6 +9105,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -26180,6 +26182,36 @@ var render = function() {
                               )
                             : _vm._e(),
                           _vm._v(" "),
+                          _vm.fit[0]["r_dooms_day"] == 1
+                            ? _c(
+                                "v-chip",
+                                {
+                                  staticClass: " mt-2 mb-2",
+                                  attrs: { small: "", color: "red" }
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                        dooms day\n                    "
+                                  )
+                                ]
+                              )
+                            : _vm._e(),
+                          _vm._v(" "),
+                          _vm.fit[0]["r_point_defense"] == 1
+                            ? _c(
+                                "v-chip",
+                                {
+                                  staticClass: " mt-2 mb-2",
+                                  attrs: { small: "", color: "red" }
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                        point defense\n                    "
+                                  )
+                                ]
+                              )
+                            : _vm._e(),
+                          _vm._v(" "),
                           _vm.fit[0]["r_biochemical"] == 1
                             ? _c(
                                 "v-chip",
@@ -26235,21 +26267,6 @@ var render = function() {
                                 [
                                   _vm._v(
                                     "\n                        composite\n                    "
-                                  )
-                                ]
-                              )
-                            : _vm._e(),
-                          _vm._v(" "),
-                          _vm.fit[0]["r_dooms_day"] == 1
-                            ? _c(
-                                "v-chip",
-                                {
-                                  staticClass: " mt-2 mb-2",
-                                  attrs: { small: "", color: "red" }
-                                },
-                                [
-                                  _vm._v(
-                                    "\n                        dooms day\n                    "
                                   )
                                 ]
                               )
@@ -26340,21 +26357,6 @@ var render = function() {
                                 [
                                   _vm._v(
                                     "\n                        moon drilling\n                    "
-                                  )
-                                ]
-                              )
-                            : _vm._e(),
-                          _vm._v(" "),
-                          _vm.fit[0]["r_point_defense"] == 1
-                            ? _c(
-                                "v-chip",
-                                {
-                                  staticClass: " mt-2 mb-2",
-                                  attrs: { small: "", color: "red" }
-                                },
-                                [
-                                  _vm._v(
-                                    "\n                        point defense\n                    "
                                   )
                                 ]
                               )
