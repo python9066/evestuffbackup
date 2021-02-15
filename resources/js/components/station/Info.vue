@@ -31,7 +31,7 @@
                     <div>Last Updated: {{ lastUpdated() }}</div>
                 </v-card-subtitle>
                 <v-card-text>
-                    <div :v-if="showfit()">
+                    <div v-if="showfit()">
                         <v-chip class=" ma-2"> anti cap </v-chip>
                         <v-chip class=" ma-2"> anti subcap </v-chip>
                         <v-chip class=" ma-2"> biochemical </v-chip>
@@ -50,7 +50,7 @@
                         <v-chip class=" ma-2"> supercapital shipyard </v-chip>
                         <v-chip class=" ma-2"> t2 rigged </v-chip>
                     </div>
-                    <div :v-if="showfit()">
+                    <div v-if="showfit()">
                         No Info
                     </div>
                 </v-card-text>
@@ -83,8 +83,7 @@ export default {
         return {
             showInfo: false,
             editText: null,
-            editAdashLink: null,
-            fitted: false
+            editAdashLink: null
         };
     },
 
@@ -102,7 +101,7 @@ export default {
         open() {},
 
         showfit() {
-            if (this.fitted == true) {
+            if (this.fit != "NO") {
                 return true;
             } else {
                 return false;
@@ -110,7 +109,7 @@ export default {
         },
 
         lastUpdated() {
-            if (this.fitted == true) {
+            if (this.fit != "NO") {
                 return this.fit.r_updated_at;
             } else {
                 return "Never";
