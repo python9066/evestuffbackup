@@ -8927,6 +8927,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -8960,13 +8963,20 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var count = this.getCoreByStationID(this.station.id).length;
 
       if (count == 0) {
-        return '<strong class="red--text"> No </strong>';
+        return "No";
       }
 
       if (core.cored == "Yes") {
-        return '<strong class="green--text"> Yes </strong>';
+        return "Yes";
       } else {
-        return '<strong class="red--text"> No </strong>';
+        return "No";
+      }
+    },
+    textcolor: function textcolor() {
+      if (this.core == "Yes") {
+        return "green--text";
+      } else {
+        return "red--text";
       }
     }
   }),
@@ -25889,12 +25899,14 @@ var render = function() {
             },
             [
               _c("v-card-title", [
-                _vm._v(
-                  _vm._s(_vm.station.station_name) +
-                    " - Cored: " +
-                    _vm._s(_vm.core) +
-                    "\n            "
-                )
+                _c("p", [_vm._v(_vm._s(_vm.station.station_name))]),
+                _vm._v(" "),
+                _c("p", [
+                  _vm._v("\n                    Cored: "),
+                  _c("strong", { class: _vm.textcolor }, [
+                    _vm._v(" " + _vm._s(_vm.core) + " ")
+                  ])
+                ])
               ]),
               _vm._v(" "),
               _c("v-card-text", [_c("v-chip", { staticClass: " ma-2" })], 1),

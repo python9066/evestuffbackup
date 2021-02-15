@@ -20,7 +20,10 @@
                 class=" d-flex flex-column"
             >
                 <v-card-title
-                    >{{ station.station_name }} - Cored: {{ core }}
+                    ><p>{{ station.station_name }}</p>
+                    <p>
+                        Cored: <strong :class="textcolor"> {{ core }} </strong>
+                    </p>
                 </v-card-title>
                 <v-card-text>
                     <v-chip class=" ma-2"> </v-chip>
@@ -83,13 +86,21 @@ export default {
             var core = this.getCoreByStationID(this.station.id);
             var count = this.getCoreByStationID(this.station.id).length;
             if (count == 0) {
-                return '<strong class="red--text"> No </strong>';
+                return "No";
             }
 
             if (core.cored == "Yes") {
-                return '<strong class="green--text"> Yes </strong>';
+                return "Yes";
             } else {
-                return '<strong class="red--text"> No </strong>';
+                return "No";
+            }
+        },
+
+        textcolor() {
+            if (this.core == "Yes") {
+                return "green--text";
+            } else {
+                return "red--text";
             }
         }
     },
