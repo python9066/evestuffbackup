@@ -52,7 +52,7 @@
             :footer-props="{ 'items-per-page-options': [15, 25, 50, 100, -1] }"
             :sort-by="['timestamp']"
             :search="search"
-            :sort-desc="[false, true]"
+            :sort-desc="[true, false]"
             multi-sort
             class="elevation-1"
         >
