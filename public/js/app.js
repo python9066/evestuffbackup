@@ -9088,6 +9088,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -26088,7 +26089,7 @@ var render = function() {
                 tile: "",
                 "max-width": "700px",
                 "min-height": "200px",
-                "max-height": "700px"
+                "max-height": "800px"
               }
             },
             [
@@ -26438,6 +26439,7 @@ var render = function() {
                               items: _vm.items,
                               "disable-sort": "",
                               "hide-default-footer": "",
+                              "hide-default-header": "",
                               "disable-pagination": "",
                               height: "300px"
                             }
