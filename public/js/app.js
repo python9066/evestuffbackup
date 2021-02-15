@@ -25952,7 +25952,7 @@ var render = function() {
               _c("v-card-text", [
                 _c(
                   "div",
-                  { attrs: { "v-if": _vm.fit != null } },
+                  { attrs: { "v-if": _vm.fitted == true } },
                   [
                     _c("v-chip", { staticClass: " ma-2" }, [
                       _vm._v(" anti cap ")
@@ -26025,7 +26025,7 @@ var render = function() {
                   1
                 ),
                 _vm._v(" "),
-                _c("div", { attrs: { "v-if": _vm.fit == null } }, [
+                _c("div", { attrs: { "v-if": _vm.fitted == false } }, [
                   _vm._v("\n                    No Info\n                ")
                 ])
               ]),
