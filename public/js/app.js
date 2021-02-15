@@ -8932,6 +8932,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -25907,8 +25909,10 @@ var render = function() {
                       _vm._s(_vm.station.station_name) +
                       "\n                "
                   )
-                ]),
-                _vm._v(" "),
+                ])
+              ]),
+              _vm._v(" "),
+              _c("v-card-subtitle", [
                 _c("p", [
                   _vm._v("\n                    Cored: "),
                   _c("strong", { class: _vm.textcolor }, [

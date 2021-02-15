@@ -23,10 +23,12 @@
                     ><p>
                         {{ station.station_name }}
                     </p>
+                </v-card-title>
+                <v-card-subtitle>
                     <p>
                         Cored: <strong :class="textcolor"> {{ core }} </strong>
                     </p>
-                </v-card-title>
+                </v-card-subtitle>
                 <v-card-text>
                     <v-chip class=" ma-2"> </v-chip>
                 </v-card-text>
