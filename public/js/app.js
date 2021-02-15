@@ -8873,17 +8873,9 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
-/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
-/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_2__);
-
-
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_1__);
 //
 //
 //
@@ -8943,36 +8935,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       editAdashLink: null
     };
   },
-  created: function created() {
-    var _this = this;
-
-    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
-        while (1) {
-          switch (_context.prev = _context.next) {
-            case 0:
-              Echo["private"]("stationinfo." + _this.station.id).listen("NodeAttackMessageUpdate", function (e) {
-                if (e.flag.type == 1) {
-                  _this.showAttackNumber = true;
-                  _this.messageAttackCount = _this.messageAttackCount + 1;
-
-                  _this.$store.dispatch("updateCampaignSystem", e.flag.message);
-                } else {
-                  _this.showAttackNumber = false;
-                  _this.messageAttackCount = 0;
-
-                  _this.$store.dispatch("updateCampaignSystem", e.flag.message);
-                }
-              });
-
-            case 1:
-            case "end":
-              return _context.stop();
-          }
-        }
-      }, _callee);
-    }))();
-  },
   methods: {
     close: function close() {
       this.showInfo = false;
@@ -8989,9 +8951,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       return "FIller";
     }
   },
-  beforeDestroy: function beforeDestroy() {
-    Echo.leave("stationinfo." + this.station.id);
-  }
+  beforeDestroy: function beforeDestroy() {}
 });
 
 /***/ }),
@@ -16230,11 +16190,19 @@ function sleep(ms) {
     }).listen("StationNotificationDelete", function (e) {
       _this.$store.dispatch("deleteStation", e.flag.id);
     });
+
+    if (this.$can("gunner")) {
+      Echo["private"]("stationinfo").listen("StationInfoGet", function (e) {
+        _this.$store.dispatch("getStationItems");
+      });
+    }
+
     this.$store.dispatch("getStationData").then(function () {
       _this.loadingt = false;
       _this.loadingf = false;
       _this.loadingr = false;
     });
+    this.$store.dispatch("getStationItems");
   },
   mounted: function mounted() {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
@@ -16443,6 +16411,7 @@ function sleep(ms) {
   }),
   beforeDestroy: function beforeDestroy() {
     Echo.leave("notes");
+    Echo.leave("stationinfo");
   }
 });
 

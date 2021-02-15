@@ -58,7 +58,7 @@ Broadcast::channel('multicampaigns', function () {
     return Auth::check();
 });
 
-Broadcast::channel('stationinfo.{id}', function () {
+Broadcast::channel('stationinfo', function () {
     return Auth::check();
 });
 

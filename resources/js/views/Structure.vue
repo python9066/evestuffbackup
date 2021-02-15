@@ -333,11 +333,18 @@ export default {
                 this.$store.dispatch("deleteStation", e.flag.id);
             });
 
+        if (this.$can("gunner")) {
+            Echo.private("stationinfo").listen("StationInfoGet", e => {
+                this.$store.dispatch("getStationItems");
+            });
+        }
+
         this.$store.dispatch("getStationData").then(() => {
             this.loadingt = false;
             this.loadingf = false;
             this.loadingr = false;
         });
+        this.$store.dispatch("getStationItems");
     },
 
     async mounted() {},
@@ -525,6 +532,7 @@ export default {
     },
     beforeDestroy() {
         Echo.leave("notes");
+        Echo.leave("stationinfo");
     }
 };
 </script>
