@@ -217,8 +217,8 @@
                 <Info
                     :station="item"
                     v-if="
-                        $can('super') &&
-                            (item.item_id != 37534 || item.item_id != 35841)
+                        ($can('super') && item.item_id != 37534) ||
+                            item.item_id != 35841
                     "
                 ></Info>
             </template>
