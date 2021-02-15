@@ -30,7 +30,7 @@
                     </p>
                 </v-card-subtitle>
                 <v-card-text>
-                    <div :v-if="fit.r_fitted == 'Fitted'">
+                    <!-- <div :v-if="fit.r_fitted == 'Fitted'">
                         <v-chip class=" ma-2"> anti cap </v-chip>
                         <v-chip class=" ma-2"> anti subcap </v-chip>
                         <v-chip class=" ma-2"> biochemical </v-chip>
@@ -51,7 +51,7 @@
                     </div>
                     <div v-if="fit.r_fitted != 'Fitted'">
                         No Info
-                    </div>
+                    </div> -->
                 </v-card-text>
                 <v-spacer></v-spacer
                 ><v-card-actions>
