@@ -9094,8 +9094,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -9129,6 +9127,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     openAdash: function openAdash(url) {
       var win = window.open(url, "_blank");
       win.focus();
+    },
+    url: function url() {
+      return "https://images.evetech.net/types/" + item.id + "/icon";
     },
     open: function open() {},
     showfit: function showfit() {
@@ -26460,10 +26461,7 @@ var render = function() {
                                         return [
                                           _c("v-avatar", [
                                             _c("img", {
-                                              attrs: {
-                                                src:
-                                                  "https://cdn.vuetifyjs.com/images/john.jpg"
-                                              }
+                                              attrs: { src: _vm.url(item) }
                                             })
                                           ])
                                         ]
@@ -26472,7 +26470,7 @@ var render = function() {
                                   ],
                                   null,
                                   false,
-                                  1241005015
+                                  916954536
                                 )
                               })
                             ],

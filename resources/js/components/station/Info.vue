@@ -187,9 +187,7 @@
                             >
                                 <template v-slot:item.icon="{ item }">
                                     <v-avatar>
-                                        <img
-                                            src="https://cdn.vuetifyjs.com/images/john.jpg"
-                                        />
+                                        <img :src="url(item)" />
                                     </v-avatar>
                                 </template>
                             </v-data-table>
@@ -248,6 +246,10 @@ export default {
         openAdash(url) {
             var win = window.open(url, "_blank");
             win.focus();
+        },
+
+        url() {
+            return "https://images.evetech.net/types/" + item.id + "/icon";
         },
 
         open() {},
