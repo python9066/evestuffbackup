@@ -21,7 +21,7 @@ class StationItemJoinController extends Controller
             $name = StationItems::where('id', $join->item_id)->first();
             $data = [
                 "station_id" => $join['station_id'],
-                "item_name" => $name->item_name
+                "item_name" => $name['item_name']
             ];
             array_push($items, $data);
         }
