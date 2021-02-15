@@ -669,7 +669,7 @@ class Notifications
             broadcast(new StationNotificationDelete($flag))->toOthers();
         }
 
-        $checks = Station::where('out_time', '<', $now5hour)->where('station_status_id', 6)->get();
+        $checks = Station::where('out_time', '>', $soon5hour)->where('station_status_id', 6)->get();
         foreach ($checks as $check) {
             $check->update(['station_status_id' => 10, 'user_id' => null, 'text' => null, 'gunner_id' => null, 'out_time' => null]);
             $stationID = $check->id;
