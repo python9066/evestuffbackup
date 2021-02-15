@@ -28,7 +28,12 @@
                     <div>
                         Cored: <strong :class="textcolor"> {{ core }} </strong>
                     </div>
-                    <div>Last Updated: {{ lastUpdated() }}</div>
+                    <div>
+                        Last Updated: {{ lastUpdated() }}
+                        <v-btn @click="taskRequest()">
+                            test
+                        </v-btn>
+                    </div>
                 </v-card-subtitle>
                 <v-card-text>
                     <div v-if="showfit()">
@@ -266,6 +271,18 @@ export default {
         },
 
         open() {},
+
+        taskRequest() {
+            axios({
+                method: "get", //you can set what request you want to be
+                url: "api/taskrequest/" + this.station.system_name,
+                headers: {
+                    Authorization: "Bearer " + this.$store.state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                }
+            });
+        },
 
         showfit() {
             if (this.fitted == true) {

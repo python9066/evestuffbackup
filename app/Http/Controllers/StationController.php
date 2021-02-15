@@ -7,6 +7,7 @@ use App\Models\Station;
 use App\Models\StationItemJoin;
 use App\Models\StationItems;
 use Illuminate\Http\Request;
+use GuzzleHttp\Client as GuzzleHttpClient;
 
 class StationController extends Controller
 {
@@ -56,6 +57,25 @@ class StationController extends Controller
             'fit' => Station::where('r_fitted', 'Fitted')->get(),
             'items' => $items
         ];
+    }
+
+    public function taskRequest($systemName)
+    {
+        $url = "https://dev.scouts.scopeh.co.uk/api/task/add";
+        $client = new GuzzleHttpClient();
+        $headers = [
+            'x-gsf-user' => env('RECON_USER', 'DANCE2'),
+            'token' =>  env('RECON_TASK_TOKEN', "DANCE")
+        ];
+
+        $body = [
+            'system' => $systemName
+        ];
+        $response = $client->request('POST', $url, [
+            'headers' => $headers,
+            'body' => $body,
+            'http_errors' => false
+        ]);
     }
 
     /**

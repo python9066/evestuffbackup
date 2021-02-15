@@ -9107,6 +9107,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -9145,6 +9150,18 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       return "https://images.evetech.net/types/" + item.item_id + "/icon";
     },
     open: function open() {},
+    taskRequest: function taskRequest() {
+      axios({
+        method: "get",
+        //you can set what request you want to be
+        url: "api/taskrequest/" + this.station.system_name,
+        headers: {
+          Authorization: "Bearer " + this.$store.state.token,
+          Accept: "application/json",
+          "Content-Type": "application/json"
+        }
+      });
+    },
     showfit: function showfit() {
       if (this.fitted == true) {
         return true;
@@ -26140,9 +26157,32 @@ var render = function() {
                   ])
                 ]),
                 _vm._v(" "),
-                _c("div", [
-                  _vm._v("Last Updated: " + _vm._s(_vm.lastUpdated()))
-                ])
+                _c(
+                  "div",
+                  [
+                    _vm._v(
+                      "\n                    Last Updated: " +
+                        _vm._s(_vm.lastUpdated()) +
+                        "\n                    "
+                    ),
+                    _c(
+                      "v-btn",
+                      {
+                        on: {
+                          click: function($event) {
+                            return _vm.taskRequest()
+                          }
+                        }
+                      },
+                      [
+                        _vm._v(
+                          "\n                        test\n                    "
+                        )
+                      ]
+                    )
+                  ],
+                  1
+                )
               ]),
               _vm._v(" "),
               _c(
