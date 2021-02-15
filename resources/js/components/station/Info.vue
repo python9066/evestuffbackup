@@ -106,7 +106,7 @@
                         </v-chip>
                         <v-chip
                             small
-                            color="red"
+                            color="blue"
                             class=" mt-2 mb-2"
                             v-if="fit[0]['r_hybrid'] == 1"
                         >

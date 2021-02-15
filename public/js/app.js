@@ -26290,7 +26290,7 @@ var render = function() {
                                 "v-chip",
                                 {
                                   staticClass: " mt-2 mb-2",
-                                  attrs: { small: "", color: "red" }
+                                  attrs: { small: "", color: "blue" }
                                 },
                                 [
                                   _vm._v(
