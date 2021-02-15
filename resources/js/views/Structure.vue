@@ -439,7 +439,7 @@ export default {
         },
 
         campaignStart(item) {
-            item.station_status_id == 6;
+            item.station_status_id = 6;
             this.$store.dispatch("updateStations", item);
         },
 
