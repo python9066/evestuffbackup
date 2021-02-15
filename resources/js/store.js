@@ -751,7 +751,7 @@ export default new Vuex.Store({
             if (res.data.length != 0) {
                 commit("SET_CORES", res.data.cores);
                 commit("SET_ITEMS", res.data.items);
-                commit("SET_STATIONS_FIT", res.data.items);
+                commit("SET_STATIONS_FIT", res.data.fit);
             }
         },
 
