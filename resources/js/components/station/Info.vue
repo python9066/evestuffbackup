@@ -49,7 +49,7 @@
                         <v-chip class=" ma-2"> supercapital shipyard </v-chip>
                         <v-chip class=" ma-2"> t2 rigged </v-chip>
                     </div>
-                    <div v-if="fit == null">
+                    <div :v-if="fit == null">
                         No Info
                     </div>
                 </v-card-text>

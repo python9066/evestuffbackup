@@ -26027,11 +26027,9 @@ var render = function() {
                   1
                 ),
                 _vm._v(" "),
-                _vm.fit == null
-                  ? _c("div", [
-                      _vm._v("\n                    No Info\n                ")
-                    ])
-                  : _vm._e()
+                _c("div", { attrs: { "v-if": _vm.fit == null } }, [
+                  _vm._v("\n                    No Info\n                ")
+                ])
               ]),
               _vm._v(" "),
               _c("v-spacer"),
