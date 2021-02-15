@@ -25898,7 +25898,7 @@ var render = function() {
               }
             },
             [
-              _c("v-card-title", [
+              _c("v-card-title", { staticClass: " d-block" }, [
                 _c("p", [_vm._v(_vm._s(_vm.station.station_name))]),
                 _vm._v(" "),
                 _c("p", [

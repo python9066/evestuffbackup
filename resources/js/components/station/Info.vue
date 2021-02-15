@@ -19,7 +19,7 @@
                 max-height="700px"
                 class=" d-flex flex-column"
             >
-                <v-card-title
+                <v-card-title class=" d-block"
                     ><p>{{ station.station_name }}</p>
                     <p>
                         Cored: <strong :class="textcolor"> {{ core }} </strong>
