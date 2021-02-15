@@ -183,6 +183,7 @@
                                 hide-default-footer
                                 disable-pagination
                                 class="elevation-12"
+                                height="300px"
                             >
                             </v-data-table>
                         </v-card-text>
@@ -218,7 +219,7 @@ export default {
             headers: [
                 { text: "", value: "icon", width: "5%", align: "start" },
                 {
-                    text: "Item",
+                    text: "Items",
                     value: "item_name",
                     width: "95%",
                     align: "start"

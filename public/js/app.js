@@ -9088,6 +9088,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -9102,7 +9103,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         width: "5%",
         align: "start"
       }, {
-        text: "Item",
+        text: "Items",
         value: "item_name",
         width: "95%",
         align: "start"
@@ -26439,7 +26440,8 @@ var render = function() {
                               "disable-sort": "",
                               "item-class": _vm.itemRowBackground,
                               "hide-default-footer": "",
-                              "disable-pagination": ""
+                              "disable-pagination": "",
+                              height: "300px"
                             }
                           })
                         ],
