@@ -8927,7 +8927,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -8952,12 +8951,23 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     open: function open() {}
   },
-  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(["getStationItemsByStationID"])), {}, {
+  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(["getStationItemsByStationID", "getCoreByStationID"])), {}, {
     items: function items() {
       return this.getStationItemsByStationID(this.station.id);
     },
-    cored: function cored() {
-      return "FIller";
+    core: function core() {
+      var core = this.getCoreByStationID(this.station.id);
+      var count = this.getCoreByStationID(this.station.id).length;
+
+      if (count == 0) {
+        return "No";
+      }
+
+      if (core.cored == "Yes") {
+        return "Yes";
+      } else {
+        return "No";
+      }
     }
   }),
   beforeDestroy: function beforeDestroy() {}
@@ -25880,11 +25890,10 @@ var render = function() {
             [
               _c("v-card-title", [
                 _vm._v(
-                  "Information about " +
-                    _vm._s(_vm.station.station_name) +
-                    " - Cored\n                Station:" +
-                    _vm._s(_vm.cored) +
-                    ";\n            "
+                  _vm._s(_vm.station.station_name) +
+                    " - Cored:" +
+                    _vm._s(_vm.core) +
+                    "\n            "
                 )
               ]),
               _vm._v(" "),

@@ -20,8 +20,7 @@
                 class=" d-flex flex-column"
             >
                 <v-card-title
-                    >Information about {{ station.station_name }} - Cored
-                    Station:{{ cored }};
+                    >{{ station.station_name }} - Cored:{{ core }}
                 </v-card-title>
                 <v-card-text>
                     <v-chip class=" ma-2"> </v-chip>
@@ -74,14 +73,24 @@ export default {
     },
 
     computed: {
-        ...mapGetters(["getStationItemsByStationID"]),
+        ...mapGetters(["getStationItemsByStationID", "getCoreByStationID"]),
 
         items() {
             return this.getStationItemsByStationID(this.station.id);
         },
 
-        cored() {
-            return "FIller";
+        core() {
+            var core = this.getCoreByStationID(this.station.id);
+            var count = this.getCoreByStationID(this.station.id).length;
+            if (count == 0) {
+                return "No";
+            }
+
+            if (core.cored == "Yes") {
+                return "Yes";
+            } else {
+                return "No";
+            }
         }
     },
 
