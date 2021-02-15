@@ -9009,7 +9009,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       return fit;
     },
     r_lastupdated: function r_lastupdated() {
-      return fit.r_updated_at;
+      return this.fit.r_updated_at;
     },
     core: function core() {
       var core = this.getCoreByStationID(this.station.id);

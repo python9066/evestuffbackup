@@ -140,7 +140,7 @@ export default {
         },
 
         r_lastupdated() {
-            return fit.r_updated_at;
+            return this.fit.r_updated_at;
         },
 
         core() {
