@@ -111,7 +111,7 @@ export default {
 
         lastUpdated() {
             if (this.fitted == true) {
-                return this.fit.r_updated_at;
+                return this.r_lastupdated;
             } else {
                 return "Never";
             }
@@ -137,6 +137,10 @@ export default {
             }
 
             return fit;
+        },
+
+        r_lastupdated() {
+            return fit.r_updated_at;
         },
 
         core() {
