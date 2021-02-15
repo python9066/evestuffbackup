@@ -20,16 +20,9 @@ class StationItemJoinController extends Controller
         $joins = StationItemJoin::all();
         foreach ($joins as $join) {
             $name = StationItems::where('id', $join->station_item_id)->first();
-            $core = Station::where('id', $join->station_id)->first();
-            if ($core->r_core == "Yes") {
-                $cored = "Yes";
-            } else {
-                $cored = "No";
-            }
             $data = [
                 "station_id" => $join->station_id,
                 "item_name" => $name->item_name,
-                "cored" => $cored
             ];
             array_push($items, $data);
         }

@@ -336,6 +336,7 @@ export default {
         if (this.$can("gunner")) {
             Echo.private("stationinfo").listen("StationInfoGet", e => {
                 this.$store.dispatch("getStationItems");
+                this.$store.dispatch("getCores");
             });
         }
 
@@ -345,6 +346,7 @@ export default {
             this.loadingr = false;
         });
         this.$store.dispatch("getStationItems");
+        this.$store.dispatch("getCores");
     },
 
     async mounted() {},

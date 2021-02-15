@@ -18,7 +18,8 @@ export default new Vuex.Store({
         campaignslist: [],
         campaignusers: [],
         campaignsystems: [],
-        campaignmembers:[],
+        campaignmembers: [],
+        cores:[],
         delveLink: "",
         items:[],
         loggingAdmin:[],
@@ -99,6 +100,10 @@ export default new Vuex.Store({
         UPDATE_STATIONS(state, data) {
             const item = state.stations.find(item => item.id === data.id);
             Object.assign(item, data);
+        },
+
+        SET_CORES(state, cores) {
+            state.cores = cores;
         },
 
         SET_CAMPAIGN_MEMBERS(state, users) {
@@ -336,6 +341,22 @@ export default new Vuex.Store({
             });
             commit("SET_STATIONS", res.data.stations);
         },
+
+        async getCores({ commit, state }) {
+            let res = await axios({
+                method: "get",
+                url: "/api/stationcore",
+                headers: {
+                    Authorization: "Bearer " + state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                }
+            });
+            commit("SET_CORES", res.data.cores);
+        },
+
+
+
 
         async getCampaignJoinDataByCampaign({ commit, state }, campid) {
             let res = await axios({
@@ -1017,6 +1038,16 @@ export default new Vuex.Store({
 
         getStationItemsByStationID: state => id => {
             let pull = state.items.filter(item => item.station_id == id)
+            let count = pull.length
+            if (count != 0) {
+                return pull
+            } else {
+                return []
+            }
+        },
+
+        getCoreByStationID: state => id => {
+            let pull = state.cores.filter(core => core.station_id == id)
             let count = pull.length
             if (count != 0) {
                 return pull

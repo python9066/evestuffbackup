@@ -18,6 +18,28 @@ class StationController extends Controller
         //
     }
 
+    public function cored()
+    {
+        $data = [];
+        $stations = Station::all();
+        foreach ($stations as $station) {
+            if ($station->r_cored == "Yes") {
+                $core = "Yes";
+            } else {
+                $core = "No";
+            }
+
+            $data1 = [
+                "station_id" => $station->id,
+                "cored" => $core
+            ];
+
+            array_push($data, $data1);
+        }
+
+        return ['cores' => $data];
+    }
+
     /**
      * Store a newly created resource in storage.
      *

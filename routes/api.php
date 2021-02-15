@@ -130,4 +130,6 @@ Route::middleware('auth:api')->group(function () {
     Route::put('/deleteextranode/{id}/{campid}', 'NodeJoinsController@deleteExtraNode');
 
     Route::get('/stationitemjoin', 'StationItemJoinController@index');
+
+    Route::get('/stationcore', 'StationController@cored');
 });
