@@ -8998,7 +8998,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var count = this.getCoreByStationID(this.station.id).length;
 
       if (count == 0) {
-        return "No";
+        return "No Info";
       }
 
       if (core.cored == "Yes") {
