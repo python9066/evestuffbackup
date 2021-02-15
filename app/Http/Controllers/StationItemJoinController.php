@@ -18,11 +18,10 @@ class StationItemJoinController extends Controller
         $items = [];
         $joins = StationItemJoin::all();
         foreach ($joins as $join) {
-            dd($join->item_id);
-            $name = StationItems::where('id', $join->item_id)->first();
+            $name = StationItems::where('id', $join->station_item_id)->first();
             $data = [
-                "station_id" => $join['station_id'],
-                "item_name" => $name['item_name']
+                "station_id" => $join->station_id,
+                "item_name" => $name->item_name
             ];
             array_push($items, $data);
         }
