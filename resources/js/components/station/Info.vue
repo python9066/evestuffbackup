@@ -170,6 +170,23 @@
                     <div v-if="!showfit()">
                         No Info
                     </div>
+                    <v-card>
+                        <v-card-title>
+                            Fitting
+                        </v-card-title>
+                        <v-card-text>
+                            <v-data-table
+                                :headers="headers"
+                                :items="items"
+                                disable-sort
+                                :item-class="itemRowBackground"
+                                hide-default-footer
+                                disable-pagination
+                                class="elevation-12"
+                            >
+                            </v-data-table>
+                        </v-card-text>
+                    </v-card>
                 </v-card-text>
                 <v-spacer></v-spacer
                 ><v-card-actions>
@@ -198,6 +215,15 @@ export default {
     },
     data() {
         return {
+            headers: [
+                { text: "", value: "icon", width: "5%", align: "start" },
+                {
+                    text: "Item",
+                    value: "item_name",
+                    width: "95%",
+                    align: "start"
+                }
+            ],
             showInfo: false,
             editText: null,
             editAdashLink: null,

@@ -298,8 +298,6 @@
                     disable-pagination
                     class="elevation-12"
                 >
-                    >
-
                     <template v-slot:item.status_name="{ item }">
                         <v-menu offset-y>
                             <template v-slot:activator="{ on, attrs }">
