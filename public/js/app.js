@@ -8991,9 +8991,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   data: function data() {
     return {
-      messageAttackCount: 0,
-      showAttackNumber: false,
-      showAttackkNodeNotes: false,
+      showInfo: false,
       editText: null,
       editAdashLink: null
     };

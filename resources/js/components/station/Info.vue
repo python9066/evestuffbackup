@@ -106,9 +106,7 @@ export default {
     },
     data() {
         return {
-            messageAttackCount: 0,
-            showAttackNumber: false,
-            showAttackkNodeNotes: false,
+            showInfo: false,
             editText: null,
             editAdashLink: null
         };
