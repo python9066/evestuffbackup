@@ -8955,6 +8955,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -8984,6 +8985,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         return true;
       } else {
         return false;
+      }
+    },
+    lastUpdated: function lastUpdated() {
+      if (this.fitted == true) {
+        return this.fit.r_updated_at;
+      } else {
+        return "Never";
       }
     }
   },
@@ -25951,96 +25959,97 @@ var render = function() {
               ]),
               _vm._v(" "),
               _c("v-card-subtitle", [
-                _c("p", [
+                _c("div", [
                   _vm._v("\n                    Cored: "),
                   _c("strong", { class: _vm.textcolor }, [
                     _vm._v(" " + _vm._s(_vm.core) + " ")
                   ])
+                ]),
+                _vm._v(" "),
+                _c("div", [
+                  _vm._v("Last Updated: " + _vm._s(_vm.lastUpdated()))
                 ])
               ]),
               _vm._v(" "),
               _c("v-card-text", [
-                _vm.showfit()
-                  ? _c(
-                      "div",
-                      [
-                        _c("v-chip", { staticClass: " ma-2" }, [
-                          _vm._v(" anti cap ")
-                        ]),
-                        _vm._v(" "),
-                        _c("v-chip", { staticClass: " ma-2" }, [
-                          _vm._v(" anti subcap ")
-                        ]),
-                        _vm._v(" "),
-                        _c("v-chip", { staticClass: " ma-2" }, [
-                          _vm._v(" biochemical ")
-                        ]),
-                        _vm._v(" "),
-                        _c("v-chip", { staticClass: " ma-2" }, [
-                          _vm._v(" campital shipyard ")
-                        ]),
-                        _vm._v(" "),
-                        _c("v-chip", { staticClass: " ma-2" }, [
-                          _vm._v(" cloning ")
-                        ]),
-                        _vm._v(" "),
-                        _c("v-chip", { staticClass: " ma-2" }, [
-                          _vm._v(" composite ")
-                        ]),
-                        _vm._v(" "),
-                        _c("v-chip", { staticClass: " ma-2" }, [
-                          _vm._v(" dooms day ")
-                        ]),
-                        _vm._v(" "),
-                        _c("v-chip", { staticClass: " ma-2" }, [
-                          _vm._v(" guide bombs ")
-                        ]),
-                        _vm._v(" "),
-                        _c("v-chip", { staticClass: " ma-2" }, [
-                          _vm._v(" hyasyoda ")
-                        ]),
-                        _vm._v(" "),
-                        _c("v-chip", { staticClass: " ma-2" }, [
-                          _vm._v(" invention ")
-                        ]),
-                        _vm._v(" "),
-                        _c("v-chip", { staticClass: " ma-2" }, [
-                          _vm._v(" manufacturing ")
-                        ]),
-                        _vm._v(" "),
-                        _c("v-chip", { staticClass: " ma-2" }, [
-                          _vm._v(" moon drilling ")
-                        ]),
-                        _vm._v(" "),
-                        _c("v-chip", { staticClass: " ma-2" }, [
-                          _vm._v(" point defense ")
-                        ]),
-                        _vm._v(" "),
-                        _c("v-chip", { staticClass: " ma-2" }, [
-                          _vm._v(" reprocessing ")
-                        ]),
-                        _vm._v(" "),
-                        _c("v-chip", { staticClass: " ma-2" }, [
-                          _vm._v(" research ")
-                        ]),
-                        _vm._v(" "),
-                        _c("v-chip", { staticClass: " ma-2" }, [
-                          _vm._v(" supercapital shipyard ")
-                        ]),
-                        _vm._v(" "),
-                        _c("v-chip", { staticClass: " ma-2" }, [
-                          _vm._v(" t2 rigged ")
-                        ])
-                      ],
-                      1
-                    )
-                  : _vm._e(),
-                _vm._v(" "),
-                _vm.showfit()
-                  ? _c("div", [
-                      _vm._v("\n                    No Info\n                ")
+                _c(
+                  "div",
+                  { attrs: { "v-if": _vm.showfit() } },
+                  [
+                    _c("v-chip", { staticClass: " ma-2" }, [
+                      _vm._v(" anti cap ")
+                    ]),
+                    _vm._v(" "),
+                    _c("v-chip", { staticClass: " ma-2" }, [
+                      _vm._v(" anti subcap ")
+                    ]),
+                    _vm._v(" "),
+                    _c("v-chip", { staticClass: " ma-2" }, [
+                      _vm._v(" biochemical ")
+                    ]),
+                    _vm._v(" "),
+                    _c("v-chip", { staticClass: " ma-2" }, [
+                      _vm._v(" campital shipyard ")
+                    ]),
+                    _vm._v(" "),
+                    _c("v-chip", { staticClass: " ma-2" }, [
+                      _vm._v(" cloning ")
+                    ]),
+                    _vm._v(" "),
+                    _c("v-chip", { staticClass: " ma-2" }, [
+                      _vm._v(" composite ")
+                    ]),
+                    _vm._v(" "),
+                    _c("v-chip", { staticClass: " ma-2" }, [
+                      _vm._v(" dooms day ")
+                    ]),
+                    _vm._v(" "),
+                    _c("v-chip", { staticClass: " ma-2" }, [
+                      _vm._v(" guide bombs ")
+                    ]),
+                    _vm._v(" "),
+                    _c("v-chip", { staticClass: " ma-2" }, [
+                      _vm._v(" hyasyoda ")
+                    ]),
+                    _vm._v(" "),
+                    _c("v-chip", { staticClass: " ma-2" }, [
+                      _vm._v(" invention ")
+                    ]),
+                    _vm._v(" "),
+                    _c("v-chip", { staticClass: " ma-2" }, [
+                      _vm._v(" manufacturing ")
+                    ]),
+                    _vm._v(" "),
+                    _c("v-chip", { staticClass: " ma-2" }, [
+                      _vm._v(" moon drilling ")
+                    ]),
+                    _vm._v(" "),
+                    _c("v-chip", { staticClass: " ma-2" }, [
+                      _vm._v(" point defense ")
+                    ]),
+                    _vm._v(" "),
+                    _c("v-chip", { staticClass: " ma-2" }, [
+                      _vm._v(" reprocessing ")
+                    ]),
+                    _vm._v(" "),
+                    _c("v-chip", { staticClass: " ma-2" }, [
+                      _vm._v(" research ")
+                    ]),
+                    _vm._v(" "),
+                    _c("v-chip", { staticClass: " ma-2" }, [
+                      _vm._v(" supercapital shipyard ")
+                    ]),
+                    _vm._v(" "),
+                    _c("v-chip", { staticClass: " ma-2" }, [
+                      _vm._v(" t2 rigged ")
                     ])
-                  : _vm._e()
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c("div", { attrs: { "v-if": _vm.showfit() } }, [
+                  _vm._v("\n                    No Info\n                ")
+                ])
               ]),
               _vm._v(" "),
               _c("v-spacer"),
