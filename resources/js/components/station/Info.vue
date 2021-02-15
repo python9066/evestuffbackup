@@ -8,7 +8,7 @@
         >
             <template v-slot:activator="{ on, attrs }">
                 <v-icon color="blue" v-bind="attrs" v-on="on" @click="open()">
-                    far fa-info--circle
+                    faSvg fa-info-circle
                 </v-icon>
             </template>
 
