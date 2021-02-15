@@ -111,7 +111,7 @@ export default {
 
         lastUpdated() {
             if (this.fitted == true) {
-                return this.fit;
+                return this.fit["r_updated_at"];
             } else {
                 return "Never";
             }
