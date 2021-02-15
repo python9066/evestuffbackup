@@ -213,11 +213,8 @@
             >
                 {{ item.station_name }}
             </template>
-            <template
-                v-slot:item.actions="{ item }"
-                class="d-inline-flex align-center"
-            >
-                <Info :station="item" v-if="$can('super')"></Info>
+            <template v-slot:item.actions="{ item }">
+                <Info :station="item"></Info>
             </template>
         </v-data-table>
         <v-snackbar v-model="snack" :timeout="3000" :color="snackColor">
