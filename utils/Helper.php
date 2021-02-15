@@ -25,8 +25,8 @@ class Helper
 
     public static function authcheck()
     {
-        $auth = Auth::all();
-        foreach ($auth as $auth) {
+        $auths = Auth::all();
+        foreach ($auths as $auth) {
             // echo $auth->char_id;
 
             $expire_date = new DateTime($auth->expire_date);
