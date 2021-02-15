@@ -25862,7 +25862,7 @@ var render = function() {
                     ),
                     [
                       _vm._v(
-                        "\n                faSvg fa-info--circle\n            "
+                        "\n                far fa-comment-alt\n            "
                       )
                     ]
                   )
