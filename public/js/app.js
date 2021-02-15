@@ -25880,7 +25880,7 @@ var render = function() {
                   "Information about " +
                     _vm._s(_vm.station.station_name) +
                     " - Cored\n                Station:" +
-                    _vm._s(_vm.cored()) +
+                    _vm._s(_vm.cored) +
                     ";\n            "
                 )
               ]),

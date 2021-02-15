@@ -21,7 +21,7 @@
             >
                 <v-card-title
                     >Information about {{ station.station_name }} - Cored
-                    Station:{{ cored() }};
+                    Station:{{ cored }};
                 </v-card-title>
                 <v-card-text>
                     <v-chip class=" ma-2"> </v-chip>
