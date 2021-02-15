@@ -16230,6 +16230,10 @@ function sleep(ms) {
         return "warning";
       }
     },
+    campaignStart: function campaignStart(item) {
+      item.station_status_id == 6;
+      this.$store.dispatch("updateStations", item);
+    },
     save: function save() {
       this.snack = true;
       this.snackColor = "success";

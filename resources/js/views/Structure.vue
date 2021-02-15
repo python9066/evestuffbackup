@@ -438,6 +438,11 @@ export default {
             }
         },
 
+        campaignStart(item) {
+            item.station_status_id == 6;
+            this.$store.dispatch("updateStations", item);
+        },
+
         save() {
             this.snack = true;
             this.snackColor = "success";
