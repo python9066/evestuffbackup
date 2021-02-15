@@ -8989,7 +8989,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     lastUpdated: function lastUpdated() {
       if (this.fitted == true) {
-        return this.r_lastupdated;
+        return this.fit;
       } else {
         return "Never";
       }
