@@ -25895,7 +25895,7 @@ var render = function() {
               _c("v-card-title", [
                 _vm._v(
                   "Information about " +
-                    _vm._s(_vm.station.name) +
+                    _vm._s(_vm.station.station_name) +
                     "\n            "
                 )
               ]),

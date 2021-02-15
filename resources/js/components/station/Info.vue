@@ -20,7 +20,7 @@
                 class=" d-flex flex-column"
             >
                 <v-card-title
-                    >Information about {{ station.name }}
+                    >Information about {{ station.station_name }}
                 </v-card-title>
                 <v-card-text>
                     erthwhteehtrehtrtehethsthesthse
