@@ -32458,7 +32458,7 @@ var render = function() {
               fn: function(ref) {
                 var item = ref.item
                 return [
-                  _vm.$can( true && item.item_id != 37534)
+                  _vm.$can("super") && item.item_id != 37534
                     ? _c("Info", { attrs: { station: item } })
                     : _vm._e()
                 ]

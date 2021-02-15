@@ -216,7 +216,7 @@
             <template v-slot:item.actions="{ item }">
                 <Info
                     :station="item"
-                    v-if="$can('super' && item.item_id != 37534)"
+                    v-if="$can('super') && item.item_id != 37534"
                 ></Info>
             </template>
         </v-data-table>
