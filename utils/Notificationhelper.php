@@ -704,13 +704,17 @@ class Notifications
 
         $checks = Station::where('updated_at', '<', $now1hour)->where('station_status_id', 7)->get();
         foreach ($checks as $check) {
-            $check->update(['station_status_id' => 10, 'user_id' => null, 'text' => null, 'gunner_id' => null]);
             $stationID = $check->id;
             $flag = null;
             $flag = collect([
                 'id' => $stationID
             ]);
             broadcast(new StationNotificationDelete($flag))->toOthers();
+            StationItemJoin::where('station_id', $check->id)->delete();
+            StationNotificationArmor::where('station_id', $check->id)->delete();
+            StationNotificationShield::where('station_id', $check->id)->delete();
+            StationNotification::where('station_id', $check->id)->delete();
+            $check->delete();
         }
 
         $checks = Station::where('updated_at', '<', $now10min)->where('station_status_id', 4)->get();
