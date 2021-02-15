@@ -194,7 +194,7 @@ class Notifications
                 $station = Station::where('id', $text['structureID'])->first();
                 if ($station == null) {
                     $stationdata = Notifications::reconPull($text['structureID']);
-                    if (array_key_exists('str_structure_id_md5', $data)) {
+                    if (array_key_exists('str_structure_id_md5', $stationdata)) {
                         Station::Create([
                             'id' => $text['structureID'],
                             'name' => $stationdata['str_name'],
@@ -282,7 +282,7 @@ class Notifications
                 $station = Station::where('id', $text['structureID'])->first();
                 if ($station == null) {
                     $stationdata = Notifications::reconPull($text['structureID']);
-                    if (array_key_exists('str_structure_id_md5', $data)) {
+                    if (array_key_exists('str_structure_id_md5', $stationdata)) {
                         Station::Create([
                             'id' => $text['structureID'],
                             'name' => $stationdata['str_name'],
@@ -372,7 +372,7 @@ class Notifications
                 // echo $stationcheck;
                 if ($station == null) {
                     $stationdata = Notifications::reconPull($text['structureID']);
-                    if (array_key_exists('str_structure_id_md5', $data)) {
+                    if (array_key_exists('str_structure_id_md5', $stationdata)) {
                         Station::Create([
                             'id' => $text['structureID'],
                             'name' => $stationdata['str_name'],
