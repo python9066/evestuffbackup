@@ -66,7 +66,7 @@
                 <CountDowntimer
                     v-if="item.station_status_id == 5"
                     :start-time="moment.utc(item.timestamp).unix()"
-                    :end-text="'Window Closed'"
+                    :end-text="'Coming Out'"
                     :interval="1000"
                 >
                     <template slot="countdown" slot-scope="scope">

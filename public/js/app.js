@@ -31716,7 +31716,7 @@ var render = function() {
                     ? _c("CountDowntimer", {
                         attrs: {
                           "start-time": _vm.moment.utc(item.timestamp).unix(),
-                          "end-text": "Window Closed",
+                          "end-text": "Coming Out",
                           interval: 1000
                         },
                         scopedSlots: _vm._u(
