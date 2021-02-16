@@ -11,8 +11,8 @@
             <p>
                 <strong
                     >THIS PAGE IS 100% WORK IN PROGRESS ITS ONLY GOOD TO LOOK
-                    AT. FOR THE TIME BEING TO SEE NEW DATA YOU WILL NEED TO
-                    REFRESH THE PAGE.
+                    AT. NEW NOTIFICATION WILL NOW SHOW THEMSELF, THEY WILL SHOW
+                    AS FAST AS I GET THEM SENT TO ME FROM THE BOT.
                 </strong>
             </p>
         </v-alert>
