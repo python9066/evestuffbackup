@@ -9175,7 +9175,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       win.focus();
     },
     taskFlag: function taskFlag() {
-      if (this.stationInfo[0]["task_flag"] == 1) {
+      if (stationInfo[0]["task_flag"] == 1) {
         return true;
       } else {
         return false;
