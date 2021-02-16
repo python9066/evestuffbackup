@@ -9112,6 +9112,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -26145,8 +26146,9 @@ var render = function() {
                   _vm._v(
                     "\n                    " +
                       _vm._s(_vm.station.station_name) +
-                      "\n                "
-                  )
+                      "\n                    "
+                  ),
+                  _c("span", [_vm._v("View on ReconTool")])
                 ])
               ]),
               _vm._v(" "),

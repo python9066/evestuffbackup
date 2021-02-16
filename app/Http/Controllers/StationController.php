@@ -121,7 +121,7 @@ class StationController extends Controller
         Station::find($id)->update($request->all());
         $notifications =  Station::find($id);
         if ($notifications->status_id != 10) {
-            broadcast(new StationChanged(1))->toOthers();
+            broadcast(new StationChanged($notifications))->toOthers();
         }
     }
 

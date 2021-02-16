@@ -22,6 +22,7 @@
                 <v-card-title class="justify-center"
                     ><p>
                         {{ station.station_name }}
+                        <span>View on ReconTool</span>
                     </p>
                 </v-card-title>
                 <v-card-subtitle>
