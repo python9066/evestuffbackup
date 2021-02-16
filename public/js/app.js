@@ -9232,6 +9232,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       } else {
         return "red--text";
       }
+    },
+    showLinkButton: function showLinkButton() {
+      if (this.$can("request_recon_task") && this.hash != null) {
+        return true;
+      } else {
+        return false;
+      }
     }
   }),
   beforeDestroy: function beforeDestroy() {}

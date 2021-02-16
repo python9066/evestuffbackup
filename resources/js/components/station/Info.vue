@@ -372,6 +372,14 @@ export default {
             } else {
                 return "red--text";
             }
+        },
+
+        showLinkButton() {
+            if (this.$can("request_recon_task") && this.hash != null) {
+                return true;
+            } else {
+                return false;
+            }
         }
     },
 
