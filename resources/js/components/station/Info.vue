@@ -295,7 +295,7 @@ export default {
         },
 
         taskFlag() {
-            if ((stationInfo[0]["task_flag"] = 1)) {
+            if ((this.stationInfo[0]["task_flag"] = 1)) {
                 return true;
             } else {
                 return false;
