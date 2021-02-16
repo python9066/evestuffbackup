@@ -131,4 +131,5 @@ Route::middleware('auth:api')->group(function () {
 
     Route::get('/loadstationdata', 'StationController@loadStationData');
     Route::post('/taskrequest', 'StationController@taskRequest');
+    Route::post('/updatestationnotification/{id}', 'StationController@update');
 });

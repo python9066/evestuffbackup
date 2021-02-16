@@ -2,36 +2,31 @@
     <div class=" d-inline-flex align-items-md-center  pl-4">
         <div>
             <span class="d-inline-flex align-items-md-center pr-2">
-                System Scout:
-                <span
-                    class="pl-2"
-                    v-if="CampaignSolaSystem[0]['supervisor_id'] != null"
-                >
-                    {{ CampaignSolaSystem[0]["supervier_user_name"] }}
+                <span class="pl-2" v-if="station.gunner_id != null">
+                    {{ station.gunner_name }}
                 </span>
             </span>
         </div>
         <div>
             <v-btn
-                v-if="CampaignSolaSystem[0]['supervisor_id'] == null"
+                v-if="station.gunner_id == null"
                 class=""
                 color="blue"
                 x-small
                 left
                 outlined
-                @click="scoutAdd()"
+                @click="gunnerAdd()"
             >
                 <v-icon x-small dark>
                     fas fa-plus
                 </v-icon>
-                Add</v-btn
+                Gunner</v-btn
             >
             <v-icon
                 v-if="
-                    CampaignSolaSystem[0]['supervisor_id'] != null &&
-                        ($can('edit_system_scout') ||
-                            this.$store.state.user_id ==
-                                CampaignSolaSystem[0]['supervisor_id'])
+                    station.gunner_id != null &&
+                        ($can('gunner') ||
+                            this.$store.state.user_id == station.gunner_id)
                 "
                 color="orange darken-3"
                 small
@@ -48,34 +43,30 @@ import { mapState, mapGetters } from "vuex";
 import moment from "moment";
 export default {
     props: {
-        CampaignSolaSystem: Array
+        station: Object
     },
     data() {
         return {};
     },
 
     methods: {
-        async scoutAdd() {
+        async gunnerAdd() {
             var data = {
-                id: this.CampaignSolaSystem[0]["id"],
-                supervisor_id: this.$store.state.user_id,
-                supervier_user_name: this.$store.state.user_name
+                id: this.station.id,
+                gunner_id: this.$store.state.user_id,
+                gunner_name: this.$store.state.user_name
             };
 
-            this.$store.dispatch("updateCampaignSolaSystem", data);
+            this.$store.dispatch("updateStationNotification", data);
 
             var request = null;
             request = {
-                supervisor_id: this.$store.state.user_id
+                gunner_id: this.$store.state.user_id
             };
 
             await axios({
                 method: "put",
-                url:
-                    "/api/campaignsolasystems/" +
-                    this.CampaignSolaSystem[0]["id"] +
-                    "/" +
-                    this.CampaignSolaSystem[0]["campaign_id"],
+                url: "/api/updatestationnotification/" + this.station.id,
                 data: request,
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
@@ -83,53 +74,25 @@ export default {
                     "Content-Type": "application/json"
                 }
             });
-
-            //------logging start -----//
-            // await this.$store.dispatch("getCampaignSolaSystems");
-
-            var request = null;
-            request = {
-                user_id: this.$store.state.user_id,
-                campaign_sola_system_id: this.CampaignSolaSystem[0]["id"],
-                type: "added"
-            };
-
-            await axios({
-                method: "put",
-                url:
-                    "/api/checkscout/" +
-                    this.CampaignSolaSystem[0]["campaign_id"],
-                data: request,
-                headers: {
-                    Authorization: "Bearer " + this.$store.state.token,
-                    Accept: "application/json",
-                    "Content-Type": "application/json"
-                }
-            });
-            //-----loggin end-----//
         },
 
-        async scoutRemove() {
+        async GunnerRemove() {
             var data = {
-                id: this.CampaignSolaSystem[0]["id"],
-                supervisor_id: null,
-                supervier_user_name: null
+                id: this.station.id,
+                gunner_name: null,
+                gunner_id: null
             };
 
-            this.$store.dispatch("updateCampaignSolaSystem", data);
+            this.$store.dispatch("updateStationNotification", data);
 
             var request = null;
             request = {
-                supervisor_id: null
+                gunner_id: null
             };
 
             await axios({
                 method: "put",
-                url:
-                    "/api/campaignsolasystems/" +
-                    this.CampaignSolaSystem[0]["id"] +
-                    "/" +
-                    this.CampaignSolaSystem[0]["campaign_id"],
+                url: "/api/updatestationnotification/" + this.station.id,
                 data: request,
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
@@ -137,31 +100,6 @@ export default {
                     "Content-Type": "application/json"
                 }
             });
-
-            // await this.$store.dispatch("getCampaignSolaSystems");
-
-            //------logging start -----//
-            var request = null;
-            request = {
-                user_id: this.$store.state.user_id,
-                campaign_sola_system_id: this.CampaignSolaSystem[0]["id"],
-                type: "removed"
-            };
-
-            await axios({
-                method: "put",
-                url:
-                    "/api/checkscout/" +
-                    this.CampaignSolaSystem[0]["campaign_id"],
-                data: request,
-                headers: {
-                    Authorization: "Bearer " + this.$store.state.token,
-                    Accept: "application/json",
-                    "Content-Type": "application/json"
-                }
-            });
-
-            //------logging end -----//
         }
     },
 

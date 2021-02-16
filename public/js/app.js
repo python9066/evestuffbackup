@@ -8130,22 +8130,17 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
-    CampaignSolaSystem: Array
+    station: Object
   },
   data: function data() {
     return {};
   },
   methods: {
-    scoutAdd: function scoutAdd() {
+    gunnerAdd: function gunnerAdd() {
       var _this = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
@@ -8155,21 +8150,21 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context.prev = _context.next) {
               case 0:
                 data = {
-                  id: _this.CampaignSolaSystem[0]["id"],
-                  supervisor_id: _this.$store.state.user_id,
-                  supervier_user_name: _this.$store.state.user_name
+                  id: _this.station.id,
+                  gunner_id: _this.$store.state.user_id,
+                  gunner_name: _this.$store.state.user_name
                 };
 
-                _this.$store.dispatch("updateCampaignSolaSystem", data);
+                _this.$store.dispatch("updateStationNotification", data);
 
                 request = null;
                 request = {
-                  supervisor_id: _this.$store.state.user_id
+                  gunner_id: _this.$store.state.user_id
                 };
                 _context.next = 6;
                 return axios({
                   method: "put",
-                  url: "/api/campaignsolasystems/" + _this.CampaignSolaSystem[0]["id"] + "/" + _this.CampaignSolaSystem[0]["campaign_id"],
+                  url: "/api/updatestationnotification/" + _this.station.id,
                   data: request,
                   headers: {
                     Authorization: "Bearer " + _this.$store.state.token,
@@ -8179,27 +8174,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 });
 
               case 6:
-                //------logging start -----//
-                // await this.$store.dispatch("getCampaignSolaSystems");
-                request = null;
-                request = {
-                  user_id: _this.$store.state.user_id,
-                  campaign_sola_system_id: _this.CampaignSolaSystem[0]["id"],
-                  type: "added"
-                };
-                _context.next = 10;
-                return axios({
-                  method: "put",
-                  url: "/api/checkscout/" + _this.CampaignSolaSystem[0]["campaign_id"],
-                  data: request,
-                  headers: {
-                    Authorization: "Bearer " + _this.$store.state.token,
-                    Accept: "application/json",
-                    "Content-Type": "application/json"
-                  }
-                });
-
-              case 10:
               case "end":
                 return _context.stop();
             }
@@ -8207,7 +8181,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee);
       }))();
     },
-    scoutRemove: function scoutRemove() {
+    GunnerRemove: function GunnerRemove() {
       var _this2 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
@@ -8217,21 +8191,21 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context2.prev = _context2.next) {
               case 0:
                 data = {
-                  id: _this2.CampaignSolaSystem[0]["id"],
-                  supervisor_id: null,
-                  supervier_user_name: null
+                  id: _this2.station.id,
+                  gunner_name: null,
+                  gunner_id: null
                 };
 
-                _this2.$store.dispatch("updateCampaignSolaSystem", data);
+                _this2.$store.dispatch("updateStationNotification", data);
 
                 request = null;
                 request = {
-                  supervisor_id: null
+                  gunner_id: null
                 };
                 _context2.next = 6;
                 return axios({
                   method: "put",
-                  url: "/api/campaignsolasystems/" + _this2.CampaignSolaSystem[0]["id"] + "/" + _this2.CampaignSolaSystem[0]["campaign_id"],
+                  url: "/api/updatestationnotification/" + _this2.station.id,
                   data: request,
                   headers: {
                     Authorization: "Bearer " + _this2.$store.state.token,
@@ -8241,27 +8215,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 });
 
               case 6:
-                // await this.$store.dispatch("getCampaignSolaSystems");
-                //------logging start -----//
-                request = null;
-                request = {
-                  user_id: _this2.$store.state.user_id,
-                  campaign_sola_system_id: _this2.CampaignSolaSystem[0]["id"],
-                  type: "removed"
-                };
-                _context2.next = 10;
-                return axios({
-                  method: "put",
-                  url: "/api/checkscout/" + _this2.CampaignSolaSystem[0]["campaign_id"],
-                  data: request,
-                  headers: {
-                    Authorization: "Bearer " + _this2.$store.state.token,
-                    Accept: "application/json",
-                    "Content-Type": "application/json"
-                  }
-                });
-
-              case 10:
               case "end":
                 return _context2.stop();
             }
@@ -16367,6 +16320,10 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
+//
+//
+//
+//
 //
 //
 //
@@ -24954,12 +24911,11 @@ var render = function() {
           "span",
           { staticClass: "d-inline-flex align-items-md-center pr-2" },
           [
-            _vm._v("\n            System Scout:\n            "),
-            _vm.CampaignSolaSystem[0]["supervisor_id"] != null
+            _vm.station.gunner_id != null
               ? _c("span", { staticClass: "pl-2" }, [
                   _vm._v(
                     "\n                " +
-                      _vm._s(_vm.CampaignSolaSystem[0]["supervier_user_name"]) +
+                      _vm._s(_vm.station.gunner_name) +
                       "\n            "
                   )
                 ])
@@ -24971,7 +24927,7 @@ var render = function() {
       _c(
         "div",
         [
-          _vm.CampaignSolaSystem[0]["supervisor_id"] == null
+          _vm.station.gunner_id == null
             ? _c(
                 "v-btn",
                 {
@@ -24983,7 +24939,7 @@ var render = function() {
                   },
                   on: {
                     click: function($event) {
-                      return _vm.scoutAdd()
+                      return _vm.gunnerAdd()
                     }
                   }
                 },
@@ -24991,16 +24947,15 @@ var render = function() {
                   _c("v-icon", { attrs: { "x-small": "", dark: "" } }, [
                     _vm._v("\n                fas fa-plus\n            ")
                   ]),
-                  _vm._v("\n            Add")
+                  _vm._v("\n            Gunner")
                 ],
                 1
               )
             : _vm._e(),
           _vm._v(" "),
-          _vm.CampaignSolaSystem[0]["supervisor_id"] != null &&
-          (_vm.$can("edit_system_scout") ||
-            this.$store.state.user_id ==
-              _vm.CampaignSolaSystem[0]["supervisor_id"])
+          _vm.station.gunner_id != null &&
+          (_vm.$can("gunner") ||
+            this.$store.state.user_id == _vm.station.gunner_id)
             ? _c(
                 "v-icon",
                 {
@@ -33385,6 +33340,10 @@ var render = function() {
               fn: function(ref) {
                 var item = ref.item
                 return [
+                  _vm.$can("gunner")
+                    ? _c("StationGunner", { attrs: { station: item } })
+                    : _vm._e(),
+                  _vm._v(" "),
                   _vm.showInfo(item)
                     ? _c("Info", { attrs: { station: item } })
                     : _vm._e()

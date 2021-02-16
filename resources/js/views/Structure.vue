@@ -214,6 +214,10 @@
                 {{ item.station_name }}
             </template>
             <template v-slot:item.actions="{ item }">
+                <StationGunner
+                    :station="item"
+                    v-if="$can('gunner')"
+                ></StationGunner>
                 <Info :station="item" v-if="showInfo(item)"></Info>
             </template>
         </v-data-table>

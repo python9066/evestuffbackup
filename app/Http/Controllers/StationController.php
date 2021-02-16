@@ -131,7 +131,7 @@ class StationController extends Controller
     {
 
         Station::find($id)->update($request->all());
-        $message = StationRecords::where('id', $id)->first();
+        $message = Station::where('id', $id)->first();
         $flag = collect([
             'message' => $message
         ]);
