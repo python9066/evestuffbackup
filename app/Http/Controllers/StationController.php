@@ -38,7 +38,8 @@ class StationController extends Controller
             $data1 = [
                 "task_flag" => $taskFlag,
                 "station_id" => $station->id,
-                "cored" => $core
+                "cored" => $core,
+                "hash" => $station->r_hash
             ];
 
             array_push($coreData, $data1);

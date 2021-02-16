@@ -23,6 +23,7 @@ class CreateStationsTable extends Migration
             $table->foreignId('gunner_id')->nullable();
             $table->timestamp('out_time')->nullable();
             $table->timestamp('repair_time')->nullable();
+            $table->string('r_hash')->nullable();
             $table->dateTime('r_updated_at')->nullable();
             $table->string('r_fitted')->nullable();
             $table->integer('r_capital_shipyard', 1)->default(0);

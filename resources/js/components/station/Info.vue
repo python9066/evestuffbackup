@@ -22,7 +22,16 @@
                 <v-card-title class="justify-center"
                     ><p>
                         {{ station.station_name }}
-                        <span>View on ReconTool</span>
+                        <v-chip
+                            pill
+                            small
+                            outlined
+                            color="teal"
+                            @click="openRecon(hash)"
+                            v-if="showLinkButton()"
+                        >
+                            View Recon Tool
+                        </v-chip>
                     </p>
                 </v-card-title>
                 <v-card-subtitle>
@@ -273,6 +282,12 @@ export default {
 
         open() {},
 
+        openRecon(hash) {
+            var url = "https://recon.gnf.lt/structures/" + hash + "/view";
+            var win = window.open(url, "_blank");
+            win.focus();
+        },
+
         taskRequest() {
             axios({
                 method: "post", //you can set what request you want to be
@@ -330,6 +345,11 @@ export default {
 
         r_lastupdated() {
             return this.fit.r_updated_at;
+        },
+
+        hash() {
+            var coredata = this.getCoreByStationID(this.station.id);
+            return coredata.hash;
         },
 
         core() {

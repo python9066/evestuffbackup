@@ -75,6 +75,7 @@ class Notifications
                 }
                 Station::where('id', $station->id)->update([
                     'name' => $stationdata['str_name'],
+                    'r_hash' => $stationdata['str_structure_id_md5'],
                     'r_updated_at' => $stationdata['updated_at'],
                     'r_fitted' => $stationdata['str_has_no_fitting'],
                     'r_capital_shipyard' => $stationdata['str_capital_shipyard'],
@@ -209,6 +210,7 @@ class Notifications
                             'user_id' => null,
                             'station_status_id' => 1,
                             'timestamp' => $time,
+                            'r_hash' => $stationdata['str_structure_id_md5'],
                             'r_updated_at' => $stationdata['updated_at'],
                             'r_fitted' => $stationdata['str_has_no_fitting'],
                             'r_capital_shipyard' => $stationdata['str_capital_shipyard'],
@@ -298,6 +300,7 @@ class Notifications
                             'user_id' => null,
                             'station_status_id' => 1,
                             'timestamp' => $time,
+                            'r_hash' => $stationdata['str_structure_id_md5'],
                             'r_updated_at' => $stationdata['updated_at'],
                             'r_fitted' => $stationdata['str_has_no_fitting'],
                             'r_capital_shipyard' => $stationdata['str_capital_shipyard'],
@@ -389,6 +392,7 @@ class Notifications
                             'user_id' => null,
                             'station_status_id' => 1,
                             'timestamp' => $time,
+                            'r_hash' => $stationdata['str_structure_id_md5'],
                             'r_updated_at' => $stationdata['updated_at'],
                             'r_fitted' => $stationdata['str_has_no_fitting'],
                             'r_capital_shipyard' => $stationdata['str_capital_shipyard'],

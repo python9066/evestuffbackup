@@ -9113,6 +9113,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -9151,6 +9160,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       return "https://images.evetech.net/types/" + item.item_id + "/icon";
     },
     open: function open() {},
+    openRecon: function openRecon(hash) {
+      var url = "https://recon.gnf.lt/structures/" + hash + "/view";
+      var win = window.open(url, "_blank");
+      win.focus();
+    },
     taskRequest: function taskRequest() {
       axios({
         method: "post",
@@ -9194,6 +9208,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     r_lastupdated: function r_lastupdated() {
       return this.fit.r_updated_at;
+    },
+    hash: function hash() {
+      var coredata = this.getCoreByStationID(this.station.id);
+      return coredata.hash;
     },
     core: function core() {
       var core = this.getCoreByStationID(this.station.id);
@@ -26142,14 +26160,40 @@ var render = function() {
             },
             [
               _c("v-card-title", { staticClass: "justify-center" }, [
-                _c("p", [
-                  _vm._v(
-                    "\n                    " +
-                      _vm._s(_vm.station.station_name) +
-                      "\n                    "
-                  ),
-                  _c("span", [_vm._v("View on ReconTool")])
-                ])
+                _c(
+                  "p",
+                  [
+                    _vm._v(
+                      "\n                    " +
+                        _vm._s(_vm.station.station_name) +
+                        "\n                    "
+                    ),
+                    _vm.showLinkButton()
+                      ? _c(
+                          "v-chip",
+                          {
+                            attrs: {
+                              pill: "",
+                              small: "",
+                              outlined: "",
+                              color: "teal"
+                            },
+                            on: {
+                              click: function($event) {
+                                return _vm.openRecon(_vm.hash)
+                              }
+                            }
+                          },
+                          [
+                            _vm._v(
+                              "\n                        View Recon Tool\n                    "
+                            )
+                          ]
+                        )
+                      : _vm._e()
+                  ],
+                  1
+                )
               ]),
               _vm._v(" "),
               _c("v-card-subtitle", [
