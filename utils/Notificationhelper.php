@@ -69,10 +69,10 @@ class Notifications
             if ($stationdata == "Error, Structure Not Found") {
             } else {
                 StationItemJoin::where('station_id', $station->id)->delete();
-                // $oldupdate = $station['updated_at'];
-                // if ($oldupdate != $stationdata['updated_at']) {
-                //     System::where('id', $station->system_id)->update(['task_flag' => 0]);
-                // }
+                $oldupdate = $station->r_updated_at;
+                if ($oldupdate != $stationdata['updated_at']) {
+                    System::where('id', $station->system_id)->update(['task_flag' => 0]);
+                }
                 Station::where('id', $station->id)->update([
                     'name' => $stationdata['str_name'],
                     'r_updated_at' => $stationdata['updated_at'],
