@@ -10269,7 +10269,7 @@ function sleep(ms) {
       var request = {
         station_status_id: item.station_status_id,
         user_id: this.$store.state.user_id,
-        status_update: moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc().format("YYYY-MM-DD HH:MM:SS")
+        status_update: MOMENT.utc().format("YYYY-MM-DD  HH:mm:ss.000")
       };
       axios({
         method: "put",
