@@ -9140,7 +9140,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -26240,12 +26239,7 @@ var render = function() {
                           "v-chip",
                           {
                             staticClass: " ml-2",
-                            attrs: {
-                              pill: "",
-                              small: "",
-                              outlined: "",
-                              color: "teal"
-                            },
+                            attrs: { pill: "", small: "", color: "teal" },
                             on: {
                               click: function($event) {
                                 return _vm.taskRequest()

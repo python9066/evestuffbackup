@@ -45,7 +45,6 @@
                             pill
                             class=" ml-2"
                             small
-                            outlined
                             color="teal"
                             v-if="$can('super') && cored.task_flag == 1"
                             @click="taskRequest()"
