@@ -9227,14 +9227,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     r_lastupdated: function r_lastupdated() {
       return this.fit.r_updated_at;
     },
-    taskRequest: function taskRequest() {
-      var requestflah = this.getCoreByStationID(this.station.id);
-
-      if (requestflah.task_flag == 1) {
-        return false;
-      } else {
-        return true;
-      }
+    stationInfo: function stationInfo() {
+      return this.getCoreByStationID(this.station.id);
     },
     core: function core() {
       var core = this.getCoreByStationID(this.station.id);
@@ -26243,7 +26237,7 @@ var render = function() {
                         _vm._s(_vm.lastUpdated()) +
                         "\n                    "
                     ),
-                    _vm.$can("super") && _vm.taskRequest
+                    _vm.$can("super") && _vm.stationInfo
                       ? _c(
                           "v-chip",
                           {
@@ -26268,7 +26262,7 @@ var render = function() {
                         )
                       : _vm._e(),
                     _vm._v(" "),
-                    _vm.$can("super") && !_vm.taskRequest
+                    _vm.$can("super") && !_vm.stationInfo
                       ? _c(
                           "v-chip",
                           {

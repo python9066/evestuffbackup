@@ -47,7 +47,7 @@
                             small
                             outlined
                             color="teal"
-                            v-if="$can('super') && taskRequest"
+                            v-if="$can('super') && stationInfo"
                             @click="taskRequest()"
                         >
                             Request Update
@@ -57,7 +57,7 @@
                             small
                             class=" ml-2"
                             color="teal"
-                            v-if="$can('super') && !taskRequest"
+                            v-if="$can('super') && !stationInfo"
                         >
                             Request Made
                         </v-chip>
@@ -365,13 +365,8 @@ export default {
             return this.fit.r_updated_at;
         },
 
-        taskRequest() {
-            var requestflah = this.getCoreByStationID(this.station.id);
-            if (requestflah.task_flag == 1) {
-                return false;
-            } else {
-                return true;
-            }
+        stationInfo() {
+            return this.getCoreByStationID(this.station.id);
         },
         core() {
             var core = this.getCoreByStationID(this.station.id);
