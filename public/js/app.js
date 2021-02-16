@@ -37498,7 +37498,7 @@ vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(vue_router__WEBPACK_IMPORTED_MODU
     name: "structures",
     component: _views_structure_vue__WEBPACK_IMPORTED_MODULE_12__["default"],
     beforeEnter: function beforeEnter(to, from, next) {
-      if (Permissions.indexOf('gunner') !== -1) {
+      if (Permissions.indexOf('gunner') !== -1 || Permissions.indexOf('edit_notifications') !== -1) {
         next();
       } else {
         next("/redirect/structures");

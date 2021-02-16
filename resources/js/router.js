@@ -88,7 +88,7 @@ export default new Router({
             name: "structures",
             component: Structures,
               beforeEnter(to, from, next) {
-                if(Permissions.indexOf('gunner' )!== -1){
+                if(Permissions.indexOf('gunner' )!== -1 || Permissions.indexOf('edit_notifications' )!== -1){
                     next()
                 }else{
                    next("/redirect/structures")
