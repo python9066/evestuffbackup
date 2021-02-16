@@ -16,7 +16,7 @@
                 tile
                 max-width="700px"
                 min-height="200px"
-                max-height="800px"
+                max-height="1000px"
                 class=" d-flex flex-column"
             >
                 <v-card-title class="justify-center"
@@ -229,7 +229,7 @@
                                 hide-default-header
                                 disable-pagination
                                 class="elevation-12"
-                                height="300px"
+                                height="500px"
                             >
                                 <template v-slot:item.icon="{ item }">
                                     <v-avatar>

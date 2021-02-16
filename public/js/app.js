@@ -26800,7 +26800,7 @@ var render = function() {
                 tile: "",
                 "max-width": "700px",
                 "min-height": "200px",
-                "max-height": "800px"
+                "max-height": "1000px"
               }
             },
             [
@@ -27213,7 +27213,7 @@ var render = function() {
                                   "hide-default-footer": "",
                                   "hide-default-header": "",
                                   "disable-pagination": "",
-                                  height: "300px"
+                                  height: "500px"
                                 },
                                 scopedSlots: _vm._u(
                                   [
