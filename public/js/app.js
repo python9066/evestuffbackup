@@ -26269,7 +26269,7 @@ var render = function() {
                           [
                             _vm._v(
                               "\n                        Request Update " +
-                                _vm._s(_vm.stationInfo.task_flag) +
+                                _vm._s(_vm.stationInfo) +
                                 "\n                    "
                             )
                           ]
@@ -26285,7 +26285,9 @@ var render = function() {
                           },
                           [
                             _vm._v(
-                              "\n                        Request Made\n                    "
+                              "\n                        Request Made " +
+                                _vm._s(_vm.stationInfo[0]["task_flag"]) +
+                                "\n                    "
                             )
                           ]
                         )
