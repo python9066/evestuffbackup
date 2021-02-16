@@ -16518,7 +16518,7 @@ function sleep(ms) {
       }).listen("StationCoreUpdate", function (e) {
         console.log("hfeiufhseufieshu");
 
-        _this.$store.dispatch("updateCore", e.flag.message);
+        _this.$store.dispatch("updateCores", e.flag.message);
       });
       this.$store.dispatch("loadStationData");
     }

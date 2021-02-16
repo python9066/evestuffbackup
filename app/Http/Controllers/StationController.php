@@ -68,6 +68,17 @@ class StationController extends Controller
 
     public function taskRequest(Request $request)
     {
+
+        $message = [
+            'station_id' => $request->station_id,
+            'task_flag' => 1
+        ];
+
+        $flag = collect([
+            'message' => $message,
+        ]);
+        broadcast(new StationCoreUpdate($flag));
+        System::where('id', $request->system_id)->update(['task_flag' => 1]);
         $url = "https://dev.scouts.scopeh.co.uk/api/task/add";
         $client = new GuzzleHttpClient();
         $headers = [
@@ -83,17 +94,6 @@ class StationController extends Controller
             'json' => $body,
             'http_errors' => false
         ]);
-
-        System::where('id', $request->system_id)->update(['task_flag' => 1]);
-        $message = [
-            'station_id' => $request->station_id,
-            'task_flag' => 1
-        ];
-
-        $flag = collect([
-            'message' => $message,
-        ]);
-        broadcast(new StationCoreUpdate($flag));
     }
 
     /**
