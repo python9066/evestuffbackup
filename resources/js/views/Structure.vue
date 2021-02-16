@@ -125,40 +125,6 @@
                             </v-btn>
 
                             <!-- EXTRA BUTTON -->
-                            <v-fab-transition>
-                                <v-chip
-                                    pill
-                                    outlined
-                                    small
-                                    @click="
-                                        (expanded = [item]),
-                                            (expanded_id = item.id)
-                                    "
-                                    v-if="
-                                        item.station_status_id == 12 &&
-                                            !expanded.includes(item)
-                                    "
-                                    color="success"
-                                    >adash</v-chip
-                                >
-                                <v-btn
-                                    icon
-                                    @click="(expanded = []), (expanded_id = 0)"
-                                    v-if="
-                                        item.station_status_id == 12 &&
-                                            expanded.includes(item)
-                                    "
-                                    color="error"
-                                    ><v-icon>fas fa-minus</v-icon></v-btn
-                                >
-                            </v-fab-transition>
-                            <v-fab-transition>
-                                <StationTimer
-                                    :station="item"
-                                    v-if="item.station_status_id == 11"
-                                >
-                                </StationTimer>
-                            </v-fab-transition>
                         </div>
                     </template>
 
@@ -605,9 +571,16 @@ export default {
                         show: true
                     },
                     {
+                        text: "",
+                        value: "buttons",
+                        align: "center",
+                        width: "15%",
+                        show: true
+                    },
+                    {
                         text: "Gunner/Info",
                         value: "actions",
-                        width: "10%",
+                        width: "5%",
                         show: true,
                         align: "start"
                     },
@@ -666,6 +639,13 @@ export default {
                         value: "count",
                         sortable: false,
                         width: "5%",
+                        show: true
+                    },
+                    {
+                        text: "",
+                        value: "buttons",
+                        align: "center",
+                        width: "15%",
                         show: true
                     },
                     {
