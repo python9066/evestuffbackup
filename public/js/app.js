@@ -9203,7 +9203,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }
     },
     lastUpdated: function lastUpdated() {
-      if (this.fitted == true) {
+      if (this.fit[0]["r_updated_at"] != null) {
         var ago = moment__WEBPACK_IMPORTED_MODULE_1___default()(this.fit[0]["r_updated_at"]).fromNow();
         return ago;
       } else {
