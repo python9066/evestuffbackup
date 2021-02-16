@@ -28,7 +28,7 @@
                             outlined
                             color="teal"
                             @click="openRecon(hash)"
-                            v-if="showLinkButton()"
+                            v-if="showLinkButton"
                         >
                             View Recon Tool
                         </v-chip>

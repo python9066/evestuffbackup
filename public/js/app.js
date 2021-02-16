@@ -26175,7 +26175,7 @@ var render = function() {
                         _vm._s(_vm.station.station_name) +
                         "\n                    "
                     ),
-                    _vm.showLinkButton()
+                    _vm.showLinkButton
                       ? _c(
                           "v-chip",
                           {
