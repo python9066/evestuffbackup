@@ -9163,7 +9163,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       editText: null,
       editAdashLink: null,
       fitted: false,
-      task_flag: 0
+      task_flag: 10
     };
   },
   methods: {

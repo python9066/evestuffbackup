@@ -280,7 +280,7 @@ export default {
             editText: null,
             editAdashLink: null,
             fitted: false,
-            task_flag: 0
+            task_flag: 10
         };
     },
 
