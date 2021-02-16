@@ -334,9 +334,13 @@ export default {
             });
 
         if (this.$can("gunner")) {
-            Echo.private("stationinfo").listen("StationInfoGet", e => {
-                this.$store.dispatch("loadStationData");
-            });
+            Echo.private("stationinfo")
+                .listen("StationInfoGet", e => {
+                    this.$store.dispatch("loadStationData");
+                })
+                .listen("StationCoreUpdate", e => {
+                    this.$store.dispatch("updateCore", e.flag.message);
+                });
 
             this.$store.dispatch("loadStationData");
         }

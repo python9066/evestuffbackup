@@ -113,6 +113,11 @@ export default new Vuex.Store({
             state.cores = cores;
         },
 
+        UPDATE_CORES(state, data) {
+            const item = state.cores.find(c => c.station_id === data.station_id);
+            Object.assign(item, data);
+        },
+
         SET_CAMPAIGN_MEMBERS(state, users) {
             state.campaignmembers = users;
         },
@@ -524,6 +529,10 @@ export default new Vuex.Store({
 
         updateStations({ commit }, data) {
             commit("UPDATE_STATIONS", data);
+        },
+
+        updateCores({ commit }, data) {
+            commit("UPDATE_CORES", data);
         },
 
         updateCampaigns({ commit }, data) {

@@ -214,7 +214,7 @@
                     </div>
 
                     <div v-if="!showfit()">
-                        No Info
+                        No Fit Info
                     </div>
                     <v-card v-if="showfit()">
                         <v-card-title>
@@ -315,13 +315,15 @@ export default {
         },
 
         taskRequest() {
+            var request = {
+                system_name: this.station.system_name,
+                system_id: this.station.system_id,
+                station_id: this.station.station_id
+            };
             axios({
                 method: "post", //you can set what request you want to be
-                url:
-                    "api/taskrequest/" +
-                    this.station.system_name +
-                    "/" +
-                    this.station.system_id,
+                url: "api/taskrequest",
+                data: request,
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
                     Accept: "application/json",

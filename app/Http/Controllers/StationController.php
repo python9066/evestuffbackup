@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Events\StationChanged;
+use App\Events\StationCoreUpdate;
 use App\Models\Station;
 use App\Models\StationItemJoin;
 use App\Models\StationItems;
@@ -65,7 +66,7 @@ class StationController extends Controller
         ];
     }
 
-    public function taskRequest($systemName, $sysID)
+    public function taskRequest(Request $request)
     {
         $url = "https://dev.scouts.scopeh.co.uk/api/task/add";
         $client = new GuzzleHttpClient();
@@ -75,7 +76,7 @@ class StationController extends Controller
         ];
 
         $body = [
-            'system' => $systemName
+            'system' => $request->system_name
         ];
         $response = $client->request('POST', $url, [
             'headers' => $headers,
@@ -83,7 +84,16 @@ class StationController extends Controller
             'http_errors' => false
         ]);
 
-        System::where('id', $sysID)->update(['task_flag' => 1]);
+        System::where('id', $request->system_id)->update(['task_flag' => 1]);
+        $message = [
+            'station_id' => $request->station_id,
+            'task_flag' => 1
+        ];
+
+        $flag = collect([
+            'message' => $message,
+        ]);
+        broadcast(new StationCoreUpdate($flag));
     }
 
     /**

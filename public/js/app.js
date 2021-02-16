@@ -9191,10 +9191,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       win.focus();
     },
     taskRequest: function taskRequest() {
+      var request = {
+        system_name: this.station.system_name,
+        system_id: this.station.system_id,
+        station_id: this.station.station_id
+      };
       axios({
         method: "post",
         //you can set what request you want to be
-        url: "api/taskrequest/" + this.station.system_name + "/" + this.station.system_id,
+        url: "api/taskrequest",
+        data: request,
         headers: {
           Authorization: "Bearer " + this.$store.state.token,
           Accept: "application/json",
@@ -16509,6 +16515,8 @@ function sleep(ms) {
     if (this.$can("gunner")) {
       Echo["private"]("stationinfo").listen("StationInfoGet", function (e) {
         _this.$store.dispatch("loadStationData");
+      }).listen("StationCoreUpdate", function (e) {
+        _this.$store.dispatch("updateCore", e.flag.message);
       });
       this.$store.dispatch("loadStationData");
     }
@@ -26573,7 +26581,7 @@ var render = function() {
                   !_vm.showfit()
                     ? _c("div", [
                         _vm._v(
-                          "\n                    No Info\n                "
+                          "\n                    No Fit Info\n                "
                         )
                       ])
                     : _vm._e(),
@@ -37260,6 +37268,12 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
     SET_CORES: function SET_CORES(state, cores) {
       state.cores = cores;
     },
+    UPDATE_CORES: function UPDATE_CORES(state, data) {
+      var item = state.cores.find(function (c) {
+        return c.station_id === data.station_id;
+      });
+      Object.assign(item, data);
+    },
     SET_CAMPAIGN_MEMBERS: function SET_CAMPAIGN_MEMBERS(state, users) {
       state.campaignmembers = users;
     },
@@ -37949,94 +37963,98 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
       var commit = _ref19.commit;
       commit("UPDATE_STATIONS", data);
     },
-    updateCampaigns: function updateCampaigns(_ref20, data) {
+    updateCores: function updateCores(_ref20, data) {
       var commit = _ref20.commit;
+      commit("UPDATE_CORES", data);
+    },
+    updateCampaigns: function updateCampaigns(_ref21, data) {
+      var commit = _ref21.commit;
       commit("UPDATE_CAMPAIGNS", data);
     },
-    updateTowers: function updateTowers(_ref21, data) {
-      var commit = _ref21.commit;
+    updateTowers: function updateTowers(_ref22, data) {
+      var commit = _ref22.commit;
       commit("UPDATE_TOWERS", data);
     },
-    updateCampaignSystem: function updateCampaignSystem(_ref22, data) {
-      var commit = _ref22.commit;
+    updateCampaignSystem: function updateCampaignSystem(_ref23, data) {
+      var commit = _ref23.commit;
       commit("UPDATE_CAMPAIGN_SYSTEM", data);
     },
-    updateCampaignSystemByUserID: function updateCampaignSystemByUserID(_ref23, payload) {
-      var commit = _ref23.commit;
+    updateCampaignSystemByUserID: function updateCampaignSystemByUserID(_ref24, payload) {
+      var commit = _ref24.commit;
       commit("UPDATE_CAMPAIGN_SYSTEM_BY_USER_ID", payload);
     },
-    updateCampaignSolaSystem: function updateCampaignSolaSystem(_ref24, data) {
-      var commit = _ref24.commit;
+    updateCampaignSolaSystem: function updateCampaignSolaSystem(_ref25, data) {
+      var commit = _ref25.commit;
       commit("UPDATE_CAMPAIGN_SOLA_SYSTEMS", data);
     },
-    updateCampaignSystemBar: function updateCampaignSystemBar(_ref25, data) {
-      var commit = _ref25.commit;
+    updateCampaignSystemBar: function updateCampaignSystemBar(_ref26, data) {
+      var commit = _ref26.commit;
       commit("UPDATE_CAMPAIGN_SYSTEM_UPDATE", data);
     },
-    updateCampaign: function updateCampaign(_ref26, data) {
-      var commit = _ref26.commit;
+    updateCampaign: function updateCampaign(_ref27, data) {
+      var commit = _ref27.commit;
       commit("UPDATE_CAMPAIGN", data);
     },
-    updateCampaignUsers: function updateCampaignUsers(_ref27, data) {
-      var commit = _ref27.commit;
+    updateCampaignUsers: function updateCampaignUsers(_ref28, data) {
+      var commit = _ref28.commit;
       commit("UPDATE_CAMPAIGN_USERS", data);
     },
-    updateUsersChars: function updateUsersChars(_ref28, data) {
-      var commit = _ref28.commit;
+    updateUsersChars: function updateUsersChars(_ref29, data) {
+      var commit = _ref29.commit;
       commit("UPDATE_USERS_CHARS", data);
     },
-    updateNodeJoin: function updateNodeJoin(_ref29, data) {
-      var commit = _ref29.commit;
+    updateNodeJoin: function updateNodeJoin(_ref30, data) {
+      var commit = _ref30.commit;
       commit('UPDATE_NODE_JOIN', data);
     },
-    addNodeJoin: function addNodeJoin(_ref30, data) {
-      var commit = _ref30.commit;
+    addNodeJoin: function addNodeJoin(_ref31, data) {
+      var commit = _ref31.commit;
       commit("ADD_NODE_JOIN", data);
     },
-    addStationNotification: function addStationNotification(_ref31, data) {
-      var commit = _ref31.commit;
+    addStationNotification: function addStationNotification(_ref32, data) {
+      var commit = _ref32.commit;
       commit("ADD_STATION_NOTIFICATION", data);
     },
-    addLoggingCampaign: function addLoggingCampaign(_ref32, data) {
-      var commit = _ref32.commit;
+    addLoggingCampaign: function addLoggingCampaign(_ref33, data) {
+      var commit = _ref33.commit;
       commit("ADD_LOGGING_CAMPGIN", data);
     },
-    addCampaignUserNew: function addCampaignUserNew(_ref33, data) {
-      var commit = _ref33.commit;
+    addCampaignUserNew: function addCampaignUserNew(_ref34, data) {
+      var commit = _ref34.commit;
       commit("ADD_CAMPAIGN_USERS", data);
     },
-    addCampaignSystem: function addCampaignSystem(_ref34, data) {
-      var commit = _ref34.commit;
+    addCampaignSystem: function addCampaignSystem(_ref35, data) {
+      var commit = _ref35.commit;
       commit("ADD_CAMPAIGN_SYSTEM", data);
     },
-    deleteCampaignUser: function deleteCampaignUser(_ref35, id) {
-      var commit = _ref35.commit;
+    deleteCampaignUser: function deleteCampaignUser(_ref36, id) {
+      var commit = _ref36.commit;
       commit("DELETE_CAMPAIGN_USER", id);
     },
-    deleteStation: function deleteStation(_ref36, id) {
-      var commit = _ref36.commit;
+    deleteStation: function deleteStation(_ref37, id) {
+      var commit = _ref37.commit;
       commit("DELETE_STATION_NOTIFICATION", id);
     },
-    deleteUsersChars: function deleteUsersChars(_ref37, id) {
-      var commit = _ref37.commit;
+    deleteUsersChars: function deleteUsersChars(_ref38, id) {
+      var commit = _ref38.commit;
       commit("DELETE_USER_CHAR", id);
     },
-    deleteNodeJoin: function deleteNodeJoin(_ref38, id) {
-      var commit = _ref38.commit;
+    deleteNodeJoin: function deleteNodeJoin(_ref39, id) {
+      var commit = _ref39.commit;
       commit("DELETE_NODE_JOIN", id);
     },
-    deleteCampaignSystem: function deleteCampaignSystem(_ref39, id) {
-      var commit = _ref39.commit;
+    deleteCampaignSystem: function deleteCampaignSystem(_ref40, id) {
+      var commit = _ref40.commit;
       commit("DELETE_CAMPAIGN_SYSTEM", id);
     },
-    getNotifications: function getNotifications(_ref40) {
+    getNotifications: function getNotifications(_ref41) {
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee17() {
         var commit, state, res;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee17$(_context17) {
           while (1) {
             switch (_context17.prev = _context17.next) {
               case 0:
-                commit = _ref40.commit, state = _ref40.state;
+                commit = _ref41.commit, state = _ref41.state;
                 _context17.next = 3;
                 return axios({
                   method: "get",
@@ -38062,14 +38080,14 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
         }, _callee17);
       }))();
     },
-    getdelveLink: function getdelveLink(_ref41) {
+    getdelveLink: function getdelveLink(_ref42) {
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee18() {
         var commit, state, res;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee18$(_context18) {
           while (1) {
             switch (_context18.prev = _context18.next) {
               case 0:
-                commit = _ref41.commit, state = _ref41.state;
+                commit = _ref42.commit, state = _ref42.state;
                 _context18.next = 3;
                 return axios({
                   method: "get",
@@ -38094,14 +38112,14 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
         }, _callee18);
       }))();
     },
-    getqueriousLink: function getqueriousLink(_ref42) {
+    getqueriousLink: function getqueriousLink(_ref43) {
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee19() {
         var commit, state, res;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee19$(_context19) {
           while (1) {
             switch (_context19.prev = _context19.next) {
               case 0:
-                commit = _ref42.commit, state = _ref42.state;
+                commit = _ref43.commit, state = _ref43.state;
                 _context19.next = 3;
                 return axios({
                   method: "get",
@@ -38126,14 +38144,14 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
         }, _callee19);
       }))();
     },
-    getperiodbasisLink: function getperiodbasisLink(_ref43) {
+    getperiodbasisLink: function getperiodbasisLink(_ref44) {
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee20() {
         var commit, state, res;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee20$(_context20) {
           while (1) {
             switch (_context20.prev = _context20.next) {
               case 0:
-                commit = _ref43.commit, state = _ref43.state;
+                commit = _ref44.commit, state = _ref44.state;
                 _context20.next = 3;
                 return axios({
                   method: "get",
@@ -38158,26 +38176,26 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
         }, _callee20);
       }))();
     },
-    setToken: function setToken(_ref44, token) {
-      var commit = _ref44.commit;
+    setToken: function setToken(_ref45, token) {
+      var commit = _ref45.commit;
       commit("SET_TOKEN", token);
     },
-    setUser_id: function setUser_id(_ref45, user_id) {
-      var commit = _ref45.commit;
+    setUser_id: function setUser_id(_ref46, user_id) {
+      var commit = _ref46.commit;
       commit("SET_USER_ID", user_id);
     },
-    setUser_name: function setUser_name(_ref46, user_name) {
-      var commit = _ref46.commit;
+    setUser_name: function setUser_name(_ref47, user_name) {
+      var commit = _ref47.commit;
       commit("SET_USER_NAME", user_name);
     },
-    getCampaignUsersRecords: function getCampaignUsersRecords(_ref47, id) {
+    getCampaignUsersRecords: function getCampaignUsersRecords(_ref48, id) {
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee21() {
         var commit, state, res;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee21$(_context21) {
           while (1) {
             switch (_context21.prev = _context21.next) {
               case 0:
-                commit = _ref47.commit, state = _ref47.state;
+                commit = _ref48.commit, state = _ref48.state;
                 _context21.next = 3;
                 return axios({
                   method: "get",
@@ -38205,14 +38223,14 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
         }, _callee21);
       }))();
     },
-    getCampaignSystemsRecords: function getCampaignSystemsRecords(_ref48) {
+    getCampaignSystemsRecords: function getCampaignSystemsRecords(_ref49) {
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee22() {
         var commit, state, res;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee22$(_context22) {
           while (1) {
             switch (_context22.prev = _context22.next) {
               case 0:
-                commit = _ref48.commit, state = _ref48.state;
+                commit = _ref49.commit, state = _ref49.state;
                 _context22.next = 3;
                 return axios({
                   method: "get",
@@ -38240,14 +38258,14 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
         }, _callee22);
       }))();
     },
-    loadCampaignSystemData: function loadCampaignSystemData(_ref49, payload) {
+    loadCampaignSystemData: function loadCampaignSystemData(_ref50, payload) {
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee23() {
         var commit, state, request, res;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee23$(_context23) {
           while (1) {
             switch (_context23.prev = _context23.next) {
               case 0:
-                commit = _ref49.commit, state = _ref49.state;
+                commit = _ref50.commit, state = _ref50.state;
                 request = {
                   user_id: payload.user_id,
                   campaign_id: payload.campaign_id,
@@ -38286,14 +38304,14 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
         }, _callee23);
       }))();
     },
-    loadStationData: function loadStationData(_ref50) {
+    loadStationData: function loadStationData(_ref51) {
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee24() {
         var commit, state, res;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee24$(_context24) {
           while (1) {
             switch (_context24.prev = _context24.next) {
               case 0:
-                commit = _ref50.commit, state = _ref50.state;
+                commit = _ref51.commit, state = _ref51.state;
                 _context24.next = 3;
                 return axios({
                   method: "get",
