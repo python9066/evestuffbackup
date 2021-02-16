@@ -39,7 +39,6 @@ class StationController extends Controller
                 "task_flag" => $taskFlag,
                 "station_id" => $station->id,
                 "cored" => $core,
-                "hash" => $station->r_hash
             ];
 
             array_push($coreData, $data1);
@@ -61,7 +60,7 @@ class StationController extends Controller
 
         return [
             'cores' => $coreData,
-            'fit' => Station::where('r_fitted', 'Fitted')->get(),
+            'fit' => Station::where('r_hash', '!=', null)->get(),
             'items' => $items
         ];
     }
