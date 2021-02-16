@@ -9174,13 +9174,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var win = window.open(url, "_blank");
       win.focus();
     },
-    taskFlag: function taskFlag() {
-      if (stationInfo[0]["task_flag"] == 1) {
-        return true;
-      } else {
-        return false;
-      }
-    },
     url: function url(item) {
       return "https://images.evetech.net/types/" + item.item_id + "/icon";
     },
@@ -26256,7 +26249,7 @@ var render = function() {
                         _vm._s(_vm.lastUpdated()) +
                         "\n                    "
                     ),
-                    _vm.$can("super") && _vm.taskFlag()
+                    _vm.$can("super")
                       ? _c(
                           "v-chip",
                           {
@@ -26275,13 +26268,15 @@ var render = function() {
                           },
                           [
                             _vm._v(
-                              "\n                        Request Update\n                    "
+                              "\n                        Request Update " +
+                                _vm._s(_vm.stationInfo.task_flag) +
+                                "\n                    "
                             )
                           ]
                         )
                       : _vm._e(),
                     _vm._v(" "),
-                    _vm.$can("super") && _vm.taskFlag()
+                    _vm.$can("super")
                       ? _c(
                           "v-chip",
                           {

@@ -47,17 +47,17 @@
                             small
                             outlined
                             color="teal"
-                            v-if="$can('super') && taskFlag()"
+                            v-if="$can('super')"
                             @click="taskRequest()"
                         >
-                            Request Update
+                            Request Update {{ stationInfo.task_flag }}
                         </v-chip>
                         <v-chip
                             pill
                             small
                             class=" ml-2"
                             color="teal"
-                            v-if="$can('super') && taskFlag()"
+                            v-if="$can('super')"
                         >
                             Request Made
                         </v-chip>
@@ -292,14 +292,6 @@ export default {
         openAdash(url) {
             var win = window.open(url, "_blank");
             win.focus();
-        },
-
-        taskFlag() {
-            if (stationInfo[0]["task_flag"] == 1) {
-                return true;
-            } else {
-                return false;
-            }
         },
 
         url(item) {
