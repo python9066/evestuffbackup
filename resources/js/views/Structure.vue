@@ -43,7 +43,7 @@
             </v-btn-toggle>
         </div>
         <v-data-table
-            :headers="_headers"
+            :headers="headers"
             :items="filteredItems"
             :expanded.sync="expanded"
             item-key="id"
