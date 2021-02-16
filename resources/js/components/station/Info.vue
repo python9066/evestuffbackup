@@ -44,7 +44,10 @@
                             v-if="$can('super') && cored.task_flag == 1"
                             @click="taskRequest()"
                         >
-                            test
+                            Request Update
+                        </v-btn>
+                        <v-btn v-if="$can('super') && cored.task_flag == 0">
+                            Request Made
                         </v-btn>
                     </div>
                 </v-card-subtitle>

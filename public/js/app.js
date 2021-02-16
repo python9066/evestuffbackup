@@ -9125,6 +9125,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -26230,10 +26233,18 @@ var render = function() {
                           },
                           [
                             _vm._v(
-                              "\n                        test\n                    "
+                              "\n                        Request Update\n                    "
                             )
                           ]
                         )
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _vm.$can("super") && _vm.cored.task_flag == 0
+                      ? _c("v-btn", [
+                          _vm._v(
+                            "\n                        Request Made\n                    "
+                          )
+                        ])
                       : _vm._e()
                   ],
                   1
