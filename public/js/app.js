@@ -9194,7 +9194,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var request = {
         system_name: this.station.system_name,
         system_id: this.station.system_id,
-        station_id: this.station.station_id
+        station_id: this.station.id
       };
       console.log(request);
       axios({

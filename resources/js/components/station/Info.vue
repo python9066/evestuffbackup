@@ -318,7 +318,7 @@ export default {
             var request = {
                 system_name: this.station.system_name,
                 system_id: this.station.system_id,
-                station_id: this.station.station_id
+                station_id: this.station.id
             };
             console.log(request);
             axios({
