@@ -213,7 +213,7 @@
             >
                 {{ item.station_name }}
             </template>
-            <template v-slot:item.actions="{ item }">
+            <template v-slot:item.actions="{ item }" v-if="$can('gunner')">
                 <div class=" d-inline-flex">
                     <StationGunner
                         class=" mr-2"
