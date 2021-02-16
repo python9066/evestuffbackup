@@ -370,7 +370,7 @@ export default {
 
         stationInfo() {
             var data = this.getCoreByStationID(this.station.id);
-            console.log(data.task_flag);
+            console.log("flag = " + data.['task_flag']);
             return data;
         },
         core() {
