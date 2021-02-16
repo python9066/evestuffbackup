@@ -16516,7 +16516,7 @@ function sleep(ms) {
       Echo["private"]("stationinfo").listen("StationInfoGet", function (e) {
         _this.$store.dispatch("loadStationData");
       }).listen("StationCoreUpdate", function (e) {
-        console.log("hfeiufhseufieshu");
+        console.log(e);
 
         _this.$store.dispatch("updateCores", e.flag.message);
       });
