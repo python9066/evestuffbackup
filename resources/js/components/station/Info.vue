@@ -47,7 +47,7 @@
                             small
                             outlined
                             color="teal"
-                            v-if="$can('super') && task_flag == 0"
+                            v-if="$can('super') && taskFlag"
                             @click="taskRequest()"
                         >
                             Request Update
@@ -57,7 +57,7 @@
                             small
                             class=" ml-2"
                             color="teal"
-                            v-if="$can('super') && task_flag == 1"
+                            v-if="$can('super') && !taskFlag"
                         >
                             Request Made
                         </v-chip>
@@ -279,8 +279,7 @@ export default {
             showInfo: false,
             editText: null,
             editAdashLink: null,
-            fitted: false,
-            task_flag: 10
+            fitted: false
         };
     },
 
@@ -293,6 +292,14 @@ export default {
         openAdash(url) {
             var win = window.open(url, "_blank");
             win.focus();
+        },
+
+        taskFlag() {
+            if (this.stationInfo[0]["task_flag"] == 1) {
+                return true;
+            } else {
+                return false;
+            }
         },
 
         url(item) {
@@ -367,9 +374,7 @@ export default {
         },
 
         stationInfo() {
-            var data = this.getCoreByStationID(this.station.id);
-            this.task_flag == this.data[0]["task_flag"];
-            return data;
+            return this.getCoreByStationID(this.station.id);
         },
         core() {
             var core = this.getCoreByStationID(this.station.id);

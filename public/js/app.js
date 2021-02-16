@@ -9162,8 +9162,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       showInfo: false,
       editText: null,
       editAdashLink: null,
-      fitted: false,
-      task_flag: 10
+      fitted: false
     };
   },
   methods: {
@@ -9174,6 +9173,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     openAdash: function openAdash(url) {
       var win = window.open(url, "_blank");
       win.focus();
+    },
+    taskFlag: function taskFlag() {
+      if (this.stationInfo[0]["task_flag"] == 1) {
+        return true;
+      } else {
+        return false;
+      }
     },
     url: function url(item) {
       return "https://images.evetech.net/types/" + item.item_id + "/icon";
@@ -9230,9 +9236,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       return this.fit.r_updated_at;
     },
     stationInfo: function stationInfo() {
-      var data = this.getCoreByStationID(this.station.id);
-      this.task_flag == this.data[0]["task_flag"];
-      return data;
+      return this.getCoreByStationID(this.station.id);
     },
     core: function core() {
       var core = this.getCoreByStationID(this.station.id);
@@ -26241,7 +26245,7 @@ var render = function() {
                         _vm._s(_vm.lastUpdated()) +
                         "\n                    "
                     ),
-                    _vm.$can("super") && _vm.task_flag == 0
+                    _vm.$can("super") && _vm.taskFlag
                       ? _c(
                           "v-chip",
                           {
@@ -26266,7 +26270,7 @@ var render = function() {
                         )
                       : _vm._e(),
                     _vm._v(" "),
-                    _vm.$can("super") && _vm.task_flag == 1
+                    _vm.$can("super") && !_vm.taskFlag
                       ? _c(
                           "v-chip",
                           {
