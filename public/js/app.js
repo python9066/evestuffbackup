@@ -9196,6 +9196,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         system_id: this.station.system_id,
         station_id: this.station.station_id
       };
+      console.log(request);
       axios({
         method: "post",
         //you can set what request you want to be

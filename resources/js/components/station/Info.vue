@@ -320,6 +320,7 @@ export default {
                 system_id: this.station.system_id,
                 station_id: this.station.station_id
             };
+            console.log(request);
             axios({
                 method: "post", //you can set what request you want to be
                 url: "api/taskrequest",
