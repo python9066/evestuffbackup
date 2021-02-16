@@ -16648,12 +16648,12 @@ function sleep(ms) {
         text: "Status",
         value: "station_status_name",
         align: "center",
-        width: "15%"
+        width: "10%"
       }, {
         text: "",
         value: "actions",
         width: "10%",
-        align: "center"
+        align: "start"
       }, {
         text: "Edited By",
         value: "user_name",
