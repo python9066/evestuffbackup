@@ -2,9 +2,6 @@
 
 namespace App\Events;
 
-use App\Models\NotificationRecords;
-use App\Models\StationRecords;
-use App\Models\User;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Broadcasting\PresenceChannel;
@@ -13,32 +10,19 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class StationChanged implements ShouldBroadcast
+class StationNotificationUpdate implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
-
-
-    /**
-     * Message details
-     *
-     * @var User
-     */
-    public $stations;
+    public $flag;
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct(StationRecords $stations)
+    public function __construct($flag)
     {
-        $this->stations = $stations;
+        $this->flag = $flag;
     }
-
-    // public function __construct($notifications)
-    // {
-    //     $this->notifications = $notifications;
-
-    // }
 
     /**
      * Get the channels the event should broadcast on.
@@ -47,6 +31,6 @@ class StationChanged implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new PrivateChannel('stations');
+        return new PrivateChannel('notes');
     }
 }

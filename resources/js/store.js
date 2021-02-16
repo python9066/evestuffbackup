@@ -104,7 +104,7 @@ export default new Vuex.Store({
 
 
 
-        UPDATE_STATIONS(state, data) {
+        UPDATE_STATION_NOTIFICATION(state, data) {
             const item = state.stations.find(item => item.id === data.id);
             Object.assign(item, data);
         },
@@ -240,15 +240,17 @@ export default new Vuex.Store({
             state.campaignusers.push(data);
         },
 
-        ADD_STATION_NOTIFICATION(state, data) {
-            state.stations.push(data)
-        },
 
         DELETE_CAMPAIGN_USER(state, id) {
             let index = state.campaignusers.findIndex(user => user.id == id)
             if(index >= 0){state.campaignusers.splice(index, 1)}
 
         },
+
+        ADD_STATION_NOTIFICATION(state, data) {
+            state.stations.push(data)
+        },
+
 
         DELETE_STATION_NOTIFICATION(state, id) {
             let index = state.stations.findIndex(s => s.id == id)
@@ -527,8 +529,8 @@ export default new Vuex.Store({
             commit("UPDATE_NOTIFICATIONS", data);
         },
 
-        updateStations({ commit }, data) {
-            commit("UPDATE_STATIONS", data);
+        updateStationNotification({ commit }, data) {
+            commit("UPDATE_STATION_NOTIFICATION", data);
         },
 
         updateCores({ commit }, data) {
@@ -599,7 +601,7 @@ export default new Vuex.Store({
             commit("DELETE_CAMPAIGN_USER", id)
         },
 
-        deleteStation({ commit }, id) {
+        deleteStationNotification({ commit }, id) {
             commit("DELETE_STATION_NOTIFICATION", id)
         },
 

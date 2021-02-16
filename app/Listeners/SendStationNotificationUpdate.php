@@ -2,11 +2,11 @@
 
 namespace App\Listeners;
 
-use App\Events\StationUpdate;
+use App\Events\StationNotificationUpdate;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 
-class SendStationUpdate
+class SendStationNotificationUpdate
 {
     /**
      * Create the event listener.
@@ -21,10 +21,10 @@ class SendStationUpdate
     /**
      * Handle the event.
      *
-     * @param  StationUpdate  $event
+     * @param  StationNotificationUpdate  $event
      * @return void
      */
-    public function handle(StationUpdate $event)
+    public function handle(StationNotificationUpdate $event)
     {
         //
     }

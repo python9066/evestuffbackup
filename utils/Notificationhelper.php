@@ -4,8 +4,9 @@ namespace utils\Notificationhelper;
 
 use App\Events\StationDataSet;
 use App\Events\StationInfoSet;
-use App\Events\StationNew;
 use App\Events\StationNotificationDelete;
+use App\Events\StationNotificationNew;
+use App\Events\StationNotificationUpdate;
 use App\Models\Notification;
 use App\Models\Temp_notifcation;
 use utils\Helper\Helper;
@@ -284,7 +285,7 @@ class Notifications
             $flag = collect([
                 'message' => $message
             ]);
-            broadcast(new StationNew($flag))->toOthers();
+            broadcast(new StationNotificationNew($flag))->toOthers();
         } elseif ($var['type'] == 'StructureLostShields') {
             $outTime = null;
             $ldap = $text['timestamp'];
@@ -375,7 +376,7 @@ class Notifications
             $flag = collect([
                 'message' => $message
             ]);
-            broadcast(new StationNew($flag))->toOthers();
+            broadcast(new StationNotificationNew($flag))->toOthers();
         } elseif ($var['type'] == 'StructureLostArmor') {
             $outTime = null;
             $ldap = $text['timestamp'];
@@ -468,7 +469,7 @@ class Notifications
             $flag = collect([
                 'message' => $message
             ]);
-            broadcast(new StationNew($flag))->toOthers();
+            broadcast(new StationNotificationNew($flag))->toOthers();
         }
     }
 
@@ -766,7 +767,7 @@ class Notifications
             $flag = collect([
                 'id' => $stationID
             ]);
-            broadcast(new StationNotificationDelete($flag))->toOthers();
+            broadcast(new StationNotificationUpdate($flag))->toOthers();
         }
 
         $checks = Station::where('out_time', "<", $soon5hour)->where('station_status_id', 10)->get();

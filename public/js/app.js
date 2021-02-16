@@ -16508,10 +16508,10 @@ function sleep(ms) {
             case 0:
               Echo["private"]("notes").listen("StationNotificationNew", function (e) {
                 _this.$store.dispatch("addStationNotification", e.flag.message);
-              }).listen("StationUpdate", function (e) {
-                _this.$store.dispatch("updateStations", e.flag.message);
+              }).listen("StationNotificationUpdate", function (e) {
+                _this.$store.dispatch("updateStationNotification", e.flag.message);
               }).listen("StationNotificationDelete", function (e) {
-                _this.$store.dispatch("deleteStation", e.flag.id);
+                _this.$store.dispatch("deleteStationNotification", e.flag.id);
               }).listen("StationDataSet", function (e) {
                 _this.$store.dispatch("getStationData");
               });
@@ -37278,7 +37278,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
     SET_STATIONS_FIT: function SET_STATIONS_FIT(state, fit) {
       state.stationFits = fit;
     },
-    UPDATE_STATIONS: function UPDATE_STATIONS(state, data) {
+    UPDATE_STATION_NOTIFICATION: function UPDATE_STATION_NOTIFICATION(state, data) {
       var item = state.stations.find(function (item) {
         return item.id === data.id;
       });
@@ -37416,9 +37416,6 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
     ADD_CAMPAIGN_USERS: function ADD_CAMPAIGN_USERS(state, data) {
       state.campaignusers.push(data);
     },
-    ADD_STATION_NOTIFICATION: function ADD_STATION_NOTIFICATION(state, data) {
-      state.stations.push(data);
-    },
     DELETE_CAMPAIGN_USER: function DELETE_CAMPAIGN_USER(state, id) {
       var index = state.campaignusers.findIndex(function (user) {
         return user.id == id;
@@ -37427,6 +37424,9 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
       if (index >= 0) {
         state.campaignusers.splice(index, 1);
       }
+    },
+    ADD_STATION_NOTIFICATION: function ADD_STATION_NOTIFICATION(state, data) {
+      state.stations.push(data);
     },
     DELETE_STATION_NOTIFICATION: function DELETE_STATION_NOTIFICATION(state, id) {
       var index = state.stations.findIndex(function (s) {
@@ -37978,9 +37978,9 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
       var commit = _ref18.commit;
       commit("UPDATE_NOTIFICATIONS", data);
     },
-    updateStations: function updateStations(_ref19, data) {
+    updateStationNotification: function updateStationNotification(_ref19, data) {
       var commit = _ref19.commit;
-      commit("UPDATE_STATIONS", data);
+      commit("UPDATE_STATION_NOTIFICATION", data);
     },
     updateCores: function updateCores(_ref20, data) {
       var commit = _ref20.commit;
@@ -38050,7 +38050,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
       var commit = _ref36.commit;
       commit("DELETE_CAMPAIGN_USER", id);
     },
-    deleteStation: function deleteStation(_ref37, id) {
+    deleteStationNotification: function deleteStationNotification(_ref37, id) {
       var commit = _ref37.commit;
       commit("DELETE_STATION_NOTIFICATION", id);
     },

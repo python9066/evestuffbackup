@@ -326,11 +326,14 @@ export default {
             .listen("StationNotificationNew", e => {
                 this.$store.dispatch("addStationNotification", e.flag.message);
             })
-            .listen("StationUpdate", e => {
-                this.$store.dispatch("updateStations", e.flag.message);
+            .listen("StationNotificationUpdate", e => {
+                this.$store.dispatch(
+                    "updateStationNotification",
+                    e.flag.message
+                );
             })
             .listen("StationNotificationDelete", e => {
-                this.$store.dispatch("deleteStation", e.flag.id);
+                this.$store.dispatch("deleteStationNotification", e.flag.id);
             })
             .listen("StationDataSet", e => {
                 this.$store.dispatch("getStationData");

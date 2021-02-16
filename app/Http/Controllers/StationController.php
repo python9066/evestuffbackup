@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Events\StationChanged;
+
 use App\Events\StationCoreUpdate;
+use App\Events\StationNotificationUpdate;
 use App\Models\Station;
 use App\Models\StationItemJoin;
 use App\Models\StationItems;
+use App\Models\StationRecords;
 use App\Models\System;
 use Illuminate\Http\Request;
 use GuzzleHttp\Client as GuzzleHttpClient;
@@ -129,10 +131,11 @@ class StationController extends Controller
     {
 
         Station::find($id)->update($request->all());
-        $notifications =  Station::find($id);
-        if ($notifications->status_id != 10) {
-            broadcast(new StationChanged($notifications))->toOthers();
-        }
+        $message = StationRecords::where('id', $id)->first();
+        $flag = collect([
+            'message' => $message
+        ]);
+        broadcast(new StationNotificationUpdate($flag))->toOthers;
     }
 
     /**

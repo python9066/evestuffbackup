@@ -6,22 +6,13 @@ Comms: Op 10 https://gnf.lt/Sy12pKS.html
 Doctrine: Jackdaw Fleet (Boosters > Scalpel / Kirin > Jackdaw > Keres / Hyena > Tackle)
 
 
-!all Jackdaws doing Jackdaw things
+!all Quick Adventure in and out 20 mins!!  :yayclod:
 
-FC Name: Opsy Naari
-Formup Location: 1DQ1
+FC Name: Klexos
+Formup Location: 1DQ1-A
 Pap Type: Strategic
 Comms: Op 10 https://gnf.lt/g5jrVqZ.html
-Doctrine: Jackdaw Fleet (Boosters > Scalpel / Kirin > Jackdaw > Keres / Hyena > Tackle)
-
-
-Here we go, gotta keep our space safe!
-
-FC Name: Xanos Xellos
-Formup Location: 1DQ
-Pap Type: Strategic
-Comms: Op 9 https://gnf.lt/l7zng0s.html
-Doctrine: Jackdaw Fleet (Boosters > Scalpel / Kirin > Jackdaw > Keres / Hyena > Tackle)
+Doctrine: Harpy Fleet (Boosters > Scalpel / Kirin > Burst > Harpy > Else)
 
 /usr/bin/php7.4-cli artisan
 
@@ -32,13 +23,37 @@ new_time = ((time_left/100)*tidi)+time_left
 
 
 
-!all short n sweet drama fleet.
-
-FC Name: GeeBee
-Formup Location: 1DQ
-Pap Type: Strategic
-Comms: Op 9 https://gnf.lt/l7zng0s.html
-Doctrine: Drama fleet
+notification_id":1379941956,
+"sender_id":1000137,
+"sender_type":"corporation",
+    "text":
+        "allianceID: 1727758877\n
+        allianceLinkData:\n
+            - showinfo\n
+            - 16159\n
+            - 1727758877\n
+        allianceName: Northern Coalition.\n
+        armorPercentage: 7.526432421111218\n
+        charID: 181181255\n
+        corpLinkData:\n
+            - showinfo\n
+            - 2\n
+            - 739403251\n
+        corpName: Shiva\n
+        hullPercentage: 100.0\n
+        shieldPercentage: 6.2114136838036106e-09\n
+        solarsystemID: 30004767\n
+        structureID: &id001 1035489221747\n
+        structureShowInfoData:\n
+            - showinfo\n
+            - 37534\n
+            - *id001\n
+        structureTypeID: 37534\n",
+"timestamp":"2021-02-13T11:06:00Z",
+"type":"StructureUnderAttack",
+"gsf_entity_id":null,
+"gsf_entity_type":null,
+"gsf_token_id":null
 
 <IfModule mod_rewrite.c>
     <IfModule mod_negotiation.c>
