@@ -31,6 +31,6 @@ class StationCoreUpdate implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new PrivateChannel('gunner');
+        return new PrivateChannel('stationinfo');
     }
 }
