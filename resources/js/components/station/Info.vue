@@ -376,7 +376,7 @@ export default {
         },
 
         taskFlag() {
-            this.stationInfo.task_flag;
+            this.stationInfo[0]["task_flag"];
         },
         core() {
             var core = this.getCoreByStationID(this.station.id);
