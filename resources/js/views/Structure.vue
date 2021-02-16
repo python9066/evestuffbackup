@@ -17,7 +17,7 @@
                 right-align
                 v-model="toggle_exclusive"
                 mandatory
-                value="1"
+                :value="2"
             >
                 <v-btn
                     :loading="loadingf"
@@ -275,7 +275,7 @@ export default {
             snack: false,
             snackColor: "",
             snackText: "",
-            toggle_exclusive: 0,
+            toggle_exclusive: 1,
             today: 0,
             text: "center",
             toggle_none: null,
@@ -516,7 +516,7 @@ export default {
             if (this.statusflag == 2) {
                 return this.stations.filter(
                     stations =>
-                        stations.station_status_id != 5 ||
+                        stations.station_status_id != 5 &&
                         stations.station_status_id != 10
                 );
             }

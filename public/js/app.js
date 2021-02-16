@@ -16599,7 +16599,7 @@ function sleep(ms) {
       snack: false,
       snackColor: "",
       snackText: "",
-      toggle_exclusive: 0,
+      toggle_exclusive: 1,
       today: 0,
       text: "center",
       toggle_none: null,
@@ -16878,7 +16878,7 @@ function sleep(ms) {
     filteredItems: function filteredItems() {
       if (this.statusflag == 2) {
         return this.stations.filter(function (stations) {
-          return stations.station_status_id != 5 || stations.station_status_id != 10;
+          return stations.station_status_id != 5 && stations.station_status_id != 10;
         });
       }
 
@@ -33003,7 +33003,7 @@ var render = function() {
           _c(
             "v-btn-toggle",
             {
-              attrs: { "right-align": "", mandatory: "", value: "1" },
+              attrs: { "right-align": "", mandatory: "", value: 2 },
               model: {
                 value: _vm.toggle_exclusive,
                 callback: function($$v) {
