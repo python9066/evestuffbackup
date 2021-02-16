@@ -24952,11 +24952,9 @@ var render = function() {
                   }
                 },
                 [
-                  _c(
-                    "v-icon",
-                    { attrs: { "x-small": "", left: "", dark: "" } },
-                    [_vm._v("\n                fas fa-plus\n            ")]
-                  ),
+                  _c("v-icon", { attrs: { "x-small": "", dark: "" } }, [
+                    _vm._v("\n                fas fa-plus\n            ")
+                  ]),
                   _vm._v("\n            Gunner")
                 ],
                 1

@@ -16,7 +16,7 @@
                 outlined
                 @click="gunnerAdd()"
             >
-                <v-icon x-small left dark>
+                <v-icon x-small dark>
                     fas fa-plus
                 </v-icon>
                 Gunner</v-btn
