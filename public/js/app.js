@@ -16693,11 +16693,11 @@ function sleep(ms) {
         var request = {
           text: item.text
         };
-        this.$store.dispatch("updateStations", item);
+        this.$store.dispatch("StationNotificationUpdate", item);
         axios({
           method: "put",
           //you can set what request you want to be
-          url: "api/stationrecords/" + item.id,
+          url: "api/updatestationnotification/" + item.id,
           data: request,
           headers: {
             Authorization: "Bearer " + this.$store.state.token,
@@ -16821,7 +16821,7 @@ function sleep(ms) {
     },
     campaignStart: function campaignStart(item) {
       item.station_status_id = 6;
-      this.$store.dispatch("updateStations", item);
+      this.$store.dispatch("StationNotificationUpdate", item);
     },
     save: function save() {
       this.snack = true;
@@ -16935,7 +16935,7 @@ function sleep(ms) {
           width: "10%",
           show: true
         }, {
-          text: "",
+          text: "Gunner/Info",
           value: "actions",
           width: "10%",
           show: true,
