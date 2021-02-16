@@ -558,8 +558,8 @@ export default {
             if (this.statusflag == 2) {
                 return this.stations.filter(
                     stations =>
-                        stations.station_status_id != 5 &&
-                        stations.station_status_id != 10 &&
+                        stations.station_status_id != 5 ||
+                        stations.station_status_id != 10 ||
                         stations.station_status_id != 7
                 );
             }
