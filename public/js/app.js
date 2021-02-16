@@ -16556,6 +16556,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -16590,7 +16597,7 @@ function sleep(ms) {
       poll: null,
       periodbasis: 0,
       search: "",
-      statusflag: 4,
+      statusflag: 5,
       snack: false,
       snackColor: "",
       snackText: "",
@@ -16874,13 +16881,19 @@ function sleep(ms) {
     filteredItems: function filteredItems() {
       if (this.statusflag == 2) {
         return this.stations.filter(function (stations) {
-          return stations.station_status_id == 2;
+          return stations.station_status_id != 5 || stations.station_status_id != 10;
         });
       }
 
       if (this.statusflag == 3) {
         return this.stations.filter(function (stations) {
-          return stations.station_status_id == 3;
+          return stations.station_status_id == 5;
+        });
+      }
+
+      if (this.statusflag == 4) {
+        return this.stations.filter(function (stations) {
+          return stations.station_status_id == 8 || stations.station_status_id == 9;
         });
       } else {
         return this.stations.filter(function (stations) {
@@ -33026,7 +33039,7 @@ var render = function() {
                     }
                   }
                 },
-                [_vm._v("\n                On The Way\n            ")]
+                [_vm._v("\n                Active\n            ")]
               ),
               _vm._v(" "),
               _c(
@@ -33039,7 +33052,20 @@ var render = function() {
                     }
                   }
                 },
-                [_vm._v("\n                Gunning\n            ")]
+                [_vm._v("\n                UpComing\n            ")]
+              ),
+              _vm._v(" "),
+              _c(
+                "v-btn",
+                {
+                  attrs: { loading: _vm.loadingf, disabled: _vm.loadingf },
+                  on: {
+                    click: function($event) {
+                      _vm.statusflag = 4
+                    }
+                  }
+                },
+                [_vm._v("\n                Reffed\n            ")]
               )
             ],
             1

@@ -31,14 +31,21 @@
                     :disabled="loadingf"
                     @click="statusflag = 2"
                 >
-                    On The Way
+                    Active
                 </v-btn>
                 <v-btn
                     :loading="loadingf"
                     :disabled="loadingf"
                     @click="statusflag = 3"
                 >
-                    Gunning
+                    UpComing
+                </v-btn>
+                <v-btn
+                    :loading="loadingf"
+                    :disabled="loadingf"
+                    @click="statusflag = 4"
+                >
+                    Reffed
                 </v-btn>
             </v-btn-toggle>
         </div>
@@ -266,7 +273,7 @@ export default {
             poll: null,
             periodbasis: 0,
             search: "",
-            statusflag: 4,
+            statusflag: 5,
             snack: false,
             snackColor: "",
             snackText: "",
@@ -511,12 +518,22 @@ export default {
         filteredItems() {
             if (this.statusflag == 2) {
                 return this.stations.filter(
-                    stations => stations.station_status_id == 2
+                    stations =>
+                        stations.station_status_id != 5 ||
+                        stations.station_status_id != 10
                 );
             }
             if (this.statusflag == 3) {
                 return this.stations.filter(
-                    stations => stations.station_status_id == 3
+                    stations => stations.station_status_id == 5
+                );
+            }
+
+            if (this.statusflag == 4) {
+                return this.stations.filter(
+                    stations =>
+                        stations.station_status_id == 8 ||
+                        stations.station_status_id == 9
                 );
             } else {
                 return this.stations.filter(
