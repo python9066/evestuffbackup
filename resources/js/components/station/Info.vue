@@ -24,6 +24,7 @@
                         {{ station.station_name }}
                         <v-chip
                             pill
+                            class=" ml-2"
                             small
                             outlined
                             color="teal"
@@ -42,6 +43,7 @@
                         Last Updated: {{ lastUpdated() }}
                         <v-chip
                             pill
+                            class=" ml-2"
                             small
                             outlined
                             color="teal"
@@ -53,6 +55,7 @@
                         <v-chip
                             pill
                             small
+                            class=" ml-2"
                             outlined
                             color="teal"
                             v-if="$can('super') && cored.task_flag == 0"
