@@ -687,7 +687,7 @@ class Notifications
         $now10min = now()->modify(' -10 minutes');
         $now1hour = now()->modify(' -1 hour');
         $now5hour = now()->modify(' -5 hours'); //if less than
-        $soon5hour = now()->modify(' +5 hours');
+        $soon24hour = now()->modify(' +24 hours');
 
         $checks = Station::where('status_update', '<', $now5hour)->where('station_status_id', 1)->get();
         foreach ($checks as $check) {
@@ -781,7 +781,7 @@ class Notifications
             broadcast(new StationNotificationUpdate($flag))->toOthers();
         }
 
-        $checks = Station::where('out_time', "<", $soon5hour)->where('station_status_id', 10)->get();
+        $checks = Station::where('out_time', "<", $soon24hour)->where('station_status_id', 10)->get();
         foreach ($checks as $check) {
             $check->update(['station_status_id' => 5, 'status_update' => now()]);
             $message = StationRecords::where('id', $check->id);
