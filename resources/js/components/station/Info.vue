@@ -57,7 +57,7 @@
                             small
                             class=" ml-2"
                             color="teal"
-                            v-if="$can('super') && !stationInfo.task_flag == 1"
+                            v-if="$can('super') && stationInfo.task_flag == 1"
                         >
                             Request Made
                         </v-chip>
@@ -354,7 +354,7 @@ export default {
         fit() {
             var fit = this.getStationFitByStationID(this.station.id);
 
-            if (fit[0]["fitted"] != null) {
+            if (fit[0]["r_fitted"] != null) {
                 this.fitted = true;
             }
 

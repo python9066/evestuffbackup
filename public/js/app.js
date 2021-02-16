@@ -9218,7 +9218,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     fit: function fit() {
       var fit = this.getStationFitByStationID(this.station.id);
 
-      if (fit[0]["fitted"] != null) {
+      if (fit[0]["r_fitted"] != null) {
         this.fitted = true;
       }
 
@@ -26262,7 +26262,7 @@ var render = function() {
                         )
                       : _vm._e(),
                     _vm._v(" "),
-                    _vm.$can("super") && !_vm.stationInfo.task_flag == 1
+                    _vm.$can("super") && _vm.stationInfo.task_flag == 1
                       ? _c(
                           "v-chip",
                           {
