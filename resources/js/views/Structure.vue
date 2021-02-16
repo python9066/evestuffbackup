@@ -341,7 +341,7 @@ export default {
                 var request = {
                     text: item.text
                 };
-                this.$store.dispatch("StationNotificationUpdate", item);
+                this.$store.dispatch("updateStationNotification", item);
                 axios({
                     method: "put", //you can set what request you want to be
                     url: "api/updatestationnotification/" + item.id,
@@ -453,7 +453,7 @@ export default {
 
         campaignStart(item) {
             item.station_status_id = 6;
-            this.$store.dispatch("StationNotificationUpdate", item);
+            this.$store.dispatch("updateStationNotification", item);
         },
 
         save() {

@@ -16693,7 +16693,7 @@ function sleep(ms) {
         var request = {
           text: item.text
         };
-        this.$store.dispatch("StationNotificationUpdate", item);
+        this.$store.dispatch("updateStationNotification", item);
         axios({
           method: "put",
           //you can set what request you want to be
@@ -16821,7 +16821,7 @@ function sleep(ms) {
     },
     campaignStart: function campaignStart(item) {
       item.station_status_id = 6;
-      this.$store.dispatch("StationNotificationUpdate", item);
+      this.$store.dispatch("updateStationNotification", item);
     },
     save: function save() {
       this.snack = true;
