@@ -339,6 +339,7 @@ export default {
                     this.$store.dispatch("loadStationData");
                 })
                 .listen("StationCoreUpdate", e => {
+                    console.log("hfeiufhseufieshu");
                     this.$store.dispatch("updateCore", e.flag.message);
                 });
 
