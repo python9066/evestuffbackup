@@ -37,7 +37,7 @@ Vue.component('SystemTableTimer', require('./components/campaignAll/SystemTableT
 Vue.component('WatchUserTable', require('./components/campaignAll/WatchUserTable.vue').default);
 Vue.component('messageStations', require('./components/random/messageStations.vue').default);
 Vue.component('testingMessage', require('./components/random/testingMessage.vue').default);
-Vue.component('notificationTimer', require('./components/notification/notificationTimer.vue').default);
+Vue.component('NotificationTimer', require('./components/notification/NotificationTimer.vue').default);
 Vue.component('CampaignMap', require('./components/campaign/CampaignMap.vue').default);
 Vue.component('CampaignMapSystem', require('./components/campaign/CampaignMapSystem.vue').default);
 Vue.component('SystemItemList', require('./components/multicampaigns/SystemItemList.vue').default);
@@ -64,6 +64,10 @@ Vue.component('NodeExtraCharMulti', require('./components/multicampaigns/NodeExt
 Vue.component('SystemMessage', require('./components/campaignALL/SystemMessage.vue').default);
 Vue.component('SystemAttackMessage', require('./components/campaignALL/SystemAttackMessage.vue').default);
 Vue.component('Info', require('./components/station/Info.vue').default);
+Vue.component('StationTimer', require('./components/station/StationTimer.vue').default);
+
+
+
 
 
 

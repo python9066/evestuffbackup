@@ -279,13 +279,13 @@
                                 >
                             </v-fab-transition>
                             <v-fab-transition>
-                                <notificationTimer
+                                <NotificationTimer
                                     :item="item"
                                     v-if="
                                         item.status_id == 5 ||
                                             item.status_id == 3
                                     "
-                                ></notificationTimer>
+                                ></NotificationTimer>
                             </v-fab-transition>
                         </div>
                     </template>

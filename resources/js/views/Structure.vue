@@ -152,6 +152,13 @@
                                     ><v-icon>fas fa-minus</v-icon></v-btn
                                 >
                             </v-fab-transition>
+                            <v-fab-transition>
+                                <StationTimer
+                                    :station="item"
+                                    v-if="item.station_status_id == 11"
+                                >
+                                </StationTimer>
+                            </v-fab-transition>
                         </div>
                     </template>
 
