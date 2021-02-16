@@ -26244,45 +26244,51 @@ var render = function() {
                         _vm._s(_vm.lastUpdated()) +
                         "\n                    "
                     ),
-                    _vm.$can("super") && _vm.stationInfo[0]["task_flag"] == 0
-                      ? _c(
-                          "v-chip",
-                          {
-                            staticClass: " ml-2",
-                            attrs: {
-                              pill: "",
-                              small: "",
-                              outlined: "",
-                              color: "teal"
-                            },
-                            on: {
-                              click: function($event) {
-                                return _vm.taskRequest()
-                              }
-                            }
-                          },
-                          [
-                            _vm._v(
-                              "\n                        Request Update\n                    "
-                            )
-                          ]
+                    _c(
+                      "v-chip",
+                      {
+                        staticClass: " ml-2",
+                        attrs: {
+                          pill: "",
+                          small: "",
+                          outlined: "",
+                          color: "teal",
+                          "v-if":
+                            _vm.$can("super") &&
+                            _vm.stationInfo[0]["task_flag"] == 0
+                        },
+                        on: {
+                          click: function($event) {
+                            return _vm.taskRequest()
+                          }
+                        }
+                      },
+                      [
+                        _vm._v(
+                          "\n                        Request Update\n                    "
                         )
-                      : _vm._e(),
+                      ]
+                    ),
                     _vm._v(" "),
-                    _vm.$can("super") && _vm.stationInfo[0]["task_flag"] == 1
-                      ? _c(
-                          "v-chip",
-                          {
-                            staticClass: " ml-2",
-                            attrs: { pill: "", small: "", color: "teal" }
-                          },
-                          [
-                            _vm._v(
-                              "\n                        Request Made\n                    "
-                            )
-                          ]
+                    _c(
+                      "v-chip",
+                      {
+                        staticClass: " ml-2",
+                        attrs: {
+                          pill: "",
+                          small: "",
+                          color: "teal",
+                          "v-if":
+                            _vm.$can("super") &&
+                            _vm.stationInfo[0]["task_flag"] == 1
+                        }
+                      },
+                      [
+                        _vm._v(
+                          "\n                        Request Made\n                    "
                         )
-                      : _vm._e()
+                      ]
+                    )
                   ],
                   1
                 )

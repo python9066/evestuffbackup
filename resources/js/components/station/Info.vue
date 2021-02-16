@@ -47,7 +47,7 @@
                             small
                             outlined
                             color="teal"
-                            v-if="
+                            :v-if="
                                 $can('super') &&
                                     stationInfo[0]['task_flag'] == 0
                             "
@@ -60,7 +60,7 @@
                             small
                             class=" ml-2"
                             color="teal"
-                            v-if="
+                            :v-if="
                                 $can('super') &&
                                     stationInfo[0]['task_flag'] == 1
                             "
