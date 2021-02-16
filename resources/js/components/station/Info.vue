@@ -59,7 +59,7 @@
                             color="teal"
                             v-if="$can('super')"
                         >
-                            Request Made {{ stationInfo["task_flag"] }}
+                            Request Made {{ stationInfo.task_flag }}
                         </v-chip>
                     </div>
                 </v-card-subtitle>
