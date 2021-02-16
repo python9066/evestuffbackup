@@ -9174,6 +9174,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var win = window.open(url, "_blank");
       win.focus();
     },
+    taskFlag: function taskFlag() {
+      if (stationInfo[0]["task_flag"] = 1) {
+        return true;
+      } else {
+        return false;
+      }
+    },
     url: function url(item) {
       return "https://images.evetech.net/types/" + item.item_id + "/icon";
     },
@@ -9236,9 +9243,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       return this.fit.r_updated_at;
     },
     stationInfo: function stationInfo() {
-      var data = this.getCoreByStationID(this.station.id);
-      console.log("flag = " + data[0]["task_flag"]);
-      return data;
+      return this.getCoreByStationID(this.station.id);
     },
     core: function core() {
       var core = this.getCoreByStationID(this.station.id);
@@ -26251,7 +26256,7 @@ var render = function() {
                         _vm._s(_vm.lastUpdated()) +
                         "\n                    "
                     ),
-                    _vm.$can("super")
+                    _vm.$can("super") && !_vm.taskFlag()
                       ? _c(
                           "v-chip",
                           {
@@ -26270,15 +26275,13 @@ var render = function() {
                           },
                           [
                             _vm._v(
-                              "\n                        Request Update " +
-                                _vm._s(_vm.stationInfo) +
-                                "\n                    "
+                              "\n                        Request Update\n                    "
                             )
                           ]
                         )
                       : _vm._e(),
                     _vm._v(" "),
-                    _vm.$can("super")
+                    _vm.$can("super") && _vm.taskFlag()
                       ? _c(
                           "v-chip",
                           {
@@ -26287,9 +26290,7 @@ var render = function() {
                           },
                           [
                             _vm._v(
-                              "\n                        Request Made " +
-                                _vm._s(_vm.stationInfo.task_flag) +
-                                "\n                    "
+                              "\n                        Request Made\n                    "
                             )
                           ]
                         )

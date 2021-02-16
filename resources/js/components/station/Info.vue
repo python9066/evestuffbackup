@@ -47,19 +47,19 @@
                             small
                             outlined
                             color="teal"
-                            v-if="$can('super')"
+                            v-if="$can('super') && !taskFlag()"
                             @click="taskRequest()"
                         >
-                            Request Update {{ stationInfo }}
+                            Request Update
                         </v-chip>
                         <v-chip
                             pill
                             small
                             class=" ml-2"
                             color="teal"
-                            v-if="$can('super')"
+                            v-if="$can('super') && taskFlag()"
                         >
-                            Request Made {{ stationInfo.task_flag }}
+                            Request Made
                         </v-chip>
                     </div>
                 </v-card-subtitle>
@@ -294,6 +294,14 @@ export default {
             win.focus();
         },
 
+        taskFlag() {
+            if ((stationInfo[0]["task_flag"] = 1)) {
+                return true;
+            } else {
+                return false;
+            }
+        },
+
         url(item) {
             return "https://images.evetech.net/types/" + item.item_id + "/icon";
         },
@@ -369,9 +377,7 @@ export default {
         },
 
         stationInfo() {
-            var data = this.getCoreByStationID(this.station.id);
-            console.log("flag = " + data[0]["task_flag"]);
-            return data;
+            return this.getCoreByStationID(this.station.id);
         },
         core() {
             var core = this.getCoreByStationID(this.station.id);
