@@ -286,7 +286,6 @@ export default {
     methods: {
         close() {
             this.showInfo = false;
-            console.log("close");
         },
 
         openAdash(url) {
@@ -296,10 +295,8 @@ export default {
 
         taskFlag() {
             if (this.stationInfo[0]["task_flag"] == 1) {
-                console.log("true");
                 return true;
             } else {
-                console.log("false");
                 return false;
             }
         },
@@ -322,7 +319,6 @@ export default {
                 system_id: this.station.system_id,
                 station_id: this.station.id
             };
-            console.log(request);
             axios({
                 method: "post", //you can set what request you want to be
                 url: "api/taskrequest",
@@ -366,7 +362,6 @@ export default {
 
         fit() {
             var fit = this.getStationFitByStationID(this.station.id);
-            console.log(fit[0]["r_fitted"]);
             if (fit[0]["r_fitted"] == "Fitted") {
                 this.fitted = true;
             }

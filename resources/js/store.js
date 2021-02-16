@@ -745,7 +745,7 @@ export default new Vuex.Store({
         },
 
 
-        async loadStationData({ commit, state }) {
+        async loadStationInfo({ commit, state }) {
 
             let res = await axios({
                 method: "get", //you can set what request you want to be

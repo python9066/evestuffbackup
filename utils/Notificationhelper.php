@@ -2,6 +2,8 @@
 
 namespace utils\Notificationhelper;
 
+use App\Events\StationDataSet;
+use App\Events\StationInfoSet;
 use App\Events\StationNew;
 use App\Events\StationNotificationDelete;
 use App\Models\Notification;
@@ -110,6 +112,11 @@ class Notifications
                 }
             }
         }
+        $flag = [
+            'message' => 'yoyo'
+        ];
+        broadcast(new StationDataSet($flag));
+        broadcast(new StationInfoSet($flag));
     }
     public static function test($var)
     {

@@ -158,7 +158,6 @@ export default {
         close() {
             this.editText = null;
             this.showAttackNodeNotes = false;
-            console.log("close");
         },
 
         openAdash(url) {

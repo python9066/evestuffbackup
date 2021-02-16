@@ -331,19 +331,22 @@ export default {
             })
             .listen("StationNotificationDelete", e => {
                 this.$store.dispatch("deleteStation", e.flag.id);
+            })
+            .listen("StationDataSet", e => {
+                this.$store.dispatch("getStationData");
             });
 
         if (this.$can("gunner")) {
             Echo.private("stationinfo")
                 .listen("StationInfoGet", e => {
-                    this.$store.dispatch("loadStationData");
+                    this.$store.dispatch("loadStationInfo");
                 })
                 .listen("StationCoreUpdate", e => {
                     console.log(e);
                     this.$store.dispatch("updateCores", e.flag.message);
                 });
 
-            await this.$store.dispatch("loadStationData");
+            await this.$store.dispatch("loadStationInfo");
         }
 
         this.$store.dispatch("getStationData").then(() => {

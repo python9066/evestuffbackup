@@ -2423,7 +2423,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     close: function close() {
       this.editText = null;
       this.showAttackNodeNotes = false;
-      console.log("close");
     },
     openAdash: function openAdash(url) {
       var win = window.open(url, "_blank");
@@ -9168,7 +9167,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   methods: {
     close: function close() {
       this.showInfo = false;
-      console.log("close");
     },
     openAdash: function openAdash(url) {
       var win = window.open(url, "_blank");
@@ -9176,10 +9174,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     taskFlag: function taskFlag() {
       if (this.stationInfo[0]["task_flag"] == 1) {
-        console.log("true");
         return true;
       } else {
-        console.log("false");
         return false;
       }
     },
@@ -9198,7 +9194,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         system_id: this.station.system_id,
         station_id: this.station.id
       };
-      console.log(request);
       axios({
         method: "post",
         //you can set what request you want to be
@@ -9233,7 +9228,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     fit: function fit() {
       var fit = this.getStationFitByStationID(this.station.id);
-      console.log(fit[0]["r_fitted"]);
 
       if (fit[0]["r_fitted"] == "Fitted") {
         this.fitted = true;
@@ -16518,6 +16512,8 @@ function sleep(ms) {
                 _this.$store.dispatch("updateStations", e.flag.message);
               }).listen("StationNotificationDelete", function (e) {
                 _this.$store.dispatch("deleteStation", e.flag.id);
+              }).listen("StationDataSet", function (e) {
+                _this.$store.dispatch("getStationData");
               });
 
               if (!_this.$can("gunner")) {
@@ -16526,14 +16522,14 @@ function sleep(ms) {
               }
 
               Echo["private"]("stationinfo").listen("StationInfoGet", function (e) {
-                _this.$store.dispatch("loadStationData");
+                _this.$store.dispatch("loadStationInfo");
               }).listen("StationCoreUpdate", function (e) {
                 console.log(e);
 
                 _this.$store.dispatch("updateCores", e.flag.message);
               });
               _context.next = 5;
-              return _this.$store.dispatch("loadStationData");
+              return _this.$store.dispatch("loadStationInfo");
 
             case 5:
               _this.$store.dispatch("getStationData").then(function () {
@@ -38327,7 +38323,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
         }, _callee23);
       }))();
     },
-    loadStationData: function loadStationData(_ref51) {
+    loadStationInfo: function loadStationInfo(_ref51) {
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee24() {
         var commit, state, res;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee24$(_context24) {
