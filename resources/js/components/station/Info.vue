@@ -374,6 +374,10 @@ export default {
         stationInfo() {
             return this.getCoreByStationID(this.station.id);
         },
+
+        taskFlag() {
+            this.stationInfo.task_flag;
+        },
         core() {
             var core = this.getCoreByStationID(this.station.id);
 
