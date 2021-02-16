@@ -40,15 +40,25 @@
                     </div>
                     <div>
                         Last Updated: {{ lastUpdated() }}
-                        <v-btn
+                        <v-chip
+                            pill
+                            small
+                            outlined
+                            color="teal"
                             v-if="$can('super') && cored.task_flag == 1"
                             @click="taskRequest()"
                         >
                             Request Update
-                        </v-btn>
-                        <v-btn v-if="$can('super') && cored.task_flag == 0">
+                        </v-chip>
+                        <v-chip
+                            pill
+                            small
+                            outlined
+                            color="teal"
+                            v-if="$can('super') && cored.task_flag == 0"
+                        >
                             Request Made
-                        </v-btn>
+                        </v-chip>
                     </div>
                 </v-card-subtitle>
                 <v-card-text>
