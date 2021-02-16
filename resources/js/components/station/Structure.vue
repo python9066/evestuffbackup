@@ -104,7 +104,7 @@
                 v-slot:item.station_status_name="{ item }"
                 class="align-items-center"
             >
-                <v-menu offset-y v-if="$can('edit_notifications')">
+                <v-menu offset-y v-if="$can('edit_station_notifications')">
                     <template v-slot:activator="{ on, attrs }">
                         <div class="align-items-center d-lg-inline-flex">
                             <v-btn

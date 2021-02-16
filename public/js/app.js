@@ -28027,7 +28027,7 @@ var render = function() {
                 fn: function(ref) {
                   var item = ref.item
                   return [
-                    _vm.$can("edit_notifications")
+                    _vm.$can("edit_station_notifications")
                       ? _c(
                           "v-menu",
                           {
