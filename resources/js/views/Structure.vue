@@ -198,7 +198,7 @@
 
             <template
                 v-slot:item.buttons="{ item }"
-                class=" d-lg-inline-flex align-content-center"
+                class=" d-lg-inline-flex align-content-center justify-start"
             >
                 <v-fab-transition>
                     <v-chip
