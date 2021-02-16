@@ -16505,42 +16505,60 @@ function sleep(ms) {
   created: function created() {
     var _this = this;
 
-    Echo["private"]("notes").listen("StationNotificationNew", function (e) {
-      _this.$store.dispatch("addStationNotification", e.flag.message);
-    }).listen("StationUpdate", function (e) {
-      _this.$store.dispatch("updateStations", e.flag.message);
-    }).listen("StationNotificationDelete", function (e) {
-      _this.$store.dispatch("deleteStation", e.flag.id);
-    });
-
-    if (this.$can("gunner")) {
-      Echo["private"]("stationinfo").listen("StationInfoGet", function (e) {
-        _this.$store.dispatch("loadStationData");
-      }).listen("StationCoreUpdate", function (e) {
-        console.log(e);
-
-        _this.$store.dispatch("updateCores", e.flag.message);
-      });
-      this.$store.dispatch("loadStationData");
-    }
-
-    this.$store.dispatch("getStationData").then(function () {
-      _this.loadingt = false;
-      _this.loadingf = false;
-      _this.loadingr = false;
-    });
-  },
-  mounted: function mounted() {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
+              Echo["private"]("notes").listen("StationNotificationNew", function (e) {
+                _this.$store.dispatch("addStationNotification", e.flag.message);
+              }).listen("StationUpdate", function (e) {
+                _this.$store.dispatch("updateStations", e.flag.message);
+              }).listen("StationNotificationDelete", function (e) {
+                _this.$store.dispatch("deleteStation", e.flag.id);
+              });
+
+              if (!_this.$can("gunner")) {
+                _context.next = 5;
+                break;
+              }
+
+              Echo["private"]("stationinfo").listen("StationInfoGet", function (e) {
+                _this.$store.dispatch("loadStationData");
+              }).listen("StationCoreUpdate", function (e) {
+                console.log(e);
+
+                _this.$store.dispatch("updateCores", e.flag.message);
+              });
+              _context.next = 5;
+              return _this.$store.dispatch("loadStationData");
+
+            case 5:
+              _this.$store.dispatch("getStationData").then(function () {
+                _this.loadingt = false;
+                _this.loadingf = false;
+                _this.loadingr = false;
+              });
+
+            case 6:
             case "end":
               return _context.stop();
           }
         }
       }, _callee);
+    }))();
+  },
+  mounted: function mounted() {
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      }, _callee2);
     }))();
   },
   methods: {

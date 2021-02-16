@@ -321,7 +321,7 @@ export default {
         };
     },
 
-    created() {
+    async created() {
         Echo.private("notes")
             .listen("StationNotificationNew", e => {
                 this.$store.dispatch("addStationNotification", e.flag.message);
@@ -343,7 +343,7 @@ export default {
                     this.$store.dispatch("updateCores", e.flag.message);
                 });
 
-            this.$store.dispatch("loadStationData");
+            await this.$store.dispatch("loadStationData");
         }
 
         this.$store.dispatch("getStationData").then(() => {
