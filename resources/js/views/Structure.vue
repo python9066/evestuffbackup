@@ -261,7 +261,6 @@ export default {
             dialog2: false,
             dialog3: false,
             diff: 0,
-            delve: 0,
             endcount: "",
             expanded: [],
             expanded_id: 0,
@@ -271,9 +270,8 @@ export default {
             loadingr: true,
             name: "Timer",
             poll: null,
-            periodbasis: 0,
             search: "",
-            statusflag: 5,
+            statusflag: 2,
             snack: false,
             snackColor: "",
             snackText: "",
@@ -281,7 +279,6 @@ export default {
             today: 0,
             text: "center",
             toggle_none: null,
-            querious: 0,
 
             dropdown_edit: [
                 { title: "On My Way", value: 2 },
