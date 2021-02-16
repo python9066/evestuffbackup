@@ -26237,7 +26237,7 @@ var render = function() {
                         _vm._s(_vm.lastUpdated()) +
                         "\n                    "
                     ),
-                    _vm.$can("super") && _vm.stationInfo
+                    _vm.$can("super") && _vm.stationInfo.task_flag == 0
                       ? _c(
                           "v-chip",
                           {
@@ -26262,7 +26262,7 @@ var render = function() {
                         )
                       : _vm._e(),
                     _vm._v(" "),
-                    _vm.$can("super") && !_vm.stationInfo
+                    _vm.$can("super") && !_vm.stationInfo.task_flag == 1
                       ? _c(
                           "v-chip",
                           {
