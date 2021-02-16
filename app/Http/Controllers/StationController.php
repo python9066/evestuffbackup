@@ -33,7 +33,7 @@ class StationController extends Controller
                 $core = "No";
             }
 
-            $taskFlag = System::where('id', $station->id)->value('task_flag')->first();
+            $taskFlag = System::where('id', $station->system_id)->value('task_flag')->first();
 
             $data1 = [
                 "task_flag" => $taskFlag,
