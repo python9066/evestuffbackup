@@ -14,6 +14,7 @@ use App\Models\StationNotification;
 use App\Models\StationNotificationArmor;
 use App\Models\StationNotificationShield;
 use App\Models\StationRecords;
+use App\Models\System;
 use App\Models\Tower;
 use GuzzleHttp\Utils;
 use Symfony\Component\Yaml\Yaml;
@@ -68,7 +69,10 @@ class Notifications
             if ($stationdata == "Error, Structure Not Found") {
             } else {
                 StationItemJoin::where('station_id', $station)->delete();
-
+                $oldupdate = $station->r_updated_at;
+                if ($oldupdate != $stationdata['updated_at']) {
+                    System::where('id', $station->system_id)->update(['task_flag' => 0]);
+                }
                 Station::where('id', $station)->update([
                     'name' => $stationdata['str_name'],
                     'r_updated_at' => $stationdata['updated_at'],

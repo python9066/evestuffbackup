@@ -9154,7 +9154,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       axios({
         method: "post",
         //you can set what request you want to be
-        url: "api/taskrequest/" + this.station.system_name,
+        url: "api/taskrequest/" + this.station.system_name + "/" + this.station.system_id,
         headers: {
           Authorization: "Bearer " + this.$store.state.token,
           Accept: "application/json",

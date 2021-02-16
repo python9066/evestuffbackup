@@ -6,6 +6,7 @@ use App\Events\StationChanged;
 use App\Models\Station;
 use App\Models\StationItemJoin;
 use App\Models\StationItems;
+use App\Models\System;
 use Illuminate\Http\Request;
 use GuzzleHttp\Client as GuzzleHttpClient;
 
@@ -32,7 +33,10 @@ class StationController extends Controller
                 $core = "No";
             }
 
+            $taskFlag = System::where('id', $station->id)->value('task_flag')->first();
+
             $data1 = [
+                "task_flag" => $taskFlag,
                 "station_id" => $station->id,
                 "cored" => $core
             ];
@@ -52,6 +56,8 @@ class StationController extends Controller
             array_push($items, $data);
         }
 
+
+
         return [
             'cores' => $coreData,
             'fit' => Station::where('r_fitted', 'Fitted')->get(),
@@ -59,7 +65,7 @@ class StationController extends Controller
         ];
     }
 
-    public function taskRequest($systemName)
+    public function taskRequest($systemName, $sysID)
     {
         $url = "https://dev.scouts.scopeh.co.uk/api/task/add";
         $client = new GuzzleHttpClient();
@@ -76,6 +82,8 @@ class StationController extends Controller
             'json' => $body,
             'http_errors' => false
         ]);
+
+        System::where('id', $sysID)->update(['task_flag' => 1]);
     }
 
     /**
