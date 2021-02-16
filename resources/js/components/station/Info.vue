@@ -47,7 +47,7 @@
                             small
                             outlined
                             color="teal"
-                            v-if="$can('super') && taskFlag == 0"
+                            v-if="$can('super') && task_flag == 0"
                             @click="taskRequest()"
                         >
                             Request Update
@@ -57,7 +57,7 @@
                             small
                             class=" ml-2"
                             color="teal"
-                            v-if="$can('super') && taskFlag == 1"
+                            v-if="$can('super') && task_flag == 1"
                         >
                             Request Made
                         </v-chip>
