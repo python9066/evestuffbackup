@@ -125,6 +125,13 @@
                         >
                             Scout
                         </v-btn>
+                        <v-btn
+                            :loading="loadingf"
+                            :disabled="loadingf"
+                            @click="roleflag = 18"
+                        >
+                            Gunner
+                        </v-btn>
                     </v-btn-toggle>
                 </v-card>
             </v-col>
