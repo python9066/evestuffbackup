@@ -16679,7 +16679,7 @@ function sleep(ms) {
   methods: {
     checkexpanded: function checkexpanded(stations) {
       // console.log(stations);
-      if (stations.station_status_id != 3) {
+      if (stations.station_status_id != 12) {
         if (stations.id == this.expanded_id) {
           this.expanded = [];
           this.expanded_id = 0;
@@ -16840,7 +16840,7 @@ function sleep(ms) {
     },
     close: function close() {},
     click: function click(item) {
-      if (item.station_status_id != 3) {
+      if (item.station_status_id != 12) {
         this.expanded = [];
         item.text = null;
       }
@@ -33218,7 +33218,7 @@ var render = function() {
                                       _c(
                                         "v-fab-transition",
                                         [
-                                          item.station_status_id == 3 &&
+                                          item.station_status_id == 12 &&
                                           !_vm.expanded.includes(item)
                                             ? _c(
                                                 "v-btn",
@@ -33244,7 +33244,7 @@ var render = function() {
                                               )
                                             : _vm._e(),
                                           _vm._v(" "),
-                                          item.station_status_id == 3 &&
+                                          item.station_status_id == 12 &&
                                           _vm.expanded.includes(item)
                                             ? _c(
                                                 "v-btn",

@@ -126,7 +126,7 @@
                                             (expanded_id = item.id)
                                     "
                                     v-if="
-                                        item.station_status_id == 3 &&
+                                        item.station_status_id == 12 &&
                                             !expanded.includes(item)
                                     "
                                     color="success"
@@ -136,7 +136,7 @@
                                     icon
                                     @click="(expanded = []), (expanded_id = 0)"
                                     v-if="
-                                        item.station_status_id == 3 &&
+                                        item.station_status_id == 12 &&
                                             expanded.includes(item)
                                     "
                                     color="error"
@@ -326,7 +326,7 @@ export default {
     methods: {
         checkexpanded(stations) {
             // console.log(stations);
-            if (stations.station_status_id != 3) {
+            if (stations.station_status_id != 12) {
                 if (stations.id == this.expanded_id) {
                     this.expanded = [];
                     this.expanded_id = 0;
@@ -474,7 +474,7 @@ export default {
         close() {},
 
         click(item) {
-            if (item.station_status_id != 3) {
+            if (item.station_status_id != 12) {
                 this.expanded = [];
                 item.text = null;
             }
