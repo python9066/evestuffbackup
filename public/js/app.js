@@ -16914,7 +16914,7 @@ function sleep(ms) {
         }, {
           text: "Name",
           value: "station_name",
-          width: "20%",
+          width: "15%",
           show: true
         }, {
           text: "Timestamp",
@@ -16932,7 +16932,7 @@ function sleep(ms) {
           text: "Status",
           value: "station_status_name",
           align: "center",
-          width: "10%",
+          width: "15%",
           show: true
         }, {
           text: "Gunner/Info",
@@ -16973,7 +16973,7 @@ function sleep(ms) {
         }, {
           text: "Name",
           value: "station_name",
-          width: "20%",
+          width: "15%",
           show: true
         }, {
           text: "Timestamp",
@@ -16991,7 +16991,7 @@ function sleep(ms) {
           text: "Status",
           value: "station_status_name",
           align: "center",
-          width: "10%",
+          width: "15%",
           show: true
         }, {
           text: "Edited By",
@@ -33169,7 +33169,10 @@ var render = function() {
                                 return [
                                   _c(
                                     "div",
-                                    { staticClass: "align-items-center" },
+                                    {
+                                      staticClass:
+                                        "align-items-center d-lg-inline-flex"
+                                    },
                                     [
                                       _c(
                                         "v-btn",

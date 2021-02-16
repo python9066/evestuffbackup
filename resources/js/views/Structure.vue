@@ -100,7 +100,7 @@
             >
                 <v-menu offset-y>
                     <template v-slot:activator="{ on, attrs }">
-                        <div class="align-items-center">
+                        <div class="align-items-center d-lg-inline-flex">
                             <v-btn
                                 class="ma-2"
                                 v-bind="attrs"
@@ -557,7 +557,7 @@ export default {
                     {
                         text: "Name",
                         value: "station_name",
-                        width: "20%",
+                        width: "15%",
                         show: true
                     },
                     {
@@ -578,7 +578,7 @@ export default {
                         text: "Status",
                         value: "station_status_name",
                         align: "center",
-                        width: "10%",
+                        width: "15%",
                         show: true
                     },
                     {
@@ -628,7 +628,7 @@ export default {
                     {
                         text: "Name",
                         value: "station_name",
-                        width: "20%",
+                        width: "15%",
                         show: true
                     },
                     {
@@ -649,7 +649,7 @@ export default {
                         text: "Status",
                         value: "station_status_name",
                         align: "center",
-                        width: "10%",
+                        width: "15%",
                         show: true
                     },
                     {
