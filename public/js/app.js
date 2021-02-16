@@ -16660,7 +16660,7 @@ function sleep(ms) {
         text: "",
         value: "actions",
         width: "10%",
-        show: true,
+        show: showGunnerHead,
         align: "start"
       }, {
         text: "Edited By",
@@ -16945,6 +16945,13 @@ function sleep(ms) {
     },
     user_name: function user_name() {
       return this.$store.state.user_name;
+    },
+    showGunnerHead: function showGunnerHead() {
+      if (this.$can("gunner")) {
+        return true;
+      } else {
+        return false;
+      }
     },
     _headers: function _headers() {
       return this.headers.filter(function (x) {

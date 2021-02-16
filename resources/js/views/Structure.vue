@@ -333,7 +333,7 @@ export default {
                     text: "",
                     value: "actions",
                     width: "10%",
-                    show: true,
+                    show: showGunnerHead,
                     align: "start"
                 },
                 {
@@ -590,6 +590,14 @@ export default {
 
         user_name() {
             return this.$store.state.user_name;
+        },
+
+        showGunnerHead() {
+            if (this.$can("gunner")) {
+                return true;
+            } else {
+                return false;
+            }
         },
         _headers() {
             return this.headers.filter(x => x.show);
