@@ -529,7 +529,7 @@ export default {
             var request = {
                 station_status_id: item.station_status_id,
                 user_id: this.$store.state.user_id,
-                status_update: MOMENT.utc().format("YYYY-MM-DD  HH:mm:ss.000")
+                status_update: moment.utc().format("YYYY-MM-DD  HH:mm:ss.000")
             };
             axios({
                 method: "put", //you can set what request you want to be
