@@ -216,8 +216,9 @@
             <template v-slot:item.actions="{ item }">
                 <div class=" d-inline-flex">
                     <StationGunner
+                        class=" mr-2"
                         :station="item"
-                        v-if="$can('gunner')"
+                        v-if="showGunner(item)"
                     ></StationGunner>
                     <Info :station="item" v-if="showInfo(item)"></Info>
                 </div>
@@ -399,6 +400,17 @@ export default {
         },
 
         showInfo(item) {
+            if (this.$can("gunner")) {
+                if (item.item_id == 37534 || item.item_id == 35841) {
+                    return false;
+                }
+                return true;
+            } else {
+                return false;
+            }
+        },
+
+        showGunner(item) {
             if (this.$can("gunner")) {
                 if (item.item_id == 37534 || item.item_id == 35841) {
                     return false;

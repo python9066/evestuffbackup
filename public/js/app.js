@@ -16554,6 +16554,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 
@@ -16755,6 +16756,17 @@ function sleep(ms) {
       }
     },
     showInfo: function showInfo(item) {
+      if (this.$can("gunner")) {
+        if (item.item_id == 37534 || item.item_id == 35841) {
+          return false;
+        }
+
+        return true;
+      } else {
+        return false;
+      }
+    },
+    showGunner: function showGunner(item) {
       if (this.$can("gunner")) {
         if (item.item_id == 37534 || item.item_id == 35841) {
           return false;
@@ -33346,8 +33358,11 @@ var render = function() {
                     "div",
                     { staticClass: " d-inline-flex" },
                     [
-                      _vm.$can("gunner")
-                        ? _c("StationGunner", { attrs: { station: item } })
+                      _vm.showGunner(item)
+                        ? _c("StationGunner", {
+                            staticClass: " mr-2",
+                            attrs: { station: item }
+                          })
                         : _vm._e(),
                       _vm._v(" "),
                       _vm.showInfo(item)
