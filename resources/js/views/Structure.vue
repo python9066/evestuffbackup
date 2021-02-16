@@ -1,6 +1,5 @@
 <template>
     <div class=" pr-16 pl-16">
-        <messageStations></messageStations>
         <div class=" d-flex align-items-center">
             <v-card-title>Structures</v-card-title>
 
