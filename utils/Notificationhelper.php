@@ -51,9 +51,9 @@ class Notifications
     {
 
 
-        $stations = Station::pluck('id');
+        $stations = Station::all();
         foreach ($stations as $station) {
-            $url = "https://recon.gnf.lt/api/structure/" . $station;
+            $url = "https://recon.gnf.lt/api/structure/" . $station->id;
             $client = new GuzzleHttpClient();
             $headers = [
                 'x-gsf-user' => env('RECON_USER', 'DANCE2'),
@@ -68,12 +68,12 @@ class Notifications
             $stationdata = Utils::jsonDecode($response->getBody(), true);
             if ($stationdata == "Error, Structure Not Found") {
             } else {
-                StationItemJoin::where('station_id', $station)->delete();
+                StationItemJoin::where('station_id', $station->id)->delete();
                 // $oldupdate = $station['updated_at'];
                 // if ($oldupdate != $stationdata['updated_at']) {
                 //     System::where('id', $station->system_id)->update(['task_flag' => 0]);
                 // }
-                Station::where('id', $station)->update([
+                Station::where('id', $station->id)->update([
                     'name' => $stationdata['str_name'],
                     'r_updated_at' => $stationdata['updated_at'],
                     'r_fitted' => $stationdata['str_has_no_fitting'],
@@ -104,7 +104,7 @@ class Notifications
                         if (StationItems::where('id', $item['type_id'])->get()->count() == 0) {
                             StationItems::Create(['id' => $item['type_id'], 'item_name' => $item['name']]);
                         }
-                        StationItemJoin::create(['station_item_id' => $item['type_id'], 'station_id' => $station]);
+                        StationItemJoin::create(['station_item_id' => $item['type_id'], 'station_id' => $station->id]);
                     };
                 }
             }
