@@ -16554,6 +16554,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
 
 
 
@@ -33221,13 +33224,15 @@ var render = function() {
                                       _c(
                                         "v-fab-transition",
                                         [
-                                          item.station_status_id == 12 &&
+                                          item.status_id == 12 &&
                                           !_vm.expanded.includes(item)
                                             ? _c(
-                                                "v-btn",
+                                                "v-chip",
                                                 {
                                                   attrs: {
-                                                    icon: "",
+                                                    pill: "",
+                                                    outlined: "",
+                                                    small: "",
                                                     color: "success"
                                                   },
                                                   on: {
@@ -33238,16 +33243,11 @@ var render = function() {
                                                     }
                                                   }
                                                 },
-                                                [
-                                                  _c("v-icon", [
-                                                    _vm._v("fas fa-plus")
-                                                  ])
-                                                ],
-                                                1
+                                                [_vm._v("aDash")]
                                               )
                                             : _vm._e(),
                                           _vm._v(" "),
-                                          item.station_status_id == 12 &&
+                                          item.status_id == 12 &&
                                           _vm.expanded.includes(item)
                                             ? _c(
                                                 "v-btn",

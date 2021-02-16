@@ -119,28 +119,31 @@
 
                             <!-- EXTRA BUTTON -->
                             <v-fab-transition>
-                                <v-btn
-                                    icon
+                                <v-chip
+                                    pill
+                                    outlined
+                                    small
                                     @click="
                                         (expanded = [item]),
                                             (expanded_id = item.id)
                                     "
                                     v-if="
-                                        item.station_status_id == 12 &&
+                                        item.status_id == 12 &&
                                             !expanded.includes(item)
                                     "
                                     color="success"
-                                    ><v-icon>fas fa-plus</v-icon></v-btn
+                                    >aDash</v-chip
                                 >
                                 <v-btn
                                     icon
                                     @click="(expanded = []), (expanded_id = 0)"
                                     v-if="
-                                        item.station_status_id == 12 &&
+                                        item.status_id == 12 &&
                                             expanded.includes(item)
                                     "
                                     color="error"
-                                    ><v-icon>fas fa-minus</v-icon></v-btn
+                                >
+                                    <v-icon>fas fa-minus</v-icon></v-btn
                                 >
                             </v-fab-transition>
                         </div>
