@@ -9663,6 +9663,761 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/station/Structure.vue?vue&type=script&lang=js&":
+/*!****************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/station/Structure.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var querystring__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! querystring */ "./node_modules/querystring-es3/index.js");
+/* harmony import */ var querystring__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(querystring__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
+
+function sleep(ms) {
+  return new Promise(function (resolve) {
+    return setTimeout(resolve, ms);
+  });
+}
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      atime: null,
+      check: "not here",
+      componentKey: 0,
+      dialog1: false,
+      dialog2: false,
+      dialog3: false,
+      diff: 0,
+      endcount: "",
+      expanded: [],
+      expanded_id: 0,
+      icon: "justify",
+      loadingt: true,
+      loadingf: true,
+      loadingr: true,
+      name: "Timer",
+      poll: null,
+      search: "",
+      statusflag: 2,
+      snack: false,
+      snackColor: "",
+      snackText: "",
+      toggle_exclusive: 1,
+      today: 0,
+      text: "center",
+      toggle_none: null,
+      dropdown_edit: [{
+        title: "On My Way",
+        value: 2
+      }, {
+        title: "Repairing",
+        value: 11
+      }, {
+        title: "Hostile",
+        value: 12
+      }, {
+        title: "Saved",
+        value: 4
+      }, {
+        title: "New",
+        value: 1
+      }]
+    };
+  },
+  created: function created() {
+    var _this = this;
+
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              Echo["private"]("notes").listen("StationNotificationNew", function (e) {
+                _this.$store.dispatch("addStationNotification", e.flag.message);
+              }).listen("StationNotificationUpdate", function (e) {
+                _this.$store.dispatch("updateStationNotification", e.flag.message);
+              }).listen("StationNotificationDelete", function (e) {
+                _this.$store.dispatch("deleteStationNotification", e.flag.id);
+              }).listen("StationDataSet", function (e) {
+                _this.$store.dispatch("getStationData");
+              });
+
+              if (!_this.$can("gunner")) {
+                _context.next = 5;
+                break;
+              }
+
+              Echo["private"]("stationinfo").listen("StationInfoGet", function (e) {
+                _this.$store.dispatch("loadStationInfo");
+              }).listen("StationCoreUpdate", function (e) {
+                console.log(e);
+
+                _this.$store.dispatch("updateCores", e.flag.message);
+              });
+              _context.next = 5;
+              return _this.$store.dispatch("loadStationInfo");
+
+            case 5:
+              _this.$store.dispatch("getStationData").then(function () {
+                _this.loadingt = false;
+                _this.loadingf = false;
+                _this.loadingr = false;
+              });
+
+            case 6:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    }))();
+  },
+  mounted: function mounted() {
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      }, _callee2);
+    }))();
+  },
+  methods: {
+    checkexpanded: function checkexpanded(stations) {
+      // console.log(stations);
+      if (stations.station_status_id != 12) {
+        if (stations.id == this.expanded_id) {
+          this.expanded = [];
+          this.expanded_id = 0;
+        }
+      }
+    },
+    updatetext: function updatetext(payload, item) {
+      // console.log(item);
+      if (item.text != payload) {
+        item.text = payload;
+        var request = {
+          text: item.text
+        };
+        this.$store.dispatch("updateStationNotification", item);
+        axios({
+          method: "put",
+          //you can set what request you want to be
+          url: "api/updatestationnotification/" + item.id,
+          data: request,
+          headers: {
+            Authorization: "Bearer " + this.$store.state.token,
+            Accept: "application/json",
+            "Content-Type": "application/json"
+          }
+        });
+      }
+    },
+    showInfo: function showInfo(item) {
+      if (this.$can("gunner")) {
+        if (item.item_id == 37534 || item.item_id == 35841) {
+          return false;
+        }
+
+        return true;
+      } else {
+        return false;
+      }
+    },
+    showGunner: function showGunner(item) {
+      if (this.$can("gunner")) {
+        if (item.item_id == 37534 || item.item_id == 35841) {
+          return false;
+        }
+
+        return true;
+      } else {
+        return false;
+      }
+    },
+    loadstations: function loadstations() {
+      var _this2 = this;
+
+      this.loadingr = true;
+      this.$store.dispatch("getStationData").then(function () {
+        _this2.loadingr = false;
+      }); // console.log("30secs");
+    },
+    pillIcon: function pillIcon(statusId) {
+      if (statusId == 1) {
+        return "faSvg fa-plus";
+      }
+
+      if (statusId == 2) {
+        return "faSvg fa-route";
+      }
+
+      if (statusId == 3) {
+        return "faSvg fa-fist-raised";
+      }
+
+      if (statusId == 4) {
+        return "faSvg fa-thumbs-up";
+      }
+
+      if (statusId == 5) {
+        return "faSvg fa-clock";
+      }
+
+      if (statusId == 6) {
+        return "faSvg fa-life-ring";
+      }
+
+      if (statusId == 7) {
+        return "faSvg fa-dumpster-fire";
+      }
+
+      if (statusId == 8) {
+        return "faSvg fa-shield-alt";
+      }
+
+      if (statusId == 9) {
+        return "faSvg fa-house-damage";
+      }
+
+      if (statusId == 11) {
+        return "faSvg fa-toolbox";
+      }
+
+      if (statusId == 12) {
+        return "faSvg fa-exclamation-circle";
+      }
+    },
+    pillColor: function pillColor(statusId) {
+      if (statusId == 1) {
+        return "success";
+      }
+
+      if (statusId == 2) {
+        return "primary";
+      }
+
+      if (statusId == 3) {
+        return "#FF5EEA";
+      }
+
+      if (statusId == 4 || statusId == 11) {
+        return "dark-orange";
+      }
+
+      if (statusId == 5) {
+        return "indigo accent-4";
+      }
+
+      if (statusId == 6) {
+        return "primary";
+      }
+
+      if (statusId == 7) {
+        return "red";
+      }
+
+      if (statusId == 8 || statusId == 12) {
+        return "warning";
+      }
+
+      if (statusId == 9) {
+        return "warning";
+      }
+    },
+    campaignStart: function campaignStart(item) {
+      item.station_status_id = 6;
+      this.$store.dispatch("updateStationNotification", item);
+    },
+    save: function save() {
+      this.snack = true;
+      this.snackColor = "success";
+      this.snackText = "Data saved";
+    },
+    cancel: function cancel() {
+      this.snack = true;
+      this.snackColor = "error";
+      this.snackText = "Canceled";
+    },
+    open: function open() {
+      this.snack = true;
+      this.snackColor = "info";
+      this.snackText = "Dialog opened";
+    },
+    close: function close() {},
+    click: function click(item) {
+      if (item.station_status_id != 12) {
+        this.expanded = [];
+        item.text = null;
+      }
+
+      var request = {
+        station_status_id: item.station_status_id,
+        user_id: this.$store.state.user_id
+      };
+      axios({
+        method: "put",
+        //you can set what request you want to be
+        url: "api/updatestationnotification/" + item.id,
+        data: request,
+        headers: {
+          Authorization: "Bearer " + this.$store.state.token,
+          Accept: "application/json",
+          "Content-Type": "application/json"
+        }
+      });
+    },
+    sec: function sec(item) {
+      var a = moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc();
+      var b = moment__WEBPACK_IMPORTED_MODULE_2___default()(item.timestamp);
+      this.diff = a.diff(b);
+      return this.diff;
+    }
+  },
+  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapState"])(["stations"])), {}, {
+    filteredItems: function filteredItems() {
+      if (this.statusflag == 2) {
+        return this.stations.filter(function (stations) {
+          return stations.station_status_id != 5 && stations.station_status_id != 10 && stations.station_status_id != 7;
+        });
+      }
+
+      if (this.statusflag == 3) {
+        return this.stations.filter(function (stations) {
+          return stations.station_status_id == 5;
+        });
+      }
+
+      if (this.statusflag == 4) {
+        return this.stations.filter(function (stations) {
+          return stations.station_status_id == 8 || stations.station_status_id == 9 || stations.station_status_id == 7;
+        });
+      } else {
+        return this.stations.filter(function (stations) {
+          return stations.station_status_id != 10;
+        });
+      }
+    },
+    user_name: function user_name() {
+      return this.$store.state.user_name;
+    },
+    _headers: function _headers() {
+      if (this.$can("gunner")) {
+        var Headers = [{
+          text: "Region",
+          value: "region_name",
+          width: "8%"
+        }, {
+          text: "Constellation",
+          value: "constellation_name",
+          width: "8%"
+        }, {
+          text: "System",
+          value: "system_name",
+          width: "8%"
+        }, {
+          text: "Type",
+          value: "item_name",
+          width: "10%"
+        }, {
+          text: "Name",
+          value: "station_name",
+          width: "15%"
+        }, {
+          text: "Timestamp",
+          value: "timestamp",
+          align: "center",
+          width: "15%"
+        }, {
+          text: "Age/CountDown",
+          value: "count",
+          sortable: false,
+          width: "5%"
+        }, {
+          text: "Status",
+          value: "station_status_name",
+          width: "10%"
+        }, {
+          text: "Gunner/Info",
+          value: "actions",
+          width: "10%",
+          align: "start"
+        }, {
+          text: "Edited By",
+          value: "user_name",
+          width: "10%",
+          align: "start"
+        } // { text: "Vulernable End Time", value: "vulnerable_end_time" }
+        ];
+        return Headers;
+      } else {
+        var Headers = [{
+          text: "Region",
+          value: "region_name",
+          width: "8%"
+        }, {
+          text: "Constellation",
+          value: "constellation_name",
+          width: "8%"
+        }, {
+          text: "System",
+          value: "system_name",
+          width: "8%"
+        }, {
+          text: "Type",
+          value: "item_name",
+          width: "10%"
+        }, {
+          text: "Name",
+          value: "station_name",
+          width: "15%"
+        }, {
+          text: "Timestamp",
+          value: "timestamp",
+          align: "center",
+          width: "15%"
+        }, {
+          text: "Age/CountDown",
+          value: "count",
+          sortable: false,
+          width: "5%"
+        }, {
+          text: "Status",
+          value: "station_status_name",
+          width: "15%"
+        }, {
+          text: "Edited By",
+          value: "user_name",
+          width: "10%",
+          align: "start"
+        }];
+        return Headers;
+      }
+    }
+  }),
+  beforeDestroy: function beforeDestroy() {
+    Echo.leave("notes");
+    Echo.leave("stationinfo");
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/mixins/Permissions.vue?vue&type=script&lang=js&":
 /*!******************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/mixins/Permissions.vue?vue&type=script&lang=js& ***!
@@ -15386,763 +16141,6 @@ function sleep(ms) {
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/Structure.vue?vue&type=script&lang=js&":
-/*!***************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/Structure.vue?vue&type=script&lang=js& ***!
-  \***************************************************************************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
-/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var querystring__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! querystring */ "./node_modules/querystring-es3/index.js");
-/* harmony import */ var querystring__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(querystring__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
-/* harmony import */ var _service_apil__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../service/apil */ "./resources/js/service/apil.js");
-
-
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-
-
-
-
-
-function sleep(ms) {
-  return new Promise(function (resolve) {
-    return setTimeout(resolve, ms);
-  });
-}
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-  data: function data() {
-    return {
-      atime: null,
-      check: "not here",
-      componentKey: 0,
-      dialog1: false,
-      dialog2: false,
-      dialog3: false,
-      diff: 0,
-      endcount: "",
-      expanded: [],
-      expanded_id: 0,
-      icon: "justify",
-      loadingt: true,
-      loadingf: true,
-      loadingr: true,
-      name: "Timer",
-      poll: null,
-      search: "",
-      statusflag: 2,
-      snack: false,
-      snackColor: "",
-      snackText: "",
-      toggle_exclusive: 1,
-      today: 0,
-      text: "center",
-      toggle_none: null,
-      dropdown_edit: [{
-        title: "On My Way",
-        value: 2
-      }, {
-        title: "Repairing",
-        value: 11
-      }, {
-        title: "Hostile",
-        value: 12
-      }, {
-        title: "Saved",
-        value: 4
-      }, {
-        title: "New",
-        value: 1
-      }]
-    };
-  },
-  created: function created() {
-    var _this = this;
-
-    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
-        while (1) {
-          switch (_context.prev = _context.next) {
-            case 0:
-              Echo["private"]("notes").listen("StationNotificationNew", function (e) {
-                _this.$store.dispatch("addStationNotification", e.flag.message);
-              }).listen("StationNotificationUpdate", function (e) {
-                _this.$store.dispatch("updateStationNotification", e.flag.message);
-              }).listen("StationNotificationDelete", function (e) {
-                _this.$store.dispatch("deleteStationNotification", e.flag.id);
-              }).listen("StationDataSet", function (e) {
-                _this.$store.dispatch("getStationData");
-              });
-
-              if (!_this.$can("gunner")) {
-                _context.next = 5;
-                break;
-              }
-
-              Echo["private"]("stationinfo").listen("StationInfoGet", function (e) {
-                _this.$store.dispatch("loadStationInfo");
-              }).listen("StationCoreUpdate", function (e) {
-                console.log(e);
-
-                _this.$store.dispatch("updateCores", e.flag.message);
-              });
-              _context.next = 5;
-              return _this.$store.dispatch("loadStationInfo");
-
-            case 5:
-              _this.$store.dispatch("getStationData").then(function () {
-                _this.loadingt = false;
-                _this.loadingf = false;
-                _this.loadingr = false;
-              });
-
-            case 6:
-            case "end":
-              return _context.stop();
-          }
-        }
-      }, _callee);
-    }))();
-  },
-  mounted: function mounted() {
-    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
-        while (1) {
-          switch (_context2.prev = _context2.next) {
-            case 0:
-            case "end":
-              return _context2.stop();
-          }
-        }
-      }, _callee2);
-    }))();
-  },
-  methods: {
-    checkexpanded: function checkexpanded(stations) {
-      // console.log(stations);
-      if (stations.station_status_id != 12) {
-        if (stations.id == this.expanded_id) {
-          this.expanded = [];
-          this.expanded_id = 0;
-        }
-      }
-    },
-    updatetext: function updatetext(payload, item) {
-      // console.log(item);
-      if (item.text != payload) {
-        item.text = payload;
-        var request = {
-          text: item.text
-        };
-        this.$store.dispatch("updateStationNotification", item);
-        axios({
-          method: "put",
-          //you can set what request you want to be
-          url: "api/updatestationnotification/" + item.id,
-          data: request,
-          headers: {
-            Authorization: "Bearer " + this.$store.state.token,
-            Accept: "application/json",
-            "Content-Type": "application/json"
-          }
-        });
-      }
-    },
-    showInfo: function showInfo(item) {
-      if (this.$can("gunner")) {
-        if (item.item_id == 37534 || item.item_id == 35841) {
-          return false;
-        }
-
-        return true;
-      } else {
-        return false;
-      }
-    },
-    showGunner: function showGunner(item) {
-      if (this.$can("gunner")) {
-        if (item.item_id == 37534 || item.item_id == 35841) {
-          return false;
-        }
-
-        return true;
-      } else {
-        return false;
-      }
-    },
-    loadstations: function loadstations() {
-      var _this2 = this;
-
-      this.loadingr = true;
-      this.$store.dispatch("getStationData").then(function () {
-        _this2.loadingr = false;
-      }); // console.log("30secs");
-    },
-    pillIcon: function pillIcon(statusId) {
-      if (statusId == 1) {
-        return "faSvg fa-plus";
-      }
-
-      if (statusId == 2) {
-        return "faSvg fa-route";
-      }
-
-      if (statusId == 3) {
-        return "faSvg fa-fist-raised";
-      }
-
-      if (statusId == 4) {
-        return "faSvg fa-thumbs-up";
-      }
-
-      if (statusId == 5) {
-        return "faSvg fa-clock";
-      }
-
-      if (statusId == 6) {
-        return "faSvg fa-life-ring";
-      }
-
-      if (statusId == 7) {
-        return "faSvg fa-dumpster-fire";
-      }
-
-      if (statusId == 8) {
-        return "faSvg fa-shield-alt";
-      }
-
-      if (statusId == 9) {
-        return "faSvg fa-house-damage";
-      }
-
-      if (statusId == 11) {
-        return "faSvg fa-toolbox";
-      }
-
-      if (statusId == 12) {
-        return "faSvg fa-exclamation-circle";
-      }
-    },
-    pillColor: function pillColor(statusId) {
-      if (statusId == 1) {
-        return "success";
-      }
-
-      if (statusId == 2) {
-        return "primary";
-      }
-
-      if (statusId == 3) {
-        return "#FF5EEA";
-      }
-
-      if (statusId == 4 || statusId == 11) {
-        return "dark-orange";
-      }
-
-      if (statusId == 5) {
-        return "indigo accent-4";
-      }
-
-      if (statusId == 6) {
-        return "primary";
-      }
-
-      if (statusId == 7) {
-        return "red";
-      }
-
-      if (statusId == 8 || statusId == 12) {
-        return "warning";
-      }
-
-      if (statusId == 9) {
-        return "warning";
-      }
-    },
-    campaignStart: function campaignStart(item) {
-      item.station_status_id = 6;
-      this.$store.dispatch("updateStationNotification", item);
-    },
-    save: function save() {
-      this.snack = true;
-      this.snackColor = "success";
-      this.snackText = "Data saved";
-    },
-    cancel: function cancel() {
-      this.snack = true;
-      this.snackColor = "error";
-      this.snackText = "Canceled";
-    },
-    open: function open() {
-      this.snack = true;
-      this.snackColor = "info";
-      this.snackText = "Dialog opened";
-    },
-    close: function close() {},
-    click: function click(item) {
-      if (item.station_status_id != 12) {
-        this.expanded = [];
-        item.text = null;
-      }
-
-      var request = {
-        station_status_id: item.station_status_id,
-        user_id: this.$store.state.user_id
-      };
-      axios({
-        method: "put",
-        //you can set what request you want to be
-        url: "api/updatestationnotification/" + item.id,
-        data: request,
-        headers: {
-          Authorization: "Bearer " + this.$store.state.token,
-          Accept: "application/json",
-          "Content-Type": "application/json"
-        }
-      });
-    },
-    sec: function sec(item) {
-      var a = moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc();
-      var b = moment__WEBPACK_IMPORTED_MODULE_2___default()(item.timestamp);
-      this.diff = a.diff(b);
-      return this.diff;
-    }
-  },
-  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapState"])(["stations"])), {}, {
-    filteredItems: function filteredItems() {
-      if (this.statusflag == 2) {
-        return this.stations.filter(function (stations) {
-          return stations.station_status_id != 5 && stations.station_status_id != 10 && stations.station_status_id != 7;
-        });
-      }
-
-      if (this.statusflag == 3) {
-        return this.stations.filter(function (stations) {
-          return stations.station_status_id == 5;
-        });
-      }
-
-      if (this.statusflag == 4) {
-        return this.stations.filter(function (stations) {
-          return stations.station_status_id == 8 || stations.station_status_id == 9 || stations.station_status_id == 7;
-        });
-      } else {
-        return this.stations.filter(function (stations) {
-          return stations.station_status_id != 10;
-        });
-      }
-    },
-    user_name: function user_name() {
-      return this.$store.state.user_name;
-    },
-    _headers: function _headers() {
-      if (this.$can("gunner")) {
-        var Headers = [{
-          text: "Region",
-          value: "region_name",
-          width: "8%"
-        }, {
-          text: "Constellation",
-          value: "constellation_name",
-          width: "8%"
-        }, {
-          text: "System",
-          value: "system_name",
-          width: "8%"
-        }, {
-          text: "Type",
-          value: "item_name",
-          width: "10%"
-        }, {
-          text: "Name",
-          value: "station_name",
-          width: "15%"
-        }, {
-          text: "Timestamp",
-          value: "timestamp",
-          align: "center",
-          width: "15%"
-        }, {
-          text: "Age/CountDown",
-          value: "count",
-          sortable: false,
-          width: "5%"
-        }, {
-          text: "Status",
-          value: "station_status_name",
-          width: "10%"
-        }, {
-          text: "Gunner/Info",
-          value: "actions",
-          width: "10%",
-          align: "start"
-        }, {
-          text: "Edited By",
-          value: "user_name",
-          width: "10%",
-          align: "start"
-        } // { text: "Vulernable End Time", value: "vulnerable_end_time" }
-        ];
-        return Headers;
-      } else {
-        var Headers = [{
-          text: "Region",
-          value: "region_name",
-          width: "8%"
-        }, {
-          text: "Constellation",
-          value: "constellation_name",
-          width: "8%"
-        }, {
-          text: "System",
-          value: "system_name",
-          width: "8%"
-        }, {
-          text: "Type",
-          value: "item_name",
-          width: "10%"
-        }, {
-          text: "Name",
-          value: "station_name",
-          width: "15%"
-        }, {
-          text: "Timestamp",
-          value: "timestamp",
-          align: "center",
-          width: "15%"
-        }, {
-          text: "Age/CountDown",
-          value: "count",
-          sortable: false,
-          width: "5%"
-        }, {
-          text: "Status",
-          value: "station_status_name",
-          width: "15%"
-        }, {
-          text: "Edited By",
-          value: "user_name",
-          width: "10%",
-          align: "start"
-        }];
-        return Headers;
-      }
-    }
-  }),
-  beforeDestroy: function beforeDestroy() {
-    Echo.leave("notes");
-    Echo.leave("stationinfo");
-  }
-});
-
-/***/ }),
-
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/Timers.vue?vue&type=script&lang=js&":
 /*!************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/Timers.vue?vue&type=script&lang=js& ***!
@@ -17298,7 +17296,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var querystring__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! querystring */ "./node_modules/querystring-es3/index.js");
 /* harmony import */ var querystring__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(querystring__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
-/* harmony import */ var _service_apil__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../service/apil */ "./resources/js/service/apil.js");
 
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
@@ -17597,7 +17594,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-
 
 
 
@@ -28542,6 +28538,697 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/station/Structure.vue?vue&type=template&id=2e9dc37d&":
+/*!********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/station/Structure.vue?vue&type=template&id=2e9dc37d& ***!
+  \********************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: " pr-16 pl-16" },
+    [
+      _c(
+        "div",
+        { staticClass: " d-flex align-items-center" },
+        [
+          _c("v-card-title", [_vm._v("Structures")]),
+          _vm._v(" "),
+          _c("v-text-field", {
+            staticClass: " ml-5",
+            attrs: {
+              "append-icon": "mdi-magnify",
+              label: "Search",
+              "single-line": "",
+              "hide-details": ""
+            },
+            model: {
+              value: _vm.search,
+              callback: function($$v) {
+                _vm.search = $$v
+              },
+              expression: "search"
+            }
+          }),
+          _vm._v(" "),
+          _c(
+            "v-btn-toggle",
+            {
+              attrs: { "right-align": "", mandatory: "", value: 2 },
+              model: {
+                value: _vm.toggle_exclusive,
+                callback: function($$v) {
+                  _vm.toggle_exclusive = $$v
+                },
+                expression: "toggle_exclusive"
+              }
+            },
+            [
+              _c(
+                "v-btn",
+                {
+                  attrs: { loading: _vm.loadingf, disabled: _vm.loadingf },
+                  on: {
+                    click: function($event) {
+                      _vm.statusflag = 1
+                    }
+                  }
+                },
+                [_vm._v("\n                All\n            ")]
+              ),
+              _vm._v(" "),
+              _c(
+                "v-btn",
+                {
+                  attrs: { loading: _vm.loadingf, disabled: _vm.loadingf },
+                  on: {
+                    click: function($event) {
+                      _vm.statusflag = 2
+                    }
+                  }
+                },
+                [_vm._v("\n                Active\n            ")]
+              ),
+              _vm._v(" "),
+              _c(
+                "v-btn",
+                {
+                  attrs: { loading: _vm.loadingf, disabled: _vm.loadingf },
+                  on: {
+                    click: function($event) {
+                      _vm.statusflag = 3
+                    }
+                  }
+                },
+                [_vm._v("\n                UpComing\n            ")]
+              ),
+              _vm._v(" "),
+              _c(
+                "v-btn",
+                {
+                  attrs: { loading: _vm.loadingf, disabled: _vm.loadingf },
+                  on: {
+                    click: function($event) {
+                      _vm.statusflag = 4
+                    }
+                  }
+                },
+                [_vm._v("\n                Reffed\n            ")]
+              )
+            ],
+            1
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "v-data-table",
+        {
+          staticClass: "elevation-1",
+          attrs: {
+            headers: _vm._headers,
+            items: _vm.filteredItems,
+            expanded: _vm.expanded,
+            "item-key": "id",
+            loading: _vm.loadingt,
+            "items-per-page": 25,
+            "footer-props": { "items-per-page-options": [15, 25, 50, 100, -1] },
+            "sort-by": ["timestamp"],
+            search: _vm.search,
+            "sort-desc": [true, false],
+            "multi-sort": ""
+          },
+          on: {
+            "update:expanded": function($event) {
+              _vm.expanded = $event
+            }
+          },
+          scopedSlots: _vm._u(
+            [
+              {
+                key: "item.count",
+                fn: function(ref) {
+                  var item = ref.item
+                  return [
+                    item.station_status_id == 5
+                      ? _c("CountDowntimer", {
+                          attrs: {
+                            "start-time": _vm.moment.utc(item.timestamp).unix(),
+                            "end-text": "Coming Out",
+                            interval: 1000
+                          },
+                          on: {
+                            campaignStart: function($event) {
+                              return _vm.campaignStart(item)
+                            }
+                          },
+                          scopedSlots: _vm._u(
+                            [
+                              {
+                                key: "countdown",
+                                fn: function(scope) {
+                                  return [
+                                    _c(
+                                      "span",
+                                      { staticClass: "blue--text pl-3" },
+                                      [
+                                        _vm._v(
+                                          _vm._s(scope.props.hours) +
+                                            ":" +
+                                            _vm._s(scope.props.minutes) +
+                                            ":" +
+                                            _vm._s(scope.props.seconds)
+                                        )
+                                      ]
+                                    )
+                                  ]
+                                }
+                              }
+                            ],
+                            null,
+                            true
+                          )
+                        })
+                      : _c("VueCountUptimer", {
+                          attrs: {
+                            "start-time": _vm.moment.utc(item.timestamp).unix(),
+                            "end-text": "Window Closed",
+                            interval: 1000
+                          },
+                          scopedSlots: _vm._u(
+                            [
+                              {
+                                key: "countup",
+                                fn: function(scope) {
+                                  return [
+                                    _c(
+                                      "span",
+                                      { staticClass: "red--text pl-3" },
+                                      [
+                                        _vm._v(
+                                          _vm._s(scope.props.hours) +
+                                            ":" +
+                                            _vm._s(scope.props.minutes) +
+                                            ":" +
+                                            _vm._s(scope.props.seconds)
+                                        )
+                                      ]
+                                    )
+                                  ]
+                                }
+                              }
+                            ],
+                            null,
+                            true
+                          )
+                        })
+                  ]
+                }
+              },
+              {
+                key: "item.station_status_name",
+                fn: function(ref) {
+                  var item = ref.item
+                  return [
+                    _vm.$can("edit_notifications")
+                      ? _c(
+                          "v-menu",
+                          {
+                            attrs: { "offset-y": "" },
+                            scopedSlots: _vm._u(
+                              [
+                                {
+                                  key: "activator",
+                                  fn: function(ref) {
+                                    var on = ref.on
+                                    var attrs = ref.attrs
+                                    return [
+                                      _c(
+                                        "div",
+                                        {
+                                          staticClass:
+                                            "align-items-center d-lg-inline-flex"
+                                        },
+                                        [
+                                          _c(
+                                            "v-btn",
+                                            _vm._g(
+                                              _vm._b(
+                                                {
+                                                  staticClass: "ma-2",
+                                                  attrs: {
+                                                    tile: "",
+                                                    outlined: "",
+                                                    color: _vm.pillColor(
+                                                      item.station_status_id
+                                                    )
+                                                  }
+                                                },
+                                                "v-btn",
+                                                attrs,
+                                                false
+                                              ),
+                                              on
+                                            ),
+                                            [
+                                              _c(
+                                                "v-icon",
+                                                { attrs: { left: "" } },
+                                                [
+                                                  _vm._v(
+                                                    "\n                                " +
+                                                      _vm._s(
+                                                        _vm.pillIcon(
+                                                          item.station_status_id
+                                                        )
+                                                      )
+                                                  )
+                                                ]
+                                              ),
+                                              _vm._v(
+                                                "\n                            " +
+                                                  _vm._s(
+                                                    item.station_status_name
+                                                  ) +
+                                                  "\n                        "
+                                              )
+                                            ],
+                                            1
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "v-fab-transition",
+                                            [
+                                              item.station_status_id == 12 &&
+                                              !_vm.expanded.includes(item)
+                                                ? _c(
+                                                    "v-chip",
+                                                    {
+                                                      attrs: {
+                                                        pill: "",
+                                                        outlined: "",
+                                                        small: "",
+                                                        color: "success"
+                                                      },
+                                                      on: {
+                                                        click: function(
+                                                          $event
+                                                        ) {
+                                                          ;(_vm.expanded = [
+                                                            item
+                                                          ]),
+                                                            (_vm.expanded_id =
+                                                              item.id)
+                                                        }
+                                                      }
+                                                    },
+                                                    [_vm._v("adash")]
+                                                  )
+                                                : _vm._e(),
+                                              _vm._v(" "),
+                                              item.station_status_id == 12 &&
+                                              _vm.expanded.includes(item)
+                                                ? _c(
+                                                    "v-btn",
+                                                    {
+                                                      attrs: {
+                                                        icon: "",
+                                                        color: "error"
+                                                      },
+                                                      on: {
+                                                        click: function(
+                                                          $event
+                                                        ) {
+                                                          ;(_vm.expanded = []),
+                                                            (_vm.expanded_id = 0)
+                                                        }
+                                                      }
+                                                    },
+                                                    [
+                                                      _c("v-icon", [
+                                                        _vm._v("fas fa-minus")
+                                                      ])
+                                                    ],
+                                                    1
+                                                  )
+                                                : _vm._e()
+                                            ],
+                                            1
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "v-fab-transition",
+                                            [
+                                              item.station_status_id == 11
+                                                ? _c("StationTimer", {
+                                                    attrs: { station: item }
+                                                  })
+                                                : _vm._e()
+                                            ],
+                                            1
+                                          )
+                                        ],
+                                        1
+                                      )
+                                    ]
+                                  }
+                                }
+                              ],
+                              null,
+                              true
+                            )
+                          },
+                          [
+                            _vm._v(" "),
+                            _c(
+                              "v-list",
+                              _vm._l(_vm.dropdown_edit, function(list, index) {
+                                return _c(
+                                  "v-list-item",
+                                  {
+                                    key: index,
+                                    on: {
+                                      click: function($event) {
+                                        ;(item.station_status_id = list.value),
+                                          (item.station_status_name =
+                                            list.title),
+                                          (item.user_name = _vm.user_name),
+                                          _vm.click(item)
+                                      }
+                                    }
+                                  },
+                                  [
+                                    _c("v-list-item-title", [
+                                      _vm._v(_vm._s(list.title))
+                                    ])
+                                  ],
+                                  1
+                                )
+                              }),
+                              1
+                            )
+                          ],
+                          1
+                        )
+                      : _c(
+                          "div",
+                          [
+                            [
+                              _c(
+                                "div",
+                                {
+                                  staticClass:
+                                    "align-items-center d-inline-flex"
+                                },
+                                [
+                                  _c(
+                                    "v-chip",
+                                    {
+                                      staticClass: "ma-2",
+                                      attrs: {
+                                        lable: "",
+                                        color: _vm.pillColor(
+                                          item.station_status_id
+                                        )
+                                      }
+                                    },
+                                    [
+                                      _c("v-icon", { attrs: { left: "" } }, [
+                                        _vm._v(
+                                          _vm._s(
+                                            _vm.pillIcon(item.station_status_id)
+                                          )
+                                        )
+                                      ]),
+                                      _vm._v(
+                                        "\n                            " +
+                                          _vm._s(item.station_status_name) +
+                                          "\n                        "
+                                      )
+                                    ],
+                                    1
+                                  ),
+                                  _vm._v(" "),
+                                  item.status_id == 11 && item.end_time != null
+                                    ? _c("CountDowntimer", {
+                                        attrs: {
+                                          "start-time": _vm.moment
+                                            .utc(item.repair_time)
+                                            .unix(),
+                                          interval: 1000,
+                                          "end-text": "Is it Secured?"
+                                        },
+                                        scopedSlots: _vm._u(
+                                          [
+                                            {
+                                              key: "countdown",
+                                              fn: function(scope) {
+                                                return [
+                                                  _c(
+                                                    "span",
+                                                    {
+                                                      staticClass:
+                                                        "blue--text pl-3"
+                                                    },
+                                                    [
+                                                      _vm._v(
+                                                        _vm._s(
+                                                          scope.props.minutes
+                                                        ) +
+                                                          ":" +
+                                                          _vm._s(
+                                                            scope.props.seconds
+                                                          )
+                                                      )
+                                                    ]
+                                                  )
+                                                ]
+                                              }
+                                            }
+                                          ],
+                                          null,
+                                          true
+                                        )
+                                      })
+                                    : _vm._e()
+                                ],
+                                1
+                              )
+                            ]
+                          ],
+                          2
+                        )
+                  ]
+                }
+              },
+              {
+                key: "expanded-item",
+                fn: function(ref) {
+                  var headers = ref.headers
+                  var item = ref.item
+                  return [
+                    _c(
+                      "td",
+                      { attrs: { colspan: headers.length, align: "center" } },
+                      [
+                        _c(
+                          "div",
+                          [
+                            _c(
+                              "v-col",
+                              { staticClass: "align-center" },
+                              [
+                                _c("v-text-field", {
+                                  attrs: {
+                                    value: item.text,
+                                    label:
+                                      "aDash Board Link - needs to be a link to a scan, making a new scan from where will not save",
+                                    outlined: "",
+                                    shaped: ""
+                                  },
+                                  on: {
+                                    change: function($event) {
+                                      ;(_vm.payload = $event),
+                                        _vm.updatetext(_vm.payload, item)
+                                    }
+                                  }
+                                })
+                              ],
+                              1
+                            )
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        item.text != null &&
+                        item.text.includes(
+                          "https://adashboard.info/intel/dscan/"
+                        )
+                          ? _c(
+                              "div",
+                              [
+                                _c(
+                                  "v-card",
+                                  {
+                                    staticClass: "mx-auto",
+                                    attrs: { elevation: "24" }
+                                  },
+                                  [
+                                    _c("iframe", {
+                                      staticStyle: {
+                                        left: "0",
+                                        bottom: "0",
+                                        right: "0",
+                                        width: "100%",
+                                        height: "600px",
+                                        border: "none",
+                                        margin: "0",
+                                        padding: "0",
+                                        overflow: "hidden",
+                                        "z-index": "999999"
+                                      },
+                                      attrs: {
+                                        name: "ifram" + item.id,
+                                        src: item.text
+                                      }
+                                    })
+                                  ]
+                                )
+                              ],
+                              1
+                            )
+                          : _vm._e(),
+                        _vm._v(" "),
+                        _c("div", [
+                          _vm._v(
+                            "\n                    " +
+                              _vm._s(item.text) +
+                              "\n                "
+                          )
+                        ])
+                      ]
+                    )
+                  ]
+                }
+              },
+              {
+                key: "item.station_name",
+                fn: function(ref) {
+                  var item = ref.item
+                  return [
+                    _vm._v(
+                      "\n            " +
+                        _vm._s(item.station_name) +
+                        "\n        "
+                    )
+                  ]
+                }
+              },
+              _vm.$can("gunner")
+                ? {
+                    key: "item.actions",
+                    fn: function(ref) {
+                      var item = ref.item
+                      return [
+                        _c(
+                          "div",
+                          { staticClass: " d-inline-flex" },
+                          [
+                            _vm.showGunner(item)
+                              ? _c("StationGunner", {
+                                  staticClass: " mr-2",
+                                  attrs: { station: item }
+                                })
+                              : _vm._e(),
+                            _vm._v(" "),
+                            _vm.showInfo(item)
+                              ? _c("Info", { attrs: { station: item } })
+                              : _vm._e()
+                          ],
+                          1
+                        )
+                      ]
+                    }
+                  }
+                : null
+            ],
+            null,
+            true
+          )
+        },
+        [
+          _vm._v("\n        >\n\n        "),
+          _c("template", { slot: "no-data" }, [
+            _vm._v(
+              "\n            No one is shooting our stuff atm, which I would say is a good\n            thing?\n        "
+            )
+          ])
+        ],
+        2
+      ),
+      _vm._v(" "),
+      _c(
+        "v-snackbar",
+        {
+          attrs: { timeout: 3000, color: _vm.snackColor },
+          scopedSlots: _vm._u([
+            {
+              key: "action",
+              fn: function(ref) {
+                var attrs = ref.attrs
+                return [
+                  _c(
+                    "v-btn",
+                    _vm._b(
+                      {
+                        attrs: { text: "" },
+                        on: {
+                          click: function($event) {
+                            _vm.snack = false
+                          }
+                        }
+                      },
+                      "v-btn",
+                      attrs,
+                      false
+                    ),
+                    [_vm._v("Close")]
+                  )
+                ]
+              }
+            }
+          ]),
+          model: {
+            value: _vm.snack,
+            callback: function($$v) {
+              _vm.snack = $$v
+            },
+            expression: "snack"
+          }
+        },
+        [_vm._v("\n        " + _vm._s(_vm.snackText) + "\n\n        ")]
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/AdminPanel.vue?vue&type=template&id=55568bd4&scoped=true&":
 /*!********************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/AdminPanel.vue?vue&type=template&id=55568bd4&scoped=true& ***!
@@ -33403,697 +34090,6 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/Structure.vue?vue&type=template&id=0caacde4&":
-/*!*******************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/Structure.vue?vue&type=template&id=0caacde4& ***!
-  \*******************************************************************************************************************************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: " pr-16 pl-16" },
-    [
-      _c(
-        "div",
-        { staticClass: " d-flex align-items-center" },
-        [
-          _c("v-card-title", [_vm._v("Structures")]),
-          _vm._v(" "),
-          _c("v-text-field", {
-            staticClass: " ml-5",
-            attrs: {
-              "append-icon": "mdi-magnify",
-              label: "Search",
-              "single-line": "",
-              "hide-details": ""
-            },
-            model: {
-              value: _vm.search,
-              callback: function($$v) {
-                _vm.search = $$v
-              },
-              expression: "search"
-            }
-          }),
-          _vm._v(" "),
-          _c(
-            "v-btn-toggle",
-            {
-              attrs: { "right-align": "", mandatory: "", value: 2 },
-              model: {
-                value: _vm.toggle_exclusive,
-                callback: function($$v) {
-                  _vm.toggle_exclusive = $$v
-                },
-                expression: "toggle_exclusive"
-              }
-            },
-            [
-              _c(
-                "v-btn",
-                {
-                  attrs: { loading: _vm.loadingf, disabled: _vm.loadingf },
-                  on: {
-                    click: function($event) {
-                      _vm.statusflag = 1
-                    }
-                  }
-                },
-                [_vm._v("\n                All\n            ")]
-              ),
-              _vm._v(" "),
-              _c(
-                "v-btn",
-                {
-                  attrs: { loading: _vm.loadingf, disabled: _vm.loadingf },
-                  on: {
-                    click: function($event) {
-                      _vm.statusflag = 2
-                    }
-                  }
-                },
-                [_vm._v("\n                Active\n            ")]
-              ),
-              _vm._v(" "),
-              _c(
-                "v-btn",
-                {
-                  attrs: { loading: _vm.loadingf, disabled: _vm.loadingf },
-                  on: {
-                    click: function($event) {
-                      _vm.statusflag = 3
-                    }
-                  }
-                },
-                [_vm._v("\n                UpComing\n            ")]
-              ),
-              _vm._v(" "),
-              _c(
-                "v-btn",
-                {
-                  attrs: { loading: _vm.loadingf, disabled: _vm.loadingf },
-                  on: {
-                    click: function($event) {
-                      _vm.statusflag = 4
-                    }
-                  }
-                },
-                [_vm._v("\n                Reffed\n            ")]
-              )
-            ],
-            1
-          )
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "v-data-table",
-        {
-          staticClass: "elevation-1",
-          attrs: {
-            headers: _vm._headers,
-            items: _vm.filteredItems,
-            expanded: _vm.expanded,
-            "item-key": "id",
-            loading: _vm.loadingt,
-            "items-per-page": 25,
-            "footer-props": { "items-per-page-options": [15, 25, 50, 100, -1] },
-            "sort-by": ["timestamp"],
-            search: _vm.search,
-            "sort-desc": [true, false],
-            "multi-sort": ""
-          },
-          on: {
-            "update:expanded": function($event) {
-              _vm.expanded = $event
-            }
-          },
-          scopedSlots: _vm._u(
-            [
-              {
-                key: "item.count",
-                fn: function(ref) {
-                  var item = ref.item
-                  return [
-                    item.station_status_id == 5
-                      ? _c("CountDowntimer", {
-                          attrs: {
-                            "start-time": _vm.moment.utc(item.timestamp).unix(),
-                            "end-text": "Coming Out",
-                            interval: 1000
-                          },
-                          on: {
-                            campaignStart: function($event) {
-                              return _vm.campaignStart(item)
-                            }
-                          },
-                          scopedSlots: _vm._u(
-                            [
-                              {
-                                key: "countdown",
-                                fn: function(scope) {
-                                  return [
-                                    _c(
-                                      "span",
-                                      { staticClass: "blue--text pl-3" },
-                                      [
-                                        _vm._v(
-                                          _vm._s(scope.props.hours) +
-                                            ":" +
-                                            _vm._s(scope.props.minutes) +
-                                            ":" +
-                                            _vm._s(scope.props.seconds)
-                                        )
-                                      ]
-                                    )
-                                  ]
-                                }
-                              }
-                            ],
-                            null,
-                            true
-                          )
-                        })
-                      : _c("VueCountUptimer", {
-                          attrs: {
-                            "start-time": _vm.moment.utc(item.timestamp).unix(),
-                            "end-text": "Window Closed",
-                            interval: 1000
-                          },
-                          scopedSlots: _vm._u(
-                            [
-                              {
-                                key: "countup",
-                                fn: function(scope) {
-                                  return [
-                                    _c(
-                                      "span",
-                                      { staticClass: "red--text pl-3" },
-                                      [
-                                        _vm._v(
-                                          _vm._s(scope.props.hours) +
-                                            ":" +
-                                            _vm._s(scope.props.minutes) +
-                                            ":" +
-                                            _vm._s(scope.props.seconds)
-                                        )
-                                      ]
-                                    )
-                                  ]
-                                }
-                              }
-                            ],
-                            null,
-                            true
-                          )
-                        })
-                  ]
-                }
-              },
-              {
-                key: "item.station_status_name",
-                fn: function(ref) {
-                  var item = ref.item
-                  return [
-                    _vm.$can("edit_notifications")
-                      ? _c(
-                          "v-menu",
-                          {
-                            attrs: { "offset-y": "" },
-                            scopedSlots: _vm._u(
-                              [
-                                {
-                                  key: "activator",
-                                  fn: function(ref) {
-                                    var on = ref.on
-                                    var attrs = ref.attrs
-                                    return [
-                                      _c(
-                                        "div",
-                                        {
-                                          staticClass:
-                                            "align-items-center d-lg-inline-flex"
-                                        },
-                                        [
-                                          _c(
-                                            "v-btn",
-                                            _vm._g(
-                                              _vm._b(
-                                                {
-                                                  staticClass: "ma-2",
-                                                  attrs: {
-                                                    tile: "",
-                                                    outlined: "",
-                                                    color: _vm.pillColor(
-                                                      item.station_status_id
-                                                    )
-                                                  }
-                                                },
-                                                "v-btn",
-                                                attrs,
-                                                false
-                                              ),
-                                              on
-                                            ),
-                                            [
-                                              _c(
-                                                "v-icon",
-                                                { attrs: { left: "" } },
-                                                [
-                                                  _vm._v(
-                                                    "\n                                " +
-                                                      _vm._s(
-                                                        _vm.pillIcon(
-                                                          item.station_status_id
-                                                        )
-                                                      )
-                                                  )
-                                                ]
-                                              ),
-                                              _vm._v(
-                                                "\n                            " +
-                                                  _vm._s(
-                                                    item.station_status_name
-                                                  ) +
-                                                  "\n                        "
-                                              )
-                                            ],
-                                            1
-                                          ),
-                                          _vm._v(" "),
-                                          _c(
-                                            "v-fab-transition",
-                                            [
-                                              item.station_status_id == 12 &&
-                                              !_vm.expanded.includes(item)
-                                                ? _c(
-                                                    "v-chip",
-                                                    {
-                                                      attrs: {
-                                                        pill: "",
-                                                        outlined: "",
-                                                        small: "",
-                                                        color: "success"
-                                                      },
-                                                      on: {
-                                                        click: function(
-                                                          $event
-                                                        ) {
-                                                          ;(_vm.expanded = [
-                                                            item
-                                                          ]),
-                                                            (_vm.expanded_id =
-                                                              item.id)
-                                                        }
-                                                      }
-                                                    },
-                                                    [_vm._v("adash")]
-                                                  )
-                                                : _vm._e(),
-                                              _vm._v(" "),
-                                              item.station_status_id == 12 &&
-                                              _vm.expanded.includes(item)
-                                                ? _c(
-                                                    "v-btn",
-                                                    {
-                                                      attrs: {
-                                                        icon: "",
-                                                        color: "error"
-                                                      },
-                                                      on: {
-                                                        click: function(
-                                                          $event
-                                                        ) {
-                                                          ;(_vm.expanded = []),
-                                                            (_vm.expanded_id = 0)
-                                                        }
-                                                      }
-                                                    },
-                                                    [
-                                                      _c("v-icon", [
-                                                        _vm._v("fas fa-minus")
-                                                      ])
-                                                    ],
-                                                    1
-                                                  )
-                                                : _vm._e()
-                                            ],
-                                            1
-                                          ),
-                                          _vm._v(" "),
-                                          _c(
-                                            "v-fab-transition",
-                                            [
-                                              item.station_status_id == 11
-                                                ? _c("StationTimer", {
-                                                    attrs: { station: item }
-                                                  })
-                                                : _vm._e()
-                                            ],
-                                            1
-                                          )
-                                        ],
-                                        1
-                                      )
-                                    ]
-                                  }
-                                }
-                              ],
-                              null,
-                              true
-                            )
-                          },
-                          [
-                            _vm._v(" "),
-                            _c(
-                              "v-list",
-                              _vm._l(_vm.dropdown_edit, function(list, index) {
-                                return _c(
-                                  "v-list-item",
-                                  {
-                                    key: index,
-                                    on: {
-                                      click: function($event) {
-                                        ;(item.station_status_id = list.value),
-                                          (item.station_status_name =
-                                            list.title),
-                                          (item.user_name = _vm.user_name),
-                                          _vm.click(item)
-                                      }
-                                    }
-                                  },
-                                  [
-                                    _c("v-list-item-title", [
-                                      _vm._v(_vm._s(list.title))
-                                    ])
-                                  ],
-                                  1
-                                )
-                              }),
-                              1
-                            )
-                          ],
-                          1
-                        )
-                      : _c(
-                          "div",
-                          [
-                            [
-                              _c(
-                                "div",
-                                {
-                                  staticClass:
-                                    "align-items-center d-inline-flex"
-                                },
-                                [
-                                  _c(
-                                    "v-chip",
-                                    {
-                                      staticClass: "ma-2",
-                                      attrs: {
-                                        lable: "",
-                                        color: _vm.pillColor(
-                                          item.station_status_id
-                                        )
-                                      }
-                                    },
-                                    [
-                                      _c("v-icon", { attrs: { left: "" } }, [
-                                        _vm._v(
-                                          _vm._s(
-                                            _vm.pillIcon(item.station_status_id)
-                                          )
-                                        )
-                                      ]),
-                                      _vm._v(
-                                        "\n                            " +
-                                          _vm._s(item.station_status_name) +
-                                          "\n                        "
-                                      )
-                                    ],
-                                    1
-                                  ),
-                                  _vm._v(" "),
-                                  item.status_id == 11 && item.end_time != null
-                                    ? _c("CountDowntimer", {
-                                        attrs: {
-                                          "start-time": _vm.moment
-                                            .utc(item.repair_time)
-                                            .unix(),
-                                          interval: 1000,
-                                          "end-text": "Is it Secured?"
-                                        },
-                                        scopedSlots: _vm._u(
-                                          [
-                                            {
-                                              key: "countdown",
-                                              fn: function(scope) {
-                                                return [
-                                                  _c(
-                                                    "span",
-                                                    {
-                                                      staticClass:
-                                                        "blue--text pl-3"
-                                                    },
-                                                    [
-                                                      _vm._v(
-                                                        _vm._s(
-                                                          scope.props.minutes
-                                                        ) +
-                                                          ":" +
-                                                          _vm._s(
-                                                            scope.props.seconds
-                                                          )
-                                                      )
-                                                    ]
-                                                  )
-                                                ]
-                                              }
-                                            }
-                                          ],
-                                          null,
-                                          true
-                                        )
-                                      })
-                                    : _vm._e()
-                                ],
-                                1
-                              )
-                            ]
-                          ],
-                          2
-                        )
-                  ]
-                }
-              },
-              {
-                key: "expanded-item",
-                fn: function(ref) {
-                  var headers = ref.headers
-                  var item = ref.item
-                  return [
-                    _c(
-                      "td",
-                      { attrs: { colspan: headers.length, align: "center" } },
-                      [
-                        _c(
-                          "div",
-                          [
-                            _c(
-                              "v-col",
-                              { staticClass: "align-center" },
-                              [
-                                _c("v-text-field", {
-                                  attrs: {
-                                    value: item.text,
-                                    label:
-                                      "aDash Board Link - needs to be a link to a scan, making a new scan from where will not save",
-                                    outlined: "",
-                                    shaped: ""
-                                  },
-                                  on: {
-                                    change: function($event) {
-                                      ;(_vm.payload = $event),
-                                        _vm.updatetext(_vm.payload, item)
-                                    }
-                                  }
-                                })
-                              ],
-                              1
-                            )
-                          ],
-                          1
-                        ),
-                        _vm._v(" "),
-                        item.text != null &&
-                        item.text.includes(
-                          "https://adashboard.info/intel/dscan/"
-                        )
-                          ? _c(
-                              "div",
-                              [
-                                _c(
-                                  "v-card",
-                                  {
-                                    staticClass: "mx-auto",
-                                    attrs: { elevation: "24" }
-                                  },
-                                  [
-                                    _c("iframe", {
-                                      staticStyle: {
-                                        left: "0",
-                                        bottom: "0",
-                                        right: "0",
-                                        width: "100%",
-                                        height: "600px",
-                                        border: "none",
-                                        margin: "0",
-                                        padding: "0",
-                                        overflow: "hidden",
-                                        "z-index": "999999"
-                                      },
-                                      attrs: {
-                                        name: "ifram" + item.id,
-                                        src: item.text
-                                      }
-                                    })
-                                  ]
-                                )
-                              ],
-                              1
-                            )
-                          : _vm._e(),
-                        _vm._v(" "),
-                        _c("div", [
-                          _vm._v(
-                            "\n                    " +
-                              _vm._s(item.text) +
-                              "\n                "
-                          )
-                        ])
-                      ]
-                    )
-                  ]
-                }
-              },
-              {
-                key: "item.station_name",
-                fn: function(ref) {
-                  var item = ref.item
-                  return [
-                    _vm._v(
-                      "\n            " +
-                        _vm._s(item.station_name) +
-                        "\n        "
-                    )
-                  ]
-                }
-              },
-              _vm.$can("gunner")
-                ? {
-                    key: "item.actions",
-                    fn: function(ref) {
-                      var item = ref.item
-                      return [
-                        _c(
-                          "div",
-                          { staticClass: " d-inline-flex" },
-                          [
-                            _vm.showGunner(item)
-                              ? _c("StationGunner", {
-                                  staticClass: " mr-2",
-                                  attrs: { station: item }
-                                })
-                              : _vm._e(),
-                            _vm._v(" "),
-                            _vm.showInfo(item)
-                              ? _c("Info", { attrs: { station: item } })
-                              : _vm._e()
-                          ],
-                          1
-                        )
-                      ]
-                    }
-                  }
-                : null
-            ],
-            null,
-            true
-          )
-        },
-        [
-          _vm._v("\n        >\n\n        "),
-          _c("template", { slot: "no-data" }, [
-            _vm._v(
-              "\n            No one is shooting our stuff atm, which I would say is a good\n            thing?\n        "
-            )
-          ])
-        ],
-        2
-      ),
-      _vm._v(" "),
-      _c(
-        "v-snackbar",
-        {
-          attrs: { timeout: 3000, color: _vm.snackColor },
-          scopedSlots: _vm._u([
-            {
-              key: "action",
-              fn: function(ref) {
-                var attrs = ref.attrs
-                return [
-                  _c(
-                    "v-btn",
-                    _vm._b(
-                      {
-                        attrs: { text: "" },
-                        on: {
-                          click: function($event) {
-                            _vm.snack = false
-                          }
-                        }
-                      },
-                      "v-btn",
-                      attrs,
-                      false
-                    ),
-                    [_vm._v("Close")]
-                  )
-                ]
-              }
-            }
-          ]),
-          model: {
-            value: _vm.snack,
-            callback: function($$v) {
-              _vm.snack = $$v
-            },
-            expression: "snack"
-          }
-        },
-        [_vm._v("\n        " + _vm._s(_vm.snackText) + "\n\n        ")]
-      )
-    ],
-    1
-  )
-}
-var staticRenderFns = []
-render._withStripped = true
-
-
-
-/***/ }),
-
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/Timers.vue?vue&type=template&id=1a9004ad&":
 /*!****************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/Timers.vue?vue&type=template&id=1a9004ad& ***!
@@ -35940,7 +35936,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('SystemMessage', __webpack_
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('SystemAttackMessage', __webpack_require__(/*! ./components/campaignALL/SystemAttackMessage.vue */ "./resources/js/components/campaignALL/SystemAttackMessage.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('Info', __webpack_require__(/*! ./components/station/Info.vue */ "./resources/js/components/station/Info.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('StationTimer', __webpack_require__(/*! ./components/station/StationTimer.vue */ "./resources/js/components/station/StationTimer.vue")["default"]);
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('Structure', __webpack_require__(/*! ./views/Structure.vue */ "./resources/js/views/Structure.vue")["default"]);
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('Structure', __webpack_require__(/*! ./components/station/Structure.vue */ "./resources/js/components/station/Structure.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.prototype.moment = moment__WEBPACK_IMPORTED_MODULE_11___default.a; // import '@fortawesome/fontawesome-f      ree/css/all.css'
 
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(_components_countdown_index__WEBPACK_IMPORTED_MODULE_14__["default"]);
@@ -39668,6 +39664,75 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/station/Structure.vue":
+/*!*******************************************************!*\
+  !*** ./resources/js/components/station/Structure.vue ***!
+  \*******************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _Structure_vue_vue_type_template_id_2e9dc37d___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Structure.vue?vue&type=template&id=2e9dc37d& */ "./resources/js/components/station/Structure.vue?vue&type=template&id=2e9dc37d&");
+/* harmony import */ var _Structure_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Structure.vue?vue&type=script&lang=js& */ "./resources/js/components/station/Structure.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _Structure_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _Structure_vue_vue_type_template_id_2e9dc37d___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _Structure_vue_vue_type_template_id_2e9dc37d___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/station/Structure.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/station/Structure.vue?vue&type=script&lang=js&":
+/*!********************************************************************************!*\
+  !*** ./resources/js/components/station/Structure.vue?vue&type=script&lang=js& ***!
+  \********************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Structure_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./Structure.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/station/Structure.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Structure_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/station/Structure.vue?vue&type=template&id=2e9dc37d&":
+/*!**************************************************************************************!*\
+  !*** ./resources/js/components/station/Structure.vue?vue&type=template&id=2e9dc37d& ***!
+  \**************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Structure_vue_vue_type_template_id_2e9dc37d___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./Structure.vue?vue&type=template&id=2e9dc37d& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/station/Structure.vue?vue&type=template&id=2e9dc37d&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Structure_vue_vue_type_template_id_2e9dc37d___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Structure_vue_vue_type_template_id_2e9dc37d___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/event-bus.js":
 /*!***********************************!*\
   !*** ./resources/js/event-bus.js ***!
@@ -42183,75 +42248,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Notifications_vue_vue_type_template_id_08a81e59___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Notifications_vue_vue_type_template_id_08a81e59___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
-
-
-
-/***/ }),
-
-/***/ "./resources/js/views/Structure.vue":
-/*!******************************************!*\
-  !*** ./resources/js/views/Structure.vue ***!
-  \******************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _Structure_vue_vue_type_template_id_0caacde4___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Structure.vue?vue&type=template&id=0caacde4& */ "./resources/js/views/Structure.vue?vue&type=template&id=0caacde4&");
-/* harmony import */ var _Structure_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Structure.vue?vue&type=script&lang=js& */ "./resources/js/views/Structure.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-
-
-
-
-
-/* normalize component */
-
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _Structure_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _Structure_vue_vue_type_template_id_0caacde4___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _Structure_vue_vue_type_template_id_0caacde4___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
-  false,
-  null,
-  null,
-  null
-  
-)
-
-/* hot reload */
-if (false) { var api; }
-component.options.__file = "resources/js/views/Structure.vue"
-/* harmony default export */ __webpack_exports__["default"] = (component.exports);
-
-/***/ }),
-
-/***/ "./resources/js/views/Structure.vue?vue&type=script&lang=js&":
-/*!*******************************************************************!*\
-  !*** ./resources/js/views/Structure.vue?vue&type=script&lang=js& ***!
-  \*******************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Structure_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./Structure.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/Structure.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Structure_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
-
-/***/ }),
-
-/***/ "./resources/js/views/Structure.vue?vue&type=template&id=0caacde4&":
-/*!*************************************************************************!*\
-  !*** ./resources/js/views/Structure.vue?vue&type=template&id=0caacde4& ***!
-  \*************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Structure_vue_vue_type_template_id_0caacde4___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./Structure.vue?vue&type=template&id=0caacde4& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/Structure.vue?vue&type=template&id=0caacde4&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Structure_vue_vue_type_template_id_0caacde4___WEBPACK_IMPORTED_MODULE_0__["render"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Structure_vue_vue_type_template_id_0caacde4___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
