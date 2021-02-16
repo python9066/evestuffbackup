@@ -16556,7 +16556,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
 
 
 
@@ -33224,7 +33223,7 @@ var render = function() {
                                       _c(
                                         "v-fab-transition",
                                         [
-                                          item.status_id == 12 &&
+                                          item.station_status_id == 12 &&
                                           !_vm.expanded.includes(item)
                                             ? _c(
                                                 "v-chip",
@@ -33243,11 +33242,11 @@ var render = function() {
                                                     }
                                                   }
                                                 },
-                                                [_vm._v("aDash")]
+                                                [_vm._v("adash")]
                                               )
                                             : _vm._e(),
                                           _vm._v(" "),
-                                          item.status_id == 12 &&
+                                          item.station_status_id == 12 &&
                                           _vm.expanded.includes(item)
                                             ? _c(
                                                 "v-btn",

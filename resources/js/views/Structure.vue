@@ -128,22 +128,21 @@
                                             (expanded_id = item.id)
                                     "
                                     v-if="
-                                        item.status_id == 12 &&
+                                        item.station_status_id == 12 &&
                                             !expanded.includes(item)
                                     "
                                     color="success"
-                                    >aDash</v-chip
+                                    >adash</v-chip
                                 >
                                 <v-btn
                                     icon
                                     @click="(expanded = []), (expanded_id = 0)"
                                     v-if="
-                                        item.status_id == 12 &&
+                                        item.station_status_id == 12 &&
                                             expanded.includes(item)
                                     "
                                     color="error"
-                                >
-                                    <v-icon>fas fa-minus</v-icon></v-btn
+                                    ><v-icon>fas fa-minus</v-icon></v-btn
                                 >
                             </v-fab-transition>
                         </div>
