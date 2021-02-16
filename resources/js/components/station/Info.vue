@@ -369,7 +369,9 @@ export default {
         },
 
         stationInfo() {
-            return this.getCoreByStationID(this.station.id);
+            var data = this.getCoreByStationID(this.station.id);
+            console.log(data.task_flag);
+            return data;
         },
         core() {
             var core = this.getCoreByStationID(this.station.id);

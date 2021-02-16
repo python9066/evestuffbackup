@@ -9236,7 +9236,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       return this.fit.r_updated_at;
     },
     stationInfo: function stationInfo() {
-      return this.getCoreByStationID(this.station.id);
+      var data = this.getCoreByStationID(this.station.id);
+      console.log(data.task_flag);
+      return data;
     },
     core: function core() {
       var core = this.getCoreByStationID(this.station.id);
