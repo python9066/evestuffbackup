@@ -17182,12 +17182,12 @@ function sleep(ms) {
         }, {
           text: "Status",
           value: "station_status_name",
-          width: "15%",
+          width: "10%",
           show: true
         }, {
           text: "Gunner/Info",
           value: "actions",
-          width: "5%",
+          width: "10%",
           show: true,
           align: "start"
         }, {
