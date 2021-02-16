@@ -286,6 +286,7 @@ class Notifications
                 'message' => $message
             ]);
             broadcast(new StationNotificationNew($flag))->toOthers();
+            broadcast(new StationInfoSet($flag))->toOthers();
         } elseif ($var['type'] == 'StructureLostShields') {
             $outTime = null;
             $ldap = $text['timestamp'];
@@ -377,6 +378,7 @@ class Notifications
                 'message' => $message
             ]);
             broadcast(new StationNotificationNew($flag))->toOthers();
+            broadcast(new StationInfoSet($flag))->toOthers();
         } elseif ($var['type'] == 'StructureLostArmor') {
             $outTime = null;
             $ldap = $text['timestamp'];
@@ -470,6 +472,7 @@ class Notifications
                 'message' => $message
             ]);
             broadcast(new StationNotificationNew($flag))->toOthers();
+            broadcast(new StationInfoSet($flag))->toOthers();
         }
     }
 
@@ -762,10 +765,10 @@ class Notifications
         $checks = Station::where('out_time', "<=", $now)->where('station_status_id', 5)->get();
         foreach ($checks as $check) {
             $check->update(['station_status_id' => 6]);
-            $stationID = $check->id;
+            $message = StationRecords::where('id', $check->id);
             $flag = null;
             $flag = collect([
-                'id' => $stationID
+                'id' => $message
             ]);
             broadcast(new StationNotificationUpdate($flag))->toOthers();
         }
@@ -773,12 +776,12 @@ class Notifications
         $checks = Station::where('out_time', "<", $soon5hour)->where('station_status_id', 10)->get();
         foreach ($checks as $check) {
             $check->update(['station_status_id' => 5]);
-            $stationID = $check->id;
+            $message = StationRecords::where('id', $check->id);
             $flag = null;
             $flag = collect([
                 'id' => $stationID
             ]);
-            broadcast(new StationNotificationDelete($flag))->toOthers();
+            broadcast(new StationNotificationUpdate($flag))->toOthers();
         }
     }
 }
