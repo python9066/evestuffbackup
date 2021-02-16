@@ -17,7 +17,7 @@
                 right-align
                 v-model="toggle_exclusive"
                 mandatory
-                :value="0"
+                :value="2"
             >
                 <v-btn
                     :loading="loadingf"
