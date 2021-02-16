@@ -9200,7 +9200,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     fit: function fit() {
       var fit = this.getStationFitByStationID(this.station.id);
 
-      if (fitfit[0]["r_hitted"] != null) {
+      if (fit[0]["r_hitted"] != null) {
         this.fitted = true;
       }
 
