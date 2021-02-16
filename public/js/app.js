@@ -15762,6 +15762,29 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -32916,78 +32939,215 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: " pr-16 pl-16" },
-    [
-      _vm.seeMessage() ? _c("messageNotification") : _vm._e(),
-      _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: " d-flex align-items-center" },
-        [
-          _c("v-card-title", [_vm._v("Notifications")]),
-          _vm._v(" "),
-          _vm.$can("access hacks")
-            ? _c("div", [_vm._v("You can edit posts.")])
-            : _vm._e(),
-          _vm._v(" "),
-          _c(
-            "v-btn",
-            {
-              staticClass: "ma-2 white--text",
-              attrs: {
-                loading: _vm.loadingr,
-                disabled: _vm.loadingr,
-                color: "primary"
-              },
-              on: {
-                click: function($event) {
-                  return _vm.loadtimers()
-                }
-              }
-            },
-            [
-              _vm._v("\n            Update\n            "),
-              _c("v-icon", { attrs: { right: "", dark: "" } }, [
-                _vm._v("faSvg fa-sync-alt fa-xs")
-              ])
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "div",
-            [
-              _c(
-                "v-btn-toggle",
-                {
-                  attrs: { borderless: "", group: "" },
-                  model: {
-                    value: _vm.icon,
-                    callback: function($$v) {
-                      _vm.icon = $$v
-                    },
-                    expression: "icon"
-                  }
+  return _c("div", { staticClass: " pr-16 pl-16" }, [
+    _c(
+      "div",
+      [
+        _vm.seeMessage() ? _c("messageNotification") : _vm._e(),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: " d-flex align-items-center" },
+          [
+            _c("v-card-title", [_vm._v("Notifications")]),
+            _vm._v(" "),
+            _vm.$can("access hacks")
+              ? _c("div", [_vm._v("You can edit posts.")])
+              : _vm._e(),
+            _vm._v(" "),
+            _c(
+              "v-btn",
+              {
+                staticClass: "ma-2 white--text",
+                attrs: {
+                  loading: _vm.loadingr,
+                  disabled: _vm.loadingr,
+                  color: "primary"
                 },
-                [
-                  _c(
-                    "v-dialog",
-                    {
-                      attrs: {
-                        fullscreen: "",
-                        "hide-overlay": "",
-                        transition: "dialog-bottom-transition"
+                on: {
+                  click: function($event) {
+                    return _vm.loadtimers()
+                  }
+                }
+              },
+              [
+                _vm._v("\n                Update\n                "),
+                _c("v-icon", { attrs: { right: "", dark: "" } }, [
+                  _vm._v("faSvg fa-sync-alt fa-xs")
+                ])
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              [
+                _c(
+                  "v-btn-toggle",
+                  {
+                    attrs: { borderless: "", group: "" },
+                    model: {
+                      value: _vm.icon,
+                      callback: function($$v) {
+                        _vm.icon = $$v
                       },
-                      scopedSlots: _vm._u([
-                        {
-                          key: "activator",
-                          fn: function(ref) {
-                            var on = ref.on
-                            var attrs = ref.attrs
-                            return [
+                      expression: "icon"
+                    }
+                  },
+                  [
+                    _c(
+                      "v-dialog",
+                      {
+                        attrs: {
+                          fullscreen: "",
+                          "hide-overlay": "",
+                          transition: "dialog-bottom-transition"
+                        },
+                        scopedSlots: _vm._u([
+                          {
+                            key: "activator",
+                            fn: function(ref) {
+                              var on = ref.on
+                              var attrs = ref.attrs
+                              return [
+                                [
+                                  _c(
+                                    "v-btn",
+                                    _vm._g(
+                                      _vm._b(
+                                        {
+                                          directives: [
+                                            {
+                                              name: "show",
+                                              rawName: "v-show",
+                                              value: _vm.delvecheck == 1,
+                                              expression: "delvecheck == 1"
+                                            }
+                                          ],
+                                          staticClass: "ma-2 white--text",
+                                          attrs: { color: "primary" },
+                                          on: {
+                                            click: function($event) {
+                                              _vm.dialog1 = true
+                                            }
+                                          }
+                                        },
+                                        "v-btn",
+                                        attrs,
+                                        false
+                                      ),
+                                      on
+                                    ),
+                                    [
+                                      _vm._v(
+                                        "\n                                    Delve\n                                    "
+                                      ),
+                                      _c(
+                                        "v-icon",
+                                        { attrs: { right: "", dark: "" } },
+                                        [_vm._v("faSvg fa-map fa-xs")]
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ]
+                              ]
+                            }
+                          }
+                        ]),
+                        model: {
+                          value: _vm.dialog1,
+                          callback: function($$v) {
+                            _vm.dialog1 = $$v
+                          },
+                          expression: "dialog1"
+                        }
+                      },
+                      [
+                        _vm._v(" "),
+                        _c(
+                          "v-card",
+                          [
+                            _c(
+                              "v-toolbar",
+                              { attrs: { dark: "", color: "primary" } },
                               [
+                                _c(
+                                  "v-btn",
+                                  {
+                                    attrs: { icon: "", dark: "" },
+                                    on: {
+                                      click: function($event) {
+                                        _vm.dialog1 = false
+                                      }
+                                    }
+                                  },
+                                  [
+                                    _c("v-icon", [
+                                      _vm._v("faSvg fa-times-circle")
+                                    ])
+                                  ],
+                                  1
+                                ),
+                                _vm._v(" "),
+                                _c("v-toolbar-title", [_vm._v("Delve")]),
+                                _vm._v(" "),
+                                _c("v-spacer")
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "div",
+                              {
+                                staticStyle: {
+                                  position: "absolute",
+                                  top: "64px",
+                                  right: "0px",
+                                  bottom: "0px",
+                                  left: "0px"
+                                }
+                              },
+                              [
+                                _c("iframe", {
+                                  staticStyle: {
+                                    left: "0",
+                                    bottom: "0",
+                                    right: "0",
+                                    width: "100%",
+                                    height: "100%",
+                                    border: "none",
+                                    margin: "0",
+                                    padding: "0",
+                                    overflow: "hidden",
+                                    "z-index": "999999"
+                                  },
+                                  attrs: { src: _vm.delveLink }
+                                })
+                              ]
+                            )
+                          ],
+                          1
+                        )
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "v-dialog",
+                      {
+                        attrs: {
+                          fullscreen: "",
+                          "hide-overlay": "",
+                          transition: "dialog-bottom-transition"
+                        },
+                        scopedSlots: _vm._u([
+                          {
+                            key: "activator",
+                            fn: function(ref) {
+                              var on = ref.on
+                              var attrs = ref.attrs
+                              return [
                                 _c(
                                   "v-btn",
                                   _vm._g(
@@ -32997,15 +33157,15 @@ var render = function() {
                                           {
                                             name: "show",
                                             rawName: "v-show",
-                                            value: _vm.delvecheck == 1,
-                                            expression: "delvecheck == 1"
+                                            value: _vm.queriousCheck == 1,
+                                            expression: "queriousCheck == 1"
                                           }
                                         ],
                                         staticClass: "ma-2 white--text",
                                         attrs: { color: "primary" },
                                         on: {
                                           click: function($event) {
-                                            _vm.dialog1 = true
+                                            _vm.dialog2 = true
                                           }
                                         }
                                       },
@@ -33017,7 +33177,7 @@ var render = function() {
                                   ),
                                   [
                                     _vm._v(
-                                      "\n                                Delve\n                                "
+                                      "\n                                Querious\n                                "
                                     ),
                                     _c(
                                       "v-icon",
@@ -33028,1060 +33188,960 @@ var render = function() {
                                   1
                                 )
                               ]
-                            ]
+                            }
                           }
+                        ]),
+                        model: {
+                          value: _vm.dialog2,
+                          callback: function($$v) {
+                            _vm.dialog2 = $$v
+                          },
+                          expression: "dialog2"
                         }
-                      ]),
-                      model: {
-                        value: _vm.dialog1,
-                        callback: function($$v) {
-                          _vm.dialog1 = $$v
-                        },
-                        expression: "dialog1"
-                      }
-                    },
-                    [
-                      _vm._v(" "),
-                      _c(
-                        "v-card",
-                        [
-                          _c(
-                            "v-toolbar",
-                            { attrs: { dark: "", color: "primary" } },
-                            [
-                              _c(
-                                "v-btn",
-                                {
-                                  attrs: { icon: "", dark: "" },
-                                  on: {
-                                    click: function($event) {
-                                      _vm.dialog1 = false
-                                    }
-                                  }
-                                },
-                                [
-                                  _c("v-icon", [
-                                    _vm._v("faSvg fa-times-circle")
-                                  ])
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c("v-toolbar-title", [_vm._v("Delve")]),
-                              _vm._v(" "),
-                              _c("v-spacer")
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "div",
-                            {
-                              staticStyle: {
-                                position: "absolute",
-                                top: "64px",
-                                right: "0px",
-                                bottom: "0px",
-                                left: "0px"
-                              }
-                            },
-                            [
-                              _c("iframe", {
-                                staticStyle: {
-                                  left: "0",
-                                  bottom: "0",
-                                  right: "0",
-                                  width: "100%",
-                                  height: "100%",
-                                  border: "none",
-                                  margin: "0",
-                                  padding: "0",
-                                  overflow: "hidden",
-                                  "z-index": "999999"
-                                },
-                                attrs: { src: _vm.delveLink }
-                              })
-                            ]
-                          )
-                        ],
-                        1
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "v-dialog",
-                    {
-                      attrs: {
-                        fullscreen: "",
-                        "hide-overlay": "",
-                        transition: "dialog-bottom-transition"
                       },
-                      scopedSlots: _vm._u([
-                        {
-                          key: "activator",
-                          fn: function(ref) {
-                            var on = ref.on
-                            var attrs = ref.attrs
-                            return [
-                              _c(
-                                "v-btn",
-                                _vm._g(
-                                  _vm._b(
-                                    {
-                                      directives: [
-                                        {
-                                          name: "show",
-                                          rawName: "v-show",
-                                          value: _vm.queriousCheck == 1,
-                                          expression: "queriousCheck == 1"
-                                        }
-                                      ],
-                                      staticClass: "ma-2 white--text",
-                                      attrs: { color: "primary" },
-                                      on: {
-                                        click: function($event) {
-                                          _vm.dialog2 = true
-                                        }
-                                      }
-                                    },
-                                    "v-btn",
-                                    attrs,
-                                    false
-                                  ),
-                                  on
-                                ),
-                                [
-                                  _vm._v(
-                                    "\n                            Querious\n                            "
-                                  ),
-                                  _c(
-                                    "v-icon",
-                                    { attrs: { right: "", dark: "" } },
-                                    [_vm._v("faSvg fa-map fa-xs")]
-                                  )
-                                ],
-                                1
-                              )
-                            ]
-                          }
-                        }
-                      ]),
-                      model: {
-                        value: _vm.dialog2,
-                        callback: function($$v) {
-                          _vm.dialog2 = $$v
-                        },
-                        expression: "dialog2"
-                      }
-                    },
-                    [
-                      _vm._v(" "),
-                      _c(
-                        "v-card",
-                        [
-                          _c(
-                            "v-toolbar",
-                            { attrs: { dark: "", color: "primary" } },
-                            [
-                              _c(
-                                "v-btn",
-                                {
-                                  attrs: { icon: "", dark: "" },
-                                  on: {
-                                    click: function($event) {
-                                      _vm.dialog2 = false
-                                    }
-                                  }
-                                },
-                                [
-                                  _c("v-icon", [
-                                    _vm._v("faSvg fa-times-circle")
-                                  ])
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c("v-toolbar-title", [_vm._v("Querious")]),
-                              _vm._v(" "),
-                              _c("v-spacer")
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "div",
-                            {
-                              staticStyle: {
-                                position: "absolute",
-                                top: "64px",
-                                right: "0px",
-                                bottom: "0px",
-                                left: "0px"
-                              }
-                            },
-                            [
-                              _c("iframe", {
-                                staticStyle: {
-                                  left: "0",
-                                  bottom: "0",
-                                  right: "0",
-                                  width: "100%",
-                                  height: "100%",
-                                  border: "none",
-                                  margin: "0",
-                                  padding: "0",
-                                  overflow: "hidden",
-                                  "z-index": "999999"
-                                },
-                                attrs: { src: _vm.queriousLink }
-                              })
-                            ]
-                          )
-                        ],
-                        1
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "v-dialog",
-                    {
-                      attrs: {
-                        fullscreen: "",
-                        "hide-overlay": "",
-                        transition: "dialog-bottom-transition"
-                      },
-                      scopedSlots: _vm._u([
-                        {
-                          key: "activator",
-                          fn: function(ref) {
-                            var on = ref.on
-                            var attrs = ref.attrs
-                            return [
-                              _c(
-                                "v-btn",
-                                _vm._g(
-                                  _vm._b(
-                                    {
-                                      directives: [
-                                        {
-                                          name: "show",
-                                          rawName: "v-show",
-                                          value: _vm.periodbasisCheck == 1,
-                                          expression: "periodbasisCheck == 1"
-                                        }
-                                      ],
-                                      staticClass: "ma-2 white--text",
-                                      attrs: { color: "primary" },
-                                      on: {
-                                        click: function($event) {
-                                          _vm.dialog3 = true
-                                        }
-                                      }
-                                    },
-                                    "v-btn",
-                                    attrs,
-                                    false
-                                  ),
-                                  on
-                                ),
-                                [
-                                  _vm._v(
-                                    "\n                            Period Basis\n                            "
-                                  ),
-                                  _c(
-                                    "v-icon",
-                                    { attrs: { right: "", dark: "" } },
-                                    [_vm._v("faSvg fa-map fa-xs")]
-                                  )
-                                ],
-                                1
-                              )
-                            ]
-                          }
-                        }
-                      ]),
-                      model: {
-                        value: _vm.dialog3,
-                        callback: function($$v) {
-                          _vm.dialog3 = $$v
-                        },
-                        expression: "dialog3"
-                      }
-                    },
-                    [
-                      _vm._v(" "),
-                      _c(
-                        "v-card",
-                        [
-                          _c(
-                            "v-toolbar",
-                            { attrs: { dark: "", color: "primary" } },
-                            [
-                              _c(
-                                "v-btn",
-                                {
-                                  attrs: { icon: "", dark: "" },
-                                  on: {
-                                    click: function($event) {
-                                      _vm.dialog3 = false
-                                    }
-                                  }
-                                },
-                                [
-                                  _c("v-icon", [
-                                    _vm._v("faSvg fa-times-circle")
-                                  ])
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c("v-toolbar-title", [_vm._v("Period Basis")]),
-                              _vm._v(" "),
-                              _c("v-spacer")
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "div",
-                            {
-                              staticStyle: {
-                                position: "absolute",
-                                top: "64px",
-                                right: "0px",
-                                bottom: "0px",
-                                left: "0px"
-                              }
-                            },
-                            [
-                              _c("iframe", {
-                                staticStyle: {
-                                  left: "0",
-                                  bottom: "0",
-                                  right: "0",
-                                  width: "100%",
-                                  height: "100%",
-                                  border: "none",
-                                  margin: "0",
-                                  padding: "0",
-                                  overflow: "hidden",
-                                  "z-index": "999999"
-                                },
-                                attrs: { src: _vm.periodbasisLink }
-                              })
-                            ]
-                          )
-                        ],
-                        1
-                      )
-                    ],
-                    1
-                  )
-                ],
-                1
-              )
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c("v-text-field", {
-            attrs: {
-              "append-icon": "mdi-magnify",
-              label: "Search",
-              "single-line": "",
-              "hide-details": ""
-            },
-            model: {
-              value: _vm.search,
-              callback: function($$v) {
-                _vm.search = $$v
-              },
-              expression: "search"
-            }
-          }),
-          _vm._v(" "),
-          _c(
-            "v-btn-toggle",
-            {
-              attrs: { "right-align": "", mandatory: "", value: 0 },
-              model: {
-                value: _vm.toggle_exclusive,
-                callback: function($$v) {
-                  _vm.toggle_exclusive = $$v
-                },
-                expression: "toggle_exclusive"
-              }
-            },
-            [
-              _c(
-                "v-btn",
-                {
-                  attrs: { loading: _vm.loadingf, disabled: _vm.loadingf },
-                  on: {
-                    click: function($event) {
-                      _vm.statusflag = 4
-                    }
-                  }
-                },
-                [_vm._v("\n                All\n            ")]
-              ),
-              _vm._v(" "),
-              _c(
-                "v-btn",
-                {
-                  attrs: { loading: _vm.loadingf, disabled: _vm.loadingf },
-                  on: {
-                    click: function($event) {
-                      _vm.statusflag = 1
-                    }
-                  }
-                },
-                [_vm._v("\n                New\n            ")]
-              ),
-              _vm._v(" "),
-              _c(
-                "v-btn",
-                {
-                  attrs: { loading: _vm.loadingf, disabled: _vm.loadingf },
-                  on: {
-                    click: function($event) {
-                      _vm.statusflag = 6
-                    }
-                  }
-                },
-                [_vm._v("\n                Scouting\n            ")]
-              ),
-              _vm._v(" "),
-              _c(
-                "v-btn",
-                {
-                  attrs: { loading: _vm.loadingf, disabled: _vm.loadingf },
-                  on: {
-                    click: function($event) {
-                      _vm.statusflag = 3
-                    }
-                  }
-                },
-                [_vm._v("\n                Repairing\n            ")]
-              ),
-              _vm._v(" "),
-              _c(
-                "v-btn",
-                {
-                  attrs: { loading: _vm.loadingf, disabled: _vm.loadingf },
-                  on: {
-                    click: function($event) {
-                      _vm.statusflag = 5
-                    }
-                  }
-                },
-                [_vm._v("\n                Contested\n            ")]
-              )
-            ],
-            1
-          )
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "v-data-table",
-        {
-          staticClass: "elevation-1",
-          attrs: {
-            headers: _vm.headers,
-            items: _vm.filteredItems,
-            expanded: _vm.expanded,
-            "item-key": "id",
-            loading: _vm.loadingt,
-            "items-per-page": 25,
-            "footer-props": { "items-per-page-options": [15, 25, 50, 100, -1] },
-            "sort-by": ["timestamp"],
-            search: _vm.search,
-            "sort-desc": [true, false],
-            "multi-sort": ""
-          },
-          on: {
-            "update:expanded": function($event) {
-              _vm.expanded = $event
-            }
-          },
-          scopedSlots: _vm._u([
-            {
-              key: "item.count",
-              fn: function(ref) {
-                var item = ref.item
-                return [
-                  _c("VueCountUptimer", {
-                    attrs: {
-                      "start-time": _vm.moment.utc(item.timestamp).unix(),
-                      "end-text": "Window Closed",
-                      interval: 1000
-                    },
-                    on: {
-                      timecheck: function($event) {
-                        return _vm.timecheck(item)
-                      }
-                    },
-                    scopedSlots: _vm._u(
                       [
-                        {
-                          key: "countup",
-                          fn: function(scope) {
-                            return [
-                              _c("span", { staticClass: "red--text pl-3" }, [
-                                _vm._v(
-                                  _vm._s(scope.props.hours) +
-                                    ":" +
-                                    _vm._s(scope.props.minutes) +
-                                    ":" +
-                                    _vm._s(scope.props.seconds)
-                                )
-                              ])
-                            ]
-                          }
-                        }
-                      ],
-                      null,
-                      true
-                    )
-                  })
-                ]
-              }
-            },
-            {
-              key: "item.status_name",
-              fn: function(ref) {
-                var item = ref.item
-                return [
-                  _vm.$can("edit_notifications")
-                    ? _c(
-                        "v-menu",
-                        {
-                          attrs: { "offset-y": "" },
-                          scopedSlots: _vm._u(
-                            [
-                              {
-                                key: "activator",
-                                fn: function(ref) {
-                                  var on = ref.on
-                                  var attrs = ref.attrs
-                                  return [
-                                    _c(
-                                      "div",
-                                      {
-                                        staticClass:
-                                          "align-items-center d-inline-flex"
-                                      },
-                                      [
-                                        _c(
-                                          "v-btn",
-                                          _vm._g(
-                                            _vm._b(
-                                              {
-                                                staticClass: "ma-2",
-                                                attrs: {
-                                                  tile: "",
-                                                  outlined: "",
-                                                  color: _vm.statusButtonColor(
-                                                    item
-                                                  )
-                                                }
-                                              },
-                                              "v-btn",
-                                              attrs,
-                                              false
-                                            ),
-                                            on
-                                          ),
-                                          [
-                                            _c(
-                                              "v-icon",
-                                              { attrs: { left: "" } },
-                                              [
-                                                _vm._v(
-                                                  _vm._s(
-                                                    _vm.statusButtonIcon(item)
-                                                  )
-                                                )
-                                              ]
-                                            ),
-                                            _vm._v(
-                                              "\n                            " +
-                                                _vm._s(item.status_name) +
-                                                "\n                        "
-                                            )
-                                          ],
-                                          1
-                                        ),
-                                        _vm._v(" "),
-                                        _c(
-                                          "v-fab-transition",
-                                          [
-                                            item.status_id == 5 &&
-                                            !_vm.expanded.includes(item)
-                                              ? _c(
-                                                  "v-chip",
-                                                  {
-                                                    attrs: {
-                                                      pill: "",
-                                                      outlined: "",
-                                                      small: "",
-                                                      color: "success"
-                                                    },
-                                                    on: {
-                                                      click: function($event) {
-                                                        ;(_vm.expanded = [
-                                                          item
-                                                        ]),
-                                                          (_vm.expanded_id =
-                                                            item.id)
-                                                      }
-                                                    }
-                                                  },
-                                                  [_vm._v("aDash")]
-                                                )
-                                              : _vm._e(),
-                                            _vm._v(" "),
-                                            item.status_id == 5 &&
-                                            _vm.expanded.includes(item)
-                                              ? _c(
-                                                  "v-btn",
-                                                  {
-                                                    attrs: {
-                                                      icon: "",
-                                                      color: "error"
-                                                    },
-                                                    on: {
-                                                      click: function($event) {
-                                                        ;(_vm.expanded = []),
-                                                          (_vm.expanded_id = 0)
-                                                      }
-                                                    }
-                                                  },
-                                                  [
-                                                    _c("v-icon", [
-                                                      _vm._v("fas fa-minus")
-                                                    ])
-                                                  ],
-                                                  1
-                                                )
-                                              : _vm._e()
-                                          ],
-                                          1
-                                        ),
-                                        _vm._v(" "),
-                                        _c(
-                                          "v-fab-transition",
-                                          [
-                                            item.status_id == 5 ||
-                                            item.status_id == 3
-                                              ? _c("NotificationTimer", {
-                                                  attrs: { item: item }
-                                                })
-                                              : _vm._e()
-                                          ],
-                                          1
-                                        )
-                                      ],
-                                      1
-                                    )
-                                  ]
-                                }
-                              }
-                            ],
-                            null,
-                            true
-                          )
-                        },
-                        [
-                          _vm._v(" "),
-                          _c(
-                            "v-list",
-                            _vm._l(_vm.dropdown_edit, function(list, index) {
-                              return _c(
-                                "v-list-item",
-                                {
-                                  key: index,
-                                  on: {
-                                    click: function($event) {
-                                      ;(item.status_id = list.value),
-                                        (item.status_name = list.title),
-                                        (item.user_name = _vm.user_name),
-                                        _vm.click(item)
-                                    }
-                                  }
-                                },
-                                [
-                                  _c("v-list-item-title", [
-                                    _vm._v(_vm._s(list.title))
-                                  ])
-                                ],
-                                1
-                              )
-                            }),
-                            1
-                          )
-                        ],
-                        1
-                      )
-                    : _c(
-                        "div",
-                        [
+                        _vm._v(" "),
+                        _c(
+                          "v-card",
                           [
+                            _c(
+                              "v-toolbar",
+                              { attrs: { dark: "", color: "primary" } },
+                              [
+                                _c(
+                                  "v-btn",
+                                  {
+                                    attrs: { icon: "", dark: "" },
+                                    on: {
+                                      click: function($event) {
+                                        _vm.dialog2 = false
+                                      }
+                                    }
+                                  },
+                                  [
+                                    _c("v-icon", [
+                                      _vm._v("faSvg fa-times-circle")
+                                    ])
+                                  ],
+                                  1
+                                ),
+                                _vm._v(" "),
+                                _c("v-toolbar-title", [_vm._v("Querious")]),
+                                _vm._v(" "),
+                                _c("v-spacer")
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
                             _c(
                               "div",
                               {
-                                staticClass: "align-items-center d-inline-flex"
+                                staticStyle: {
+                                  position: "absolute",
+                                  top: "64px",
+                                  right: "0px",
+                                  bottom: "0px",
+                                  left: "0px"
+                                }
                               },
                               [
-                                item.status_id == 1
-                                  ? _c(
-                                      "v-chip",
+                                _c("iframe", {
+                                  staticStyle: {
+                                    left: "0",
+                                    bottom: "0",
+                                    right: "0",
+                                    width: "100%",
+                                    height: "100%",
+                                    border: "none",
+                                    margin: "0",
+                                    padding: "0",
+                                    overflow: "hidden",
+                                    "z-index": "999999"
+                                  },
+                                  attrs: { src: _vm.queriousLink }
+                                })
+                              ]
+                            )
+                          ],
+                          1
+                        )
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "v-dialog",
+                      {
+                        attrs: {
+                          fullscreen: "",
+                          "hide-overlay": "",
+                          transition: "dialog-bottom-transition"
+                        },
+                        scopedSlots: _vm._u([
+                          {
+                            key: "activator",
+                            fn: function(ref) {
+                              var on = ref.on
+                              var attrs = ref.attrs
+                              return [
+                                _c(
+                                  "v-btn",
+                                  _vm._g(
+                                    _vm._b(
                                       {
-                                        staticClass: "ma-2",
-                                        attrs: { label: "", color: "success" }
-                                      },
-                                      [
-                                        _c("v-icon", { attrs: { left: "" } }, [
-                                          _vm._v("fas fa-plus")
-                                        ]),
-                                        _vm._v(
-                                          "\n                            " +
-                                            _vm._s(item.status_name) +
-                                            "\n                        "
-                                        )
-                                      ],
-                                      1
-                                    )
-                                  : _vm._e(),
-                                _vm._v(" "),
-                                item.status_id == 2
-                                  ? _c(
-                                      "v-chip",
-                                      {
-                                        staticClass: "ma-2",
-                                        attrs: { label: "", color: "error" }
-                                      },
-                                      [
-                                        _c("v-icon", { attrs: { left: "" } }, [
-                                          _vm._v("fas fa-fire fa-sm")
-                                        ]),
-                                        _vm._v(
-                                          "\n                            " +
-                                            _vm._s(item.status_name) +
-                                            "\n                        "
-                                        )
-                                      ],
-                                      1
-                                    )
-                                  : _vm._e(),
-                                _vm._v(" "),
-                                item.status_id == 3
-                                  ? _c(
-                                      "v-chip",
-                                      {
-                                        staticClass: "ma-2",
-                                        attrs: {
-                                          label: "",
-                                          color: "dark-orange"
-                                        }
-                                      },
-                                      [
-                                        _c("v-icon", { attrs: { left: "" } }, [
-                                          _vm._v("fas fa-toolbox")
-                                        ]),
-                                        _vm._v(
-                                          "\n                            " +
-                                            _vm._s(item.status_name) +
-                                            "\n                        "
-                                        )
-                                      ],
-                                      1
-                                    )
-                                  : _vm._e(),
-                                _vm._v(" "),
-                                item.status_id == 4
-                                  ? _c(
-                                      "v-chip",
-                                      {
-                                        staticClass: "ma-2",
-                                        attrs: { label: "", color: "primary" }
-                                      },
-                                      [
-                                        _c("v-icon", { attrs: { left: "" } }, [
-                                          _vm._v("fas fa-thumbs-up")
-                                        ]),
-                                        _vm._v(
-                                          "\n                            " +
-                                            _vm._s(item.status_name) +
-                                            "\n                        "
-                                        )
-                                      ],
-                                      1
-                                    )
-                                  : _vm._e(),
-                                _vm._v(" "),
-                                item.status_id == 5
-                                  ? _c(
-                                      "v-chip",
-                                      {
-                                        staticClass: "ma-2",
-                                        attrs: { label: "", color: "warning" }
-                                      },
-                                      [
-                                        _c("v-icon", { attrs: { left: "" } }, [
-                                          _vm._v("fas fa-exclamation-circle")
-                                        ]),
-                                        _vm._v(
-                                          "\n                            " +
-                                            _vm._s(item.status_name) +
-                                            "\n                        "
-                                        )
-                                      ],
-                                      1
-                                    )
-                                  : _vm._e(),
-                                _vm._v(" "),
-                                item.status_id == 6
-                                  ? _c(
-                                      "v-chip",
-                                      {
-                                        staticClass: "ma-2",
-                                        attrs: {
-                                          label: "",
-                                          color: "light-green darken-1"
-                                        }
-                                      },
-                                      [
-                                        _c("v-icon", { attrs: { left: "" } }, [
-                                          _vm._v("fas fa-search")
-                                        ]),
-                                        _vm._v(
-                                          "\n                            " +
-                                            _vm._s(item.status_name) +
-                                            "\n                        "
-                                        )
-                                      ],
-                                      1
-                                    )
-                                  : _vm._e(),
-                                _vm._v(" "),
-                                (item.status_id == 3 || item.status_id == 5) &&
-                                item.end_time != null
-                                  ? _c("CountDowntimer", {
-                                      attrs: {
-                                        "start-time": _vm.moment
-                                          .utc(item.end_time)
-                                          .unix(),
-                                        interval: 1000,
-                                        "end-text": "Is it Secured?"
-                                      },
-                                      scopedSlots: _vm._u(
-                                        [
+                                        directives: [
                                           {
-                                            key: "countdown",
-                                            fn: function(scope) {
-                                              return [
-                                                _c(
-                                                  "span",
-                                                  {
-                                                    staticClass:
-                                                      "blue--text pl-3"
-                                                  },
-                                                  [
-                                                    _vm._v(
-                                                      _vm._s(
-                                                        scope.props.minutes
-                                                      ) +
-                                                        ":" +
-                                                        _vm._s(
-                                                          scope.props.seconds
-                                                        )
-                                                    )
-                                                  ]
-                                                )
-                                              ]
-                                            }
+                                            name: "show",
+                                            rawName: "v-show",
+                                            value: _vm.periodbasisCheck == 1,
+                                            expression: "periodbasisCheck == 1"
                                           }
                                         ],
-                                        null,
-                                        true
+                                        staticClass: "ma-2 white--text",
+                                        attrs: { color: "primary" },
+                                        on: {
+                                          click: function($event) {
+                                            _vm.dialog3 = true
+                                          }
+                                        }
+                                      },
+                                      "v-btn",
+                                      attrs,
+                                      false
+                                    ),
+                                    on
+                                  ),
+                                  [
+                                    _vm._v(
+                                      "\n                                Period Basis\n                                "
+                                    ),
+                                    _c(
+                                      "v-icon",
+                                      { attrs: { right: "", dark: "" } },
+                                      [_vm._v("faSvg fa-map fa-xs")]
+                                    )
+                                  ],
+                                  1
+                                )
+                              ]
+                            }
+                          }
+                        ]),
+                        model: {
+                          value: _vm.dialog3,
+                          callback: function($$v) {
+                            _vm.dialog3 = $$v
+                          },
+                          expression: "dialog3"
+                        }
+                      },
+                      [
+                        _vm._v(" "),
+                        _c(
+                          "v-card",
+                          [
+                            _c(
+                              "v-toolbar",
+                              { attrs: { dark: "", color: "primary" } },
+                              [
+                                _c(
+                                  "v-btn",
+                                  {
+                                    attrs: { icon: "", dark: "" },
+                                    on: {
+                                      click: function($event) {
+                                        _vm.dialog3 = false
+                                      }
+                                    }
+                                  },
+                                  [
+                                    _c("v-icon", [
+                                      _vm._v("faSvg fa-times-circle")
+                                    ])
+                                  ],
+                                  1
+                                ),
+                                _vm._v(" "),
+                                _c("v-toolbar-title", [_vm._v("Period Basis")]),
+                                _vm._v(" "),
+                                _c("v-spacer")
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "div",
+                              {
+                                staticStyle: {
+                                  position: "absolute",
+                                  top: "64px",
+                                  right: "0px",
+                                  bottom: "0px",
+                                  left: "0px"
+                                }
+                              },
+                              [
+                                _c("iframe", {
+                                  staticStyle: {
+                                    left: "0",
+                                    bottom: "0",
+                                    right: "0",
+                                    width: "100%",
+                                    height: "100%",
+                                    border: "none",
+                                    margin: "0",
+                                    padding: "0",
+                                    overflow: "hidden",
+                                    "z-index": "999999"
+                                  },
+                                  attrs: { src: _vm.periodbasisLink }
+                                })
+                              ]
+                            )
+                          ],
+                          1
+                        )
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                )
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c("v-text-field", {
+              attrs: {
+                "append-icon": "mdi-magnify",
+                label: "Search",
+                "single-line": "",
+                "hide-details": ""
+              },
+              model: {
+                value: _vm.search,
+                callback: function($$v) {
+                  _vm.search = $$v
+                },
+                expression: "search"
+              }
+            }),
+            _vm._v(" "),
+            _c(
+              "v-btn-toggle",
+              {
+                attrs: { "right-align": "", mandatory: "", value: 0 },
+                model: {
+                  value: _vm.toggle_exclusive,
+                  callback: function($$v) {
+                    _vm.toggle_exclusive = $$v
+                  },
+                  expression: "toggle_exclusive"
+                }
+              },
+              [
+                _c(
+                  "v-btn",
+                  {
+                    attrs: { loading: _vm.loadingf, disabled: _vm.loadingf },
+                    on: {
+                      click: function($event) {
+                        _vm.statusflag = 4
+                      }
+                    }
+                  },
+                  [_vm._v("\n                    All\n                ")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "v-btn",
+                  {
+                    attrs: { loading: _vm.loadingf, disabled: _vm.loadingf },
+                    on: {
+                      click: function($event) {
+                        _vm.statusflag = 1
+                      }
+                    }
+                  },
+                  [_vm._v("\n                    New\n                ")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "v-btn",
+                  {
+                    attrs: { loading: _vm.loadingf, disabled: _vm.loadingf },
+                    on: {
+                      click: function($event) {
+                        _vm.statusflag = 6
+                      }
+                    }
+                  },
+                  [_vm._v("\n                    Scouting\n                ")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "v-btn",
+                  {
+                    attrs: { loading: _vm.loadingf, disabled: _vm.loadingf },
+                    on: {
+                      click: function($event) {
+                        _vm.statusflag = 3
+                      }
+                    }
+                  },
+                  [_vm._v("\n                    Repairing\n                ")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "v-btn",
+                  {
+                    attrs: { loading: _vm.loadingf, disabled: _vm.loadingf },
+                    on: {
+                      click: function($event) {
+                        _vm.statusflag = 5
+                      }
+                    }
+                  },
+                  [_vm._v("\n                    Contested\n                ")]
+                )
+              ],
+              1
+            )
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c(
+          "v-data-table",
+          {
+            staticClass: "elevation-1",
+            attrs: {
+              headers: _vm.headers,
+              items: _vm.filteredItems,
+              expanded: _vm.expanded,
+              "item-key": "id",
+              loading: _vm.loadingt,
+              "items-per-page": 25,
+              "footer-props": {
+                "items-per-page-options": [15, 25, 50, 100, -1]
+              },
+              "sort-by": ["timestamp"],
+              search: _vm.search,
+              "sort-desc": [true, false],
+              "multi-sort": ""
+            },
+            on: {
+              "update:expanded": function($event) {
+                _vm.expanded = $event
+              }
+            },
+            scopedSlots: _vm._u([
+              {
+                key: "item.count",
+                fn: function(ref) {
+                  var item = ref.item
+                  return [
+                    _c("VueCountUptimer", {
+                      attrs: {
+                        "start-time": _vm.moment.utc(item.timestamp).unix(),
+                        "end-text": "Window Closed",
+                        interval: 1000
+                      },
+                      on: {
+                        timecheck: function($event) {
+                          return _vm.timecheck(item)
+                        }
+                      },
+                      scopedSlots: _vm._u(
+                        [
+                          {
+                            key: "countup",
+                            fn: function(scope) {
+                              return [
+                                _c("span", { staticClass: "red--text pl-3" }, [
+                                  _vm._v(
+                                    _vm._s(scope.props.hours) +
+                                      ":" +
+                                      _vm._s(scope.props.minutes) +
+                                      ":" +
+                                      _vm._s(scope.props.seconds)
+                                  )
+                                ])
+                              ]
+                            }
+                          }
+                        ],
+                        null,
+                        true
+                      )
+                    })
+                  ]
+                }
+              },
+              {
+                key: "item.status_name",
+                fn: function(ref) {
+                  var item = ref.item
+                  return [
+                    _vm.$can("edit_notifications")
+                      ? _c(
+                          "v-menu",
+                          {
+                            attrs: { "offset-y": "" },
+                            scopedSlots: _vm._u(
+                              [
+                                {
+                                  key: "activator",
+                                  fn: function(ref) {
+                                    var on = ref.on
+                                    var attrs = ref.attrs
+                                    return [
+                                      _c(
+                                        "div",
+                                        {
+                                          staticClass:
+                                            "align-items-center d-inline-flex"
+                                        },
+                                        [
+                                          _c(
+                                            "v-btn",
+                                            _vm._g(
+                                              _vm._b(
+                                                {
+                                                  staticClass: "ma-2",
+                                                  attrs: {
+                                                    tile: "",
+                                                    outlined: "",
+                                                    color: _vm.statusButtonColor(
+                                                      item
+                                                    )
+                                                  }
+                                                },
+                                                "v-btn",
+                                                attrs,
+                                                false
+                                              ),
+                                              on
+                                            ),
+                                            [
+                                              _c(
+                                                "v-icon",
+                                                { attrs: { left: "" } },
+                                                [
+                                                  _vm._v(
+                                                    _vm._s(
+                                                      _vm.statusButtonIcon(item)
+                                                    )
+                                                  )
+                                                ]
+                                              ),
+                                              _vm._v(
+                                                "\n                                " +
+                                                  _vm._s(item.status_name) +
+                                                  "\n                            "
+                                              )
+                                            ],
+                                            1
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "v-fab-transition",
+                                            [
+                                              item.status_id == 5 &&
+                                              !_vm.expanded.includes(item)
+                                                ? _c(
+                                                    "v-chip",
+                                                    {
+                                                      attrs: {
+                                                        pill: "",
+                                                        outlined: "",
+                                                        small: "",
+                                                        color: "success"
+                                                      },
+                                                      on: {
+                                                        click: function(
+                                                          $event
+                                                        ) {
+                                                          ;(_vm.expanded = [
+                                                            item
+                                                          ]),
+                                                            (_vm.expanded_id =
+                                                              item.id)
+                                                        }
+                                                      }
+                                                    },
+                                                    [_vm._v("aDash")]
+                                                  )
+                                                : _vm._e(),
+                                              _vm._v(" "),
+                                              item.status_id == 5 &&
+                                              _vm.expanded.includes(item)
+                                                ? _c(
+                                                    "v-btn",
+                                                    {
+                                                      attrs: {
+                                                        icon: "",
+                                                        color: "error"
+                                                      },
+                                                      on: {
+                                                        click: function(
+                                                          $event
+                                                        ) {
+                                                          ;(_vm.expanded = []),
+                                                            (_vm.expanded_id = 0)
+                                                        }
+                                                      }
+                                                    },
+                                                    [
+                                                      _c("v-icon", [
+                                                        _vm._v("fas fa-minus")
+                                                      ])
+                                                    ],
+                                                    1
+                                                  )
+                                                : _vm._e()
+                                            ],
+                                            1
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "v-fab-transition",
+                                            [
+                                              item.status_id == 5 ||
+                                              item.status_id == 3
+                                                ? _c("NotificationTimer", {
+                                                    attrs: { item: item }
+                                                  })
+                                                : _vm._e()
+                                            ],
+                                            1
+                                          )
+                                        ],
+                                        1
                                       )
-                                    })
-                                  : _vm._e()
+                                    ]
+                                  }
+                                }
+                              ],
+                              null,
+                              true
+                            )
+                          },
+                          [
+                            _vm._v(" "),
+                            _c(
+                              "v-list",
+                              _vm._l(_vm.dropdown_edit, function(list, index) {
+                                return _c(
+                                  "v-list-item",
+                                  {
+                                    key: index,
+                                    on: {
+                                      click: function($event) {
+                                        ;(item.status_id = list.value),
+                                          (item.status_name = list.title),
+                                          (item.user_name = _vm.user_name),
+                                          _vm.click(item)
+                                      }
+                                    }
+                                  },
+                                  [
+                                    _c("v-list-item-title", [
+                                      _vm._v(_vm._s(list.title))
+                                    ])
+                                  ],
+                                  1
+                                )
+                              }),
+                              1
+                            )
+                          ],
+                          1
+                        )
+                      : _c(
+                          "div",
+                          [
+                            [
+                              _c(
+                                "div",
+                                {
+                                  staticClass:
+                                    "align-items-center d-inline-flex"
+                                },
+                                [
+                                  item.status_id == 1
+                                    ? _c(
+                                        "v-chip",
+                                        {
+                                          staticClass: "ma-2",
+                                          attrs: { label: "", color: "success" }
+                                        },
+                                        [
+                                          _c(
+                                            "v-icon",
+                                            { attrs: { left: "" } },
+                                            [_vm._v("fas fa-plus")]
+                                          ),
+                                          _vm._v(
+                                            "\n                                " +
+                                              _vm._s(item.status_name) +
+                                              "\n                            "
+                                          )
+                                        ],
+                                        1
+                                      )
+                                    : _vm._e(),
+                                  _vm._v(" "),
+                                  item.status_id == 2
+                                    ? _c(
+                                        "v-chip",
+                                        {
+                                          staticClass: "ma-2",
+                                          attrs: { label: "", color: "error" }
+                                        },
+                                        [
+                                          _c(
+                                            "v-icon",
+                                            { attrs: { left: "" } },
+                                            [_vm._v("fas fa-fire fa-sm")]
+                                          ),
+                                          _vm._v(
+                                            "\n                                " +
+                                              _vm._s(item.status_name) +
+                                              "\n                            "
+                                          )
+                                        ],
+                                        1
+                                      )
+                                    : _vm._e(),
+                                  _vm._v(" "),
+                                  item.status_id == 3
+                                    ? _c(
+                                        "v-chip",
+                                        {
+                                          staticClass: "ma-2",
+                                          attrs: {
+                                            label: "",
+                                            color: "dark-orange"
+                                          }
+                                        },
+                                        [
+                                          _c(
+                                            "v-icon",
+                                            { attrs: { left: "" } },
+                                            [_vm._v("fas fa-toolbox")]
+                                          ),
+                                          _vm._v(
+                                            "\n                                " +
+                                              _vm._s(item.status_name) +
+                                              "\n                            "
+                                          )
+                                        ],
+                                        1
+                                      )
+                                    : _vm._e(),
+                                  _vm._v(" "),
+                                  item.status_id == 4
+                                    ? _c(
+                                        "v-chip",
+                                        {
+                                          staticClass: "ma-2",
+                                          attrs: { label: "", color: "primary" }
+                                        },
+                                        [
+                                          _c(
+                                            "v-icon",
+                                            { attrs: { left: "" } },
+                                            [_vm._v("fas fa-thumbs-up")]
+                                          ),
+                                          _vm._v(
+                                            "\n                                " +
+                                              _vm._s(item.status_name) +
+                                              "\n                            "
+                                          )
+                                        ],
+                                        1
+                                      )
+                                    : _vm._e(),
+                                  _vm._v(" "),
+                                  item.status_id == 5
+                                    ? _c(
+                                        "v-chip",
+                                        {
+                                          staticClass: "ma-2",
+                                          attrs: { label: "", color: "warning" }
+                                        },
+                                        [
+                                          _c(
+                                            "v-icon",
+                                            { attrs: { left: "" } },
+                                            [
+                                              _vm._v(
+                                                "fas fa-exclamation-circle"
+                                              )
+                                            ]
+                                          ),
+                                          _vm._v(
+                                            "\n                                " +
+                                              _vm._s(item.status_name) +
+                                              "\n                            "
+                                          )
+                                        ],
+                                        1
+                                      )
+                                    : _vm._e(),
+                                  _vm._v(" "),
+                                  item.status_id == 6
+                                    ? _c(
+                                        "v-chip",
+                                        {
+                                          staticClass: "ma-2",
+                                          attrs: {
+                                            label: "",
+                                            color: "light-green darken-1"
+                                          }
+                                        },
+                                        [
+                                          _c(
+                                            "v-icon",
+                                            { attrs: { left: "" } },
+                                            [_vm._v("fas fa-search")]
+                                          ),
+                                          _vm._v(
+                                            "\n                                " +
+                                              _vm._s(item.status_name) +
+                                              "\n                            "
+                                          )
+                                        ],
+                                        1
+                                      )
+                                    : _vm._e(),
+                                  _vm._v(" "),
+                                  (item.status_id == 3 ||
+                                    item.status_id == 5) &&
+                                  item.end_time != null
+                                    ? _c("CountDowntimer", {
+                                        attrs: {
+                                          "start-time": _vm.moment
+                                            .utc(item.end_time)
+                                            .unix(),
+                                          interval: 1000,
+                                          "end-text": "Is it Secured?"
+                                        },
+                                        scopedSlots: _vm._u(
+                                          [
+                                            {
+                                              key: "countdown",
+                                              fn: function(scope) {
+                                                return [
+                                                  _c(
+                                                    "span",
+                                                    {
+                                                      staticClass:
+                                                        "blue--text pl-3"
+                                                    },
+                                                    [
+                                                      _vm._v(
+                                                        _vm._s(
+                                                          scope.props.minutes
+                                                        ) +
+                                                          ":" +
+                                                          _vm._s(
+                                                            scope.props.seconds
+                                                          )
+                                                      )
+                                                    ]
+                                                  )
+                                                ]
+                                              }
+                                            }
+                                          ],
+                                          null,
+                                          true
+                                        )
+                                      })
+                                    : _vm._e()
+                                ],
+                                1
+                              )
+                            ]
+                          ],
+                          2
+                        )
+                  ]
+                }
+              },
+              {
+                key: "expanded-item",
+                fn: function(ref) {
+                  var headers = ref.headers
+                  var item = ref.item
+                  return [
+                    _c(
+                      "td",
+                      { attrs: { colspan: headers.length, align: "center" } },
+                      [
+                        _c(
+                          "div",
+                          [
+                            _c(
+                              "v-col",
+                              { staticClass: "align-center" },
+                              [
+                                _c("v-text-field", {
+                                  attrs: {
+                                    value: item.text,
+                                    label:
+                                      "aDash Board Link - needs to be a link to a scan, making a new scan from where will not save",
+                                    outlined: "",
+                                    shaped: ""
+                                  },
+                                  on: {
+                                    change: function($event) {
+                                      ;(_vm.payload = $event),
+                                        _vm.updatetext(_vm.payload, item)
+                                    }
+                                  }
+                                })
                               ],
                               1
                             )
-                          ]
-                        ],
-                        2
-                      )
-                ]
-              }
-            },
-            {
-              key: "expanded-item",
-              fn: function(ref) {
-                var headers = ref.headers
-                var item = ref.item
-                return [
-                  _c(
-                    "td",
-                    { attrs: { colspan: headers.length, align: "center" } },
-                    [
-                      _c(
-                        "div",
-                        [
-                          _c(
-                            "v-col",
-                            { staticClass: "align-center" },
-                            [
-                              _c("v-text-field", {
-                                attrs: {
-                                  value: item.text,
-                                  label:
-                                    "aDash Board Link - needs to be a link to a scan, making a new scan from where will not save",
-                                  outlined: "",
-                                  shaped: ""
-                                },
-                                on: {
-                                  change: function($event) {
-                                    ;(_vm.payload = $event),
-                                      _vm.updatetext(_vm.payload, item)
-                                  }
-                                }
-                              })
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      item.text != null &&
-                      item.text.includes("https://adashboard.info/intel/dscan/")
-                        ? _c(
-                            "div",
-                            [
-                              _c(
-                                "v-card",
-                                {
-                                  staticClass: "mx-auto",
-                                  attrs: { elevation: "24" }
-                                },
-                                [
-                                  _c("iframe", {
-                                    staticStyle: {
-                                      left: "0",
-                                      bottom: "0",
-                                      right: "0",
-                                      width: "100%",
-                                      height: "600px",
-                                      border: "none",
-                                      margin: "0",
-                                      padding: "0",
-                                      overflow: "hidden",
-                                      "z-index": "999999"
-                                    },
-                                    attrs: {
-                                      name: "ifram" + item.id,
-                                      src: item.text
-                                    }
-                                  })
-                                ]
-                              )
-                            ],
-                            1
-                          )
-                        : _vm._e(),
-                      _vm._v(" "),
-                      _c("div", [
-                        _vm._v(
-                          "\n                    " +
-                            _vm._s(item.text) +
-                            "\n                "
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        item.text != null &&
+                        item.text.includes(
+                          "https://adashboard.info/intel/dscan/"
                         )
-                      ])
-                    ]
-                  )
-                ]
+                          ? _c(
+                              "div",
+                              [
+                                _c(
+                                  "v-card",
+                                  {
+                                    staticClass: "mx-auto",
+                                    attrs: { elevation: "24" }
+                                  },
+                                  [
+                                    _c("iframe", {
+                                      staticStyle: {
+                                        left: "0",
+                                        bottom: "0",
+                                        right: "0",
+                                        width: "100%",
+                                        height: "600px",
+                                        border: "none",
+                                        margin: "0",
+                                        padding: "0",
+                                        overflow: "hidden",
+                                        "z-index": "999999"
+                                      },
+                                      attrs: {
+                                        name: "ifram" + item.id,
+                                        src: item.text
+                                      }
+                                    })
+                                  ]
+                                )
+                              ],
+                              1
+                            )
+                          : _vm._e(),
+                        _vm._v(" "),
+                        _c("div", [
+                          _vm._v(
+                            "\n                        " +
+                              _vm._s(item.text) +
+                              "\n                    "
+                          )
+                        ])
+                      ]
+                    )
+                  ]
+                }
+              },
+              {
+                key: "item.user_name",
+                fn: function(ref) {
+                  var item = ref.item
+                  return [
+                    _vm.$can("edit_notifications")
+                      ? _c("p", [
+                          _vm._v(
+                            "\n                    " +
+                              _vm._s(item.user_name) +
+                              "\n                "
+                          )
+                        ])
+                      : _vm._e()
+                  ]
+                }
               }
-            },
-            {
-              key: "item.user_name",
-              fn: function(ref) {
-                var item = ref.item
-                return [
-                  _vm.$can("edit_notifications")
-                    ? _c("p", [_vm._v(_vm._s(item.user_name))])
-                    : _vm._e()
-                ]
-              }
-            }
-          ])
-        },
-        [
-          _vm._v("\n        >\n\n        "),
-          _c("template", { slot: "no-data" }, [
-            _vm._v(
-              "\n            No hacking notifications to show, which I would say is a good\n            thing?\n        "
-            )
-          ])
-        ],
-        2
-      ),
-      _vm._v(" "),
-      _c(
-        "v-snackbar",
-        {
-          attrs: { timeout: 3000, color: _vm.snackColor },
-          scopedSlots: _vm._u([
-            {
-              key: "action",
-              fn: function(ref) {
-                var attrs = ref.attrs
-                return [
-                  _c(
-                    "v-btn",
-                    _vm._b(
-                      {
-                        attrs: { text: "" },
-                        on: {
-                          click: function($event) {
-                            _vm.snack = false
-                          }
-                        }
-                      },
+            ])
+          },
+          [
+            _vm._v("\n            >\n\n            "),
+            _c("template", { slot: "no-data" }, [
+              _vm._v(
+                "\n                No hacking notifications to show, which I would say is a\n                good thing?\n            "
+              )
+            ])
+          ],
+          2
+        ),
+        _vm._v(" "),
+        _c(
+          "v-snackbar",
+          {
+            attrs: { timeout: 3000, color: _vm.snackColor },
+            scopedSlots: _vm._u([
+              {
+                key: "action",
+                fn: function(ref) {
+                  var attrs = ref.attrs
+                  return [
+                    _c(
                       "v-btn",
-                      attrs,
-                      false
-                    ),
-                    [_vm._v("Close")]
-                  )
-                ]
+                      _vm._b(
+                        {
+                          attrs: { text: "" },
+                          on: {
+                            click: function($event) {
+                              _vm.snack = false
+                            }
+                          }
+                        },
+                        "v-btn",
+                        attrs,
+                        false
+                      ),
+                      [_vm._v("Close")]
+                    )
+                  ]
+                }
               }
+            ]),
+            model: {
+              value: _vm.snack,
+              callback: function($$v) {
+                _vm.snack = $$v
+              },
+              expression: "snack"
             }
-          ]),
-          model: {
-            value: _vm.snack,
-            callback: function($$v) {
-              _vm.snack = $$v
-            },
-            expression: "snack"
-          }
-        },
-        [_vm._v("\n        " + _vm._s(_vm.snackText) + "\n\n        ")]
-      ),
-      _vm._v(" "),
-      _c("div", [_c("Structure")], 1)
-    ],
-    1
-  )
+          },
+          [
+            _vm._v(
+              "\n            " + _vm._s(_vm.snackText) + "\n\n            "
+            )
+          ]
+        )
+      ],
+      1
+    ),
+    _vm._v(" "),
+    _c("div", [_c("Structure")], 1)
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true

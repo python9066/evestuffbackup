@@ -1,448 +1,471 @@
 <template>
     <div class=" pr-16 pl-16">
-        <messageNotification v-if="seeMessage()"></messageNotification>
-        <!-- <testingMessage></testingMessage> -->
-        <div class=" d-flex align-items-center">
-            <v-card-title>Notifications</v-card-title>
-            <div v-if="$can('access hacks')">You can edit posts.</div>
+        <div>
+            <messageNotification v-if="seeMessage()"></messageNotification>
+            <!-- <testingMessage></testingMessage> -->
+            <div class=" d-flex align-items-center">
+                <v-card-title>Notifications</v-card-title>
+                <div v-if="$can('access hacks')">You can edit posts.</div>
 
-            <v-btn
-                :loading="loadingr"
-                :disabled="loadingr"
-                color="primary"
-                class="ma-2 white--text"
-                @click="loadtimers()"
-            >
-                Update
-                <v-icon right dark>faSvg fa-sync-alt fa-xs</v-icon>
-            </v-btn>
-            <div>
-                <v-btn-toggle v-model="icon" borderless group>
-                    <v-dialog
-                        v-model="dialog1"
-                        fullscreen
-                        hide-overlay
-                        transition="dialog-bottom-transition"
-                    >
-                        <template v-slot:activator="{ on, attrs }">
-                            <template>
+                <v-btn
+                    :loading="loadingr"
+                    :disabled="loadingr"
+                    color="primary"
+                    class="ma-2 white--text"
+                    @click="loadtimers()"
+                >
+                    Update
+                    <v-icon right dark>faSvg fa-sync-alt fa-xs</v-icon>
+                </v-btn>
+                <div>
+                    <v-btn-toggle v-model="icon" borderless group>
+                        <v-dialog
+                            v-model="dialog1"
+                            fullscreen
+                            hide-overlay
+                            transition="dialog-bottom-transition"
+                        >
+                            <template v-slot:activator="{ on, attrs }">
+                                <template>
+                                    <v-btn
+                                        v-show="delvecheck == 1"
+                                        color="primary"
+                                        class="ma-2 white--text"
+                                        v-bind="attrs"
+                                        v-on="on"
+                                        @click="dialog1 = true"
+                                    >
+                                        Delve
+                                        <v-icon right dark
+                                            >faSvg fa-map fa-xs</v-icon
+                                        >
+                                    </v-btn>
+                                </template>
+                            </template>
+                            <v-card>
+                                <v-toolbar dark color="primary">
+                                    <v-btn icon dark @click="dialog1 = false">
+                                        <v-icon>faSvg fa-times-circle</v-icon>
+                                    </v-btn>
+                                    <v-toolbar-title>Delve</v-toolbar-title>
+                                    <v-spacer></v-spacer>
+                                </v-toolbar>
+                                <div
+                                    style="position: absolute; top: 64px; right: 0px; bottom: 0px; left: 0px;"
+                                >
+                                    <iframe
+                                        :src="delveLink"
+                                        style="left:0; bottom:0; right:0; width:100%; height:100%; border:none; margin:0; padding:0; overflow:hidden; z-index:999999;"
+                                    >
+                                    </iframe>
+                                </div>
+                            </v-card>
+                        </v-dialog>
+
+                        <v-dialog
+                            v-model="dialog2"
+                            fullscreen
+                            hide-overlay
+                            transition="dialog-bottom-transition"
+                        >
+                            <template v-slot:activator="{ on, attrs }">
                                 <v-btn
-                                    v-show="delvecheck == 1"
+                                    v-show="queriousCheck == 1"
                                     color="primary"
                                     class="ma-2 white--text"
                                     v-bind="attrs"
                                     v-on="on"
-                                    @click="dialog1 = true"
+                                    @click="dialog2 = true"
                                 >
-                                    Delve
+                                    Querious
                                     <v-icon right dark
                                         >faSvg fa-map fa-xs</v-icon
                                     >
                                 </v-btn>
                             </template>
-                        </template>
-                        <v-card>
-                            <v-toolbar dark color="primary">
-                                <v-btn icon dark @click="dialog1 = false">
-                                    <v-icon>faSvg fa-times-circle</v-icon>
-                                </v-btn>
-                                <v-toolbar-title>Delve</v-toolbar-title>
-                                <v-spacer></v-spacer>
-                            </v-toolbar>
-                            <div
-                                style="position: absolute; top: 64px; right: 0px; bottom: 0px; left: 0px;"
-                            >
-                                <iframe
-                                    :src="delveLink"
-                                    style="left:0; bottom:0; right:0; width:100%; height:100%; border:none; margin:0; padding:0; overflow:hidden; z-index:999999;"
+                            <v-card>
+                                <v-toolbar dark color="primary">
+                                    <v-btn icon dark @click="dialog2 = false">
+                                        <v-icon>faSvg fa-times-circle</v-icon>
+                                    </v-btn>
+                                    <v-toolbar-title>Querious</v-toolbar-title>
+                                    <v-spacer></v-spacer>
+                                </v-toolbar>
+                                <div
+                                    style="position: absolute; top: 64px; right: 0px; bottom: 0px; left: 0px;"
                                 >
-                                </iframe>
-                            </div>
-                        </v-card>
-                    </v-dialog>
+                                    <iframe
+                                        :src="queriousLink"
+                                        style="left:0; bottom:0; right:0; width:100%; height:100%; border:none; margin:0; padding:0; overflow:hidden; z-index:999999;"
+                                    >
+                                    </iframe>
+                                </div>
+                            </v-card>
+                        </v-dialog>
+                        <v-dialog
+                            v-model="dialog3"
+                            fullscreen
+                            hide-overlay
+                            transition="dialog-bottom-transition"
+                        >
+                            <template v-slot:activator="{ on, attrs }">
+                                <v-btn
+                                    v-show="periodbasisCheck == 1"
+                                    color="primary"
+                                    class="ma-2 white--text"
+                                    v-bind="attrs"
+                                    v-on="on"
+                                    @click="dialog3 = true"
+                                >
+                                    Period Basis
+                                    <v-icon right dark
+                                        >faSvg fa-map fa-xs</v-icon
+                                    >
+                                </v-btn>
+                            </template>
+                            <v-card>
+                                <v-toolbar dark color="primary">
+                                    <v-btn icon dark @click="dialog3 = false">
+                                        <v-icon>faSvg fa-times-circle</v-icon>
+                                    </v-btn>
+                                    <v-toolbar-title
+                                        >Period Basis</v-toolbar-title
+                                    >
+                                    <v-spacer></v-spacer>
+                                </v-toolbar>
+                                <div
+                                    style="position: absolute; top: 64px; right: 0px; bottom: 0px; left: 0px;"
+                                >
+                                    <iframe
+                                        :src="periodbasisLink"
+                                        style="left:0; bottom:0; right:0; width:100%; height:100%; border:none; margin:0; padding:0; overflow:hidden; z-index:999999;"
+                                    >
+                                    </iframe>
+                                </div>
+                            </v-card>
+                        </v-dialog>
+                    </v-btn-toggle>
+                </div>
 
-                    <v-dialog
-                        v-model="dialog2"
-                        fullscreen
-                        hide-overlay
-                        transition="dialog-bottom-transition"
+                <v-text-field
+                    v-model="search"
+                    append-icon="mdi-magnify"
+                    label="Search"
+                    single-line
+                    hide-details
+                ></v-text-field>
+
+                <v-btn-toggle
+                    right-align
+                    v-model="toggle_exclusive"
+                    mandatory
+                    :value="0"
+                >
+                    <v-btn
+                        :loading="loadingf"
+                        :disabled="loadingf"
+                        @click="statusflag = 4"
                     >
-                        <template v-slot:activator="{ on, attrs }">
-                            <v-btn
-                                v-show="queriousCheck == 1"
-                                color="primary"
-                                class="ma-2 white--text"
-                                v-bind="attrs"
-                                v-on="on"
-                                @click="dialog2 = true"
-                            >
-                                Querious
-                                <v-icon right dark>faSvg fa-map fa-xs</v-icon>
-                            </v-btn>
-                        </template>
-                        <v-card>
-                            <v-toolbar dark color="primary">
-                                <v-btn icon dark @click="dialog2 = false">
-                                    <v-icon>faSvg fa-times-circle</v-icon>
-                                </v-btn>
-                                <v-toolbar-title>Querious</v-toolbar-title>
-                                <v-spacer></v-spacer>
-                            </v-toolbar>
-                            <div
-                                style="position: absolute; top: 64px; right: 0px; bottom: 0px; left: 0px;"
-                            >
-                                <iframe
-                                    :src="queriousLink"
-                                    style="left:0; bottom:0; right:0; width:100%; height:100%; border:none; margin:0; padding:0; overflow:hidden; z-index:999999;"
-                                >
-                                </iframe>
-                            </div>
-                        </v-card>
-                    </v-dialog>
-                    <v-dialog
-                        v-model="dialog3"
-                        fullscreen
-                        hide-overlay
-                        transition="dialog-bottom-transition"
+                        All
+                    </v-btn>
+                    <v-btn
+                        :loading="loadingf"
+                        :disabled="loadingf"
+                        @click="statusflag = 1"
                     >
-                        <template v-slot:activator="{ on, attrs }">
-                            <v-btn
-                                v-show="periodbasisCheck == 1"
-                                color="primary"
-                                class="ma-2 white--text"
-                                v-bind="attrs"
-                                v-on="on"
-                                @click="dialog3 = true"
-                            >
-                                Period Basis
-                                <v-icon right dark>faSvg fa-map fa-xs</v-icon>
-                            </v-btn>
-                        </template>
-                        <v-card>
-                            <v-toolbar dark color="primary">
-                                <v-btn icon dark @click="dialog3 = false">
-                                    <v-icon>faSvg fa-times-circle</v-icon>
-                                </v-btn>
-                                <v-toolbar-title>Period Basis</v-toolbar-title>
-                                <v-spacer></v-spacer>
-                            </v-toolbar>
-                            <div
-                                style="position: absolute; top: 64px; right: 0px; bottom: 0px; left: 0px;"
-                            >
-                                <iframe
-                                    :src="periodbasisLink"
-                                    style="left:0; bottom:0; right:0; width:100%; height:100%; border:none; margin:0; padding:0; overflow:hidden; z-index:999999;"
-                                >
-                                </iframe>
-                            </div>
-                        </v-card>
-                    </v-dialog>
+                        New
+                    </v-btn>
+                    <v-btn
+                        :loading="loadingf"
+                        :disabled="loadingf"
+                        @click="statusflag = 6"
+                    >
+                        Scouting
+                    </v-btn>
+                    <v-btn
+                        :loading="loadingf"
+                        :disabled="loadingf"
+                        @click="statusflag = 3"
+                    >
+                        Repairing
+                    </v-btn>
+                    <v-btn
+                        :loading="loadingf"
+                        :disabled="loadingf"
+                        @click="statusflag = 5"
+                    >
+                        Contested
+                    </v-btn>
                 </v-btn-toggle>
             </div>
-
-            <v-text-field
-                v-model="search"
-                append-icon="mdi-magnify"
-                label="Search"
-                single-line
-                hide-details
-            ></v-text-field>
-
-            <v-btn-toggle
-                right-align
-                v-model="toggle_exclusive"
-                mandatory
-                :value="0"
+            <v-data-table
+                :headers="headers"
+                :items="filteredItems"
+                :expanded.sync="expanded"
+                item-key="id"
+                :loading="loadingt"
+                :items-per-page="25"
+                :footer-props="{
+                    'items-per-page-options': [15, 25, 50, 100, -1]
+                }"
+                :sort-by="['timestamp']"
+                :search="search"
+                :sort-desc="[true, false]"
+                multi-sort
+                class="elevation-1"
             >
-                <v-btn
-                    :loading="loadingf"
-                    :disabled="loadingf"
-                    @click="statusflag = 4"
                 >
-                    All
-                </v-btn>
-                <v-btn
-                    :loading="loadingf"
-                    :disabled="loadingf"
-                    @click="statusflag = 1"
-                >
-                    New
-                </v-btn>
-                <v-btn
-                    :loading="loadingf"
-                    :disabled="loadingf"
-                    @click="statusflag = 6"
-                >
-                    Scouting
-                </v-btn>
-                <v-btn
-                    :loading="loadingf"
-                    :disabled="loadingf"
-                    @click="statusflag = 3"
-                >
-                    Repairing
-                </v-btn>
-                <v-btn
-                    :loading="loadingf"
-                    :disabled="loadingf"
-                    @click="statusflag = 5"
-                >
-                    Contested
-                </v-btn>
-            </v-btn-toggle>
-        </div>
-        <v-data-table
-            :headers="headers"
-            :items="filteredItems"
-            :expanded.sync="expanded"
-            item-key="id"
-            :loading="loadingt"
-            :items-per-page="25"
-            :footer-props="{ 'items-per-page-options': [15, 25, 50, 100, -1] }"
-            :sort-by="['timestamp']"
-            :search="search"
-            :sort-desc="[true, false]"
-            multi-sort
-            class="elevation-1"
-        >
-            >
 
-            <template slot="no-data">
-                No hacking notifications to show, which I would say is a good
-                thing?
-            </template>
-            <template v-slot:item.count="{ item }">
-                <VueCountUptimer
-                    :start-time="moment.utc(item.timestamp).unix()"
-                    :end-text="'Window Closed'"
-                    :interval="1000"
-                    @timecheck="timecheck(item)"
-                >
-                    <template slot="countup" slot-scope="scope">
-                        <span class="red--text pl-3"
-                            >{{ scope.props.hours }}:{{
-                                scope.props.minutes
-                            }}:{{ scope.props.seconds }}</span
-                        >
-                    </template>
-                </VueCountUptimer>
-            </template>
-
-            <template
-                v-slot:item.status_name="{ item }"
-                class="align-items-center d-inline-flex"
-            >
-                <v-menu offset-y v-if="$can('edit_notifications')">
-                    <template v-slot:activator="{ on, attrs }">
-                        <div class="align-items-center d-inline-flex">
-                            <v-btn
-                                class="ma-2"
-                                v-bind="attrs"
-                                v-on="on"
-                                tile
-                                outlined
-                                :color="statusButtonColor(item)"
+                <template slot="no-data">
+                    No hacking notifications to show, which I would say is a
+                    good thing?
+                </template>
+                <template v-slot:item.count="{ item }">
+                    <VueCountUptimer
+                        :start-time="moment.utc(item.timestamp).unix()"
+                        :end-text="'Window Closed'"
+                        :interval="1000"
+                        @timecheck="timecheck(item)"
+                    >
+                        <template slot="countup" slot-scope="scope">
+                            <span class="red--text pl-3"
+                                >{{ scope.props.hours }}:{{
+                                    scope.props.minutes
+                                }}:{{ scope.props.seconds }}</span
                             >
-                                <v-icon left>{{
-                                    statusButtonIcon(item)
-                                }}</v-icon>
-                                {{ item.status_name }}
-                            </v-btn>
+                        </template>
+                    </VueCountUptimer>
+                </template>
 
-                            <!-- EXTRA BUTTON -->
-                            <v-fab-transition>
-                                <v-chip
-                                    pill
-                                    outlined
-                                    small
-                                    @click="
-                                        (expanded = [item]),
-                                            (expanded_id = item.id)
-                                    "
-                                    v-if="
-                                        item.status_id == 5 &&
-                                            !expanded.includes(item)
-                                    "
-                                    color="success"
-                                    >aDash</v-chip
-                                >
+                <template
+                    v-slot:item.status_name="{ item }"
+                    class="align-items-center d-inline-flex"
+                >
+                    <v-menu offset-y v-if="$can('edit_notifications')">
+                        <template v-slot:activator="{ on, attrs }">
+                            <div class="align-items-center d-inline-flex">
                                 <v-btn
-                                    icon
-                                    @click="(expanded = []), (expanded_id = 0)"
-                                    v-if="
-                                        item.status_id == 5 &&
-                                            expanded.includes(item)
-                                    "
+                                    class="ma-2"
+                                    v-bind="attrs"
+                                    v-on="on"
+                                    tile
+                                    outlined
+                                    :color="statusButtonColor(item)"
+                                >
+                                    <v-icon left>{{
+                                        statusButtonIcon(item)
+                                    }}</v-icon>
+                                    {{ item.status_name }}
+                                </v-btn>
+
+                                <!-- EXTRA BUTTON -->
+                                <v-fab-transition>
+                                    <v-chip
+                                        pill
+                                        outlined
+                                        small
+                                        @click="
+                                            (expanded = [item]),
+                                                (expanded_id = item.id)
+                                        "
+                                        v-if="
+                                            item.status_id == 5 &&
+                                                !expanded.includes(item)
+                                        "
+                                        color="success"
+                                        >aDash</v-chip
+                                    >
+                                    <v-btn
+                                        icon
+                                        @click="
+                                            (expanded = []), (expanded_id = 0)
+                                        "
+                                        v-if="
+                                            item.status_id == 5 &&
+                                                expanded.includes(item)
+                                        "
+                                        color="error"
+                                    >
+                                        <v-icon>fas fa-minus</v-icon></v-btn
+                                    >
+                                </v-fab-transition>
+                                <v-fab-transition>
+                                    <NotificationTimer
+                                        :item="item"
+                                        v-if="
+                                            item.status_id == 5 ||
+                                                item.status_id == 3
+                                        "
+                                    ></NotificationTimer>
+                                </v-fab-transition>
+                            </div>
+                        </template>
+
+                        <v-list>
+                            <v-list-item
+                                v-for="(list, index) in dropdown_edit"
+                                :key="index"
+                                @click="
+                                    (item.status_id = list.value),
+                                        (item.status_name = list.title),
+                                        (item.user_name = user_name),
+                                        click(item)
+                                "
+                            >
+                                <v-list-item-title>{{
+                                    list.title
+                                }}</v-list-item-title>
+                            </v-list-item>
+                        </v-list>
+                    </v-menu>
+                    <div v-else>
+                        <template>
+                            <div class="align-items-center d-inline-flex">
+                                <v-chip
+                                    v-if="item.status_id == 1"
+                                    class="ma-2"
+                                    label
+                                    color="success"
+                                >
+                                    <v-icon left>fas fa-plus</v-icon>
+                                    {{ item.status_name }}
+                                </v-chip>
+                                <v-chip
+                                    v-if="item.status_id == 2"
+                                    class="ma-2"
+                                    label
                                     color="error"
                                 >
-                                    <v-icon>fas fa-minus</v-icon></v-btn
+                                    <v-icon left>fas fa-fire fa-sm</v-icon>
+                                    {{ item.status_name }}
+                                </v-chip>
+                                <v-chip
+                                    v-if="item.status_id == 3"
+                                    class="ma-2"
+                                    label
+                                    color="dark-orange"
                                 >
-                            </v-fab-transition>
-                            <v-fab-transition>
-                                <NotificationTimer
-                                    :item="item"
-                                    v-if="
-                                        item.status_id == 5 ||
-                                            item.status_id == 3
-                                    "
-                                ></NotificationTimer>
-                            </v-fab-transition>
-                        </div>
-                    </template>
+                                    <v-icon left>fas fa-toolbox</v-icon>
+                                    {{ item.status_name }}
+                                </v-chip>
+                                <v-chip
+                                    v-if="item.status_id == 4"
+                                    class="ma-2"
+                                    label
+                                    color="primary"
+                                >
+                                    <v-icon left>fas fa-thumbs-up</v-icon>
+                                    {{ item.status_name }}
+                                </v-chip>
+                                <v-chip
+                                    v-if="item.status_id == 5"
+                                    class="ma-2"
+                                    label
+                                    color="warning"
+                                >
+                                    <v-icon left
+                                        >fas fa-exclamation-circle</v-icon
+                                    >
+                                    {{ item.status_name }}
+                                </v-chip>
 
-                    <v-list>
-                        <v-list-item
-                            v-for="(list, index) in dropdown_edit"
-                            :key="index"
-                            @click="
-                                (item.status_id = list.value),
-                                    (item.status_name = list.title),
-                                    (item.user_name = user_name),
-                                    click(item)
+                                <v-chip
+                                    v-if="item.status_id == 6"
+                                    class="ma-2"
+                                    label
+                                    color="light-green darken-1"
+                                >
+                                    <v-icon left>fas fa-search</v-icon>
+                                    {{ item.status_name }}
+                                </v-chip>
+                                <CountDowntimer
+                                    v-if="
+                                        (item.status_id == 3 ||
+                                            item.status_id == 5) &&
+                                            item.end_time != null
+                                    "
+                                    :start-time="
+                                        moment.utc(item.end_time).unix()
+                                    "
+                                    :interval="1000"
+                                    end-text="Is it Secured?"
+                                >
+                                    <template
+                                        slot="countdown"
+                                        slot-scope="scope"
+                                    >
+                                        <span class="blue--text pl-3"
+                                            >{{ scope.props.minutes }}:{{
+                                                scope.props.seconds
+                                            }}</span
+                                        >
+                                    </template>
+                                </CountDowntimer>
+                            </div>
+                        </template>
+                    </div>
+                </template>
+                <template
+                    v-slot:expanded-item="{ headers, item }"
+                    class="align-center"
+                    height="100%"
+                >
+                    <td :colspan="headers.length" align="center">
+                        <div>
+                            <v-col class="align-center">
+                                <v-text-field
+                                    v-bind:value="item.text"
+                                    label="aDash Board Link - needs to be a link to a scan, making a new scan from where will not save"
+                                    outlined
+                                    shaped
+                                    @change="
+                                        (payload = $event),
+                                            updatetext(payload, item)
+                                    "
+                                ></v-text-field>
+                            </v-col>
+                        </div>
+                        <div
+                            v-if="
+                                item.text != null &&
+                                    item.text.includes(
+                                        'https://adashboard.info/intel/dscan/'
+                                    )
                             "
                         >
-                            <v-list-item-title>{{
-                                list.title
-                            }}</v-list-item-title>
-                        </v-list-item>
-                    </v-list>
-                </v-menu>
-                <div v-else>
-                    <template>
-                        <div class="align-items-center d-inline-flex">
-                            <v-chip
-                                v-if="item.status_id == 1"
-                                class="ma-2"
-                                label
-                                color="success"
-                            >
-                                <v-icon left>fas fa-plus</v-icon>
-                                {{ item.status_name }}
-                            </v-chip>
-                            <v-chip
-                                v-if="item.status_id == 2"
-                                class="ma-2"
-                                label
-                                color="error"
-                            >
-                                <v-icon left>fas fa-fire fa-sm</v-icon>
-                                {{ item.status_name }}
-                            </v-chip>
-                            <v-chip
-                                v-if="item.status_id == 3"
-                                class="ma-2"
-                                label
-                                color="dark-orange"
-                            >
-                                <v-icon left>fas fa-toolbox</v-icon>
-                                {{ item.status_name }}
-                            </v-chip>
-                            <v-chip
-                                v-if="item.status_id == 4"
-                                class="ma-2"
-                                label
-                                color="primary"
-                            >
-                                <v-icon left>fas fa-thumbs-up</v-icon>
-                                {{ item.status_name }}
-                            </v-chip>
-                            <v-chip
-                                v-if="item.status_id == 5"
-                                class="ma-2"
-                                label
-                                color="warning"
-                            >
-                                <v-icon left>fas fa-exclamation-circle</v-icon>
-                                {{ item.status_name }}
-                            </v-chip>
-
-                            <v-chip
-                                v-if="item.status_id == 6"
-                                class="ma-2"
-                                label
-                                color="light-green darken-1"
-                            >
-                                <v-icon left>fas fa-search</v-icon>
-                                {{ item.status_name }}
-                            </v-chip>
-                            <CountDowntimer
-                                v-if="
-                                    (item.status_id == 3 ||
-                                        item.status_id == 5) &&
-                                        item.end_time != null
-                                "
-                                :start-time="moment.utc(item.end_time).unix()"
-                                :interval="1000"
-                                end-text="Is it Secured?"
-                            >
-                                <template slot="countdown" slot-scope="scope">
-                                    <span class="blue--text pl-3"
-                                        >{{ scope.props.minutes }}:{{
-                                            scope.props.seconds
-                                        }}</span
-                                    >
-                                </template>
-                            </CountDowntimer>
+                            <v-card class="mx-auto" elevation="24">
+                                <iframe
+                                    :name="'ifram' + item.id"
+                                    :src="item.text"
+                                    style="left:0; bottom:0; right:0; width:100%; height:600px; border:none; margin:0; padding:0; overflow:hidden; z-index:999999;"
+                                >
+                                </iframe>
+                            </v-card>
                         </div>
-                    </template>
-                </div>
-            </template>
-            <template
-                v-slot:expanded-item="{ headers, item }"
-                class="align-center"
-                height="100%"
-            >
-                <td :colspan="headers.length" align="center">
-                    <div>
-                        <v-col class="align-center">
-                            <v-text-field
-                                v-bind:value="item.text"
-                                label="aDash Board Link - needs to be a link to a scan, making a new scan from where will not save"
-                                outlined
-                                shaped
-                                @change="
-                                    (payload = $event),
-                                        updatetext(payload, item)
-                                "
-                            ></v-text-field>
-                        </v-col>
-                    </div>
-                    <div
-                        v-if="
-                            item.text != null &&
-                                item.text.includes(
-                                    'https://adashboard.info/intel/dscan/'
-                                )
-                        "
-                    >
-                        <v-card class="mx-auto" elevation="24">
-                            <iframe
-                                :name="'ifram' + item.id"
-                                :src="item.text"
-                                style="left:0; bottom:0; right:0; width:100%; height:600px; border:none; margin:0; padding:0; overflow:hidden; z-index:999999;"
-                            >
-                            </iframe>
-                        </v-card>
-                    </div>
-                    <div>
-                        {{ item.text }}
-                    </div>
-                </td>
-            </template>
-            <template
-                v-slot:item.user_name="{ item }"
-                class="d-flex align-center"
-            >
-                <p v-if="$can('edit_notifications')">{{ item.user_name }}</p>
-            </template>
-        </v-data-table>
-        <v-snackbar v-model="snack" :timeout="3000" :color="snackColor">
-            {{ snackText }}
+                        <div>
+                            {{ item.text }}
+                        </div>
+                    </td>
+                </template>
+                <template
+                    v-slot:item.user_name="{ item }"
+                    class="d-flex align-center"
+                >
+                    <p v-if="$can('edit_notifications')">
+                        {{ item.user_name }}
+                    </p>
+                </template>
+            </v-data-table>
+            <v-snackbar v-model="snack" :timeout="3000" :color="snackColor">
+                {{ snackText }}
 
-            <template v-slot:action="{ attrs }">
-                <v-btn v-bind="attrs" text @click="snack = false">Close</v-btn>
-            </template>
-        </v-snackbar>
+                <template v-slot:action="{ attrs }">
+                    <v-btn v-bind="attrs" text @click="snack = false"
+                        >Close</v-btn
+                    >
+                </template>
+            </v-snackbar>
+        </div>
         <div>
             <Structure></Structure>
         </div>
