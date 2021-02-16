@@ -50,6 +50,7 @@ Vue.component('UsersCharsEdit', require('./components/campaignAll/UsersCharsEdit
 Vue.component('ShowNotes', require('./components/campaignAll/ShowNotes.vue').default);
 Vue.component('LastedChecked', require('./components/campaignAll/LastedChecked.vue').default);
 Vue.component('SystemScout', require('./components/campaignAll/SystemScout.vue').default);
+Vue.component('StationGunner', require('./components/notification/StationGunner.vue').default);
 Vue.component('SystemTidi', require('./components/campaign/SystemTidi.vue').default);
 Vue.component('SystemTidiMulti', require('./components/multicampaigns/SystemTidiMulti.vue').default);
 Vue.component('AdminHackUserTable', require('./components/campaignAll/admin/UserTable.vue').default);
