@@ -1,7 +1,7 @@
 <template>
     <div class=" pt-16">
         <div class=" d-flex align-items-center">
-            <v-card-title>Structures test</v-card-title>
+            <v-card-title>Structures Notifications</v-card-title>
 
             <v-text-field
                 class=" ml-5"

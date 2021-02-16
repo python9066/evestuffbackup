@@ -28582,7 +28582,7 @@ var render = function() {
         "div",
         { staticClass: " d-flex align-items-center" },
         [
-          _c("v-card-title", [_vm._v("Structures test")]),
+          _c("v-card-title", [_vm._v("Structures Notifications")]),
           _vm._v(" "),
           _c("v-text-field", {
             staticClass: " ml-5",
@@ -32950,7 +32950,7 @@ var render = function() {
             "div",
             { staticClass: " d-flex align-items-center" },
             [
-              _c("v-card-title", [_vm._v("Notifications")]),
+              _c("v-card-title", [_vm._v("Hack Notifications")]),
               _vm._v(" "),
               _vm.$can("access hacks")
                 ? _c("div", [_vm._v("You can edit posts.")])
