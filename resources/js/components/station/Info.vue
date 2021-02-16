@@ -295,7 +295,7 @@ export default {
         },
 
         taskFlag() {
-            if ((this.stationInfo[0]["task_flag"] = 1)) {
+            if (this.stationInfo[0]["task_flag"] == 1) {
                 console.log("true");
                 return true;
             } else {
