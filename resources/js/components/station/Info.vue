@@ -298,7 +298,8 @@ export default {
 
         lastUpdated() {
             if (this.fitted == true) {
-                return this.fit[0]["r_updated_at"];
+                var ago = moment(this.fit[0]["r_updated_at"]).fromNow();
+                return ago;
             } else {
                 return "Never";
             }
