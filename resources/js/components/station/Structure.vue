@@ -1,5 +1,5 @@
 <template>
-    <div class=" pr-16 pl-16">
+    <div class=" pt-16">
         <div class=" d-flex align-items-center">
             <v-card-title>Structures test</v-card-title>
 
