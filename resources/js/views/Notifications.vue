@@ -466,9 +466,7 @@
                 </template>
             </v-snackbar>
         </div>
-        <div>
-            <Structure></Structure>
-        </div>
+        <Structure></Structure>
     </div>
 </template>
 <script>
