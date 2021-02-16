@@ -9219,7 +9219,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var fit = this.getStationFitByStationID(this.station.id);
       console.log(fit[0]["r_fitted"]);
 
-      if (fit[0]["r_fitted"] != null) {
+      if (fit[0]["r_fitted"] == "Fitted") {
         this.fitted = true;
       }
 
