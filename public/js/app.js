@@ -26256,7 +26256,7 @@ var render = function() {
                         _vm._s(_vm.lastUpdated()) +
                         "\n                    "
                     ),
-                    _vm.$can("super") && _vm.taskFlag
+                    _vm.$can("super") && _vm.taskFlag()
                       ? _c(
                           "v-chip",
                           {
@@ -26275,15 +26275,13 @@ var render = function() {
                           },
                           [
                             _vm._v(
-                              "\n                        Request Update " +
-                                _vm._s(_vm.taskFlag) +
-                                "\n                    "
+                              "\n                        Request Update\n                    "
                             )
                           ]
                         )
                       : _vm._e(),
                     _vm._v(" "),
-                    _vm.$can("super") && !_vm.taskFlag
+                    _vm.$can("super") && _vm.taskFlag()
                       ? _c(
                           "v-chip",
                           {
@@ -26292,9 +26290,7 @@ var render = function() {
                           },
                           [
                             _vm._v(
-                              "\n                        Request Made " +
-                                _vm._s(_vm.taskFlag) +
-                                "\n                    "
+                              "\n                        Request Made\n                    "
                             )
                           ]
                         )

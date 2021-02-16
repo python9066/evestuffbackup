@@ -47,19 +47,19 @@
                             small
                             outlined
                             color="teal"
-                            v-if="$can('super') && taskFlag"
+                            v-if="$can('super') && taskFlag()"
                             @click="taskRequest()"
                         >
-                            Request Update {{ taskFlag }}
+                            Request Update
                         </v-chip>
                         <v-chip
                             pill
                             small
                             class=" ml-2"
                             color="teal"
-                            v-if="$can('super') && !taskFlag"
+                            v-if="$can('super') && taskFlag()"
                         >
-                            Request Made {{ taskFlag }}
+                            Request Made
                         </v-chip>
                     </div>
                 </v-card-subtitle>
