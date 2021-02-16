@@ -27,7 +27,7 @@
                             small
                             outlined
                             color="teal"
-                            @click="openRecon(hash)"
+                            @click="openRecon(fit[0]['r_hash'])"
                             v-if="showLinkButton"
                         >
                             View Recon Tool
@@ -336,7 +336,7 @@ export default {
         fit() {
             var fit = this.getStationFitByStationID(this.station.id);
 
-            if (fit != "NO") {
+            if (fitfit[0]["r_hitted"] != null) {
                 this.fitted = true;
             }
 
@@ -345,11 +345,6 @@ export default {
 
         r_lastupdated() {
             return this.fit.r_updated_at;
-        },
-
-        hash() {
-            var coredata = this.getCoreByStationID(this.station.id);
-            return coredata.hash;
         },
 
         core() {
@@ -375,7 +370,10 @@ export default {
         },
 
         showLinkButton() {
-            if (this.$can("request_recon_task") && this.hash != null) {
+            if (
+                this.$can("request_recon_task") &&
+                this.fit[0]["r_research"] != null
+            ) {
                 return true;
             } else {
                 return false;

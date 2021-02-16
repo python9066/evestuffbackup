@@ -9200,7 +9200,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     fit: function fit() {
       var fit = this.getStationFitByStationID(this.station.id);
 
-      if (fit != "NO") {
+      if (fitfit[0]["r_hitted"] != null) {
         this.fitted = true;
       }
 
@@ -9208,10 +9208,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     r_lastupdated: function r_lastupdated() {
       return this.fit.r_updated_at;
-    },
-    hash: function hash() {
-      var coredata = this.getCoreByStationID(this.station.id);
-      return coredata.hash;
     },
     core: function core() {
       var core = this.getCoreByStationID(this.station.id);
@@ -9234,7 +9230,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }
     },
     showLinkButton: function showLinkButton() {
-      if (this.$can("request_recon_task") && this.hash != null) {
+      if (this.$can("request_recon_task") && this.fit[0]["r_research"] != null) {
         return true;
       } else {
         return false;
@@ -26187,7 +26183,7 @@ var render = function() {
                             },
                             on: {
                               click: function($event) {
-                                return _vm.openRecon(_vm.hash)
+                                return _vm.openRecon(_vm.fit[0]["r_hash"])
                               }
                             }
                           },
