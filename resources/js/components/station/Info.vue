@@ -45,6 +45,7 @@
                             pill
                             class=" ml-2"
                             small
+                            outlined
                             color="teal"
                             v-if="$can('super') && taskRequest"
                             @click="taskRequest()"
@@ -55,9 +56,8 @@
                             pill
                             small
                             class=" ml-2"
-                            outlined
                             color="teal"
-                            v-if="$can('super') && taskRequest"
+                            v-if="$can('super') && !taskRequest"
                         >
                             Request Made
                         </v-chip>

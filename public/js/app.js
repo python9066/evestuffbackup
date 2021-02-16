@@ -26248,7 +26248,12 @@ var render = function() {
                           "v-chip",
                           {
                             staticClass: " ml-2",
-                            attrs: { pill: "", small: "", color: "teal" },
+                            attrs: {
+                              pill: "",
+                              small: "",
+                              outlined: "",
+                              color: "teal"
+                            },
                             on: {
                               click: function($event) {
                                 return _vm.taskRequest()
@@ -26263,17 +26268,12 @@ var render = function() {
                         )
                       : _vm._e(),
                     _vm._v(" "),
-                    _vm.$can("super") && _vm.taskRequest
+                    _vm.$can("super") && !_vm.taskRequest
                       ? _c(
                           "v-chip",
                           {
                             staticClass: " ml-2",
-                            attrs: {
-                              pill: "",
-                              small: "",
-                              outlined: "",
-                              color: "teal"
-                            }
+                            attrs: { pill: "", small: "", color: "teal" }
                           },
                           [
                             _vm._v(
