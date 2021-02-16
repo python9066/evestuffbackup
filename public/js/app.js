@@ -16598,7 +16598,6 @@ function sleep(ms) {
       text: "center",
       toggle_none: null,
       querious: 0,
-      showGunner: false,
       dropdown_edit: [{
         title: "On My Way",
         value: 2
@@ -16622,53 +16621,44 @@ function sleep(ms) {
       }, {
         text: "Constellation",
         value: "constellation_name",
-        width: "8%",
-        show: true
+        width: "8%"
       }, {
         text: "System",
         value: "system_name",
-        width: "8%",
-        show: true
+        width: "8%"
       }, {
         text: "Type",
         value: "item_name",
-        width: "10%",
-        show: true
+        width: "10%"
       }, {
         text: "Name",
         value: "station_name",
-        width: "20%",
-        show: true
+        width: "20%"
       }, {
         text: "Timestamp",
         value: "timestamp",
         align: "center",
-        width: "15%",
-        show: true
+        width: "15%"
       }, {
         text: "Age/CountDown",
         value: "count",
         sortable: false,
-        width: "5%",
-        show: true
+        width: "5%"
       }, {
         text: "Status",
         value: "station_status_name",
         align: "center",
-        width: "10%",
-        show: true
+        width: "10%"
       }, {
         text: "",
         value: "actions",
         width: "10%",
-        align: "start",
-        show: showGunner
+        align: "start"
       }, {
         text: "Edited By",
         value: "user_name",
         width: "10%",
-        align: "start",
-        show: true
+        align: "start"
       } // { text: "Vulernable End Time", value: "vulnerable_end_time" }
       ]
     };
@@ -16742,13 +16732,6 @@ function sleep(ms) {
           this.expanded = [];
           this.expanded_id = 0;
         }
-      }
-    },
-    showheader: function showheader() {
-      if (this.$can("gunner")) {
-        this.showGunner = true;
-      } else {
-        this.showGunner = false;
       }
     },
     updatetext: function updatetext(payload, item) {
@@ -16950,11 +16933,6 @@ function sleep(ms) {
           return stations.station_status_id != 10;
         });
       }
-    },
-    _headers: function _headers() {
-      return this.headers.filter(function (x) {
-        return x.show;
-      });
     },
     user_name: function user_name() {
       return this.$store.state.user_name;
@@ -33012,7 +32990,7 @@ var render = function() {
         {
           staticClass: "elevation-1",
           attrs: {
-            headers: _vm.headers,
+            headers: _vm._headers,
             items: _vm.filteredItems,
             expanded: _vm.expanded,
             "item-key": "id",
