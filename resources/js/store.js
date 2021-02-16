@@ -248,7 +248,12 @@ export default new Vuex.Store({
         },
 
         ADD_STATION_NOTIFICATION(state, data) {
-            state.stations.push(data)
+            const check = state.stations.find(station => station.id == data.id)
+            if (check != null) {
+                Object.assign(check, data);
+            } else {
+                state.stations.push(data)
+            }
         },
 
 

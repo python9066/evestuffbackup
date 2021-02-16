@@ -26272,7 +26272,7 @@ var render = function() {
                         _vm._s(_vm.lastUpdated()) +
                         "\n                    "
                     ),
-                    _vm.$can("request_recon_task") && !_vm.taskFlag()
+                    _vm.$can("super") && !_vm.taskFlag()
                       ? _c(
                           "v-chip",
                           {
@@ -26297,7 +26297,7 @@ var render = function() {
                         )
                       : _vm._e(),
                     _vm._v(" "),
-                    _vm.$can("request_recon_task") && _vm.taskFlag()
+                    _vm.$can("super") && _vm.taskFlag()
                       ? _c(
                           "v-chip",
                           {
@@ -37426,7 +37426,15 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
       }
     },
     ADD_STATION_NOTIFICATION: function ADD_STATION_NOTIFICATION(state, data) {
-      state.stations.push(data);
+      var check = state.stations.find(function (station) {
+        return station.id == data.id;
+      });
+
+      if (check != null) {
+        Object.assign(check, data);
+      } else {
+        state.stations.push(data);
+      }
     },
     DELETE_STATION_NOTIFICATION: function DELETE_STATION_NOTIFICATION(state, id) {
       var index = state.stations.findIndex(function (s) {
