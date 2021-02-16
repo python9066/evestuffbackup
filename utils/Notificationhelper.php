@@ -333,7 +333,8 @@ class Notifications
                             'r_cloning' => $stationdata['str_cloning'],
                             'r_composite' => $stationdata['str_composite'],
                             'r_cored' => $stationdata['str_cored'],
-                            'status_update' => $current
+                            'status_update' => $current,
+                            'out_time' =>  $outTime
                         ]);
                         if ($stationdata['str_has_no_fitting'] != null) {
                             $items = Utils::jsonDecode($stationdata['str_fitting'], true);
@@ -428,7 +429,8 @@ class Notifications
                             'r_cloning' => $stationdata['str_cloning'],
                             'r_composite' => $stationdata['str_composite'],
                             'r_cored' => $stationdata['str_cored'],
-                            'status_update' => $current
+                            'status_update' => $current,
+                            'out_time' =>  $outTime
                         ]);
                         if ($stationdata['str_has_no_fitting'] != null) {
                             $items = Utils::jsonDecode($stationdata['str_fitting'], true);
