@@ -30,7 +30,7 @@
                             @click="openRecon(fit[0]['r_hash'])"
                             v-if="showLinkButton"
                         >
-                            View Recon Tool
+                            View On Recon Tool
                         </v-chip>
                     </p>
                 </v-card-title>
@@ -40,7 +40,10 @@
                     </div>
                     <div>
                         Last Updated: {{ lastUpdated() }}
-                        <v-btn v-if="$can('super')" @click="taskRequest()">
+                        <v-btn
+                            v-if="$can('super') && cored.task_flag == 1"
+                            @click="taskRequest()"
+                        >
                             test
                         </v-btn>
                     </div>

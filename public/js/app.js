@@ -9122,6 +9122,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -26189,7 +26192,7 @@ var render = function() {
                           },
                           [
                             _vm._v(
-                              "\n                        View Recon Tool\n                    "
+                              "\n                        View On Recon Tool\n                    "
                             )
                           ]
                         )
@@ -26215,7 +26218,7 @@ var render = function() {
                         _vm._s(_vm.lastUpdated()) +
                         "\n                    "
                     ),
-                    _vm.$can("super")
+                    _vm.$can("super") && _vm.cored.task_flag == 1
                       ? _c(
                           "v-btn",
                           {
