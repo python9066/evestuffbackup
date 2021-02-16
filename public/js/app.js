@@ -10269,7 +10269,7 @@ function sleep(ms) {
       var request = {
         station_status_id: item.station_status_id,
         user_id: this.$store.state.user_id,
-        status_update: moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc()
+        status_update: now()
       };
       axios({
         method: "put",
