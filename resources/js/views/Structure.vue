@@ -214,11 +214,13 @@
                 {{ item.station_name }}
             </template>
             <template v-slot:item.actions="{ item }">
-                <StationGunner
-                    :station="item"
-                    v-if="$can('gunner')"
-                ></StationGunner>
-                <Info :station="item" v-if="showInfo(item)"></Info>
+                <div class=" d-inline-flex">
+                    <StationGunner
+                        :station="item"
+                        v-if="$can('gunner')"
+                    ></StationGunner>
+                    <Info :station="item" v-if="showInfo(item)"></Info>
+                </div>
             </template>
         </v-data-table>
         <v-snackbar v-model="snack" :timeout="3000" :color="snackColor">

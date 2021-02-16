@@ -30,7 +30,7 @@
                 "
                 color="orange darken-3"
                 small
-                @click="scoutRemove()"
+                @click="gunnerRemove()"
             >
                 fas fa-trash-alt
             </v-icon>
@@ -76,7 +76,7 @@ export default {
             });
         },
 
-        async GunnerRemove() {
+        async gunnerRemove() {
             var data = {
                 id: this.station.id,
                 gunner_name: null,

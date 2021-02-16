@@ -8181,7 +8181,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee);
       }))();
     },
-    GunnerRemove: function GunnerRemove() {
+    gunnerRemove: function gunnerRemove() {
       var _this2 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
@@ -16320,6 +16320,8 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
+//
+//
 //
 //
 //
@@ -24962,7 +24964,7 @@ var render = function() {
                   attrs: { color: "orange darken-3", small: "" },
                   on: {
                     click: function($event) {
-                      return _vm.scoutRemove()
+                      return _vm.gunnerRemove()
                     }
                   }
                 },
@@ -33340,13 +33342,20 @@ var render = function() {
               fn: function(ref) {
                 var item = ref.item
                 return [
-                  _vm.$can("gunner")
-                    ? _c("StationGunner", { attrs: { station: item } })
-                    : _vm._e(),
-                  _vm._v(" "),
-                  _vm.showInfo(item)
-                    ? _c("Info", { attrs: { station: item } })
-                    : _vm._e()
+                  _c(
+                    "div",
+                    { staticClass: " d-inline-flex" },
+                    [
+                      _vm.$can("gunner")
+                        ? _c("StationGunner", { attrs: { station: item } })
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _vm.showInfo(item)
+                        ? _c("Info", { attrs: { station: item } })
+                        : _vm._e()
+                    ],
+                    1
+                  )
                 ]
               }
             }
