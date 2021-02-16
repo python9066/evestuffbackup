@@ -16616,47 +16616,57 @@ function sleep(ms) {
       headers: [{
         text: "Region",
         value: "region_name",
-        width: "8%"
+        width: "8%",
+        show: true
       }, {
         text: "Constellation",
         value: "constellation_name",
-        width: "8%"
+        width: "8%",
+        show: true
       }, {
         text: "System",
         value: "system_name",
-        width: "8%"
+        width: "8%",
+        show: true
       }, {
         text: "Type",
         value: "item_name",
-        width: "10%"
+        width: "10%",
+        show: true
       }, {
         text: "Name",
         value: "station_name",
-        width: "20%"
+        width: "20%",
+        show: true
       }, {
         text: "Timestamp",
         value: "timestamp",
         align: "center",
-        width: "15%"
+        width: "15%",
+        show: true
       }, {
         text: "Age/CountDown",
         value: "count",
         sortable: false,
-        width: "5%"
+        width: "5%",
+        show: true
       }, {
         text: "Status",
         value: "station_status_name",
         align: "center",
-        width: "10%"
+        width: "10%",
+        show: true
       }, {
         text: "",
         value: "actions",
         width: "10%",
+        show: true,
         align: "start"
       }, {
         text: "Edited By",
         value: "user_name",
         width: "10%",
+        show: true,
         align: "start"
       } // { text: "Vulernable End Time", value: "vulnerable_end_time" }
       ]
