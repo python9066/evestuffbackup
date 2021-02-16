@@ -195,6 +195,43 @@
             >
                 {{ item.station_name }}
             </template>
+
+            <template
+                v-slot:item.buttons="{ item }"
+                class=" d-lg-inline-flex align-content-center"
+            >
+                <v-fab-transition>
+                    <v-chip
+                        pill
+                        outlined
+                        small
+                        @click="(expanded = [item]), (expanded_id = item.id)"
+                        v-if="
+                            item.station_status_id == 12 &&
+                                !expanded.includes(item)
+                        "
+                        color="success"
+                        >adash</v-chip
+                    >
+                    <v-btn
+                        icon
+                        @click="(expanded = []), (expanded_id = 0)"
+                        v-if="
+                            item.station_status_id == 12 &&
+                                expanded.includes(item)
+                        "
+                        color="error"
+                        ><v-icon>fas fa-minus</v-icon></v-btn
+                    >
+                </v-fab-transition>
+                <v-fab-transition>
+                    <StationTimer
+                        :station="item"
+                        v-if="item.station_status_id == 11"
+                    >
+                    </StationTimer>
+                </v-fab-transition>
+            </template>
             <template v-slot:item.actions="{ item }" v-if="$can('gunner')">
                 <div class=" d-inline-flex">
                     <StationGunner
