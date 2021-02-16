@@ -32999,7 +32999,7 @@ var render = function() {
         {
           staticClass: "elevation-1",
           attrs: {
-            headers: _vm.headers,
+            headers: _vm._headers,
             items: _vm.filteredItems,
             expanded: _vm.expanded,
             "item-key": "id",
