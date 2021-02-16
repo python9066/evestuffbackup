@@ -26275,7 +26275,9 @@ var render = function() {
                           },
                           [
                             _vm._v(
-                              "\n                        Request Update\n                    "
+                              "\n                        Request Update " +
+                                _vm._s(_vm.taskFlag) +
+                                "\n                    "
                             )
                           ]
                         )
@@ -26290,7 +26292,9 @@ var render = function() {
                           },
                           [
                             _vm._v(
-                              "\n                        Request Made\n                    "
+                              "\n                        Request Made " +
+                                _vm._s(_vm.taskFlag) +
+                                "\n                    "
                             )
                           ]
                         )

@@ -50,7 +50,7 @@
                             v-if="$can('super') && taskFlag"
                             @click="taskRequest()"
                         >
-                            Request Update
+                            Request Update {{ taskFlag }}
                         </v-chip>
                         <v-chip
                             pill
@@ -59,7 +59,7 @@
                             color="teal"
                             v-if="$can('super') && !taskFlag"
                         >
-                            Request Made
+                            Request Made {{ taskFlag }}
                         </v-chip>
                     </div>
                 </v-card-subtitle>
