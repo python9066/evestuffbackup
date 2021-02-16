@@ -9626,12 +9626,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 min = parseInt(_this.repairTime.substr(0, 2));
                 sec = parseInt(_this.repairTime.substr(3, 2));
                 finishTime = moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc().add(sec, "seconds").add(min, "minutes").format("YYYY-MM-DD HH:mm:ss");
-                station.end_time = finishTime;
+                station.repair_time = finishTime;
 
                 _this.$store.dispatch("updateStationNotification", station);
 
                 request = {
-                  end_time: finishTime
+                  repair_time: finishTime
                 };
                 _context.next = 8;
                 return axios({

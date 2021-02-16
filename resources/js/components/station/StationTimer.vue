@@ -171,10 +171,10 @@ export default {
                 .add(sec, "seconds")
                 .add(min, "minutes")
                 .format("YYYY-MM-DD HH:mm:ss");
-            station.end_time = finishTime;
+            station.repair_time = finishTime;
             this.$store.dispatch("updateStationNotification", station);
             var request = {
-                end_time: finishTime
+                repair_time: finishTime
             };
 
             await axios({
