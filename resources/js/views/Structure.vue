@@ -610,14 +610,14 @@ export default {
                     {
                         text: "",
                         value: "buttons",
-                        align: "center",
-                        width: "15%",
+                        align: "start",
+                        width: "10%",
                         show: true
                     },
                     {
                         text: "Gunner/Info",
                         value: "actions",
-                        width: "5%",
+                        width: "10%",
                         show: true,
                         align: "start"
                     },
@@ -681,8 +681,8 @@ export default {
                     {
                         text: "",
                         value: "buttons",
-                        align: "center",
-                        width: "15%",
+                        align: "start",
+                        width: "10%",
                         show: true
                     },
                     {
