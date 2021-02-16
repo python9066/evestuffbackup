@@ -65,6 +65,7 @@ Vue.component('SystemMessage', require('./components/campaignALL/SystemMessage.v
 Vue.component('SystemAttackMessage', require('./components/campaignALL/SystemAttackMessage.vue').default);
 Vue.component('Info', require('./components/station/Info.vue').default);
 Vue.component('StationTimer', require('./components/station/StationTimer.vue').default);
+Vue.component('Structure', require('./views/Structure.vue').default);
 
 
 

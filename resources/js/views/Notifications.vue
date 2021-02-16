@@ -443,6 +443,9 @@
                 <v-btn v-bind="attrs" text @click="snack = false">Close</v-btn>
             </template>
         </v-snackbar>
+        <div>
+            <Structure></Structure>
+        </div>
     </div>
 </template>
 <script>
