@@ -135,7 +135,7 @@ class StationController extends Controller
         $flag = collect([
             'message' => $message
         ]);
-        broadcast(new StationNotificationUpdate($flag))->toOthers;
+        broadcast(new StationNotificationUpdate($flag))->toOthers();
     }
 
     /**
