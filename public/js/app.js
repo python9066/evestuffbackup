@@ -26070,7 +26070,7 @@ var render = function() {
           _c("p", [
             _c("strong", [
               _vm._v(
-                "THIS PAGE IS 100% WORK IN PROGRESS ITS ONLY GOOD TO LOOK\n                AT. NEW NOTIFICATION WILL NOW SHOW THEMSELF, THEY WILL SHOW\n                AS FAST AS I GET THEM SENT TO ME FROM THE BOT.\n            "
+                "THIS PAGE IS 50% WORK IN PROGRESS. NEW NOTIFICATION WILL\n                NOW SHOW THEMSELF, THEY WILL SHOW AS FAST AS I GET THEM SENT\n                TO ME FROM THE BOT.\n            "
               )
             ])
           ])

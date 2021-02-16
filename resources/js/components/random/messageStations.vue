@@ -10,9 +10,9 @@
         >
             <p>
                 <strong
-                    >THIS PAGE IS 100% WORK IN PROGRESS ITS ONLY GOOD TO LOOK
-                    AT. NEW NOTIFICATION WILL NOW SHOW THEMSELF, THEY WILL SHOW
-                    AS FAST AS I GET THEM SENT TO ME FROM THE BOT.
+                    >THIS PAGE IS 50% WORK IN PROGRESS. NEW NOTIFICATION WILL
+                    NOW SHOW THEMSELF, THEY WILL SHOW AS FAST AS I GET THEM SENT
+                    TO ME FROM THE BOT.
                 </strong>
             </p>
         </v-alert>
