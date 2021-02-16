@@ -354,7 +354,7 @@ export default {
         fit() {
             var fit = this.getStationFitByStationID(this.station.id);
 
-            if (fit[0]["r_hitted"] != null) {
+            if (fit[0]["fitted"] != null) {
                 this.fitted = true;
             }
 
