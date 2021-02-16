@@ -9237,7 +9237,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     stationInfo: function stationInfo() {
       var data = this.getCoreByStationID(this.station.id);
-      console.log("flag = " + data["task_flag"]);
+      console.log("flag = " + data[0]["task_flag"]);
       return data;
     },
     core: function core() {
