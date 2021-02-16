@@ -105,7 +105,7 @@
                 v-slot:item.station_status_name="{ item }"
                 class="align-items-center"
             >
-                <v-menu offset-y>
+                <v-menu offset-y v-if="$can('edit_notifications')">
                     <template v-slot:activator="{ on, attrs }">
                         <div class="align-items-center d-lg-inline-flex">
                             <v-btn
@@ -179,6 +179,42 @@
                         </v-list-item>
                     </v-list>
                 </v-menu>
+                <div v-else>
+                    <template>
+                        <div class="align-items-center d-inline-flex">
+                            <v-chip
+                                class="ma-2"
+                                lable
+                                :color="pillColor(item.station_status_id)"
+                            >
+                                <v-icon left>{{
+                                    pillIcon(item.station_status_id)
+                                }}</v-icon>
+                                {{ item.station_status_name }}
+                            </v-chip>
+
+                            <CountDowntimer
+                                v-if="
+                                    item.status_id == 11 &&
+                                        item.end_time != null
+                                "
+                                :start-time="
+                                    moment.utc(item.repair_time).unix()
+                                "
+                                :interval="1000"
+                                end-text="Is it Secured?"
+                            >
+                                <template slot="countdown" slot-scope="scope">
+                                    <span class="blue--text pl-3"
+                                        >{{ scope.props.minutes }}:{{
+                                            scope.props.seconds
+                                        }}</span
+                                    >
+                                </template>
+                            </CountDowntimer>
+                        </div>
+                    </template>
+                </div>
             </template>
             <template
                 v-slot:expanded-item="{ headers, item }"
