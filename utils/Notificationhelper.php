@@ -239,7 +239,8 @@ class Notifications
                             'r_t2_rigged' => $stationdata['str_t2_rigged'],
                             'r_cloning' => $stationdata['str_cloning'],
                             'r_composite' => $stationdata['str_composite'],
-                            'r_cored' => $stationdata['str_cored']
+                            'r_cored' => $stationdata['str_cored'],
+                            'status_update' => $current
                         ]);
                         if ($stationdata['str_has_no_fitting'] != null) {
                             $items = Utils::jsonDecode($stationdata['str_fitting'], true);
@@ -261,6 +262,7 @@ class Notifications
                             'user_id' => null,
                             'station_status_id' => 1,
                             'timestamp' => $time,
+                            'status_update' => $current
                         ]);
                     }
                 } else {
@@ -330,7 +332,8 @@ class Notifications
                             'r_t2_rigged' => $stationdata['str_t2_rigged'],
                             'r_cloning' => $stationdata['str_cloning'],
                             'r_composite' => $stationdata['str_composite'],
-                            'r_cored' => $stationdata['str_cored']
+                            'r_cored' => $stationdata['str_cored'],
+                            'status_update' => $current
                         ]);
                         if ($stationdata['str_has_no_fitting'] != null) {
                             $items = Utils::jsonDecode($stationdata['str_fitting'], true);
@@ -352,7 +355,8 @@ class Notifications
                             'user_id' => null,
                             'station_status_id' => 8,
                             'timestamp' => $time,
-                            'outtime' => $outTime
+                            'outtime' => $outTime,
+                            'status_update' => $current
                         ]);
                     }
                 } else {
@@ -423,7 +427,8 @@ class Notifications
                             'r_t2_rigged' => $stationdata['str_t2_rigged'],
                             'r_cloning' => $stationdata['str_cloning'],
                             'r_composite' => $stationdata['str_composite'],
-                            'r_cored' => $stationdata['str_cored']
+                            'r_cored' => $stationdata['str_cored'],
+                            'status_update' => $current
                         ]);
                         if ($stationdata['str_has_no_fitting'] != null) {
                             $items = Utils::jsonDecode($stationdata['str_fitting'], true);
@@ -446,7 +451,8 @@ class Notifications
                             'user_id' => null,
                             'station_status_id' => 9,
                             'timestamp' => $time,
-                            'outtime' => $outTime
+                            'outtime' => $outTime,
+                            'status_update' => $current
                         ]);
                     }
                 } else {
@@ -764,7 +770,7 @@ class Notifications
 
         $checks = Station::where('out_time', "<=", $now)->where('station_status_id', 5)->get();
         foreach ($checks as $check) {
-            $check->update(['station_status_id' => 6]);
+            $check->update(['station_status_id' => 6, 'status_update' => now()]);
             $message = StationRecords::where('id', $check->id);
             $flag = null;
             $flag = collect([
@@ -775,7 +781,7 @@ class Notifications
 
         $checks = Station::where('out_time', "<", $soon5hour)->where('station_status_id', 10)->get();
         foreach ($checks as $check) {
-            $check->update(['station_status_id' => 5]);
+            $check->update(['station_status_id' => 5, 'status_update' => now()]);
             $message = StationRecords::where('id', $check->id);
             $flag = null;
             $flag = collect([
