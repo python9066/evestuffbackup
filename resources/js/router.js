@@ -9,7 +9,7 @@ import Vtest from "./components/multicampaigns/MultiCampaignAdd.vue";
 import Stest from "./components/campaign/SystemTable.vue";
 import AdminPanel from "./views/AdminPanel.vue";
 import StationsRedirect from "./views/redirect/StationsRedirect.vue";
-import Structures from "./views/structure.vue"
+// import Structures from "./views/structure.vue"
 import Towers from "./views/Towers.vue"
 import store from "./store";
 import FeedBack from "./views/FeedBack.vue";
@@ -83,19 +83,19 @@ export default new Router({
             component: Timers
         },
 
-        {
-            path: "/structures",
-            name: "structures",
-            component: Structures,
-              beforeEnter(to, from, next) {
-                if(Permissions.indexOf('gunner' )!== -1 || Permissions.indexOf('edit_notifications' )!== -1){
-                    next()
-                }else{
-                   next("/redirect/structures")
-                }
+        // {
+        //     path: "/structures",
+        //     name: "structures",
+        //     component: Structures,
+        //       beforeEnter(to, from, next) {
+        //         if(Permissions.indexOf('gunner' )!== -1 || Permissions.indexOf('edit_notifications' )!== -1){
+        //             next()
+        //         }else{
+        //            next("/redirect/structures")
+        //         }
 
-              }
-        },
+        //       }
+        // },
 
         {
             path: "/campaignkick",
