@@ -466,7 +466,7 @@
                 </template>
             </v-snackbar>
         </div>
-        <Structure></Structure>
+        <Structure v-if="$can('view_station_notifications')"></Structure>
     </div>
 </template>
 <script>

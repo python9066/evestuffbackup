@@ -33409,7 +33409,7 @@ var render = function() {
         1
       ),
       _vm._v(" "),
-      _c("Structure")
+      _vm.$can("view_station_notifications") ? _c("Structure") : _vm._e()
     ],
     1
   )
