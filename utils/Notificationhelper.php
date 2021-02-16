@@ -122,6 +122,7 @@ class Notifications
         $text = str_replace("solarSystemID", "system_id", $text);
         $text = str_replace("structureTypeID", "item_id", $text);
         $text = Yaml::parse($text);
+        $current = now();
 
 
 
@@ -257,7 +258,8 @@ class Notifications
                         'text' => null,
                         'user_id' => null,
                         'station_status_id' => 1,
-                        'timestamp' => $time
+                        'timestamp' => $time,
+                        'status_update' => $current
                     ]);
                 }
 
@@ -346,7 +348,8 @@ class Notifications
                         'text' => null,
                         'user_id' => null,
                         'station_status_id' => 8,
-                        'timestamp' => $time
+                        'timestamp' => $time,
+                        'status_update' => $current
                     ]);
                 }
 
@@ -437,7 +440,8 @@ class Notifications
                         'text' => null,
                         'user_id' => null,
                         'station_status_id' => 9,
-                        'timestamp' => $time
+                        'timestamp' => $time,
+                        'status_update' => $current
                     ]);
 
                     $data = array(
