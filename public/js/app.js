@@ -16802,9 +16802,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
 
 
 
@@ -17185,19 +17182,12 @@ function sleep(ms) {
         }, {
           text: "Status",
           value: "station_status_name",
-          align: "center",
           width: "15%",
-          show: true
-        }, {
-          text: "",
-          value: "buttons",
-          align: "start",
-          width: "10%",
           show: true
         }, {
           text: "Gunner/Info",
           value: "actions",
-          width: "10%",
+          width: "5%",
           show: true,
           align: "start"
         }, {
@@ -17248,15 +17238,8 @@ function sleep(ms) {
           width: "5%",
           show: true
         }, {
-          text: "",
-          value: "buttons",
-          align: "start",
-          width: "10%",
-          show: true
-        }, {
           text: "Status",
           value: "station_status_name",
-          align: "center",
           width: "15%",
           show: true
         }, {
@@ -33982,6 +33965,72 @@ var render = function() {
                                           )
                                         ],
                                         1
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "v-fab-transition",
+                                        [
+                                          item.station_status_id == 12 &&
+                                          !_vm.expanded.includes(item)
+                                            ? _c(
+                                                "v-chip",
+                                                {
+                                                  attrs: {
+                                                    pill: "",
+                                                    outlined: "",
+                                                    small: "",
+                                                    color: "success"
+                                                  },
+                                                  on: {
+                                                    click: function($event) {
+                                                      ;(_vm.expanded = [item]),
+                                                        (_vm.expanded_id =
+                                                          item.id)
+                                                    }
+                                                  }
+                                                },
+                                                [_vm._v("adash")]
+                                              )
+                                            : _vm._e(),
+                                          _vm._v(" "),
+                                          item.station_status_id == 12 &&
+                                          _vm.expanded.includes(item)
+                                            ? _c(
+                                                "v-btn",
+                                                {
+                                                  attrs: {
+                                                    icon: "",
+                                                    color: "error"
+                                                  },
+                                                  on: {
+                                                    click: function($event) {
+                                                      ;(_vm.expanded = []),
+                                                        (_vm.expanded_id = 0)
+                                                    }
+                                                  }
+                                                },
+                                                [
+                                                  _c("v-icon", [
+                                                    _vm._v("fas fa-minus")
+                                                  ])
+                                                ],
+                                                1
+                                              )
+                                            : _vm._e()
+                                        ],
+                                        1
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "v-fab-transition",
+                                        [
+                                          item.station_status_id == 11
+                                            ? _c("StationTimer", {
+                                                attrs: { station: item }
+                                              })
+                                            : _vm._e()
+                                        ],
+                                        1
                                       )
                                     ],
                                     1
@@ -34127,68 +34176,6 @@ var render = function() {
                       "\n            " +
                         _vm._s(item.station_name) +
                         "\n        "
-                    )
-                  ]
-                }
-              },
-              {
-                key: "item.buttons",
-                fn: function(ref) {
-                  var item = ref.item
-                  return [
-                    _c(
-                      "v-fab-transition",
-                      [
-                        item.station_status_id == 12 &&
-                        !_vm.expanded.includes(item)
-                          ? _c(
-                              "v-chip",
-                              {
-                                attrs: {
-                                  pill: "",
-                                  outlined: "",
-                                  small: "",
-                                  color: "success"
-                                },
-                                on: {
-                                  click: function($event) {
-                                    ;(_vm.expanded = [item]),
-                                      (_vm.expanded_id = item.id)
-                                  }
-                                }
-                              },
-                              [_vm._v("adash")]
-                            )
-                          : _vm._e(),
-                        _vm._v(" "),
-                        item.station_status_id == 12 &&
-                        _vm.expanded.includes(item)
-                          ? _c(
-                              "v-btn",
-                              {
-                                attrs: { icon: "", color: "error" },
-                                on: {
-                                  click: function($event) {
-                                    ;(_vm.expanded = []), (_vm.expanded_id = 0)
-                                  }
-                                }
-                              },
-                              [_c("v-icon", [_vm._v("fas fa-minus")])],
-                              1
-                            )
-                          : _vm._e()
-                      ],
-                      1
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "v-fab-transition",
-                      [
-                        item.station_status_id == 11
-                          ? _c("StationTimer", { attrs: { station: item } })
-                          : _vm._e()
-                      ],
-                      1
                     )
                   ]
                 }
