@@ -273,6 +273,7 @@ export default {
             text: "center",
             toggle_none: null,
             querious: 0,
+            showGunner: false,
 
             dropdown_edit: [
                 { title: "On My Way", value: 2 },
@@ -329,7 +330,7 @@ export default {
                     value: "actions",
                     width: "10%",
                     align: "start",
-                    show: showheader()
+                    show: showGunner
                 },
                 {
                     text: "Edited By",
@@ -396,9 +397,9 @@ export default {
 
         showheader() {
             if (this.$can("gunner")) {
-                return true;
+                this.showGunner = true;
             } else {
-                return false;
+                this.showGunner = false;
             }
         },
 

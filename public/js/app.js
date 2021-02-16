@@ -16598,6 +16598,7 @@ function sleep(ms) {
       text: "center",
       toggle_none: null,
       querious: 0,
+      showGunner: false,
       dropdown_edit: [{
         title: "On My Way",
         value: 2
@@ -16661,7 +16662,7 @@ function sleep(ms) {
         value: "actions",
         width: "10%",
         align: "start",
-        show: showheader()
+        show: showGunner
       }, {
         text: "Edited By",
         value: "user_name",
@@ -16745,9 +16746,9 @@ function sleep(ms) {
     },
     showheader: function showheader() {
       if (this.$can("gunner")) {
-        return true;
+        this.showGunner = true;
       } else {
-        return false;
+        this.showGunner = false;
       }
     },
     updatetext: function updatetext(payload, item) {
