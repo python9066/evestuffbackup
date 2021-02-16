@@ -13,11 +13,10 @@
                 class=""
                 color="blue"
                 x-small
-                left
                 outlined
                 @click="gunnerAdd()"
             >
-                <v-icon x-small dark>
+                <v-icon x-small left dark>
                     fas fa-plus
                 </v-icon>
                 Gunner</v-btn
