@@ -524,7 +524,8 @@ export default {
                 return this.stations.filter(
                     stations =>
                         stations.station_status_id != 5 &&
-                        stations.station_status_id != 10
+                        stations.station_status_id != 10 &&
+                        stations.station_status_id != 7
                 );
             }
             if (this.statusflag == 3) {
@@ -537,7 +538,8 @@ export default {
                 return this.stations.filter(
                     stations =>
                         stations.station_status_id == 8 ||
-                        stations.station_status_id == 9
+                        stations.station_status_id == 9 ||
+                        stations.station_status_id == 7
                 );
             } else {
                 return this.stations.filter(

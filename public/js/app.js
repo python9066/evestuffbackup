@@ -17117,7 +17117,7 @@ function sleep(ms) {
     filteredItems: function filteredItems() {
       if (this.statusflag == 2) {
         return this.stations.filter(function (stations) {
-          return stations.station_status_id != 5 && stations.station_status_id != 10;
+          return stations.station_status_id != 5 && stations.station_status_id != 10 && stations.station_status_id != 7;
         });
       }
 
@@ -17129,7 +17129,7 @@ function sleep(ms) {
 
       if (this.statusflag == 4) {
         return this.stations.filter(function (stations) {
-          return stations.station_status_id == 8 || stations.station_status_id == 9;
+          return stations.station_status_id == 8 || stations.station_status_id == 9 || stations.station_status_id == 7;
         });
       } else {
         return this.stations.filter(function (stations) {
