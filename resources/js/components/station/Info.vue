@@ -279,7 +279,8 @@ export default {
             showInfo: false,
             editText: null,
             editAdashLink: null,
-            fitted: false
+            fitted: false,
+            task_flag: 0
         };
     },
 
@@ -366,11 +367,9 @@ export default {
         },
 
         stationInfo() {
-            return this.getCoreByStationID(this.station.id);
-        },
-
-        taskFlag() {
-            return this.stationInfo[0]["task_flag"];
+            var data = this.getCoreByStationID(this.station.id);
+            this.task_flag == this.data[0]["task_flag"];
+            return data;
         },
         core() {
             var core = this.getCoreByStationID(this.station.id);

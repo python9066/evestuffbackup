@@ -9162,7 +9162,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       showInfo: false,
       editText: null,
       editAdashLink: null,
-      fitted: false
+      fitted: false,
+      task_flag: 0
     };
   },
   methods: {
@@ -9229,10 +9230,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       return this.fit.r_updated_at;
     },
     stationInfo: function stationInfo() {
-      return this.getCoreByStationID(this.station.id);
-    },
-    taskFlag: function taskFlag() {
-      return this.stationInfo[0]["task_flag"];
+      var data = this.getCoreByStationID(this.station.id);
+      this.task_flag == this.data[0]["task_flag"];
+      return data;
     },
     core: function core() {
       var core = this.getCoreByStationID(this.station.id);
