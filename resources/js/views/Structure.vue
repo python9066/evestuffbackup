@@ -558,65 +558,55 @@ export default {
                     {
                         text: "Region",
                         value: "region_name",
-                        width: "8%",
-                        show: true
+                        width: "8%"
                     },
                     {
                         text: "Constellation",
                         value: "constellation_name",
-                        width: "8%",
-                        show: true
+                        width: "8%"
                     },
                     {
                         text: "System",
                         value: "system_name",
-                        width: "8%",
-                        show: true
+                        width: "8%"
                     },
                     {
                         text: "Type",
                         value: "item_name",
-                        width: "10%",
-                        show: true
+                        width: "10%"
                     },
                     {
                         text: "Name",
                         value: "station_name",
-                        width: "15%",
-                        show: true
+                        width: "15%"
                     },
                     {
                         text: "Timestamp",
                         value: "timestamp",
                         align: "center",
-                        width: "15%",
-                        show: true
+                        width: "15%"
                     },
                     {
                         text: "Age/CountDown",
                         value: "count",
                         sortable: false,
-                        width: "5%",
-                        show: true
+                        width: "5%"
                     },
                     {
                         text: "Status",
                         value: "station_status_name",
-                        width: "10%",
-                        show: true
+                        width: "10%"
                     },
                     {
                         text: "Gunner/Info",
                         value: "actions",
                         width: "10%",
-                        show: true,
                         align: "start"
                     },
                     {
                         text: "Edited By",
                         value: "user_name",
                         width: "10%",
-                        show: true,
                         align: "start"
                     }
 
@@ -628,58 +618,49 @@ export default {
                     {
                         text: "Region",
                         value: "region_name",
-                        width: "8%",
-                        show: true
+                        width: "8%"
                     },
                     {
                         text: "Constellation",
                         value: "constellation_name",
-                        width: "8%",
-                        show: true
+                        width: "8%"
                     },
                     {
                         text: "System",
                         value: "system_name",
-                        width: "8%",
-                        show: true
+                        width: "8%"
                     },
                     {
                         text: "Type",
                         value: "item_name",
-                        width: "10%",
-                        show: true
+                        width: "10%"
                     },
                     {
                         text: "Name",
                         value: "station_name",
-                        width: "15%",
-                        show: true
+                        width: "15%"
                     },
                     {
                         text: "Timestamp",
                         value: "timestamp",
                         align: "center",
-                        width: "15%",
-                        show: true
+                        width: "15%"
                     },
                     {
                         text: "Age/CountDown",
                         value: "count",
                         sortable: false,
-                        width: "5%",
-                        show: true
+                        width: "5%"
                     },
                     {
                         text: "Status",
                         value: "station_status_name",
-                        width: "15%",
-                        show: true
+                        width: "15%"
                     },
                     {
                         text: "Edited By",
                         value: "user_name",
                         width: "10%",
-                        show: true,
                         align: "start"
                     }
                 ];
