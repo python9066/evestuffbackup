@@ -569,6 +569,9 @@ export default {
 
         user_name() {
             return this.$store.state.user_name;
+        },
+        _headers() {
+            return this.headers.filter(x => x.show);
         }
     },
     beforeDestroy() {

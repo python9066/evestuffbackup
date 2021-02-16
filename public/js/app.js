@@ -16935,6 +16935,11 @@ function sleep(ms) {
     },
     user_name: function user_name() {
       return this.$store.state.user_name;
+    },
+    _headers: function _headers() {
+      return this.headers.filter(function (x) {
+        return x.show;
+      });
     }
   }),
   beforeDestroy: function beforeDestroy() {
