@@ -88,10 +88,9 @@
                         <span
                             class="blue--text pl-3"
                             v-if="scope.props.days != 0"
-                            >{{ scope.props.showDay }}d
-                            {{ scope.props.hours }}:{{ scope.props.minutes }}:{{
-                                scope.props.seconds
-                            }}</span
+                            >{{ scope.props.days }}d {{ scope.props.hours }}:{{
+                                scope.props.minutes
+                            }}:{{ scope.props.seconds }}</span
                         >
                     </template>
                 </CountDowntimer>
