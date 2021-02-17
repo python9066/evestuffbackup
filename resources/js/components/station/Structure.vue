@@ -488,7 +488,7 @@ export default {
         },
 
         numberDay(day) {
-            return parseInt(day, 10) + " d";
+            return parseInt(day, 10) + "d";
         },
 
         pillColor(statusId) {

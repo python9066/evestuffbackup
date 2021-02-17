@@ -10215,7 +10215,7 @@ function sleep(ms) {
       }
     },
     numberDay: function numberDay(day) {
-      return parseInt(day, 10) + " d";
+      return parseInt(day, 10) + "d";
     },
     pillColor: function pillColor(statusId) {
       if (statusId == 1) {
