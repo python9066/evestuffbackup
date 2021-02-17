@@ -90,7 +90,8 @@ class StationController extends Controller
 
         $body = [
             'system' => $request->system_name,
-            'task' => $request->structure_name
+            'task' => $request->structure_name,
+            'username' => $request->username
         ];
         $response = $client->request('POST', $url, [
             'headers' => $headers,

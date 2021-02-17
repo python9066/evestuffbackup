@@ -318,7 +318,8 @@ export default {
                 system_name: this.station.system_name,
                 system_id: this.station.system_id,
                 station_id: this.station.id,
-                structure_name: this.station.station_name
+                structure_name: this.station.station_name,
+                username: this.$store.state.username
             };
             axios({
                 method: "post", //you can set what request you want to be
