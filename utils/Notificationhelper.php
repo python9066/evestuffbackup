@@ -803,7 +803,7 @@ class Notifications
         $checks = Station::where('out_time', "!=", null)->where('station_status_id', 10)->get(); //Over
         foreach ($checks as $check) {
             $check->update(['station_status_id' => 5, 'status_update' => now()]);
-            $message = StationRecords::where('id', $check->id);
+            $message = StationRecords::where('id', $check->id)->first();
             $flag = null;
             $flag = collect([
                 'message' => $message
