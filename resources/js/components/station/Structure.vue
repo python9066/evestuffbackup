@@ -148,7 +148,7 @@
                                         item.station_status_id == 12 &&
                                             !expanded.includes(item)
                                     "
-                                    color="red"
+                                    :color="adashColor(item)"
                                     >adash</v-chip
                                 >
                                 <v-btn
@@ -531,6 +531,14 @@ export default {
             this.snackColor = "success";
             this.snackText = "Data saved";
         },
+
+        adashColor(item) {
+            if (item.text != null) {
+                return "green";
+            } else {
+                return "red";
+            }
+        },
         cancel() {
             this.snack = true;
             this.snackColor = "error";
@@ -605,14 +613,6 @@ export default {
                 return this.stations.filter(
                     stations => stations.station_status_id != 10
                 );
-            }
-        },
-
-        adashColor(item) {
-            if (item.text != null) {
-                return "green";
-            } else {
-                return "red";
             }
         },
 
