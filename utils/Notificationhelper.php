@@ -742,7 +742,7 @@ class Notifications
         $checks = Station::where('out_time', "<=", $now)->where('station_status_id', 5)->get(); //Upcoming
         foreach ($checks as $check) {
             $check->update(['station_status_id' => 6, 'status_update' => now()]);
-            $message = StationRecords::where('id', $check->id);
+            $message = StationRecords::where('id', $check->id)->first();
             $flag = null;
             $flag = collect([
                 'id' => $message
