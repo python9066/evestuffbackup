@@ -287,8 +287,8 @@ class Notifications
             $flag = collect([
                 'message' => $message
             ]);
-            broadcast(new StationNotificationNew($flag))->toOthers();
-            broadcast(new StationInfoSet($flag))->toOthers();
+            broadcast(new StationNotificationNew($flag));
+            broadcast(new StationInfoSet($flag));
         } elseif ($var['type'] == 'StructureLostShields') {
             $outTime = null;
             $ldap = $text['timestamp'];
@@ -383,8 +383,8 @@ class Notifications
             $flag = collect([
                 'message' => $message
             ]);
-            broadcast(new StationNotificationNew($flag))->toOthers();
-            broadcast(new StationInfoSet($flag))->toOthers();
+            broadcast(new StationNotificationNew($flag));
+            broadcast(new StationInfoSet($flag));
         } elseif ($var['type'] == 'StructureLostArmor') {
             $outTime = null;
             $ldap = $text['timestamp'];
@@ -481,8 +481,8 @@ class Notifications
             $flag = collect([
                 'message' => $message
             ]);
-            broadcast(new StationNotificationNew($flag))->toOthers();
-            broadcast(new StationInfoSet($flag))->toOthers();
+            broadcast(new StationNotificationNew($flag));
+            broadcast(new StationInfoSet($flag));
         }
     }
 
@@ -702,7 +702,7 @@ class Notifications
             $flag = collect([
                 'id' => $check->id
             ]);
-            broadcast(new StationNotificationDelete($flag))->toOthers();
+            broadcast(new StationNotificationDelete($flag));
         }
 
         $checks = Station::where('status_update', '<', $now5hour)->where('station_status_id', 2)->get(); //On They way
@@ -713,7 +713,7 @@ class Notifications
             $flag = collect([
                 'id' => $check->id
             ]);
-            broadcast(new StationNotificationDelete($flag))->toOthers();
+            broadcast(new StationNotificationDelete($flag));
         }
 
         $checks = Station::where('status_update', '<', $now5hour)->where('station_status_id', 3)->get(); //Gunning
@@ -724,7 +724,7 @@ class Notifications
             $flag = collect([
                 'id' => $check->id
             ]);
-            broadcast(new StationNotificationDelete($flag))->toOthers();
+            broadcast(new StationNotificationDelete($flag));
         }
 
 
@@ -736,7 +736,7 @@ class Notifications
             $flag = collect([
                 'id' => $check->id
             ]);
-            broadcast(new StationNotificationDelete($flag))->toOthers();
+            broadcast(new StationNotificationDelete($flag));
         }
 
         $checks = Station::where('out_time', "<=", $now)->where('station_status_id', 5)->get(); //Upcoming
@@ -747,7 +747,7 @@ class Notifications
             $flag = collect([
                 'id' => $message
             ]);
-            broadcast(new StationNotificationUpdate($flag))->toOthers();
+            broadcast(new StationNotificationUpdate($flag));
         }
 
         $checks = Station::where('out_time', '<', $now5hour)->where('station_status_id', 6)->get(); //Out
@@ -758,7 +758,7 @@ class Notifications
             $flag = collect([
                 'id' => $check->id
             ]);
-            broadcast(new StationNotificationDelete($flag))->toOthers();
+            broadcast(new StationNotificationDelete($flag));
         }
 
         $checks = Station::where('status_update', '<', $now10min)->where('station_status_id', 7)->get(); //Destoryed
@@ -768,7 +768,7 @@ class Notifications
             $flag = collect([
                 'id' => $check->id
             ]);
-            broadcast(new StationNotificationDelete($flag))->toOthers();
+            broadcast(new StationNotificationDelete($flag));
             StationItemJoin::where('station_id', $check->id)->delete();
             StationNotificationArmor::where('station_id', $check->id)->delete();
             StationNotificationShield::where('station_id', $check->id)->delete();
@@ -784,7 +784,7 @@ class Notifications
             $flag = collect([
                 'id' => $check->id
             ]);
-            broadcast(new StationNotificationDelete($flag))->toOthers();
+            broadcast(new StationNotificationDelete($flag));
         }
 
         $checks = Station::where('status_update', '<', $now10min)->where('station_status_id', 9)->get(); //Reffed - Armor
@@ -795,7 +795,7 @@ class Notifications
             $flag = collect([
                 'id' => $check->id
             ]);
-            broadcast(new StationNotificationDelete($flag))->toOthers();
+            broadcast(new StationNotificationDelete($flag));
         }
 
 
@@ -808,7 +808,7 @@ class Notifications
             $flag = collect([
                 'message' => $message
             ]);
-            broadcast(new StationNotificationNew($flag))->toOthers();
+            broadcast(new StationNotificationNew($flag));
         }
     }
 }
