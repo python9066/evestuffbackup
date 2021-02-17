@@ -193,7 +193,7 @@ class Notifications
                     Tower::updateOrCreate($moon_id, $data);
                 } else {
 
-                    if ($var['notification_id'] > $check->id) {
+                    if ($var['notification_id'] > $towernumber) {
 
                         Tower::updateOrCreate($moon_id, $data);
                     }
