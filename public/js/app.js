@@ -9989,6 +9989,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 
@@ -10212,6 +10213,9 @@ function sleep(ms) {
       if (statusId == 12) {
         return "faSvg fa-exclamation-circle";
       }
+    },
+    numberDay: function numberDay(day) {
+      return day + " d";
     },
     pillColor: function pillColor(statusId) {
       if (statusId == 1) {
@@ -28012,8 +28016,10 @@ var render = function() {
                                           { staticClass: "blue--text pl-3" },
                                           [
                                             _vm._v(
-                                              _vm._s(scope.props.days) +
-                                                "d " +
+                                              _vm._s(
+                                                _vm.numberDay(scope.props.days)
+                                              ) +
+                                                "\n                        " +
                                                 _vm._s(scope.props.hours) +
                                                 ":" +
                                                 _vm._s(scope.props.minutes) +

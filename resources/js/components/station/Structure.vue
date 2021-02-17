@@ -88,9 +88,10 @@
                         <span
                             class="blue--text pl-3"
                             v-if="scope.props.days != 0"
-                            >{{ scope.props.days }}d {{ scope.props.hours }}:{{
-                                scope.props.minutes
-                            }}:{{ scope.props.seconds }}</span
+                            >{{ numberDay(scope.props.days) }}
+                            {{ scope.props.hours }}:{{ scope.props.minutes }}:{{
+                                scope.props.seconds
+                            }}</span
                         >
                     </template>
                 </CountDowntimer>
@@ -484,6 +485,10 @@ export default {
             if (statusId == 12) {
                 return "faSvg fa-exclamation-circle";
             }
+        },
+
+        numberDay(day) {
+            return day + " d";
         },
 
         pillColor(statusId) {
