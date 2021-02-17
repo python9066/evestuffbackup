@@ -148,7 +148,7 @@
                                         item.station_status_id == 12 &&
                                             !expanded.includes(item)
                                     "
-                                    :color="adashColor(item)"
+                                    color="red"
                                     >adash</v-chip
                                 >
                                 <v-btn
