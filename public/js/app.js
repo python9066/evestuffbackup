@@ -2383,7 +2383,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       showAttackNumber: false,
       showAttackkNodeNotes: false,
       editText: null,
-      editAdashLink: null
+      editAdashLink: null,
+      showAttackNodeNotes: false
     };
   },
   created: function created() {

@@ -123,7 +123,8 @@ export default {
             showAttackNumber: false,
             showAttackkNodeNotes: false,
             editText: null,
-            editAdashLink: null
+            editAdashLink: null,
+            showAttackNodeNotes: false
         };
     },
 
