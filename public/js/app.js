@@ -10141,7 +10141,7 @@ function sleep(ms) {
     },
     showGunner: function showGunner(item) {
       if (this.$can("gunner")) {
-        if (item.item_id == 37534 || item.item_id == 35841) {
+        if (item.item_id == 37534 || item.item_id == 35841 || item.item_id == 35840) {
           return false;
         }
 
