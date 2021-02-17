@@ -77,8 +77,17 @@
                     @campaignStart="campaignStart(item)"
                 >
                     <template slot="countdown" slot-scope="scope">
-                        <span class="blue--text pl-3"
+                        <span
+                            class="blue--text pl-3"
+                            v-if="scope.props.days == 0"
                             >{{ scope.props.hours }}:{{
+                                scope.props.minutes
+                            }}:{{ scope.props.seconds }}</span
+                        >
+                        <span
+                            class="blue--text pl-3"
+                            v-if="scope.props.days != 0"
+                            >{{ scope.props.days }}d {{ scope.props.hours }}:{{
                                 scope.props.minutes
                             }}:{{ scope.props.seconds }}</span
                         >
@@ -137,7 +146,7 @@
                                         item.station_status_id == 12 &&
                                             !expanded.includes(item)
                                     "
-                                    color="success"
+                                    :color="adashColor(item)"
                                     >adash</v-chip
                                 >
                                 <v-btn
@@ -590,6 +599,14 @@ export default {
                 return this.stations.filter(
                     stations => stations.station_status_id != 10
                 );
+            }
+        },
+
+        adashColor(item) {
+            if (item.text != null) {
+                return "green";
+            } else {
+                return "red";
             }
         },
 
