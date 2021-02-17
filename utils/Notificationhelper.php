@@ -526,7 +526,7 @@ class Notifications
         $tempnumber = Temp_notifcation::max('id');
         foreach ($data as $var) {
 
-
+            //dwdwdw
             if ($var['type'] == 'EntosisCaptureStarted') {
                 if ($var['notification_id'] > $notenumber) {
 
