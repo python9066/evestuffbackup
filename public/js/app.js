@@ -9989,6 +9989,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 
@@ -27976,7 +27977,8 @@ var render = function() {
                           attrs: {
                             "start-time": _vm.moment.utc(item.timestamp).unix(),
                             "end-text": "Coming Out",
-                            interval: 1000
+                            interval: 1000,
+                            "day-text": "Days"
                           },
                           on: {
                             campaignStart: function($event) {
