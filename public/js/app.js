@@ -10263,6 +10263,13 @@ function sleep(ms) {
       this.snackColor = "success";
       this.snackText = "Data saved";
     },
+    adashColor: function adashColor(item) {
+      if (item.text != null) {
+        return "green";
+      } else {
+        return "red";
+      }
+    },
     cancel: function cancel() {
       this.snack = true;
       this.snackColor = "error";
@@ -10326,13 +10333,6 @@ function sleep(ms) {
         return this.stations.filter(function (stations) {
           return stations.station_status_id != 10;
         });
-      }
-    },
-    adashColor: function adashColor(item) {
-      if (item.text != null) {
-        return "green";
-      } else {
-        return "red";
       }
     },
     user_name: function user_name() {
