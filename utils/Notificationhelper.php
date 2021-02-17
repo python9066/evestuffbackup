@@ -356,7 +356,7 @@ class Notifications
                             'user_id' => null,
                             'station_status_id' => 8,
                             'timestamp' => $time,
-                            'outtime' => $outTime,
+                            'out_time' => $outTime,
                             'status_update' => $current
                         ]);
                     }
@@ -366,7 +366,8 @@ class Notifications
                         'user_id' => null,
                         'station_status_id' => 8,
                         'timestamp' => $time,
-                        'status_update' => $current
+                        'status_update' => $current,
+                        'out_time' => $outTime
                     ]);
                 }
 
@@ -453,7 +454,7 @@ class Notifications
                             'user_id' => null,
                             'station_status_id' => 9,
                             'timestamp' => $time,
-                            'outtime' => $outTime,
+                            'out_time' => $outTime,
                             'status_update' => $current
                         ]);
                     }
@@ -463,7 +464,8 @@ class Notifications
                         'user_id' => null,
                         'station_status_id' => 9,
                         'timestamp' => $time,
-                        'status_update' => $current
+                        'status_update' => $current,
+                        'out_time' => $outTime
                     ]);
 
                     $data = array(
