@@ -189,7 +189,7 @@ class Notifications
                 );
 
                 $check = Tower::where('moon_id', $moon_id)->first();
-                if ($check->count() == 0) {
+                if ($check != null) {
                     Tower::updateOrCreate($moon_id, $data);
                 } else {
 
