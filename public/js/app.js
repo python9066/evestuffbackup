@@ -9988,6 +9988,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 
@@ -28010,8 +28011,8 @@ var render = function() {
                                           { staticClass: "blue--text pl-3" },
                                           [
                                             _vm._v(
-                                              _vm._s(scope.props.days) +
-                                                "d " +
+                                              _vm._s(scope.props.showDay) +
+                                                "d\n                        " +
                                                 _vm._s(scope.props.hours) +
                                                 ":" +
                                                 _vm._s(scope.props.minutes) +
