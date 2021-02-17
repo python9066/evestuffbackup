@@ -806,9 +806,9 @@ class Notifications
             $message = StationRecords::where('id', $check->id);
             $flag = null;
             $flag = collect([
-                'id' => $check->id
+                'message' => $message
             ]);
-            broadcast(new StationNotificationUpdate($flag))->toOthers();
+            broadcast(new StationNotificationNew($flag))->toOthers();
         }
     }
 }
