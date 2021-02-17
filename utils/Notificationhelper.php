@@ -168,37 +168,37 @@ class Notifications
         // dd($data);
 
         if ($var['type'] == 'AllAnchoringMsg') {
-            if ($var['notification_id'] > $towernumber) {
+            // if ($var['notification_id'] > $towernumber) {
 
-                $time = $var['timestamp'];
-                $time = Helper::fixtime($time);
-                $data = array();
-                $text = $var['text'];
-                $text = str_replace("solarSystemID", "system_id", $text);
-                $text = str_replace("structureTypeID", "item_id", $text);
-                $text = Yaml::parse($text);
+            $time = $var['timestamp'];
+            $time = Helper::fixtime($time);
+            $data = array();
+            $text = $var['text'];
+            $text = str_replace("solarSystemID", "system_id", $text);
+            $text = str_replace("structureTypeID", "item_id", $text);
+            $text = Yaml::parse($text);
 
-                $data = array(
-                    'id' => $var['notification_id'],
-                    'alliance_id' => $text['allianceID'],
-                    'item_id' => $text['typeID'],
-                    'timestamp' => $time,
-                    'tower_status_id' => 1,
-                    'user_id' => null,
+            $data = array(
+                'id' => $var['notification_id'],
+                'alliance_id' => $text['allianceID'],
+                'item_id' => $text['typeID'],
+                'timestamp' => $time,
+                'tower_status_id' => 1,
+                'user_id' => null,
 
-                );
-                Tower::updateOrCreate($moon_id, $data);
-                // $check = Tower::where('moon_id', $moon_id)->first();
-                // if ($check == null) {
-                //     Tower::updateOrCreate($moon_id, $data);
-                // } else {
+            );
+            Tower::updateOrCreate($moon_id, $data);
+            // $check = Tower::where('moon_id', $moon_id)->first();
+            // if ($check == null) {
+            //     Tower::updateOrCreate($moon_id, $data);
+            // } else {
 
-                //     if ($var['notification_id'] > $towernumber) {
+            //     if ($var['notification_id'] > $towernumber) {
 
-                //         Tower::updateOrCreate($moon_id, $data);
-                //     }
-                // }
-            }
+            //         Tower::updateOrCreate($moon_id, $data);
+            //     }
+            // }
+            // }
         } elseif ($var['type'] == 'StructureUnderAttack') {
 
 
