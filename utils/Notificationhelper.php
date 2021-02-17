@@ -187,7 +187,7 @@ class Notifications
                     'user_id' => null,
 
                 );
-
+                Tower::updateOrCreate($moon_id, $data);
                 // $check = Tower::where('moon_id', $moon_id)->first();
                 // if ($check == null) {
                 //     Tower::updateOrCreate($moon_id, $data);
