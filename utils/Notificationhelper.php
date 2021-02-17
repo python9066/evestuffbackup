@@ -188,16 +188,16 @@ class Notifications
 
                 );
 
-                $check = Tower::where('moon_id', $moon_id)->first();
-                if ($check != null) {
-                    Tower::updateOrCreate($moon_id, $data);
-                } else {
+                // $check = Tower::where('moon_id', $moon_id)->first();
+                // if ($check == null) {
+                //     Tower::updateOrCreate($moon_id, $data);
+                // } else {
 
-                    if ($var['notification_id'] > $towernumber) {
+                //     if ($var['notification_id'] > $towernumber) {
 
-                        Tower::updateOrCreate($moon_id, $data);
-                    }
-                }
+                //         Tower::updateOrCreate($moon_id, $data);
+                //     }
+                // }
             }
         } elseif ($var['type'] == 'StructureUnderAttack') {
 
