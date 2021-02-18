@@ -8959,6 +8959,41 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -8966,10 +9001,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   data: function data() {
     return {
       systems: [],
-      stationNameEdit: "",
+      stationNameEdit: null,
       state: 1,
       showStationTimer: false,
-      stationName: null
+      stationName: null,
+      systemEdit: null,
+      tickerEdit: null
     };
   },
   methods: {
@@ -27050,6 +27087,86 @@ var render = function() {
                                   _vm.stationNameEdit = $$v
                                 },
                                 expression: "stationNameEdit"
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c(
+                              "v-chip",
+                              {
+                                staticClass: "ml-10",
+                                attrs: {
+                                  pill: "",
+                                  disabled: _vm.stationNameNext,
+                                  color: "green"
+                                },
+                                on: {
+                                  click: function($event) {
+                                    return _vm.stationNameAdd()
+                                  }
+                                }
+                              },
+                              [
+                                _vm._v(
+                                  "\n                            Next\n                        "
+                                )
+                              ]
+                            )
+                          ],
+                          1
+                        )
+                      : _vm._e()
+                  ]),
+                  _vm._v(" "),
+                  _c("v-fade-transition", { attrs: { mode: "out-in" } }, [
+                    _vm.state == 2
+                      ? _c(
+                          "div",
+                          [
+                            _c("v-text-field", {
+                              attrs: {
+                                readonly: "",
+                                outlined: "",
+                                label: "Enter FULL Structure Name here",
+                                "prepend-icon": "faSvg fa-home"
+                              },
+                              model: {
+                                value: _vm.stationName,
+                                callback: function($$v) {
+                                  _vm.stationName = $$v
+                                },
+                                expression: "stationName"
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c("v-text-field", {
+                              attrs: {
+                                readonly: "",
+                                outlined: "",
+                                label: "System Name",
+                                "prepend-icon": "faSvg fa-home"
+                              },
+                              model: {
+                                value: _vm.systemEdit,
+                                callback: function($$v) {
+                                  _vm.systemEdit = $$v
+                                },
+                                expression: "systemEdit"
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c("v-text-field", {
+                              attrs: {
+                                readonly: "",
+                                outlined: "",
+                                label: "Corp Ticker",
+                                "prepend-icon": "faSvg fa-home"
+                              },
+                              model: {
+                                value: _vm.tickerEdit,
+                                callback: function($$v) {
+                                  _vm.tickerEdit = $$v
+                                },
+                                expression: "tickerEdit"
                               }
                             }),
                             _vm._v(" "),

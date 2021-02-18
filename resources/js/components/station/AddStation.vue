@@ -50,6 +50,41 @@
                             </v-chip>
                         </div>
                     </v-fade-transition>
+
+                    <v-fade-transition mode="out-in">
+                        <div v-if="state == 2">
+                            <v-text-field
+                                v-model="stationName"
+                                readonly
+                                outlined
+                                label="Enter FULL Structure Name here"
+                                prepend-icon="faSvg fa-home"
+                            ></v-text-field>
+                            <v-text-field
+                                v-model="systemEdit"
+                                readonly
+                                outlined
+                                label="System Name"
+                                prepend-icon="faSvg fa-home"
+                            ></v-text-field>
+                            <v-text-field
+                                v-model="tickerEdit"
+                                readonly
+                                outlined
+                                label="Corp Ticker"
+                                prepend-icon="faSvg fa-home"
+                            ></v-text-field>
+                            <v-chip
+                                pill
+                                class="ml-10"
+                                :disabled="stationNameNext"
+                                color="green"
+                                @click="stationNameAdd()"
+                            >
+                                Next
+                            </v-chip>
+                        </div>
+                    </v-fade-transition>
                 </v-card-text>
                 <v-spacer></v-spacer
                 ><v-card-actions>
@@ -77,10 +112,12 @@ export default {
     data() {
         return {
             systems: [],
-            stationNameEdit: "",
+            stationNameEdit: null,
             state: 1,
             showStationTimer: false,
-            stationName: null
+            stationName: null,
+            systemEdit: null,
+            tickerEdit: null
         };
     },
 
