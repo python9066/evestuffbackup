@@ -9017,6 +9017,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                     Accept: "application/json",
                     "Content-Type": "application/json"
                   }
+                }).then(function (response) {
+                  console.log(response);
                 });
 
               case 3:

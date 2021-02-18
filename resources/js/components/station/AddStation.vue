@@ -105,6 +105,8 @@ export default {
                     Accept: "application/json",
                     "Content-Type": "application/json"
                 }
+            }).then(function(response) {
+                console.log(response);
             });
         }
     },
