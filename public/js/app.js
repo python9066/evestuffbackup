@@ -8967,7 +8967,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     return {
       systems: [],
       stationName: null,
-      stage: 1,
+      state: 1,
       showStationTimer: false
     };
   },
@@ -9019,7 +9019,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   }
                 }).then(function (response) {
                   var res = response.data;
-                  this.stage = res.stage;
+                  this.state = res.state;
                   this.stationName = res.station_name;
                 });
 
@@ -27030,7 +27030,7 @@ var render = function() {
               ]),
               _vm._v(" "),
               _c("v-card-text", [
-                _vm.stage == 1
+                _vm.state == 1
                   ? _c(
                       "div",
                       [

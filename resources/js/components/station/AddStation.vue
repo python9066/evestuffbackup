@@ -31,7 +31,7 @@
                     Enter Structure Details
                 </v-card-title>
                 <v-card-text>
-                    <div v-if="stage == 1">
+                    <div v-if="state == 1">
                         <v-text-field
                             v-model="stationName"
                             outlined
@@ -78,7 +78,7 @@ export default {
         return {
             systems: [],
             stationName: null,
-            stage: 1,
+            state: 1,
             showStationTimer: false
         };
     },
@@ -107,7 +107,7 @@ export default {
                 }
             }).then(function(response) {
                 let res = response.data;
-                this.stage = res.stage;
+                this.state = res.state;
                 this.stationName = res.station_name;
             });
         }
