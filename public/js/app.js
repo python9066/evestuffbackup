@@ -8965,25 +8965,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       maxWidth: "500px"
     };
   },
-  mounted: function mounted() {
-    var _this = this;
-
-    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
-        while (1) {
-          switch (_context.prev = _context.next) {
-            case 0:
-              _context.next = 2;
-              return _this.$store.dispatch("getSystemList");
-
-            case 2:
-            case "end":
-              return _context.stop();
-          }
-        }
-      }, _callee);
-    }))();
-  },
   methods: {
     close: function close() {
       this.showInfo = false;
@@ -9002,7 +8983,25 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     url: function url(item) {
       return "https://images.evetech.net/types/" + item.item_id + "/icon";
     },
-    open: function open() {},
+    open: function open() {
+      var _this = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.next = 2;
+                return _this.$store.dispatch("getSystemList");
+
+              case 2:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }))();
+    },
     openRecon: function openRecon(hash) {
       var url = "https://recon.gnf.lt/structures/" + hash + "/view";
       var win = window.open(url, "_blank");

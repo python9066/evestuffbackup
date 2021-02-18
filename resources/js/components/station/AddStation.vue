@@ -75,10 +75,6 @@ export default {
         };
     },
 
-    async mounted() {
-        await this.$store.dispatch("getSystemList");
-    },
-
     methods: {
         close() {
             this.showInfo = false;
@@ -101,7 +97,9 @@ export default {
             return "https://images.evetech.net/types/" + item.item_id + "/icon";
         },
 
-        open() {},
+        async open() {
+            await this.$store.dispatch("getSystemList");
+        },
 
         openRecon(hash) {
             var url = "https://recon.gnf.lt/structures/" + hash + "/view";
