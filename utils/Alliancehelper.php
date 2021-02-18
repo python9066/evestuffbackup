@@ -48,7 +48,7 @@ class Alliancehelper
             ]);
             $corpIDs = Utils::jsonDecode($response->getBody(), true);
             foreach ($corpIDs as $corpID) {
-                Corp::updateOreCreate(['id' => $corpID, 'active' => 1, 'alliance_id' => $allianceID]);
+                Corp::updateOrCreate(['id' => $corpID, 'active' => 1, 'alliance_id' => $allianceID]);
             }
 
             dd("yo");
