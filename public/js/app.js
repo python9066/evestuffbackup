@@ -27012,7 +27012,7 @@ var render = function() {
                         _c(
                           "v-btn",
                           {
-                            staticClass: "ml-2",
+                            staticClass: "ml-10",
                             attrs: {
                               disabled: _vm.stationNameNext,
                               color: "green"

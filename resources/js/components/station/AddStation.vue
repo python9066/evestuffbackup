@@ -39,7 +39,7 @@
                             prepend-icon="faSvg fa-home"
                         ></v-text-field>
                         <v-btn
-                            class="ml-2"
+                            class="ml-10"
                             :disabled="stationNameNext"
                             color="green"
                         >
