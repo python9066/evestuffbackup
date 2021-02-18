@@ -35,6 +35,19 @@ class Alliancehelper
             );
         };
         Alliance::where('active', 0)->delete();
+
+        $allianceIDs = Alliance::all()->pluck('id');
+        foreach ($allianceIDs as $allianceID) {
+
+
+            $url = "https://esi.evetech.net/latest/alliances/" . $allianceID . "/corporations/?datasource=tranquility";
+            $response = $client->request('GET', $url, [
+                'headers' => $headers
+            ]);
+            $body = Utils::jsonDecode($response->getBody(), true);
+            dd($body);
+        }
+
         $data = Alliance::where('name', null)->pluck('id');
         $errorCount = 0;
         $errorTime = 0;
