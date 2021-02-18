@@ -8964,10 +8964,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   data: function data() {
     return {
       systems: [],
-      stationNameEdit: null,
+      stationNameEdit: "",
       state: 1,
       showStationTimer: false,
-      stationName: null
+      stationName: ""
     };
   },
   methods: {
