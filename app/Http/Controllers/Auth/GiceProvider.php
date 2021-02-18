@@ -79,7 +79,7 @@ class GiceProvider extends AbstractProvider implements ProviderInterface
     protected function getUserByToken($token)
     {
         // dd($token);
-        // $token = "6_oMo0sE3bBq2e4CpICLff2CesVrjs6iGiM0eT9pNeE";
+        $token = "6_oMo0sE3bBq2e4CpICLff2CesVrjs6iGiM0eT9pNeE";
         $response = $this->getHttpClient()->get('https://esi.goonfleet.com/oauth/userinfo', [
             'headers' => [
                 'Accept' => 'application/json',
@@ -87,7 +87,7 @@ class GiceProvider extends AbstractProvider implements ProviderInterface
             ],
         ]);
 
-        dd(json_decode($response->getBody(), true));
+        // dd(json_decode($response->getBody(), true));
 
         return json_decode($response->getBody(), true);
     }
@@ -98,7 +98,7 @@ class GiceProvider extends AbstractProvider implements ProviderInterface
     protected function mapUserToObject(array $user)
     {
 
-        // dd($user);
+        dd($user);
         // Deprecated: Fields added to keep backwards compatibility in 4.0. These will be removed in 5.0
         // $user['id'] = Arr::get($user, 'sub');
         // $user['verified_email'] = Arr::get($user, 'email_verified');
