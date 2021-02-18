@@ -41,7 +41,7 @@ class Alliancehelper
 
         $allianceID = Alliance::all()->pluck('id');
         Corp::whereNotNull('id')->update(['active' => 0]);
-        $errorCount = 0;
+        $errorCount = 100;
         $errorTime = 30;
         for ($i = 0; $i < count($allianceID); $i++) {
 
@@ -77,7 +77,7 @@ class Alliancehelper
         }
         Corp::where('active', 0)->delete();
         $data = Alliance::where('name', null)->pluck('id');
-        $errorCount = 0;
+        $errorCount = 100;
         $errorTime = 30;
 
         for ($i = 0; $i < count($data); $i++) {
@@ -119,7 +119,7 @@ class Alliancehelper
         }
 
         $data = Corp::where('name', null)->pluck('id');
-        $errorCount = 0;
+        $errorCount = 100;
         $errorTime = 30;
 
         for ($i = 0; $i < count($data); $i++) {
