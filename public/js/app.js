@@ -8965,12 +8965,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     return {
       systems: [],
       stationName: null,
-      stage: 1
+      stage: 1,
+      showStationTimer: false
     };
   },
   methods: {
     close: function close() {
-      this.showInfo = false;
+      this.showStationTimer = false;
     },
     open: function open() {
       var _this = this;
@@ -26962,11 +26963,11 @@ var render = function() {
             }
           ]),
           model: {
-            value: _vm.showInfo,
+            value: _vm.showStationTimer,
             callback: function($$v) {
-              _vm.showInfo = $$v
+              _vm.showStationTimer = $$v
             },
-            expression: "showInfo"
+            expression: "showStationTimer"
           }
         },
         [

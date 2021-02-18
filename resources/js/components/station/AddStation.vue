@@ -3,7 +3,7 @@
         <v-dialog
             max-width="700px"
             z-index="0"
-            v-model="showInfo"
+            v-model="showStationTimer"
             @click:outside="close()"
         >
             <template v-slot:activator="{ on, attrs }">
@@ -55,12 +55,12 @@
                 >
             </v-card>
 
-            <!-- <ShowInfo
+            <!-- <showStationTimer
                 :nodeNotestation="nodeNotestation"
                 v-if="$can('super')"
-                @closeMessage="showInfo = false"
+                @closeMessage="showStationTimer = false"
             >
-            </ShowInfo> -->
+            </showStationTimer> -->
         </v-dialog>
     </div>
 </template>
@@ -76,13 +76,14 @@ export default {
         return {
             systems: [],
             stationName: null,
-            stage: 1
+            stage: 1,
+            showStationTimer: false
         };
     },
 
     methods: {
         close() {
-            this.showInfo = false;
+            this.showStationTimer = false;
         },
 
         async open() {
