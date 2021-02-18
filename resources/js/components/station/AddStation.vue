@@ -35,17 +35,18 @@
                         <v-text-field
                             v-model="stationName"
                             outlined
-                            label="Enter Structure Name here"
+                            label="Enter FULL Structure Name here"
                             prepend-icon="faSvg fa-home"
                         ></v-text-field>
-                        <v-btn
+                        <v-chip
                             pill
                             class="ml-10"
                             :disabled="stationNameNext"
                             color="green"
+                            @click="stationName()"
                         >
                             Next
-                        </v-btn>
+                        </v-chip>
                     </div>
                 </v-card-text>
                 <v-spacer></v-spacer
@@ -89,6 +90,22 @@ export default {
 
         async open() {
             await this.$store.dispatch("getSystemList");
+        },
+
+        async stationName() {
+            var request = {
+                stationName: this.stationName
+            };
+            await axios({
+                method: "get", //you can set what request you want to be
+                url: "api/stationname",
+                data: request,
+                headers: {
+                    Authorization: "Bearer " + this.$store.state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                }
+            });
         }
     },
 

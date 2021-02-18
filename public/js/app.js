@@ -8956,6 +8956,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -8991,6 +8992,39 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             }
           }
         }, _callee);
+      }))();
+    },
+    stationName: function stationName() {
+      var _this2 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+        var request;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                request = {
+                  stationName: _this2.stationName
+                };
+                _context2.next = 3;
+                return axios({
+                  method: "get",
+                  //you can set what request you want to be
+                  url: "api/stationname",
+                  data: request,
+                  headers: {
+                    Authorization: "Bearer " + _this2.$store.state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                  }
+                });
+
+              case 3:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2);
       }))();
     }
   },
@@ -26999,7 +27033,7 @@ var render = function() {
                         _c("v-text-field", {
                           attrs: {
                             outlined: "",
-                            label: "Enter Structure Name here",
+                            label: "Enter FULL Structure Name here",
                             "prepend-icon": "faSvg fa-home"
                           },
                           model: {
@@ -27012,13 +27046,18 @@ var render = function() {
                         }),
                         _vm._v(" "),
                         _c(
-                          "v-btn",
+                          "v-chip",
                           {
                             staticClass: "ml-10",
                             attrs: {
                               pill: "",
                               disabled: _vm.stationNameNext,
                               color: "green"
+                            },
+                            on: {
+                              click: function($event) {
+                                return _vm.stationName()
+                              }
                             }
                           },
                           [
