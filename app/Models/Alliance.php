@@ -6,17 +6,23 @@ use Illuminate\Database\Eloquent\Model;
 
 class Alliance extends Model
 {
-    protected $guarded =[];
+    protected $guarded = [];
 
     public function alliance_id()
     {
-        return $this->hasMany(Post::class)->orderBy('created_at','DESC');
+        return $this->hasMany(Post::class)->orderBy('created_at', 'DESC');
     }
 
     public function campaigns()
     {
         return $this->hasMany(Campaign::class);
     }
+
+    public function corps()
+    {
+        return $this->hasMany(Corp::class);
+    }
+
     public $incrementing = false;
     protected $primaryKey = 'id';
 
@@ -27,5 +33,4 @@ class Alliance extends Model
         'active' => 'integer',
         'color' => 'integer',
     ];
-
 }
