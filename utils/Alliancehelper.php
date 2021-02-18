@@ -115,7 +115,9 @@ class Alliancehelper
         for ($i = 0; $i < count($data); $i++) {
             $url = "https://esi.evetech.net/latest/corporations/" . $data[$i] . "/?datasource=tranquility";
             $response = $client->request('GET', $url, [
-                'headers' => $headers
+                'headers' => $headers,
+                'http_errors' => false
+
             ]);
             foreach ($response->getHeaders() as $name => $values) {
                 if ($name == "X-Esi-Error-Limit-Remain") {
@@ -140,6 +142,7 @@ class Alliancehelper
                 );
                 Corp::where("id", $data[$i])->update($body);
             } else {
+                dd($response->getStatusCode());
                 sleep($errorTime);
                 $i = $i - 1;
             }
