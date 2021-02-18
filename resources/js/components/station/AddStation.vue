@@ -106,8 +106,10 @@ export default {
                     "Content-Type": "application/json"
                 }
             }).then(function(response) {
-                this.state = response.data.state;
-                this.stationName = response.datastation_name;
+                let res = response.data;
+                console.log(res);
+                // this.state = response.data.state;
+                // this.stationName = response.datastation_name;
             });
         }
     },
