@@ -8947,18 +8947,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -27099,57 +27087,21 @@ var render = function() {
                 )
               ]),
               _vm._v(" "),
-              _c(
-                "v-card-text",
-                [
-                  _c(
-                    "v-toolbar",
-                    { attrs: { dark: "", color: "teal" } },
-                    [
-                      _c("v-toolbar-title", [_vm._v("State selection")]),
-                      _vm._v(" "),
-                      _c("v-autocomplete", {
-                        staticClass: "mx-4",
-                        attrs: {
-                          loading: _vm.loading,
-                          items: _vm.systems,
-                          "search-input": _vm.search,
-                          "cache-items": "",
-                          flat: "",
-                          "hide-no-data": "",
-                          "hide-details": "",
-                          label: "What state are you from?",
-                          "solo-inverted": ""
-                        },
-                        on: {
-                          "update:searchInput": function($event) {
-                            _vm.search = $event
-                          },
-                          "update:search-input": function($event) {
-                            _vm.search = $event
-                          }
-                        },
-                        model: {
-                          value: _vm.select,
-                          callback: function($$v) {
-                            _vm.select = $$v
-                          },
-                          expression: "select"
-                        }
-                      }),
-                      _vm._v(" "),
-                      _c(
-                        "v-btn",
-                        { attrs: { icon: "" } },
-                        [_c("v-icon", [_vm._v("mdi-dots-vertical")])],
-                        1
-                      )
-                    ],
-                    1
-                  )
-                ],
-                1
-              ),
+              _c("v-card-text", [
+                _c(
+                  "div",
+                  [
+                    _c("v-text-field", {
+                      attrs: {
+                        outlined: "",
+                        label: "Prepend",
+                        "prepend-icon": "faSvg fa-home"
+                      }
+                    })
+                  ],
+                  1
+                )
+              ]),
               _vm._v(" "),
               _c("v-spacer"),
               _c(
