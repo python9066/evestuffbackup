@@ -8931,215 +8931,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -9159,7 +8950,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         width: "95%",
         align: "start"
       }],
-      showAddStation: false,
+      showInfo: false,
       editText: null,
       editAdashLink: null,
       fitted: false
@@ -9167,7 +8958,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   methods: {
     close: function close() {
-      this.showAddStation = false;
+      this.showInfo = false;
     },
     openAdash: function openAdash(url) {
       var win = window.open(url, "_blank");
@@ -27195,39 +26986,43 @@ var render = function() {
                 var attrs = ref.attrs
                 return [
                   _c(
-                    "v-icon",
+                    "v-btn",
                     _vm._g(
                       _vm._b(
                         {
-                          attrs: { color: "blue" },
+                          attrs: { color: "green", dark: "" },
                           on: {
                             click: function($event) {
                               return _vm.open()
                             }
                           }
                         },
-                        "v-icon",
+                        "v-btn",
                         attrs,
                         false
                       ),
                       on
                     ),
                     [
-                      _vm._v(
-                        "\n                faSvg fa-info-circle\n            "
-                      )
-                    ]
+                      _c("v-icon", [
+                        _vm._v(
+                          "\n                    faSvg fa-info-circle\n                "
+                        )
+                      ]),
+                      _vm._v("\n                Click Me\n            ")
+                    ],
+                    1
                   )
                 ]
               }
             }
           ]),
           model: {
-            value: _vm.showAddStation,
+            value: _vm.showInfo,
             callback: function($$v) {
-              _vm.showAddStation = $$v
+              _vm.showInfo = $$v
             },
-            expression: "showAddStation"
+            expression: "showInfo"
           }
         },
         [
@@ -27245,447 +27040,10 @@ var render = function() {
             },
             [
               _c("v-card-title", { staticClass: "justify-center" }, [
-                _c(
-                  "p",
-                  [
-                    _vm._v(
-                      "\n                    " +
-                        _vm._s(_vm.station.station_name) +
-                        "\n                    "
-                    ),
-                    _vm.showLinkButton
-                      ? _c(
-                          "v-chip",
-                          {
-                            staticClass: " ml-2",
-                            attrs: {
-                              pill: "",
-                              small: "",
-                              outlined: "",
-                              color: "teal"
-                            },
-                            on: {
-                              click: function($event) {
-                                return _vm.openRecon(_vm.fit[0]["r_hash"])
-                              }
-                            }
-                          },
-                          [
-                            _vm._v(
-                              "\n                        View On Recon Tool\n                    "
-                            )
-                          ]
-                        )
-                      : _vm._e()
-                  ],
-                  1
-                )
+                _vm._v("\n                FEFEFEFEFEFEFEFEFEFEFE\n            ")
               ]),
               _vm._v(" "),
-              _c("v-card-subtitle", [
-                _c("div", [
-                  _vm._v("\n                    Cored: "),
-                  _c("strong", { class: _vm.textcolor }, [
-                    _vm._v(" " + _vm._s(_vm.core) + " ")
-                  ])
-                ]),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  [
-                    _vm._v(
-                      "\n                    Last Updated: " +
-                        _vm._s(_vm.lastUpdated()) +
-                        "\n                    "
-                    ),
-                    _vm.$can("request_recon_task") && !_vm.taskFlag()
-                      ? _c(
-                          "v-chip",
-                          {
-                            staticClass: " ml-2",
-                            attrs: {
-                              pill: "",
-                              small: "",
-                              outlined: "",
-                              color: "teal"
-                            },
-                            on: {
-                              click: function($event) {
-                                return _vm.taskRequest()
-                              }
-                            }
-                          },
-                          [
-                            _vm._v(
-                              "\n                        Request Update\n                    "
-                            )
-                          ]
-                        )
-                      : _vm._e(),
-                    _vm._v(" "),
-                    _vm.$can("request_recon_task") && _vm.taskFlag()
-                      ? _c(
-                          "v-chip",
-                          {
-                            staticClass: " ml-2",
-                            attrs: { pill: "", small: "", color: "teal" }
-                          },
-                          [
-                            _vm._v(
-                              "\n                        Request Made\n                    "
-                            )
-                          ]
-                        )
-                      : _vm._e()
-                  ],
-                  1
-                )
-              ]),
-              _vm._v(" "),
-              _c(
-                "v-card-text",
-                [
-                  _vm.showfit()
-                    ? _c(
-                        "div",
-                        [
-                          _vm.fit[0]["r_anti_cap"] == 1
-                            ? _c(
-                                "v-chip",
-                                {
-                                  staticClass: " mt-2 mb-2",
-                                  attrs: { small: "", color: "red" }
-                                },
-                                [
-                                  _vm._v(
-                                    "\n                        anti cap\n                    "
-                                  )
-                                ]
-                              )
-                            : _vm._e(),
-                          _vm._v(" "),
-                          _vm.fit[0]["r_anti_subcap"] == 1
-                            ? _c(
-                                "v-chip",
-                                {
-                                  staticClass: " mt-2 mb-2",
-                                  attrs: { small: "", color: "red" }
-                                },
-                                [
-                                  _vm._v(
-                                    "\n                        anti subcap\n                    "
-                                  )
-                                ]
-                              )
-                            : _vm._e(),
-                          _vm._v(" "),
-                          _vm.fit[0]["r_dooms_day"] == 1
-                            ? _c(
-                                "v-chip",
-                                {
-                                  staticClass: " mt-2 mb-2",
-                                  attrs: { small: "", color: "red" }
-                                },
-                                [
-                                  _vm._v(
-                                    "\n                        dooms day\n                    "
-                                  )
-                                ]
-                              )
-                            : _vm._e(),
-                          _vm._v(" "),
-                          _vm.fit[0]["r_point_defense"] == 1
-                            ? _c(
-                                "v-chip",
-                                {
-                                  staticClass: " mt-2 mb-2",
-                                  attrs: { small: "", color: "red" }
-                                },
-                                [
-                                  _vm._v(
-                                    "\n                        point defense\n                    "
-                                  )
-                                ]
-                              )
-                            : _vm._e(),
-                          _vm._v(" "),
-                          _vm.fit[0]["r_biochemical"] == 1
-                            ? _c(
-                                "v-chip",
-                                {
-                                  staticClass: " mt-2 mb-2",
-                                  attrs: { small: "", color: "blue" }
-                                },
-                                [
-                                  _vm._v(
-                                    "\n                        biochemical\n                    "
-                                  )
-                                ]
-                              )
-                            : _vm._e(),
-                          _vm._v(" "),
-                          _vm.fit[0]["r_capital_shipyard"] == 1
-                            ? _c(
-                                "v-chip",
-                                {
-                                  staticClass: " mt-2 mb-2",
-                                  attrs: { small: "", color: "blue" }
-                                },
-                                [
-                                  _vm._v(
-                                    "\n                        capital shipyard\n                    "
-                                  )
-                                ]
-                              )
-                            : _vm._e(),
-                          _vm._v(" "),
-                          _vm.fit[0]["r_cloning"] == 1
-                            ? _c(
-                                "v-chip",
-                                {
-                                  staticClass: " mt-2 mb-2",
-                                  attrs: { small: "", color: "blue" }
-                                },
-                                [
-                                  _vm._v(
-                                    "\n                        cloning\n                    "
-                                  )
-                                ]
-                              )
-                            : _vm._e(),
-                          _vm._v(" "),
-                          _vm.fit[0]["r_composite"] == 1
-                            ? _c(
-                                "v-chip",
-                                {
-                                  staticClass: " mt-2 mb-2",
-                                  attrs: { small: "", color: "blue" }
-                                },
-                                [
-                                  _vm._v(
-                                    "\n                        composite\n                    "
-                                  )
-                                ]
-                              )
-                            : _vm._e(),
-                          _vm._v(" "),
-                          _vm.fit[0]["r_guide_bombs"] == 1
-                            ? _c(
-                                "v-chip",
-                                {
-                                  staticClass: " mt-2 mb-2",
-                                  attrs: { small: "", color: "red" }
-                                },
-                                [
-                                  _vm._v(
-                                    "\n                        guide bombs\n                    "
-                                  )
-                                ]
-                              )
-                            : _vm._e(),
-                          _vm._v(" "),
-                          _vm.fit[0]["r_hyasyoda"] == 1
-                            ? _c(
-                                "v-chip",
-                                {
-                                  staticClass: " mt-2 mb-2",
-                                  attrs: { small: "", color: "blue" }
-                                },
-                                [
-                                  _vm._v(
-                                    "\n                        hyasyoda\n                    "
-                                  )
-                                ]
-                              )
-                            : _vm._e(),
-                          _vm._v(" "),
-                          _vm.fit[0]["r_hybrid"] == 1
-                            ? _c(
-                                "v-chip",
-                                {
-                                  staticClass: " mt-2 mb-2",
-                                  attrs: { small: "", color: "blue" }
-                                },
-                                [
-                                  _vm._v(
-                                    "\n                        hybrid\n                    "
-                                  )
-                                ]
-                              )
-                            : _vm._e(),
-                          _vm._v(" "),
-                          _vm.fit[0]["r_invention"] == 1
-                            ? _c(
-                                "v-chip",
-                                {
-                                  staticClass: " mt-2 mb-2",
-                                  attrs: { small: "", color: "blue" }
-                                },
-                                [
-                                  _vm._v(
-                                    "\n                        invention\n                    "
-                                  )
-                                ]
-                              )
-                            : _vm._e(),
-                          _vm._v(" "),
-                          _vm.fit[0]["r_manufacturing"] == 1
-                            ? _c(
-                                "v-chip",
-                                {
-                                  staticClass: " mt-2 mb-2",
-                                  attrs: { small: "", color: "blue" }
-                                },
-                                [
-                                  _vm._v(
-                                    "\n                        manufacturing\n                    "
-                                  )
-                                ]
-                              )
-                            : _vm._e(),
-                          _vm._v(" "),
-                          _vm.fit[0]["r_moon_drilling"] == 1
-                            ? _c(
-                                "v-chip",
-                                {
-                                  staticClass: " mt-2 mb-2",
-                                  attrs: { small: "", color: "blue" }
-                                },
-                                [
-                                  _vm._v(
-                                    "\n                        moon drilling\n                    "
-                                  )
-                                ]
-                              )
-                            : _vm._e(),
-                          _vm._v(" "),
-                          _vm.fit[0]["r_reprocessing"] == 1
-                            ? _c(
-                                "v-chip",
-                                {
-                                  staticClass: " mt-2 mb-2",
-                                  attrs: { small: "", color: "blue" }
-                                },
-                                [
-                                  _vm._v(
-                                    "\n                        reprocessing\n                    "
-                                  )
-                                ]
-                              )
-                            : _vm._e(),
-                          _vm._v(" "),
-                          _vm.fit[0]["r_research"] == 1
-                            ? _c(
-                                "v-chip",
-                                {
-                                  staticClass: " mt-2 mb-2",
-                                  attrs: { small: "", color: "blue" }
-                                },
-                                [
-                                  _vm._v(
-                                    "\n                        research\n                    "
-                                  )
-                                ]
-                              )
-                            : _vm._e(),
-                          _vm._v(" "),
-                          _vm.fit[0]["r_supercapital_shipyard"] == 1
-                            ? _c(
-                                "v-chip",
-                                {
-                                  staticClass: " mt-2 mb-2",
-                                  attrs: { small: "", color: "blue" }
-                                },
-                                [
-                                  _vm._v(
-                                    "\n                        supercapital shipyard\n                    "
-                                  )
-                                ]
-                              )
-                            : _vm._e(),
-                          _vm._v(" "),
-                          _vm.fit[0]["r_t2_rigged"] == 1
-                            ? _c(
-                                "v-chip",
-                                {
-                                  staticClass: " mt-2 mb-2",
-                                  attrs: { small: "", color: "blue" }
-                                },
-                                [
-                                  _vm._v(
-                                    "\n                        t2 rigged\n                    "
-                                  )
-                                ]
-                              )
-                            : _vm._e()
-                        ],
-                        1
-                      )
-                    : _vm._e(),
-                  _vm._v(" "),
-                  !_vm.showfit()
-                    ? _c("div", [
-                        _vm._v(
-                          "\n                    No Fit Info\n                "
-                        )
-                      ])
-                    : _vm._e(),
-                  _vm._v(" "),
-                  _vm.showfit()
-                    ? _c(
-                        "v-card",
-                        [
-                          _c("v-card-title", [
-                            _vm._v(
-                              "\n                        Fitting\n                    "
-                            )
-                          ]),
-                          _vm._v(" "),
-                          _c(
-                            "v-card-text",
-                            [
-                              _c("v-data-table", {
-                                staticClass: "elevation-12",
-                                attrs: {
-                                  headers: _vm.headers,
-                                  items: _vm.items,
-                                  "disable-sort": "",
-                                  "hide-default-footer": "",
-                                  "hide-default-header": "",
-                                  "disable-pagination": "",
-                                  height: "500px"
-                                },
-                                scopedSlots: _vm._u(
-                                  [
-                                    {
-                                      key: "item.icon",
-                                      fn: function(ref) {
-                                        var item = ref.item
-                                        return [
-                                          _c("v-avatar", [
-                                            _c("img", {
-                                              attrs: { src: _vm.url(item) }
-                                            })
-                                          ])
-                                        ]
-                                      }
-                                    }
-                                  ],
-                                  null,
-                                  false,
-                                  916954536
-                                )
-                              })
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      )
-                    : _vm._e()
-                ],
-                1
-              ),
+              _c("v-card-text"),
               _vm._v(" "),
               _c("v-spacer"),
               _c(
