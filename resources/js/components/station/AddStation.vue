@@ -162,10 +162,6 @@ export default {
 
         systemList() {
             return this.$store.state("systemlist");
-        },
-
-        items() {
-            return this.getStationItemsByStationID(this.station.id);
         }
     },
 

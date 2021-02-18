@@ -9078,9 +9078,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
     systemList: function systemList() {
       return this.$store.state("systemlist");
-    },
-    items: function items() {
-      return this.getStationItemsByStationID(this.station.id);
     }
   }),
   beforeDestroy: function beforeDestroy() {}
