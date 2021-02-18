@@ -23,7 +23,7 @@ class GiceProvider extends AbstractProvider implements ProviderInterface
      */
     protected $scopes = [
         'openid',
-        'groups-limited'
+        // 'groups-limited'
     ];
 
     /**
@@ -79,7 +79,7 @@ class GiceProvider extends AbstractProvider implements ProviderInterface
      */
     protected function getUserByToken($token)
     {
-        $token = "26a89095-50bc-42ac-9d71-17df968c6646";
+        // $token = "26a89095-50bc-42ac-9d71-17df968c6646";
         $response = $this->getHttpClient()->get('https://esi.goonfleet.com/oauth/userinfo', [
             'headers' => [
                 'Accept' => 'application/json',
