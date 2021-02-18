@@ -8960,15 +8960,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: {
-    station: Object
-  },
+  props: {},
   data: function data() {
     return {
       systems: [],
-      stationName: null,
+      stationNameEdit: null,
       state: 1,
-      showStationTimer: false
+      showStationTimer: false,
+      stationName: null
     };
   },
   methods: {
@@ -9004,7 +9003,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context2.prev = _context2.next) {
               case 0:
                 request = {
-                  stationName: _this2.stationName
+                  stationNameEdit: _this2.stationName
                 };
                 _context2.next = 3;
                 return axios({
@@ -27042,11 +27041,11 @@ var render = function() {
                             "prepend-icon": "faSvg fa-home"
                           },
                           model: {
-                            value: _vm.stationName,
+                            value: _vm.stationNameEdit,
                             callback: function($$v) {
-                              _vm.stationName = $$v
+                              _vm.stationNameEdit = $$v
                             },
-                            expression: "stationName"
+                            expression: "stationNameEdit"
                           }
                         }),
                         _vm._v(" "),

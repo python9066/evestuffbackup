@@ -33,7 +33,7 @@
                 <v-card-text>
                     <div v-if="state == 1">
                         <v-text-field
-                            v-model="stationName"
+                            v-model="stationNameEdit"
                             outlined
                             label="Enter FULL Structure Name here"
                             prepend-icon="faSvg fa-home"
@@ -71,15 +71,14 @@
 import { mapState, mapGetters } from "vuex";
 import moment from "moment";
 export default {
-    props: {
-        station: Object
-    },
+    props: {},
     data() {
         return {
             systems: [],
-            stationName: null,
+            stationNameEdit: null,
             state: 1,
-            showStationTimer: false
+            showStationTimer: false,
+            stationName: null
         };
     },
 
@@ -94,7 +93,7 @@ export default {
 
         async stationNameAdd() {
             var request = {
-                stationName: this.stationName
+                stationNameEdit: this.stationName
             };
             await axios({
                 method: "put", //you can set what request you want to be
