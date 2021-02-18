@@ -8951,6 +8951,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -27008,6 +27012,7 @@ var render = function() {
                         _c(
                           "v-btn",
                           {
+                            staticClass: "ml-2",
                             attrs: {
                               disabled: _vm.stationNameNext,
                               color: "green"

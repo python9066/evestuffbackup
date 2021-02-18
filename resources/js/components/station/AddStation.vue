@@ -38,7 +38,11 @@
                             label="Enter Structure Name here"
                             prepend-icon="faSvg fa-home"
                         ></v-text-field>
-                        <v-btn :disabled="stationNameNext" color="green">
+                        <v-btn
+                            class="ml-2"
+                            :disabled="stationNameNext"
+                            color="green"
+                        >
                             Next
                         </v-btn>
                     </div>
