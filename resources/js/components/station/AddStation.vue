@@ -75,6 +75,10 @@ export default {
         };
     },
 
+    async mounted() {
+        await this.$store.dispatch("getSystemList");
+    },
+
     methods: {
         close() {
             this.showInfo = false;
@@ -149,6 +153,10 @@ export default {
             "getCoreByStationID",
             "getStationFitByStationID"
         ]),
+
+        systemList() {
+            return this.$store.state("systemlist");
+        },
 
         items() {
             return this.getStationItemsByStationID(this.station.id);
