@@ -27124,17 +27124,11 @@ var render = function() {
                           [
                             _c("v-text-field", {
                               attrs: {
-                                readonly: "",
+                                placeholder: _vm.stationName,
+                                disabled: "",
                                 outlined: "",
                                 label: "Enter FULL Structure Name here",
                                 "prepend-icon": "faSvg fa-home"
-                              },
-                              model: {
-                                value: _vm.stationName,
-                                callback: function($$v) {
-                                  _vm.stationName = $$v
-                                },
-                                expression: "stationName"
                               }
                             }),
                             _vm._v(" "),
