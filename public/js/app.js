@@ -9003,7 +9003,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context2.prev = _context2.next) {
               case 0:
                 request = {
-                  stationNameEdit: _this2.stationName
+                  StationName: _this2.stationNameEdit
                 };
                 _context2.next = 3;
                 return axios({
