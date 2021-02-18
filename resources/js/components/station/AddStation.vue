@@ -97,7 +97,7 @@ export default {
                 stationName: this.stationName
             };
             await axios({
-                method: "get", //you can set what request you want to be
+                method: "put", //you can set what request you want to be
                 url: "api/stationname",
                 data: request,
                 headers: {

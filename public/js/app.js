@@ -9008,7 +9008,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 };
                 _context2.next = 3;
                 return axios({
-                  method: "get",
+                  method: "put",
                   //you can set what request you want to be
                   url: "api/stationname",
                   data: request,

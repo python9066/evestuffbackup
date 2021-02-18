@@ -134,5 +134,5 @@ Route::middleware('auth:api')->group(function () {
     Route::put('/updatestationnotification/{id}', 'StationController@update');
 
     Route::get('/systemlist', 'SystemController@index');
-    Route::get('/stationname', 'StationController@reconPullbyname');
+    Route::put('/stationname', 'StationController@reconPullbyname');
 });
