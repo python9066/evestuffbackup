@@ -9195,7 +9195,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         system_id: this.station.system_id,
         station_id: this.station.id,
         structure_name: this.station.station_name,
-        username: this.$store.state.username
+        username: this.$store.state.user_name
       };
       axios({
         method: "post",
