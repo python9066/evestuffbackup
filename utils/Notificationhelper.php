@@ -811,7 +811,7 @@ class Notifications
             broadcast(new StationNotificationNew($flag));
         }
 
-        $checks = Station::where('status_update', '<', $now5hour)->where('out_time', null)->get();
+        $checks = Station::where('status_update', '<', $now5hour)->where('out_time', '>', $now)->get();
         foreach ($checks as $check) {
             $check->update(['station_status_id' => 10, 'user_id' => null, 'text' => null, 'gunner_id' => null, 'out_time' => null]);
             $flag = null;
