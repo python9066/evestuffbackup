@@ -8,4 +8,18 @@ use Illuminate\Database\Eloquent\Model;
 class Corp extends Model
 {
     use HasFactory;
+
+    protected $guarded = [];
+
+    public function alliance()
+    {
+        return $this->belongsTo(Alliance::class);
+    }
+
+    protected $casts = [
+        'id' => 'integer',
+        'standingstanding' => 'double',
+        'active' => 'integer',
+        'color' => 'integer',
+    ];
 }
