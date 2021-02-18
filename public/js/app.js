@@ -9018,7 +9018,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                     "Content-Type": "application/json"
                   }
                 }).then(function (response) {
-                  console.log(response);
+                  var res = response.data;
+                  this.stage = res.stage;
+                  this.stationName = res.station_name;
                 });
 
               case 3:

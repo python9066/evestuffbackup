@@ -106,7 +106,9 @@ export default {
                     "Content-Type": "application/json"
                 }
             }).then(function(response) {
-                console.log(response);
+                let res = response.data;
+                this.stage = res.stage;
+                this.stationName = res.station_name;
             });
         }
     },
