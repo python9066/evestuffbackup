@@ -8990,7 +8990,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])([])), {}, {
     stationNameNext: function stationNameNext() {
-      if (this.stationName != null) {
+      if (this.stationName == null) {
         return true;
       } else {
         return false;
@@ -27007,7 +27007,12 @@ var render = function() {
                         _vm._v(" "),
                         _c(
                           "v-btn",
-                          { attrs: { disabled: _vm.stationNameNext } },
+                          {
+                            attrs: {
+                              disabled: _vm.stationNameNext,
+                              color: "green"
+                            }
+                          },
                           [
                             _vm._v(
                               "\n                        Next\n                    "

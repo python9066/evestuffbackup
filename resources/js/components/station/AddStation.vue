@@ -38,7 +38,7 @@
                             label="Enter Structure Name here"
                             prepend-icon="faSvg fa-home"
                         ></v-text-field>
-                        <v-btn :disabled="stationNameNext">
+                        <v-btn :disabled="stationNameNext" color="green">
                             Next
                         </v-btn>
                     </div>
@@ -90,7 +90,7 @@ export default {
         ...mapGetters([]),
 
         stationNameNext() {
-            if (this.stationName != null) {
+            if (this.stationName == null) {
                 return true;
             } else {
                 return false;
