@@ -41,8 +41,8 @@ class Alliancehelper
 
         $allianceID = Alliance::all()->pluck('id');
         Corp::whereNotNull('id')->update(['active' => 0]);
-        $errorCount = 0;
-        $errorTime = 0;
+        $errorCount = [0];
+        $errorTime = [0];
         for ($i = 0; $i < count($allianceID); $i++) {
 
 
@@ -115,8 +115,8 @@ class Alliancehelper
         }
 
         $data = Corp::where('name', null)->pluck('id');
-        $errorCount = 0;
-        $errorTime = 0;
+        $errorCount = [0];
+        $errorTime = [0];
 
         for ($i = 0; $i < count($data); $i++) {
             $url = "https://esi.evetech.net/latest/corporations/" . $data[$i] . "/?datasource=tranquility";
