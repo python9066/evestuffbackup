@@ -27006,10 +27006,10 @@ var render = function() {
                     [
                       _c("v-icon", [
                         _vm._v(
-                          "\n                    faSvg fa-info-circle\n                "
+                          "\n                    faSvg fa-plus\n                "
                         )
                       ]),
-                      _vm._v("\n                Click Me\n            ")
+                      _vm._v("\n                Add Timer\n            ")
                     ],
                     1
                   )

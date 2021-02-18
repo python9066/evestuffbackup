@@ -14,9 +14,9 @@
                     v-on="on"
                     @click="open()"
                     ><v-icon>
-                        faSvg fa-info-circle
+                        faSvg fa-plus
                     </v-icon>
-                    Click Me
+                    Add Timer
                 </v-btn>
             </template>
 
