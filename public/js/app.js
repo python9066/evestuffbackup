@@ -9034,7 +9034,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])([])), {}, {
     stationNameNext: function stationNameNext() {
-      if (this.stationName == null) {
+      if (this.stationNameEdit == null) {
         return true;
       } else {
         return false;

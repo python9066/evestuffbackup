@@ -117,7 +117,7 @@ export default {
         ...mapGetters([]),
 
         stationNameNext() {
-            if (this.stationName == null) {
+            if (this.stationNameEdit == null) {
                 return true;
             } else {
                 return false;
