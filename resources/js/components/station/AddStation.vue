@@ -54,8 +54,7 @@
                     <v-fade-transition mode="out-in">
                         <div v-if="state == 2">
                             <v-text-field
-                                :placeholder="stationName"
-                                disabled
+                                v-model="stationName"
                                 outlined
                                 label="Enter FULL Structure Name here"
                                 prepend-icon="faSvg fa-home"

@@ -8993,7 +8993,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -27124,11 +27123,16 @@ var render = function() {
                           [
                             _c("v-text-field", {
                               attrs: {
-                                placeholder: _vm.stationName,
-                                disabled: "",
                                 outlined: "",
                                 label: "Enter FULL Structure Name here",
                                 "prepend-icon": "faSvg fa-home"
+                              },
+                              model: {
+                                value: _vm.stationName,
+                                callback: function($$v) {
+                                  _vm.stationName = $$v
+                                },
+                                expression: "stationName"
                               }
                             }),
                             _vm._v(" "),
