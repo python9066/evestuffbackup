@@ -8947,6 +8947,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -8955,45 +8959,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   data: function data() {
     return {
-      headers: [{
-        text: "",
-        value: "icon",
-        width: "5%",
-        align: "start"
-      }, {
-        text: "Items",
-        value: "item_name",
-        width: "95%",
-        align: "start"
-      }],
-      showInfo: false,
-      editText: null,
-      editAdashLink: null,
-      fitted: false,
-      maxWidth: "500px",
-      loading: false,
       systems: [],
-      search: null,
-      select: null
+      stationName: null,
+      stage: 1
     };
   },
   methods: {
     close: function close() {
       this.showInfo = false;
-    },
-    openAdash: function openAdash(url) {
-      var win = window.open(url, "_blank");
-      win.focus();
-    },
-    taskFlag: function taskFlag() {
-      if (this.stationInfo[0]["task_flag"] == 1) {
-        return true;
-      } else {
-        return false;
-      }
-    },
-    url: function url(item) {
-      return "https://images.evetech.net/types/" + item.item_id + "/icon";
     },
     open: function open() {
       var _this = this;
@@ -9013,96 +8986,21 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           }
         }, _callee);
       }))();
-    },
-    openRecon: function openRecon(hash) {
-      var url = "https://recon.gnf.lt/structures/" + hash + "/view";
-      var win = window.open(url, "_blank");
-      win.focus();
-    },
-    taskRequest: function taskRequest() {
-      var request = {
-        system_name: this.station.system_name,
-        system_id: this.station.system_id,
-        station_id: this.station.id,
-        structure_name: this.station.station_name,
-        username: this.$store.state.user_name
-      };
-      axios({
-        method: "post",
-        //you can set what request you want to be
-        url: "api/taskrequest",
-        data: request,
-        headers: {
-          Authorization: "Bearer " + this.$store.state.token,
-          Accept: "application/json",
-          "Content-Type": "application/json"
-        }
-      });
-    },
-    showfit: function showfit() {
-      if (this.fitted == true) {
+    }
+  },
+  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])([])), {}, {
+    stationNameNext: function stationNameNext() {
+      if (this.stationName != null) {
         return true;
       } else {
         return false;
       }
     },
-    lastUpdated: function lastUpdated() {
-      if (this.fit[0]["r_updated_at"] != null) {
-        var ago = moment__WEBPACK_IMPORTED_MODULE_2___default()(this.fit[0]["r_updated_at"]).fromNow();
-        return ago;
-      } else {
-        return "Never";
-      }
-    }
-  },
-  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(["getStationItemsByStationID", "getCoreByStationID", "getStationFitByStationID"])), {}, {
     systemList: function systemList() {
       return this.$store.state("systemlist");
     },
     items: function items() {
       return this.getStationItemsByStationID(this.station.id);
-    },
-    fit: function fit() {
-      var fit = this.getStationFitByStationID(this.station.id);
-
-      if (fit[0]["r_fitted"] == "Fitted") {
-        this.fitted = true;
-      }
-
-      return fit;
-    },
-    r_lastupdated: function r_lastupdated() {
-      return this.fit.r_updated_at;
-    },
-    stationInfo: function stationInfo() {
-      return this.getCoreByStationID(this.station.id);
-    },
-    core: function core() {
-      var core = this.getCoreByStationID(this.station.id);
-
-      if (this.fit == "NO") {
-        return "No Info";
-      }
-
-      if (core.cored == "Yes") {
-        return "Yes";
-      } else {
-        return "No";
-      }
-    },
-    textcolor: function textcolor() {
-      if (this.core == "Yes") {
-        return "green--text";
-      } else {
-        return "red--text";
-      }
-    },
-    showLinkButton: function showLinkButton() {
-      if (this.$can("request_recon_task") && this.fit[0]["r_research"] != null) {
-        return true;
-      } else {
-        return false;
-      }
     }
   }),
   beforeDestroy: function beforeDestroy() {}
@@ -27088,19 +26986,38 @@ var render = function() {
               ]),
               _vm._v(" "),
               _c("v-card-text", [
-                _c(
-                  "div",
-                  [
-                    _c("v-text-field", {
-                      attrs: {
-                        outlined: "",
-                        label: "Enter Structure Name here",
-                        "prepend-icon": "faSvg fa-home"
-                      }
-                    })
-                  ],
-                  1
-                )
+                _vm.stage == 1
+                  ? _c(
+                      "div",
+                      [
+                        _c("v-text-field", {
+                          attrs: {
+                            outlined: "",
+                            label: "Enter Structure Name here",
+                            "prepend-icon": "faSvg fa-home"
+                          },
+                          model: {
+                            value: _vm.stationName,
+                            callback: function($$v) {
+                              _vm.stationName = $$v
+                            },
+                            expression: "stationName"
+                          }
+                        }),
+                        _vm._v(" "),
+                        _c(
+                          "v-btn",
+                          { attrs: { disabled: _vm.stationNameNext } },
+                          [
+                            _vm._v(
+                              "\n                        Next\n                    "
+                            )
+                          ]
+                        )
+                      ],
+                      1
+                    )
+                  : _vm._e()
               ]),
               _vm._v(" "),
               _c("v-spacer"),
