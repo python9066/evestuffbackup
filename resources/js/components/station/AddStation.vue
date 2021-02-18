@@ -108,8 +108,8 @@ export default {
             }).then(function(response) {
                 let res = response.data;
                 console.log(res.state);
-                stationName = res.stationName;
-                state = res.state;
+                this.stationName = res.stationName;
+                this.state = res.state;
             });
         }
     },

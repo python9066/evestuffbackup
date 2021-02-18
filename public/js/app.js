@@ -9020,8 +9020,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 }).then(function (response) {
                   var res = response.data;
                   console.log(res.state);
-                  stationName = res.stationName;
-                  state = res.state;
+                  this.stationName = res.stationName;
+                  this.state = res.state;
                 });
 
               case 3:
