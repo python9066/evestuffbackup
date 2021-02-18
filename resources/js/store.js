@@ -31,7 +31,8 @@ export default new Vuex.Store({
         queriousLink: "",
         rolesList:[],
         stations: [],
-        stationFits:[],
+        stationFits: [],
+        systemlist:[],
         timers: [],
         token: "",
         towers:[],
@@ -41,6 +42,11 @@ export default new Vuex.Store({
         userschars: [],
     },
     mutations: {
+        SET_SYSTEMLIST(state, systemlist) {
+            state.systemlist = systemlist;
+        },
+
+
         SET_TIMERS(state, timers) {
             state.timers = timers;
         },
@@ -305,6 +311,20 @@ export default new Vuex.Store({
                 }
             });
             commit("SET_TIMERS", res.data.timers);
+        },
+
+
+        async getSystemList({ commit, state }) {
+            let res = await axios({
+                method: "get",
+                url: "/api/systemlist",
+                headers: {
+                    Authorization: "Bearer " + state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                }
+            });
+            commit("SET_SYSTEMLIST", res.data.systemlist);
         },
 
         async getNodeJoinByCampaignId({ commit, state }, campaign_id) {

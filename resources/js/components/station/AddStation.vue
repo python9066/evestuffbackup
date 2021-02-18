@@ -28,7 +28,7 @@
                 class=" d-flex flex-column"
             >
                 <v-card-title class="justify-center">
-                    FEFEFEFEFEFEFEFEFEFEFE
+                    Enter Structure Details
                 </v-card-title>
                 <v-card-text> </v-card-text>
                 <v-spacer></v-spacer

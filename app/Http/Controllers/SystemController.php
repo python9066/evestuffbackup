@@ -15,7 +15,19 @@ class SystemController extends Controller
      */
     public function index()
     {
-        //
+        $systemlist = [];
+        $systems = System::all();
+        foreach ($systems as $system) {
+            $data = [];
+            $data = [
+                'text' => $system->system_name,
+                'value' => $system->id
+            ];
+
+            array_push($systemlist, $data);
+        }
+
+        return ['systemlist' => $systemlist];
     }
 
     /**
