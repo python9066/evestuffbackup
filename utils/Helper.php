@@ -115,12 +115,19 @@ class Helper
             'Authorization' => 'Bearer ' . $token->access_token,
 
         ];
-        $response = $client->request('GET', $url, [
-            'headers' => $headers
-        ]);
-        $data = Utils::jsonDecode($response->getBody(), true);
-        // echo $data;
-        return $data;
+        $good = 0;
+
+        while ($good == 0) {
+            $response = $client->request('GET', $url, [
+                'headers' => $headers,
+                'http_errors' => false
+            ]);
+            if ($response->getStatusCode() == 200) {
+                $data = Utils::jsonDecode($response->getBody(), true);
+                $good = 1;
+                return $data;
+            }
+        }
     }
 
     public static function fixtime($time)
