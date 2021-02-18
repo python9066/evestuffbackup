@@ -105,7 +105,7 @@ class StationController extends Controller
     }
 
 
-    public static function reconPullbyname($request)
+    public static function reconPullbyname(Request $request)
     {
         $url = "https://recon.gnf.lt/api/structure/" . $request->stationName;
 
