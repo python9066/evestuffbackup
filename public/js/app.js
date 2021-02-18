@@ -8984,7 +8984,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       fitted: false,
       maxWidth: "500px",
       loading: false,
-      items: [],
+      systems: [],
       search: null,
       select: null
     };
@@ -27112,7 +27112,7 @@ var render = function() {
                         staticClass: "mx-4",
                         attrs: {
                           loading: _vm.loading,
-                          items: _vm.items,
+                          items: _vm.systems,
                           "search-input": _vm.search,
                           "cache-items": "",
                           flat: "",

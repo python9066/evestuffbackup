@@ -36,7 +36,7 @@
                         <v-autocomplete
                             v-model="select"
                             :loading="loading"
-                            :items="items"
+                            :items="systems"
                             :search-input.sync="search"
                             cache-items
                             class="mx-4"
@@ -93,7 +93,7 @@ export default {
             fitted: false,
             maxWidth: "500px",
             loading: false,
-            items: [],
+            systems: [],
             search: null,
             select: null
         };
