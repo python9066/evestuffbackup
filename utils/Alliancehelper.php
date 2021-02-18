@@ -48,10 +48,8 @@ class Alliancehelper
             ]);
             $corpIDs = Utils::jsonDecode($response->getBody(), true);
             foreach ($corpIDs as $corpID) {
-                Corp::updateOrCreate(['id' => $corpID, 'active' => 1, 'alliance_id' => $allianceID]);
+                Corp::updateOrCreate(['id' => $corpID, 'active' => 1, 'alliance_id' => $allianceID, 'url' => "https://images.evetech.net/Corporation/" . $corpID . "_64.png"]);
             }
-
-            dd("yo");
         }
 
         $data = Alliance::where('name', null)->pluck('id');
@@ -94,6 +92,7 @@ class Alliancehelper
         $type = "standing";
         Helper::authcheck();
         $data = Helper::authpull($type, 0);
+        dd($data);
 
         foreach ($data as $var) {
             if ($var['standing'] > 0) {
