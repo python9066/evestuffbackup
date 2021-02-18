@@ -78,7 +78,7 @@ export default {
             stationNameEdit: "",
             state: 1,
             showStationTimer: false,
-            name: null
+            stationName: null
         };
     },
 
@@ -104,10 +104,9 @@ export default {
                     Accept: "application/json",
                     "Content-Type": "application/json"
                 }
-            }).then(function(response) {
+            }).then(response => {
                 let res = response.data;
-                console.log(res.station_name);
-                this.name = res.station_name;
+                this.stationName = res.stationName;
                 this.state = res.state;
             });
         }
