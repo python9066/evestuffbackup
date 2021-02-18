@@ -145,7 +145,7 @@ export default {
                 }
             }).then(response => {
                 let res = response.data;
-                this.stationName = res.stationName;
+                this.stationName = res.station_name;
                 this.state = res.state;
             });
         }

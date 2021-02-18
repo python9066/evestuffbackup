@@ -9057,7 +9057,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   }
                 }).then(function (response) {
                   var res = response.data;
-                  _this2.stationName = res.stationName;
+                  _this2.stationName = res.station_name;
                   _this2.state = res.state;
                 });
 
