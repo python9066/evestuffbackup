@@ -8953,7 +8953,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       showInfo: false,
       editText: null,
       editAdashLink: null,
-      fitted: false
+      fitted: false,
+      maxWidth: "500px"
     };
   },
   methods: {

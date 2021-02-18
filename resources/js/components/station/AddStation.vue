@@ -70,7 +70,8 @@ export default {
             showInfo: false,
             editText: null,
             editAdashLink: null,
-            fitted: false
+            fitted: false,
+            maxWidth: "500px"
         };
     },
 
