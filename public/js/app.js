@@ -8955,6 +8955,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -27015,6 +27016,7 @@ var render = function() {
                           {
                             staticClass: "ml-10",
                             attrs: {
+                              pill: "",
                               disabled: _vm.stationNameNext,
                               color: "green"
                             }

@@ -39,6 +39,7 @@
                             prepend-icon="faSvg fa-home"
                         ></v-text-field>
                         <v-btn
+                            pill
                             class="ml-10"
                             :disabled="stationNameNext"
                             color="green"
