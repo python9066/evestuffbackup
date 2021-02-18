@@ -37,24 +37,50 @@ class Alliancehelper
         };
         Alliance::where('active', 0)->delete();
 
-        $allianceIDs = Alliance::all()->pluck('id');
+
+
+        $allianceID = Alliance::all()->pluck('id');
         Corp::whereNotNull('id')->update(['active' => 0]);
-        foreach ($allianceIDs as $allianceID) {
+        $errorCount = 0;
+        $errorTime = 0;
+        for ($i = 0; $i < count($allianceID); $i++) {
 
 
-            $url = "https://esi.evetech.net/latest/alliances/" . $allianceID . "/corporations/?datasource=tranquility";
+            $url = "https://esi.evetech.net/latest/alliances/" . $allianceID[$i] . "/corporations/?datasource=tranquility";
             $response = $client->request('GET', $url, [
                 'headers' => $headers
             ]);
-            $corpIDs = Utils::jsonDecode($response->getBody(), true);
-            foreach ($corpIDs as $corpID) {
-                Corp::updateOrCreate(['id' => $corpID], ['active' => 1, 'alliance_id' => $allianceID, 'url' => "https://images.evetech.net/Corporation/" . $corpID . "_64.png"]);
+            foreach ($response->getHeaders() as $name => $values) {
+                if ($name == "X-Esi-Error-Limit-Remain") {
+                    $errorCount = $values;
+                };
+                if ($name == "X-Esi-Error-Limit-Reset") {
+                    $errorTime = $values;
+                };
+            }
+            $errorCount = $errorCount[0] - 1;
+            $errorTime = $errorTime[0] + 5;
+            if ($errorCount < 50) {
+                sleep($errorTime);
+            }
+            if ($response->getStatusCode() == 200) {
+                $corpIDs = Utils::jsonDecode($response->getBody(), true);
+                foreach ($corpIDs as $corpID) {
+                    Corp::updateOrCreate(['id' => $corpID], ['active' => 1, 'alliance_id' => $allianceID, 'url' => "https://images.evetech.net/Corporation/" . $corpID . "_64.png"]);
+                }
+            } else {
+                sleep($errorTime);
+                $i = $i - 1;
             }
         }
 
+
+
+
+
+
         $data = Alliance::where('name', null)->pluck('id');
-        $errorCount = 0;
-        $errorTime = 0;
+
         for ($i = 0; $i < count($data); $i++) {
             $url = "https://esi.evetech.net/latest/alliances/" . $data[$i] . "/?datasource=tranquility";
             $response = $client->request('GET', $url, [
