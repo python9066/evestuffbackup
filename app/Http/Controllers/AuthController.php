@@ -43,6 +43,9 @@ class AuthController extends Controller
             broadcast(new UserUpdate($flag))->toOthers();
         }
         $url = session('url');
+        if ($url == null) {
+            $url = '/notifications';
+        }
 
         return redirect($url);
     }
