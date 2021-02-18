@@ -31,7 +31,7 @@
                     Enter Structure Details
                 </v-card-title>
                 <v-card-text>
-                    <transition>
+                    <v-fab-transition>
                         <div v-if="state == 1">
                             <v-text-field
                                 v-model="stationNameEdit"
@@ -49,7 +49,7 @@
                                 Next
                             </v-chip>
                         </div>
-                    </transition>
+                    </v-fab-transition>
                 </v-card-text>
                 <v-spacer></v-spacer
                 ><v-card-actions>
