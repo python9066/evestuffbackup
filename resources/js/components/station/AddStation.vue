@@ -43,7 +43,7 @@
                             class="ml-10"
                             :disabled="stationNameNext"
                             color="green"
-                            @click="stationName()"
+                            @click="stationNameAdd()"
                         >
                             Next
                         </v-chip>
@@ -92,7 +92,7 @@ export default {
             await this.$store.dispatch("getSystemList");
         },
 
-        async stationName() {
+        async stationNameAdd() {
             var request = {
                 stationName: this.stationName
             };
