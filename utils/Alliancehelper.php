@@ -61,8 +61,8 @@ class Alliancehelper
                         $errorTime = $values;
                     };
                 }
-                $errorCount = $errorCount - 1;
-                $errorTime = $errorTime + 5;
+                $errorCount = $errorCount[0] - 1;
+                $errorTime = $errorTime[0] + 5;
                 if ($errorCount < 50) {
                     sleep($errorTime);
                 }
@@ -97,8 +97,8 @@ class Alliancehelper
                     };
                 }
 
-                $errorCount = $errorCount - 1;
-                $errorTime = $errorTime + 5;
+                $errorCount = $errorCount[0] - 1;
+                $errorTime = $errorTime[0] + 5;
 
                 if ($errorCount < 50) {
                     sleep($errorTime);
@@ -139,8 +139,8 @@ class Alliancehelper
                         $errorTime = $values;
                     };
                 }
-                $errorCount = $errorCount - 1;
-                $errorTime = $errorTime + 5;
+                $errorCount = $errorCount[0] - 1;
+                $errorTime = $errorTime[0] + 5;
                 if ($errorCount < 50) {
                     sleep($errorTime);
                 }
