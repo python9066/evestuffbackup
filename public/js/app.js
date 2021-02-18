@@ -9019,7 +9019,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   }
                 }).then(function (response) {
                   var res = response.data;
-                  console.log(res); // this.state = response.data.state;
+                  console.log(res.state); // this.state = response.data.state;
                   // this.stationName = response.datastation_name;
                 });
 

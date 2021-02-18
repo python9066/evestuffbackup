@@ -107,7 +107,7 @@ export default {
                 }
             }).then(function(response) {
                 let res = response.data;
-                console.log(res);
+                console.log(res.state);
                 // this.state = response.data.state;
                 // this.stationName = response.datastation_name;
             });
