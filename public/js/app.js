@@ -27017,7 +27017,7 @@ var render = function() {
                                 },
                                 [
                                   _vm._v(
-                                    "\n                        campital shipyard\n                    "
+                                    "\n                        capital shipyard\n                    "
                                   )
                                 ]
                               )

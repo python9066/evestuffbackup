@@ -111,7 +111,7 @@
                             class=" mt-2 mb-2"
                             v-if="fit[0]['r_capital_shipyard'] == 1"
                         >
-                            campital shipyard
+                            capital shipyard
                         </v-chip>
                         <v-chip
                             small
