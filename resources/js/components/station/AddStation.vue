@@ -30,7 +30,27 @@
                 <v-card-title class="justify-center">
                     Enter Structure Details
                 </v-card-title>
-                <v-card-text> </v-card-text>
+                <v-card-text>
+                    <v-toolbar dark color="teal">
+                        <v-toolbar-title>State selection</v-toolbar-title>
+                        <v-autocomplete
+                            v-model="select"
+                            :loading="loading"
+                            :items="items"
+                            :search-input.sync="search"
+                            cache-items
+                            class="mx-4"
+                            flat
+                            hide-no-data
+                            hide-details
+                            label="What state are you from?"
+                            solo-inverted
+                        ></v-autocomplete>
+                        <v-btn icon>
+                            <v-icon>mdi-dots-vertical</v-icon>
+                        </v-btn>
+                    </v-toolbar>
+                </v-card-text>
                 <v-spacer></v-spacer
                 ><v-card-actions>
                     <v-btn class="white--text" color="teal" @click="close()">
@@ -71,7 +91,11 @@ export default {
             editText: null,
             editAdashLink: null,
             fitted: false,
-            maxWidth: "500px"
+            maxWidth: "500px",
+            loading: false,
+            items: [],
+            search: null,
+            select: null
         };
     },
 
