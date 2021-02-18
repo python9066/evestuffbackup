@@ -81,7 +81,7 @@ class StationController extends Controller
         ]);
         broadcast(new StationCoreUpdate($flag));
         System::where('id', $request->system_id)->update(['task_flag' => 1]);
-        $url = "https://recon.gnf/api/task/add";
+        $url = "https://recon.gnf.lt/api/task/add";
         $client = new GuzzleHttpClient();
         $headers = [
             'x-gsf-user' => env('RECON_USER', 'DANCE2'),
