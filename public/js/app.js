@@ -8967,7 +8967,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       stationNameEdit: "",
       state: 1,
       showStationTimer: false,
-      stationName: ""
+      name: null
     };
   },
   methods: {
@@ -9019,7 +9019,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 }).then(function (response) {
                   var res = response.data;
                   console.log(res.station_name);
-                  this.stationName = res.station_name;
+                  this.name = res.station_name;
                   this.state = res.state;
                 });
 
