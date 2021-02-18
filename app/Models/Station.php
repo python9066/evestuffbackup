@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Station extends Model
 {
     use HasFactory;
-    protected $guarded =[];
+    protected $guarded = [];
 
     public function system()
     {
@@ -25,4 +25,8 @@ class Station extends Model
         return $this->belongsTo(Item::class);
     }
 
+    public function corp()
+    {
+        return $this->belongsTo(Corp::class);
+    }
 }

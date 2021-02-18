@@ -16,6 +16,11 @@ class Corp extends Model
         return $this->belongsTo(Alliance::class);
     }
 
+    public function stations()
+    {
+        return $this->hasMany(Station::class);
+    }
+
     protected $casts = [
         'id' => 'integer',
         'standingstanding' => 'double',
