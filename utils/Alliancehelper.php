@@ -4,6 +4,7 @@ namespace utils\Alliancehelper;
 
 use GuzzleHttp\Client;
 use App\Models\Alliance;
+use App\Models\Corp;
 use utils\Helper\Helper;
 use GuzzleHttp\Utils;
 use function GuzzleHttp\json_decode;
@@ -37,6 +38,7 @@ class Alliancehelper
         Alliance::where('active', 0)->delete();
 
         $allianceIDs = Alliance::all()->pluck('id');
+        Corp::whereNotNull('id')->update(['active' => 0]);
         foreach ($allianceIDs as $allianceID) {
 
 
@@ -44,8 +46,12 @@ class Alliancehelper
             $response = $client->request('GET', $url, [
                 'headers' => $headers
             ]);
-            $body = Utils::jsonDecode($response->getBody(), true);
-            dd($body);
+            $corpIDs = Utils::jsonDecode($response->getBody(), true);
+            foreach ($corpIDs as $corpID) {
+                Corp::updateOreCreate(['id' => $corpID, 'active' => 1, 'alliance_id' => $allianceID]);
+            }
+
+            dd("yo");
         }
 
         $data = Alliance::where('name', null)->pluck('id');
