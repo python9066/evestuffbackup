@@ -41,8 +41,8 @@ class Alliancehelper
 
         $allianceID = Alliance::all()->pluck('id');
         Corp::whereNotNull('id')->update(['active' => 0]);
-        $errorCount = [0];
-        $errorTime = [0];
+        $errorCount = 0;
+        $errorTime = 30;
         for ($i = 0; $i < count($allianceID); $i++) {
 
 
@@ -51,20 +51,21 @@ class Alliancehelper
                 'headers' => $headers,
                 'http_errors' => false
             ]);
-            foreach ($response->getHeaders() as $name => $values) {
-                if ($name == "X-Esi-Error-Limit-Remain") {
-                    $errorCount = $values;
-                };
-                if ($name == "X-Esi-Error-Limit-Reset") {
-                    $errorTime = $values;
-                };
-            }
-            $errorCount = $errorCount[0] - 1;
-            $errorTime = $errorTime[0] + 5;
-            if ($errorCount < 50) {
-                sleep($errorTime);
-            }
+
             if ($response->getStatusCode() == 200) {
+                foreach ($response->getHeaders() as $name => $values) {
+                    if ($name == "X-Esi-Error-Limit-Remain") {
+                        $errorCount = $values;
+                    };
+                    if ($name == "X-Esi-Error-Limit-Reset") {
+                        $errorTime = $values;
+                    };
+                }
+                $errorCount = $errorCount - 1;
+                $errorTime = $errorTime + 5;
+                if ($errorCount < 50) {
+                    sleep($errorTime);
+                }
                 $corpIDs = Utils::jsonDecode($response->getBody(), true);
                 foreach ($corpIDs as $corpID) {
                     Corp::updateOrCreate(['id' => $corpID], ['active' => 1, 'alliance_id' => $allianceID[$i], 'url' => "https://images.evetech.net/Corporation/" . $corpID . "_64.png"]);
@@ -77,7 +78,7 @@ class Alliancehelper
         Corp::where('active', 0)->delete();
         $data = Alliance::where('name', null)->pluck('id');
         $errorCount = 0;
-        $errorTime = 0;
+        $errorTime = 30;
 
         for ($i = 0; $i < count($data); $i++) {
             $url = "https://esi.evetech.net/latest/alliances/" . $data[$i] . "/?datasource=tranquility";
@@ -85,20 +86,23 @@ class Alliancehelper
                 'headers' => $headers,
                 'http_errors' => false
             ]);
-            foreach ($response->getHeaders() as $name => $values) {
-                if ($name == "X-Esi-Error-Limit-Remain") {
-                    $errorCount = $values;
-                };
-                if ($name == "X-Esi-Error-Limit-Reset") {
-                    $errorTime = $values;
-                };
-            }
-            $errorCount = $errorCount[0] - 1;
-            $errorTime = $errorTime[0] + 5;
-            if ($errorCount < 50) {
-                sleep($errorTime);
-            }
+
             if ($response->getStatusCode() == 200) {
+                foreach ($response->getHeaders() as $name => $values) {
+                    if ($name == "X-Esi-Error-Limit-Remain") {
+                        $errorCount = $values;
+                    };
+                    if ($name == "X-Esi-Error-Limit-Reset") {
+                        $errorTime = $values;
+                    };
+                }
+
+                $errorCount = $errorCount - 1;
+                $errorTime = $errorTime + 5;
+
+                if ($errorCount < 50) {
+                    sleep($errorTime);
+                }
                 $body = Utils::jsonDecode($response->getBody(), true);
 
                 $body = array(
@@ -115,8 +119,8 @@ class Alliancehelper
         }
 
         $data = Corp::where('name', null)->pluck('id');
-        $errorCount = [0];
-        $errorTime = [0];
+        $errorCount = 0;
+        $errorTime = 30;
 
         for ($i = 0; $i < count($data); $i++) {
             $url = "https://esi.evetech.net/latest/corporations/" . $data[$i] . "/?datasource=tranquility";
@@ -125,20 +129,21 @@ class Alliancehelper
                 'http_errors' => false
 
             ]);
-            foreach ($response->getHeaders() as $name => $values) {
-                if ($name == "X-Esi-Error-Limit-Remain") {
-                    $errorCount = $values;
-                };
-                if ($name == "X-Esi-Error-Limit-Reset") {
-                    $errorTime = $values;
-                };
-            }
-            $errorCount = $errorCount[0] - 1;
-            $errorTime = $errorTime[0] + 5;
-            if ($errorCount < 50) {
-                sleep($errorTime);
-            }
+
             if ($response->getStatusCode() == 200) {
+                foreach ($response->getHeaders() as $name => $values) {
+                    if ($name == "X-Esi-Error-Limit-Remain") {
+                        $errorCount = $values;
+                    };
+                    if ($name == "X-Esi-Error-Limit-Reset") {
+                        $errorTime = $values;
+                    };
+                }
+                $errorCount = $errorCount - 1;
+                $errorTime = $errorTime + 5;
+                if ($errorCount < 50) {
+                    sleep($errorTime);
+                }
                 $body = Utils::jsonDecode($response->getBody(), true);
 
                 $body = array(
