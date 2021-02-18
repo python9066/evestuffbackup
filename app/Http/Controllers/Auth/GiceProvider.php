@@ -86,8 +86,8 @@ class GiceProvider extends AbstractProvider implements ProviderInterface
                 'Authorization' => 'Bearer ' . $token,
             ],
         ]);
-
-        dd(json_decode($response->getBody(), true));
+        dd($response);
+        // dd(json_decode($response->getBody(), true));
 
         return json_decode($response->getBody(), true);
     }
