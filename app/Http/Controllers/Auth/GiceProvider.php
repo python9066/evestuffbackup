@@ -78,7 +78,6 @@ class GiceProvider extends AbstractProvider implements ProviderInterface
     protected function getUserByToken($token)
     {
         // dd($token);
-        $token = "6_oMo0sE3bBq2e4CpICLff2CesVrjs6iGiM0eT9pNeE";
         $response = $this->getHttpClient()->get('https://esi.goonfleet.com/oauth/userinfo', [
             'headers' => [
                 'Accept' => 'application/json',
