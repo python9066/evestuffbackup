@@ -55,8 +55,7 @@
                         <div v-if="state == 2">
                             <v-text-field
                                 v-model="stationName"
-                                outlined
-                                label="Enter FULL Structure Name here"
+                                readonly
                                 prepend-icon="faSvg fa-home"
                             ></v-text-field>
                             <v-text-field
