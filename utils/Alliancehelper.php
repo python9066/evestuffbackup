@@ -73,12 +73,7 @@ class Alliancehelper
                 $i = $i - 1;
             }
         }
-
-
-
-
-
-
+        Corp::where('active', 0)->delete();
         $data = Alliance::where('name', null)->pluck('id');
 
         for ($i = 0; $i < count($data); $i++) {
@@ -114,11 +109,46 @@ class Alliancehelper
                 $i = $i - 1;
             }
         }
+
+        $data = Corp::where('name', null)->pluck('id');
+
+        for ($i = 0; $i < count($data); $i++) {
+            $url = "https://esi.evetech.net/latest/corporations/" . $data[$i] . "/?datasource=tranquility";
+            $response = $client->request('GET', $url, [
+                'headers' => $headers
+            ]);
+            foreach ($response->getHeaders() as $name => $values) {
+                if ($name == "X-Esi-Error-Limit-Remain") {
+                    $errorCount = $values;
+                };
+                if ($name == "X-Esi-Error-Limit-Reset") {
+                    $errorTime = $values;
+                };
+            }
+            $errorCount = $errorCount[0] - 1;
+            $errorTime = $errorTime[0] + 5;
+            if ($errorCount < 50) {
+                sleep($errorTime);
+            }
+            if ($response->getStatusCode() == 200) {
+                $body = Utils::jsonDecode($response->getBody(), true);
+
+                $body = array(
+                    'name' => $body["name"],
+                    'ticker' => $body["ticker"],
+                    'color' => 1
+                );
+                Corp::where("id", $data[$i])->update($body);
+            } else {
+                sleep($errorTime);
+                $i = $i - 1;
+            }
+        }
         Alliance::where('id', '>', 0)->update(['standing' => 0, 'color' => 0]);
+        Corp::where('id', '>', 0)->update(['standing' => 0, 'color' => 0]);
         $type = "standing";
         Helper::authcheck();
         $data = Helper::authpull($type, 0);
-        dd($data);
 
         foreach ($data as $var) {
             if ($var['standing'] > 0) {
@@ -132,9 +162,16 @@ class Alliancehelper
                     'color' => $color
                 ]);
             };
+            if ($var['contact_type'] = 'corporation') {
+                Corp::where('id', $var['contact_id'])->update([
+                    'standing' => $var['standing'],
+                    'color' => $color
+                ]);
+            };
         };
 
         Alliance::where('color', '0')->update(['color' => 1]);
+        Corp::where('color', '0')->update(['color' => 1]);
         Alliance::where('id', '1354830081')->update(['standing' => 10, 'color' => 3]);
     }
 }
