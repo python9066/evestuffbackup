@@ -126,6 +126,8 @@ class Helper
                 $data = Utils::jsonDecode($response->getBody(), true);
                 $good = 1;
                 return $data;
+            } else {
+                sleep(10);
             }
         }
     }
