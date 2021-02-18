@@ -27094,7 +27094,7 @@ var render = function() {
                     _c("v-text-field", {
                       attrs: {
                         outlined: "",
-                        label: "Prepend",
+                        label: "Enter Structure Name here",
                         "prepend-icon": "faSvg fa-home"
                       }
                     })

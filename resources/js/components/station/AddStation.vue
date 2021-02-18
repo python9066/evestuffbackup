@@ -34,7 +34,7 @@
                     <div>
                         <v-text-field
                             outlined
-                            label="Prepend"
+                            label="Enter Structure Name here"
                             prepend-icon="faSvg fa-home"
                         ></v-text-field>
                     </div>
