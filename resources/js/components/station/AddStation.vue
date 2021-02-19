@@ -121,7 +121,13 @@ export default {
             tickSearch: null,
             tickSelect: null,
             tickLoading: false,
-            tickerEdit: null
+            tickerEdit: null,
+            structItems: [],
+            structtemEdit: null,
+            structSearch: null,
+            structSelect: null,
+            structLoading: false,
+            structerEdit: null
         };
     },
 
@@ -132,6 +138,12 @@ export default {
 
         tickSearch(val) {
             val && val !== this.tickSelect && this.tickQuerySelections(val);
+        },
+
+        structkSearch(val) {
+            val &&
+                val !== this.structkSelect &&
+                this.structkQuerySelections(val);
         }
     },
 
@@ -148,6 +160,21 @@ export default {
                     );
                 });
                 this.tickLoading = false;
+            }, 500);
+        },
+
+        structQuerySelections(v) {
+            this.structLoading = true;
+            // Simulated ajax query
+            setTimeout(() => {
+                this.structItems = this.structureList.filter(e => {
+                    return (
+                        (e.text || "")
+                            .toLowerCase()
+                            .indexOf((v || "").toLowerCase()) > -1
+                    );
+                });
+                this.structLoading = false;
             }, 500);
         },
 
