@@ -27208,7 +27208,7 @@ var render = function() {
                       _vm._v(" "),
                       _c(
                         "div",
-                        { staticClass: " pl-2 pt-5" },
+                        { staticClass: " pl-2 pt-2" },
                         [
                           _vm.state == 1
                             ? _c(
