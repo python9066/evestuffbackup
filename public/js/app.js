@@ -8991,6 +8991,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -9007,6 +9009,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     };
   },
   methods: {
+    sysFilter: function sysFilter(item, queryText, itemText) {
+      var text = item.name.toLowerCase();
+      var searchText = queryText.toLowerCase();
+      return text.indexOf(searchText) > -1;
+    },
     close: function close() {
       this.showStationTimer = false;
     },
@@ -9076,12 +9083,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }
     },
     systemList: function systemList() {
-      var _this3 = this;
-
-      var list = this.systemlist;
-      return list.search(function (list) {
-        return list.text == _this3.systemEdit;
-      });
+      return this.systemlist;
     }
   }),
   beforeDestroy: function beforeDestroy() {}
@@ -27138,8 +27140,10 @@ var render = function() {
                             _c("v-autocomplete", {
                               attrs: {
                                 items: _vm.systemList,
+                                autofocus: "",
                                 label: "Filled",
                                 outlined: "",
+                                filter: _vm.sysFilter,
                                 "prepend-icon": "faSvg fa-home"
                               },
                               model: {
