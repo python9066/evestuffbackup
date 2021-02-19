@@ -8989,6 +8989,20 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -27269,66 +27283,101 @@ var render = function() {
                   _vm._v(" "),
                   _c("v-fade-transition", [
                     _vm.state == 2
-                      ? _c(
-                          "div",
-                          { staticClass: " d-inline-flex" },
-                          [
-                            _c("v-autocomplete", {
-                              attrs: {
-                                loading: _vm.sysLoading,
-                                items: _vm.sysItems,
-                                "search-input": _vm.sysSearch,
-                                autofocus: "",
-                                label: "System Name",
-                                outlined: "",
-                                "prepend-inner-icon": "faSvg fa-home"
-                              },
-                              on: {
-                                "update:searchInput": function($event) {
-                                  _vm.sysSearch = $event
+                      ? _c("div", [
+                          _c(
+                            "div",
+                            [
+                              _c("v-autocomplete", {
+                                attrs: {
+                                  loading: _vm.structLoading,
+                                  items: _vm.structItems,
+                                  "search-input": _vm.structSearch,
+                                  autofocus: "",
+                                  label: "Structure Type",
+                                  outlined: "",
+                                  "prepend-inner-icon": "faSvg fa-home"
                                 },
-                                "update:search-input": function($event) {
-                                  _vm.sysSearch = $event
+                                on: {
+                                  "update:searchInput": function($event) {
+                                    _vm.structSearch = $event
+                                  },
+                                  "update:search-input": function($event) {
+                                    _vm.structSearch = $event
+                                  }
+                                },
+                                model: {
+                                  value: _vm.structSelect,
+                                  callback: function($$v) {
+                                    _vm.structSelect = $$v
+                                  },
+                                  expression: "structSelect"
                                 }
-                              },
-                              model: {
-                                value: _vm.sysSelect,
-                                callback: function($$v) {
-                                  _vm.sysSelect = $$v
+                              })
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "div",
+                            { staticClass: " d-inline-flex" },
+                            [
+                              _c("v-autocomplete", {
+                                attrs: {
+                                  loading: _vm.sysLoading,
+                                  items: _vm.sysItems,
+                                  "search-input": _vm.sysSearch,
+                                  autofocus: "",
+                                  label: "System Name",
+                                  outlined: "",
+                                  "prepend-inner-icon": "faSvg fa-home"
                                 },
-                                expression: "sysSelect"
-                              }
-                            }),
-                            _vm._v(" "),
-                            _c("v-autocomplete", {
-                              staticClass: " ml-2",
-                              attrs: {
-                                loading: _vm.tickLoading,
-                                items: _vm.tickItems,
-                                "search-input": _vm.tickSearch,
-                                label: "Corp Ticker",
-                                outlined: "",
-                                "prepend-inner-icon": "faSvg fa-home"
-                              },
-                              on: {
-                                "update:searchInput": function($event) {
-                                  _vm.tickSearch = $event
+                                on: {
+                                  "update:searchInput": function($event) {
+                                    _vm.sysSearch = $event
+                                  },
+                                  "update:search-input": function($event) {
+                                    _vm.sysSearch = $event
+                                  }
                                 },
-                                "update:search-input": function($event) {
-                                  _vm.tickSearch = $event
+                                model: {
+                                  value: _vm.sysSelect,
+                                  callback: function($$v) {
+                                    _vm.sysSelect = $$v
+                                  },
+                                  expression: "sysSelect"
                                 }
-                              },
-                              model: {
-                                value: _vm.tickSelect,
-                                callback: function($$v) {
-                                  _vm.tickSelect = $$v
+                              }),
+                              _vm._v(" "),
+                              _c("v-autocomplete", {
+                                staticClass: " ml-2",
+                                attrs: {
+                                  loading: _vm.tickLoading,
+                                  items: _vm.tickItems,
+                                  "search-input": _vm.tickSearch,
+                                  label: "Corp Ticker",
+                                  outlined: "",
+                                  "prepend-inner-icon": "faSvg fa-home"
                                 },
-                                expression: "tickSelect"
-                              }
-                            })
-                          ],
-                          1
-                        )
+                                on: {
+                                  "update:searchInput": function($event) {
+                                    _vm.tickSearch = $event
+                                  },
+                                  "update:search-input": function($event) {
+                                    _vm.tickSearch = $event
+                                  }
+                                },
+                                model: {
+                                  value: _vm.tickSelect,
+                                  callback: function($$v) {
+                                    _vm.tickSelect = $$v
+                                  },
+                                  expression: "tickSelect"
+                                }
+                              })
+                            ],
+                            1
+                          )
+                        ])
                       : _vm._e()
                   ])
                 ],

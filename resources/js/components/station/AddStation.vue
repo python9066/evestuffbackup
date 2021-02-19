@@ -57,27 +57,41 @@
                         </div>
                     </div>
                     <v-fade-transition>
-                        <div v-if="state == 2" class=" d-inline-flex">
-                            <v-autocomplete
-                                v-model="sysSelect"
-                                :loading="sysLoading"
-                                :items="sysItems"
-                                :search-input.sync="sysSearch"
-                                autofocus
-                                label="System Name"
-                                outlined
-                                prepend-inner-icon="faSvg fa-home"
-                            ></v-autocomplete>
-                            <v-autocomplete
-                                class=" ml-2"
-                                v-model="tickSelect"
-                                :loading="tickLoading"
-                                :items="tickItems"
-                                :search-input.sync="tickSearch"
-                                label="Corp Ticker"
-                                outlined
-                                prepend-inner-icon="faSvg fa-home"
-                            ></v-autocomplete>
+                        <div v-if="state == 2">
+                            <div>
+                                <v-autocomplete
+                                    v-model="structSelect"
+                                    :loading="structLoading"
+                                    :items="structItems"
+                                    :search-input.sync="structSearch"
+                                    autofocus
+                                    label="Structure Type"
+                                    outlined
+                                    prepend-inner-icon="faSvg fa-home"
+                                ></v-autocomplete>
+                            </div>
+                            <div class=" d-inline-flex">
+                                <v-autocomplete
+                                    v-model="sysSelect"
+                                    :loading="sysLoading"
+                                    :items="sysItems"
+                                    :search-input.sync="sysSearch"
+                                    autofocus
+                                    label="System Name"
+                                    outlined
+                                    prepend-inner-icon="faSvg fa-home"
+                                ></v-autocomplete>
+                                <v-autocomplete
+                                    class=" ml-2"
+                                    v-model="tickSelect"
+                                    :loading="tickLoading"
+                                    :items="tickItems"
+                                    :search-input.sync="tickSearch"
+                                    label="Corp Ticker"
+                                    outlined
+                                    prepend-inner-icon="faSvg fa-home"
+                                ></v-autocomplete>
+                            </div>
                         </div>
                     </v-fade-transition>
                 </v-card-text>
