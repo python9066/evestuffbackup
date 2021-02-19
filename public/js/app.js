@@ -9039,7 +9039,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -9138,6 +9137,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var ms = m * 60;
       var sec = ds + hs + ms + s;
       var outTime = moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc().add(sec, "seconds").format("YYYY-MM-DD HH:mm:ss");
+      var request = {
+        name: this.stationName,
+        system_id: this.sysSelect,
+        corp_id: this.tickSelect,
+        item_id: this.structSelect,
+        station_status_id: this.refType,
+        out_time: outTime
+      };
     },
     open: function open() {
       var _this4 = this;
@@ -27456,7 +27463,7 @@ var render = function() {
                           _c(
                             "div",
                             [
-                              _c("h5", [_vm._v("Timer Type")]),
+                              _c("h5", [_c("strong", [_vm._v("Timer Type")])]),
                               _vm._v(" "),
                               _c(
                                 "v-radio-group",
@@ -27503,7 +27510,6 @@ var render = function() {
                                 ],
                                 attrs: {
                                   label: "Ref Time d hh:mm:ss",
-                                  autofocus: "",
                                   placeholder: "d:hh:mm:ss"
                                 },
                                 on: {

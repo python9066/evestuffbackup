@@ -95,7 +95,7 @@
                                 ></v-autocomplete>
                             </div>
                             <div>
-                                <h5>Timer Type</h5>
+                                <h5><strong>Timer Type</strong></h5>
                                 <v-radio-group v-model="refType" row>
                                     <v-radio
                                         label="Anchoring"
@@ -110,7 +110,6 @@
                                     v-model="refTime"
                                     label="Ref Time d hh:mm:ss"
                                     v-mask="'#d ##:##:##'"
-                                    autofocus
                                     placeholder="d:hh:mm:ss"
                                     @keyup.enter="
                                         (timerShown = false), addHacktime()
@@ -266,6 +265,15 @@ export default {
                 .utc()
                 .add(sec, "seconds")
                 .format("YYYY-MM-DD HH:mm:ss");
+
+            var request = {
+                name: this.stationName,
+                system_id: this.sysSelect,
+                corp_id: this.tickSelect,
+                item_id: this.structSelect,
+                station_status_id: this.refType,
+                out_time: outTime
+            };
         },
 
         async open() {
