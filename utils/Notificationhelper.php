@@ -114,6 +114,66 @@ class Notifications
                 }
             }
         }
+        $stations = Station::where('id', '<', 1000000001);
+        foreach ($stations as $station) {
+            $url = "https://recon.gnf.lt/api/structure/" . $station->name;
+            $client = new GuzzleHttpClient();
+            $headers = [
+                'x-gsf-user' => env('RECON_USER', 'DANCE2'),
+                'token' =>  env('RECON_TOKEN', "DANCE")
+
+            ];
+            $response = $client->request('GET', $url, [
+                'headers' => $headers,
+                'http_errors' => false
+            ]);
+
+            $stationdata = Utils::jsonDecode($response->getBody(), true);
+            if ($stationdata == "Error, Structure Not Found") {
+            } else {
+                StationItemJoin::where('station_id', $stationdata['str_structure_id'])->delete();
+                $oldupdate = $station->r_updated_at;
+                if ($oldupdate != $stationdata['updated_at']) {
+                    System::where('id', $station->system_id)->update(['task_flag' => 0]);
+                }
+                Station::where('id', $station->name)->update([
+                    'id' => $stationdata['str_structure_id'],
+                    'r_hash' => $stationdata['str_structure_id_md5'],
+                    'corp_id' => $stationdata['str_owner_corporation_id'],
+                    'r_updated_at' => $stationdata['updated_at'],
+                    'r_fitted' => $stationdata['str_has_no_fitting'],
+                    'r_capital_shipyard' => $stationdata['str_capital_shipyard'],
+                    'r_hyasyoda' => $stationdata['str_hyasyoda'],
+                    'r_invention' => $stationdata['str_invention'],
+                    'r_manufacturing' => $stationdata['str_manufacturing'],
+                    'r_research' => $stationdata['str_research'],
+                    'r_supercapital_shipyard' => $stationdata['str_supercapital_shipyard'],
+                    'r_biochemical' => $stationdata['str_biochemical'],
+                    'r_hybrid' => $stationdata['str_hybrid'],
+                    'r_moon_drilling' => $stationdata['str_moon_drilling'],
+                    'r_reprocessing' => $stationdata['str_reprocessing'],
+                    'r_point_defense' => $stationdata['str_point_defense'],
+                    'r_dooms_day' => $stationdata['str_dooms_day'],
+                    'r_guide_bombs' => $stationdata['str_guide_bombs'],
+                    'r_anti_cap' => $stationdata['str_anti_cap'],
+                    'r_anti_subcap' => $stationdata['str_anti_subcap'],
+                    'r_t2_rigged' => $stationdata['str_t2_rigged'],
+                    'r_cloning' => $stationdata['str_cloning'],
+                    'r_composite' => $stationdata['str_composite'],
+                    'r_cored' => $stationdata['str_cored']
+                ]);
+                if ($stationdata['str_has_no_fitting'] != null) {
+                    $items = Utils::jsonDecode($stationdata['str_fitting'], true);
+                    foreach ($items as $item) {
+                        StationItems::where('id', $item['type_id'])->get()->count();
+                        if (StationItems::where('id', $item['type_id'])->get()->count() == 0) {
+                            StationItems::Create(['id' => $item['type_id'], 'item_name' => $item['name']]);
+                        }
+                        StationItemJoin::create(['station_item_id' => $item['type_id'], 'station_id' => $stationdata['str_structure_id']]);
+                    };
+                }
+            }
+        }
         $flag = [
             'message' => 'yoyo'
         ];
