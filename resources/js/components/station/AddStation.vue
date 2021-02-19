@@ -42,7 +42,7 @@
                             :label="stationLable"
                             prepend-icon="faSvg fa-home"
                             class=" shrink"
-                            style="width:500px"
+                            style="width:600px"
                         ></v-text-field>
                         <v-chip
                             v-if="state == 1"

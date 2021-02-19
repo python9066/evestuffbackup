@@ -27187,7 +27187,7 @@ var render = function() {
                     [
                       _c("v-text-field", {
                         staticClass: " shrink",
-                        staticStyle: { width: "500px" },
+                        staticStyle: { width: "600px" },
                         attrs: {
                           readonly: _vm.stationReadonly,
                           outlined: _vm.stationOutlined,
