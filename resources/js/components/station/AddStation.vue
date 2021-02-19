@@ -61,9 +61,8 @@
                             <v-autocomplete
                                 v-model="systemEdit"
                                 :items="systemList"
-                                dense
-                                filled
                                 label="Filled"
+                                outlined
                             ></v-autocomplete>
                             <v-text-field
                                 v-model="tickerEdit"

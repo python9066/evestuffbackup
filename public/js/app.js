@@ -8990,7 +8990,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -27133,9 +27132,8 @@ var render = function() {
                             _c("v-autocomplete", {
                               attrs: {
                                 items: _vm.systemList,
-                                dense: "",
-                                filled: "",
-                                label: "Filled"
+                                label: "Filled",
+                                outlined: ""
                               },
                               model: {
                                 value: _vm.systemEdit,
