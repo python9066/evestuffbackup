@@ -222,7 +222,7 @@ export default {
         },
 
         tickList() {
-            return this.ticktemlist;
+            return this.ticklist;
         }
     },
 

@@ -9131,7 +9131,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       return this.systemlist;
     },
     tickList: function tickList() {
-      return this.ticktemlist;
+      return this.ticklist;
     }
   }),
   beforeDestroy: function beforeDestroy() {}
