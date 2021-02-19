@@ -39,7 +39,7 @@
                             prepend-icon="faSvg fa-home"
                         ></v-text-field>
                     </div>
-                    <v-fade-transition mode="out-in">
+                    <v-transition name="fade" mode="out-in">
                         <div v-if="state == 2">
                             <v-autocomplete
                                 v-model="sysSelect"
@@ -62,7 +62,7 @@
                                 prepend-icon="faSvg fa-home"
                             ></v-autocomplete>
                         </div>
-                    </v-fade-transition>
+                    </v-transition>
                     <v-chip
                         pill
                         class="ml-10"
@@ -213,4 +213,12 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.fade-enter-active,
+.fade-leave-active {
+    transition: opacity 0.5s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+    opacity: 0;
+}
+</style>
