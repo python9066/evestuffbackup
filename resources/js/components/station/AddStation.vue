@@ -151,6 +151,7 @@ export default {
 
     computed: {
         ...mapGetters([]),
+        ...mapState(["systemlist"]),
 
         stationNameNext() {
             if (this.stationNameEdit == null) {
@@ -161,7 +162,7 @@ export default {
         },
 
         systemList() {
-            return this.$store.state("systemlist");
+            return this.systemlist;
         }
     },
 

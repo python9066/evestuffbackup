@@ -9068,7 +9068,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }))();
     }
   },
-  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])([])), {}, {
+  computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])([])), Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapState"])(["systemlist"])), {}, {
     stationNameNext: function stationNameNext() {
       if (this.stationNameEdit == null) {
         return true;
@@ -9077,7 +9077,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }
     },
     systemList: function systemList() {
-      return this.$store.state("systemlist");
+      return this.systemlist;
     }
   }),
   beforeDestroy: function beforeDestroy() {}
@@ -39705,10 +39705,9 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
 
               case 3:
                 res = _context2.sent;
-                console.log(res.data.systemlist);
                 commit("SET_SYSTEMLIST", res.data.systemlist);
 
-              case 6:
+              case 5:
               case "end":
                 return _context2.stop();
             }
