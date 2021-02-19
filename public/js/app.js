@@ -9112,9 +9112,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
     submit: function submit() {
       var d = parseInt(this.refTime.substr(0, 1));
-      var h = parseInt(this.refTime.substr(0, 1));
-      var m = parseInt(this.refTime.substr(0, 1));
-      var s = parseInt(this.refTime.substr(0, 1));
+      var h = parseInt(this.refTime.substr(3, 2));
+      var m = parseInt(this.refTime.substr(6, 2));
+      var s = parseInt(this.refTime.substr(9, 2));
       console.log(d);
       console.log(h);
       console.log(m);
