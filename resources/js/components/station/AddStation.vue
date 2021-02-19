@@ -44,7 +44,7 @@
                             class=" shrink"
                             style="width:600px"
                         ></v-text-field>
-                        <div>
+                        <div class=" pl-2 pt-5">
                             <v-chip
                                 v-if="state == 1"
                                 pill
