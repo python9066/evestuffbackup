@@ -191,7 +191,14 @@ class StationController extends Controller
      */
     public function store(Request $request)
     {
+        $id = Station::where('id', '<', 1000000000)->max('id');
+        if ($id == null) {
+            $id = 1;
+        } else {
+            $id = $id + 1;
+        }
         $new = Station::Create($request->all());
+        $new->update(['id' => $id]);
         $message = StationRecords::where('id', $new->id)->first();
         $flag = collect([
             'message' => $message
