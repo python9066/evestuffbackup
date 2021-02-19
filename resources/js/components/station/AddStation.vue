@@ -58,16 +58,21 @@
                                 readonly
                                 prepend-icon="faSvg fa-home"
                             ></v-text-field>
-                            <v-text-field
-                                v-model="systemEdit"
-                                readonly
-                                outlined
-                                label="System Name"
-                                prepend-icon="faSvg fa-home"
-                            ></v-text-field>
+                            <v-autocomplete
+                                v-model="sysSelect"
+                                :loading="sysLoading"
+                                :items="sysItems"
+                                :search-input.sync="sysSearch"
+                                cache-items
+                                class="mx-4"
+                                flat
+                                hide-no-data
+                                hide-details
+                                label="Enter System"
+                                solo-inverted
+                            ></v-autocomplete>
                             <v-text-field
                                 v-model="tickerEdit"
-                                readonly
                                 outlined
                                 label="Corp Ticker"
                                 prepend-icon="faSvg fa-home"
@@ -115,11 +120,34 @@ export default {
             showStationTimer: false,
             stationName: null,
             systemEdit: null,
-            tickerEdit: null
+            tickerEdit: null,
+            sysSearch: null,
+            sysSelect: null,
+            sysLoading: false,
+            sysItems: []
         };
+    },
+    watch: {
+        search(val) {
+            val && val !== this.select && this.querySelections(val);
+        }
     },
 
     methods: {
+        querySelections(v) {
+            this.sysLoading = true;
+            setTimeout(() => {
+                this.sysItems = this.systemList.filter(e => {
+                    return (
+                        (e || "")
+                            .toLowerCase()
+                            .indexof((v || "").toLowerCase()) > -1
+                    );
+                });
+                this.sysLoading = false;
+            }, 500);
+        },
+
         close() {
             this.showStationTimer = false;
         },
