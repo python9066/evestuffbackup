@@ -142,7 +142,7 @@ class StationController extends Controller
                     'corp_id' => $stationdata['str_owner_corporation_id'],
                     'item_id' => $stationdata['str_type_id'],
                     'text' => null,
-                    'station_status_id' => 50,
+                    'station_status_id' => 10,
                     'user_id' => null,
                     'timestamp' => now(),
                     'r_hash' => $stationdata['str_structure_id_md5'],
