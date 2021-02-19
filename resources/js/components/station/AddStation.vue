@@ -162,7 +162,7 @@ export default {
 
         systemList() {
             var list = this.systemlist;
-            return list.filter(list => list.text == this.systemEdit);
+            return list.search(list => list.text == this.systemEdit);
         }
     },
 

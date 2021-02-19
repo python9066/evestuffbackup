@@ -9079,7 +9079,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var _this3 = this;
 
       var list = this.systemlist;
-      return list.filter(function (list) {
+      return list.search(function (list) {
         return list.text == _this3.systemEdit;
       });
     }
