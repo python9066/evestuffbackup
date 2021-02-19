@@ -9029,6 +9029,18 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -9057,6 +9069,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       structSelect: null,
       structLoading: false,
       structerEdit: null,
+      refType: null,
       refTime: {
         d: "",
         hh: "",
@@ -9121,16 +9134,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var h = parseInt(this.refTime.substr(3, 2));
       var m = parseInt(this.refTime.substr(6, 2));
       var s = parseInt(this.refTime.substr(9, 2));
-      console.log(d);
-      console.log(h);
-      console.log(m);
-      console.log(s);
       var ds = d * 24 * 60 * 60;
       var hs = h * 60 * 60;
       var ms = m * 60;
       var sec = ds + hs + ms + s;
-      var finishtime = moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc().add(sec, "seconds").format("YYYY-MM-DD HH:mm:ss");
-      console.log(finishtime);
+      var outTime = moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc().add(sec, "seconds").format("YYYY-MM-DD HH:mm:ss");
     },
     open: function open() {
       var _this4 = this;
@@ -9217,9 +9225,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
     showSubmit: function showSubmit() {
       if (this.structSelect != null && this.sysSelect != null && this.tickSelect != null) {
-        return true;
-      } else {
         return false;
+      } else {
+        return true;
       }
     },
     stationOutlined: function stationOutlined() {
@@ -27442,6 +27450,42 @@ var render = function() {
                                   expression: "tickSelect"
                                 }
                               })
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "div",
+                            [
+                              _c(
+                                "v-radio-group",
+                                {
+                                  attrs: { row: "" },
+                                  model: {
+                                    value: _vm.refType,
+                                    callback: function($$v) {
+                                      _vm.refType = $$v
+                                    },
+                                    expression: "refType"
+                                  }
+                                },
+                                [
+                                  _c("v-radio", {
+                                    attrs: {
+                                      label: "Option 1",
+                                      value: "radio-1"
+                                    }
+                                  }),
+                                  _vm._v(" "),
+                                  _c("v-radio", {
+                                    attrs: {
+                                      label: "Option 2",
+                                      value: "radio-2"
+                                    }
+                                  })
+                                ],
+                                1
+                              )
                             ],
                             1
                           ),

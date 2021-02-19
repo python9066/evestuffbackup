@@ -95,6 +95,18 @@
                                 ></v-autocomplete>
                             </div>
                             <div>
+                                <v-radio-group v-model="refType" row>
+                                    <v-radio
+                                        label="Option 1"
+                                        value="radio-1"
+                                    ></v-radio>
+                                    <v-radio
+                                        label="Option 2"
+                                        value="radio-2"
+                                    ></v-radio>
+                                </v-radio-group>
+                            </div>
+                            <div>
                                 <v-text-field
                                     v-model="refTime"
                                     label="Ref Time d hh:mm:ss"
@@ -168,6 +180,7 @@ export default {
             structSelect: null,
             structLoading: false,
             structerEdit: null,
+            refType: null,
             refTime: {
                 d: "",
                 hh: "",
@@ -246,20 +259,14 @@ export default {
             var h = parseInt(this.refTime.substr(3, 2));
             var m = parseInt(this.refTime.substr(6, 2));
             var s = parseInt(this.refTime.substr(9, 2));
-            console.log(d);
-            console.log(h);
-            console.log(m);
-            console.log(s);
             var ds = d * 24 * 60 * 60;
             var hs = h * 60 * 60;
             var ms = m * 60;
             var sec = ds + hs + ms + s;
-            var finishtime = moment
+            var outTime = moment
                 .utc()
                 .add(sec, "seconds")
                 .format("YYYY-MM-DD HH:mm:ss");
-
-            console.log(finishtime);
         },
 
         async open() {
@@ -318,9 +325,9 @@ export default {
                 this.sysSelect != null &&
                 this.tickSelect != null
             ) {
-                return true;
-            } else {
                 return false;
+            } else {
+                return true;
             }
         },
         stationOutlined() {
