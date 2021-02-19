@@ -254,6 +254,8 @@ export default {
             this.showStationTimer = false;
             this.refType = null;
             this.refTime = null;
+            this.stationName = null;
+            this.stationNameEdit = null;
         },
 
         async submit() {
