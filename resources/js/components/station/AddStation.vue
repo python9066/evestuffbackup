@@ -154,7 +154,7 @@ export default {
             val && val !== this.tickSelect && this.tickQuerySelections(val);
         },
 
-        structkSearch(val) {
+        structSearch(val) {
             val && val !== this.structSelect && this.structQuerySelections(val);
         }
     },

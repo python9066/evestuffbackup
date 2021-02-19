@@ -9040,7 +9040,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     tickSearch: function tickSearch(val) {
       val && val !== this.tickSelect && this.tickQuerySelections(val);
     },
-    structkSearch: function structkSearch(val) {
+    structSearch: function structSearch(val) {
       val && val !== this.structSelect && this.structQuerySelections(val);
     }
   },
