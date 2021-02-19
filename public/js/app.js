@@ -9090,6 +9090,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -9243,26 +9251,42 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee);
       }))();
     },
-    open: function open() {
+    submit3: function submit3() {
       var _this5 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+        var d, h, m, s, ds, hs, ms, sec, outTime, request;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                _context2.next = 2;
-                return _this5.$store.dispatch("getSystemList");
+                d = parseInt(_this5.refTime.substr(0, 1));
+                h = parseInt(_this5.refTime.substr(3, 2));
+                m = parseInt(_this5.refTime.substr(6, 2));
+                s = parseInt(_this5.refTime.substr(9, 2));
+                ds = d * 24 * 60 * 60;
+                hs = h * 60 * 60;
+                ms = m * 60;
+                sec = ds + hs + ms + s;
+                outTime = moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc().add(sec, "seconds").format("YYYY-MM-DD HH:mm:ss");
+                request = {
+                  station_status_id: _this5.refType,
+                  out_time: outTime
+                };
+                _context2.next = 12;
+                return axios({
+                  method: "put",
+                  //you can set what request you want to be
+                  url: "api/updatestationnotification/" + _this5.stationPull.station_id,
+                  data: request,
+                  headers: {
+                    Authorization: "Bearer " + _this5.$store.state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                  }
+                }).then(_this5.stationNameEdit = null, _this5.showStationTimer = false, _this5.refType = null, _this5.refTime = null, _this5.stationName = null, _this5.stationNameEdit = null, _this5.structItems = [], _this5.structSearch = null, _this5.structSelect = null, _this5.sysItems = [], _this5.sysSearch = null, _this5.sysSelect = null, _this5.systems = [], _this5.tickItems = [], _this5.tickSearch = null, _this5.tickSelect = null, _this5.state = 1, _this5.showStationTimer = false);
 
-              case 2:
-                _context2.next = 4;
-                return _this5.$store.dispatch("getTickList");
-
-              case 4:
-                _context2.next = 6;
-                return _this5.$store.dispatch("getStructureList");
-
-              case 6:
+              case 12:
               case "end":
                 return _context2.stop();
             }
@@ -9270,26 +9294,53 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee2);
       }))();
     },
-    stationNameAdd: function stationNameAdd() {
+    open: function open() {
       var _this6 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
-        var request;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
           while (1) {
             switch (_context3.prev = _context3.next) {
               case 0:
+                _context3.next = 2;
+                return _this6.$store.dispatch("getSystemList");
+
+              case 2:
+                _context3.next = 4;
+                return _this6.$store.dispatch("getTickList");
+
+              case 4:
+                _context3.next = 6;
+                return _this6.$store.dispatch("getStructureList");
+
+              case 6:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3);
+      }))();
+    },
+    stationNameAdd: function stationNameAdd() {
+      var _this7 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
+        var request;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
+          while (1) {
+            switch (_context4.prev = _context4.next) {
+              case 0:
                 request = {
-                  stationName: _this6.stationNameEdit
+                  stationName: _this7.stationNameEdit
                 };
-                _context3.next = 3;
+                _context4.next = 3;
                 return axios({
                   method: "put",
                   //you can set what request you want to be
                   url: "api/stationname",
                   data: request,
                   headers: {
-                    Authorization: "Bearer " + _this6.$store.state.token,
+                    Authorization: "Bearer " + _this7.$store.state.token,
                     Accept: "application/json",
                     "Content-Type": "application/json"
                   }
@@ -9297,23 +9348,23 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   var res = response.data;
 
                   if (res.state == 2) {
-                    _this6.stationPull = res;
-                    _this6.stationName = res.station_name;
-                    _this6.state = res.state;
+                    _this7.stationPull = res;
+                    _this7.stationName = res.station_name;
+                    _this7.state = res.state;
                   }
 
                   if (res.state == 3) {
-                    _this6.stationPull = res;
-                    _this6.state = res.state;
+                    _this7.stationPull = res;
+                    _this7.state = res.state;
                   }
                 });
 
               case 3:
               case "end":
-                return _context3.stop();
+                return _context4.stop();
             }
           }
-        }, _callee3);
+        }, _callee4);
       }))();
     }
   },
@@ -27879,6 +27930,21 @@ var render = function() {
                           on: {
                             click: function($event) {
                               return _vm.submit()
+                            }
+                          }
+                        },
+                        [_vm._v("\n                    Submit ")]
+                      )
+                    : _vm._e(),
+                  _vm.state == 3
+                    ? _c(
+                        "v-btn",
+                        {
+                          staticClass: "white--text",
+                          attrs: { color: "green", disabled: _vm.showSubmit },
+                          on: {
+                            click: function($event) {
+                              return _vm.submit3()
                             }
                           }
                         },

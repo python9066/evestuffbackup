@@ -185,6 +185,14 @@
                         @click="submit()"
                         v-if="state == 2"
                     >
+                        Submit </v-btn
+                    ><v-btn
+                        class="white--text"
+                        color="green"
+                        :disabled="showSubmit"
+                        @click="submit3()"
+                        v-if="state == 3"
+                    >
                         Submit
                     </v-btn></v-card-actions
                 >
@@ -347,6 +355,58 @@ export default {
             await axios({
                 method: "put", //you can set what request you want to be
                 url: "api/stationnew",
+                data: request,
+                headers: {
+                    Authorization: "Bearer " + this.$store.state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                }
+            }).then(
+                (this.stationNameEdit = null),
+                (this.showStationTimer = false),
+                (this.refType = null),
+                (this.refTime = null),
+                (this.stationName = null),
+                (this.stationNameEdit = null),
+                (this.structItems = []),
+                (this.structSearch = null),
+                (this.structSelect = null),
+                (this.sysItems = []),
+                (this.sysSearch = null),
+                (this.sysSelect = null),
+                (this.systems = []),
+                (this.tickItems = []),
+                (this.tickSearch = null),
+                (this.tickSelect = null),
+                (this.state = 1),
+                (this.showStationTimer = false)
+            );
+        },
+
+        async submit3() {
+            var d = parseInt(this.refTime.substr(0, 1));
+            var h = parseInt(this.refTime.substr(3, 2));
+            var m = parseInt(this.refTime.substr(6, 2));
+            var s = parseInt(this.refTime.substr(9, 2));
+            var ds = d * 24 * 60 * 60;
+            var hs = h * 60 * 60;
+            var ms = m * 60;
+            var sec = ds + hs + ms + s;
+            var outTime = moment
+                .utc()
+                .add(sec, "seconds")
+                .format("YYYY-MM-DD HH:mm:ss");
+
+            var request = {
+                station_status_id: this.refType,
+                out_time: outTime
+            };
+
+            await axios({
+                method: "put", //you can set what request you want to be
+                url:
+                    "api/updatestationnotification/" +
+                    this.stationPull.station_id,
                 data: request,
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
