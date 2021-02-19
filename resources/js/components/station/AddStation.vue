@@ -78,7 +78,6 @@
                                     :loading="sysLoading"
                                     :items="sysItems"
                                     :search-input.sync="sysSearch"
-                                    autofocus
                                     label="System Name"
                                     outlined
                                 ></v-autocomplete>

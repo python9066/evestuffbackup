@@ -9002,7 +9002,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -27336,7 +27335,6 @@ var render = function() {
                                   loading: _vm.sysLoading,
                                   items: _vm.sysItems,
                                   "search-input": _vm.sysSearch,
-                                  autofocus: "",
                                   label: "System Name",
                                   outlined: ""
                                 },
