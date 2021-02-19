@@ -31,9 +31,10 @@
                     Enter Structure Details
                 </v-card-title>
                 <v-card-text>
-                    <div v-if="state == 1 || state == 2">
+                    <div>
                         <v-text-field
                             v-model="stationNameEdit"
+                            :readonly="stationReadonly"
                             outlined
                             label="Enter FULL Structure Name here"
                             prepend-icon="faSvg fa-home"
@@ -156,6 +157,14 @@ export default {
                 });
                 this.sysLoading = false;
             }, 500);
+        },
+
+        stationReadonly() {
+            if (this.state == 1) {
+                return false;
+            } else {
+                return true;
+            }
         },
 
         close() {

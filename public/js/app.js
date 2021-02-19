@@ -8981,6 +8981,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -9037,6 +9038,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         });
         _this2.sysLoading = false;
       }, 500);
+    },
+    stationReadonly: function stationReadonly() {
+      if (this.state == 1) {
+        return false;
+      } else {
+        return true;
+      }
     },
     close: function close() {
       this.showStationTimer = false;
@@ -27151,28 +27159,27 @@ var render = function() {
               _c(
                 "v-card-text",
                 [
-                  _vm.state == 1 || _vm.state == 2
-                    ? _c(
-                        "div",
-                        [
-                          _c("v-text-field", {
-                            attrs: {
-                              outlined: "",
-                              label: "Enter FULL Structure Name here",
-                              "prepend-icon": "faSvg fa-home"
-                            },
-                            model: {
-                              value: _vm.stationNameEdit,
-                              callback: function($$v) {
-                                _vm.stationNameEdit = $$v
-                              },
-                              expression: "stationNameEdit"
-                            }
-                          })
-                        ],
-                        1
-                      )
-                    : _vm._e(),
+                  _c(
+                    "div",
+                    [
+                      _c("v-text-field", {
+                        attrs: {
+                          readonly: _vm.stationReadonly,
+                          outlined: "",
+                          label: "Enter FULL Structure Name here",
+                          "prepend-icon": "faSvg fa-home"
+                        },
+                        model: {
+                          value: _vm.stationNameEdit,
+                          callback: function($$v) {
+                            _vm.stationNameEdit = $$v
+                          },
+                          expression: "stationNameEdit"
+                        }
+                      })
+                    ],
+                    1
+                  ),
                   _vm._v(" "),
                   _c("v-fade-transition", [
                     _vm.state == 2
