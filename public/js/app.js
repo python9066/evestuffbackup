@@ -27334,7 +27334,7 @@ var render = function() {
                             "div",
                             {
                               staticClass:
-                                " d-inline-flex justify-content-between"
+                                " d-inline-flex justify-content-around"
                             },
                             [
                               _c("v-autocomplete", {
