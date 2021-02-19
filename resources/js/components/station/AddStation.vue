@@ -34,8 +34,7 @@
                     <div>
                         <v-text-field
                             v-model="stationNameEdit"
-                            :readonly="stationReadonly"
-                            :outlined="stationOutlined"
+                            outlined
                             autofocus
                             single-line
                             label="Enter Full Structure Name"

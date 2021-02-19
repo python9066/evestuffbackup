@@ -8985,7 +8985,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -27175,8 +27174,7 @@ var render = function() {
                     [
                       _c("v-text-field", {
                         attrs: {
-                          readonly: _vm.stationReadonly,
-                          outlined: _vm.stationOutlined,
+                          outlined: "",
                           autofocus: "",
                           "single-line": "",
                           label: "Enter Full Structure Name",
