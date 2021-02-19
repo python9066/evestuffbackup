@@ -465,7 +465,7 @@ export default {
             if (statusId == 4) {
                 return "faSvg fa-thumbs-up";
             }
-            if (statusId == 5) {
+            if (statusId == 5 || statusId == 13) {
                 return "faSvg fa-clock";
             }
             if (statusId == 6) {
@@ -505,7 +505,7 @@ export default {
             if (statusId == 4 || statusId == 11) {
                 return "dark-orange";
             }
-            if (statusId == 5) {
+            if (statusId == 5 || statusId == 13) {
                 return "indigo accent-4";
             }
             if (statusId == 6) {
@@ -594,12 +594,15 @@ export default {
                         stations.station_status_id != 10 &&
                         stations.station_status_id != 7 &&
                         stations.station_status_id != 8 &&
-                        stations.station_status_id != 9
+                        stations.station_status_id != 9 &&
+                        stations.station_status_id != 13
                 );
             }
             if (this.statusflag == 3) {
                 return this.stations.filter(
-                    stations => stations.station_status_id == 5
+                    stations =>
+                        stations.station_status_id == 5 ||
+                        stations.station_status_id == 13
                 );
             }
 
