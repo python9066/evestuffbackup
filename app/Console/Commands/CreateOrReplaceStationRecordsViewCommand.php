@@ -56,7 +56,8 @@ class CreateOrReplaceStationRecordsViewCommand extends Command
        alliances.name AS 'alliance_name',
        stations.text AS 'text',
        stations.repair_time AS 'repair_time',
-       if(corps.color > alliances.color, alliances.color, corps.color) AS 'color'
+       alliances.standing AS 'standing',
+       alliances.url AS 'url'
        FROM stations
        JOIN systems ON systems.id = stations.system_id
        JOIN corps ON corps.id = stations.corp_id
