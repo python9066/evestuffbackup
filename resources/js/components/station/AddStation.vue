@@ -270,7 +270,7 @@ export default {
             this.tickSelect = null;
             this.tickerEdit = null;
             this.ticktemEdit = null;
-            this.showStationTimer = false;
+            // this.showStationTimer = false;
         },
 
         async submit() {

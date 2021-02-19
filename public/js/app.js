@@ -9145,8 +9145,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       this.tickSearch = null;
       this.tickSelect = null;
       this.tickerEdit = null;
-      this.ticktemEdit = null;
-      this.showStationTimer = false;
+      this.ticktemEdit = null; // this.showStationTimer = false;
     },
     submit: function submit() {
       var _this4 = this;
