@@ -14,7 +14,7 @@ class ItemController extends Controller
      */
     public function index()
     {
-        $item = Item::where('id', 35833)
+        $structures = Item::where('id', 35833)
             ->orwhere('id', 47512)
             ->orwhere('id', 47513)
             ->orwhere('id', 47514)
@@ -82,7 +82,13 @@ class ItemController extends Controller
             ->orwhere('id', 35827)
             ->orwhere('id', 35836)->get();
 
-        dd($item);
+        $list = $structures->map(function ($items) {
+            $data['value'] = $items->id;
+            $data['text'] = $items->name;
+            return $data;
+        });
+
+        dd($list);
     }
 
     /**
