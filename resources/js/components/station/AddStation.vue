@@ -94,6 +94,21 @@
                                     outlined
                                 ></v-autocomplete>
                             </div>
+                            <div>
+                                <v-text-field
+                                    v-model="hackTime"
+                                    label="Hack Time mm:ss"
+                                    v-mask="'#:##:##:##'"
+                                    autofocus
+                                    placeholder="d:hh:mm:ss"
+                                    @keyup.enter="
+                                        (timerShown = false), addHacktime()
+                                    "
+                                    @keyup.esc="
+                                        (timerShown = false), (hackTime = null)
+                                    "
+                                ></v-text-field>
+                            </div>
                         </div>
                     </v-fade-transition>
                 </v-card-text>

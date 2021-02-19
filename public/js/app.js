@@ -9005,6 +9005,21 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -27387,6 +27402,71 @@ var render = function() {
                                     _vm.tickSelect = $$v
                                   },
                                   expression: "tickSelect"
+                                }
+                              })
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "div",
+                            [
+                              _c("v-text-field", {
+                                directives: [
+                                  {
+                                    name: "mask",
+                                    rawName: "v-mask",
+                                    value: "#:##:##:##",
+                                    expression: "'#:##:##:##'"
+                                  }
+                                ],
+                                attrs: {
+                                  label: "Hack Time mm:ss",
+                                  autofocus: "",
+                                  placeholder: "d:hh:mm:ss"
+                                },
+                                on: {
+                                  keyup: [
+                                    function($event) {
+                                      if (
+                                        !$event.type.indexOf("key") &&
+                                        _vm._k(
+                                          $event.keyCode,
+                                          "enter",
+                                          13,
+                                          $event.key,
+                                          "Enter"
+                                        )
+                                      ) {
+                                        return null
+                                      }
+                                      ;(_vm.timerShown = false),
+                                        _vm.addHacktime()
+                                    },
+                                    function($event) {
+                                      if (
+                                        !$event.type.indexOf("key") &&
+                                        _vm._k(
+                                          $event.keyCode,
+                                          "esc",
+                                          27,
+                                          $event.key,
+                                          ["Esc", "Escape"]
+                                        )
+                                      ) {
+                                        return null
+                                      }
+                                      ;(_vm.timerShown = false),
+                                        (_vm.hackTime = null)
+                                    }
+                                  ]
+                                },
+                                model: {
+                                  value: _vm.hackTime,
+                                  callback: function($$v) {
+                                    _vm.hackTime = $$v
+                                  },
+                                  expression: "hackTime"
                                 }
                               })
                             ],
