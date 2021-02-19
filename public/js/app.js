@@ -9149,7 +9149,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }))();
     }
   },
-  computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])([])), Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapState"])(["systemlist", "ticklist", "structureList"])), {}, {
+  computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])([])), Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapState"])(["systemlist", "ticklist", "structurelist"])), {}, {
     stationNameNext: function stationNameNext() {
       if (this.stationNameEdit == null) {
         return true;
@@ -9175,7 +9175,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }
     },
     structureList: function structureList() {
-      return this.structureList;
+      return this.structurelist;
     },
     stationLable: function stationLable() {
       if (this.state == 1) {
@@ -39602,7 +39602,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
     rolesList: [],
     stations: [],
     stationFits: [],
-    structureList: [],
+    structurelist: [],
     systemlist: [],
     ticklist: [],
     timers: [],
@@ -39618,7 +39618,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
       state.systemlist = systemlist;
     },
     SET_STRUCTURELIST: function SET_STRUCTURELIST(state, structurelist) {
-      state.structureList = structurelist;
+      state.structurelist = structurelist;
     },
     SET_TICKLIST: function SET_TICKLIST(state, ticklist) {
       state.ticklist = ticklist;

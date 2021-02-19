@@ -32,7 +32,7 @@ export default new Vuex.Store({
         rolesList:[],
         stations: [],
         stationFits: [],
-        structureList:[],
+        structurelist:[],
         systemlist: [],
         ticklist:[],
         timers: [],
@@ -49,7 +49,7 @@ export default new Vuex.Store({
         },
 
         SET_STRUCTURELIST(state, structurelist) {
-            state.structureList = structurelist;
+            state.structurelist = structurelist;
         },
 
         SET_TICKLIST(state, ticklist) {

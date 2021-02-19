@@ -240,7 +240,7 @@ export default {
 
     computed: {
         ...mapGetters([]),
-        ...mapState(["systemlist", "ticklist", "structureList"]),
+        ...mapState(["systemlist", "ticklist", "structurelist"]),
 
         stationNameNext() {
             if (this.stationNameEdit == null) {
@@ -271,7 +271,7 @@ export default {
         },
 
         structureList() {
-            return this.structureList;
+            return this.structurelist;
         },
 
         stationLable() {
