@@ -40,6 +40,15 @@
                             :label="stationLable"
                             prepend-icon="faSvg fa-home"
                         ></v-text-field>
+                        <v-chip
+                            v-if="state == 1"
+                            pill
+                            :disabled="stationNameNext"
+                            color="green"
+                            @click="stationNameAdd()"
+                        >
+                            Next
+                        </v-chip>
                     </div>
                     <v-fade-transition>
                         <div v-if="state == 2" class=" d-inline-flex">
@@ -65,15 +74,6 @@
                             ></v-autocomplete>
                         </div>
                     </v-fade-transition>
-                    <v-chip
-                        v-if="state == 1"
-                        pill
-                        :disabled="stationNameNext"
-                        color="green"
-                        @click="stationNameAdd()"
-                    >
-                        Next
-                    </v-chip>
                 </v-card-text>
                 <v-spacer></v-spacer
                 ><v-card-actions>
