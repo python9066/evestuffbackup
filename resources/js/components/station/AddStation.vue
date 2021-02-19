@@ -125,7 +125,8 @@ export default {
             ticktemEdit: null,
             tickSearch: null,
             tickSelect: null,
-            tickLoading: false
+            tickLoading: false,
+            tickerEdit: null
         };
     },
 

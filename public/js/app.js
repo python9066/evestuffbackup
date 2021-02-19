@@ -9014,7 +9014,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       ticktemEdit: null,
       tickSearch: null,
       tickSelect: null,
-      tickLoading: false
+      tickLoading: false,
+      tickerEdit: null
     };
   },
   watch: {
