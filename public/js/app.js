@@ -9041,7 +9041,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       val && val !== this.tickSelect && this.tickQuerySelections(val);
     },
     structkSearch: function structkSearch(val) {
-      val && val !== this.structkSelect && this.structkQuerySelections(val);
+      val && val !== this.structSelect && this.structQuerySelections(val);
     }
   },
   methods: {

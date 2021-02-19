@@ -155,9 +155,7 @@ export default {
         },
 
         structkSearch(val) {
-            val &&
-                val !== this.structkSelect &&
-                this.structkQuerySelections(val);
+            val && val !== this.structSelect && this.structQuerySelections(val);
         }
     },
 
