@@ -27179,7 +27179,7 @@ var render = function() {
                     : _vm._e(),
                   _vm._v(" "),
                   _c(
-                    "v-transition",
+                    "transition",
                     {
                       attrs: {
                         name: "custom-classes-transition",

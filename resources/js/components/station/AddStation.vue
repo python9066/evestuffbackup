@@ -39,7 +39,7 @@
                             prepend-icon="faSvg fa-home"
                         ></v-text-field>
                     </div>
-                    <v-transition
+                    <transition
                         name="custom-classes-transition"
                         enter-active-class="animated tada"
                         leave-active-class="animated bounceOutRight"
@@ -66,7 +66,7 @@
                                 prepend-icon="faSvg fa-home"
                             ></v-autocomplete>
                         </div>
-                    </v-transition>
+                    </transition>
                     <v-chip
                         pill
                         class="ml-10"
