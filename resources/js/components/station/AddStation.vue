@@ -59,10 +59,11 @@
                                 prepend-icon="faSvg fa-home"
                             ></v-text-field>
                             <v-autocomplete
-                                v-model="systemEdit"
-                                :items="systemList"
+                                v-model="sysSelect"
+                                :loading="sysLoading"
+                                :items="sysItems"
+                                :search-input.sync="sysSearch"
                                 autofocus
-                                :filter="sysFilter"
                                 label="System Name"
                                 outlined
                                 prepend-icon="faSvg fa-home"

@@ -8993,6 +8993,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -27153,19 +27154,28 @@ var render = function() {
                             _vm._v(" "),
                             _c("v-autocomplete", {
                               attrs: {
-                                items: _vm.systemList,
+                                loading: _vm.sysLoading,
+                                items: _vm.sysItems,
+                                "search-input": _vm.sysSearch,
                                 autofocus: "",
-                                filter: _vm.sysFilter,
                                 label: "System Name",
                                 outlined: "",
                                 "prepend-icon": "faSvg fa-home"
                               },
-                              model: {
-                                value: _vm.systemEdit,
-                                callback: function($$v) {
-                                  _vm.systemEdit = $$v
+                              on: {
+                                "update:searchInput": function($event) {
+                                  _vm.sysSearch = $event
                                 },
-                                expression: "systemEdit"
+                                "update:search-input": function($event) {
+                                  _vm.sysSearch = $event
+                                }
+                              },
+                              model: {
+                                value: _vm.sysSelect,
+                                callback: function($$v) {
+                                  _vm.sysSelect = $$v
+                                },
+                                expression: "sysSelect"
                               }
                             }),
                             _vm._v(" "),
