@@ -39,7 +39,7 @@
                             prepend-icon="faSvg fa-home"
                         ></v-text-field>
                     </div>
-                    <v-transition name="fade">
+                    <v-transition class="animate__animated animate__bounce">
                         <div v-if="state == 2">
                             <v-autocomplete
                                 v-model="sysSelect"
