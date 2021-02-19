@@ -8985,6 +8985,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -27178,11 +27180,14 @@ var render = function() {
                 [
                   _c(
                     "div",
-                    { staticClass: " d-inline-flex" },
+                    {
+                      staticClass:
+                        " d-inline-flex align-content-center justify-content-around"
+                    },
                     [
                       _c("v-text-field", {
                         staticClass: " shrink",
-                        staticStyle: { width: "300px" },
+                        staticStyle: { width: "650px" },
                         attrs: {
                           readonly: _vm.stationReadonly,
                           outlined: _vm.stationOutlined,

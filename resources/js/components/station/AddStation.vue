@@ -31,7 +31,9 @@
                     Enter Structure Details
                 </v-card-title>
                 <v-card-text>
-                    <div class=" d-inline-flex">
+                    <div
+                        class=" d-inline-flex align-content-center justify-content-around"
+                    >
                         <v-text-field
                             v-model="stationNameEdit"
                             :readonly="stationReadonly"
@@ -40,7 +42,7 @@
                             :label="stationLable"
                             prepend-icon="faSvg fa-home"
                             class=" shrink"
-                            style="width:300px"
+                            style="width:650px"
                         ></v-text-field>
                         <v-chip
                             v-if="state == 1"
