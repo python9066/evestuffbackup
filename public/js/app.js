@@ -27179,7 +27179,6 @@ var render = function() {
                 [
                   _c(
                     "div",
-                    { staticClass: " d-inline-flex" },
                     [
                       _c("v-text-field", {
                         attrs: {

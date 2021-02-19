@@ -31,7 +31,7 @@
                     Enter Structure Details
                 </v-card-title>
                 <v-card-text>
-                    <div class=" d-inline-flex">
+                    <div>
                         <v-text-field
                             v-model="stationNameEdit"
                             :readonly="stationReadonly"
