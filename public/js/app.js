@@ -27422,8 +27422,8 @@ var render = function() {
                                   {
                                     name: "mask",
                                     rawName: "v-mask",
-                                    value: "# days ##:h ##:m ##:s",
-                                    expression: "'# days ##:h ##:m ##:s'"
+                                    value: "# day/s ##:##:##",
+                                    expression: "'# day/s ##:##:##'"
                                   }
                                 ],
                                 attrs: {
