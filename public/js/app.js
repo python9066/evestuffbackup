@@ -9023,6 +9023,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -27522,19 +27527,25 @@ var render = function() {
                     [_vm._v("\n                    Close\n                ")]
                   ),
                   _vm._v(" "),
-                  _c(
-                    "v-btn",
-                    {
-                      staticClass: "white--text",
-                      attrs: { color: "green" },
-                      on: {
-                        click: function($event) {
-                          return _vm.submit()
-                        }
-                      }
-                    },
-                    [_vm._v("\n                    Submit\n                ")]
-                  )
+                  _vm.status == 2
+                    ? _c(
+                        "v-btn",
+                        {
+                          staticClass: "white--text",
+                          attrs: { color: "green" },
+                          on: {
+                            click: function($event) {
+                              return _vm.submit()
+                            }
+                          }
+                        },
+                        [
+                          _vm._v(
+                            "\n                    Submit\n                "
+                          )
+                        ]
+                      )
+                    : _vm._e()
                 ],
                 1
               )

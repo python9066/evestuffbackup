@@ -117,7 +117,12 @@
                     <v-btn class="white--text" color="teal" @click="close()">
                         Close
                     </v-btn>
-                    <v-btn class="white--text" color="green" @click="submit()">
+                    <v-btn
+                        class="white--text"
+                        color="green"
+                        @click="submit()"
+                        v-if="status == 2"
+                    >
                         Submit
                     </v-btn></v-card-actions
                 >
