@@ -9036,6 +9036,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -27469,11 +27473,15 @@ var render = function() {
                                 },
                                 [
                                   _c("v-radio", {
-                                    attrs: { label: "Armor", value: "1" }
+                                    attrs: { label: "Anchoring", value: "1" }
                                   }),
                                   _vm._v(" "),
                                   _c("v-radio", {
-                                    attrs: { label: "Hull", value: "2" }
+                                    attrs: { label: "Armor", value: "2" }
+                                  }),
+                                  _vm._v(" "),
+                                  _c("v-radio", {
+                                    attrs: { label: "Hull", value: "3" }
                                   })
                                 ],
                                 1
