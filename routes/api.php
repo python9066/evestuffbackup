@@ -137,5 +137,5 @@ Route::middleware('auth:api')->group(function () {
     Route::get('/ticklist', 'CorpController@index');
     Route::put('/stationname', 'StationController@reconPullbyname');
     Route::get('/structurelist', 'ItemController@index');
-    Route::put('/stationnew', 'StationRecordsController@store');
+    Route::put('/stationnew', 'StationController@store');
 });
