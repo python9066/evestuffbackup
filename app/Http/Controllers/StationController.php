@@ -176,7 +176,7 @@ class StationController extends Controller
                     'station_id' => $stationdata['str_structure_id'],
                     'station_name' => $stationdata['str_name'],
                     'structure_name' => Item::where('id', $stationdata['str_type_id'])->select('item_name')->first(),
-                    'system_name' => System::where('id', $stationdata['str_system_id'])->first()->pluck('system_name'),
+                    'system_name' => System::where('id', $stationdata['str_system_id'])->select('system_name')->first(),
                     'corp_ticker' => $corp->ticker,
                 ];
                 return $data;
