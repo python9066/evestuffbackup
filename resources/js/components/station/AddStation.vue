@@ -186,7 +186,7 @@ export default {
 
     computed: {
         ...mapGetters([]),
-        ...mapState(["systemlist"]),
+        ...mapState(["systemlist", "ticklist"]),
 
         stationNameNext() {
             if (this.stationNameEdit == null) {

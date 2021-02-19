@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Corp;
 use Illuminate\Http\Request;
 
 class CorpController extends Controller
@@ -13,7 +14,18 @@ class CorpController extends Controller
      */
     public function index()
     {
-        //
+        $tickerlist = [];
+        $tickers = Corp::all();
+        foreach ($tickers as $ticker) {
+            $data = [];
+            $data = [
+                'text' => $ticker->ticker,
+                'value' => $ticker->id
+            ];
+
+            array_push($tickerlist, $data);
+        }
+        return ['ticklist' => $tickerlist];
     }
 
     /**

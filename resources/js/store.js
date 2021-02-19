@@ -32,7 +32,8 @@ export default new Vuex.Store({
         rolesList:[],
         stations: [],
         stationFits: [],
-        systemlist:[],
+        systemlist: [],
+        ticklist:[],
         timers: [],
         token: "",
         towers:[],
@@ -44,6 +45,10 @@ export default new Vuex.Store({
     mutations: {
         SET_SYSTEMLIST(state, systemlist) {
             state.systemlist = systemlist;
+        },
+
+        SET_TICKLIST(state, ticklist) {
+            state.ticklist = ticklist;
         },
 
 
@@ -326,6 +331,22 @@ export default new Vuex.Store({
             });
             commit("SET_SYSTEMLIST", res.data.systemlist);
         },
+
+        async getTickList({ commit, state }) {
+            let res = await axios({
+                method: "get",
+                url: "/api/ticklist",
+                headers: {
+                    Authorization: "Bearer " + state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                }
+            });
+            commit("SET_TICKLIST", res.data.ticklist);
+        },
+
+
+
 
         async getNodeJoinByCampaignId({ commit, state }, campaign_id) {
             let res = await axios({
