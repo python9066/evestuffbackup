@@ -84,7 +84,7 @@ class ItemController extends Controller
 
         $list = $structures->map(function ($items) {
             $data['value'] = $items->id;
-            $data['text'] = $items->name;
+            $data['text'] = $items->item_name;
             return $data;
         });
 
