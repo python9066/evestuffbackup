@@ -9008,27 +9008,34 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       sysItems: [],
       systemEdit: null,
       sysSearch: null,
-      tickerEdit: null,
       sysSelect: null,
-      sysLoading: false
+      sysLoading: false,
+      tickItems: [],
+      ticktemEdit: null,
+      tickSearch: null,
+      tickSelect: null,
+      tickLoading: false
     };
   },
   watch: {
     sysSearch: function sysSearch(val) {
       val && val !== this.sysSelect && this.sysQuerySelections(val);
+    },
+    tickSearch: function tickSearch(val) {
+      val && val !== this.tickSelect && this.tickQuerySelections(val);
     }
   },
   methods: {
-    sysQuerySelections: function sysQuerySelections(v) {
+    tickQuerySelections: function tickQuerySelections(v) {
       var _this = this;
 
-      this.sysLoading = true; // Simulated ajax query
+      this.tickLoading = true; // Simulated ajax query
 
       setTimeout(function () {
-        _this.sysItems = _this.systemList.filter(function (e) {
+        _this.tickItems = _this.ticktemList.filter(function (e) {
           return (e.text || "").toLowerCase().indexOf((v || "").toLowerCase()) > -1;
         });
-        _this.sysLoading = false;
+        _this.tickLoading = false;
       }, 500);
     },
     close: function close() {
@@ -9101,6 +9108,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
     systemList: function systemList() {
       return this.systemlist;
+    },
+    tickList: function tickList() {
+      return this.ticktemlist;
     }
   }),
   beforeDestroy: function beforeDestroy() {}

@@ -119,31 +119,39 @@ export default {
             sysItems: [],
             systemEdit: null,
             sysSearch: null,
-            tickerEdit: null,
             sysSelect: null,
-            sysLoading: false
+            sysLoading: false,
+            tickItems: [],
+            ticktemEdit: null,
+            tickSearch: null,
+            tickSelect: null,
+            tickLoading: false
         };
     },
 
     watch: {
         sysSearch(val) {
             val && val !== this.sysSelect && this.sysQuerySelections(val);
+        },
+
+        tickSearch(val) {
+            val && val !== this.tickSelect && this.tickQuerySelections(val);
         }
     },
 
     methods: {
-        sysQuerySelections(v) {
-            this.sysLoading = true;
+        tickQuerySelections(v) {
+            this.tickLoading = true;
             // Simulated ajax query
             setTimeout(() => {
-                this.sysItems = this.systemList.filter(e => {
+                this.tickItems = this.ticktemList.filter(e => {
                     return (
                         (e.text || "")
                             .toLowerCase()
                             .indexOf((v || "").toLowerCase()) > -1
                     );
                 });
-                this.sysLoading = false;
+                this.tickLoading = false;
             }, 500);
         },
 
@@ -190,6 +198,10 @@ export default {
 
         systemList() {
             return this.systemlist;
+        },
+
+        tickList() {
+            return this.ticktemlist;
         }
     },
 
