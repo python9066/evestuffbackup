@@ -105,6 +105,9 @@
                     </vue-countdown-timer>
                 </template>
             </template>
+            <template v-slot:item.window_status="{ item }">
+                <span class=" green--text">{{ item.window_status }} </span>
+            </template>
             <template v-slot:item.age="{ item }">
                 <template>
                     <VueCountUptimer

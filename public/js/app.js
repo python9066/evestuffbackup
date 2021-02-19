@@ -16953,6 +16953,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
 
 
 
@@ -35009,6 +35012,17 @@ var render = function() {
                       )
                     })
                   ]
+                ]
+              }
+            },
+            {
+              key: "item.window_status",
+              fn: function(ref) {
+                var item = ref.item
+                return [
+                  _c("span", { staticClass: " green--text" }, [
+                    _vm._v(_vm._s(item.window_status) + " ")
+                  ])
                 ]
               }
             },
