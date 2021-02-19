@@ -9228,7 +9228,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   corp_id: _this4.tickSelect,
                   item_id: _this4.structSelect,
                   station_status_id: _this4.refType,
-                  out_time: outTime
+                  out_time: outTime,
+                  status_update: moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc().format("YYYY-MM-DD HH:mm:ss")
                 };
                 _context.next = 12;
                 return axios({
@@ -9271,7 +9272,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 outTime = moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc().add(sec, "seconds").format("YYYY-MM-DD HH:mm:ss");
                 request = {
                   station_status_id: _this5.refType,
-                  out_time: outTime
+                  out_time: outTime,
+                  status_update: moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc().format("YYYY-MM-DD HH:mm:ss")
                 };
                 _context2.next = 12;
                 return axios({

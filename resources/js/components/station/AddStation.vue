@@ -349,7 +349,8 @@ export default {
                 corp_id: this.tickSelect,
                 item_id: this.structSelect,
                 station_status_id: this.refType,
-                out_time: outTime
+                out_time: outTime,
+                status_update: moment.utc().format("YYYY-MM-DD HH:mm:ss")
             };
 
             await axios({
@@ -399,7 +400,8 @@ export default {
 
             var request = {
                 station_status_id: this.refType,
-                out_time: outTime
+                out_time: outTime,
+                status_update: moment.utc().format("YYYY-MM-DD HH:mm:ss")
             };
 
             await axios({
