@@ -80,7 +80,7 @@ class ItemController extends Controller
             ->orwhere('id', 37534)
             ->orwhere('id', 35825)
             ->orwhere('id', 35827)
-            ->orwhere('id', 35836)->get();
+            ->orwhere('id', 35836)->orderBy('item_name')->get();
 
         $list = $structures->map(function ($items) {
             $data['value'] = $items->id;
