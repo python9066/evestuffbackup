@@ -62,6 +62,7 @@
                                 v-model="systemEdit"
                                 :items="systemList"
                                 autofocus
+                                :filter="sysFilter"
                                 label="System Name"
                                 outlined
                                 prepend-icon="faSvg fa-home"
@@ -120,7 +121,7 @@ export default {
     },
 
     methods: {
-        getList(item, queryText, itemText) {
+        sysFilter(item, queryText, itemText) {
             return itemText
                 .toLocaleLowerCase()
                 .startsWith(queryText.toLocaleLowerCase());

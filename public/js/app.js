@@ -8992,6 +8992,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -9008,7 +9009,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     };
   },
   methods: {
-    getList: function getList(item, queryText, itemText) {
+    sysFilter: function sysFilter(item, queryText, itemText) {
       return itemText.toLocaleLowerCase().startsWith(queryText.toLocaleLowerCase());
     },
     close: function close() {
@@ -27138,6 +27139,7 @@ var render = function() {
                               attrs: {
                                 items: _vm.systemList,
                                 autofocus: "",
+                                filter: _vm.sysFilter,
                                 label: "System Name",
                                 outlined: "",
                                 "prepend-icon": "faSvg fa-home"
