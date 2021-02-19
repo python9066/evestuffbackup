@@ -31,7 +31,7 @@
                     Enter Structure Details
                 </v-card-title>
                 <v-card-text>
-                    <div v-if="state == 1">
+                    <div v-if="state == 1 || state == 2">
                         <v-text-field
                             v-model="stationNameEdit"
                             outlined

@@ -27102,7 +27102,7 @@ var render = function() {
               _c(
                 "v-card-text",
                 [
-                  _vm.state == 1
+                  _vm.state == 1 || _vm.state == 2
                     ? _c(
                         "div",
                         [
