@@ -250,27 +250,8 @@ export default {
         },
 
         close() {
-            this.refTime = null;
-            this.refType = null;
-            this.state = 1;
-            this.stationName = null;
-            this.StationNameEdit = null;
-            this.structItems = [];
-            this.structSearch = null;
-            this.structSelect = null;
-            this.structerEdit = null;
-            this.structtemEdit = null;
-            this.sysItems = [];
-            this.sysSearch = null;
-            this.sysSelect = null;
-            this.systemEdit = null;
-            this.systems = [];
-            this.tickItems = [];
-            this.tickSearch = null;
-            this.tickSelect = null;
-            this.tickerEdit = null;
-            this.ticktemEdit = null;
-            // this.showStationTimer = false;
+            this.stationNameEdit = null;
+            this.showStationTimer = false;
         },
 
         async submit() {
