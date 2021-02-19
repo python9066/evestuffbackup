@@ -8974,6 +8974,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -9057,6 +9066,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee);
       }))();
     },
+    stationLable: function stationLable() {
+      if (this.state == 1) {
+        return "Enter FULL Structure Name here";
+      } else {
+        return "";
+      }
+    },
     stationNameAdd: function stationNameAdd() {
       var _this4 = this;
 
@@ -9111,13 +9127,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         return false;
       } else {
         return true;
-      }
-    },
-    StationLable: function StationLable() {
-      if (this.state == 1) {
-        return "Enter FULL Structure Name here";
-      } else {
-        return "";
       }
     },
     stationOutlined: function stationOutlined() {
@@ -27167,13 +27176,13 @@ var render = function() {
                 [
                   _c(
                     "div",
-                    { staticClass: " d-inline-flex" },
+                    { staticClass: " d-inline-flex full-width" },
                     [
                       _c("v-text-field", {
                         attrs: {
                           readonly: _vm.stationReadonly,
                           outlined: _vm.stationOutlined,
-                          label: _vm.stationLable,
+                          label: _vm.stationLable(),
                           "prepend-icon": "faSvg fa-home"
                         },
                         model: {
@@ -27252,7 +27261,26 @@ var render = function() {
                           1
                         )
                       : _vm._e()
-                  ])
+                  ]),
+                  _vm._v(" "),
+                  _vm.state == 1
+                    ? _c(
+                        "v-chip",
+                        {
+                          attrs: {
+                            pill: "",
+                            disabled: _vm.stationNameNext,
+                            color: "green"
+                          },
+                          on: {
+                            click: function($event) {
+                              return _vm.stationNameAdd()
+                            }
+                          }
+                        },
+                        [_vm._v("\n                    Next\n                ")]
+                      )
+                    : _vm._e()
                 ],
                 1
               ),

@@ -31,12 +31,12 @@
                     Enter Structure Details
                 </v-card-title>
                 <v-card-text>
-                    <div class=" d-inline-flex">
+                    <div class=" d-inline-flex full-width">
                         <v-text-field
                             v-model="stationNameEdit"
                             :readonly="stationReadonly"
                             :outlined="stationOutlined"
-                            :label="stationLable"
+                            :label="stationLable()"
                             prepend-icon="faSvg fa-home"
                         ></v-text-field>
                     </div>
@@ -65,6 +65,15 @@
                             ></v-autocomplete>
                         </div>
                     </v-fade-transition>
+                    <v-chip
+                        v-if="state == 1"
+                        pill
+                        :disabled="stationNameNext"
+                        color="green"
+                        @click="stationNameAdd()"
+                    >
+                        Next
+                    </v-chip>
                 </v-card-text>
                 <v-spacer></v-spacer
                 ><v-card-actions>
@@ -160,6 +169,14 @@ export default {
             await this.$store.dispatch("getTickList");
         },
 
+        stationLable() {
+            if (this.state == 1) {
+                return "Enter FULL Structure Name here";
+            } else {
+                return "";
+            }
+        },
+
         async stationNameAdd() {
             var request = {
                 stationName: this.stationNameEdit
@@ -202,14 +219,6 @@ export default {
                 return false;
             } else {
                 return true;
-            }
-        },
-
-        StationLable() {
-            if (this.state == 1) {
-                return "Enter FULL Structure Name here";
-            } else {
-                return "";
             }
         },
 
