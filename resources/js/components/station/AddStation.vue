@@ -161,7 +161,8 @@ export default {
         },
 
         systemList() {
-            return this.systemlist;
+            var list = this.systemlist;
+            return list.filter(list => list.text == systemEdit);
         }
     },
 
