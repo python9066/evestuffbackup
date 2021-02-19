@@ -31,33 +31,16 @@
                     Enter Structure Details
                 </v-card-title>
                 <v-card-text>
+                    <div v-if="state == 1">
+                        <v-text-field
+                            v-model="stationNameEdit"
+                            outlined
+                            label="Enter FULL Structure Name here"
+                            prepend-icon="faSvg fa-home"
+                        ></v-text-field>
+                    </div>
                     <v-fade-transition mode="out-in">
-                        <div v-if="state == 1">
-                            <v-text-field
-                                v-model="stationNameEdit"
-                                outlined
-                                label="Enter FULL Structure Name here"
-                                prepend-icon="faSvg fa-home"
-                            ></v-text-field>
-                            <v-chip
-                                pill
-                                class="ml-10"
-                                :disabled="stationNameNext"
-                                color="green"
-                                @click="stationNameAdd()"
-                            >
-                                Next
-                            </v-chip>
-                        </div>
-                    </v-fade-transition>
-
-                    <v-fade-transition mode="in-out">
                         <div v-if="state == 2">
-                            <v-text-field
-                                v-model="stationName"
-                                readonly
-                                prepend-icon="faSvg fa-home"
-                            ></v-text-field>
                             <v-autocomplete
                                 v-model="sysSelect"
                                 :loading="sysLoading"
@@ -78,17 +61,17 @@
                                 outlined
                                 prepend-icon="faSvg fa-home"
                             ></v-autocomplete>
-                            <v-chip
-                                pill
-                                class="ml-10"
-                                :disabled="stationNameNext"
-                                color="green"
-                                @click="stationNameAdd()"
-                            >
-                                Next
-                            </v-chip>
                         </div>
                     </v-fade-transition>
+                    <v-chip
+                        pill
+                        class="ml-10"
+                        :disabled="stationNameNext"
+                        color="green"
+                        @click="stationNameAdd()"
+                    >
+                        Next
+                    </v-chip>
                 </v-card-text>
                 <v-spacer></v-spacer
                 ><v-card-actions>

@@ -8981,23 +8981,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -27119,72 +27102,34 @@ var render = function() {
               _c(
                 "v-card-text",
                 [
-                  _c("v-fade-transition", { attrs: { mode: "out-in" } }, [
-                    _vm.state == 1
-                      ? _c(
-                          "div",
-                          [
-                            _c("v-text-field", {
-                              attrs: {
-                                outlined: "",
-                                label: "Enter FULL Structure Name here",
-                                "prepend-icon": "faSvg fa-home"
+                  _vm.state == 1
+                    ? _c(
+                        "div",
+                        [
+                          _c("v-text-field", {
+                            attrs: {
+                              outlined: "",
+                              label: "Enter FULL Structure Name here",
+                              "prepend-icon": "faSvg fa-home"
+                            },
+                            model: {
+                              value: _vm.stationNameEdit,
+                              callback: function($$v) {
+                                _vm.stationNameEdit = $$v
                               },
-                              model: {
-                                value: _vm.stationNameEdit,
-                                callback: function($$v) {
-                                  _vm.stationNameEdit = $$v
-                                },
-                                expression: "stationNameEdit"
-                              }
-                            }),
-                            _vm._v(" "),
-                            _c(
-                              "v-chip",
-                              {
-                                staticClass: "ml-10",
-                                attrs: {
-                                  pill: "",
-                                  disabled: _vm.stationNameNext,
-                                  color: "green"
-                                },
-                                on: {
-                                  click: function($event) {
-                                    return _vm.stationNameAdd()
-                                  }
-                                }
-                              },
-                              [
-                                _vm._v(
-                                  "\n                            Next\n                        "
-                                )
-                              ]
-                            )
-                          ],
-                          1
-                        )
-                      : _vm._e()
-                  ]),
+                              expression: "stationNameEdit"
+                            }
+                          })
+                        ],
+                        1
+                      )
+                    : _vm._e(),
                   _vm._v(" "),
-                  _c("v-fade-transition", { attrs: { mode: "in-out" } }, [
+                  _c("v-fade-transition", { attrs: { mode: "out-in" } }, [
                     _vm.state == 2
                       ? _c(
                           "div",
                           [
-                            _c("v-text-field", {
-                              attrs: {
-                                readonly: "",
-                                "prepend-icon": "faSvg fa-home"
-                              },
-                              model: {
-                                value: _vm.stationName,
-                                callback: function($$v) {
-                                  _vm.stationName = $$v
-                                },
-                                expression: "stationName"
-                              }
-                            }),
-                            _vm._v(" "),
                             _c("v-autocomplete", {
                               attrs: {
                                 loading: _vm.sysLoading,
@@ -27237,34 +27182,30 @@ var render = function() {
                                 },
                                 expression: "tickSelect"
                               }
-                            }),
-                            _vm._v(" "),
-                            _c(
-                              "v-chip",
-                              {
-                                staticClass: "ml-10",
-                                attrs: {
-                                  pill: "",
-                                  disabled: _vm.stationNameNext,
-                                  color: "green"
-                                },
-                                on: {
-                                  click: function($event) {
-                                    return _vm.stationNameAdd()
-                                  }
-                                }
-                              },
-                              [
-                                _vm._v(
-                                  "\n                            Next\n                        "
-                                )
-                              ]
-                            )
+                            })
                           ],
                           1
                         )
                       : _vm._e()
-                  ])
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "v-chip",
+                    {
+                      staticClass: "ml-10",
+                      attrs: {
+                        pill: "",
+                        disabled: _vm.stationNameNext,
+                        color: "green"
+                      },
+                      on: {
+                        click: function($event) {
+                          return _vm.stationNameAdd()
+                        }
+                      }
+                    },
+                    [_vm._v("\n                    Next\n                ")]
+                  )
                 ],
                 1
               ),
