@@ -116,7 +116,9 @@ export default {
             state: 1,
             showStationTimer: false,
             stationName: null,
+            sysItems: [],
             systemEdit: null,
+            sysSearch: null,
             tickerEdit: null,
             sysSelect: null,
             sysLoading: false
