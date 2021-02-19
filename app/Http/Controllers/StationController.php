@@ -145,6 +145,7 @@ class StationController extends Controller
                     'corp_id' => $stationdata['str_owner_corporation_id'],
                     'item_id' => $stationdata['str_type_id'],
                     'text' => null,
+                    'station_status_id' => 50,
                     'user_id' => null,
                     'timestamp' => now(),
                     'r_hash' => $stationdata['str_structure_id_md5'],
@@ -177,7 +178,7 @@ class StationController extends Controller
                     'state' => 3,
                     'station_name' => $stationdata['str_name'],
                     'system_name' => System::where('id', $stationdata['str_system_id'])->first()->pluck('system_name'),
-                    'alliance_name' => Alliance::where('id', $corp->id)->first()->pluck('name'),
+                    'alliance_name' => Alliance::where('id', $corp->alliance_id)->first()->pluck('name'),
                     'corp_name' => $corp->name,
                     'type' => Item::where('id', $stationdata['str_type_id'])->first()->pluck('item_name'),
                 ];
