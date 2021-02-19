@@ -33,6 +33,7 @@
                 <v-card-text>
                     <div class=" d-inline-flex">
                         <v-text-field
+                            full-width
                             v-model="stationNameEdit"
                             :readonly="stationReadonly"
                             :outlined="stationOutlined"
