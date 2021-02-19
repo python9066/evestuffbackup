@@ -36,7 +36,6 @@
                             v-model="stationNameEdit"
                             outlined
                             autofocus
-                            single-line
                             label="Enter Full Structure Name"
                             prepend-icon="faSvg fa-home"
                         ></v-text-field>

@@ -8984,7 +8984,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -27113,7 +27112,6 @@ var render = function() {
                         attrs: {
                           outlined: "",
                           autofocus: "",
-                          "single-line": "",
                           label: "Enter Full Structure Name",
                           "prepend-icon": "faSvg fa-home"
                         },
