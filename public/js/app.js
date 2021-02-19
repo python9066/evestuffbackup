@@ -8983,6 +8983,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -27176,12 +27179,14 @@ var render = function() {
                 [
                   _c(
                     "div",
-                    { staticClass: " d-inline-flex full-width" },
+                    { staticClass: " d-inline-flex" },
                     [
                       _c("v-text-field", {
                         attrs: {
                           readonly: _vm.stationReadonly,
                           outlined: _vm.stationOutlined,
+                          autofocus: "",
+                          "single-line": "",
                           label: _vm.stationLable(),
                           "prepend-icon": "faSvg fa-home"
                         },
@@ -27201,7 +27206,7 @@ var render = function() {
                     _vm.state == 2
                       ? _c(
                           "div",
-                          { staticClass: " d-lg-inline-flex" },
+                          { staticClass: " d-inline-flex" },
                           [
                             _c("v-autocomplete", {
                               attrs: {
@@ -27211,6 +27216,7 @@ var render = function() {
                                 autofocus: "",
                                 label: "System Name",
                                 outlined: "",
+                                "single-line": "",
                                 "prepend-inner-icon": "faSvg fa-home"
                               },
                               on: {
@@ -27236,7 +27242,7 @@ var render = function() {
                                 loading: _vm.tickLoading,
                                 items: _vm.tickItems,
                                 "search-input": _vm.tickSearch,
-                                autofocus: "",
+                                "single-line": "",
                                 label: "Corp Ticker",
                                 outlined: "",
                                 "prepend-inner-icon": "faSvg fa-home"

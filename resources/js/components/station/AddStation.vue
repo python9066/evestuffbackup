@@ -31,17 +31,19 @@
                     Enter Structure Details
                 </v-card-title>
                 <v-card-text>
-                    <div class=" d-inline-flex full-width">
+                    <div class=" d-inline-flex">
                         <v-text-field
                             v-model="stationNameEdit"
                             :readonly="stationReadonly"
                             :outlined="stationOutlined"
+                            autofocus
+                            single-line
                             :label="stationLable()"
                             prepend-icon="faSvg fa-home"
                         ></v-text-field>
                     </div>
                     <v-fade-transition>
-                        <div v-if="state == 2" class=" d-lg-inline-flex">
+                        <div v-if="state == 2" class=" d-inline-flex">
                             <v-autocomplete
                                 v-model="sysSelect"
                                 :loading="sysLoading"
@@ -50,6 +52,7 @@
                                 autofocus
                                 label="System Name"
                                 outlined
+                                single-line
                                 prepend-inner-icon="faSvg fa-home"
                             ></v-autocomplete>
                             <v-autocomplete
@@ -58,7 +61,7 @@
                                 :loading="tickLoading"
                                 :items="tickItems"
                                 :search-input.sync="tickSearch"
-                                autofocus
+                                single-line
                                 label="Corp Ticker"
                                 outlined
                                 prepend-inner-icon="faSvg fa-home"
