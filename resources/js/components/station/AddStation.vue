@@ -128,19 +128,19 @@
                         <div v-if="state == 3">
                             <div>
                                 <v-text-field
-                                    :placeholder="stationPull.structure_name"
+                                    v-model="stationPull.structure_name"
                                     label="Structure Type"
                                     readonly
                                 ></v-text-field>
                             </div>
                             <div class=" d-inline-flex justify-content-around">
                                 <v-text-field
-                                    :placeholder="stationPull.system_name"
+                                    v-model="stationPull.system_name"
                                     label="System Name"
                                     readonly
                                 ></v-text-field>
                                 <v-text-field
-                                    :placeholder="stationPull.corp_ticker"
+                                    v-model="stationPull.corp_ticker"
                                     label="Corp Ticker"
                                     readonly
                                 ></v-text-field>

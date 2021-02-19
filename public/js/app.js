@@ -27687,9 +27687,19 @@ var render = function() {
                             [
                               _c("v-text-field", {
                                 attrs: {
-                                  placeholder: _vm.stationPull.structure_name,
                                   label: "Structure Type",
                                   readonly: ""
+                                },
+                                model: {
+                                  value: _vm.stationPull.structure_name,
+                                  callback: function($$v) {
+                                    _vm.$set(
+                                      _vm.stationPull,
+                                      "structure_name",
+                                      $$v
+                                    )
+                                  },
+                                  expression: "stationPull.structure_name"
                                 }
                               })
                             ],
@@ -27704,18 +27714,32 @@ var render = function() {
                             },
                             [
                               _c("v-text-field", {
-                                attrs: {
-                                  placeholder: _vm.stationPull.system_name,
-                                  label: "System Name",
-                                  readonly: ""
+                                attrs: { label: "System Name", readonly: "" },
+                                model: {
+                                  value: _vm.stationPull.system_name,
+                                  callback: function($$v) {
+                                    _vm.$set(
+                                      _vm.stationPull,
+                                      "system_name",
+                                      $$v
+                                    )
+                                  },
+                                  expression: "stationPull.system_name"
                                 }
                               }),
                               _vm._v(" "),
                               _c("v-text-field", {
-                                attrs: {
-                                  placeholder: _vm.stationPull.corp_ticker,
-                                  label: "Corp Ticker",
-                                  readonly: ""
+                                attrs: { label: "Corp Ticker", readonly: "" },
+                                model: {
+                                  value: _vm.stationPull.corp_ticker,
+                                  callback: function($$v) {
+                                    _vm.$set(
+                                      _vm.stationPull,
+                                      "corp_ticker",
+                                      $$v
+                                    )
+                                  },
+                                  expression: "stationPull.corp_ticker"
                                 }
                               })
                             ],
