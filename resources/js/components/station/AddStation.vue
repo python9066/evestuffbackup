@@ -149,7 +149,7 @@ export default {
             this.tickLoading = true;
             // Simulated ajax query
             setTimeout(() => {
-                this.tickItems = this.ticktemList.filter(e => {
+                this.tickItems = this.tickList.filter(e => {
                     return (
                         (e.text || "")
                             .toLowerCase()

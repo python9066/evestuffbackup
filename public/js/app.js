@@ -9037,7 +9037,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       this.tickLoading = true; // Simulated ajax query
 
       setTimeout(function () {
-        _this.tickItems = _this.ticktemList.filter(function (e) {
+        _this.tickItems = _this.tickList.filter(function (e) {
           return (e.text || "").toLowerCase().indexOf((v || "").toLowerCase()) > -1;
         });
         _this.tickLoading = false;
