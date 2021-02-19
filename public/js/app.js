@@ -9003,10 +9003,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -27219,7 +27215,7 @@ var render = function() {
             [
               _c("v-card-title", { staticClass: "justify-center" }, [
                 _vm.state == 1
-                  ? _c("p", [_vm._v("Enter Structure Details")])
+                  ? _c("p", [_vm._v("Enter Structure Name")])
                   : _vm._e(),
                 _vm._v(" "),
                 _vm.state == 2
@@ -27251,8 +27247,7 @@ var render = function() {
                               readonly: _vm.stationReadonly,
                               outlined: _vm.stationOutlined,
                               autofocus: "",
-                              label: _vm.stationLable,
-                              "prepend-icon": "faSvg fa-home"
+                              label: _vm.stationLable
                             },
                             model: {
                               value: _vm.stationNameEdit,
@@ -27310,8 +27305,7 @@ var render = function() {
                                   "search-input": _vm.structSearch,
                                   autofocus: "",
                                   label: "Structure Type",
-                                  outlined: "",
-                                  "prepend-inner-icon": "faSvg fa-home"
+                                  outlined: ""
                                 },
                                 on: {
                                   "update:searchInput": function($event) {
@@ -27344,8 +27338,7 @@ var render = function() {
                                   "search-input": _vm.sysSearch,
                                   autofocus: "",
                                   label: "System Name",
-                                  outlined: "",
-                                  "prepend-inner-icon": "faSvg fa-home"
+                                  outlined: ""
                                 },
                                 on: {
                                   "update:searchInput": function($event) {
@@ -27371,8 +27364,7 @@ var render = function() {
                                   items: _vm.tickItems,
                                   "search-input": _vm.tickSearch,
                                   label: "Corp Ticker",
-                                  outlined: "",
-                                  "prepend-inner-icon": "faSvg fa-home"
+                                  outlined: ""
                                 },
                                 on: {
                                   "update:searchInput": function($event) {

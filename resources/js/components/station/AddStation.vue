@@ -28,7 +28,7 @@
                 class=" d-flex flex-column"
             >
                 <v-card-title class="justify-center">
-                    <p v-if="state == 1">Enter Structure Details</p>
+                    <p v-if="state == 1">Enter Structure Name</p>
                     <p v-if="state == 2">
                         Enter Details for {{ stationNameEdit }}
                     </p>
@@ -44,7 +44,6 @@
                             :outlined="stationOutlined"
                             autofocus
                             :label="stationLable"
-                            prepend-icon="faSvg fa-home"
                             class=" shrink"
                             style="width:600px"
                         ></v-text-field>
@@ -71,7 +70,6 @@
                                     autofocus
                                     label="Structure Type"
                                     outlined
-                                    prepend-inner-icon="faSvg fa-home"
                                 ></v-autocomplete>
                             </div>
                             <div class=" d-inline-flex">
@@ -83,7 +81,6 @@
                                     autofocus
                                     label="System Name"
                                     outlined
-                                    prepend-inner-icon="faSvg fa-home"
                                 ></v-autocomplete>
                                 <v-autocomplete
                                     class=" ml-2"
@@ -93,7 +90,6 @@
                                     :search-input.sync="tickSearch"
                                     label="Corp Ticker"
                                     outlined
-                                    prepend-inner-icon="faSvg fa-home"
                                 ></v-autocomplete>
                             </div>
                         </div>
