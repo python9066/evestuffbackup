@@ -68,12 +68,16 @@
                                 outlined
                                 prepend-icon="faSvg fa-home"
                             ></v-autocomplete>
-                            <v-text-field
-                                v-model="tickerEdit"
-                                outlined
+                            <v-autocomplete
+                                v-model="tickSelect"
+                                :loading="tickLoading"
+                                :items="tickItems"
+                                :search-input.sync="tickSearch"
+                                autofocus
                                 label="Corp Ticker"
+                                outlined
                                 prepend-icon="faSvg fa-home"
-                            ></v-text-field>
+                            ></v-autocomplete>
                             <v-chip
                                 pill
                                 class="ml-10"

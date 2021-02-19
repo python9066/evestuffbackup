@@ -8994,6 +8994,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -27208,18 +27212,30 @@ var render = function() {
                               }
                             }),
                             _vm._v(" "),
-                            _c("v-text-field", {
+                            _c("v-autocomplete", {
                               attrs: {
-                                outlined: "",
+                                loading: _vm.tickLoading,
+                                items: _vm.tickItems,
+                                "search-input": _vm.tickSearch,
+                                autofocus: "",
                                 label: "Corp Ticker",
+                                outlined: "",
                                 "prepend-icon": "faSvg fa-home"
                               },
-                              model: {
-                                value: _vm.tickerEdit,
-                                callback: function($$v) {
-                                  _vm.tickerEdit = $$v
+                              on: {
+                                "update:searchInput": function($event) {
+                                  _vm.tickSearch = $event
                                 },
-                                expression: "tickerEdit"
+                                "update:search-input": function($event) {
+                                  _vm.tickSearch = $event
+                                }
+                              },
+                              model: {
+                                value: _vm.tickSelect,
+                                callback: function($$v) {
+                                  _vm.tickSelect = $$v
+                                },
+                                expression: "tickSelect"
                               }
                             }),
                             _vm._v(" "),
