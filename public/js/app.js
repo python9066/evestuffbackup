@@ -9069,13 +9069,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee);
       }))();
     },
-    stationLable: function stationLable() {
-      if (this.state == 1) {
-        return "Enter FULL Structure Name here";
-      } else {
-        return "";
-      }
-    },
     stationNameAdd: function stationNameAdd() {
       var _this4 = this;
 
@@ -27186,7 +27179,7 @@ var render = function() {
                           outlined: _vm.stationOutlined,
                           autofocus: "",
                           "single-line": "",
-                          label: _vm.stationLable(),
+                          label: "Enter Full Structure Name",
                           "prepend-icon": "faSvg fa-home"
                         },
                         model: {

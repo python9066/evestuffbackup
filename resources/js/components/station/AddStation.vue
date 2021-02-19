@@ -38,7 +38,7 @@
                             :outlined="stationOutlined"
                             autofocus
                             single-line
-                            :label="stationLable()"
+                            label="Enter Full Structure Name"
                             prepend-icon="faSvg fa-home"
                         ></v-text-field>
                     </div>
@@ -170,14 +170,6 @@ export default {
         async open() {
             await this.$store.dispatch("getSystemList");
             await this.$store.dispatch("getTickList");
-        },
-
-        stationLable() {
-            if (this.state == 1) {
-                return "Enter FULL Structure Name here";
-            } else {
-                return "";
-            }
         },
 
         async stationNameAdd() {
