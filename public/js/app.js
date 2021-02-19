@@ -8981,10 +8981,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -27178,79 +27174,69 @@ var render = function() {
                       )
                     : _vm._e(),
                   _vm._v(" "),
-                  _c(
-                    "transition",
-                    {
-                      attrs: {
-                        name: "custom-classes-transition",
-                        "enter-active-class": "animated tada",
-                        "leave-active-class": "animated bounceOutRight"
-                      }
-                    },
-                    [
-                      _vm.state == 2
-                        ? _c(
-                            "div",
-                            [
-                              _c("v-autocomplete", {
-                                attrs: {
-                                  loading: _vm.sysLoading,
-                                  items: _vm.sysItems,
-                                  "search-input": _vm.sysSearch,
-                                  autofocus: "",
-                                  label: "System Name",
-                                  outlined: "",
-                                  "prepend-icon": "faSvg fa-home"
+                  _c("v-animated-css", [
+                    _vm.state == 2
+                      ? _c(
+                          "div",
+                          [
+                            _c("v-autocomplete", {
+                              attrs: {
+                                loading: _vm.sysLoading,
+                                items: _vm.sysItems,
+                                "search-input": _vm.sysSearch,
+                                autofocus: "",
+                                label: "System Name",
+                                outlined: "",
+                                "prepend-icon": "faSvg fa-home"
+                              },
+                              on: {
+                                "update:searchInput": function($event) {
+                                  _vm.sysSearch = $event
                                 },
-                                on: {
-                                  "update:searchInput": function($event) {
-                                    _vm.sysSearch = $event
-                                  },
-                                  "update:search-input": function($event) {
-                                    _vm.sysSearch = $event
-                                  }
-                                },
-                                model: {
-                                  value: _vm.sysSelect,
-                                  callback: function($$v) {
-                                    _vm.sysSelect = $$v
-                                  },
-                                  expression: "sysSelect"
+                                "update:search-input": function($event) {
+                                  _vm.sysSearch = $event
                                 }
-                              }),
-                              _vm._v(" "),
-                              _c("v-autocomplete", {
-                                attrs: {
-                                  loading: _vm.tickLoading,
-                                  items: _vm.tickItems,
-                                  "search-input": _vm.tickSearch,
-                                  autofocus: "",
-                                  label: "Corp Ticker",
-                                  outlined: "",
-                                  "prepend-icon": "faSvg fa-home"
+                              },
+                              model: {
+                                value: _vm.sysSelect,
+                                callback: function($$v) {
+                                  _vm.sysSelect = $$v
                                 },
-                                on: {
-                                  "update:searchInput": function($event) {
-                                    _vm.tickSearch = $event
-                                  },
-                                  "update:search-input": function($event) {
-                                    _vm.tickSearch = $event
-                                  }
+                                expression: "sysSelect"
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c("v-autocomplete", {
+                              attrs: {
+                                loading: _vm.tickLoading,
+                                items: _vm.tickItems,
+                                "search-input": _vm.tickSearch,
+                                autofocus: "",
+                                label: "Corp Ticker",
+                                outlined: "",
+                                "prepend-icon": "faSvg fa-home"
+                              },
+                              on: {
+                                "update:searchInput": function($event) {
+                                  _vm.tickSearch = $event
                                 },
-                                model: {
-                                  value: _vm.tickSelect,
-                                  callback: function($$v) {
-                                    _vm.tickSelect = $$v
-                                  },
-                                  expression: "tickSelect"
+                                "update:search-input": function($event) {
+                                  _vm.tickSearch = $event
                                 }
-                              })
-                            ],
-                            1
-                          )
-                        : _vm._e()
-                    ]
-                  ),
+                              },
+                              model: {
+                                value: _vm.tickSelect,
+                                callback: function($$v) {
+                                  _vm.tickSelect = $$v
+                                },
+                                expression: "tickSelect"
+                              }
+                            })
+                          ],
+                          1
+                        )
+                      : _vm._e()
+                  ]),
                   _vm._v(" "),
                   _c(
                     "v-chip",
@@ -35152,12 +35138,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_countdown_index__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./components/countdown/index */ "./resources/js/components/countdown/index.js");
 /* harmony import */ var v_mask__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! v-mask */ "./node_modules/v-mask/dist/v-mask.esm.js");
 /* harmony import */ var _mixins_Permissions_vue__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./mixins/Permissions.vue */ "./resources/js/mixins/Permissions.vue");
+/* harmony import */ var v_animate_css__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! v-animate-css */ "./node_modules/v-animate-css/index.js");
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
  * building robust, powerful web applications using Vue and Laravel.
  */
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js"); // window.Vue = require('vue');
+
 
 
 
@@ -35232,6 +35220,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.config.productionTip = false;
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component(_chenfengyuan_vue_countdown__WEBPACK_IMPORTED_MODULE_7___default.a.name, _chenfengyuan_vue_countdown__WEBPACK_IMPORTED_MODULE_7___default.a);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(v_mask__WEBPACK_IMPORTED_MODULE_15__["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.mixin(_mixins_Permissions_vue__WEBPACK_IMPORTED_MODULE_16__["default"]);
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(v_animate_css__WEBPACK_IMPORTED_MODULE_17__["default"]);
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
