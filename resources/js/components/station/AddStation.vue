@@ -62,9 +62,8 @@
                                 v-model="systemEdit"
                                 :items="systemList"
                                 autofocus
-                                label="Filled"
+                                label="System Name"
                                 outlined
-                                :filter="sysFilter"
                                 prepend-icon="faSvg fa-home"
                             ></v-autocomplete>
                             <v-text-field
@@ -121,12 +120,6 @@ export default {
     },
 
     methods: {
-        sysFilter(item, queryText, itemText) {
-            const text = item.name.toLowerCase();
-            const searchText = queryText.toLowerCase();
-            return text.indexOf(searchText) > -1;
-        },
-
         close() {
             this.showStationTimer = false;
         },
