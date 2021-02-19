@@ -168,6 +168,16 @@ class StationController extends Controller
                     'r_composite' => $stationdata['str_composite'],
                     'r_cored' => $stationdata['str_cored']
                 ]);
+                if ($stationdata['str_has_no_fitting'] != null) {
+                    $items = Utils::jsonDecode($stationdata['str_fitting'], true);
+                    foreach ($items as $item) {
+                        StationItems::where('id', $item['type_id'])->get()->count();
+                        if (StationItems::where('id', $item['type_id'])->get()->count() == 0) {
+                            StationItems::Create(['id' => $item['type_id'], 'item_name' => $item['name']]);
+                        }
+                        StationItemJoin::create(['station_item_id' => $item['type_id'], 'station_id' => $stationdata['str_structure_id']]);
+                    };
+                }
 
                 $corp = Corp::where('id', $stationdata['str_owner_corporation_id'])->first();
                 $item = Item::where('id', $stationdata['str_type_id'])->first();
