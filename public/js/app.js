@@ -9002,6 +9002,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -27302,6 +27305,7 @@ var render = function() {
                                   loading: _vm.structLoading,
                                   items: _vm.structItems,
                                   "search-input": _vm.structSearch,
+                                  clearable: "",
                                   autofocus: "",
                                   label: "Structure Type",
                                   outlined: ""
@@ -27333,6 +27337,7 @@ var render = function() {
                               _c("v-autocomplete", {
                                 attrs: {
                                   loading: _vm.sysLoading,
+                                  clearable: "",
                                   items: _vm.sysItems,
                                   "search-input": _vm.sysSearch,
                                   label: "System Name",
@@ -27359,6 +27364,7 @@ var render = function() {
                                 staticClass: " ml-2",
                                 attrs: {
                                   loading: _vm.tickLoading,
+                                  clearable: "",
                                   items: _vm.tickItems,
                                   "search-input": _vm.tickSearch,
                                   label: "Corp Ticker",

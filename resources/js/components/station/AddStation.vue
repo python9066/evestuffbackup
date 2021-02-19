@@ -67,6 +67,7 @@
                                     :loading="structLoading"
                                     :items="structItems"
                                     :search-input.sync="structSearch"
+                                    clearable
                                     autofocus
                                     label="Structure Type"
                                     outlined
@@ -76,6 +77,7 @@
                                 <v-autocomplete
                                     v-model="sysSelect"
                                     :loading="sysLoading"
+                                    clearable
                                     :items="sysItems"
                                     :search-input.sync="sysSearch"
                                     label="System Name"
@@ -85,6 +87,7 @@
                                     class=" ml-2"
                                     v-model="tickSelect"
                                     :loading="tickLoading"
+                                    clearable
                                     :items="tickItems"
                                     :search-input.sync="tickSearch"
                                     label="Corp Ticker"
