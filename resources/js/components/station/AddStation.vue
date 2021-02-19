@@ -39,6 +39,16 @@
                             :label="StationLable"
                             prepend-icon="faSvg fa-home"
                         ></v-text-field>
+                        <v-chip
+                            v-if="state == 1"
+                            pill
+                            class="ml-10"
+                            :disabled="stationNameNext"
+                            color="green"
+                            @click="stationNameAdd()"
+                        >
+                            Next
+                        </v-chip>
                     </div>
                     <v-fade-transition>
                         <div v-if="state == 2" class=" d-lg-inline-flex">
@@ -53,6 +63,7 @@
                                 prepend-inner-icon="faSvg fa-home"
                             ></v-autocomplete>
                             <v-autocomplete
+                                class=" ml-2"
                                 v-model="tickSelect"
                                 :loading="tickLoading"
                                 :items="tickItems"
@@ -64,15 +75,6 @@
                             ></v-autocomplete>
                         </div>
                     </v-fade-transition>
-                    <v-chip
-                        pill
-                        class="ml-10"
-                        :disabled="stationNameNext"
-                        color="green"
-                        @click="stationNameAdd()"
-                    >
-                        Next
-                    </v-chip>
                 </v-card-text>
                 <v-spacer></v-spacer
                 ><v-card-actions>

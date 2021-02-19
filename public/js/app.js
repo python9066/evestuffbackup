@@ -8982,6 +8982,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -27190,7 +27192,31 @@ var render = function() {
                           },
                           expression: "stationNameEdit"
                         }
-                      })
+                      }),
+                      _vm._v(" "),
+                      _vm.state == 1
+                        ? _c(
+                            "v-chip",
+                            {
+                              staticClass: "ml-10",
+                              attrs: {
+                                pill: "",
+                                disabled: _vm.stationNameNext,
+                                color: "green"
+                              },
+                              on: {
+                                click: function($event) {
+                                  return _vm.stationNameAdd()
+                                }
+                              }
+                            },
+                            [
+                              _vm._v(
+                                "\n                        Next\n                    "
+                              )
+                            ]
+                          )
+                        : _vm._e()
                     ],
                     1
                   ),
@@ -27229,6 +27255,7 @@ var render = function() {
                             }),
                             _vm._v(" "),
                             _c("v-autocomplete", {
+                              staticClass: " ml-2",
                               attrs: {
                                 loading: _vm.tickLoading,
                                 items: _vm.tickItems,
@@ -27258,25 +27285,7 @@ var render = function() {
                           1
                         )
                       : _vm._e()
-                  ]),
-                  _vm._v(" "),
-                  _c(
-                    "v-chip",
-                    {
-                      staticClass: "ml-10",
-                      attrs: {
-                        pill: "",
-                        disabled: _vm.stationNameNext,
-                        color: "green"
-                      },
-                      on: {
-                        click: function($event) {
-                          return _vm.stationNameAdd()
-                        }
-                      }
-                    },
-                    [_vm._v("\n                    Next\n                ")]
-                  )
+                  ])
                 ],
                 1
               ),
