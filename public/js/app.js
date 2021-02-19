@@ -9039,11 +9039,23 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         _this.tickLoading = false;
       }, 500);
     },
+    sysQuerySelections: function sysQuerySelections(v) {
+      var _this2 = this;
+
+      this.sysLoading = true; // Simulated ajax query
+
+      setTimeout(function () {
+        _this2.sysItems = _this2.systemList.filter(function (e) {
+          return (e.text || "").toLowerCase().indexOf((v || "").toLowerCase()) > -1;
+        });
+        _this2.sysLoading = false;
+      }, 500);
+    },
     close: function close() {
       this.showStationTimer = false;
     },
     open: function open() {
-      var _this2 = this;
+      var _this3 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
@@ -9051,11 +9063,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context.prev = _context.next) {
               case 0:
                 _context.next = 2;
-                return _this2.$store.dispatch("getSystemList");
+                return _this3.$store.dispatch("getSystemList");
 
               case 2:
                 _context.next = 4;
-                return _this2.$store.dispatch("getTickList");
+                return _this3.$store.dispatch("getTickList");
 
               case 4:
               case "end":
@@ -9066,7 +9078,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }))();
     },
     stationNameAdd: function stationNameAdd() {
-      var _this3 = this;
+      var _this4 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
         var request;
@@ -9075,7 +9087,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context2.prev = _context2.next) {
               case 0:
                 request = {
-                  stationName: _this3.stationNameEdit
+                  stationName: _this4.stationNameEdit
                 };
                 _context2.next = 3;
                 return axios({
@@ -9084,14 +9096,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   url: "api/stationname",
                   data: request,
                   headers: {
-                    Authorization: "Bearer " + _this3.$store.state.token,
+                    Authorization: "Bearer " + _this4.$store.state.token,
                     Accept: "application/json",
                     "Content-Type": "application/json"
                   }
                 }).then(function (response) {
                   var res = response.data;
-                  _this3.stationName = res.station_name;
-                  _this3.state = res.state;
+                  _this4.stationName = res.station_name;
+                  _this4.state = res.state;
                 });
 
               case 3:

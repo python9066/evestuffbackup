@@ -156,6 +156,21 @@ export default {
             }, 500);
         },
 
+        sysQuerySelections(v) {
+            this.sysLoading = true;
+            // Simulated ajax query
+            setTimeout(() => {
+                this.sysItems = this.systemList.filter(e => {
+                    return (
+                        (e.text || "")
+                            .toLowerCase()
+                            .indexOf((v || "").toLowerCase()) > -1
+                    );
+                });
+                this.sysLoading = false;
+            }, 500);
+        },
+
         close() {
             this.showStationTimer = false;
         },
