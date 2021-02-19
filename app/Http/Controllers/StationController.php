@@ -177,9 +177,9 @@ class StationController extends Controller
                     'state' => 3,
                     'station_name' => $stationdata['str_name'],
                     'system_name' => System::where('id', $stationdata['str_system_id'])->first()->pluck('system_name'),
-                    'alliance_name' => Alliance::where('id', $corp->id)->first()->plcuk('name'),
+                    'alliance_name' => Alliance::where('id', $corp->id)->first()->pluck('name'),
                     'corp_name' => $corp->name,
-                    'type' => Item::where('id', $stationdata['str_type_id'])->first()->plunk('item_name'),
+                    'type' => Item::where('id', $stationdata['str_type_id'])->first()->pluck('item_name'),
                 ];
             }
         } else {
