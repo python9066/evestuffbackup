@@ -27065,7 +27065,7 @@ var render = function() {
               _c(
                 "v-card-text",
                 [
-                  _c("v-fade-transition", { attrs: { mode: "out-in" } }, [
+                  _c("v-fade-transition", { attrs: { mode: "out" } }, [
                     _vm.state == 1
                       ? _c(
                           "div",

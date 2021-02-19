@@ -31,7 +31,7 @@
                     Enter Structure Details
                 </v-card-title>
                 <v-card-text>
-                    <v-fade-transition mode="out-in">
+                    <v-fade-transition mode="out">
                         <div v-if="state == 1">
                             <v-text-field
                                 v-model="stationNameEdit"
