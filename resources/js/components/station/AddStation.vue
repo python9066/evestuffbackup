@@ -39,8 +39,11 @@
                             prepend-icon="faSvg fa-home"
                         ></v-text-field>
                     </div>
-                    <div class="animate__animated animate__bounce">
-                        <div v-if="state == 2">
+                    <div>
+                        <div
+                            v-if="state == 2"
+                            class="animate__animated animate__bounce"
+                        >
                             <v-autocomplete
                                 v-model="sysSelect"
                                 :loading="sysLoading"
