@@ -9053,6 +9053,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return _this2.$store.dispatch("getSystemList");
 
               case 2:
+                _context.next = 4;
+                return _this2.$store.dispatch("getTickList");
+
+              case 4:
               case "end":
                 return _context.stop();
             }

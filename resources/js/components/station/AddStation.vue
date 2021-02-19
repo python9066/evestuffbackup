@@ -161,6 +161,7 @@ export default {
 
         async open() {
             await this.$store.dispatch("getSystemList");
+            await this.$store.dispatch("getTickList");
         },
 
         async stationNameAdd() {
