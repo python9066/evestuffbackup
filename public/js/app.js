@@ -9113,7 +9113,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         return true;
       }
     },
-    stationLable: function stationLable() {
+    StationLable: function StationLable() {
       if (this.state == 1) {
         return "Enter FULL Structure Name here";
       } else {
@@ -27173,7 +27173,7 @@ var render = function() {
                         attrs: {
                           readonly: _vm.stationReadonly,
                           outlined: _vm.stationOutlined,
-                          label: _vm.StationLable,
+                          label: _vm.stationLable,
                           "prepend-icon": "faSvg fa-home"
                         },
                         model: {

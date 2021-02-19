@@ -36,7 +36,7 @@
                             v-model="stationNameEdit"
                             :readonly="stationReadonly"
                             :outlined="stationOutlined"
-                            :label="StationLable"
+                            :label="stationLable"
                             prepend-icon="faSvg fa-home"
                         ></v-text-field>
                     </div>
@@ -205,7 +205,7 @@ export default {
             }
         },
 
-        stationLable() {
+        StationLable() {
             if (this.state == 1) {
                 return "Enter FULL Structure Name here";
             } else {
