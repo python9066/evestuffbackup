@@ -27164,7 +27164,7 @@ var render = function() {
                     [
                       _c("v-text-field", {
                         attrs: {
-                          readonly: _vm.stationReadonly(),
+                          readonly: _vm.stationReadonly,
                           outlined: "",
                           label: "Enter FULL Structure Name here",
                           "prepend-icon": "faSvg fa-home"

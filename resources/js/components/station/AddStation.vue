@@ -34,7 +34,7 @@
                     <div>
                         <v-text-field
                             v-model="stationNameEdit"
-                            :readonly="stationReadonly()"
+                            :readonly="stationReadonly"
                             outlined
                             label="Enter FULL Structure Name here"
                             prepend-icon="faSvg fa-home"
