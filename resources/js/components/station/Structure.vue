@@ -71,7 +71,10 @@
             </template>
             <template v-slot:item.count="{ item }">
                 <CountDowntimer
-                    v-if="item.station_status_id == 5"
+                    v-if="
+                        item.station_status_id == 5 ||
+                            item.station_status_id == 13
+                    "
                     :start-time="moment.utc(item.timestamp).unix()"
                     :end-text="'Coming Out'"
                     :interval="1000"

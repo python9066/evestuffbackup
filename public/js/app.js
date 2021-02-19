@@ -10560,6 +10560,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
 
 
 
@@ -29220,7 +29223,7 @@ var render = function() {
                 fn: function(ref) {
                   var item = ref.item
                   return [
-                    item.station_status_id == 5
+                    item.station_status_id == 5 || item.station_status_id == 13
                       ? _c("CountDowntimer", {
                           attrs: {
                             "start-time": _vm.moment.utc(item.timestamp).unix(),
