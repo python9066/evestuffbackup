@@ -46,6 +46,7 @@
                             :readonly="stationReadonly"
                             :outlined="stationOutlined"
                             autofocus
+                            placeholder="1DQ1-A - Thetastar of Dickbutt"
                             :label="stationLable"
                             class=" shrink"
                             style="width:600px"

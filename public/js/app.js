@@ -9098,6 +9098,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -27513,6 +27514,7 @@ var render = function() {
                               readonly: _vm.stationReadonly,
                               outlined: _vm.stationOutlined,
                               autofocus: "",
+                              placeholder: "1DQ1-A - Thetastar of Dickbutt",
                               label: _vm.stationLable
                             },
                             model: {
