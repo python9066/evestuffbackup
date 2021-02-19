@@ -10922,6 +10922,10 @@ function sleep(ms) {
           value: "system_name",
           width: "8%"
         }, {
+          text: "Alliance",
+          value: "color",
+          width: "8%"
+        }, {
           text: "Type",
           value: "item_name",
           width: "10%"
@@ -10968,6 +10972,10 @@ function sleep(ms) {
         }, {
           text: "System",
           value: "system_name",
+          width: "8%"
+        }, {
+          text: "Alliance",
+          value: "color",
           width: "8%"
         }, {
           text: "Type",

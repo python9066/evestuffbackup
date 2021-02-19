@@ -54,9 +54,12 @@ class CreateOrReplaceStationRecordsViewCommand extends Command
        station_statuses.name AS 'station_status_name',
        if(stations.out_time IS NULL,stations.timestamp, stations.out_time) AS 'timestamp',
        stations.text AS 'text',
-       stations.repair_time AS 'repair_time'
+       stations.repair_time AS 'repair_time',
+       if(corps.color > alliances.color, alliances.color, corps.color) AS 'color'
        FROM stations
        JOIN systems ON systems.id = stations.system_id
+       JOIN corps ON corps.id = stations.corp_id
+       JOIN alliances on alliances.id = corps.alliance_id
        JOIN constellations ON constellations.id = systems.constellation_id
        JOIN regions ON regions.id = systems.region_id
        JOIN items ON items.id = stations.item_id
