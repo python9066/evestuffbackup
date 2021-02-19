@@ -39,7 +39,7 @@
                             prepend-icon="faSvg fa-home"
                         ></v-text-field>
                     </div>
-                    <v-fade-transition>
+                    <v-transition name="fade">
                         <div v-if="state == 2">
                             <v-autocomplete
                                 v-model="sysSelect"
@@ -62,7 +62,7 @@
                                 prepend-icon="faSvg fa-home"
                             ></v-autocomplete>
                         </div>
-                    </v-fade-transition>
+                    </v-transition>
                     <v-chip
                         pill
                         class="ml-10"
