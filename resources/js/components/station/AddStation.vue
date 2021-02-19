@@ -41,7 +41,7 @@
                             prepend-icon="faSvg fa-home"
                         ></v-text-field>
                     </div>
-                    <v-fade-transition>
+                    <!-- <v-fade-transition>
                         <div v-if="state == 2" class=" d-inline-flex">
                             <v-autocomplete
                                 v-model="sysSelect"
@@ -66,7 +66,7 @@
                                 prepend-inner-icon="faSvg fa-home"
                             ></v-autocomplete>
                         </div>
-                    </v-fade-transition>
+                    </v-fade-transition> -->
                     <v-chip
                         v-if="state == 1"
                         pill
@@ -208,22 +208,6 @@ export default {
             return this.systemlist;
         },
 
-        stationReadonly() {
-            if (this.state == 1) {
-                return false;
-            } else {
-                return true;
-            }
-        },
-
-        stationOutlined() {
-            if (this.state == 1) {
-                return true;
-            } else {
-                return false;
-            }
-        },
-
         tickList() {
             return this.ticklist;
         }
@@ -233,12 +217,4 @@ export default {
 };
 </script>
 
-<style>
-.fade-enter-active,
-.fade-leave-active {
-    transition: opacity 0.5s;
-}
-.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
-    opacity: 0;
-}
-</style>
+<style></style>
