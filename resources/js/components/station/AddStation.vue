@@ -116,15 +116,32 @@ export default {
             showStationTimer: false,
             stationName: null,
             systemEdit: null,
-            tickerEdit: null
+            tickerEdit: null,
+            sysSelect: null,
+            sysLoading: false
         };
     },
 
+    watch: {
+        sysSearch(val) {
+            val && val !== this.sysSelect && this.sysQuerySelections(val);
+        }
+    },
+
     methods: {
-        sysFilter(item, queryText, itemText) {
-            return itemText
-                .toLocaleLowerCase()
-                .startsWith(queryText.toLocaleLowerCase());
+        sysQuerySelections(v) {
+            this.sysLoading = true;
+            // Simulated ajax query
+            setTimeout(() => {
+                this.sysItems = this.systemList.filter(e => {
+                    return (
+                        (e || "")
+                            .toLowerCase()
+                            .indexOf((v || "").toLowerCase()) > -1
+                    );
+                });
+                this.sysLoading = false;
+            }, 500);
         },
 
         close() {
