@@ -189,7 +189,7 @@
                     ><v-btn
                         class="white--text"
                         color="green"
-                        :disabled="showSubmit"
+                        :disabled="showSubmit3"
                         @click="submit3()"
                         v-if="state == 3"
                     >
@@ -497,8 +497,17 @@ export default {
             if (
                 this.structSelect != null &&
                 this.sysSelect != null &&
-                this.tickSelect != null
+                this.tickSelect != null &&
+                this.refType != null &&
+                this.refTime != null
             ) {
+                return false;
+            } else {
+                return true;
+            }
+        },
+        showSubmit3() {
+            if (this.refType != null && this.refTime != null) {
                 return false;
             } else {
                 return true;

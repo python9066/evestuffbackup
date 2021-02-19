@@ -9387,7 +9387,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }
     },
     showSubmit: function showSubmit() {
-      if (this.structSelect != null && this.sysSelect != null && this.tickSelect != null) {
+      if (this.structSelect != null && this.sysSelect != null && this.tickSelect != null && this.refType != null && this.refTime != null) {
+        return false;
+      } else {
+        return true;
+      }
+    },
+    showSubmit3: function showSubmit3() {
+      if (this.refType != null && this.refTime != null) {
         return false;
       } else {
         return true;
@@ -27941,7 +27948,7 @@ var render = function() {
                         "v-btn",
                         {
                           staticClass: "white--text",
-                          attrs: { color: "green", disabled: _vm.showSubmit },
+                          attrs: { color: "green", disabled: _vm.showSubmit3 },
                           on: {
                             click: function($event) {
                               return _vm.submit3()
