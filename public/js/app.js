@@ -9028,6 +9028,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -9212,6 +9213,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         return false;
       } else {
         return true;
+      }
+    },
+    showSubmit: function showSubmit() {
+      if (this.structSelect != null && this.sysSelect != null && this.tickSelect != null) {
+        return true;
+      } else {
+        return false;
       }
     },
     stationOutlined: function stationOutlined() {
@@ -27527,12 +27535,12 @@ var render = function() {
                     [_vm._v("\n                    Close\n                ")]
                   ),
                   _vm._v(" "),
-                  _vm.status == 2
+                  _vm.state == 2
                     ? _c(
                         "v-btn",
                         {
                           staticClass: "white--text",
-                          attrs: { color: "green" },
+                          attrs: { color: "green", disabled: _vm.showSubmit },
                           on: {
                             click: function($event) {
                               return _vm.submit()

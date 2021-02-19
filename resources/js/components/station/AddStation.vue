@@ -120,8 +120,9 @@
                     <v-btn
                         class="white--text"
                         color="green"
+                        :disabled="showSubmit"
                         @click="submit()"
-                        v-if="status == 2"
+                        v-if="state == 2"
                     >
                         Submit
                     </v-btn></v-card-actions
@@ -311,7 +312,17 @@ export default {
                 return true;
             }
         },
-
+        showSubmit() {
+            if (
+                this.structSelect != null &&
+                this.sysSelect != null &&
+                this.tickSelect != null
+            ) {
+                return true;
+            } else {
+                return false;
+            }
+        },
         stationOutlined() {
             if (this.state == 1) {
                 return true;
