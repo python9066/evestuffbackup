@@ -139,7 +139,7 @@ class StationController extends Controller
                 }
             } else {
 
-                Station::updateOrCreate(['id' => [$stationdata['str_structure_id']], [
+                Station::updateOrCreate(['id' => $stationdata['str_structure_id']], [
                     'name' => $stationdata['str_name'],
                     'system_id' => $stationdata['str_system_id'],
                     'corp_id' => $stationdata['str_owner_corporation_id'],
