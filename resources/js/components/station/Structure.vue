@@ -645,7 +645,7 @@ export default {
                     {
                         text: "Alliance",
                         value: "alliance_name",
-                        width: "8%"
+                        width: "15%"
                     },
                     {
                         text: "Type",
@@ -710,7 +710,7 @@ export default {
                     {
                         text: "Alliance",
                         value: "alliance_name",
-                        width: "8%"
+                        width: "15%"
                     },
                     {
                         text: "Type",
