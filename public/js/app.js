@@ -9047,7 +9047,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       structSearch: null,
       structSelect: null,
       structLoading: false,
-      structerEdit: null
+      structerEdit: null,
+      refTime: {
+        d: "",
+        hh: "",
+        mm: "",
+        ss: ""
+      }
     };
   },
   watch: {
@@ -27421,7 +27427,7 @@ var render = function() {
                                   }
                                 ],
                                 attrs: {
-                                  label: "Hack Time mm:ss",
+                                  label: "Ref Time mm:ss",
                                   autofocus: "",
                                   placeholder: "d:hh:mm:ss"
                                 },
@@ -27462,11 +27468,11 @@ var render = function() {
                                   ]
                                 },
                                 model: {
-                                  value: _vm.hackTime,
+                                  value: _vm.refTime,
                                   callback: function($$v) {
-                                    _vm.hackTime = $$v
+                                    _vm.refTime = $$v
                                   },
-                                  expression: "hackTime"
+                                  expression: "refTime"
                                 }
                               })
                             ],

@@ -96,8 +96,8 @@
                             </div>
                             <div>
                                 <v-text-field
-                                    v-model="hackTime"
-                                    label="Hack Time mm:ss"
+                                    v-model="refTime"
+                                    label="Ref Time mm:ss"
                                     v-mask="'#:##:##:##'"
                                     autofocus
                                     placeholder="d:hh:mm:ss"
@@ -158,7 +158,13 @@ export default {
             structSearch: null,
             structSelect: null,
             structLoading: false,
-            structerEdit: null
+            structerEdit: null,
+            refTime: {
+                d: "",
+                hh: "",
+                mm: "",
+                ss: ""
+            }
         };
     },
 
