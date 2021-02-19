@@ -49,6 +49,7 @@
                             pill
                             :disabled="stationNameNext"
                             color="green"
+                            class=" pl-2 pt-5"
                             @click="stationNameAdd()"
                         >
                             Next
