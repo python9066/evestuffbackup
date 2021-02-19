@@ -94,8 +94,8 @@
                                     outlined
                                 ></v-autocomplete>
                             </div>
-                            <div class=" d-flex">
-                                <p>Timer Type</p>
+                            <div>
+                                <h5>Timer Type</h5>
                                 <v-radio-group v-model="refType" row>
                                     <v-radio
                                         label="Anchoring"

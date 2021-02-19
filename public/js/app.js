@@ -27455,9 +27455,8 @@ var render = function() {
                           _vm._v(" "),
                           _c(
                             "div",
-                            { staticClass: " d-flex" },
                             [
-                              _c("p", [_vm._v("Timer Type")]),
+                              _c("h5", [_vm._v("Timer Type")]),
                               _vm._v(" "),
                               _c(
                                 "v-radio-group",
