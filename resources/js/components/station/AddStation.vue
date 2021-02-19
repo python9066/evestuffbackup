@@ -256,6 +256,9 @@ export default {
             this.refTime = null;
             this.stationName = null;
             this.stationNameEdit = null;
+            this.structItems = [];
+            this.structSearch = null;
+            this.structSelect = null;
         },
 
         async submit() {
