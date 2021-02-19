@@ -9128,6 +9128,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     close: function close() {
       this.stationNameEdit = null;
       this.showStationTimer = false;
+      this.refType = null;
+      this.refTime = null;
     },
     submit: function submit() {
       var _this4 = this;
