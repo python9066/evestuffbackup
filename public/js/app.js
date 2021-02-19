@@ -8981,7 +8981,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -27175,68 +27174,69 @@ var render = function() {
                       )
                     : _vm._e(),
                   _vm._v(" "),
-                  _vm.state == 2
-                    ? _c(
-                        "div",
-                        { staticClass: "animate__animated animate__bounce" },
-                        [
-                          _c("v-autocomplete", {
-                            attrs: {
-                              loading: _vm.sysLoading,
-                              items: _vm.sysItems,
-                              "search-input": _vm.sysSearch,
-                              autofocus: "",
-                              label: "System Name",
-                              outlined: "",
-                              "prepend-icon": "faSvg fa-home"
-                            },
-                            on: {
-                              "update:searchInput": function($event) {
-                                _vm.sysSearch = $event
+                  _c("v-fade-transition", [
+                    _vm.state == 2
+                      ? _c(
+                          "div",
+                          [
+                            _c("v-autocomplete", {
+                              attrs: {
+                                loading: _vm.sysLoading,
+                                items: _vm.sysItems,
+                                "search-input": _vm.sysSearch,
+                                autofocus: "",
+                                label: "System Name",
+                                outlined: "",
+                                "prepend-icon": "faSvg fa-home"
                               },
-                              "update:search-input": function($event) {
-                                _vm.sysSearch = $event
+                              on: {
+                                "update:searchInput": function($event) {
+                                  _vm.sysSearch = $event
+                                },
+                                "update:search-input": function($event) {
+                                  _vm.sysSearch = $event
+                                }
+                              },
+                              model: {
+                                value: _vm.sysSelect,
+                                callback: function($$v) {
+                                  _vm.sysSelect = $$v
+                                },
+                                expression: "sysSelect"
                               }
-                            },
-                            model: {
-                              value: _vm.sysSelect,
-                              callback: function($$v) {
-                                _vm.sysSelect = $$v
+                            }),
+                            _vm._v(" "),
+                            _c("v-autocomplete", {
+                              attrs: {
+                                loading: _vm.tickLoading,
+                                items: _vm.tickItems,
+                                "search-input": _vm.tickSearch,
+                                autofocus: "",
+                                label: "Corp Ticker",
+                                outlined: "",
+                                "prepend-icon": "faSvg fa-home"
                               },
-                              expression: "sysSelect"
-                            }
-                          }),
-                          _vm._v(" "),
-                          _c("v-autocomplete", {
-                            attrs: {
-                              loading: _vm.tickLoading,
-                              items: _vm.tickItems,
-                              "search-input": _vm.tickSearch,
-                              autofocus: "",
-                              label: "Corp Ticker",
-                              outlined: "",
-                              "prepend-icon": "faSvg fa-home"
-                            },
-                            on: {
-                              "update:searchInput": function($event) {
-                                _vm.tickSearch = $event
+                              on: {
+                                "update:searchInput": function($event) {
+                                  _vm.tickSearch = $event
+                                },
+                                "update:search-input": function($event) {
+                                  _vm.tickSearch = $event
+                                }
                               },
-                              "update:search-input": function($event) {
-                                _vm.tickSearch = $event
+                              model: {
+                                value: _vm.tickSelect,
+                                callback: function($$v) {
+                                  _vm.tickSelect = $$v
+                                },
+                                expression: "tickSelect"
                               }
-                            },
-                            model: {
-                              value: _vm.tickSelect,
-                              callback: function($$v) {
-                                _vm.tickSelect = $$v
-                              },
-                              expression: "tickSelect"
-                            }
-                          })
-                        ],
-                        1
-                      )
-                    : _vm._e(),
+                            })
+                          ],
+                          1
+                        )
+                      : _vm._e()
+                  ]),
                   _vm._v(" "),
                   _c(
                     "v-chip",
