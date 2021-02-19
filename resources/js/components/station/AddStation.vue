@@ -52,6 +52,7 @@
                                 outlined
                                 prepend-icon="faSvg fa-home"
                             ></v-autocomplete>
+                            -
                             <v-autocomplete
                                 v-model="tickSelect"
                                 :loading="tickLoading"
