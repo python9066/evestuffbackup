@@ -155,6 +155,7 @@ export default {
                 { text: "System", value: "system" },
                 { text: "Alliance", value: "alliance", width: "30%" },
                 { text: "Ticker", value: "ticker" },
+                { text: "Window", value: "window_station" },
                 { text: "Structure", value: "type" },
                 { text: "ADM", value: "adm" },
                 { text: "End", value: "end" },

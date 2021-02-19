@@ -16996,6 +16996,9 @@ function sleep(ms) {
         text: "Ticker",
         value: "ticker"
       }, {
+        text: "Window",
+        value: "window_station"
+      }, {
         text: "Structure",
         value: "type"
       }, {
