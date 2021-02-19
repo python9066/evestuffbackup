@@ -10923,7 +10923,7 @@ function sleep(ms) {
           width: "8%"
         }, {
           text: "Alliance",
-          value: "color",
+          value: "alliance_name",
           width: "8%"
         }, {
           text: "Type",
@@ -10975,7 +10975,7 @@ function sleep(ms) {
           width: "8%"
         }, {
           text: "Alliance",
-          value: "color",
+          value: "alliance_name",
           width: "8%"
         }, {
           text: "Type",

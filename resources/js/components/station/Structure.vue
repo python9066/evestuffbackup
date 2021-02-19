@@ -644,7 +644,7 @@ export default {
                     },
                     {
                         text: "Alliance",
-                        value: "color",
+                        value: "alliance_name",
                         width: "8%"
                     },
                     {
@@ -709,7 +709,7 @@ export default {
                     },
                     {
                         text: "Alliance",
-                        value: "color",
+                        value: "alliance_name",
                         width: "8%"
                     },
                     {
