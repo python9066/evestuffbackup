@@ -27199,6 +27199,7 @@ var render = function() {
                     _vm.state == 2
                       ? _c(
                           "div",
+                          { staticClass: " d-lg-inline-flex" },
                           [
                             _c("v-autocomplete", {
                               attrs: {

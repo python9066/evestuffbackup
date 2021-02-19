@@ -41,7 +41,7 @@
                         ></v-text-field>
                     </div>
                     <v-fade-transition>
-                        <div v-if="state == 2">
+                        <div v-if="state == 2" class=" d-lg-inline-flex">
                             <v-autocomplete
                                 v-model="sysSelect"
                                 :loading="sysLoading"
