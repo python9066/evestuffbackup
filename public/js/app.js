@@ -9182,7 +9182,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                     Accept: "application/json",
                     "Content-Type": "application/json"
                   }
-                }).then(_this4.showStationTimer = false, _this4.refTime = null, _this4.refType = null, _this4.state = 1, _this4.stationName = null, _this4.StationNameEdit = null, _this4.structItems = [], _this4.structSearch = null, _this4.structSelect = null, _this4.structerEdit = null, _this4.structtemEdit = null, _this4.sysItems = [], _this4.sysSearch = null, _this4.sysSelect = null, _this4.systemEdit = null, _this4.systems = [], _this4.tickItems = [], _this4.tickSearch = null, _this4.tickSelect = null, _this4.tickerEdit = null, _this4.ticktemEdit = null);
+                }).then(_this4.stationNameEdit = null, _this4.showStationTimer = false, _this4.refType = null, _this4.refTime = null, _this4.stationName = null, _this4.stationNameEdit = null, _this4.structItems = [], _this4.structSearch = null, _this4.structSelect = null, _this4.sysItems = [], _this4.sysSearch = null, _this4.sysSelect = null, _this4.systems = [], _this4.tickItems = [], _this4.tickSearch = null, _this4.tickSelect = null, _this4.state = 1, _this4.showStationTimer = false);
 
               case 12:
               case "end":
