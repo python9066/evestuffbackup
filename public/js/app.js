@@ -27174,7 +27174,7 @@ var render = function() {
                       )
                     : _vm._e(),
                   _vm._v(" "),
-                  _c("v-animated-css", [
+                  _c("v-fade-transition", [
                     _vm.state == 2
                       ? _c(
                           "div",
@@ -35138,14 +35138,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_countdown_index__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./components/countdown/index */ "./resources/js/components/countdown/index.js");
 /* harmony import */ var v_mask__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! v-mask */ "./node_modules/v-mask/dist/v-mask.esm.js");
 /* harmony import */ var _mixins_Permissions_vue__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./mixins/Permissions.vue */ "./resources/js/mixins/Permissions.vue");
-/* harmony import */ var v_animate_css__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! v-animate-css */ "./node_modules/v-animate-css/index.js");
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
  * building robust, powerful web applications using Vue and Laravel.
  */
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js"); // window.Vue = require('vue');
-
 
 
 
@@ -35220,7 +35218,6 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.config.productionTip = false;
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component(_chenfengyuan_vue_countdown__WEBPACK_IMPORTED_MODULE_7___default.a.name, _chenfengyuan_vue_countdown__WEBPACK_IMPORTED_MODULE_7___default.a);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(v_mask__WEBPACK_IMPORTED_MODULE_15__["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.mixin(_mixins_Permissions_vue__WEBPACK_IMPORTED_MODULE_16__["default"]);
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(v_animate_css__WEBPACK_IMPORTED_MODULE_17__["default"]);
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
