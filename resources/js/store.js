@@ -324,6 +324,7 @@ export default new Vuex.Store({
                     "Content-Type": "application/json"
                 }
             });
+            console.log(res)
             commit("SET_SYSTEMLIST", res.data.systemlist);
         },
 

@@ -39705,9 +39705,10 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
 
               case 3:
                 res = _context2.sent;
+                console.log(res);
                 commit("SET_SYSTEMLIST", res.data.systemlist);
 
-              case 5:
+              case 6:
               case "end":
                 return _context2.stop();
             }
