@@ -10803,11 +10803,11 @@ function sleep(ms) {
         return "#FF5EEA";
       }
 
-      if (statusId == 4 || statusId == 11) {
+      if (statusId == 4 || statusId == 11 || statusId == 13) {
         return "dark-orange";
       }
 
-      if (statusId == 5 || statusId == 13) {
+      if (statusId == 5) {
         return "indigo accent-4";
       }
 
@@ -10819,11 +10819,7 @@ function sleep(ms) {
         return "red";
       }
 
-      if (statusId == 8 || statusId == 12) {
-        return "warning";
-      }
-
-      if (statusId == 9) {
+      if (statusId == 8 || statusId == 12 || statusId == 9) {
         return "warning";
       }
     },

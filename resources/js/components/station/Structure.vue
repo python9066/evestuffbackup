@@ -505,10 +505,10 @@ export default {
             if (statusId == 3) {
                 return "#FF5EEA";
             }
-            if (statusId == 4 || statusId == 11) {
+            if (statusId == 4 || statusId == 11 || statusId == 13) {
                 return "dark-orange";
             }
-            if (statusId == 5 || statusId == 13) {
+            if (statusId == 5) {
                 return "indigo accent-4";
             }
             if (statusId == 6) {
@@ -517,10 +517,7 @@ export default {
             if (statusId == 7) {
                 return "red";
             }
-            if (statusId == 8 || statusId == 12) {
-                return "warning";
-            }
-            if (statusId == 9) {
+            if (statusId == 8 || statusId == 12 || statusId == 9) {
                 return "warning";
             }
         },
