@@ -9039,13 +9039,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         _this2.sysLoading = false;
       }, 500);
     },
-    stationReadonly: function stationReadonly() {
-      if (this.state == 1) {
-        return false;
-      } else {
-        return true;
-      }
-    },
     close: function close() {
       this.showStationTimer = false;
     },
@@ -9120,6 +9113,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
     systemList: function systemList() {
       return this.systemlist;
+    },
+    stationReadonly: function stationReadonly() {
+      if (this.state == 1) {
+        return false;
+      } else {
+        return true;
+      }
     },
     tickList: function tickList() {
       return this.ticklist;
@@ -27164,7 +27164,7 @@ var render = function() {
                     [
                       _c("v-text-field", {
                         attrs: {
-                          readonly: _vm.stationReadonly,
+                          readonly: _vm.stationReadonly(),
                           outlined: "",
                           label: "Enter FULL Structure Name here",
                           "prepend-icon": "faSvg fa-home"

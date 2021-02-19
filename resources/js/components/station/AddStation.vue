@@ -34,7 +34,7 @@
                     <div>
                         <v-text-field
                             v-model="stationNameEdit"
-                            :readonly="stationReadonly"
+                            :readonly="stationReadonly()"
                             outlined
                             label="Enter FULL Structure Name here"
                             prepend-icon="faSvg fa-home"
@@ -159,14 +159,6 @@ export default {
             }, 500);
         },
 
-        stationReadonly() {
-            if (this.state == 1) {
-                return false;
-            } else {
-                return true;
-            }
-        },
-
         close() {
             this.showStationTimer = false;
         },
@@ -211,6 +203,14 @@ export default {
 
         systemList() {
             return this.systemlist;
+        },
+
+        stationReadonly() {
+            if (this.state == 1) {
+                return false;
+            } else {
+                return true;
+            }
         },
 
         tickList() {
