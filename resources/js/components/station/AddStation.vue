@@ -34,13 +34,14 @@
                     <div>
                         <v-text-field
                             v-model="stationNameEdit"
-                            outlined
+                            :readonly="stationReadonly"
+                            :outlined="stationOutlined"
                             autofocus
-                            label="Enter Full Structure Name"
+                            :label="stationLable"
                             prepend-icon="faSvg fa-home"
                         ></v-text-field>
                     </div>
-                    <!-- <v-fade-transition>
+                    <v-fade-transition>
                         <div v-if="state == 2" class=" d-inline-flex">
                             <v-autocomplete
                                 v-model="sysSelect"
@@ -50,7 +51,6 @@
                                 autofocus
                                 label="System Name"
                                 outlined
-                                single-line
                                 prepend-inner-icon="faSvg fa-home"
                             ></v-autocomplete>
                             <v-autocomplete
@@ -59,13 +59,12 @@
                                 :loading="tickLoading"
                                 :items="tickItems"
                                 :search-input.sync="tickSearch"
-                                single-line
                                 label="Corp Ticker"
                                 outlined
                                 prepend-inner-icon="faSvg fa-home"
                             ></v-autocomplete>
                         </div>
-                    </v-fade-transition> -->
+                    </v-fade-transition>
                     <v-chip
                         v-if="state == 1"
                         pill
@@ -207,6 +206,30 @@ export default {
             return this.systemlist;
         },
 
+        stationReadonly() {
+            if (this.state == 1) {
+                return false;
+            } else {
+                return true;
+            }
+        },
+
+        stationOutlined() {
+            if (this.state == 1) {
+                return true;
+            } else {
+                return false;
+            }
+        },
+
+        stationLable() {
+            if (this.state == 1) {
+                return "Enter FULL Structure Name here";
+            } else {
+                return "";
+            }
+        },
+
         tickList() {
             return this.ticklist;
         }
@@ -216,4 +239,12 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.fade-enter-active,
+.fade-leave-active {
+    transition: opacity 0.5s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+    opacity: 0;
+}
+</style>
