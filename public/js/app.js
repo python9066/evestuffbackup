@@ -9135,6 +9135,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       this.structItems = [];
       this.structSearch = null;
       this.structSelect = null;
+      this.sysItems = [];
+      this.sysSearch = null;
+      this.sysSelect = null;
+      this.systems = [];
     },
     submit: function submit() {
       var _this4 = this;

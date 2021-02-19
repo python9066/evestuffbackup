@@ -259,6 +259,10 @@ export default {
             this.structItems = [];
             this.structSearch = null;
             this.structSelect = null;
+            this.sysItems = [];
+            this.sysSearch = null;
+            this.sysSelect = null;
+            this.systems = [];
         },
 
         async submit() {
