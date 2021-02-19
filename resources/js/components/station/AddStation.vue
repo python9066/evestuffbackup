@@ -98,7 +98,7 @@
                                 <v-text-field
                                     v-model="refTime"
                                     label="Ref Time mm:ss"
-                                    v-mask="'#:##:##:##'"
+                                    v-mask="'# days ##:h ##:m ##:s'"
                                     autofocus
                                     placeholder="d:hh:mm:ss"
                                     @keyup.enter="
