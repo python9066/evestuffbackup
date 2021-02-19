@@ -345,9 +345,16 @@ export default {
                 }
             }).then(response => {
                 let res = response.data;
-                this.stationPull = res;
-                this.stationName = res.station_name;
-                this.state = res.state;
+                if (res.state == 2) {
+                    this.stationPull = res;
+                    this.stationName = res.station_name;
+                    this.state = res.state;
+                }
+
+                if (res.state == 3) {
+                    this.stationPull = res;
+                    this.state = res.state;
+                }
             });
         }
     },

@@ -9244,9 +9244,17 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   }
                 }).then(function (response) {
                   var res = response.data;
-                  _this6.stationPull = res;
-                  _this6.stationName = res.station_name;
-                  _this6.state = res.state;
+
+                  if (res.state == 2) {
+                    _this6.stationPull = res;
+                    _this6.stationName = res.station_name;
+                    _this6.state = res.state;
+                  }
+
+                  if (res.state == 3) {
+                    _this6.stationPull = res;
+                    _this6.state = res.state;
+                  }
                 });
 
               case 3:

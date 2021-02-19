@@ -176,12 +176,13 @@ class StationController extends Controller
                 $data = [];
                 $data = [
                     'state' => 3,
+                    'station_id' => $stationdata['str_structure_id'],
                     'station_name' => $stationdata['str_name'],
+                    'structure_name' => Item::where('id', $stationdata['str_type_id'])->first()->pluck('item_name'),
                     'system_name' => System::where('id', $stationdata['str_system_id'])->first()->pluck('system_name'),
-                    'alliance_name' => Alliance::where('id', $corp->alliance_id)->first()->pluck('name'),
-                    'corp_name' => $corp->name,
-                    'type' => Item::where('id', $stationdata['str_type_id'])->first()->pluck('item_name'),
+                    'corp_ticker' => $corp->ticker,
                 ];
+                return $data;
             }
         } else {
             $stationCheck = station::where('name', $request->stationName)->first();
