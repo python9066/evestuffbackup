@@ -29124,7 +29124,7 @@ var render = function() {
         [
           _c("v-card-title", [_vm._v("Structures Notifications")]),
           _vm._v(" "),
-          _vm.$can("super") ? _c("AddStation") : _vm._e(),
+          _vm.$can("add_timer") ? _c("AddStation") : _vm._e(),
           _vm._v(" "),
           _c("v-text-field", {
             staticClass: " ml-5",
