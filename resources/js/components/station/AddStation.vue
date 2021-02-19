@@ -172,6 +172,7 @@ export default {
             tickSelect: null,
             tickLoading: false,
             tickerEdit: null,
+            stationPull: [],
             structItems: [],
             structtemEdit: null,
             structSearch: null,
@@ -284,7 +285,29 @@ export default {
                     Accept: "application/json",
                     "Content-Type": "application/json"
                 }
-            }).then((this.showStationTimer = false));
+            }).then(
+                (this.showStationTimer = false),
+                (this.refTime = null),
+                (this.refType = null),
+                (this.state = 1),
+                (this.stationName = null),
+                (this.StationNameEdit = null),
+                (this.structItems = []),
+                (this.structSearch = null),
+                (this.structSelect = null),
+                (this.structerEdit = null),
+                (this.structtemEdit = null),
+                (this.sysItems = []),
+                (this.sysSearch = null),
+                (this.sysSelect = null),
+                (this.systemEdit = null),
+                (this.systems = []),
+                (this.tickItems = []),
+                (this.tickSearch = null),
+                (this.tickSelect = null),
+                (this.tickerEdit = null),
+                (this.ticktemEdit = null)
+            );
         },
 
         async open() {
@@ -308,6 +331,7 @@ export default {
                 }
             }).then(response => {
                 let res = response.data;
+                this.stationPull = res;
                 this.stationName = res.station_name;
                 this.state = res.state;
             });

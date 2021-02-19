@@ -126,6 +126,10 @@ class StationController extends Controller
             if ($stationdata == "Error, Structure Not Found") {
                 $stationCheck = station::where('name', $request->stationName)->first();
                 if ($stationCheck != null) {
+                    $data = [
+                        'state' => 3,
+                        'id' => $stationCheck->id,
+                    ];
                 } else {
                     $data = [
                         'state' => 2,
