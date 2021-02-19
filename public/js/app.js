@@ -8988,6 +8988,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -27205,29 +27206,34 @@ var render = function() {
                         }
                       }),
                       _vm._v(" "),
-                      _vm.state == 1
-                        ? _c(
-                            "v-chip",
-                            {
-                              staticClass: " pl-2 pt-5",
-                              attrs: {
-                                pill: "",
-                                disabled: _vm.stationNameNext,
-                                color: "green"
-                              },
-                              on: {
-                                click: function($event) {
-                                  return _vm.stationNameAdd()
-                                }
-                              }
-                            },
-                            [
-                              _vm._v(
-                                "\n                        Next\n                    "
+                      _c(
+                        "div",
+                        [
+                          _vm.state == 1
+                            ? _c(
+                                "v-chip",
+                                {
+                                  attrs: {
+                                    pill: "",
+                                    disabled: _vm.stationNameNext,
+                                    color: "green"
+                                  },
+                                  on: {
+                                    click: function($event) {
+                                      return _vm.stationNameAdd()
+                                    }
+                                  }
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                            Next\n                        "
+                                  )
+                                ]
                               )
-                            ]
-                          )
-                        : _vm._e()
+                            : _vm._e()
+                        ],
+                        1
+                      )
                     ],
                     1
                   ),

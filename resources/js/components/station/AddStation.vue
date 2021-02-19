@@ -44,16 +44,17 @@
                             class=" shrink"
                             style="width:600px"
                         ></v-text-field>
-                        <v-chip
-                            v-if="state == 1"
-                            pill
-                            :disabled="stationNameNext"
-                            color="green"
-                            class=" pl-2 pt-5"
-                            @click="stationNameAdd()"
-                        >
-                            Next
-                        </v-chip>
+                        <div>
+                            <v-chip
+                                v-if="state == 1"
+                                pill
+                                :disabled="stationNameNext"
+                                color="green"
+                                @click="stationNameAdd()"
+                            >
+                                Next
+                            </v-chip>
+                        </div>
                     </div>
                     <v-fade-transition>
                         <div v-if="state == 2" class=" d-inline-flex">
