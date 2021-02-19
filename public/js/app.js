@@ -9018,7 +9018,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   watch: {
     search: function search(val) {
-      val && val !== this.select && this.querySelections(val);
+      val && val !== this.sysSelect && this.querySelections(val);
     }
   },
   methods: {

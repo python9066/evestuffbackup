@@ -129,7 +129,7 @@ export default {
     },
     watch: {
         search(val) {
-            val && val !== this.select && this.querySelections(val);
+            val && val !== this.sysSelect && this.querySelections(val);
         }
     },
 
