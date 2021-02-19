@@ -252,7 +252,7 @@ export default {
             this.showStationTimer = false;
         },
 
-        submit() {
+        async submit() {
             var d = parseInt(this.refTime.substr(0, 1));
             var h = parseInt(this.refTime.substr(3, 2));
             var m = parseInt(this.refTime.substr(6, 2));
@@ -274,6 +274,17 @@ export default {
                 station_status_id: this.refType,
                 out_time: outTime
             };
+
+            await axios({
+                method: "put", //you can set what request you want to be
+                url: "api/stationnew",
+                data: request,
+                headers: {
+                    Authorization: "Bearer " + this.$store.state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                }
+            }).then((this.showStationTimer = false));
         },
 
         async open() {

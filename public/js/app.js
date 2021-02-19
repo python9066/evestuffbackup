@@ -9128,44 +9128,45 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       this.showStationTimer = false;
     },
     submit: function submit() {
-      var d = parseInt(this.refTime.substr(0, 1));
-      var h = parseInt(this.refTime.substr(3, 2));
-      var m = parseInt(this.refTime.substr(6, 2));
-      var s = parseInt(this.refTime.substr(9, 2));
-      var ds = d * 24 * 60 * 60;
-      var hs = h * 60 * 60;
-      var ms = m * 60;
-      var sec = ds + hs + ms + s;
-      var outTime = moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc().add(sec, "seconds").format("YYYY-MM-DD HH:mm:ss");
-      var request = {
-        name: this.stationName,
-        system_id: this.sysSelect,
-        corp_id: this.tickSelect,
-        item_id: this.structSelect,
-        station_status_id: this.refType,
-        out_time: outTime
-      };
-    },
-    open: function open() {
       var _this4 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        var d, h, m, s, ds, hs, ms, sec, outTime, request;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                _context.next = 2;
-                return _this4.$store.dispatch("getSystemList");
+                d = parseInt(_this4.refTime.substr(0, 1));
+                h = parseInt(_this4.refTime.substr(3, 2));
+                m = parseInt(_this4.refTime.substr(6, 2));
+                s = parseInt(_this4.refTime.substr(9, 2));
+                ds = d * 24 * 60 * 60;
+                hs = h * 60 * 60;
+                ms = m * 60;
+                sec = ds + hs + ms + s;
+                outTime = moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc().add(sec, "seconds").format("YYYY-MM-DD HH:mm:ss");
+                request = {
+                  name: _this4.stationName,
+                  system_id: _this4.sysSelect,
+                  corp_id: _this4.tickSelect,
+                  item_id: _this4.structSelect,
+                  station_status_id: _this4.refType,
+                  out_time: outTime
+                };
+                _context.next = 12;
+                return axios({
+                  method: "put",
+                  //you can set what request you want to be
+                  url: "api/stationnew",
+                  data: request,
+                  headers: {
+                    Authorization: "Bearer " + _this4.$store.state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                  }
+                }).then(_this4.showStationTimer = false);
 
-              case 2:
-                _context.next = 4;
-                return _this4.$store.dispatch("getTickList");
-
-              case 4:
-                _context.next = 6;
-                return _this4.$store.dispatch("getStructureList");
-
-              case 6:
+              case 12:
               case "end":
                 return _context.stop();
             }
@@ -9173,41 +9174,68 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee);
       }))();
     },
-    stationNameAdd: function stationNameAdd() {
+    open: function open() {
       var _this5 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
-        var request;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
+                _context2.next = 2;
+                return _this5.$store.dispatch("getSystemList");
+
+              case 2:
+                _context2.next = 4;
+                return _this5.$store.dispatch("getTickList");
+
+              case 4:
+                _context2.next = 6;
+                return _this5.$store.dispatch("getStructureList");
+
+              case 6:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2);
+      }))();
+    },
+    stationNameAdd: function stationNameAdd() {
+      var _this6 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
+        var request;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
                 request = {
-                  stationName: _this5.stationNameEdit
+                  stationName: _this6.stationNameEdit
                 };
-                _context2.next = 3;
+                _context3.next = 3;
                 return axios({
                   method: "put",
                   //you can set what request you want to be
                   url: "api/stationname",
                   data: request,
                   headers: {
-                    Authorization: "Bearer " + _this5.$store.state.token,
+                    Authorization: "Bearer " + _this6.$store.state.token,
                     Accept: "application/json",
                     "Content-Type": "application/json"
                   }
                 }).then(function (response) {
                   var res = response.data;
-                  _this5.stationName = res.station_name;
-                  _this5.state = res.state;
+                  _this6.stationName = res.station_name;
+                  _this6.state = res.state;
                 });
 
               case 3:
               case "end":
-                return _context2.stop();
+                return _context3.stop();
             }
           }
-        }, _callee2);
+        }, _callee3);
       }))();
     }
   },
