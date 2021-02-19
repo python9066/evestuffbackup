@@ -33,6 +33,7 @@
         "@chenfengyuan/vue-countdown": "^1.1.5",
         "@fortawesome/free-brands-svg-icons": "^5.15.2",
         "@fortawesome/free-regular-svg-icons": "^5.15.2",
+        "animate.css": "^4.1.1",
         "easy-circular-progress": "^1.0.4",
         "laravel-echo": "^1.10.0",
         "moment": "^2.29.1",

@@ -8981,6 +8981,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -27176,7 +27180,13 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "v-transition",
-                    { attrs: { name: "fade", mode: "out-in" } },
+                    {
+                      attrs: {
+                        name: "custom-classes-transition",
+                        "enter-active-class": "animated tada",
+                        "leave-active-class": "animated bounceOutRight"
+                      }
+                    },
                     [
                       _vm.state == 2
                         ? _c(
