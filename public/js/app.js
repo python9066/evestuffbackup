@@ -9026,7 +9026,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
       setTimeout(function () {
         _this.sysItems = _this.systemList.filter(function (e) {
-          return (e || "").toLowerCase().indexOf((v || "").toLowerCase()) > -1;
+          return (e.text || "").toLowerCase().indexOf((v || "").toLowerCase()) > -1;
         });
         _this.sysLoading = false;
       }, 500);

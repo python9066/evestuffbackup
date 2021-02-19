@@ -138,7 +138,7 @@ export default {
             setTimeout(() => {
                 this.sysItems = this.systemList.filter(e => {
                     return (
-                        (e || "")
+                        (e.text || "")
                             .toLowerCase()
                             .indexOf((v || "").toLowerCase()) > -1
                     );
