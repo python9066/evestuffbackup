@@ -27685,7 +27685,7 @@ var render = function() {
                           _c(
                             "div",
                             [
-                              _c("v-autocomplete", {
+                              _c("v-text-field", {
                                 attrs: {
                                   placeholder: _vm.stationPull.structure_name,
                                   label: "Structure Type",
@@ -27703,7 +27703,7 @@ var render = function() {
                                 " d-inline-flex justify-content-around"
                             },
                             [
-                              _c("v-autocomplete", {
+                              _c("v-text-field", {
                                 attrs: {
                                   placeholder: _vm.stationPull.system_name,
                                   label: "System Name",
@@ -27711,7 +27711,7 @@ var render = function() {
                                 }
                               }),
                               _vm._v(" "),
-                              _c("v-autocomplete", {
+                              _c("v-text-field", {
                                 attrs: {
                                   placeholder: _vm.stationPull.corp_ticker,
                                   label: "Corp Ticker",

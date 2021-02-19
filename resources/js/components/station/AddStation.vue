@@ -127,23 +127,23 @@
                     <v-fade-transition>
                         <div v-if="state == 3">
                             <div>
-                                <v-autocomplete
+                                <v-text-field
                                     :placeholder="stationPull.structure_name"
                                     label="Structure Type"
                                     readonly
-                                ></v-autocomplete>
+                                ></v-text-field>
                             </div>
                             <div class=" d-inline-flex justify-content-around">
-                                <v-autocomplete
+                                <v-text-field
                                     :placeholder="stationPull.system_name"
                                     label="System Name"
                                     readonly
-                                ></v-autocomplete>
-                                <v-autocomplete
+                                ></v-text-field>
+                                <v-text-field
                                     :placeholder="stationPull.corp_ticker"
                                     label="Corp Ticker"
                                     readonly
-                                ></v-autocomplete>
+                                ></v-text-field>
                             </div>
                             <div>
                                 <h5><strong>Timer Type</strong></h5>

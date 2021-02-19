@@ -170,13 +170,15 @@ class StationController extends Controller
                 ]);
 
                 $corp = Corp::where('id', $stationdata['str_owner_corporation_id'])->first();
+                $item = Item::where('id', $stationdata['str_type_id'])->first();
+                $system = System::where('id', $stationdata['str_system_id'])->first();
                 $data = [];
                 $data = [
                     'state' => 3,
                     'station_id' => $stationdata['str_structure_id'],
                     'station_name' => $stationdata['str_name'],
-                    'structure_name' => Item::where('id', $stationdata['str_type_id'])->select('item_name')->first(),
-                    'system_name' => System::where('id', $stationdata['str_system_id'])->select('system_name')->first(),
+                    'structure_name' => $item->item_name,
+                    'system_name' => $system->system_name,
                     'corp_ticker' => $corp->ticker,
                 ];
                 return $data;
