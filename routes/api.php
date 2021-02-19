@@ -136,4 +136,5 @@ Route::middleware('auth:api')->group(function () {
     Route::get('/systemlist', 'SystemController@index');
     Route::get('/ticklist', 'CorpController@index');
     Route::put('/stationname', 'StationController@reconPullbyname');
+    Route::get('/structurelist', 'ItemController@index');
 });

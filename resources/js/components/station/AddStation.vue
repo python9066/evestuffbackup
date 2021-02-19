@@ -173,6 +173,7 @@ export default {
         async open() {
             await this.$store.dispatch("getSystemList");
             await this.$store.dispatch("getTickList");
+            await this.$store.dispatch("getStructureList");
         },
 
         async stationNameAdd() {
@@ -198,7 +199,7 @@ export default {
 
     computed: {
         ...mapGetters([]),
-        ...mapState(["systemlist", "ticklist"]),
+        ...mapState(["systemlist", "ticklist", "structureList"]),
 
         stationNameNext() {
             if (this.stationNameEdit == null) {
@@ -226,6 +227,10 @@ export default {
             } else {
                 return false;
             }
+        },
+
+        structureList() {
+            return this.structureList;
         },
 
         stationLable() {

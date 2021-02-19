@@ -32,6 +32,7 @@ export default new Vuex.Store({
         rolesList:[],
         stations: [],
         stationFits: [],
+        structureList:[],
         systemlist: [],
         ticklist:[],
         timers: [],
@@ -45,6 +46,10 @@ export default new Vuex.Store({
     mutations: {
         SET_SYSTEMLIST(state, systemlist) {
             state.systemlist = systemlist;
+        },
+
+        SET_STRUCTURELIST(state, structurelist) {
+            state.structureList = structurelist;
         },
 
         SET_TICKLIST(state, ticklist) {
@@ -331,6 +336,23 @@ export default new Vuex.Store({
             });
             commit("SET_SYSTEMLIST", res.data.systemlist);
         },
+
+        async getStructureList({ commit, state }) {
+            let res = await axios({
+                method: "get",
+                url: "/api/structurelist",
+                headers: {
+                    Authorization: "Bearer " + state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                }
+            });
+            commit("SET_STRUCTURELIST", res.data.structurelist);
+        },
+
+
+
+
 
         async getTickList({ commit, state }) {
             let res = await axios({
