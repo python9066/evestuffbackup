@@ -263,6 +263,11 @@ export default {
             this.sysSearch = null;
             this.sysSelect = null;
             this.systems = [];
+            this.tickItems = [];
+            this.tickSearch = null;
+            this.tickSelect = null;
+            this.state = 1;
+            this.showStationTimer = false;
         },
 
         async submit() {

@@ -9139,6 +9139,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       this.sysSearch = null;
       this.sysSelect = null;
       this.systems = [];
+      this.tickItems = [];
+      this.tickSearch = null;
+      this.tickSelect = null;
+      this.state = 1;
+      this.showStationTimer = false;
     },
     submit: function submit() {
       var _this4 = this;
