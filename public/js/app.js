@@ -35016,12 +35016,12 @@ var render = function() {
               }
             },
             {
-              key: "item.window_status",
+              key: "item.window_station",
               fn: function(ref) {
                 var item = ref.item
                 return [
                   _c("span", { staticClass: " green--text" }, [
-                    _vm._v(_vm._s(item.window_status) + " ")
+                    _vm._v(_vm._s(item.window_station) + " ")
                   ])
                 ]
               }
