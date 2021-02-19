@@ -51,7 +51,7 @@
                         </div>
                     </v-fade-transition>
 
-                    <v-fade-transition mode="out-in">
+                    <v-fade-transition mode="in-out">
                         <div v-if="state == 2">
                             <v-text-field
                                 v-model="stationName"

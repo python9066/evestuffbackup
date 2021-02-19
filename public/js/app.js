@@ -27166,7 +27166,7 @@ var render = function() {
                       : _vm._e()
                   ]),
                   _vm._v(" "),
-                  _c("v-fade-transition", { attrs: { mode: "out-in" } }, [
+                  _c("v-fade-transition", { attrs: { mode: "in-out" } }, [
                     _vm.state == 2
                       ? _c(
                           "div",
