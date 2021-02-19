@@ -9121,6 +9121,20 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         return true;
       }
     },
+    stationLable: function stationLable() {
+      if (this.state == 1) {
+        return "Enter FULL Structure Name here";
+      } else {
+        return "";
+      }
+    },
+    stationOutlined: function stationOutlined() {
+      if (this.state == 1) {
+        return true;
+      } else {
+        return false;
+      }
+    },
     tickList: function tickList() {
       return this.ticklist;
     }
@@ -27165,8 +27179,8 @@ var render = function() {
                       _c("v-text-field", {
                         attrs: {
                           readonly: _vm.stationReadonly,
-                          outlined: "",
-                          label: "Enter FULL Structure Name here",
+                          outlined: _vm.stationOutlined,
+                          label: _vm.StationLable,
                           "prepend-icon": "faSvg fa-home"
                         },
                         model: {
