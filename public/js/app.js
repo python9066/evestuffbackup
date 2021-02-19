@@ -9076,9 +9076,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }
     },
     systemList: function systemList() {
+      var _this3 = this;
+
       var list = this.systemlist;
       return list.filter(function (list) {
-        return list.text == systemEdit;
+        return list.text == _this3.systemEdit;
       });
     }
   }),
