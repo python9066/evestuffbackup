@@ -88,7 +88,7 @@ class ItemController extends Controller
             return $data;
         });
 
-        dd($list);
+        dd(['structurelist' => $list]);
     }
 
     /**
