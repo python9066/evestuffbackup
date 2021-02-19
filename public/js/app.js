@@ -27507,15 +27507,15 @@ var render = function() {
                                 },
                                 [
                                   _c("v-radio", {
-                                    attrs: { label: "Anchoring", value: "1" }
+                                    attrs: { label: "Anchoring", value: "14" }
                                   }),
                                   _vm._v(" "),
                                   _c("v-radio", {
-                                    attrs: { label: "Armor", value: "2" }
+                                    attrs: { label: "Armor", value: "5" }
                                   }),
                                   _vm._v(" "),
                                   _c("v-radio", {
-                                    attrs: { label: "Hull", value: "3" }
+                                    attrs: { label: "Hull", value: "13" }
                                   })
                                 ],
                                 1

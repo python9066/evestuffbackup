@@ -124,11 +124,15 @@ class StationController extends Controller
         $stationdata = Utils::jsonDecode($response->getBody(), true);
         if ($response->getStatusCode() == 200) {
             if ($stationdata == "Error, Structure Not Found") {
-                $data = [
-                    'state' => 2,
-                    'station_name' => $request->stationName
-                ];
-                return $data;
+                $stationCheck = station::where('name', $request->stationName)->first();
+                if ($stationCheck != null) {
+                } else {
+                    $data = [
+                        'state' => 2,
+                        'station_name' => $request->stationName
+                    ];
+                    return $data;
+                }
             } else {
 
                 Station::updateOrCreate([$stationdata['str_structure_id']], [
@@ -175,11 +179,15 @@ class StationController extends Controller
                 ];
             }
         } else {
-            $data = [
-                'state' => 2,
-                'station_name' => $request->stationName
-            ];
-            return $data;
+            $stationCheck = station::where('name', $request->stationName)->first();
+            if ($stationCheck != null) {
+            } else {
+                $data = [
+                    'state' => 2,
+                    'station_name' => $request->stationName
+                ];
+                return $data;
+            }
         };
     }
 
