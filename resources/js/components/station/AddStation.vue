@@ -116,6 +116,9 @@
                 ><v-card-actions>
                     <v-btn class="white--text" color="teal" @click="close()">
                         Close
+                    </v-btn>
+                    <v-btn class="white--text" color="green" @click="submit()">
+                        Submit
                     </v-btn></v-card-actions
                 >
             </v-card>
@@ -230,6 +233,27 @@ export default {
 
         close() {
             this.showStationTimer = false;
+        },
+
+        submit() {
+            var d = parseInt(this.refTime.substr(0, 1));
+            var h = parseInt(this.refTime.substr(0, 1));
+            var m = parseInt(this.refTime.substr(0, 1));
+            var s = parseInt(this.refTime.substr(0, 1));
+            console.log(d);
+            console.log(h);
+            console.log(m);
+            console.log(s);
+            var ds = d * 24 * 60 * 60;
+            var hs = h * 60 * 60;
+            var ms = m * 60;
+            var sec = ds + hs + ms + s;
+            var finishtime = moment
+                .utc()
+                .add(sec, "seconds")
+                .format("YYYY-MM-DD HH:mm:ss");
+
+            console.log(finishtime);
         },
 
         async open() {

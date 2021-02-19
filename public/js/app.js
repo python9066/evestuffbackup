@@ -9020,6 +9020,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -9106,6 +9109,22 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
     close: function close() {
       this.showStationTimer = false;
+    },
+    submit: function submit() {
+      var d = parseInt(this.refTime.substr(0, 1));
+      var h = parseInt(this.refTime.substr(0, 1));
+      var m = parseInt(this.refTime.substr(0, 1));
+      var s = parseInt(this.refTime.substr(0, 1));
+      console.log(d);
+      console.log(h);
+      console.log(m);
+      console.log(s);
+      var ds = d * 24 * 60 * 60;
+      var hs = h * 60 * 60;
+      var ms = m * 60;
+      var sec = ds + hs + ms + s;
+      var finishtime = moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc().add(sec, "seconds").format("YYYY-MM-DD HH:mm:ss");
+      console.log(finishtime);
     },
     open: function open() {
       var _this4 = this;
@@ -27501,6 +27520,20 @@ var render = function() {
                       }
                     },
                     [_vm._v("\n                    Close\n                ")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-btn",
+                    {
+                      staticClass: "white--text",
+                      attrs: { color: "green" },
+                      on: {
+                        click: function($event) {
+                          return _vm.submit()
+                        }
+                      }
+                    },
+                    [_vm._v("\n                    Submit\n                ")]
                   )
                 ],
                 1
