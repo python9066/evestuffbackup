@@ -97,7 +97,7 @@
                             <div>
                                 <v-text-field
                                     v-model="refTime"
-                                    label="Ref Time mm:ss"
+                                    label="Ref Time d hh:mm:ss"
                                     v-mask="'# day/s ##:##:##'"
                                     autofocus
                                     placeholder="d:hh:mm:ss"

@@ -27427,7 +27427,7 @@ var render = function() {
                                   }
                                 ],
                                 attrs: {
-                                  label: "Ref Time mm:ss",
+                                  label: "Ref Time d hh:mm:ss",
                                   autofocus: "",
                                   placeholder: "d:hh:mm:ss"
                                 },
