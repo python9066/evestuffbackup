@@ -8983,6 +8983,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -27179,6 +27180,7 @@ var render = function() {
                     { staticClass: " d-inline-flex" },
                     [
                       _c("v-text-field", {
+                        staticClass: " shrink",
                         attrs: {
                           readonly: _vm.stationReadonly,
                           outlined: _vm.stationOutlined,

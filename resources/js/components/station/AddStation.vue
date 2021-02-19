@@ -39,6 +39,7 @@
                             autofocus
                             :label="stationLable"
                             prepend-icon="faSvg fa-home"
+                            class=" shrink"
                         ></v-text-field>
                         <v-chip
                             v-if="state == 1"
