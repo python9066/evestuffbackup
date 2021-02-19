@@ -9003,6 +9003,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -27214,72 +27218,84 @@ var render = function() {
             },
             [
               _c("v-card-title", { staticClass: "justify-center" }, [
-                _vm._v(
-                  "\n                Enter Structure Details\n            "
-                )
+                _vm.state == 1
+                  ? _c("p", [_vm._v("Enter Structure Details")])
+                  : _vm._e(),
+                _vm._v(" "),
+                _vm.state == 2
+                  ? _c("p", [
+                      _vm._v(
+                        "\n                    Enter Details for " +
+                          _vm._s(_vm.stationNameEdit) +
+                          "\n                "
+                      )
+                    ])
+                  : _vm._e()
               ]),
               _vm._v(" "),
               _c(
                 "v-card-text",
                 [
-                  _c(
-                    "div",
-                    {
-                      staticClass:
-                        " d-inline-flex align-content-center justify-content-around"
-                    },
-                    [
-                      _c("v-text-field", {
-                        staticClass: " shrink",
-                        staticStyle: { width: "600px" },
-                        attrs: {
-                          readonly: _vm.stationReadonly,
-                          outlined: _vm.stationOutlined,
-                          autofocus: "",
-                          label: _vm.stationLable,
-                          "prepend-icon": "faSvg fa-home"
-                        },
-                        model: {
-                          value: _vm.stationNameEdit,
-                          callback: function($$v) {
-                            _vm.stationNameEdit = $$v
-                          },
-                          expression: "stationNameEdit"
-                        }
-                      }),
-                      _vm._v(" "),
-                      _c(
+                  _vm.state == 1
+                    ? _c(
                         "div",
-                        { staticClass: " pl-2 pt-2" },
+                        {
+                          staticClass:
+                            " d-inline-flex align-content-center justify-content-around"
+                        },
                         [
-                          _vm.state == 1
-                            ? _c(
-                                "v-chip",
-                                {
-                                  attrs: {
-                                    pill: "",
-                                    disabled: _vm.stationNameNext,
-                                    color: "green"
-                                  },
-                                  on: {
-                                    click: function($event) {
-                                      return _vm.stationNameAdd()
-                                    }
-                                  }
-                                },
-                                [
-                                  _vm._v(
-                                    "\n                            Next\n                        "
+                          _c("v-text-field", {
+                            staticClass: " shrink",
+                            staticStyle: { width: "600px" },
+                            attrs: {
+                              readonly: _vm.stationReadonly,
+                              outlined: _vm.stationOutlined,
+                              autofocus: "",
+                              label: _vm.stationLable,
+                              "prepend-icon": "faSvg fa-home"
+                            },
+                            model: {
+                              value: _vm.stationNameEdit,
+                              callback: function($$v) {
+                                _vm.stationNameEdit = $$v
+                              },
+                              expression: "stationNameEdit"
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c(
+                            "div",
+                            { staticClass: " pl-2 pt-2" },
+                            [
+                              _vm.state == 1
+                                ? _c(
+                                    "v-chip",
+                                    {
+                                      attrs: {
+                                        pill: "",
+                                        disabled: _vm.stationNameNext,
+                                        color: "green"
+                                      },
+                                      on: {
+                                        click: function($event) {
+                                          return _vm.stationNameAdd()
+                                        }
+                                      }
+                                    },
+                                    [
+                                      _vm._v(
+                                        "\n                            Next\n                        "
+                                      )
+                                    ]
                                   )
-                                ]
-                              )
-                            : _vm._e()
+                                : _vm._e()
+                            ],
+                            1
+                          )
                         ],
                         1
                       )
-                    ],
-                    1
-                  ),
+                    : _vm._e(),
                   _vm._v(" "),
                   _c("v-fade-transition", [
                     _vm.state == 2

@@ -28,11 +28,15 @@
                 class=" d-flex flex-column"
             >
                 <v-card-title class="justify-center">
-                    Enter Structure Details
+                    <p v-if="state == 1">Enter Structure Details</p>
+                    <p v-if="state == 2">
+                        Enter Details for {{ stationNameEdit }}
+                    </p>
                 </v-card-title>
                 <v-card-text>
                     <div
                         class=" d-inline-flex align-content-center justify-content-around"
+                        v-if="state == 1"
                     >
                         <v-text-field
                             v-model="stationNameEdit"
