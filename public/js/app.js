@@ -8974,15 +8974,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -27192,30 +27183,7 @@ var render = function() {
                           },
                           expression: "stationNameEdit"
                         }
-                      }),
-                      _vm._v(" "),
-                      _vm.state == 1
-                        ? _c(
-                            "v-chip",
-                            {
-                              attrs: {
-                                pill: "",
-                                disabled: _vm.stationNameNext,
-                                color: "green"
-                              },
-                              on: {
-                                click: function($event) {
-                                  return _vm.stationNameAdd()
-                                }
-                              }
-                            },
-                            [
-                              _vm._v(
-                                "\n                        Next\n                    "
-                              )
-                            ]
-                          )
-                        : _vm._e()
+                      })
                     ],
                     1
                   ),

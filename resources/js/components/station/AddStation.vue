@@ -39,15 +39,6 @@
                             :label="StationLable"
                             prepend-icon="faSvg fa-home"
                         ></v-text-field>
-                        <v-chip
-                            v-if="state == 1"
-                            pill
-                            :disabled="stationNameNext"
-                            color="green"
-                            @click="stationNameAdd()"
-                        >
-                            Next
-                        </v-chip>
                     </div>
                     <v-fade-transition>
                         <div v-if="state == 2" class=" d-lg-inline-flex">
