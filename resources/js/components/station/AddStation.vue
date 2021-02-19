@@ -33,7 +33,6 @@
                 <v-card-text>
                     <div class=" d-inline-flex">
                         <v-text-field
-                            full-width
                             v-model="stationNameEdit"
                             :readonly="stationReadonly"
                             :outlined="stationOutlined"
@@ -43,7 +42,6 @@
                         <v-chip
                             v-if="state == 1"
                             pill
-                            class="ml-10"
                             :disabled="stationNameNext"
                             color="green"
                             @click="stationNameAdd()"

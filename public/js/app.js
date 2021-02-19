@@ -8983,8 +8983,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -27182,7 +27180,6 @@ var render = function() {
                     [
                       _c("v-text-field", {
                         attrs: {
-                          "full-width": "",
                           readonly: _vm.stationReadonly,
                           outlined: _vm.stationOutlined,
                           label: _vm.StationLable,
@@ -27201,7 +27198,6 @@ var render = function() {
                         ? _c(
                             "v-chip",
                             {
-                              staticClass: "ml-10",
                               attrs: {
                                 pill: "",
                                 disabled: _vm.stationNameNext,
