@@ -9039,6 +9039,57 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -27350,6 +27401,16 @@ var render = function() {
                           "\n                "
                       )
                     ])
+                  : _vm._e(),
+                _vm._v(" "),
+                _vm.state == 3
+                  ? _c("p", [
+                      _vm._v(
+                        "\n                    Enter Details for " +
+                          _vm._s(_vm.stationPull.station_name) +
+                          "\n                "
+                      )
+                    ])
                   : _vm._e()
               ]),
               _vm._v(" "),
@@ -27509,6 +27570,152 @@ var render = function() {
                                     _vm.tickSelect = $$v
                                   },
                                   expression: "tickSelect"
+                                }
+                              })
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "div",
+                            [
+                              _c("h5", [_c("strong", [_vm._v("Timer Type")])]),
+                              _vm._v(" "),
+                              _c(
+                                "v-radio-group",
+                                {
+                                  attrs: { row: "" },
+                                  model: {
+                                    value: _vm.refType,
+                                    callback: function($$v) {
+                                      _vm.refType = $$v
+                                    },
+                                    expression: "refType"
+                                  }
+                                },
+                                [
+                                  _c("v-radio", {
+                                    attrs: { label: "Anchoring", value: "14" }
+                                  }),
+                                  _vm._v(" "),
+                                  _c("v-radio", {
+                                    attrs: { label: "Armor", value: "5" }
+                                  }),
+                                  _vm._v(" "),
+                                  _c("v-radio", {
+                                    attrs: { label: "Hull", value: "13" }
+                                  })
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "div",
+                            [
+                              _c("v-text-field", {
+                                directives: [
+                                  {
+                                    name: "mask",
+                                    rawName: "v-mask",
+                                    value: "#d ##:##:##",
+                                    expression: "'#d ##:##:##'"
+                                  }
+                                ],
+                                attrs: {
+                                  label: "Ref Time d hh:mm:ss",
+                                  placeholder: "d:hh:mm:ss"
+                                },
+                                on: {
+                                  keyup: [
+                                    function($event) {
+                                      if (
+                                        !$event.type.indexOf("key") &&
+                                        _vm._k(
+                                          $event.keyCode,
+                                          "enter",
+                                          13,
+                                          $event.key,
+                                          "Enter"
+                                        )
+                                      ) {
+                                        return null
+                                      }
+                                      ;(_vm.timerShown = false),
+                                        _vm.addHacktime()
+                                    },
+                                    function($event) {
+                                      if (
+                                        !$event.type.indexOf("key") &&
+                                        _vm._k(
+                                          $event.keyCode,
+                                          "esc",
+                                          27,
+                                          $event.key,
+                                          ["Esc", "Escape"]
+                                        )
+                                      ) {
+                                        return null
+                                      }
+                                      ;(_vm.timerShown = false),
+                                        (_vm.hackTime = null)
+                                    }
+                                  ]
+                                },
+                                model: {
+                                  value: _vm.refTime,
+                                  callback: function($$v) {
+                                    _vm.refTime = $$v
+                                  },
+                                  expression: "refTime"
+                                }
+                              })
+                            ],
+                            1
+                          )
+                        ])
+                      : _vm._e()
+                  ]),
+                  _vm._v(" "),
+                  _c("v-fade-transition", [
+                    _vm.state == 3
+                      ? _c("div", [
+                          _c(
+                            "div",
+                            [
+                              _c("v-autocomplete", {
+                                attrs: {
+                                  placeholder: _vm.stationPull.structure_name,
+                                  label: "Structure Type",
+                                  readonly: ""
+                                }
+                              })
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "div",
+                            {
+                              staticClass:
+                                " d-inline-flex justify-content-around"
+                            },
+                            [
+                              _c("v-autocomplete", {
+                                attrs: {
+                                  placeholder: _vm.stationPull.system_name,
+                                  label: "System Name",
+                                  readonly: ""
+                                }
+                              }),
+                              _vm._v(" "),
+                              _c("v-autocomplete", {
+                                attrs: {
+                                  placeholder: _vm.stationPull.corp_ticker,
+                                  label: "Corp Ticker",
+                                  readonly: ""
                                 }
                               })
                             ],

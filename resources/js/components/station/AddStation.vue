@@ -32,6 +32,9 @@
                     <p v-if="state == 2">
                         Enter Details for {{ stationNameEdit }}
                     </p>
+                    <p v-if="state == 3">
+                        Enter Details for {{ stationPull.station_name }}
+                    </p>
                 </v-card-title>
                 <v-card-text>
                     <div
@@ -92,6 +95,54 @@
                                     :search-input.sync="tickSearch"
                                     label="Corp Ticker"
                                     outlined
+                                ></v-autocomplete>
+                            </div>
+                            <div>
+                                <h5><strong>Timer Type</strong></h5>
+                                <v-radio-group v-model="refType" row>
+                                    <v-radio
+                                        label="Anchoring"
+                                        value="14"
+                                    ></v-radio>
+                                    <v-radio label="Armor" value="5"></v-radio>
+                                    <v-radio label="Hull" value="13"></v-radio>
+                                </v-radio-group>
+                            </div>
+                            <div>
+                                <v-text-field
+                                    v-model="refTime"
+                                    label="Ref Time d hh:mm:ss"
+                                    v-mask="'#d ##:##:##'"
+                                    placeholder="d:hh:mm:ss"
+                                    @keyup.enter="
+                                        (timerShown = false), addHacktime()
+                                    "
+                                    @keyup.esc="
+                                        (timerShown = false), (hackTime = null)
+                                    "
+                                ></v-text-field>
+                            </div>
+                        </div>
+                    </v-fade-transition>
+                    <v-fade-transition>
+                        <div v-if="state == 3">
+                            <div>
+                                <v-autocomplete
+                                    :placeholder="stationPull.structure_name"
+                                    label="Structure Type"
+                                    readonly
+                                ></v-autocomplete>
+                            </div>
+                            <div class=" d-inline-flex justify-content-around">
+                                <v-autocomplete
+                                    :placeholder="stationPull.system_name"
+                                    label="System Name"
+                                    readonly
+                                ></v-autocomplete>
+                                <v-autocomplete
+                                    :placeholder="stationPull.corp_ticker"
+                                    label="Corp Ticker"
+                                    readonly
                                 ></v-autocomplete>
                             </div>
                             <div>
