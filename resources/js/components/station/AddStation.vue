@@ -39,29 +39,30 @@
                             prepend-icon="faSvg fa-home"
                         ></v-text-field>
                     </div>
-                    <div class="animate__animated animate__bounce">
-                        <div v-if="state == 2">
-                            <v-autocomplete
-                                v-model="sysSelect"
-                                :loading="sysLoading"
-                                :items="sysItems"
-                                :search-input.sync="sysSearch"
-                                autofocus
-                                label="System Name"
-                                outlined
-                                prepend-icon="faSvg fa-home"
-                            ></v-autocomplete>
-                            <v-autocomplete
-                                v-model="tickSelect"
-                                :loading="tickLoading"
-                                :items="tickItems"
-                                :search-input.sync="tickSearch"
-                                autofocus
-                                label="Corp Ticker"
-                                outlined
-                                prepend-icon="faSvg fa-home"
-                            ></v-autocomplete>
-                        </div>
+                    <div
+                        v-if="state == 2"
+                        class="animate__animated animate__bounce"
+                    >
+                        <v-autocomplete
+                            v-model="sysSelect"
+                            :loading="sysLoading"
+                            :items="sysItems"
+                            :search-input.sync="sysSearch"
+                            autofocus
+                            label="System Name"
+                            outlined
+                            prepend-icon="faSvg fa-home"
+                        ></v-autocomplete>
+                        <v-autocomplete
+                            v-model="tickSelect"
+                            :loading="tickLoading"
+                            :items="tickItems"
+                            :search-input.sync="tickSearch"
+                            autofocus
+                            label="Corp Ticker"
+                            outlined
+                            prepend-icon="faSvg fa-home"
+                        ></v-autocomplete>
                     </div>
                     <v-chip
                         pill
