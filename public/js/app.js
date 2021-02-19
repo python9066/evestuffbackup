@@ -8990,6 +8990,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -27133,7 +27134,8 @@ var render = function() {
                               attrs: {
                                 items: _vm.systemList,
                                 label: "Filled",
-                                outlined: ""
+                                outlined: "",
+                                "prepend-icon": "faSvg fa-home"
                               },
                               model: {
                                 value: _vm.systemEdit,

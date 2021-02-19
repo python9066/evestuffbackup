@@ -63,6 +63,7 @@
                                 :items="systemList"
                                 label="Filled"
                                 outlined
+                                prepend-icon="faSvg fa-home"
                             ></v-autocomplete>
                             <v-text-field
                                 v-model="tickerEdit"
