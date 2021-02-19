@@ -50,9 +50,8 @@
                                 autofocus
                                 label="System Name"
                                 outlined
-                                prepend-icon="faSvg fa-home"
+                                prepend-inner-icon="faSvg fa-home"
                             ></v-autocomplete>
-                            -
                             <v-autocomplete
                                 v-model="tickSelect"
                                 :loading="tickLoading"
@@ -61,7 +60,7 @@
                                 autofocus
                                 label="Corp Ticker"
                                 outlined
-                                prepend-icon="faSvg fa-home"
+                                prepend-inner-icon="faSvg fa-home"
                             ></v-autocomplete>
                         </div>
                     </v-fade-transition>

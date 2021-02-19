@@ -8982,7 +8982,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -27210,7 +27209,7 @@ var render = function() {
                                 autofocus: "",
                                 label: "System Name",
                                 outlined: "",
-                                "prepend-icon": "faSvg fa-home"
+                                "prepend-inner-icon": "faSvg fa-home"
                               },
                               on: {
                                 "update:searchInput": function($event) {
@@ -27228,9 +27227,7 @@ var render = function() {
                                 expression: "sysSelect"
                               }
                             }),
-                            _vm._v(
-                              "\n                        -\n                        "
-                            ),
+                            _vm._v(" "),
                             _c("v-autocomplete", {
                               attrs: {
                                 loading: _vm.tickLoading,
@@ -27239,7 +27236,7 @@ var render = function() {
                                 autofocus: "",
                                 label: "Corp Ticker",
                                 outlined: "",
-                                "prepend-icon": "faSvg fa-home"
+                                "prepend-inner-icon": "faSvg fa-home"
                               },
                               on: {
                                 "update:searchInput": function($event) {
