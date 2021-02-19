@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 
 use App\Events\StationCoreUpdate;
+use App\Events\StationNotificationNew;
 use App\Events\StationNotificationUpdate;
 use App\Models\Alliance;
 use App\Models\Corp;
@@ -190,7 +191,12 @@ class StationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $new = Station::Create($request->all());
+        $message = StationRecords::where('id', $new->id)->first();
+        $flag = collect([
+            'message' => $message
+        ]);
+        broadcast(new StationNotificationNew($flag))->toOthers();
     }
 
     /**
