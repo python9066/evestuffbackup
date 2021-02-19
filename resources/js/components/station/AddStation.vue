@@ -120,6 +120,12 @@ export default {
     },
 
     methods: {
+        getList(item, queryText, itemText) {
+            return itemText
+                .toLocaleLowerCase()
+                .startsWith(queryText.toLocaleLowerCase());
+        },
+
         close() {
             this.showStationTimer = false;
         },

@@ -9008,6 +9008,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     };
   },
   methods: {
+    getList: function getList(item, queryText, itemText) {
+      return itemText.toLocaleLowerCase().startsWith(queryText.toLocaleLowerCase());
+    },
     close: function close() {
       this.showStationTimer = false;
     },
