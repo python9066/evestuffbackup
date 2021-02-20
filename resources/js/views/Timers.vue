@@ -135,10 +135,10 @@
                 </template>
             </template>
             <template v-slot:item.window_station="{ item }">
-                <span v-if="item.window_staiton == 'Open'" class=" green--text"
+                <span v-if="item.window_station == 'Open'" class=" green--text"
                     >{{ item.window_station }}
                 </span>
-                <span v-if="item.window_staiton == 'Closed'" class=" red--text"
+                <span v-if="item.window_station == 'Closed'" class=" red--text"
                     >{{ item.window_station }}
                 </span>
             </template>

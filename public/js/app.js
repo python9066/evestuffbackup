@@ -35158,13 +35158,13 @@ var render = function() {
               fn: function(ref) {
                 var item = ref.item
                 return [
-                  item.window_staiton == "Open"
+                  item.window_station == "Open"
                     ? _c("span", { staticClass: " green--text" }, [
                         _vm._v(_vm._s(item.window_station) + "\n            ")
                       ])
                     : _vm._e(),
                   _vm._v(" "),
-                  item.window_staiton == "Closed"
+                  item.window_station == "Closed"
                     ? _c("span", { staticClass: " red--text" }, [
                         _vm._v(_vm._s(item.window_station) + "\n            ")
                       ])
