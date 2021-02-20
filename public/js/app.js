@@ -16991,6 +16991,7 @@ function sleep(ms) {
       today: moment__WEBPACK_IMPORTED_MODULE_2___default()(),
       name: "Timer",
       test: Object(moment__WEBPACK_IMPORTED_MODULE_2__["now"])(),
+      endtext: "End",
       headers: [{
         text: "Region",
         value: "region",
@@ -17018,7 +17019,7 @@ function sleep(ms) {
         text: "ADM",
         value: "adm"
       }, {
-        text: "End",
+        text: this.endtext,
         value: "end"
       }, {
         text: "Countdown",

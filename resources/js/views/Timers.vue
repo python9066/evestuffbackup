@@ -151,6 +151,7 @@ export default {
             today: moment(),
             name: "Timer",
             test: now(),
+            endtext: "End",
 
             headers: [
                 { text: "Region", value: "region", width: "10%" },
@@ -161,7 +162,7 @@ export default {
                 { text: "Window", value: "window_station" },
                 { text: "Structure", value: "type" },
                 { text: "ADM", value: "adm" },
-                { text: "End", value: "end" },
+                { text: this.endtext, value: "end" },
                 { text: "Countdown", value: "count", sortable: false },
                 { text: "Age", value: "age" }
             ]
