@@ -10617,7 +10617,7 @@ function sleep(ms) {
       today: 0,
       text: "center",
       toggle_none: null,
-      sortdesc: false,
+      sortdesc: true,
       sortby: "timestamp",
       dropdown_edit: [{
         title: "On My Way",
