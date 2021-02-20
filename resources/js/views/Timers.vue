@@ -57,7 +57,7 @@
             </v-btn-toggle>
         </div>
         <v-data-table
-            :headers="headers"
+            :headers="getHeaders()"
             :items="filteredItems"
             item-key="id"
             :loading="loading"
@@ -176,6 +176,22 @@ export default {
             await this.$store.dispatch("getTimerDataAll");
             this.loading3 = false;
             this.loading = false;
+        },
+
+        getHeaders() {
+            return [
+                { text: "Region", value: "region", width: "10%" },
+                { text: "Constellation", value: "constellation" },
+                { text: "System", value: "system" },
+                { text: "Alliance", value: "alliance", width: "30%" },
+                { text: "Ticker", value: "ticker" },
+                { text: "Window", value: "window_station" },
+                { text: "Structure", value: "type" },
+                { text: "ADM", value: "adm" },
+                { text: this.endtext, value: "end" },
+                { text: "Countdown", value: "count", sortable: false },
+                { text: "Age", value: "age" }
+            ];
         },
 
         transform(props) {

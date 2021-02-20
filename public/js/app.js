@@ -17073,6 +17073,45 @@ function sleep(ms) {
         }, _callee2);
       }))();
     },
+    getHeaders: function getHeaders() {
+      return [{
+        text: "Region",
+        value: "region",
+        width: "10%"
+      }, {
+        text: "Constellation",
+        value: "constellation"
+      }, {
+        text: "System",
+        value: "system"
+      }, {
+        text: "Alliance",
+        value: "alliance",
+        width: "30%"
+      }, {
+        text: "Ticker",
+        value: "ticker"
+      }, {
+        text: "Window",
+        value: "window_station"
+      }, {
+        text: "Structure",
+        value: "type"
+      }, {
+        text: "ADM",
+        value: "adm"
+      }, {
+        text: this.endtext,
+        value: "end"
+      }, {
+        text: "Countdown",
+        value: "count",
+        sortable: false
+      }, {
+        text: "Age",
+        value: "age"
+      }];
+    },
     transform: function transform(props) {
       Object.entries(props).forEach(function (_ref) {
         var _ref2 = _slicedToArray(_ref, 2),
@@ -34962,7 +35001,7 @@ var render = function() {
         {
           staticClass: "elevation-1",
           attrs: {
-            headers: _vm.headers,
+            headers: _vm.getHeaders(),
             items: _vm.filteredItems,
             "item-key": "id",
             loading: _vm.loading,
