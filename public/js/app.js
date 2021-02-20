@@ -17022,44 +17022,7 @@ function sleep(ms) {
       today: moment__WEBPACK_IMPORTED_MODULE_2___default()(),
       name: "Timer",
       test: Object(moment__WEBPACK_IMPORTED_MODULE_2__["now"])(),
-      endtext: "Time Till Close",
-      headers: [{
-        text: "Region",
-        value: "region",
-        width: "10%"
-      }, {
-        text: "Constellation",
-        value: "constellation"
-      }, {
-        text: "System",
-        value: "system"
-      }, {
-        text: "Alliance",
-        value: "alliance",
-        width: "30%"
-      }, {
-        text: "Ticker",
-        value: "ticker"
-      }, {
-        text: "Window",
-        value: "window_station"
-      }, {
-        text: "Structure",
-        value: "type"
-      }, {
-        text: "ADM",
-        value: "adm"
-      }, {
-        text: this.endtext,
-        value: "time"
-      }, {
-        text: "Countdown",
-        value: "count",
-        sortable: false
-      }, {
-        text: "Age",
-        value: "age"
-      }]
+      endtext: "Time Till Close"
     };
   },
   mounted: function mounted() {
@@ -17133,7 +17096,7 @@ function sleep(ms) {
         value: "adm"
       }, {
         text: this.endtext,
-        value: "end"
+        value: "time"
       }, {
         text: "Countdown",
         value: "count",
