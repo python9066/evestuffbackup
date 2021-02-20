@@ -16991,7 +16991,7 @@ function sleep(ms) {
       today: moment__WEBPACK_IMPORTED_MODULE_2___default()(),
       name: "Timer",
       test: Object(moment__WEBPACK_IMPORTED_MODULE_2__["now"])(),
-      endtext: "End",
+      endtext: "Time Till End",
       headers: [{
         text: "Region",
         value: "region",
@@ -17151,6 +17151,11 @@ function sleep(ms) {
           return timers.status == 0;
         });
       }
+    },
+    filterEnd: function filterEnd() {
+      this.filteredItems.filter(function (t) {
+        return t.window_station == "Open";
+      });
     }
   })
 });
@@ -35002,7 +35007,7 @@ var render = function() {
           staticClass: "elevation-1",
           attrs: {
             headers: _vm.getHeaders(),
-            items: _vm.filteredItems,
+            items: _vm.filterEnd,
             "item-key": "id",
             loading: _vm.loading,
             "items-per-page": 25,

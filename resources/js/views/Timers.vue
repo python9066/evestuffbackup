@@ -58,7 +58,7 @@
         </div>
         <v-data-table
             :headers="getHeaders()"
-            :items="filteredItems"
+            :items="filterEnd"
             item-key="id"
             :loading="loading"
             :items-per-page="25"
@@ -151,7 +151,7 @@ export default {
             today: moment(),
             name: "Timer",
             test: now(),
-            endtext: "End",
+            endtext: "Time Till End",
 
             headers: [
                 { text: "Region", value: "region", width: "10%" },
@@ -227,6 +227,10 @@ export default {
             } else {
                 return this.timers.filter(timers => timers.status == 0);
             }
+        },
+
+        filterEnd() {
+            this.filteredItems.filter(t => t.window_station == "Open");
         }
     }
 };
