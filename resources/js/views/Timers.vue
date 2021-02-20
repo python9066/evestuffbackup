@@ -34,23 +34,23 @@
                 <v-btn
                     :loading="loading3"
                     :disabled="loading3"
-                    @click="itemFlag = 1"
+                    @click="(itemFlag = 1), (endtext = 'Time till Change')"
                 >
                     All
                 </v-btn>
                 <v-btn
                     :loading="loading3"
                     :disabled="loading3"
-                    @click="itemFlag = 2"
+                    @click="(itemFlag = 2), (endtext = 'Time till Closed')"
                 >
                     Open
                 </v-btn>
                 <v-btn
                     :loading="loading3"
                     :disabled="loading3"
-                    @click="itemFlag = 3"
+                    @click="(itemFlag = 3), (endtext = 'Time till Opened')"
                 >
-                    Close
+                    Closed
                 </v-btn>
             </v-btn-toggle>
 

@@ -34993,7 +34993,7 @@ var render = function() {
                   attrs: { loading: _vm.loading3, disabled: _vm.loading3 },
                   on: {
                     click: function($event) {
-                      _vm.itemFlag = 1
+                      ;(_vm.itemFlag = 1), (_vm.endtext = "Time till Change")
                     }
                   }
                 },
@@ -35006,7 +35006,7 @@ var render = function() {
                   attrs: { loading: _vm.loading3, disabled: _vm.loading3 },
                   on: {
                     click: function($event) {
-                      _vm.itemFlag = 2
+                      ;(_vm.itemFlag = 2), (_vm.endtext = "Time till Closed")
                     }
                   }
                 },
@@ -35019,11 +35019,11 @@ var render = function() {
                   attrs: { loading: _vm.loading3, disabled: _vm.loading3 },
                   on: {
                     click: function($event) {
-                      _vm.itemFlag = 3
+                      ;(_vm.itemFlag = 3), (_vm.endtext = "Time till Opened")
                     }
                   }
                 },
-                [_vm._v("\n                Close\n            ")]
+                [_vm._v("\n                Closed\n            ")]
               )
             ],
             1
