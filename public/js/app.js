@@ -16995,6 +16995,17 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -35137,6 +35148,21 @@ var render = function() {
                     : _c("span", { staticClass: "pl-3" }, [
                         _vm._v(_vm._s(item.alliance))
                       ])
+                ]
+              }
+            },
+            {
+              key: "item.end",
+              fn: function(ref) {
+                var item = ref.item
+                return [
+                  item.window_station == "Open"
+                    ? _c("span", [_vm._v(_vm._s(item.end) + "\n            ")])
+                    : item.window_station == "Closed"
+                    ? _c("span", [
+                        _vm._v(_vm._s(item.start) + "\n            ")
+                      ])
+                    : _vm._e()
                 ]
               }
             },

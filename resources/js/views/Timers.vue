@@ -113,6 +113,17 @@
                 <span v-else class="pl-3">{{ item.alliance }}</span>
             </template>
 
+            <template v-slot:item.end="{ item }">
+                <!-- <v-img src="https://images.evetech.net/Alliance/1354830081_64.png"  style="height: inherit"></v-img> -->
+
+                <span v-if="item.window_station == 'Open'"
+                    >{{ item.end }}
+                </span>
+                <span v-else-if="item.window_station == 'Closed'"
+                    >{{ item.start }}
+                </span>
+            </template>
+
             <template v-slot:item.count="{ item }">
                 <template>
                     <vue-countdown-timer
