@@ -25,6 +25,35 @@
                 hide-details
             ></v-text-field>
 
+            <v-btn-toggle
+                v-model="toggle_exclusive1"
+                mandatory
+                class=" ml-4 mr-15"
+                :value="2"
+            >
+                <v-btn
+                    :loading="loading3"
+                    :disabled="loading3"
+                    @click="itemFlag = 1"
+                >
+                    All
+                </v-btn>
+                <v-btn
+                    :loading="loading3"
+                    :disabled="loading3"
+                    @click="itemFlag = 2"
+                >
+                    Open
+                </v-btn>
+                <v-btn
+                    :loading="loading3"
+                    :disabled="loading3"
+                    @click="itemFlag = 3"
+                >
+                    Close
+                </v-btn>
+            </v-btn-toggle>
+
             <v-btn-toggle v-model="toggle_exclusive" mandatory :value="1">
                 <v-btn
                     :loading="loading3"
@@ -147,11 +176,13 @@ export default {
             search: "",
             componentKey: 0,
             toggle_exclusive: 1,
+            toggle_exclusive1: 1,
+            itemFlag: 1,
             colorflag: 3,
             today: moment(),
             name: "Timer",
             test: now(),
-            endtext: "Time Till End",
+            endtext: "Time Till Close",
 
             headers: [
                 { text: "Region", value: "region", width: "10%" },

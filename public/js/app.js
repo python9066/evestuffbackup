@@ -16966,6 +16966,35 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -16987,11 +17016,13 @@ function sleep(ms) {
       search: "",
       componentKey: 0,
       toggle_exclusive: 1,
+      toggle_exclusive1: 1,
+      itemFlag: 1,
       colorflag: 3,
       today: moment__WEBPACK_IMPORTED_MODULE_2___default()(),
       name: "Timer",
       test: Object(moment__WEBPACK_IMPORTED_MODULE_2__["now"])(),
-      endtext: "Time Till End",
+      endtext: "Time Till Close",
       headers: [{
         text: "Region",
         value: "region",
@@ -34929,6 +34960,62 @@ var render = function() {
               expression: "search"
             }
           }),
+          _vm._v(" "),
+          _c(
+            "v-btn-toggle",
+            {
+              staticClass: " ml-4 mr-15",
+              attrs: { mandatory: "", value: 2 },
+              model: {
+                value: _vm.toggle_exclusive1,
+                callback: function($$v) {
+                  _vm.toggle_exclusive1 = $$v
+                },
+                expression: "toggle_exclusive1"
+              }
+            },
+            [
+              _c(
+                "v-btn",
+                {
+                  attrs: { loading: _vm.loading3, disabled: _vm.loading3 },
+                  on: {
+                    click: function($event) {
+                      _vm.itemFlag = 1
+                    }
+                  }
+                },
+                [_vm._v("\n                All\n            ")]
+              ),
+              _vm._v(" "),
+              _c(
+                "v-btn",
+                {
+                  attrs: { loading: _vm.loading3, disabled: _vm.loading3 },
+                  on: {
+                    click: function($event) {
+                      _vm.itemFlag = 2
+                    }
+                  }
+                },
+                [_vm._v("\n                Open\n            ")]
+              ),
+              _vm._v(" "),
+              _c(
+                "v-btn",
+                {
+                  attrs: { loading: _vm.loading3, disabled: _vm.loading3 },
+                  on: {
+                    click: function($event) {
+                      _vm.itemFlag = 3
+                    }
+                  }
+                },
+                [_vm._v("\n                Close\n            ")]
+              )
+            ],
+            1
+          ),
           _vm._v(" "),
           _c(
             "v-btn-toggle",
