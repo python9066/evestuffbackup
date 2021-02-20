@@ -654,22 +654,22 @@ export default {
                     {
                         text: "Region",
                         value: "region_name",
-                        width: "8%"
+                        width: "5%"
                     },
                     {
                         text: "Constellation",
                         value: "constellation_name",
-                        width: "8%"
+                        width: "5%"
                     },
                     {
                         text: "System",
                         value: "system_name",
-                        width: "8%"
+                        width: "5%"
                     },
                     {
                         text: "Alliance",
                         value: "alliance_name",
-                        width: "15%"
+                        width: "20%"
                     },
                     {
                         text: "Type",
