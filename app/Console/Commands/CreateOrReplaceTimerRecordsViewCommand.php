@@ -58,7 +58,8 @@ class CreateOrReplaceTimerRecordsViewCommand extends Command
         structures.vulnerable_end_time as 'end',
         structures.status as 'status',
         structures.id as 'id',
-        if(structures.vulnerable_start_time < UTC_TIMESTAMP AND structures.vulnerable_end_time > UTC_DATE IS NOT NULL,'Open','Closed') as 'window_station'
+        if(structures.vulnerable_start_time < UTC_TIMESTAMP AND structures.vulnerable_end_time > UTC_DATE IS NOT NULL,'Open','Closed') as 'window_station',
+        if(structures.vulnerable_start_time < UTC_TIMESTAMP AND structures.vulnerable_end_time > UTC_DATE IS NOT NULL, structures.vulnerable_end_time,structures.vulnerable_start_time) as 'time'
         FROM structures
         JOIN alliances ON alliances.id = structures.alliance_id
         JOIN systems ON systems.id = structures.system_id
