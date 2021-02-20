@@ -10617,6 +10617,8 @@ function sleep(ms) {
       today: 0,
       text: "center",
       toggle_none: null,
+      sortdesc: false,
+      sortby: "timestamp",
       dropdown_edit: [{
         title: "On My Way",
         value: 2
@@ -29232,14 +29234,26 @@ var render = function() {
             loading: _vm.loadingt,
             "items-per-page": 25,
             "footer-props": { "items-per-page-options": [15, 25, 50, 100, -1] },
-            "sort-by": ["timestamp"],
+            "sort-by": _vm.sortby,
             search: _vm.search,
-            "sort-desc": [true, false],
+            "sort-desc": _vm.sortdesc,
             "multi-sort": ""
           },
           on: {
             "update:expanded": function($event) {
               _vm.expanded = $event
+            },
+            "update:sortBy": function($event) {
+              _vm.sortby = $event
+            },
+            "update:sort-by": function($event) {
+              _vm.sortby = $event
+            },
+            "update:sortDesc": function($event) {
+              _vm.sortdesc = $event
+            },
+            "update:sort-desc": function($event) {
+              _vm.sortdesc = $event
             }
           },
           scopedSlots: _vm._u(

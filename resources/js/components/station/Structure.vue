@@ -57,9 +57,9 @@
             :loading="loadingt"
             :items-per-page="25"
             :footer-props="{ 'items-per-page-options': [15, 25, 50, 100, -1] }"
-            :sort-by="['timestamp']"
+            :sort-by.sync="sortby"
             :search="search"
-            :sort-desc="[true, false]"
+            :sort-desc.sync="sortdesc"
             multi-sort
             class="elevation-1"
         >
@@ -349,6 +349,8 @@ export default {
             today: 0,
             text: "center",
             toggle_none: null,
+            sortdesc: false,
+            sortby: "timestamp",
 
             dropdown_edit: [
                 { title: "On My Way", value: 2 },
