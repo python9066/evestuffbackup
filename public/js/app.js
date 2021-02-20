@@ -35074,7 +35074,7 @@ var render = function() {
             loading: _vm.loading,
             "items-per-page": 25,
             "footer-props": { "items-per-page-options": [15, 25, 50, 100, -1] },
-            "sort-by": ["end"],
+            "sort-by": ["time"],
             search: _vm.search,
             "sort-desc": [false, true],
             "multi-sort": ""
