@@ -10941,7 +10941,7 @@ function sleep(ms) {
         }, {
           text: "Constellation",
           value: "constellation_name",
-          width: "5%"
+          width: "8%"
         }, {
           text: "System",
           value: "system_name",
