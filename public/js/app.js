@@ -10578,6 +10578,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -29183,7 +29191,9 @@ var render = function() {
                   attrs: { loading: _vm.loadingf, disabled: _vm.loadingf },
                   on: {
                     click: function($event) {
-                      _vm.statusflag = 2
+                      ;(_vm.statusflag = 2),
+                        (_vm.sortby = "timestamp"),
+                        (_vm.sortdesc = true)
                     }
                   }
                 },
@@ -29196,7 +29206,9 @@ var render = function() {
                   attrs: { loading: _vm.loadingf, disabled: _vm.loadingf },
                   on: {
                     click: function($event) {
-                      _vm.statusflag = 3
+                      ;(_vm.statusflag = 3),
+                        (_vm.sortby = "timestamp"),
+                        (_vm.sortdesc = false)
                     }
                   }
                 },

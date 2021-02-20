@@ -29,14 +29,22 @@
                 <v-btn
                     :loading="loadingf"
                     :disabled="loadingf"
-                    @click="statusflag = 2"
+                    @click="
+                        (statusflag = 2),
+                            (sortby = 'timestamp'),
+                            (sortdesc = true)
+                    "
                 >
                     Active
                 </v-btn>
                 <v-btn
                     :loading="loadingf"
                     :disabled="loadingf"
-                    @click="statusflag = 3"
+                    @click="
+                        (statusflag = 3),
+                            (sortby = 'timestamp'),
+                            (sortdesc = false)
+                    "
                 >
                     UpComing
                 </v-btn>
