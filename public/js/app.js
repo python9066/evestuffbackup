@@ -17154,7 +17154,7 @@ function sleep(ms) {
     },
     filterEnd: function filterEnd() {
       this.filteredItems.filter(function (t) {
-        return t.window_station == "Open";
+        return t.window_station === "Open";
       });
     }
   })

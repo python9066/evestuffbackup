@@ -230,7 +230,7 @@ export default {
         },
 
         filterEnd() {
-            this.filteredItems.filter(t => t.window_station == "Open");
+            this.filteredItems.filter(t => t.window_station === "Open");
         }
     }
 };
