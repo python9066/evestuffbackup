@@ -177,7 +177,7 @@ export default {
             componentKey: 0,
             toggle_exclusive: 1,
             toggle_exclusive1: 1,
-            itemFlag: 1,
+            itemFlag: 2,
             colorflag: 3,
             today: moment(),
             name: "Timer",
@@ -261,7 +261,21 @@ export default {
         },
 
         filterEnd() {
-            return this.filteredItems.filter(t => t.window_station === "Open");
+            if (this.itemFlag == 1) {
+                return this.filteredItems;
+            }
+
+            if (this.itemFlag == 2) {
+                return this.filteredItems.filter(
+                    t => t.window_station === "Open"
+                );
+            }
+
+            if (this.itemFlag == 3) {
+                return this.filteredItems.filter(
+                    t => t.window_station === "Closed"
+                );
+            }
         }
     }
 };

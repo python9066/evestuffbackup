@@ -17017,7 +17017,7 @@ function sleep(ms) {
       componentKey: 0,
       toggle_exclusive: 1,
       toggle_exclusive1: 1,
-      itemFlag: 1,
+      itemFlag: 2,
       colorflag: 3,
       today: moment__WEBPACK_IMPORTED_MODULE_2___default()(),
       name: "Timer",
@@ -17184,9 +17184,21 @@ function sleep(ms) {
       }
     },
     filterEnd: function filterEnd() {
-      return this.filteredItems.filter(function (t) {
-        return t.window_station === "Open";
-      });
+      if (this.itemFlag == 1) {
+        return this.filteredItems;
+      }
+
+      if (this.itemFlag == 2) {
+        return this.filteredItems.filter(function (t) {
+          return t.window_station === "Open";
+        });
+      }
+
+      if (this.itemFlag == 3) {
+        return this.filteredItems.filter(function (t) {
+          return t.window_station === "Closed";
+        });
+      }
     }
   })
 });
