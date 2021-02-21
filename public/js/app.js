@@ -35547,7 +35547,7 @@ var render = function() {
                                     _c(
                                       "v-fab-transition",
                                       [
-                                        item.tower_status_id == 6 &&
+                                        item.tower_status_id != 6 &&
                                         !_vm.expanded.includes(item)
                                           ? _c(
                                               "v-chip",
