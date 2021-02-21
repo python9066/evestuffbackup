@@ -1,6 +1,6 @@
 <template>
     <v-col>
-        <span v-if="item.out_time == null">
+        <div v-if="item.out_time == null">
             <v-menu :close-on-content-click="false" :value="timerShown">
                 <template v-slot:activator="{ on, attrs }">
                     <v-chip
@@ -59,7 +59,7 @@
                     </v-card>
                 </template>
             </v-menu>
-        </span>
+        </div>
 
         <CountDowntimer
             v-if="item.out_time != null"

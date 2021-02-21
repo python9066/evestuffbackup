@@ -30541,7 +30541,7 @@ var render = function() {
     [
       _vm.item.out_time == null
         ? _c(
-            "span",
+            "div",
             [
               _c(
                 "v-menu",
