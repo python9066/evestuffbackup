@@ -133,6 +133,7 @@
                             <v-fab-transition>
                                 <TowerOnlineTimer
                                     :item="item"
+                                    v-if="item.tower_status_id == 3"
                                 ></TowerOnlineTimer>
                             </v-fab-transition>
                             <!-- EXTRA BUTTON -->
