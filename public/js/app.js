@@ -18049,13 +18049,6 @@ function sleep(ms) {
         }
       }
     },
-    test: function test(item) {
-      if (item.tower_status_id == 5) {
-        return "animate__animated animate__bounceIn";
-      } else {
-        return "animate__animated animate__bounceOut";
-      }
-    },
     updatetext: function updatetext(payload, item) {
       if (item.text != payload) {
         item.text = payload;
