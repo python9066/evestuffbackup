@@ -162,7 +162,9 @@
                                 >
                             </v-fab-transition>
                             <v-fab-transition>
-                                <TowerOnlineTimer></TowerOnlineTimer>
+                                <TowerOnlineTimer
+                                    :item="item"
+                                ></TowerOnlineTimer>
                             </v-fab-transition>
                         </div>
                     </template>
