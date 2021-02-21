@@ -143,7 +143,8 @@
                                             (expanded_id = item.id)
                                     "
                                     v-if="
-                                        item.tower_status_id != 6 &&
+                                        (item.tower_status_id != 6 ||
+                                            item.tower_status_id != 1) &&
                                             !expanded.includes(item)
                                     "
                                     :color="adashColor(item)"
@@ -153,7 +154,8 @@
                                     icon
                                     @click="(expanded = []), (expanded_id = 0)"
                                     v-if="
-                                        item.tower_status_id != 6 &&
+                                        (item.tower_status_id != 6 ||
+                                            item.tower_status_id != 1) &&
                                             expanded.includes(item)
                                     "
                                     color="error"

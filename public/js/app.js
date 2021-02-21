@@ -17439,6 +17439,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
 
 
 
@@ -35547,7 +35549,8 @@ var render = function() {
                                     _c(
                                       "v-fab-transition",
                                       [
-                                        item.tower_status_id != 6 &&
+                                        (item.tower_status_id != 6 ||
+                                          item.tower_status_id != 1) &&
                                         !_vm.expanded.includes(item)
                                           ? _c(
                                               "v-chip",
@@ -35570,7 +35573,8 @@ var render = function() {
                                             )
                                           : _vm._e(),
                                         _vm._v(" "),
-                                        item.tower_status_id != 6 &&
+                                        (item.tower_status_id != 6 ||
+                                          item.tower_status_id != 1) &&
                                         _vm.expanded.includes(item)
                                           ? _c(
                                               "v-btn",
