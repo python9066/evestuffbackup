@@ -132,7 +132,7 @@
                             </v-btn>
                             <div>
                                 <TowerRefTimer
-                                    class="animate__animated animate__bounceIn animate__bounceOut"
+                                    :class="test(item)"
                                     :item="item"
                                     v-if="item.tower_status_id == 5"
                                 ></TowerRefTimer>
@@ -352,6 +352,14 @@ export default {
                     this.expanded = [];
                     this.expanded_id = 0;
                 }
+            }
+        },
+
+        test(item) {
+            if (item.tower_status_id == 5) {
+                return "animate__animated animate__bounceIn";
+            } else {
+                return "animate__animated animate__bounceOut";
             }
         },
 

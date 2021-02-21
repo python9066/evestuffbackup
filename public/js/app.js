@@ -18046,6 +18046,13 @@ function sleep(ms) {
         }
       }
     },
+    test: function test(item) {
+      if (item.tower_status_id == 5) {
+        return "animate__animated animate__bounceIn";
+      } else {
+        return "animate__animated animate__bounceOut";
+      }
+    },
     updatetext: function updatetext(payload, item) {
       if (item.text != payload) {
         item.text = payload;
@@ -36993,8 +37000,7 @@ var render = function() {
                                       [
                                         item.tower_status_id == 5
                                           ? _c("TowerRefTimer", {
-                                              staticClass:
-                                                "animate__animated animate__bounceIn animate__bounceOut",
+                                              class: _vm.test(item),
                                               attrs: { item: item }
                                             })
                                           : _vm._e()
