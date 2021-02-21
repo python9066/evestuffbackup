@@ -31010,7 +31010,7 @@ var render = function() {
   return _c(
     "v-col",
     [
-      _vm.item.out_time == null
+      _vm.item.out_time == null && _vm.item.tower_status_id == 5
         ? _c(
             "div",
             [
