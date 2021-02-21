@@ -142,6 +142,9 @@
 <script>
 import { mapState, mapGetters } from "vuex";
 import moment from "moment";
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
 export default {
     props: {
         item: Object
