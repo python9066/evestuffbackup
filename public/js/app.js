@@ -17194,8 +17194,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _service_apil__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../service/apil */ "./resources/js/service/apil.js");
 
 
-var _methods;
-
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -17569,7 +17567,7 @@ function sleep(ms) {
       }, _callee);
     }))();
   },
-  methods: (_methods = {
+  methods: {
     checkexpanded: function checkexpanded(towers) {
       if (towers.tower_status_id == 1 || towers.tower_status_id == 6) {
         if (towers.id == this.expanded_id) {
@@ -17605,7 +17603,7 @@ function sleep(ms) {
         return "red";
       }
     },
-    pillColor: function pillColor(id) {
+    pillIcon: function pillIcon(id) {
       if (id == 1) {
         return "faSvg fa-plus";
       }
@@ -17637,70 +17635,77 @@ function sleep(ms) {
       this.$store.dispatch("getTowerData").then(function () {
         _this2.loadingr = false;
       }); // console.log("30secs");
-    }
-  }, _defineProperty(_methods, "pillColor", function pillColor(statusId) {
-    if (statusId == 1) {
-      return "light-green accent-3";
-    }
-
-    if (statusId == 2) {
-      return "light-blue darken-2";
-    }
-
-    if (statusId == 3) {
-      return "deep-orange darken-2";
-    }
-
-    if (statusId == 4) {
-      return "red accent-4";
-    }
-
-    if (statusId == 5) {
-      return "blue darken-4";
-    }
-
-    if (statusId == 6) {
-      return "light-green accent-3";
-    }
-  }), _defineProperty(_methods, "save", function save() {
-    this.snack = true;
-    this.snackColor = "success";
-    this.snackText = "Data saved";
-  }), _defineProperty(_methods, "cancel", function cancel() {
-    this.snack = true;
-    this.snackColor = "error";
-    this.snackText = "Canceled";
-  }), _defineProperty(_methods, "open", function open() {
-    this.snack = true;
-    this.snackColor = "info";
-    this.snackText = "Dialog opened";
-  }), _defineProperty(_methods, "close", function close() {}), _defineProperty(_methods, "click", function click(item) {
-    if (item.tower_status_id == 1 || item.tower_status_id == 6) {
-      this.expanded = [];
-      item.text = null;
-    }
-
-    var request = {
-      tower_status_id: item.tower_status_id,
-      user_id: this.$store.state.user_id
-    };
-    axios({
-      method: "put",
-      //you can set what request you want to be
-      url: "api/towerrecords/" + item.id,
-      data: request,
-      headers: {
-        Authorization: "Bearer " + this.$store.state.token,
-        Accept: "application/json",
-        "Content-Type": "application/json"
+    },
+    pillColor: function pillColor(statusId) {
+      if (statusId == 1) {
+        return "light-green accent-3";
       }
-    });
-  }), _defineProperty(_methods, "sec", function sec(item) {
-    var a = moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc();
-    var b = moment__WEBPACK_IMPORTED_MODULE_2___default()(item.timestamp);
-    this.diff = a.diff(b);
-    return this.diff;
-  }), _methods),
+
+      if (statusId == 2) {
+        return "light-blue darken-2";
+      }
+
+      if (statusId == 3) {
+        return "deep-orange darken-2";
+      }
+
+      if (statusId == 4) {
+        return "red accent-4";
+      }
+
+      if (statusId == 5) {
+        return "blue darken-4";
+      }
+
+      if (statusId == 6) {
+        return "light-green accent-3";
+      }
+    },
+    save: function save() {
+      this.snack = true;
+      this.snackColor = "success";
+      this.snackText = "Data saved";
+    },
+    cancel: function cancel() {
+      this.snack = true;
+      this.snackColor = "error";
+      this.snackText = "Canceled";
+    },
+    open: function open() {
+      this.snack = true;
+      this.snackColor = "info";
+      this.snackText = "Dialog opened";
+    },
+    close: function close() {},
+    click: function click(item) {
+      if (item.tower_status_id == 1 || item.tower_status_id == 6) {
+        this.expanded = [];
+        item.text = null;
+      }
+
+      var request = {
+        tower_status_id: item.tower_status_id,
+        user_id: this.$store.state.user_id
+      };
+      axios({
+        method: "put",
+        //you can set what request you want to be
+        url: "api/towerrecords/" + item.id,
+        data: request,
+        headers: {
+          Authorization: "Bearer " + this.$store.state.token,
+          Accept: "application/json",
+          "Content-Type": "application/json"
+        }
+      });
+    },
+    sec: function sec(item) {
+      var a = moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc();
+      var b = moment__WEBPACK_IMPORTED_MODULE_2___default()(item.timestamp);
+      this.diff = a.diff(b);
+      return this.diff;
+    }
+  },
   computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapState"])(["towers"])), {}, {
     filteredItems: function filteredItems() {
       if (this.statusflag == 2) {

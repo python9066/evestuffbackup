@@ -367,7 +367,7 @@ export default {
             }
         },
 
-        pillColor(id) {
+        pillIcon(id) {
             if (id == 1) {
                 return "faSvg fa-plus";
             }
