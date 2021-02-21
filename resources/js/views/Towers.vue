@@ -134,11 +134,9 @@
                                 <TowerRefTimer :item="item"></TowerRefTimer>
                             </div>
                             <v-scroll-x-transition>
-                                <div v-if="item.tower_status_id == 3">
-                                    <TowerOnlineTimer
-                                        :item="item"
-                                    ></TowerOnlineTimer>
-                                </div>
+                                <TowerOnlineTimer
+                                    :item="item"
+                                ></TowerOnlineTimer>
                             </v-scroll-x-transition>
                             <!-- EXTRA BUTTON -->
                             <v-fab-transition>

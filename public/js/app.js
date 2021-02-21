@@ -17933,8 +17933,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
 
 
 
@@ -37029,19 +37027,15 @@ var render = function() {
                                       1
                                     ),
                                     _vm._v(" "),
-                                    _c("v-scroll-x-transition", [
-                                      item.tower_status_id == 3
-                                        ? _c(
-                                            "div",
-                                            [
-                                              _c("TowerOnlineTimer", {
-                                                attrs: { item: item }
-                                              })
-                                            ],
-                                            1
-                                          )
-                                        : _vm._e()
-                                    ]),
+                                    _c(
+                                      "v-scroll-x-transition",
+                                      [
+                                        _c("TowerOnlineTimer", {
+                                          attrs: { item: item }
+                                        })
+                                      ],
+                                      1
+                                    ),
                                     _vm._v(" "),
                                     _c(
                                       "v-fab-transition",
