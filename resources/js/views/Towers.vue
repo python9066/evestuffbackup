@@ -130,12 +130,12 @@
                                 }}</v-icon>
                                 {{ item.tower_status_name }}
                             </v-btn>
-                            <v-transtion>
+                            <transtion>
                                 <TowerOnlineTimer
                                     :item="item"
                                     v-if="item.tower_status_id == 5"
                                 ></TowerOnlineTimer>
-                            </v-transtion>
+                            </transtion>
                             <v-scroll-x-transition>
                                 <div v-if="item.tower_status_id == 3">
                                     <TowerOnlineTimer
