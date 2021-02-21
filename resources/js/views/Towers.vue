@@ -140,7 +140,7 @@
                                     (item.tower_status_id = list.value),
                                         (item.tower_status_name = list.title),
                                         (item.user_name = user_name),
-                                        click(item)
+                                        click(item, list)
                                 "
                             >
                                 <v-list-item-title>{{
@@ -450,7 +450,8 @@ export default {
         },
         close() {},
 
-        click(item) {
+        click(item, list) {
+            console.list;
             if (item.tower_status_id == 1 || item.tower_status_id == 6) {
                 this.expanded = [];
                 item.text = null;

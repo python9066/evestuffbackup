@@ -18193,7 +18193,9 @@ function sleep(ms) {
       this.snackText = "Dialog opened";
     },
     close: function close() {},
-    click: function click(item) {
+    click: function click(item, list) {
+      console.list;
+
       if (item.tower_status_id == 1 || item.tower_status_id == 6) {
         this.expanded = [];
         item.text = null;
@@ -37047,7 +37049,7 @@ var render = function() {
                                       ;(item.tower_status_id = list.value),
                                         (item.tower_status_name = list.title),
                                         (item.user_name = _vm.user_name),
-                                        _vm.click(item)
+                                        _vm.click(item, list)
                                     }
                                   }
                                 },
