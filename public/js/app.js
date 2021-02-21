@@ -17904,7 +17904,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
 
 
 
@@ -36998,12 +36997,10 @@ var render = function() {
                                     _c(
                                       "div",
                                       [
-                                        item.tower_status_id == 5
-                                          ? _c("TowerRefTimer", {
-                                              class: _vm.test(item),
-                                              attrs: { item: item }
-                                            })
-                                          : _vm._e()
+                                        _c("TowerRefTimer", {
+                                          class: _vm.test(item),
+                                          attrs: { item: item }
+                                        })
                                       ],
                                       1
                                     ),

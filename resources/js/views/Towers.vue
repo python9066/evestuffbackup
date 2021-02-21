@@ -134,7 +134,6 @@
                                 <TowerRefTimer
                                     :class="test(item)"
                                     :item="item"
-                                    v-if="item.tower_status_id == 5"
                                 ></TowerRefTimer>
                             </div>
                             <v-scroll-x-transition>
