@@ -116,7 +116,7 @@
             >
                 <v-menu offset-y>
                     <template v-slot:activator="{ on, attrs }">
-                        <div class="align-items-center">
+                        <div class="align-items-center d-inline-flex">
                             <v-btn
                                 class="ma-2"
                                 v-bind="attrs"
@@ -160,6 +160,8 @@
                                     color="error"
                                     ><v-icon>fas fa-minus</v-icon></v-btn
                                 >
+                            </v-fab-transition>
+                            <v-fab-transition>
                                 <TowerOnlineTimer
                                     :item="item"
                                     v-if="item.tower_status_id == 3"
