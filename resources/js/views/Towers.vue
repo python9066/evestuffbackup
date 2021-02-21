@@ -130,7 +130,11 @@
                                 }}</v-icon>
                                 {{ item.tower_status_name }}
                             </v-btn>
-
+                            <v-fab-transition>
+                                <TowerOnlineTimer
+                                    :item="item"
+                                ></TowerOnlineTimer>
+                            </v-fab-transition>
                             <!-- EXTRA BUTTON -->
                             <v-fab-transition>
                                 <v-chip
@@ -160,11 +164,6 @@
                                     color="error"
                                     ><v-icon>fas fa-minus</v-icon></v-btn
                                 >
-                            </v-fab-transition>
-                            <v-fab-transition>
-                                <TowerOnlineTimer
-                                    :item="item"
-                                ></TowerOnlineTimer>
                             </v-fab-transition>
                         </div>
                     </template>
