@@ -184,7 +184,10 @@ export default {
         }
     },
 
-    computed: {}
+    computed: {},
+    async beforeDestroy() {
+        await sleep(1000);
+    }
 };
 </script>
 
