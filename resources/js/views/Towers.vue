@@ -161,7 +161,7 @@
                                             (expanded_id = item.id)
                                     "
                                     v-if="
-                                        item.tower_status_id == 3 &&
+                                        item.tower_status_id != 6 &&
                                             !expanded.includes(item)
                                     "
                                     color="success"
@@ -171,7 +171,7 @@
                                     icon
                                     @click="(expanded = []), (expanded_id = 0)"
                                     v-if="
-                                        item.tower_status_id == 3 &&
+                                        item.tower_status_id != 6 &&
                                             expanded.includes(item)
                                     "
                                     color="error"
@@ -293,7 +293,7 @@ export default {
             querious: 0,
 
             dropdown_edit: [
-                { title: "Scouting", value: 2 },
+                { title: "Scouted", value: 2 },
                 { title: "Anchoring", value: 3 },
                 { title: "Online", value: 4 },
                 { title: "Reffed", value: 5 },

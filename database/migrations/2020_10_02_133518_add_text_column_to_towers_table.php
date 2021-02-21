@@ -15,6 +15,7 @@ class AddTextColumnToTowersTable extends Migration
     {
         Schema::table('towers', function (Blueprint $table) {
             $table->string('text')->after('timestamp')->default(null)->nullable();
+            $table->dateTime('out_time')->after('timestamp')->default(null)->nullable();
         });
     }
 
