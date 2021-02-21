@@ -36995,7 +36995,7 @@ var render = function() {
                                       },
                                       [
                                         item.tower_status_id == 5
-                                          ? _c("TowerOnlineTimer", {
+                                          ? _c("TowerRefTimer", {
                                               attrs: { item: item }
                                             })
                                           : _vm._e()
