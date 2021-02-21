@@ -149,7 +149,6 @@
                                     :color="adashColor(item)"
                                     >adash</v-chip
                                 >
-                                <TowerOnlineTimer></TowerOnlineTimer>
                                 <v-btn
                                     icon
                                     @click="(expanded = []), (expanded_id = 0)"
@@ -161,6 +160,9 @@
                                     color="error"
                                     ><v-icon>fas fa-minus</v-icon></v-btn
                                 >
+                            </v-fab-transition>
+                            <v-fab-transition>
+                                <TowerOnlineTimer></TowerOnlineTimer>
                             </v-fab-transition>
                         </div>
                     </template>
