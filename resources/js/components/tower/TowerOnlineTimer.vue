@@ -62,7 +62,7 @@
         </span>
 
         <CountDowntimer
-            v-if="item.status_id == 3"
+            v-if="item.tower_status_id == 3"
             :start-time="moment.utc(item.out_time).unix()"
             end-text="Is it Secured?"
             :interval="1000"

@@ -30434,7 +30434,7 @@ var render = function() {
           )
         : _vm._e(),
       _vm._v(" "),
-      _vm.item.status_id == 3
+      _vm.item.tower_status_id == 3
         ? _c("CountDowntimer", {
             attrs: {
               "start-time": _vm.moment.utc(_vm.item.out_time).unix(),
