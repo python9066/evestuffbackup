@@ -1,6 +1,6 @@
 <template>
     <v-col>
-        <span
+        <div
             v-if="item.out_time == null && item.tower_status_id == 5"
             class="animate__animated animate__bounceIn"
         >
@@ -62,7 +62,7 @@
                     </v-card>
                 </template>
             </v-menu>
-        </span>
+        </div>
 
         <CountDowntimer
             v-if="item.out_time != null && item.tower_status_id == 5"
