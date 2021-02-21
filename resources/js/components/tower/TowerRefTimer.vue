@@ -64,8 +64,16 @@
             :interval="1000"
         >
             <template slot="countdown" slot-scope="scope">
-                <span class="red--text pl-3"
-                    >{{ scope.props.minutes }}:{{ scope.props.seconds }}</span
+                <span class="blue--text pl-3" v-if="scope.props.days == 0"
+                    >{{ scope.props.hours }}:{{ scope.props.minutes }}:{{
+                        scope.props.seconds
+                    }}</span
+                >
+                <span class="blue--text pl-3" v-if="scope.props.days != 0"
+                    >{{ numberDay(scope.props.days) }}
+                    {{ scope.props.hours }}:{{ scope.props.minutes }}:{{
+                        scope.props.seconds
+                    }}</span
                 >
                 <v-menu :close-on-content-click="false" :value="timerShown">
                     <template v-slot:activator="{ on, attrs }">
@@ -181,6 +189,9 @@ export default {
                     "Content-Type": "application/json"
                 }
             });
+        },
+        numberDay(day) {
+            return parseInt(day, 10) + "d";
         }
     },
 

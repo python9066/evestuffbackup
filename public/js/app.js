@@ -11438,6 +11438,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -11506,6 +11514,9 @@ function sleep(ms) {
           }
         }, _callee);
       }))();
+    },
+    numberDay: function numberDay(day) {
+      return parseInt(day, 10) + "d";
     }
   },
   computed: {},
@@ -31209,13 +31220,31 @@ var render = function() {
                   key: "countdown",
                   fn: function(scope) {
                     return [
-                      _c("span", { staticClass: "red--text pl-3" }, [
-                        _vm._v(
-                          _vm._s(scope.props.minutes) +
-                            ":" +
-                            _vm._s(scope.props.seconds)
-                        )
-                      ]),
+                      scope.props.days == 0
+                        ? _c("span", { staticClass: "blue--text pl-3" }, [
+                            _vm._v(
+                              _vm._s(scope.props.hours) +
+                                ":" +
+                                _vm._s(scope.props.minutes) +
+                                ":" +
+                                _vm._s(scope.props.seconds)
+                            )
+                          ])
+                        : _vm._e(),
+                      _vm._v(" "),
+                      scope.props.days != 0
+                        ? _c("span", { staticClass: "blue--text pl-3" }, [
+                            _vm._v(
+                              _vm._s(_vm.numberDay(scope.props.days)) +
+                                "\n                " +
+                                _vm._s(scope.props.hours) +
+                                ":" +
+                                _vm._s(scope.props.minutes) +
+                                ":" +
+                                _vm._s(scope.props.seconds)
+                            )
+                          ])
+                        : _vm._e(),
                       _vm._v(" "),
                       _c(
                         "v-menu",
@@ -31412,7 +31441,7 @@ var render = function() {
               ],
               null,
               false,
-              1918269334
+              1844938325
             )
           })
         : _vm._e()
