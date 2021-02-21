@@ -315,7 +315,7 @@ export default {
         Echo.private("towers")
             .listen("TowerChanged", e => {
                 this.checkexpanded(e.flag.message);
-                this.$store.dispatch("updateTowers", e.towers);
+                this.$store.dispatch("updateTowers", e.flag.message);
             })
 
             .listen("TowerNew", e => {

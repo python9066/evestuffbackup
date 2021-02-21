@@ -17545,7 +17545,7 @@ function sleep(ms) {
     Echo["private"]("towers").listen("TowerChanged", function (e) {
       _this.checkexpanded(e.flag.message);
 
-      _this.$store.dispatch("updateTowers", e.towers);
+      _this.$store.dispatch("updateTowers", e.flag.message);
     }).listen("TowerNew", function (e) {
       _this.loadtowers();
     });
