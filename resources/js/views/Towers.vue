@@ -130,8 +130,9 @@
                                 }}</v-icon>
                                 {{ item.tower_status_name }}
                             </v-btn>
-                            <div class="animate__animated animate__bounce">
+                            <div>
                                 <TowerRefTimer
+                                    class="animate__animated animate__bounce"
                                     :item="item"
                                     v-if="item.tower_status_id == 5"
                                 ></TowerRefTimer>

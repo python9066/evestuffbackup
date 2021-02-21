@@ -17904,6 +17904,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 
@@ -36989,13 +36990,11 @@ var render = function() {
                                     _vm._v(" "),
                                     _c(
                                       "div",
-                                      {
-                                        staticClass:
-                                          "animate__animated animate__bounce"
-                                      },
                                       [
                                         item.tower_status_id == 5
                                           ? _c("TowerRefTimer", {
+                                              staticClass:
+                                                "animate__animated animate__bounce",
                                               attrs: { item: item }
                                             })
                                           : _vm._e()
