@@ -160,8 +160,6 @@
                                     color="error"
                                     ><v-icon>fas fa-minus</v-icon></v-btn
                                 >
-                            </v-fab-transition>
-                            <v-fab-transition>
                                 <TowerOnlineTimer
                                     :item="item"
                                     v-if="item.tower_status_id == 3"

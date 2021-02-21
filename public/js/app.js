@@ -17667,8 +17667,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
 
 
 
@@ -36315,14 +36313,8 @@ var render = function() {
                                               ],
                                               1
                                             )
-                                          : _vm._e()
-                                      ],
-                                      1
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "v-fab-transition",
-                                      [
+                                          : _vm._e(),
+                                        _vm._v(" "),
                                         item.tower_status_id == 3
                                           ? _c("TowerOnlineTimer", {
                                               attrs: { item: item }
