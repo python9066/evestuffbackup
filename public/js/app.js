@@ -11426,6 +11426,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -11488,8 +11491,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee);
       }))();
     },
-    test: function test(item) {
-      if (item.tower_status_id == 5) {
+    test: function test() {
+      if (this.item.tower_status_id == 5) {
         return "animate__animated animate__bounceIn";
       } else {
         return "animate__animated animate__bounceOut";
@@ -30975,6 +30978,7 @@ var render = function() {
       _vm.item.out_time == null && _vm.item.tower_status_id == 5
         ? _c(
             "span",
+            { class: _vm.test() },
             [
               _c(
                 "v-menu",

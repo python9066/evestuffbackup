@@ -1,6 +1,9 @@
 <template>
     <v-col>
-        <span v-if="item.out_time == null && item.tower_status_id == 5">
+        <span
+            v-if="item.out_time == null && item.tower_status_id == 5"
+            :class="test()"
+        >
             <v-menu :close-on-content-click="false" :value="timerShown">
                 <template v-slot:activator="{ on, attrs }">
                     <v-chip
@@ -188,8 +191,8 @@ export default {
             });
         },
 
-        test(item) {
-            if (item.tower_status_id == 5) {
+        test() {
+            if (this.item.tower_status_id == 5) {
                 return "animate__animated animate__bounceIn";
             } else {
                 return "animate__animated animate__bounceOut";
