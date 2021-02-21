@@ -37075,7 +37075,7 @@ var render = function() {
                                       ;(item.tower_status_id = list.value),
                                         (item.tower_status_name = list.title),
                                         (item.user_name = _vm.user_name),
-                                        _vm.click(item, list)
+                                        _vm.click(item)
                                     }
                                   }
                                 },

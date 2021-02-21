@@ -140,7 +140,7 @@
                                     (item.tower_status_id = list.value),
                                         (item.tower_status_name = list.title),
                                         (item.user_name = user_name),
-                                        click(item, list)
+                                        click(item)
                                 "
                             >
                                 <v-list-item-title>{{
