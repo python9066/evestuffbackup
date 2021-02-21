@@ -17528,6 +17528,10 @@ function sleep(ms) {
         align: "center",
         width: "15%"
       }, {
+        text: "Time",
+        value: "timestamp",
+        width: "10%"
+      }, {
         text: "Status",
         value: "tower_status_name",
         width: "15%"
