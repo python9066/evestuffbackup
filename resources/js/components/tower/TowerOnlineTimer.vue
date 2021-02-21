@@ -1,6 +1,6 @@
 <template>
     <v-col>
-        <span v-if="item.out_time == null && item.out_time == 3">
+        <span>
             <v-menu :close-on-content-click="false" :value="timerShown">
                 <template v-slot:activator="{ on, attrs }">
                     <v-chip
