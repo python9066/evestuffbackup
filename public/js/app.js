@@ -17952,6 +17952,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 
@@ -37071,29 +37072,19 @@ var render = function() {
                         1
                       ),
                       _vm._v(" "),
-                      _c(
-                        "div",
-                        [
-                          item.tower_status_id == 5
-                            ? _c("TowerRefTimer", { attrs: { item: item } })
-                            : _vm._e()
-                        ],
-                        1
-                      ),
+                      item.tower_status_id == 5
+                        ? _c("TowerRefTimer", {
+                            staticClass: "animate__zoomIn",
+                            attrs: { item: item }
+                          })
+                        : _vm._e(),
                       _vm._v(" "),
-                      _c("v-scroll-x-transition", [
-                        item.tower_status_id == 3
-                          ? _c(
-                              "div",
-                              [
-                                _c("TowerOnlineTimer", {
-                                  attrs: { item: item }
-                                })
-                              ],
-                              1
-                            )
-                          : _vm._e()
-                      ]),
+                      item.tower_status_id == 3
+                        ? _c("TowerOnlineTimer", {
+                            staticClass: "animate__zoomIn",
+                            attrs: { item: item }
+                          })
+                        : _vm._e(),
                       _vm._v(" "),
                       _c(
                         "v-fab-transition",

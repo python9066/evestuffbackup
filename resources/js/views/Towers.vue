@@ -149,17 +149,18 @@
                             </v-list-item>
                         </v-list>
                     </v-menu>
-                    <div>
-                        <TowerRefTimer
-                            :item="item"
-                            v-if="item.tower_status_id == 5"
-                        ></TowerRefTimer>
-                    </div>
-                    <v-scroll-x-transition>
-                        <div v-if="item.tower_status_id == 3">
-                            <TowerOnlineTimer :item="item"></TowerOnlineTimer>
-                        </div>
-                    </v-scroll-x-transition>
+                    <TowerRefTimer
+                        class="animate__zoomIn"
+                        :item="item"
+                        v-if="item.tower_status_id == 5"
+                    ></TowerRefTimer>
+
+                    <TowerOnlineTimer
+                        v-if="item.tower_status_id == 3"
+                        :item="item"
+                        class="animate__zoomIn"
+                    ></TowerOnlineTimer>
+
                     <!-- EXTRA BUTTON -->
                     <v-fab-transition>
                         <v-chip
