@@ -461,7 +461,7 @@ export default {
                 var request = {
                     tower_status_id: item.tower_status_id,
                     user_id: this.$store.state.user_id,
-                    out_time: item.out_time
+                    out_time: null
                 };
             } else {
                 var request = {
