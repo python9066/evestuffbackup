@@ -51,9 +51,12 @@ class TowerRecordsController extends Controller
     public function update(Request $request, $id)
     {
         Tower::find($id)->update($request->all());
-        $station =  TowerRecord::find($id);
-        if ($station->status_id != 10) {
-            broadcast(new TowerChanged($station))->toOthers();
+        $message =  TowerRecord::find($id);
+        if ($message->status_id != 10) {
+            $flag = collect([
+                'message' => $message,
+            ]);
+            broadcast(new TowerChanged($flag))->toOthers();
         }
     }
 

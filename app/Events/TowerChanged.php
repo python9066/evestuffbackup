@@ -23,15 +23,15 @@ class TowerChanged implements ShouldBroadcast
      *
      * @var User
      */
-    public $towers;
+    public $flag;
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct(TowerRecord $towers)
+    public function __construct($flag)
     {
-        $this->towers = $towers;
+        $this->flag = $flag;
     }
 
     // public function __construct($notifications)

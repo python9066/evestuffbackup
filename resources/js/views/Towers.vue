@@ -3,7 +3,6 @@
         <messageStations></messageStations>
         <div class=" d-flex align-items-center">
             <v-card-title>Towers</v-card-title>
-            <div v-if="$can('access hacks')">You can edit posts.</div>
 
             <v-btn
                 :loading="loadingr"
@@ -315,7 +314,7 @@ export default {
     created() {
         Echo.private("towers")
             .listen("TowerChanged", e => {
-                this.checkexpanded(e.towers);
+                this.checkexpanded(e.flag.message);
                 this.$store.dispatch("updateTowers", e.towers);
             })
 

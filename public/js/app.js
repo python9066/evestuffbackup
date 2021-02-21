@@ -17440,7 +17440,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
 
 
 
@@ -17544,7 +17543,7 @@ function sleep(ms) {
     var _this = this;
 
     Echo["private"]("towers").listen("TowerChanged", function (e) {
-      _this.checkexpanded(e.towers);
+      _this.checkexpanded(e.flag.message);
 
       _this.$store.dispatch("updateTowers", e.towers);
     }).listen("TowerNew", function (e) {
@@ -35281,10 +35280,6 @@ var render = function() {
         { staticClass: " d-flex align-items-center" },
         [
           _c("v-card-title", [_vm._v("Towers")]),
-          _vm._v(" "),
-          _vm.$can("access hacks")
-            ? _c("div", [_vm._v("You can edit posts.")])
-            : _vm._e(),
           _vm._v(" "),
           _c(
             "v-btn",
