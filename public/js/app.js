@@ -11231,12 +11231,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 min = parseInt(_this.anchoringTime.substr(0, 2));
                 sec = parseInt(_this.anchoringTime.substr(3, 2));
                 finishTime = moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc().add(sec, "seconds").add(min, "minutes").format("YYYY-MM-DD HH:mm:ss");
-                item.end_time = finishTime;
+                item.out_time = finishTime;
 
                 _this.$store.dispatch("updateTowers", item);
 
                 request = {
-                  end_time: finishTime
+                  out_time: finishTime
                 };
                 _context.next = 8;
                 return axios({
@@ -30243,7 +30243,7 @@ var render = function() {
   return _c(
     "v-col",
     [
-      _vm.item.end_time == null && _vm.item.end_time == 3
+      _vm.item.out_time == null && _vm.item.out_time == 3
         ? _c(
             "span",
             [
@@ -30433,7 +30433,7 @@ var render = function() {
       _vm.item.status_id == 3
         ? _c("CountDowntimer", {
             attrs: {
-              "start-time": _vm.moment.utc(_vm.item.end_time).unix(),
+              "start-time": _vm.moment.utc(_vm.item.out_time).unix(),
               "end-text": "Is it Secured?",
               interval: 1000
             },

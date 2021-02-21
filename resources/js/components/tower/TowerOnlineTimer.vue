@@ -1,6 +1,6 @@
 <template>
     <v-col>
-        <span v-if="item.end_time == null && item.end_time == 3">
+        <span v-if="item.out_time == null && item.out_time == 3">
             <v-menu :close-on-content-click="false" :value="timerShown">
                 <template v-slot:activator="{ on, attrs }">
                     <v-chip
@@ -63,7 +63,7 @@
 
         <CountDowntimer
             v-if="item.status_id == 3"
-            :start-time="moment.utc(item.end_time).unix()"
+            :start-time="moment.utc(item.out_time).unix()"
             end-text="Is it Secured?"
             :interval="1000"
         >
@@ -165,10 +165,10 @@ export default {
                 .add(sec, "seconds")
                 .add(min, "minutes")
                 .format("YYYY-MM-DD HH:mm:ss");
-            item.end_time = finishTime;
+            item.out_time = finishTime;
             this.$store.dispatch("updateTowers", item);
             var request = {
-                end_time: finishTime
+                out_time: finishTime
             };
 
             await axios({
