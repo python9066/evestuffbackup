@@ -67,6 +67,7 @@ Vue.component('Info', require('./components/station/Info.vue').default);
 Vue.component('StationTimer', require('./components/station/StationTimer.vue').default);
 Vue.component('Structure', require('./components/station/Structure.vue').default);
 Vue.component('AddStation', require('./components/station/AddStation.vue').default);
+Vue.component('TowerOnlineTimer', require('./components/tower/TowerOnlineTimer.vue').default);
 
 
 

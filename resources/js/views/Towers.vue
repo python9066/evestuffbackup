@@ -149,6 +149,7 @@
                                     :color="adashColor(item)"
                                     >adash</v-chip
                                 >
+                                <TowerOnlineTimer></TowerOnlineTimer>
                                 <v-btn
                                     icon
                                     @click="(expanded = []), (expanded_id = 0)"

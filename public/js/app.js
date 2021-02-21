@@ -11042,6 +11042,229 @@ function sleep(ms) {
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/tower/TowerOnlineTimer.vue?vue&type=script&lang=js&":
+/*!*********************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/tower/TowerOnlineTimer.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_2__);
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: {
+    item: Object
+  },
+  data: function data() {
+    return {
+      timerShown: false,
+      anchoringTime: {
+        mm: "",
+        ss: ""
+      }
+    };
+  },
+  methods: {
+    addAnchoringTime: function addAnchoringTime(item) {
+      var _this = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        var min, sec, finishTime, request;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                min = parseInt(_this.anchoringTime.substr(0, 2));
+                sec = parseInt(_this.anchoringTime.substr(3, 2));
+                finishTime = moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc().add(sec, "seconds").add(min, "minutes").format("YYYY-MM-DD HH:mm:ss");
+                item.end_time = finishTime;
+
+                _this.$store.dispatch("updateTowers", item);
+
+                request = {
+                  end_time: finishTime
+                };
+                _context.next = 8;
+                return axios({
+                  method: "put",
+                  //you can set what request you want to be
+                  url: "api/towerrecords/" + item.id,
+                  data: request,
+                  headers: {
+                    Authorization: "Bearer " + _this.$store.state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                  }
+                });
+
+              case 8:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }))();
+    }
+  },
+  computed: {}
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/mixins/Permissions.vue?vue&type=script&lang=js&":
 /*!******************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/mixins/Permissions.vue?vue&type=script&lang=js& ***!
@@ -17440,6 +17663,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 
@@ -18149,6 +18373,25 @@ exports.push([module.i, "\n.style-2 {\n    background-color: rgb(30, 30, 30, 1);
 
 /***/ }),
 
+/***/ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/tower/TowerOnlineTimer.vue?vue&type=style&index=0&lang=css&":
+/*!****************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/tower/TowerOnlineTimer.vue?vue&type=style&index=0&lang=css& ***!
+  \****************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.style-2 {\n    background-color: rgb(30, 30, 30, 1);\n}\n.style-1 {\n    background-color: rgb(184, 22, 35);\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/AdminPanel.vue?vue&type=style&index=0&id=55568bd4&scoped=true&lang=css&":
 /*!***********************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/AdminPanel.vue?vue&type=style&index=0&id=55568bd4&scoped=true&lang=css& ***!
@@ -18357,6 +18600,36 @@ if(false) {}
 
 
 var content = __webpack_require__(/*! !../../../../node_modules/css-loader??ref--6-1!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/src??ref--6-2!../../../../node_modules/vue-loader/lib??vue-loader-options!./StationTimer.vue?vue&type=style&index=0&lang=css& */ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/station/StationTimer.vue?vue&type=style&index=0&lang=css&");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
+/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/tower/TowerOnlineTimer.vue?vue&type=style&index=0&lang=css&":
+/*!********************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader!./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/tower/TowerOnlineTimer.vue?vue&type=style&index=0&lang=css& ***!
+  \********************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../../../node_modules/css-loader??ref--6-1!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/src??ref--6-2!../../../../node_modules/vue-loader/lib??vue-loader-options!./TowerOnlineTimer.vue?vue&type=style&index=0&lang=css& */ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/tower/TowerOnlineTimer.vue?vue&type=style&index=0&lang=css&");
 
 if(typeof content === 'string') content = [[module.i, content, '']];
 
@@ -29952,6 +30225,442 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/tower/TowerOnlineTimer.vue?vue&type=template&id=75fe4cda&":
+/*!*************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/tower/TowerOnlineTimer.vue?vue&type=template&id=75fe4cda& ***!
+  \*************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "v-col",
+    [
+      _vm.item.end_time == null && _vm.item.end_time == 3
+        ? _c(
+            "span",
+            [
+              _c(
+                "v-menu",
+                {
+                  attrs: {
+                    "close-on-content-click": false,
+                    value: _vm.timerShown
+                  },
+                  scopedSlots: _vm._u(
+                    [
+                      {
+                        key: "activator",
+                        fn: function(ref) {
+                          var on = ref.on
+                          var attrs = ref.attrs
+                          return [
+                            _c(
+                              "v-chip",
+                              _vm._g(
+                                _vm._b(
+                                  {
+                                    attrs: {
+                                      pill: "",
+                                      outlined: "",
+                                      small: "",
+                                      color: "warning"
+                                    },
+                                    on: {
+                                      click: function($event) {
+                                        _vm.timerShown = true
+                                      }
+                                    }
+                                  },
+                                  "v-chip",
+                                  attrs,
+                                  false
+                                ),
+                                on
+                              ),
+                              [
+                                _vm._v(
+                                  "\n                    Add Time\n                "
+                                )
+                              ]
+                            )
+                          ]
+                        }
+                      }
+                    ],
+                    null,
+                    false,
+                    751554087
+                  )
+                },
+                [
+                  _vm._v(" "),
+                  [
+                    _c(
+                      "v-card",
+                      { attrs: { tile: "", "min-height": "150px" } },
+                      [
+                        _c(
+                          "v-card-title",
+                          { staticClass: " pb-0" },
+                          [
+                            _c("v-text-field", {
+                              directives: [
+                                {
+                                  name: "mask",
+                                  rawName: "v-mask",
+                                  value: "##:##",
+                                  expression: "'##:##'"
+                                }
+                              ],
+                              attrs: {
+                                label: "Reapir Time mm:ss",
+                                autofocus: "",
+                                placeholder: "mm:ss"
+                              },
+                              on: {
+                                keyup: [
+                                  function($event) {
+                                    if (
+                                      !$event.type.indexOf("key") &&
+                                      _vm._k(
+                                        $event.keyCode,
+                                        "enter",
+                                        13,
+                                        $event.key,
+                                        "Enter"
+                                      )
+                                    ) {
+                                      return null
+                                    }
+                                    ;(_vm.timerShown = false),
+                                      _vm.addAnchoringTime(_vm.item)
+                                  },
+                                  function($event) {
+                                    if (
+                                      !$event.type.indexOf("key") &&
+                                      _vm._k(
+                                        $event.keyCode,
+                                        "esc",
+                                        27,
+                                        $event.key,
+                                        ["Esc", "Escape"]
+                                      )
+                                    ) {
+                                      return null
+                                    }
+                                    ;(_vm.timerShown = false),
+                                      (_vm.anchoringTime = null)
+                                  }
+                                ]
+                              },
+                              model: {
+                                value: _vm.anchoringTime,
+                                callback: function($$v) {
+                                  _vm.anchoringTime = $$v
+                                },
+                                expression: "anchoringTime"
+                              }
+                            })
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "v-card-text",
+                          [
+                            _c(
+                              "v-btn",
+                              {
+                                attrs: {
+                                  icon: "",
+                                  fixed: "",
+                                  left: "",
+                                  color: "success"
+                                },
+                                on: {
+                                  click: function($event) {
+                                    ;(_vm.timerShown = false),
+                                      _vm.addAnchoringTime(_vm.item)
+                                  }
+                                }
+                              },
+                              [_c("v-icon", [_vm._v("fas fa-check")])],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "v-btn",
+                              {
+                                attrs: {
+                                  fixed: "",
+                                  right: "",
+                                  icon: "",
+                                  color: "warning"
+                                },
+                                on: {
+                                  click: function($event) {
+                                    ;(_vm.timerShown = false),
+                                      (_vm.anchoringTime = null)
+                                  }
+                                }
+                              },
+                              [_c("v-icon", [_vm._v("fas fa-times")])],
+                              1
+                            )
+                          ],
+                          1
+                        )
+                      ],
+                      1
+                    )
+                  ]
+                ],
+                2
+              )
+            ],
+            1
+          )
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.item.status_id == 3
+        ? _c("CountDowntimer", {
+            attrs: {
+              "start-time": _vm.moment.utc(_vm.item.end_time).unix(),
+              "end-text": "Is it Secured?",
+              interval: 1000
+            },
+            scopedSlots: _vm._u(
+              [
+                {
+                  key: "countdown",
+                  fn: function(scope) {
+                    return [
+                      _c("span", { staticClass: "red--text pl-3" }, [
+                        _vm._v(
+                          _vm._s(scope.props.minutes) +
+                            ":" +
+                            _vm._s(scope.props.seconds)
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "v-menu",
+                        {
+                          attrs: {
+                            "close-on-content-click": false,
+                            value: _vm.timerShown
+                          },
+                          scopedSlots: _vm._u(
+                            [
+                              {
+                                key: "activator",
+                                fn: function(ref) {
+                                  var on = ref.on
+                                  var attrs = ref.attrs
+                                  return [
+                                    _c(
+                                      "v-btn",
+                                      _vm._g(
+                                        _vm._b(
+                                          {
+                                            attrs: {
+                                              icon: "",
+                                              color: "warning"
+                                            },
+                                            on: {
+                                              click: function($event) {
+                                                ;(_vm.timerShown = true),
+                                                  (_vm.anchoringTime = null)
+                                              }
+                                            }
+                                          },
+                                          "v-btn",
+                                          attrs,
+                                          false
+                                        ),
+                                        on
+                                      ),
+                                      [
+                                        _c(
+                                          "v-icon",
+                                          { attrs: { "x-small": "" } },
+                                          [_vm._v("fas fa-edit")]
+                                        )
+                                      ],
+                                      1
+                                    )
+                                  ]
+                                }
+                              }
+                            ],
+                            null,
+                            true
+                          )
+                        },
+                        [
+                          _vm._v(" "),
+                          [
+                            _c(
+                              "v-card",
+                              { attrs: { tile: "", "min-height": "150px" } },
+                              [
+                                _c(
+                                  "v-card-title",
+                                  { staticClass: " pb-0" },
+                                  [
+                                    _c("v-text-field", {
+                                      directives: [
+                                        {
+                                          name: "mask",
+                                          rawName: "v-mask",
+                                          value: "##:##",
+                                          expression: "'##:##'"
+                                        }
+                                      ],
+                                      attrs: {
+                                        label: "Repair Time mm:ss",
+                                        autofocus: "",
+                                        placeholder: "mm:ss"
+                                      },
+                                      on: {
+                                        keyup: [
+                                          function($event) {
+                                            if (
+                                              !$event.type.indexOf("key") &&
+                                              _vm._k(
+                                                $event.keyCode,
+                                                "enter",
+                                                13,
+                                                $event.key,
+                                                "Enter"
+                                              )
+                                            ) {
+                                              return null
+                                            }
+                                            ;(_vm.repairShown = false),
+                                              _vm.addAnchoringTime(_vm.item)
+                                          },
+                                          function($event) {
+                                            if (
+                                              !$event.type.indexOf("key") &&
+                                              _vm._k(
+                                                $event.keyCode,
+                                                "esc",
+                                                27,
+                                                $event.key,
+                                                ["Esc", "Escape"]
+                                              )
+                                            ) {
+                                              return null
+                                            }
+                                            ;(_vm.timerShown = false),
+                                              (_vm.anchoringTime = null)
+                                          }
+                                        ]
+                                      },
+                                      model: {
+                                        value: _vm.anchoringTime,
+                                        callback: function($$v) {
+                                          _vm.anchoringTime = $$v
+                                        },
+                                        expression: "anchoringTime"
+                                      }
+                                    })
+                                  ],
+                                  1
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "v-card-text",
+                                  [
+                                    _c(
+                                      "v-btn",
+                                      {
+                                        attrs: {
+                                          icon: "",
+                                          fixed: "",
+                                          left: "",
+                                          color: "success"
+                                        },
+                                        on: {
+                                          click: function($event) {
+                                            ;(_vm.timerShown = false),
+                                              _vm.addAnchoringTime(_vm.item)
+                                          }
+                                        }
+                                      },
+                                      [_c("v-icon", [_vm._v("fas fa-check")])],
+                                      1
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "v-btn",
+                                      {
+                                        attrs: {
+                                          fixed: "",
+                                          right: "",
+                                          icon: "",
+                                          color: "warning"
+                                        },
+                                        on: {
+                                          click: function($event) {
+                                            ;(_vm.timerShown = false),
+                                              (_vm.anchoringTime = null)
+                                          }
+                                        }
+                                      },
+                                      [_c("v-icon", [_vm._v("fas fa-times")])],
+                                      1
+                                    )
+                                  ],
+                                  1
+                                )
+                              ],
+                              1
+                            )
+                          ]
+                        ],
+                        2
+                      )
+                    ]
+                  }
+                },
+                {
+                  key: "end-text",
+                  fn: function(scope) {
+                    return [
+                      _c("span", { staticStyle: { color: "green" } }, [
+                        _vm._v(_vm._s(scope.props.endText))
+                      ])
+                    ]
+                  }
+                }
+              ],
+              null,
+              false,
+              2549143148
+            )
+          })
+        : _vm._e()
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/AdminPanel.vue?vue&type=template&id=55568bd4&scoped=true&":
 /*!********************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/AdminPanel.vue?vue&type=template&id=55568bd4&scoped=true& ***!
@@ -35577,6 +36286,8 @@ var render = function() {
                                             )
                                           : _vm._e(),
                                         _vm._v(" "),
+                                        _c("TowerOnlineTimer"),
+                                        _vm._v(" "),
                                         (item.tower_status_id != 6 ||
                                           item.tower_status_id != 1) &&
                                         _vm.expanded.includes(item)
@@ -36076,6 +36787,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('Info', __webpack_require__
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('StationTimer', __webpack_require__(/*! ./components/station/StationTimer.vue */ "./resources/js/components/station/StationTimer.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('Structure', __webpack_require__(/*! ./components/station/Structure.vue */ "./resources/js/components/station/Structure.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('AddStation', __webpack_require__(/*! ./components/station/AddStation.vue */ "./resources/js/components/station/AddStation.vue")["default"]);
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('TowerOnlineTimer', __webpack_require__(/*! ./components/tower/TowerOnlineTimer.vue */ "./resources/js/components/tower/TowerOnlineTimer.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.prototype.moment = moment__WEBPACK_IMPORTED_MODULE_11___default.a; // import '@fortawesome/fontawesome-f      ree/css/all.css'
 
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(_components_countdown_index__WEBPACK_IMPORTED_MODULE_14__["default"]);
@@ -39954,6 +40666,93 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Structure_vue_vue_type_template_id_2e9dc37d___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Structure_vue_vue_type_template_id_2e9dc37d___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/tower/TowerOnlineTimer.vue":
+/*!************************************************************!*\
+  !*** ./resources/js/components/tower/TowerOnlineTimer.vue ***!
+  \************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _TowerOnlineTimer_vue_vue_type_template_id_75fe4cda___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./TowerOnlineTimer.vue?vue&type=template&id=75fe4cda& */ "./resources/js/components/tower/TowerOnlineTimer.vue?vue&type=template&id=75fe4cda&");
+/* harmony import */ var _TowerOnlineTimer_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./TowerOnlineTimer.vue?vue&type=script&lang=js& */ "./resources/js/components/tower/TowerOnlineTimer.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _TowerOnlineTimer_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./TowerOnlineTimer.vue?vue&type=style&index=0&lang=css& */ "./resources/js/components/tower/TowerOnlineTimer.vue?vue&type=style&index=0&lang=css&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
+  _TowerOnlineTimer_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _TowerOnlineTimer_vue_vue_type_template_id_75fe4cda___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _TowerOnlineTimer_vue_vue_type_template_id_75fe4cda___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/tower/TowerOnlineTimer.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/tower/TowerOnlineTimer.vue?vue&type=script&lang=js&":
+/*!*************************************************************************************!*\
+  !*** ./resources/js/components/tower/TowerOnlineTimer.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_TowerOnlineTimer_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./TowerOnlineTimer.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/tower/TowerOnlineTimer.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_TowerOnlineTimer_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/tower/TowerOnlineTimer.vue?vue&type=style&index=0&lang=css&":
+/*!*********************************************************************************************!*\
+  !*** ./resources/js/components/tower/TowerOnlineTimer.vue?vue&type=style&index=0&lang=css& ***!
+  \*********************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_TowerOnlineTimer_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/style-loader!../../../../node_modules/css-loader??ref--6-1!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/src??ref--6-2!../../../../node_modules/vue-loader/lib??vue-loader-options!./TowerOnlineTimer.vue?vue&type=style&index=0&lang=css& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/tower/TowerOnlineTimer.vue?vue&type=style&index=0&lang=css&");
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_TowerOnlineTimer_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_TowerOnlineTimer_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_TowerOnlineTimer_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_TowerOnlineTimer_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+
+
+/***/ }),
+
+/***/ "./resources/js/components/tower/TowerOnlineTimer.vue?vue&type=template&id=75fe4cda&":
+/*!*******************************************************************************************!*\
+  !*** ./resources/js/components/tower/TowerOnlineTimer.vue?vue&type=template&id=75fe4cda& ***!
+  \*******************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TowerOnlineTimer_vue_vue_type_template_id_75fe4cda___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./TowerOnlineTimer.vue?vue&type=template&id=75fe4cda& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/tower/TowerOnlineTimer.vue?vue&type=template&id=75fe4cda&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TowerOnlineTimer_vue_vue_type_template_id_75fe4cda___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TowerOnlineTimer_vue_vue_type_template_id_75fe4cda___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
