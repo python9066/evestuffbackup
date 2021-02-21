@@ -17903,10 +17903,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
 
 
 
@@ -36990,31 +36986,31 @@ var render = function() {
                                       1
                                     ),
                                     _vm._v(" "),
-                                    item.tower_status_id == 5
-                                      ? _c(
-                                          "v-fab-transition",
-                                          { attrs: { mode: "in-out" } },
-                                          [
-                                            _c("TowerOnlineTimer", {
+                                    _c(
+                                      "v-fab-transition",
+                                      { attrs: { mode: "in-out" } },
+                                      [
+                                        item.tower_status_id == 5
+                                          ? _c("TowerOnlineTimer", {
                                               attrs: { item: item }
                                             })
-                                          ],
-                                          1
-                                        )
-                                      : _vm._e(),
+                                          : _vm._e()
+                                      ],
+                                      1
+                                    ),
                                     _vm._v(" "),
-                                    item.tower_status_id == 3
-                                      ? _c(
-                                          "v-fab-transition",
-                                          { attrs: { mode: "in-out" } },
-                                          [
-                                            _c("TowerOnlineTimer", {
+                                    _c(
+                                      "v-fab-transition",
+                                      { attrs: { mode: "in-out" } },
+                                      [
+                                        item.tower_status_id == 3
+                                          ? _c("TowerOnlineTimer", {
                                               attrs: { item: item }
                                             })
-                                          ],
-                                          1
-                                        )
-                                      : _vm._e(),
+                                          : _vm._e()
+                                      ],
+                                      1
+                                    ),
                                     _vm._v(" "),
                                     _c(
                                       "v-fab-transition",
