@@ -130,46 +130,6 @@
                                 }}</v-icon>
                                 {{ item.tower_status_name }}
                             </v-btn>
-                            <div>
-                                <TowerRefTimer :item="item"></TowerRefTimer>
-                            </div>
-                            <v-scroll-x-transition>
-                                <div v-if="item.tower_status_id == 3">
-                                    <TowerOnlineTimer
-                                        :item="item"
-                                    ></TowerOnlineTimer>
-                                </div>
-                            </v-scroll-x-transition>
-                            <!-- EXTRA BUTTON -->
-                            <v-fab-transition>
-                                <v-chip
-                                    pill
-                                    outlined
-                                    small
-                                    @click="
-                                        (expanded = [item]),
-                                            (expanded_id = item.id)
-                                    "
-                                    v-if="
-                                        item.tower_status_id != 6 &&
-                                            item.tower_status_id != 1 &&
-                                            !expanded.includes(item)
-                                    "
-                                    :color="adashColor(item)"
-                                    >adash</v-chip
-                                >
-                                <v-btn
-                                    icon
-                                    @click="(expanded = []), (expanded_id = 0)"
-                                    v-if="
-                                        (item.tower_status_id != 6 ||
-                                            item.tower_status_id != 1) &&
-                                            expanded.includes(item)
-                                    "
-                                    color="error"
-                                    ><v-icon>fas fa-minus</v-icon></v-btn
-                                >
-                            </v-fab-transition>
                         </div>
                     </template>
 
@@ -190,6 +150,41 @@
                         </v-list-item>
                     </v-list>
                 </v-menu>
+                <div>
+                    <TowerRefTimer :item="item"></TowerRefTimer>
+                </div>
+                <v-scroll-x-transition>
+                    <div v-if="item.tower_status_id == 3">
+                        <TowerOnlineTimer :item="item"></TowerOnlineTimer>
+                    </div>
+                </v-scroll-x-transition>
+                <!-- EXTRA BUTTON -->
+                <v-fab-transition>
+                    <v-chip
+                        pill
+                        outlined
+                        small
+                        @click="(expanded = [item]), (expanded_id = item.id)"
+                        v-if="
+                            item.tower_status_id != 6 &&
+                                item.tower_status_id != 1 &&
+                                !expanded.includes(item)
+                        "
+                        :color="adashColor(item)"
+                        >adash</v-chip
+                    >
+                    <v-btn
+                        icon
+                        @click="(expanded = []), (expanded_id = 0)"
+                        v-if="
+                            (item.tower_status_id != 6 ||
+                                item.tower_status_id != 1) &&
+                                expanded.includes(item)
+                        "
+                        color="error"
+                        ><v-icon>fas fa-minus</v-icon></v-btn
+                    >
+                </v-fab-transition>
             </template>
             <template
                 v-slot:expanded-item="{ headers, item }"

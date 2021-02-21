@@ -17950,11 +17950,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
 
 
 
@@ -37037,86 +37032,6 @@ var render = function() {
                                         )
                                       ],
                                       1
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "div",
-                                      [
-                                        _c("TowerRefTimer", {
-                                          attrs: { item: item }
-                                        })
-                                      ],
-                                      1
-                                    ),
-                                    _vm._v(" "),
-                                    _c("v-scroll-x-transition", [
-                                      item.tower_status_id == 3
-                                        ? _c(
-                                            "div",
-                                            [
-                                              _c("TowerOnlineTimer", {
-                                                attrs: { item: item }
-                                              })
-                                            ],
-                                            1
-                                          )
-                                        : _vm._e()
-                                    ]),
-                                    _vm._v(" "),
-                                    _c(
-                                      "v-fab-transition",
-                                      [
-                                        item.tower_status_id != 6 &&
-                                        item.tower_status_id != 1 &&
-                                        !_vm.expanded.includes(item)
-                                          ? _c(
-                                              "v-chip",
-                                              {
-                                                attrs: {
-                                                  pill: "",
-                                                  outlined: "",
-                                                  small: "",
-                                                  color: _vm.adashColor(item)
-                                                },
-                                                on: {
-                                                  click: function($event) {
-                                                    ;(_vm.expanded = [item]),
-                                                      (_vm.expanded_id =
-                                                        item.id)
-                                                  }
-                                                }
-                                              },
-                                              [_vm._v("adash")]
-                                            )
-                                          : _vm._e(),
-                                        _vm._v(" "),
-                                        (item.tower_status_id != 6 ||
-                                          item.tower_status_id != 1) &&
-                                        _vm.expanded.includes(item)
-                                          ? _c(
-                                              "v-btn",
-                                              {
-                                                attrs: {
-                                                  icon: "",
-                                                  color: "error"
-                                                },
-                                                on: {
-                                                  click: function($event) {
-                                                    ;(_vm.expanded = []),
-                                                      (_vm.expanded_id = 0)
-                                                  }
-                                                }
-                                              },
-                                              [
-                                                _c("v-icon", [
-                                                  _vm._v("fas fa-minus")
-                                                ])
-                                              ],
-                                              1
-                                            )
-                                          : _vm._e()
-                                      ],
-                                      1
                                     )
                                   ],
                                   1
@@ -37157,6 +37072,69 @@ var render = function() {
                         }),
                         1
                       )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    [_c("TowerRefTimer", { attrs: { item: item } })],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c("v-scroll-x-transition", [
+                    item.tower_status_id == 3
+                      ? _c(
+                          "div",
+                          [_c("TowerOnlineTimer", { attrs: { item: item } })],
+                          1
+                        )
+                      : _vm._e()
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "v-fab-transition",
+                    [
+                      item.tower_status_id != 6 &&
+                      item.tower_status_id != 1 &&
+                      !_vm.expanded.includes(item)
+                        ? _c(
+                            "v-chip",
+                            {
+                              attrs: {
+                                pill: "",
+                                outlined: "",
+                                small: "",
+                                color: _vm.adashColor(item)
+                              },
+                              on: {
+                                click: function($event) {
+                                  ;(_vm.expanded = [item]),
+                                    (_vm.expanded_id = item.id)
+                                }
+                              }
+                            },
+                            [_vm._v("adash")]
+                          )
+                        : _vm._e(),
+                      _vm._v(" "),
+                      (item.tower_status_id != 6 ||
+                        item.tower_status_id != 1) &&
+                      _vm.expanded.includes(item)
+                        ? _c(
+                            "v-btn",
+                            {
+                              attrs: { icon: "", color: "error" },
+                              on: {
+                                click: function($event) {
+                                  ;(_vm.expanded = []), (_vm.expanded_id = 0)
+                                }
+                              }
+                            },
+                            [_c("v-icon", [_vm._v("fas fa-minus")])],
+                            1
+                          )
+                        : _vm._e()
                     ],
                     1
                   )
