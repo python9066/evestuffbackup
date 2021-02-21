@@ -931,14 +931,15 @@ class Notifications
 
         $towers = Tower::where('tower_status_id', 5)->where('updated_at', '<', $now10min)->get();
         foreach ($towers as $tower) {
-
-            $tower->update(['tower_status_id' => 7]);
-            $message = TowerRecord::where('id', $tower->id)->first();
-            if ($message->status_id != 10) {
-                $flag = collect([
-                    'message' => $message,
-                ]);
-                broadcast(new TowerChanged($flag));
+            if ($tower->out_time != null) {
+                $tower->update(['tower_status_id' => 7]);
+                $message = TowerRecord::where('id', $tower->id)->first();
+                if ($message->status_id != 10) {
+                    $flag = collect([
+                        'message' => $message,
+                    ]);
+                    broadcast(new TowerChanged($flag));
+                }
             }
         }
 
