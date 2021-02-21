@@ -298,7 +298,7 @@ export default {
                 },
                 { text: "System", value: "system_name", width: "5%" },
                 { text: "Alliance", value: "alliance_name", width: "10%" },
-                { text: "Moon", value: "moon_name", width: "10%" },
+                { text: "Moon", value: "moon_name", width: "8%" },
                 {
                     text: "Type",
                     value: "item_name",

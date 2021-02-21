@@ -17749,7 +17749,7 @@ function sleep(ms) {
       }, {
         text: "Moon",
         value: "moon_name",
-        width: "10%"
+        width: "8%"
       }, {
         text: "Type",
         value: "item_name",
