@@ -131,7 +131,6 @@
                                 {{ item.tower_status_name }}
                             </v-btn>
                             <div class="animate__animated animate__bounce">
-                                >
                                 <TowerOnlineTimer
                                     :item="item"
                                     v-if="item.tower_status_id == 5"

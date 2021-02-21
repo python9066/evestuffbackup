@@ -17904,7 +17904,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
 
 
 
@@ -36995,9 +36994,6 @@ var render = function() {
                                           "animate__animated animate__bounce"
                                       },
                                       [
-                                        _vm._v(
-                                          "\n                            >\n                            "
-                                        ),
                                         item.tower_status_id == 5
                                           ? _c("TowerOnlineTimer", {
                                               attrs: { item: item }
