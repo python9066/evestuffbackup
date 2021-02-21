@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Events\TowerChanged;
+use App\Events\TowerDelete;
 use App\Models\Tower;
 use App\Models\TowerRecord;
 use Illuminate\Http\Request;
@@ -56,7 +57,22 @@ class TowerRecordsController extends Controller
             $flag = collect([
                 'message' => $message,
             ]);
-            broadcast(new TowerChanged($flag))->toOthers();
+            broadcast(new TowerChanged($flag));
+        }
+    }
+
+    public function autoUpdate()
+    {
+        $now10min = now()->modify(' -10 minutes');
+        $towers = Tower::where('tower_status_id', 6)->where('updated_at', '<', $now10min)->get();
+        foreach ($towers as $tower) {
+            $id = $tower->id;
+            $flag = null;
+            $flag = collect([
+                'id' => $id
+            ]);
+            broadcast(new TowerDelete($flag));
+            $tower->delete();
         }
     }
 

@@ -101,6 +101,11 @@ export default new Vuex.Store({
             Object.assign(item, data);
         },
 
+        DELETE_TOWERS(state, id) {
+            let index = state.towers.findIndex(e => e.id == id)
+            if(index >= 0){state.towers.splice(index, 1)}
+        },
+
         SET_CAMPAIGN_SOLA_SYSTEMS(state, campaignSolaSystems) {
             state.campaignSolaSystems = campaignSolaSystems;
         },
@@ -680,6 +685,11 @@ export default new Vuex.Store({
         deleteNodeJoin({ commit }, id) {
             commit("DELETE_NODE_JOIN",id)
         },
+
+        deleteTower({ commit }, id) {
+            commit("DELETE_TOWERS",id)
+        },
+
 
 
         deleteCampaignSystem({ commit }, id) {

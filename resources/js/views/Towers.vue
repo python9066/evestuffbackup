@@ -332,6 +332,9 @@ export default {
 
             .listen("TowerNew", e => {
                 this.loadtowers();
+            })
+            .listen("TowerDelete", e => {
+                this.$store.dispatch("deleteTower", e.flag.id);
             });
 
         this.$store.dispatch("getTowerData").then(() => {
