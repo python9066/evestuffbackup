@@ -1,6 +1,6 @@
 <template>
     <v-col>
-        <span v-if="item.out_time == null && item.tower_status_id == 5">
+        <span v-if="item.out_time == null">
             <v-menu :close-on-content-click="false" :value="timerShown">
                 <template v-slot:activator="{ on, attrs }">
                     <v-chip
@@ -62,7 +62,7 @@
         </span>
 
         <CountDowntimer
-            v-if="item.tower_status_id == 5"
+            v-if="item.out_time != null"
             :start-time="moment.utc(item.out_time).unix()"
             end-text="Just Onlined"
             :interval="1000"
