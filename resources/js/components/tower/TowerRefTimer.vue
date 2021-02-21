@@ -189,14 +189,6 @@ export default {
                     "Content-Type": "application/json"
                 }
             });
-        },
-
-        test() {
-            if (this.item.tower_status_id == 5) {
-                return "animate__animated animate__bounceIn";
-            } else {
-                return "animate__animated animate__bounceOut";
-            }
         }
     },
 

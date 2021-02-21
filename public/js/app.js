@@ -11514,13 +11514,6 @@ function sleep(ms) {
           }
         }, _callee);
       }))();
-    },
-    test: function test() {
-      if (this.item.tower_status_id == 5) {
-        return "animate__animated animate__bounceIn";
-      } else {
-        return "animate__animated animate__bounceOut";
-      }
     }
   },
   computed: {},
