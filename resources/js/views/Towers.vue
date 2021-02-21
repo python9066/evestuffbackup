@@ -130,18 +130,18 @@
                                 }}</v-icon>
                                 {{ item.tower_status_name }}
                             </v-btn>
-                            <v-fab-transition>
+                            <v-scroll-x-transition>
                                 <TowerOnlineTimer
                                     :item="item"
                                     v-if="item.tower_status_id == 5"
                                 ></TowerOnlineTimer>
-                            </v-fab-transition>
-                            <v-fab-transition>
+                            </v-scroll-x-transition>
+                            <v-scroll-x-transition>
                                 <TowerOnlineTimer
                                     :item="item"
                                     v-if="item.tower_status_id == 3"
                                 ></TowerOnlineTimer>
-                            </v-fab-transition>
+                            </v-scroll-x-transition>
                             <!-- EXTRA BUTTON -->
                             <v-fab-transition>
                                 <v-chip

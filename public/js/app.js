@@ -36987,7 +36987,7 @@ var render = function() {
                                     ),
                                     _vm._v(" "),
                                     _c(
-                                      "v-fab-transition",
+                                      "v-scroll-x-transition",
                                       [
                                         item.tower_status_id == 5
                                           ? _c("TowerOnlineTimer", {
@@ -36999,7 +36999,7 @@ var render = function() {
                                     ),
                                     _vm._v(" "),
                                     _c(
-                                      "v-fab-transition",
+                                      "v-scroll-x-transition",
                                       [
                                         item.tower_status_id == 3
                                           ? _c("TowerOnlineTimer", {
