@@ -143,8 +143,8 @@
                                             (expanded_id = item.id)
                                     "
                                     v-if="
-                                        (item.tower_status_id != 6 ||
-                                            item.tower_status_id != 1) &&
+                                        item.tower_status_id != 6 &&
+                                            item.tower_status_id != 1 &&
                                             !expanded.includes(item)
                                     "
                                     :color="adashColor(item)"
