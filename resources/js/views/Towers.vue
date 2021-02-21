@@ -450,14 +450,13 @@ export default {
         },
         close() {},
 
-        click(item, list) {
-            console.log(list);
+        click(item) {
             if (item.tower_status_id == 1 || item.tower_status_id == 6) {
                 this.expanded = [];
                 item.text = null;
             }
 
-            if (item.tower_status_id != 3 || item.tower_status_id != 5) {
+            if (item.tower_status_id != 3 && item.tower_status_id != 5) {
                 item.out_time = null;
             }
             var request = {
