@@ -21,7 +21,7 @@
                         <v-card-title class=" pb-0">
                             <v-text-field
                                 v-model="anchoringTime"
-                                label="Anchoring Time mm:ss"
+                                label="Reapir Time mm:ss"
                                 v-mask="'##:##'"
                                 autofocus
                                 placeholder="mm:ss"
@@ -89,10 +89,10 @@
                             <v-card-title class=" pb-0">
                                 <v-text-field
                                     v-model="anchoringTime"
-                                    label="Repair Time mm:ss"
+                                    label="Repair Time d hh:mm:ss"
                                     autofocus
-                                    v-mask="'##:##'"
-                                    placeholder="mm:ss"
+                                    v-mask="'#d ##:##:##'"
+                                    placeholder="d:hh:mm:ss"
                                     @keyup.enter="
                                         (repairShown = false),
                                             addAnchoringTime(item)
@@ -158,12 +158,17 @@ export default {
 
     methods: {
         async addAnchoringTime(item) {
-            var min = parseInt(this.anchoringTime.substr(0, 2));
-            var sec = parseInt(this.anchoringTime.substr(3, 2));
+            var d = parseInt(this.refTime.substr(0, 1));
+            var h = parseInt(this.refTime.substr(3, 2));
+            var m = parseInt(this.refTime.substr(6, 2));
+            var s = parseInt(this.refTime.substr(9, 2));
+            var ds = d * 24 * 60 * 60;
+            var hs = h * 60 * 60;
+            var ms = m * 60;
+            var sec = ds + hs + ms + s;
             var finishTime = moment
                 .utc()
                 .add(sec, "seconds")
-                .add(min, "minutes")
                 .format("YYYY-MM-DD HH:mm:ss");
             item.out_time = finishTime;
             this.$store.dispatch("updateTowers", item);
