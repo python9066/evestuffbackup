@@ -451,19 +451,25 @@ export default {
         close() {},
 
         click(item) {
+            var request = {};
             if (item.tower_status_id == 1 || item.tower_status_id == 6) {
                 this.expanded = [];
                 item.text = null;
             }
 
             if (item.tower_status_id != 3 && item.tower_status_id != 5) {
-                item.out_time = null;
+                var request = {
+                    tower_status_id: item.tower_status_id,
+                    user_id: this.$store.state.user_id,
+                    out_time: item.out_time
+                };
+            } else {
+                var request = {
+                    tower_status_id: item.tower_status_id,
+                    user_id: this.$store.state.user_id
+                };
             }
-            var request = {
-                tower_status_id: item.tower_status_id,
-                user_id: this.$store.state.user_id,
-                out_time: item.tower_out_time
-            };
+
             axios({
                 method: "put", //you can set what request you want to be
                 url: "api/towerrecords/" + item.id,
