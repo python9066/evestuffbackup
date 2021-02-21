@@ -64,7 +64,7 @@
         <CountDowntimer
             v-if="item.tower_status_id == 3"
             :start-time="moment.utc(item.out_time).unix()"
-            end-text="Is it Secured?"
+            end-text="Did it anchor?"
             :interval="1000"
         >
             <template slot="countdown" slot-scope="scope">
