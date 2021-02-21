@@ -928,11 +928,10 @@ class Notifications
                 broadcast(new TowerChanged($flag));
             }
         }
-
-        $towers = Tower::where('tower_status_id', 5)->where('updated_at', '<', $now10min)->get();
+        $towers = Tower::where('tower_status_id', 5)->where('out_time', '<', now())->get();
         foreach ($towers as $tower) {
             if ($tower->out_time != null) {
-                $tower->update(['tower_status_id' => 7]);
+                $tower->update(['tower_status_id' => 8]);
                 $message = TowerRecord::where('id', $tower->id)->first();
                 if ($message->status_id != 10) {
                     $flag = collect([
@@ -943,17 +942,31 @@ class Notifications
             }
         }
 
-        $towers = Tower::where('tower_status_id', 7)->where('out_time', '<', now())->get();
-        foreach ($towers as $tower) {
+        // $towers = Tower::where('tower_status_id', 5)->where('updated_at', '<', $now10min)->get();
+        // foreach ($towers as $tower) {
+        //     if ($tower->out_time != null) {
+        //         $tower->update(['tower_status_id' => 7]);
+        //         $message = TowerRecord::where('id', $tower->id)->first();
+        //         if ($message->status_id != 10) {
+        //             $flag = collect([
+        //                 'message' => $message,
+        //             ]);
+        //             broadcast(new TowerChanged($flag));
+        //         }
+        //     }
+        // }
 
-            $tower->update(['tower_status_id' => 8, 'out_time' => null]);
-            $message = TowerRecord::where('id', $tower->id)->first();
-            if ($message->status_id != 10) {
-                $flag = collect([
-                    'message' => $message,
-                ]);
-                broadcast(new TowerChanged($flag));
-            }
-        }
+        // $towers = Tower::where('tower_status_id', 7)->where('out_time', '<', now())->get();
+        // foreach ($towers as $tower) {
+
+        //     $tower->update(['tower_status_id' => 8, 'out_time' => null]);
+        //     $message = TowerRecord::where('id', $tower->id)->first();
+        //     if ($message->status_id != 10) {
+        //         $flag = collect([
+        //             'message' => $message,
+        //         ]);
+        //         broadcast(new TowerChanged($flag));
+        //     }
+        // }
     }
 }
