@@ -36994,7 +36994,7 @@ var render = function() {
                                         item.tower_status_id == 5
                                           ? _c("TowerRefTimer", {
                                               staticClass:
-                                                "animate__animated animate__bounce",
+                                                "animate__animated animate__bounceIn animate__bounceOut",
                                               attrs: { item: item }
                                             })
                                           : _vm._e()

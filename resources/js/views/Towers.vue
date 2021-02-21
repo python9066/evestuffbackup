@@ -132,7 +132,7 @@
                             </v-btn>
                             <div>
                                 <TowerRefTimer
-                                    class="animate__animated animate__bounce"
+                                    class="animate__animated animate__bounceIn animate__bounceOut"
                                     :item="item"
                                     v-if="item.tower_status_id == 5"
                                 ></TowerRefTimer>
