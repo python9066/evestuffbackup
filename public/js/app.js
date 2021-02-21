@@ -11438,14 +11438,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -11462,14 +11454,14 @@ function sleep(ms) {
   data: function data() {
     return {
       timerShown: false,
-      anchoringTime: {
+      refTime: {
         mm: "",
         ss: ""
       }
     };
   },
   methods: {
-    addAnchoringTime: function addAnchoringTime(item) {
+    addRefTime: function addRefTime(item) {
       var _this = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
@@ -31090,14 +31082,14 @@ var render = function() {
                                 {
                                   name: "mask",
                                   rawName: "v-mask",
-                                  value: "##:##",
-                                  expression: "'##:##'"
+                                  value: "#d ##:##:##",
+                                  expression: "'#d ##:##:##'"
                                 }
                               ],
                               attrs: {
-                                label: "Reapir Time mm:ss",
+                                label: "Ref Time d hh:mm:ss",
                                 autofocus: "",
-                                placeholder: "mm:ss"
+                                placeholder: "d:hh:mm:ss"
                               },
                               on: {
                                 keyup: [
@@ -31115,7 +31107,7 @@ var render = function() {
                                       return null
                                     }
                                     ;(_vm.timerShown = false),
-                                      _vm.addAnchoringTime(_vm.item)
+                                      _vm.addRefTime(_vm.item)
                                   },
                                   function($event) {
                                     if (
@@ -31131,16 +31123,16 @@ var render = function() {
                                       return null
                                     }
                                     ;(_vm.timerShown = false),
-                                      (_vm.anchoringTime = null)
+                                      (_vm.refTime = null)
                                   }
                                 ]
                               },
                               model: {
-                                value: _vm.anchoringTime,
+                                value: _vm.refTime,
                                 callback: function($$v) {
-                                  _vm.anchoringTime = $$v
+                                  _vm.refTime = $$v
                                 },
-                                expression: "anchoringTime"
+                                expression: "refTime"
                               }
                             })
                           ],
@@ -31162,7 +31154,7 @@ var render = function() {
                                 on: {
                                   click: function($event) {
                                     ;(_vm.timerShown = false),
-                                      _vm.addAnchoringTime(_vm.item)
+                                      _vm.addRefTime(_vm.item)
                                   }
                                 }
                               },
@@ -31182,7 +31174,7 @@ var render = function() {
                                 on: {
                                   click: function($event) {
                                     ;(_vm.timerShown = false),
-                                      (_vm.anchoringTime = null)
+                                      (_vm.refTime = null)
                                   }
                                 }
                               },
@@ -31252,7 +31244,7 @@ var render = function() {
                                             on: {
                                               click: function($event) {
                                                 ;(_vm.timerShown = true),
-                                                  (_vm.anchoringTime = null)
+                                                  (_vm.refTime = null)
                                               }
                                             }
                                           },
@@ -31320,7 +31312,7 @@ var render = function() {
                                               return null
                                             }
                                             ;(_vm.repairShown = false),
-                                              _vm.addAnchoringTime(_vm.item)
+                                              _vm.addRefTime(_vm.item)
                                           },
                                           function($event) {
                                             if (
@@ -31336,16 +31328,16 @@ var render = function() {
                                               return null
                                             }
                                             ;(_vm.timerShown = false),
-                                              (_vm.anchoringTime = null)
+                                              (_vm.refTime = null)
                                           }
                                         ]
                                       },
                                       model: {
-                                        value: _vm.anchoringTime,
+                                        value: _vm.refTime,
                                         callback: function($$v) {
-                                          _vm.anchoringTime = $$v
+                                          _vm.refTime = $$v
                                         },
-                                        expression: "anchoringTime"
+                                        expression: "refTime"
                                       }
                                     })
                                   ],
@@ -31367,7 +31359,7 @@ var render = function() {
                                         on: {
                                           click: function($event) {
                                             ;(_vm.timerShown = false),
-                                              _vm.addAnchoringTime(_vm.item)
+                                              _vm.addRefTime(_vm.item)
                                           }
                                         }
                                       },
@@ -31387,7 +31379,7 @@ var render = function() {
                                         on: {
                                           click: function($event) {
                                             ;(_vm.timerShown = false),
-                                              (_vm.anchoringTime = null)
+                                              (_vm.refTime = null)
                                           }
                                         }
                                       },
@@ -31420,7 +31412,7 @@ var render = function() {
               ],
               null,
               false,
-              2591563222
+              1918269334
             )
           })
         : _vm._e()

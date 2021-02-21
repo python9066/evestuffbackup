@@ -20,16 +20,16 @@
                     <v-card tile min-height="150px">
                         <v-card-title class=" pb-0">
                             <v-text-field
-                                v-model="anchoringTime"
-                                label="Reapir Time mm:ss"
-                                v-mask="'##:##'"
+                                v-model="refTime"
+                                label="Ref Time d hh:mm:ss"
                                 autofocus
-                                placeholder="mm:ss"
+                                v-mask="'#d ##:##:##'"
+                                placeholder="d:hh:mm:ss"
                                 @keyup.enter="
-                                    (timerShown = false), addAnchoringTime(item)
+                                    (timerShown = false), addRefTime(item)
                                 "
                                 @keyup.esc="
-                                    (timerShown = false), (anchoringTime = null)
+                                    (timerShown = false), (refTime = null)
                                 "
                             ></v-text-field>
                         </v-card-title>
@@ -39,9 +39,7 @@
                                 fixed
                                 left
                                 color="success"
-                                @click="
-                                    (timerShown = false), addAnchoringTime(item)
-                                "
+                                @click="(timerShown = false), addRefTime(item)"
                                 ><v-icon>fas fa-check</v-icon></v-btn
                             >
 
@@ -50,9 +48,7 @@
                                 right
                                 icon
                                 color="warning"
-                                @click="
-                                    (timerShown = false), (anchoringTime = null)
-                                "
+                                @click="(timerShown = false), (refTime = null)"
                                 ><v-icon>fas fa-times</v-icon></v-btn
                             >
                         </v-card-text>
@@ -76,7 +72,7 @@
                         <v-btn
                             v-bind="attrs"
                             v-on="on"
-                            @click="(timerShown = true), (anchoringTime = null)"
+                            @click="(timerShown = true), (refTime = null)"
                             icon
                             color="warning"
                         >
@@ -88,18 +84,16 @@
                         <v-card tile min-height="150px">
                             <v-card-title class=" pb-0">
                                 <v-text-field
-                                    v-model="anchoringTime"
+                                    v-model="refTime"
                                     label="Repair Time d hh:mm:ss"
                                     autofocus
                                     v-mask="'#d ##:##:##'"
                                     placeholder="d:hh:mm:ss"
                                     @keyup.enter="
-                                        (repairShown = false),
-                                            addAnchoringTime(item)
+                                        (repairShown = false), addRefTime(item)
                                     "
                                     @keyup.esc="
-                                        (timerShown = false),
-                                            (anchoringTime = null)
+                                        (timerShown = false), (refTime = null)
                                     "
                                 ></v-text-field>
                             </v-card-title>
@@ -110,8 +104,7 @@
                                     left
                                     color="success"
                                     @click="
-                                        (timerShown = false),
-                                            addAnchoringTime(item)
+                                        (timerShown = false), addRefTime(item)
                                     "
                                     ><v-icon>fas fa-check</v-icon></v-btn
                                 >
@@ -122,8 +115,7 @@
                                     icon
                                     color="warning"
                                     @click="
-                                        (timerShown = false),
-                                            (anchoringTime = null)
+                                        (timerShown = false), (refTime = null)
                                     "
                                     ><v-icon>fas fa-times</v-icon></v-btn
                                 >
@@ -152,7 +144,7 @@ export default {
     data() {
         return {
             timerShown: false,
-            anchoringTime: {
+            refTime: {
                 mm: "",
                 ss: ""
             }
@@ -160,7 +152,7 @@ export default {
     },
 
     methods: {
-        async addAnchoringTime(item) {
+        async addRefTime(item) {
             var d = parseInt(this.refTime.substr(0, 1));
             var h = parseInt(this.refTime.substr(3, 2));
             var m = parseInt(this.refTime.substr(6, 2));
