@@ -114,9 +114,9 @@
                 v-slot:item.tower_status_name="{ item }"
                 class="align-items-center"
             >
-                <v-menu offset-y>
-                    <template v-slot:activator="{ on, attrs }">
-                        <div class="align-items-center d-inline-flex">
+                <div class="align-items-center d-inline-flex">
+                    <v-menu offset-y>
+                        <template v-slot:activator="{ on, attrs }">
                             <v-btn
                                 class="ma-2"
                                 v-bind="attrs"
@@ -130,61 +130,63 @@
                                 }}</v-icon>
                                 {{ item.tower_status_name }}
                             </v-btn>
-                        </div>
-                    </template>
+                        </template>
 
-                    <v-list>
-                        <v-list-item
-                            v-for="(list, index) in dropdown_edit"
-                            :key="index"
-                            @click="
-                                (item.tower_status_id = list.value),
-                                    (item.tower_status_name = list.title),
-                                    (item.user_name = user_name),
-                                    click(item)
-                            "
-                        >
-                            <v-list-item-title>{{
-                                list.title
-                            }}</v-list-item-title>
-                        </v-list-item>
-                    </v-list>
-                </v-menu>
-                <div>
-                    <TowerRefTimer :item="item"></TowerRefTimer>
-                </div>
-                <v-scroll-x-transition>
-                    <div v-if="item.tower_status_id == 3">
-                        <TowerOnlineTimer :item="item"></TowerOnlineTimer>
+                        <v-list>
+                            <v-list-item
+                                v-for="(list, index) in dropdown_edit"
+                                :key="index"
+                                @click="
+                                    (item.tower_status_id = list.value),
+                                        (item.tower_status_name = list.title),
+                                        (item.user_name = user_name),
+                                        click(item)
+                                "
+                            >
+                                <v-list-item-title>{{
+                                    list.title
+                                }}</v-list-item-title>
+                            </v-list-item>
+                        </v-list>
+                    </v-menu>
+                    <div>
+                        <TowerRefTimer :item="item"></TowerRefTimer>
                     </div>
-                </v-scroll-x-transition>
-                <!-- EXTRA BUTTON -->
-                <v-fab-transition>
-                    <v-chip
-                        pill
-                        outlined
-                        small
-                        @click="(expanded = [item]), (expanded_id = item.id)"
-                        v-if="
-                            item.tower_status_id != 6 &&
-                                item.tower_status_id != 1 &&
-                                !expanded.includes(item)
-                        "
-                        :color="adashColor(item)"
-                        >adash</v-chip
-                    >
-                    <v-btn
-                        icon
-                        @click="(expanded = []), (expanded_id = 0)"
-                        v-if="
-                            (item.tower_status_id != 6 ||
-                                item.tower_status_id != 1) &&
-                                expanded.includes(item)
-                        "
-                        color="error"
-                        ><v-icon>fas fa-minus</v-icon></v-btn
-                    >
-                </v-fab-transition>
+                    <v-scroll-x-transition>
+                        <div v-if="item.tower_status_id == 3">
+                            <TowerOnlineTimer :item="item"></TowerOnlineTimer>
+                        </div>
+                    </v-scroll-x-transition>
+                    <!-- EXTRA BUTTON -->
+                    <v-fab-transition>
+                        <v-chip
+                            pill
+                            outlined
+                            small
+                            @click="
+                                (expanded = [item]), (expanded_id = item.id)
+                            "
+                            v-if="
+                                item.tower_status_id != 6 &&
+                                    item.tower_status_id != 1 &&
+                                    !expanded.includes(item)
+                            "
+                            :color="adashColor(item)"
+                            >adash</v-chip
+                        >
+                        <v-btn
+                            icon
+                            @click="(expanded = []), (expanded_id = 0)"
+                            v-if="
+                                (item.tower_status_id != 6 ||
+                                    item.tower_status_id != 1) &&
+                                    expanded.includes(item)
+                            "
+                            color="error"
+                            ><v-icon>fas fa-minus</v-icon></v-btn
+                        >
+                    </v-fab-transition>
+                </div>
             </template>
             <template
                 v-slot:expanded-item="{ headers, item }"

@@ -17950,6 +17950,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
 
 
 
@@ -36979,24 +36981,21 @@ var render = function() {
                 var item = ref.item
                 return [
                   _c(
-                    "v-menu",
-                    {
-                      attrs: { "offset-y": "" },
-                      scopedSlots: _vm._u(
-                        [
-                          {
-                            key: "activator",
-                            fn: function(ref) {
-                              var on = ref.on
-                              var attrs = ref.attrs
-                              return [
-                                _c(
-                                  "div",
-                                  {
-                                    staticClass:
-                                      "align-items-center d-inline-flex"
-                                  },
-                                  [
+                    "div",
+                    { staticClass: "align-items-center d-inline-flex" },
+                    [
+                      _c(
+                        "v-menu",
+                        {
+                          attrs: { "offset-y": "" },
+                          scopedSlots: _vm._u(
+                            [
+                              {
+                                key: "activator",
+                                fn: function(ref) {
+                                  var on = ref.on
+                                  var attrs = ref.attrs
+                                  return [
                                     _c(
                                       "v-btn",
                                       _vm._g(
@@ -37033,108 +37032,113 @@ var render = function() {
                                       ],
                                       1
                                     )
-                                  ],
-                                  1
-                                )
-                              ]
-                            }
-                          }
+                                  ]
+                                }
+                              }
+                            ],
+                            null,
+                            true
+                          )
+                        },
+                        [
+                          _vm._v(" "),
+                          _c(
+                            "v-list",
+                            _vm._l(_vm.dropdown_edit, function(list, index) {
+                              return _c(
+                                "v-list-item",
+                                {
+                                  key: index,
+                                  on: {
+                                    click: function($event) {
+                                      ;(item.tower_status_id = list.value),
+                                        (item.tower_status_name = list.title),
+                                        (item.user_name = _vm.user_name),
+                                        _vm.click(item)
+                                    }
+                                  }
+                                },
+                                [
+                                  _c("v-list-item-title", [
+                                    _vm._v(_vm._s(list.title))
+                                  ])
+                                ],
+                                1
+                              )
+                            }),
+                            1
+                          )
                         ],
-                        null,
-                        true
-                      )
-                    },
-                    [
+                        1
+                      ),
                       _vm._v(" "),
                       _c(
-                        "v-list",
-                        _vm._l(_vm.dropdown_edit, function(list, index) {
-                          return _c(
-                            "v-list-item",
-                            {
-                              key: index,
-                              on: {
-                                click: function($event) {
-                                  ;(item.tower_status_id = list.value),
-                                    (item.tower_status_name = list.title),
-                                    (item.user_name = _vm.user_name),
-                                    _vm.click(item)
-                                }
-                              }
-                            },
-                            [
-                              _c("v-list-item-title", [
-                                _vm._v(_vm._s(list.title))
-                              ])
-                            ],
-                            1
-                          )
-                        }),
+                        "div",
+                        [_c("TowerRefTimer", { attrs: { item: item } })],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c("v-scroll-x-transition", [
+                        item.tower_status_id == 3
+                          ? _c(
+                              "div",
+                              [
+                                _c("TowerOnlineTimer", {
+                                  attrs: { item: item }
+                                })
+                              ],
+                              1
+                            )
+                          : _vm._e()
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "v-fab-transition",
+                        [
+                          item.tower_status_id != 6 &&
+                          item.tower_status_id != 1 &&
+                          !_vm.expanded.includes(item)
+                            ? _c(
+                                "v-chip",
+                                {
+                                  attrs: {
+                                    pill: "",
+                                    outlined: "",
+                                    small: "",
+                                    color: _vm.adashColor(item)
+                                  },
+                                  on: {
+                                    click: function($event) {
+                                      ;(_vm.expanded = [item]),
+                                        (_vm.expanded_id = item.id)
+                                    }
+                                  }
+                                },
+                                [_vm._v("adash")]
+                              )
+                            : _vm._e(),
+                          _vm._v(" "),
+                          (item.tower_status_id != 6 ||
+                            item.tower_status_id != 1) &&
+                          _vm.expanded.includes(item)
+                            ? _c(
+                                "v-btn",
+                                {
+                                  attrs: { icon: "", color: "error" },
+                                  on: {
+                                    click: function($event) {
+                                      ;(_vm.expanded = []),
+                                        (_vm.expanded_id = 0)
+                                    }
+                                  }
+                                },
+                                [_c("v-icon", [_vm._v("fas fa-minus")])],
+                                1
+                              )
+                            : _vm._e()
+                        ],
                         1
                       )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    [_c("TowerRefTimer", { attrs: { item: item } })],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c("v-scroll-x-transition", [
-                    item.tower_status_id == 3
-                      ? _c(
-                          "div",
-                          [_c("TowerOnlineTimer", { attrs: { item: item } })],
-                          1
-                        )
-                      : _vm._e()
-                  ]),
-                  _vm._v(" "),
-                  _c(
-                    "v-fab-transition",
-                    [
-                      item.tower_status_id != 6 &&
-                      item.tower_status_id != 1 &&
-                      !_vm.expanded.includes(item)
-                        ? _c(
-                            "v-chip",
-                            {
-                              attrs: {
-                                pill: "",
-                                outlined: "",
-                                small: "",
-                                color: _vm.adashColor(item)
-                              },
-                              on: {
-                                click: function($event) {
-                                  ;(_vm.expanded = [item]),
-                                    (_vm.expanded_id = item.id)
-                                }
-                              }
-                            },
-                            [_vm._v("adash")]
-                          )
-                        : _vm._e(),
-                      _vm._v(" "),
-                      (item.tower_status_id != 6 ||
-                        item.tower_status_id != 1) &&
-                      _vm.expanded.includes(item)
-                        ? _c(
-                            "v-btn",
-                            {
-                              attrs: { icon: "", color: "error" },
-                              on: {
-                                click: function($event) {
-                                  ;(_vm.expanded = []), (_vm.expanded_id = 0)
-                                }
-                              }
-                            },
-                            [_c("v-icon", [_vm._v("fas fa-minus")])],
-                            1
-                          )
-                        : _vm._e()
                     ],
                     1
                   )
