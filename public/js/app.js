@@ -17668,6 +17668,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 
@@ -36322,9 +36323,11 @@ var render = function() {
                                     _c(
                                       "v-fab-transition",
                                       [
-                                        _c("TowerOnlineTimer", {
-                                          attrs: { item: item }
-                                        })
+                                        item.tower_status_id == 3
+                                          ? _c("TowerOnlineTimer", {
+                                              attrs: { item: item }
+                                            })
+                                          : _vm._e()
                                       ],
                                       1
                                     )
