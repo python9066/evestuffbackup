@@ -17584,6 +17584,11 @@ function sleep(ms) {
     updatetext: function updatetext(payload, item) {
       if (item.text != payload) {
         item.text = payload;
+
+        if (item.text == "") {
+          item.text == null;
+        }
+
         var request = {
           text: item.text
         };
