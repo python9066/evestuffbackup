@@ -126,46 +126,28 @@
                                 outlined
                                 :color="pillColor(item.tower_status_id)"
                             >
-                                <v-icon v-if="item.tower_status_id == 1" left
-                                    >faSvg fa-plus</v-icon
-                                >
-
-                                <v-icon v-if="item.tower_status_id == 2" left
-                                    >faSvg fa-search</v-icon
-                                >
-
-                                <v-icon v-if="item.tower_status_id == 3" left
-                                    >faSvg fa-anchor</v-icon
-                                >
-
-                                <v-icon v-if="item.tower_status_id == 4" left
-                                    >faSvg fa-broadcast-tower</v-icon
-                                >
-
-                                <v-icon v-if="item.tower_status_id == 5" left
-                                    >faSvg fa-shield-alt</v-icon
-                                >
-
-                                <v-icon v-if="item.tower_status_id == 6" left
-                                    >faSvg fa-skull-crossbones</v-icon
-                                >
+                                <v-icon v-if="item.tower_status_id == 1" left>{{
+                                    pillIcon(item.tower_status_id)
+                                }}</v-icon>
                                 {{ item.tower_status_name }}
                             </v-btn>
 
                             <!-- EXTRA BUTTON -->
                             <v-fab-transition>
-                                <v-btn
-                                    icon
+                                <v-chip
+                                    pill
+                                    outlined
+                                    small
                                     @click="
                                         (expanded = [item]),
                                             (expanded_id = item.id)
                                     "
                                     v-if="
-                                        item.tower_status_id != 6 &&
+                                        item.station_status_id == 6 &&
                                             !expanded.includes(item)
                                     "
-                                    color="success"
-                                    ><v-icon>fas fa-plus</v-icon></v-btn
+                                    :color="adashColor(item)"
+                                    >adash</v-chip
                                 >
                                 <v-btn
                                     icon
@@ -374,6 +356,35 @@ export default {
                         "Content-Type": "application/json"
                     }
                 });
+            }
+        },
+
+        adashColor(item) {
+            if (item.text != null) {
+                return "green";
+            } else {
+                return "red";
+            }
+        },
+
+        pillColor(id) {
+            if (id == 1) {
+                return "faSvg fa-plus";
+            }
+            if (id == 2) {
+                return "faSvg fa-search";
+            }
+            if (id == 3) {
+                return "faSvg fa-anchor";
+            }
+            if (id == 4) {
+                return "faSvg fa-broadcast-tower";
+            }
+            if (id == 5) {
+                return "faSvg fa-shield-alt";
+            }
+            if (id == 6) {
+                return "faSvg fa-skull-crossbones";
             }
         },
 

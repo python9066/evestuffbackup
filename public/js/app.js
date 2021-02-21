@@ -17194,6 +17194,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _service_apil__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../service/apil */ "./resources/js/service/apil.js");
 
 
+var _methods;
+
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -17204,24 +17206,6 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -17585,7 +17569,7 @@ function sleep(ms) {
       }, _callee);
     }))();
   },
-  methods: {
+  methods: (_methods = {
     checkexpanded: function checkexpanded(towers) {
       if (towers.tower_status_id == 1 || towers.tower_status_id == 6) {
         if (towers.id == this.expanded_id) {
@@ -17614,6 +17598,38 @@ function sleep(ms) {
         });
       }
     },
+    adashColor: function adashColor(item) {
+      if (item.text != null) {
+        return "green";
+      } else {
+        return "red";
+      }
+    },
+    pillColor: function pillColor(id) {
+      if (id == 1) {
+        return "faSvg fa-plus";
+      }
+
+      if (id == 2) {
+        return "faSvg fa-search";
+      }
+
+      if (id == 3) {
+        return "faSvg fa-anchor";
+      }
+
+      if (id == 4) {
+        return "faSvg fa-broadcast-tower";
+      }
+
+      if (id == 5) {
+        return "faSvg fa-shield-alt";
+      }
+
+      if (id == 6) {
+        return "faSvg fa-skull-crossbones";
+      }
+    },
     loadtowers: function loadtowers() {
       var _this2 = this;
 
@@ -17621,77 +17637,70 @@ function sleep(ms) {
       this.$store.dispatch("getTowerData").then(function () {
         _this2.loadingr = false;
       }); // console.log("30secs");
-    },
-    pillColor: function pillColor(statusId) {
-      if (statusId == 1) {
-        return "light-green accent-3";
-      }
-
-      if (statusId == 2) {
-        return "light-blue darken-2";
-      }
-
-      if (statusId == 3) {
-        return "deep-orange darken-2";
-      }
-
-      if (statusId == 4) {
-        return "red accent-4";
-      }
-
-      if (statusId == 5) {
-        return "blue darken-4";
-      }
-
-      if (statusId == 6) {
-        return "light-green accent-3";
-      }
-    },
-    save: function save() {
-      this.snack = true;
-      this.snackColor = "success";
-      this.snackText = "Data saved";
-    },
-    cancel: function cancel() {
-      this.snack = true;
-      this.snackColor = "error";
-      this.snackText = "Canceled";
-    },
-    open: function open() {
-      this.snack = true;
-      this.snackColor = "info";
-      this.snackText = "Dialog opened";
-    },
-    close: function close() {},
-    click: function click(item) {
-      if (item.tower_status_id == 1 || item.tower_status_id == 6) {
-        this.expanded = [];
-        item.text = null;
-      }
-
-      var request = {
-        tower_status_id: item.tower_status_id,
-        user_id: this.$store.state.user_id
-      };
-      axios({
-        method: "put",
-        //you can set what request you want to be
-        url: "api/towerrecords/" + item.id,
-        data: request,
-        headers: {
-          Authorization: "Bearer " + this.$store.state.token,
-          Accept: "application/json",
-          "Content-Type": "application/json"
-        }
-      });
-    },
-    sec: function sec(item) {
-      var a = moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc();
-      var b = moment__WEBPACK_IMPORTED_MODULE_2___default()(item.timestamp);
-      this.diff = a.diff(b);
-      return this.diff;
     }
-  },
+  }, _defineProperty(_methods, "pillColor", function pillColor(statusId) {
+    if (statusId == 1) {
+      return "light-green accent-3";
+    }
+
+    if (statusId == 2) {
+      return "light-blue darken-2";
+    }
+
+    if (statusId == 3) {
+      return "deep-orange darken-2";
+    }
+
+    if (statusId == 4) {
+      return "red accent-4";
+    }
+
+    if (statusId == 5) {
+      return "blue darken-4";
+    }
+
+    if (statusId == 6) {
+      return "light-green accent-3";
+    }
+  }), _defineProperty(_methods, "save", function save() {
+    this.snack = true;
+    this.snackColor = "success";
+    this.snackText = "Data saved";
+  }), _defineProperty(_methods, "cancel", function cancel() {
+    this.snack = true;
+    this.snackColor = "error";
+    this.snackText = "Canceled";
+  }), _defineProperty(_methods, "open", function open() {
+    this.snack = true;
+    this.snackColor = "info";
+    this.snackText = "Dialog opened";
+  }), _defineProperty(_methods, "close", function close() {}), _defineProperty(_methods, "click", function click(item) {
+    if (item.tower_status_id == 1 || item.tower_status_id == 6) {
+      this.expanded = [];
+      item.text = null;
+    }
+
+    var request = {
+      tower_status_id: item.tower_status_id,
+      user_id: this.$store.state.user_id
+    };
+    axios({
+      method: "put",
+      //you can set what request you want to be
+      url: "api/towerrecords/" + item.id,
+      data: request,
+      headers: {
+        Authorization: "Bearer " + this.$store.state.token,
+        Accept: "application/json",
+        "Content-Type": "application/json"
+      }
+    });
+  }), _defineProperty(_methods, "sec", function sec(item) {
+    var a = moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc();
+    var b = moment__WEBPACK_IMPORTED_MODULE_2___default()(item.timestamp);
+    this.diff = a.diff(b);
+    return this.diff;
+  }), _methods),
   computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapState"])(["towers"])), {}, {
     filteredItems: function filteredItems() {
       if (this.statusflag == 2) {
@@ -35518,53 +35527,13 @@ var render = function() {
                                           ? _c(
                                               "v-icon",
                                               { attrs: { left: "" } },
-                                              [_vm._v("faSvg fa-plus")]
-                                            )
-                                          : _vm._e(),
-                                        _vm._v(" "),
-                                        item.tower_status_id == 2
-                                          ? _c(
-                                              "v-icon",
-                                              { attrs: { left: "" } },
-                                              [_vm._v("faSvg fa-search")]
-                                            )
-                                          : _vm._e(),
-                                        _vm._v(" "),
-                                        item.tower_status_id == 3
-                                          ? _c(
-                                              "v-icon",
-                                              { attrs: { left: "" } },
-                                              [_vm._v("faSvg fa-anchor")]
-                                            )
-                                          : _vm._e(),
-                                        _vm._v(" "),
-                                        item.tower_status_id == 4
-                                          ? _c(
-                                              "v-icon",
-                                              { attrs: { left: "" } },
                                               [
                                                 _vm._v(
-                                                  "faSvg fa-broadcast-tower"
-                                                )
-                                              ]
-                                            )
-                                          : _vm._e(),
-                                        _vm._v(" "),
-                                        item.tower_status_id == 5
-                                          ? _c(
-                                              "v-icon",
-                                              { attrs: { left: "" } },
-                                              [_vm._v("faSvg fa-shield-alt")]
-                                            )
-                                          : _vm._e(),
-                                        _vm._v(" "),
-                                        item.tower_status_id == 6
-                                          ? _c(
-                                              "v-icon",
-                                              { attrs: { left: "" } },
-                                              [
-                                                _vm._v(
-                                                  "faSvg fa-skull-crossbones"
+                                                  _vm._s(
+                                                    _vm.pillIcon(
+                                                      item.tower_status_id
+                                                    )
+                                                  )
                                                 )
                                               ]
                                             )
@@ -35581,14 +35550,16 @@ var render = function() {
                                     _c(
                                       "v-fab-transition",
                                       [
-                                        item.tower_status_id != 6 &&
+                                        item.station_status_id == 6 &&
                                         !_vm.expanded.includes(item)
                                           ? _c(
-                                              "v-btn",
+                                              "v-chip",
                                               {
                                                 attrs: {
-                                                  icon: "",
-                                                  color: "success"
+                                                  pill: "",
+                                                  outlined: "",
+                                                  small: "",
+                                                  color: _vm.adashColor(item)
                                                 },
                                                 on: {
                                                   click: function($event) {
@@ -35598,12 +35569,7 @@ var render = function() {
                                                   }
                                                 }
                                               },
-                                              [
-                                                _c("v-icon", [
-                                                  _vm._v("fas fa-plus")
-                                                ])
-                                              ],
-                                              1
+                                              [_vm._v("adash")]
                                             )
                                           : _vm._e(),
                                         _vm._v(" "),
