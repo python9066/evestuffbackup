@@ -30531,7 +30531,7 @@ var render = function() {
   return _c(
     "v-col",
     [
-      _vm.item.out_time == null && _vm.item.tower_status_id == 3
+      _vm.item.out_time == null
         ? _c(
             "span",
             [
@@ -30718,7 +30718,7 @@ var render = function() {
           )
         : _vm._e(),
       _vm._v(" "),
-      _vm.item.tower_status_id == 3
+      _vm.item.out_time != null
         ? _c("CountDowntimer", {
             attrs: {
               "start-time": _vm.moment.utc(_vm.item.out_time).unix(),
