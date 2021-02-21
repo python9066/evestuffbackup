@@ -7,6 +7,8 @@ use App\Events\StationInfoSet;
 use App\Events\StationNotificationDelete;
 use App\Events\StationNotificationNew;
 use App\Events\StationNotificationUpdate;
+use App\Events\TowerChanged;
+use App\Events\TowerDelete;
 use App\Models\Notification;
 use App\Models\Temp_notifcation;
 use utils\Helper\Helper;
@@ -19,6 +21,7 @@ use App\Models\StationNotificationShield;
 use App\Models\StationRecords;
 use App\Models\System;
 use App\Models\Tower;
+use App\Models\TowerRecord;
 use GuzzleHttp\Utils;
 use Symfony\Component\Yaml\Yaml;
 use GuzzleHttp\Client as GuzzleHttpClient;
@@ -896,6 +899,60 @@ class Notifications
                 'id' => $check->id
             ]);
             broadcast(new StationNotificationNew($flag));
+        }
+    }
+
+    public static function towerUpdate()
+    {
+        $now10min = now()->modify(' -10 minutes');
+        $towers = Tower::where('tower_status_id', 6)->where('updated_at', '<', $now10min)->get();
+        foreach ($towers as $tower) {
+            $id = $tower->id;
+            $flag = null;
+            $flag = collect([
+                'id' => $id
+            ]);
+            broadcast(new TowerDelete($flag));
+            $tower->delete();
+        }
+
+        $towers = Tower::where('tower_status_id', 3)->where('out_time', '>', now())->get();
+        foreach ($towers as $tower) {
+
+            $tower->update(['tower_status_id' => 4, 'out_time' => null]);
+            $message = TowerRecord::where('id', $tower->id)->first();
+            if ($message->status_id != 10) {
+                $flag = collect([
+                    'message' => $message,
+                ]);
+                broadcast(new TowerChanged($flag));
+            }
+        }
+
+        $towers = Tower::where('tower_status_id', 5)->where('updated_at', '<', $now10min)->get();
+        foreach ($towers as $tower) {
+
+            $tower->update(['tower_status_id' => 7]);
+            $message = TowerRecord::where('id', $tower->id)->first();
+            if ($message->status_id != 10) {
+                $flag = collect([
+                    'message' => $message,
+                ]);
+                broadcast(new TowerChanged($flag));
+            }
+        }
+
+        $towers = Tower::where('tower_status_id', 7)->where('out_time', '>', now())->get();
+        foreach ($towers as $tower) {
+
+            $tower->update(['tower_status_id' => 8, 'out_time' => null]);
+            $message = TowerRecord::where('id', $tower->id)->first();
+            if ($message->status_id != 10) {
+                $flag = collect([
+                    'message' => $message,
+                ]);
+                broadcast(new TowerChanged($flag));
+            }
         }
     }
 }

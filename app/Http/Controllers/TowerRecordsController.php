@@ -61,20 +61,7 @@ class TowerRecordsController extends Controller
         }
     }
 
-    public function autoUpdate()
-    {
-        $now10min = now()->modify(' -10 minutes');
-        $towers = Tower::where('tower_status_id', 6)->where('updated_at', '<', $now10min)->get();
-        foreach ($towers as $tower) {
-            $id = $tower->id;
-            $flag = null;
-            $flag = collect([
-                'id' => $id
-            ]);
-            broadcast(new TowerDelete($flag));
-            $tower->delete();
-        }
-    }
+
 
     /**
      * Remove the specified resource from storage.
