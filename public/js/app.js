@@ -36792,7 +36792,7 @@ var render = function() {
     "div",
     { staticClass: " pr-16 pl-16" },
     [
-      _c("messageStations"),
+      _c("messageComponent"),
       _vm._v(" "),
       _c(
         "div",
