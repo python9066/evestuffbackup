@@ -131,10 +131,7 @@
                                 {{ item.tower_status_name }}
                             </v-btn>
                             <div>
-                                <TowerRefTimer
-                                    :class="test(item)"
-                                    :item="item"
-                                ></TowerRefTimer>
+                                <TowerRefTimer :item="item"></TowerRefTimer>
                             </div>
                             <v-scroll-x-transition>
                                 <div v-if="item.tower_status_id == 3">

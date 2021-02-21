@@ -1,87 +1,20 @@
 <template>
     <v-col>
-        <span v-if="item.out_time == null">
-            <v-menu :close-on-content-click="false" :value="timerShown">
-                <template v-slot:activator="{ on, attrs }">
-                    <v-chip
-                        v-bind="attrs"
-                        v-on="on"
-                        pill
-                        outlined
-                        @click="timerShown = true"
-                        small
-                        color="warning"
-                    >
-                        Add Time
-                    </v-chip>
-                </template>
-
-                <template>
-                    <v-card tile min-height="150px">
-                        <v-card-title class=" pb-0">
-                            <v-text-field
-                                v-model="anchoringTime"
-                                label="Reapir Time mm:ss"
-                                v-mask="'##:##'"
-                                autofocus
-                                placeholder="mm:ss"
-                                @keyup.enter="
-                                    (timerShown = false), addAnchoringTime(item)
-                                "
-                                @keyup.esc="
-                                    (timerShown = false), (anchoringTime = null)
-                                "
-                            ></v-text-field>
-                        </v-card-title>
-                        <v-card-text>
-                            <v-btn
-                                icon
-                                fixed
-                                left
-                                color="success"
-                                @click="
-                                    (timerShown = false), addAnchoringTime(item)
-                                "
-                                ><v-icon>fas fa-check</v-icon></v-btn
-                            >
-
-                            <v-btn
-                                fixed
-                                right
-                                icon
-                                color="warning"
-                                @click="
-                                    (timerShown = false), (anchoringTime = null)
-                                "
-                                ><v-icon>fas fa-times</v-icon></v-btn
-                            >
-                        </v-card-text>
-                    </v-card>
-                </template>
-            </v-menu>
-        </span>
-
-        <CountDowntimer
-            v-if="item.out_time != null"
-            :start-time="moment.utc(item.out_time).unix()"
-            end-text="Just Onlined"
-            :interval="1000"
-        >
-            <template slot="countdown" slot-scope="scope">
-                <span class="red--text pl-3"
-                    >{{ scope.props.minutes }}:{{ scope.props.seconds }}</span
-                >
+        <v-scroll-x-transition>
+            <span v-if="item.out_time == null && item.tower_status_id == 5">
                 <v-menu :close-on-content-click="false" :value="timerShown">
                     <template v-slot:activator="{ on, attrs }">
-                        <v-btn
+                        <v-chip
                             v-bind="attrs"
                             v-on="on"
-                            @click="(timerShown = true), (anchoringTime = null)"
-                            icon
+                            pill
+                            outlined
+                            @click="timerShown = true"
+                            small
                             color="warning"
                         >
-                            <v-icon x-small>fas fa-edit</v-icon>
-                        </v-btn>
+                            Add Time
+                        </v-chip>
                     </template>
 
                     <template>
@@ -89,12 +22,12 @@
                             <v-card-title class=" pb-0">
                                 <v-text-field
                                     v-model="anchoringTime"
-                                    label="Repair Time d hh:mm:ss"
+                                    label="Reapir Time mm:ss"
+                                    v-mask="'##:##'"
                                     autofocus
-                                    v-mask="'#d ##:##:##'"
-                                    placeholder="d:hh:mm:ss"
+                                    placeholder="mm:ss"
                                     @keyup.enter="
-                                        (repairShown = false),
+                                        (timerShown = false),
                                             addAnchoringTime(item)
                                     "
                                     @keyup.esc="
@@ -131,11 +64,89 @@
                         </v-card>
                     </template>
                 </v-menu>
-            </template>
-            <template slot="end-text" slot-scope="scope">
-                <span style="color: green">{{ scope.props.endText }}</span>
-            </template>
-        </CountDowntimer>
+            </span>
+        </v-scroll-x-transition>
+        <v-scroll-x-transition>
+            <CountDowntimer
+                v-if="item.out_time != null && item.tower_status_id == 5"
+                :start-time="moment.utc(item.out_time).unix()"
+                end-text="Just Onlined"
+                :interval="1000"
+            >
+                <template slot="countdown" slot-scope="scope">
+                    <span class="red--text pl-3"
+                        >{{ scope.props.minutes }}:{{
+                            scope.props.seconds
+                        }}</span
+                    >
+                    <v-menu :close-on-content-click="false" :value="timerShown">
+                        <template v-slot:activator="{ on, attrs }">
+                            <v-btn
+                                v-bind="attrs"
+                                v-on="on"
+                                @click="
+                                    (timerShown = true), (anchoringTime = null)
+                                "
+                                icon
+                                color="warning"
+                            >
+                                <v-icon x-small>fas fa-edit</v-icon>
+                            </v-btn>
+                        </template>
+
+                        <template>
+                            <v-card tile min-height="150px">
+                                <v-card-title class=" pb-0">
+                                    <v-text-field
+                                        v-model="anchoringTime"
+                                        label="Repair Time d hh:mm:ss"
+                                        autofocus
+                                        v-mask="'#d ##:##:##'"
+                                        placeholder="d:hh:mm:ss"
+                                        @keyup.enter="
+                                            (repairShown = false),
+                                                addAnchoringTime(item)
+                                        "
+                                        @keyup.esc="
+                                            (timerShown = false),
+                                                (anchoringTime = null)
+                                        "
+                                    ></v-text-field>
+                                </v-card-title>
+                                <v-card-text>
+                                    <v-btn
+                                        icon
+                                        fixed
+                                        left
+                                        color="success"
+                                        @click="
+                                            (timerShown = false),
+                                                addAnchoringTime(item)
+                                        "
+                                        ><v-icon>fas fa-check</v-icon></v-btn
+                                    >
+
+                                    <v-btn
+                                        fixed
+                                        right
+                                        icon
+                                        color="warning"
+                                        @click="
+                                            (timerShown = false),
+                                                (anchoringTime = null)
+                                        "
+                                        ><v-icon>fas fa-times</v-icon></v-btn
+                                    >
+                                </v-card-text>
+                            </v-card>
+                        </template>
+                    </v-menu>
+                </template>
+                <template slot="end-text" slot-scope="scope">
+                    <span style="color: green">{{ scope.props.endText }}</span>
+                </template>
+            </CountDowntimer>
+        </v-scroll-x-transition>
     </v-col>
 </template>
 
