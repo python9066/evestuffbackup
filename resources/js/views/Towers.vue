@@ -150,7 +150,10 @@
                         </v-list>
                     </v-menu>
                     <div>
-                        <TowerRefTimer :item="item"></TowerRefTimer>
+                        <TowerRefTimer
+                            :item="item"
+                            v-if="item.tower_status_id == 5"
+                        ></TowerRefTimer>
                     </div>
                     <v-scroll-x-transition>
                         <div v-if="item.tower_status_id == 3">

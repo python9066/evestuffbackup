@@ -11446,9 +11446,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
 
 
 
@@ -17710,6 +17707,9 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
+//
+//
+//
 //
 //
 //
@@ -31016,10 +31016,9 @@ var render = function() {
   return _c(
     "v-col",
     [
-      _vm.item.out_time == null && _vm.item.tower_status_id == 5
+      _vm.item.out_time == null
         ? _c(
             "div",
-            { class: _vm.test() },
             [
               _c(
                 "v-menu",
@@ -31204,7 +31203,7 @@ var render = function() {
           )
         : _vm._e(),
       _vm._v(" "),
-      _vm.item.out_time != null && _vm.item.tower_status_id == 5
+      _vm.item.out_time != null
         ? _c("CountDowntimer", {
             attrs: {
               "start-time": _vm.moment.utc(_vm.item.out_time).unix(),
@@ -37074,7 +37073,11 @@ var render = function() {
                       _vm._v(" "),
                       _c(
                         "div",
-                        [_c("TowerRefTimer", { attrs: { item: item } })],
+                        [
+                          item.tower_status_id == 5
+                            ? _c("TowerRefTimer", { attrs: { item: item } })
+                            : _vm._e()
+                        ],
                         1
                       ),
                       _vm._v(" "),
