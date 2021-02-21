@@ -150,7 +150,7 @@
                         </v-list>
                     </v-menu>
                     <TowerRefTimer
-                        class="animate__zoomIn"
+                        class="animate__animated animate__zoomIn"
                         :item="item"
                         v-if="item.tower_status_id == 5"
                     ></TowerRefTimer>
@@ -158,7 +158,7 @@
                     <TowerOnlineTimer
                         v-if="item.tower_status_id == 3"
                         :item="item"
-                        class="animate__zoomIn"
+                        class="animate__animated animate__zoomIn"
                     ></TowerOnlineTimer>
 
                     <!-- EXTRA BUTTON -->

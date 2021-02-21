@@ -31010,7 +31010,7 @@ var render = function() {
   return _c(
     "v-col",
     [
-      _vm.item.out_time == null && _vm.item.tower_status_id == 5
+      _vm.item.out_time == null
         ? _c(
             "div",
             [
@@ -37067,14 +37067,14 @@ var render = function() {
                       _vm._v(" "),
                       item.tower_status_id == 5
                         ? _c("TowerRefTimer", {
-                            staticClass: "animate__zoomIn",
+                            staticClass: "animate__animated animate__zoomIn",
                             attrs: { item: item }
                           })
                         : _vm._e(),
                       _vm._v(" "),
                       item.tower_status_id == 3
                         ? _c("TowerOnlineTimer", {
-                            staticClass: "animate__zoomIn",
+                            staticClass: "animate__animated animate__zoomIn",
                             attrs: { item: item }
                           })
                         : _vm._e(),
