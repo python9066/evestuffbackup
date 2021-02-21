@@ -451,7 +451,7 @@ export default {
         close() {},
 
         click(item, list) {
-            console.list;
+            console.log(list);
             if (item.tower_status_id == 1 || item.tower_status_id == 6) {
                 this.expanded = [];
                 item.text = null;

@@ -18194,7 +18194,7 @@ function sleep(ms) {
     },
     close: function close() {},
     click: function click(item, list) {
-      console.list;
+      console.log(list);
 
       if (item.tower_status_id == 1 || item.tower_status_id == 6) {
         this.expanded = [];
