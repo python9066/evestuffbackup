@@ -130,14 +130,24 @@
                                 }}</v-icon>
                                 {{ item.tower_status_name }}
                             </v-btn>
-                            <v-fab-transition mode="out-in">
+                            <v-fab-transition
+                                mode="in-out"
+                                v-if="item.tower_status_id == 5"
+                            >
                                 <TowerOnlineTimer
                                     :item="item"
-                                    v-if="item.tower_status_id == 3"
+                                ></TowerOnlineTimer>
+                            </v-fab-transition>
+                            <v-fab-transition
+                                mode="in-out"
+                                v-if="item.tower_status_id == 3"
+                            >
+                                <TowerOnlineTimer
+                                    :item="item"
                                 ></TowerOnlineTimer>
                             </v-fab-transition>
                             <!-- EXTRA BUTTON -->
-                            <v-fab-transition mode="in-out">
+                            <v-fab-transition mode="out-in">
                                 <v-chip
                                     pill
                                     outlined
