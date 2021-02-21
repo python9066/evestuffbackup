@@ -18201,9 +18201,14 @@ function sleep(ms) {
         item.text = null;
       }
 
+      if (item.tower_status_id != 3 || item.tower_status_id != 5) {
+        item.out_time = null;
+      }
+
       var request = {
         tower_status_id: item.tower_status_id,
-        user_id: this.$store.state.user_id
+        user_id: this.$store.state.user_id,
+        out_time: item.tower_out_time
       };
       axios({
         method: "put",
