@@ -942,7 +942,7 @@ class Notifications
             }
         }
 
-        $towers = Tower::where('tower_status_id', 7)->where('out_time', '>', now())->get();
+        $towers = Tower::where('tower_status_id', 7)->where('out_time', '<', now())->get();
         foreach ($towers as $tower) {
 
             $tower->update(['tower_status_id' => 8, 'out_time' => null]);
