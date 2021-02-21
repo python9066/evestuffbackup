@@ -36988,7 +36988,7 @@ var render = function() {
                                     ),
                                     _vm._v(" "),
                                     _c(
-                                      "v-scroll-x-transition",
+                                      "v-transtion",
                                       [
                                         item.tower_status_id == 5
                                           ? _c("TowerOnlineTimer", {
