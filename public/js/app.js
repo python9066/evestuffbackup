@@ -17745,7 +17745,7 @@ function sleep(ms) {
       }, {
         text: "Alliance",
         value: "alliance_name",
-        width: "15%"
+        width: "10%"
       }, {
         text: "Moon",
         value: "moon_name",
