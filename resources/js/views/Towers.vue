@@ -311,7 +311,7 @@ export default {
                 {
                     text: "Edited By",
                     value: "user_name",
-                    width: "10%",
+                    width: "5%",
                     align: "start"
                 }
             ]

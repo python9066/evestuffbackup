@@ -17766,7 +17766,7 @@ function sleep(ms) {
       }, {
         text: "Edited By",
         value: "user_name",
-        width: "10%",
+        width: "5%",
         align: "start"
       }]
     };
