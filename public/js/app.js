@@ -11426,17 +11426,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -11498,6 +11487,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           }
         }, _callee);
       }))();
+    },
+    test: function test(item) {
+      if (item.tower_status_id == 5) {
+        return "animate__animated animate__bounceIn";
+      } else {
+        return "animate__animated animate__bounceOut";
+      }
     }
   },
   computed: {}
@@ -30983,431 +30979,413 @@ var render = function() {
   return _c(
     "v-col",
     [
-      _c("v-scroll-x-transition", [
-        _vm.item.out_time == null && _vm.item.tower_status_id == 5
-          ? _c(
-              "span",
-              [
-                _c(
-                  "v-menu",
-                  {
-                    attrs: {
-                      "close-on-content-click": false,
-                      value: _vm.timerShown
-                    },
-                    scopedSlots: _vm._u(
-                      [
-                        {
-                          key: "activator",
-                          fn: function(ref) {
-                            var on = ref.on
-                            var attrs = ref.attrs
-                            return [
-                              _c(
-                                "v-chip",
-                                _vm._g(
-                                  _vm._b(
-                                    {
-                                      attrs: {
-                                        pill: "",
-                                        outlined: "",
-                                        small: "",
-                                        color: "warning"
-                                      },
-                                      on: {
-                                        click: function($event) {
-                                          _vm.timerShown = true
-                                        }
-                                      }
-                                    },
-                                    "v-chip",
-                                    attrs,
-                                    false
-                                  ),
-                                  on
-                                ),
-                                [
-                                  _vm._v(
-                                    "\n                        Add Time\n                    "
-                                  )
-                                ]
-                              )
-                            ]
-                          }
-                        }
-                      ],
-                      null,
-                      false,
-                      1335542311
-                    )
+      _vm.item.out_time == null && _vm.item.tower_status_id == 5
+        ? _c(
+            "span",
+            [
+              _c(
+                "v-menu",
+                {
+                  attrs: {
+                    "close-on-content-click": false,
+                    value: _vm.timerShown
                   },
-                  [
-                    _vm._v(" "),
+                  scopedSlots: _vm._u(
                     [
-                      _c(
-                        "v-card",
-                        { attrs: { tile: "", "min-height": "150px" } },
-                        [
-                          _c(
-                            "v-card-title",
-                            { staticClass: " pb-0" },
-                            [
-                              _c("v-text-field", {
-                                directives: [
+                      {
+                        key: "activator",
+                        fn: function(ref) {
+                          var on = ref.on
+                          var attrs = ref.attrs
+                          return [
+                            _c(
+                              "v-chip",
+                              _vm._g(
+                                _vm._b(
                                   {
-                                    name: "mask",
-                                    rawName: "v-mask",
-                                    value: "##:##",
-                                    expression: "'##:##'"
+                                    attrs: {
+                                      pill: "",
+                                      outlined: "",
+                                      small: "",
+                                      color: "warning"
+                                    },
+                                    on: {
+                                      click: function($event) {
+                                        _vm.timerShown = true
+                                      }
+                                    }
+                                  },
+                                  "v-chip",
+                                  attrs,
+                                  false
+                                ),
+                                on
+                              ),
+                              [
+                                _vm._v(
+                                  "\n                    Add Time\n                "
+                                )
+                              ]
+                            )
+                          ]
+                        }
+                      }
+                    ],
+                    null,
+                    false,
+                    751554087
+                  )
+                },
+                [
+                  _vm._v(" "),
+                  [
+                    _c(
+                      "v-card",
+                      { attrs: { tile: "", "min-height": "150px" } },
+                      [
+                        _c(
+                          "v-card-title",
+                          { staticClass: " pb-0" },
+                          [
+                            _c("v-text-field", {
+                              directives: [
+                                {
+                                  name: "mask",
+                                  rawName: "v-mask",
+                                  value: "##:##",
+                                  expression: "'##:##'"
+                                }
+                              ],
+                              attrs: {
+                                label: "Reapir Time mm:ss",
+                                autofocus: "",
+                                placeholder: "mm:ss"
+                              },
+                              on: {
+                                keyup: [
+                                  function($event) {
+                                    if (
+                                      !$event.type.indexOf("key") &&
+                                      _vm._k(
+                                        $event.keyCode,
+                                        "enter",
+                                        13,
+                                        $event.key,
+                                        "Enter"
+                                      )
+                                    ) {
+                                      return null
+                                    }
+                                    ;(_vm.timerShown = false),
+                                      _vm.addAnchoringTime(_vm.item)
+                                  },
+                                  function($event) {
+                                    if (
+                                      !$event.type.indexOf("key") &&
+                                      _vm._k(
+                                        $event.keyCode,
+                                        "esc",
+                                        27,
+                                        $event.key,
+                                        ["Esc", "Escape"]
+                                      )
+                                    ) {
+                                      return null
+                                    }
+                                    ;(_vm.timerShown = false),
+                                      (_vm.anchoringTime = null)
                                   }
-                                ],
+                                ]
+                              },
+                              model: {
+                                value: _vm.anchoringTime,
+                                callback: function($$v) {
+                                  _vm.anchoringTime = $$v
+                                },
+                                expression: "anchoringTime"
+                              }
+                            })
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "v-card-text",
+                          [
+                            _c(
+                              "v-btn",
+                              {
                                 attrs: {
-                                  label: "Reapir Time mm:ss",
-                                  autofocus: "",
-                                  placeholder: "mm:ss"
+                                  icon: "",
+                                  fixed: "",
+                                  left: "",
+                                  color: "success"
                                 },
                                 on: {
-                                  keyup: [
-                                    function($event) {
-                                      if (
-                                        !$event.type.indexOf("key") &&
-                                        _vm._k(
-                                          $event.keyCode,
-                                          "enter",
-                                          13,
-                                          $event.key,
-                                          "Enter"
-                                        )
-                                      ) {
-                                        return null
-                                      }
-                                      ;(_vm.timerShown = false),
-                                        _vm.addAnchoringTime(_vm.item)
-                                    },
-                                    function($event) {
-                                      if (
-                                        !$event.type.indexOf("key") &&
-                                        _vm._k(
-                                          $event.keyCode,
-                                          "esc",
-                                          27,
-                                          $event.key,
-                                          ["Esc", "Escape"]
-                                        )
-                                      ) {
-                                        return null
-                                      }
-                                      ;(_vm.timerShown = false),
-                                        (_vm.anchoringTime = null)
-                                    }
-                                  ]
-                                },
-                                model: {
-                                  value: _vm.anchoringTime,
-                                  callback: function($$v) {
-                                    _vm.anchoringTime = $$v
-                                  },
-                                  expression: "anchoringTime"
+                                  click: function($event) {
+                                    ;(_vm.timerShown = false),
+                                      _vm.addAnchoringTime(_vm.item)
+                                  }
                                 }
-                              })
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "v-card-text",
-                            [
-                              _c(
-                                "v-btn",
-                                {
-                                  attrs: {
-                                    icon: "",
-                                    fixed: "",
-                                    left: "",
-                                    color: "success"
-                                  },
-                                  on: {
-                                    click: function($event) {
-                                      ;(_vm.timerShown = false),
-                                        _vm.addAnchoringTime(_vm.item)
-                                    }
-                                  }
-                                },
-                                [_c("v-icon", [_vm._v("fas fa-check")])],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "v-btn",
-                                {
-                                  attrs: {
-                                    fixed: "",
-                                    right: "",
-                                    icon: "",
-                                    color: "warning"
-                                  },
-                                  on: {
-                                    click: function($event) {
-                                      ;(_vm.timerShown = false),
-                                        (_vm.anchoringTime = null)
-                                    }
-                                  }
-                                },
-                                [_c("v-icon", [_vm._v("fas fa-times")])],
-                                1
-                              )
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      )
-                    ]
-                  ],
-                  2
-                )
-              ],
-              1
-            )
-          : _vm._e()
-      ]),
-      _vm._v(" "),
-      _c(
-        "v-scroll-x-transition",
-        [
-          _vm.item.out_time != null && _vm.item.tower_status_id == 5
-            ? _c("CountDowntimer", {
-                attrs: {
-                  "start-time": _vm.moment.utc(_vm.item.out_time).unix(),
-                  "end-text": "Just Onlined",
-                  interval: 1000
-                },
-                scopedSlots: _vm._u(
-                  [
-                    {
-                      key: "countdown",
-                      fn: function(scope) {
-                        return [
-                          _c("span", { staticClass: "red--text pl-3" }, [
-                            _vm._v(
-                              _vm._s(scope.props.minutes) +
-                                ":" +
-                                _vm._s(scope.props.seconds)
-                            )
-                          ]),
-                          _vm._v(" "),
-                          _c(
-                            "v-menu",
-                            {
-                              attrs: {
-                                "close-on-content-click": false,
-                                value: _vm.timerShown
                               },
-                              scopedSlots: _vm._u(
-                                [
-                                  {
-                                    key: "activator",
-                                    fn: function(ref) {
-                                      var on = ref.on
-                                      var attrs = ref.attrs
-                                      return [
-                                        _c(
-                                          "v-btn",
-                                          _vm._g(
-                                            _vm._b(
-                                              {
-                                                attrs: {
-                                                  icon: "",
-                                                  color: "warning"
-                                                },
-                                                on: {
-                                                  click: function($event) {
-                                                    ;(_vm.timerShown = true),
-                                                      (_vm.anchoringTime = null)
-                                                  }
-                                                }
-                                              },
-                                              "v-btn",
-                                              attrs,
-                                              false
-                                            ),
-                                            on
-                                          ),
-                                          [
-                                            _c(
-                                              "v-icon",
-                                              { attrs: { "x-small": "" } },
-                                              [_vm._v("fas fa-edit")]
-                                            )
-                                          ],
-                                          1
-                                        )
-                                      ]
-                                    }
+                              [_c("v-icon", [_vm._v("fas fa-check")])],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "v-btn",
+                              {
+                                attrs: {
+                                  fixed: "",
+                                  right: "",
+                                  icon: "",
+                                  color: "warning"
+                                },
+                                on: {
+                                  click: function($event) {
+                                    ;(_vm.timerShown = false),
+                                      (_vm.anchoringTime = null)
                                   }
-                                ],
-                                null,
-                                true
-                              )
-                            },
+                                }
+                              },
+                              [_c("v-icon", [_vm._v("fas fa-times")])],
+                              1
+                            )
+                          ],
+                          1
+                        )
+                      ],
+                      1
+                    )
+                  ]
+                ],
+                2
+              )
+            ],
+            1
+          )
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.item.out_time != null && _vm.item.tower_status_id == 5
+        ? _c("CountDowntimer", {
+            attrs: {
+              "start-time": _vm.moment.utc(_vm.item.out_time).unix(),
+              "end-text": "Just Onlined",
+              interval: 1000
+            },
+            scopedSlots: _vm._u(
+              [
+                {
+                  key: "countdown",
+                  fn: function(scope) {
+                    return [
+                      _c("span", { staticClass: "red--text pl-3" }, [
+                        _vm._v(
+                          _vm._s(scope.props.minutes) +
+                            ":" +
+                            _vm._s(scope.props.seconds)
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "v-menu",
+                        {
+                          attrs: {
+                            "close-on-content-click": false,
+                            value: _vm.timerShown
+                          },
+                          scopedSlots: _vm._u(
                             [
-                              _vm._v(" "),
-                              [
-                                _c(
-                                  "v-card",
-                                  {
-                                    attrs: { tile: "", "min-height": "150px" }
-                                  },
-                                  [
+                              {
+                                key: "activator",
+                                fn: function(ref) {
+                                  var on = ref.on
+                                  var attrs = ref.attrs
+                                  return [
                                     _c(
-                                      "v-card-title",
-                                      { staticClass: " pb-0" },
-                                      [
-                                        _c("v-text-field", {
-                                          directives: [
-                                            {
-                                              name: "mask",
-                                              rawName: "v-mask",
-                                              value: "#d ##:##:##",
-                                              expression: "'#d ##:##:##'"
-                                            }
-                                          ],
-                                          attrs: {
-                                            label: "Repair Time d hh:mm:ss",
-                                            autofocus: "",
-                                            placeholder: "d:hh:mm:ss"
-                                          },
-                                          on: {
-                                            keyup: [
-                                              function($event) {
-                                                if (
-                                                  !$event.type.indexOf("key") &&
-                                                  _vm._k(
-                                                    $event.keyCode,
-                                                    "enter",
-                                                    13,
-                                                    $event.key,
-                                                    "Enter"
-                                                  )
-                                                ) {
-                                                  return null
-                                                }
-                                                ;(_vm.repairShown = false),
-                                                  _vm.addAnchoringTime(_vm.item)
-                                              },
-                                              function($event) {
-                                                if (
-                                                  !$event.type.indexOf("key") &&
-                                                  _vm._k(
-                                                    $event.keyCode,
-                                                    "esc",
-                                                    27,
-                                                    $event.key,
-                                                    ["Esc", "Escape"]
-                                                  )
-                                                ) {
-                                                  return null
-                                                }
-                                                ;(_vm.timerShown = false),
-                                                  (_vm.anchoringTime = null)
-                                              }
-                                            ]
-                                          },
-                                          model: {
-                                            value: _vm.anchoringTime,
-                                            callback: function($$v) {
-                                              _vm.anchoringTime = $$v
-                                            },
-                                            expression: "anchoringTime"
-                                          }
-                                        })
-                                      ],
-                                      1
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "v-card-text",
-                                      [
-                                        _c(
-                                          "v-btn",
+                                      "v-btn",
+                                      _vm._g(
+                                        _vm._b(
                                           {
                                             attrs: {
-                                              icon: "",
-                                              fixed: "",
-                                              left: "",
-                                              color: "success"
-                                            },
-                                            on: {
-                                              click: function($event) {
-                                                ;(_vm.timerShown = false),
-                                                  _vm.addAnchoringTime(_vm.item)
-                                              }
-                                            }
-                                          },
-                                          [
-                                            _c("v-icon", [
-                                              _vm._v("fas fa-check")
-                                            ])
-                                          ],
-                                          1
-                                        ),
-                                        _vm._v(" "),
-                                        _c(
-                                          "v-btn",
-                                          {
-                                            attrs: {
-                                              fixed: "",
-                                              right: "",
                                               icon: "",
                                               color: "warning"
                                             },
                                             on: {
                                               click: function($event) {
-                                                ;(_vm.timerShown = false),
+                                                ;(_vm.timerShown = true),
                                                   (_vm.anchoringTime = null)
                                               }
                                             }
                                           },
-                                          [
-                                            _c("v-icon", [
-                                              _vm._v("fas fa-times")
-                                            ])
-                                          ],
-                                          1
+                                          "v-btn",
+                                          attrs,
+                                          false
+                                        ),
+                                        on
+                                      ),
+                                      [
+                                        _c(
+                                          "v-icon",
+                                          { attrs: { "x-small": "" } },
+                                          [_vm._v("fas fa-edit")]
                                         )
                                       ],
+                                      1
+                                    )
+                                  ]
+                                }
+                              }
+                            ],
+                            null,
+                            true
+                          )
+                        },
+                        [
+                          _vm._v(" "),
+                          [
+                            _c(
+                              "v-card",
+                              { attrs: { tile: "", "min-height": "150px" } },
+                              [
+                                _c(
+                                  "v-card-title",
+                                  { staticClass: " pb-0" },
+                                  [
+                                    _c("v-text-field", {
+                                      directives: [
+                                        {
+                                          name: "mask",
+                                          rawName: "v-mask",
+                                          value: "#d ##:##:##",
+                                          expression: "'#d ##:##:##'"
+                                        }
+                                      ],
+                                      attrs: {
+                                        label: "Repair Time d hh:mm:ss",
+                                        autofocus: "",
+                                        placeholder: "d:hh:mm:ss"
+                                      },
+                                      on: {
+                                        keyup: [
+                                          function($event) {
+                                            if (
+                                              !$event.type.indexOf("key") &&
+                                              _vm._k(
+                                                $event.keyCode,
+                                                "enter",
+                                                13,
+                                                $event.key,
+                                                "Enter"
+                                              )
+                                            ) {
+                                              return null
+                                            }
+                                            ;(_vm.repairShown = false),
+                                              _vm.addAnchoringTime(_vm.item)
+                                          },
+                                          function($event) {
+                                            if (
+                                              !$event.type.indexOf("key") &&
+                                              _vm._k(
+                                                $event.keyCode,
+                                                "esc",
+                                                27,
+                                                $event.key,
+                                                ["Esc", "Escape"]
+                                              )
+                                            ) {
+                                              return null
+                                            }
+                                            ;(_vm.timerShown = false),
+                                              (_vm.anchoringTime = null)
+                                          }
+                                        ]
+                                      },
+                                      model: {
+                                        value: _vm.anchoringTime,
+                                        callback: function($$v) {
+                                          _vm.anchoringTime = $$v
+                                        },
+                                        expression: "anchoringTime"
+                                      }
+                                    })
+                                  ],
+                                  1
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "v-card-text",
+                                  [
+                                    _c(
+                                      "v-btn",
+                                      {
+                                        attrs: {
+                                          icon: "",
+                                          fixed: "",
+                                          left: "",
+                                          color: "success"
+                                        },
+                                        on: {
+                                          click: function($event) {
+                                            ;(_vm.timerShown = false),
+                                              _vm.addAnchoringTime(_vm.item)
+                                          }
+                                        }
+                                      },
+                                      [_c("v-icon", [_vm._v("fas fa-check")])],
+                                      1
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "v-btn",
+                                      {
+                                        attrs: {
+                                          fixed: "",
+                                          right: "",
+                                          icon: "",
+                                          color: "warning"
+                                        },
+                                        on: {
+                                          click: function($event) {
+                                            ;(_vm.timerShown = false),
+                                              (_vm.anchoringTime = null)
+                                          }
+                                        }
+                                      },
+                                      [_c("v-icon", [_vm._v("fas fa-times")])],
                                       1
                                     )
                                   ],
                                   1
                                 )
-                              ]
-                            ],
-                            2
-                          )
-                        ]
-                      }
-                    },
-                    {
-                      key: "end-text",
-                      fn: function(scope) {
-                        return [
-                          _c("span", { staticStyle: { color: "green" } }, [
-                            _vm._v(_vm._s(scope.props.endText))
-                          ])
-                        ]
-                      }
-                    }
-                  ],
-                  null,
-                  false,
-                  1006923478
-                )
-              })
-            : _vm._e()
-        ],
-        1
-      )
+                              ],
+                              1
+                            )
+                          ]
+                        ],
+                        2
+                      )
+                    ]
+                  }
+                },
+                {
+                  key: "end-text",
+                  fn: function(scope) {
+                    return [
+                      _c("span", { staticStyle: { color: "green" } }, [
+                        _vm._v(_vm._s(scope.props.endText))
+                      ])
+                    ]
+                  }
+                }
+              ],
+              null,
+              false,
+              2591563222
+            )
+          })
+        : _vm._e()
     ],
     1
   )
