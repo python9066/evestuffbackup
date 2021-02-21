@@ -18148,6 +18148,14 @@ function sleep(ms) {
       if (id == 6) {
         return "faSvg fa-skull-crossbones";
       }
+
+      if (id == 7) {
+        return "faSvg fa-clock";
+      }
+
+      if (id == 8) {
+        return "faSvg fa-life-ring";
+      }
     },
     loadtowers: function loadtowers() {
       var _this2 = this;
@@ -18180,6 +18188,14 @@ function sleep(ms) {
 
       if (statusId == 6) {
         return "light-green accent-3";
+      }
+
+      if (statusId == 7) {
+        return "dark-orange";
+      }
+
+      if (statusId == 8) {
+        return "primary";
       }
     },
     save: function save() {
