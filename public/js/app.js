@@ -35528,21 +35528,13 @@ var render = function() {
                                         on
                                       ),
                                       [
-                                        item.tower_status_id == 1
-                                          ? _c(
-                                              "v-icon",
-                                              { attrs: { left: "" } },
-                                              [
-                                                _vm._v(
-                                                  _vm._s(
-                                                    _vm.pillIcon(
-                                                      item.tower_status_id
-                                                    )
-                                                  )
-                                                )
-                                              ]
+                                        _c("v-icon", { attrs: { left: "" } }, [
+                                          _vm._v(
+                                            _vm._s(
+                                              _vm.pillIcon(item.tower_status_id)
                                             )
-                                          : _vm._e(),
+                                          )
+                                        ]),
                                         _vm._v(
                                           "\n                            " +
                                             _vm._s(item.tower_status_name) +

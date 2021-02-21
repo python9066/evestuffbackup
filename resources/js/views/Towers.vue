@@ -126,7 +126,7 @@
                                 outlined
                                 :color="pillColor(item.tower_status_id)"
                             >
-                                <v-icon v-if="item.tower_status_id == 1" left>{{
+                                <v-icon left>{{
                                     pillIcon(item.tower_status_id)
                                 }}</v-icon>
                                 {{ item.tower_status_name }}
