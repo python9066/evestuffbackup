@@ -188,9 +188,7 @@ export default {
     },
 
     computed: {},
-    async beforeDestroy() {
-        await sleep(1000);
-    }
+    async beforeDestroy() {}
 };
 </script>
 

@@ -11274,10 +11274,6 @@ function sleep(ms) {
         while (1) {
           switch (_context2.prev = _context2.next) {
             case 0:
-              _context2.next = 2;
-              return sleep(1000);
-
-            case 2:
             case "end":
               return _context2.stop();
           }
@@ -11455,6 +11451,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 
 
+
+function sleep(ms) {
+  return new Promise(function (resolve) {
+    return setTimeout(resolve, ms);
+  });
+}
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     item: Object
@@ -11523,7 +11526,24 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }
     }
   },
-  computed: {}
+  computed: {},
+  beforeDestroy: function beforeDestroy() {
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              _context2.next = 2;
+              return sleep(1000);
+
+            case 2:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      }, _callee2);
+    }))();
+  }
 });
 
 /***/ }),
@@ -17690,6 +17710,8 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
+//
+//
 //
 //
 //
@@ -37027,15 +37049,19 @@ var render = function() {
                                       1
                                     ),
                                     _vm._v(" "),
-                                    _c(
-                                      "v-scroll-x-transition",
-                                      [
-                                        _c("TowerOnlineTimer", {
-                                          attrs: { item: item }
-                                        })
-                                      ],
-                                      1
-                                    ),
+                                    _c("v-scroll-x-transition", [
+                                      item.tower_status_id == 3
+                                        ? _c(
+                                            "div",
+                                            [
+                                              _c("TowerOnlineTimer", {
+                                                attrs: { item: item }
+                                              })
+                                            ],
+                                            1
+                                          )
+                                        : _vm._e()
+                                    ]),
                                     _vm._v(" "),
                                     _c(
                                       "v-fab-transition",
