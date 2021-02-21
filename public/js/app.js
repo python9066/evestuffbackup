@@ -30978,7 +30978,7 @@ var render = function() {
       _vm.item.out_time == null && _vm.item.tower_status_id == 5
         ? _c(
             "div",
-            { staticClass: "animate__animated animate__bounceIn" },
+            { class: _vm.test() },
             [
               _c(
                 "v-menu",

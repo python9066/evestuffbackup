@@ -2,7 +2,7 @@
     <v-col>
         <div
             v-if="item.out_time == null && item.tower_status_id == 5"
-            class="animate__animated animate__bounceIn"
+            :class="test()"
         >
             <v-menu :close-on-content-click="false" :value="timerShown">
                 <template v-slot:activator="{ on, attrs }">
