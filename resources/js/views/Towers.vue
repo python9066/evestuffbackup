@@ -302,15 +302,15 @@ export default {
             ],
 
             headers: [
-                { text: "Region", value: "region_name", width: "10%" },
+                { text: "Region", value: "region_name", width: "5%" },
                 {
                     text: "Constellation",
                     value: "constellation_name",
-                    width: "8%"
+                    width: "5%"
                 },
-                { text: "System", value: "system_name", width: "8%" },
-                { text: "Alliance", value: "alliance_name", width: "5%" },
-                { text: "Moon", value: "moon_name", width: "25%" },
+                { text: "System", value: "system_name", width: "5%" },
+                { text: "Alliance", value: "alliance_name", width: "10%" },
+                { text: "Moon", value: "moon_name", width: "10%" },
                 {
                     text: "Type",
                     value: "item_name",
