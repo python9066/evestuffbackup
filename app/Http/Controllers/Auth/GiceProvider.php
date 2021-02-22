@@ -24,7 +24,7 @@ class GiceProvider extends AbstractProvider implements ProviderInterface
      */
     protected $scopes = [
         'openid',
-        'groups-limited'
+        // 'groups-limited'
     ];
 
     /**
@@ -63,49 +63,49 @@ class GiceProvider extends AbstractProvider implements ProviderInterface
      * @param  string  $code
      * @return array
      */
-    // public function getAccessTokenResponse($code)
-    // {
-    //     $response = $this->getHttpClient()->post($this->getTokenUrl(), [
-    //         'headers' => ['Accept' => 'application/json'],
-    //         'form_params' => $this->getTokenFields($code),
-    //     ]);
-
-    //     // dd(json_decode($response->getBody(), true));
-    //     // echo '<pre>';
-    //     // print_r(json_decode($response->getBody(), true));
-    //     // echo '</pre>';
-    //     return json_decode($response->getBody(), true);
-    // }
-
-
     public function getAccessTokenResponse($code)
     {
         $response = $this->getHttpClient()->post($this->getTokenUrl(), [
             'headers' => ['Accept' => 'application/json'],
             'form_params' => $this->getTokenFields($code),
         ]);
-        $arry = json_decode($response->getBody(), true);
-        dd($arry);
-        $test = $arry['id_token'];
-        $info = explode($test, ".");
-        $information = base64_decode($info[1]);
-        dd($information);
 
+        // dd(json_decode($response->getBody(), true));
+        // echo '<pre>';
+        // print_r(json_decode($response->getBody(), true));
+        // echo '</pre>';
         return json_decode($response->getBody(), true);
     }
 
-    protected function getTokenFields($code)
-    {
-        $fields = [
-            'grant_type' => 'authorization_code',
-            'client_id' => $this->clientId,
-            'client_secret' => $this->clientSecret,
-            'code' => $code,
-            'redirect_uri' => $this->redirectUrl,
-        ];
 
-        return $fields;
-    }
+    // public function getAccessTokenResponse($code)
+    // {
+    //     $response = $this->getHttpClient()->post($this->getTokenUrl(), [
+    //         'headers' => ['Accept' => 'application/json'],
+    //         'form_params' => $this->getTokenFields($code),
+    //     ]);
+    //     $arry = json_decode($response->getBody(), true);
+    //     dd($arry);
+    //     $test = $arry['id_token'];
+    //     $info = explode($test, ".");
+    //     $information = base64_decode($info[1]);
+    //     dd($information);
+
+    //     return json_decode($response->getBody(), true);
+    // }
+
+    // protected function getTokenFields($code)
+    // {
+    //     $fields = [
+    //         'grant_type' => 'authorization_code',
+    //         'client_id' => $this->clientId,
+    //         'client_secret' => $this->clientSecret,
+    //         'code' => $code,
+    //         'redirect_uri' => $this->redirectUrl,
+    //     ];
+
+    //     return $fields;
+    // }
 
 
 
