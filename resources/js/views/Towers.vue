@@ -178,7 +178,7 @@
                     </v-fab-transition>
                     <v-fab-transition group>
                         <TowerRefTimer
-                            key="TowerRefTimer"
+                            :key="item.id"
                             :item="item"
                             v-show="item.tower_status_id == 5"
                         ></TowerRefTimer>
