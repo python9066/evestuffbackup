@@ -31834,7 +31834,7 @@ var render = function() {
                 _vm._v("\n                Adding a New Tower\n            ")
               ]),
               _vm._v(" "),
-              _c("v-card-text", { staticClass: " justify-content-between" }, [
+              _c("v-card-text", { staticClass: " justify-content-center" }, [
                 _c(
                   "div",
                   {
