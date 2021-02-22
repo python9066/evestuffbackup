@@ -28,7 +28,7 @@ class AuthController extends Controller
     {
         $flag = 0;
         $userGice = Socialite::with('gice')->user();
-        // dd($userGice);
+        dd($userGice);
         $check = User::where('id', $userGice->id)->get()->count();
         if ($check != 1) {
             $flag = 1;
