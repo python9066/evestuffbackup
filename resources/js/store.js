@@ -348,7 +348,7 @@ export default new Vuex.Store({
             commit("SET_SYSTEMLIST", res.data.systemlist);
         },
 
-        async getSystemList({ commit, state }) {
+        async getMoonList({ commit, state }) {
             let res = await axios({
                 method: "get",
                 url: "/api/moons",
