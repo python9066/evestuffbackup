@@ -37257,7 +37257,7 @@ var render = function() {
                         ? _c(
                             "div",
                             {
-                              staticClass: " d-inline-flex align-content-center"
+                              staticClass: " d-inline-flex align-items-center"
                             },
                             [
                               _c(

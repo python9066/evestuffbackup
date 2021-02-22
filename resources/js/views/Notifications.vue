@@ -243,7 +243,7 @@
                 >
                     <div
                         v-if="$can('edit_notifications')"
-                        class=" d-inline-flex align-content-center"
+                        class=" d-inline-flex align-items-center"
                     >
                         <v-menu offset-y>
                             <template v-slot:activator="{ on, attrs }">
