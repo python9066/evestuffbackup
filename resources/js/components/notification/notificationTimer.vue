@@ -1,12 +1,6 @@
 <template>
     <v-col>
-        <span
-            v-if="
-                item.end_time == null &&
-                    (item.status_id == 3 || item.status_id == 5) &&
-                    $can('edit_notifications')
-            "
-        >
+        <span v-show="item.end_time == null">
             <v-menu :close-on-content-click="false" :value="timerShown">
                 <template v-slot:activator="{ on, attrs }">
                     <v-chip
@@ -68,10 +62,6 @@
         </span>
 
         <CountDowntimer
-            v-if="
-                (item.status_id == 3 || item.status_id == 5) &&
-                    $can('edit_notifications')
-            "
             :start-time="moment.utc(item.end_time).unix()"
             end-text="Is it Secured?"
             :interval="1000"

@@ -315,7 +315,9 @@
                                 :item="item"
                                 :key="'NoteTimer' + item.id"
                                 v-show="
-                                    item.status_id == 5 || item.status_id == 3
+                                    (item.status_id == 5 ||
+                                        item.status_id == 3) &&
+                                        $can('edit_notifications')
                                 "
                             ></NotificationTimer>
                         </v-slide-x-transition>
