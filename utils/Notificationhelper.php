@@ -816,7 +816,7 @@ class Notifications
             $message = StationRecords::where('id', $check->id)->first();
             $flag = null;
             $flag = collect([
-                'id' => $message
+                'message' => $message
             ]);
             broadcast(new StationNotificationUpdate($flag));
         }
@@ -827,18 +827,18 @@ class Notifications
             $message = StationRecords::where('id', $check->id)->first();
             $flag = null;
             $flag = collect([
-                'id' => $message
+                'message' => $message
             ]);
             broadcast(new StationNotificationUpdate($flag));
         }
 
         $checks = Station::where('out_time', "<=", $now)->where('station_status_id', 14)->get(); //Upcoming
         foreach ($checks as $check) {
-            $check->update(['station_status_id' => 15, 'status_update' => now()]);
+            $check->update(['station_status_id' => 15, 'status_update' => now(), 'out_time' => null]);
             $message = StationRecords::where('id', $check->id)->first();
             $flag = null;
             $flag = collect([
-                'id' => $message
+                'message' => $message
             ]);
             broadcast(new StationNotificationUpdate($flag));
         }
