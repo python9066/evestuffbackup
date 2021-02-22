@@ -4,7 +4,7 @@
         <div class=" d-flex align-items-center">
             <v-card-title>Towers</v-card-title>
 
-            <AddTower v-show="$can('super')"></AddTower>
+            <AddTower></AddTower>
 
             <v-text-field
                 v-model="search"

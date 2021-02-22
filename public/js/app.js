@@ -38251,16 +38251,7 @@ var render = function() {
         [
           _c("v-card-title", [_vm._v("Towers")]),
           _vm._v(" "),
-          _c("AddTower", {
-            directives: [
-              {
-                name: "show",
-                rawName: "v-show",
-                value: _vm.$can("super"),
-                expression: "$can('super')"
-              }
-            ]
-          }),
+          _c("AddTower"),
           _vm._v(" "),
           _c("v-text-field", {
             attrs: {
