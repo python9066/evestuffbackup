@@ -396,7 +396,7 @@ export default new Vuex.Store({
                     "Content-Type": "application/json"
                 }
             });
-            commit("TOWERLIST", res.data.towerlist);
+            commit("SET_TOWERLIST", res.data.towerlist);
         },
 
 

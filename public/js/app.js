@@ -44124,7 +44124,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
 
               case 3:
                 res = _context5.sent;
-                commit("TOWERLIST", res.data.towerlist);
+                commit("SET_TOWERLIST", res.data.towerlist);
 
               case 5:
               case "end":
