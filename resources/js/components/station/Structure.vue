@@ -386,6 +386,9 @@ export default {
     async created() {
         Echo.private("notes")
             .listen("StationNotificationNew", e => {
+                if (this.$can("gunner")) {
+                    this.$store.dispatch("loadStationInfo");
+                }
                 this.$store.dispatch("addStationNotification", e.flag.message);
             })
             .listen("StationNotificationUpdate", e => {

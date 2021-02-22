@@ -12,6 +12,7 @@
                     pill
                     outlined
                     dark
+                    small
                     v-bind="attrs"
                     v-on="on"
                     @click="open()"

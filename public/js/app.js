@@ -10142,6 +10142,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -10946,6 +10947,10 @@ function sleep(ms) {
           switch (_context.prev = _context.next) {
             case 0:
               Echo["private"]("notes").listen("StationNotificationNew", function (e) {
+                if (_this.$can("gunner")) {
+                  _this.$store.dispatch("loadStationInfo");
+                }
+
                 _this.$store.dispatch("addStationNotification", e.flag.message);
               }).listen("StationNotificationUpdate", function (e) {
                 _this.$store.dispatch("updateStationNotification", e.flag.message);
@@ -29777,7 +29782,8 @@ var render = function() {
                             color: "green",
                             pill: "",
                             outlined: "",
-                            dark: ""
+                            dark: "",
+                            small: ""
                           },
                           on: {
                             click: function($event) {
