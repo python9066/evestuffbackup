@@ -136,7 +136,7 @@
                             <v-list-item
                                 v-for="(list, index) in dropdown_edit"
                                 :key="index"
-                                @click="click(item, item)"
+                                @click="click(item, list)"
                             >
                                 <v-list-item-title>{{
                                     list.title

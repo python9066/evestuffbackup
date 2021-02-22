@@ -37807,7 +37807,7 @@ var render = function() {
                                   key: index,
                                   on: {
                                     click: function($event) {
-                                      return _vm.click(item, item)
+                                      return _vm.click(item, list)
                                     }
                                   }
                                 },
