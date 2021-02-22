@@ -22,7 +22,7 @@ class GiceProvider extends AbstractProvider implements ProviderInterface
      * @var array
      */
     protected $scopes = [
-        'openid',
+        // 'openid',
         'groups-limited'
     ];
 
