@@ -55,6 +55,7 @@
                                 :items="sysItems"
                                 :search-input.sync="sysSearch"
                                 label="System Name"
+                                class=" pr-2"
                                 outlined
                             ></v-autocomplete>
                             <v-autocomplete

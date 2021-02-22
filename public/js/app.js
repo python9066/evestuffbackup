@@ -11479,6 +11479,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -31880,6 +31881,7 @@ var render = function() {
                       { staticClass: " d-inline-flex justify-content-around" },
                       [
                         _c("v-autocomplete", {
+                          staticClass: " pr-2",
                           attrs: {
                             loading: _vm.sysLoading,
                             clearable: "",
