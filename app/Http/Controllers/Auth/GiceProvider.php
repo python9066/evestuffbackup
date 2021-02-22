@@ -45,17 +45,15 @@ class GiceProvider extends AbstractProvider implements ProviderInterface
     }
 
 
-    // public function getAccessToken($code)
-    // {
-    //     $response = $this->getHttpClient()->post($this->getTokenUrl(), [
-    //         'headers' => ['Authorization' => 'Basic ' . base64_encode($this->clientId . ':' . $this->clientSecret)],
-    //         'body'    => $this->getTokenFields($code),
-    //     ]);
+    public function getAccessToken($code)
+    {
+        $response = $this->getHttpClient()->post($this->getTokenUrl(), [
+            'headers' => ['Authorization' => 'Basic ' . base64_encode($this->clientId . ':' . $this->clientSecret)],
+            'body'    => $this->getTokenFields($code),
+        ]);
 
-    //     dd($response->getBody());
-
-    //     return $this->parseAccessToken($response->getBody());
-    // }
+        dd($response->getBody());
+    }
 
     /**
      * Get the POST fields for the token request.
@@ -65,13 +63,15 @@ class GiceProvider extends AbstractProvider implements ProviderInterface
      */
     protected function getTokenFields($code)
     {
-
+        dd('code');
         return Arr::add(
             parent::getTokenFields($code),
             'grant_type',
             'authorization_code'
         );
     }
+
+
 
     /**
      * {@inheritdoc}
