@@ -18540,19 +18540,13 @@ function sleep(ms) {
 
                 _this3.anchoringClass = "animate__animated animate__zoomOut animate__faster";
                 _context2.next = 5;
-                return sleep(1000);
+                return sleep(200);
 
               case 5:
-                if (!(list.value == 3)) {
-                  _context2.next = 9;
-                  break;
+                if (list.value == 3) {
+                  _this3.anchoringClass = "animate__animated animate__zoomIn animate__faster";
                 }
 
-                _this3.anchoringClass = "animate__animated animate__zoomIn animate__faster";
-                _context2.next = 9;
-                return sleep(1000);
-
-              case 9:
                 item.tower_status_id = list.value;
                 item.tower_status_name = list.title;
                 item.user_name = _this3.user_name;
@@ -18587,7 +18581,7 @@ function sleep(ms) {
                   }
                 });
 
-              case 15:
+              case 12:
               case "end":
                 return _context2.stop();
             }
