@@ -14,7 +14,7 @@ class GiceProvider extends AbstractProvider implements ProviderInterface
      *
      * @var string
      */
-    protected $scopeSeparator = ' ';
+    protected $scopeSeparator = ',';
 
     /**
      * The scopes being requested.
