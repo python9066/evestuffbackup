@@ -10873,6 +10873,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 
@@ -30912,7 +30913,8 @@ var render = function() {
                                             [
                                               (item.station_status_id == 8 ||
                                                 item.station_status_id == 9) &&
-                                              item.out_time == null
+                                              item.out_time == null &&
+                                              _vm.$can("super")
                                                 ? _c("StationNewTimer", {
                                                     attrs: { station: item }
                                                   })

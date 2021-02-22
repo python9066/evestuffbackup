@@ -187,7 +187,8 @@
                                     v-if="
                                         (item.station_status_id == 8 ||
                                             item.station_status_id == 9) &&
-                                            item.out_time == null
+                                            item.out_time == null &&
+                                            $can('super')
                                     "
                                 >
                                 </StationNewTimer>
