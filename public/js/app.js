@@ -11703,7 +11703,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }))();
     }
   },
-  computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])([])), Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapState"])(["systemlist", "structurelist", "ticklist", "ticklist"])), {}, {
+  computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])([])), Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapState"])(["systemlist", "structurelist", "ticklist", "moonlist"])), {}, {
     showSubmit: function showSubmit() {
       if (this.structSelect != null && this.sysSelect != null && this.tickSelect != null && this.refType != null && this.refTime != null) {
         return false;
@@ -11728,12 +11728,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }
     },
     moonList: function moonList() {
-      var _this8 = this;
-
-      var moons = this.ticklist;
-      return moons.filter(function (m) {
-        return m.system_id == _this8.sysSelect;
-      });
+      return this.moonlist;
     }
   }),
   beforeDestroy: function beforeDestroy() {}

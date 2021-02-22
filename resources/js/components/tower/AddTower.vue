@@ -324,7 +324,7 @@ export default {
 
     computed: {
         ...mapGetters([]),
-        ...mapState(["systemlist", "structurelist", "ticklist", "ticklist"]),
+        ...mapState(["systemlist", "structurelist", "ticklist", "moonlist"]),
         showSubmit() {
             if (
                 this.structSelect != null &&
@@ -360,8 +360,7 @@ export default {
         },
 
         moonList() {
-            let moons = this.ticklist;
-            return moons.filter(m => m.system_id == this.sysSelect);
+            return this.moonlist;
         }
     },
 
