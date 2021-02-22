@@ -31,7 +31,7 @@ class GiceProvider extends AbstractProvider implements ProviderInterface
      */
     protected function getAuthUrl($state)
     {
-        dd($state);
+
         return $this->buildAuthUrlFromBase('https://esi.goonfleet.com/oauth/authorize', $state);
     }
 
