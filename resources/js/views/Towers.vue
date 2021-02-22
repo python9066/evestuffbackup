@@ -149,14 +149,15 @@
                             </v-list-item>
                         </v-list>
                     </v-menu>
-                    <TowerRefTimer
-                        class="animate__animated animate__zoomIn animate__faster"
-                        :item="item"
-                        v-if="item.tower_status_id == 5"
-                    ></TowerRefTimer>
+                    <v-slide-x-transition>
+                        <TowerRefTimer
+                            :item="item"
+                            v-show="item.tower_status_id == 5"
+                        ></TowerRefTimer>
+                    </v-slide-x-transition>
 
                     <TowerOnlineTimer
-                        v-if="item.tower_status_id == 3"
+                        v-show="item.tower_status_id == 3"
                         :item="item"
                         class="animate__animated animate__zoomIn animate__faster"
                     ></TowerOnlineTimer>
@@ -170,7 +171,7 @@
                             @click="
                                 (expanded = [item]), (expanded_id = item.id)
                             "
-                            v-if="
+                            v-show="
                                 item.tower_status_id != 6 &&
                                     item.tower_status_id != 1 &&
                                     !expanded.includes(item)
@@ -181,7 +182,7 @@
                         <v-btn
                             icon
                             @click="(expanded = []), (expanded_id = 0)"
-                            v-if="
+                            v-show="
                                 (item.tower_status_id != 6 ||
                                     item.tower_status_id != 1) &&
                                     expanded.includes(item)
