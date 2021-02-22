@@ -1,6 +1,11 @@
 <template>
     <div>
-        <v-dialog max-width="700px" z-index="0" v-model="showAddTower">
+        <v-dialog
+            max-width="700px"
+            z-index="0"
+            v-model="showAddTower"
+            @click:outside="showAddTower = true"
+        >
             <template v-slot:activator="{ on, attrs }">
                 <v-btn
                     color="green"

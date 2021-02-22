@@ -11475,6 +11475,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -31760,6 +31765,11 @@ var render = function() {
         "v-dialog",
         {
           attrs: { "max-width": "700px", "z-index": "0" },
+          on: {
+            "click:outside": function($event) {
+              _vm.showAddTower = true
+            }
+          },
           scopedSlots: _vm._u([
             {
               key: "activator",
