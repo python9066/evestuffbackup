@@ -30,7 +30,7 @@
                 <v-card-title class="justify-center">
                     Adding a New Tower
                 </v-card-title>
-                <v-card-text>
+                <v-card-text class=" justify-center">
                     <div class=" d-inline-block">
                         <div>
                             <v-autocomplete

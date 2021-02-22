@@ -31832,7 +31832,7 @@ var render = function() {
                 _vm._v("\n                Adding a New Tower\n            ")
               ]),
               _vm._v(" "),
-              _c("v-card-text", [
+              _c("v-card-text", { staticClass: " justify-center" }, [
                 _c("div", { staticClass: " d-inline-block" }, [
                   _c(
                     "div",
