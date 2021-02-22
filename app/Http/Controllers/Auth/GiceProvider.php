@@ -101,6 +101,23 @@ class GiceProvider extends AbstractProvider implements ProviderInterface
     //     );
     // }
 
+    public function user()
+    {
+        if ($this->user) {
+            return $this->user;
+        }
+
+        $response = $this->getAccessTokenResponse($this->getCode());
+
+        $this->user = $this->mapUserToObject($this->getUserByToken(
+            $token = Arr::get($response, 'access_token')
+        ));
+
+        return $this->user->setToken($token)
+            ->setRefreshToken(Arr::get($response, 'refresh_token'))
+            ->setExpiresIn(Arr::get($response, 'expires_in'));
+    }
+
 
 
     /**
