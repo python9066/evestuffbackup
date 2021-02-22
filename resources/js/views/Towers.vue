@@ -149,7 +149,7 @@
                             </v-list-item>
                         </v-list>
                     </v-menu>
-                    <v-slide-x-transition>
+                    <v-slide-x-transition group>
                         <TowerRefTimer
                             :item="item"
                             v-show="item.tower_status_id == 5"
