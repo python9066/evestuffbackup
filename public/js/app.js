@@ -37849,39 +37849,6 @@ var render = function() {
                         "v-fab-transition",
                         { attrs: { group: "" } },
                         [
-                          _c("TowerRefTimer", {
-                            directives: [
-                              {
-                                name: "show",
-                                rawName: "v-show",
-                                value: item.tower_status_id == 5,
-                                expression: "item.tower_status_id == 5"
-                              }
-                            ],
-                            key: "TowerRefTimer",
-                            attrs: { item: item }
-                          })
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c("TowerOnlineTimer", {
-                        directives: [
-                          {
-                            name: "show",
-                            rawName: "v-show",
-                            value: item.tower_status_id == 3,
-                            expression: "item.tower_status_id == 3"
-                          }
-                        ],
-                        class: _vm.anchoringClass,
-                        attrs: { item: item }
-                      }),
-                      _vm._v(" "),
-                      _c(
-                        "v-fab-transition",
-                        { attrs: { group: "" } },
-                        [
                           _c(
                             "v-chip",
                             {
@@ -37942,7 +37909,40 @@ var render = function() {
                           )
                         ],
                         1
-                      )
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-fab-transition",
+                        { attrs: { group: "" } },
+                        [
+                          _c("TowerRefTimer", {
+                            directives: [
+                              {
+                                name: "show",
+                                rawName: "v-show",
+                                value: item.tower_status_id == 5,
+                                expression: "item.tower_status_id == 5"
+                              }
+                            ],
+                            key: "TowerRefTimer",
+                            attrs: { item: item }
+                          })
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c("TowerOnlineTimer", {
+                        directives: [
+                          {
+                            name: "show",
+                            rawName: "v-show",
+                            value: item.tower_status_id == 3,
+                            expression: "item.tower_status_id == 3"
+                          }
+                        ],
+                        class: _vm.anchoringClass,
+                        attrs: { item: item }
+                      })
                     ],
                     1
                   )

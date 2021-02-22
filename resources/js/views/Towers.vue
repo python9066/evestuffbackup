@@ -144,19 +144,6 @@
                             </v-list-item>
                         </v-list>
                     </v-menu>
-                    <v-fab-transition group>
-                        <TowerRefTimer
-                            key="TowerRefTimer"
-                            :item="item"
-                            v-show="item.tower_status_id == 5"
-                        ></TowerRefTimer>
-                    </v-fab-transition>
-
-                    <TowerOnlineTimer
-                        v-show="item.tower_status_id == 3"
-                        :item="item"
-                        :class="anchoringClass"
-                    ></TowerOnlineTimer>
 
                     <!-- EXTRA BUTTON -->
                     <v-fab-transition group>
@@ -189,6 +176,19 @@
                             ><v-icon>fas fa-minus</v-icon></v-btn
                         >
                     </v-fab-transition>
+                    <v-fab-transition group>
+                        <TowerRefTimer
+                            key="TowerRefTimer"
+                            :item="item"
+                            v-show="item.tower_status_id == 5"
+                        ></TowerRefTimer>
+                    </v-fab-transition>
+
+                    <TowerOnlineTimer
+                        v-show="item.tower_status_id == 3"
+                        :item="item"
+                        :class="anchoringClass"
+                    ></TowerOnlineTimer>
                 </div>
             </template>
             <template
