@@ -23,7 +23,7 @@ class GiceProvider extends AbstractProvider implements ProviderInterface
      */
     protected $scopes = [
         'openid',
-        // 'groups-limited'
+        'groups-limited'
     ];
 
     /**
@@ -56,11 +56,41 @@ class GiceProvider extends AbstractProvider implements ProviderInterface
     }
 
     /**
-     * Get the POST fields for the token request.
+     * Get the access token response for the given code.
      *
      * @param  string  $code
      * @return array
      */
+    public function getAccessTokenResponse($code)
+    {
+        $response = $this->getHttpClient()->post($this->getTokenUrl(), [
+            'headers' => ['Accept' => 'application/json'],
+            'form_params' => $this->getTokenFields($code),
+        ]);
+
+        dd(json_decode($response->getBody(), true));
+        return json_decode($response->getBody(), true);
+    }
+
+    protected function getTokenFields($code)
+    {
+        $fields = [
+            'grant_type' => 'authorization_code',
+            'client_id' => $this->clientId,
+            'client_secret' => $this->clientSecret,
+            'code' => $code,
+            'redirect_uri' => $this->redirectUrl,
+        ];
+
+        return $fields;
+    }
+
+    // /**
+    //  * Get the POST fields for the token request.
+    //  *
+    //  * @param  string  $code
+    //  * @return array
+    //  */
     // protected function getTokenFields($code)
     // {
 
