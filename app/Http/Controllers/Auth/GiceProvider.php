@@ -24,7 +24,7 @@ class GiceProvider extends AbstractProvider implements ProviderInterface
      */
     protected $scopes = [
         'openid',
-        // 'groups-limited'
+        'groups-limited'
     ];
 
     /**
@@ -139,6 +139,10 @@ class GiceProvider extends AbstractProvider implements ProviderInterface
         }
 
         $response = $this->getAccessTokenResponse($this->getCode());
+        $test = $response['id_token'];
+        $info = explode(".", $test);
+        $information = base64_decode($info[1]);
+        return json_decode($information, true);
         // return $response;
         // dd($response);
         $this->user = $this->mapUserToObject($this->getUserByToken(
