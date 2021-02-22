@@ -11482,6 +11482,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -11536,10 +11538,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
     structSearch: function structSearch(val) {
       val && val !== this.structSelect && this.structQuerySelections(val);
-    } // moonSearch(val) {
-    //     val && val !== this.moonSelect && this.moonQuerySelections(val);
-    // }
-
+    },
+    moonSearch: function moonSearch(val) {
+      val && val !== this.moonSelect && this.moonQuerySelections(val);
+    }
   },
   methods: {
     close: function close() {
@@ -11630,34 +11632,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         _this3.structLoading = false;
       }, 500);
     },
-    sysQuerySelections: function sysQuerySelections(v) {
+    getMoonList: function getMoonList() {
       var _this4 = this;
-
-      this.sysLoading = true; // Simulated ajax query
-
-      setTimeout(function () {
-        _this4.sysItems = _this4.systemList.filter(function (e) {
-          return (e.text || "").toLowerCase().indexOf((v || "").toLowerCase()) > -1;
-        });
-        _this4.sysLoading = false;
-      }, 500);
-    },
-    // moonQuerySelections(v) {
-    //     this.moonLoading = true;
-    //     // Simulated ajax query
-    //     setTimeout(() => {
-    //         this.moonItems = this.moonList.filter(e => {
-    //             return (
-    //                 (e.text || "")
-    //                     .toLowerCase()
-    //                     .indexOf((v || "").toLowerCase()) > -1
-    //             );
-    //         });
-    //         this.moonLoading = false;
-    //     }, 500);
-    // },
-    open: function open() {
-      var _this5 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
@@ -11665,22 +11641,65 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context2.prev = _context2.next) {
               case 0:
                 _context2.next = 2;
-                return _this5.$store.dispatch("getSystemList");
+                return _this4.$store.dispatch("getMoonList", _this4.sysSelect);
 
               case 2:
-                _context2.next = 4;
-                return _this5.$store.dispatch("getTickList");
-
-              case 4:
-                _context2.next = 6;
-                return _this5.$store.dispatch("getStructureList");
-
-              case 6:
               case "end":
                 return _context2.stop();
             }
           }
         }, _callee2);
+      }))();
+    },
+    sysQuerySelections: function sysQuerySelections(v) {
+      var _this5 = this;
+
+      this.sysLoading = true; // Simulated ajax query
+
+      setTimeout(function () {
+        _this5.sysItems = _this5.systemList.filter(function (e) {
+          return (e.text || "").toLowerCase().indexOf((v || "").toLowerCase()) > -1;
+        });
+        _this5.sysLoading = false;
+      }, 500);
+    },
+    moonQuerySelections: function moonQuerySelections(v) {
+      var _this6 = this;
+
+      this.moonLoading = true; // Simulated ajax query
+
+      setTimeout(function () {
+        _this6.moonItems = _this6.moonList.filter(function (e) {
+          return (e.text || "").toLowerCase().indexOf((v || "").toLowerCase()) > -1;
+        });
+        _this6.moonLoading = false;
+      }, 500);
+    },
+    open: function open() {
+      var _this7 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                _context3.next = 2;
+                return _this7.$store.dispatch("getSystemList");
+
+              case 2:
+                _context3.next = 4;
+                return _this7.$store.dispatch("getTickList");
+
+              case 4:
+                _context3.next = 6;
+                return _this7.$store.dispatch("getStructureList");
+
+              case 6:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3);
       }))();
     }
   },
@@ -11700,11 +11719,22 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
     tickList: function tickList() {
       return this.ticklist;
-    } // moonList() {
-    //     let moons = this.ticklist;
-    //     return moons.filter(m => m.system_id == this.sysSelect);
-    // }
+    },
+    moonDisable: function moonDisable() {
+      if (this.sysSelect > 0) {
+        return false;
+      } else {
+        return true;
+      }
+    },
+    moonList: function moonList() {
+      var _this8 = this;
 
+      var moons = this.ticklist;
+      return moons.filter(function (m) {
+        return m.system_id == _this8.sysSelect;
+      });
+    }
   }),
   beforeDestroy: function beforeDestroy() {}
 });
@@ -31857,6 +31887,9 @@ var render = function() {
                           outlined: ""
                         },
                         on: {
+                          input: function($event) {
+                            return _vm.getMoonList()
+                          },
                           "update:searchInput": function($event) {
                             _vm.sysSearch = $event
                           },
@@ -31870,6 +31903,33 @@ var render = function() {
                             _vm.sysSelect = $$v
                           },
                           expression: "sysSelect"
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("v-autocomplete", {
+                        attrs: {
+                          loading: _vm.moonLoading,
+                          disabled: _vm.moonDisable,
+                          clearable: "",
+                          items: _vm.moonItems,
+                          "search-input": _vm.moonSearch,
+                          label: "Moon",
+                          outlined: ""
+                        },
+                        on: {
+                          "update:searchInput": function($event) {
+                            _vm.moonSearch = $event
+                          },
+                          "update:search-input": function($event) {
+                            _vm.moonSearch = $event
+                          }
+                        },
+                        model: {
+                          value: _vm.moonSelect,
+                          callback: function($$v) {
+                            _vm.moonSelect = $$v
+                          },
+                          expression: "moonSelect"
                         }
                       }),
                       _vm._v(" "),

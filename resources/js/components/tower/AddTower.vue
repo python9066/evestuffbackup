@@ -47,6 +47,7 @@
                         <div class=" d-inline-flex justify-content-around">
                             <v-autocomplete
                                 v-model="sysSelect"
+                                @input="getMoonList()"
                                 :loading="sysLoading"
                                 clearable
                                 :items="sysItems"
@@ -54,15 +55,16 @@
                                 label="System Name"
                                 outlined
                             ></v-autocomplete>
-                            <!-- <v-autocomplete
+                            <v-autocomplete
                                 v-model="moonSelect"
                                 :loading="moonLoading"
+                                :disabled="moonDisable"
                                 clearable
                                 :items="moonItems"
                                 :search-input.sync="moonSearch"
                                 label="Moon"
                                 outlined
-                            ></v-autocomplete> -->
+                            ></v-autocomplete>
                             <v-autocomplete
                                 class=" ml-2"
                                 v-model="tickSelect"
@@ -169,11 +171,11 @@ export default {
 
         structSearch(val) {
             val && val !== this.structSelect && this.structQuerySelections(val);
-        }
+        },
 
-        // moonSearch(val) {
-        //     val && val !== this.moonSelect && this.moonQuerySelections(val);
-        // }
+        moonSearch(val) {
+            val && val !== this.moonSelect && this.moonQuerySelections(val);
+        }
     },
 
     methods: {
@@ -279,6 +281,10 @@ export default {
             }, 500);
         },
 
+        async getMoonList() {
+            await this.$store.dispatch("getMoonList", this.sysSelect);
+        },
+
         sysQuerySelections(v) {
             this.sysLoading = true;
             // Simulated ajax query
@@ -294,26 +300,25 @@ export default {
             }, 500);
         },
 
-        // moonQuerySelections(v) {
-        //     this.moonLoading = true;
-        //     // Simulated ajax query
-        //     setTimeout(() => {
-        //         this.moonItems = this.moonList.filter(e => {
-        //             return (
-        //                 (e.text || "")
-        //                     .toLowerCase()
-        //                     .indexOf((v || "").toLowerCase()) > -1
-        //             );
-        //         });
-        //         this.moonLoading = false;
-        //     }, 500);
-        // },
+        moonQuerySelections(v) {
+            this.moonLoading = true;
+            // Simulated ajax query
+            setTimeout(() => {
+                this.moonItems = this.moonList.filter(e => {
+                    return (
+                        (e.text || "")
+                            .toLowerCase()
+                            .indexOf((v || "").toLowerCase()) > -1
+                    );
+                });
+                this.moonLoading = false;
+            }, 500);
+        },
 
         async open() {
             await this.$store.dispatch("getSystemList");
             await this.$store.dispatch("getTickList");
             await this.$store.dispatch("getStructureList");
-            // await this.$store.dispatch("getMoonList");
         }
     },
 
@@ -344,12 +349,20 @@ export default {
 
         tickList() {
             return this.ticklist;
-        }
+        },
 
-        // moonList() {
-        //     let moons = this.ticklist;
-        //     return moons.filter(m => m.system_id == this.sysSelect);
-        // }
+        moonDisable() {
+            if (this.sysSelect > 0) {
+                return false;
+            } else {
+                return true;
+            }
+        },
+
+        moonList() {
+            let moons = this.ticklist;
+            return moons.filter(m => m.system_id == this.sysSelect);
+        }
     },
 
     beforeDestroy() {}
