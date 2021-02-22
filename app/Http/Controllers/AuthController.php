@@ -28,15 +28,15 @@ class AuthController extends Controller
     {
         $flag = 0;
         $userGice = Socialite::with('gice')->user();
-        $check = User::where('id', $userGice->id)->get()->count();
+        $check = User::where('id', $userGice->sub)->get()->count();
         dd($check);
         if ($check != 1) {
             $flag = 1;
         };
 
-        // User::updateOrCreate(['id' => $userGice->id], ['name' => $userGice->name, 'token' => $userGice->token, 'pri_grp' => $userGice->user['pri_grp'], 'api_token' => Str::random(60)]);
-        User::updateOrCreate(['id' => $userGice->id], ['name' => $userGice->name, 'token' => $userGice->token, 'api_token' => Str::random(60)]);
-        $user = User::where('id', $userGice->id)->first();
+        // User::updateOrCreate(['id' => $userGice->sub], ['name' => $userGice->name, 'token' => $userGice->token, 'pri_grp' => $userGice->user['pri_grp'], 'api_token' => Str::random(60)]);
+        User::updateOrCreate(['id' => $userGice->sub], ['name' => $userGice->name, 'token' => $userGice->token, 'api_token' => Str::random(60)]);
+        $user = User::where('id', $userGice->sub)->first();
         Auth::login($user, true);
 
         if ($flag == 1) {
