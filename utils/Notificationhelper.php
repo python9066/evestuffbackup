@@ -328,7 +328,8 @@ class Notifications
                             'user_id' => null,
                             'station_status_id' => 1,
                             'timestamp' => $time,
-                            'status_update' => $current
+                            'status_update' => $current,
+                            'out_time' => null
                         ]);
                     }
                 } else {
@@ -822,7 +823,7 @@ class Notifications
 
         $checks = Station::where('out_time', "<=", $now)->where('station_status_id', 13)->get(); //Upcoming
         foreach ($checks as $check) {
-            $check->update(['station_status_id' => 6, 'status_update' => now()]);
+            $check->update(['station_status_id' => 6, 'status_update' => now(), 'out_time' => null]);
             $message = StationRecords::where('id', $check->id)->first();
             $flag = null;
             $flag = collect([
