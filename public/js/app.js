@@ -11475,6 +11475,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -11552,6 +11554,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       this.tickItems = [];
       this.tickSearch = null;
       this.tickSelect = null;
+      this.moonItems = [];
+      this.moonSearch = null;
+      this.moonSelect = null;
       this.state = 1;
       this.showAddTower = false;
     },
@@ -11593,7 +11598,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                     Accept: "application/json",
                     "Content-Type": "application/json"
                   }
-                }).then(_this.towerNameEdit = null, _this.showAddTower = false, _this.refType = null, _this.refTime = null, _this.stationName = null, _this.towerNameEdit = null, _this.structItems = [], _this.structSearch = null, _this.structSelect = null, _this.sysItems = [], _this.sysSearch = null, _this.sysSelect = null, _this.systems = [], _this.tickItems = [], _this.tickSearch = null, _this.tickSelect = null, _this.state = 1, _this.showAddTower = false);
+                }).then(_this.towerNameEdit = null, _this.showAddTower = false, _this.refType = null, _this.refTime = null, _this.stationName = null, _this.towerNameEdit = null, _this.structItems = [], _this.structSearch = null, _this.structSelect = null, _this.sysItems = [], _this.sysSearch = null, _this.sysSelect = null, _this.systems = [], _this.tickItems = [], _this.tickSearch = null, _this.tickSelect = null, _this.moonItems = [], _this.moonSearch = null, _this.moonSelect = null, _this.state = 1, _this.showAddTower = false);
 
               case 3:
               case "end":
@@ -31828,10 +31833,9 @@ var render = function() {
               ]),
               _vm._v(" "),
               _c("v-card-text", [
-                _c("div", [
+                _c("div", { staticClass: " d-inline-block" }, [
                   _c(
                     "div",
-                    { staticClass: " d-inline-flex justify-content-around" },
                     [
                       _c("v-autocomplete", {
                         attrs: {
@@ -31921,8 +31925,14 @@ var render = function() {
                           },
                           expression: "moonSelect"
                         }
-                      }),
-                      _vm._v(" "),
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    [
                       _c("v-autocomplete", {
                         staticClass: " ml-2",
                         attrs: {

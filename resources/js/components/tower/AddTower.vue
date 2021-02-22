@@ -31,8 +31,8 @@
                     Adding a New Tower
                 </v-card-title>
                 <v-card-text>
-                    <div>
-                        <div class=" d-inline-flex justify-content-around">
+                    <div class=" d-inline-block">
+                        <div>
                             <v-autocomplete
                                 v-model="structSelect"
                                 :loading="structLoading"
@@ -65,6 +65,8 @@
                                 label="Moon"
                                 outlined
                             ></v-autocomplete>
+                        </div>
+                        <div>
                             <v-autocomplete
                                 class=" ml-2"
                                 v-model="tickSelect"
@@ -187,6 +189,9 @@ export default {
             this.tickItems = [];
             this.tickSearch = null;
             this.tickSelect = null;
+            this.moonItems = [];
+            this.moonSearch = null;
+            this.moonSelect = null;
             this.state = 1;
             this.showAddTower = false;
         },
@@ -238,6 +243,9 @@ export default {
                 (this.tickItems = []),
                 (this.tickSearch = null),
                 (this.tickSelect = null),
+                (this.moonItems = []),
+                (this.moonSearch = null),
+                (this.moonSelect = null),
                 (this.state = 1),
                 (this.showAddTower = false)
             );
