@@ -30,8 +30,10 @@
                 <v-card-title class="justify-center">
                     Adding a New Tower
                 </v-card-title>
-                <v-card-text class=" justify-center">
-                    <div class=" d-inline-block">
+                <v-card-text>
+                    <div
+                        class="d-inline-flex align-content-center justify-content-around"
+                    >
                         <div>
                             <v-autocomplete
                                 v-model="structSelect"
