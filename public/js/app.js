@@ -37924,7 +37924,7 @@ var render = function() {
                                 expression: "item.tower_status_id == 5"
                               }
                             ],
-                            key: item.id,
+                            key: "towerreftimer" + item.id,
                             attrs: { item: item }
                           })
                         ],
