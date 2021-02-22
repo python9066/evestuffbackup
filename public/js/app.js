@@ -18251,6 +18251,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 
@@ -37821,6 +37822,7 @@ var render = function() {
                                 expression: "item.tower_status_id == 5"
                               }
                             ],
+                            key: "TowerRefTimer",
                             attrs: { item: item }
                           })
                         ],

@@ -151,6 +151,7 @@
                     </v-menu>
                     <v-slide-x-transition group>
                         <TowerRefTimer
+                            key="TowerRefTimer"
                             :item="item"
                             v-show="item.tower_status_id == 5"
                         ></TowerRefTimer>
