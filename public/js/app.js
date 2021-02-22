@@ -18252,6 +18252,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
 
 
 
@@ -37845,6 +37847,7 @@ var render = function() {
                       _vm._v(" "),
                       _c(
                         "v-fab-transition",
+                        { attrs: { group: "" } },
                         [
                           _c(
                             "v-chip",
@@ -37861,6 +37864,7 @@ var render = function() {
                                     "\n                            item.tower_status_id != 6 &&\n                                item.tower_status_id != 1 &&\n                                !expanded.includes(item)\n                        "
                                 }
                               ],
+                              key: "chip",
                               attrs: {
                                 pill: "",
                                 outlined: "",
@@ -37892,6 +37896,7 @@ var render = function() {
                                     "\n                            (item.tower_status_id != 6 ||\n                                item.tower_status_id != 1) &&\n                                expanded.includes(item)\n                        "
                                 }
                               ],
+                              key: "button",
                               attrs: { icon: "", color: "error" },
                               on: {
                                 click: function($event) {

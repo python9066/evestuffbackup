@@ -164,8 +164,9 @@
                     ></TowerOnlineTimer>
 
                     <!-- EXTRA BUTTON -->
-                    <v-fab-transition>
+                    <v-fab-transition group>
                         <v-chip
+                            key="chip"
                             pill
                             outlined
                             small
@@ -181,6 +182,7 @@
                             >adash</v-chip
                         >
                         <v-btn
+                            key="button"
                             icon
                             @click="(expanded = []), (expanded_id = 0)"
                             v-show="
