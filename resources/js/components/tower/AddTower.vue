@@ -274,7 +274,9 @@ export default {
         },
 
         async getMoonList() {
-            await this.$store.dispatch("getMoonList", this.sysSelect);
+            await this.$store
+                .dispatch("getMoonList", this.sysSelect)
+                .then((this.moonSearch = this.sysSearch));
         },
 
         sysQuerySelections(v) {

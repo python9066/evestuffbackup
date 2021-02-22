@@ -11636,7 +11636,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context2.prev = _context2.next) {
               case 0:
                 _context2.next = 2;
-                return _this4.$store.dispatch("getMoonList", _this4.sysSelect);
+                return _this4.$store.dispatch("getMoonList", _this4.sysSelect).then(_this4.moonSearch = _this4.sysSearch);
 
               case 2:
               case "end":
