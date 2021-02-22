@@ -281,7 +281,7 @@
                                 </v-list-item>
                             </v-list>
                         </v-menu>
-                        <v-slide-x-transition>
+                        <v-slide-x-transition group>
                             <v-chip
                                 pill
                                 :key="'adash' + item.id"
