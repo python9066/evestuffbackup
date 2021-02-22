@@ -176,7 +176,7 @@
                             ><v-icon>fas fa-minus</v-icon></v-btn
                         >
                     </v-fab-transition>
-                    <v-fab-transition group>
+                    <v-fab-transition>
                         <TowerRefTimer
                             :key="'towerreftimer' + item.id"
                             :item="item"
