@@ -18294,6 +18294,7 @@ function sleep(ms) {
       snackText: "",
       toggle_exclusive: 0,
       today: 0,
+      anchoringClass: "",
       text: "center",
       toggle_none: null,
       querious: 0,
@@ -37847,7 +37848,7 @@ var render = function() {
                             expression: "item.tower_status_id == 3"
                           }
                         ],
-                        class: _vm.test(item),
+                        class: _vm.anchoringClass,
                         attrs: { item: item }
                       }),
                       _vm._v(" "),

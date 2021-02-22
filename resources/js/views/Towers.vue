@@ -160,7 +160,7 @@
                     <TowerOnlineTimer
                         v-show="item.tower_status_id == 3"
                         :item="item"
-                        :class="test(item)"
+                        :class="anchoringClass"
                     ></TowerOnlineTimer>
 
                     <!-- EXTRA BUTTON -->
@@ -285,6 +285,7 @@ export default {
             snackText: "",
             toggle_exclusive: 0,
             today: 0,
+            anchoringClass: "",
             text: "center",
             toggle_none: null,
             querious: 0,
