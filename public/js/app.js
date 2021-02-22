@@ -11674,10 +11674,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return _this6.$store.dispatch("getStructureList");
 
               case 6:
-                _context2.next = 8;
-                return _this6.$store.dispatch("getMoonList");
-
-              case 8:
               case "end":
                 return _context2.stop();
             }
@@ -11702,15 +11698,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
     tickList: function tickList() {
       return this.ticklist;
-    },
-    moonList: function moonList() {
-      var _this7 = this;
+    } // moonList() {
+    //     let moons = this.ticklist;
+    //     return moons.filter(m => m.system_id == this.sysSelect);
+    // }
 
-      var moons = this.ticklist;
-      return moons.filter(function (m) {
-        return m.system_id == _this7.sysSelect;
-      });
-    }
   }),
   beforeDestroy: function beforeDestroy() {}
 });

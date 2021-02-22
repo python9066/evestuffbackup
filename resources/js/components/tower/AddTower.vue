@@ -313,7 +313,7 @@ export default {
             await this.$store.dispatch("getSystemList");
             await this.$store.dispatch("getTickList");
             await this.$store.dispatch("getStructureList");
-            await this.$store.dispatch("getMoonList");
+            // await this.$store.dispatch("getMoonList");
         }
     },
 
@@ -344,12 +344,12 @@ export default {
 
         tickList() {
             return this.ticklist;
-        },
-
-        moonList() {
-            let moons = this.ticklist;
-            return moons.filter(m => m.system_id == this.sysSelect);
         }
+
+        // moonList() {
+        //     let moons = this.ticklist;
+        //     return moons.filter(m => m.system_id == this.sysSelect);
+        // }
     },
 
     beforeDestroy() {}
