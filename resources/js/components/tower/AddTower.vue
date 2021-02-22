@@ -309,7 +309,7 @@ export default {
 
         async open() {
             await this.$store.dispatch("getSystemList");
-            await this.$store.dispatch("getTickList");
+            await this.$store.dispatch("getAllianceTickList");
             await this.$store.dispatch("getStructureList");
         }
     },

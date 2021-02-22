@@ -11683,7 +11683,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               case 2:
                 _context3.next = 4;
-                return _this7.$store.dispatch("getTickList");
+                return _this7.$store.dispatch("getAllianceTickList");
 
               case 4:
                 _context3.next = 6;
