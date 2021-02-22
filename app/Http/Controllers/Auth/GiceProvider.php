@@ -52,7 +52,7 @@ class GiceProvider extends AbstractProvider implements ProviderInterface
             'body'    => $this->getTokenFields($code),
         ]);
 
-        dd($response->getBody() . "hi");
+        // dd($response->getBody() . "hi");
     }
 
     /**
@@ -68,7 +68,7 @@ class GiceProvider extends AbstractProvider implements ProviderInterface
             'form_params' => $this->getTokenFields($code),
         ]);
 
-        dd(json_decode($response->getBody(), true));
+        // dd(json_decode($response->getBody(), true));
         return json_decode($response->getBody(), true);
     }
 
