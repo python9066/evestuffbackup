@@ -11480,6 +11480,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -11708,7 +11709,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])([])), Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapState"])(["systemlist", "structurelist", "allianceticklist", "moonlist"])), {}, {
     showSubmit: function showSubmit() {
-      if (this.structSelect != null && this.sysSelect != null && this.tickSelect != null && this.refType != null && this.refTime != null) {
+      if (this.structSelect != null && this.sysSelect != null && this.tickSelect != null && this.moonSelect != null) {
         return false;
       } else {
         return true;
@@ -31782,7 +31783,7 @@ var render = function() {
                     _vm._g(
                       _vm._b(
                         {
-                          attrs: { color: "green", dark44444444: "" },
+                          attrs: { color: "green", dark: "", persistent: "" },
                           on: {
                             click: function($event) {
                               return _vm.open()

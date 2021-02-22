@@ -9,8 +9,9 @@
             <template v-slot:activator="{ on, attrs }">
                 <v-btn
                     color="green"
-                    dark44444444
+                    dark
                     v-bind="attrs"
+                    persistent
                     v-on="on"
                     @click="open()"
                     ><v-icon left>
@@ -340,8 +341,7 @@ export default {
                 this.structSelect != null &&
                 this.sysSelect != null &&
                 this.tickSelect != null &&
-                this.refType != null &&
-                this.refTime != null
+                this.moonSelect != null
             ) {
                 return false;
             } else {
