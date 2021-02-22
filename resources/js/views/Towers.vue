@@ -176,20 +176,20 @@
                             ><v-icon>fas fa-minus</v-icon></v-btn
                         >
                     </v-fab-transition>
-                    <v-slide-y-transition>
+                    <v-slide-x-transition>
                         <TowerRefTimer
                             :key="'towerreftimer' + item.id"
                             :item="item"
                             v-show="item.tower_status_id == 5"
                         ></TowerRefTimer>
-                    </v-slide-y-transition>
-                    <v-slide-y-transition>
+                    </v-slide-x-transition>
+                    <v-slide-x-transition>
                         <TowerOnlineTimer
                             :key="'TowerOnlineTimer' + item.id"
                             v-show="item.tower_status_id == 3"
                             :item="item"
                         ></TowerOnlineTimer>
-                    </v-slide-y-transition>
+                    </v-slide-x-transition>
                 </div>
             </template>
             <template

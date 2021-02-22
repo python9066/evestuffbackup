@@ -37898,7 +37898,7 @@ var render = function() {
                       ),
                       _vm._v(" "),
                       _c(
-                        "v-slide-y-transition",
+                        "v-slide-x-transition",
                         [
                           _c("TowerRefTimer", {
                             directives: [
@@ -37917,7 +37917,7 @@ var render = function() {
                       ),
                       _vm._v(" "),
                       _c(
-                        "v-slide-y-transition",
+                        "v-slide-x-transition",
                         [
                           _c("TowerOnlineTimer", {
                             directives: [
