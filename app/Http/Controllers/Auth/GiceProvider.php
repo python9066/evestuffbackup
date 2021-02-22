@@ -24,7 +24,7 @@ class GiceProvider extends AbstractProvider implements ProviderInterface
      */
     protected $scopes = [
         'openid',
-        // 'groups-limited'
+        'groups-limited'
     ];
 
     /**
@@ -63,21 +63,6 @@ class GiceProvider extends AbstractProvider implements ProviderInterface
      * @param  string  $code
      * @return array
      */
-    public function getAccessTokenResponse($code)
-    {
-        $response = $this->getHttpClient()->post($this->getTokenUrl(), [
-            'headers' => ['Accept' => 'application/json'],
-            'form_params' => $this->getTokenFields($code),
-        ]);
-
-        // dd(json_decode($response->getBody(), true));
-        // echo '<pre>';
-        // print_r(json_decode($response->getBody(), true));
-        // echo '</pre>';
-        return json_decode($response->getBody(), true);
-    }
-
-
     // public function getAccessTokenResponse($code)
     // {
     //     $response = $this->getHttpClient()->post($this->getTokenUrl(), [
@@ -89,14 +74,25 @@ class GiceProvider extends AbstractProvider implements ProviderInterface
     //     // echo '<pre>';
     //     // print_r(json_decode($response->getBody(), true));
     //     // echo '</pre>';
-    //     $arry = json_decode($response->getBody(), true);
-    //     $test = $arry['id_token'];
-    //     $info = explode($test, ".");
-    //     $information = base64_decode($info[1]);
-    //     dd($information);
-
     //     return json_decode($response->getBody(), true);
     // }
+
+
+    public function getAccessTokenResponse($code)
+    {
+        $response = $this->getHttpClient()->post($this->getTokenUrl(), [
+            'headers' => ['Accept' => 'application/json'],
+            'form_params' => $this->getTokenFields($code),
+        ]);
+        $arry = json_decode($response->getBody(), true);
+        dd($arry);
+        $test = $arry['id_token'];
+        $info = explode($test, ".");
+        $information = base64_decode($info[1]);
+        dd($information);
+
+        return json_decode($response->getBody(), true);
+    }
 
     protected function getTokenFields($code)
     {
