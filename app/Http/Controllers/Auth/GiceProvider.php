@@ -6,6 +6,7 @@ use Laravel\Socialite\Two\AbstractProvider;
 use Laravel\Socialite\Two\ProviderInterface;
 use Laravel\Socialite\Two\User;
 use Illuminate\Support\Arr;
+use Laravel\Socialite\Two\InvalidStateException;
 
 class GiceProvider extends AbstractProvider implements ProviderInterface
 {
@@ -107,6 +108,32 @@ class GiceProvider extends AbstractProvider implements ProviderInterface
 
         return json_decode($response->getBody(), true);
     }
+
+    public function user()
+    {
+        if ($this->user) {
+            return $this->user;
+        }
+
+        if ($this->hasInvalidState()) {
+            throw new InvalidStateException();
+        }
+
+        $response = $this->getAccessTokenResponse($this->getCode());
+        dd($response);
+        $this->user = $this->mapUserToObject($this->getUserByToken(
+            $token = Arr::get($response, 'access_token')
+        ));
+
+        return $this->user->setToken($token)
+            ->setRefreshToken(Arr::get($response, 'refresh_token'))
+            ->setExpiresIn(Arr::get($response, 'expires_in'));
+    }
+
+
+
+
+
 
     /**
      * {@inheritdoc}
