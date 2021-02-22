@@ -72,27 +72,6 @@ class GiceProvider extends AbstractProvider implements ProviderInterface
         return json_decode($response->getBody(), true);
     }
 
-
-    /////////
-
-    // public function getAccessTokenResponse($code)
-    // {
-    //     $response = $this->getHttpClient()->post($this->getTokenUrl(), [
-    //         'headers' => ['Accept' => 'application/json'],
-    //         'form_params' => $this->getTokenFields($code),
-    //     ]);
-    //     $arry = json_decode($response->getBody(), true);
-    //     $test = $arry['id_token'];
-    //     $info = explode(".", $test);
-    //     $information = base64_decode($info[1]);
-    //     dd($information);
-
-    //     return json_decode($response->getBody(), true);
-    // }
-
-
-    ///////
-
     protected function getTokenFields($code)
     {
         $fields = [
@@ -105,10 +84,6 @@ class GiceProvider extends AbstractProvider implements ProviderInterface
 
         return $fields;
     }
-
-
-
-
 
     /**
      * {@inheritdoc}
@@ -134,9 +109,9 @@ class GiceProvider extends AbstractProvider implements ProviderInterface
             return $this->user;
         }
 
-        if ($this->hasInvalidState()) {
-            throw new InvalidStateException();
-        }
+        // if ($this->hasInvalidState()) {
+        //     throw new InvalidStateException();
+        // }
 
         $response = $this->getAccessTokenResponse($this->getCode());
         $test = $response['id_token'];
