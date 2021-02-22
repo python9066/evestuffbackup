@@ -4,16 +4,7 @@
         <div class=" d-flex align-items-center">
             <v-card-title>Towers</v-card-title>
 
-            <v-btn
-                :loading="loadingr"
-                :disabled="loadingr"
-                color="primary"
-                class="ma-2 white--text"
-                @click="loadtimers()"
-            >
-                Update
-                <v-icon right dark>fas fa-sync-alt fa-xs</v-icon>
-            </v-btn>
+            <AddTower v-show="$can('super')"></AddTower>
 
             <v-text-field
                 v-model="search"

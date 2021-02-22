@@ -11343,6 +11343,380 @@ function sleep(ms) {
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/tower/AddTower.vue?vue&type=script&lang=js&":
+/*!*************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/tower/AddTower.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_2__);
+
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: {
+    station: Object
+  },
+  data: function data() {
+    return {
+      systems: [],
+      towerNameEdit: null,
+      state: 1,
+      showAddTower: false,
+      stationName: null,
+      sysItems: [],
+      systemEdit: null,
+      sysSearch: null,
+      sysSelect: null,
+      sysLoading: false,
+      moonItems: [],
+      moonEdit: null,
+      moonSearch: null,
+      moonSelect: null,
+      moonLoading: false,
+      tickItems: [],
+      ticktemEdit: null,
+      tickSearch: null,
+      tickSelect: null,
+      tickLoading: false,
+      tickerEdit: null,
+      stationPull: [],
+      structItems: [],
+      structtemEdit: null,
+      structSearch: null,
+      structSelect: null,
+      structLoading: false,
+      structerEdit: null,
+      refType: null,
+      refTime: {
+        d: "",
+        hh: "",
+        mm: "",
+        ss: ""
+      }
+    };
+  },
+  watch: {
+    sysSearch: function sysSearch(val) {
+      val && val !== this.sysSelect && this.sysQuerySelections(val);
+    },
+    tickSearch: function tickSearch(val) {
+      val && val !== this.tickSelect && this.tickQuerySelections(val);
+    },
+    structSearch: function structSearch(val) {
+      val && val !== this.structSelect && this.structQuerySelections(val);
+    },
+    moonSearch: function moonSearch(val) {
+      val && val !== this.moonSelect && this.moonQuerySelections(val);
+    }
+  },
+  methods: {
+    close: function close() {
+      this.towerNameEdit = null;
+      this.showAddTower = false;
+      this.refType = null;
+      this.refTime = null;
+      this.stationName = null;
+      this.towerNameEdit = null;
+      this.structItems = [];
+      this.structSearch = null;
+      this.structSelect = null;
+      this.sysItems = [];
+      this.sysSearch = null;
+      this.sysSelect = null;
+      this.systems = [];
+      this.tickItems = [];
+      this.tickSearch = null;
+      this.tickSelect = null;
+      this.state = 1;
+      this.showAddTower = false;
+    },
+    submit: function submit() {
+      var _this = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        var d, h, m, s, ds, hs, ms, sec, outTime, request;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                d = parseInt(_this.refTime.substr(0, 1));
+                h = parseInt(_this.refTime.substr(3, 2));
+                m = parseInt(_this.refTime.substr(6, 2));
+                s = parseInt(_this.refTime.substr(9, 2));
+                ds = d * 24 * 60 * 60;
+                hs = h * 60 * 60;
+                ms = m * 60;
+                sec = ds + hs + ms + s;
+                outTime = moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc().add(sec, "seconds").format("YYYY-MM-DD HH:mm:ss");
+                request = {
+                  station_status_id: _this.refType,
+                  out_time: outTime,
+                  status_update: moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc().format("YYYY-MM-DD HH:mm:ss")
+                };
+                _context.next = 12;
+                return axios({
+                  method: "put",
+                  //you can set what request you want to be
+                  url: "api/updatestationnotification/" + station.id,
+                  data: request,
+                  headers: {
+                    Authorization: "Bearer " + _this.$store.state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                  }
+                }).then(_this.towerNameEdit = null, _this.showAddTower = false, _this.refType = null, _this.refTime = null, _this.stationName = null, _this.towerNameEdit = null, _this.structItems = [], _this.structSearch = null, _this.structSelect = null, _this.sysItems = [], _this.sysSearch = null, _this.sysSelect = null, _this.systems = [], _this.tickItems = [], _this.tickSearch = null, _this.tickSelect = null, _this.state = 1, _this.showAddTower = false);
+
+              case 12:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }))();
+    },
+    tickQuerySelections: function tickQuerySelections(v) {
+      var _this2 = this;
+
+      this.tickLoading = true; // Simulated ajax query
+
+      setTimeout(function () {
+        _this2.tickItems = _this2.tickList.filter(function (e) {
+          return (e.text || "").toLowerCase().indexOf((v || "").toLowerCase()) > -1;
+        });
+        _this2.tickLoading = false;
+      }, 500);
+    },
+    structQuerySelections: function structQuerySelections(v) {
+      var _this3 = this;
+
+      this.structLoading = true; // Simulated ajax query
+
+      setTimeout(function () {
+        _this3.structItems = _this3.structureList.filter(function (e) {
+          return (e.text || "").toLowerCase().indexOf((v || "").toLowerCase()) > -1;
+        });
+        _this3.structLoading = false;
+      }, 500);
+    },
+    sysQuerySelections: function sysQuerySelections(v) {
+      var _this4 = this;
+
+      this.sysLoading = true; // Simulated ajax query
+
+      setTimeout(function () {
+        _this4.sysItems = _this4.systemList.filter(function (e) {
+          return (e.text || "").toLowerCase().indexOf((v || "").toLowerCase()) > -1;
+        });
+        _this4.sysLoading = false;
+      }, 500);
+    },
+    moonQuerySelections: function moonQuerySelections(v) {
+      var _this5 = this;
+
+      this.moonLoading = true; // Simulated ajax query
+
+      setTimeout(function () {
+        _this5.moonItems = _this5.moonList.filter(function (e) {
+          return (e.text || "").toLowerCase().indexOf((v || "").toLowerCase()) > -1;
+        });
+        _this5.moonLoading = false;
+      }, 500);
+    },
+    open: function open() {
+      var _this6 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                _context2.next = 2;
+                return _this6.$store.dispatch("getSystemList");
+
+              case 2:
+                _context2.next = 4;
+                return _this6.$store.dispatch("getTickList");
+
+              case 4:
+                _context2.next = 6;
+                return _this6.$store.dispatch("getStructureList");
+
+              case 6:
+                _context2.next = 8;
+                return _this6.$store.dispatch("getMoonList");
+
+              case 8:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2);
+      }))();
+    }
+  },
+  computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])([])), Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapState"])(["systemlist", "structurelist", "ticklist", "ticklist"])), {}, {
+    showSubmit: function showSubmit() {
+      if (this.structSelect != null && this.sysSelect != null && this.tickSelect != null && this.refType != null && this.refTime != null) {
+        return false;
+      } else {
+        return true;
+      }
+    },
+    systemList: function systemList() {
+      return this.systemlist;
+    },
+    structureList: function structureList() {
+      return this.structurelist;
+    },
+    tickList: function tickList() {
+      return this.ticklist;
+    },
+    moonList: function moonList() {
+      var _this7 = this;
+
+      var moons = this.ticklist;
+      return moons.filter(function (m) {
+        return m.system_id == _this7.sysSelect;
+      });
+    }
+  }),
+  beforeDestroy: function beforeDestroy() {}
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/tower/TowerOnlineTimer.vue?vue&type=script&lang=js&":
 /*!*********************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/tower/TowerOnlineTimer.vue?vue&type=script&lang=js& ***!
@@ -18241,15 +18615,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -19034,6 +19399,25 @@ exports.push([module.i, "\n.style-2 {\n    background-color: rgb(30, 30, 30, 1);
 
 /***/ }),
 
+/***/ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/tower/AddTower.vue?vue&type=style&index=0&lang=css&":
+/*!********************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/tower/AddTower.vue?vue&type=style&index=0&lang=css& ***!
+  \********************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.fade-enter-active,\n.fade-leave-active {\n    transition: opacity 0.5s;\n}\n.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {\n    opacity: 0;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/tower/TowerOnlineTimer.vue?vue&type=style&index=0&lang=css&":
 /*!****************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/tower/TowerOnlineTimer.vue?vue&type=style&index=0&lang=css& ***!
@@ -19310,6 +19694,36 @@ if(false) {}
 
 
 var content = __webpack_require__(/*! !../../../../node_modules/css-loader??ref--6-1!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/src??ref--6-2!../../../../node_modules/vue-loader/lib??vue-loader-options!./StationTimer.vue?vue&type=style&index=0&lang=css& */ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/station/StationTimer.vue?vue&type=style&index=0&lang=css&");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
+/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/tower/AddTower.vue?vue&type=style&index=0&lang=css&":
+/*!************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader!./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/tower/AddTower.vue?vue&type=style&index=0&lang=css& ***!
+  \************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../../../node_modules/css-loader??ref--6-1!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/src??ref--6-2!../../../../node_modules/vue-loader/lib??vue-loader-options!./AddTower.vue?vue&type=style&index=0&lang=css& */ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/tower/AddTower.vue?vue&type=style&index=0&lang=css&");
 
 if(typeof content === 'string') content = [[module.i, content, '']];
 
@@ -31307,6 +31721,294 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/tower/AddTower.vue?vue&type=template&id=1256694e&":
+/*!*****************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/tower/AddTower.vue?vue&type=template&id=1256694e& ***!
+  \*****************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    [
+      _c(
+        "v-dialog",
+        {
+          attrs: { "max-width": "700px", "z-index": "0" },
+          on: {
+            "click:outside": function($event) {
+              return _vm.close()
+            }
+          },
+          scopedSlots: _vm._u([
+            {
+              key: "activator",
+              fn: function(ref) {
+                var on = ref.on
+                var attrs = ref.attrs
+                return [
+                  _c(
+                    "v-btn",
+                    _vm._g(
+                      _vm._b(
+                        {
+                          attrs: { color: "green", dark44444444: "" },
+                          on: {
+                            click: function($event) {
+                              return _vm.open()
+                            }
+                          }
+                        },
+                        "v-btn",
+                        attrs,
+                        false
+                      ),
+                      on
+                    ),
+                    [
+                      _c("v-icon", { attrs: { left: "" } }, [
+                        _vm._v(
+                          "\n                    faSvg fa-plus\n                "
+                        )
+                      ]),
+                      _vm._v("\n                Add Tower\n            ")
+                    ],
+                    1
+                  )
+                ]
+              }
+            }
+          ]),
+          model: {
+            value: _vm.showAddTower,
+            callback: function($$v) {
+              _vm.showAddTower = $$v
+            },
+            expression: "showAddTower"
+          }
+        },
+        [
+          _vm._v(" "),
+          _c(
+            "v-card",
+            {
+              staticClass: " d-flex flex-column",
+              attrs: {
+                tile: "",
+                "max-width": "700px",
+                "min-height": "200px",
+                "max-height": "1000px"
+              }
+            },
+            [
+              _c("v-card-title", { staticClass: "justify-center" }, [
+                _vm._v("\n                Adding a New Tower\n            ")
+              ]),
+              _vm._v(" "),
+              _c("v-card-text", [
+                _c("div", [
+                  _c(
+                    "div",
+                    { staticClass: " d-inline-flex justify-content-around" },
+                    [
+                      _c("v-autocomplete", {
+                        attrs: {
+                          loading: _vm.structLoading,
+                          items: _vm.structItems,
+                          "search-input": _vm.structSearch,
+                          clearable: "",
+                          autofocus: "",
+                          label: "Structure Type",
+                          outlined: ""
+                        },
+                        on: {
+                          "update:searchInput": function($event) {
+                            _vm.structSearch = $event
+                          },
+                          "update:search-input": function($event) {
+                            _vm.structSearch = $event
+                          }
+                        },
+                        model: {
+                          value: _vm.structSelect,
+                          callback: function($$v) {
+                            _vm.structSelect = $$v
+                          },
+                          expression: "structSelect"
+                        }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: " d-inline-flex justify-content-around" },
+                    [
+                      _c("v-autocomplete", {
+                        attrs: {
+                          loading: _vm.sysLoading,
+                          clearable: "",
+                          items: _vm.sysItems,
+                          "search-input": _vm.sysSearch,
+                          label: "System Name",
+                          outlined: ""
+                        },
+                        on: {
+                          "update:searchInput": function($event) {
+                            _vm.sysSearch = $event
+                          },
+                          "update:search-input": function($event) {
+                            _vm.sysSearch = $event
+                          }
+                        },
+                        model: {
+                          value: _vm.sysSelect,
+                          callback: function($$v) {
+                            _vm.sysSelect = $$v
+                          },
+                          expression: "sysSelect"
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("v-autocomplete", {
+                        attrs: {
+                          loading: _vm.moonLoading,
+                          clearable: "",
+                          items: _vm.moonItems,
+                          "search-input": _vm.moonSearch,
+                          label: "Moon",
+                          outlined: ""
+                        },
+                        on: {
+                          "update:searchInput": function($event) {
+                            _vm.moonSearch = $event
+                          },
+                          "update:search-input": function($event) {
+                            _vm.moonSearch = $event
+                          }
+                        },
+                        model: {
+                          value: _vm.moonSelect,
+                          callback: function($$v) {
+                            _vm.moonSelect = $$v
+                          },
+                          expression: "moonSelect"
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("v-autocomplete", {
+                        staticClass: " ml-2",
+                        attrs: {
+                          loading: _vm.tickLoading,
+                          clearable: "",
+                          items: _vm.tickItems,
+                          "search-input": _vm.tickSearch,
+                          label: "Corp Ticker",
+                          outlined: ""
+                        },
+                        on: {
+                          "update:searchInput": function($event) {
+                            _vm.tickSearch = $event
+                          },
+                          "update:search-input": function($event) {
+                            _vm.tickSearch = $event
+                          }
+                        },
+                        model: {
+                          value: _vm.tickSelect,
+                          callback: function($$v) {
+                            _vm.tickSelect = $$v
+                          },
+                          expression: "tickSelect"
+                        }
+                      })
+                    ],
+                    1
+                  )
+                ])
+              ]),
+              _vm._v(" "),
+              _c("v-spacer"),
+              _c(
+                "v-card-actions",
+                [
+                  _c(
+                    "v-btn",
+                    {
+                      staticClass: "white--text",
+                      attrs: { color: "teal" },
+                      on: {
+                        click: function($event) {
+                          return _vm.close()
+                        }
+                      }
+                    },
+                    [_vm._v("\n                    Close\n                ")]
+                  ),
+                  _vm._v(" "),
+                  _vm.state == 2
+                    ? _c(
+                        "v-btn",
+                        {
+                          staticClass: "white--text",
+                          attrs: { color: "green", disabled: _vm.showSubmit },
+                          on: {
+                            click: function($event) {
+                              return _vm.submit()
+                            }
+                          }
+                        },
+                        [_vm._v("\n                    Submit ")]
+                      )
+                    : _vm._e(),
+                  _vm.state == 3
+                    ? _c(
+                        "v-btn",
+                        {
+                          staticClass: "white--text",
+                          attrs: { color: "green", disabled: _vm.showSubmit3 },
+                          on: {
+                            click: function($event) {
+                              return _vm.submit3()
+                            }
+                          }
+                        },
+                        [
+                          _vm._v(
+                            "\n                    Submit\n                "
+                          )
+                        ]
+                      )
+                    : _vm._e()
+                ],
+                1
+              )
+            ],
+            1
+          )
+        ],
+        1
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/tower/TowerOnlineTimer.vue?vue&type=template&id=75fe4cda&":
 /*!*************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/tower/TowerOnlineTimer.vue?vue&type=template&id=75fe4cda& ***!
@@ -37535,29 +38237,16 @@ var render = function() {
         [
           _c("v-card-title", [_vm._v("Towers")]),
           _vm._v(" "),
-          _c(
-            "v-btn",
-            {
-              staticClass: "ma-2 white--text",
-              attrs: {
-                loading: _vm.loadingr,
-                disabled: _vm.loadingr,
-                color: "primary"
-              },
-              on: {
-                click: function($event) {
-                  return _vm.loadtimers()
-                }
+          _c("AddTower", {
+            directives: [
+              {
+                name: "show",
+                rawName: "v-show",
+                value: _vm.$can("super"),
+                expression: "$can('super')"
               }
-            },
-            [
-              _vm._v("\n            Update\n            "),
-              _c("v-icon", { attrs: { right: "", dark: "" } }, [
-                _vm._v("fas fa-sync-alt fa-xs")
-              ])
-            ],
-            1
-          ),
+            ]
+          }),
           _vm._v(" "),
           _c("v-text-field", {
             attrs: {
@@ -38369,6 +39058,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('AddStation', __webpack_req
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('TowerOnlineTimer', __webpack_require__(/*! ./components/tower/TowerOnlineTimer.vue */ "./resources/js/components/tower/TowerOnlineTimer.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('TowerRefTimer', __webpack_require__(/*! ./components/tower/TowerRefTimer.vue */ "./resources/js/components/tower/TowerRefTimer.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('StationNewTimer', __webpack_require__(/*! ./components/station/StationNewTimer.vue */ "./resources/js/components/station/StationNewTimer.vue")["default"]);
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('AddTower', __webpack_require__(/*! ./components/tower/AddTower.vue */ "./resources/js/components/tower/AddTower.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.prototype.moment = moment__WEBPACK_IMPORTED_MODULE_11___default.a; // import '@fortawesome/fontawesome-f      ree/css/all.css'
 
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(_components_countdown_index__WEBPACK_IMPORTED_MODULE_14__["default"]);
@@ -42339,6 +43029,93 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/tower/AddTower.vue":
+/*!****************************************************!*\
+  !*** ./resources/js/components/tower/AddTower.vue ***!
+  \****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _AddTower_vue_vue_type_template_id_1256694e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./AddTower.vue?vue&type=template&id=1256694e& */ "./resources/js/components/tower/AddTower.vue?vue&type=template&id=1256694e&");
+/* harmony import */ var _AddTower_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./AddTower.vue?vue&type=script&lang=js& */ "./resources/js/components/tower/AddTower.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _AddTower_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./AddTower.vue?vue&type=style&index=0&lang=css& */ "./resources/js/components/tower/AddTower.vue?vue&type=style&index=0&lang=css&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
+  _AddTower_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _AddTower_vue_vue_type_template_id_1256694e___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _AddTower_vue_vue_type_template_id_1256694e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/tower/AddTower.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/tower/AddTower.vue?vue&type=script&lang=js&":
+/*!*****************************************************************************!*\
+  !*** ./resources/js/components/tower/AddTower.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AddTower_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./AddTower.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/tower/AddTower.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AddTower_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/tower/AddTower.vue?vue&type=style&index=0&lang=css&":
+/*!*************************************************************************************!*\
+  !*** ./resources/js/components/tower/AddTower.vue?vue&type=style&index=0&lang=css& ***!
+  \*************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_AddTower_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/style-loader!../../../../node_modules/css-loader??ref--6-1!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/src??ref--6-2!../../../../node_modules/vue-loader/lib??vue-loader-options!./AddTower.vue?vue&type=style&index=0&lang=css& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/tower/AddTower.vue?vue&type=style&index=0&lang=css&");
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_AddTower_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_AddTower_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_AddTower_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_AddTower_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+
+
+/***/ }),
+
+/***/ "./resources/js/components/tower/AddTower.vue?vue&type=template&id=1256694e&":
+/*!***********************************************************************************!*\
+  !*** ./resources/js/components/tower/AddTower.vue?vue&type=template&id=1256694e& ***!
+  \***********************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AddTower_vue_vue_type_template_id_1256694e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./AddTower.vue?vue&type=template&id=1256694e& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/tower/AddTower.vue?vue&type=template&id=1256694e&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AddTower_vue_vue_type_template_id_1256694e___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AddTower_vue_vue_type_template_id_1256694e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/components/tower/TowerOnlineTimer.vue":
 /*!************************************************************!*\
   !*** ./resources/js/components/tower/TowerOnlineTimer.vue ***!
@@ -42860,6 +43637,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _service_apil__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./service/apil */ "./resources/js/service/apil.js");
 
 
+var _actions;
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
@@ -42891,6 +43672,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
     items: [],
     loggingAdmin: [],
     loggingcampaign: [],
+    moonlist: [],
     multicampaigns: [],
     nodeJoin: [],
     notifications: [],
@@ -42913,6 +43695,9 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
   mutations: {
     SET_SYSTEMLIST: function SET_SYSTEMLIST(state, systemlist) {
       state.systemlist = systemlist;
+    },
+    SET_MOONLIST: function SET_MOONLIST(state, moonlist) {
+      state.moonlist = moonlist;
     },
     SET_STRUCTURELIST: function SET_STRUCTURELIST(state, structurelist) {
       state.structurelist = structurelist;
@@ -43175,7 +43960,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
       state.periodbasisLink = periodbasisLink;
     }
   },
-  actions: {
+  actions: (_actions = {
     getTimerDataAll: function getTimerDataAll(_ref) {
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
         var commit, state, res;
@@ -43237,946 +44022,923 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
           }
         }, _callee2);
       }))();
-    },
-    getStructureList: function getStructureList(_ref3) {
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
-        var commit, state, res;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
-          while (1) {
-            switch (_context3.prev = _context3.next) {
-              case 0:
-                commit = _ref3.commit, state = _ref3.state;
-                _context3.next = 3;
-                return axios({
-                  method: "get",
-                  url: "/api/structurelist",
-                  headers: {
-                    Authorization: "Bearer " + state.token,
-                    Accept: "application/json",
-                    "Content-Type": "application/json"
-                  }
-                });
-
-              case 3:
-                res = _context3.sent;
-                commit("SET_STRUCTURELIST", res.data.structurelist);
-
-              case 5:
-              case "end":
-                return _context3.stop();
-            }
-          }
-        }, _callee3);
-      }))();
-    },
-    getTickList: function getTickList(_ref4) {
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
-        var commit, state, res;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
-          while (1) {
-            switch (_context4.prev = _context4.next) {
-              case 0:
-                commit = _ref4.commit, state = _ref4.state;
-                _context4.next = 3;
-                return axios({
-                  method: "get",
-                  url: "/api/ticklist",
-                  headers: {
-                    Authorization: "Bearer " + state.token,
-                    Accept: "application/json",
-                    "Content-Type": "application/json"
-                  }
-                });
-
-              case 3:
-                res = _context4.sent;
-                commit("SET_TICKLIST", res.data.ticklist);
-
-              case 5:
-              case "end":
-                return _context4.stop();
-            }
-          }
-        }, _callee4);
-      }))();
-    },
-    getNodeJoinByCampaignId: function getNodeJoinByCampaignId(_ref5, campaign_id) {
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee5() {
-        var commit, state, res;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee5$(_context5) {
-          while (1) {
-            switch (_context5.prev = _context5.next) {
-              case 0:
-                commit = _ref5.commit, state = _ref5.state;
-                _context5.next = 3;
-                return axios({
-                  method: "get",
-                  url: "/api/nodejoin/" + campaign_id,
-                  headers: {
-                    Authorization: "Bearer " + state.token,
-                    Accept: "application/json",
-                    "Content-Type": "application/json"
-                  }
-                });
-
-              case 3:
-                res = _context5.sent;
-                commit("SET_NODE_JOIN", res.data.nodeJoin);
-
-              case 5:
-              case "end":
-                return _context5.stop();
-            }
-          }
-        }, _callee5);
-      }))();
-    },
-    getTowerData: function getTowerData(_ref6) {
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee6() {
-        var commit, state, res;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee6$(_context6) {
-          while (1) {
-            switch (_context6.prev = _context6.next) {
-              case 0:
-                commit = _ref6.commit, state = _ref6.state;
-                _context6.next = 3;
-                return axios({
-                  method: "get",
-                  url: "/api/towersrecords",
-                  headers: {
-                    Authorization: "Bearer " + state.token,
-                    Accept: "application/json",
-                    "Content-Type": "application/json"
-                  }
-                });
-
-              case 3:
-                res = _context6.sent;
-                commit("SET_TOWERS", res.data.towers);
-
-              case 5:
-              case "end":
-                return _context6.stop();
-            }
-          }
-        }, _callee6);
-      }))();
-    },
-    getStationData: function getStationData(_ref7) {
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee7() {
-        var commit, state, res;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee7$(_context7) {
-          while (1) {
-            switch (_context7.prev = _context7.next) {
-              case 0:
-                commit = _ref7.commit, state = _ref7.state;
-                _context7.next = 3;
-                return axios({
-                  method: "get",
-                  url: "/api/stationrecords",
-                  headers: {
-                    Authorization: "Bearer " + state.token,
-                    Accept: "application/json",
-                    "Content-Type": "application/json"
-                  }
-                });
-
-              case 3:
-                res = _context7.sent;
-                commit("SET_STATIONS", res.data.stations);
-
-              case 5:
-              case "end":
-                return _context7.stop();
-            }
-          }
-        }, _callee7);
-      }))();
-    },
-    getCampaignJoinDataByCampaign: function getCampaignJoinDataByCampaign(_ref8, campid) {
-      var _this = this;
-
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee8() {
-        var commit, state, res;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee8$(_context8) {
-          while (1) {
-            switch (_context8.prev = _context8.next) {
-              case 0:
-                commit = _ref8.commit, state = _ref8.state;
-                _context8.next = 3;
-                return axios({
-                  method: "get",
-                  url: "/api/campaignjoinbyid/" + campid,
-                  data: _this.picked,
-                  headers: {
-                    Authorization: "Bearer " + state.token,
-                    Accept: "application/json",
-                    "Content-Type": "application/json"
-                  }
-                });
-
-              case 3:
-                res = _context8.sent;
-                commit("SET_CAMPAIGN_JOIN", res.data.value);
-
-              case 5:
-              case "end":
-                return _context8.stop();
-            }
-          }
-        }, _callee8);
-      }))();
-    },
-    getCampaignJoinData: function getCampaignJoinData(_ref9, campid) {
-      var _this2 = this;
-
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee9() {
-        var commit, state, res;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee9$(_context9) {
-          while (1) {
-            switch (_context9.prev = _context9.next) {
-              case 0:
-                commit = _ref9.commit, state = _ref9.state;
-                _context9.next = 3;
-                return axios({
-                  method: "get",
-                  url: "/api/campaignjoin",
-                  data: _this2.picked,
-                  headers: {
-                    Authorization: "Bearer " + state.token,
-                    Accept: "application/json",
-                    "Content-Type": "application/json"
-                  }
-                });
-
-              case 3:
-                res = _context9.sent;
-                commit("SET_CAMPAIGN_JOIN", res.data.value);
-
-              case 5:
-              case "end":
-                return _context9.stop();
-            }
-          }
-        }, _callee9);
-      }))();
-    },
-    getCampaignMembers: function getCampaignMembers(_ref10, campaign_id) {
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee10() {
-        var commit, state, res;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee10$(_context10) {
-          while (1) {
-            switch (_context10.prev = _context10.next) {
-              case 0:
-                commit = _ref10.commit, state = _ref10.state;
-                _context10.next = 3;
-                return axios({
-                  method: "get",
-                  url: "/api/campaignsystemusers/" + campaign_id,
-                  headers: {
-                    Authorization: "Bearer " + state.token,
-                    Accept: "application/json",
-                    "Content-Type": "application/json"
-                  }
-                });
-
-              case 3:
-                res = _context10.sent;
-                commit("SET_CAMPAIGN_MEMBERS", res.data.users);
-
-              case 5:
-              case "end":
-                return _context10.stop();
-            }
-          }
-        }, _callee10);
-      }))();
-    },
-    getUsersChars: function getUsersChars(_ref11, user_id) {
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee11() {
-        var commit, state, res;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee11$(_context11) {
-          while (1) {
-            switch (_context11.prev = _context11.next) {
-              case 0:
-                commit = _ref11.commit, state = _ref11.state;
-                _context11.next = 3;
-                return axios({
-                  method: "get",
-                  url: "/api/campaignusersrecordsbychar/" + user_id,
-                  headers: {
-                    Authorization: "Bearer " + state.token,
-                    Accept: "application/json",
-                    "Content-Type": "application/json"
-                  }
-                });
-
-              case 3:
-                res = _context11.sent;
-                commit("SET_USERS_CHARS", res.data.users);
-
-              case 5:
-              case "end":
-                return _context11.stop();
-            }
-          }
-        }, _callee11);
-      }))();
-    },
-    getCampaignSolaSystems: function getCampaignSolaSystems(_ref12) {
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee12() {
-        var commit, state, res;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee12$(_context12) {
-          while (1) {
-            switch (_context12.prev = _context12.next) {
-              case 0:
-                commit = _ref12.commit, state = _ref12.state;
-                _context12.next = 3;
-                return axios({
-                  method: "get",
-                  url: "/api/campaignsolasystems",
-                  headers: {
-                    Authorization: "Bearer " + state.token,
-                    Accept: "application/json",
-                    "Content-Type": "application/json"
-                  }
-                });
-
-              case 3:
-                res = _context12.sent;
-                commit("SET_CAMPAIGN_SOLA_SYSTEMS", res.data.data);
-
-              case 5:
-              case "end":
-                return _context12.stop();
-            }
-          }
-        }, _callee12);
-      }))();
-    },
-    getUsers: function getUsers(_ref13) {
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee13() {
-        var commit, state, res;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee13$(_context13) {
-          while (1) {
-            switch (_context13.prev = _context13.next) {
-              case 0:
-                commit = _ref13.commit, state = _ref13.state;
-
-                if (!(state.token == "")) {
-                  _context13.next = 4;
-                  break;
-                }
-
-                _context13.next = 4;
-                return sleep(500);
-
-              case 4:
-                _context13.next = 6;
-                return axios({
-                  method: "get",
-                  url: "/api/allusersroles",
-                  headers: {
-                    Authorization: "Bearer " + state.token,
-                    Accept: "application/json",
-                    "Content-Type": "application/json"
-                  }
-                });
-
-              case 6:
-                res = _context13.sent;
-                // debugger
-                commit("SET_USERS", res.data.usersroles); // commit("SET_USER_ROLES", userRoles.map(u => ({id: u.id, name: u.name})));
-
-              case 8:
-              case "end":
-                return _context13.stop();
-            }
-          }
-        }, _callee13);
-      }))();
-    },
-    getRoles: function getRoles(_ref14) {
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee14() {
-        var commit, state, res;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee14$(_context14) {
-          while (1) {
-            switch (_context14.prev = _context14.next) {
-              case 0:
-                commit = _ref14.commit, state = _ref14.state;
-                _context14.next = 3;
-                return axios({
-                  method: "get",
-                  url: "/api/roles",
-                  headers: {
-                    Authorization: "Bearer " + state.token,
-                    Accept: "application/json",
-                    "Content-Type": "application/json"
-                  }
-                });
-
-              case 3:
-                res = _context14.sent;
-                commit("SET_ROLES", res.data.roles); // commit("SET_USER_ROLES", userRoles.map(u => ({id: u.id, name: u.name})));
-
-              case 5:
-              case "end":
-                return _context14.stop();
-            }
-          }
-        }, _callee14);
-      }))();
-    },
-    getCampaigns: function getCampaigns(_ref15) {
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee15() {
-        var commit, state, res;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee15$(_context15) {
-          while (1) {
-            switch (_context15.prev = _context15.next) {
-              case 0:
-                commit = _ref15.commit, state = _ref15.state;
-                _context15.next = 3;
-                return axios({
-                  method: "get",
-                  url: "/api/campaigns",
-                  headers: {
-                    Authorization: "Bearer " + state.token,
-                    Accept: "application/json",
-                    "Content-Type": "application/json"
-                  }
-                });
-
-              case 3:
-                res = _context15.sent;
-                commit("SET_CAMPAIGNS", res.data.campaigns);
-
-              case 5:
-              case "end":
-                return _context15.stop();
-            }
-          }
-        }, _callee15);
-      }))();
-    },
-    getMultiCampaigns: function getMultiCampaigns(_ref16) {
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee16() {
-        var commit, state, res;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee16$(_context16) {
-          while (1) {
-            switch (_context16.prev = _context16.next) {
-              case 0:
-                commit = _ref16.commit, state = _ref16.state;
-                _context16.next = 3;
-                return axios({
-                  method: "get",
-                  url: "/api/multicampaigns",
-                  headers: {
-                    Authorization: "Bearer " + state.token,
-                    Accept: "application/json",
-                    "Content-Type": "application/json"
-                  }
-                });
-
-              case 3:
-                res = _context16.sent;
-                commit("SET_MULTI_CAMPAIGNS", res.data.campaigns);
-
-              case 5:
-              case "end":
-                return _context16.stop();
-            }
-          }
-        }, _callee16);
-      }))();
-    },
-    getCampaignsList: function getCampaignsList(_ref17) {
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee17() {
-        var commit, state, res;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee17$(_context17) {
-          while (1) {
-            switch (_context17.prev = _context17.next) {
-              case 0:
-                commit = _ref17.commit, state = _ref17.state;
-                _context17.next = 3;
-                return axios({
-                  method: "get",
-                  url: "/api/campaignslist",
-                  headers: {
-                    Authorization: "Bearer " + state.token,
-                    Accept: "application/json",
-                    "Content-Type": "application/json"
-                  }
-                });
-
-              case 3:
-                res = _context17.sent;
-                commit("SET_CAMPAIGNSLIST", res.data.campaignslist);
-
-              case 5:
-              case "end":
-                return _context17.stop();
-            }
-          }
-        }, _callee17);
-      }))();
-    },
-    getLoggingCampaign: function getLoggingCampaign(_ref18, campaign_id) {
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee18() {
-        var commit, state, res;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee18$(_context18) {
-          while (1) {
-            switch (_context18.prev = _context18.next) {
-              case 0:
-                commit = _ref18.commit, state = _ref18.state;
-                _context18.next = 3;
-                return axios({
-                  method: "get",
-                  url: "/api/checkcampaign/" + campaign_id,
-                  headers: {
-                    Authorization: "Bearer " + state.token,
-                    Accept: "application/json",
-                    "Content-Type": "application/json"
-                  }
-                });
-
-              case 3:
-                res = _context18.sent;
-                commit("SET_LOGGING_CAMPAIGN", res.data.logs);
-
-              case 5:
-              case "end":
-                return _context18.stop();
-            }
-          }
-        }, _callee18);
-      }))();
-    },
-    getLoggingAdmin: function getLoggingAdmin(_ref19) {
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee19() {
-        var commit, state, res;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee19$(_context19) {
-          while (1) {
-            switch (_context19.prev = _context19.next) {
-              case 0:
-                commit = _ref19.commit, state = _ref19.state;
-                _context19.next = 3;
-                return axios({
-                  method: "get",
-                  url: "/api/checkadmin",
-                  headers: {
-                    Authorization: "Bearer " + state.token,
-                    Accept: "application/json",
-                    "Content-Type": "application/json"
-                  }
-                });
-
-              case 3:
-                res = _context19.sent;
-                commit("SET_LOGGING_ADMIN", res.data.logs);
-
-              case 5:
-              case "end":
-                return _context19.stop();
-            }
-          }
-        }, _callee19);
-      }))();
-    },
-    markOver: function markOver(_ref20, timer) {
-      var commit = _ref20.commit;
-      commit("MARK_TIMER_OVER", timer);
-    },
-    updateNotification: function updateNotification(_ref21, data) {
-      var commit = _ref21.commit;
-      commit("UPDATE_NOTIFICATIONS", data);
-    },
-    updateStationNotification: function updateStationNotification(_ref22, data) {
-      var commit = _ref22.commit;
-      commit("UPDATE_STATION_NOTIFICATION", data);
-    },
-    updateCores: function updateCores(_ref23, data) {
-      var commit = _ref23.commit;
-      commit("UPDATE_CORES", data);
-    },
-    updateCampaigns: function updateCampaigns(_ref24, data) {
-      var commit = _ref24.commit;
-      commit("UPDATE_CAMPAIGNS", data);
-    },
-    updateTowers: function updateTowers(_ref25, data) {
-      var commit = _ref25.commit;
-      commit("UPDATE_TOWERS", data);
-    },
-    updateCampaignSystem: function updateCampaignSystem(_ref26, data) {
-      var commit = _ref26.commit;
-      commit("UPDATE_CAMPAIGN_SYSTEM", data);
-    },
-    updateCampaignSystemByUserID: function updateCampaignSystemByUserID(_ref27, payload) {
-      var commit = _ref27.commit;
-      commit("UPDATE_CAMPAIGN_SYSTEM_BY_USER_ID", payload);
-    },
-    updateCampaignSolaSystem: function updateCampaignSolaSystem(_ref28, data) {
-      var commit = _ref28.commit;
-      commit("UPDATE_CAMPAIGN_SOLA_SYSTEMS", data);
-    },
-    updateCampaignSystemBar: function updateCampaignSystemBar(_ref29, data) {
-      var commit = _ref29.commit;
-      commit("UPDATE_CAMPAIGN_SYSTEM_UPDATE", data);
-    },
-    updateCampaign: function updateCampaign(_ref30, data) {
-      var commit = _ref30.commit;
-      commit("UPDATE_CAMPAIGN", data);
-    },
-    updateCampaignUsers: function updateCampaignUsers(_ref31, data) {
-      var commit = _ref31.commit;
-      commit("UPDATE_CAMPAIGN_USERS", data);
-    },
-    updateUsersChars: function updateUsersChars(_ref32, data) {
-      var commit = _ref32.commit;
-      commit("UPDATE_USERS_CHARS", data);
-    },
-    updateNodeJoin: function updateNodeJoin(_ref33, data) {
-      var commit = _ref33.commit;
-      commit('UPDATE_NODE_JOIN', data);
-    },
-    addNodeJoin: function addNodeJoin(_ref34, data) {
-      var commit = _ref34.commit;
-      commit("ADD_NODE_JOIN", data);
-    },
-    addStationNotification: function addStationNotification(_ref35, data) {
-      var commit = _ref35.commit;
-      commit("ADD_STATION_NOTIFICATION", data);
-    },
-    addLoggingCampaign: function addLoggingCampaign(_ref36, data) {
-      var commit = _ref36.commit;
-      commit("ADD_LOGGING_CAMPGIN", data);
-    },
-    addCampaignUserNew: function addCampaignUserNew(_ref37, data) {
-      var commit = _ref37.commit;
-      commit("ADD_CAMPAIGN_USERS", data);
-    },
-    addCampaignSystem: function addCampaignSystem(_ref38, data) {
-      var commit = _ref38.commit;
-      commit("ADD_CAMPAIGN_SYSTEM", data);
-    },
-    deleteCampaignUser: function deleteCampaignUser(_ref39, id) {
-      var commit = _ref39.commit;
-      commit("DELETE_CAMPAIGN_USER", id);
-    },
-    deleteStationNotification: function deleteStationNotification(_ref40, id) {
-      var commit = _ref40.commit;
-      commit("DELETE_STATION_NOTIFICATION", id);
-    },
-    deleteUsersChars: function deleteUsersChars(_ref41, id) {
-      var commit = _ref41.commit;
-      commit("DELETE_USER_CHAR", id);
-    },
-    deleteNodeJoin: function deleteNodeJoin(_ref42, id) {
-      var commit = _ref42.commit;
-      commit("DELETE_NODE_JOIN", id);
-    },
-    deleteTower: function deleteTower(_ref43, id) {
-      var commit = _ref43.commit;
-      commit("DELETE_TOWERS", id);
-    },
-    deleteCampaignSystem: function deleteCampaignSystem(_ref44, id) {
-      var commit = _ref44.commit;
-      commit("DELETE_CAMPAIGN_SYSTEM", id);
-    },
-    getNotifications: function getNotifications(_ref45) {
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee20() {
-        var commit, state, res;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee20$(_context20) {
-          while (1) {
-            switch (_context20.prev = _context20.next) {
-              case 0:
-                commit = _ref45.commit, state = _ref45.state;
-                _context20.next = 3;
-                return axios({
-                  method: "get",
-                  //you can set what request you want to be
-                  url: "/api/notifications",
-                  // data: {id: varID},
-                  headers: {
-                    Authorization: "Bearer " + state.token,
-                    Accept: "application/json",
-                    "Content-Type": "application/json"
-                  }
-                });
-
-              case 3:
-                res = _context20.sent;
-                commit("SET_NOTIFICATIONS", res.data.notifications);
-
-              case 5:
-              case "end":
-                return _context20.stop();
-            }
-          }
-        }, _callee20);
-      }))();
-    },
-    getdelveLink: function getdelveLink(_ref46) {
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee21() {
-        var commit, state, res;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee21$(_context21) {
-          while (1) {
-            switch (_context21.prev = _context21.next) {
-              case 0:
-                commit = _ref46.commit, state = _ref46.state;
-                _context21.next = 3;
-                return axios({
-                  method: "get",
-                  //you can set what request you want to be
-                  url: "/api/notifications/10000060",
-                  headers: {
-                    Authorization: "Bearer " + state.token,
-                    Accept: "application/json",
-                    "Content-Type": "application/json"
-                  }
-                });
-
-              case 3:
-                res = _context21.sent;
-                commit("SET_DELVE_LINK", res.data.link);
-
-              case 5:
-              case "end":
-                return _context21.stop();
-            }
-          }
-        }, _callee21);
-      }))();
-    },
-    getqueriousLink: function getqueriousLink(_ref47) {
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee22() {
-        var commit, state, res;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee22$(_context22) {
-          while (1) {
-            switch (_context22.prev = _context22.next) {
-              case 0:
-                commit = _ref47.commit, state = _ref47.state;
-                _context22.next = 3;
-                return axios({
-                  method: "get",
-                  //you can set what request you want to be
-                  url: "/api/notifications/10000050",
-                  headers: {
-                    Authorization: "Bearer " + state.token,
-                    Accept: "application/json",
-                    "Content-Type": "application/json"
-                  }
-                });
-
-              case 3:
-                res = _context22.sent;
-                commit("SET_QUERIOUS_LINK", res.data.link);
-
-              case 5:
-              case "end":
-                return _context22.stop();
-            }
-          }
-        }, _callee22);
-      }))();
-    },
-    getperiodbasisLink: function getperiodbasisLink(_ref48) {
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee23() {
-        var commit, state, res;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee23$(_context23) {
-          while (1) {
-            switch (_context23.prev = _context23.next) {
-              case 0:
-                commit = _ref48.commit, state = _ref48.state;
-                _context23.next = 3;
-                return axios({
-                  method: "get",
-                  //you can set what request you want to be
-                  url: "/api/notifications/10000063",
-                  headers: {
-                    Authorization: "Bearer " + state.token,
-                    Accept: "application/json",
-                    "Content-Type": "application/json"
-                  }
-                });
-
-              case 3:
-                res = _context23.sent;
-                commit("SET_PERIOD_BASIS_LINK", res.data.link);
-
-              case 5:
-              case "end":
-                return _context23.stop();
-            }
-          }
-        }, _callee23);
-      }))();
-    },
-    setToken: function setToken(_ref49, token) {
-      var commit = _ref49.commit;
-      commit("SET_TOKEN", token);
-    },
-    setUser_id: function setUser_id(_ref50, user_id) {
-      var commit = _ref50.commit;
-      commit("SET_USER_ID", user_id);
-    },
-    setUser_name: function setUser_name(_ref51, user_name) {
-      var commit = _ref51.commit;
-      commit("SET_USER_NAME", user_name);
-    },
-    getCampaignUsersRecords: function getCampaignUsersRecords(_ref52, id) {
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee24() {
-        var commit, state, res;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee24$(_context24) {
-          while (1) {
-            switch (_context24.prev = _context24.next) {
-              case 0:
-                commit = _ref52.commit, state = _ref52.state;
-                _context24.next = 3;
-                return axios({
-                  method: "get",
-                  //you can set what request you want to be
-                  url: "/api/campaignusersrecords/" + id,
-                  headers: {
-                    Authorization: "Bearer " + state.token,
-                    Accept: "application/json",
-                    "Content-Type": "application/json"
-                  }
-                });
-
-              case 3:
-                res = _context24.sent;
-
-                if (res.data.length != 0) {
-                  commit("SET_CAMPAIGN_USERS", res.data.users);
-                }
-
-              case 5:
-              case "end":
-                return _context24.stop();
-            }
-          }
-        }, _callee24);
-      }))();
-    },
-    getCampaignSystemsRecords: function getCampaignSystemsRecords(_ref53) {
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee25() {
-        var commit, state, res;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee25$(_context25) {
-          while (1) {
-            switch (_context25.prev = _context25.next) {
-              case 0:
-                commit = _ref53.commit, state = _ref53.state;
-                _context25.next = 3;
-                return axios({
-                  method: "get",
-                  //you can set what request you want to be
-                  url: "/api/campaignsystemsrecords",
-                  headers: {
-                    Authorization: "Bearer " + state.token,
-                    Accept: "application/json",
-                    "Content-Type": "application/json"
-                  }
-                });
-
-              case 3:
-                res = _context25.sent;
-
-                if (res.data.length != 0) {
-                  commit("SET_CAMPAIGN_SYSTEMS", res.data.systems);
-                }
-
-              case 5:
-              case "end":
-                return _context25.stop();
-            }
-          }
-        }, _callee25);
-      }))();
-    },
-    loadCampaignSystemData: function loadCampaignSystemData(_ref54, payload) {
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee26() {
-        var commit, state, request, res;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee26$(_context26) {
-          while (1) {
-            switch (_context26.prev = _context26.next) {
-              case 0:
-                commit = _ref54.commit, state = _ref54.state;
-                request = {
-                  user_id: payload.user_id,
-                  campaign_id: payload.campaign_id,
-                  type: payload.type
-                };
-                _context26.next = 4;
-                return axios({
-                  method: "post",
-                  //you can set what request you want to be
-                  url: "/api/campaignsystemload",
-                  data: request,
-                  headers: {
-                    Authorization: "Bearer " + state.token,
-                    Accept: "application/json",
-                    "Content-Type": "application/json"
-                  }
-                });
-
-              case 4:
-                res = _context26.sent;
-
-                if (res.data.length != 0) {
-                  commit("SET_CAMPAIGN_SOLA_SYSTEMS", res.data.sola);
-                  commit("SET_NODE_JOIN", res.data.nodejoin);
-                  commit("SET_CAMPAIGN_USERS", res.data.users);
-                  commit("SET_CAMPAIGN_SYSTEMS", res.data.systems);
-                  commit("SET_USERS_CHARS", res.data.usersbyid);
-                  commit("SET_LOGGING_CAMPAIGN", res.data.logs);
-                }
-
-              case 6:
-              case "end":
-                return _context26.stop();
-            }
-          }
-        }, _callee26);
-      }))();
-    },
-    loadStationInfo: function loadStationInfo(_ref55) {
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee27() {
-        var commit, state, res;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee27$(_context27) {
-          while (1) {
-            switch (_context27.prev = _context27.next) {
-              case 0:
-                commit = _ref55.commit, state = _ref55.state;
-                _context27.next = 3;
-                return axios({
-                  method: "get",
-                  //you can set what request you want to be
-                  url: "/api/loadstationdata",
-                  headers: {
-                    Authorization: "Bearer " + state.token,
-                    Accept: "application/json",
-                    "Content-Type": "application/json"
-                  }
-                });
-
-              case 3:
-                res = _context27.sent;
-
-                if (res.data.length != 0) {
-                  commit("SET_CORES", res.data.cores);
-                  commit("SET_ITEMS", res.data.items);
-                  commit("SET_STATIONS_FIT", res.data.fit);
-                }
-
-              case 5:
-              case "end":
-                return _context27.stop();
-            }
-          }
-        }, _callee27);
-      }))();
     }
-  },
+  }, _defineProperty(_actions, "getSystemList", function getSystemList(_ref3) {
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
+      var commit, state, res;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
+        while (1) {
+          switch (_context3.prev = _context3.next) {
+            case 0:
+              commit = _ref3.commit, state = _ref3.state;
+              _context3.next = 3;
+              return axios({
+                method: "get",
+                url: "/api/moons",
+                headers: {
+                  Authorization: "Bearer " + state.token,
+                  Accept: "application/json",
+                  "Content-Type": "application/json"
+                }
+              });
+
+            case 3:
+              res = _context3.sent;
+              commit("SET_MOONLIST", res.data.moons);
+
+            case 5:
+            case "end":
+              return _context3.stop();
+          }
+        }
+      }, _callee3);
+    }))();
+  }), _defineProperty(_actions, "getStructureList", function getStructureList(_ref4) {
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
+      var commit, state, res;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
+        while (1) {
+          switch (_context4.prev = _context4.next) {
+            case 0:
+              commit = _ref4.commit, state = _ref4.state;
+              _context4.next = 3;
+              return axios({
+                method: "get",
+                url: "/api/structurelist",
+                headers: {
+                  Authorization: "Bearer " + state.token,
+                  Accept: "application/json",
+                  "Content-Type": "application/json"
+                }
+              });
+
+            case 3:
+              res = _context4.sent;
+              commit("SET_STRUCTURELIST", res.data.structurelist);
+
+            case 5:
+            case "end":
+              return _context4.stop();
+          }
+        }
+      }, _callee4);
+    }))();
+  }), _defineProperty(_actions, "getTickList", function getTickList(_ref5) {
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee5() {
+      var commit, state, res;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee5$(_context5) {
+        while (1) {
+          switch (_context5.prev = _context5.next) {
+            case 0:
+              commit = _ref5.commit, state = _ref5.state;
+              _context5.next = 3;
+              return axios({
+                method: "get",
+                url: "/api/ticklist",
+                headers: {
+                  Authorization: "Bearer " + state.token,
+                  Accept: "application/json",
+                  "Content-Type": "application/json"
+                }
+              });
+
+            case 3:
+              res = _context5.sent;
+              commit("SET_TICKLIST", res.data.ticklist);
+
+            case 5:
+            case "end":
+              return _context5.stop();
+          }
+        }
+      }, _callee5);
+    }))();
+  }), _defineProperty(_actions, "getNodeJoinByCampaignId", function getNodeJoinByCampaignId(_ref6, campaign_id) {
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee6() {
+      var commit, state, res;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee6$(_context6) {
+        while (1) {
+          switch (_context6.prev = _context6.next) {
+            case 0:
+              commit = _ref6.commit, state = _ref6.state;
+              _context6.next = 3;
+              return axios({
+                method: "get",
+                url: "/api/nodejoin/" + campaign_id,
+                headers: {
+                  Authorization: "Bearer " + state.token,
+                  Accept: "application/json",
+                  "Content-Type": "application/json"
+                }
+              });
+
+            case 3:
+              res = _context6.sent;
+              commit("SET_NODE_JOIN", res.data.nodeJoin);
+
+            case 5:
+            case "end":
+              return _context6.stop();
+          }
+        }
+      }, _callee6);
+    }))();
+  }), _defineProperty(_actions, "getTowerData", function getTowerData(_ref7) {
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee7() {
+      var commit, state, res;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee7$(_context7) {
+        while (1) {
+          switch (_context7.prev = _context7.next) {
+            case 0:
+              commit = _ref7.commit, state = _ref7.state;
+              _context7.next = 3;
+              return axios({
+                method: "get",
+                url: "/api/towersrecords",
+                headers: {
+                  Authorization: "Bearer " + state.token,
+                  Accept: "application/json",
+                  "Content-Type": "application/json"
+                }
+              });
+
+            case 3:
+              res = _context7.sent;
+              commit("SET_TOWERS", res.data.towers);
+
+            case 5:
+            case "end":
+              return _context7.stop();
+          }
+        }
+      }, _callee7);
+    }))();
+  }), _defineProperty(_actions, "getStationData", function getStationData(_ref8) {
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee8() {
+      var commit, state, res;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee8$(_context8) {
+        while (1) {
+          switch (_context8.prev = _context8.next) {
+            case 0:
+              commit = _ref8.commit, state = _ref8.state;
+              _context8.next = 3;
+              return axios({
+                method: "get",
+                url: "/api/stationrecords",
+                headers: {
+                  Authorization: "Bearer " + state.token,
+                  Accept: "application/json",
+                  "Content-Type": "application/json"
+                }
+              });
+
+            case 3:
+              res = _context8.sent;
+              commit("SET_STATIONS", res.data.stations);
+
+            case 5:
+            case "end":
+              return _context8.stop();
+          }
+        }
+      }, _callee8);
+    }))();
+  }), _defineProperty(_actions, "getCampaignJoinDataByCampaign", function getCampaignJoinDataByCampaign(_ref9, campid) {
+    var _this = this;
+
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee9() {
+      var commit, state, res;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee9$(_context9) {
+        while (1) {
+          switch (_context9.prev = _context9.next) {
+            case 0:
+              commit = _ref9.commit, state = _ref9.state;
+              _context9.next = 3;
+              return axios({
+                method: "get",
+                url: "/api/campaignjoinbyid/" + campid,
+                data: _this.picked,
+                headers: {
+                  Authorization: "Bearer " + state.token,
+                  Accept: "application/json",
+                  "Content-Type": "application/json"
+                }
+              });
+
+            case 3:
+              res = _context9.sent;
+              commit("SET_CAMPAIGN_JOIN", res.data.value);
+
+            case 5:
+            case "end":
+              return _context9.stop();
+          }
+        }
+      }, _callee9);
+    }))();
+  }), _defineProperty(_actions, "getCampaignJoinData", function getCampaignJoinData(_ref10, campid) {
+    var _this2 = this;
+
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee10() {
+      var commit, state, res;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee10$(_context10) {
+        while (1) {
+          switch (_context10.prev = _context10.next) {
+            case 0:
+              commit = _ref10.commit, state = _ref10.state;
+              _context10.next = 3;
+              return axios({
+                method: "get",
+                url: "/api/campaignjoin",
+                data: _this2.picked,
+                headers: {
+                  Authorization: "Bearer " + state.token,
+                  Accept: "application/json",
+                  "Content-Type": "application/json"
+                }
+              });
+
+            case 3:
+              res = _context10.sent;
+              commit("SET_CAMPAIGN_JOIN", res.data.value);
+
+            case 5:
+            case "end":
+              return _context10.stop();
+          }
+        }
+      }, _callee10);
+    }))();
+  }), _defineProperty(_actions, "getCampaignMembers", function getCampaignMembers(_ref11, campaign_id) {
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee11() {
+      var commit, state, res;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee11$(_context11) {
+        while (1) {
+          switch (_context11.prev = _context11.next) {
+            case 0:
+              commit = _ref11.commit, state = _ref11.state;
+              _context11.next = 3;
+              return axios({
+                method: "get",
+                url: "/api/campaignsystemusers/" + campaign_id,
+                headers: {
+                  Authorization: "Bearer " + state.token,
+                  Accept: "application/json",
+                  "Content-Type": "application/json"
+                }
+              });
+
+            case 3:
+              res = _context11.sent;
+              commit("SET_CAMPAIGN_MEMBERS", res.data.users);
+
+            case 5:
+            case "end":
+              return _context11.stop();
+          }
+        }
+      }, _callee11);
+    }))();
+  }), _defineProperty(_actions, "getUsersChars", function getUsersChars(_ref12, user_id) {
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee12() {
+      var commit, state, res;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee12$(_context12) {
+        while (1) {
+          switch (_context12.prev = _context12.next) {
+            case 0:
+              commit = _ref12.commit, state = _ref12.state;
+              _context12.next = 3;
+              return axios({
+                method: "get",
+                url: "/api/campaignusersrecordsbychar/" + user_id,
+                headers: {
+                  Authorization: "Bearer " + state.token,
+                  Accept: "application/json",
+                  "Content-Type": "application/json"
+                }
+              });
+
+            case 3:
+              res = _context12.sent;
+              commit("SET_USERS_CHARS", res.data.users);
+
+            case 5:
+            case "end":
+              return _context12.stop();
+          }
+        }
+      }, _callee12);
+    }))();
+  }), _defineProperty(_actions, "getCampaignSolaSystems", function getCampaignSolaSystems(_ref13) {
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee13() {
+      var commit, state, res;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee13$(_context13) {
+        while (1) {
+          switch (_context13.prev = _context13.next) {
+            case 0:
+              commit = _ref13.commit, state = _ref13.state;
+              _context13.next = 3;
+              return axios({
+                method: "get",
+                url: "/api/campaignsolasystems",
+                headers: {
+                  Authorization: "Bearer " + state.token,
+                  Accept: "application/json",
+                  "Content-Type": "application/json"
+                }
+              });
+
+            case 3:
+              res = _context13.sent;
+              commit("SET_CAMPAIGN_SOLA_SYSTEMS", res.data.data);
+
+            case 5:
+            case "end":
+              return _context13.stop();
+          }
+        }
+      }, _callee13);
+    }))();
+  }), _defineProperty(_actions, "getUsers", function getUsers(_ref14) {
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee14() {
+      var commit, state, res;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee14$(_context14) {
+        while (1) {
+          switch (_context14.prev = _context14.next) {
+            case 0:
+              commit = _ref14.commit, state = _ref14.state;
+
+              if (!(state.token == "")) {
+                _context14.next = 4;
+                break;
+              }
+
+              _context14.next = 4;
+              return sleep(500);
+
+            case 4:
+              _context14.next = 6;
+              return axios({
+                method: "get",
+                url: "/api/allusersroles",
+                headers: {
+                  Authorization: "Bearer " + state.token,
+                  Accept: "application/json",
+                  "Content-Type": "application/json"
+                }
+              });
+
+            case 6:
+              res = _context14.sent;
+              // debugger
+              commit("SET_USERS", res.data.usersroles); // commit("SET_USER_ROLES", userRoles.map(u => ({id: u.id, name: u.name})));
+
+            case 8:
+            case "end":
+              return _context14.stop();
+          }
+        }
+      }, _callee14);
+    }))();
+  }), _defineProperty(_actions, "getRoles", function getRoles(_ref15) {
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee15() {
+      var commit, state, res;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee15$(_context15) {
+        while (1) {
+          switch (_context15.prev = _context15.next) {
+            case 0:
+              commit = _ref15.commit, state = _ref15.state;
+              _context15.next = 3;
+              return axios({
+                method: "get",
+                url: "/api/roles",
+                headers: {
+                  Authorization: "Bearer " + state.token,
+                  Accept: "application/json",
+                  "Content-Type": "application/json"
+                }
+              });
+
+            case 3:
+              res = _context15.sent;
+              commit("SET_ROLES", res.data.roles); // commit("SET_USER_ROLES", userRoles.map(u => ({id: u.id, name: u.name})));
+
+            case 5:
+            case "end":
+              return _context15.stop();
+          }
+        }
+      }, _callee15);
+    }))();
+  }), _defineProperty(_actions, "getCampaigns", function getCampaigns(_ref16) {
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee16() {
+      var commit, state, res;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee16$(_context16) {
+        while (1) {
+          switch (_context16.prev = _context16.next) {
+            case 0:
+              commit = _ref16.commit, state = _ref16.state;
+              _context16.next = 3;
+              return axios({
+                method: "get",
+                url: "/api/campaigns",
+                headers: {
+                  Authorization: "Bearer " + state.token,
+                  Accept: "application/json",
+                  "Content-Type": "application/json"
+                }
+              });
+
+            case 3:
+              res = _context16.sent;
+              commit("SET_CAMPAIGNS", res.data.campaigns);
+
+            case 5:
+            case "end":
+              return _context16.stop();
+          }
+        }
+      }, _callee16);
+    }))();
+  }), _defineProperty(_actions, "getMultiCampaigns", function getMultiCampaigns(_ref17) {
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee17() {
+      var commit, state, res;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee17$(_context17) {
+        while (1) {
+          switch (_context17.prev = _context17.next) {
+            case 0:
+              commit = _ref17.commit, state = _ref17.state;
+              _context17.next = 3;
+              return axios({
+                method: "get",
+                url: "/api/multicampaigns",
+                headers: {
+                  Authorization: "Bearer " + state.token,
+                  Accept: "application/json",
+                  "Content-Type": "application/json"
+                }
+              });
+
+            case 3:
+              res = _context17.sent;
+              commit("SET_MULTI_CAMPAIGNS", res.data.campaigns);
+
+            case 5:
+            case "end":
+              return _context17.stop();
+          }
+        }
+      }, _callee17);
+    }))();
+  }), _defineProperty(_actions, "getCampaignsList", function getCampaignsList(_ref18) {
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee18() {
+      var commit, state, res;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee18$(_context18) {
+        while (1) {
+          switch (_context18.prev = _context18.next) {
+            case 0:
+              commit = _ref18.commit, state = _ref18.state;
+              _context18.next = 3;
+              return axios({
+                method: "get",
+                url: "/api/campaignslist",
+                headers: {
+                  Authorization: "Bearer " + state.token,
+                  Accept: "application/json",
+                  "Content-Type": "application/json"
+                }
+              });
+
+            case 3:
+              res = _context18.sent;
+              commit("SET_CAMPAIGNSLIST", res.data.campaignslist);
+
+            case 5:
+            case "end":
+              return _context18.stop();
+          }
+        }
+      }, _callee18);
+    }))();
+  }), _defineProperty(_actions, "getLoggingCampaign", function getLoggingCampaign(_ref19, campaign_id) {
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee19() {
+      var commit, state, res;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee19$(_context19) {
+        while (1) {
+          switch (_context19.prev = _context19.next) {
+            case 0:
+              commit = _ref19.commit, state = _ref19.state;
+              _context19.next = 3;
+              return axios({
+                method: "get",
+                url: "/api/checkcampaign/" + campaign_id,
+                headers: {
+                  Authorization: "Bearer " + state.token,
+                  Accept: "application/json",
+                  "Content-Type": "application/json"
+                }
+              });
+
+            case 3:
+              res = _context19.sent;
+              commit("SET_LOGGING_CAMPAIGN", res.data.logs);
+
+            case 5:
+            case "end":
+              return _context19.stop();
+          }
+        }
+      }, _callee19);
+    }))();
+  }), _defineProperty(_actions, "getLoggingAdmin", function getLoggingAdmin(_ref20) {
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee20() {
+      var commit, state, res;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee20$(_context20) {
+        while (1) {
+          switch (_context20.prev = _context20.next) {
+            case 0:
+              commit = _ref20.commit, state = _ref20.state;
+              _context20.next = 3;
+              return axios({
+                method: "get",
+                url: "/api/checkadmin",
+                headers: {
+                  Authorization: "Bearer " + state.token,
+                  Accept: "application/json",
+                  "Content-Type": "application/json"
+                }
+              });
+
+            case 3:
+              res = _context20.sent;
+              commit("SET_LOGGING_ADMIN", res.data.logs);
+
+            case 5:
+            case "end":
+              return _context20.stop();
+          }
+        }
+      }, _callee20);
+    }))();
+  }), _defineProperty(_actions, "markOver", function markOver(_ref21, timer) {
+    var commit = _ref21.commit;
+    commit("MARK_TIMER_OVER", timer);
+  }), _defineProperty(_actions, "updateNotification", function updateNotification(_ref22, data) {
+    var commit = _ref22.commit;
+    commit("UPDATE_NOTIFICATIONS", data);
+  }), _defineProperty(_actions, "updateStationNotification", function updateStationNotification(_ref23, data) {
+    var commit = _ref23.commit;
+    commit("UPDATE_STATION_NOTIFICATION", data);
+  }), _defineProperty(_actions, "updateCores", function updateCores(_ref24, data) {
+    var commit = _ref24.commit;
+    commit("UPDATE_CORES", data);
+  }), _defineProperty(_actions, "updateCampaigns", function updateCampaigns(_ref25, data) {
+    var commit = _ref25.commit;
+    commit("UPDATE_CAMPAIGNS", data);
+  }), _defineProperty(_actions, "updateTowers", function updateTowers(_ref26, data) {
+    var commit = _ref26.commit;
+    commit("UPDATE_TOWERS", data);
+  }), _defineProperty(_actions, "updateCampaignSystem", function updateCampaignSystem(_ref27, data) {
+    var commit = _ref27.commit;
+    commit("UPDATE_CAMPAIGN_SYSTEM", data);
+  }), _defineProperty(_actions, "updateCampaignSystemByUserID", function updateCampaignSystemByUserID(_ref28, payload) {
+    var commit = _ref28.commit;
+    commit("UPDATE_CAMPAIGN_SYSTEM_BY_USER_ID", payload);
+  }), _defineProperty(_actions, "updateCampaignSolaSystem", function updateCampaignSolaSystem(_ref29, data) {
+    var commit = _ref29.commit;
+    commit("UPDATE_CAMPAIGN_SOLA_SYSTEMS", data);
+  }), _defineProperty(_actions, "updateCampaignSystemBar", function updateCampaignSystemBar(_ref30, data) {
+    var commit = _ref30.commit;
+    commit("UPDATE_CAMPAIGN_SYSTEM_UPDATE", data);
+  }), _defineProperty(_actions, "updateCampaign", function updateCampaign(_ref31, data) {
+    var commit = _ref31.commit;
+    commit("UPDATE_CAMPAIGN", data);
+  }), _defineProperty(_actions, "updateCampaignUsers", function updateCampaignUsers(_ref32, data) {
+    var commit = _ref32.commit;
+    commit("UPDATE_CAMPAIGN_USERS", data);
+  }), _defineProperty(_actions, "updateUsersChars", function updateUsersChars(_ref33, data) {
+    var commit = _ref33.commit;
+    commit("UPDATE_USERS_CHARS", data);
+  }), _defineProperty(_actions, "updateNodeJoin", function updateNodeJoin(_ref34, data) {
+    var commit = _ref34.commit;
+    commit('UPDATE_NODE_JOIN', data);
+  }), _defineProperty(_actions, "addNodeJoin", function addNodeJoin(_ref35, data) {
+    var commit = _ref35.commit;
+    commit("ADD_NODE_JOIN", data);
+  }), _defineProperty(_actions, "addStationNotification", function addStationNotification(_ref36, data) {
+    var commit = _ref36.commit;
+    commit("ADD_STATION_NOTIFICATION", data);
+  }), _defineProperty(_actions, "addLoggingCampaign", function addLoggingCampaign(_ref37, data) {
+    var commit = _ref37.commit;
+    commit("ADD_LOGGING_CAMPGIN", data);
+  }), _defineProperty(_actions, "addCampaignUserNew", function addCampaignUserNew(_ref38, data) {
+    var commit = _ref38.commit;
+    commit("ADD_CAMPAIGN_USERS", data);
+  }), _defineProperty(_actions, "addCampaignSystem", function addCampaignSystem(_ref39, data) {
+    var commit = _ref39.commit;
+    commit("ADD_CAMPAIGN_SYSTEM", data);
+  }), _defineProperty(_actions, "deleteCampaignUser", function deleteCampaignUser(_ref40, id) {
+    var commit = _ref40.commit;
+    commit("DELETE_CAMPAIGN_USER", id);
+  }), _defineProperty(_actions, "deleteStationNotification", function deleteStationNotification(_ref41, id) {
+    var commit = _ref41.commit;
+    commit("DELETE_STATION_NOTIFICATION", id);
+  }), _defineProperty(_actions, "deleteUsersChars", function deleteUsersChars(_ref42, id) {
+    var commit = _ref42.commit;
+    commit("DELETE_USER_CHAR", id);
+  }), _defineProperty(_actions, "deleteNodeJoin", function deleteNodeJoin(_ref43, id) {
+    var commit = _ref43.commit;
+    commit("DELETE_NODE_JOIN", id);
+  }), _defineProperty(_actions, "deleteTower", function deleteTower(_ref44, id) {
+    var commit = _ref44.commit;
+    commit("DELETE_TOWERS", id);
+  }), _defineProperty(_actions, "deleteCampaignSystem", function deleteCampaignSystem(_ref45, id) {
+    var commit = _ref45.commit;
+    commit("DELETE_CAMPAIGN_SYSTEM", id);
+  }), _defineProperty(_actions, "getNotifications", function getNotifications(_ref46) {
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee21() {
+      var commit, state, res;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee21$(_context21) {
+        while (1) {
+          switch (_context21.prev = _context21.next) {
+            case 0:
+              commit = _ref46.commit, state = _ref46.state;
+              _context21.next = 3;
+              return axios({
+                method: "get",
+                //you can set what request you want to be
+                url: "/api/notifications",
+                // data: {id: varID},
+                headers: {
+                  Authorization: "Bearer " + state.token,
+                  Accept: "application/json",
+                  "Content-Type": "application/json"
+                }
+              });
+
+            case 3:
+              res = _context21.sent;
+              commit("SET_NOTIFICATIONS", res.data.notifications);
+
+            case 5:
+            case "end":
+              return _context21.stop();
+          }
+        }
+      }, _callee21);
+    }))();
+  }), _defineProperty(_actions, "getdelveLink", function getdelveLink(_ref47) {
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee22() {
+      var commit, state, res;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee22$(_context22) {
+        while (1) {
+          switch (_context22.prev = _context22.next) {
+            case 0:
+              commit = _ref47.commit, state = _ref47.state;
+              _context22.next = 3;
+              return axios({
+                method: "get",
+                //you can set what request you want to be
+                url: "/api/notifications/10000060",
+                headers: {
+                  Authorization: "Bearer " + state.token,
+                  Accept: "application/json",
+                  "Content-Type": "application/json"
+                }
+              });
+
+            case 3:
+              res = _context22.sent;
+              commit("SET_DELVE_LINK", res.data.link);
+
+            case 5:
+            case "end":
+              return _context22.stop();
+          }
+        }
+      }, _callee22);
+    }))();
+  }), _defineProperty(_actions, "getqueriousLink", function getqueriousLink(_ref48) {
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee23() {
+      var commit, state, res;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee23$(_context23) {
+        while (1) {
+          switch (_context23.prev = _context23.next) {
+            case 0:
+              commit = _ref48.commit, state = _ref48.state;
+              _context23.next = 3;
+              return axios({
+                method: "get",
+                //you can set what request you want to be
+                url: "/api/notifications/10000050",
+                headers: {
+                  Authorization: "Bearer " + state.token,
+                  Accept: "application/json",
+                  "Content-Type": "application/json"
+                }
+              });
+
+            case 3:
+              res = _context23.sent;
+              commit("SET_QUERIOUS_LINK", res.data.link);
+
+            case 5:
+            case "end":
+              return _context23.stop();
+          }
+        }
+      }, _callee23);
+    }))();
+  }), _defineProperty(_actions, "getperiodbasisLink", function getperiodbasisLink(_ref49) {
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee24() {
+      var commit, state, res;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee24$(_context24) {
+        while (1) {
+          switch (_context24.prev = _context24.next) {
+            case 0:
+              commit = _ref49.commit, state = _ref49.state;
+              _context24.next = 3;
+              return axios({
+                method: "get",
+                //you can set what request you want to be
+                url: "/api/notifications/10000063",
+                headers: {
+                  Authorization: "Bearer " + state.token,
+                  Accept: "application/json",
+                  "Content-Type": "application/json"
+                }
+              });
+
+            case 3:
+              res = _context24.sent;
+              commit("SET_PERIOD_BASIS_LINK", res.data.link);
+
+            case 5:
+            case "end":
+              return _context24.stop();
+          }
+        }
+      }, _callee24);
+    }))();
+  }), _defineProperty(_actions, "setToken", function setToken(_ref50, token) {
+    var commit = _ref50.commit;
+    commit("SET_TOKEN", token);
+  }), _defineProperty(_actions, "setUser_id", function setUser_id(_ref51, user_id) {
+    var commit = _ref51.commit;
+    commit("SET_USER_ID", user_id);
+  }), _defineProperty(_actions, "setUser_name", function setUser_name(_ref52, user_name) {
+    var commit = _ref52.commit;
+    commit("SET_USER_NAME", user_name);
+  }), _defineProperty(_actions, "getCampaignUsersRecords", function getCampaignUsersRecords(_ref53, id) {
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee25() {
+      var commit, state, res;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee25$(_context25) {
+        while (1) {
+          switch (_context25.prev = _context25.next) {
+            case 0:
+              commit = _ref53.commit, state = _ref53.state;
+              _context25.next = 3;
+              return axios({
+                method: "get",
+                //you can set what request you want to be
+                url: "/api/campaignusersrecords/" + id,
+                headers: {
+                  Authorization: "Bearer " + state.token,
+                  Accept: "application/json",
+                  "Content-Type": "application/json"
+                }
+              });
+
+            case 3:
+              res = _context25.sent;
+
+              if (res.data.length != 0) {
+                commit("SET_CAMPAIGN_USERS", res.data.users);
+              }
+
+            case 5:
+            case "end":
+              return _context25.stop();
+          }
+        }
+      }, _callee25);
+    }))();
+  }), _defineProperty(_actions, "getCampaignSystemsRecords", function getCampaignSystemsRecords(_ref54) {
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee26() {
+      var commit, state, res;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee26$(_context26) {
+        while (1) {
+          switch (_context26.prev = _context26.next) {
+            case 0:
+              commit = _ref54.commit, state = _ref54.state;
+              _context26.next = 3;
+              return axios({
+                method: "get",
+                //you can set what request you want to be
+                url: "/api/campaignsystemsrecords",
+                headers: {
+                  Authorization: "Bearer " + state.token,
+                  Accept: "application/json",
+                  "Content-Type": "application/json"
+                }
+              });
+
+            case 3:
+              res = _context26.sent;
+
+              if (res.data.length != 0) {
+                commit("SET_CAMPAIGN_SYSTEMS", res.data.systems);
+              }
+
+            case 5:
+            case "end":
+              return _context26.stop();
+          }
+        }
+      }, _callee26);
+    }))();
+  }), _defineProperty(_actions, "loadCampaignSystemData", function loadCampaignSystemData(_ref55, payload) {
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee27() {
+      var commit, state, request, res;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee27$(_context27) {
+        while (1) {
+          switch (_context27.prev = _context27.next) {
+            case 0:
+              commit = _ref55.commit, state = _ref55.state;
+              request = {
+                user_id: payload.user_id,
+                campaign_id: payload.campaign_id,
+                type: payload.type
+              };
+              _context27.next = 4;
+              return axios({
+                method: "post",
+                //you can set what request you want to be
+                url: "/api/campaignsystemload",
+                data: request,
+                headers: {
+                  Authorization: "Bearer " + state.token,
+                  Accept: "application/json",
+                  "Content-Type": "application/json"
+                }
+              });
+
+            case 4:
+              res = _context27.sent;
+
+              if (res.data.length != 0) {
+                commit("SET_CAMPAIGN_SOLA_SYSTEMS", res.data.sola);
+                commit("SET_NODE_JOIN", res.data.nodejoin);
+                commit("SET_CAMPAIGN_USERS", res.data.users);
+                commit("SET_CAMPAIGN_SYSTEMS", res.data.systems);
+                commit("SET_USERS_CHARS", res.data.usersbyid);
+                commit("SET_LOGGING_CAMPAIGN", res.data.logs);
+              }
+
+            case 6:
+            case "end":
+              return _context27.stop();
+          }
+        }
+      }, _callee27);
+    }))();
+  }), _defineProperty(_actions, "loadStationInfo", function loadStationInfo(_ref56) {
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee28() {
+      var commit, state, res;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee28$(_context28) {
+        while (1) {
+          switch (_context28.prev = _context28.next) {
+            case 0:
+              commit = _ref56.commit, state = _ref56.state;
+              _context28.next = 3;
+              return axios({
+                method: "get",
+                //you can set what request you want to be
+                url: "/api/loadstationdata",
+                headers: {
+                  Authorization: "Bearer " + state.token,
+                  Accept: "application/json",
+                  "Content-Type": "application/json"
+                }
+              });
+
+            case 3:
+              res = _context28.sent;
+
+              if (res.data.length != 0) {
+                commit("SET_CORES", res.data.cores);
+                commit("SET_ITEMS", res.data.items);
+                commit("SET_STATIONS_FIT", res.data.fit);
+              }
+
+            case 5:
+            case "end":
+              return _context28.stop();
+          }
+        }
+      }, _callee28);
+    }))();
+  }), _actions),
   getters: {
     getCampaignsCount: function getCampaignsCount(state) {
       return state.campaigns.length;

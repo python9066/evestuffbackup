@@ -23,7 +23,8 @@ export default new Vuex.Store({
         delveLink: "",
         items:[],
         loggingAdmin:[],
-        loggingcampaign:[],
+        loggingcampaign: [],
+        moonlist:[],
         multicampaigns: [],
         nodeJoin: [],
         notifications: [],
@@ -47,6 +48,11 @@ export default new Vuex.Store({
         SET_SYSTEMLIST(state, systemlist) {
             state.systemlist = systemlist;
         },
+
+        SET_MOONLIST(state, moonlist) {
+            state.moonlist = moonlist;
+        },
+
 
         SET_STRUCTURELIST(state, structurelist) {
             state.structurelist = structurelist;
@@ -341,6 +347,21 @@ export default new Vuex.Store({
             });
             commit("SET_SYSTEMLIST", res.data.systemlist);
         },
+
+        async getSystemList({ commit, state }) {
+            let res = await axios({
+                method: "get",
+                url: "/api/moons",
+                headers: {
+                    Authorization: "Bearer " + state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                }
+            });
+            commit("SET_MOONLIST", res.data.moons);
+        },
+
+
 
         async getStructureList({ commit, state }) {
             let res = await axios({

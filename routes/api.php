@@ -138,4 +138,5 @@ Route::middleware('auth:api')->group(function () {
     Route::put('/stationname', 'StationController@reconPullbyname');
     Route::get('/structurelist', 'ItemController@index');
     Route::put('/stationnew', 'StationController@store');
+    Route::get('/moons', 'MoonController@index');
 });
