@@ -31764,12 +31764,7 @@ var render = function() {
       _c(
         "v-dialog",
         {
-          attrs: { "max-width": "700px", "z-index": "0" },
-          on: {
-            "click:outside": function($event) {
-              _vm.showAddTower = true
-            }
-          },
+          attrs: { "max-width": "700px", "z-index": "0", persistent: "" },
           scopedSlots: _vm._u([
             {
               key: "activator",
