@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Events\TowerChanged;
 use App\Events\TowerDelete;
+use App\Events\TowerNew;
 use App\Models\Tower;
 use App\Models\TowerRecord;
 use Illuminate\Http\Request;
@@ -28,7 +29,20 @@ class TowerRecordsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $id = Tower::where('id', '<', 10000)->min('id');
+        if ($id == null) {
+            $id = 1;
+        } else {
+            $id = $id + 1;
+        }
+
+        $new = Tower::create($request->all());
+        $message = TowerRecord::where('id', $new->id)->first();
+        $flag = collect([
+            'message' => $message
+        ]);
+
+        broadcast(new TowerNew($flag));
     }
 
     /**

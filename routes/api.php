@@ -92,6 +92,7 @@ Route::middleware('auth:api')->group(function () {
 
     Route::get('/towersrecords', 'TowerRecordsController@index');
     Route::put('/towerrecords/{id}', 'TowerRecordsController@update');
+    Route::put('/towerrecordsnew/{id}', 'TowerRecordsController@store');
 
     Route::post('/feedback', 'FeedBackController@store');
     Route::get('/feedback', 'FeedBackController@index');
@@ -135,6 +136,7 @@ Route::middleware('auth:api')->group(function () {
 
     Route::get('/systemlist', 'SystemController@index');
     Route::get('/ticklist', 'CorpController@index');
+    Route::get('/allianceticklist', 'AllianceController@allianceTickList');
     Route::put('/stationname', 'StationController@reconPullbyname');
     Route::get('/structurelist', 'ItemController@index');
     Route::put('/stationnew', 'StationController@store');

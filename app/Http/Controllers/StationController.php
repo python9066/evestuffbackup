@@ -214,7 +214,7 @@ class StationController extends Controller
      */
     public function store(Request $request)
     {
-        $id = Station::where('id', '<', 1000000000)->max('id');
+        $id = Station::where('id', '<', 1000000000)->min('id');
         if ($id == null) {
             $id = 1;
         } else {

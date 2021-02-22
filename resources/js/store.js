@@ -12,6 +12,7 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
     state: {
+        allianceticklist:[],
         campaigns: [],
         campaignJoin: [],
         campaignSolaSystems:[],
@@ -60,6 +61,10 @@ export default new Vuex.Store({
 
         SET_TICKLIST(state, ticklist) {
             state.ticklist = ticklist;
+        },
+
+        SET_ALLIANCE_TICKLIST(state, allianceticklist) {
+            state.allianceticklist = allianceticklist;
         },
 
 
@@ -391,6 +396,19 @@ export default new Vuex.Store({
                 }
             });
             commit("SET_TICKLIST", res.data.ticklist);
+        },
+
+        async getAllianceTickList({ commit, state }) {
+            let res = await axios({
+                method: "get",
+                url: "/api/allianceticklist",
+                headers: {
+                    Authorization: "Bearer " + state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                }
+            });
+            commit("SET_ALLIANCE_TICKLIST", res.data.allianceticklist);
         },
 
 

@@ -72,7 +72,7 @@
                                 clearable
                                 :items="tickItems"
                                 :search-input.sync="tickSearch"
-                                label="Corp Ticker"
+                                label="Alliance Ticker"
                                 outlined
                             ></v-autocomplete>
                         </div>
@@ -88,15 +88,6 @@
                         color="green"
                         :disabled="showSubmit"
                         @click="submit()"
-                        v-if="state == 2"
-                    >
-                        Submit </v-btn
-                    ><v-btn
-                        class="white--text"
-                        color="green"
-                        :disabled="showSubmit3"
-                        @click="submit3()"
-                        v-if="state == 3"
                     >
                         Submit
                     </v-btn></v-card-actions
@@ -201,28 +192,29 @@ export default {
         },
 
         async submit() {
-            var d = parseInt(this.refTime.substr(0, 1));
-            var h = parseInt(this.refTime.substr(3, 2));
-            var m = parseInt(this.refTime.substr(6, 2));
-            var s = parseInt(this.refTime.substr(9, 2));
-            var ds = d * 24 * 60 * 60;
-            var hs = h * 60 * 60;
-            var ms = m * 60;
-            var sec = ds + hs + ms + s;
-            var outTime = moment
-                .utc()
-                .add(sec, "seconds")
-                .format("YYYY-MM-DD HH:mm:ss");
+            // var d = parseInt(this.refTime.substr(0, 1));
+            // var h = parseInt(this.refTime.substr(3, 2));
+            // var m = parseInt(this.refTime.substr(6, 2));
+            // var s = parseInt(this.refTime.substr(9, 2));
+            // var ds = d * 24 * 60 * 60;
+            // var hs = h * 60 * 60;
+            // var ms = m * 60;
+            // var sec = ds + hs + ms + s;
+            // var outTime = moment
+            //     .utc()
+            //     .add(sec, "seconds")
+            //     .format("YYYY-MM-DD HH:mm:ss");
 
             var request = {
-                station_status_id: this.refType,
-                out_time: outTime,
-                status_update: moment.utc().format("YYYY-MM-DD HH:mm:ss")
+                system_id: this.sysSelect,
+                alliance_id: this.tickSelect,
+                item_id: this.structSelect,
+                timestamp: moment.utc().format("YYYY-MM-DD HH:mm:ss")
             };
 
             await axios({
                 method: "put", //you can set what request you want to be
-                url: "api/updatestationnotification/" + station.id,
+                url: "api/towerrecordsnew/" + station.id,
                 data: request,
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
@@ -324,7 +316,12 @@ export default {
 
     computed: {
         ...mapGetters([]),
-        ...mapState(["systemlist", "structurelist", "ticklist", "moonlist"]),
+        ...mapState([
+            "systemlist",
+            "structurelist",
+            "allianceticklist",
+            "moonlist"
+        ]),
         showSubmit() {
             if (
                 this.structSelect != null &&
@@ -348,7 +345,7 @@ export default {
         },
 
         tickList() {
-            return this.ticklist;
+            return this.allianceticklist;
         },
 
         moonDisable() {
