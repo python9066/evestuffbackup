@@ -473,19 +473,19 @@ export default {
             }
         },
 
-        click(item, list) {
+        async click(item, list) {
             var request = {};
 
             if (item.tower_status_id == 3) {
-                if (item.tower_status_id != list.value) {
-                    this.anchoringClass =
-                        "animate__animated animate__zoomOut animate__faster";
-                }
+                this.anchoringClass =
+                    "animate__animated animate__zoomOut animate__faster";
+                await sleep(1000);
             }
 
             if (list.value == 3) {
                 this.anchoringClass =
                     "animate__animated animate__zoomIn animate__faster";
+                await sleep(1000);
             }
 
             item.tower_status_id = list.value;

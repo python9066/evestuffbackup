@@ -18523,51 +18523,77 @@ function sleep(ms) {
       }
     },
     click: function click(item, list) {
-      var request = {};
+      var _this3 = this;
 
-      if (item.tower_status_id == 3) {
-        if (item.tower_status_id != list.value) {
-          this.anchoringClass = "animate__animated animate__zoomOut animate__faster";
-        }
-      }
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+        var request;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                request = {};
 
-      if (list.value == 3) {
-        this.anchoringClass = "animate__animated animate__zoomIn animate__faster";
-      }
+                if (!(item.tower_status_id == 3)) {
+                  _context2.next = 5;
+                  break;
+                }
 
-      item.tower_status_id = list.value;
-      item.tower_status_name = list.title;
-      item.user_name = this.user_name;
+                _this3.anchoringClass = "animate__animated animate__zoomOut animate__faster";
+                _context2.next = 5;
+                return sleep(1000);
 
-      if (item.tower_status_id == 1 || item.tower_status_id == 6) {
-        this.expanded = [];
-        item.text = null;
-      }
+              case 5:
+                if (!(list.value == 3)) {
+                  _context2.next = 9;
+                  break;
+                }
 
-      if (item.tower_status_id != 3 && item.tower_status_id != 5) {
-        var request = {
-          tower_status_id: item.tower_status_id,
-          user_id: this.$store.state.user_id,
-          out_time: null
-        };
-      } else {
-        var request = {
-          tower_status_id: item.tower_status_id,
-          user_id: this.$store.state.user_id
-        };
-      }
+                _this3.anchoringClass = "animate__animated animate__zoomIn animate__faster";
+                _context2.next = 9;
+                return sleep(1000);
 
-      axios({
-        method: "put",
-        //you can set what request you want to be
-        url: "api/towerrecords/" + item.id,
-        data: request,
-        headers: {
-          Authorization: "Bearer " + this.$store.state.token,
-          Accept: "application/json",
-          "Content-Type": "application/json"
-        }
-      });
+              case 9:
+                item.tower_status_id = list.value;
+                item.tower_status_name = list.title;
+                item.user_name = _this3.user_name;
+
+                if (item.tower_status_id == 1 || item.tower_status_id == 6) {
+                  _this3.expanded = [];
+                  item.text = null;
+                }
+
+                if (item.tower_status_id != 3 && item.tower_status_id != 5) {
+                  request = {
+                    tower_status_id: item.tower_status_id,
+                    user_id: _this3.$store.state.user_id,
+                    out_time: null
+                  };
+                } else {
+                  request = {
+                    tower_status_id: item.tower_status_id,
+                    user_id: _this3.$store.state.user_id
+                  };
+                }
+
+                axios({
+                  method: "put",
+                  //you can set what request you want to be
+                  url: "api/towerrecords/" + item.id,
+                  data: request,
+                  headers: {
+                    Authorization: "Bearer " + _this3.$store.state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                  }
+                });
+
+              case 15:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2);
+      }))();
     },
     sec: function sec(item) {
       var a = moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc();
