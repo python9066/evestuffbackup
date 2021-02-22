@@ -20,8 +20,17 @@ class MoonController extends Controller
 
     public function bySystem($sysid)
     {
-        $moon = Moon::where('system_id', $sysid)->get();
-        return ['moons' => $moon];
+        $moonlist = [];
+        $moons = Moon::where('system_id', $sysid)->get();
+        foreach ($moons as $moon) {
+            $data = [
+                'text' => $moon->name,
+                'value' => $moon->id
+            ];
+
+            array_push($moonlist, $data);
+        }
+        return ['moons' => $moonlist];
     }
 
     /**
