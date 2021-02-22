@@ -43987,7 +43987,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
         }, _callee2);
       }))();
     },
-    getMoonList: function getMoonList(_ref3) {
+    getMoonList: function getMoonList(_ref3, system_id) {
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
         var commit, state, res;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
@@ -43998,7 +43998,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
                 _context3.next = 3;
                 return axios({
                   method: "get",
-                  url: "/api/moons",
+                  url: "/api/moons/" + system_id,
                   headers: {
                     Authorization: "Bearer " + state.token,
                     Accept: "application/json",

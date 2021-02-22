@@ -348,10 +348,10 @@ export default new Vuex.Store({
             commit("SET_SYSTEMLIST", res.data.systemlist);
         },
 
-        async getMoonList({ commit, state }) {
+        async getMoonList({ commit, state }, system_id) {
             let res = await axios({
                 method: "get",
-                url: "/api/moons",
+                url: "/api/moons/" + system_id,
                 headers: {
                     Authorization: "Bearer " + state.token,
                     Accept: "application/json",

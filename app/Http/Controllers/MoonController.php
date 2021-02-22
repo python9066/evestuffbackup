@@ -18,6 +18,12 @@ class MoonController extends Controller
         return ['moons' => $moon];
     }
 
+    public function bySystem($sysid)
+    {
+        $moon = Moon::where('system_id', $sysid)->get();
+        return ['moons' => $moon];
+    }
+
     /**
      * Store a newly created resource in storage.
      *
