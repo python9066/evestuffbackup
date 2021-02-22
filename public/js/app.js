@@ -11585,7 +11585,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 //     .add(sec, "seconds")
                 //     .format("YYYY-MM-DD HH:mm:ss");
                 request = {
-                  system_id: _this.sysSelect,
+                  moon_id: _this.moonSelect,
                   alliance_id: _this.tickSelect,
                   item_id: _this.structSelect,
                   timestamp: moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc().format("YYYY-MM-DD HH:mm:ss"),

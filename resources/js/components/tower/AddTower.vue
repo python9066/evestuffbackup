@@ -214,7 +214,7 @@ export default {
             //     .format("YYYY-MM-DD HH:mm:ss");
 
             var request = {
-                system_id: this.sysSelect,
+                moon_id: this.moonSelect,
                 alliance_id: this.tickSelect,
                 item_id: this.structSelect,
                 timestamp: moment.utc().format("YYYY-MM-DD HH:mm:ss"),
