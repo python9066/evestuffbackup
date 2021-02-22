@@ -24,7 +24,7 @@ class GiceProvider extends AbstractProvider implements ProviderInterface
      */
     protected $scopes = [
         'openid',
-        'groups-limited'
+        // 'groups-limited'
     ];
 
     /**
@@ -71,9 +71,9 @@ class GiceProvider extends AbstractProvider implements ProviderInterface
         ]);
 
         // dd(json_decode($response->getBody(), true));
-        echo '<pre>';
-        print_r(json_decode($response->getBody(), true));
-        echo '</pre>';
+        // echo '<pre>';
+        // print_r(json_decode($response->getBody(), true));
+        // echo '</pre>';
         return json_decode($response->getBody(), true);
     }
 
