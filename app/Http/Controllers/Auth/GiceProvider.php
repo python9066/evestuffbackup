@@ -71,6 +71,7 @@ class GiceProvider extends AbstractProvider implements ProviderInterface
         ]);
 
         // dd(json_decode($response->getBody(), true));
+        echo json_decode($response->getBody(), true);
         return json_decode($response->getBody(), true);
     }
 
