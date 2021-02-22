@@ -17605,6 +17605,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 
@@ -37389,6 +37390,7 @@ var render = function() {
                                         }
                                       ],
                                       key: "adash" + item.id,
+                                      staticClass: " pt-2",
                                       attrs: {
                                         pill: "",
                                         outlined: "",

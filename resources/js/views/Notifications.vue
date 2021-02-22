@@ -283,6 +283,7 @@
                         </v-menu>
                         <v-slide-x-transition group>
                             <v-chip
+                                class=" pt-2"
                                 pill
                                 :key="'adash' + item.id"
                                 outlined
