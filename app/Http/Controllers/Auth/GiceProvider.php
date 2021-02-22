@@ -23,7 +23,7 @@ class GiceProvider extends AbstractProvider implements ProviderInterface
      */
     protected $scopes = [
         'openid',
-        // 'groups-limited'
+        'groups-limited'
     ];
 
     /**
@@ -85,38 +85,7 @@ class GiceProvider extends AbstractProvider implements ProviderInterface
         return $fields;
     }
 
-    // /**
-    //  * Get the POST fields for the token request.
-    //  *
-    //  * @param  string  $code
-    //  * @return array
-    //  */
-    // protected function getTokenFields($code)
-    // {
 
-    //     return Arr::add(
-    //         parent::getTokenFields($code),
-    //         'grant_type',
-    //         $code
-    //     );
-    // }
-
-    public function user()
-    {
-        if ($this->user) {
-            return $this->user;
-        }
-
-        $response = $this->getAccessTokenResponse($this->getCode());
-
-        $this->user = $this->mapUserToObject($this->getUserByToken(
-            $token = Arr::get($response, 'access_token')
-        ));
-
-        return $this->user->setToken($token)
-            ->setRefreshToken(Arr::get($response, 'refresh_token'))
-            ->setExpiresIn(Arr::get($response, 'expires_in'));
-    }
 
 
 
@@ -125,7 +94,7 @@ class GiceProvider extends AbstractProvider implements ProviderInterface
      */
     protected function getUserByToken($token)
     {
-        // dd($token);
+        dd($token);
         $response = $this->getHttpClient()->get('https://esi.goonfleet.com/oauth/userinfo', [
             'headers' => [
                 'Accept' => 'application/json',
