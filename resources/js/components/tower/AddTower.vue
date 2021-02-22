@@ -54,7 +54,7 @@
                                 label="System Name"
                                 outlined
                             ></v-autocomplete>
-                            <v-autocomplete
+                            <!-- <v-autocomplete
                                 v-model="moonSelect"
                                 :loading="moonLoading"
                                 clearable
@@ -62,7 +62,7 @@
                                 :search-input.sync="moonSearch"
                                 label="Moon"
                                 outlined
-                            ></v-autocomplete>
+                            ></v-autocomplete> -->
                             <v-autocomplete
                                 class=" ml-2"
                                 v-model="tickSelect"
@@ -169,11 +169,11 @@ export default {
 
         structSearch(val) {
             val && val !== this.structSelect && this.structQuerySelections(val);
-        },
-
-        moonSearch(val) {
-            val && val !== this.moonSelect && this.moonQuerySelections(val);
         }
+
+        // moonSearch(val) {
+        //     val && val !== this.moonSelect && this.moonQuerySelections(val);
+        // }
     },
 
     methods: {
@@ -294,20 +294,20 @@ export default {
             }, 500);
         },
 
-        moonQuerySelections(v) {
-            this.moonLoading = true;
-            // Simulated ajax query
-            setTimeout(() => {
-                this.moonItems = this.moonList.filter(e => {
-                    return (
-                        (e.text || "")
-                            .toLowerCase()
-                            .indexOf((v || "").toLowerCase()) > -1
-                    );
-                });
-                this.moonLoading = false;
-            }, 500);
-        },
+        // moonQuerySelections(v) {
+        //     this.moonLoading = true;
+        //     // Simulated ajax query
+        //     setTimeout(() => {
+        //         this.moonItems = this.moonList.filter(e => {
+        //             return (
+        //                 (e.text || "")
+        //                     .toLowerCase()
+        //                     .indexOf((v || "").toLowerCase()) > -1
+        //             );
+        //         });
+        //         this.moonLoading = false;
+        //     }, 500);
+        // },
 
         async open() {
             await this.$store.dispatch("getSystemList");

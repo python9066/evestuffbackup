@@ -11536,10 +11536,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
     structSearch: function structSearch(val) {
       val && val !== this.structSelect && this.structQuerySelections(val);
-    },
-    moonSearch: function moonSearch(val) {
-      val && val !== this.moonSelect && this.moonQuerySelections(val);
-    }
+    } // moonSearch(val) {
+    //     val && val !== this.moonSelect && this.moonQuerySelections(val);
+    // }
+
   },
   methods: {
     close: function close() {
@@ -11642,20 +11642,22 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         _this4.sysLoading = false;
       }, 500);
     },
-    moonQuerySelections: function moonQuerySelections(v) {
-      var _this5 = this;
-
-      this.moonLoading = true; // Simulated ajax query
-
-      setTimeout(function () {
-        _this5.moonItems = _this5.moonList.filter(function (e) {
-          return (e.text || "").toLowerCase().indexOf((v || "").toLowerCase()) > -1;
-        });
-        _this5.moonLoading = false;
-      }, 500);
-    },
+    // moonQuerySelections(v) {
+    //     this.moonLoading = true;
+    //     // Simulated ajax query
+    //     setTimeout(() => {
+    //         this.moonItems = this.moonList.filter(e => {
+    //             return (
+    //                 (e.text || "")
+    //                     .toLowerCase()
+    //                     .indexOf((v || "").toLowerCase()) > -1
+    //             );
+    //         });
+    //         this.moonLoading = false;
+    //     }, 500);
+    // },
     open: function open() {
-      var _this6 = this;
+      var _this5 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
@@ -11663,15 +11665,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context2.prev = _context2.next) {
               case 0:
                 _context2.next = 2;
-                return _this6.$store.dispatch("getSystemList");
+                return _this5.$store.dispatch("getSystemList");
 
               case 2:
                 _context2.next = 4;
-                return _this6.$store.dispatch("getTickList");
+                return _this5.$store.dispatch("getTickList");
 
               case 4:
                 _context2.next = 6;
-                return _this6.$store.dispatch("getStructureList");
+                return _this5.$store.dispatch("getStructureList");
 
               case 6:
               case "end":
@@ -31868,32 +31870,6 @@ var render = function() {
                             _vm.sysSelect = $$v
                           },
                           expression: "sysSelect"
-                        }
-                      }),
-                      _vm._v(" "),
-                      _c("v-autocomplete", {
-                        attrs: {
-                          loading: _vm.moonLoading,
-                          clearable: "",
-                          items: _vm.moonItems,
-                          "search-input": _vm.moonSearch,
-                          label: "Moon",
-                          outlined: ""
-                        },
-                        on: {
-                          "update:searchInput": function($event) {
-                            _vm.moonSearch = $event
-                          },
-                          "update:search-input": function($event) {
-                            _vm.moonSearch = $event
-                          }
-                        },
-                        model: {
-                          value: _vm.moonSelect,
-                          callback: function($$v) {
-                            _vm.moonSelect = $$v
-                          },
-                          expression: "moonSelect"
                         }
                       }),
                       _vm._v(" "),
