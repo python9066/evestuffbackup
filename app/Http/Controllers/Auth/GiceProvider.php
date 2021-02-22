@@ -44,17 +44,17 @@ class GiceProvider extends AbstractProvider implements ProviderInterface
     }
 
 
-    // public function getAccessToken($code)
-    // {
-    // $response = $this->getHttpClient()->post($this->getTokenUrl(), [
-    //     'headers' => ['Authorization' => 'Basic ' . base64_encode($this->clientId . ':' . $this->clientSecret)],
-    //     'body'    => $this->getTokenFields($code),
-    // ]);
+    public function getAccessToken($code)
+    {
+        $response = $this->getHttpClient()->post($this->getTokenUrl(), [
+            'headers' => ['Authorization' => 'Basic ' . base64_encode($this->clientId . ':' . $this->clientSecret)],
+            'body'    => $this->getTokenFields($code),
+        ]);
 
-    // dd($response->getBody());
+        dd($response->getBody());
 
-    // return $this->parseAccessToken($response->getBody());
-    // }
+        return $this->parseAccessToken($response->getBody());
+    }
 
     /**
      * Get the POST fields for the token request.
