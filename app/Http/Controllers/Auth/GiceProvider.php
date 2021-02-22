@@ -61,15 +61,15 @@ class GiceProvider extends AbstractProvider implements ProviderInterface
      * @param  string  $code
      * @return array
      */
-    protected function getTokenFields($code)
-    {
+    // protected function getTokenFields($code)
+    // {
 
-        return Arr::add(
-            parent::getTokenFields($code),
-            'grant_type',
-            $code
-        );
-    }
+    //     return Arr::add(
+    //         parent::getTokenFields($code),
+    //         'grant_type',
+    //         $code
+    //     );
+    // }
 
 
 
