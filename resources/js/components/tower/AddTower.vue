@@ -322,9 +322,9 @@ export default {
         },
 
         async open() {
-            await this.$store.dispatch("getTowerList");
+            await this.$store.dispatch("getSystemList");
             await this.$store.dispatch("getAllianceTickList");
-            await this.$store.dispatch("getStructureList");
+            await this.$store.dispatch("getTowerList");
         }
     },
 

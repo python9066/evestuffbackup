@@ -11688,7 +11688,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context3.prev = _context3.next) {
               case 0:
                 _context3.next = 2;
-                return _this7.$store.dispatch("getTowerList");
+                return _this7.$store.dispatch("getSystemList");
 
               case 2:
                 _context3.next = 4;
@@ -11696,7 +11696,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               case 4:
                 _context3.next = 6;
-                return _this7.$store.dispatch("getStructureList");
+                return _this7.$store.dispatch("getTowerList");
 
               case 6:
               case "end":
