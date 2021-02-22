@@ -63,7 +63,7 @@ class GiceProvider extends AbstractProvider implements ProviderInterface
      */
     protected function getTokenFields($code)
     {
-        dd('code');
+        dd($code);
         return Arr::add(
             parent::getTokenFields($code),
             'grant_type',
