@@ -17605,7 +17605,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
 
 
 
@@ -37277,7 +37276,7 @@ var render = function() {
                                               "div",
                                               {
                                                 staticClass:
-                                                  "align-items-center d-inline-flex"
+                                                  "align-content-center d-inline-flex"
                                               },
                                               [
                                                 _c(
@@ -37390,7 +37389,6 @@ var render = function() {
                                         }
                                       ],
                                       key: "adash" + item.id,
-                                      staticClass: " pt-2",
                                       attrs: {
                                         pill: "",
                                         outlined: "",

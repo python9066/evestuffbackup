@@ -247,7 +247,7 @@
                     >
                         <v-menu offset-y>
                             <template v-slot:activator="{ on, attrs }">
-                                <div class="align-items-center d-inline-flex">
+                                <div class="align-content-center d-inline-flex">
                                     <v-btn
                                         class="ma-2"
                                         v-bind="attrs"
@@ -283,7 +283,6 @@
                         </v-menu>
                         <v-slide-x-transition group>
                             <v-chip
-                                class=" pt-2"
                                 pill
                                 :key="'adash' + item.id"
                                 outlined
