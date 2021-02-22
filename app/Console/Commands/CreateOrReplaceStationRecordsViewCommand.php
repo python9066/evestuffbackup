@@ -53,6 +53,7 @@ class CreateOrReplaceStationRecordsViewCommand extends Command
        stations.station_status_id AS 'station_status_id',
        station_statuses.name AS 'station_status_name',
        if(stations.out_time IS NULL,stations.timestamp, stations.out_time) AS 'timestamp',
+       stations.out_time AS 'out_time',
        alliances.name AS 'alliance_name',
        stations.text AS 'text',
        stations.repair_time AS 'repair_time',
