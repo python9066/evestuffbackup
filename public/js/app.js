@@ -18249,6 +18249,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 
@@ -18532,21 +18533,6 @@ function sleep(ms) {
             switch (_context2.prev = _context2.next) {
               case 0:
                 request = {};
-
-                if (!(item.tower_status_id == 3)) {
-                  _context2.next = 5;
-                  break;
-                }
-
-                _this3.anchoringClass = "animate__animated animate__zoomOut animate__faster";
-                _context2.next = 5;
-                return sleep(500);
-
-              case 5:
-                if (list.value == 3) {
-                  _this3.anchoringClass = "animate__animated animate__zoomIn animate__faster";
-                }
-
                 item.tower_status_id = list.value;
                 item.tower_status_name = list.title;
                 item.user_name = _this3.user_name;
@@ -18581,7 +18567,7 @@ function sleep(ms) {
                   }
                 });
 
-              case 12:
+              case 7:
               case "end":
                 return _context2.stop();
             }
@@ -37864,7 +37850,7 @@ var render = function() {
                                     "\n                            item.tower_status_id != 6 &&\n                                item.tower_status_id != 1 &&\n                                !expanded.includes(item)\n                        "
                                 }
                               ],
-                              key: "chip",
+                              key: "chip" + item.id,
                               attrs: {
                                 pill: "",
                                 outlined: "",
@@ -37896,7 +37882,7 @@ var render = function() {
                                     "\n                            (item.tower_status_id != 6 ||\n                                item.tower_status_id != 1) &&\n                                expanded.includes(item)\n                        "
                                 }
                               ],
-                              key: "button",
+                              key: "button" + item.id,
                               attrs: { icon: "", color: "error" },
                               on: {
                                 click: function($event) {
@@ -37912,7 +37898,7 @@ var render = function() {
                       ),
                       _vm._v(" "),
                       _c(
-                        "v-fab-transition",
+                        "v-slide-y-transition",
                         [
                           _c("TowerRefTimer", {
                             directives: [
@@ -37930,18 +37916,24 @@ var render = function() {
                         1
                       ),
                       _vm._v(" "),
-                      _c("TowerOnlineTimer", {
-                        directives: [
-                          {
-                            name: "show",
-                            rawName: "v-show",
-                            value: item.tower_status_id == 3,
-                            expression: "item.tower_status_id == 3"
-                          }
+                      _c(
+                        "v-slide-y-transition",
+                        [
+                          _c("TowerOnlineTimer", {
+                            directives: [
+                              {
+                                name: "show",
+                                rawName: "v-show",
+                                value: item.tower_status_id == 3,
+                                expression: "item.tower_status_id == 3"
+                              }
+                            ],
+                            key: "TowerOnlineTimer" + item.id,
+                            attrs: { item: item }
+                          })
                         ],
-                        class: _vm.anchoringClass,
-                        attrs: { item: item }
-                      })
+                        1
+                      )
                     ],
                     1
                   )

@@ -148,7 +148,7 @@
                     <!-- EXTRA BUTTON -->
                     <v-fab-transition group>
                         <v-chip
-                            key="chip"
+                            :key="'chip' + item.id"
                             pill
                             outlined
                             small
@@ -164,7 +164,7 @@
                             >adash</v-chip
                         >
                         <v-btn
-                            key="button"
+                            :key="'button' + item.id"
                             icon
                             @click="(expanded = []), (expanded_id = 0)"
                             v-show="
@@ -176,19 +176,20 @@
                             ><v-icon>fas fa-minus</v-icon></v-btn
                         >
                     </v-fab-transition>
-                    <v-fab-transition>
+                    <v-slide-y-transition>
                         <TowerRefTimer
                             :key="'towerreftimer' + item.id"
                             :item="item"
                             v-show="item.tower_status_id == 5"
                         ></TowerRefTimer>
-                    </v-fab-transition>
-
-                    <TowerOnlineTimer
-                        v-show="item.tower_status_id == 3"
-                        :item="item"
-                        :class="anchoringClass"
-                    ></TowerOnlineTimer>
+                    </v-slide-y-transition>
+                    <v-slide-y-transition>
+                        <TowerOnlineTimer
+                            :key="'TowerOnlineTimer' + item.id"
+                            v-show="item.tower_status_id == 3"
+                            :item="item"
+                        ></TowerOnlineTimer>
+                    </v-slide-y-transition>
                 </div>
             </template>
             <template
@@ -475,17 +476,6 @@ export default {
 
         async click(item, list) {
             var request = {};
-
-            if (item.tower_status_id == 3) {
-                this.anchoringClass =
-                    "animate__animated animate__zoomOut animate__faster";
-                await sleep(500);
-            }
-
-            if (list.value == 3) {
-                this.anchoringClass =
-                    "animate__animated animate__zoomIn animate__faster";
-            }
 
             item.tower_status_id = list.value;
             item.tower_status_name = list.title;
