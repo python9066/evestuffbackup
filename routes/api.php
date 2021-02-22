@@ -92,7 +92,7 @@ Route::middleware('auth:api')->group(function () {
 
     Route::get('/towersrecords', 'TowerRecordsController@index');
     Route::put('/towerrecords/{id}', 'TowerRecordsController@update');
-    Route::put('/towerrecordsnew/{id}', 'TowerRecordsController@store');
+    Route::put('/towerrecords', 'TowerRecordsController@store');
 
     Route::post('/feedback', 'FeedBackController@store');
     Route::get('/feedback', 'FeedBackController@index');
