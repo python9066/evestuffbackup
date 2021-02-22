@@ -23,7 +23,7 @@ class GiceProvider extends AbstractProvider implements ProviderInterface
      */
     protected $scopes = [
         'openid',
-        'groups-limited'
+        // 'groups-limited'
     ];
 
     /**
@@ -69,7 +69,7 @@ class GiceProvider extends AbstractProvider implements ProviderInterface
             'form_params' => $this->getTokenFields($code),
         ]);
 
-        dd(json_decode($response->getBody(), true));
+        // dd(json_decode($response->getBody(), true));
         return json_decode($response->getBody(), true);
     }
 
