@@ -241,83 +241,82 @@
                     v-slot:item.status_name="{ item }"
                     class="align-items-center d-inline-flex"
                 >
-                    <v-menu offset-y v-if="$can('edit_notifications')">
-                        <template v-slot:activator="{ on, attrs }">
-                            <div class="align-items-center d-inline-flex">
-                                <v-btn
-                                    class="ma-2"
-                                    v-bind="attrs"
-                                    v-on="on"
-                                    tile
-                                    outlined
-                                    :color="statusButtonColor(item)"
-                                >
-                                    <v-icon left>{{
-                                        statusButtonIcon(item)
-                                    }}</v-icon>
-                                    {{ item.status_name }}
-                                </v-btn>
-
-                                <!-- EXTRA BUTTON -->
-                                <v-fab-transition>
-                                    <v-chip
-                                        pill
-                                        outlined
-                                        small
-                                        @click="
-                                            (expanded = [item]),
-                                                (expanded_id = item.id)
-                                        "
-                                        v-if="
-                                            item.status_id == 5 &&
-                                                !expanded.includes(item)
-                                        "
-                                        color="success"
-                                        >aDash</v-chip
-                                    >
+                    <div v-if="$can('edit_notifications')">
+                        <v-menu offset-y>
+                            <template v-slot:activator="{ on, attrs }">
+                                <div class="align-items-center d-inline-flex">
                                     <v-btn
-                                        icon
-                                        @click="
-                                            (expanded = []), (expanded_id = 0)
-                                        "
-                                        v-if="
-                                            item.status_id == 5 &&
-                                                expanded.includes(item)
-                                        "
-                                        color="error"
+                                        class="ma-2"
+                                        v-bind="attrs"
+                                        v-on="on"
+                                        tile
+                                        outlined
+                                        :color="statusButtonColor(item)"
                                     >
-                                        <v-icon>fas fa-minus</v-icon></v-btn
-                                    >
-                                </v-fab-transition>
-                                <v-fab-transition>
-                                    <NotificationTimer
-                                        :item="item"
-                                        v-if="
-                                            item.status_id == 5 ||
-                                                item.status_id == 3
-                                        "
-                                    ></NotificationTimer>
-                                </v-fab-transition>
-                            </div>
-                        </template>
+                                        <v-icon left>{{
+                                            statusButtonIcon(item)
+                                        }}</v-icon>
+                                        {{ item.status_name }}
+                                    </v-btn>
+                                </div>
+                            </template>
 
-                        <v-list>
-                            <v-list-item
-                                v-for="(list, index) in dropdown_edit"
-                                :key="index"
+                            <v-list>
+                                <v-list-item
+                                    v-for="(list, index) in dropdown_edit"
+                                    :key="index"
+                                    @click="
+                                        (item.status_id = list.value),
+                                            (item.status_name = list.title),
+                                            (item.user_name = user_name),
+                                            click(item)
+                                    "
+                                >
+                                    <v-list-item-title>{{
+                                        list.title
+                                    }}</v-list-item-title>
+                                </v-list-item>
+                            </v-list>
+                        </v-menu>
+                        <v-fab-transition>
+                            <v-chip
+                                pill
+                                :key="'adash' + item.id"
+                                outlined
+                                small
                                 @click="
-                                    (item.status_id = list.value),
-                                        (item.status_name = list.title),
-                                        (item.user_name = user_name),
-                                        click(item)
+                                    (expanded = [item]), (expanded_id = item.id)
                                 "
+                                v-show="
+                                    item.status_id == 5 &&
+                                        !expanded.includes(item)
+                                "
+                                color="success"
+                                >aDash</v-chip
                             >
-                                <v-list-item-title>{{
-                                    list.title
-                                }}</v-list-item-title>
-                            </v-list-item>
-                        </v-list>
-                    </v-menu>
+                            <v-btn
+                                icon
+                                :key="'adash_' + item.id"
+                                @click="(expanded = []), (expanded_id = 0)"
+                                v-show="
+                                    item.status_id == 5 &&
+                                        expanded.includes(item)
+                                "
+                                color="error"
+                            >
+                                <v-icon>fas fa-minus</v-icon></v-btn
+                            >
+                        </v-fab-transition>
+                        <v-fab-transition>
+                            <NotificationTimer
+                                :item="item"
+                                :key="'NoteTimer' + item.id"
+                                v-show="
+                                    item.status_id == 5 || item.status_id == 3
+                                "
+                            ></NotificationTimer>
+                        </v-fab-transition>
+                    </div>
                     <div v-else>
                         <template>
                             <div class="align-items-center d-inline-flex">
