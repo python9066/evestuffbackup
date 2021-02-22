@@ -28,12 +28,12 @@ class AuthController extends Controller
     {
         $flag = 0;
         $userGice = Socialite::with('gice')->user();
+        dd($userGice);
         $check = User::where('id', $userGice->id)->get()->count();
         if ($check != 1) {
             $flag = 1;
         };
 
-        // dd($userGice);
         // User::updateOrCreate(['id' => $userGice->id], ['name' => $userGice->name, 'token' => $userGice->token, 'pri_grp' => $userGice->user['pri_grp'], 'api_token' => Str::random(60)]);
         User::updateOrCreate(['id' => $userGice->id], ['name' => $userGice->name, 'token' => $userGice->token, 'api_token' => Str::random(60)]);
         $user = User::where('id', $userGice->id)->first();
