@@ -39,7 +39,8 @@ export default new Vuex.Store({
         ticklist:[],
         timers: [],
         token: "",
-        towers:[],
+        towers: [],
+        towerlist:[],
         users:[],
         user_id: 0,
         user_name:"",
@@ -57,6 +58,10 @@ export default new Vuex.Store({
 
         SET_STRUCTURELIST(state, structurelist) {
             state.structurelist = structurelist;
+        },
+
+        SET_TOWERLIST(state, towerlist) {
+            state.towerlist = towerlist;
         },
 
         SET_TICKLIST(state, ticklist) {
@@ -379,6 +384,19 @@ export default new Vuex.Store({
                 }
             });
             commit("SET_STRUCTURELIST", res.data.structurelist);
+        },
+
+        async getTowerList({ commit, state }) {
+            let res = await axios({
+                method: "get",
+                url: "/api/towerlist",
+                headers: {
+                    Authorization: "Bearer " + state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                }
+            });
+            commit("TOWERLIST", res.data.towerlist);
         },
 
 

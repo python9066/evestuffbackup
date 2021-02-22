@@ -139,6 +139,7 @@ Route::middleware('auth:api')->group(function () {
     Route::get('/allianceticklist', 'AllianceController@allianceTickList');
     Route::put('/stationname', 'StationController@reconPullbyname');
     Route::get('/structurelist', 'ItemController@index');
+    Route::get('/towerlist', 'ItemController@towerlist');
     Route::put('/stationnew', 'StationController@store');
     Route::get('/moons/{sysid}', 'MoonController@bySystem');
 });

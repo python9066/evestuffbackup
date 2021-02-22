@@ -321,7 +321,7 @@ export default {
         },
 
         async open() {
-            await this.$store.dispatch("getSystemList");
+            await this.$store.dispatch("getTowerList");
             await this.$store.dispatch("getAllianceTickList");
             await this.$store.dispatch("getStructureList");
         }
@@ -331,7 +331,7 @@ export default {
         ...mapGetters([]),
         ...mapState([
             "systemlist",
-            "structurelist",
+            "towerlist",
             "allianceticklist",
             "moonlist"
         ]),
@@ -353,7 +353,7 @@ export default {
         },
 
         structureList() {
-            return this.structurelist;
+            return this.towerlist;
         },
 
         tickList() {
