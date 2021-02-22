@@ -37812,7 +37812,7 @@ var render = function() {
                       ),
                       _vm._v(" "),
                       _c(
-                        "v-slide-x-transition",
+                        "v-fab-transition",
                         { attrs: { group: "" } },
                         [
                           _c("TowerRefTimer", {
