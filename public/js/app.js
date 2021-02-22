@@ -11201,7 +11201,7 @@ function sleep(ms) {
     filteredItems: function filteredItems() {
       if (this.statusflag == 2) {
         return this.stations.filter(function (stations) {
-          return stations.station_status_id != 5 && stations.station_status_id != 10 && stations.station_status_id != 7 && stations.station_status_id != 8 && stations.station_status_id != 9 && stations.station_status_id != 13;
+          return stations.station_status_id != 5 && stations.station_status_id != 10 && stations.station_status_id != 7 && stations.station_status_id != 13;
         });
       }
 

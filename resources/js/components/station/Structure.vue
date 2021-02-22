@@ -630,8 +630,6 @@ export default {
                         stations.station_status_id != 5 &&
                         stations.station_status_id != 10 &&
                         stations.station_status_id != 7 &&
-                        stations.station_status_id != 8 &&
-                        stations.station_status_id != 9 &&
                         stations.station_status_id != 13
                 );
             }
