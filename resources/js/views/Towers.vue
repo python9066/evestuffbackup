@@ -479,7 +479,7 @@ export default {
             if (item.tower_status_id == 3) {
                 this.anchoringClass =
                     "animate__animated animate__zoomOut animate__faster";
-                await sleep(200);
+                await sleep(500);
             }
 
             if (list.value == 3) {

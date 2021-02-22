@@ -18540,7 +18540,7 @@ function sleep(ms) {
 
                 _this3.anchoringClass = "animate__animated animate__zoomOut animate__faster";
                 _context2.next = 5;
-                return sleep(200);
+                return sleep(500);
 
               case 5:
                 if (list.value == 3) {
