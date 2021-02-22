@@ -160,7 +160,7 @@
                     <TowerOnlineTimer
                         v-show="item.tower_status_id == 3"
                         :item="item"
-                        class="animate__animated animate__zoomIn animate__faster"
+                        :class="test(item)"
                     ></TowerOnlineTimer>
 
                     <!-- EXTRA BUTTON -->
@@ -468,6 +468,14 @@ export default {
             this.snackText = "Dialog opened";
         },
         close() {},
+
+        test(item) {
+            if (item.tower_status_id == 3) {
+                return "animate__animated animate__zoomIn animate__faster";
+            } else {
+                return "animate__animated animate__zoomOut animate__faster";
+            }
+        },
 
         click(item) {
             var request = {};

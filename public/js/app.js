@@ -18519,6 +18519,13 @@ function sleep(ms) {
       this.snackText = "Dialog opened";
     },
     close: function close() {},
+    test: function test(item) {
+      if (item.tower_status_id == 3) {
+        return "animate__animated animate__zoomIn animate__faster";
+      } else {
+        return "animate__animated animate__zoomOut animate__faster";
+      }
+    },
     click: function click(item) {
       var request = {};
 
@@ -37840,8 +37847,7 @@ var render = function() {
                             expression: "item.tower_status_id == 3"
                           }
                         ],
-                        staticClass:
-                          "animate__animated animate__zoomIn animate__faster",
+                        class: _vm.test(item),
                         attrs: { item: item }
                       }),
                       _vm._v(" "),
