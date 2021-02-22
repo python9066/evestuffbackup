@@ -181,6 +181,17 @@
                                 >
                                 </StationTimer>
                             </v-fab-transition>
+                            <v-fab-transition>
+                                <StationNewTimer
+                                    :station="item"
+                                    v-if="
+                                        (item.station_status_id == 8 ||
+                                            item.station_status_id == 9) &&
+                                            item.out_time == null
+                                    "
+                                >
+                                </StationNewTimer>
+                            </v-fab-transition>
                         </div>
                     </template>
 
@@ -365,6 +376,8 @@ export default {
                 { title: "Repairing", value: 11 },
                 { title: "Hostile", value: 12 },
                 { title: "Saved", value: 4 },
+                { title: "Reffed - Armor", value: 8 },
+                { title: "Reffed - Hull", value: 9 },
                 { title: "New", value: 1 }
             ]
         };
