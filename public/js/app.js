@@ -18537,7 +18537,7 @@ function sleep(ms) {
 
       item.tower_status_id = list.value;
       item.tower_status_name = list.title;
-      item.user_name = user_name;
+      item.user_name = this.user_name;
 
       if (item.tower_status_id == 1 || item.tower_status_id == 6) {
         this.expanded = [];
