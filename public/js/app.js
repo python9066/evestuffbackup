@@ -11102,6 +11102,10 @@ function sleep(ms) {
       if (statusId == 12) {
         return "faSvg fa-exclamation-circle";
       }
+
+      if (statusId == 14) {
+        return "faSvg fa-anchor";
+      }
     },
     numberDay: function numberDay(day) {
       return parseInt(day, 10) + "d";
@@ -11137,6 +11141,10 @@ function sleep(ms) {
 
       if (statusId == 8 || statusId == 12 || statusId == 9) {
         return "warning";
+      }
+
+      if (statusId == 14) {
+        return "deep-orange darken-2";
       }
     },
     campaignStart: function campaignStart(item) {
