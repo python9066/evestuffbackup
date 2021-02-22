@@ -7,17 +7,19 @@
             @click:outside="close()"
         >
             <template v-slot:activator="{ on, attrs }">
-                <v-btn
+                <v-chip
                     color="green"
+                    pill
+                    outlined
                     dark
                     v-bind="attrs"
                     v-on="on"
                     @click="open()"
-                    ><v-icon>
+                    ><v-icon left>
                         faSvg fa-plus
                     </v-icon>
                     Add Timer
-                </v-btn>
+                </v-chip>
             </template>
 
             <v-card
