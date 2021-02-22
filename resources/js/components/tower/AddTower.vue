@@ -217,7 +217,8 @@ export default {
                 system_id: this.sysSelect,
                 alliance_id: this.tickSelect,
                 item_id: this.structSelect,
-                timestamp: moment.utc().format("YYYY-MM-DD HH:mm:ss")
+                timestamp: moment.utc().format("YYYY-MM-DD HH:mm:ss"),
+                tower_status_id: 1
             };
 
             await axios({

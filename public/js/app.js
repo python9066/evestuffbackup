@@ -11588,7 +11588,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   system_id: _this.sysSelect,
                   alliance_id: _this.tickSelect,
                   item_id: _this.structSelect,
-                  timestamp: moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc().format("YYYY-MM-DD HH:mm:ss")
+                  timestamp: moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc().format("YYYY-MM-DD HH:mm:ss"),
+                  tower_status_id: 1
                 };
                 _context.next = 3;
                 return axios({
