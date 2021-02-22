@@ -32,7 +32,7 @@
                 </v-card-title>
                 <v-card-text>
                     <div
-                        class="d-inline-flex align-content-center justify-content-around"
+                        class=" d-inline-block align-content-center justify-content-around"
                     >
                         <div>
                             <v-autocomplete

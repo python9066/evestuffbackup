@@ -31839,7 +31839,7 @@ var render = function() {
                   "div",
                   {
                     staticClass:
-                      "d-inline-flex align-content-center justify-content-around"
+                      " d-inline-block align-content-center justify-content-around"
                   },
                   [
                     _c(
