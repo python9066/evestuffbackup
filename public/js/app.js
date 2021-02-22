@@ -10927,6 +10927,9 @@ function sleep(ms) {
         title: "Destroyed",
         value: 7
       }, {
+        title: "Anchoring",
+        value: 14
+      }, {
         title: "New",
         value: 1
       }]

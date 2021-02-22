@@ -380,6 +380,7 @@ export default {
                 { title: "Reffed - Armor", value: 8 },
                 { title: "Reffed - Hull", value: 9 },
                 { title: "Destroyed", value: 7 },
+                { title: "Anchoring", value: 14 },
                 { title: "New", value: 1 }
             ]
         };
