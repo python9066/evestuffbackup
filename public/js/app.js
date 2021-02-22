@@ -17610,6 +17610,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
 
 
 
@@ -37276,6 +37279,9 @@ var render = function() {
                       _vm.$can("edit_notifications")
                         ? _c(
                             "div",
+                            {
+                              staticClass: " d-inline-flex align-content-center"
+                            },
                             [
                               _c(
                                 "v-menu",
