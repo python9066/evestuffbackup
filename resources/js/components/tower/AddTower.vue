@@ -5,13 +5,13 @@
             z-index="0"
             v-model="showAddTower"
             @click:outside="close()"
+            :close-on-content-click="false"
         >
             <template v-slot:activator="{ on, attrs }">
                 <v-btn
                     color="green"
                     dark
                     v-bind="attrs"
-                    persistent
                     v-on="on"
                     @click="open()"
                     ><v-icon left>

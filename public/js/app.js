@@ -31765,7 +31765,11 @@ var render = function() {
       _c(
         "v-dialog",
         {
-          attrs: { "max-width": "700px", "z-index": "0" },
+          attrs: {
+            "max-width": "700px",
+            "z-index": "0",
+            "close-on-content-click": false
+          },
           on: {
             "click:outside": function($event) {
               return _vm.close()
@@ -31783,7 +31787,7 @@ var render = function() {
                     _vm._g(
                       _vm._b(
                         {
-                          attrs: { color: "green", dark: "", persistent: "" },
+                          attrs: { color: "green", dark: "" },
                           on: {
                             click: function($event) {
                               return _vm.open()
