@@ -30,7 +30,7 @@
                 <v-card-title class="justify-center">
                     Adding a New Tower
                 </v-card-title>
-                <v-card-text>
+                <v-card-text class=" justify-content-between">
                     <div
                         class=" d-inline-block align-content-center justify-content-around"
                     >
