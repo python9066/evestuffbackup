@@ -18527,12 +18527,12 @@ function sleep(ms) {
 
       if (item.tower_status_id == 3) {
         if (item.tower_status_id != list.value) {
-          this.anchoringClass == "animate__animated animate__zoomOut animate__faster";
+          this.anchoringClass = "animate__animated animate__zoomOut animate__faster";
         }
       }
 
       if (list.value == 3) {
-        this.anchoringClass == "animate__animated animate__zoomIn animate__faster";
+        this.anchoringClass = "animate__animated animate__zoomIn animate__faster";
       }
 
       item.tower_status_id = list.value;

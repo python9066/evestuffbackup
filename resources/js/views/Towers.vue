@@ -478,13 +478,13 @@ export default {
 
             if (item.tower_status_id == 3) {
                 if (item.tower_status_id != list.value) {
-                    this.anchoringClass ==
+                    this.anchoringClass =
                         "animate__animated animate__zoomOut animate__faster";
                 }
             }
 
             if (list.value == 3) {
-                this.anchoringClass ==
+                this.anchoringClass =
                     "animate__animated animate__zoomIn animate__faster";
             }
 
