@@ -136,12 +136,7 @@
                             <v-list-item
                                 v-for="(list, index) in dropdown_edit"
                                 :key="index"
-                                @click="
-                                    (item.tower_status_id = list.value),
-                                        (item.tower_status_name = list.title),
-                                        (item.user_name = user_name),
-                                        click(item)
-                                "
+                                @click="click(item, item)"
                             >
                                 <v-list-item-title>{{
                                     list.title
@@ -478,8 +473,24 @@ export default {
             }
         },
 
-        click(item) {
+        click(item, list) {
             var request = {};
+
+            if (item.tower_status_id == 3) {
+                if (item.tower_status_id != list.value) {
+                    this.anchoringClass ==
+                        "animate__animated animate__zoomOut animate__faster";
+                }
+            }
+
+            if (list.value == 3) {
+                this.anchoringClass ==
+                    "animate__animated animate__zoomIn animate__faster";
+            }
+
+            item.tower_status_id = list.value;
+            item.tower_status_name = list.title;
+            item.user_name = user_name;
             if (item.tower_status_id == 1 || item.tower_status_id == 6) {
                 this.expanded = [];
                 item.text = null;
