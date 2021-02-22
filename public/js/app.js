@@ -37394,7 +37394,7 @@ var render = function() {
                               ),
                               _vm._v(" "),
                               _c(
-                                "v-fab-transition",
+                                "v-slide-x-transition",
                                 [
                                   _c(
                                     "v-chip",
@@ -37458,7 +37458,7 @@ var render = function() {
                               ),
                               _vm._v(" "),
                               _c(
-                                "v-fab-transition",
+                                "v-slide-x-transition",
                                 [
                                   _c("NotificationTimer", {
                                     directives: [

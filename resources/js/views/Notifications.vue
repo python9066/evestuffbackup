@@ -281,7 +281,7 @@
                                 </v-list-item>
                             </v-list>
                         </v-menu>
-                        <v-fab-transition>
+                        <v-slide-x-transition>
                             <v-chip
                                 pill
                                 :key="'adash' + item.id"
@@ -309,8 +309,8 @@
                             >
                                 <v-icon>fas fa-minus</v-icon></v-btn
                             >
-                        </v-fab-transition>
-                        <v-fab-transition>
+                        </v-slide-x-transition>
+                        <v-slide-x-transition>
                             <NotificationTimer
                                 :item="item"
                                 :key="'NoteTimer' + item.id"
@@ -318,7 +318,7 @@
                                     item.status_id == 5 || item.status_id == 3
                                 "
                             ></NotificationTimer>
-                        </v-fab-transition>
+                        </v-slide-x-transition>
                     </div>
                     <div v-else>
                         <template>
