@@ -60,6 +60,7 @@
         <v-data-table
             :headers="_headers"
             :items="filteredItems"
+            :item-class="itemRowBackground"
             item-key="id"
             :loading="loadingt"
             :items-per-page="25"
@@ -498,6 +499,12 @@ export default {
             this.snackText = "Data saved";
         },
 
+        itemRowBackground: function(item) {
+            if (item.under_attack == 1) {
+                return "style-4";
+            }
+        },
+
         adashColor(item) {
             if (item.text != null) {
                 return "green";
@@ -739,3 +746,9 @@ export default {
     }
 };
 </script>
+
+<style>
+.style-4 {
+    background-color: rgba(255, 153, 0, 0.199);
+}
+</style>
