@@ -9971,6 +9971,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -30856,7 +30858,7 @@ var render = function() {
               key: "activator",
               fn: function(ref) {
                 var onMenu = ref.on
-                var attrs = ref.attrs
+                var attrsMenu = ref.attrs
                 return [
                   _c(
                     "v-badge",
@@ -30879,7 +30881,7 @@ var render = function() {
                                 key: "activator",
                                 fn: function(ref) {
                                   var onTooltip = ref.on
-                                  var attrs = ref.attrs
+                                  var attrsTooltip = ref.attrs
                                   return [
                                     _c(
                                       "v-icon",
@@ -30894,7 +30896,10 @@ var render = function() {
                                             }
                                           },
                                           "v-icon",
-                                          attrs,
+                                          {
+                                            attrsMenu: attrsMenu,
+                                            attrsTooltip: attrsTooltip
+                                          },
                                           false
                                         ),
                                         { onMenu: onMenu, onTooltip: onTooltip }
