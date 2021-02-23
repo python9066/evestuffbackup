@@ -123,28 +123,27 @@
                 v-slot:item.station_status_name="{ item }"
                 class="align-items-center"
             >
-                <div v-if="$can('edit_station_notifications')">
+                <div
+                    v-if="$can('edit_station_notifications')"
+                    class="align-items-center d-inline-flex"
+                >
                     <v-menu offset-y>
                         <template v-slot:activator="{ on, attrs }">
-                            <div class="align-items-center d-lg-inline-flex">
-                                <v-btn
-                                    class="ma-2"
-                                    v-bind="attrs"
-                                    v-on="on"
-                                    tile
-                                    outlined
-                                    :color="pillColor(item.station_status_id)"
+                            <v-btn
+                                class="ma-2"
+                                v-bind="attrs"
+                                v-on="on"
+                                tile
+                                outlined
+                                :color="pillColor(item.station_status_id)"
+                            >
+                                <v-icon left>
+                                    {{
+                                        pillIcon(item.station_status_id)
+                                    }}</v-icon
                                 >
-                                    <v-icon left>
-                                        {{
-                                            pillIcon(item.station_status_id)
-                                        }}</v-icon
-                                    >
-                                    {{ item.station_status_name }}
-                                </v-btn>
-
-                                <!-- EXTRA BUTTON -->
-                            </div>
+                                {{ item.station_status_name }}
+                            </v-btn>
                         </template>
 
                         <v-list>

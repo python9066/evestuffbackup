@@ -10789,7 +10789,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
 
 
 
@@ -31168,6 +31167,7 @@ var render = function() {
                     _vm.$can("edit_station_notifications")
                       ? _c(
                           "div",
+                          { staticClass: "align-items-center d-inline-flex" },
                           [
                             _c(
                               "v-menu",
@@ -31182,56 +31182,46 @@ var render = function() {
                                         var attrs = ref.attrs
                                         return [
                                           _c(
-                                            "div",
-                                            {
-                                              staticClass:
-                                                "align-items-center d-lg-inline-flex"
-                                            },
+                                            "v-btn",
+                                            _vm._g(
+                                              _vm._b(
+                                                {
+                                                  staticClass: "ma-2",
+                                                  attrs: {
+                                                    tile: "",
+                                                    outlined: "",
+                                                    color: _vm.pillColor(
+                                                      item.station_status_id
+                                                    )
+                                                  }
+                                                },
+                                                "v-btn",
+                                                attrs,
+                                                false
+                                              ),
+                                              on
+                                            ),
                                             [
                                               _c(
-                                                "v-btn",
-                                                _vm._g(
-                                                  _vm._b(
-                                                    {
-                                                      staticClass: "ma-2",
-                                                      attrs: {
-                                                        tile: "",
-                                                        outlined: "",
-                                                        color: _vm.pillColor(
-                                                          item.station_status_id
-                                                        )
-                                                      }
-                                                    },
-                                                    "v-btn",
-                                                    attrs,
-                                                    false
-                                                  ),
-                                                  on
-                                                ),
+                                                "v-icon",
+                                                { attrs: { left: "" } },
                                                 [
-                                                  _c(
-                                                    "v-icon",
-                                                    { attrs: { left: "" } },
-                                                    [
-                                                      _vm._v(
-                                                        "\n                                    " +
-                                                          _vm._s(
-                                                            _vm.pillIcon(
-                                                              item.station_status_id
-                                                            )
-                                                          )
-                                                      )
-                                                    ]
-                                                  ),
                                                   _vm._v(
                                                     "\n                                " +
                                                       _vm._s(
-                                                        item.station_status_name
-                                                      ) +
-                                                      "\n                            "
+                                                        _vm.pillIcon(
+                                                          item.station_status_id
+                                                        )
+                                                      )
                                                   )
-                                                ],
-                                                1
+                                                ]
+                                              ),
+                                              _vm._v(
+                                                "\n                            " +
+                                                  _vm._s(
+                                                    item.station_status_name
+                                                  ) +
+                                                  "\n                        "
                                               )
                                             ],
                                             1
