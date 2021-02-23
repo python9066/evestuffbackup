@@ -66,6 +66,10 @@ Broadcast::channel('stationmessage.{id}', function () {
     return Auth::check();
 });
 
+Broadcast::channel('towermessage.{id}', function () {
+    return Auth::check();
+});
+
 
 
 

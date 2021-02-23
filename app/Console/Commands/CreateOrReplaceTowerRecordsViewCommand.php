@@ -54,6 +54,7 @@ class CreateOrReplaceTowerRecordsViewCommand extends Command
         towers.user_id AS 'user_id',
         users.name AS 'user_name',
         towers.text AS 'text',
+        towers.notes AS 'notes',
         towers.timestamp AS 'timestamp',
         towers.out_time AS 'out_time',
         if(towers.out_time IS NOT NULL, towers.out_time, towers.timestamp) AS 'view_time'

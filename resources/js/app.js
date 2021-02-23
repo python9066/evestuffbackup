@@ -73,6 +73,7 @@ Vue.component('StationNewTimer', require('./components/station/StationNewTimer.v
 Vue.component('AddTower', require('./components/tower/AddTower.vue').default);
 Vue.component('StationAttack', require('./components/station/StationAttack.vue').default);
 Vue.component('StationMessage', require('./components/station/StationMessage.vue').default);
+Vue.component('TowerMessage', require('./components/tower/TowerMessage.vue').default);
 
 
 

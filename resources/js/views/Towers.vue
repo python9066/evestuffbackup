@@ -166,6 +166,11 @@
                             color="error"
                             ><v-icon>fas fa-minus</v-icon></v-btn
                         >
+                        <TowerMessage
+                            :key="'towermessage' + item.id"
+                            :tower="item"
+                            v-if="$can('super')"
+                        ></TowerMessage>
                     </v-fab-transition>
                     <v-slide-x-transition>
                         <TowerRefTimer
