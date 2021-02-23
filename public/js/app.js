@@ -10455,8 +10455,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       handler: function handler() {
         this.showPannel;
       },
-      deep: true,
-      immediate: true
+      deep: true
     }
   },
   methods: {

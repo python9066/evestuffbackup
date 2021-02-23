@@ -168,8 +168,7 @@ export default {
             handler() {
                 this.showPannel;
             },
-            deep: true,
-            immediate: true
+            deep: true
         }
     },
 
