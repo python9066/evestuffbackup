@@ -163,6 +163,7 @@
                         v-if="$can('edit_station_notifications')"
                         :station="item"
                     ></StationAttack>
+                    <SystemMessage :item="item"> </SystemMessage>
 
                     <v-fab-transition>
                         <StationTimer

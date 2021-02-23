@@ -11109,6 +11109,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 
@@ -31922,6 +31923,8 @@ var render = function() {
                                   attrs: { station: item }
                                 })
                               : _vm._e(),
+                            _vm._v(" "),
+                            _c("SystemMessage", { attrs: { item: item } }),
                             _vm._v(" "),
                             _c(
                               "v-fab-transition",
