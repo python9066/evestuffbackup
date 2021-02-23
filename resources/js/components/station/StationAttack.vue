@@ -7,21 +7,27 @@
             @click:outside="close()"
         >
             <template v-slot:activator="{ on: onMenu, attrs: attrsMenu }">
-                <v-badge
-                    color="green"
-                    overlap
-                    :content="messageAttackCount"
-                    :value="showAttackNumber"
-                >
-                    <v-icon
-                        color="red"
-                        :v-bind="{ attrsMenu, attrsTooltip }"
-                        :v-on="{ onMenu, onTooltip }"
-                        @click="open()"
+                <v-tooltip bottom>
+                    <template
+                        #activator="{ on: onTooltip, attrs: attrsTooltip }"
                     >
-                        {{ icon }}
-                    </v-icon>
-                </v-badge>
+                        <v-badge
+                            color="green"
+                            overlap
+                            :content="messageAttackCount"
+                            :value="showAttackNumber"
+                        >
+                            <v-icon
+                                color="red"
+                                v-bind="{ attrsMenu, attrsTooltip }"
+                                v-on="{ onMenu, onTooltip }"
+                                @click="open()"
+                            >
+                                {{ icon }}
+                            </v-icon>
+                        </v-badge>
+                    </template>
+                </v-tooltip>
             </template>
 
             <v-card
