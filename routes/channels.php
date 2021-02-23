@@ -62,6 +62,13 @@ Broadcast::channel('stationinfo', function () {
     return Auth::check();
 });
 
+Broadcast::channel('stationmessage.{id}', function () {
+    return Auth::check();
+});
+
+
+
+
 
 
 
