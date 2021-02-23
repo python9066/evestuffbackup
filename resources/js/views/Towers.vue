@@ -66,6 +66,7 @@
         </div>
         <v-data-table
             :headers="headers"
+            dense
             :items="filteredItems"
             :expanded.sync="expanded"
             item-key="id"

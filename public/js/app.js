@@ -18643,6 +18643,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 
@@ -38404,6 +38405,7 @@ var render = function() {
           staticClass: "elevation-1",
           attrs: {
             headers: _vm.headers,
+            dense: "",
             items: _vm.filteredItems,
             expanded: _vm.expanded,
             "item-key": "id",
