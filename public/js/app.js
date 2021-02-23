@@ -31887,7 +31887,7 @@ var render = function() {
                               1
                             ),
                             _vm._v(" "),
-                            _vm.$can("super")
+                            _vm.$can("edit_station_notifications")
                               ? _c("StationAttack", {
                                   attrs: { station: item }
                                 })

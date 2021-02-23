@@ -179,7 +179,7 @@
                         </StationNewTimer>
                     </v-fab-transition>
                     <StationAttack
-                        v-if="$can('super')"
+                        v-if="$can('edit_station_notifications')"
                         :station="item"
                     ></StationAttack>
                 </div>
