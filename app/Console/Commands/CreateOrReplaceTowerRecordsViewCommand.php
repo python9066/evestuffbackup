@@ -58,7 +58,8 @@ class CreateOrReplaceTowerRecordsViewCommand extends Command
         towers.timestamp AS 'timestamp',
         towers.out_time AS 'out_time',
         if(towers.out_time IS NOT NULL, towers.out_time, towers.timestamp) AS 'view_time',
-        alliances.url AS 'url'
+        alliances.url AS 'url',
+        alliances.standing AS 'standing'
         FROM towers
         JOIN moons ON moons.id = towers.moon_id
         JOIN alliances ON alliances.id = towers.alliance_id

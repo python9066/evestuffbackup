@@ -102,6 +102,20 @@
             </template>
 
             <template
+                v-slot:item.alliance_name="{ item }"
+                class="d-inline-flex align-center"
+            >
+                <v-avatar size="35"><img :src="item.url"/></v-avatar>
+                <span v-if="item.standing > 0" class=" blue--text pl-3"
+                    >{{ item.alliance_name }}
+                </span>
+                <span v-else-if="item.standing < 0" class="red--text pl-3"
+                    >{{ item.alliance_name }}
+                </span>
+                <span v-else class="pl-3">{{ item.alliance_name }}</span>
+            </template>
+
+            <template
                 v-slot:item.tower_status_name="{ item }"
                 class="align-items-center"
             >
