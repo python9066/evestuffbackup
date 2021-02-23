@@ -38,19 +38,19 @@
                         <div>
                             <div>
                                 <v-text-field
-                                    v-model="station.structure_name"
+                                    placeholder="station.structure_name"
                                     label="Structure Type"
                                     readonly
                                 ></v-text-field>
                             </div>
                             <div class=" d-inline-flex justify-content-around">
                                 <v-text-field
-                                    v-model="station.system_name"
+                                    placeholder="station.system_name"
                                     label="System Name"
                                     readonly
                                 ></v-text-field>
                                 <v-text-field
-                                    v-model="station.corp_ticker"
+                                    placeholder="station.corp_ticker"
                                     label="Corp Ticker"
                                     readonly
                                 ></v-text-field>
@@ -58,8 +58,8 @@
                             <div>
                                 <h5><strong>Timer Type</strong></h5>
                                 <v-radio-group v-model="refType" row>
-                                    <v-radio label="Armor" value="5"></v-radio>
-                                    <v-radio label="Hull" value="13"></v-radio>
+                                    <v-radio label="Armor" value="8"></v-radio>
+                                    <v-radio label="Hull" value="9"></v-radio>
                                 </v-radio-group>
                             </div>
                             <div>
@@ -89,15 +89,6 @@
                         color="green"
                         :disabled="showSubmit"
                         @click="submit()"
-                        v-if="state == 2"
-                    >
-                        Submit </v-btn
-                    ><v-btn
-                        class="white--text"
-                        color="green"
-                        :disabled="showSubmit3"
-                        @click="submit3()"
-                        v-if="state == 3"
                     >
                         Submit
                     </v-btn></v-card-actions
@@ -124,28 +115,8 @@ export default {
     data() {
         return {
             systems: [],
-            stationNameEdit: null,
-            state: 1,
             showStationTimer: false,
             stationName: null,
-            sysItems: [],
-            systemEdit: null,
-            sysSearch: null,
-            sysSelect: null,
-            sysLoading: false,
-            tickItems: [],
-            ticktemEdit: null,
-            tickSearch: null,
-            tickSelect: null,
-            tickLoading: false,
-            tickerEdit: null,
-            stationPull: [],
-            structItems: [],
-            structtemEdit: null,
-            structSearch: null,
-            structSelect: null,
-            structLoading: false,
-            structerEdit: null,
             refType: null,
             refTime: {
                 d: "",
@@ -156,27 +127,18 @@ export default {
         };
     },
 
-    watch: {},
+    watch: {
+        station: {
+            handler() {},
+            deep: true
+        }
+    },
 
     methods: {
         close() {
-            this.stationNameEdit = null;
-            this.showStationTimer = false;
             this.refType = null;
             this.refTime = null;
             this.stationName = null;
-            this.stationNameEdit = null;
-            this.structItems = [];
-            this.structSearch = null;
-            this.structSelect = null;
-            this.sysItems = [];
-            this.sysSearch = null;
-            this.sysSelect = null;
-            this.systems = [];
-            this.tickItems = [];
-            this.tickSearch = null;
-            this.tickSelect = null;
-            this.state = 1;
             this.showStationTimer = false;
         },
 
@@ -210,23 +172,9 @@ export default {
                     "Content-Type": "application/json"
                 }
             }).then(
-                (this.stationNameEdit = null),
-                (this.showStationTimer = false),
                 (this.refType = null),
                 (this.refTime = null),
                 (this.stationName = null),
-                (this.stationNameEdit = null),
-                (this.structItems = []),
-                (this.structSearch = null),
-                (this.structSelect = null),
-                (this.sysItems = []),
-                (this.sysSearch = null),
-                (this.sysSelect = null),
-                (this.systems = []),
-                (this.tickItems = []),
-                (this.tickSearch = null),
-                (this.tickSelect = null),
-                (this.state = 1),
                 (this.showStationTimer = false)
             );
         },
@@ -237,14 +185,27 @@ export default {
     computed: {
         ...mapGetters([]),
         ...mapState([]),
-        showSubmit() {
+
+        showPannel() {
             if (
-                this.structSelect != null &&
-                this.sysSelect != null &&
-                this.tickSelect != null &&
-                this.refType != null &&
-                this.refTime != null
+                this.station.out_time == null &&
+                (this.station.station_status_id == 8 ||
+                    this.station.station_status_id == 9) &&
+                this.$can("edit_notifications")
             ) {
+                if (this.station.station_status_id == 8) {
+                    this.refType = 8;
+                } else {
+                    this.refType = 9;
+                }
+                this.showStationTimer = true;
+            } else {
+                this.showStationTimer = false;
+            }
+        },
+
+        showSubmit() {
+            if (this.refType != null && this.refTime != null) {
                 return false;
             } else {
                 return true;

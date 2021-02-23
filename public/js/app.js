@@ -10623,15 +10623,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -10641,28 +10632,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   data: function data() {
     return {
       systems: [],
-      stationNameEdit: null,
-      state: 1,
       showStationTimer: false,
       stationName: null,
-      sysItems: [],
-      systemEdit: null,
-      sysSearch: null,
-      sysSelect: null,
-      sysLoading: false,
-      tickItems: [],
-      ticktemEdit: null,
-      tickSearch: null,
-      tickSelect: null,
-      tickLoading: false,
-      tickerEdit: null,
-      stationPull: [],
-      structItems: [],
-      structtemEdit: null,
-      structSearch: null,
-      structSelect: null,
-      structLoading: false,
-      structerEdit: null,
       refType: null,
       refTime: {
         d: "",
@@ -10672,26 +10643,17 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }
     };
   },
-  watch: {},
+  watch: {
+    station: {
+      handler: function handler() {},
+      deep: true
+    }
+  },
   methods: {
     close: function close() {
-      this.stationNameEdit = null;
-      this.showStationTimer = false;
       this.refType = null;
       this.refTime = null;
       this.stationName = null;
-      this.stationNameEdit = null;
-      this.structItems = [];
-      this.structSearch = null;
-      this.structSelect = null;
-      this.sysItems = [];
-      this.sysSearch = null;
-      this.sysSelect = null;
-      this.systems = [];
-      this.tickItems = [];
-      this.tickSearch = null;
-      this.tickSelect = null;
-      this.state = 1;
       this.showStationTimer = false;
     },
     submit: function submit() {
@@ -10728,7 +10690,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                     Accept: "application/json",
                     "Content-Type": "application/json"
                   }
-                }).then(_this.stationNameEdit = null, _this.showStationTimer = false, _this.refType = null, _this.refTime = null, _this.stationName = null, _this.stationNameEdit = null, _this.structItems = [], _this.structSearch = null, _this.structSelect = null, _this.sysItems = [], _this.sysSearch = null, _this.sysSelect = null, _this.systems = [], _this.tickItems = [], _this.tickSearch = null, _this.tickSelect = null, _this.state = 1, _this.showStationTimer = false);
+                }).then(_this.refType = null, _this.refTime = null, _this.stationName = null, _this.showStationTimer = false);
 
               case 12:
               case "end":
@@ -10753,8 +10715,21 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     }
   },
   computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])([])), Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapState"])([])), {}, {
+    showPannel: function showPannel() {
+      if (this.station.out_time == null && (this.station.station_status_id == 8 || this.station.station_status_id == 9) && this.$can("edit_notifications")) {
+        if (this.station.station_status_id == 8) {
+          this.refType = 8;
+        } else {
+          this.refType = 9;
+        }
+
+        this.showStationTimer = true;
+      } else {
+        this.showStationTimer = false;
+      }
+    },
     showSubmit: function showSubmit() {
-      if (this.structSelect != null && this.sysSelect != null && this.tickSelect != null && this.refType != null && this.refTime != null) {
+      if (this.refType != null && this.refTime != null) {
         return false;
       } else {
         return true;
@@ -11360,9 +11335,6 @@ function sleep(ms) {
         title: "Repairing",
         value: 11
       }, {
-        title: "Hostile",
-        value: 12
-      }, {
         title: "Saved",
         value: 4
       }, {
@@ -11541,10 +11513,6 @@ function sleep(ms) {
         return "faSvg fa-toolbox";
       }
 
-      if (statusId == 12) {
-        return "faSvg fa-exclamation-circle";
-      }
-
       if (statusId == 14) {
         return "faSvg fa-anchor";
       }
@@ -11581,7 +11549,7 @@ function sleep(ms) {
         return "red";
       }
 
-      if (statusId == 8 || statusId == 12 || statusId == 9) {
+      if (statusId == 8 || statusId == 9) {
         return "warning";
       }
 
@@ -11622,10 +11590,6 @@ function sleep(ms) {
     },
     close: function close() {},
     click: function click(item, list) {
-      if (list.value != 12) {
-        item.out_time = null;
-      }
-
       item.station_status_id = list.value;
       item.station_status_name = list.title;
       item.user_name = this.user_name;
@@ -11633,7 +11597,7 @@ function sleep(ms) {
         station_status_id: item.station_status_id,
         user_id: this.$store.state.user_id,
         status_update: moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc().format("YYYY-MM-DD  HH:mm:ss"),
-        out_time: item.out_time
+        out_time: null
       };
       axios({
         method: "put",
@@ -11655,10 +11619,6 @@ function sleep(ms) {
     },
     showCountDown: function showCountDown(item) {
       if (item.station_status_id == 5 || item.station_status_id == 8 || item.station_status_id == 9 || item.station_status_id == 11 || item.station_status_id == 13 || item.station_status_id == 14) {
-        return true;
-      }
-
-      if (item.station_status_id == 12 && item.out_time != null) {
         return true;
       }
 
@@ -31310,13 +31270,10 @@ var render = function() {
                         "div",
                         [
                           _c("v-text-field", {
-                            attrs: { label: "Structure Type", readonly: "" },
-                            model: {
-                              value: _vm.station.structure_name,
-                              callback: function($$v) {
-                                _vm.$set(_vm.station, "structure_name", $$v)
-                              },
-                              expression: "station.structure_name"
+                            attrs: {
+                              placeholder: "station.structure_name",
+                              label: "Structure Type",
+                              readonly: ""
                             }
                           })
                         ],
@@ -31330,24 +31287,18 @@ var render = function() {
                         },
                         [
                           _c("v-text-field", {
-                            attrs: { label: "System Name", readonly: "" },
-                            model: {
-                              value: _vm.station.system_name,
-                              callback: function($$v) {
-                                _vm.$set(_vm.station, "system_name", $$v)
-                              },
-                              expression: "station.system_name"
+                            attrs: {
+                              placeholder: "station.system_name",
+                              label: "System Name",
+                              readonly: ""
                             }
                           }),
                           _vm._v(" "),
                           _c("v-text-field", {
-                            attrs: { label: "Corp Ticker", readonly: "" },
-                            model: {
-                              value: _vm.station.corp_ticker,
-                              callback: function($$v) {
-                                _vm.$set(_vm.station, "corp_ticker", $$v)
-                              },
-                              expression: "station.corp_ticker"
+                            attrs: {
+                              placeholder: "station.corp_ticker",
+                              label: "Corp Ticker",
+                              readonly: ""
                             }
                           })
                         ],
@@ -31373,11 +31324,11 @@ var render = function() {
                             },
                             [
                               _c("v-radio", {
-                                attrs: { label: "Armor", value: "5" }
+                                attrs: { label: "Armor", value: "8" }
                               }),
                               _vm._v(" "),
                               _c("v-radio", {
-                                attrs: { label: "Hull", value: "13" }
+                                attrs: { label: "Hull", value: "9" }
                               })
                             ],
                             1
@@ -31472,40 +31423,19 @@ var render = function() {
                     [_vm._v("\n                    Close\n                ")]
                   ),
                   _vm._v(" "),
-                  _vm.state == 2
-                    ? _c(
-                        "v-btn",
-                        {
-                          staticClass: "white--text",
-                          attrs: { color: "green", disabled: _vm.showSubmit },
-                          on: {
-                            click: function($event) {
-                              return _vm.submit()
-                            }
-                          }
-                        },
-                        [_vm._v("\n                    Submit ")]
-                      )
-                    : _vm._e(),
-                  _vm.state == 3
-                    ? _c(
-                        "v-btn",
-                        {
-                          staticClass: "white--text",
-                          attrs: { color: "green", disabled: _vm.showSubmit3 },
-                          on: {
-                            click: function($event) {
-                              return _vm.submit3()
-                            }
-                          }
-                        },
-                        [
-                          _vm._v(
-                            "\n                    Submit\n                "
-                          )
-                        ]
-                      )
-                    : _vm._e()
+                  _c(
+                    "v-btn",
+                    {
+                      staticClass: "white--text",
+                      attrs: { color: "green", disabled: _vm.showSubmit },
+                      on: {
+                        click: function($event) {
+                          return _vm.submit()
+                        }
+                      }
+                    },
+                    [_vm._v("\n                    Submit\n                ")]
+                  )
                 ],
                 1
               )

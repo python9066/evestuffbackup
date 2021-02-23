@@ -308,7 +308,6 @@ export default {
             dropdown_edit: [
                 { title: "On My Way", value: 2 },
                 { title: "Repairing", value: 11 },
-                { title: "Hostile", value: 12 },
                 { title: "Saved", value: 4 },
                 { title: "Reffed - Armor", value: 8 },
                 { title: "Reffed - Hull", value: 9 },
@@ -452,9 +451,6 @@ export default {
             if (statusId == 11) {
                 return "faSvg fa-toolbox";
             }
-            if (statusId == 12) {
-                return "faSvg fa-exclamation-circle";
-            }
             if (statusId == 14) {
                 return "faSvg fa-anchor";
             }
@@ -486,7 +482,7 @@ export default {
             if (statusId == 7) {
                 return "red";
             }
-            if (statusId == 8 || statusId == 12 || statusId == 9) {
+            if (statusId == 8 || statusId == 9) {
                 return "warning";
             }
             if (statusId == 14) {
@@ -531,9 +527,6 @@ export default {
         close() {},
 
         click(item, list) {
-            if (list.value != 12) {
-                item.out_time = null;
-            }
             item.station_status_id = list.value;
             item.station_status_name = list.title;
             item.user_name = this.user_name;
@@ -542,7 +535,7 @@ export default {
                 station_status_id: item.station_status_id,
                 user_id: this.$store.state.user_id,
                 status_update: moment.utc().format("YYYY-MM-DD  HH:mm:ss"),
-                out_time: item.out_time
+                out_time: null
             };
             axios({
                 method: "put", //you can set what request you want to be
@@ -572,9 +565,6 @@ export default {
                 item.station_status_id == 13 ||
                 item.station_status_id == 14
             ) {
-                return true;
-            }
-            if (item.station_status_id == 12 && item.out_time != null) {
                 return true;
             }
 
