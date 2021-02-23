@@ -30,7 +30,7 @@ class CreateOrReplaceStationRecordsViewCommand extends Command
     {
         parent::__construct();
     }
-
+    // items.item_name AS 'item_name',
     /**
      * Execute the console command.
      *
@@ -45,7 +45,7 @@ class CreateOrReplaceStationRecordsViewCommand extends Command
        constellations.constellation_name AS 'constellation_name',
        regions.region_name AS 'region_name',
        stations.item_id AS 'item_id',
-       items.item_name AS 'item_name',
+       if(items.id = 35840 , 'Cyno Beacon', if(items.id = 37534 , 'Cyno Jammer', if(items.id = 35841, 'Jump Gate', items.item_name))) AS 'item_name',
        stations.user_id AS 'user_id',
        s.name AS 'user_name',
        stations.gunner_id AS 'gunner_id',

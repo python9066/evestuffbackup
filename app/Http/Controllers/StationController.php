@@ -209,12 +209,12 @@ class StationController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request  $request#
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        $id = Station::where('id', '<', 1000000000)->min('id');
+        $id = Station::where('id', '<', 1000000000)->max('id');
         if ($id == null) {
             $id = 1;
         } else {

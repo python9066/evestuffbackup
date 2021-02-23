@@ -29,7 +29,7 @@ class TowerRecordsController extends Controller
      */
     public function store(Request $request)
     {
-        $id = Tower::where('id', '<', 10000)->min('id');
+        $id = Tower::where('id', '<', 10000)->max('id');
         if ($id == null) {
             $id = 1;
         } else {
