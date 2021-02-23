@@ -60,7 +60,6 @@
         <v-data-table
             :headers="_headers"
             :items="filteredItems"
-            :expanded.sync="expanded"
             item-key="id"
             :loading="loadingt"
             :items-per-page="25"
@@ -124,87 +123,63 @@
                 v-slot:item.station_status_name="{ item }"
                 class="align-items-center"
             >
-                <v-menu offset-y v-if="$can('edit_station_notifications')">
-                    <template v-slot:activator="{ on, attrs }">
-                        <div class="align-items-center d-lg-inline-flex">
-                            <v-btn
-                                class="ma-2"
-                                v-bind="attrs"
-                                v-on="on"
-                                tile
-                                outlined
-                                :color="pillColor(item.station_status_id)"
-                            >
-                                <v-icon left>
-                                    {{
-                                        pillIcon(item.station_status_id)
-                                    }}</v-icon
-                                >
-                                {{ item.station_status_name }}
-                            </v-btn>
-
-                            <!-- EXTRA BUTTON -->
-                            <v-fab-transition>
-                                <v-chip
-                                    pill
-                                    outlined
-                                    small
-                                    @click="
-                                        (expanded = [item]),
-                                            (expanded_id = item.id)
-                                    "
-                                    v-if="
-                                        item.station_status_id == 12 &&
-                                            !expanded.includes(item)
-                                    "
-                                    :color="adashColor(item)"
-                                    >adash</v-chip
-                                >
+                <div v-if="$can('edit_station_notifications')">
+                    <v-menu offset-y>
+                        <template v-slot:activator="{ on, attrs }">
+                            <div class="align-items-center d-lg-inline-flex">
                                 <v-btn
-                                    icon
-                                    @click="(expanded = []), (expanded_id = 0)"
-                                    v-if="
-                                        item.station_status_id == 12 &&
-                                            expanded.includes(item)
-                                    "
-                                    color="error"
-                                    ><v-icon>fas fa-minus</v-icon></v-btn
+                                    class="ma-2"
+                                    v-bind="attrs"
+                                    v-on="on"
+                                    tile
+                                    outlined
+                                    :color="pillColor(item.station_status_id)"
                                 >
-                            </v-fab-transition>
-                            <v-fab-transition>
-                                <StationTimer
-                                    :station="item"
-                                    v-if="item.station_status_id == 11"
-                                >
-                                </StationTimer>
-                            </v-fab-transition>
-                            <v-fab-transition>
-                                <StationNewTimer
-                                    :station="item"
-                                    v-if="
-                                        (item.station_status_id == 8 ||
-                                            item.station_status_id == 9) &&
-                                            item.out_time == null &&
-                                            $can('super')
-                                    "
-                                >
-                                </StationNewTimer>
-                            </v-fab-transition>
-                        </div>
-                    </template>
+                                    <v-icon left>
+                                        {{
+                                            pillIcon(item.station_status_id)
+                                        }}</v-icon
+                                    >
+                                    {{ item.station_status_name }}
+                                </v-btn>
 
-                    <v-list>
-                        <v-list-item
-                            v-for="(list, index) in dropdown_edit"
-                            :key="index"
-                            @click="click(item, list)"
+                                <!-- EXTRA BUTTON -->
+                            </div>
+                        </template>
+
+                        <v-list>
+                            <v-list-item
+                                v-for="(list, index) in dropdown_edit"
+                                :key="index"
+                                @click="click(item, list)"
+                            >
+                                <v-list-item-title>{{
+                                    list.title
+                                }}</v-list-item-title>
+                            </v-list-item>
+                        </v-list>
+                    </v-menu>
+
+                    <v-fab-transition>
+                        <StationTimer
+                            :station="item"
+                            v-if="item.station_status_id == 11"
                         >
-                            <v-list-item-title>{{
-                                list.title
-                            }}</v-list-item-title>
-                        </v-list-item>
-                    </v-list>
-                </v-menu>
+                        </StationTimer>
+                    </v-fab-transition>
+                    <v-fab-transition>
+                        <StationNewTimer
+                            :station="item"
+                            v-if="
+                                (item.station_status_id == 8 ||
+                                    item.station_status_id == 9) &&
+                                    item.out_time == null &&
+                                    $can('super')
+                            "
+                        >
+                        </StationNewTimer>
+                    </v-fab-transition>
+                </div>
                 <div v-else>
                     <template>
                         <div class="align-items-center d-inline-flex">
@@ -241,48 +216,6 @@
                         </div>
                     </template>
                 </div>
-            </template>
-            <template
-                v-slot:expanded-item="{ headers, item }"
-                class="align-center"
-                height="100%"
-            >
-                <td :colspan="headers.length" align="center">
-                    <div>
-                        <v-col class="align-center">
-                            <v-text-field
-                                v-bind:value="item.text"
-                                label="aDash Board Link - needs to be a link to a scan, making a new scan from where will not save"
-                                outlined
-                                shaped
-                                @change="
-                                    (payload = $event),
-                                        updatetext(payload, item)
-                                "
-                            ></v-text-field>
-                        </v-col>
-                    </div>
-                    <div
-                        v-if="
-                            item.text != null &&
-                                item.text.includes(
-                                    'https://adashboard.info/intel/dscan/'
-                                )
-                        "
-                    >
-                        <v-card class="mx-auto" elevation="24">
-                            <iframe
-                                :name="'ifram' + item.id"
-                                :src="item.text"
-                                style="left:0; bottom:0; right:0; width:100%; height:600px; border:none; margin:0; padding:0; overflow:hidden; z-index:999999;"
-                            >
-                            </iframe>
-                        </v-card>
-                    </div>
-                    <div>
-                        {{ item.text }}
-                    </div>
-                </td>
             </template>
 
             <template
@@ -344,8 +277,6 @@ export default {
             dialog3: false,
             diff: 0,
             endcount: "",
-            expanded: [],
-            expanded_id: 0,
             icon: "justify",
             loadingt: true,
             loadingf: true,
@@ -421,16 +352,6 @@ export default {
 
     async mounted() {},
     methods: {
-        checkexpanded(stations) {
-            // console.log(stations);
-            if (stations.station_status_id != 12) {
-                if (stations.id == this.expanded_id) {
-                    this.expanded = [];
-                    this.expanded_id = 0;
-                }
-            }
-        },
-
         updatetext(payload, item) {
             // console.log(item);
             if (item.text != payload) {
@@ -600,11 +521,6 @@ export default {
             item.station_status_id = list.value;
             item.station_status_name = list.title;
             item.user_name = user_name;
-
-            if (item.station_status_id != 12) {
-                this.expanded = [];
-                item.text = null;
-            }
 
             var request = {
                 station_status_id: item.station_status_id,

@@ -10789,73 +10789,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -10878,8 +10811,6 @@ function sleep(ms) {
       dialog3: false,
       diff: 0,
       endcount: "",
-      expanded: [],
-      expanded_id: 0,
       icon: "justify",
       loadingt: true,
       loadingf: true,
@@ -10993,15 +10924,6 @@ function sleep(ms) {
     }))();
   },
   methods: {
-    checkexpanded: function checkexpanded(stations) {
-      // console.log(stations);
-      if (stations.station_status_id != 12) {
-        if (stations.id == this.expanded_id) {
-          this.expanded = [];
-          this.expanded_id = 0;
-        }
-      }
-    },
     updatetext: function updatetext(payload, item) {
       // console.log(item);
       if (item.text != payload) {
@@ -11177,12 +11099,6 @@ function sleep(ms) {
       item.station_status_id = list.value;
       item.station_status_name = list.title;
       item.user_name = user_name;
-
-      if (item.station_status_id != 12) {
-        this.expanded = [];
-        item.text = null;
-      }
-
       var request = {
         station_status_id: item.station_status_id,
         user_id: this.$store.state.user_id,
@@ -31115,7 +31031,6 @@ var render = function() {
           attrs: {
             headers: _vm._headers,
             items: _vm.filteredItems,
-            expanded: _vm.expanded,
             "item-key": "id",
             loading: _vm.loadingt,
             "items-per-page": 25,
@@ -31126,9 +31041,6 @@ var render = function() {
             "multi-sort": ""
           },
           on: {
-            "update:expanded": function($event) {
-              _vm.expanded = $event
-            },
             "update:sortBy": function($event) {
               _vm.sortby = $event
             },
@@ -31254,192 +31166,139 @@ var render = function() {
                   return [
                     _vm.$can("edit_station_notifications")
                       ? _c(
-                          "v-menu",
-                          {
-                            attrs: { "offset-y": "" },
-                            scopedSlots: _vm._u(
-                              [
-                                {
-                                  key: "activator",
-                                  fn: function(ref) {
-                                    var on = ref.on
-                                    var attrs = ref.attrs
-                                    return [
-                                      _c(
-                                        "div",
-                                        {
-                                          staticClass:
-                                            "align-items-center d-lg-inline-flex"
-                                        },
-                                        [
+                          "div",
+                          [
+                            _c(
+                              "v-menu",
+                              {
+                                attrs: { "offset-y": "" },
+                                scopedSlots: _vm._u(
+                                  [
+                                    {
+                                      key: "activator",
+                                      fn: function(ref) {
+                                        var on = ref.on
+                                        var attrs = ref.attrs
+                                        return [
                                           _c(
-                                            "v-btn",
-                                            _vm._g(
-                                              _vm._b(
-                                                {
-                                                  staticClass: "ma-2",
-                                                  attrs: {
-                                                    tile: "",
-                                                    outlined: "",
-                                                    color: _vm.pillColor(
-                                                      item.station_status_id
-                                                    )
-                                                  }
-                                                },
-                                                "v-btn",
-                                                attrs,
-                                                false
-                                              ),
-                                              on
-                                            ),
+                                            "div",
+                                            {
+                                              staticClass:
+                                                "align-items-center d-lg-inline-flex"
+                                            },
                                             [
                                               _c(
-                                                "v-icon",
-                                                { attrs: { left: "" } },
+                                                "v-btn",
+                                                _vm._g(
+                                                  _vm._b(
+                                                    {
+                                                      staticClass: "ma-2",
+                                                      attrs: {
+                                                        tile: "",
+                                                        outlined: "",
+                                                        color: _vm.pillColor(
+                                                          item.station_status_id
+                                                        )
+                                                      }
+                                                    },
+                                                    "v-btn",
+                                                    attrs,
+                                                    false
+                                                  ),
+                                                  on
+                                                ),
                                                 [
+                                                  _c(
+                                                    "v-icon",
+                                                    { attrs: { left: "" } },
+                                                    [
+                                                      _vm._v(
+                                                        "\n                                    " +
+                                                          _vm._s(
+                                                            _vm.pillIcon(
+                                                              item.station_status_id
+                                                            )
+                                                          )
+                                                      )
+                                                    ]
+                                                  ),
                                                   _vm._v(
                                                     "\n                                " +
                                                       _vm._s(
-                                                        _vm.pillIcon(
-                                                          item.station_status_id
-                                                        )
-                                                      )
+                                                        item.station_status_name
+                                                      ) +
+                                                      "\n                            "
                                                   )
-                                                ]
-                                              ),
-                                              _vm._v(
-                                                "\n                            " +
-                                                  _vm._s(
-                                                    item.station_status_name
-                                                  ) +
-                                                  "\n                        "
+                                                ],
+                                                1
                                               )
                                             ],
                                             1
-                                          ),
-                                          _vm._v(" "),
-                                          _c(
-                                            "v-fab-transition",
-                                            [
-                                              item.station_status_id == 12 &&
-                                              !_vm.expanded.includes(item)
-                                                ? _c(
-                                                    "v-chip",
-                                                    {
-                                                      attrs: {
-                                                        pill: "",
-                                                        outlined: "",
-                                                        small: "",
-                                                        color: _vm.adashColor(
-                                                          item
-                                                        )
-                                                      },
-                                                      on: {
-                                                        click: function(
-                                                          $event
-                                                        ) {
-                                                          ;(_vm.expanded = [
-                                                            item
-                                                          ]),
-                                                            (_vm.expanded_id =
-                                                              item.id)
-                                                        }
-                                                      }
-                                                    },
-                                                    [_vm._v("adash")]
-                                                  )
-                                                : _vm._e(),
-                                              _vm._v(" "),
-                                              item.station_status_id == 12 &&
-                                              _vm.expanded.includes(item)
-                                                ? _c(
-                                                    "v-btn",
-                                                    {
-                                                      attrs: {
-                                                        icon: "",
-                                                        color: "error"
-                                                      },
-                                                      on: {
-                                                        click: function(
-                                                          $event
-                                                        ) {
-                                                          ;(_vm.expanded = []),
-                                                            (_vm.expanded_id = 0)
-                                                        }
-                                                      }
-                                                    },
-                                                    [
-                                                      _c("v-icon", [
-                                                        _vm._v("fas fa-minus")
-                                                      ])
-                                                    ],
-                                                    1
-                                                  )
-                                                : _vm._e()
-                                            ],
-                                            1
-                                          ),
-                                          _vm._v(" "),
-                                          _c(
-                                            "v-fab-transition",
-                                            [
-                                              item.station_status_id == 11
-                                                ? _c("StationTimer", {
-                                                    attrs: { station: item }
-                                                  })
-                                                : _vm._e()
-                                            ],
-                                            1
-                                          ),
-                                          _vm._v(" "),
-                                          _c(
-                                            "v-fab-transition",
-                                            [
-                                              (item.station_status_id == 8 ||
-                                                item.station_status_id == 9) &&
-                                              item.out_time == null &&
-                                              _vm.$can("super")
-                                                ? _c("StationNewTimer", {
-                                                    attrs: { station: item }
-                                                  })
-                                                : _vm._e()
-                                            ],
-                                            1
                                           )
-                                        ],
-                                        1
-                                      )
-                                    ]
-                                  }
-                                }
-                              ],
-                              null,
-                              true
-                            )
-                          },
-                          [
-                            _vm._v(" "),
-                            _c(
-                              "v-list",
-                              _vm._l(_vm.dropdown_edit, function(list, index) {
-                                return _c(
-                                  "v-list-item",
-                                  {
-                                    key: index,
-                                    on: {
-                                      click: function($event) {
-                                        return _vm.click(item, list)
+                                        ]
                                       }
                                     }
-                                  },
-                                  [
-                                    _c("v-list-item-title", [
-                                      _vm._v(_vm._s(list.title))
-                                    ])
                                   ],
+                                  null,
+                                  true
+                                )
+                              },
+                              [
+                                _vm._v(" "),
+                                _c(
+                                  "v-list",
+                                  _vm._l(_vm.dropdown_edit, function(
+                                    list,
+                                    index
+                                  ) {
+                                    return _c(
+                                      "v-list-item",
+                                      {
+                                        key: index,
+                                        on: {
+                                          click: function($event) {
+                                            return _vm.click(item, list)
+                                          }
+                                        }
+                                      },
+                                      [
+                                        _c("v-list-item-title", [
+                                          _vm._v(_vm._s(list.title))
+                                        ])
+                                      ],
+                                      1
+                                    )
+                                  }),
                                   1
                                 )
-                              }),
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "v-fab-transition",
+                              [
+                                item.station_status_id == 11
+                                  ? _c("StationTimer", {
+                                      attrs: { station: item }
+                                    })
+                                  : _vm._e()
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "v-fab-transition",
+                              [
+                                (item.station_status_id == 8 ||
+                                  item.station_status_id == 9) &&
+                                item.out_time == null &&
+                                _vm.$can("super")
+                                  ? _c("StationNewTimer", {
+                                      attrs: { station: item }
+                                    })
+                                  : _vm._e()
+                              ],
                               1
                             )
                           ],
@@ -31533,96 +31392,6 @@ var render = function() {
                           ],
                           2
                         )
-                  ]
-                }
-              },
-              {
-                key: "expanded-item",
-                fn: function(ref) {
-                  var headers = ref.headers
-                  var item = ref.item
-                  return [
-                    _c(
-                      "td",
-                      { attrs: { colspan: headers.length, align: "center" } },
-                      [
-                        _c(
-                          "div",
-                          [
-                            _c(
-                              "v-col",
-                              { staticClass: "align-center" },
-                              [
-                                _c("v-text-field", {
-                                  attrs: {
-                                    value: item.text,
-                                    label:
-                                      "aDash Board Link - needs to be a link to a scan, making a new scan from where will not save",
-                                    outlined: "",
-                                    shaped: ""
-                                  },
-                                  on: {
-                                    change: function($event) {
-                                      ;(_vm.payload = $event),
-                                        _vm.updatetext(_vm.payload, item)
-                                    }
-                                  }
-                                })
-                              ],
-                              1
-                            )
-                          ],
-                          1
-                        ),
-                        _vm._v(" "),
-                        item.text != null &&
-                        item.text.includes(
-                          "https://adashboard.info/intel/dscan/"
-                        )
-                          ? _c(
-                              "div",
-                              [
-                                _c(
-                                  "v-card",
-                                  {
-                                    staticClass: "mx-auto",
-                                    attrs: { elevation: "24" }
-                                  },
-                                  [
-                                    _c("iframe", {
-                                      staticStyle: {
-                                        left: "0",
-                                        bottom: "0",
-                                        right: "0",
-                                        width: "100%",
-                                        height: "600px",
-                                        border: "none",
-                                        margin: "0",
-                                        padding: "0",
-                                        overflow: "hidden",
-                                        "z-index": "999999"
-                                      },
-                                      attrs: {
-                                        name: "ifram" + item.id,
-                                        src: item.text
-                                      }
-                                    })
-                                  ]
-                                )
-                              ],
-                              1
-                            )
-                          : _vm._e(),
-                        _vm._v(" "),
-                        _c("div", [
-                          _vm._v(
-                            "\n                    " +
-                              _vm._s(item.text) +
-                              "\n                "
-                          )
-                        ])
-                      ]
-                    )
                   ]
                 }
               },
