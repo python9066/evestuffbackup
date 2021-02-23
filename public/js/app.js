@@ -10861,9 +10861,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
 
 
 
@@ -11205,6 +11202,17 @@ function sleep(ms) {
       var b = moment__WEBPACK_IMPORTED_MODULE_2___default()(item.timestamp);
       this.diff = a.diff(b);
       return this.diff;
+    },
+    showCountDown: function showCountDown(item) {
+      if (item.station_status_id == 5 || item.station_status_id == 8 || item.station_status_id == 9 || item.station_status_id == 11 || item.station_status_id == 13 || item.station_status_id == 14) {
+        return true;
+      }
+
+      if (item.station_statis_id == 12 && item.out_time != null) {
+        return true;
+      }
+
+      return false;
     }
   },
   computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapState"])(["stations"])), {}, {
@@ -31137,7 +31145,7 @@ var render = function() {
                 fn: function(ref) {
                   var item = ref.item
                   return [
-                    item.station_status_id == 5 || item.station_status_id == 13
+                    _vm.showCountDown(item)
                       ? _c("CountDowntimer", {
                           attrs: {
                             "start-time": _vm.moment.utc(item.timestamp).unix(),
