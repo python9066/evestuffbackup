@@ -19277,6 +19277,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 
@@ -39834,6 +39835,7 @@ var render = function() {
                       _vm.$can("super")
                         ? _c("TowerMessage", {
                             key: "towermessage" + item.id,
+                            staticClass: " pl-2",
                             attrs: { tower: item }
                           })
                         : _vm._e(),

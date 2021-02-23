@@ -168,6 +168,7 @@
                         >
                     </v-fab-transition>
                     <TowerMessage
+                        class=" pl-2"
                         :key="'towermessage' + item.id"
                         :tower="item"
                         v-if="$can('super')"
