@@ -142,4 +142,5 @@ Route::middleware('auth:api')->group(function () {
     Route::get('/towerlist', 'ItemController@towerlist');
     Route::put('/stationnew', 'StationController@store');
     Route::get('/moons/{sysid}', 'MoonController@bySystem');
+    Route::put('/stationattackmessage/{id}', 'StationController@updateAttackMessage');
 });

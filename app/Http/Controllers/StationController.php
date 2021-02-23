@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-
+use App\Events\StationAttackMessage;
 use App\Events\StationCoreUpdate;
 use App\Events\StationNotificationNew;
 use App\Events\StationNotificationUpdate;
@@ -227,6 +227,28 @@ class StationController extends Controller
             'message' => $message
         ]);
         broadcast(new StationNotificationNew($flag));
+    }
+
+    public function updateAttackMessage(Request $request, $id)
+    {
+        // dd($request->notes);
+
+        Station::where('id', $id)->update($request->all());
+
+        $message = Station::where('id', $id)->first();
+        if ($message->under_attack == 0) {
+            $type = 2;
+        } else {
+            $type = 1;
+        }
+        $flag = collect([
+            'type' => $type,
+            'message' => $message,
+            'id' => $id
+        ]);
+
+        // dd($request, $id, $flag);
+        broadcast(new StationAttackMessage($flag))->toOthers();
     }
 
     /**
