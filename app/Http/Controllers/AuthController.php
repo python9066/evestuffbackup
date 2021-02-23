@@ -34,17 +34,29 @@ class AuthController extends Controller
             $flag = 1;
         };
 
-        if (!isset($userGice->grp)) {
-            $g = "No groups";
-        } else {
-            $g = implode(",", $userGice->grp);
-        };
+
+
+
         // dd($g);
 
 
         // User::updateOrCreate(['id' => $userGice->sub], ['name' => $userGice->name, 'token' => $userGice->token, 'pri_grp' => $userGice->user['pri_grp'], 'api_token' => Str::random(60)]);
-        User::updateOrCreate(['id' => $userGice->sub], ['name' => $userGice->name, 'token' => $g, 'api_token' => Str::random(60)]);
+        User::updateOrCreate(['id' => $userGice->sub], ['name' => $userGice->name, 'api_token' => Str::random(60)]);
+
         $user = User::where('id', $userGice->sub)->first();
+
+        if (isset($userGice->grp)) {
+            $roles = $userGice->grp;
+
+            $this->purgeRoles($user);
+
+            foreach ($roles as $role) {
+                $this->addRoles($user, $role);
+            }
+        };
+
+
+
         Auth::login($user, true);
 
         if ($flag == 1) {
@@ -95,5 +107,36 @@ class AuthController extends Controller
     public function index()
     {
         return ['users' => User::select('id', 'name')->get()];
+    }
+
+
+    public function purgeRoles($user)
+    {
+
+
+        $user->removeRole(4);
+        $user->removeRole(5);
+        $user->removeRole(6);
+    }
+
+    public function addRoles($user, $role_id)
+    {
+        if ($role_id === 494) {
+
+            // function to assign coord role
+            $user->assignRole(4);
+        }
+
+        if ($role_id === 184) {
+
+            // function to assign coord role
+            $user->assignRole(5);
+        }
+
+        if ($role_id === 231) {
+
+            // function to assign coord role
+            $user->assignRole(6);
+        }
     }
 }
