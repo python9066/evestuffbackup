@@ -31283,7 +31283,7 @@ var render = function() {
                                   ? _c("StationTimer", {
                                       attrs: {
                                         station: item,
-                                        status: _vm.timerShown
+                                        timerShown: _vm.timerShown
                                       }
                                     })
                                   : _vm._e()
