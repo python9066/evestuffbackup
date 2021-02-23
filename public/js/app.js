@@ -11170,7 +11170,7 @@ function sleep(ms) {
     },
     close: function close() {},
     click: function click(item, list) {
-      if (item.list.value != 12) {
+      if (list.value != 12) {
         item.out_time = null;
       }
 

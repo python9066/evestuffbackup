@@ -594,7 +594,7 @@ export default {
         close() {},
 
         click(item, list) {
-            if (item.list.value != 12) {
+            if (list.value != 12) {
                 item.out_time = null;
             }
             item.station_status_id = list.value;
