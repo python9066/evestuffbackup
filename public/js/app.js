@@ -31282,15 +31282,21 @@ var render = function() {
                             _c(
                               "v-fab-transition",
                               [
-                                item.station_status_id == 11
-                                  ? _c("StationTimer", {
-                                      key: "stationTimer" + item.id,
-                                      attrs: {
-                                        station: item,
-                                        timerShown: _vm.timerShown
-                                      }
-                                    })
-                                  : _vm._e()
+                                _c("StationTimer", {
+                                  directives: [
+                                    {
+                                      name: "show",
+                                      rawName: "v-show",
+                                      value: item.station_status_id == 11,
+                                      expression: "item.station_status_id == 11"
+                                    }
+                                  ],
+                                  key: "stationTimer" + item.id,
+                                  attrs: {
+                                    station: item,
+                                    timerShown: _vm.timerShown
+                                  }
+                                })
                               ],
                               1
                             ),
