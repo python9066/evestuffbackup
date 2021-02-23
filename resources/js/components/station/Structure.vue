@@ -310,7 +310,7 @@
                 <span v-else-if="item.standing < 0" class="red--text pl-3"
                     >{{ item.alliance_ticker }}
                 </span>
-                <span v-else class="pl-3">{{ item.alliance }}</span>
+                <span v-else class="pl-3">{{ item.alliance_ticker }}</span>
             </template>
 
             <template v-slot:item.actions="{ item }" v-if="$can('gunner')">

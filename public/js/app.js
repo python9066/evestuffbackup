@@ -31653,7 +31653,7 @@ var render = function() {
                           )
                         ])
                       : _c("span", { staticClass: "pl-3" }, [
-                          _vm._v(_vm._s(item.alliance))
+                          _vm._v(_vm._s(item.alliance_ticker))
                         ])
                   ]
                 }
