@@ -9966,6 +9966,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -30850,48 +30855,72 @@ var render = function() {
             {
               key: "activator",
               fn: function(ref) {
-                var on = ref.on
+                var menu = ref.on
                 var attrs = ref.attrs
                 return [
                   _c(
-                    "v-badge",
+                    "v-tooltip",
                     {
-                      attrs: {
-                        color: "green",
-                        overlap: "",
-                        content: _vm.messageAttackCount,
-                        value: _vm.showAttackNumber
-                      }
+                      attrs: { bottom: "" },
+                      scopedSlots: _vm._u(
+                        [
+                          {
+                            key: "activator",
+                            fn: function(ref) {
+                              var tooltip = ref.on
+                              return [
+                                _c(
+                                  "v-badge",
+                                  {
+                                    attrs: {
+                                      color: "green",
+                                      overlap: "",
+                                      content: _vm.messageAttackCount,
+                                      value: _vm.showAttackNumber
+                                    }
+                                  },
+                                  [
+                                    _c(
+                                      "v-icon",
+                                      _vm._g(
+                                        _vm._b(
+                                          {
+                                            attrs: { color: "red" },
+                                            on: {
+                                              click: function($event) {
+                                                return _vm.open()
+                                              }
+                                            }
+                                          },
+                                          "v-icon",
+                                          attrs,
+                                          false
+                                        ),
+                                        Object.assign({}, tooltip, menu)
+                                      ),
+                                      [
+                                        _vm._v(
+                                          "\n                            " +
+                                            _vm._s(_vm.icon) +
+                                            "\n                        "
+                                        )
+                                      ]
+                                    )
+                                  ],
+                                  1
+                                )
+                              ]
+                            }
+                          }
+                        ],
+                        null,
+                        true
+                      )
                     },
                     [
-                      _c(
-                        "v-icon",
-                        _vm._g(
-                          _vm._b(
-                            {
-                              attrs: { color: "red" },
-                              on: {
-                                click: function($event) {
-                                  return _vm.open()
-                                }
-                              }
-                            },
-                            "v-icon",
-                            attrs,
-                            false
-                          ),
-                          on
-                        ),
-                        [
-                          _vm._v(
-                            "\n                    " +
-                              _vm._s(_vm.icon) +
-                              "\n                "
-                          )
-                        ]
-                      )
-                    ],
-                    1
+                      _vm._v(" "),
+                      _c("span", [_vm._v(" this is a test tooltip ")])
+                    ]
                   )
                 ]
               }
