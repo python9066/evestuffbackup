@@ -31,7 +31,7 @@
                 class=" d-flex flex-column"
             >
                 <v-card-title class="justify-center">
-                    Enter Ref Timer for {{ station.station_name }}
+                    Enter Timer for {{ station.station_name }}
                 </v-card-title>
                 <v-card-text>
                     <v-fade-transition>
@@ -58,6 +58,10 @@
                             <div>
                                 <h5><strong>Timer Type</strong></h5>
                                 <v-radio-group v-model="refType" row>
+                                    <v-radio
+                                        label="Anchoring"
+                                        value="14"
+                                    ></v-radio>
                                     <v-radio label="Armor" value="8"></v-radio>
                                     <v-radio label="Hull" value="9"></v-radio>
                                 </v-radio-group>
@@ -203,7 +207,8 @@ export default {
             if (
                 this.station.out_time == null &&
                 (this.station.station_status_id == 8 ||
-                    this.station.station_status_id == 9) &&
+                    this.station.station_status_id == 9 ||
+                    this.station.station_status_id == 14) &&
                 this.$can("edit_notifications")
             ) {
                 this.showStationTimer = true;

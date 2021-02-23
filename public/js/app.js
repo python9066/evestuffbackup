@@ -10623,6 +10623,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -10727,7 +10731,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])([])), Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapState"])([])), {}, {
     showPannel: function showPannel() {
-      if (this.station.out_time == null && (this.station.station_status_id == 8 || this.station.station_status_id == 9) && this.$can("edit_notifications")) {
+      if (this.station.out_time == null && (this.station.station_status_id == 8 || this.station.station_status_id == 9 || this.station.station_status_id == 14) && this.$can("edit_notifications")) {
         this.showStationTimer = true;
       } else {
         this.showStationTimer = false;
@@ -11289,11 +11293,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
 
 
 
@@ -11445,6 +11444,13 @@ function sleep(ms) {
             "Content-Type": "application/json"
           }
         });
+      }
+    },
+    showNewTimer: function showNewTimer(item) {
+      if ((item.station_status_id == 8 || item.station_status_id == 9 || item.station_status_id == 14) && item.out_time == null && this.$can("edit_station_notifications")) {
+        return true;
+      } else {
+        return false;
       }
     },
     showInfo: function showInfo(item) {
@@ -31260,7 +31266,7 @@ var render = function() {
             [
               _c("v-card-title", { staticClass: "justify-center" }, [
                 _vm._v(
-                  "\n                Enter Ref Timer for " +
+                  "\n                Enter Timer for " +
                     _vm._s(_vm.station.station_name) +
                     "\n            "
                 )
@@ -31337,6 +31343,10 @@ var render = function() {
                               }
                             },
                             [
+                              _c("v-radio", {
+                                attrs: { label: "Anchoring", value: "14" }
+                              }),
+                              _vm._v(" "),
                               _c("v-radio", {
                                 attrs: { label: "Armor", value: "8" }
                               }),
@@ -32299,14 +32309,17 @@ var render = function() {
                             _c(
                               "v-fab-transition",
                               [
-                                (item.station_status_id == 8 ||
-                                  item.station_status_id == 9) &&
-                                item.out_time == null &&
-                                _vm.$can("super")
-                                  ? _c("StationNewTimer", {
-                                      attrs: { station: item }
-                                    })
-                                  : _vm._e()
+                                _c("StationNewTimer", {
+                                  directives: [
+                                    {
+                                      name: "show",
+                                      rawName: "v-show",
+                                      value: _vm.showNewTimer(item),
+                                      expression: "showNewTimer(item)"
+                                    }
+                                  ],
+                                  attrs: { station: item }
+                                })
                               ],
                               1
                             )

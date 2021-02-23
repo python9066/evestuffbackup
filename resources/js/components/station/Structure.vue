@@ -180,12 +180,7 @@
                     <v-fab-transition>
                         <StationNewTimer
                             :station="item"
-                            v-if="
-                                (item.station_status_id == 8 ||
-                                    item.station_status_id == 9) &&
-                                    item.out_time == null &&
-                                    $can('super')
-                            "
+                            v-show="showNewTimer(item)"
                         >
                         </StationNewTimer>
                     </v-fab-transition>
@@ -379,6 +374,20 @@ export default {
                         "Content-Type": "application/json"
                     }
                 });
+            }
+        },
+
+        showNewTimer(item) {
+            if (
+                (item.station_status_id == 8 ||
+                    item.station_status_id == 9 ||
+                    item.station_status_id == 14) &&
+                item.out_time == null &&
+                this.$can("edit_station_notifications")
+            ) {
+                return true;
+            } else {
+                return false;
             }
         },
 
