@@ -691,7 +691,7 @@ export default {
                     {
                         text: "Alliance",
                         value: "alliance_ticker",
-                        width: "15%"
+                        width: "10%"
                     },
                     {
                         text: "Type",
@@ -756,7 +756,7 @@ export default {
                     {
                         text: "Alliance",
                         value: "alliance_ticker",
-                        width: "15%"
+                        width: "10%"
                     },
                     {
                         text: "Type",
