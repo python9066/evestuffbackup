@@ -38,6 +38,7 @@
                         <div>
                             <div>
                                 <v-text-field
+                                    v-model="stationName"
                                     placeholder="station.structure_name"
                                     label="Structure Type"
                                     readonly
@@ -45,11 +46,13 @@
                             </div>
                             <div class=" d-inline-flex justify-content-around">
                                 <v-text-field
+                                    v-model="systemName"
                                     placeholder="station.system_name"
                                     label="System Name"
                                     readonly
                                 ></v-text-field>
                                 <v-text-field
+                                    v-model="alliance_ticker"
                                     placeholder="station.corp_ticker"
                                     label="Corp Ticker"
                                     readonly
@@ -123,13 +126,17 @@ export default {
                 hh: "",
                 mm: "",
                 ss: ""
-            }
+            },
+            systemName: null,
+            alliance_ticker: null
         };
     },
 
     watch: {
         station: {
-            handler() {},
+            handler() {
+                this.showPannel;
+            },
             deep: true
         }
     },
@@ -139,6 +146,8 @@ export default {
             this.refType = null;
             this.refTime = null;
             this.stationName = null;
+            this.systemName = null;
+            this.alliance_ticker = null;
             this.showStationTimer = false;
         },
 
@@ -175,7 +184,10 @@ export default {
                 (this.refType = null),
                 (this.refTime = null),
                 (this.stationName = null),
-                (this.showStationTimer = false)
+                (this.showStationTimer = false),
+                (this.stationName = null),
+                (this.systemName = null),
+                (this.alliance_ticker = null)
             );
         },
 
@@ -198,6 +210,9 @@ export default {
                 } else {
                     this.refType = 9;
                 }
+                this.stationName = this.station.station_name;
+                this.systemName = this.station.system_name;
+                this.alliance_ticker = this.station.alliance_ticker;
                 this.showStationTimer = true;
             } else {
                 this.showStationTimer = false;

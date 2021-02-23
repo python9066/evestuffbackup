@@ -10623,6 +10623,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -10640,12 +10643,16 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         hh: "",
         mm: "",
         ss: ""
-      }
+      },
+      systemName: null,
+      alliance_ticker: null
     };
   },
   watch: {
     station: {
-      handler: function handler() {},
+      handler: function handler() {
+        this.showPannel;
+      },
       deep: true
     }
   },
@@ -10654,6 +10661,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       this.refType = null;
       this.refTime = null;
       this.stationName = null;
+      this.systemName = null;
+      this.alliance_ticker = null;
       this.showStationTimer = false;
     },
     submit: function submit() {
@@ -10690,7 +10699,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                     Accept: "application/json",
                     "Content-Type": "application/json"
                   }
-                }).then(_this.refType = null, _this.refTime = null, _this.stationName = null, _this.showStationTimer = false);
+                }).then(_this.refType = null, _this.refTime = null, _this.stationName = null, _this.showStationTimer = false, _this.stationName = null, _this.systemName = null, _this.alliance_ticker = null);
 
               case 12:
               case "end":
@@ -10723,6 +10732,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           this.refType = 9;
         }
 
+        this.stationName = this.station.station_name;
+        this.systemName = this.station.system_name;
+        this.alliance_ticker = this.station.alliance_ticker;
         this.showStationTimer = true;
       } else {
         this.showStationTimer = false;
@@ -31274,6 +31286,13 @@ var render = function() {
                               placeholder: "station.structure_name",
                               label: "Structure Type",
                               readonly: ""
+                            },
+                            model: {
+                              value: _vm.stationName,
+                              callback: function($$v) {
+                                _vm.stationName = $$v
+                              },
+                              expression: "stationName"
                             }
                           })
                         ],
@@ -31291,6 +31310,13 @@ var render = function() {
                               placeholder: "station.system_name",
                               label: "System Name",
                               readonly: ""
+                            },
+                            model: {
+                              value: _vm.systemName,
+                              callback: function($$v) {
+                                _vm.systemName = $$v
+                              },
+                              expression: "systemName"
                             }
                           }),
                           _vm._v(" "),
@@ -31299,6 +31325,13 @@ var render = function() {
                               placeholder: "station.corp_ticker",
                               label: "Corp Ticker",
                               readonly: ""
+                            },
+                            model: {
+                              value: _vm.alliance_ticker,
+                              callback: function($$v) {
+                                _vm.alliance_ticker = $$v
+                              },
+                              expression: "alliance_ticker"
                             }
                           })
                         ],
