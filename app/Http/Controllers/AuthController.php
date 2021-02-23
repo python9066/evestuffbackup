@@ -44,12 +44,10 @@ class AuthController extends Controller
         User::updateOrCreate(['id' => $userGice->sub], ['name' => $userGice->name, 'api_token' => Str::random(60)]);
 
         $user = User::where('id', $userGice->sub)->first();
-
+        $this->purgeRoles($user);
         if (isset($userGice->grp)) {
             $roles = $userGice->grp;
-
-            $this->purgeRoles($user);
-
+            dd($roles);
             foreach ($roles as $role) {
                 $this->addRoles($user, $role);
             }
