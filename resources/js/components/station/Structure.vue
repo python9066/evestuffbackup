@@ -520,7 +520,7 @@ export default {
             }
             item.station_status_id = list.value;
             item.station_status_name = list.title;
-            item.user_name = user_name;
+            item.user_name = this.user_name;
 
             var request = {
                 station_status_id: item.station_status_id,
