@@ -146,7 +146,7 @@ export default {
             this.$store.dispatch("updateTowers", this.tower);
             axios({
                 method: "put",
-                url: "/api/stationmessage/" + this.tower.id,
+                url: "/api/towermessage/" + this.tower.id,
                 data: request,
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,

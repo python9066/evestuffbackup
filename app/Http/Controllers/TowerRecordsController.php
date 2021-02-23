@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Events\TowerChanged;
 use App\Events\TowerDelete;
+use App\Events\TowerMessageUpdate;
 use App\Events\TowerNew;
 use App\Models\Tower;
 use App\Models\TowerRecord;
@@ -73,6 +74,23 @@ class TowerRecordsController extends Controller
             ]);
             broadcast(new TowerChanged($flag));
         }
+    }
+
+
+    public function updateMessage(Request $request, $id)
+    {
+        // dd($request->notes);
+
+        Tower::where('id', $id)->update($request->all());
+
+        $message = TowerRecord::where('id', $id)->first();
+        $flag = collect([
+            'message' => $message,
+            'id' => $id
+        ]);
+
+        // dd($request, $id, $flag);
+        broadcast(new TowerMessageUpdate($flag))->toOthers();
     }
 
 
