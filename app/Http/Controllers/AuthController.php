@@ -49,7 +49,7 @@ class AuthController extends Controller
             $roles = $userGice->grp;
 
             foreach ($roles as $role) {
-                dd($role);
+
                 $this->addRoles($user, $role);
             }
         };
