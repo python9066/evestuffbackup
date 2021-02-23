@@ -34,10 +34,11 @@ class AuthController extends Controller
             $flag = 1;
         };
 
-        $g = implode(",", $userGice->grp);
-        if ($g == null) {
+        if (!isset($userGice->grp)) {
             $g = "No groups";
-        }
+        } else {
+            $g = implode(",", $userGice->grp);
+        };
         // dd($g);
 
 
