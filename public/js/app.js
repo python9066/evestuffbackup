@@ -10439,7 +10439,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
-    station: Object
+    station: Object,
+    status: Boolean
   },
   data: function data() {
     return {

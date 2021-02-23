@@ -150,7 +150,8 @@ import { mapState, mapGetters } from "vuex";
 import moment from "moment";
 export default {
     props: {
-        station: Object
+        station: Object,
+        status: Boolean
     },
     data() {
         return {
