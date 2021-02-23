@@ -19382,7 +19382,7 @@ function sleep(ms) {
         text: "Type",
         value: "item_name",
         align: "center",
-        width: "10%"
+        width: "15%"
       }, {
         text: "Time",
         value: "timestamp",
