@@ -163,7 +163,6 @@
                         <StationTimer
                             :key="'stationTimer' + item.id"
                             :station="item"
-                            :timerShown="timerShown"
                         >
                         </StationTimer>
                     </v-fab-transition>
@@ -294,7 +293,6 @@ export default {
             toggle_none: null,
             sortdesc: true,
             sortby: "timestamp",
-            timerShown: false,
 
             dropdown_edit: [
                 { title: "On My Way", value: 2 },
@@ -529,7 +527,6 @@ export default {
                 status_update: moment.utc().format("YYYY-MM-DD  HH:mm:ss"),
                 out_time: item.out_time
             };
-            this.stationTimerOpen(item);
             axios({
                 method: "put", //you can set what request you want to be
                 url: "api/updatestationnotification/" + item.id,
@@ -565,14 +562,6 @@ export default {
             }
 
             return false;
-        },
-
-        stationTimerOpen(item) {
-            if (item.station_status_id == 11 && !item.out_time) {
-                this.timerShown = true;
-            } else {
-                this.timerShown = false;
-            }
         }
     },
 

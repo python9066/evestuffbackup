@@ -10439,11 +10439,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
-    station: Object,
-    timerShown: Boolean
+    station: Object
   },
   data: function data() {
     return {
+      timerShown: false,
       repairTime: {
         mm: "",
         ss: ""
@@ -10495,7 +10495,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }))();
     }
   },
-  computed: {}
+  computed: {
+    showPannel: function showPannel() {
+      if (station.repair_time == null && station.station_status_id == 11 && $can("edit_notifications")) {
+        this.timerShown = true;
+      } else {
+        return false;
+      }
+    }
+  }
 });
 
 /***/ }),
@@ -10530,7 +10538,6 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
-//
 //
 //
 //
@@ -10829,7 +10836,6 @@ function sleep(ms) {
       toggle_none: null,
       sortdesc: true,
       sortby: "timestamp",
-      timerShown: false,
       dropdown_edit: [{
         title: "On My Way",
         value: 2
@@ -11107,7 +11113,6 @@ function sleep(ms) {
         status_update: moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc().format("YYYY-MM-DD  HH:mm:ss"),
         out_time: item.out_time
       };
-      this.stationTimerOpen(item);
       axios({
         method: "put",
         //you can set what request you want to be
@@ -11136,13 +11141,6 @@ function sleep(ms) {
       }
 
       return false;
-    },
-    stationTimerOpen: function stationTimerOpen(item) {
-      if (item.station_status_id == 11 && !item.out_time) {
-        this.timerShown = true;
-      } else {
-        this.timerShown = false;
-      }
     }
   },
   computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapState"])(["stations"])), {}, {
@@ -31283,10 +31281,7 @@ var render = function() {
                               [
                                 _c("StationTimer", {
                                   key: "stationTimer" + item.id,
-                                  attrs: {
-                                    station: item,
-                                    timerShown: _vm.timerShown
-                                  }
+                                  attrs: { station: item }
                                 })
                               ],
                               1

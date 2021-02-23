@@ -150,11 +150,11 @@ import { mapState, mapGetters } from "vuex";
 import moment from "moment";
 export default {
     props: {
-        station: Object,
-        timerShown: Boolean
+        station: Object
     },
     data() {
         return {
+            timerShown: false,
             repairTime: {
                 mm: "",
                 ss: ""
@@ -192,7 +192,19 @@ export default {
         }
     },
 
-    computed: {}
+    computed: {
+        showPannel() {
+            if (
+                station.repair_time == null &&
+                station.station_status_id == 11 &&
+                $can("edit_notifications")
+            ) {
+                this.timerShown = true;
+            } else {
+                return false;
+            }
+        }
+    }
 };
 </script>
 
