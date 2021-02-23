@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Events\StationAttackMessageUpdate;
 use App\Events\StationCoreUpdate;
+use App\Events\StationMessageUpdate;
 use App\Events\StationNotificationNew;
 use App\Events\StationNotificationUpdate;
 use App\Models\Corp;
@@ -249,6 +250,23 @@ class StationController extends Controller
         // dd($request, $id, $flag);
         broadcast(new StationAttackMessageUpdate($flag))->toOthers();
     }
+
+    public function updateMessage(Request $request, $id)
+    {
+        // dd($request->notes);
+
+        Station::where('id', $id)->update($request->all());
+
+        $message = StationRecords::where('id', $id)->first();
+        $flag = collect([
+            'message' => $message,
+            'id' => $id
+        ]);
+
+        // dd($request, $id, $flag);
+        broadcast(new StationMessageUpdate($flag))->toOthers();
+    }
+
 
     /**
      * Display the specified resource.

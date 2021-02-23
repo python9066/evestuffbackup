@@ -252,7 +252,7 @@ class CampaignSystemsController extends Controller
         ]);
 
         // dd($request, $id, $flag);
-        broadcast(new StationMessageUpdate($flag))->toOthers();
+        broadcast(new NodeMessageUpdate($flag))->toOthers();
     }
 
     public function updateAttackMessage(Request $request, $id)
