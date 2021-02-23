@@ -15,8 +15,8 @@
                 >
                     <v-icon
                         color="red"
-                        v-bind="{ attrsMenu, attrsTooltip }"
-                        v-on="{ onMenu, onTooltip }"
+                        :v-bind="{ attrsMenu, attrsTooltip }"
+                        :v-on="{ onMenu, onTooltip }"
                         @click="open()"
                     >
                         {{ icon }}

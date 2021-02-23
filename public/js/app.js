@@ -30866,25 +30866,21 @@ var render = function() {
                     [
                       _c(
                         "v-icon",
-                        _vm._g(
-                          _vm._b(
-                            {
-                              attrs: { color: "red" },
-                              on: {
-                                click: function($event) {
-                                  return _vm.open()
-                                }
-                              }
-                            },
-                            "v-icon",
-                            {
+                        {
+                          attrs: {
+                            color: "red",
+                            "v-bind": {
                               attrsMenu: attrsMenu,
                               attrsTooltip: _vm.attrsTooltip
                             },
-                            false
-                          ),
-                          { onMenu: onMenu, onTooltip: _vm.onTooltip }
-                        ),
+                            "v-on": { onMenu: onMenu, onTooltip: _vm.onTooltip }
+                          },
+                          on: {
+                            click: function($event) {
+                              return _vm.open()
+                            }
+                          }
+                        },
                         [
                           _vm._v(
                             "\n                    " +
