@@ -10440,11 +10440,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     station: Object,
-    status: Boolean
+    timerShown: Boolean
   },
   data: function data() {
     return {
-      timerShown: false,
       repairTime: {
         mm: "",
         ss: ""
@@ -10830,7 +10829,7 @@ function sleep(ms) {
       toggle_none: null,
       sortdesc: true,
       sortby: "timestamp",
-      stationTimerOpenCheck: false,
+      timerShown: false,
       dropdown_edit: [{
         title: "On My Way",
         value: 2
@@ -11140,9 +11139,9 @@ function sleep(ms) {
     },
     stationTimerOpen: function stationTimerOpen(item) {
       if (item.station_status_id == 11 && !item.out_time) {
-        this.stationTimerOpenCheck = true;
+        this.timerShown = true;
       } else {
-        this.stationTimerOpenCheck = false;
+        this.timerShown = false;
       }
     }
   },
@@ -30505,7 +30504,10 @@ var render = function() {
               _c(
                 "v-menu",
                 {
-                  attrs: { "close-on-content-click": false, value: _vm.status },
+                  attrs: {
+                    "close-on-content-click": false,
+                    value: _vm.timerShown
+                  },
                   scopedSlots: _vm._u(
                     [
                       {
@@ -30527,7 +30529,7 @@ var render = function() {
                                     },
                                     on: {
                                       click: function($event) {
-                                        _vm.status = true
+                                        _vm.timerShown = true
                                       }
                                     }
                                   },
@@ -30549,7 +30551,7 @@ var render = function() {
                     ],
                     null,
                     false,
-                    1853082745
+                    751554087
                   )
                 },
                 [
@@ -31281,7 +31283,7 @@ var render = function() {
                                   ? _c("StationTimer", {
                                       attrs: {
                                         station: item,
-                                        status: _vm.stationTimerOpenCheck
+                                        status: _vm.timerShown
                                       }
                                     })
                                   : _vm._e()

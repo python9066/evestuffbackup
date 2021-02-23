@@ -7,14 +7,14 @@
                     $can('edit_notifications')
             "
         >
-            <v-menu :close-on-content-click="false" :value="status">
+            <v-menu :close-on-content-click="false" :value="timerShown">
                 <template v-slot:activator="{ on, attrs }">
                     <v-chip
                         v-bind="attrs"
                         v-on="on"
                         pill
                         outlined
-                        @click="status = true"
+                        @click="timerShown = true"
                         small
                         color="warning"
                     >
@@ -151,11 +151,10 @@ import moment from "moment";
 export default {
     props: {
         station: Object,
-        status: Boolean
+        timerShown: Boolean
     },
     data() {
         return {
-            timerShown: false,
             repairTime: {
                 mm: "",
                 ss: ""

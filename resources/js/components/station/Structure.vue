@@ -163,7 +163,7 @@
                         <StationTimer
                             :station="item"
                             v-if="item.station_status_id == 11"
-                            :status="stationTimerOpenCheck"
+                            :status="timerShown"
                         >
                         </StationTimer>
                     </v-fab-transition>
@@ -294,7 +294,7 @@ export default {
             toggle_none: null,
             sortdesc: true,
             sortby: "timestamp",
-            stationTimerOpenCheck: false,
+            timerShown: false,
 
             dropdown_edit: [
                 { title: "On My Way", value: 2 },
@@ -569,9 +569,9 @@ export default {
 
         stationTimerOpen(item) {
             if (item.station_status_id == 11 && !item.out_time) {
-                this.stationTimerOpenCheck = true;
+                this.timerShown = true;
             } else {
-                this.stationTimerOpenCheck = false;
+                this.timerShown = false;
             }
         }
     },
