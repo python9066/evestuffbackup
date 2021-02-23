@@ -206,8 +206,8 @@ export default {
     computed: {
         showPannel() {
             if (
-                station.repair_time == null &&
-                station.station_status_id == 11 &&
+                this.station.repair_time == null &&
+                this.station.station_status_id == 11 &&
                 $can("edit_notifications")
             ) {
                 this.timerShown = true;
