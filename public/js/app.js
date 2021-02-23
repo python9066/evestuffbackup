@@ -10039,7 +10039,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       };
       axios({
         method: "put",
-        url: "/api/campaignsystemsattackmessage/" + this.station.id,
+        url: "/api/stationattackmessage/" + this.station.id,
         data: request,
         headers: {
           Authorization: "Bearer " + this.$store.state.token,
@@ -10097,7 +10097,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       this.$store.dispatch("updateStationNotification", this.station);
       axios({
         method: "put",
-        url: "/api/campaignsystemsattackmessage/" + this.station.id,
+        url: "/api/stationattackmessage/" + this.station.id,
         data: request,
         headers: {
           Authorization: "Bearer " + this.$store.state.token,

@@ -180,7 +180,7 @@ export default {
             };
             axios({
                 method: "put",
-                url: "/api/campaignsystemsattackmessage/" + this.station.id,
+                url: "/api/stationattackmessage/" + this.station.id,
                 data: request,
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
@@ -248,7 +248,7 @@ export default {
             this.$store.dispatch("updateStationNotification", this.station);
             axios({
                 method: "put",
-                url: "/api/campaignsystemsattackmessage/" + this.station.id,
+                url: "/api/stationattackmessage/" + this.station.id,
                 data: request,
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
