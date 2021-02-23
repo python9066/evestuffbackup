@@ -7,14 +7,14 @@
                     $can('edit_notifications')
             "
         >
-            <v-menu :close-on-content-click="false" :value="timerShown">
+            <v-menu :close-on-content-click="false" :value="status">
                 <template v-slot:activator="{ on, attrs }">
                     <v-chip
                         v-bind="attrs"
                         v-on="on"
                         pill
                         outlined
-                        @click="timerShown = true"
+                        @click="status = true"
                         small
                         color="warning"
                     >
@@ -193,15 +193,7 @@ export default {
         }
     },
 
-    computed: {
-        openPannel() {
-            if (this.status) {
-                this.timerShown = true;
-            } else {
-                this.timerShown = false;
-            }
-        }
-    }
+    computed: {}
 };
 </script>
 

@@ -10496,15 +10496,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }))();
     }
   },
-  computed: {
-    openPannel: function openPannel() {
-      if (this.status) {
-        this.timerShown = true;
-      } else {
-        this.timerShown = false;
-      }
-    }
-  }
+  computed: {}
 });
 
 /***/ }),
@@ -30513,10 +30505,7 @@ var render = function() {
               _c(
                 "v-menu",
                 {
-                  attrs: {
-                    "close-on-content-click": false,
-                    value: _vm.timerShown
-                  },
+                  attrs: { "close-on-content-click": false, value: _vm.status },
                   scopedSlots: _vm._u(
                     [
                       {
@@ -30538,7 +30527,7 @@ var render = function() {
                                     },
                                     on: {
                                       click: function($event) {
-                                        _vm.timerShown = true
+                                        _vm.status = true
                                       }
                                     }
                                   },
@@ -30560,7 +30549,7 @@ var render = function() {
                     ],
                     null,
                     false,
-                    751554087
+                    1853082745
                   )
                 },
                 [
