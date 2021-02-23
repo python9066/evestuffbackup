@@ -30850,7 +30850,7 @@ var render = function() {
             {
               key: "activator",
               fn: function(ref) {
-                var on = ref.on
+                var onMenu = ref.on
                 var attrs = ref.attrs
                 return [
                   _c(
@@ -30880,7 +30880,7 @@ var render = function() {
                             attrs,
                             false
                           ),
-                          on
+                          onMenu
                         ),
                         [
                           _vm._v(

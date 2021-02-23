@@ -6,7 +6,7 @@
             v-model="showAttackStationNotes"
             @click:outside="close()"
         >
-            <template v-slot:activator="{ on, attrs }">
+            <template v-slot:activator="{ on: onMenu, attrs }">
                 <v-badge
                     color="green"
                     overlap
@@ -16,7 +16,7 @@
                     <v-icon
                         color="red"
                         v-bind="attrs"
-                        v-on="on"
+                        v-on="onMenu"
                         @click="open()"
                     >
                         {{ icon }}
