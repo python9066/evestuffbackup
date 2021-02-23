@@ -10789,6 +10789,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 
@@ -10828,6 +10829,7 @@ function sleep(ms) {
       toggle_none: null,
       sortdesc: true,
       sortby: "timestamp",
+      stationTimerOpenCheck: false,
       dropdown_edit: [{
         title: "On My Way",
         value: 2
@@ -11105,6 +11107,7 @@ function sleep(ms) {
         status_update: moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc().format("YYYY-MM-DD  HH:mm:ss"),
         out_time: item.out_time
       };
+      this.stationTimerOpen(item);
       axios({
         method: "put",
         //you can set what request you want to be
@@ -11133,6 +11136,13 @@ function sleep(ms) {
       }
 
       return false;
+    },
+    stationTimerOpen: function stationTimerOpen(item) {
+      if (item.station_status_id == 11 && !item.out_time) {
+        this.stationTimerOpenCheck = true;
+      } else {
+        this.stationTimerOpenCheck = false;
+      }
     }
   },
   computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapState"])(["stations"])), {}, {
@@ -31271,7 +31281,10 @@ var render = function() {
                               [
                                 item.station_status_id == 11
                                   ? _c("StationTimer", {
-                                      attrs: { station: item }
+                                      attrs: {
+                                        station: item,
+                                        status: _vm.stationTimerOpen(item)
+                                      }
                                     })
                                   : _vm._e()
                               ],
