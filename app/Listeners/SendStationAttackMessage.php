@@ -2,11 +2,11 @@
 
 namespace App\Listeners;
 
-use App\Events\StationAttackMessage;
+use App\Events\StationAttackMessageUpdate;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 
-class SendStationAttackMessage
+class SendStationAttackMessageUpdate
 {
     /**
      * Create the event listener.
@@ -21,10 +21,10 @@ class SendStationAttackMessage
     /**
      * Handle the event.
      *
-     * @param  StationAttackMessage  $event
+     * @param  StationAttackMessageUpdate  $event
      * @return void
      */
-    public function handle(StationAttackMessage $event)
+    public function handle(StationAttackMessageUpdate $event)
     {
         //
     }
