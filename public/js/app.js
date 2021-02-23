@@ -19390,7 +19390,7 @@ function sleep(ms) {
       }, {
         text: "Status",
         value: "tower_status_name",
-        width: "15%"
+        width: "10%"
       }, {
         text: "Edited By",
         value: "user_name",

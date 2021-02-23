@@ -325,7 +325,7 @@ export default {
                 },
                 { text: "Time", value: "timestamp", width: "8%" },
 
-                { text: "Status", value: "tower_status_name", width: "15%" },
+                { text: "Status", value: "tower_status_name", width: "10%" },
                 {
                     text: "Edited By",
                     value: "user_name",
