@@ -10625,8 +10625,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -31228,15 +31226,7 @@ var render = function() {
                       ),
                       on
                     ),
-                    [
-                      _c("v-icon", { attrs: { small: "", left: "" } }, [
-                        _vm._v(
-                          "\n                    faSvg fa-plus\n                "
-                        )
-                      ]),
-                      _vm._v("\n                Add Timer\n            ")
-                    ],
-                    1
+                    [_vm._v("\n                Add Timer\n            ")]
                   )
                 ]
               }
