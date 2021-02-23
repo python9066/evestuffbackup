@@ -6,28 +6,22 @@
             v-model="showAttackStationNotes"
             @click:outside="close()"
         >
-            <template v-slot:activator="{ on: onMenu, attrs: attrsMenu }">
-                <v-tooltip bottom>
-                    <template
-                        #activator="{ on: onTooltip, attrs: attrsTooltip }"
+            <template v-slot:activator="{ on, attrs }">
+                <v-badge
+                    color="green"
+                    overlap
+                    :content="messageAttackCount"
+                    :value="showAttackNumber"
+                >
+                    <v-icon
+                        color="red"
+                        v-bind="attrs"
+                        v-on="on"
+                        @click="open()"
                     >
-                        <v-badge
-                            color="green"
-                            overlap
-                            :content="messageAttackCount"
-                            :value="showAttackNumber"
-                        >
-                            <v-icon
-                                color="red"
-                                v-bind="{ attrsMenu, attrsTooltip }"
-                                v-on="{ onMenu, onTooltip }"
-                                @click="open()"
-                            >
-                                {{ icon }}
-                            </v-icon>
-                        </v-badge>
-                    </template>
-                </v-tooltip>
+                        {{ icon }}
+                    </v-icon>
+                </v-badge>
             </template>
 
             <v-card

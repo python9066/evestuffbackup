@@ -9966,12 +9966,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -30856,70 +30850,49 @@ var render = function() {
             {
               key: "activator",
               fn: function(ref) {
-                var onMenu = ref.on
-                var attrsMenu = ref.attrs
+                var on = ref.on
+                var attrs = ref.attrs
                 return [
-                  _c("v-tooltip", {
-                    attrs: { bottom: "" },
-                    scopedSlots: _vm._u(
-                      [
-                        {
-                          key: "activator",
-                          fn: function(ref) {
-                            var onTooltip = ref.on
-                            var attrsTooltip = ref.attrs
-                            return [
-                              _c(
-                                "v-badge",
-                                {
-                                  attrs: {
-                                    color: "green",
-                                    overlap: "",
-                                    content: _vm.messageAttackCount,
-                                    value: _vm.showAttackNumber
-                                  }
-                                },
-                                [
-                                  _c(
-                                    "v-icon",
-                                    _vm._g(
-                                      _vm._b(
-                                        {
-                                          attrs: { color: "red" },
-                                          on: {
-                                            click: function($event) {
-                                              return _vm.open()
-                                            }
-                                          }
-                                        },
-                                        "v-icon",
-                                        {
-                                          attrsMenu: attrsMenu,
-                                          attrsTooltip: attrsTooltip
-                                        },
-                                        false
-                                      ),
-                                      { onMenu: onMenu, onTooltip: onTooltip }
-                                    ),
-                                    [
-                                      _vm._v(
-                                        "\n                            " +
-                                          _vm._s(_vm.icon) +
-                                          "\n                        "
-                                      )
-                                    ]
-                                  )
-                                ],
-                                1
-                              )
-                            ]
-                          }
-                        }
-                      ],
-                      null,
-                      true
-                    )
-                  })
+                  _c(
+                    "v-badge",
+                    {
+                      attrs: {
+                        color: "green",
+                        overlap: "",
+                        content: _vm.messageAttackCount,
+                        value: _vm.showAttackNumber
+                      }
+                    },
+                    [
+                      _c(
+                        "v-icon",
+                        _vm._g(
+                          _vm._b(
+                            {
+                              attrs: { color: "red" },
+                              on: {
+                                click: function($event) {
+                                  return _vm.open()
+                                }
+                              }
+                            },
+                            "v-icon",
+                            attrs,
+                            false
+                          ),
+                          on
+                        ),
+                        [
+                          _vm._v(
+                            "\n                    " +
+                              _vm._s(_vm.icon) +
+                              "\n                "
+                          )
+                        ]
+                      )
+                    ],
+                    1
+                  )
                 ]
               }
             }
