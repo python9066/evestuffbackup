@@ -163,7 +163,6 @@
                         <StationTimer
                             :key="'stationTimer' + item.id"
                             :station="item"
-                            v-show="item.station_status_id == 11"
                             :timerShown="timerShown"
                         >
                         </StationTimer>

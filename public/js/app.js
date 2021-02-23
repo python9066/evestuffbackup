@@ -10790,7 +10790,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
 
 
 
@@ -31283,14 +31282,6 @@ var render = function() {
                               "v-fab-transition",
                               [
                                 _c("StationTimer", {
-                                  directives: [
-                                    {
-                                      name: "show",
-                                      rawName: "v-show",
-                                      value: item.station_status_id == 11,
-                                      expression: "item.station_status_id == 11"
-                                    }
-                                  ],
                                   key: "stationTimer" + item.id,
                                   attrs: {
                                     station: item,
