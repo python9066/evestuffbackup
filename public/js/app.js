@@ -10692,7 +10692,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return axios({
                   method: "put",
                   //you can set what request you want to be
-                  url: "api/updatestationnotification/" + station.id,
+                  url: "api/updatestationnotification/" + _this.station.id,
                   data: request,
                   headers: {
                     Authorization: "Bearer " + _this.$store.state.token,
