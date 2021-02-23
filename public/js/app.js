@@ -31861,6 +31861,12 @@ var render = function() {
                               1
                             ),
                             _vm._v(" "),
+                            _vm.$can("edit_station_notifications")
+                              ? _c("StationAttack", {
+                                  attrs: { station: item }
+                                })
+                              : _vm._e(),
+                            _vm._v(" "),
                             _c(
                               "v-fab-transition",
                               [
@@ -31885,13 +31891,7 @@ var render = function() {
                                   : _vm._e()
                               ],
                               1
-                            ),
-                            _vm._v(" "),
-                            _vm.$can("edit_station_notifications")
-                              ? _c("StationAttack", {
-                                  attrs: { station: item }
-                                })
-                              : _vm._e()
+                            )
                           ],
                           1
                         )

@@ -158,6 +158,10 @@
                             </v-list-item>
                         </v-list>
                     </v-menu>
+                    <StationAttack
+                        v-if="$can('edit_station_notifications')"
+                        :station="item"
+                    ></StationAttack>
 
                     <v-fab-transition>
                         <StationTimer
@@ -178,10 +182,6 @@
                         >
                         </StationNewTimer>
                     </v-fab-transition>
-                    <StationAttack
-                        v-if="$can('edit_station_notifications')"
-                        :station="item"
-                    ></StationAttack>
                 </div>
                 <div v-else>
                     <template>
