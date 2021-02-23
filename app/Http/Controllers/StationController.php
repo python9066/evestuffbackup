@@ -235,7 +235,7 @@ class StationController extends Controller
 
         Station::where('id', $id)->update($request->all());
 
-        $message = Station::where('id', $id)->first();
+        $message = StationRecords::where('id', $id)->first();
         if ($message->under_attack == 0) {
             $type = 2;
         } else {
