@@ -12,6 +12,7 @@ use App\Events\KickUserFromCampaign;
 use App\Events\NodeAttackMessageUpdate;
 use App\Events\NodeJoinDelete;
 use App\Events\NodeMessageUpdate;
+use App\Events\StationMessageUpdate;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Campaign;
 use App\Models\CampaignSolaSystem;
@@ -251,7 +252,7 @@ class CampaignSystemsController extends Controller
         ]);
 
         // dd($request, $id, $flag);
-        broadcast(new NodeMessageUpdate($flag))->toOthers();
+        broadcast(new StationMessageUpdate($flag))->toOthers();
     }
 
     public function updateAttackMessage(Request $request, $id)
