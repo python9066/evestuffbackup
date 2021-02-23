@@ -193,7 +193,15 @@ export default {
         }
     },
 
-    computed: {}
+    computed: {
+        openPannel() {
+            if (this.status) {
+                this.timerShown = true;
+            } else {
+                this.timerShown = false;
+            }
+        }
+    }
 };
 </script>
 

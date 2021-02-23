@@ -10496,7 +10496,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }))();
     }
   },
-  computed: {}
+  computed: {
+    openPannel: function openPannel() {
+      if (this.status) {
+        this.timerShown = true;
+      } else {
+        this.timerShown = false;
+      }
+    }
+  }
 });
 
 /***/ }),
