@@ -163,7 +163,7 @@
                         <StationTimer
                             :station="item"
                             v-if="item.station_status_id == 11"
-                            :status="stationTimerOpen(item)"
+                            :status="stationTimerOpenCheck"
                         >
                         </StationTimer>
                     </v-fab-transition>
