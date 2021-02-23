@@ -201,7 +201,7 @@ export default {
             ) {
                 this.timerShown = true;
             } else {
-                return false;
+                this.timerShown = false;
             }
         }
     }

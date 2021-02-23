@@ -10500,7 +10500,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       if (station.repair_time == null && station.station_status_id == 11 && $can("edit_notifications")) {
         this.timerShown = true;
       } else {
-        return false;
+        this.timerShown = false;
       }
     }
   }
