@@ -351,7 +351,8 @@ export default {
                 item_id: this.structSelect,
                 station_status_id: this.refType,
                 out_time: outTime,
-                status_update: moment.utc().format("YYYY-MM-DD HH:mm:ss")
+                status_update: moment.utc().format("YYYY-MM-DD HH:mm:ss"),
+                timestamp: moment.utc().format("YYYY-MM-DD HH:mm:ss")
             };
 
             await axios({

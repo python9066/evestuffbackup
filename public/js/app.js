@@ -9220,7 +9220,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   item_id: _this4.structSelect,
                   station_status_id: _this4.refType,
                   out_time: outTime,
-                  status_update: moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc().format("YYYY-MM-DD HH:mm:ss")
+                  status_update: moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc().format("YYYY-MM-DD HH:mm:ss"),
+                  timestamp: moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc().format("YYYY-MM-DD HH:mm:ss")
                 };
                 _context.next = 12;
                 return axios({
