@@ -587,20 +587,20 @@ export default {
         filteredItems() {
             var hourBefore = moment
                 .utc()
-                .subtract(1, "hour")
+                .add(1, "hour")
                 .format("YYYY-MM-DD HH:mm:ss");
             if (this.statusflag == 2) {
                 return this.stations.filter(
                     s =>
                         s.station_status_id == 1 ||
                         s.station_status_id == 4 ||
-                        (s.station_status_id == 5 && s.out_time > hourBefore) ||
+                        (s.station_status_id == 5 && s.out_time < hourBefore) ||
                         s.station_status_id == 6 ||
                         s.station_status_id == 8 ||
                         s.station_status_id == 9 ||
                         s.station_status_id == 11 ||
                         (s.station_status_id == 13 &&
-                            s.out_time > hourBefore) ||
+                            s.out_time < hourBefore) ||
                         s.station_status_id == 14
                 );
             }
