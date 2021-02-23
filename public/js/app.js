@@ -10790,6 +10790,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 
@@ -31281,6 +31282,7 @@ var render = function() {
                               [
                                 item.station_status_id == 11
                                   ? _c("StationTimer", {
+                                      key: "stationTimer" + item.id,
                                       attrs: {
                                         station: item,
                                         timerShown: _vm.timerShown
