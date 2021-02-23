@@ -144,5 +144,5 @@ Route::middleware('auth:api')->group(function () {
     Route::get('/moons/{sysid}', 'MoonController@bySystem');
     Route::put('/stationattackmessage/{id}', 'StationController@updateAttackMessage');
     Route::put('/stationmessage/{id}', 'StationController@updateMessage');
-    Route::put('/towermessage/{id}', 'StationController@updateMessage');
+    Route::put('/towermessage/{id}', 'TowerRecordsController@updateMessage');
 });
