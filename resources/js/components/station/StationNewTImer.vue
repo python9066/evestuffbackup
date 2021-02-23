@@ -16,7 +16,7 @@
                     v-bind="attrs"
                     v-on="on"
                     @click="open()"
-                    ><v-icon left>
+                    ><v-icon small left>
                         faSvg fa-plus
                     </v-icon>
                     Add Timer
