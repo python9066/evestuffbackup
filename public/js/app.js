@@ -11247,11 +11247,11 @@ function sleep(ms) {
         }, {
           text: "System",
           value: "system_name",
-          width: "5%"
+          width: "8%"
         }, {
           text: "Alliance",
           value: "alliance_ticker",
-          width: "20%"
+          width: "15%"
         }, {
           text: "Type",
           value: "item_name",
