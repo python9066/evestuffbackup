@@ -14,7 +14,7 @@
                     :value="showAttackNumber"
                 >
                     <v-tooltip bottom>
-                        <template #activator="{ on: onTooltip }">
+                        <template #activator="{ on: onTooltip, attrs }">
                             <v-icon
                                 color="red"
                                 v-bind="attrs"

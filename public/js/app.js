@@ -30879,6 +30879,7 @@ var render = function() {
                                 key: "activator",
                                 fn: function(ref) {
                                   var onTooltip = ref.on
+                                  var attrs = ref.attrs
                                   return [
                                     _c(
                                       "v-icon",
