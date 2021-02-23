@@ -9971,6 +9971,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -30861,7 +30864,7 @@ var render = function() {
                   _c(
                     "v-tooltip",
                     {
-                      attrs: { bottom: "" },
+                      attrs: { bottom: "", "open-delay": "5000" },
                       scopedSlots: _vm._u(
                         [
                           {
@@ -30919,7 +30922,11 @@ var render = function() {
                     },
                     [
                       _vm._v(" "),
-                      _c("span", [_vm._v(" this is a test tooltip ")])
+                      _c("span", [
+                        _vm._v(
+                          "\n                    Where to add adash scan and any other notes about\n                    attackers\n                "
+                        )
+                      ])
                     ]
                   )
                 ]

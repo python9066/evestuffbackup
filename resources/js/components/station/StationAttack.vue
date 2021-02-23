@@ -7,7 +7,7 @@
             @click:outside="close()"
         >
             <template v-slot:activator="{ on: menu, attrs }">
-                <v-tooltip bottom>
+                <v-tooltip bottom open-delay="5000">
                     <template v-slot:activator="{ on: tooltip }">
                         <v-badge
                             color="green"
@@ -25,7 +25,10 @@
                             </v-icon>
                         </v-badge>
                     </template>
-                    <span> this is a test tooltip </span>
+                    <span>
+                        Where to add adash scan and any other notes about
+                        attackers
+                    </span>
                 </v-tooltip>
             </template>
 
