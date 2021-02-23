@@ -10506,7 +10506,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   computed: {
     showPannel: function showPannel() {
-      if (this.station.repair_time == null && this.station.station_status_id == 11 && $can("edit_notifications")) {
+      if (this.station.repair_time == null && this.station.station_status_id == 11 && this.$can("edit_notifications")) {
         this.timerShown = true;
       } else {
         this.timerShown = false;
