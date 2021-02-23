@@ -117,7 +117,6 @@ export default {
     },
     data() {
         return {
-            systems: [],
             showStationTimer: false,
             stationName: null,
             refType: null,
@@ -141,13 +140,20 @@ export default {
         }
     },
 
+    mounted() {
+        this.setValues();
+    },
+
     methods: {
+        setValues() {
+            this.systemName = this.station.system_name;
+            this.alliance_ticker = this.station.alliance_sticker;
+            this.stationName = this.station.station_name;
+        },
+
         close() {
             this.refType = null;
             this.refTime = null;
-            this.stationName = null;
-            this.systemName = null;
-            this.alliance_ticker = null;
             this.showStationTimer = false;
         },
 
@@ -183,11 +189,7 @@ export default {
             }).then(
                 (this.refType = null),
                 (this.refTime = null),
-                (this.stationName = null),
-                (this.showStationTimer = false),
-                (this.stationName = null),
-                (this.systemName = null),
-                (this.alliance_ticker = null)
+                (this.showStationTimer = false)
             );
         },
 
@@ -205,14 +207,6 @@ export default {
                     this.station.station_status_id == 9) &&
                 this.$can("edit_notifications")
             ) {
-                if (this.station.station_status_id == 8) {
-                    this.refType = 8;
-                } else {
-                    this.refType = 9;
-                }
-                this.stationName = this.station.station_name;
-                this.systemName = this.station.system_name;
-                this.alliance_ticker = this.station.alliance_ticker;
                 this.showStationTimer = true;
             } else {
                 this.showStationTimer = false;

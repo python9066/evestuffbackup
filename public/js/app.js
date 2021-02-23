@@ -10634,7 +10634,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   data: function data() {
     return {
-      systems: [],
       showStationTimer: false,
       stationName: null,
       refType: null,
@@ -10656,13 +10655,18 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       deep: true
     }
   },
+  mounted: function mounted() {
+    this.setValues();
+  },
   methods: {
+    setValues: function setValues() {
+      this.systemName = this.station.system_name;
+      this.alliance_ticker = this.station.alliance_sticker;
+      this.stationName = this.station.station_name;
+    },
     close: function close() {
       this.refType = null;
       this.refTime = null;
-      this.stationName = null;
-      this.systemName = null;
-      this.alliance_ticker = null;
       this.showStationTimer = false;
     },
     submit: function submit() {
@@ -10699,7 +10703,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                     Accept: "application/json",
                     "Content-Type": "application/json"
                   }
-                }).then(_this.refType = null, _this.refTime = null, _this.stationName = null, _this.showStationTimer = false, _this.stationName = null, _this.systemName = null, _this.alliance_ticker = null);
+                }).then(_this.refType = null, _this.refTime = null, _this.showStationTimer = false);
 
               case 12:
               case "end":
@@ -10726,15 +10730,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])([])), Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapState"])([])), {}, {
     showPannel: function showPannel() {
       if (this.station.out_time == null && (this.station.station_status_id == 8 || this.station.station_status_id == 9) && this.$can("edit_notifications")) {
-        if (this.station.station_status_id == 8) {
-          this.refType = 8;
-        } else {
-          this.refType = 9;
-        }
-
-        this.stationName = this.station.station_name;
-        this.systemName = this.station.system_name;
-        this.alliance_ticker = this.station.alliance_ticker;
         this.showStationTimer = true;
       } else {
         this.showStationTimer = false;
