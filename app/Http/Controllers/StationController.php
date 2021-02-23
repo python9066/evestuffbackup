@@ -248,7 +248,7 @@ class StationController extends Controller
         ]);
 
         // dd($request, $id, $flag);
-        broadcast(new StationAttackMessage($flag))->toOthers();
+        broadcast(new StationAttackMessageUpdate($flag))->toOthers();
     }
 
     /**

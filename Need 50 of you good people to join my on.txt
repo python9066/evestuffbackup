@@ -8,13 +8,17 @@ Doctrine: Jackdaw Fleet (Boosters > Scalpel / Kirin > Jackdaw > Keres / Hyena > 
 
 !all Quick Adventure in and out 20 mins!!  :yayclod:
 
-FC Name: Klexos
+!all Speed and Powah!
+
+FC Name: Luke Toir
 Formup Location: 1DQ1-A
 Pap Type: Strategic
-Comms: Op 10 https://gnf.lt/g5jrVqZ.html
+Comms: Op 9 https://gnf.lt/l7zng0s.html
 Doctrine: Harpy Fleet (Boosters > Scalpel / Kirin > Burst > Harpy > Else)
 
 /usr/bin/php7.4-cli artisan
+
+
 
 tidi = 100-[input_tidi]
 time_left(ms) = [current_time(real)]-[saved_end_time]
