@@ -39826,17 +39826,17 @@ var render = function() {
                             },
                             [_c("v-icon", [_vm._v("fas fa-minus")])],
                             1
-                          ),
-                          _vm._v(" "),
-                          _vm.$can("super")
-                            ? _c("TowerMessage", {
-                                key: "towermessage" + item.id,
-                                attrs: { tower: item }
-                              })
-                            : _vm._e()
+                          )
                         ],
                         1
                       ),
+                      _vm._v(" "),
+                      _vm.$can("super")
+                        ? _c("TowerMessage", {
+                            key: "towermessage" + item.id,
+                            attrs: { tower: item }
+                          })
+                        : _vm._e(),
                       _vm._v(" "),
                       _c(
                         "v-slide-x-transition",
