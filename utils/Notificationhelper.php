@@ -333,10 +333,15 @@ class Notifications
                         ]);
                     }
                 } else {
+                    if ($station->station_status_id == 6) {
+                        $status = 1;
+                    } else {
+                        $status = $station->station_status_id;
+                    }
                     $station->update([
                         'text' => null,
                         'user_id' => null,
-                        'station_status_id' => 1,
+                        'station_status_id' => $status,
                         'timestamp' => $time,
                         'status_update' => $current
                     ]);
