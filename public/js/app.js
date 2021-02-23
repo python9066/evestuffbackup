@@ -10856,11 +10856,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
 
 
 
@@ -11174,7 +11169,15 @@ function sleep(ms) {
       this.snackText = "Dialog opened";
     },
     close: function close() {},
-    click: function click(item) {
+    click: function click(item, list) {
+      if (item.list.value != 12) {
+        item.out_time = null;
+      }
+
+      item.station_status_id = list.value;
+      item.station_status_name = list.title;
+      item.user_name = user_name;
+
       if (item.station_status_id != 12) {
         this.expanded = [];
         item.text = null;
@@ -11183,7 +11186,8 @@ function sleep(ms) {
       var request = {
         station_status_id: item.station_status_id,
         user_id: this.$store.state.user_id,
-        status_update: moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc().format("YYYY-MM-DD  HH:mm:ss")
+        status_update: moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc().format("YYYY-MM-DD  HH:mm:ss"),
+        out_time: item.out_time
       };
       axios({
         method: "put",
@@ -11208,7 +11212,7 @@ function sleep(ms) {
         return true;
       }
 
-      if (item.station_statis_id == 12 && item.out_time != null) {
+      if (item.station_status_id == 12 && item.out_time != null) {
         return true;
       }
 
@@ -31424,11 +31428,7 @@ var render = function() {
                                     key: index,
                                     on: {
                                       click: function($event) {
-                                        ;(item.station_status_id = list.value),
-                                          (item.station_status_name =
-                                            list.title),
-                                          (item.user_name = _vm.user_name),
-                                          _vm.click(item)
+                                        return _vm.click(item, list)
                                       }
                                     }
                                   },
