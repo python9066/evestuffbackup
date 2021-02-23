@@ -164,7 +164,7 @@
                         :station="item"
                     ></StationAttack>
                     <SystemMessage
-                        :item="item"
+                        :station="item"
                         class=" pl-2"
                         v-if="$can('edit_station_notifications')"
                     >

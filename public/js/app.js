@@ -31932,7 +31932,7 @@ var render = function() {
                             _vm.$can("edit_station_notifications")
                               ? _c("SystemMessage", {
                                   staticClass: " pl-2",
-                                  attrs: { item: item }
+                                  attrs: { station: item }
                                 })
                               : _vm._e(),
                             _vm._v(" "),
