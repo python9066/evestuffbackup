@@ -11250,7 +11250,7 @@ function sleep(ms) {
           width: "5%"
         }, {
           text: "Alliance",
-          value: "alliance_name",
+          value: "alliance_ticker",
           width: "20%"
         }, {
           text: "Type",
@@ -11302,7 +11302,7 @@ function sleep(ms) {
           width: "8%"
         }, {
           text: "Alliance",
-          value: "alliance_name",
+          value: "alliance_ticker",
           width: "15%"
         }, {
           text: "Type",
@@ -31632,7 +31632,7 @@ var render = function() {
                 }
               },
               {
-                key: "item.alliance_name",
+                key: "item.alliance_ticker",
                 fn: function(ref) {
                   var item = ref.item
                   return [
@@ -31642,11 +31642,15 @@ var render = function() {
                     _vm._v(" "),
                     item.standing > 0
                       ? _c("span", { staticClass: " blue--text pl-3" }, [
-                          _vm._v(_vm._s(item.alliance_name) + "\n            ")
+                          _vm._v(
+                            _vm._s(item.alliance_ticker) + "\n            "
+                          )
                         ])
                       : item.standing < 0
                       ? _c("span", { staticClass: "red--text pl-3" }, [
-                          _vm._v(_vm._s(item.alliance_name) + "\n            ")
+                          _vm._v(
+                            _vm._s(item.alliance_ticker) + "\n            "
+                          )
                         ])
                       : _c("span", { staticClass: "pl-3" }, [
                           _vm._v(_vm._s(item.alliance))
