@@ -57,6 +57,10 @@ class CreateOrReplaceStationRecordsViewCommand extends Command
        alliances.name AS 'alliance_name',
        alliances.ticker AS 'alliance_ticker',
        stations.text AS 'text',
+       stations.notes AS 'notes',
+       stations.attack_notes AS 'attack_notes',
+       stations.attack_adash_link AS 'attack_adash_link',
+       if(((stations.attack_notes IS NULL) AND (stations.attack_adash_link IS NULL)),0,1) AS under_attack,
        stations.repair_time AS 'repair_time',
        alliances.standing AS 'standing',
        alliances.url AS 'url'

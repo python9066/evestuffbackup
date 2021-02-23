@@ -20,6 +20,9 @@ class CreateStationsTable extends Migration
             $table->foreignId('corp_id')->nullable();
             $table->foreignId('user_id')->nullable();
             $table->string('text')->nullable();
+            $table->string('notes')->nullable();
+            $table->string('attack_notes')->nullable();
+            $table->string('attack_adash_link')->nullable();
             $table->integer('station_status_id')->default(1)->index();
             $table->foreignId('gunner_id')->nullable();
             $table->timestamp('out_time')->nullable();

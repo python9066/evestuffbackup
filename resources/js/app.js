@@ -71,6 +71,7 @@ Vue.component('TowerOnlineTimer', require('./components/tower/TowerOnlineTimer.v
 Vue.component('TowerRefTimer', require('./components/tower/TowerRefTimer.vue').default);
 Vue.component('StationNewTimer', require('./components/station/StationNewTimer.vue').default);
 Vue.component('AddTower', require('./components/tower/AddTower.vue').default);
+Vue.component('StationAttack', require('./components/station/StationAttack.vue').default);
 
 
 

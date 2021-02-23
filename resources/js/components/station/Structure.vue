@@ -178,6 +178,10 @@
                         >
                         </StationNewTimer>
                     </v-fab-transition>
+                    <StationAttack
+                        v-if="$can('super')"
+                        :station="item"
+                    ></StationAttack>
                 </div>
                 <div v-else>
                     <template>
