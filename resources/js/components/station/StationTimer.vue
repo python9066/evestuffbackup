@@ -152,6 +152,7 @@ export default {
     props: {
         station: Object
     },
+
     data() {
         return {
             timerShown: false,
@@ -160,6 +161,16 @@ export default {
                 ss: ""
             }
         };
+    },
+
+    watch: {
+        station: {
+            handler() {
+                this.showPannel;
+            },
+            deep: true,
+            immediate: true
+        }
     },
 
     methods: {

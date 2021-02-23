@@ -10450,6 +10450,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }
     };
   },
+  watch: {
+    station: {
+      handler: function handler() {
+        this.showPannel;
+      },
+      deep: true,
+      immediate: true
+    }
+  },
   methods: {
     addRepairTime: function addRepairTime(station) {
       var _this = this;
