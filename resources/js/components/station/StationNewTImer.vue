@@ -39,7 +39,6 @@
                             <div>
                                 <v-text-field
                                     v-model="stationName"
-                                    placeholder="station.structure_name"
                                     label="Structure Type"
                                     readonly
                                 ></v-text-field>
@@ -47,14 +46,12 @@
                             <div class=" d-inline-flex justify-content-around">
                                 <v-text-field
                                     v-model="systemName"
-                                    placeholder="station.system_name"
                                     label="System Name"
                                     readonly
                                 ></v-text-field>
                                 <v-text-field
                                     v-model="alliance_ticker"
-                                    placeholder="station.corp_ticker"
-                                    label="Corp Ticker"
+                                    label="Alliance Ticker"
                                     readonly
                                 ></v-text-field>
                             </div>
@@ -147,7 +144,7 @@ export default {
     methods: {
         setValues() {
             this.systemName = this.station.system_name;
-            this.alliance_ticker = this.station.alliance_sticker;
+            this.alliance_ticker = this.station.alliance_ticker;
             this.stationName = this.station.station_name;
         },
 
@@ -170,6 +167,8 @@ export default {
                 .utc()
                 .add(sec, "seconds")
                 .format("YYYY-MM-DD HH:mm:ss");
+
+            console.log(outTime);
 
             var request = {
                 station_status_id: this.refType,

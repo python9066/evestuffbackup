@@ -10623,9 +10623,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -10661,7 +10658,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   methods: {
     setValues: function setValues() {
       this.systemName = this.station.system_name;
-      this.alliance_ticker = this.station.alliance_sticker;
+      this.alliance_ticker = this.station.alliance_ticker;
       this.stationName = this.station.station_name;
     },
     close: function close() {
@@ -10687,12 +10684,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 ms = m * 60;
                 sec = ds + hs + ms + s;
                 outTime = moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc().add(sec, "seconds").format("YYYY-MM-DD HH:mm:ss");
+                console.log(outTime);
                 request = {
                   station_status_id: _this.refType,
                   out_time: outTime,
                   status_update: moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc().format("YYYY-MM-DD HH:mm:ss")
                 };
-                _context.next = 12;
+                _context.next = 13;
                 return axios({
                   method: "put",
                   //you can set what request you want to be
@@ -10705,7 +10703,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   }
                 }).then(_this.refType = null, _this.refTime = null, _this.showStationTimer = false);
 
-              case 12:
+              case 13:
               case "end":
                 return _context.stop();
             }
@@ -31277,11 +31275,7 @@ var render = function() {
                         "div",
                         [
                           _c("v-text-field", {
-                            attrs: {
-                              placeholder: "station.structure_name",
-                              label: "Structure Type",
-                              readonly: ""
-                            },
+                            attrs: { label: "Structure Type", readonly: "" },
                             model: {
                               value: _vm.stationName,
                               callback: function($$v) {
@@ -31301,11 +31295,7 @@ var render = function() {
                         },
                         [
                           _c("v-text-field", {
-                            attrs: {
-                              placeholder: "station.system_name",
-                              label: "System Name",
-                              readonly: ""
-                            },
+                            attrs: { label: "System Name", readonly: "" },
                             model: {
                               value: _vm.systemName,
                               callback: function($$v) {
@@ -31316,11 +31306,7 @@ var render = function() {
                           }),
                           _vm._v(" "),
                           _c("v-text-field", {
-                            attrs: {
-                              placeholder: "station.corp_ticker",
-                              label: "Corp Ticker",
-                              readonly: ""
-                            },
+                            attrs: { label: "Alliance Ticker", readonly: "" },
                             model: {
                               value: _vm.alliance_ticker,
                               callback: function($$v) {
