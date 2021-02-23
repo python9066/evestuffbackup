@@ -13,14 +13,19 @@
                     :content="messageAttackCount"
                     :value="showAttackNumber"
                 >
-                    <v-icon
-                        color="red"
-                        v-bind="attrs"
-                        v-on="onMenu"
-                        @click="open()"
-                    >
-                        {{ icon }}
-                    </v-icon>
+                    <v-tooltip bottom>
+                        <template #activator="{ on: onTooltip }">
+                            <v-icon
+                                color="red"
+                                v-bind="attrs"
+                                v-on="{ onMenu, onTooltip }"
+                                @click="open()"
+                            >
+                                {{ icon }}
+                            </v-icon>
+                        </template>
+                        <span> This is a test </span>
+                    </v-tooltip>
                 </v-badge>
             </template>
 
