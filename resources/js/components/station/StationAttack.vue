@@ -13,19 +13,14 @@
                     :content="messageAttackCount"
                     :value="showAttackNumber"
                 >
-                    <v-tooltip bottom>
-                        <template v-slot:activator="{ on, attrs }">
-                            <v-icon
-                                color="red"
-                                v-bind="attrs"
-                                v-on="on"
-                                @click="open()"
-                            >
-                                {{ icon }}
-                            </v-icon>
-                        </template>
-                        <span> this is a test</span>
-                    </v-tooltip>
+                    <v-icon
+                        color="red"
+                        v-bind="attrs"
+                        v-on="on"
+                        @click="open()"
+                    >
+                        {{ icon }}
+                    </v-icon>
                 </v-badge>
             </template>
 
