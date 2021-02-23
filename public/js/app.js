@@ -10032,7 +10032,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       this.editAdashLink = null;
       this.showAttackNumber = 0;
       this.showAttackStationNotes = false;
-      this.$store.dispatch("updateStationNotification", this.item);
+      this.$store.dispatch("updateStationNotification", this.station);
       var request = {
         attack_notes: null,
         attack_adash_link: null
@@ -10094,7 +10094,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         };
       }
 
-      this.$store.dispatch("updateStationNotification", this.item);
+      this.$store.dispatch("updateStationNotification", this.station);
       axios({
         method: "put",
         url: "/api/campaignsystemsattackmessage/" + this.station.id,
@@ -30472,7 +30472,7 @@ var render = function() {
               _c("v-card-title", [
                 _vm._v(
                   "Attack report for Station " +
-                    _vm._s(_vm.station.name) +
+                    _vm._s(_vm.station.station_name) +
                     "\n            "
                 )
               ]),

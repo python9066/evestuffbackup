@@ -32,7 +32,7 @@
                 class=" d-flex flex-column"
             >
                 <v-card-title
-                    >Attack report for Station {{ station.name }}
+                    >Attack report for Station {{ station.station_name }}
                 </v-card-title>
                 <v-card-text>
                     <div class="pb-2">
@@ -173,7 +173,7 @@ export default {
             this.editAdashLink = null;
             this.showAttackNumber = 0;
             this.showAttackStationNotes = false;
-            this.$store.dispatch("updateStationNotification", this.item);
+            this.$store.dispatch("updateStationNotification", this.station);
             let request = {
                 attack_notes: null,
                 attack_adash_link: null
@@ -245,7 +245,7 @@ export default {
                 };
             }
 
-            this.$store.dispatch("updateStationNotification", this.item);
+            this.$store.dispatch("updateStationNotification", this.station);
             axios({
                 method: "put",
                 url: "/api/campaignsystemsattackmessage/" + this.station.id,
