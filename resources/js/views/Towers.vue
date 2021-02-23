@@ -280,6 +280,7 @@ export default {
             dropdown_edit: [
                 { title: "Scouted", value: 2 },
                 { title: "Anchoring", value: 3 },
+                { title: "Anchored", value: 9 },
                 { title: "Online", value: 4 },
                 { title: "Reffed", value: 5 },
                 { title: "Dead", value: 6 },
@@ -403,6 +404,10 @@ export default {
             if (id == 8) {
                 return "faSvg fa-life-ring";
             }
+
+            if (id == 9) {
+                return "faSvg fa-anchor";
+            }
         },
 
         loadtowers() {
@@ -437,6 +442,14 @@ export default {
             }
             if (statusId == 8) {
                 return "primary";
+            }
+
+            if (statusId == 8) {
+                return "primary";
+            }
+
+            if (statusId == 9) {
+                return "teal darken-3";
             }
         },
 
