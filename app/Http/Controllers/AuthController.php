@@ -12,6 +12,7 @@ use GuzzleHttp\Client;
 use Illuminate\Support\Str;
 use function GuzzleHttp\json_encode;
 use Spatie\Permission\Traits\HasRoles;
+use Spatie\Permission\Traits\HasPermissions;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 
@@ -19,6 +20,7 @@ class AuthController extends Controller
 {
     use AuthenticatesUsers;
     use HasRoles;
+    use HasPermissions;
     protected $redirectTo = RouteServiceProvider::HOME;
     public function redirectToProvider()
     {
@@ -111,8 +113,6 @@ class AuthController extends Controller
 
     public function purgeRoles($user)
     {
-
-
         $user->removeRole(4);
         $user->removeRole(5);
         $user->removeRole(6);
@@ -120,19 +120,19 @@ class AuthController extends Controller
 
     public function addRoles($user, $role_id)
     {
-        if ($role_id === 494) {
+        if ($role_id == 494) {
 
             // function to assign coord role
             $user->assignRole(4);
         }
 
-        if ($role_id === 184) {
+        if ($role_id == 184) {
 
             // function to assign coord role
             $user->assignRole(5);
         }
 
-        if ($role_id === 231) {
+        if ($role_id == 231) {
 
             // function to assign coord role
             $user->assignRole(6);
