@@ -188,9 +188,9 @@ export default {
 
         tooltiponoff() {
             if (this.tooltipToggle) {
-                return "Tooltips: On";
+                return "Tooltips:<span class='green--text'> On</span>";
             } else {
-                return "Tooltips: Off";
+                return "Tooltips:<span class='red--text'> Off</span>";
             }
         },
 
