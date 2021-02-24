@@ -13,24 +13,15 @@
                     :content="messageAttackCount"
                     :value="showAttackNumber"
                 >
-                    <v-tooltip
-                        bottom
-                        :open-delay="1000"
-                        :disabled="displayTooltip"
+                    <v-icon
+                        color="red"
+                        :key="'crosshair' + station.id"
+                        v-bind="attrs"
+                        v-on="{ ...menu }"
+                        @click="open()"
                     >
-                        <template v-slot:activator="{ on: tooltip }">
-                            <v-icon
-                                color="red"
-                                :key="'crosshair' + station.id"
-                                v-bind="attrs"
-                                v-on="{ ...tooltip, ...menu }"
-                                @click="open()"
-                            >
-                                {{ icon }}
-                            </v-icon>
-                        </template>
-                        <span> bla bla </span>
-                    </v-tooltip>
+                        {{ icon }}
+                    </v-icon>
                 </v-badge>
             </template>
 
@@ -124,8 +115,7 @@ import { mapState, mapGetters } from "vuex";
 import moment from "moment";
 export default {
     props: {
-        station: Object,
-        showTooltip: Boolean
+        station: Object
     },
     data() {
         return {
@@ -134,8 +124,7 @@ export default {
             showAttackkStationNotes: false,
             editText: null,
             editAdashLink: null,
-            showAttackStationNotes: false,
-            displayTooltip: true
+            showAttackStationNotes: false
         };
     },
 
@@ -162,19 +151,7 @@ export default {
         );
     },
 
-    watch: {
-        showTooltip: {
-            handler() {
-                this.displayTooltip == this.showTooltip;
-            },
-            deep: true
-        }
-    },
-
     methods: {
-        toggle() {
-            this.tooltip == displayTooltip;
-        },
         close() {
             this.editText = null;
             this.showAttackStationNotes = false;
@@ -288,14 +265,6 @@ export default {
         icon() {
             return "fas fa-crosshairs";
         },
-
-        // displayTooltip() {
-        //     if (this.showTooltip) {
-        //         return true;
-        //     } else {
-        //         return false;
-        //     }
-        // },
 
         submitActive() {
             if (this.editText != null || this.editAdashLink != null) {

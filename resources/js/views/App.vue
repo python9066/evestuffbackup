@@ -63,7 +63,10 @@
                 </v-tabs>
             </div>
             <v-spacer></v-spacer>
-            <!-- <div class=" d-inline-flex align-content-center">
+            <div
+                class=" d-inline-flex align-content-center"
+                v-if="$can('super')"
+            >
                 <v-switch
                     v-model="tooltipToggle"
                     color="primary"
@@ -71,7 +74,7 @@
                     @change="changeTooltipToggle()"
                 ></v-switch>
                 <span class=" pt-1"> {{ tooltiponoff() }}</span>
-            </div> -->
+            </div>
             <v-btn
                 text
                 class="mr-2"
