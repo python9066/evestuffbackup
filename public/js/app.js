@@ -9974,6 +9974,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -30884,7 +30888,11 @@ var render = function() {
                   _c(
                     "v-tooltip",
                     {
-                      attrs: { bottom: "", "open-delay": "2500" },
+                      attrs: {
+                        bottom: "",
+                        "open-delay": "2500",
+                        disabled: _vm.$store.state.tooltipToggle
+                      },
                       scopedSlots: _vm._u(
                         [
                           {
