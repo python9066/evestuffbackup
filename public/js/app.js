@@ -30864,7 +30864,7 @@ var render = function() {
                   _c(
                     "v-tooltip",
                     {
-                      attrs: { bottom: "", "open-delay": "5000" },
+                      attrs: { bottom: "", "open-delay": "2500" },
                       scopedSlots: _vm._u(
                         [
                           {
