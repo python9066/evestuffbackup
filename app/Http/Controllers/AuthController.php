@@ -116,6 +116,8 @@ class AuthController extends Controller
         $user->removeRole(4);
         $user->removeRole(5);
         $user->removeRole(6);
+        $user->removeRole(13);
+        $user->removeRole(17);
     }
 
     public function addRoles($user, $role_id)
@@ -136,6 +138,18 @@ class AuthController extends Controller
 
             // function to assign coord role
             $user->assignRole(6);
+        }
+
+        if ($role_id == 8) {
+
+            // function to assign coord role
+            $user->assignRole(13);
+        }
+
+        if ($role_id == 47) {
+
+            // function to assign coord role
+            $user->assignRole(17);
         }
     }
 }
