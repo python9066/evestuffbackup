@@ -160,6 +160,7 @@
                         </v-list>
                     </v-menu>
                     <v-tooltip
+                        color="#121212"
                         bottom
                         :open-delay="2000"
                         :disabled="$store.state.tooltipToggle"
@@ -181,6 +182,7 @@
                         </span>
                     </v-tooltip>
                     <v-tooltip
+                        color="#121212"
                         bottom
                         :open-delay="2000"
                         :disabled="$store.state.tooltipToggle"
@@ -285,6 +287,7 @@
                     ></StationGunner>
 
                     <v-tooltip
+                        color="#121212"
                         bottom
                         :open-delay="2000"
                         :disabled="$store.state.tooltipToggle"

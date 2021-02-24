@@ -216,7 +216,7 @@
                         >
                             test
                         </v-btn>
-                        <v-tooltip bottom>
+                        <v-tooltip bottom color="#121212">
                             <template v-slot:activator="{ on, attrs }">
                                 <v-btn
                                     v-if="$can('access_campaigns')"
@@ -235,7 +235,7 @@
                                 Send a message to all Users without a Char added
                             </span>
                         </v-tooltip>
-                        <v-tooltip bottom>
+                        <v-tooltip bottom color="#121212">
                             <template v-slot:activator="{ on, attrs }">
                                 <v-btn
                                     v-if="$can('view_campaign_members')"
