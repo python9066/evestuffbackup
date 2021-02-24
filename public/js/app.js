@@ -30894,7 +30894,7 @@ var render = function() {
                       attrs: {
                         bottom: "",
                         "open-delay": "100",
-                        disabled: true
+                        disabled: false
                       },
                       scopedSlots: _vm._u(
                         [
