@@ -13831,9 +13831,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
     tooltiponoff: function tooltiponoff() {
       if (this.tooltipToggle) {
-        return "Tooltips:<span class='green--text'> On</span>";
+        return "Tooltips: On";
       } else {
-        return "Tooltips:<span class='red--text'> Off</span>";
+        return "Tooltips: Off";
       }
     },
     changeTooltipToggle: function changeTooltipToggle() {
