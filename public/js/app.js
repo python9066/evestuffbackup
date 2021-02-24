@@ -9972,10 +9972,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -9991,7 +9987,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       editText: null,
       editAdashLink: null,
       showAttackStationNotes: false,
-      displayTooltip: true
+      tip: false
     };
   },
   created: function created() {
@@ -10024,14 +10020,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }, _callee);
     }))();
   },
-  watch: {
-    showTooltip: {
-      handler: function handler() {
-        this.toggle;
-      },
-      deep: true
-    }
-  },
+  // watch: {
+  //     showTooltip: {
+  //         handler() {
+  //             this.toggle;
+  //         },
+  //         deep: true
+  //     }
+  // },
   methods: {
     toggle: function toggle() {
       this.tooltip == displayTooltip;
@@ -10134,6 +10130,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   computed: {
     icon: function icon() {
       return "fas fa-crosshairs";
+    },
+    displayTooltip: function displayTooltip() {
+      if (this.showTooltip) {
+        this.tip == true;
+      } else {
+        this.tip == false;
+      }
     },
     submitActive: function submitActive() {
       if (this.editText != null || this.editAdashLink != null) {
@@ -30927,7 +30930,7 @@ var render = function() {
                           attrs: {
                             bottom: "",
                             "open-delay": 1000,
-                            disabled: _vm.displayTooltip
+                            disabled: _vm.tip
                           },
                           scopedSlots: _vm._u(
                             [
