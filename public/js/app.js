@@ -9966,18 +9966,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -30902,80 +30890,48 @@ var render = function() {
             {
               key: "activator",
               fn: function(ref) {
-                var menu = ref.on
+                var on = ref.on
                 var attrs = ref.attrs
                 return [
                   _c(
-                    "v-tooltip",
+                    "v-badge",
                     {
                       attrs: {
-                        bottom: "",
-                        "open-delay": 1000,
-                        disabled: _vm.$store.state.tooltipToggle
-                      },
-                      scopedSlots: _vm._u(
-                        [
-                          {
-                            key: "activator",
-                            fn: function(ref) {
-                              var tooltip = ref.on
-                              return [
-                                _c(
-                                  "v-badge",
-                                  {
-                                    attrs: {
-                                      color: "green",
-                                      overlap: "",
-                                      content: _vm.messageAttackCount,
-                                      value: _vm.showAttackNumber
-                                    }
-                                  },
-                                  [
-                                    _c(
-                                      "v-icon",
-                                      _vm._g(
-                                        _vm._b(
-                                          {
-                                            attrs: { color: "red" },
-                                            on: {
-                                              click: function($event) {
-                                                return _vm.open()
-                                              }
-                                            }
-                                          },
-                                          "v-icon",
-                                          attrs,
-                                          false
-                                        ),
-                                        Object.assign({}, tooltip, menu)
-                                      ),
-                                      [
-                                        _vm._v(
-                                          "\n                            " +
-                                            _vm._s(_vm.icon) +
-                                            "\n                        "
-                                        )
-                                      ]
-                                    )
-                                  ],
-                                  1
-                                )
-                              ]
-                            }
-                          }
-                        ],
-                        null,
-                        true
-                      )
+                        color: "green",
+                        overlap: "",
+                        content: _vm.messageAttackCount,
+                        value: _vm.showAttackNumber
+                      }
                     },
                     [
-                      _vm._v(" "),
-                      _c("span", [
-                        _vm._v(
-                          "\n                    Where to add adash scan and any other notes about\n                    attackers\n                "
-                        )
-                      ])
-                    ]
+                      _c(
+                        "v-icon",
+                        _vm._g(
+                          _vm._b(
+                            {
+                              attrs: { color: "red" },
+                              on: {
+                                click: function($event) {
+                                  return _vm.open()
+                                }
+                              }
+                            },
+                            "v-icon",
+                            attrs,
+                            false
+                          ),
+                          on
+                        ),
+                        [
+                          _vm._v(
+                            "\n                    " +
+                              _vm._s(_vm.icon) +
+                              "\n                "
+                          )
+                        ]
+                      )
+                    ],
+                    1
                   )
                 ]
               }

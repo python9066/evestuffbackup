@@ -6,34 +6,22 @@
             v-model="showAttackStationNotes"
             @click:outside="close()"
         >
-            <template v-slot:activator="{ on: menu, attrs }">
-                <v-tooltip
-                    bottom
-                    :open-delay="1000"
-                    :disabled="$store.state.tooltipToggle"
+            <template v-slot:activator="{ on, attrs }">
+                <v-badge
+                    color="green"
+                    overlap
+                    :content="messageAttackCount"
+                    :value="showAttackNumber"
                 >
-                    <template v-slot:activator="{ on: tooltip }">
-                        <v-badge
-                            color="green"
-                            overlap
-                            :content="messageAttackCount"
-                            :value="showAttackNumber"
-                        >
-                            <v-icon
-                                color="red"
-                                v-bind="attrs"
-                                v-on="{ ...tooltip, ...menu }"
-                                @click="open()"
-                            >
-                                {{ icon }}
-                            </v-icon>
-                        </v-badge>
-                    </template>
-                    <span>
-                        Where to add adash scan and any other notes about
-                        attackers
-                    </span>
-                </v-tooltip>
+                    <v-icon
+                        color="red"
+                        v-bind="attrs"
+                        v-on="on"
+                        @click="open()"
+                    >
+                        {{ icon }}
+                    </v-icon>
+                </v-badge>
             </template>
 
             <v-card
