@@ -41,17 +41,46 @@
                     </div>
                     <div>
                         Last Updated: {{ lastUpdated() }}
-                        <v-chip
-                            pill
-                            class=" ml-2"
-                            small
-                            outlined
-                            color="teal"
-                            v-if="$can('request_recon_task') && !taskFlag()"
-                            @click="taskRequest()"
+                        <v-tooltip
+                            bottom
+                            :open-delay="2000"
+                            :disabled="$store.state.tooltipToggle"
                         >
-                            Request Update
-                        </v-chip>
+                            <template
+                                v-slot:activator="{
+                                    on: tooltip,
+                                    attrs: atooltip
+                                }"
+                            >
+                                <v-chip
+                                    v-on="{ ...tooltip }"
+                                    v-bind="{ ...atooltip }"
+                                    pill
+                                    class=" ml-2"
+                                    small
+                                    outlined
+                                    color="teal"
+                                    v-if="
+                                        $can('request_recon_task') &&
+                                            !taskFlag()
+                                    "
+                                    @click="taskRequest()"
+                                >
+                                    Request Update
+                                </v-chip>
+                                <span class=" d-flex">
+                                    <p>
+                                        Request Recon to do a system scan
+                                        update.
+                                    </p>
+                                    <p>
+                                        Pressing this button will ping the recon
+                                        channel and make a new task in the recon
+                                        tool
+                                    </p></span
+                                >
+                            </template>
+                        </v-tooltip>
                         <v-chip
                             pill
                             small
