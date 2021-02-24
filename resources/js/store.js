@@ -39,7 +39,7 @@ export default new Vuex.Store({
         ticklist:[],
         timers: [],
         token: "",
-        tooltipToggle: true,
+        tooltipToggle: false,
         towers: [],
         towerlist:[],
         users:[],

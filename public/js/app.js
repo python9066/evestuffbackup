@@ -9972,6 +9972,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -30908,7 +30912,11 @@ var render = function() {
                       _c(
                         "v-tooltip",
                         {
-                          attrs: { bottom: "", "open-delay": 1000 },
+                          attrs: {
+                            bottom: "",
+                            "open-delay": 1000,
+                            disabled: _vm.showTooltip
+                          },
                           scopedSlots: _vm._u(
                             [
                               {
@@ -45340,7 +45348,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
     ticklist: [],
     timers: [],
     token: "",
-    tooltipToggle: true,
+    tooltipToggle: false,
     towers: [],
     towerlist: [],
     users: [],
