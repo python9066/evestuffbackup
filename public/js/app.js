@@ -11320,6 +11320,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
 
 
 
@@ -32606,9 +32608,20 @@ var render = function() {
                                         var attrs = ref.attrs
                                         return [
                                           _vm.$can("edit_station_notifications")
-                                            ? _c("StationAttack", {
-                                                attrs: { station: item }
-                                              })
+                                            ? _c(
+                                                "StationAttack",
+                                                _vm._g(
+                                                  _vm._b(
+                                                    {
+                                                      attrs: { station: item }
+                                                    },
+                                                    "StationAttack",
+                                                    attrs,
+                                                    false
+                                                  ),
+                                                  on
+                                                )
+                                              )
                                             : _vm._e()
                                         ]
                                       }

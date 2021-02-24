@@ -166,6 +166,8 @@
                     >
                         <template v-slot:activator="{ on, attrs }">
                             <StationAttack
+                                v-bind="attrs"
+                                v-on="on"
                                 v-if="$can('edit_station_notifications')"
                                 :station="item"
                             ></StationAttack>
