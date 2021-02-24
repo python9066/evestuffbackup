@@ -9972,10 +9972,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -9990,7 +9986,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       showAttackkStationNotes: false,
       editText: null,
       editAdashLink: null,
-      showAttackStationNotes: false
+      showAttackStationNotes: false,
+      Tooltip: false
     };
   },
   created: function created() {
@@ -10023,7 +10020,18 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }, _callee);
     }))();
   },
+  watch: {
+    showTooltip: {
+      handler: function handler() {
+        this.toggle;
+      },
+      deep: true
+    }
+  },
   methods: {
+    toggle: function toggle() {
+      this.Tooltip == showTooltip;
+    },
     close: function close() {
       this.editText = null;
       this.showAttackStationNotes = false;
@@ -30915,7 +30923,7 @@ var render = function() {
                           attrs: {
                             bottom: "",
                             "open-delay": 1000,
-                            disabled: _vm.showTooltip
+                            disabled: _vm.Tooltip
                           },
                           scopedSlots: _vm._u(
                             [
