@@ -34931,8 +34931,6 @@ var render = function() {
             1
           ),
           _vm._v(" "),
-          _c("v-spacer"),
-          _vm._v(" "),
           _c("v-switch", {
             attrs: {
               label: _vm.tooltiponoff(),

@@ -62,7 +62,7 @@
                     </v-tab>
                 </v-tabs>
             </div>
-            <v-spacer></v-spacer>
+            <!-- <v-spacer></v-spacer> -->
             <v-switch
                 v-model="tooltipToggle"
                 :label="tooltiponoff()"
