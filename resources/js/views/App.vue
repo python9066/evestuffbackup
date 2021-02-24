@@ -70,7 +70,7 @@
                     hide-details
                     @change="changeTooltipToggle()"
                 ></v-switch>
-                <span> {{ tooltiponoff() }}</span>
+                <span class=" pt-1"> {{ tooltiponoff() }}</span>
             </div>
             <v-btn
                 text
