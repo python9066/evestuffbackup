@@ -42,6 +42,7 @@
                     <div>
                         Last Updated: {{ lastUpdated() }}
                         <v-tooltip
+                            color="#121212"
                             bottom
                             :open-delay="2000"
                             :disabled="$store.state.tooltipToggle"

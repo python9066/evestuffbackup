@@ -9721,6 +9721,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -30508,6 +30509,7 @@ var render = function() {
                       "v-tooltip",
                       {
                         attrs: {
+                          color: "#121212",
                           bottom: "",
                           "open-delay": 2000,
                           disabled: _vm.$store.state.tooltipToggle
