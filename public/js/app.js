@@ -32600,27 +32600,33 @@ var render = function() {
                                         var tooltip = ref.on
                                         var atooltip = ref.attrs
                                         return [
-                                          _vm.$can("edit_station_notifications")
-                                            ? _c(
-                                                "StationAttack",
-                                                _vm._g(
-                                                  _vm._b(
-                                                    {
-                                                      attrs: {
-                                                        station: item,
-                                                        showTooltip:
-                                                          _vm.$store.state
-                                                            .tooltipToggle
-                                                      }
-                                                    },
-                                                    "StationAttack",
-                                                    Object.assign({}, atooltip),
-                                                    false
-                                                  ),
-                                                  Object.assign({}, tooltip)
-                                                )
+                                          _c(
+                                            "div",
+                                            _vm._g(
+                                              _vm._b(
+                                                {},
+                                                "div",
+                                                Object.assign({}, atooltip),
+                                                false
+                                              ),
+                                              Object.assign({}, tooltip)
+                                            ),
+                                            [
+                                              _vm.$can(
+                                                "edit_station_notifications"
                                               )
-                                            : _vm._e()
+                                                ? _c("StationAttack", {
+                                                    attrs: {
+                                                      station: item,
+                                                      showTooltip:
+                                                        _vm.$store.state
+                                                          .tooltipToggle
+                                                    }
+                                                  })
+                                                : _vm._e()
+                                            ],
+                                            1
+                                          )
                                         ]
                                       }
                                     }
