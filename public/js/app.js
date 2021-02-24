@@ -9966,6 +9966,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -10121,13 +10130,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
     clearActive: function clearActive() {
       if (this.station.attack_notes != null || this.station.attack_adash_link != null) {
-        return false;
-      } else {
-        return true;
-      }
-    },
-    showTooltip: function showTooltip() {
-      if (this.$store.state.tooltipToggle) {
         return false;
       } else {
         return true;
@@ -11046,16 +11048,6 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -30901,7 +30893,7 @@ var render = function() {
             {
               key: "activator",
               fn: function(ref) {
-                var on = ref.on
+                var menu = ref.on
                 var attrs = ref.attrs
                 return [
                   _c(
@@ -30916,30 +30908,55 @@ var render = function() {
                     },
                     [
                       _c(
-                        "v-icon",
-                        _vm._g(
-                          _vm._b(
-                            {
-                              attrs: { color: "red" },
-                              on: {
-                                click: function($event) {
-                                  return _vm.open()
+                        "v-tooltip",
+                        {
+                          attrs: {
+                            bottom: "",
+                            "open-delay": 1000,
+                            disabled: _vm.$store.state.tooltipToggle
+                          },
+                          scopedSlots: _vm._u(
+                            [
+                              {
+                                key: "activator",
+                                fn: function(ref) {
+                                  var tooltip = ref.on
+                                  return [
+                                    _c(
+                                      "v-icon",
+                                      _vm._g(
+                                        _vm._b(
+                                          {
+                                            attrs: { color: "red" },
+                                            on: {
+                                              click: function($event) {
+                                                return _vm.open()
+                                              }
+                                            }
+                                          },
+                                          "v-icon",
+                                          attrs,
+                                          false
+                                        ),
+                                        Object.assign({}, tooltip, menu)
+                                      ),
+                                      [
+                                        _vm._v(
+                                          "\n                            " +
+                                            _vm._s(_vm.icon) +
+                                            "\n                        "
+                                        )
+                                      ]
+                                    )
+                                  ]
                                 }
                               }
-                            },
-                            "v-icon",
-                            attrs,
-                            false
-                          ),
-                          on
-                        ),
-                        [
-                          _vm._v(
-                            "\n                    " +
-                              _vm._s(_vm.icon) +
-                              "\n                "
+                            ],
+                            null,
+                            true
                           )
-                        ]
+                        },
+                        [_vm._v(" "), _c("span", [_vm._v(" bla bla ")])]
                       )
                     ],
                     1
@@ -32591,48 +32608,11 @@ var render = function() {
                               1
                             ),
                             _vm._v(" "),
-                            _c(
-                              "v-tooltip",
-                              {
-                                attrs: {
-                                  bottom: "",
-                                  "open-delay": 1000,
-                                  disabled: _vm.$store.state.tooltipToggle
-                                },
-                                scopedSlots: _vm._u(
-                                  [
-                                    {
-                                      key: "activator",
-                                      fn: function(ref) {
-                                        var on = ref.on
-                                        var attrs = ref.attrs
-                                        return [
-                                          _vm.$can("edit_station_notifications")
-                                            ? _c(
-                                                "StationAttack",
-                                                _vm._g(
-                                                  _vm._b(
-                                                    {
-                                                      attrs: { station: item }
-                                                    },
-                                                    "StationAttack",
-                                                    attrs,
-                                                    false
-                                                  ),
-                                                  on
-                                                )
-                                              )
-                                            : _vm._e()
-                                        ]
-                                      }
-                                    }
-                                  ],
-                                  null,
-                                  true
-                                )
-                              },
-                              [_vm._v(" "), _c("span", [_vm._v(" test")])]
-                            ),
+                            _vm.$can("edit_station_notifications")
+                              ? _c("StationAttack", {
+                                  attrs: { station: item }
+                                })
+                              : _vm._e(),
                             _vm._v(" "),
                             _vm.$can("edit_station_notifications")
                               ? _c("StationMessage", {

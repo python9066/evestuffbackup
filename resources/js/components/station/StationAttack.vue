@@ -6,21 +6,30 @@
             v-model="showAttackStationNotes"
             @click:outside="close()"
         >
-            <template v-slot:activator="{ on, attrs }">
+            <template v-slot:activator="{ on: menu, attrs }">
                 <v-badge
                     color="green"
                     overlap
                     :content="messageAttackCount"
                     :value="showAttackNumber"
                 >
-                    <v-icon
-                        color="red"
-                        v-bind="attrs"
-                        v-on="on"
-                        @click="open()"
+                    <v-tooltip
+                        bottom
+                        :open-delay="1000"
+                        :disabled="$store.state.tooltipToggle"
                     >
-                        {{ icon }}
-                    </v-icon>
+                        <template v-slot:activator="{ on: tooltip }">
+                            <v-icon
+                                color="red"
+                                v-bind="attrs"
+                                v-on="{ ...tooltip, ...menu }"
+                                @click="open()"
+                            >
+                                {{ icon }}
+                            </v-icon>
+                        </template>
+                        <span> bla bla </span>
+                    </v-tooltip>
                 </v-badge>
             </template>
 
@@ -278,14 +287,6 @@ export default {
                 this.station.attack_notes != null ||
                 this.station.attack_adash_link != null
             ) {
-                return false;
-            } else {
-                return true;
-            }
-        },
-
-        showTooltip() {
-            if (this.$store.state.tooltipToggle) {
                 return false;
             } else {
                 return true;

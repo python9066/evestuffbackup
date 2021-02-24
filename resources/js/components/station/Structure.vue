@@ -159,21 +159,11 @@
                             </v-list-item>
                         </v-list>
                     </v-menu>
-                    <v-tooltip
-                        bottom
-                        :open-delay="1000"
-                        :disabled="$store.state.tooltipToggle"
-                    >
-                        <template v-slot:activator="{ on, attrs }">
-                            <StationAttack
-                                v-bind="attrs"
-                                v-on="on"
-                                v-if="$can('edit_station_notifications')"
-                                :station="item"
-                            ></StationAttack>
-                        </template>
-                        <span> test</span>
-                    </v-tooltip>
+
+                    <StationAttack
+                        v-if="$can('edit_station_notifications')"
+                        :station="item"
+                    ></StationAttack>
                     <StationMessage
                         :station="item"
                         class=" pl-2"
