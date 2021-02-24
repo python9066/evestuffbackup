@@ -16,7 +16,7 @@
                     <v-tooltip
                         bottom
                         :open-delay="1000"
-                        :disabled="$store.state.tooltipToggle"
+                        :disabled="showTooltip"
                     >
                         <template v-slot:activator="{ on: tooltip }">
                             <v-icon
@@ -124,7 +124,8 @@ import { mapState, mapGetters } from "vuex";
 import moment from "moment";
 export default {
     props: {
-        station: Object
+        station: Object,
+        showTooltip: Boolean
     },
     data() {
         return {

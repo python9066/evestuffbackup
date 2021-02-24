@@ -163,6 +163,7 @@
                     <StationAttack
                         v-if="$can('edit_station_notifications')"
                         :station="item"
+                        :showTooltip="$store.state.tooltipToggle"
                     ></StationAttack>
                     <StationMessage
                         :station="item"
