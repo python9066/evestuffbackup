@@ -7,7 +7,7 @@
             @click:outside="close()"
         >
             <template v-slot:activator="{ on: menu, attrs }">
-                <v-tooltip bottom open-delay="2500" disabled="false">
+                <v-tooltip bottom open-delay="2500" :disabled="false">
                     <template v-slot:activator="{ on: tooltip }">
                         <v-badge
                             color="green"
