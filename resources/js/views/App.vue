@@ -251,7 +251,8 @@ export default {
     transition: opacity 0.25s ease;
     opacity: 0;
 }
-
+</style>
+<style>
 .switch-center {
     display: flex;
     justify-content: center;
