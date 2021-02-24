@@ -45348,7 +45348,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
     ticklist: [],
     timers: [],
     token: "",
-    tooltipToggle: false,
+    tooltipToggle: true,
     towers: [],
     towerlist: [],
     users: [],
