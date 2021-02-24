@@ -66,7 +66,6 @@
             <div class=" align-content-center">
                 <v-switch
                     v-model="tooltipToggle"
-                    :label="tooltiponoff()"
                     color="primary"
                     hide-details
                     @change="changeTooltipToggle()"

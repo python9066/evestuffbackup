@@ -13767,7 +13767,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
 // import { EventBus } from "../event-bus";
 
 
@@ -34939,11 +34938,7 @@ var render = function() {
             { staticClass: " align-content-center" },
             [
               _c("v-switch", {
-                attrs: {
-                  label: _vm.tooltiponoff(),
-                  color: "primary",
-                  "hide-details": ""
-                },
+                attrs: { color: "primary", "hide-details": "" },
                 on: {
                   change: function($event) {
                     return _vm.changeTooltipToggle()
