@@ -9,7 +9,7 @@
             <template v-slot:activator="{ on: menu, attrs }">
                 <v-tooltip
                     bottom
-                    open-delay="100"
+                    open-delay="2500"
                     :disabled="$store.state.tooltipToggle"
                 >
                     <template v-slot:activator="{ on: tooltip }">

@@ -10212,6 +10212,19 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -30897,7 +30910,7 @@ var render = function() {
                     {
                       attrs: {
                         bottom: "",
-                        "open-delay": "100",
+                        "open-delay": "2500",
                         disabled: _vm.$store.state.tooltipToggle
                       },
                       scopedSlots: _vm._u(
@@ -31204,26 +31217,73 @@ var render = function() {
       _c(
         "div",
         [
-          _vm.station.gunner_id == null
-            ? _c(
-                "v-btn",
+          _c(
+            "v-tooltip",
+            {
+              attrs: {
+                bottom: "",
+                "open-delay": "2500",
+                disabled: _vm.$store.state.tooltipToggle
+              },
+              scopedSlots: _vm._u([
                 {
-                  attrs: { color: "blue", "x-small": "", outlined: "" },
-                  on: {
-                    click: function($event) {
-                      return _vm.gunnerAdd()
-                    }
+                  key: "activator",
+                  fn: function(ref) {
+                    var on = ref.on
+                    var attrs = ref.attrs
+                    return [
+                      _vm.station.gunner_id == null
+                        ? _c(
+                            "v-btn",
+                            _vm._g(
+                              _vm._b(
+                                {
+                                  attrs: {
+                                    color: "blue",
+                                    "x-small": "",
+                                    outlined: ""
+                                  },
+                                  on: {
+                                    click: function($event) {
+                                      return _vm.gunnerAdd()
+                                    }
+                                  }
+                                },
+                                "v-btn",
+                                attrs,
+                                false
+                              ),
+                              on
+                            ),
+                            [
+                              _c(
+                                "v-icon",
+                                { attrs: { "x-small": "", dark: "" } },
+                                [
+                                  _vm._v(
+                                    "\n                        fas fa-plus\n                    "
+                                  )
+                                ]
+                              ),
+                              _vm._v("\n                    Gunner")
+                            ],
+                            1
+                          )
+                        : _vm._e()
+                    ]
                   }
-                },
-                [
-                  _c("v-icon", { attrs: { "x-small": "", dark: "" } }, [
-                    _vm._v("\n                fas fa-plus\n            ")
-                  ]),
-                  _vm._v("\n            Gunner")
-                ],
-                1
-              )
-            : _vm._e(),
+                }
+              ])
+            },
+            [
+              _vm._v(" "),
+              _c("span", [
+                _vm._v(
+                  "\n                Gunners and assign themselfs here\n            "
+                )
+              ])
+            ]
+          ),
           _vm._v(" "),
           _vm.station.gunner_id != null &&
           (_vm.$can("gunner") ||
@@ -45297,7 +45357,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
     ticklist: [],
     timers: [],
     token: "",
-    tooltipToggle: false,
+    tooltipToggle: true,
     towers: [],
     towerlist: [],
     users: [],

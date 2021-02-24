@@ -8,19 +8,32 @@
             </span>
         </div>
         <div>
-            <v-btn
-                v-if="station.gunner_id == null"
-                class=""
-                color="blue"
-                x-small
-                outlined
-                @click="gunnerAdd()"
+            <v-tooltip
+                bottom
+                open-delay="2500"
+                :disabled="$store.state.tooltipToggle"
             >
-                <v-icon x-small dark>
-                    fas fa-plus
-                </v-icon>
-                Gunner</v-btn
-            >
+                <template v-slot:activator="{ on, attrs }">
+                    <v-btn
+                        v-if="station.gunner_id == null"
+                        class=""
+                        color="blue"
+                        x-small
+                        outlined
+                        @click="gunnerAdd()"
+                        v-bind="attrs"
+                        v-on="on"
+                    >
+                        <v-icon x-small dark>
+                            fas fa-plus
+                        </v-icon>
+                        Gunner</v-btn
+                    >
+                </template>
+                <span>
+                    Gunners and assign themselfs here
+                </span>
+            </v-tooltip>
             <v-icon
                 v-if="
                     station.gunner_id != null &&
