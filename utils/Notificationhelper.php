@@ -889,9 +889,10 @@ class Notifications
         foreach ($checks as $check) {
             $check->update(['station_status_id' => 5, 'user_id' => null, 'text' => null, 'gunner_id' => null, 'status_update' => now()]);
             $stationID = $check->id;
+            $message = StationRecords::where('id', $check->id)->first();
             $flag = null;
             $flag = collect([
-                'id' => $check->id
+                'message' => $message
             ]);
             broadcast(new StationNotificationNew($flag));
         }
@@ -899,10 +900,10 @@ class Notifications
         $checks = Station::where('status_update', '<', $now10min)->where('station_status_id', 9)->get(); //Reffed - Armor
         foreach ($checks as $check) {
             $check->update(['station_status_id' => 13, 'user_id' => null, 'text' => null, 'gunner_id' => null, 'status_update' => now()]);
-            $stationID = $check->id;
+            $message = StationRecords::where('id', $check->id)->first();
             $flag = null;
             $flag = collect([
-                'id' => $check->id
+                'message' => $message
             ]);
             broadcast(new StationNotificationNew($flag));
         }
