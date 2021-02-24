@@ -11311,6 +11311,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -32580,11 +32589,37 @@ var render = function() {
                               1
                             ),
                             _vm._v(" "),
-                            _vm.$can("edit_station_notifications")
-                              ? _c("StationAttack", {
-                                  attrs: { station: item }
-                                })
-                              : _vm._e(),
+                            _c(
+                              "v-tooltip",
+                              {
+                                attrs: {
+                                  bottom: "",
+                                  "open-delay": 1000,
+                                  disabled: _vm.$store.state.tooltipToggle
+                                },
+                                scopedSlots: _vm._u(
+                                  [
+                                    {
+                                      key: "activator",
+                                      fn: function(ref) {
+                                        var on = ref.on
+                                        var attrs = ref.attrs
+                                        return [
+                                          _vm.$can("edit_station_notifications")
+                                            ? _c("StationAttack", {
+                                                attrs: { station: item }
+                                              })
+                                            : _vm._e()
+                                        ]
+                                      }
+                                    }
+                                  ],
+                                  null,
+                                  true
+                                )
+                              },
+                              [_vm._v(" "), _c("span", [_vm._v(" test")])]
+                            ),
                             _vm._v(" "),
                             _vm.$can("edit_station_notifications")
                               ? _c("StationMessage", {
