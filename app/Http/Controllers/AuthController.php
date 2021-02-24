@@ -39,7 +39,7 @@ class AuthController extends Controller
 
 
 
-        // dd($g);
+        dd($userGice->grp);
 
 
         // User::updateOrCreate(['id' => $userGice->sub], ['name' => $userGice->name, 'token' => $userGice->token, 'pri_grp' => $userGice->user['pri_grp'], 'api_token' => Str::random(60)]);
