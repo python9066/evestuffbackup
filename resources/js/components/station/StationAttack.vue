@@ -21,6 +21,7 @@
                         <template v-slot:activator="{ on: tooltip }">
                             <v-icon
                                 color="red"
+                                :key="'crosshair' + station.id"
                                 v-bind="attrs"
                                 v-on="{ ...tooltip, ...menu }"
                                 @click="open()"

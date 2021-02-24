@@ -16,6 +16,7 @@
                 <template v-slot:activator="{ on, attrs }">
                     <v-btn
                         v-if="station.gunner_id == null"
+                        :key="'gunnerbutton' + station.gunner_id"
                         class=""
                         color="blue"
                         x-small
