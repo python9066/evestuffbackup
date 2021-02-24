@@ -63,15 +63,15 @@
                 </v-tabs>
             </div>
             <v-spacer></v-spacer>
-            <v-switch
-                v-model="tooltipToggle"
-                :label="tooltiponoff()"
-                color="primary"
-                value="success"
-                class="switch-center"
-                hide-details
-                @change="changeTooltipToggle()"
-            ></v-switch>
+            <div class=" align-content-center">
+                <v-switch
+                    v-model="tooltipToggle"
+                    :label="tooltiponoff()"
+                    color="primary"
+                    hide-details
+                    @change="changeTooltipToggle()"
+                ></v-switch>
+            </div>
             <v-btn
                 text
                 class="mr-2"
@@ -250,11 +250,5 @@ export default {
 .fade-leave-active {
     transition: opacity 0.25s ease;
     opacity: 0;
-}
-</style>
-<style>
-.switch-center {
-    display: flex;
-    justify-content: center;
 }
 </style>
