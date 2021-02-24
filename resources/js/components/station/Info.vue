@@ -68,18 +68,17 @@
                                 >
                                     Request Update
                                 </v-chip>
-                                <span class=" d-flex">
-                                    <p>
-                                        Request Recon to do a system scan
-                                        update.
-                                    </p>
-                                    <p>
-                                        Pressing this button will ping the recon
-                                        channel and make a new task in the recon
-                                        tool
-                                    </p></span
-                                >
                             </template>
+                            <span class=" d-flex">
+                                <p>
+                                    Request Recon to do a system scan update.
+                                </p>
+                                <p>
+                                    Pressing this button will ping the recon
+                                    channel and make a new task in the recon
+                                    tool
+                                </p></span
+                            >
                         </v-tooltip>
                         <v-chip
                             pill

@@ -9726,7 +9726,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -30510,70 +30509,76 @@ var render = function() {
                         _vm._s(_vm.lastUpdated()) +
                         "\n                    "
                     ),
-                    _c("v-tooltip", {
-                      attrs: {
-                        bottom: "",
-                        "open-delay": 2000,
-                        disabled: _vm.$store.state.tooltipToggle
-                      },
-                      scopedSlots: _vm._u([
-                        {
-                          key: "activator",
-                          fn: function(ref) {
-                            var tooltip = ref.on
-                            var atooltip = ref.attrs
-                            return [
-                              _vm.$can("request_recon_task") && !_vm.taskFlag()
-                                ? _c(
-                                    "v-chip",
-                                    _vm._g(
-                                      _vm._b(
-                                        {
-                                          staticClass: " ml-2",
-                                          attrs: {
-                                            pill: "",
-                                            small: "",
-                                            outlined: "",
-                                            color: "teal"
-                                          },
-                                          on: {
-                                            click: function($event) {
-                                              return _vm.taskRequest()
+                    _c(
+                      "v-tooltip",
+                      {
+                        attrs: {
+                          bottom: "",
+                          "open-delay": 2000,
+                          disabled: _vm.$store.state.tooltipToggle
+                        },
+                        scopedSlots: _vm._u([
+                          {
+                            key: "activator",
+                            fn: function(ref) {
+                              var tooltip = ref.on
+                              var atooltip = ref.attrs
+                              return [
+                                _vm.$can("request_recon_task") &&
+                                !_vm.taskFlag()
+                                  ? _c(
+                                      "v-chip",
+                                      _vm._g(
+                                        _vm._b(
+                                          {
+                                            staticClass: " ml-2",
+                                            attrs: {
+                                              pill: "",
+                                              small: "",
+                                              outlined: "",
+                                              color: "teal"
+                                            },
+                                            on: {
+                                              click: function($event) {
+                                                return _vm.taskRequest()
+                                              }
                                             }
-                                          }
-                                        },
-                                        "v-chip",
-                                        Object.assign({}, atooltip),
-                                        false
+                                          },
+                                          "v-chip",
+                                          Object.assign({}, atooltip),
+                                          false
+                                        ),
+                                        Object.assign({}, tooltip)
                                       ),
-                                      Object.assign({}, tooltip)
-                                    ),
-                                    [
-                                      _vm._v(
-                                        "\n                                Request Update\n                            "
-                                      )
-                                    ]
-                                  )
-                                : _vm._e(),
-                              _vm._v(" "),
-                              _c("span", { staticClass: " d-flex" }, [
-                                _c("p", [
-                                  _vm._v(
-                                    "\n                                    Request Recon to do a system scan\n                                    update.\n                                "
-                                  )
-                                ]),
-                                _vm._v(" "),
-                                _c("p", [
-                                  _vm._v(
-                                    "\n                                    Pressing this button will ping the recon\n                                    channel and make a new task in the recon\n                                    tool\n                                "
-                                  )
-                                ])
-                              ])
-                            ]
+                                      [
+                                        _vm._v(
+                                          "\n                                Request Update\n                            "
+                                        )
+                                      ]
+                                    )
+                                  : _vm._e()
+                              ]
+                            }
                           }
-                        }
-                      ])
-                    }),
+                        ])
+                      },
+                      [
+                        _vm._v(" "),
+                        _c("span", { staticClass: " d-flex" }, [
+                          _c("p", [
+                            _vm._v(
+                              "\n                                Request Recon to do a system scan update.\n                            "
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c("p", [
+                            _vm._v(
+                              "\n                                Pressing this button will ping the recon\n                                channel and make a new task in the recon\n                                tool\n                            "
+                            )
+                          ])
+                        ])
+                      ]
+                    ),
                     _vm._v(" "),
                     _vm.$can("request_recon_task") && _vm.taskFlag()
                       ? _c(
