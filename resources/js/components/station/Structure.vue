@@ -669,7 +669,6 @@ export default {
                     {
                         text: "Age/CountDown",
                         value: "count",
-                        sortable: false,
                         width: "5%"
                     },
                     {
@@ -734,7 +733,6 @@ export default {
                     {
                         text: "Age/CountDown",
                         value: "count",
-                        sortable: false,
                         width: "5%"
                     },
                     {

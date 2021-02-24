@@ -11722,7 +11722,6 @@ function sleep(ms) {
         }, {
           text: "Age/CountDown",
           value: "count",
-          sortable: false,
           width: "5%"
         }, {
           text: "Status",
@@ -11774,7 +11773,6 @@ function sleep(ms) {
         }, {
           text: "Age/CountDown",
           value: "count",
-          sortable: false,
           width: "5%"
         }, {
           text: "Status",
