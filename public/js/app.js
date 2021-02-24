@@ -13767,6 +13767,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 // import { EventBus } from "../event-bus";
 
 
@@ -34951,7 +34952,9 @@ var render = function() {
                   },
                   expression: "tooltipToggle"
                 }
-              })
+              }),
+              _vm._v(" "),
+              _c("span", [_vm._v(" " + _vm._s(_vm.tooltiponoff))])
             ],
             1
           ),
