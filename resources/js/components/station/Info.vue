@@ -69,7 +69,7 @@
                                     Request Update
                                 </v-chip>
                             </template>
-                            <span class=" d-flex">
+                            <span class=" d-inline">
                                 <p>
                                     Request Recon to do a system scan update.
                                 </p>

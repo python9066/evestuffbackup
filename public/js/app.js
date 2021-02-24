@@ -30564,7 +30564,7 @@ var render = function() {
                       },
                       [
                         _vm._v(" "),
-                        _c("span", { staticClass: " d-flex" }, [
+                        _c("span", { staticClass: " d-inline" }, [
                           _c("p", [
                             _vm._v(
                               "\n                                Request Recon to do a system scan update.\n                            "
