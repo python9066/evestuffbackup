@@ -161,7 +161,7 @@
                     </v-menu>
                     <v-tooltip
                         bottom
-                        :open-delay="1000"
+                        :open-delay="2000"
                         :disabled="$store.state.tooltipToggle"
                     >
                         <template
@@ -182,7 +182,7 @@
                     </v-tooltip>
                     <v-tooltip
                         bottom
-                        :open-delay="1000"
+                        :open-delay="2000"
                         :disabled="$store.state.tooltipToggle"
                     >
                         <template
