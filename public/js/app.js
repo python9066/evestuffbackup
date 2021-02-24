@@ -19978,7 +19978,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".fade-enter[data-v-91ac6b5c] {\n  opacity: 0;\n}\n.fade-enter-active[data-v-91ac6b5c] {\n  transition: opacity 0.25s ease;\n}\n.fade-leave-active[data-v-91ac6b5c] {\n  transition: opacity 0.25s ease;\n  opacity: 0;\n}", ""]);
+exports.push([module.i, ".fade-enter[data-v-91ac6b5c] {\n  opacity: 0;\n}\n.fade-enter-active[data-v-91ac6b5c] {\n  transition: opacity 0.25s ease;\n}\n.fade-leave-active[data-v-91ac6b5c] {\n  transition: opacity 0.25s ease;\n  opacity: 0;\n}\n.switch-center[data-v-91ac6b5c] {\n  display: flex;\n  justify-content: center;\n}", ""]);
 
 // exports
 
@@ -34935,7 +34935,7 @@ var render = function() {
           _c("v-spacer"),
           _vm._v(" "),
           _c("v-switch", {
-            staticClass: " align-content-center",
+            staticClass: "switch-center",
             attrs: {
               label: _vm.tooltiponoff(),
               color: "primary",

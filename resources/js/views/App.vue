@@ -64,11 +64,11 @@
             </div>
             <v-spacer></v-spacer>
             <v-switch
-                class=" align-content-center"
                 v-model="tooltipToggle"
                 :label="tooltiponoff()"
                 color="primary"
                 value="success"
+                class="switch-center"
                 hide-details
                 @change="changeTooltipToggle()"
             ></v-switch>
@@ -250,5 +250,10 @@ export default {
 .fade-leave-active {
     transition: opacity 0.25s ease;
     opacity: 0;
+}
+
+.switch-center {
+    display: flex;
+    justify-content: center;
 }
 </style>
