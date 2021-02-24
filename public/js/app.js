@@ -19407,6 +19407,36 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -40199,35 +40229,82 @@ var render = function() {
                         { attrs: { group: "" } },
                         [
                           _c(
-                            "v-chip",
+                            "v-tooltip",
                             {
-                              directives: [
-                                {
-                                  name: "show",
-                                  rawName: "v-show",
-                                  value:
-                                    item.tower_status_id != 6 &&
-                                    item.tower_status_id != 1 &&
-                                    !_vm.expanded.includes(item),
-                                  expression:
-                                    "\n                            item.tower_status_id != 6 &&\n                                item.tower_status_id != 1 &&\n                                !expanded.includes(item)\n                        "
-                                }
-                              ],
-                              key: "chip" + item.id,
                               attrs: {
-                                pill: "",
-                                outlined: "",
-                                small: "",
-                                color: _vm.adashColor(item)
+                                color: "#121212",
+                                bottom: "",
+                                "open-delay": 2000,
+                                disabled: _vm.$store.state.tooltipToggle
                               },
-                              on: {
-                                click: function($event) {
-                                  ;(_vm.expanded = [item]),
-                                    (_vm.expanded_id = item.id)
-                                }
-                              }
+                              scopedSlots: _vm._u(
+                                [
+                                  {
+                                    key: "activator",
+                                    fn: function(ref) {
+                                      var on = ref.on
+                                      var attrs = ref.attrs
+                                      return [
+                                        _c(
+                                          "v-chip",
+                                          _vm._g(
+                                            _vm._b(
+                                              {
+                                                directives: [
+                                                  {
+                                                    name: "show",
+                                                    rawName: "v-show",
+                                                    value:
+                                                      item.tower_status_id !=
+                                                        6 &&
+                                                      item.tower_status_id !=
+                                                        1 &&
+                                                      !_vm.expanded.includes(
+                                                        item
+                                                      ),
+                                                    expression:
+                                                      "\n                                    item.tower_status_id != 6 &&\n                                        item.tower_status_id != 1 &&\n                                        !expanded.includes(item)\n                                "
+                                                  }
+                                                ],
+                                                key: "chip" + item.id,
+                                                attrs: {
+                                                  pill: "",
+                                                  outlined: "",
+                                                  small: "",
+                                                  color: _vm.adashColor(item)
+                                                },
+                                                on: {
+                                                  click: function($event) {
+                                                    ;(_vm.expanded = [item]),
+                                                      (_vm.expanded_id =
+                                                        item.id)
+                                                  }
+                                                }
+                                              },
+                                              "v-chip",
+                                              attrs,
+                                              false
+                                            ),
+                                            on
+                                          ),
+                                          [_vm._v("adash")]
+                                        )
+                                      ]
+                                    }
+                                  }
+                                ],
+                                null,
+                                true
+                              )
                             },
-                            [_vm._v("adash")]
+                            [
+                              _vm._v(" "),
+                              _c("span", [
+                                _vm._v(
+                                  '\n                            Where to add/view aDash of tower (click the\n                            "more" on aDash to see Structures)'
+                                )
+                              ])
+                            ]
                           ),
                           _vm._v(" "),
                           _c(
@@ -40260,11 +40337,58 @@ var render = function() {
                         1
                       ),
                       _vm._v(" "),
-                      _c("TowerMessage", {
-                        key: "towermessage" + item.id,
-                        staticClass: " pl-2",
-                        attrs: { tower: item }
-                      }),
+                      _c(
+                        "v-tooltip",
+                        {
+                          attrs: {
+                            color: "#121212",
+                            bottom: "",
+                            "open-delay": 2000,
+                            disabled: _vm.$store.state.tooltipToggle
+                          },
+                          scopedSlots: _vm._u(
+                            [
+                              {
+                                key: "activator",
+                                fn: function(ref) {
+                                  var tooltip = ref.on
+                                  var atooltip = ref.attrs
+                                  return [
+                                    _c(
+                                      "div",
+                                      _vm._g(
+                                        _vm._b(
+                                          {},
+                                          "div",
+                                          Object.assign({}, atooltip),
+                                          false
+                                        ),
+                                        Object.assign({}, tooltip)
+                                      ),
+                                      [
+                                        _c("TowerMessage", {
+                                          key: "towermessage" + item.id,
+                                          staticClass: " pl-2",
+                                          attrs: { tower: item }
+                                        })
+                                      ],
+                                      1
+                                    )
+                                  ]
+                                }
+                              }
+                            ],
+                            null,
+                            true
+                          )
+                        },
+                        [
+                          _vm._v(" "),
+                          _c("span", [
+                            _vm._v(" Where to enter notes about the Tower ")
+                          ])
+                        ]
+                      ),
                       _vm._v(" "),
                       _c(
                         "v-slide-x-transition",

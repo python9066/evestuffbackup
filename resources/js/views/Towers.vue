@@ -152,22 +152,38 @@
 
                     <!-- EXTRA BUTTON -->
                     <v-fab-transition group>
-                        <v-chip
-                            :key="'chip' + item.id"
-                            pill
-                            outlined
-                            small
-                            @click="
-                                (expanded = [item]), (expanded_id = item.id)
-                            "
-                            v-show="
-                                item.tower_status_id != 6 &&
-                                    item.tower_status_id != 1 &&
-                                    !expanded.includes(item)
-                            "
-                            :color="adashColor(item)"
-                            >adash</v-chip
+                        <v-tooltip
+                            color="#121212"
+                            bottom
+                            :open-delay="2000"
+                            :disabled="$store.state.tooltipToggle"
                         >
+                            <template v-slot:activator="{ on, attrs }">
+                                <v-chip
+                                    :key="'chip' + item.id"
+                                    pill
+                                    outlined
+                                    v-bind="attrs"
+                                    v-on="on"
+                                    small
+                                    @click="
+                                        (expanded = [item]),
+                                            (expanded_id = item.id)
+                                    "
+                                    v-show="
+                                        item.tower_status_id != 6 &&
+                                            item.tower_status_id != 1 &&
+                                            !expanded.includes(item)
+                                    "
+                                    :color="adashColor(item)"
+                                    >adash</v-chip
+                                >
+                            </template>
+                            <span>
+                                Where to add/view aDash of tower (click the
+                                "more" on aDash to see Structures)</span
+                            >
+                        </v-tooltip>
                         <v-btn
                             :key="'button' + item.id"
                             icon
@@ -181,11 +197,25 @@
                             ><v-icon>fas fa-minus</v-icon></v-btn
                         >
                     </v-fab-transition>
-                    <TowerMessage
-                        class=" pl-2"
-                        :key="'towermessage' + item.id"
-                        :tower="item"
-                    ></TowerMessage>
+                    <v-tooltip
+                        color="#121212"
+                        bottom
+                        :open-delay="2000"
+                        :disabled="$store.state.tooltipToggle"
+                    >
+                        <template
+                            v-slot:activator="{ on: tooltip, attrs: atooltip }"
+                        >
+                            <div v-on="{ ...tooltip }" v-bind="{ ...atooltip }">
+                                <TowerMessage
+                                    class=" pl-2"
+                                    :key="'towermessage' + item.id"
+                                    :tower="item"
+                                ></TowerMessage>
+                            </div>
+                        </template>
+                        <span> Where to enter notes about the Tower </span>
+                    </v-tooltip>
                     <v-slide-x-transition>
                         <TowerRefTimer
                             :key="'towerreftimer' + item.id"
