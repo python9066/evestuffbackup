@@ -35019,33 +35019,6 @@ var render = function() {
           _vm._v(" "),
           _c("v-spacer"),
           _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: " d-inline-flex align-content-center" },
-            [
-              _c("v-switch", {
-                attrs: { color: "primary", "hide-details": "" },
-                on: {
-                  change: function($event) {
-                    return _vm.changeTooltipToggle()
-                  }
-                },
-                model: {
-                  value: _vm.tooltipToggle,
-                  callback: function($$v) {
-                    _vm.tooltipToggle = $$v
-                  },
-                  expression: "tooltipToggle"
-                }
-              }),
-              _vm._v(" "),
-              _c("span", { staticClass: " pt-1" }, [
-                _vm._v(" " + _vm._s(_vm.tooltiponoff()))
-              ])
-            ],
-            1
-          ),
-          _vm._v(" "),
           this.$vuetify.breakpoint.mdAndUp
             ? _c(
                 "v-btn",
