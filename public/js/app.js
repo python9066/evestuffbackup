@@ -11339,6 +11339,25 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -32908,9 +32927,59 @@ var render = function() {
                                 })
                               : _vm._e(),
                             _vm._v(" "),
-                            _vm.showInfo(item)
-                              ? _c("Info", { attrs: { station: item } })
-                              : _vm._e()
+                            _c(
+                              "v-tooltip",
+                              {
+                                attrs: {
+                                  bottom: "",
+                                  "open-delay": 2000,
+                                  disabled: _vm.$store.state.tooltipToggle
+                                },
+                                scopedSlots: _vm._u(
+                                  [
+                                    {
+                                      key: "activator",
+                                      fn: function(ref) {
+                                        var tooltip = ref.on
+                                        var atooltip = ref.attrs
+                                        return [
+                                          _c(
+                                            "div",
+                                            _vm._g(
+                                              _vm._b(
+                                                {},
+                                                "div",
+                                                Object.assign({}, atooltip),
+                                                false
+                                              ),
+                                              Object.assign({}, tooltip)
+                                            ),
+                                            [
+                                              _vm.showInfo(item)
+                                                ? _c("Info", {
+                                                    attrs: { station: item }
+                                                  })
+                                                : _vm._e()
+                                            ],
+                                            1
+                                          )
+                                        ]
+                                      }
+                                    }
+                                  ],
+                                  null,
+                                  true
+                                )
+                              },
+                              [
+                                _vm._v(" "),
+                                _c("span", [
+                                  _vm._v(
+                                    "\n                        Where to see fitting of station, core status"
+                                  )
+                                ])
+                              ]
+                            )
                           ],
                           1
                         )

@@ -283,7 +283,26 @@
                         :station="item"
                         v-if="showGunner(item)"
                     ></StationGunner>
-                    <Info :station="item" v-if="showInfo(item)"></Info>
+
+                    <v-tooltip
+                        bottom
+                        :open-delay="2000"
+                        :disabled="$store.state.tooltipToggle"
+                    >
+                        <template
+                            v-slot:activator="{ on: tooltip, attrs: atooltip }"
+                        >
+                            <div v-on="{ ...tooltip }" v-bind="{ ...atooltip }">
+                                <Info
+                                    :station="item"
+                                    v-if="showInfo(item)"
+                                ></Info>
+                            </div>
+                        </template>
+                        <span>
+                            Where to see fitting of station, core status</span
+                        >
+                    </v-tooltip>
                 </div>
             </template>
         </v-data-table>
