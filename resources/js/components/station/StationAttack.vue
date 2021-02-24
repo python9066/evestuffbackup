@@ -13,7 +13,7 @@
                     :content="messageAttackCount"
                     :value="showAttackNumber"
                 >
-                    <v-tooltip bottom :open-delay="1000" :disabled="Tooltip">
+                    <v-tooltip bottom :open-delay="1000" :disabled="tooltip">
                         <template v-slot:activator="{ on: tooltip }">
                             <v-icon
                                 color="red"
@@ -131,7 +131,7 @@ export default {
             editText: null,
             editAdashLink: null,
             showAttackStationNotes: false,
-            Tooltip: true
+            tooltip: true
         };
     },
 
@@ -169,7 +169,7 @@ export default {
 
     methods: {
         toggle() {
-            this.Tooltip == showTooltip;
+            this.tooltip == showTooltip;
         },
         close() {
             this.editText = null;

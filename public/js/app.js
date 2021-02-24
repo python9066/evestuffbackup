@@ -9987,7 +9987,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       editText: null,
       editAdashLink: null,
       showAttackStationNotes: false,
-      Tooltip: true
+      tooltip: true
     };
   },
   created: function created() {
@@ -10030,7 +10030,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   methods: {
     toggle: function toggle() {
-      this.Tooltip == showTooltip;
+      this.tooltip == showTooltip;
     },
     close: function close() {
       this.editText = null;
@@ -30923,7 +30923,7 @@ var render = function() {
                           attrs: {
                             bottom: "",
                             "open-delay": 1000,
-                            disabled: _vm.Tooltip
+                            disabled: _vm.tooltip
                           },
                           scopedSlots: _vm._u(
                             [
