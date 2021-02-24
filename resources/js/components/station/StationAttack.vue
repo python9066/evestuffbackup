@@ -135,7 +135,7 @@ export default {
             editText: null,
             editAdashLink: null,
             showAttackStationNotes: false,
-            displayTooltip: false
+            displayTooltip: true
         };
     },
 
