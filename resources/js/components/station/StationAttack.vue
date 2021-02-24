@@ -13,11 +13,7 @@
                     :content="messageAttackCount"
                     :value="showAttackNumber"
                 >
-                    <v-tooltip
-                        bottom
-                        :open-delay="1000"
-                        :disabled="showTooltip"
-                    >
+                    <v-tooltip bottom :open-delay="1000">
                         <template v-slot:activator="{ on: tooltip }">
                             <v-icon
                                 color="red"
