@@ -7,7 +7,11 @@
             @click:outside="close()"
         >
             <template v-slot:activator="{ on: menu, attrs }">
-                <v-tooltip bottom open-delay="100" :disabled="showTooltip">
+                <v-tooltip
+                    bottom
+                    open-delay="100"
+                    :disabled="$store.state.tooltipToggle"
+                >
                     <template v-slot:activator="{ on: tooltip }">
                         <v-badge
                             color="green"

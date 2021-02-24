@@ -53,7 +53,11 @@ export default new Vuex.Store({
         },
 
         UPDATE_TOOLTIP_TOGGLE(state, tooltipToggle) {
-            state.tooltipToggle = tooltipToggle;
+            if (tooltipToggle) {
+                state.tooltipToggle = false
+            } else {
+                state.tooltipToggle = true
+            }
         },
 
         SET_MOONLIST(state, moonlist) {

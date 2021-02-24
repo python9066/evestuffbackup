@@ -9974,6 +9974,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -30894,7 +30898,7 @@ var render = function() {
                       attrs: {
                         bottom: "",
                         "open-delay": "100",
-                        disabled: _vm.showTooltip
+                        disabled: _vm.$store.state.tooltipToggle
                       },
                       scopedSlots: _vm._u(
                         [
@@ -45306,7 +45310,11 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
       state.systemlist = systemlist;
     },
     UPDATE_TOOLTIP_TOGGLE: function UPDATE_TOOLTIP_TOGGLE(state, tooltipToggle) {
-      state.tooltipToggle = tooltipToggle;
+      if (tooltipToggle) {
+        state.tooltipToggle = false;
+      } else {
+        state.tooltipToggle = true;
+      }
     },
     SET_MOONLIST: function SET_MOONLIST(state, moonlist) {
       state.moonlist = moonlist;
