@@ -9721,11 +9721,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -30564,23 +30559,11 @@ var render = function() {
                       },
                       [
                         _vm._v(" "),
-                        _c(
-                          "span",
-                          { staticClass: " d-inline justify-center" },
-                          [
-                            _c("p", [
-                              _vm._v(
-                                "\n                                Request Recon to do a system scan update.\n                            "
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("p", [
-                              _vm._v(
-                                "\n                                Pressing this button will ping the recon\n                                channel and make a new task in the recon\n                                tool\n                            "
-                              )
-                            ])
-                          ]
-                        )
+                        _c("span", [
+                          _vm._v(
+                            "\n                            Request Recon to do a system scan update.\n                            Pressing this button will ping the recon channel\n                            and make a new task in the recon tool\n                        "
+                          )
+                        ])
                       ]
                     ),
                     _vm._v(" "),
