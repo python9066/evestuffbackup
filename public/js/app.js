@@ -13767,6 +13767,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 // import { EventBus } from "../event-bus";
 
 
@@ -34931,7 +34932,10 @@ var render = function() {
             1
           ),
           _vm._v(" "),
+          _c("v-spacer"),
+          _vm._v(" "),
           _c("v-switch", {
+            staticClass: " align-content-center",
             attrs: {
               label: _vm.tooltiponoff(),
               color: "primary",

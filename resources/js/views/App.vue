@@ -62,8 +62,9 @@
                     </v-tab>
                 </v-tabs>
             </div>
-            <!-- <v-spacer></v-spacer> -->
+            <v-spacer></v-spacer>
             <v-switch
+                class=" align-content-center"
                 v-model="tooltipToggle"
                 :label="tooltiponoff()"
                 color="primary"
