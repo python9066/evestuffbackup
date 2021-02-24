@@ -9972,6 +9972,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -10023,7 +10027,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   // watch: {
   //     showTooltip: {
   //         handler() {
-  //             this.toggle;
+  //             this.tip == this.showTooltip;
   //         },
   //         deep: true
   //     }
@@ -10133,9 +10137,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
     displayTooltip: function displayTooltip() {
       if (this.showTooltip) {
-        this.tip == true;
+        return true;
       } else {
-        this.tip == false;
+        return false;
       }
     },
     submitActive: function submitActive() {
@@ -30930,7 +30934,7 @@ var render = function() {
                           attrs: {
                             bottom: "",
                             "open-delay": 1000,
-                            disabled: _vm.tip
+                            disabled: _vm.displayTooltip
                           },
                           scopedSlots: _vm._u(
                             [
