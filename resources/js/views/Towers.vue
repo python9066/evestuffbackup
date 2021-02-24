@@ -154,6 +154,7 @@
                     <v-fab-transition group>
                         <v-tooltip
                             color="#121212"
+                            :key="'tooltip' + item.id"
                             bottom
                             :open-delay="2000"
                             :disabled="$store.state.tooltipToggle"

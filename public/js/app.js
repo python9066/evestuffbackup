@@ -19437,6 +19437,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 
@@ -40231,6 +40232,7 @@ var render = function() {
                           _c(
                             "v-tooltip",
                             {
+                              key: "tooltip" + item.id,
                               attrs: {
                                 color: "#121212",
                                 bottom: "",
