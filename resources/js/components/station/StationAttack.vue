@@ -135,7 +135,7 @@ export default {
             editText: null,
             editAdashLink: null,
             showAttackStationNotes: false,
-            tip: false
+            displayTooltip: false
         };
     },
 
@@ -162,14 +162,14 @@ export default {
         );
     },
 
-    // watch: {
-    //     showTooltip: {
-    //         handler() {
-    //             this.tip == this.showTooltip;
-    //         },
-    //         deep: true
-    //     }
-    // },
+    watch: {
+        showTooltip: {
+            handler() {
+                this.displayTooltip == this.showTooltip;
+            },
+            deep: true
+        }
+    },
 
     methods: {
         toggle() {
@@ -289,13 +289,13 @@ export default {
             return "fas fa-crosshairs";
         },
 
-        displayTooltip() {
-            if (this.showTooltip) {
-                return true;
-            } else {
-                return false;
-            }
-        },
+        // displayTooltip() {
+        //     if (this.showTooltip) {
+        //         return true;
+        //     } else {
+        //         return false;
+        //     }
+        // },
 
         submitActive() {
             if (this.editText != null || this.editAdashLink != null) {

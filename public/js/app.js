@@ -9991,7 +9991,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       editText: null,
       editAdashLink: null,
       showAttackStationNotes: false,
-      tip: false
+      displayTooltip: false
     };
   },
   created: function created() {
@@ -10024,14 +10024,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }, _callee);
     }))();
   },
-  // watch: {
-  //     showTooltip: {
-  //         handler() {
-  //             this.tip == this.showTooltip;
-  //         },
-  //         deep: true
-  //     }
-  // },
+  watch: {
+    showTooltip: {
+      handler: function handler() {
+        this.displayTooltip == this.showTooltip;
+      },
+      deep: true
+    }
+  },
   methods: {
     toggle: function toggle() {
       this.tooltip == displayTooltip;
@@ -10135,13 +10135,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     icon: function icon() {
       return "fas fa-crosshairs";
     },
-    displayTooltip: function displayTooltip() {
-      if (this.showTooltip) {
-        return true;
-      } else {
-        return false;
-      }
-    },
+    // displayTooltip() {
+    //     if (this.showTooltip) {
+    //         return true;
+    //     } else {
+    //         return false;
+    //     }
+    // },
     submitActive: function submitActive() {
       if (this.editText != null || this.editAdashLink != null) {
         return false;
