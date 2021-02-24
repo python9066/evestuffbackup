@@ -10,7 +10,7 @@
                 <v-tooltip
                     bottom
                     open-delay="2500"
-                    :disabled="$store.state.tooltipToggle"
+                    :disabled="!$store.state.tooltipToggle"
                 >
                     <template v-slot:activator="{ on: tooltip }">
                         <v-badge

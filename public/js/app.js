@@ -30891,7 +30891,7 @@ var render = function() {
                       attrs: {
                         bottom: "",
                         "open-delay": "2500",
-                        disabled: _vm.$store.state.tooltipToggle
+                        disabled: !_vm.$store.state.tooltipToggle
                       },
                       scopedSlots: _vm._u(
                         [
