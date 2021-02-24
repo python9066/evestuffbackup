@@ -333,7 +333,7 @@ class Notifications
                         ]);
                     }
                 } else {
-                    if ($station->station_status_id == 6) {
+                    if ($station->station_status_id == 6 || $station->station_status_id == 10) {
                         $status = 1;
                     } else {
                         $status = $station->station_status_id;
