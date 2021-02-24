@@ -11333,6 +11333,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 
@@ -31260,7 +31266,7 @@ var render = function() {
               _vm._v(" "),
               _c("span", [
                 _vm._v(
-                  "\n                Gunners and assign themselfs here\n            "
+                  "\n                Gunners can assign themselfs here\n            "
                 )
               ])
             ]
@@ -32658,7 +32664,11 @@ var render = function() {
                               },
                               [
                                 _vm._v(" "),
-                                _c("span", [_vm._v(" this is a test ")])
+                                _c("span", [
+                                  _vm._v(
+                                    "\n                        Where to enter/view adash scans and notes about\n                        attackers\n                    "
+                                  )
+                                ])
                               ]
                             ),
                             _vm._v(" "),
@@ -32711,7 +32721,11 @@ var render = function() {
                               },
                               [
                                 _vm._v(" "),
-                                _c("span", [_vm._v(" this is a test ")])
+                                _c("span", [
+                                  _vm._v(
+                                    "\n                        Where to enter/view any random notes about the\n                        strucutre\n                    "
+                                  )
+                                ])
                               ]
                             ),
                             _vm._v(" "),

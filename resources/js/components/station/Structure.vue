@@ -175,7 +175,10 @@
                                 ></StationAttack>
                             </div>
                         </template>
-                        <span> this is a test </span>
+                        <span>
+                            Where to enter/view adash scans and notes about
+                            attackers
+                        </span>
                     </v-tooltip>
                     <v-tooltip
                         bottom
@@ -194,7 +197,10 @@
                                 </StationMessage>
                             </div>
                         </template>
-                        <span> this is a test </span>
+                        <span>
+                            Where to enter/view any random notes about the
+                            strucutre
+                        </span>
                     </v-tooltip>
 
                     <v-fab-transition>

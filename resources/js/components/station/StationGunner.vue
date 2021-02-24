@@ -32,7 +32,7 @@
                     >
                 </template>
                 <span>
-                    Gunners and assign themselfs here
+                    Gunners can assign themselfs here
                 </span>
             </v-tooltip>
             <v-icon
