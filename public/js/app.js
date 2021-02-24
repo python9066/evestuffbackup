@@ -9987,7 +9987,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       editText: null,
       editAdashLink: null,
       showAttackStationNotes: false,
-      Tooltip: false
+      Tooltip: true
     };
   },
   created: function created() {
