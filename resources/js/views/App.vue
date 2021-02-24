@@ -186,7 +186,7 @@ export default {
         },
 
         tooltiponoff() {
-            if (tooltipToggle) {
+            if (this.tooltipToggle) {
                 return "Tooltips: On";
             } else {
                 return "Tooltips: Off";

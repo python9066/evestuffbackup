@@ -13829,7 +13829,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       this.$router.push("/covid");
     },
     tooltiponoff: function tooltiponoff() {
-      if (tooltipToggle) {
+      if (this.tooltipToggle) {
         return "Tooltips: On";
       } else {
         return "Tooltips: Off";
