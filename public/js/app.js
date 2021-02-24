@@ -11316,6 +11316,23 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -32591,7 +32608,11 @@ var render = function() {
                             _c(
                               "v-tooltip",
                               {
-                                attrs: { bottom: "" },
+                                attrs: {
+                                  bottom: "",
+                                  "open-delay": 1000,
+                                  disabled: _vm.$store.state.tooltipToggle
+                                },
                                 scopedSlots: _vm._u(
                                   [
                                     {
@@ -32641,12 +32662,58 @@ var render = function() {
                               ]
                             ),
                             _vm._v(" "),
-                            _vm.$can("edit_station_notifications")
-                              ? _c("StationMessage", {
-                                  staticClass: " pl-2",
-                                  attrs: { station: item }
-                                })
-                              : _vm._e(),
+                            _c(
+                              "v-tooltip",
+                              {
+                                attrs: {
+                                  bottom: "",
+                                  "open-delay": 1000,
+                                  disabled: _vm.$store.state.tooltipToggle
+                                },
+                                scopedSlots: _vm._u(
+                                  [
+                                    {
+                                      key: "activator",
+                                      fn: function(ref) {
+                                        var tooltip = ref.on
+                                        var atooltip = ref.attrs
+                                        return [
+                                          _c(
+                                            "div",
+                                            _vm._g(
+                                              _vm._b(
+                                                {},
+                                                "div",
+                                                Object.assign({}, atooltip),
+                                                false
+                                              ),
+                                              Object.assign({}, tooltip)
+                                            ),
+                                            [
+                                              _vm.$can(
+                                                "edit_station_notifications"
+                                              )
+                                                ? _c("StationMessage", {
+                                                    staticClass: " pl-2",
+                                                    attrs: { station: item }
+                                                  })
+                                                : _vm._e()
+                                            ],
+                                            1
+                                          )
+                                        ]
+                                      }
+                                    }
+                                  ],
+                                  null,
+                                  true
+                                )
+                              },
+                              [
+                                _vm._v(" "),
+                                _c("span", [_vm._v(" this is a test ")])
+                              ]
+                            ),
                             _vm._v(" "),
                             _c(
                               "v-fab-transition",

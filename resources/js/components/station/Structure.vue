@@ -159,7 +159,11 @@
                             </v-list-item>
                         </v-list>
                     </v-menu>
-                    <v-tooltip bottom>
+                    <v-tooltip
+                        bottom
+                        :open-delay="1000"
+                        :disabled="$store.state.tooltipToggle"
+                    >
                         <template
                             v-slot:activator="{ on: tooltip, attrs: atooltip }"
                         >
@@ -173,12 +177,25 @@
                         </template>
                         <span> this is a test </span>
                     </v-tooltip>
-                    <StationMessage
-                        :station="item"
-                        class=" pl-2"
-                        v-if="$can('edit_station_notifications')"
+                    <v-tooltip
+                        bottom
+                        :open-delay="1000"
+                        :disabled="$store.state.tooltipToggle"
                     >
-                    </StationMessage>
+                        <template
+                            v-slot:activator="{ on: tooltip, attrs: atooltip }"
+                        >
+                            <div v-on="{ ...tooltip }" v-bind="{ ...atooltip }">
+                                <StationMessage
+                                    :station="item"
+                                    class=" pl-2"
+                                    v-if="$can('edit_station_notifications')"
+                                >
+                                </StationMessage>
+                            </div>
+                        </template>
+                        <span> this is a test </span>
+                    </v-tooltip>
 
                     <v-fab-transition>
                         <StationTimer
