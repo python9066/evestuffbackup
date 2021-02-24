@@ -34936,7 +34936,7 @@ var render = function() {
           _vm._v(" "),
           _c(
             "div",
-            { staticClass: " align-content-center" },
+            { staticClass: " d-inline-flex align-content-center" },
             [
               _c("v-switch", {
                 attrs: { color: "primary", "hide-details": "" },
