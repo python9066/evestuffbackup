@@ -9974,10 +9974,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -10133,6 +10129,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
     clearActive: function clearActive() {
       if (this.station.attack_notes != null || this.station.attack_adash_link != null) {
+        return false;
+      } else {
+        return true;
+      }
+    },
+    showTooltip: function showTooltip() {
+      if (this.$store.state.tooltipToggle) {
         return false;
       } else {
         return true;
@@ -30891,7 +30894,7 @@ var render = function() {
                       attrs: {
                         bottom: "",
                         "open-delay": "2500",
-                        disabled: !_vm.$store.state.tooltipToggle
+                        disabled: _vm.showTootip
                       },
                       scopedSlots: _vm._u(
                         [

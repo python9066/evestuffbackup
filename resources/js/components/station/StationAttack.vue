@@ -7,11 +7,7 @@
             @click:outside="close()"
         >
             <template v-slot:activator="{ on: menu, attrs }">
-                <v-tooltip
-                    bottom
-                    open-delay="2500"
-                    :disabled="!$store.state.tooltipToggle"
-                >
+                <v-tooltip bottom open-delay="2500" :disabled="showTootip">
                     <template v-slot:activator="{ on: tooltip }">
                         <v-badge
                             color="green"
@@ -290,6 +286,14 @@ export default {
                 this.station.attack_notes != null ||
                 this.station.attack_adash_link != null
             ) {
+                return false;
+            } else {
+                return true;
+            }
+        },
+
+        showTooltip() {
+            if (this.$store.state.tooltipToggle) {
                 return false;
             } else {
                 return true;
