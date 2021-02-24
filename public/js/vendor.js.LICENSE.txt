@@ -222,6 +222,8 @@
 
 /*! ../../util/dedupeModelListeners */
 
+/*! ../../util/dom */
+
 /*! ../../util/helpers */
 
 /*! ../../util/mergeData */
@@ -1248,6 +1250,8 @@
 
 /*! exports provided: af, ar, bg, ca, ckb, cs, de, el, en, es, et, fa, fi, fr, hr, hu, he, id, it, ja, ko, lv, lt, nl, no, pl, pt, ro, ru, sk, sl, srCyrl, sv, th, tr, az, uk, zhHans, zhHant */
 
+/*! exports provided: attachedRoot */
+
 /*! exports provided: checkCollinear, getDistance, moveTo */
 
 /*! exports provided: column */
@@ -1327,6 +1331,10 @@
 /*!************************!*\
   !*** ./src/install.ts ***!
   \************************/
+
+/*!*************************!*\
+  !*** ./src/util/dom.ts ***!
+  \*************************/
 
 /*!**************************!*\
   !*** ./src/framework.ts ***!

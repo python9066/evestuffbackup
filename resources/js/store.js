@@ -39,6 +39,7 @@ export default new Vuex.Store({
         ticklist:[],
         timers: [],
         token: "",
+        tooltipToggle: false,
         towers: [],
         towerlist:[],
         users:[],
@@ -49,6 +50,10 @@ export default new Vuex.Store({
     mutations: {
         SET_SYSTEMLIST(state, systemlist) {
             state.systemlist = systemlist;
+        },
+
+        UPDATE_TOOLTIP_TOGGLE(state, tooltipToggle) {
+            state.tooltipToggle = tooltipToggle;
         },
 
         SET_MOONLIST(state, moonlist) {
@@ -677,6 +682,10 @@ export default new Vuex.Store({
 
         updateCampaignSystem({ commit }, data) {
             commit("UPDATE_CAMPAIGN_SYSTEM", data);
+        },
+
+        updateTooltipToggle({ commit }, data) {
+            commit("UPDATE_TOOLTIP_TOGGLE", data);
         },
 
         updateCampaignSystemByUserID({ commit }, payload) {

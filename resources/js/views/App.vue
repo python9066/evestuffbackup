@@ -63,6 +63,14 @@
                 </v-tabs>
             </div>
             <v-spacer></v-spacer>
+            <v-switch
+                v-model="tooltipToggle"
+                :label="tooltiponoff()"
+                color="primary"
+                value="success"
+                hide-details
+                @change="changeTooltipToggle()"
+            ></v-switch>
             <v-btn
                 text
                 class="mr-2"
@@ -160,7 +168,8 @@ export default {
         navdrawer: null,
         overlay: false,
         feedBackText: "",
-        tidiCalc: false
+        tidiCalc: false,
+        tooltipToggle: false
     }),
 
     async beforeCreate() {},
@@ -174,6 +183,18 @@ export default {
     methods: {
         gotoCovid() {
             this.$router.push("/covid");
+        },
+
+        tooltiponoff() {
+            if (tooltipToggle) {
+                return "Tooltips: On";
+            } else {
+                return "Tooltips: Off";
+            }
+        },
+
+        changeTooltipToggle() {
+            this.$store.dispatch("updateTooltipToggle", this.tooltipToggle);
         },
 
         logout() {
