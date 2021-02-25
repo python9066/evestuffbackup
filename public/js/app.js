@@ -10964,6 +10964,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -32167,6 +32172,7 @@ var render = function() {
                           _c(
                             "v-menu",
                             {
+                              key: "repairmenu" + _vm.station.id,
                               attrs: {
                                 "close-on-content-click": false,
                                 value: _vm.timerShown
@@ -32184,6 +32190,8 @@ var render = function() {
                                           _vm._g(
                                             _vm._b(
                                               {
+                                                key:
+                                                  "editrepair" + _vm.station.id,
                                                 attrs: {
                                                   icon: "",
                                                   color: "warning"
@@ -32372,7 +32380,7 @@ var render = function() {
               ],
               null,
               false,
-              2758664810
+              4011264773
             )
           })
         : _vm._e()

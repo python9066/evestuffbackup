@@ -83,9 +83,14 @@
                             scope.props.seconds
                         }}</span
                     >
-                    <v-menu :close-on-content-click="false" :value="timerShown">
+                    <v-menu
+                        :close-on-content-click="false"
+                        :value="timerShown"
+                        :key="'repairmenu' + station.id"
+                    >
                         <template v-slot:activator="{ on, attrs }">
                             <v-btn
+                                :key="'editrepair' + station.id"
                                 v-bind="attrs"
                                 v-on="on"
                                 @click="
