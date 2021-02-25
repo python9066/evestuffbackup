@@ -11810,7 +11810,7 @@ function sleep(ms) {
         var Headers = [{
           text: "Region",
           value: "region_name",
-          width: "8%"
+          width: "5%"
         }, {
           text: "Constellation",
           value: "constellation_name",
@@ -11818,7 +11818,7 @@ function sleep(ms) {
         }, {
           text: "System",
           value: "system_name",
-          width: "8%"
+          width: "5%"
         }, {
           text: "Alliance",
           value: "alliance_ticker",
@@ -11835,7 +11835,7 @@ function sleep(ms) {
           text: "Timestamp",
           value: "timestamp",
           align: "center",
-          width: "15%"
+          width: "12%"
         }, {
           text: "Age/CountDown",
           value: "count",
@@ -11843,7 +11843,7 @@ function sleep(ms) {
         }, {
           text: "Status",
           value: "station_status_name",
-          width: "15%"
+          width: "20%"
         }];
         return Headers;
       }

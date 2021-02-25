@@ -745,7 +745,7 @@ export default {
                     {
                         text: "Region",
                         value: "region_name",
-                        width: "8%"
+                        width: "5%"
                     },
                     {
                         text: "Constellation",
@@ -755,7 +755,7 @@ export default {
                     {
                         text: "System",
                         value: "system_name",
-                        width: "8%"
+                        width: "5%"
                     },
                     {
                         text: "Alliance",
@@ -776,7 +776,7 @@ export default {
                         text: "Timestamp",
                         value: "timestamp",
                         align: "center",
-                        width: "15%"
+                        width: "12%"
                     },
                     {
                         text: "Age/CountDown",
@@ -786,7 +786,7 @@ export default {
                     {
                         text: "Status",
                         value: "station_status_name",
-                        width: "15%"
+                        width: "20%"
                     }
                 ];
                 return Headers;
