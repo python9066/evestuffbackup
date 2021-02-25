@@ -1499,16 +1499,16 @@
         },
         {
             "name": "mavinoo/laravel-batch",
-            "version": "v2.2.3",
+            "version": "v2.2.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mavinoo/laravelBatch.git",
-                "reference": "063d73f1e7982eab7f0c8f3c3943c37b97eff7c4"
+                "reference": "7eb48e64b905e8bfd3adec34e604ddacf06ddf49"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mavinoo/laravelBatch/zipball/063d73f1e7982eab7f0c8f3c3943c37b97eff7c4",
-                "reference": "063d73f1e7982eab7f0c8f3c3943c37b97eff7c4",
+                "url": "https://api.github.com/repos/mavinoo/laravelBatch/zipball/7eb48e64b905e8bfd3adec34e604ddacf06ddf49",
+                "reference": "7eb48e64b905e8bfd3adec34e604ddacf06ddf49",
                 "shasum": ""
             },
             "require-dev": {
@@ -1544,7 +1544,7 @@
                 }
             ],
             "description": "Insert and update batch (bulk) in laravel",
-            "time": "2020-12-30T06:54:43+00:00"
+            "time": "2021-02-23T06:20:37+00:00"
         },
         {
             "name": "monolog/monolog",

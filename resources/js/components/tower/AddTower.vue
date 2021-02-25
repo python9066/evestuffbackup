@@ -81,6 +81,31 @@
                                 outlined
                             ></v-autocomplete>
                         </div>
+
+                        <div>
+                            <v-radio-group row v-model="timeType">
+                                <v-radio label="Anchoring" value="3"></v-radio>
+                                <v-radio label="Anchored" value="9"></v-radio>
+                                <v-radio label="Onine" value="4"></v-radio>
+                                <v-radio label="Reffed" value="5"></v-radio>
+
+                                <v-radio> </v-radio>
+                            </v-radio-group>
+                        </div>
+                        <div>
+                            <v-text-field
+                                v-model="timeTime"
+                                label="Ref Time d hh:mm:ss"
+                                v-mask="'#d ##:##:##'"
+                                placeholder="d:hh:mm:ss"
+                                @keyup.enter="
+                                    (timerShown = false), addHacktime()
+                                "
+                                @keyup.esc="
+                                    (timerShown = false), (hackTime = null)
+                                "
+                            ></v-text-field>
+                        </div>
                     </div>
                 </v-card-text>
                 <v-spacer></v-spacer
@@ -139,6 +164,7 @@ export default {
             tickSelect: null,
             tickLoading: false,
             tickerEdit: null,
+            timeType: null,
             stationPull: [],
             structItems: [],
             structtemEdit: null,
@@ -146,8 +172,7 @@ export default {
             structSelect: null,
             structLoading: false,
             structerEdit: null,
-            refType: null,
-            refTime: {
+            timeTime: {
                 d: "",
                 hh: "",
                 mm: "",
@@ -178,14 +203,13 @@ export default {
         close() {
             this.towerNameEdit = null;
             this.showAddTower = false;
-            this.refType = null;
-            this.refTime = null;
             this.stationName = null;
             this.towerNameEdit = null;
             this.structItems = [];
             this.structSearch = null;
             this.structSelect = null;
             this.sysItems = [];
+            this.timeType = null;
             this.sysSearch = null;
             this.sysSelect = null;
             this.systems = [];
@@ -200,25 +224,26 @@ export default {
         },
 
         async submit() {
-            // var d = parseInt(this.refTime.substr(0, 1));
-            // var h = parseInt(this.refTime.substr(3, 2));
-            // var m = parseInt(this.refTime.substr(6, 2));
-            // var s = parseInt(this.refTime.substr(9, 2));
-            // var ds = d * 24 * 60 * 60;
-            // var hs = h * 60 * 60;
-            // var ms = m * 60;
-            // var sec = ds + hs + ms + s;
-            // var outTime = moment
-            //     .utc()
-            //     .add(sec, "seconds")
-            //     .format("YYYY-MM-DD HH:mm:ss");
+            var d = parseInt(this.timeTime.substr(0, 1));
+            var h = parseInt(this.timeTime.substr(3, 2));
+            var m = parseInt(this.timeTime.substr(6, 2));
+            var s = parseInt(this.timeTime.substr(9, 2));
+            var ds = d * 24 * 60 * 60;
+            var hs = h * 60 * 60;
+            var ms = m * 60;
+            var sec = ds + hs + ms + s;
+            var outTime = moment
+                .utc()
+                .add(sec, "seconds")
+                .format("YYYY-MM-DD HH:mm:ss");
 
             var request = {
                 moon_id: this.moonSelect,
                 alliance_id: this.tickSelect,
                 item_id: this.structSelect,
                 timestamp: moment.utc().format("YYYY-MM-DD HH:mm:ss"),
-                tower_status_id: 1
+                tower_status_id: this.timeType,
+                out_time: outTime
             };
 
             await axios({
@@ -233,12 +258,11 @@ export default {
             }).then(
                 (this.towerNameEdit = null),
                 (this.showAddTower = false),
-                (this.refType = null),
-                (this.refTime = null),
                 (this.stationName = null),
                 (this.towerNameEdit = null),
                 (this.structItems = []),
                 (this.structSearch = null),
+                (this.timeType = null),
                 (this.structSelect = null),
                 (this.sysItems = []),
                 (this.sysSearch = null),
