@@ -10955,6 +10955,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -32129,6 +32130,7 @@ var render = function() {
       _vm._v(" "),
       _vm.station.station_status_id == 11 && _vm.$can("edit_notifications")
         ? _c("CountDowntimer", {
+            staticClass: " d-inline-flex align-center",
             attrs: {
               "start-time": _vm.moment.utc(_vm.station.repair_time).unix(),
               "end-text": "Is it Secured?",
