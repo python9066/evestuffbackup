@@ -11584,9 +11584,9 @@ function sleep(ms) {
     },
     countDownColor: function countDownColor(item) {
       if (item.station_status_id == 11) {
-        return "blue--text pl-3";
-      } else {
         return "green--text pl-3";
+      } else {
+        return "blue--text pl-3";
       }
     },
     showGunner: function showGunner(item) {
