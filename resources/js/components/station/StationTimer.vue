@@ -1,7 +1,7 @@
 <template>
     <v-col>
         <span
-            v-show="
+            v-if="
                 station.repair_time == null &&
                     station.station_status_id == 11 &&
                     $can('edit_notifications')
