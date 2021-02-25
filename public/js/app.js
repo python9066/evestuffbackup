@@ -11822,7 +11822,7 @@ function sleep(ms) {
         }, {
           text: "Alliance",
           value: "alliance_ticker",
-          width: "10%"
+          width: "5%"
         }, {
           text: "Type",
           value: "item_name",
