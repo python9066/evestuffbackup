@@ -32884,7 +32884,10 @@ var render = function() {
                             _vm._v(" "),
                             _c(
                               "v-fab-transition",
-                              { key: "repairtrans." + item.id },
+                              {
+                                key: "repairtrans." + item.id,
+                                attrs: { gorup: "" }
+                              },
                               [
                                 _c("StationTimer", {
                                   key: "stationTimer" + item.id,
