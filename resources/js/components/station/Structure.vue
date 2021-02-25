@@ -80,7 +80,7 @@
             <template v-slot:item.count="{ item }">
                 <CountDowntimer
                     v-if="showCountDown(item)"
-                    :start-time="moment.utc(item.timestamp).unix()"
+                    :start-time="countDownStartTime(item)"
                     :end-text="'Coming Out'"
                     :interval="1000"
                     :day-text="'Days'"
@@ -458,6 +458,10 @@ export default {
             } else {
                 return false;
             }
+        },
+
+        countDownStartTime(item) {
+            return moment.utc(item.timestamp).unix();
         },
 
         showGunner(item) {
