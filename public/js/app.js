@@ -32696,6 +32696,21 @@ var render = function() {
                             ),
                             _vm._v(" "),
                             _c(
+                              "v-fab-transition",
+                              {
+                                key: "repairtrans." + item.id,
+                                attrs: { gorup: "" }
+                              },
+                              [
+                                _c("StationTimer", {
+                                  key: "stationTimer" + item.id,
+                                  attrs: { station: item }
+                                })
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c(
                               "v-tooltip",
                               {
                                 attrs: {
@@ -32813,21 +32828,6 @@ var render = function() {
                                   )
                                 ])
                               ]
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "v-fab-transition",
-                              {
-                                key: "repairtrans." + item.id,
-                                attrs: { gorup: "" }
-                              },
-                              [
-                                _c("StationTimer", {
-                                  key: "stationTimer" + item.id,
-                                  attrs: { station: item }
-                                })
-                              ],
-                              1
                             ),
                             _vm._v(" "),
                             _c(

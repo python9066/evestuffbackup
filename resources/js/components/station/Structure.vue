@@ -159,6 +159,13 @@
                             </v-list-item>
                         </v-list>
                     </v-menu>
+                    <v-fab-transition gorup :key="'repairtrans.' + item.id">
+                        <StationTimer
+                            :key="'stationTimer' + item.id"
+                            :station="item"
+                        >
+                        </StationTimer>
+                    </v-fab-transition>
                     <v-tooltip
                         color="#121212"
                         bottom
@@ -205,13 +212,6 @@
                         </span>
                     </v-tooltip>
 
-                    <v-fab-transition gorup :key="'repairtrans.' + item.id">
-                        <StationTimer
-                            :key="'stationTimer' + item.id"
-                            :station="item"
-                        >
-                        </StationTimer>
-                    </v-fab-transition>
                     <v-fab-transition>
                         <StationNewTimer
                             :station="item"
