@@ -78,7 +78,10 @@
                     >{{ scope.props.minutes }}:{{ scope.props.seconds }}</span
                 >
                 <v-menu :close-on-content-click="false" :value="timerShown">
-                    <template v-slot:activator="{ on, attrs }">
+                    <template
+                        v-slot:activator="{ on, attrs }"
+                        class=" d-inline-flex"
+                    >
                         <v-btn
                             v-bind="attrs"
                             v-on="on"
