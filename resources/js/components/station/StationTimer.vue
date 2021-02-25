@@ -72,9 +72,12 @@
             :start-time="moment.utc(station.repair_time).unix()"
             end-text="Is it Secured?"
             :interval="1000"
-            class=" d-inline-flex align-center"
         >
-            <template slot="countdown" slot-scope="scope">
+            <template
+                slot="countdown"
+                slot-scope="scope"
+                class=" d-inline-flex align-center"
+            >
                 <span class="green--text pl-3"
                     >{{ scope.props.minutes }}:{{ scope.props.seconds }}</span
                 >
