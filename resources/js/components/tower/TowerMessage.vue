@@ -124,14 +124,14 @@ export default {
             this.editText = this.editText + "\n";
             if (this.tower.notes == null) {
                 var note =
-                    moment.utc().format("HH:mm:ss") +
+                    moment.utc().format("YYYY-MM-DD HH:mm:ss") +
                     " - " +
                     this.$store.state.user_name +
                     ": " +
                     this.editText;
             } else {
                 var note =
-                    moment.utc().format("HH:mm:ss") +
+                    moment.utc().format("YYYY-MM-DD HH:mm:ss") +
                     " - " +
                     this.$store.state.user_name +
                     ": " +

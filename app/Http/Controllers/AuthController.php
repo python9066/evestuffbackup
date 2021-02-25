@@ -110,6 +110,20 @@ class AuthController extends Controller
         return ['users' => User::select('id', 'name')->get()];
     }
 
+    /*
+    title -> gice_id -> site_id
+
+    DIrector -> 8 -> 13
+    gsfoe -> 1048 ->
+    skirmish fc -> 28 -> 12
+    gsol -> 47 -> 17
+    scout -> 195 -> 7
+    ops -> 231 -> 6
+    recon -> 184 -> 5
+    coord -> 494 -> 4
+
+    */
+
 
     public function purgeRoles($user)
     {
@@ -130,25 +144,25 @@ class AuthController extends Controller
 
         if ($role_id == 184) {
 
-            // function to assign coord role
+            // function to assign recon role
             $user->assignRole(5);
         }
 
         if ($role_id == 231) {
 
-            // function to assign coord role
+            // function to assign ops role
             $user->assignRole(6);
         }
 
         if ($role_id == 8) {
 
-            // function to assign coord role
+            // function to assign director role
             $user->assignRole(13);
         }
 
         if ($role_id == 47) {
 
-            // function to assign coord role
+            // function to assign gsol role
             $user->assignRole(17);
         }
     }
