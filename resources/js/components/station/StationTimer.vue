@@ -93,7 +93,9 @@
                                 :key="'editrepair' + station.id"
                                 v-bind="attrs"
                                 v-on="on"
-                                @click="repairTime = null"
+                                @click="
+                                    (repairTime = null), (timerShown = true)
+                                "
                                 icon
                                 color="warning"
                             >

@@ -10973,6 +10973,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -32202,7 +32204,8 @@ var render = function() {
                                                 },
                                                 on: {
                                                   click: function($event) {
-                                                    _vm.repairTime = null
+                                                    ;(_vm.repairTime = null),
+                                                      (_vm.timerShown = true)
                                                   }
                                                 }
                                               },
@@ -32386,7 +32389,7 @@ var render = function() {
               ],
               null,
               false,
-              440299900
+              2481732113
             )
           })
         : _vm._e()
