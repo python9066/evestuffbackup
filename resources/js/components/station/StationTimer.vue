@@ -66,102 +66,76 @@
                 </template>
             </v-menu>
         </span>
-
-        <CountDowntimer
+        <v-menu
+            :close-on-content-click="false"
+            :value="timerShownEdit"
+            :key="'repairmenu' + station.id"
             v-if="station.station_status_id == 11 && $can('edit_notifications')"
-            :start-time="moment.utc(station.repair_time).unix()"
-            end-text="Is it Secured?"
-            :interval="1000"
         >
-            <template slot="countdown" slot-scope="scope">
-                <div
-                    class=" d-inline-flex align-center"
-                    :key="'div' + station.id"
+            <template v-slot:activator="{ on, attrs }">
+                <v-btn
+                    :key="'editrepair' + station.id"
+                    v-bind="attrs"
+                    v-on="on"
+                    @click="(repairTime = null), (timerShownEdit = true)"
+                    icon
+                    color="warning"
                 >
-                    <span class="green--text pl-3"
-                        >{{ scope.props.minutes }}:{{
-                            scope.props.seconds
-                        }}</span
-                    >
-                    <v-menu
-                        :close-on-content-click="false"
-                        :value="timerShownEdit"
-                        :key="'repairmenu' + station.id"
-                    >
-                        <template v-slot:activator="{ on, attrs }">
-                            <v-btn
-                                :key="'editrepair' + station.id"
-                                v-bind="attrs"
-                                v-on="on"
-                                @click="
-                                    (repairTime = null), (timerShownEdit = true)
-                                "
-                                icon
-                                color="warning"
-                            >
-                                <v-icon x-small>fas fa-edit</v-icon>
-                            </v-btn>
-                        </template>
-
-                        <template>
-                            <v-card
-                                tile
-                                min-height="150px"
-                                :key="'repaircard.' + station.id"
-                            >
-                                <v-card-title class=" pb-0">
-                                    <v-text-field
-                                        v-model="repairTime"
-                                        label="Repair Time mm:ss"
-                                        autofocus
-                                        v-mask="'##:##'"
-                                        placeholder="mm:ss"
-                                        @keyup.enter="
-                                            (repairShown = false),
-                                                addRepairTime(station)
-                                        "
-                                        @keyup.esc="
-                                            (timerShownEdit = false),
-                                                (repairTime = null)
-                                        "
-                                    ></v-text-field>
-                                </v-card-title>
-                                <v-card-text>
-                                    <v-btn
-                                        icon
-                                        fixed
-                                        left
-                                        color="success"
-                                        @click="
-                                            (timerShownEdit = true),
-                                                (timerShownEdit = false),
-                                                addRepairTime(station)
-                                        "
-                                        ><v-icon>fas fa-check</v-icon></v-btn
-                                    >
-
-                                    <v-btn
-                                        fixed
-                                        right
-                                        icon
-                                        color="warning"
-                                        @click="
-                                            (timerShownEdit = true),
-                                                (timerShownEdit = false),
-                                                (repairTime = null)
-                                        "
-                                        ><v-icon>fas fa-times</v-icon></v-btn
-                                    >
-                                </v-card-text>
-                            </v-card>
-                        </template>
-                    </v-menu>
-                </div>
+                    <v-icon x-small>fas fa-edit</v-icon>
+                </v-btn>
             </template>
-            <template slot="end-text" slot-scope="scope">
-                <span style="color: green">{{ scope.props.endText }}</span>
+
+            <template>
+                <v-card
+                    tile
+                    min-height="150px"
+                    :key="'repaircard.' + station.id"
+                >
+                    <v-card-title class=" pb-0">
+                        <v-text-field
+                            v-model="repairTime"
+                            label="Repair Time mm:ss"
+                            autofocus
+                            v-mask="'##:##'"
+                            placeholder="mm:ss"
+                            @keyup.enter="
+                                (repairShown = false), addRepairTime(station)
+                            "
+                            @keyup.esc="
+                                (timerShownEdit = false), (repairTime = null)
+                            "
+                        ></v-text-field>
+                    </v-card-title>
+                    <v-card-text>
+                        <v-btn
+                            icon
+                            fixed
+                            left
+                            color="success"
+                            @click="
+                                (timerShownEdit = true),
+                                    (timerShownEdit = false),
+                                    addRepairTime(station)
+                            "
+                            ><v-icon>fas fa-check</v-icon></v-btn
+                        >
+
+                        <v-btn
+                            fixed
+                            right
+                            icon
+                            color="warning"
+                            @click="
+                                (timerShownEdit = true),
+                                    (timerShownEdit = false),
+                                    (repairTime = null)
+                            "
+                            ><v-icon>fas fa-times</v-icon></v-btn
+                        >
+                    </v-card-text>
+                </v-card>
             </template>
-        </CountDowntimer>
+        </v-menu>
     </v-col>
 </template>
 
