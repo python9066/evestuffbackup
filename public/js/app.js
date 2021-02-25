@@ -11582,6 +11582,13 @@ function sleep(ms) {
         return moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc(item.timestamp).unix();
       }
     },
+    countDownColor: function countDownColor(item) {
+      if (item.station_status_id == 11) {
+        return "blue--text pl-3";
+      } else {
+        return "green--text pl-3";
+      }
+    },
     showGunner: function showGunner(item) {
       if (this.$can("gunner")) {
         if (item.item_id == 37534 || item.item_id == 35841 || item.item_id == 35840) {
@@ -32609,7 +32616,7 @@ var render = function() {
                                     scope.props.days != 0
                                       ? _c(
                                           "span",
-                                          { staticClass: "blue--text pl-3" },
+                                          { class: _vm.countDownColor(item) },
                                           [
                                             _vm._v(
                                               _vm._s(

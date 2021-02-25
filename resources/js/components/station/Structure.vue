@@ -95,7 +95,7 @@
                             }}:{{ scope.props.seconds }}</span
                         >
                         <span
-                            class="blue--text pl-3"
+                            :class="countDownColor(item)"
                             v-if="scope.props.days != 0"
                             >{{ numberDay(scope.props.days) }}
                             {{ scope.props.hours }}:{{ scope.props.minutes }}:{{
@@ -465,6 +465,14 @@ export default {
                 return moment.utc(item.repair_time).unix();
             } else {
                 return moment.utc(item.timestamp).unix();
+            }
+        },
+
+        countDownColor(item) {
+            if (item.station_status_id == 11) {
+                return "blue--text pl-3";
+            } else {
+                return "green--text pl-3";
             }
         },
 
