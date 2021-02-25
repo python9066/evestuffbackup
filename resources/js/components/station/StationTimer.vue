@@ -1,5 +1,5 @@
 <template>
-    <v-col class=" py-0">
+    <v-col class=" px-0">
         <span
             v-show="
                 station.repair_time == null &&
