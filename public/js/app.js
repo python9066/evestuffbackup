@@ -32600,7 +32600,7 @@ var render = function() {
                                     scope.props.days == 0
                                       ? _c(
                                           "span",
-                                          { staticClass: "blue--text pl-3" },
+                                          { class: _vm.countDownColor(item) },
                                           [
                                             _vm._v(
                                               _vm._s(scope.props.hours) +

@@ -88,7 +88,7 @@
                 >
                     <template slot="countdown" slot-scope="scope">
                         <span
-                            class="blue--text pl-3"
+                            :class="countDownColor(item)"
                             v-if="scope.props.days == 0"
                             >{{ scope.props.hours }}:{{
                                 scope.props.minutes
