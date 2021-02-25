@@ -1,7 +1,7 @@
 <template>
     <v-col>
         <span
-            v-if="
+            v-show="
                 station.repair_time == null &&
                     station.station_status_id == 11 &&
                     $can('edit_notifications')
@@ -93,9 +93,7 @@
                                 :key="'editrepair' + station.id"
                                 v-bind="attrs"
                                 v-on="on"
-                                @click="
-                                    (timerShown = true), (repairTime = null)
-                                "
+                                @click="repairTime = null"
                                 icon
                                 color="warning"
                             >
