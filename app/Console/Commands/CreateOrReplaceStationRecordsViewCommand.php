@@ -52,9 +52,7 @@ class CreateOrReplaceStationRecordsViewCommand extends Command
        g.name AS 'gunner_name',
        stations.station_status_id AS 'station_status_id',
        station_statuses.name AS 'station_status_name',
-       if(stations.out_time IS NULL,if(stations.repair_time IS NULL,stations.timestamp,stations.repair_time) , stations.out_time) AS 'count_time',
-       if(stations.out_time IS NULL,stations.timestamp , stations.out_time) AS 'timestamp',
-       stations.repair_time AS 'repair_time',
+       if(stations.out_time IS NULL,stations.timestamp, stations.out_time) AS 'timestamp',
        stations.out_time AS 'out_time',
        alliances.name AS 'alliance_name',
        alliances.ticker AS 'alliance_ticker',
@@ -63,6 +61,7 @@ class CreateOrReplaceStationRecordsViewCommand extends Command
        stations.attack_notes AS 'attack_notes',
        stations.attack_adash_link AS 'attack_adash_link',
        if(((stations.attack_notes IS NULL) AND (stations.attack_adash_link IS NULL)),0,1) AS under_attack,
+       stations.repair_time AS 'repair_time',
        alliances.standing AS 'standing',
        alliances.url AS 'url'
        FROM stations
