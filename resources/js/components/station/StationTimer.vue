@@ -73,15 +73,16 @@
             end-text="Is it Secured?"
             :interval="1000"
         >
-            <template slot="countdown" slot-scope="scope">
+            <template
+                slot="countdown"
+                slot-scope="scope"
+                class=" d-inline-flex"
+            >
                 <span class="green--text pl-3"
                     >{{ scope.props.minutes }}:{{ scope.props.seconds }}</span
                 >
                 <v-menu :close-on-content-click="false" :value="timerShown">
-                    <template
-                        v-slot:activator="{ on, attrs }"
-                        class=" d-inline-flex"
-                    >
+                    <template v-slot:activator="{ on, attrs }">
                         <v-btn
                             v-bind="attrs"
                             v-on="on"
