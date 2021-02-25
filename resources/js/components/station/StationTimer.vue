@@ -99,7 +99,7 @@
                             v-mask="'##:##'"
                             placeholder="mm:ss"
                             @keyup.enter="
-                                (repairShown = false), addRepairTime(station)
+                                (timerShownEdit = false), addRepairTime(station)
                             "
                             @keyup.esc="
                                 (timerShownEdit = false), (repairTime = null)

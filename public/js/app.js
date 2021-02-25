@@ -32235,7 +32235,7 @@ var render = function() {
                                 ) {
                                   return null
                                 }
-                                ;(_vm.repairShown = false),
+                                ;(_vm.timerShownEdit = false),
                                   _vm.addRepairTime(_vm.station)
                               },
                               function($event) {
