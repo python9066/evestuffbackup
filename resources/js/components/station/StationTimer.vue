@@ -73,11 +73,7 @@
             end-text="Is it Secured?"
             :interval="1000"
         >
-            <template
-                slot="countdown"
-                slot-scope="scope"
-                class=" d-inline-flex"
-            >
+            <template slot="countdown" slot-scope="scope" class=" d-inline">
                 <span class="green--text pl-3"
                     >{{ scope.props.minutes }}:{{ scope.props.seconds }}</span
                 >
