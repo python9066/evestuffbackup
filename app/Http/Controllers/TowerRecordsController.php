@@ -38,6 +38,7 @@ class TowerRecordsController extends Controller
         }
 
         $new = Tower::create($request->all());
+        $new->update(['id' => $id]);
         $message = TowerRecord::where('id', $new->id)->first();
         $flag = collect([
             'message' => $message
