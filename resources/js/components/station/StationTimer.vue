@@ -131,7 +131,8 @@
                                         left
                                         color="success"
                                         @click="
-                                            (timerShown = false),
+                                            (timerShown = true),
+                                                (timerShown = false),
                                                 addRepairTime(station)
                                         "
                                         ><v-icon>fas fa-check</v-icon></v-btn
@@ -143,7 +144,8 @@
                                         icon
                                         color="warning"
                                         @click="
-                                            (timerShown = false),
+                                            (timerShown = true),
+                                                (timerShown = false),
                                                 (repairTime = null)
                                         "
                                         ><v-icon>fas fa-times</v-icon></v-btn
