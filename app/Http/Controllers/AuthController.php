@@ -49,7 +49,7 @@ class AuthController extends Controller
         $this->purgeRoles($user);
         if (isset($userGice->grp)) {
             $roles = $userGice->grp;
-            dd($roles);
+            // dd($roles);
             foreach ($roles as $role) {
 
                 $this->addRoles($user, $role);
