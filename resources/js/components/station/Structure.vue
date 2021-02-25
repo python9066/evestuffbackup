@@ -461,7 +461,11 @@ export default {
         },
 
         countDownStartTime(item) {
-            return moment.utc(item.timestamp).unix();
+            if (item.station_status_id == 11) {
+                return moment.utc(item.repair_time).unix();
+            } else {
+                return moment.utc(item.timestamp).unix();
+            }
         },
 
         showGunner(item) {

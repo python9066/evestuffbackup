@@ -11576,7 +11576,11 @@ function sleep(ms) {
       }
     },
     countDownStartTime: function countDownStartTime(item) {
-      return moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc(item.timestamp).unix();
+      if (item.station_status_id == 11) {
+        return moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc(item.repair_time).unix();
+      } else {
+        return moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc(item.timestamp).unix();
+      }
     },
     showGunner: function showGunner(item) {
       if (this.$can("gunner")) {
