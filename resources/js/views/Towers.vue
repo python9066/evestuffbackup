@@ -338,24 +338,24 @@ export default {
             ],
 
             headers: [
-                { text: "Region", value: "region_name", width: "5%" },
+                { text: "Region", value: "region_name", width: "3%" },
                 {
                     text: "Constellation",
                     value: "constellation_name",
-                    width: "5%"
+                    width: "3%"
                 },
-                { text: "System", value: "system_name", width: "5%" },
+                { text: "System", value: "system_name", width: "3%" },
                 { text: "Alliance", value: "alliance_name", width: "12%" },
                 { text: "Moon", value: "moon_name", width: "8%" },
                 {
                     text: "Type",
                     value: "item_name",
                     align: "center",
-                    width: "12%"
+                    width: "10%"
                 },
                 { text: "Time", value: "timestamp", width: "8%" },
 
-                { text: "Status", value: "tower_status_name", width: "10%" },
+                { text: "Status", value: "tower_status_name", width: "15%" },
                 {
                     text: "Edited By",
                     value: "user_name",
