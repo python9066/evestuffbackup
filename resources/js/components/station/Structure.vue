@@ -205,7 +205,7 @@
                         </span>
                     </v-tooltip>
 
-                    <v-fab-transition :key="'repairtrans.' + item.staiton.id">
+                    <v-fab-transition :key="'repairtrans.' + item.id">
                         <StationTimer
                             :key="'stationTimer' + item.id"
                             :station="item"
