@@ -12029,7 +12029,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -12099,6 +12098,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       this.structSearch = null;
       this.structSelect = null;
       this.sysItems = [];
+      this.timeTime = {
+        d: "",
+        hh: "",
+        mm: "",
+        ss: ""
+      };
       this.timeType = null;
       this.sysSearch = null;
       this.sysSelect = null;
@@ -12111,6 +12116,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       this.moonSelect = null;
       this.state = 1;
       this.showAddTower = false;
+    },
+    addShowTimer: function addShowTimer() {
+      if (this.timeType == 3 || this.timeType == 5) {
+        return true;
+      } else {
+        return false;
+      }
     },
     submit: function submit() {
       var _this = this;
@@ -12149,7 +12161,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                     Accept: "application/json",
                     "Content-Type": "application/json"
                   }
-                }).then(_this.towerNameEdit = null, _this.showAddTower = false, _this.stationName = null, _this.towerNameEdit = null, _this.structItems = [], _this.structSearch = null, _this.timeType = null, _this.structSelect = null, _this.sysItems = [], _this.sysSearch = null, _this.sysSelect = null, _this.systems = [], _this.tickItems = [], _this.tickSearch = null, _this.tickSelect = null, _this.moonItems = [], _this.moonSearch = null, _this.moonSelect = null, _this.state = 1, _this.showAddTower = false);
+                }).then(_this.towerNameEdit = null, _this.showAddTower = false, _this.stationName = null, _this.towerNameEdit = null, _this.structItems = [], _this.structSearch = null, _this.timeType = null, _this.structSelect = null, _this.sysItems = [], _this.sysSearch = null, _this.sysSelect = null, _this.timeTime = {
+                  d: "",
+                  hh: "",
+                  mm: "",
+                  ss: ""
+                }, _this.systems = [], _this.tickItems = [], _this.tickSearch = null, _this.tickSelect = null, _this.moonItems = [], _this.moonSearch = null, _this.moonSelect = null, _this.state = 1, _this.showAddTower = false);
 
               case 12:
               case "end":
@@ -33405,9 +33422,7 @@ var render = function() {
                             _vm._v(" "),
                             _c("v-radio", {
                               attrs: { label: "Reffed", value: "5" }
-                            }),
-                            _vm._v(" "),
-                            _c("v-radio")
+                            })
                           ],
                           1
                         )
@@ -33420,6 +33435,12 @@ var render = function() {
                       [
                         _c("v-text-field", {
                           directives: [
+                            {
+                              name: "show",
+                              rawName: "v-show",
+                              value: _vm.addShowTimer(),
+                              expression: "addShowTimer()"
+                            },
                             {
                               name: "mask",
                               rawName: "v-mask",

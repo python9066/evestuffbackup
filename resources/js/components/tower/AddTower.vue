@@ -88,12 +88,11 @@
                                 <v-radio label="Anchored" value="9"></v-radio>
                                 <v-radio label="Onine" value="4"></v-radio>
                                 <v-radio label="Reffed" value="5"></v-radio>
-
-                                <v-radio> </v-radio>
                             </v-radio-group>
                         </div>
                         <div>
                             <v-text-field
+                                v-show="addShowTimer()"
                                 v-model="timeTime"
                                 label="Ref Time d hh:mm:ss"
                                 v-mask="'#d ##:##:##'"
@@ -209,6 +208,12 @@ export default {
             this.structSearch = null;
             this.structSelect = null;
             this.sysItems = [];
+            this.timeTime = {
+                d: "",
+                hh: "",
+                mm: "",
+                ss: ""
+            };
             this.timeType = null;
             this.sysSearch = null;
             this.sysSelect = null;
@@ -221,6 +226,14 @@ export default {
             this.moonSelect = null;
             this.state = 1;
             this.showAddTower = false;
+        },
+
+        addShowTimer() {
+            if (this.timeType == 3 || this.timeType == 5) {
+                return true;
+            } else {
+                return false;
+            }
         },
 
         async submit() {
@@ -267,6 +280,12 @@ export default {
                 (this.sysItems = []),
                 (this.sysSearch = null),
                 (this.sysSelect = null),
+                (this.timeTime = {
+                    d: "",
+                    hh: "",
+                    mm: "",
+                    ss: ""
+                }),
                 (this.systems = []),
                 (this.tickItems = []),
                 (this.tickSearch = null),
