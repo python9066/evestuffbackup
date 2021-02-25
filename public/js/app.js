@@ -11843,7 +11843,7 @@ function sleep(ms) {
         }, {
           text: "Status",
           value: "station_status_name",
-          width: "20%"
+          width: "25%"
         }];
         return Headers;
       }
