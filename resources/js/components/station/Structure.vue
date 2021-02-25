@@ -591,7 +591,7 @@ export default {
 
         click(item, list) {
             if (item.station_status_id == 11) {
-                item.repair_time == null;
+                item.repair_time = null;
             }
             item.station_status_id = list.value;
             item.station_status_name = list.title;

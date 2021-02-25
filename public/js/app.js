@@ -11713,7 +11713,7 @@ function sleep(ms) {
     close: function close() {},
     click: function click(item, list) {
       if (item.station_status_id == 11) {
-        item.repair_time == null;
+        item.repair_time = null;
       }
 
       item.station_status_id = list.value;
