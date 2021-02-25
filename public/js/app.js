@@ -12867,6 +12867,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
 
 
 
@@ -34289,7 +34293,7 @@ var render = function() {
         ? _c("CountDowntimer", {
             attrs: {
               "start-time": _vm.moment.utc(_vm.item.out_time).unix(),
-              "end-text": "Just Onlined",
+              "end-text": "Out of ref",
               interval: 1000
             },
             scopedSlots: _vm._u(

@@ -60,10 +60,14 @@
         <CountDowntimer
             v-if="item.out_time != null"
             :start-time="moment.utc(item.out_time).unix()"
-            end-text="Just Onlined"
+            end-text="Out of ref"
             :interval="1000"
         >
-            <template slot="countdown" slot-scope="scope">
+            <template
+                slot="countdown"
+                slot-scope="scope"
+                class=" d-inline-flex"
+            >
                 <span class="blue--text pl-3" v-if="scope.props.days == 0"
                     >{{ scope.props.hours }}:{{ scope.props.minutes }}:{{
                         scope.props.seconds
