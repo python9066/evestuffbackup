@@ -204,14 +204,11 @@
                             strucutre
                         </span>
                     </v-tooltip>
-
-                    <v-fab-transition gorup :key="'repairtrans.' + item.id">
-                        <StationTimer
-                            :key="'stationTimer' + item.id"
-                            :station="item"
-                        >
-                        </StationTimer>
-                    </v-fab-transition>
+                    <StationTimer
+                        :key="'stationTimer' + item.id"
+                        :station="item"
+                    >
+                    </StationTimer>
                     <v-fab-transition>
                         <StationNewTimer
                             :station="item"
