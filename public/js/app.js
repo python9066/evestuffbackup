@@ -10984,6 +10984,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   data: function data() {
     return {
       timerShown: false,
+      timerShownEdit: false,
       repairTime: {
         mm: "",
         ss: ""
@@ -32181,7 +32182,7 @@ var render = function() {
                               key: "repairmenu" + _vm.station.id,
                               attrs: {
                                 "close-on-content-click": false,
-                                value: _vm.timerShown
+                                value: _vm.timerShownEdit
                               },
                               scopedSlots: _vm._u(
                                 [
@@ -32205,7 +32206,7 @@ var render = function() {
                                                 on: {
                                                   click: function($event) {
                                                     ;(_vm.repairTime = null),
-                                                      (_vm.timerShown = true)
+                                                      (_vm.timerShownEdit = true)
                                                   }
                                                 }
                                               },
@@ -32291,7 +32292,7 @@ var render = function() {
                                                 ) {
                                                   return null
                                                 }
-                                                ;(_vm.timerShown = false),
+                                                ;(_vm.timerShownEdit = false),
                                                   (_vm.repairTime = null)
                                               }
                                             ]
@@ -32322,8 +32323,8 @@ var render = function() {
                                             },
                                             on: {
                                               click: function($event) {
-                                                ;(_vm.timerShown = true),
-                                                  (_vm.timerShown = false),
+                                                ;(_vm.timerShownEdit = true),
+                                                  (_vm.timerShownEdit = false),
                                                   _vm.addRepairTime(_vm.station)
                                               }
                                             }
@@ -32347,8 +32348,8 @@ var render = function() {
                                             },
                                             on: {
                                               click: function($event) {
-                                                ;(_vm.timerShown = true),
-                                                  (_vm.timerShown = false),
+                                                ;(_vm.timerShownEdit = true),
+                                                  (_vm.timerShownEdit = false),
                                                   (_vm.repairTime = null)
                                               }
                                             }
@@ -32389,7 +32390,7 @@ var render = function() {
               ],
               null,
               false,
-              2481732113
+              277691821
             )
           })
         : _vm._e()

@@ -85,7 +85,7 @@
                     >
                     <v-menu
                         :close-on-content-click="false"
-                        :value="timerShown"
+                        :value="timerShownEdit"
                         :key="'repairmenu' + station.id"
                     >
                         <template v-slot:activator="{ on, attrs }">
@@ -94,7 +94,7 @@
                                 v-bind="attrs"
                                 v-on="on"
                                 @click="
-                                    (repairTime = null), (timerShown = true)
+                                    (repairTime = null), (timerShownEdit = true)
                                 "
                                 icon
                                 color="warning"
@@ -121,7 +121,7 @@
                                                 addRepairTime(station)
                                         "
                                         @keyup.esc="
-                                            (timerShown = false),
+                                            (timerShownEdit = false),
                                                 (repairTime = null)
                                         "
                                     ></v-text-field>
@@ -133,8 +133,8 @@
                                         left
                                         color="success"
                                         @click="
-                                            (timerShown = true),
-                                                (timerShown = false),
+                                            (timerShownEdit = true),
+                                                (timerShownEdit = false),
                                                 addRepairTime(station)
                                         "
                                         ><v-icon>fas fa-check</v-icon></v-btn
@@ -146,8 +146,8 @@
                                         icon
                                         color="warning"
                                         @click="
-                                            (timerShown = true),
-                                                (timerShown = false),
+                                            (timerShownEdit = true),
+                                                (timerShownEdit = false),
                                                 (repairTime = null)
                                         "
                                         ><v-icon>fas fa-times</v-icon></v-btn
@@ -176,6 +176,7 @@ export default {
     data() {
         return {
             timerShown: false,
+            timerShownEdit: false,
             repairTime: {
                 mm: "",
                 ss: ""
