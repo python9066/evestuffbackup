@@ -10961,6 +10961,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -32148,7 +32151,10 @@ var render = function() {
                     return [
                       _c(
                         "div",
-                        { staticClass: " d-inline-flex align-center" },
+                        {
+                          key: "div" + _vm.station.id,
+                          staticClass: " d-inline-flex align-center"
+                        },
                         [
                           _c("span", { staticClass: "green--text pl-3" }, [
                             _vm._v(
@@ -32366,7 +32372,7 @@ var render = function() {
               ],
               null,
               false,
-              1285597506
+              2758664810
             )
           })
         : _vm._e()

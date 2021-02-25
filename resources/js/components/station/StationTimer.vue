@@ -74,7 +74,10 @@
             :interval="1000"
         >
             <template slot="countdown" slot-scope="scope">
-                <div class=" d-inline-flex align-center">
+                <div
+                    class=" d-inline-flex align-center"
+                    :key="'div' + station.id"
+                >
                     <span class="green--text pl-3"
                         >{{ scope.props.minutes }}:{{
                             scope.props.seconds
