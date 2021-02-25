@@ -63,11 +63,7 @@
             end-text="Out of ref"
             :interval="1000"
         >
-            <template
-                slot="countdown"
-                slot-scope="scope"
-                class=" d-inline-flex"
-            >
+            <template slot="countdown" slot-scope="scope" class=" d-inline">
                 <span class="blue--text pl-3" v-if="scope.props.days == 0"
                     >{{ scope.props.hours }}:{{ scope.props.minutes }}:{{
                         scope.props.seconds
