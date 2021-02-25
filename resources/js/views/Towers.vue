@@ -345,7 +345,7 @@ export default {
                     width: "5%"
                 },
                 { text: "System", value: "system_name", width: "5%" },
-                { text: "Alliance", value: "alliance_name", width: "15%" },
+                { text: "Alliance", value: "alliance_name", width: "12%" },
                 { text: "Moon", value: "moon_name", width: "8%" },
                 {
                     text: "Type",
