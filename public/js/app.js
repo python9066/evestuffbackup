@@ -19519,7 +19519,7 @@ function sleep(ms) {
       }, {
         text: "Alliance",
         value: "alliance_name",
-        width: "15%"
+        width: "12%"
       }, {
         text: "Moon",
         value: "moon_name",
@@ -35272,7 +35272,7 @@ var render = function() {
           _vm._v(" "),
           _c("v-spacer"),
           _vm._v(" "),
-          _vm.$can("super")
+          _vm.$can("gunner")
             ? _c(
                 "div",
                 { staticClass: " d-inline-flex align-content-center" },

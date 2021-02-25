@@ -65,7 +65,7 @@
             <v-spacer></v-spacer>
             <div
                 class=" d-inline-flex align-content-center"
-                v-if="$can('super')"
+                v-if="$can('gunner')"
             >
                 <v-switch
                     v-model="tooltipToggle"
