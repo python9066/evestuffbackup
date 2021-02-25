@@ -10969,6 +10969,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -32232,6 +32236,7 @@ var render = function() {
                                 _c(
                                   "v-card",
                                   {
+                                    key: "repaircard." + _vm.station.id,
                                     attrs: { tile: "", "min-height": "150px" }
                                   },
                                   [
@@ -32380,7 +32385,7 @@ var render = function() {
               ],
               null,
               false,
-              4011264773
+              3822592145
             )
           })
         : _vm._e()

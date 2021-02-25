@@ -104,7 +104,11 @@
                         </template>
 
                         <template>
-                            <v-card tile min-height="150px">
+                            <v-card
+                                tile
+                                min-height="150px"
+                                :key="'repaircard.' + station.id"
+                            >
                                 <v-card-title class=" pb-0">
                                     <v-text-field
                                         v-model="repairTime"
