@@ -591,6 +591,9 @@ export default {
         close() {},
 
         click(item, list) {
+            if (item.station_status_id == 11) {
+                item.repair_time == null;
+            }
             item.station_status_id = list.value;
             item.station_status_name = list.title;
             item.user_name = this.user_name;
@@ -599,7 +602,8 @@ export default {
                 station_status_id: item.station_status_id,
                 user_id: this.$store.state.user_id,
                 status_update: moment.utc().format("YYYY-MM-DD  HH:mm:ss"),
-                out_time: null
+                out_time: null,
+                repair_time: item.repair_time
             };
             axios({
                 method: "put", //you can set what request you want to be
