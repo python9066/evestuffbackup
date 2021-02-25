@@ -11447,9 +11447,6 @@ function sleep(ms) {
       sortdesc: true,
       sortby: "timestamp",
       dropdown_edit: [{
-        title: "On My Way",
-        value: 2
-      }, {
         title: "Repairing",
         value: 11
       }, {

@@ -356,7 +356,6 @@ export default {
             sortby: "timestamp",
 
             dropdown_edit: [
-                { title: "On My Way", value: 2 },
                 { title: "Repairing", value: 11 },
                 { title: "Saved", value: 4 },
                 { title: "Reffed - Armor", value: 8 },
