@@ -11752,7 +11752,7 @@ function sleep(ms) {
       return this.diff;
     },
     showCountDown: function showCountDown(item) {
-      if (item.station_status_id == 5 || item.station_status_id == 8 || item.station_status_id == 9 || item.station_status_id == 13 || item.station_status_id == 14) {
+      if (item.station_status_id == 5 || item.station_status_id == 8 || item.station_status_id == 9 || item.station_status_id == 11 || item.station_status_id == 13 || item.station_status_id == 14) {
         return true;
       }
 
