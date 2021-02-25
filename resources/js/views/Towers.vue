@@ -351,7 +351,7 @@ export default {
                     text: "Type",
                     value: "item_name",
                     align: "center",
-                    width: "15%"
+                    width: "12%"
                 },
                 { text: "Time", value: "timestamp", width: "8%" },
 
