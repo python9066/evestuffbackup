@@ -11796,15 +11796,11 @@ function sleep(ms) {
         }, {
           text: "Status",
           value: "station_status_name",
+          align: "center",
           width: "10%"
         }, {
           text: "Gunner/Info",
           value: "actions",
-          width: "10%",
-          align: "start"
-        }, {
-          text: "Edited By",
-          value: "user_name",
           width: "10%",
           align: "start"
         } // { text: "Vulernable End Time", value: "vulnerable_end_time" }
@@ -11848,11 +11844,6 @@ function sleep(ms) {
           text: "Status",
           value: "station_status_name",
           width: "15%"
-        }, {
-          text: "Edited By",
-          value: "user_name",
-          width: "10%",
-          align: "start"
         }];
         return Headers;
       }
@@ -32390,7 +32381,7 @@ var render = function() {
         "div",
         { staticClass: " d-flex align-items-center" },
         [
-          _c("v-card-title", [_vm._v("Structures Notifications")]),
+          _c("v-card-title", [_vm._v("Structure Notifications")]),
           _vm._v(" "),
           _vm.$can("add_timer") ? _c("AddStation") : _vm._e(),
           _vm._v(" "),

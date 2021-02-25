@@ -1,7 +1,7 @@
 <template>
     <div class=" pt-16">
         <div class=" d-flex align-items-center">
-            <v-card-title>Structures Notifications</v-card-title>
+            <v-card-title>Structure Notifications</v-card-title>
             <AddStation v-if="$can('add_timer')"></AddStation>
 
             <v-text-field
@@ -728,17 +728,12 @@ export default {
                     {
                         text: "Status",
                         value: "station_status_name",
+                        align: "center",
                         width: "10%"
                     },
                     {
                         text: "Gunner/Info",
                         value: "actions",
-                        width: "10%",
-                        align: "start"
-                    },
-                    {
-                        text: "Edited By",
-                        value: "user_name",
                         width: "10%",
                         align: "start"
                     }
@@ -793,12 +788,6 @@ export default {
                         text: "Status",
                         value: "station_status_name",
                         width: "15%"
-                    },
-                    {
-                        text: "Edited By",
-                        value: "user_name",
-                        width: "10%",
-                        align: "start"
                     }
                 ];
                 return Headers;
