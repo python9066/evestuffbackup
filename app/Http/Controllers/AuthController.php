@@ -50,7 +50,7 @@ class AuthController extends Controller
         if (isset($userGice->grp)) {
             $roles = $userGice->grp;
             $counttest = count($roles);
-            dd($counttest);
+            // dd($counttest);
             foreach ($roles as $role) {
 
                 $this->addRoles($user, $role);
