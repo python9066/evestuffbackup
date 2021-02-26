@@ -70,7 +70,11 @@
             :close-on-content-click="false"
             :value="timerShownEdit"
             :key="'repairmenu' + station.id"
-            v-if="station.station_status_id == 11 && $can('edit_notifications')"
+            v-if="
+                station.station_status_id == 11 &&
+                    station.out_time != null &&
+                    $can('edit_notifications')
+            "
         >
             <template v-slot:activator="{ on, attrs }">
                 <v-btn
