@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 
 use App\Models\testNote;
+use App\Models\User;
 use DateTime;
 use Illuminate\Http\Request;
 use utils\Helper\Helper;
@@ -11,6 +12,7 @@ use utils\Notificationhelper\Notifications;
 use Symfony\Component\Yaml\Yaml;
 use GuzzleHttp\Utils;
 use GuzzleHttp\Client as GuzzleHttpClient;
+use Illuminate\Support\Facades\Auth;
 
 class testController extends Controller
 {
@@ -25,6 +27,15 @@ class testController extends Controller
         testNote::create(['text' => $request]);
         Notifications::test($request);
     }
+
+    public function userinfo()
+    {
+        $user = Auth::user();
+        $id = Auth::id();
+        $current = User::find($id);
+        dd($user, $id, $current);
+    }
+
 
     public function test($id)
     {
