@@ -30,7 +30,7 @@ class testController extends Controller
 
     public function userinfo()
     {
-        $user = Auth::name();
+        $user = Auth::user()->name;
         $id = Auth::id();
         $current = User::find($id);
         dd($user, $id, $current);
