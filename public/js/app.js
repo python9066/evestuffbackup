@@ -13426,7 +13426,7 @@ function sleep(ms) {
         return f.name == "Coord";
       });
       var test3 = test.concat(test2);
-      console.log(test, test2);
+      console.log(test3);
 
       if (this.$can("edit_all_users")) {
         return filter;
