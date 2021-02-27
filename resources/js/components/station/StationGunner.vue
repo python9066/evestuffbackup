@@ -129,14 +129,14 @@ export default {
             } else {
                 return false;
             }
-        }
-    },
+        },
 
-    showName() {
-        if (this.station.standing > 0) {
-            this.gunnerName = station.gunner_name;
-        } else {
-            this.gunnerName = "Has Gunner";
+        showName() {
+            if (this.station.standing > 0) {
+                this.gunnerName = station.gunner_name;
+            } else {
+                this.gunnerName = "Has Gunner";
+            }
         }
     }
 };
