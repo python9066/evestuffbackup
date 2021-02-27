@@ -63,7 +63,9 @@ class CreateOrReplaceStationRecordsViewCommand extends Command
        if(((stations.attack_notes IS NULL) AND (stations.attack_adash_link IS NULL)),0,1) AS under_attack,
        stations.repair_time AS 'repair_time',
        alliances.standing AS 'standing',
-       alliances.url AS 'url'
+       alliances.url AS 'url',
+       stations.show_on_main AS 'show_on_main',
+       stations.show_on_chill AS 'show_on_chill'
        FROM stations
        JOIN systems ON systems.id = stations.system_id
        JOIN corps ON corps.id = stations.corp_id
@@ -74,6 +76,6 @@ class CreateOrReplaceStationRecordsViewCommand extends Command
        JOIN station_statuses ON station_statuses.id = stations.station_status_id
        LEFT JOIN users AS s ON s.id = stations.user_id
        LEFT JOIN users AS g ON g.id = stations.gunner_id
-       WHERE stations.station_status_id != 10 AND stations.show_on_main = 1");
+       WHERE stations.station_status_id != 10");
     }
 }
