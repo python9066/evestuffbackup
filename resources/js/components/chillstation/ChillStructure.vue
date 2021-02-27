@@ -762,7 +762,6 @@ export default {
 
                 // { text: "Vulernable End Time", value: "vulnerable_end_time" }
             ];
-
             return Headers;
         }
     },
