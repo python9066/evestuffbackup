@@ -2,7 +2,7 @@
     <div class=" d-inline-flex align-items-md-center  pl-4">
         <div>
             <span class="d-inline-flex align-items-md-center pr-2">
-                <span class="pl-2" v-show="station.gunner_id > 0">
+                <span class="pl-2" v-show="!showGunnerButton">
                     {{ station.gunner_name }}
                 </span>
             </span>
@@ -16,7 +16,7 @@
             >
                 <template v-slot:activator="{ on, attrs }">
                     <v-btn
-                        v-show="station.gunner_id < 1"
+                        v-show="showGunnerButton"
                         :key="'gunnerbutton' + station.gunner_id"
                         class=""
                         color="blue"
@@ -37,7 +37,7 @@
                 </span>
             </v-tooltip>
             <v-icon
-                v-show="station.gunner_id > 0 && $can('gunner')"
+                v-show="showGunnerButton"
                 color="orange darken-3"
                 small
                 @click="gunnerRemove()"
@@ -101,6 +101,14 @@ export default {
                     "Content-Type": "application/json"
                 }
             });
+        },
+
+        showGunnerButton() {
+            if (station.gunner_id == null) {
+                return true;
+            } else {
+                return false;
+            }
         }
     },
 

@@ -12285,6 +12285,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           }
         }, _callee2);
       }))();
+    },
+    showGunnerButton: function showGunnerButton() {
+      if (station.gunner_id == null) {
+        return true;
+      } else {
+        return false;
+      }
     }
   },
   computed: {}
@@ -35643,8 +35650,8 @@ var render = function() {
                   {
                     name: "show",
                     rawName: "v-show",
-                    value: _vm.station.gunner_id > 0,
-                    expression: "station.gunner_id > 0"
+                    value: !_vm.showGunnerButton,
+                    expression: "!showGunnerButton"
                   }
                 ],
                 staticClass: "pl-2"
@@ -35689,8 +35696,8 @@ var render = function() {
                                 {
                                   name: "show",
                                   rawName: "v-show",
-                                  value: _vm.station.gunner_id < 1,
-                                  expression: "station.gunner_id < 1"
+                                  value: _vm.showGunnerButton,
+                                  expression: "showGunnerButton"
                                 }
                               ],
                               key: "gunnerbutton" + _vm.station.gunner_id,
@@ -35743,8 +35750,8 @@ var render = function() {
                 {
                   name: "show",
                   rawName: "v-show",
-                  value: _vm.station.gunner_id > 0 && _vm.$can("gunner"),
-                  expression: "station.gunner_id > 0 && $can('gunner')"
+                  value: _vm.showGunnerButton,
+                  expression: "showGunnerButton"
                 }
               ],
               attrs: { color: "orange darken-3", small: "" },
