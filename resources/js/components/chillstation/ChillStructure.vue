@@ -58,7 +58,7 @@
             </v-btn-toggle>
         </div>
         <v-data-table
-            :headers="_headers"
+            :headers="headers"
             :items="filteredItems"
             :item-class="itemRowBackground"
             item-key="id"
@@ -366,6 +366,64 @@ export default {
                 { title: "Destroyed", value: 7 },
                 { title: "Anchoring", value: 14 },
                 { title: "New", value: 1 }
+            ],
+
+            headers = [
+                {
+                    text: "Region",
+                    value: "region_name",
+                    width: "5%"
+                },
+                {
+                    text: "Constellation",
+                    value: "constellation_name",
+                    width: "8%"
+                },
+                {
+                    text: "System",
+                    value: "system_name",
+                    width: "8%"
+                },
+                {
+                    text: "Alliance",
+                    value: "alliance_ticker",
+                    width: "10%"
+                },
+                {
+                    text: "Type",
+                    value: "item_name",
+                    width: "10%"
+                },
+                {
+                    text: "Name",
+                    value: "station_name",
+                    width: "15%"
+                },
+                {
+                    text: "Timestamp",
+                    value: "timestamp",
+                    align: "center",
+                    width: "15%"
+                },
+                {
+                    text: "Age/CountDown",
+                    value: "count",
+                    width: "5%"
+                },
+                {
+                    text: "Status",
+                    value: "station_status_name",
+                    align: "center",
+                    width: "10%"
+                },
+                {
+                    text: "Gunner/Info",
+                    value: "actions",
+                    width: "10%",
+                    align: "start"
+                }
+
+                // { text: "Vulernable End Time", value: "vulnerable_end_time" }
             ]
         };
     },
@@ -703,67 +761,6 @@ export default {
         user_name() {
             return this.$store.state.user_name;
         },
-
-        _headers() {
-            var Headers = [
-                {
-                    text: "Region",
-                    value: "region_name",
-                    width: "5%"
-                },
-                {
-                    text: "Constellation",
-                    value: "constellation_name",
-                    width: "8%"
-                },
-                {
-                    text: "System",
-                    value: "system_name",
-                    width: "8%"
-                },
-                {
-                    text: "Alliance",
-                    value: "alliance_ticker",
-                    width: "10%"
-                },
-                {
-                    text: "Type",
-                    value: "item_name",
-                    width: "10%"
-                },
-                {
-                    text: "Name",
-                    value: "station_name",
-                    width: "15%"
-                },
-                {
-                    text: "Timestamp",
-                    value: "timestamp",
-                    align: "center",
-                    width: "15%"
-                },
-                {
-                    text: "Age/CountDown",
-                    value: "count",
-                    width: "5%"
-                },
-                {
-                    text: "Status",
-                    value: "station_status_name",
-                    align: "center",
-                    width: "10%"
-                },
-                {
-                    text: "Gunner/Info",
-                    value: "actions",
-                    width: "10%",
-                    align: "start"
-                }
-
-                // { text: "Vulernable End Time", value: "vulnerable_end_time" }
-            ];
-            return Headers;
-        }
     },
     beforeDestroy() {
         Echo.leave("notes");
