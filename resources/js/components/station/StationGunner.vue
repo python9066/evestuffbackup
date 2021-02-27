@@ -114,6 +114,7 @@ export default {
 
         showGunnerButton() {
             if (station.gunner_id == null) {
+                console.log("true");
                 return true;
             } else {
                 return false;

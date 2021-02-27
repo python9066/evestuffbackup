@@ -12296,6 +12296,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
     showGunnerButton: function showGunnerButton() {
       if (station.gunner_id == null) {
+        console.log("true");
         return true;
       } else {
         return false;
