@@ -115,7 +115,7 @@ export default {
 
     computed: {
         showGunnerButton() {
-            if (station.gunner_id == null) {
+            if (this.station.gunner_id == null) {
                 console.log("true");
                 return true;
             } else {

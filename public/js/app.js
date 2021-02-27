@@ -12297,7 +12297,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   computed: {
     showGunnerButton: function showGunnerButton() {
-      if (station.gunner_id == null) {
+      if (this.station.gunner_id == null) {
         console.log("true");
         return true;
       } else {
