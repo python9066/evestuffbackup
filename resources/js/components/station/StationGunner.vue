@@ -59,6 +59,15 @@ export default {
         return {};
     },
 
+    watch: {
+        station: {
+            handler() {
+                this.showGunnerButton;
+            },
+            deep: true
+        }
+    },
+
     methods: {
         async gunnerAdd() {
             var data = {

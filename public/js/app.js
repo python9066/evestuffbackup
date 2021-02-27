@@ -12212,6 +12212,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   data: function data() {
     return {};
   },
+  watch: {
+    station: {
+      handler: function handler() {
+        this.showGunnerButton;
+      },
+      deep: true
+    }
+  },
   methods: {
     gunnerAdd: function gunnerAdd() {
       var _this = this;
