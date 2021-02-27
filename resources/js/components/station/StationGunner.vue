@@ -11,6 +11,7 @@
             <v-tooltip
                 color="#121212"
                 bottom
+                :key="'gunnertooltip' + station.gunner_id"
                 :open-delay="2000"
                 :disabled="$store.state.tooltipToggle"
             >
