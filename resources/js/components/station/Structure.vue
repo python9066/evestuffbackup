@@ -663,7 +663,7 @@ export default {
                 .utc()
                 .add(1, "hour")
                 .format("YYYY-MM-DD HH:mm:ss");
-            const filter = this.stations.filter(s => show_on_main == 1);
+            const filter = this.stations.filter(s => s.show_on_main == 1);
             if (this.statusflag == 2) {
                 return filter.filter(
                     s =>

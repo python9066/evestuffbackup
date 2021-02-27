@@ -11751,7 +11751,7 @@ function sleep(ms) {
     filteredItems: function filteredItems() {
       var hourBefore = moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc().add(1, "hour").format("YYYY-MM-DD HH:mm:ss");
       var filter = this.stations.filter(function (s) {
-        return show_on_main == 1;
+        return s.show_on_main == 1;
       });
 
       if (this.statusflag == 2) {
