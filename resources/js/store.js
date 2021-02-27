@@ -152,7 +152,11 @@ export default new Vuex.Store({
 
         UPDATE_STATION_NOTIFICATION(state, data) {
             const item = state.stations.find(item => item.id === data.id);
-            Object.assign(item, data);
+            if (item > 0) {
+                Object.assign(item, data);
+            } else {
+                state.stations.push(data)
+            }
         },
 
         SET_CORES(state, cores) {

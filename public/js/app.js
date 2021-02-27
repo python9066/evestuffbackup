@@ -49143,7 +49143,12 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
       var item = state.stations.find(function (item) {
         return item.id === data.id;
       });
-      Object.assign(item, data);
+
+      if (item > 0) {
+        Object.assign(item, data);
+      } else {
+        state.stations.push(data);
+      }
     },
     SET_CORES: function SET_CORES(state, cores) {
       state.cores = cores;
