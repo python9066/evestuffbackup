@@ -37,7 +37,7 @@
                 </span>
             </v-tooltip>
             <v-icon
-                v-show="showGunnerButton"
+                v-show="!showGunnerButton"
                 color="orange darken-3"
                 small
                 @click="gunnerRemove()"

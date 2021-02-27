@@ -35760,8 +35760,8 @@ var render = function() {
                 {
                   name: "show",
                   rawName: "v-show",
-                  value: _vm.showGunnerButton,
-                  expression: "showGunnerButton"
+                  value: !_vm.showGunnerButton,
+                  expression: "!showGunnerButton"
                 }
               ],
               attrs: { color: "orange darken-3", small: "" },
