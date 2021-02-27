@@ -3,7 +3,7 @@
         <div>
             <span class="d-inline-flex align-items-md-center pr-2">
                 <span class="pl-2" v-show="!showGunnerButton">
-                    {{ station.gunner_name }}
+                    {{ showName }}
                 </span>
             </span>
         </div>
@@ -122,6 +122,14 @@ export default {
             } else {
                 return false;
             }
+        }
+    },
+
+    showName() {
+        if (this.station.standing > 0) {
+            return station.gunner_name;
+        } else {
+            return "Has Gunner";
         }
     }
 };

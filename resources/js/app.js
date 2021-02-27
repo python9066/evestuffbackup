@@ -75,9 +75,6 @@ Vue.component('StationAttack', require('./components/station/StationAttack.vue')
 Vue.component('StationMessage', require('./components/station/StationMessage.vue').default);
 Vue.component('TowerMessage', require('./components/tower/TowerMessage.vue').default);
 Vue.component('ChillAddStation', require('./components/chillstation/ChillAddStation.vue').default);
-
-Vue.component('ChillInfo', require('./components/chillstation/ChillInfo.vue').default);
-Vue.component('ChillStationGunner', require('./components/chillstation/ChillStationGunner.vue').default);
 Vue.component('ChillStructure', require('./components/chillstation/ChillStructure.vue').default);
 
 

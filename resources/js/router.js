@@ -16,6 +16,7 @@ import FeedBack from "./views/FeedBack.vue";
 import campaginSystemKick from "./views/redirect/campaginSystemKick.vue";
 import MultiCampagins from "./views/MultiCampaigns.vue";
 import campaignFinished from "./views/redirect/campaignOver.vue";
+import chillstations from "./components/chillstation/ChillStructure.vue"
 
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
@@ -131,6 +132,9 @@ export default new Router({
               }
         },
 
+
+
+
         {
             path: "/stest",
             name: "stest",
@@ -191,6 +195,21 @@ export default new Router({
                     next()
                 }else{
                    next("/campaigns")
+                }
+
+              }
+        },
+
+
+        {
+            path: "/chillstations",
+            name: "chillstations",
+            component: chillstations,
+            beforeEnter(to, from, next) {
+                if(Permissions.indexOf('view_chill_timers')!== -1){
+                    next()
+                }else{
+                   next("/notifications")
                 }
 
               }

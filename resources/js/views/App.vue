@@ -30,7 +30,7 @@
                         Notifications
                     </v-tab>
 
-                    <v-tab v-if="$can('super')" link to="/chilltimers">
+                    <v-tab v-if="$can('super')" link to="/chillstations">
                         Chilled Timers
                     </v-tab>
 
