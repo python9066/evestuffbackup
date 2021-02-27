@@ -35636,15 +35636,27 @@ var render = function() {
           "span",
           { staticClass: "d-inline-flex align-items-md-center pr-2" },
           [
-            _vm.station.gunner_id > 0
-              ? _c("span", { staticClass: "pl-2" }, [
-                  _vm._v(
-                    "\n                " +
-                      _vm._s(_vm.station.gunner_name) +
-                      "\n            "
-                  )
-                ])
-              : _vm._e()
+            _c(
+              "span",
+              {
+                directives: [
+                  {
+                    name: "show",
+                    rawName: "v-show",
+                    value: _vm.station.gunner_id > 0,
+                    expression: "station.gunner_id > 0"
+                  }
+                ],
+                staticClass: "pl-2"
+              },
+              [
+                _vm._v(
+                  "\n                " +
+                    _vm._s(_vm.station.gunner_name) +
+                    "\n            "
+                )
+              ]
+            )
           ]
         )
       ]),
@@ -35668,45 +35680,47 @@ var render = function() {
                     var on = ref.on
                     var attrs = ref.attrs
                     return [
-                      _vm.station.gunner_id < 1
-                        ? _c(
-                            "v-btn",
-                            _vm._g(
-                              _vm._b(
+                      _c(
+                        "v-btn",
+                        _vm._g(
+                          _vm._b(
+                            {
+                              directives: [
                                 {
-                                  key: "gunnerbutton" + _vm.station.gunner_id,
-                                  attrs: {
-                                    color: "blue",
-                                    "x-small": "",
-                                    outlined: ""
-                                  },
-                                  on: {
-                                    click: function($event) {
-                                      return _vm.gunnerAdd()
-                                    }
-                                  }
-                                },
-                                "v-btn",
-                                attrs,
-                                false
-                              ),
-                              on
-                            ),
-                            [
-                              _c(
-                                "v-icon",
-                                { attrs: { "x-small": "", dark: "" } },
-                                [
-                                  _vm._v(
-                                    "\n                        fas fa-plus\n                    "
-                                  )
-                                ]
-                              ),
-                              _vm._v("\n                    Gunner")
-                            ],
-                            1
-                          )
-                        : _vm._e()
+                                  name: "show",
+                                  rawName: "v-show",
+                                  value: _vm.station.gunner_id < 1,
+                                  expression: "station.gunner_id < 1"
+                                }
+                              ],
+                              key: "gunnerbutton" + _vm.station.gunner_id,
+                              attrs: {
+                                color: "blue",
+                                "x-small": "",
+                                outlined: ""
+                              },
+                              on: {
+                                click: function($event) {
+                                  return _vm.gunnerAdd()
+                                }
+                              }
+                            },
+                            "v-btn",
+                            attrs,
+                            false
+                          ),
+                          on
+                        ),
+                        [
+                          _c("v-icon", { attrs: { "x-small": "", dark: "" } }, [
+                            _vm._v(
+                              "\n                        fas fa-plus\n                    "
+                            )
+                          ]),
+                          _vm._v("\n                    Gunner")
+                        ],
+                        1
+                      )
                     ]
                   }
                 }
@@ -35722,20 +35736,26 @@ var render = function() {
             ]
           ),
           _vm._v(" "),
-          _vm.station.gunner_id > 0 && _vm.$can("gunner")
-            ? _c(
-                "v-icon",
+          _c(
+            "v-icon",
+            {
+              directives: [
                 {
-                  attrs: { color: "orange darken-3", small: "" },
-                  on: {
-                    click: function($event) {
-                      return _vm.gunnerRemove()
-                    }
-                  }
-                },
-                [_vm._v("\n            fas fa-trash-alt\n        ")]
-              )
-            : _vm._e()
+                  name: "show",
+                  rawName: "v-show",
+                  value: _vm.station.gunner_id > 0 && _vm.$can("gunner"),
+                  expression: "station.gunner_id > 0 && $can('gunner')"
+                }
+              ],
+              attrs: { color: "orange darken-3", small: "" },
+              on: {
+                click: function($event) {
+                  return _vm.gunnerRemove()
+                }
+              }
+            },
+            [_vm._v("\n            fas fa-trash-alt\n        ")]
+          )
         ],
         1
       )
