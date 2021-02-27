@@ -450,7 +450,7 @@ export default {
         async stationNameAdd() {
             var request = {
                 stationName: this.stationNameEdit,
-                show: 1
+                show: 2
             };
             await axios({
                 method: "put", //you can set what request you want to be

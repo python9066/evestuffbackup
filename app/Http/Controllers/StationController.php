@@ -110,14 +110,7 @@ class StationController extends Controller
 
     public static function reconPullbyname(Request $request)
     {
-        $showMain = 0;
-        $showChill = 0;
-        if ($request->show == 1) {
-            $showMain = 1;
-        }
-        if ($request->show == 2) {
-            $showChill = 1;
-        }
+
         $url = "https://recon.gnf.lt/api/structure/" . $request->stationName;
 
         $client = new GuzzleHttpClient();
@@ -145,6 +138,30 @@ class StationController extends Controller
                     return $data;
                 }
             } else {
+
+                $checkifthere = Station::find($stationdata['str_structure_id']);
+                if ($checkifthere) {
+                    $showMain = $checkifthere->show_on_main;
+                    $showChill = $checkifthere->show_on_chill;
+                    if ($request->show == 1) {
+                        $showMain = 1;
+                    }
+                    if ($request->show == 2) {
+                        $showChill = 1;
+                    }
+                } else {
+                    if ($request->show == 1) {
+                        $showMain = 1;
+                        $showChill = 0;
+                    }
+
+                    if ($request->show == 2) {
+                        $showMain = 0;
+                        $showChill = 1;
+                    }
+                }
+
+
 
                 Station::updateOrCreate(['id' => $stationdata['str_structure_id']], [
                     'name' => $stationdata['str_name'],

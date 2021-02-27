@@ -5551,7 +5551,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 0:
                 request = {
                   stationName: _this7.stationNameEdit,
-                  show: 1
+                  show: 2
                 };
                 _context4.next = 3;
                 return axios({

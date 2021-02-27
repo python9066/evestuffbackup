@@ -1013,7 +1013,7 @@ class Notifications
 
         $showChill = $pull->show_on_chill;
 
-        if ($show == 1) {
+        if ($show == 2) {
             return 1;
         } else {
             return $showChill;
@@ -1031,7 +1031,7 @@ class Notifications
 
     public static function setShowChillNew($show)
     {
-        if ($show == 1) {
+        if ($show == 2) {
             return 1;
         } else {
             return 0;
