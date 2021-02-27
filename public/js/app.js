@@ -13425,7 +13425,10 @@ function sleep(ms) {
       var test2 = filter.filter(function (f) {
         return f.name == "Coord";
       });
-      var test3 = test.concat(test2);
+      var test4 = filter.filter(function (f) {
+        return f.name == "jim";
+      });
+      var test3 = test.concat(test4, test2);
       console.log(test3);
 
       if (this.$can("edit_all_users")) {
