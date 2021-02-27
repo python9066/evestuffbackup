@@ -6210,6 +6210,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var _this2 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+        var request;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
@@ -35635,7 +35636,7 @@ var render = function() {
           "span",
           { staticClass: "d-inline-flex align-items-md-center pr-2" },
           [
-            _vm.station.gunner_id != null
+            !_vm.station.gunner_id
               ? _c("span", { staticClass: "pl-2" }, [
                   _vm._v(
                     "\n                " +

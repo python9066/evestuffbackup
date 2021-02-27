@@ -2,7 +2,7 @@
     <div class=" d-inline-flex align-items-md-center  pl-4">
         <div>
             <span class="d-inline-flex align-items-md-center pr-2">
-                <span class="pl-2" v-if="station.gunner_id != null">
+                <span class="pl-2" v-if="!station.gunner_id">
                     {{ station.gunner_name }}
                 </span>
             </span>
