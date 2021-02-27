@@ -12293,7 +12293,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           }
         }, _callee2);
       }))();
-    },
+    }
+  },
+  computed: {
     showGunnerButton: function showGunnerButton() {
       if (station.gunner_id == null) {
         console.log("true");
@@ -12302,8 +12304,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         return false;
       }
     }
-  },
-  computed: {}
+  }
 });
 
 /***/ }),

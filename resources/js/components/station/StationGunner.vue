@@ -110,8 +110,10 @@ export default {
                     "Content-Type": "application/json"
                 }
             });
-        },
+        }
+    },
 
+    computed: {
         showGunnerButton() {
             if (station.gunner_id == null) {
                 console.log("true");
@@ -120,9 +122,7 @@ export default {
                 return false;
             }
         }
-    },
-
-    computed: {}
+    }
 };
 </script>
 
