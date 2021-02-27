@@ -93,6 +93,13 @@
                         <v-btn
                             :loading="loadingf"
                             :disabled="loadingf"
+                            @click="roleflag = 16"
+                        >
+                            GSOL Leader
+                        </v-btn>
+                        <v-btn
+                            :loading="loadingf"
+                            :disabled="loadingf"
                             @click="roleflag = 17"
                         >
                             GSOL
@@ -131,6 +138,20 @@
                             @click="roleflag = 18"
                         >
                             Gunner
+                        </v-btn>
+                        <v-btn
+                            :loading="loadingf"
+                            :disabled="loadingf"
+                            @click="roleflag = 20"
+                        >
+                            Chill
+                        </v-btn>
+                        <v-btn
+                            :loading="loadingf"
+                            :disabled="loadingf"
+                            @click="roleflag = 19"
+                        >
+                            Super Chill
                         </v-btn>
                     </v-btn-toggle>
                 </v-card>
@@ -293,36 +314,6 @@ export default {
             await this.$store.dispatch("getUsers");
             await this.$store.dispatch("getRoles");
         },
-
-        // filterDropdownList(item) {
-        //     let roleID = item.map(i => i.id);
-        //     const filter = this.rolesList.filter(r => !roleID.includes(r.id));
-        //     let start = [];
-        //     let test3 = start.concat(test, test4, test2);
-        //     console.log(test3);
-        //     if (this.$can("edit_all_users")) {
-        //         return filter;
-        //     } else if (
-        //         this.$can("edit_gsfoe_fc") &&
-        //         this.$can("edit_recon_users") &&
-        //         this.$can("edit_scout_users")
-        //     ) {
-        //         return filter.filter(
-        //             f => f.name != "Director" && f.name != "Coord"
-        //         );
-        //     } else if (
-        //         this.$can("edit_recon_users") &&
-        //         this.$can("edit_scout_users")
-        //     ) {
-        //         return filter.filter(
-        //             f => f.name == "Recon" || f.name == "Scout"
-        //         );
-        //     } else if (this.$can("edit_gsfoe_fc")) {
-        //         return filter.filter(f => f.name == "GSFOE FC");
-        //     } else if (this.$can("edit_scout_users")) {
-        //         return filter.filter(f => f.name == "Scout");
-        //     }
-        // },
 
         filterDropdownList(item) {
             let roleID = item.map(i => i.id);
@@ -589,6 +580,38 @@ export default {
                 return this.users.filter(function(u) {
                     return u.roles.some(function(role) {
                         return role.id == 17;
+                    });
+                });
+            }
+
+            if (this.roleflag == 18) {
+                return this.users.filter(function(u) {
+                    return u.roles.some(function(role) {
+                        return role.id == 18;
+                    });
+                });
+            }
+
+            if (this.roleflag == 19) {
+                return this.users.filter(function(u) {
+                    return u.roles.some(function(role) {
+                        return role.id == 19;
+                    });
+                });
+            }
+
+            if (this.roleflag == 20) {
+                return this.users.filter(function(u) {
+                    return u.roles.some(function(role) {
+                        return role.id == 20;
+                    });
+                });
+            }
+
+            if (this.roleflag == 21) {
+                return this.users.filter(function(u) {
+                    return u.roles.some(function(role) {
+                        return role.id == 21;
                     });
                 });
             } else {
