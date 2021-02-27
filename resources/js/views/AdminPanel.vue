@@ -328,8 +328,6 @@ export default {
             let roleID = item.map(i => i.id);
             const filter = this.rolesList.filter(r => !roleID.includes(r.id));
             let start = [];
-            let test3 = start.concat(test, test4, test2);
-            console.log(test3);
             if (this.$can("edit_all_users")) {
                 return filter;
             } else if (this.$can("edit_chill_users")) {

@@ -13449,8 +13449,6 @@ function sleep(ms) {
         return !roleID.includes(r.id);
       });
       var start = [];
-      var test3 = start.concat(test, test4, test2);
-      console.log(test3);
 
       if (this.$can("edit_all_users")) {
         return filter;
