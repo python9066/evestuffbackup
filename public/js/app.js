@@ -13449,7 +13449,9 @@ function sleep(ms) {
         return !roleID.includes(r.id);
       });
       var chill = [];
+      var fc = [];
       var gsfoeFC = [];
+      var gunner = [];
       var recon = [];
       var scout = [];
       var superChilled = [];
@@ -13465,9 +13467,21 @@ function sleep(ms) {
         });
       }
 
+      if (this.$can("edit_fc_users")) {
+        fc = filter.filter(function (f) {
+          return f.name == "FC";
+        });
+      }
+
       if (this.$can("edit_gsfoe_fc")) {
         gsfoeFC = filter.filter(function (f) {
           return f.name == "GSFOE FC";
+        });
+      }
+
+      if (this.$can("edit_gunner_users")) {
+        gunner = filter.filter(function (f) {
+          return f.name == "Gunner";
         });
       }
 
@@ -13489,7 +13503,7 @@ function sleep(ms) {
         });
       }
 
-      return start.concat(chill, gsfoeFC, recon, scout, superChilled);
+      return start.concat(chill, fc, gsfoeFC, gunner, recon, scout, superChilled);
     },
     pillClose: function pillClose(name) {
       if (this.$can("edit_all_users")) {

@@ -328,7 +328,9 @@ export default {
             let roleID = item.map(i => i.id);
             const filter = this.rolesList.filter(r => !roleID.includes(r.id));
             let chill = [];
+            let fc = [];
             let gsfoeFC = [];
+            let gunner = [];
             let recon = [];
             let scout = [];
             let superChilled = [];
@@ -339,8 +341,14 @@ export default {
             if (this.$can("edit_chill_users")) {
                 chill = filter.filter(f => f.name == "Chilled");
             }
+            if (this.$can("edit_fc_users")) {
+                fc = filter.filter(f => f.name == "FC");
+            }
             if (this.$can("edit_gsfoe_fc")) {
                 gsfoeFC = filter.filter(f => f.name == "GSFOE FC");
+            }
+            if (this.$can("edit_gunner_users")) {
+                gunner = filter.filter(f => f.name == "Gunner");
             }
             if (this.$can("edit_recon_users")) {
                 recon = filter.filter(f => f.name == "Recon");
@@ -352,7 +360,15 @@ export default {
                 superChilled = filter.filter(f => f.name == "Super Chilled");
             }
 
-            return start.concat(chill, gsfoeFC, recon, scout, superChilled);
+            return start.concat(
+                chill,
+                fc,
+                gsfoeFC,
+                gunner,
+                recon,
+                scout,
+                superChilled
+            );
         },
 
         pillClose(name) {
