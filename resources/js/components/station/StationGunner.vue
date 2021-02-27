@@ -65,6 +65,7 @@ export default {
     watch: {
         station: {
             handler() {
+                this.showName;
                 this.showGunnerButton;
             },
             deep: true

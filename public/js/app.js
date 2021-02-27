@@ -11617,6 +11617,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   watch: {
     station: {
       handler: function handler() {
+        this.showName;
         this.showGunnerButton;
       },
       deep: true
