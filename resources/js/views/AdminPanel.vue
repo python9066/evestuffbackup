@@ -327,11 +327,11 @@ export default {
         filterDropdownList(item) {
             let roleID = item.map(i => i.id);
             const filter = this.rolesList.filter(r => !roleID.includes(r.id));
-            let chill = null;
-            let gsfoeFC = null;
-            let recon = null;
-            let scout = null;
-            let superChilled = null;
+            let chill = [];
+            let gsfoeFC = [];
+            let recon = [];
+            let scout = [];
+            let superChilled = [];
             let start = [];
             if (this.$can("edit_all_users")) {
                 return filter;
