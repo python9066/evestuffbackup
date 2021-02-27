@@ -13419,6 +13419,7 @@ function sleep(ms) {
       var filter = this.rolesList.filter(function (r) {
         return !roleID.includes(r.id);
       });
+      var start = [];
       var test = filter.filter(function (f) {
         return f.name == "Recon";
       });
@@ -13428,7 +13429,7 @@ function sleep(ms) {
       var test4 = filter.filter(function (f) {
         return f.name == "jim";
       });
-      var test3 = test.concat(test4, test2);
+      var test3 = start.concat(test, test4, test2);
       console.log(test3);
 
       if (this.$can("edit_all_users")) {

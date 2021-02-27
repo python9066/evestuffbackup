@@ -297,10 +297,11 @@ export default {
         filterDropdownList(item) {
             let roleID = item.map(i => i.id);
             const filter = this.rolesList.filter(r => !roleID.includes(r.id));
+            let start = [];
             let test = filter.filter(f => f.name == "Recon");
             let test2 = filter.filter(f => f.name == "Coord");
             let test4 = filter.filter(f => f.name == "jim");
-            let test3 = test.concat(test4, test2);
+            let test3 = start.concat(test, test4, test2);
             console.log(test3);
             if (this.$can("edit_all_users")) {
                 return filter;
