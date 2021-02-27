@@ -294,37 +294,59 @@ export default {
             await this.$store.dispatch("getRoles");
         },
 
+        // filterDropdownList(item) {
+        //     let roleID = item.map(i => i.id);
+        //     const filter = this.rolesList.filter(r => !roleID.includes(r.id));
+        //     let start = [];
+        //     let test3 = start.concat(test, test4, test2);
+        //     console.log(test3);
+        //     if (this.$can("edit_all_users")) {
+        //         return filter;
+        //     } else if (
+        //         this.$can("edit_gsfoe_fc") &&
+        //         this.$can("edit_recon_users") &&
+        //         this.$can("edit_scout_users")
+        //     ) {
+        //         return filter.filter(
+        //             f => f.name != "Director" && f.name != "Coord"
+        //         );
+        //     } else if (
+        //         this.$can("edit_recon_users") &&
+        //         this.$can("edit_scout_users")
+        //     ) {
+        //         return filter.filter(
+        //             f => f.name == "Recon" || f.name == "Scout"
+        //         );
+        //     } else if (this.$can("edit_gsfoe_fc")) {
+        //         return filter.filter(f => f.name == "GSFOE FC");
+        //     } else if (this.$can("edit_scout_users")) {
+        //         return filter.filter(f => f.name == "Scout");
+        //     }
+        // },
+
         filterDropdownList(item) {
             let roleID = item.map(i => i.id);
             const filter = this.rolesList.filter(r => !roleID.includes(r.id));
             let start = [];
-            let test = filter.filter(f => f.name == "Recon");
-            let test2 = filter.filter(f => f.name == "Coord");
-            let test4 = filter.filter(f => f.name == "jim");
             let test3 = start.concat(test, test4, test2);
             console.log(test3);
             if (this.$can("edit_all_users")) {
                 return filter;
-            } else if (
-                this.$can("edit_gsfoe_fc") &&
-                this.$can("edit_recon_users") &&
-                this.$can("edit_scout_users")
-            ) {
-                return filter.filter(
-                    f => f.name != "Director" && f.name != "Coord"
-                );
-            } else if (
-                this.$can("edit_recon_users") &&
-                this.$can("edit_scout_users")
-            ) {
-                return filter.filter(
-                    f => f.name == "Recon" || f.name == "Scout"
-                );
+            } else if (this.$can("edit_chill_users")) {
+                let chill = filter.filter(f => f.name == "Chilled");
             } else if (this.$can("edit_gsfoe_fc")) {
-                return filter.filter(f => f.name == "GSFOE FC");
+                let gsfoeFC = filter.filter(f => f.name == "GSFOE FC");
+            } else if (this.$can("edit_recon_users")) {
+                let recon = filter.filter(f => f.name == "Recon");
             } else if (this.$can("edit_scout_users")) {
-                return filter.filter(f => f.name == "Scout");
+                let scout = filter.filter(f => f.name == "Scout");
+            } else if (this.$can("edit_super_chilled_users")) {
+                let superChilled = filter.filter(
+                    f => f.name == "Super Chilled"
+                );
             }
+
+            return start.concat(chill, gsfoeFC, recon, scout, superChilled);
         },
 
         pillClose(name) {

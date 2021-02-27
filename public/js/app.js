@@ -13412,6 +13412,35 @@ function sleep(ms) {
         }, _callee3);
       }))();
     },
+    // filterDropdownList(item) {
+    //     let roleID = item.map(i => i.id);
+    //     const filter = this.rolesList.filter(r => !roleID.includes(r.id));
+    //     let start = [];
+    //     let test3 = start.concat(test, test4, test2);
+    //     console.log(test3);
+    //     if (this.$can("edit_all_users")) {
+    //         return filter;
+    //     } else if (
+    //         this.$can("edit_gsfoe_fc") &&
+    //         this.$can("edit_recon_users") &&
+    //         this.$can("edit_scout_users")
+    //     ) {
+    //         return filter.filter(
+    //             f => f.name != "Director" && f.name != "Coord"
+    //         );
+    //     } else if (
+    //         this.$can("edit_recon_users") &&
+    //         this.$can("edit_scout_users")
+    //     ) {
+    //         return filter.filter(
+    //             f => f.name == "Recon" || f.name == "Scout"
+    //         );
+    //     } else if (this.$can("edit_gsfoe_fc")) {
+    //         return filter.filter(f => f.name == "GSFOE FC");
+    //     } else if (this.$can("edit_scout_users")) {
+    //         return filter.filter(f => f.name == "Scout");
+    //     }
+    // },
     filterDropdownList: function filterDropdownList(item) {
       var roleID = item.map(function (i) {
         return i.id;
@@ -13420,37 +13449,34 @@ function sleep(ms) {
         return !roleID.includes(r.id);
       });
       var start = [];
-      var test = filter.filter(function (f) {
-        return f.name == "Recon";
-      });
-      var test2 = filter.filter(function (f) {
-        return f.name == "Coord";
-      });
-      var test4 = filter.filter(function (f) {
-        return f.name == "jim";
-      });
       var test3 = start.concat(test, test4, test2);
       console.log(test3);
 
       if (this.$can("edit_all_users")) {
         return filter;
-      } else if (this.$can("edit_gsfoe_fc") && this.$can("edit_recon_users") && this.$can("edit_scout_users")) {
-        return filter.filter(function (f) {
-          return f.name != "Director" && f.name != "Coord";
-        });
-      } else if (this.$can("edit_recon_users") && this.$can("edit_scout_users")) {
-        return filter.filter(function (f) {
-          return f.name == "Recon" || f.name == "Scout";
+      } else if (this.$can("edit_chill_users")) {
+        var _chill = filter.filter(function (f) {
+          return f.name == "Chilled";
         });
       } else if (this.$can("edit_gsfoe_fc")) {
-        return filter.filter(function (f) {
+        var _gsfoeFC = filter.filter(function (f) {
           return f.name == "GSFOE FC";
         });
+      } else if (this.$can("edit_recon_users")) {
+        var _recon = filter.filter(function (f) {
+          return f.name == "Recon";
+        });
       } else if (this.$can("edit_scout_users")) {
-        return filter.filter(function (f) {
+        var _scout = filter.filter(function (f) {
           return f.name == "Scout";
         });
+      } else if (this.$can("edit_super_chilled_users")) {
+        var _superChilled = filter.filter(function (f) {
+          return f.name == "Super Chilled";
+        });
       }
+
+      return start.concat(chill, gsfoeFC, recon, scout, superChilled);
     },
     pillClose: function pillClose(name) {
       if (this.$can("edit_all_users")) {
