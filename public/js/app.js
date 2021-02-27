@@ -13448,6 +13448,11 @@ function sleep(ms) {
       var filter = this.rolesList.filter(function (r) {
         return !roleID.includes(r.id);
       });
+      var chill = null;
+      var gsfoeFC = null;
+      var recon = null;
+      var scout = null;
+      var superChilled = null;
       var start = [];
 
       if (this.$can("edit_all_users")) {
