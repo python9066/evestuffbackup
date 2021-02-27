@@ -64,7 +64,7 @@ class CreateOrReplaceChillStationRecordsViewCommand extends Command
        chill_stations.repair_time AS 'repair_time',
        alliances.standing AS 'standing',
        alliances.url AS 'url'
-       FROM stations
+       FROM chill_stations
        JOIN systems ON systems.id = chill_stations.system_id
        JOIN corps ON corps.id = chill_stations.corp_id
        JOIN alliances on alliances.id = corps.alliance_id
