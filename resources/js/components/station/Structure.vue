@@ -665,7 +665,7 @@ export default {
                 .format("YYYY-MM-DD HH:mm:ss");
             const filter = this.stations.filter(s => show_on_main == 1);
             if (this.statusflag == 2) {
-                return this.stations.filter(
+                return filter.filter(
                     s =>
                         s.station_status_id == 1 ||
                         s.station_status_id == 4 ||
@@ -680,20 +680,20 @@ export default {
                 );
             }
             if (this.statusflag == 3) {
-                return this.stations.filter(
+                return filter.filter(
                     s => s.station_status_id == 5 || s.station_status_id == 13
                 );
             }
 
             if (this.statusflag == 4) {
-                return this.stations.filter(
+                return filter.filter(
                     s =>
                         s.station_status_id == 8 ||
                         s.station_status_id == 9 ||
                         s.station_status_id == 7
                 );
             } else {
-                return this.stations.filter(s => s.station_status_id != 10);
+                return filter.filter(s => s.station_status_id != 10);
             }
         },
 
