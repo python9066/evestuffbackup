@@ -2,7 +2,7 @@
     <div class=" d-inline-flex align-items-md-center  pl-4">
         <div>
             <span class="d-inline-flex align-items-md-center pr-2">
-                <span class="pl-2" v-if="!station.gunner_id">
+                <span class="pl-2" v-if="station.gunner_id > 0">
                     {{ station.gunner_name }}
                 </span>
             </span>
@@ -16,7 +16,7 @@
             >
                 <template v-slot:activator="{ on, attrs }">
                     <v-btn
-                        v-if="station.gunner_id == null"
+                        v-if="station.gunner_id < 1"
                         :key="'gunnerbutton' + station.gunner_id"
                         class=""
                         color="blue"
@@ -37,7 +37,7 @@
                 </span>
             </v-tooltip>
             <v-icon
-                v-if="station.gunner_id != null && $can('gunner')"
+                v-if="station.gunner_id > 0 && $can('gunner')"
                 color="orange darken-3"
                 small
                 @click="gunnerRemove()"

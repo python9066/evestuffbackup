@@ -35636,7 +35636,7 @@ var render = function() {
           "span",
           { staticClass: "d-inline-flex align-items-md-center pr-2" },
           [
-            !_vm.station.gunner_id
+            _vm.station.gunner_id > 0
               ? _c("span", { staticClass: "pl-2" }, [
                   _vm._v(
                     "\n                " +
@@ -35668,7 +35668,7 @@ var render = function() {
                     var on = ref.on
                     var attrs = ref.attrs
                     return [
-                      _vm.station.gunner_id == null
+                      _vm.station.gunner_id < 1
                         ? _c(
                             "v-btn",
                             _vm._g(
@@ -35722,7 +35722,7 @@ var render = function() {
             ]
           ),
           _vm._v(" "),
-          _vm.station.gunner_id != null && _vm.$can("gunner")
+          _vm.station.gunner_id > 0 && _vm.$can("gunner")
             ? _c(
                 "v-icon",
                 {
