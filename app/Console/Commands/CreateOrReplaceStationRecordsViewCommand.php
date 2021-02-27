@@ -74,6 +74,6 @@ class CreateOrReplaceStationRecordsViewCommand extends Command
        JOIN station_statuses ON station_statuses.id = stations.station_status_id
        LEFT JOIN users AS s ON s.id = stations.user_id
        LEFT JOIN users AS g ON g.id = stations.gunner_id
-       WHERE stations.station_status_id != 10");
+       WHERE stations.station_status_id != 10 AND stations.show_on_main = 1");
     }
 }
