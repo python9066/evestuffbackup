@@ -705,7 +705,7 @@ export default {
         },
 
         _headers() {
-            [
+            return [
                 {
                     text: "Region",
                     value: "region_name",
