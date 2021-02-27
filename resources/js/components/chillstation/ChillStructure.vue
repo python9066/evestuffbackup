@@ -705,7 +705,7 @@ export default {
         },
 
         _headers() {
-            var headers = [
+            var Headers = [
                 {
                     text: "Region",
                     value: "region_name",
@@ -763,7 +763,7 @@ export default {
                 // { text: "Vulernable End Time", value: "vulnerable_end_time" }
             ];
 
-            return headers;
+            return Headers;
         }
     },
     beforeDestroy() {
