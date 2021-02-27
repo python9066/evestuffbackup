@@ -13419,6 +13419,13 @@ function sleep(ms) {
       var filter = this.rolesList.filter(function (r) {
         return !roleID.includes(r.id);
       });
+      var test = filter.filter(function (f) {
+        return f.name == "Recon";
+      });
+      var test2 = filter.filter(function (f) {
+        return f.name == "Coord";
+      });
+      console.log(test, test2);
 
       if (this.$can("edit_all_users")) {
         return filter;
@@ -13431,9 +13438,6 @@ function sleep(ms) {
           return f.name == "Recon" || f.name == "Scout";
         });
       } else if (this.$can("edit_gsfoe_fc")) {
-        console(filter.filter(function (f) {
-          return f.name == "GSFOE FC";
-        }));
         return filter.filter(function (f) {
           return f.name == "GSFOE FC";
         });

@@ -297,6 +297,9 @@ export default {
         filterDropdownList(item) {
             let roleID = item.map(i => i.id);
             const filter = this.rolesList.filter(r => !roleID.includes(r.id));
+            let test = filter.filter(f => f.name == "Recon");
+            let test2 = filter.filter(f => f.name == "Coord");
+            console.log(test, test2);
             if (this.$can("edit_all_users")) {
                 return filter;
             } else if (
@@ -315,7 +318,6 @@ export default {
                     f => f.name == "Recon" || f.name == "Scout"
                 );
             } else if (this.$can("edit_gsfoe_fc")) {
-                console(filter.filter(f => f.name == "GSFOE FC"));
                 return filter.filter(f => f.name == "GSFOE FC");
             } else if (this.$can("edit_scout_users")) {
                 return filter.filter(f => f.name == "Scout");
