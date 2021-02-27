@@ -152,7 +152,8 @@ export default new Vuex.Store({
 
         UPDATE_STATION_NOTIFICATION(state, data) {
             const item = state.stations.find(item => item.id === data.id);
-            if (!item) {
+            const count = state.stations.filter(item => item.id === data.id).length
+            if (count > 0) {
                 Object.assign(item, data);
             } else {
                 state.stations.push(data)

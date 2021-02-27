@@ -49143,8 +49143,11 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
       var item = state.stations.find(function (item) {
         return item.id === data.id;
       });
+      var count = state.stations.filter(function (item) {
+        return item.id === data.id;
+      }).length;
 
-      if (!item) {
+      if (count > 0) {
         Object.assign(item, data);
       } else {
         state.stations.push(data);
