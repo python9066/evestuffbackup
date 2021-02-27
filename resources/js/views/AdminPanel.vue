@@ -335,15 +335,20 @@ export default {
             let start = [];
             if (this.$can("edit_all_users")) {
                 return filter;
-            } else if (this.$can("edit_chill_users")) {
+            }
+            if (this.$can("edit_chill_users")) {
                 chill = filter.filter(f => f.name == "Chilled");
-            } else if (this.$can("edit_gsfoe_fc")) {
+            }
+            if (this.$can("edit_gsfoe_fc")) {
                 gsfoeFC = filter.filter(f => f.name == "GSFOE FC");
-            } else if (this.$can("edit_recon_users")) {
+            }
+            if (this.$can("edit_recon_users")) {
                 recon = filter.filter(f => f.name == "Recon");
-            } else if (this.$can("edit_scout_users")) {
+            }
+            if (this.$can("edit_scout_users")) {
                 scout = filter.filter(f => f.name == "Scout");
-            } else if (this.$can("edit_super_chilled_users")) {
+            }
+            if (this.$can("edit_super_chilled_users")) {
                 superChilled = filter.filter(f => f.name == "Super Chilled");
             }
 
