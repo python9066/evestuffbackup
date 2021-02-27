@@ -13425,7 +13425,8 @@ function sleep(ms) {
       var test2 = filter.filter(function (f) {
         return f.name == "Coord";
       });
-      console.log(test, test2);
+      var test3 = concat(test, test2);
+      console.log(test3);
 
       if (this.$can("edit_all_users")) {
         return filter;

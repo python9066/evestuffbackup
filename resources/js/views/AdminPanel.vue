@@ -299,7 +299,8 @@ export default {
             const filter = this.rolesList.filter(r => !roleID.includes(r.id));
             let test = filter.filter(f => f.name == "Recon");
             let test2 = filter.filter(f => f.name == "Coord");
-            console.log(test, test2);
+            let test3 = concat(test, test2);
+            console.log(test3);
             if (this.$can("edit_all_users")) {
                 return filter;
             } else if (
