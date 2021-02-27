@@ -35418,6 +35418,14 @@ var render = function() {
                     )
                   ]),
                   _vm._v(" "),
+                  _vm.$can("super")
+                    ? _c("v-tab", { attrs: { link: "", to: "/chilltimers" } }, [
+                        _vm._v(
+                          "\n                    Chilled Timers\n                "
+                        )
+                      ])
+                    : _vm._e(),
+                  _vm._v(" "),
                   _vm.$can("view_towers")
                     ? _c("v-tab", { attrs: { link: "", to: "/towers" } }, [
                         _vm._v("\n                    Towers\n                ")
