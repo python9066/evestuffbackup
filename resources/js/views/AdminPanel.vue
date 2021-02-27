@@ -336,17 +336,15 @@ export default {
             if (this.$can("edit_all_users")) {
                 return filter;
             } else if (this.$can("edit_chill_users")) {
-                let chill = filter.filter(f => f.name == "Chilled");
+                chill = filter.filter(f => f.name == "Chilled");
             } else if (this.$can("edit_gsfoe_fc")) {
-                let gsfoeFC = filter.filter(f => f.name == "GSFOE FC");
+                gsfoeFC = filter.filter(f => f.name == "GSFOE FC");
             } else if (this.$can("edit_recon_users")) {
-                let recon = filter.filter(f => f.name == "Recon");
+                recon = filter.filter(f => f.name == "Recon");
             } else if (this.$can("edit_scout_users")) {
-                let scout = filter.filter(f => f.name == "Scout");
+                scout = filter.filter(f => f.name == "Scout");
             } else if (this.$can("edit_super_chilled_users")) {
-                let superChilled = filter.filter(
-                    f => f.name == "Super Chilled"
-                );
+                superChilled = filter.filter(f => f.name == "Super Chilled");
             }
 
             return start.concat(chill, gsfoeFC, recon, scout, superChilled);

@@ -13458,23 +13458,23 @@ function sleep(ms) {
       if (this.$can("edit_all_users")) {
         return filter;
       } else if (this.$can("edit_chill_users")) {
-        var _chill = filter.filter(function (f) {
+        chill = filter.filter(function (f) {
           return f.name == "Chilled";
         });
       } else if (this.$can("edit_gsfoe_fc")) {
-        var _gsfoeFC = filter.filter(function (f) {
+        gsfoeFC = filter.filter(function (f) {
           return f.name == "GSFOE FC";
         });
       } else if (this.$can("edit_recon_users")) {
-        var _recon = filter.filter(function (f) {
+        recon = filter.filter(function (f) {
           return f.name == "Recon";
         });
       } else if (this.$can("edit_scout_users")) {
-        var _scout = filter.filter(function (f) {
+        scout = filter.filter(function (f) {
           return f.name == "Scout";
         });
       } else if (this.$can("edit_super_chilled_users")) {
-        var _superChilled = filter.filter(function (f) {
+        superChilled = filter.filter(function (f) {
           return f.name == "Super Chilled";
         });
       }
