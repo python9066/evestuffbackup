@@ -352,7 +352,8 @@ export default {
                 station_status_id: this.refType,
                 out_time: outTime,
                 status_update: moment.utc().format("YYYY-MM-DD HH:mm:ss"),
-                timestamp: moment.utc().format("YYYY-MM-DD HH:mm:ss")
+                timestamp: moment.utc().format("YYYY-MM-DD HH:mm:ss"),
+                show_on_main: 1
             };
 
             await axios({
@@ -403,7 +404,8 @@ export default {
             var request = {
                 station_status_id: this.refType,
                 out_time: outTime,
-                status_update: moment.utc().format("YYYY-MM-DD HH:mm:ss")
+                status_update: moment.utc().format("YYYY-MM-DD HH:mm:ss"),
+                show_on_main: 1
             };
 
             await axios({
@@ -447,7 +449,8 @@ export default {
 
         async stationNameAdd() {
             var request = {
-                stationName: this.stationNameEdit
+                stationName: this.stationNameEdit,
+                show: 1
             };
             await axios({
                 method: "put", //you can set what request you want to be

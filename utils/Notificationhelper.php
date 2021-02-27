@@ -183,10 +183,19 @@ class Notifications
         broadcast(new StationDataSet($flag));
         broadcast(new StationInfoSet($flag));
     }
-    public static function test($var)
+    public static function test($var, $show)
     {
 
+        $showMain = 0;
+        $showChill = 0;
 
+        if ($show == 1) {
+            $showMain = 1;
+        };
+
+        if ($show == 2) {
+            $showChill = 1;
+        };
 
         $time = $var['timestamp'];
         $time = Helper::fixtime($time);
@@ -305,7 +314,9 @@ class Notifications
                             'r_cloning' => $stationdata['str_cloning'],
                             'r_composite' => $stationdata['str_composite'],
                             'r_cored' => $stationdata['str_cored'],
-                            'status_update' => $current
+                            'status_update' => $current,
+                            'show_on_main' => $showMain,
+                            'show_on_chill' => $showChill
                         ]);
                         if ($stationdata['str_has_no_fitting'] != null) {
                             $items = Utils::jsonDecode($stationdata['str_fitting'], true);
@@ -329,7 +340,9 @@ class Notifications
                             'station_status_id' => 1,
                             'timestamp' => $time,
                             'status_update' => $current,
-                            'out_time' => null
+                            'out_time' => null,
+                            'show_on_main' => $showMain,
+                            'show_on_chill' => $showChill
                         ]);
                     }
                 } else {
@@ -343,7 +356,9 @@ class Notifications
                         'user_id' => null,
                         'station_status_id' => $status,
                         'timestamp' => $time,
-                        'status_update' => $current
+                        'status_update' => $current,
+                        'show_on_main' => $showMain,
+                        'show_on_chill' => $showChill
                     ]);
                 }
 
@@ -407,7 +422,9 @@ class Notifications
                             'r_composite' => $stationdata['str_composite'],
                             'r_cored' => $stationdata['str_cored'],
                             'status_update' => $current,
-                            'out_time' =>  $outTime
+                            'out_time' =>  $outTime,
+                            'show_on_main' => $showMain,
+                            'show_on_chill' => $showChill
                         ]);
                         if ($stationdata['str_has_no_fitting'] != null) {
                             $items = Utils::jsonDecode($stationdata['str_fitting'], true);
@@ -431,7 +448,9 @@ class Notifications
                             'station_status_id' => 8,
                             'timestamp' => $time,
                             'out_time' => $outTime,
-                            'status_update' => $current
+                            'status_update' => $current,
+                            'show_on_main' => $showMain,
+                            'show_on_chill' => $showChill
                         ]);
                     }
                 } else {
@@ -441,7 +460,9 @@ class Notifications
                         'station_status_id' => 8,
                         'timestamp' => $time,
                         'status_update' => $current,
-                        'out_time' => $outTime
+                        'out_time' => $outTime,
+                        'show_on_main' => $showMain,
+                        'show_on_chill' => $showChill
                     ]);
                 }
 
@@ -506,7 +527,9 @@ class Notifications
                             'r_composite' => $stationdata['str_composite'],
                             'r_cored' => $stationdata['str_cored'],
                             'status_update' => $current,
-                            'out_time' =>  $outTime
+                            'out_time' =>  $outTime,
+                            'show_on_main' => $showMain,
+                            'show_on_chill' => $showChill
                         ]);
                         if ($stationdata['str_has_no_fitting'] != null) {
                             $items = Utils::jsonDecode($stationdata['str_fitting'], true);
@@ -531,7 +554,9 @@ class Notifications
                             'station_status_id' => 9,
                             'timestamp' => $time,
                             'out_time' => $outTime,
-                            'status_update' => $current
+                            'status_update' => $current,
+                            'show_on_main' => $showMain,
+                            'show_on_chill' => $showChill
                         ]);
                     }
                 } else {
@@ -541,7 +566,9 @@ class Notifications
                         'station_status_id' => 9,
                         'timestamp' => $time,
                         'status_update' => $current,
-                        'out_time' => $outTime
+                        'out_time' => $outTime,
+                        'show_on_main' => $showMain,
+                        'show_on_chill' => $showChill
                     ]);
 
                     $data = array(

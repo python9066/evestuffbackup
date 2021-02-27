@@ -9221,7 +9221,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   station_status_id: _this4.refType,
                   out_time: outTime,
                   status_update: moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc().format("YYYY-MM-DD HH:mm:ss"),
-                  timestamp: moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc().format("YYYY-MM-DD HH:mm:ss")
+                  timestamp: moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc().format("YYYY-MM-DD HH:mm:ss"),
+                  show_on_main: 1
                 };
                 _context.next = 12;
                 return axios({
@@ -9265,7 +9266,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 request = {
                   station_status_id: _this5.refType,
                   out_time: outTime,
-                  status_update: moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc().format("YYYY-MM-DD HH:mm:ss")
+                  status_update: moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc().format("YYYY-MM-DD HH:mm:ss"),
+                  show_on_main: 1
                 };
                 _context2.next = 12;
                 return axios({
@@ -9325,7 +9327,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context4.prev = _context4.next) {
               case 0:
                 request = {
-                  stationName: _this7.stationNameEdit
+                  stationName: _this7.stationNameEdit,
+                  show: 1
                 };
                 _context4.next = 3;
                 return axios({

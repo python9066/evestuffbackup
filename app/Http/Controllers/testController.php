@@ -25,7 +25,7 @@ class testController extends Controller
     {
 
         testNote::create(['text' => $request]);
-        Notifications::test($request);
+        Notifications::test($request, 1);
     }
 
     public function userinfo()

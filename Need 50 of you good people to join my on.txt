@@ -10,11 +10,15 @@ Doctrine: Jackdaw Fleet (Boosters > Scalpel / Kirin > Jackdaw > Keres / Hyena > 
 
 !all Speed and Powah!
 
-FC Name: Luke Toir
-Formup Location: 1DQ1-A
+!all The jackdaw is the most advanced type of cormorant.
+
+!all The jack is, according to my sources, whack.  We also have some reds to shoot at
+
+FC Name: Arza Ara
+Formup Location: 1DQ
 Pap Type: Strategic
 Comms: Op 9 https://gnf.lt/l7zng0s.html
-Doctrine: Harpy Fleet (Boosters > Scalpel / Kirin > Burst > Harpy > Else)
+Doctrine: Jackdaw Fleet (Boosters > Scalpel / Kirin > Jackdaw > Keres / Hyena > Tackle)
 
 /usr/bin/php7.4-cli artisan
 
