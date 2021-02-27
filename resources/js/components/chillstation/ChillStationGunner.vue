@@ -87,7 +87,7 @@ export default {
         },
 
         async gunnerRemove() {
-            request = {
+            var request = {
                 gunner_id: null
             };
 
