@@ -353,7 +353,7 @@ export default {
                 out_time: outTime,
                 status_update: moment.utc().format("YYYY-MM-DD HH:mm:ss"),
                 timestamp: moment.utc().format("YYYY-MM-DD HH:mm:ss"),
-                show_on_main: 1
+                show_on_chill: 1
             };
 
             await axios({
@@ -405,7 +405,7 @@ export default {
                 station_status_id: this.refType,
                 out_time: outTime,
                 status_update: moment.utc().format("YYYY-MM-DD HH:mm:ss"),
-                show_on_main: 1
+                show_on_chill: 1
             };
 
             await axios({

@@ -37,11 +37,7 @@
                 </span>
             </v-tooltip>
             <v-icon
-                v-if="
-                    station.gunner_id != null &&
-                        ($can('gunner') ||
-                            this.$store.state.user_id == station.gunner_id)
-                "
+                v-if="station.gunner_id != null && $can('gunner')"
                 color="orange darken-3"
                 small
                 @click="gunnerRemove()"
@@ -91,15 +87,6 @@ export default {
         },
 
         async gunnerRemove() {
-            var data = {
-                id: this.station.id,
-                gunner_name: null,
-                gunner_id: null
-            };
-
-            this.$store.dispatch("updateStationNotification", data);
-
-            var request = null;
             request = {
                 gunner_id: null
             };

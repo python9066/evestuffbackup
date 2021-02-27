@@ -2,7 +2,7 @@
     <div class=" pt-16">
         <div class=" d-flex align-items-center">
             <v-card-title>Structure Notifications</v-card-title>
-            <AddStation v-if="$can('add_timer')"></AddStation>
+            <ChillAddStation v-if="$can('edit_chill_timers')"></ChillAddStation>
 
             <v-text-field
                 class=" ml-5"
@@ -125,7 +125,7 @@
                 class="align-items-center"
             >
                 <div
-                    v-if="$can('edit_station_notifications')"
+                    v-if="$can('edit_chill_timers')"
                     class="align-items-center d-inline-flex"
                 >
                     <v-menu offset-y>
@@ -177,7 +177,7 @@
                         >
                             <div v-on="{ ...tooltip }" v-bind="{ ...atooltip }">
                                 <StationAttack
-                                    v-if="$can('edit_station_notifications')"
+                                    v-if="$can('edit_chill_timers')"
                                     :station="item"
                                     :showTooltip="$store.state.tooltipToggle"
                                 ></StationAttack>
@@ -278,7 +278,10 @@
                 <span v-else class="pl-3">{{ item.alliance_ticker }}</span>
             </template>
 
-            <template v-slot:item.actions="{ item }" v-if="$can('gunner')">
+            <template
+                v-slot:item.actions="{ item }"
+                v-if="$can('edit_chill_timers')"
+            >
                 <div class=" d-inline-flex">
                     <StationGunner
                         class=" mr-2"
@@ -369,8 +372,8 @@ export default {
 
     async created() {
         Echo.private("notes")
-            .listen("StationNotificationNew", e => {
-                if (this.$can("gunner")) {
+            .listen("chillStationNotificationNew", e => {
+                if (this.$can("edit_chill_timers")) {
                     this.$store.dispatch("loadStationInfo");
                 }
                 this.$store.dispatch("addStationNotification", e.flag.message);
@@ -388,7 +391,7 @@ export default {
                 this.$store.dispatch("getStationData");
             });
 
-        if (this.$can("gunner")) {
+        if (this.$can("edit_chill_timers")) {
             Echo.private("stationinfo")
                 .listen("StationInfoGet", e => {
                     this.$store.dispatch("loadStationInfo");
@@ -437,7 +440,7 @@ export default {
                     item.station_status_id == 9 ||
                     item.station_status_id == 14) &&
                 item.out_time == null &&
-                this.$can("edit_station_notifications")
+                this.$can("edit_chill_timers")
             ) {
                 return true;
             } else {
@@ -446,7 +449,7 @@ export default {
         },
 
         showInfo(item) {
-            if (this.$can("gunner")) {
+            if (this.$can("edit_chill_timers")) {
                 if (
                     item.item_id == 37534 ||
                     item.item_id == 35841 ||
@@ -477,7 +480,7 @@ export default {
         },
 
         showGunner(item) {
-            if (this.$can("gunner")) {
+            if (this.$can("edit_chill_timers")) {
                 if (
                     item.item_id == 37534 ||
                     item.item_id == 35841 ||
@@ -663,7 +666,7 @@ export default {
                 .utc()
                 .add(1, "hour")
                 .format("YYYY-MM-DD HH:mm:ss");
-            const filter = this.stations.filter(s => s.show_on_main == 2);
+            const filter = this.stations.filter(s => s.show_on_chill == 1);
             if (this.statusflag == 2) {
                 return filter.filter(
                     s =>
@@ -702,116 +705,63 @@ export default {
         },
 
         _headers() {
-            if (this.$can("gunner")) {
-                var Headers = [
-                    {
-                        text: "Region",
-                        value: "region_name",
-                        width: "5%"
-                    },
-                    {
-                        text: "Constellation",
-                        value: "constellation_name",
-                        width: "8%"
-                    },
-                    {
-                        text: "System",
-                        value: "system_name",
-                        width: "8%"
-                    },
-                    {
-                        text: "Alliance",
-                        value: "alliance_ticker",
-                        width: "10%"
-                    },
-                    {
-                        text: "Type",
-                        value: "item_name",
-                        width: "10%"
-                    },
-                    {
-                        text: "Name",
-                        value: "station_name",
-                        width: "15%"
-                    },
-                    {
-                        text: "Timestamp",
-                        value: "timestamp",
-                        align: "center",
-                        width: "15%"
-                    },
-                    {
-                        text: "Age/CountDown",
-                        value: "count",
-                        width: "5%"
-                    },
-                    {
-                        text: "Status",
-                        value: "station_status_name",
-                        align: "center",
-                        width: "10%"
-                    },
-                    {
-                        text: "Gunner/Info",
-                        value: "actions",
-                        width: "10%",
-                        align: "start"
-                    }
+            [
+                {
+                    text: "Region",
+                    value: "region_name",
+                    width: "5%"
+                },
+                {
+                    text: "Constellation",
+                    value: "constellation_name",
+                    width: "8%"
+                },
+                {
+                    text: "System",
+                    value: "system_name",
+                    width: "8%"
+                },
+                {
+                    text: "Alliance",
+                    value: "alliance_ticker",
+                    width: "10%"
+                },
+                {
+                    text: "Type",
+                    value: "item_name",
+                    width: "10%"
+                },
+                {
+                    text: "Name",
+                    value: "station_name",
+                    width: "15%"
+                },
+                {
+                    text: "Timestamp",
+                    value: "timestamp",
+                    align: "center",
+                    width: "15%"
+                },
+                {
+                    text: "Age/CountDown",
+                    value: "count",
+                    width: "5%"
+                },
+                {
+                    text: "Status",
+                    value: "station_status_name",
+                    align: "center",
+                    width: "10%"
+                },
+                {
+                    text: "Gunner/Info",
+                    value: "actions",
+                    width: "10%",
+                    align: "start"
+                }
 
-                    // { text: "Vulernable End Time", value: "vulnerable_end_time" }
-                ];
-                return Headers;
-            } else {
-                var Headers = [
-                    {
-                        text: "Region",
-                        value: "region_name",
-                        width: "5%"
-                    },
-                    {
-                        text: "Constellation",
-                        value: "constellation_name",
-                        width: "8%"
-                    },
-                    {
-                        text: "System",
-                        value: "system_name",
-                        width: "5%"
-                    },
-                    {
-                        text: "Alliance",
-                        value: "alliance_ticker",
-                        width: "5%"
-                    },
-                    {
-                        text: "Type",
-                        value: "item_name",
-                        width: "10%"
-                    },
-                    {
-                        text: "Name",
-                        value: "station_name",
-                        width: "15%"
-                    },
-                    {
-                        text: "Timestamp",
-                        value: "timestamp",
-                        align: "center",
-                        width: "12%"
-                    },
-                    {
-                        text: "Age/CountDown",
-                        value: "count",
-                        width: "5%"
-                    },
-                    {
-                        text: "Status",
-                        value: "station_status_name",
-                        width: "25%"
-                    }
-                ];
-                return Headers;
-            }
+                // { text: "Vulernable End Time", value: "vulnerable_end_time" }
+            ];
         }
     },
     beforeDestroy() {

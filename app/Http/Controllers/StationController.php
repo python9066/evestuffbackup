@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\ChillStationCoreUpdate;
 use App\Events\StationAttackMessageUpdate;
 use App\Events\StationCoreUpdate;
 use App\Events\StationMessageUpdate;
@@ -85,6 +86,7 @@ class StationController extends Controller
             'message' => $message,
         ]);
         broadcast(new StationCoreUpdate($flag));
+
         System::where('id', $request->system_id)->update(['task_flag' => 1]);
         $url = "https://recon.gnf.lt/api/task/add";
         $client = new GuzzleHttpClient();
