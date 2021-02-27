@@ -30,7 +30,11 @@
                         Notifications
                     </v-tab>
 
-                    <v-tab v-if="$can('super')" link to="/chillstations">
+                    <v-tab
+                        v-if="$can('view_chill_timers')"
+                        link
+                        to="/chillstations"
+                    >
                         Chilled Timers
                     </v-tab>
 

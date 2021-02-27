@@ -15360,6 +15360,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
 // import { EventBus } from "../event-bus";
 
 
@@ -38346,7 +38350,7 @@ var render = function() {
                     )
                   ]),
                   _vm._v(" "),
-                  _vm.$can("super")
+                  _vm.$can("view_chill_timers")
                     ? _c(
                         "v-tab",
                         { attrs: { link: "", to: "/chillstations" } },
