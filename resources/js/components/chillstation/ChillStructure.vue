@@ -368,7 +368,7 @@ export default {
                 { title: "New", value: 1 }
             ],
 
-            headers = [
+            headers: [
                 {
                     text: "Region",
                     value: "region_name",
@@ -422,8 +422,6 @@ export default {
                     width: "10%",
                     align: "start"
                 }
-
-                // { text: "Vulernable End Time", value: "vulnerable_end_time" }
             ]
         };
     },
@@ -760,7 +758,7 @@ export default {
 
         user_name() {
             return this.$store.state.user_name;
-        },
+        }
     },
     beforeDestroy() {
         Echo.leave("notes");

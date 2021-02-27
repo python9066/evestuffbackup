@@ -3,7 +3,7 @@
         <div>
             <span class="d-inline-flex align-items-md-center pr-2">
                 <span class="pl-2" v-show="!showGunnerButton">
-                    {{ showName }}
+                    {{ gunnerName }}
                 </span>
             </span>
         </div>
@@ -57,7 +57,9 @@ export default {
         station: Object
     },
     data() {
-        return {};
+        return {
+            gunnerName: null
+        };
     },
 
     watch: {
@@ -67,6 +69,10 @@ export default {
             },
             deep: true
         }
+    },
+
+    mounted() {
+        this.showName;
     },
 
     methods: {
@@ -127,9 +133,9 @@ export default {
 
     showName() {
         if (this.station.standing > 0) {
-            return station.gunner_name;
+            this.gunnerName == station.gunner_name;
         } else {
-            return "Has Gunner";
+            this.gunnerName == "Has Gunner";
         }
     }
 };

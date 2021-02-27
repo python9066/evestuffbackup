@@ -6059,6 +6059,50 @@ function sleep(ms) {
       }, {
         title: "New",
         value: 1
+      }],
+      headers: [{
+        text: "Region",
+        value: "region_name",
+        width: "5%"
+      }, {
+        text: "Constellation",
+        value: "constellation_name",
+        width: "8%"
+      }, {
+        text: "System",
+        value: "system_name",
+        width: "8%"
+      }, {
+        text: "Alliance",
+        value: "alliance_ticker",
+        width: "10%"
+      }, {
+        text: "Type",
+        value: "item_name",
+        width: "10%"
+      }, {
+        text: "Name",
+        value: "station_name",
+        width: "15%"
+      }, {
+        text: "Timestamp",
+        value: "timestamp",
+        align: "center",
+        width: "15%"
+      }, {
+        text: "Age/CountDown",
+        value: "count",
+        width: "5%"
+      }, {
+        text: "Status",
+        value: "station_status_name",
+        align: "center",
+        width: "10%"
+      }, {
+        text: "Gunner/Info",
+        value: "actions",
+        width: "10%",
+        align: "start"
       }]
     };
   },
@@ -6389,53 +6433,6 @@ function sleep(ms) {
     },
     user_name: function user_name() {
       return this.$store.state.user_name;
-    },
-    _headers: function _headers() {
-      [{
-        text: "Region",
-        value: "region_name",
-        width: "5%"
-      }, {
-        text: "Constellation",
-        value: "constellation_name",
-        width: "8%"
-      }, {
-        text: "System",
-        value: "system_name",
-        width: "8%"
-      }, {
-        text: "Alliance",
-        value: "alliance_ticker",
-        width: "10%"
-      }, {
-        text: "Type",
-        value: "item_name",
-        width: "10%"
-      }, {
-        text: "Name",
-        value: "station_name",
-        width: "15%"
-      }, {
-        text: "Timestamp",
-        value: "timestamp",
-        align: "center",
-        width: "15%"
-      }, {
-        text: "Age/CountDown",
-        value: "count",
-        width: "5%"
-      }, {
-        text: "Status",
-        value: "station_status_name",
-        align: "center",
-        width: "10%"
-      }, {
-        text: "Gunner/Info",
-        value: "actions",
-        width: "10%",
-        align: "start"
-      } // { text: "Vulernable End Time", value: "vulnerable_end_time" }
-      ];
     }
   }),
   beforeDestroy: function beforeDestroy() {
@@ -11613,7 +11610,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     station: Object
   },
   data: function data() {
-    return {};
+    return {
+      gunnerName: null
+    };
   },
   watch: {
     station: {
@@ -11622,6 +11621,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       },
       deep: true
     }
+  },
+  mounted: function mounted() {
+    this.showName;
   },
   methods: {
     gunnerAdd: function gunnerAdd() {
@@ -11710,9 +11712,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   showName: function showName() {
     if (this.station.standing > 0) {
-      return station.gunner_name;
+      this.gunnerName == station.gunner_name;
     } else {
-      return "Has Gunner";
+      this.gunnerName == "Has Gunner";
     }
   }
 });
@@ -27487,7 +27489,7 @@ var render = function() {
         {
           staticClass: "elevation-1",
           attrs: {
-            headers: _vm._headers,
+            headers: _vm.headers,
             items: _vm.filteredItems,
             "item-class": _vm.itemRowBackground,
             "item-key": "id",
@@ -34338,7 +34340,9 @@ var render = function() {
               },
               [
                 _vm._v(
-                  "\n                " + _vm._s(_vm.showName) + "\n            "
+                  "\n                " +
+                    _vm._s(_vm.gunnerName) +
+                    "\n            "
                 )
               ]
             )
