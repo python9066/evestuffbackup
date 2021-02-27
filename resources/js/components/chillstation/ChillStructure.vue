@@ -1,5 +1,5 @@
 <template>
-    <div class=" pt-16">
+    <div class=" pr-16 pl-16">
         <div class=" d-flex align-items-center">
             <v-card-title>Structure Notifications</v-card-title>
             <ChillAddStation v-if="$can('edit_chill_timers')"></ChillAddStation>

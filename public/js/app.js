@@ -27383,7 +27383,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: " pt-16" },
+    { staticClass: " pr-16 pl-16" },
     [
       _c(
         "div",
