@@ -21,6 +21,11 @@ class Corp extends Model
         return $this->hasMany(Station::class);
     }
 
+    public function chillStations()
+    {
+        return $this->hasMany(ChillStation::class);
+    }
+
     protected $casts = [
         'id' => 'integer',
         'standingstanding' => 'double',

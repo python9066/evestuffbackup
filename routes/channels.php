@@ -70,6 +70,18 @@ Broadcast::channel('towermessage.{id}', function () {
     return Auth::check();
 });
 
+Broadcast::channel('chillstationmessage.{id}', function () {
+    return Auth::check();
+});
+
+Broadcast::channel('chillstationinfo', function () {
+    return Auth::check();
+});
+
+Broadcast::channel('chillstations', function () {
+    return Auth::check();
+});
+
 
 
 

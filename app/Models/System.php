@@ -43,6 +43,11 @@ class System extends Model
         return $this->hasMany(CampaignSolaSystem::class);
     }
 
+    public function chillStations()
+    {
+        return $this->hasMany(ChillStation::class);
+    }
+
     protected $casts = [
         'region_id ' => 'integer',
         'constellation_id' => 'integer',
