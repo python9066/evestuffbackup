@@ -25,7 +25,6 @@ class CreateChillStationsTable extends Migration
             $table->string('attack_notes')->nullable();
             $table->string('attack_adash_link')->nullable();
             $table->integer('station_status_id')->default('1')->index();
-            $table->dateTime('timestamp')->nullable();
             $table->foreignId('gunner_id')->nullable();
             $table->timestamp('out_time')->nullable();
             $table->timestamp('repair_time')->nullable();
