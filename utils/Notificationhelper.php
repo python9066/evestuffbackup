@@ -186,16 +186,7 @@ class Notifications
     public static function test($var, $show)
     {
 
-        $showMain = 0;
-        $showChill = 0;
 
-        if ($show == 1) {
-            $showMain = 1;
-        };
-
-        if ($show == 2) {
-            $showChill = 1;
-        };
 
         $time = $var['timestamp'];
         $time = Helper::fixtime($time);
@@ -315,8 +306,8 @@ class Notifications
                             'r_composite' => $stationdata['str_composite'],
                             'r_cored' => $stationdata['str_cored'],
                             'status_update' => $current,
-                            'show_on_main' => $showMain,
-                            'show_on_chill' => $showChill
+                            'show_on_main' => Notifications::setShowMainNew($show),
+                            'show_on_chill' => Notifications::setShowChillNew($show)
                         ]);
                         if ($stationdata['str_has_no_fitting'] != null) {
                             $items = Utils::jsonDecode($stationdata['str_fitting'], true);
@@ -341,8 +332,8 @@ class Notifications
                             'timestamp' => $time,
                             'status_update' => $current,
                             'out_time' => null,
-                            'show_on_main' => $showMain,
-                            'show_on_chill' => $showChill
+                            'show_on_main' => Notifications::setShowMainNew($show),
+                            'show_on_chill' => Notifications::setShowChillNew($show)
                         ]);
                     }
                 } else {
@@ -357,8 +348,8 @@ class Notifications
                         'station_status_id' => $status,
                         'timestamp' => $time,
                         'status_update' => $current,
-                        'show_on_main' => $showMain,
-                        'show_on_chill' => $showChill
+                        'show_on_main' => Notifications::setShowMain($station, $show),
+                        'show_on_chill' => Notifications::setShowChill($station, $show)
                     ]);
                 }
 
@@ -423,8 +414,8 @@ class Notifications
                             'r_cored' => $stationdata['str_cored'],
                             'status_update' => $current,
                             'out_time' =>  $outTime,
-                            'show_on_main' => $showMain,
-                            'show_on_chill' => $showChill
+                            'show_on_main' => Notifications::setShowMainNew($show),
+                            'show_on_chill' => Notifications::setShowChillNew($show)
                         ]);
                         if ($stationdata['str_has_no_fitting'] != null) {
                             $items = Utils::jsonDecode($stationdata['str_fitting'], true);
@@ -449,8 +440,8 @@ class Notifications
                             'timestamp' => $time,
                             'out_time' => $outTime,
                             'status_update' => $current,
-                            'show_on_main' => $showMain,
-                            'show_on_chill' => $showChill
+                            'show_on_main' => Notifications::setShowMainNew($show),
+                            'show_on_chill' => Notifications::setShowChillNew($show)
                         ]);
                     }
                 } else {
@@ -461,8 +452,8 @@ class Notifications
                         'timestamp' => $time,
                         'status_update' => $current,
                         'out_time' => $outTime,
-                        'show_on_main' => $showMain,
-                        'show_on_chill' => $showChill
+                        'show_on_main' => Notifications::setShowMain($station, $show),
+                        'show_on_chill' => Notifications::setShowChill($station, $show)
                     ]);
                 }
 
@@ -528,8 +519,8 @@ class Notifications
                             'r_cored' => $stationdata['str_cored'],
                             'status_update' => $current,
                             'out_time' =>  $outTime,
-                            'show_on_main' => $showMain,
-                            'show_on_chill' => $showChill
+                            'show_on_main' => Notifications::setShowMainNew($show),
+                            'show_on_chill' => Notifications::setShowChillNew($show)
                         ]);
                         if ($stationdata['str_has_no_fitting'] != null) {
                             $items = Utils::jsonDecode($stationdata['str_fitting'], true);
@@ -555,8 +546,8 @@ class Notifications
                             'timestamp' => $time,
                             'out_time' => $outTime,
                             'status_update' => $current,
-                            'show_on_main' => $showMain,
-                            'show_on_chill' => $showChill
+                            'show_on_main' => Notifications::setShowMainNew($show),
+                            'show_on_chill' => Notifications::setShowChillNew($show)
                         ]);
                     }
                 } else {
@@ -567,8 +558,8 @@ class Notifications
                         'timestamp' => $time,
                         'status_update' => $current,
                         'out_time' => $outTime,
-                        'show_on_main' => $showMain,
-                        'show_on_chill' => $showChill
+                        'show_on_main' => Notifications::setShowMain($station, $show),
+                        'show_on_chill' => Notifications::setShowChill($station, $show)
                     ]);
 
                     $data = array(
@@ -1002,5 +993,48 @@ class Notifications
         //         broadcast(new TowerChanged($flag));
         //     }
         // }
+    }
+
+
+    public static function setShowMain($pull, $show)
+    {
+
+        $showMain = $pull->show_on_main;
+
+        if ($show == 1) {
+            return 1;
+        } else {
+            return $showMain;
+        }
+    }
+
+    public static function setShowChill($pull, $show)
+    {
+
+        $showChill = $pull->show_on_chill;
+
+        if ($show == 1) {
+            return 1;
+        } else {
+            return $showChill;
+        }
+    }
+
+    public static function setShowMainNew($show)
+    {
+        if ($show == 1) {
+            return 1;
+        } else {
+            return 0;
+        }
+    }
+
+    public static function setShowChillNew($show)
+    {
+        if ($show == 1) {
+            return 1;
+        } else {
+            return 0;
+        }
     }
 }
