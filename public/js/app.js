@@ -13421,6 +13421,7 @@ function sleep(ms) {
       });
 
       if (this.$can("edit_all_users")) {
+        console.log(filter);
         return filter;
       } else if (this.$can("edit_gsfoe_fc") && this.$can("edit_recon_users") && this.$can("edit_scout_users")) {
         return filter.filter(function (f) {

@@ -298,6 +298,7 @@ export default {
             let roleID = item.map(i => i.id);
             const filter = this.rolesList.filter(r => !roleID.includes(r.id));
             if (this.$can("edit_all_users")) {
+                console.log(filter);
                 return filter;
             } else if (
                 this.$can("edit_gsfoe_fc") &&
