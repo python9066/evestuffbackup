@@ -15986,6 +15986,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 
@@ -39110,6 +39111,9 @@ var render = function() {
                                                   _vm._g(
                                                     _vm._b(
                                                       {
+                                                        key:
+                                                          "showscahrtable." +
+                                                          _vm.campaign.id,
                                                         staticClass: "mr-4",
                                                         attrs: {
                                                           color: "blue darken-2"
@@ -39140,7 +39144,7 @@ var render = function() {
                                     ],
                                     null,
                                     false,
-                                    4246962299
+                                    3279164820
                                   )
                                 },
                                 [

@@ -169,6 +169,7 @@
                             >
                                 <v-btn
                                     class="mr-4"
+                                    :key="'showscahrtable.' + campaign.id"
                                     v-on="{ ...tooltip }"
                                     v-bind="{ ...atooltip }"
                                     color="blue darken-2"
