@@ -178,21 +178,19 @@
                                     @click="showTable = true"
                                     >Show Char table</v-btn
                                 >
-
-                                <v-btn
-                                    class="mr-4"
-                                    :key="'hidecahrtable.' + campaign.id"
-                                    color="orange darken-2"
-                                    v-if="showTable == true"
-                                    @click="showTable = false"
-                                    >Hide Char table</v-btn
-                                >
                             </template>
                             <span>
-                                Shows/Hide table showing all the active
-                                Characters in the campaign
+                                Shows/Hide table all the active Characters in
+                                the campaign
                             </span>
                         </v-tooltip>
+                        <v-btn
+                            class="mr-4"
+                            color="orange darken-2"
+                            v-if="showTable == true"
+                            @click="showTable = false"
+                            >Hide Char table</v-btn
+                        >
                         <UsersChars :campaign_id="campaign.id"> </UsersChars>
                         <CampaignMapSystem
                             :region_name="campaign.region"
