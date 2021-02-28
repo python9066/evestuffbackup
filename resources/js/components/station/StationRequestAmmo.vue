@@ -51,7 +51,7 @@
                 tile
                 max-width="700px"
                 min-height="200px"
-                max-height="700px"
+                max-height="800px"
                 class=" d-flex flex-column"
                 elevation="24"
             >

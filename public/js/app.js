@@ -35503,7 +35503,7 @@ var render = function() {
                 tile: "",
                 "max-width": "700px",
                 "min-height": "200px",
-                "max-height": "700px",
+                "max-height": "800px",
                 elevation: "24"
               }
             },
