@@ -85,6 +85,11 @@
                         >
                             Request Made
                         </v-chip>
+                        <StationRequestAmmo
+                            v-if="$can('super')"
+                            :station="station"
+                            :key="'ammorequest' + station.id"
+                        ></StationRequestAmmo>
                     </div>
                 </v-card-subtitle>
                 <v-card-text>
