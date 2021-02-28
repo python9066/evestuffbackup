@@ -155,13 +155,32 @@
                     tile
                 >
                     <div class=" d-md-inline-flex">
-                        <v-btn
-                            class="mr-4"
-                            color="blue darken-2"
-                            v-if="showTable == false"
-                            @click="showTable = true"
-                            >Show Char table</v-btn
+                        <v-tooltip
+                            color="#121212"
+                            bottom
+                            :open-delay="2000"
+                            :disabled="$store.state.tooltipToggle"
                         >
+                            <template
+                                v-slot:activator="{
+                                    on: tooltip,
+                                    attrs: atooltip
+                                }"
+                            >
+                                <v-btn
+                                    class="mr-4"
+                                    v-on="{ ...tooltip }"
+                                    v-bind="{ ...atooltip }"
+                                    color="blue darken-2"
+                                    v-if="showTable == false"
+                                    @click="showTable = true"
+                                    >Show Char table</v-btn
+                                >
+                            </template>
+                            <span>
+                                Shows all the active Characters in the campaign
+                            </span>
+                        </v-tooltip>
                         <v-btn
                             class="mr-4"
                             color="orange darken-2"
