@@ -4730,6 +4730,23 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -26473,21 +26490,50 @@ var render = function() {
             {
               key: "activator",
               fn: function(ref) {
-                var on = ref.on
+                var menu = ref.on
                 var attrs = ref.attrs
                 return [
                   _c(
-                    "v-btn",
-                    _vm._g(
-                      _vm._b(
-                        { staticClass: "mr-4", attrs: { color: "warning" } },
-                        "v-btn",
-                        attrs,
-                        false
-                      ),
-                      on
-                    ),
-                    [_vm._v("people watching")]
+                    "v-tooltip",
+                    {
+                      attrs: {
+                        color: "#121212",
+                        bottom: "",
+                        "open-delay": 2000,
+                        disabled: _vm.$store.state.tooltipToggle
+                      },
+                      scopedSlots: _vm._u(
+                        [
+                          {
+                            key: "activator",
+                            fn: function(ref) {
+                              var tooltip = ref.on
+                              return [
+                                _c(
+                                  "v-btn",
+                                  _vm._g(
+                                    _vm._b(
+                                      {
+                                        staticClass: "mr-4",
+                                        attrs: { color: "warning" }
+                                      },
+                                      "v-btn",
+                                      attrs,
+                                      false
+                                    ),
+                                    Object.assign({}, tooltip, menu)
+                                  ),
+                                  [_vm._v("people watching")]
+                                )
+                              ]
+                            }
+                          }
+                        ],
+                        null,
+                        true
+                      )
+                    },
+                    [_c("span", [_vm._v("TEST")])]
                   )
                 ]
               }

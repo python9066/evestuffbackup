@@ -6,9 +6,26 @@
             z-index="0"
             @click:outside="close()"
         >
-            <template v-slot:activator="{ on, attrs }">
-                <v-btn class="mr-4" color="warning" v-bind="attrs" v-on="on"
-                    >people watching</v-btn
+            <template v-slot:activator="{ on: menu, attrs }">
+                <v-tooltip
+                    color="#121212"
+                    bottom
+                    :open-delay="2000"
+                    :disabled="$store.state.tooltipToggle"
+                >
+                    <template
+                        v-slot:activator="{
+                            on: tooltip
+                        }"
+                    >
+                        <v-btn
+                            class="mr-4"
+                            color="warning"
+                            v-bind="attrs"
+                            v-on="{ ...tooltip, ...menu }"
+                            >people watching</v-btn
+                        ></template
+                    ><span>TEST</span></v-tooltip
                 >
             </template>
             <v-card tile max-height="500">
