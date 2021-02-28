@@ -15991,6 +15991,32 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -39156,7 +39182,14 @@ var render = function() {
                                     1019821103
                                   )
                                 },
-                                [_vm._v(" "), _c("span", [_vm._v("test")])]
+                                [
+                                  _vm._v(" "),
+                                  _c("span", [
+                                    _vm._v(
+                                      "Show/Hide the table which shows info on all\n                            active characters in the campaign"
+                                    )
+                                  ])
+                                ]
                               ),
                               _vm._v(" "),
                               _c(
@@ -39182,9 +39215,60 @@ var render = function() {
                                 [_vm._v("Hide Char table")]
                               ),
                               _vm._v(" "),
-                              _c("UsersChars", {
-                                attrs: { campaign_id: _vm.campaign.id }
-                              }),
+                              _c(
+                                "v-tooltip",
+                                {
+                                  attrs: {
+                                    color: "#121212",
+                                    bottom: "",
+                                    "open-delay": 2000,
+                                    disabled: _vm.$store.state.tooltipToggle
+                                  },
+                                  scopedSlots: _vm._u(
+                                    [
+                                      {
+                                        key: "activator",
+                                        fn: function(ref) {
+                                          var tooltip = ref.on
+                                          var atooltip = ref.attrs
+                                          return [
+                                            _c(
+                                              "div",
+                                              _vm._g(
+                                                _vm._b(
+                                                  {},
+                                                  "div",
+                                                  Object.assign({}, atooltip),
+                                                  false
+                                                ),
+                                                Object.assign({}, tooltip)
+                                              ),
+                                              [
+                                                _c("UsersChars", {
+                                                  attrs: {
+                                                    campaign_id: _vm.campaign.id
+                                                  }
+                                                })
+                                              ],
+                                              1
+                                            )
+                                          ]
+                                        }
+                                      }
+                                    ],
+                                    null,
+                                    false,
+                                    1627493352
+                                  )
+                                },
+                                [
+                                  _c("span", [
+                                    _vm._v(
+                                      "\n                            Where you will find all your saved characters.\n                            Or make new ones"
+                                    )
+                                  ])
+                                ]
+                              ),
                               _vm._v(" "),
                               _c("CampaignMapSystem", {
                                 attrs: {

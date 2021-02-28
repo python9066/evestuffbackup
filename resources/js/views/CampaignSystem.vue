@@ -179,7 +179,10 @@
                                     >Show Char table</v-btn
                                 >
                             </template>
-                            <span>test</span>
+                            <span
+                                >Show/Hide the table which shows info on all
+                                active characters in the campaign</span
+                            >
                         </v-tooltip>
                         <v-btn
                             class="mr-4"
@@ -189,7 +192,30 @@
                             @click="showTable = false"
                             >Hide Char table</v-btn
                         >
-                        <UsersChars :campaign_id="campaign.id"> </UsersChars>
+
+                        <v-tooltip
+                            color="#121212"
+                            bottom
+                            :open-delay="2000"
+                            :disabled="$store.state.tooltipToggle"
+                        >
+                            <template
+                                v-slot:activator="{
+                                    on: tooltip,
+                                    attrs: atooltip
+                                }"
+                            >
+                                <div
+                                    v-on="{ ...tooltip }"
+                                    v-bind="{ ...atooltip }"
+                                >
+                                    <UsersChars :campaign_id="campaign.id">
+                                    </UsersChars></div></template
+                            ><span>
+                                Where you will find all your saved characters.
+                                Or make new ones</span
+                            ></v-tooltip
+                        >
                         <CampaignMapSystem
                             :region_name="campaign.region"
                             :constellation="campaign.constellation"
