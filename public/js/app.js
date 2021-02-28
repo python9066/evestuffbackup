@@ -15988,6 +15988,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
 
 
 
@@ -39140,6 +39143,27 @@ var render = function() {
                                                   ),
                                                   [_vm._v("Show Char table")]
                                                 )
+                                              : _vm._e(),
+                                            _vm._v(" "),
+                                            _vm.showTable == true
+                                              ? _c(
+                                                  "v-btn",
+                                                  {
+                                                    key:
+                                                      "hidecahrtable." +
+                                                      _vm.campaign.id,
+                                                    staticClass: "mr-4",
+                                                    attrs: {
+                                                      color: "orange darken-2"
+                                                    },
+                                                    on: {
+                                                      click: function($event) {
+                                                        _vm.showTable = false
+                                                      }
+                                                    }
+                                                  },
+                                                  [_vm._v("Hide Char table")]
+                                                )
                                               : _vm._e()
                                           ]
                                         }
@@ -39147,34 +39171,18 @@ var render = function() {
                                     ],
                                     null,
                                     false,
-                                    3279164820
+                                    458231767
                                   )
                                 },
                                 [
                                   _vm._v(" "),
                                   _c("span", [
                                     _vm._v(
-                                      "\n                            Shows all the active Characters in the campaign\n                        "
+                                      "\n                            Shows/Hide table showing all the active\n                            Characters in the campaign\n                        "
                                     )
                                   ])
                                 ]
                               ),
-                              _vm._v(" "),
-                              _vm.showTable == true
-                                ? _c(
-                                    "v-btn",
-                                    {
-                                      staticClass: "mr-4",
-                                      attrs: { color: "orange darken-2" },
-                                      on: {
-                                        click: function($event) {
-                                          _vm.showTable = false
-                                        }
-                                      }
-                                    },
-                                    [_vm._v("Hide Char table")]
-                                  )
-                                : _vm._e(),
                               _vm._v(" "),
                               _c("UsersChars", {
                                 attrs: { campaign_id: _vm.campaign.id }
