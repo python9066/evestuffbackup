@@ -153,19 +153,22 @@
                 <v-card
                     class="pa-2 d-flex justify-space-between full-width align-center"
                     tile
+                    :key="'buttoncard' + campaign.id"
                 >
                     <div class=" d-md-inline-flex">
                         <v-btn
                             class="mr-4"
+                            :key="'showchartable' + campaign.id"
                             color="blue darken-2"
-                            v-if="showTable == false"
+                            v-show="showTable == false"
                             @click="showTable = true"
                             >Show Char table</v-btn
                         >
                         <v-btn
                             class="mr-4"
                             color="orange darken-2"
-                            v-if="showTable == true"
+                            :key="'hidechartable' + campaign.id"
+                            v-show="showTable == true"
                             @click="showTable = false"
                             >Hide Char table</v-btn
                         >
@@ -353,7 +356,7 @@
             </v-col>
         </v-row>
 
-        <v-row no-gutters justify="space-around" v-if="showTable == true">
+        <v-row no-gutters justify="space-around" v-show="showTable == true">
             <UserTable :campaign_id="campaign.id"> </UserTable>
         </v-row>
 

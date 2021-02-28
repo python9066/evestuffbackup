@@ -15967,6 +15967,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
 
 
 
@@ -39059,6 +39062,7 @@ var render = function() {
                       _c(
                         "v-card",
                         {
+                          key: "buttoncard" + _vm.campaign.id,
                           staticClass:
                             "pa-2 d-flex justify-space-between full-width align-center",
                           attrs: { tile: "" }
@@ -39068,37 +39072,51 @@ var render = function() {
                             "div",
                             { staticClass: " d-md-inline-flex" },
                             [
-                              _vm.showTable == false
-                                ? _c(
-                                    "v-btn",
+                              _c(
+                                "v-btn",
+                                {
+                                  directives: [
                                     {
-                                      staticClass: "mr-4",
-                                      attrs: { color: "blue darken-2" },
-                                      on: {
-                                        click: function($event) {
-                                          _vm.showTable = true
-                                        }
-                                      }
-                                    },
-                                    [_vm._v("Show Char table")]
-                                  )
-                                : _vm._e(),
+                                      name: "show",
+                                      rawName: "v-show",
+                                      value: _vm.showTable == false,
+                                      expression: "showTable == false"
+                                    }
+                                  ],
+                                  key: "showchartable" + _vm.campaign.id,
+                                  staticClass: "mr-4",
+                                  attrs: { color: "blue darken-2" },
+                                  on: {
+                                    click: function($event) {
+                                      _vm.showTable = true
+                                    }
+                                  }
+                                },
+                                [_vm._v("Show Char table")]
+                              ),
                               _vm._v(" "),
-                              _vm.showTable == true
-                                ? _c(
-                                    "v-btn",
+                              _c(
+                                "v-btn",
+                                {
+                                  directives: [
                                     {
-                                      staticClass: "mr-4",
-                                      attrs: { color: "orange darken-2" },
-                                      on: {
-                                        click: function($event) {
-                                          _vm.showTable = false
-                                        }
-                                      }
-                                    },
-                                    [_vm._v("Hide Char table")]
-                                  )
-                                : _vm._e(),
+                                      name: "show",
+                                      rawName: "v-show",
+                                      value: _vm.showTable == true,
+                                      expression: "showTable == true"
+                                    }
+                                  ],
+                                  key: "hidechartable" + _vm.campaign.id,
+                                  staticClass: "mr-4",
+                                  attrs: { color: "orange darken-2" },
+                                  on: {
+                                    click: function($event) {
+                                      _vm.showTable = false
+                                    }
+                                  }
+                                },
+                                [_vm._v("Hide Char table")]
+                              ),
                               _vm._v(" "),
                               _c("UsersChars", {
                                 attrs: { campaign_id: _vm.campaign.id }
@@ -39575,14 +39593,22 @@ var render = function() {
               )
             : _vm._e(),
           _vm._v(" "),
-          _vm.showTable == true
-            ? _c(
-                "v-row",
-                { attrs: { "no-gutters": "", justify: "space-around" } },
-                [_c("UserTable", { attrs: { campaign_id: _vm.campaign.id } })],
-                1
-              )
-            : _vm._e(),
+          _c(
+            "v-row",
+            {
+              directives: [
+                {
+                  name: "show",
+                  rawName: "v-show",
+                  value: _vm.showTable == true,
+                  expression: "showTable == true"
+                }
+              ],
+              attrs: { "no-gutters": "", justify: "space-around" }
+            },
+            [_c("UserTable", { attrs: { campaign_id: _vm.campaign.id } })],
+            1
+          ),
           _vm._v(" "),
           _c(
             "v-row",
