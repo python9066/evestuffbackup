@@ -243,7 +243,10 @@
                                 in the constellation
                             </span>
                         </v-tooltip>
-                        <WatchUserTable :campaign_id="campaign.id">
+                        <WatchUserTable
+                            :campaign_id="campaign.id"
+                            v-if="$can('view_campaign_members')"
+                        >
                         </WatchUserTable>
 
                         <v-btn
