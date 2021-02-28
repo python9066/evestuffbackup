@@ -1,7 +1,7 @@
 <template>
     <div>
         <v-dialog
-            v-model="overlay"
+            v-model="showWatching"
             max-width="700px"
             z-index="0"
             @click:outside="close()"

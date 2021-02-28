@@ -26540,11 +26540,11 @@ var render = function() {
             }
           ]),
           model: {
-            value: _vm.overlay,
+            value: _vm.showWatching,
             callback: function($$v) {
-              _vm.overlay = $$v
+              _vm.showWatching = $$v
             },
-            expression: "overlay"
+            expression: "showWatching"
           }
         },
         [
