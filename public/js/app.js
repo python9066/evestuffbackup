@@ -12291,6 +12291,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -35500,13 +35501,14 @@ var render = function() {
                 tile: "",
                 "max-width": "700px",
                 "min-height": "200px",
-                "max-height": "700px"
+                "max-height": "700px",
+                elevation: "24"
               }
             },
             [
               _c("v-card-title", [
                 _vm._v(
-                  "Notes for Station " +
+                  "Ammo request for Station " +
                     _vm._s(_vm.station.station_name) +
                     ".\n            "
                 )

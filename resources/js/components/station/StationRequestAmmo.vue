@@ -55,9 +55,10 @@
                 min-height="200px"
                 max-height="700px"
                 class=" d-flex flex-column"
+                elevation="24"
             >
                 <v-card-title
-                    >Notes for Station {{ station.station_name }}.
+                    >Ammo request for Station {{ station.station_name }}.
                 </v-card-title>
                 <v-card-text>
                     <v-textarea
