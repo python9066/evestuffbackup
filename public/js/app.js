@@ -35521,7 +35521,7 @@ var render = function() {
                 [
                   _c("v-textarea", {
                     attrs: {
-                      height: "400px",
+                      height: "300px",
                       "no-resize": "",
                       filled: "",
                       label: "Current ammo/fighter levels",

@@ -60,7 +60,7 @@
                 </v-card-title>
                 <v-card-text>
                     <v-textarea
-                        height="400px"
+                        height="300px"
                         no-resize
                         filled
                         label="Current ammo/fighter levels"
