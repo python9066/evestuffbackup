@@ -155,35 +155,13 @@
                     tile
                 >
                     <div class=" d-md-inline-flex">
-                        <v-tooltip
-                            color="#121212"
-                            :key="'showscahrtabletooltip.' + campaign.id"
-                            bottom
-                            :open-delay="2000"
-                            :disabled="$store.state.tooltipToggle"
+                        <v-btn
+                            class="mr-4"
+                            color="blue darken-2"
+                            v-if="showTable == false"
+                            @click="showTable = true"
+                            >Show Char table</v-btn
                         >
-                            <template
-                                v-slot:activator="{
-                                    on: tooltip,
-                                    attrs: atooltip
-                                }"
-                            >
-                                <v-btn
-                                    class="mr-4"
-                                    :key="'showscahrtable.' + campaign.id"
-                                    v-on="{ ...tooltip }"
-                                    v-bind="{ ...atooltip }"
-                                    color="blue darken-2"
-                                    v-if="showTable == false"
-                                    @click="showTable = true"
-                                    >Show Char table</v-btn
-                                >
-                            </template>
-                            <span>
-                                Shows/Hide table all the active Characters in
-                                the campaign
-                            </span>
-                        </v-tooltip>
                         <v-btn
                             class="mr-4"
                             color="orange darken-2"

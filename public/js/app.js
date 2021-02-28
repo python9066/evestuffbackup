@@ -15967,28 +15967,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -39090,76 +39068,21 @@ var render = function() {
                             "div",
                             { staticClass: " d-md-inline-flex" },
                             [
-                              _c(
-                                "v-tooltip",
-                                {
-                                  key:
-                                    "showscahrtabletooltip." + _vm.campaign.id,
-                                  attrs: {
-                                    color: "#121212",
-                                    bottom: "",
-                                    "open-delay": 2000,
-                                    disabled: _vm.$store.state.tooltipToggle
-                                  },
-                                  scopedSlots: _vm._u(
-                                    [
-                                      {
-                                        key: "activator",
-                                        fn: function(ref) {
-                                          var tooltip = ref.on
-                                          var atooltip = ref.attrs
-                                          return [
-                                            _vm.showTable == false
-                                              ? _c(
-                                                  "v-btn",
-                                                  _vm._g(
-                                                    _vm._b(
-                                                      {
-                                                        key:
-                                                          "showscahrtable." +
-                                                          _vm.campaign.id,
-                                                        staticClass: "mr-4",
-                                                        attrs: {
-                                                          color: "blue darken-2"
-                                                        },
-                                                        on: {
-                                                          click: function(
-                                                            $event
-                                                          ) {
-                                                            _vm.showTable = true
-                                                          }
-                                                        }
-                                                      },
-                                                      "v-btn",
-                                                      Object.assign(
-                                                        {},
-                                                        atooltip
-                                                      ),
-                                                      false
-                                                    ),
-                                                    Object.assign({}, tooltip)
-                                                  ),
-                                                  [_vm._v("Show Char table")]
-                                                )
-                                              : _vm._e()
-                                          ]
+                              _vm.showTable == false
+                                ? _c(
+                                    "v-btn",
+                                    {
+                                      staticClass: "mr-4",
+                                      attrs: { color: "blue darken-2" },
+                                      on: {
+                                        click: function($event) {
+                                          _vm.showTable = true
                                         }
                                       }
-                                    ],
-                                    null,
-                                    false,
-                                    3279164820
+                                    },
+                                    [_vm._v("Show Char table")]
                                   )
-                                },
-                                [
-                                  _vm._v(" "),
-                                  _c("span", [
-                                    _vm._v(
-                                      "\n                            Shows/Hide table all the active Characters in\n                            the campaign\n                        "
-                                    )
-                                  ])
-                                ]
-                              ),
+                                : _vm._e(),
                               _vm._v(" "),
                               _vm.showTable == true
                                 ? _c(
