@@ -4748,6 +4748,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -26539,7 +26542,13 @@ var render = function() {
                         true
                       )
                     },
-                    [_c("span", [_vm._v("TEST")])]
+                    [
+                      _c("span", [
+                        _vm._v(
+                          "Shows all Users on the campaign page, and if they have\n                    set a character."
+                        )
+                      ])
+                    ]
                   )
                 ]
               }

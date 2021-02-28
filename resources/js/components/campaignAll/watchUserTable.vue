@@ -26,7 +26,10 @@
                             v-on="{ ...tooltip, ...menu }"
                             >people watching</v-btn
                         ></template
-                    ><span>TEST</span></v-tooltip
+                    ><span
+                        >Shows all Users on the campaign page, and if they have
+                        set a character.</span
+                    ></v-tooltip
                 >
             </template>
             <v-card tile max-height="500">
