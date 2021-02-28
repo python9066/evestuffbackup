@@ -25,11 +25,11 @@
                             class=" ml-2"
                             small
                             outlined
+                            v-show="station.ammo_request"
                             color="teal"
-                            v-if="$can('request_recon_task') && !taskFlag()"
                             @click="taskRequest()"
                         >
-                            Request Update
+                            Request restock
                         </v-chip>
                     </template>
                     <span>
@@ -39,11 +39,11 @@
                     </span>
                 </v-tooltip>
                 <v-chip
+                    v-show="!station.ammo_request"
                     pill
                     small
                     class=" ml-2"
                     color="teal"
-                    v-if="$can('request_recon_task') && taskFlag()"
                 >
                     Request Made
                 </v-chip>

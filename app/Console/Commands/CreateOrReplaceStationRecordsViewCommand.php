@@ -65,7 +65,8 @@ class CreateOrReplaceStationRecordsViewCommand extends Command
        alliances.standing AS 'standing',
        alliances.url AS 'url',
        stations.show_on_main AS 'show_on_main',
-       stations.show_on_chill AS 'show_on_chill'
+       stations.show_on_chill AS 'show_on_chill',
+       if(stations.ammo_request_id IS NULL,0,1) AS 'ammo_request'
        FROM stations
        JOIN systems ON systems.id = stations.system_id
        JOIN corps ON corps.id = stations.corp_id

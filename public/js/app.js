@@ -35406,39 +35406,44 @@ var render = function() {
                             fn: function(ref) {
                               var tooltip = ref.on
                               return [
-                                _vm.$can("request_recon_task") &&
-                                !_vm.taskFlag()
-                                  ? _c(
-                                      "v-chip",
-                                      _vm._g(
-                                        _vm._b(
+                                _c(
+                                  "v-chip",
+                                  _vm._g(
+                                    _vm._b(
+                                      {
+                                        directives: [
                                           {
-                                            staticClass: " ml-2",
-                                            attrs: {
-                                              pill: "",
-                                              small: "",
-                                              outlined: "",
-                                              color: "teal"
-                                            },
-                                            on: {
-                                              click: function($event) {
-                                                return _vm.taskRequest()
-                                              }
-                                            }
-                                          },
-                                          "v-chip",
-                                          attrs,
-                                          false
-                                        ),
-                                        Object.assign({}, tooltip, menu)
-                                      ),
-                                      [
-                                        _vm._v(
-                                          "\n                        Request Update\n                    "
-                                        )
-                                      ]
+                                            name: "show",
+                                            rawName: "v-show",
+                                            value: _vm.station.ammo_request,
+                                            expression: "station.ammo_request"
+                                          }
+                                        ],
+                                        staticClass: " ml-2",
+                                        attrs: {
+                                          pill: "",
+                                          small: "",
+                                          outlined: "",
+                                          color: "teal"
+                                        },
+                                        on: {
+                                          click: function($event) {
+                                            return _vm.taskRequest()
+                                          }
+                                        }
+                                      },
+                                      "v-chip",
+                                      attrs,
+                                      false
+                                    ),
+                                    Object.assign({}, tooltip, menu)
+                                  ),
+                                  [
+                                    _vm._v(
+                                      "\n                        Request restock\n                    "
                                     )
-                                  : _vm._e()
+                                  ]
+                                )
                               ]
                             }
                           }
@@ -35457,16 +35462,22 @@ var render = function() {
                     ]
                   ),
                   _vm._v(" "),
-                  _vm.$can("request_recon_task") && _vm.taskFlag()
-                    ? _c(
-                        "v-chip",
+                  _c(
+                    "v-chip",
+                    {
+                      directives: [
                         {
-                          staticClass: " ml-2",
-                          attrs: { pill: "", small: "", color: "teal" }
-                        },
-                        [_vm._v("\n                Request Made\n            ")]
-                      )
-                    : _vm._e()
+                          name: "show",
+                          rawName: "v-show",
+                          value: !_vm.station.ammo_request,
+                          expression: "!station.ammo_request"
+                        }
+                      ],
+                      staticClass: " ml-2",
+                      attrs: { pill: "", small: "", color: "teal" }
+                    },
+                    [_vm._v("\n                Request Made\n            ")]
+                  )
                 ]
               }
             }
