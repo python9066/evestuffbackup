@@ -22,6 +22,7 @@
                             class="mr-4"
                             color="warning"
                             v-bind="attrs"
+                            @click="userViewTable()"
                             v-on="{ ...tooltip, ...menu }"
                             >people watching</v-btn
                         ></template

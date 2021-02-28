@@ -4747,6 +4747,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -26515,7 +26516,12 @@ var render = function() {
                                     _vm._b(
                                       {
                                         staticClass: "mr-4",
-                                        attrs: { color: "warning" }
+                                        attrs: { color: "warning" },
+                                        on: {
+                                          click: function($event) {
+                                            return _vm.userViewTable()
+                                          }
+                                        }
                                       },
                                       "v-btn",
                                       attrs,
