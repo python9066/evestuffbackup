@@ -7,11 +7,7 @@
             @click:outside="close()"
         >
             <template v-slot:activator="{ on, attrs }">
-                <v-btn
-                    class="mr-4"
-                    color="green lighten-1"
-                    v-bind="attrs"
-                    v-on="on"
+                <v-btn class="mr-4" color="warning" v-bind="attrs" v-on="on"
                     >people watching</v-btn
                 >
             </template>

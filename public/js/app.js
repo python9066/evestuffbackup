@@ -4730,10 +4730,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -26484,10 +26480,7 @@ var render = function() {
                     "v-btn",
                     _vm._g(
                       _vm._b(
-                        {
-                          staticClass: "mr-4",
-                          attrs: { color: "green lighten-1" }
-                        },
+                        { staticClass: "mr-4", attrs: { color: "warning" } },
                         "v-btn",
                         attrs,
                         false
