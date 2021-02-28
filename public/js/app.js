@@ -12301,7 +12301,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       messageCount: 0,
       showNumber: false,
       showStationNotes: false,
-      editText: null
+      editText: null,
+      editLoadout: null
     };
   },
   created: function created() {

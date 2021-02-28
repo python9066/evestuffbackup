@@ -117,7 +117,8 @@ export default {
             messageCount: 0,
             showNumber: false,
             showStationNotes: false,
-            editText: null
+            editText: null,
+            editLoadout: null
         };
     },
 
