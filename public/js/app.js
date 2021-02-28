@@ -12776,6 +12776,22 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -35750,53 +35766,92 @@ var render = function() {
                                     {
                                       key: "activator",
                                       fn: function(ref) {
-                                        var on = ref.on
+                                        var menu = ref.on
                                         var attrs = ref.attrs
                                         return [
                                           _c(
-                                            "v-btn",
-                                            _vm._g(
-                                              _vm._b(
-                                                {
-                                                  staticClass: "ma-2",
-                                                  attrs: {
-                                                    tile: "",
-                                                    outlined: "",
-                                                    color: _vm.pillColor(
-                                                      item.station_status_id
-                                                    )
-                                                  }
-                                                },
-                                                "v-btn",
-                                                attrs,
-                                                false
-                                              ),
-                                              on
-                                            ),
-                                            [
-                                              _c(
-                                                "v-icon",
-                                                { attrs: { left: "" } },
+                                            "v-tooltip",
+                                            {
+                                              attrs: {
+                                                color: "#121212",
+                                                bottom: "",
+                                                "open-delay": 2000,
+                                                disabled:
+                                                  _vm.$store.state.tooltipToggle
+                                              },
+                                              scopedSlots: _vm._u(
                                                 [
-                                                  _vm._v(
-                                                    "\n                                " +
-                                                      _vm._s(
-                                                        _vm.pillIcon(
-                                                          item.station_status_id
+                                                  {
+                                                    key: "activator",
+                                                    fn: function(ref) {
+                                                      var tooltip = ref.on
+                                                      return [
+                                                        _c(
+                                                          "v-btn",
+                                                          _vm._g(
+                                                            _vm._b(
+                                                              {
+                                                                staticClass:
+                                                                  "ma-2",
+                                                                attrs: {
+                                                                  tile: "",
+                                                                  outlined: "",
+                                                                  color: _vm.pillColor(
+                                                                    item.station_status_id
+                                                                  )
+                                                                }
+                                                              },
+                                                              "v-btn",
+                                                              attrs,
+                                                              false
+                                                            ),
+                                                            Object.assign(
+                                                              {},
+                                                              tooltip,
+                                                              menu
+                                                            )
+                                                          ),
+                                                          [
+                                                            _c(
+                                                              "v-icon",
+                                                              {
+                                                                attrs: {
+                                                                  left: ""
+                                                                }
+                                                              },
+                                                              [
+                                                                _vm._v(
+                                                                  "\n                                        " +
+                                                                    _vm._s(
+                                                                      _vm.pillIcon(
+                                                                        item.station_status_id
+                                                                      )
+                                                                    )
+                                                                )
+                                                              ]
+                                                            ),
+                                                            _vm._v(
+                                                              "\n                                    " +
+                                                                _vm._s(
+                                                                  item.station_status_name
+                                                                ) +
+                                                                "\n                                "
+                                                            )
+                                                          ],
+                                                          1
                                                         )
-                                                      )
-                                                  )
-                                                ]
-                                              ),
-                                              _vm._v(
-                                                "\n                            " +
-                                                  _vm._s(
-                                                    item.station_status_name
-                                                  ) +
-                                                  "\n                        "
+                                                      ]
+                                                    }
+                                                  }
+                                                ],
+                                                null,
+                                                true
                                               )
-                                            ],
-                                            1
+                                            },
+                                            [
+                                              _vm._v(" "),
+                                              _c("span", [_vm._v(" TEST")])
+                                            ]
                                           )
                                         ]
                                       }

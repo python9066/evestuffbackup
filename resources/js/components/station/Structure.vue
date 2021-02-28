@@ -129,22 +129,38 @@
                     class="align-items-center d-inline-flex"
                 >
                     <v-menu offset-y>
-                        <template v-slot:activator="{ on, attrs }">
-                            <v-btn
-                                class="ma-2"
-                                v-bind="attrs"
-                                v-on="on"
-                                tile
-                                outlined
-                                :color="pillColor(item.station_status_id)"
+                        <template v-slot:activator="{ on: menu, attrs }">
+                            <v-tooltip
+                                color="#121212"
+                                bottom
+                                :open-delay="2000"
+                                :disabled="$store.state.tooltipToggle"
                             >
-                                <v-icon left>
-                                    {{
-                                        pillIcon(item.station_status_id)
-                                    }}</v-icon
+                                <template
+                                    v-slot:activator="{
+                                        on: tooltip
+                                    }"
                                 >
-                                {{ item.station_status_name }}
-                            </v-btn>
+                                    <v-btn
+                                        class="ma-2"
+                                        v-bind="attrs"
+                                        v-on="{ ...tooltip, ...menu }"
+                                        tile
+                                        outlined
+                                        :color="
+                                            pillColor(item.station_status_id)
+                                        "
+                                    >
+                                        <v-icon left>
+                                            {{
+                                                pillIcon(item.station_status_id)
+                                            }}</v-icon
+                                        >
+                                        {{ item.station_status_name }}
+                                    </v-btn>
+                                </template>
+                                <span> TEST</span>
+                            </v-tooltip>
                         </template>
 
                         <v-list>
