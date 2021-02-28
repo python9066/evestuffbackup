@@ -216,10 +216,33 @@
                                 Or make new ones</span
                             ></v-tooltip
                         >
-                        <CampaignMapSystem
-                            :region_name="campaign.region"
-                            :constellation="campaign.constellation"
-                        ></CampaignMapSystem>
+                        <v-tooltip
+                            color="#121212"
+                            bottom
+                            :open-delay="2000"
+                            :disabled="$store.state.tooltipToggle"
+                        >
+                            <template
+                                v-slot:activator="{
+                                    on: tooltip,
+                                    attrs: atooltip
+                                }"
+                            >
+                                <div
+                                    v-on="{ ...tooltip }"
+                                    v-bind="{ ...atooltip }"
+                                >
+                                    <CampaignMapSystem
+                                        :region_name="campaign.region"
+                                        :constellation="campaign.constellation"
+                                    ></CampaignMapSystem>
+                                </div>
+                            </template>
+                            <span>
+                                Will open a DotLan page highlighting all systems
+                                in the constellation
+                            </span>
+                        </v-tooltip>
 
                         <v-menu
                             :close-on-content-click="false"

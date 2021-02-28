@@ -16017,6 +16017,29 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -39270,12 +39293,64 @@ var render = function() {
                                 ]
                               ),
                               _vm._v(" "),
-                              _c("CampaignMapSystem", {
-                                attrs: {
-                                  region_name: _vm.campaign.region,
-                                  constellation: _vm.campaign.constellation
-                                }
-                              }),
+                              _c(
+                                "v-tooltip",
+                                {
+                                  attrs: {
+                                    color: "#121212",
+                                    bottom: "",
+                                    "open-delay": 2000,
+                                    disabled: _vm.$store.state.tooltipToggle
+                                  },
+                                  scopedSlots: _vm._u(
+                                    [
+                                      {
+                                        key: "activator",
+                                        fn: function(ref) {
+                                          var tooltip = ref.on
+                                          var atooltip = ref.attrs
+                                          return [
+                                            _c(
+                                              "div",
+                                              _vm._g(
+                                                _vm._b(
+                                                  {},
+                                                  "div",
+                                                  Object.assign({}, atooltip),
+                                                  false
+                                                ),
+                                                Object.assign({}, tooltip)
+                                              ),
+                                              [
+                                                _c("CampaignMapSystem", {
+                                                  attrs: {
+                                                    region_name:
+                                                      _vm.campaign.region,
+                                                    constellation:
+                                                      _vm.campaign.constellation
+                                                  }
+                                                })
+                                              ],
+                                              1
+                                            )
+                                          ]
+                                        }
+                                      }
+                                    ],
+                                    null,
+                                    false,
+                                    853010745
+                                  )
+                                },
+                                [
+                                  _vm._v(" "),
+                                  _c("span", [
+                                    _vm._v(
+                                      "\n                            Will open a DotLan page highlighting all systems\n                            in the constellation\n                        "
+                                    )
+                                  ])
+                                ]
+                              ),
                               _vm._v(" "),
                               _c(
                                 "v-menu",
