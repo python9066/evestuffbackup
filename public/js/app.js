@@ -4709,6 +4709,31 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -4732,7 +4757,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       ],
       statusflag: 0,
       toggle_exclusive: 0,
-      channel: ""
+      channel: "",
+      showWatching: false
     };
   },
   created: function created() {
@@ -4764,6 +4790,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   mounted: function mounted() {},
   methods: {
+    close: function close() {
+      this.showWatching = false;
+    },
     userViewTable: function userViewTable() {
       if (this.$can("view_campaign_members")) {
         this.$store.dispatch("getCampaignMembers", this.campaign_id);
@@ -4825,74 +4854,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       return this.campaignmembers.filter(function (m) {
         return m.campaign_id == _this3.campaign_id;
       });
-    } // tableHight() {
-    //     // var timers = this.$store.state.timers;
-    //     if (this.statusflag == 1) {
-    //         var count = this.getCampaignMembersByCampagin(this.campaign_id).length;
-    //         var sum = count *32;
-    //         if (sum >= 320) {
-    //             return 352;
-    //         } else if(count == 1){
-    //             return 64
-    //         } else if(count == 2){
-    //             return 96
-    //         }else {
-    //             return sum +32;
-    //         }
-    //     }
-    //     if (this.statusflag == 2) {
-    //         var count = this.getCampaignMembersByCampagin(this.campaign_id).length;
-    //         var sum = count *32;
-    //         if (sum >= 320) {
-    //             return 352;
-    //         } else if(count == 1){
-    //             return 64
-    //         } else if(count == 2){
-    //             return 96
-    //         }else {
-    //             return sum +32;
-    //         }
-    //     }
-    //     if (this.statusflag == 3) {
-    //         var count = this.getCampaignMembersByCampagin(this.campaign_id).length;
-    //         var sum = count *32;
-    //         if (sum >= 320) {
-    //             return 352;
-    //         } else if(count == 1){
-    //             return 64
-    //         } else if(count == 2){
-    //             return 96
-    //         }else {
-    //             return sum +32;
-    //         }
-    //     }
-    //     if (this.statusflag == 4) {
-    //         var count = this.getCampaignMembersByCampagin(this.campaign_id).length;
-    //         var sum = count *32;
-    //         if (sum >= 320) {
-    //             return 352;
-    //         } else if(count == 1){
-    //             return 64
-    //         } else if(count == 2){
-    //             return 96
-    //         }else {
-    //             return sum +32;
-    //         }
-    //     } else {
-    //         var count = this.getCampaignMembersByCampagin(this.campaign_id).length;
-    //         var sum = count *32;
-    //         if (sum >= 320) {
-    //             return 352;
-    //         } else if(count == 1){
-    //             return 64
-    //         } else if(count == 2){
-    //             return 96
-    //         }else {
-    //             return sum +32;
-    //         }
-    //     }
-    // }
-
+    }
   }),
   beforeDestroy: function beforeDestroy() {
     Echo.leave(this.channel);
@@ -12776,22 +12738,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -15562,31 +15508,6 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -26538,89 +26459,146 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c(
-    "v-card",
-    { attrs: { tile: "", "max-height": "500" } },
+    "div",
     [
       _c(
-        "v-card-title",
-        { staticClass: "d-flex justify-space-between align-center " },
-        [_c("div", [_vm._v("Table of all Users on this page")])]
-      ),
-      _vm._v(" "),
-      _c(
-        "v-card-text",
-        [
-          _c(
-            "v-data-table",
+        "v-dialog",
+        {
+          attrs: { "max-width": "700px", "z-index": "0" },
+          on: {
+            "click:outside": function($event) {
+              return _vm.close()
+            }
+          },
+          scopedSlots: _vm._u([
             {
-              staticClass: "elevation-24",
-              attrs: {
-                headers: _vm.headers,
-                items: _vm.campaignMembers,
-                "item-key": "id",
-                "disable-pagination": "",
-                "fixed-header": "",
-                "hide-default-footer": "",
-                dense: "",
-                "sort-by": ["user_name"]
-              },
-              scopedSlots: _vm._u([
-                {
-                  key: "item.check",
-                  fn: function(ref) {
-                    var item = ref.item
-                    return [
-                      _vm.userCheck(item)
-                        ? _c("span", [_vm._v("Yes")])
-                        : _c("span", [_vm._v("No")])
-                    ]
-                  }
-                },
-                {
-                  key: "item.action",
-                  fn: function(ref) {
-                    var item = ref.item
-                    return [
-                      _c(
-                        "span",
-                        { staticClass: " d-inline-flex" },
-                        [
-                          _c(
-                            "v-btn",
-                            {
-                              staticClass: " ma-2",
-                              attrs: { tile: "", icon: "" },
-                              on: {
-                                click: function($event) {
-                                  return _vm.kickUser(item)
-                                }
-                              }
-                            },
-                            [
-                              _c(
-                                "v-icon",
-                                { attrs: { small: "", color: "red" } },
-                                [_vm._v("faSvg fa-user-minus")]
-                              )
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      )
-                    ]
-                  }
-                }
-              ])
+              key: "activator",
+              fn: function(ref) {
+                var on = ref.on
+                var attrs = ref.attrs
+                return [
+                  _c(
+                    "v-btn",
+                    _vm._g(
+                      _vm._b(
+                        {
+                          staticClass: "mr-4",
+                          attrs: { color: "green lighten-1" }
+                        },
+                        "v-btn",
+                        attrs,
+                        false
+                      ),
+                      on
+                    ),
+                    [_vm._v("people watching")]
+                  )
+                ]
+              }
+            }
+          ]),
+          model: {
+            value: _vm.overlay,
+            callback: function($$v) {
+              _vm.overlay = $$v
             },
+            expression: "overlay"
+          }
+        },
+        [
+          _vm._v(" "),
+          _c(
+            "v-card",
+            { attrs: { tile: "", "max-height": "500" } },
             [
+              _c(
+                "v-card-title",
+                { staticClass: "d-flex justify-space-between align-center " },
+                [_c("div", [_vm._v("Table of all Users on this page")])]
+              ),
               _vm._v(" "),
-              _vm._v(" "),
-              _c("template", { slot: "no-data" }, [
-                _vm._v("\n                No one is here\n            ")
-              ])
+              _c(
+                "v-card-text",
+                [
+                  _c(
+                    "v-data-table",
+                    {
+                      staticClass: "elevation-24",
+                      attrs: {
+                        headers: _vm.headers,
+                        items: _vm.campaignMembers,
+                        "item-key": "id",
+                        "disable-pagination": "",
+                        "fixed-header": "",
+                        "hide-default-footer": "",
+                        dense: "",
+                        "sort-by": ["user_name"]
+                      },
+                      scopedSlots: _vm._u([
+                        {
+                          key: "item.check",
+                          fn: function(ref) {
+                            var item = ref.item
+                            return [
+                              _vm.userCheck(item)
+                                ? _c("span", [_vm._v("Yes")])
+                                : _c("span", [_vm._v("No")])
+                            ]
+                          }
+                        },
+                        {
+                          key: "item.action",
+                          fn: function(ref) {
+                            var item = ref.item
+                            return [
+                              _c(
+                                "span",
+                                { staticClass: " d-inline-flex" },
+                                [
+                                  _c(
+                                    "v-btn",
+                                    {
+                                      staticClass: " ma-2",
+                                      attrs: { tile: "", icon: "" },
+                                      on: {
+                                        click: function($event) {
+                                          return _vm.kickUser(item)
+                                        }
+                                      }
+                                    },
+                                    [
+                                      _c(
+                                        "v-icon",
+                                        { attrs: { small: "", color: "red" } },
+                                        [_vm._v("faSvg fa-user-minus")]
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              )
+                            ]
+                          }
+                        }
+                      ])
+                    },
+                    [
+                      _vm._v(" "),
+                      _vm._v(" "),
+                      _c("template", { slot: "no-data" }, [
+                        _vm._v(
+                          "\n                        No one is here\n                    "
+                        )
+                      ])
+                    ],
+                    2
+                  )
+                ],
+                1
+              )
             ],
-            2
+            1
           )
         ],
         1
@@ -35766,92 +35744,53 @@ var render = function() {
                                     {
                                       key: "activator",
                                       fn: function(ref) {
-                                        var menu = ref.on
+                                        var on = ref.on
                                         var attrs = ref.attrs
                                         return [
                                           _c(
-                                            "v-tooltip",
-                                            {
-                                              attrs: {
-                                                color: "#121212",
-                                                bottom: "",
-                                                "open-delay": 2000,
-                                                disabled:
-                                                  _vm.$store.state.tooltipToggle
-                                              },
-                                              scopedSlots: _vm._u(
-                                                [
-                                                  {
-                                                    key: "activator",
-                                                    fn: function(ref) {
-                                                      var tooltip = ref.on
-                                                      return [
-                                                        _c(
-                                                          "v-btn",
-                                                          _vm._g(
-                                                            _vm._b(
-                                                              {
-                                                                staticClass:
-                                                                  "ma-2",
-                                                                attrs: {
-                                                                  tile: "",
-                                                                  outlined: "",
-                                                                  color: _vm.pillColor(
-                                                                    item.station_status_id
-                                                                  )
-                                                                }
-                                                              },
-                                                              "v-btn",
-                                                              attrs,
-                                                              false
-                                                            ),
-                                                            Object.assign(
-                                                              {},
-                                                              tooltip,
-                                                              menu
-                                                            )
-                                                          ),
-                                                          [
-                                                            _c(
-                                                              "v-icon",
-                                                              {
-                                                                attrs: {
-                                                                  left: ""
-                                                                }
-                                                              },
-                                                              [
-                                                                _vm._v(
-                                                                  "\n                                        " +
-                                                                    _vm._s(
-                                                                      _vm.pillIcon(
-                                                                        item.station_status_id
-                                                                      )
-                                                                    )
-                                                                )
-                                                              ]
-                                                            ),
-                                                            _vm._v(
-                                                              "\n                                    " +
-                                                                _vm._s(
-                                                                  item.station_status_name
-                                                                ) +
-                                                                "\n                                "
-                                                            )
-                                                          ],
-                                                          1
-                                                        )
-                                                      ]
-                                                    }
+                                            "v-btn",
+                                            _vm._g(
+                                              _vm._b(
+                                                {
+                                                  staticClass: "ma-2",
+                                                  attrs: {
+                                                    tile: "",
+                                                    outlined: "",
+                                                    color: _vm.pillColor(
+                                                      item.station_status_id
+                                                    )
                                                   }
-                                                ],
-                                                null,
-                                                true
-                                              )
-                                            },
+                                                },
+                                                "v-btn",
+                                                attrs,
+                                                false
+                                              ),
+                                              on
+                                            ),
                                             [
-                                              _vm._v(" "),
-                                              _c("span", [_vm._v(" TEST")])
-                                            ]
+                                              _c(
+                                                "v-icon",
+                                                { attrs: { left: "" } },
+                                                [
+                                                  _vm._v(
+                                                    "\n                                " +
+                                                      _vm._s(
+                                                        _vm.pillIcon(
+                                                          item.station_status_id
+                                                        )
+                                                      )
+                                                  )
+                                                ]
+                                              ),
+                                              _vm._v(
+                                                "\n                            " +
+                                                  _vm._s(
+                                                    item.station_status_name
+                                                  ) +
+                                                  "\n                        "
+                                              )
+                                            ],
+                                            1
                                           )
                                         ]
                                       }
@@ -39407,78 +39346,9 @@ var render = function() {
                                 ]
                               ),
                               _vm._v(" "),
-                              _c(
-                                "v-menu",
-                                {
-                                  attrs: {
-                                    "close-on-content-click": false,
-                                    transition: "fab-transition",
-                                    origin: "100% -30%",
-                                    "nudge-width": 200,
-                                    "offset-x": ""
-                                  },
-                                  scopedSlots: _vm._u(
-                                    [
-                                      _vm.$can("view_campaign_members")
-                                        ? {
-                                            key: "activator",
-                                            fn: function(ref) {
-                                              var on = ref.on
-                                              var attrs = ref.attrs
-                                              return [
-                                                _c(
-                                                  "v-btn",
-                                                  _vm._g(
-                                                    _vm._b(
-                                                      {
-                                                        staticClass: "mr-4",
-                                                        attrs: {
-                                                          color: "warning"
-                                                        },
-                                                        on: {
-                                                          click: function(
-                                                            $event
-                                                          ) {
-                                                            _vm.showUsers = !_vm.showUsers
-                                                          }
-                                                        }
-                                                      },
-                                                      "v-btn",
-                                                      attrs,
-                                                      false
-                                                    ),
-                                                    on
-                                                  ),
-                                                  [_vm._v("People Watching")]
-                                                )
-                                              ]
-                                            }
-                                          }
-                                        : null
-                                    ],
-                                    null,
-                                    true
-                                  )
-                                },
-                                [
-                                  _vm._v(" "),
-                                  _c("v-row", { attrs: { "no-gutters": "" } }, [
-                                    _c(
-                                      "div",
-                                      { staticStyle: { width: "400px" } },
-                                      [
-                                        _c("WatchUserTable", {
-                                          attrs: {
-                                            campaign_id: _vm.campaign.id
-                                          }
-                                        })
-                                      ],
-                                      1
-                                    )
-                                  ])
-                                ],
-                                1
-                              ),
+                              _c("WatchUserTable", {
+                                attrs: { campaign_id: _vm.campaign.id }
+                              }),
                               _vm._v(" "),
                               _vm.$can("view_campaign_logs")
                                 ? _c(

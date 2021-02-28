@@ -243,34 +243,9 @@
                                 in the constellation
                             </span>
                         </v-tooltip>
+                        <WatchUserTable :campaign_id="campaign.id">
+                        </WatchUserTable>
 
-                        <v-menu
-                            :close-on-content-click="false"
-                            transition="fab-transition"
-                            origin="100% -30%"
-                            :nudge-width="200"
-                            offset-x
-                        >
-                            <template
-                                v-slot:activator="{ on, attrs }"
-                                v-if="$can('view_campaign_members')"
-                            >
-                                <v-btn
-                                    class="mr-4"
-                                    @click="showUsers = !showUsers"
-                                    v-bind="attrs"
-                                    color="warning"
-                                    v-on="on"
-                                    >People Watching</v-btn
-                                >
-                            </template>
-                            <v-row no-gutters>
-                                <div style="width: 400px;">
-                                    <WatchUserTable :campaign_id="campaign.id">
-                                    </WatchUserTable>
-                                </div>
-                            </v-row>
-                        </v-menu>
                         <v-btn
                             v-if="$can('view_campaign_logs')"
                             @click="showLog = true"
