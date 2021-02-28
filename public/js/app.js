@@ -12290,6 +12290,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -35522,6 +35523,7 @@ var render = function() {
                     attrs: {
                       height: "400px",
                       "no-resize": "",
+                      filled: "",
                       label: "Current ammo/fighter levels",
                       autofocus: "",
                       placeholder: "Just copy and paste from the ammo hangers"
@@ -35545,7 +35547,7 @@ var render = function() {
                           height: "200px",
                           "auto-grow": "",
                           filled: "",
-                          label: "Enter New Notes Here"
+                          label: "Enter your request here"
                         },
                         model: {
                           value: _vm.editText,

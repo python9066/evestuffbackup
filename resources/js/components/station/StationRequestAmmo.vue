@@ -62,6 +62,7 @@
                     <v-textarea
                         height="400px"
                         no-resize
+                        filled
                         label="Current ammo/fighter levels"
                         v-model="editLoadout"
                         autofocus
@@ -74,7 +75,7 @@
                             v-model="editText"
                             auto-grow
                             filled
-                            label="Enter New Notes Here"
+                            label="Enter your request here"
                         ></v-text-field>
                     </div>
                 </v-card-text>
