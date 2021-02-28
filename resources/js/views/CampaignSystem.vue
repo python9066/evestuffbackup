@@ -156,14 +156,31 @@
                     :key="'buttoncard' + campaign.id"
                 >
                     <div class=" d-md-inline-flex">
-                        <v-btn
-                            class="mr-4"
-                            :key="'showchartable' + campaign.id"
-                            color="blue darken-2"
-                            v-show="showTable == false"
-                            @click="showTable = true"
-                            >Show Char table</v-btn
+                        <v-tooltip
+                            color="#121212"
+                            bottom
+                            :open-delay="2000"
+                            :disabled="$store.state.tooltipToggle"
                         >
+                            <template
+                                v-slot:activator="{
+                                    on: tooltip,
+                                    attrs: atooltip
+                                }"
+                            >
+                                <v-btn
+                                    class="mr-4"
+                                    :key="'showchartable' + campaign.id"
+                                    color="blue darken-2"
+                                    v-on="{ ...tooltip }"
+                                    v-bind="{ ...atooltip }"
+                                    v-show="showTable == false"
+                                    @click="showTable = true"
+                                    >Show Char table</v-btn
+                                >
+                            </template>
+                            <span>test</span>
+                        </v-tooltip>
                         <v-btn
                             class="mr-4"
                             color="orange darken-2"
@@ -357,7 +374,11 @@
         </v-row>
 
         <v-row no-gutters justify="space-around" v-show="showTable == true">
-            <UserTable :campaign_id="campaign.id"> </UserTable>
+            <UserTable
+                :key="'chartable' + campaign.id"
+                :campaign_id="campaign.id"
+            >
+            </UserTable>
         </v-row>
 
         <v-row no-gutters justify="center" :v-if="systemLoaded == true">

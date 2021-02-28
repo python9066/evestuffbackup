@@ -15970,6 +15970,27 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -39073,26 +39094,69 @@ var render = function() {
                             { staticClass: " d-md-inline-flex" },
                             [
                               _c(
-                                "v-btn",
+                                "v-tooltip",
                                 {
-                                  directives: [
-                                    {
-                                      name: "show",
-                                      rawName: "v-show",
-                                      value: _vm.showTable == false,
-                                      expression: "showTable == false"
-                                    }
-                                  ],
-                                  key: "showchartable" + _vm.campaign.id,
-                                  staticClass: "mr-4",
-                                  attrs: { color: "blue darken-2" },
-                                  on: {
-                                    click: function($event) {
-                                      _vm.showTable = true
-                                    }
-                                  }
+                                  attrs: {
+                                    color: "#121212",
+                                    bottom: "",
+                                    "open-delay": 2000,
+                                    disabled: _vm.$store.state.tooltipToggle
+                                  },
+                                  scopedSlots: _vm._u(
+                                    [
+                                      {
+                                        key: "activator",
+                                        fn: function(ref) {
+                                          var tooltip = ref.on
+                                          var atooltip = ref.attrs
+                                          return [
+                                            _c(
+                                              "v-btn",
+                                              _vm._g(
+                                                _vm._b(
+                                                  {
+                                                    directives: [
+                                                      {
+                                                        name: "show",
+                                                        rawName: "v-show",
+                                                        value:
+                                                          _vm.showTable ==
+                                                          false,
+                                                        expression:
+                                                          "showTable == false"
+                                                      }
+                                                    ],
+                                                    key:
+                                                      "showchartable" +
+                                                      _vm.campaign.id,
+                                                    staticClass: "mr-4",
+                                                    attrs: {
+                                                      color: "blue darken-2"
+                                                    },
+                                                    on: {
+                                                      click: function($event) {
+                                                        _vm.showTable = true
+                                                      }
+                                                    }
+                                                  },
+                                                  "v-btn",
+                                                  Object.assign({}, atooltip),
+                                                  false
+                                                ),
+                                                Object.assign({}, tooltip)
+                                              ),
+                                              [_vm._v("Show Char table")]
+                                            )
+                                          ]
+                                        }
+                                      }
+                                    ],
+                                    null,
+                                    false,
+                                    1019821103
+                                  )
                                 },
-                                [_vm._v("Show Char table")]
+                                [_vm._v(" "), _c("span", [_vm._v("test")])]
                               ),
                               _vm._v(" "),
                               _c(
@@ -39606,7 +39670,12 @@ var render = function() {
               ],
               attrs: { "no-gutters": "", justify: "space-around" }
             },
-            [_c("UserTable", { attrs: { campaign_id: _vm.campaign.id } })],
+            [
+              _c("UserTable", {
+                key: "chartable" + _vm.campaign.id,
+                attrs: { campaign_id: _vm.campaign.id }
+              })
+            ],
             1
           ),
           _vm._v(" "),
