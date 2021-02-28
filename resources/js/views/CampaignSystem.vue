@@ -157,6 +157,7 @@
                     <div class=" d-md-inline-flex">
                         <v-tooltip
                             color="#121212"
+                            :key="'showscahrtabletooltip.' + campaign.id"
                             bottom
                             :open-delay="2000"
                             :disabled="$store.state.tooltipToggle"
