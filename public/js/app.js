@@ -12290,8 +12290,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -35416,8 +35414,10 @@ var render = function() {
                                           {
                                             name: "show",
                                             rawName: "v-show",
-                                            value: _vm.station.ammo_request,
-                                            expression: "station.ammo_request"
+                                            value:
+                                              _vm.station.ammo_request == 0,
+                                            expression:
+                                              "station.ammo_request == 0"
                                           }
                                         ],
                                         staticClass: " ml-2",
@@ -35457,7 +35457,7 @@ var render = function() {
                       _vm._v(" "),
                       _c("span", [
                         _vm._v(
-                          "\n                    Request Recon to do a system scan update. Pressing this\n                    button will ping the recon channel and make a new task\n                    in the recon tool\n                "
+                          "\n                    Request GSOL to restock the station\n                "
                         )
                       ])
                     ]
@@ -35470,8 +35470,8 @@ var render = function() {
                         {
                           name: "show",
                           rawName: "v-show",
-                          value: !_vm.station.ammo_request,
-                          expression: "!station.ammo_request"
+                          value: _vm.station.ammo_request == 1,
+                          expression: "station.ammo_request == 1"
                         }
                       ],
                       staticClass: " ml-2",
@@ -35520,17 +35520,17 @@ var render = function() {
                   _c("v-textarea", {
                     attrs: {
                       height: "400px",
-                      readonly: "",
                       "no-resize": "",
-                      outlined: "",
-                      placeholder: "No Notes"
+                      label: "Current ammo/fighter levels",
+                      autofocus: "",
+                      placeholder: "Just copy and paste from the ammo hangers"
                     },
                     model: {
-                      value: _vm.station.notes,
+                      value: _vm.editLoadout,
                       callback: function($$v) {
-                        _vm.$set(_vm.station, "notes", $$v)
+                        _vm.editLoadout = $$v
                       },
-                      expression: "station.notes"
+                      expression: "editLoadout"
                     }
                   }),
                   _vm._v(" "),
@@ -35541,9 +35541,9 @@ var render = function() {
                     [
                       _c("v-text-field", {
                         attrs: {
+                          height: "200px",
                           "auto-grow": "",
                           filled: "",
-                          autofocus: "",
                           label: "Enter New Notes Here"
                         },
                         model: {

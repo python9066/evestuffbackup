@@ -25,7 +25,7 @@
                             class=" ml-2"
                             small
                             outlined
-                            v-show="station.ammo_request"
+                            v-show="station.ammo_request == 0"
                             color="teal"
                             @click="taskRequest()"
                         >
@@ -33,13 +33,11 @@
                         </v-chip>
                     </template>
                     <span>
-                        Request Recon to do a system scan update. Pressing this
-                        button will ping the recon channel and make a new task
-                        in the recon tool
+                        Request GSOL to restock the station
                     </span>
                 </v-tooltip>
                 <v-chip
-                    v-show="!station.ammo_request"
+                    v-show="station.ammo_request == 1"
                     pill
                     small
                     class=" ml-2"
@@ -63,19 +61,19 @@
                 <v-card-text>
                     <v-textarea
                         height="400px"
-                        readonly
                         no-resize
-                        v-model="station.notes"
-                        outlined
-                        placeholder="No Notes"
+                        label="Current ammo/fighter levels"
+                        v-model="editLoadout"
+                        autofocus
+                        placeholder="Just copy and paste from the ammo hangers"
                     ></v-textarea>
                     <v-divider></v-divider>
                     <div>
                         <v-text-field
+                            height="200px"
                             v-model="editText"
                             auto-grow
                             filled
-                            autofocus
                             label="Enter New Notes Here"
                         ></v-text-field>
                     </div>
