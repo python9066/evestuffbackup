@@ -237,6 +237,7 @@
                             elevation="5"
                             max-height="600px"
                             min-width="300px"
+                            max-width="300px"
                         >
                             <v-card-title>
                                 Current Ammo
@@ -262,6 +263,7 @@
                             elevation="5"
                             max-height="600px"
                             min-width="300px"
+                            max-width="300px"
                             ><v-card-title>Request</v-card-title
                             ><v-card-text>{{
                                 station.request_text
@@ -273,8 +275,16 @@
                 ><v-card-actions>
                     <v-btn class="white--text" color="teal" @click="close()">
                         Close
-                    </v-btn></v-card-actions
-                >
+                    </v-btn>
+                    <v-btn
+                        :v-show="showTakeTask"
+                        class="white--text"
+                        color="green"
+                        @click="close()"
+                    >
+                        Take Task
+                    </v-btn>
+                </v-card-actions>
             </v-card>
 
             <!-- <ShowInfo
@@ -409,6 +419,14 @@ export default {
             });
             console.log(data);
             return data;
+        },
+
+        showTakeTask() {
+            if (station.user_id == null) {
+                return true;
+            } else {
+                return false;
+            }
         },
 
         showLinkButton() {

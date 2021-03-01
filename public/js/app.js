@@ -7007,6 +7007,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -7111,6 +7121,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       });
       console.log(data);
       return data;
+    },
+    showTakeTask: function showTakeTask() {
+      if (station.user_id == null) {
+        return true;
+      } else {
+        return false;
+      }
     },
     showLinkButton: function showLinkButton() {
       if (this.$can("request_recon_task") && this.fit[0]["r_research"] != null) {
@@ -30381,7 +30398,8 @@ var render = function() {
                         attrs: {
                           elevation: "5",
                           "max-height": "600px",
-                          "min-width": "300px"
+                          "min-width": "300px",
+                          "max-width": "300px"
                         }
                       },
                       [
@@ -30429,7 +30447,8 @@ var render = function() {
                         attrs: {
                           elevation: "5",
                           "max-height": "600px",
-                          "min-width": "300px"
+                          "min-width": "300px",
+                          "max-width": "300px"
                         }
                       },
                       [
@@ -30461,6 +30480,24 @@ var render = function() {
                       }
                     },
                     [_vm._v("\n                    Close\n                ")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-btn",
+                    {
+                      staticClass: "white--text",
+                      attrs: { "v-show": _vm.showTakeTask, color: "green" },
+                      on: {
+                        click: function($event) {
+                          return _vm.close()
+                        }
+                      }
+                    },
+                    [
+                      _vm._v(
+                        "\n                    Take Task\n                "
+                      )
+                    ]
                   )
                 ],
                 1
