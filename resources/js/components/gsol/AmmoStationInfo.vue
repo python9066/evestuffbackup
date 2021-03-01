@@ -325,6 +325,9 @@ export default {
             t.forEach(a => {
                 var s = a.split("\t");
                 s["item"] = s[0];
+                s["amount"] = s[1];
+                delete s[0];
+                delete s[1];
                 data.push(s);
             });
             console.log(data);

@@ -7039,6 +7039,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       t.forEach(function (a) {
         var s = a.split("\t");
         s["item"] = s[0];
+        s["amount"] = s[1];
+        delete s[0];
+        delete s[1];
         data.push(s);
       });
       console.log(data);
