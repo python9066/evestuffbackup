@@ -91,7 +91,7 @@ export default {
             });
         },
 
-        async gunnerRemove() {
+        async stockerRemove() {
             var request = {
                 user_id: null
             };
