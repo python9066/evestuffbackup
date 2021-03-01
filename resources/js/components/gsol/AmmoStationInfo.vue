@@ -207,29 +207,39 @@
                     <div v-if="!showfit()">
                         No Fit Info
                     </div>
-                    <v-card v-if="showfit()">
-                        <v-card-title>
-                            Fitting
-                        </v-card-title>
-                        <v-card-text>
-                            <v-data-table
-                                :headers="headers"
-                                :items="items"
-                                disable-sort
-                                hide-default-footer
-                                hide-default-header
-                                disable-pagination
-                                class="elevation-12"
-                                height="500px"
-                            >
-                                <template v-slot:[`item.icon`]="{ item }">
-                                    <v-avatar>
-                                        <img :src="url(item)" />
-                                    </v-avatar>
-                                </template>
-                            </v-data-table>
-                        </v-card-text>
-                    </v-card>
+                    <div>
+                        <v-card v-if="showfit()">
+                            <v-card-title>
+                                Fitting
+                            </v-card-title>
+                            <v-card-text>
+                                <v-data-table
+                                    :headers="headers"
+                                    :items="items"
+                                    disable-sort
+                                    hide-default-footer
+                                    hide-default-header
+                                    disable-pagination
+                                    class="elevation-12"
+                                    height="500px"
+                                >
+                                    <template v-slot:[`item.icon`]="{ item }">
+                                        <v-avatar>
+                                            <img :src="url(item)" />
+                                        </v-avatar>
+                                    </template>
+                                </v-data-table>
+                            </v-card-text>
+                        </v-card>
+                        <v-card>
+                            <v-card-text>
+                                Current Ammo
+                            </v-card-text>
+                            <v-card-text>
+                                {{ station.current_ammo }}
+                            </v-card-text>
+                        </v-card>
+                    </div>
                 </v-card-text>
                 <v-spacer></v-spacer
                 ><v-card-actions>
