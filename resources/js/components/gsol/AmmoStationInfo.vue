@@ -281,9 +281,17 @@
                         :v-show="showTakeTask"
                         class="white--text"
                         color="green"
-                        @click="close()"
+                        @click="taskTask()"
                     >
                         Take Task
+                    </v-btn>
+                    <v-btn
+                        :v-show="showDoneTask"
+                        class="white--text"
+                        color="warning"
+                        @click="taskDone()"
+                    >
+                        Task Done
                     </v-btn>
                 </v-card-actions>
             </v-card>
@@ -326,6 +334,25 @@ export default {
     methods: {
         close() {
             this.showInfo = false;
+        },
+
+        taskTask() {
+            var request = {
+                user_id: this.$store.state.user_id
+            };
+        },
+
+        async taskDone() {
+            await axios({
+                method: "delete",
+                url: "/api/ammorequestdelete/" + station.id,
+                data: request,
+                headers: {
+                    Authorization: "Bearer " + this.$store.state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                }
+            });
         },
 
         url(item) {

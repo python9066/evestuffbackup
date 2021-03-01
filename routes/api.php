@@ -168,4 +168,5 @@ Route::middleware('auth:api')->group(function () {
 
     Route::get('/ammorequestrecords', 'AmmoRequestRecordsController@index');
     Route::get('/loadammorequestdata', 'AmmoRequestController@loadAmmoRequestData');
+    Route::delete('/ammorequestdelete/{id}', 'AmmoRequestController@destroy');
 });
