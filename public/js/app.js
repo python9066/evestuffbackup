@@ -30361,19 +30361,17 @@ var render = function() {
                           [
                             _c(
                               "v-list",
-                              [
-                                _vm._l(_vm.currentAmmos, function(
-                                  currentAmmo,
-                                  index
-                                ) {
-                                  return _c("v-list-item", { key: index })
-                                }),
-                                _vm._v(" "),
-                                _c("v-list-item", [
-                                  _vm._v(_vm._s(_vm.currentAmmo))
+                              _vm._l(_vm.currentAmmos, function(
+                                currentAmmo,
+                                index
+                              ) {
+                                return _c("v-list-item", { key: index }, [
+                                  _vm._v(
+                                    "\n                                    yo\n                                "
+                                  )
                                 ])
-                              ],
-                              2
+                              }),
+                              1
                             )
                           ],
                           1
