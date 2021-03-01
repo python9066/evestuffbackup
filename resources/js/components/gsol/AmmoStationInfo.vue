@@ -242,7 +242,7 @@
                                         index) in currentAmmos"
                                         :key="index"
                                     >
-                                        {{ currentAmmo }}
+                                        {{ currentAmmo[0] }}
                                     </v-list-item>
                                 </v-list>
                             </v-card-text>
@@ -385,8 +385,6 @@ export default {
 
             t.forEach(a => {
                 var s = a.split("\t");
-                s["item"] = s[0];
-                s["amount"] = s[1];
                 data.push(s);
             });
             console.log(data);

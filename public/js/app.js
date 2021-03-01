@@ -7087,8 +7087,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var t = text.split("\n");
       t.forEach(function (a) {
         var s = a.split("\t");
-        s["item"] = s[0];
-        s["amount"] = s[1];
         data.push(s);
       });
       console.log(data);
@@ -30379,7 +30377,7 @@ var render = function() {
                                 return _c("v-list-item", { key: index }, [
                                   _vm._v(
                                     "\n                                    " +
-                                      _vm._s(currentAmmo) +
+                                      _vm._s(currentAmmo[0]) +
                                       "\n                                "
                                   )
                                 ])
