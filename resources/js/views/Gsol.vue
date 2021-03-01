@@ -1,5 +1,5 @@
 <template>
-    <div class=" pr-16 pl-16">THIS IS GSOL</div>
+    <div class=" pr-16 pl-16"><AmmoRequestTable></AmmoRequestTable></div>
 </template>
 <script>
 import Axios from "axios";
