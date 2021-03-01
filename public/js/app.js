@@ -6554,12 +6554,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
-//
 
 
 
@@ -29846,13 +29840,6 @@ var render = function() {
                           _vm._v(_vm._s(item.alliance_ticker))
                         ])
                   ]
-                }
-              },
-              {
-                key: "item.actions",
-                fn: function(ref) {
-                  var item = ref.item
-                  return [_c("div", { staticClass: " d-inline-flex" })]
                 }
               }
             ],

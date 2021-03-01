@@ -97,12 +97,6 @@
                 </span>
                 <span v-else class="pl-3">{{ item.alliance_ticker }}</span>
             </template>
-
-            <template v-slot:[`item.actions`]="{ item }">
-                <div class=" d-inline-flex">
-                    <!-- <AmmoStationInfo :station="item"></AmmoStationInfo> -->
-                </div>
-            </template>
         </v-data-table>
     </div>
 </template>
