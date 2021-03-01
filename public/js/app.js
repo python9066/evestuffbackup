@@ -6617,7 +6617,7 @@ function sleep(ms) {
       loadingf: true,
       loadingr: true,
       search: "",
-      toggle_exclusive: 0
+      toggle_exclusive: 1
     };
   },
   created: function created() {

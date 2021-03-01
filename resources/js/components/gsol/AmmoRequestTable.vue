@@ -171,7 +171,7 @@ export default {
             loadingf: true,
             loadingr: true,
             search: "",
-            toggle_exclusive: 0
+            toggle_exclusive: 1
         };
     },
 
