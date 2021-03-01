@@ -30368,7 +30368,7 @@ var render = function() {
                     _vm._v(" "),
                     _c(
                       "v-card",
-                      { staticClass: " mx-4" },
+                      { staticClass: " mx-4", attrs: { elevation: "24" } },
                       [
                         _c("v-card-title", [
                           _vm._v(
@@ -30410,7 +30410,7 @@ var render = function() {
                     _vm._v(" "),
                     _c(
                       "v-card",
-                      { staticClass: " mb-2" },
+                      { attrs: { elevation: "24" } },
                       [
                         _c("v-card-title", [_vm._v("Request")]),
                         _c("v-card-text", [

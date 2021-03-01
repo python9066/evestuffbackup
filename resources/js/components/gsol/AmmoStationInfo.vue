@@ -232,7 +232,7 @@
                             </v-card-text>
                         </v-card>
 
-                        <v-card class=" mx-4">
+                        <v-card class=" mx-4" elevation="24">
                             <v-card-title>
                                 Current Ammo
                             </v-card-title>
@@ -253,7 +253,7 @@
                                 </v-list>
                             </v-card-text>
                         </v-card>
-                        <v-card class=" mb-2"
+                        <v-card elevation="24"
                             ><v-card-title>Request</v-card-title
                             ><v-card-text>{{
                                 station.request_text
