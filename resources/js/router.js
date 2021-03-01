@@ -16,7 +16,8 @@ import FeedBack from "./views/FeedBack.vue";
 import campaginSystemKick from "./views/redirect/campaginSystemKick.vue";
 import MultiCampagins from "./views/MultiCampaigns.vue";
 import campaignFinished from "./views/redirect/campaignOver.vue";
-import chillstations from "./components/chillstation/ChillStructure.vue"
+import chillstations from "./components/chillstation/ChillStructure.vue";
+import Gsol from "./views/Gsol"
 
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
@@ -108,6 +109,20 @@ export default new Router({
             path: "/feedback",
             name: "feedback",
             component: FeedBack,
+              beforeEnter(to, from, next) {
+                if(Permissions.indexOf('super' )!== -1){
+                    next()
+                }else{
+                   next("/notifications")
+                }
+
+              }
+        },
+
+        {
+            path: "/gsol",
+            name: "gsol",
+            component: Gsol,
               beforeEnter(to, from, next) {
                 if(Permissions.indexOf('super' )!== -1){
                     next()

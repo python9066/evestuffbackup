@@ -42,6 +42,10 @@
                         Towers
                     </v-tab>
 
+                    <v-tab link to="/gsol" v-if="$can('super')">
+                        GSOL
+                    </v-tab>
+
                     <v-tab link to="/timers">
                         Windows
                     </v-tab>
@@ -52,7 +56,6 @@
 
                     <v-tab
                         v-if="$can('access_multi_campaigns')"
-                        link
                         to="/mcampaigns"
                     >
                         Multi-Campaign
