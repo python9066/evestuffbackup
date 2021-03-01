@@ -12,7 +12,7 @@ class CreateOrReplaceCampaignRecordsViewCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'view:CreateOrReplaceCampaignRecordsView';
+    protected $signature = 'view:CreateOrReplaceAmmoRequestRecordsView';
 
     /**
      * The console command description.
