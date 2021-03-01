@@ -12324,22 +12324,44 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
     open: function open() {},
     submitAmmo: function submitAmmo() {
-      var request = {
-        station_id: this.station.id,
-        current_ammo: this.editLoadout,
-        request_text: this.editText
-      };
-      axios({
-        method: "post",
-        //you can set what request you want to be
-        url: "api/ammorequest",
-        data: request,
-        headers: {
-          Authorization: "Bearer " + this.$store.state.token,
-          Accept: "application/json",
-          "Content-Type": "application/json"
-        }
-      });
+      var _this = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+        var request;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                request = {
+                  station_id: _this.station.id,
+                  current_ammo: _this.editLoadout,
+                  request_text: _this.editText
+                };
+                _context2.next = 3;
+                return axios({
+                  method: "post",
+                  //you can set what request you want to be
+                  url: "api/ammorequest",
+                  data: request,
+                  headers: {
+                    Authorization: "Bearer " + _this.$store.state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                  }
+                });
+
+              case 3:
+                _this.editText = null;
+                _this.editLoadout = null;
+                _this.showAmmoRequest = false;
+
+              case 6:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2);
+      }))();
     }
   },
   computed: {

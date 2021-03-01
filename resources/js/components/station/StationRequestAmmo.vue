@@ -131,14 +131,14 @@ export default {
 
         open() {},
 
-        submitAmmo() {
+        async submitAmmo() {
             var request = {
                 station_id: this.station.id,
                 current_ammo: this.editLoadout,
                 request_text: this.editText
             };
 
-            axios({
+            await axios({
                 method: "post", //you can set what request you want to be
                 url: "api/ammorequest",
                 data: request,
@@ -148,6 +148,9 @@ export default {
                     "Content-Type": "application/json"
                 }
             });
+            this.editText = null;
+            this.editLoadout = null;
+            this.showAmmoRequest = false;
         }
     },
 
