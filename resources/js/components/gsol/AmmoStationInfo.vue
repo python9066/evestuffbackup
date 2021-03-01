@@ -8,6 +8,7 @@
         >
             <template v-slot:activator="{ on, attrs }">
                 <v-chip
+                    :key="'infobutton' + station.id"
                     pill
                     small
                     color="blue"
