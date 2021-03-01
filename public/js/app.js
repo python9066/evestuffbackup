@@ -30929,7 +30929,7 @@ var render = function() {
               [
                 _vm._v(
                   "\n                " +
-                    _vm._s(_vm.stockerName) +
+                    _vm._s(_vm.station.user_name) +
                     "\n            "
                 )
               ]

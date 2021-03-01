@@ -3,7 +3,7 @@
         <div>
             <span class="d-inline-flex align-items-md-center pr-2">
                 <span class="pl-2" v-show="!showStockerButton">
-                    {{ stockerName }}
+                    {{ station.user_name }}
                 </span>
             </span>
         </div>
