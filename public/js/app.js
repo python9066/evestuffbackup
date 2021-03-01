@@ -7035,9 +7035,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     currentAmmos: function currentAmmos() {
       var text = this.station.current_ammo;
       var t = text.split("\n");
-      forEach(function (t) {
-        var a = t.split("\t");
-        console.log(a);
+      t.forEach(function (a) {
+        console.log(a.split("\t"));
       });
       console.log(t);
     },
