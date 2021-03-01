@@ -456,6 +456,14 @@ export default {
             }
         },
 
+        showDoneTask() {
+            if (this.station.user == this.$store.state.user_id) {
+                return true;
+            } else {
+                return false;
+            }
+        },
+
         showAssignName() {
             if (this.station.user_id == null) {
                 return "None";

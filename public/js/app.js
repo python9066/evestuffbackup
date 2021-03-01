@@ -7178,6 +7178,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         return false;
       }
     },
+    showDoneTask: function showDoneTask() {
+      if (this.station.user == this.$store.state.user_id) {
+        return true;
+      } else {
+        return false;
+      }
+    },
     showAssignName: function showAssignName() {
       if (this.station.user_id == null) {
         return "None";
