@@ -115,7 +115,7 @@ class AmmoRequestController extends Controller
      */
     public function destroy($id)
     {
-        AmmoRequest::find($id)->destroy();
+        AmmoRequest::destroy($id);
         Station::where('ammo_request_id', $id)->first()->update(['ammo_request_id' => null]);
     }
 }
