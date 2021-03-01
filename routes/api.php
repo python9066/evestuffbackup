@@ -166,5 +166,5 @@ Route::middleware('auth:api')->group(function () {
 
     Route::post('/ammorequest', 'AmmoRequestController@store');
 
-    Route::get('/ammorequestrecords', 'AmmoRequestController@index');
+    Route::get('/ammorequestrecords', 'AmmoRequestRecordsController@index');
 });
