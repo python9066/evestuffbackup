@@ -14,7 +14,7 @@ class CallTheAmmoRequestCommand extends Migration
      */
     public function up()
     {
-        Artisan::call("view:CreateOrReplaceCampaignRecordsView");
+        Artisan::call("view:CreateOrReplaceAmmoRequestRecordsView");
     }
 
     /**
