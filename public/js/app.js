@@ -30294,6 +30294,7 @@ var render = function() {
                 _vm._v(" "),
                 _c(
                   "div",
+                  { staticClass: " d-inline-flex" },
                   [
                     _vm.showfit()
                       ? _c(
@@ -30361,6 +30362,7 @@ var render = function() {
                           [
                             _c(
                               "v-list",
+                              { attrs: { dense: "" } },
                               _vm._l(_vm.currentAmmos, function(
                                 currentAmmo,
                                 index

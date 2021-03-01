@@ -207,7 +207,7 @@
                     <div v-if="!showfit()">
                         No Fit Info
                     </div>
-                    <div>
+                    <div class=" d-inline-flex">
                         <v-card v-if="showfit()">
                             <v-card-title>
                                 Fitting
@@ -236,7 +236,7 @@
                                 Current Ammo
                             </v-card-text>
                             <v-card-text>
-                                <v-list>
+                                <v-list dense>
                                     <v-list-item
                                         v-for="(currentAmmo,
                                         index) in currentAmmos"
