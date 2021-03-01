@@ -187,7 +187,8 @@ export default {
             loadingt: true,
             loadingf: true,
             loadingr: true,
-            search: ""
+            search: "",
+            toggle_exclusive: 0
         };
     },
 
@@ -223,10 +224,10 @@ export default {
         filteredItems() {
             const filter = this.ammoRequest;
             if (this.statusflag == 2) {
-                return filter.filter(f => s.user_id == null);
+                return filter.filter(f => f.user_id == null);
             }
             if (this.statusflag == 3) {
-                return filter.filter(f => s.user_id != null);
+                return filter.filter(f => f.user_id != null);
             } else {
                 return filter;
             }

@@ -6633,7 +6633,8 @@ function sleep(ms) {
       loadingt: true,
       loadingf: true,
       loadingr: true,
-      search: ""
+      search: "",
+      toggle_exclusive: 0
     };
   },
   created: function created() {
@@ -6690,13 +6691,13 @@ function sleep(ms) {
 
       if (this.statusflag == 2) {
         return filter.filter(function (f) {
-          return s.user_id == null;
+          return f.user_id == null;
         });
       }
 
       if (this.statusflag == 3) {
         return filter.filter(function (f) {
-          return s.user_id != null;
+          return f.user_id != null;
         });
       } else {
         return filter;
