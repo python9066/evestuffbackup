@@ -41516,7 +41516,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: " pr-16 pl-16" })
+  return _c("div", { staticClass: " pr-16 pl-16" }, [_vm._v("THIS IS GSOL")])
 }
 var staticRenderFns = []
 render._withStripped = true
