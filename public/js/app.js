@@ -7032,21 +7032,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         return false;
       }
     },
-    currentAmmos: function currentAmmos() {
-      var data = [];
-      var text = this.station.current_ammo;
-      var t = text.split("\n");
-      t.forEach(function (a) {
-        var s = a.split("\t");
-        s["item"] = s[0];
-        s["amount"] = s[1];
-        delete s[0];
-        delete s[1];
-        data.push(s);
-      });
-      console.log(data);
-      console.log(t);
-    },
     lastUpdated: function lastUpdated() {
       if (this.fit[0]["r_updated_at"] != null) {
         var ago = moment__WEBPACK_IMPORTED_MODULE_1___default()(this.fit[0]["r_updated_at"]).fromNow();
@@ -7097,6 +7082,20 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       } else {
         return "red--text";
       }
+    },
+    currentAmmos: function currentAmmos() {
+      var data = [];
+      var text = this.station.current_ammo;
+      var t = text.split("\n");
+      t.forEach(function (a) {
+        var s = a.split("\t");
+        s["item"] = s[0];
+        s["amount"] = s[1];
+        delete s[0];
+        delete s[1];
+        data.push(s);
+      });
+      return data;
     },
     showLinkButton: function showLinkButton() {
       if (this.$can("request_recon_task") && this.fit[0]["r_research"] != null) {
@@ -30383,7 +30382,7 @@ var render = function() {
                                 return _c("v-list-item", { key: index }, [
                                   _vm._v(
                                     "\n                                    " +
-                                      _vm._s(currentAmmo) +
+                                      _vm._s(currentAmmo.name) +
                                       "\n                                "
                                   )
                                 ])

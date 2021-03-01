@@ -242,7 +242,7 @@
                                         index) in currentAmmos"
                                         :key="index"
                                     >
-                                        {{ currentAmmo }}
+                                        {{ currentAmmo.name }}
                                     </v-list-item>
                                 </v-list>
                             </v-card-text>
@@ -317,23 +317,6 @@ export default {
             }
         },
 
-        currentAmmos() {
-            var data = [];
-            var text = this.station.current_ammo;
-            var t = text.split("\n");
-
-            t.forEach(a => {
-                var s = a.split("\t");
-                s["item"] = s[0];
-                s["amount"] = s[1];
-                delete s[0];
-                delete s[1];
-                data.push(s);
-            });
-            console.log(data);
-            console.log(t);
-        },
-
         lastUpdated() {
             if (this.fit[0]["r_updated_at"] != null) {
                 var ago = moment(this.fit[0]["r_updated_at"]).fromNow();
@@ -395,6 +378,22 @@ export default {
             } else {
                 return "red--text";
             }
+        },
+
+        currentAmmos() {
+            var data = [];
+            var text = this.station.current_ammo;
+            var t = text.split("\n");
+
+            t.forEach(a => {
+                var s = a.split("\t");
+                s["item"] = s[0];
+                s["amount"] = s[1];
+                delete s[0];
+                delete s[1];
+                data.push(s);
+            });
+            return data;
         },
 
         showLinkButton() {
