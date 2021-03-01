@@ -236,7 +236,15 @@
                                 Current Ammo
                             </v-card-text>
                             <v-card-text>
-                                {{ currentAmmoText() }}
+                                <v-list>
+                                    <v-list-item
+                                        v-for="(list,
+                                        index) in currentAmmoText()"
+                                        :key="index"
+                                    >
+                                    </v-list-item>
+                                    <v-list-item>{{ list }}</v-list-item>
+                                </v-list>
                             </v-card-text>
                         </v-card>
                     </div>
