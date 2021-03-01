@@ -6558,6 +6558,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
 
 
 
@@ -6694,6 +6696,452 @@ function sleep(ms) {
   beforeDestroy: function beforeDestroy() {
     Echo.leave("ammorequest");
   }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/gsol/AmmoStationInfo.vue?vue&type=script&lang=js&":
+/*!*******************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/gsol/AmmoStationInfo.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_1__);
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: {
+    station: Object
+  },
+  data: function data() {
+    return {
+      headers: [{
+        text: "",
+        value: "icon",
+        width: "5%",
+        align: "start"
+      }, {
+        text: "Items",
+        value: "item_name",
+        width: "95%",
+        align: "start"
+      }],
+      showInfo: false,
+      editText: null,
+      editAdashLink: null,
+      fitted: false
+    };
+  },
+  methods: {
+    close: function close() {
+      this.showInfo = false;
+    },
+    openAdash: function openAdash(url) {
+      var win = window.open(url, "_blank");
+      win.focus();
+    },
+    taskFlag: function taskFlag() {
+      if (this.stationInfo[0]["task_flag"] == 1) {
+        return true;
+      } else {
+        return false;
+      }
+    },
+    url: function url(item) {
+      return "https://images.evetech.net/types/" + item.item_id + "/icon";
+    },
+    open: function open() {},
+    openRecon: function openRecon(hash) {
+      var url = "https://recon.gnf.lt/structures/" + hash + "/view";
+      var win = window.open(url, "_blank");
+      win.focus();
+    },
+    taskRequest: function taskRequest() {
+      var request = {
+        system_name: this.station.system_name,
+        system_id: this.station.system_id,
+        station_id: this.station.id,
+        structure_name: this.station.station_name,
+        username: this.$store.state.user_name,
+        show_on_main: this.station.show_on_main,
+        show_on_chill: this.show_on_chill
+      };
+      axios({
+        method: "post",
+        //you can set what request you want to be
+        url: "api/taskrequest",
+        data: request,
+        headers: {
+          Authorization: "Bearer " + this.$store.state.token,
+          Accept: "application/json",
+          "Content-Type": "application/json"
+        }
+      });
+    },
+    showfit: function showfit() {
+      if (this.fitted == true) {
+        return true;
+      } else {
+        return false;
+      }
+    },
+    lastUpdated: function lastUpdated() {
+      if (this.fit[0]["r_updated_at"] != null) {
+        var ago = moment__WEBPACK_IMPORTED_MODULE_1___default()(this.fit[0]["r_updated_at"]).fromNow();
+        return ago;
+      } else {
+        return "Never";
+      }
+    }
+  },
+  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(["getStationItemsByStationID", "getCoreByStationID", "getStationFitByStationID"])), {}, {
+    items: function items() {
+      return this.getStationItemsByStationID(this.station.id);
+    },
+    fit: function fit() {
+      var fit = this.getStationFitByStationID(this.station.id);
+
+      if (fit[0]["r_fitted"] == "Fitted") {
+        this.fitted = true;
+      }
+
+      return fit;
+    },
+    r_lastupdated: function r_lastupdated() {
+      return this.fit.r_updated_at;
+    },
+    stationInfo: function stationInfo() {
+      return this.getCoreByStationID(this.station.id);
+    },
+    core: function core() {
+      var core = this.getCoreByStationID(this.station.id);
+
+      if (this.fit == "NO") {
+        return "No Info";
+      }
+
+      if (core.cored == "Yes") {
+        return "Yes";
+      } else {
+        return "No";
+      }
+    },
+    textcolor: function textcolor() {
+      if (this.core == "Yes") {
+        return "green--text";
+      } else {
+        return "red--text";
+      }
+    },
+    showLinkButton: function showLinkButton() {
+      if (this.$can("request_recon_task") && this.fit[0]["r_research"] != null) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+  }),
+  beforeDestroy: function beforeDestroy() {}
 });
 
 /***/ }),
@@ -29405,7 +29853,14 @@ var render = function() {
                     key: "item.actions",
                     fn: function(ref) {
                       var item = ref.item
-                      return [_c("div", { staticClass: " d-inline-flex" })]
+                      return [
+                        _c(
+                          "div",
+                          { staticClass: " d-inline-flex" },
+                          [_c("AmmoStationInfo", { attrs: { station: item } })],
+                          1
+                        )
+                      ]
                     }
                   }
                 : null
@@ -29421,6 +29876,617 @@ var render = function() {
           ])
         ],
         2
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/gsol/AmmoStationInfo.vue?vue&type=template&id=063b53b9&":
+/*!***********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/gsol/AmmoStationInfo.vue?vue&type=template&id=063b53b9& ***!
+  \***********************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    [
+      _c(
+        "v-dialog",
+        {
+          attrs: { "max-width": "700px", "z-index": "0" },
+          on: {
+            "click:outside": function($event) {
+              return _vm.close()
+            }
+          },
+          scopedSlots: _vm._u([
+            {
+              key: "activator",
+              fn: function(ref) {
+                var on = ref.on
+                var attrs = ref.attrs
+                return [
+                  _c(
+                    "v-icon",
+                    _vm._g(
+                      _vm._b(
+                        {
+                          attrs: { color: "blue" },
+                          on: {
+                            click: function($event) {
+                              return _vm.open()
+                            }
+                          }
+                        },
+                        "v-icon",
+                        attrs,
+                        false
+                      ),
+                      on
+                    ),
+                    [
+                      _vm._v(
+                        "\n                faSvg fa-info-circle\n            "
+                      )
+                    ]
+                  )
+                ]
+              }
+            }
+          ]),
+          model: {
+            value: _vm.showInfo,
+            callback: function($$v) {
+              _vm.showInfo = $$v
+            },
+            expression: "showInfo"
+          }
+        },
+        [
+          _vm._v(" "),
+          _c(
+            "v-card",
+            {
+              staticClass: " d-flex flex-column",
+              attrs: {
+                tile: "",
+                "max-width": "700px",
+                "min-height": "200px",
+                "max-height": "1000px"
+              }
+            },
+            [
+              _c("v-card-title", { staticClass: "justify-center" }, [
+                _c(
+                  "p",
+                  [
+                    _vm._v(
+                      "\n                    " +
+                        _vm._s(_vm.station.station_name) +
+                        "\n                    "
+                    ),
+                    _vm.showLinkButton
+                      ? _c(
+                          "v-chip",
+                          {
+                            staticClass: " ml-2",
+                            attrs: {
+                              pill: "",
+                              small: "",
+                              outlined: "",
+                              color: "teal"
+                            },
+                            on: {
+                              click: function($event) {
+                                return _vm.openRecon(_vm.fit[0]["r_hash"])
+                              }
+                            }
+                          },
+                          [
+                            _vm._v(
+                              "\n                        View On Recon Tool\n                    "
+                            )
+                          ]
+                        )
+                      : _vm._e()
+                  ],
+                  1
+                )
+              ]),
+              _vm._v(" "),
+              _c("v-card-subtitle", [
+                _c("div", [
+                  _vm._v("\n                    Cored: "),
+                  _c("strong", { class: _vm.textcolor }, [
+                    _vm._v(" " + _vm._s(_vm.core) + " ")
+                  ])
+                ]),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: " d-inline-flex" },
+                  [
+                    _vm._v(
+                      "\n                    Last Updated: " +
+                        _vm._s(_vm.lastUpdated()) +
+                        "\n                    "
+                    ),
+                    _c(
+                      "v-tooltip",
+                      {
+                        attrs: {
+                          color: "#121212",
+                          bottom: "",
+                          "open-delay": 2000,
+                          disabled: _vm.$store.state.tooltipToggle
+                        },
+                        scopedSlots: _vm._u([
+                          {
+                            key: "activator",
+                            fn: function(ref) {
+                              var tooltip = ref.on
+                              var atooltip = ref.attrs
+                              return [
+                                _vm.$can("request_recon_task") &&
+                                !_vm.taskFlag()
+                                  ? _c(
+                                      "v-chip",
+                                      _vm._g(
+                                        _vm._b(
+                                          {
+                                            staticClass: " ml-2",
+                                            attrs: {
+                                              pill: "",
+                                              small: "",
+                                              outlined: "",
+                                              color: "teal"
+                                            },
+                                            on: {
+                                              click: function($event) {
+                                                return _vm.taskRequest()
+                                              }
+                                            }
+                                          },
+                                          "v-chip",
+                                          Object.assign({}, atooltip),
+                                          false
+                                        ),
+                                        Object.assign({}, tooltip)
+                                      ),
+                                      [
+                                        _vm._v(
+                                          "\n                                Request Update\n                            "
+                                        )
+                                      ]
+                                    )
+                                  : _vm._e()
+                              ]
+                            }
+                          }
+                        ])
+                      },
+                      [
+                        _vm._v(" "),
+                        _c("span", [
+                          _vm._v(
+                            "\n                            Request Recon to do a system scan update.\n                            Pressing this button will ping the recon channel\n                            and make a new task in the recon tool\n                        "
+                          )
+                        ])
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _vm.$can("request_recon_task") && _vm.taskFlag()
+                      ? _c(
+                          "v-chip",
+                          {
+                            staticClass: " ml-2",
+                            attrs: { pill: "", small: "", color: "teal" }
+                          },
+                          [
+                            _vm._v(
+                              "\n                        Request Made\n                    "
+                            )
+                          ]
+                        )
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _vm.$can("super")
+                      ? _c("StationRequestAmmo", {
+                          key: "ammorequest" + _vm.station.id,
+                          attrs: { station: _vm.station }
+                        })
+                      : _vm._e()
+                  ],
+                  1
+                )
+              ]),
+              _vm._v(" "),
+              _c(
+                "v-card-text",
+                [
+                  _vm.showfit()
+                    ? _c(
+                        "div",
+                        [
+                          _vm.fit[0]["r_anti_cap"] == 1
+                            ? _c(
+                                "v-chip",
+                                {
+                                  staticClass: " mt-2 mb-2",
+                                  attrs: { small: "", color: "red" }
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                        anti cap\n                    "
+                                  )
+                                ]
+                              )
+                            : _vm._e(),
+                          _vm._v(" "),
+                          _vm.fit[0]["r_anti_subcap"] == 1
+                            ? _c(
+                                "v-chip",
+                                {
+                                  staticClass: " mt-2 mb-2",
+                                  attrs: { small: "", color: "red" }
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                        anti subcap\n                    "
+                                  )
+                                ]
+                              )
+                            : _vm._e(),
+                          _vm._v(" "),
+                          _vm.fit[0]["r_dooms_day"] == 1
+                            ? _c(
+                                "v-chip",
+                                {
+                                  staticClass: " mt-2 mb-2",
+                                  attrs: { small: "", color: "red" }
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                        dooms day\n                    "
+                                  )
+                                ]
+                              )
+                            : _vm._e(),
+                          _vm._v(" "),
+                          _vm.fit[0]["r_point_defense"] == 1
+                            ? _c(
+                                "v-chip",
+                                {
+                                  staticClass: " mt-2 mb-2",
+                                  attrs: { small: "", color: "red" }
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                        point defense\n                    "
+                                  )
+                                ]
+                              )
+                            : _vm._e(),
+                          _vm._v(" "),
+                          _vm.fit[0]["r_biochemical"] == 1
+                            ? _c(
+                                "v-chip",
+                                {
+                                  staticClass: " mt-2 mb-2",
+                                  attrs: { small: "", color: "blue" }
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                        biochemical\n                    "
+                                  )
+                                ]
+                              )
+                            : _vm._e(),
+                          _vm._v(" "),
+                          _vm.fit[0]["r_capital_shipyard"] == 1
+                            ? _c(
+                                "v-chip",
+                                {
+                                  staticClass: " mt-2 mb-2",
+                                  attrs: { small: "", color: "blue" }
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                        capital shipyard\n                    "
+                                  )
+                                ]
+                              )
+                            : _vm._e(),
+                          _vm._v(" "),
+                          _vm.fit[0]["r_cloning"] == 1
+                            ? _c(
+                                "v-chip",
+                                {
+                                  staticClass: " mt-2 mb-2",
+                                  attrs: { small: "", color: "blue" }
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                        cloning\n                    "
+                                  )
+                                ]
+                              )
+                            : _vm._e(),
+                          _vm._v(" "),
+                          _vm.fit[0]["r_composite"] == 1
+                            ? _c(
+                                "v-chip",
+                                {
+                                  staticClass: " mt-2 mb-2",
+                                  attrs: { small: "", color: "blue" }
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                        composite\n                    "
+                                  )
+                                ]
+                              )
+                            : _vm._e(),
+                          _vm._v(" "),
+                          _vm.fit[0]["r_guide_bombs"] == 1
+                            ? _c(
+                                "v-chip",
+                                {
+                                  staticClass: " mt-2 mb-2",
+                                  attrs: { small: "", color: "red" }
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                        guide bombs\n                    "
+                                  )
+                                ]
+                              )
+                            : _vm._e(),
+                          _vm._v(" "),
+                          _vm.fit[0]["r_hyasyoda"] == 1
+                            ? _c(
+                                "v-chip",
+                                {
+                                  staticClass: " mt-2 mb-2",
+                                  attrs: { small: "", color: "blue" }
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                        hyasyoda\n                    "
+                                  )
+                                ]
+                              )
+                            : _vm._e(),
+                          _vm._v(" "),
+                          _vm.fit[0]["r_hybrid"] == 1
+                            ? _c(
+                                "v-chip",
+                                {
+                                  staticClass: " mt-2 mb-2",
+                                  attrs: { small: "", color: "blue" }
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                        hybrid\n                    "
+                                  )
+                                ]
+                              )
+                            : _vm._e(),
+                          _vm._v(" "),
+                          _vm.fit[0]["r_invention"] == 1
+                            ? _c(
+                                "v-chip",
+                                {
+                                  staticClass: " mt-2 mb-2",
+                                  attrs: { small: "", color: "blue" }
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                        invention\n                    "
+                                  )
+                                ]
+                              )
+                            : _vm._e(),
+                          _vm._v(" "),
+                          _vm.fit[0]["r_manufacturing"] == 1
+                            ? _c(
+                                "v-chip",
+                                {
+                                  staticClass: " mt-2 mb-2",
+                                  attrs: { small: "", color: "blue" }
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                        manufacturing\n                    "
+                                  )
+                                ]
+                              )
+                            : _vm._e(),
+                          _vm._v(" "),
+                          _vm.fit[0]["r_moon_drilling"] == 1
+                            ? _c(
+                                "v-chip",
+                                {
+                                  staticClass: " mt-2 mb-2",
+                                  attrs: { small: "", color: "blue" }
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                        moon drilling\n                    "
+                                  )
+                                ]
+                              )
+                            : _vm._e(),
+                          _vm._v(" "),
+                          _vm.fit[0]["r_reprocessing"] == 1
+                            ? _c(
+                                "v-chip",
+                                {
+                                  staticClass: " mt-2 mb-2",
+                                  attrs: { small: "", color: "blue" }
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                        reprocessing\n                    "
+                                  )
+                                ]
+                              )
+                            : _vm._e(),
+                          _vm._v(" "),
+                          _vm.fit[0]["r_research"] == 1
+                            ? _c(
+                                "v-chip",
+                                {
+                                  staticClass: " mt-2 mb-2",
+                                  attrs: { small: "", color: "blue" }
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                        research\n                    "
+                                  )
+                                ]
+                              )
+                            : _vm._e(),
+                          _vm._v(" "),
+                          _vm.fit[0]["r_supercapital_shipyard"] == 1
+                            ? _c(
+                                "v-chip",
+                                {
+                                  staticClass: " mt-2 mb-2",
+                                  attrs: { small: "", color: "blue" }
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                        supercapital shipyard\n                    "
+                                  )
+                                ]
+                              )
+                            : _vm._e(),
+                          _vm._v(" "),
+                          _vm.fit[0]["r_t2_rigged"] == 1
+                            ? _c(
+                                "v-chip",
+                                {
+                                  staticClass: " mt-2 mb-2",
+                                  attrs: { small: "", color: "blue" }
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                        t2 rigged\n                    "
+                                  )
+                                ]
+                              )
+                            : _vm._e()
+                        ],
+                        1
+                      )
+                    : _vm._e(),
+                  _vm._v(" "),
+                  !_vm.showfit()
+                    ? _c("div", [
+                        _vm._v(
+                          "\n                    No Fit Info\n                "
+                        )
+                      ])
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _vm.showfit()
+                    ? _c(
+                        "v-card",
+                        [
+                          _c("v-card-title", [
+                            _vm._v(
+                              "\n                        Fitting\n                    "
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c(
+                            "v-card-text",
+                            [
+                              _c("v-data-table", {
+                                staticClass: "elevation-12",
+                                attrs: {
+                                  headers: _vm.headers,
+                                  items: _vm.items,
+                                  "disable-sort": "",
+                                  "hide-default-footer": "",
+                                  "hide-default-header": "",
+                                  "disable-pagination": "",
+                                  height: "500px"
+                                },
+                                scopedSlots: _vm._u(
+                                  [
+                                    {
+                                      key: "item.icon",
+                                      fn: function(ref) {
+                                        var item = ref.item
+                                        return [
+                                          _c("v-avatar", [
+                                            _c("img", {
+                                              attrs: { src: _vm.url(item) }
+                                            })
+                                          ])
+                                        ]
+                                      }
+                                    }
+                                  ],
+                                  null,
+                                  false,
+                                  916954536
+                                )
+                              })
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    : _vm._e()
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c("v-spacer"),
+              _c(
+                "v-card-actions",
+                [
+                  _c(
+                    "v-btn",
+                    {
+                      staticClass: "white--text",
+                      attrs: { color: "teal" },
+                      on: {
+                        click: function($event) {
+                          return _vm.close()
+                        }
+                      }
+                    },
+                    [_vm._v("\n                    Close\n                ")]
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          )
+        ],
+        1
       )
     ],
     1
@@ -45490,6 +46556,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('ChillAddStation', __webpac
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('ChillStructure', __webpack_require__(/*! ./components/chillstation/ChillStructure.vue */ "./resources/js/components/chillstation/ChillStructure.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('StationRequestAmmo', __webpack_require__(/*! ./components/station/StationRequestAmmo.vue */ "./resources/js/components/station/StationRequestAmmo.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('AmmoRequestTable', __webpack_require__(/*! ./components/gsol/AmmoRequestTable.vue */ "./resources/js/components/gsol/AmmoRequestTable.vue")["default"]);
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('AmmoStationInfo', __webpack_require__(/*! ./components/gsol/AmmoStationInfo.vue */ "./resources/js/components/gsol/AmmoStationInfo.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.prototype.moment = moment__WEBPACK_IMPORTED_MODULE_11___default.a; // import '@fortawesome/fontawesome-f      ree/css/all.css'
 
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(_components_countdown_index__WEBPACK_IMPORTED_MODULE_14__["default"]);
@@ -47970,6 +49037,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AmmoRequestTable_vue_vue_type_template_id_4d523150___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AmmoRequestTable_vue_vue_type_template_id_4d523150___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/gsol/AmmoStationInfo.vue":
+/*!**********************************************************!*\
+  !*** ./resources/js/components/gsol/AmmoStationInfo.vue ***!
+  \**********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _AmmoStationInfo_vue_vue_type_template_id_063b53b9___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./AmmoStationInfo.vue?vue&type=template&id=063b53b9& */ "./resources/js/components/gsol/AmmoStationInfo.vue?vue&type=template&id=063b53b9&");
+/* harmony import */ var _AmmoStationInfo_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./AmmoStationInfo.vue?vue&type=script&lang=js& */ "./resources/js/components/gsol/AmmoStationInfo.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _AmmoStationInfo_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _AmmoStationInfo_vue_vue_type_template_id_063b53b9___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _AmmoStationInfo_vue_vue_type_template_id_063b53b9___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/gsol/AmmoStationInfo.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/gsol/AmmoStationInfo.vue?vue&type=script&lang=js&":
+/*!***********************************************************************************!*\
+  !*** ./resources/js/components/gsol/AmmoStationInfo.vue?vue&type=script&lang=js& ***!
+  \***********************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AmmoStationInfo_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./AmmoStationInfo.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/gsol/AmmoStationInfo.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AmmoStationInfo_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/gsol/AmmoStationInfo.vue?vue&type=template&id=063b53b9&":
+/*!*****************************************************************************************!*\
+  !*** ./resources/js/components/gsol/AmmoStationInfo.vue?vue&type=template&id=063b53b9& ***!
+  \*****************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AmmoStationInfo_vue_vue_type_template_id_063b53b9___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./AmmoStationInfo.vue?vue&type=template&id=063b53b9& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/gsol/AmmoStationInfo.vue?vue&type=template&id=063b53b9&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AmmoStationInfo_vue_vue_type_template_id_063b53b9___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AmmoStationInfo_vue_vue_type_template_id_063b53b9___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

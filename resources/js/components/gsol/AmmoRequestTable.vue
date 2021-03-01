@@ -99,7 +99,9 @@
             </template>
 
             <template v-slot:item.actions="{ item }" v-if="$can('gunner')">
-                <div class=" d-inline-flex"></div>
+                <div class=" d-inline-flex">
+                    <AmmoStationInfo :station="item"></AmmoStationInfo>
+                </div>
             </template>
         </v-data-table>
     </div>
