@@ -268,19 +268,6 @@ export default {
             this.showInfo = false;
         },
 
-        openAdash(url) {
-            var win = window.open(url, "_blank");
-            win.focus();
-        },
-
-        taskFlag() {
-            if (this.stationInfo[0]["task_flag"] == 1) {
-                return true;
-            } else {
-                return false;
-            }
-        },
-
         url(item) {
             return "https://images.evetech.net/types/" + item.item_id + "/icon";
         },
@@ -291,28 +278,6 @@ export default {
             var url = "https://recon.gnf.lt/structures/" + hash + "/view";
             var win = window.open(url, "_blank");
             win.focus();
-        },
-
-        taskRequest() {
-            var request = {
-                system_name: this.station.system_name,
-                system_id: this.station.system_id,
-                station_id: this.station.id,
-                structure_name: this.station.station_name,
-                username: this.$store.state.user_name,
-                show_on_main: this.station.show_on_main,
-                show_on_chill: this.show_on_chill
-            };
-            axios({
-                method: "post", //you can set what request you want to be
-                url: "api/taskrequest",
-                data: request,
-                headers: {
-                    Authorization: "Bearer " + this.$store.state.token,
-                    Accept: "application/json",
-                    "Content-Type": "application/json"
-                }
-            });
         },
 
         showfit() {
