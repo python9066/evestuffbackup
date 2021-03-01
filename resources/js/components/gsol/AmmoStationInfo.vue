@@ -2,6 +2,7 @@
     <div>
         <v-dialog
             max-width="1200px"
+            min-width="700px"
             z-index="0"
             v-model="showInfo"
             @click:outside="close()"
@@ -208,7 +209,7 @@
                     <div v-if="!showfit()">
                         No Fit Info
                     </div>
-                    <div class=" d-inline-flex justify-content-center">
+                    <div class=" d-inline-flex">
                         <v-card v-if="showfit()">
                             <v-card-title>
                                 Fitting

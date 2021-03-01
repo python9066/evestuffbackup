@@ -7036,6 +7036,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -30168,7 +30169,11 @@ var render = function() {
       _c(
         "v-dialog",
         {
-          attrs: { "max-width": "1200px", "z-index": "0" },
+          attrs: {
+            "max-width": "1200px",
+            "min-width": "700px",
+            "z-index": "0"
+          },
           on: {
             "click:outside": function($event) {
               return _vm.close()
@@ -30583,7 +30588,7 @@ var render = function() {
                 _vm._v(" "),
                 _c(
                   "div",
-                  { staticClass: " d-inline-flex justify-content-center" },
+                  { staticClass: " d-inline-flex" },
                   [
                     _vm.showfit()
                       ? _c(
