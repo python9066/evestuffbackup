@@ -8407,9 +8407,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
     showNodeButton: function showNodeButton() {
       if (this.nodeText != null) {
-        return false;
-      } else {
         return true;
+      } else {
+        return false;
       }
     },
     // campaignActiveCount() {
@@ -30381,12 +30381,20 @@ var render = function() {
                                                 _c(
                                                   "v-btn",
                                                   {
+                                                    directives: [
+                                                      {
+                                                        name: "show",
+                                                        rawName: "v-show",
+                                                        value:
+                                                          _vm.showNodeButton,
+                                                        expression:
+                                                          "showNodeButton"
+                                                      }
+                                                    ],
                                                     attrs: {
                                                       icon: "",
                                                       fixed: "",
                                                       left: "",
-                                                      disabled:
-                                                        _vm.showNodeButton,
                                                       color: "success"
                                                     },
                                                     on: {
