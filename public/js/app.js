@@ -7179,7 +7179,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }
     },
     showDoneTask: function showDoneTask() {
-      if (this.station.user == this.$store.state.user_id) {
+      if (this.station.user_id == this.$store.state.user_id) {
         return true;
       } else {
         return false;
