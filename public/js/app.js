@@ -7072,7 +7072,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 _context.next = 3;
                 return axios({
                   method: "post",
-                  url: "/api/ammorequestupdate/" + station.id,
+                  url: "/api/ammorequestupdate/" + _this.station.id,
                   data: request,
                   headers: {
                     Authorization: "Bearer " + _this.$store.state.token,
@@ -7101,7 +7101,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 _context2.next = 3;
                 return axios({
                   method: "delete",
-                  url: "/api/ammorequestdelete/" + station.id,
+                  url: "/api/ammorequestdelete/" + _this2.station.id,
                   headers: {
                     Authorization: "Bearer " + _this2.$store.state.token,
                     Accept: "application/json",

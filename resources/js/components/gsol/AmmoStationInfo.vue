@@ -343,7 +343,7 @@ export default {
             };
             await axios({
                 method: "post",
-                url: "/api/ammorequestupdate/" + station.id,
+                url: "/api/ammorequestupdate/" + this.station.id,
                 data: request,
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
@@ -357,7 +357,7 @@ export default {
             this.showInfo = false;
             await axios({
                 method: "delete",
-                url: "/api/ammorequestdelete/" + station.id,
+                url: "/api/ammorequestdelete/" + this.station.id,
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
                     Accept: "application/json",
