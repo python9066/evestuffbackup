@@ -79,6 +79,10 @@ Vue.component('ChillStructure', require('./components/chillstation/ChillStructur
 Vue.component('StationRequestAmmo', require('./components/station/StationRequestAmmo.vue').default);
 Vue.component('AmmoRequestTable', require('./components/gsol/AmmoRequestTable.vue').default);
 Vue.component('AmmoStationInfo', require('./components/gsol/AmmoStationInfo.vue').default);
+Vue.component('AmmoStocker', require('./components/gsol/AmmoStocker.vue').default);
+
+
+
 
 
 

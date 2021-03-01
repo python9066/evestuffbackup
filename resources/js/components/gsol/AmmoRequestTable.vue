@@ -100,6 +100,7 @@
 
             <template v-slot:[`item.actions`]="{ item }">
                 <div class=" d-inline-flex">
+                    <AmmoGsol :station="item"></AmmoGsol>
                     <AmmoStationInfo :station="item"></AmmoStationInfo>
                 </div>
             </template>
