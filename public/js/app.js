@@ -7164,9 +7164,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
     open: function open() {
       if (this.showfit()) {
-        this.maxW = "700px";
-      } else {
         this.maxW = "1200px";
+      } else {
+        this.maxW = "700px";
       }
     },
     openRecon: function openRecon(hash) {
@@ -7238,7 +7238,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         var s = a.split("\t");
         data.push(s);
       });
-      console.log(data);
       return data;
     },
     showTakeTask: function showTakeTask() {

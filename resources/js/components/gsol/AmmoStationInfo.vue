@@ -393,9 +393,9 @@ export default {
 
         open() {
             if (this.showfit()) {
-                this.maxW = "700px";
-            } else {
                 this.maxW = "1200px";
+            } else {
+                this.maxW = "700px";
             }
         },
 
@@ -483,7 +483,6 @@ export default {
                 var s = a.split("\t");
                 data.push(s);
             });
-            console.log(data);
             return data;
         },
 
