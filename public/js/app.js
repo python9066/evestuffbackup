@@ -6549,6 +6549,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -29318,17 +29327,41 @@ var render = function() {
                             key: "countup",
                             fn: function(scope) {
                               return [
-                                _c("span", { staticClass: "red--text pl-3" }, [
-                                  _vm._v(
-                                    _vm._s(_vm.numberDay(scope.props.days)) +
-                                      "\n                        " +
-                                      _vm._s(scope.props.hours) +
-                                      ":" +
-                                      _vm._s(scope.props.minutes) +
-                                      ":" +
-                                      _vm._s(scope.props.seconds)
-                                  )
-                                ])
+                                scope.props.days == 0
+                                  ? _c(
+                                      "span",
+                                      { staticClass: "red--text pl-3" },
+                                      [
+                                        _vm._v(
+                                          _vm._s(scope.props.hours) +
+                                            ":" +
+                                            _vm._s(scope.props.minutes) +
+                                            ":" +
+                                            _vm._s(scope.props.seconds)
+                                        )
+                                      ]
+                                    )
+                                  : _vm._e(),
+                                _vm._v(" "),
+                                scope.props.days != 0
+                                  ? _c(
+                                      "span",
+                                      { staticClass: "red--text pl-3" },
+                                      [
+                                        _vm._v(
+                                          _vm._s(
+                                            _vm.numberDay(scope.props.days)
+                                          ) +
+                                            "\n                        " +
+                                            _vm._s(scope.props.hours) +
+                                            ":" +
+                                            _vm._s(scope.props.minutes) +
+                                            ":" +
+                                            _vm._s(scope.props.seconds)
+                                        )
+                                      ]
+                                    )
+                                  : _vm._e()
                               ]
                             }
                           }
