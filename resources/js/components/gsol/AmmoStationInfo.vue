@@ -294,7 +294,7 @@
                         color="red"
                         @click="taskDrop()"
                     >
-                        Task Done
+                        Drop Task
                     </v-btn>
                     <v-btn
                         v-show="showDoneTask"
@@ -360,6 +360,8 @@ export default {
                     "Content-Type": "application/json"
                 }
             });
+
+            this.showInfo = true;
         },
 
         async taskDrop() {

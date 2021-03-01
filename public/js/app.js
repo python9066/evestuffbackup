@@ -7091,6 +7091,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 });
 
               case 3:
+                _this.showInfo = true;
+
+              case 4:
               case "end":
                 return _context.stop();
             }
@@ -30661,7 +30664,7 @@ var render = function() {
                     },
                     [
                       _vm._v(
-                        "\n                    Task Done\n                "
+                        "\n                    Drop Task\n                "
                       )
                     ]
                   ),
