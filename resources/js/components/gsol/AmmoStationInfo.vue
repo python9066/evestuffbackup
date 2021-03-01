@@ -232,7 +232,7 @@
                             </v-card-text>
                         </v-card>
 
-                        <v-card class=" my-4">
+                        <v-card class=" mx-4">
                             <v-card-title>
                                 Current Ammo
                             </v-card-title>
@@ -243,9 +243,12 @@
                                         index) in currentAmmos"
                                         :key="index"
                                     >
-                                        <strong>{{ currentAmmo[0] }}</strong> "
-                                        " x
-                                        {{ currentAmmo[1] }}
+                                        <p>
+                                            <strong>{{
+                                                currentAmmo[0]
+                                            }}</strong>
+                                            x{{ currentAmmo[1] }}
+                                        </p>
                                     </v-list-item>
                                 </v-list>
                             </v-card-text>

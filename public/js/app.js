@@ -6996,6 +6996,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -30365,7 +30368,7 @@ var render = function() {
                     _vm._v(" "),
                     _c(
                       "v-card",
-                      { staticClass: " my-4" },
+                      { staticClass: " mx-4" },
                       [
                         _c("v-card-title", [
                           _vm._v(
@@ -30384,14 +30387,16 @@ var render = function() {
                                 index
                               ) {
                                 return _c("v-list-item", { key: index }, [
-                                  _c("strong", [
-                                    _vm._v(_vm._s(currentAmmo[0]))
-                                  ]),
-                                  _vm._v(
-                                    ' "\n                                    " x\n                                    ' +
-                                      _vm._s(currentAmmo[1]) +
-                                      "\n                                "
-                                  )
+                                  _c("p", [
+                                    _c("strong", [
+                                      _vm._v(_vm._s(currentAmmo[0]))
+                                    ]),
+                                    _vm._v(
+                                      "\n                                        x" +
+                                        _vm._s(currentAmmo[1]) +
+                                        "\n                                    "
+                                    )
+                                  ])
                                 ])
                               }),
                               1
