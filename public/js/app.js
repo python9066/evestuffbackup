@@ -11775,6 +11775,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }
     },
     structureList: function structureList() {
+      console.log(this.structurelist);
       return this.structurelist;
     },
     stationLable: function stationLable() {

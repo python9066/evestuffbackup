@@ -529,6 +529,7 @@ export default {
         },
 
         structureList() {
+            console.log(this.structurelist);
             return this.structurelist;
         },
 
