@@ -29822,7 +29822,7 @@ var render = function() {
                 }
               },
               {
-                key: "item.alliance_ticker",
+                key: _vm.item.alliance_ticker,
                 fn: function(ref) {
                   var item = ref.item
                   return [

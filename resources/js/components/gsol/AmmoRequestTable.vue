@@ -85,7 +85,7 @@
                 </VueCountUptimer>
             </template>
             <template
-                v-slot:item.alliance_ticker="{ item }"
+                v-slot:[item.alliance_ticker]="{ item }"
                 class="d-inline-flex align-center"
             >
                 <v-avatar size="35"><img :src="item.url"/></v-avatar>
@@ -98,7 +98,7 @@
                 <span v-else class="pl-3">{{ item.alliance_ticker }}</span>
             </template>
 
-            <template v-slot:item.actions="{ item }" v-if="$can('gunner')">
+            <template v-slot:[`item.actions`]="{ item }" v-if="$can('gunner')">
                 <div class=" d-inline-flex">
                     <AmmoStationInfo :station="item"></AmmoStationInfo>
                 </div>
