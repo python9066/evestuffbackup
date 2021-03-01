@@ -106,7 +106,7 @@ class Notifications
                     'r_cored' => $stationdata['str_cored']
                 ]);
                 if ($stationdata['str_has_no_fitting'] != null || $stationdata['str_fitting'] != null || $stationdata['str_fitting'] != "") {
-                    echo $station->id + " - ";
+                    echo $station->id . " - ";
                     $items = Utils::jsonDecode($stationdata['str_fitting'], true);
                     foreach ($items as $item) {
                         StationItems::where('id', $item['type_id'])->get()->count();
