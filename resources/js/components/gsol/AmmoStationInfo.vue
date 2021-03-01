@@ -252,7 +252,7 @@
                             <v-card
                                 ><v-card-title>Request</v-card-title
                                 ><v-card-text>{{
-                                    request_text
+                                    station.request_text
                                 }}</v-card-text></v-card
                             >
                         </div>

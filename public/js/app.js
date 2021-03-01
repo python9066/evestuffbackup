@@ -30410,7 +30410,7 @@ var render = function() {
                           [
                             _c("v-card-title", [_vm._v("Request")]),
                             _c("v-card-text", [
-                              _vm._v(_vm._s(_vm.request_text))
+                              _vm._v(_vm._s(_vm.station.request_text))
                             ])
                           ],
                           1
