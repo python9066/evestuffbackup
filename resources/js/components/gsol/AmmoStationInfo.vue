@@ -278,7 +278,7 @@
                         Close
                     </v-btn>
                     <v-btn
-                        :v-show="showTakeTask"
+                        :v-if="showTakeTask"
                         class="white--text"
                         color="green"
                         @click="taskTask()"
@@ -286,7 +286,7 @@
                         Take Task
                     </v-btn>
                     <v-btn
-                        :v-show="showDoneTask"
+                        :v-if="showDoneTask"
                         class="white--text"
                         color="warning"
                         @click="taskDone()"

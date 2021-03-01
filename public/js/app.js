@@ -30553,7 +30553,7 @@ var render = function() {
                     "v-btn",
                     {
                       staticClass: "white--text",
-                      attrs: { "v-show": _vm.showTakeTask, color: "green" },
+                      attrs: { "v-if": _vm.showTakeTask, color: "green" },
                       on: {
                         click: function($event) {
                           return _vm.taskTask()
@@ -30571,7 +30571,7 @@ var render = function() {
                     "v-btn",
                     {
                       staticClass: "white--text",
-                      attrs: { "v-show": _vm.showDoneTask, color: "warning" },
+                      attrs: { "v-if": _vm.showDoneTask, color: "warning" },
                       on: {
                         click: function($event) {
                           return _vm.taskDone()
