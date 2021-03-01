@@ -39,7 +39,7 @@
                     <div>
                         Cored: <strong :class="textcolor"> {{ core }} </strong>
                     </div>
-                    <div>
+                    <div class=" d-inline-flex">
                         Last Updated: {{ lastUpdated() }}
                         <v-tooltip
                             color="#121212"
