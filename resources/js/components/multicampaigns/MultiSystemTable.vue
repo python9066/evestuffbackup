@@ -292,18 +292,17 @@
                                             ></v-text-field>
                                         </v-card-text>
                                         <v-card-actions>
-                                            <div v-show="showNodeButton">
-                                                <v-btn
-                                                    icon
-                                                    fixed
-                                                    left
-                                                    color="success"
-                                                    @click="addNode()"
-                                                    ><v-icon
-                                                        >fas fa-check</v-icon
-                                                    ></v-btn
-                                                >
-                                            </div>
+                                            <v-btn
+                                                icon
+                                                fixed
+                                                left
+                                                v-show="showNodeButton"
+                                                color="success"
+                                                @click="addNode()"
+                                                ><v-icon
+                                                    >fas fa-check</v-icon
+                                                ></v-btn
+                                            >
 
                                             <v-btn
                                                 fixed

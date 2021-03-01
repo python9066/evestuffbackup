@@ -7667,7 +7667,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -30380,7 +30379,7 @@ var render = function() {
                                               "v-card-actions",
                                               [
                                                 _c(
-                                                  "div",
+                                                  "v-btn",
                                                   {
                                                     directives: [
                                                       {
@@ -30391,33 +30390,23 @@ var render = function() {
                                                         expression:
                                                           "showNodeButton"
                                                       }
-                                                    ]
+                                                    ],
+                                                    attrs: {
+                                                      icon: "",
+                                                      fixed: "",
+                                                      left: "",
+                                                      color: "success"
+                                                    },
+                                                    on: {
+                                                      click: function($event) {
+                                                        return _vm.addNode()
+                                                      }
+                                                    }
                                                   },
                                                   [
-                                                    _c(
-                                                      "v-btn",
-                                                      {
-                                                        attrs: {
-                                                          icon: "",
-                                                          fixed: "",
-                                                          left: "",
-                                                          color: "success"
-                                                        },
-                                                        on: {
-                                                          click: function(
-                                                            $event
-                                                          ) {
-                                                            return _vm.addNode()
-                                                          }
-                                                        }
-                                                      },
-                                                      [
-                                                        _c("v-icon", [
-                                                          _vm._v("fas fa-check")
-                                                        ])
-                                                      ],
-                                                      1
-                                                    )
+                                                    _c("v-icon", [
+                                                      _vm._v("fas fa-check")
+                                                    ])
                                                   ],
                                                   1
                                                 ),
