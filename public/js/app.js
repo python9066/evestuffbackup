@@ -7042,6 +7042,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -30559,16 +30560,13 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "div",
-                    {
-                      key: "takebtn" + this.station.id,
-                      attrs: { "v-if": _vm.showTakeTask }
-                    },
                     [
                       _c(
                         "v-btn",
                         {
+                          key: "takebtn" + this.station.id,
                           staticClass: "white--text",
-                          attrs: { color: "green" },
+                          attrs: { "v-show": _vm.showTakeTask, color: "green" },
                           on: {
                             click: function($event) {
                               return _vm.taskTask()
@@ -30587,16 +30585,17 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "div",
-                    {
-                      key: "donebtn" + this.station.id,
-                      attrs: { "v-if": _vm.showDoneTask }
-                    },
                     [
                       _c(
                         "v-btn",
                         {
+                          key: "donebtn" + this.station.id,
                           staticClass: "white--text",
-                          attrs: { color: "warning" },
+                          attrs: {
+                            "v-show":
+                              this.station.user_id == this.$store.state.user_id,
+                            color: "warning"
+                          },
                           on: {
                             click: function($event) {
                               return _vm.taskDone()
