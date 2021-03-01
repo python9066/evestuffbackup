@@ -6611,7 +6611,7 @@ function sleep(ms) {
         align: "start"
       } // { text: "Vulernable End Time", value: "vulnerable_end_time" }
       ],
-      statusflag: 2,
+      statusflag: 1,
       loadingt: true,
       loadingf: true,
       loadingr: true,
@@ -30001,62 +30001,7 @@ var render = function() {
               },
               expression: "search"
             }
-          }),
-          _vm._v(" "),
-          _c(
-            "v-btn-toggle",
-            {
-              attrs: { "right-align": "", mandatory: "", value: 1 },
-              model: {
-                value: _vm.toggle_exclusive,
-                callback: function($$v) {
-                  _vm.toggle_exclusive = $$v
-                },
-                expression: "toggle_exclusive"
-              }
-            },
-            [
-              _c(
-                "v-btn",
-                {
-                  attrs: { loading: _vm.loadingf, disabled: _vm.loadingf },
-                  on: {
-                    click: function($event) {
-                      _vm.statusflag = 1
-                    }
-                  }
-                },
-                [_vm._v("\n                All\n            ")]
-              ),
-              _vm._v(" "),
-              _c(
-                "v-btn",
-                {
-                  attrs: { loading: _vm.loadingf, disabled: _vm.loadingf },
-                  on: {
-                    click: function($event) {
-                      _vm.statusflag = 2
-                    }
-                  }
-                },
-                [_vm._v("\n                Outstanding\n            ")]
-              ),
-              _vm._v(" "),
-              _c(
-                "v-btn",
-                {
-                  attrs: { loading: _vm.loadingf, disabled: _vm.loadingf },
-                  on: {
-                    click: function($event) {
-                      _vm.statusflag = 3
-                    }
-                  }
-                },
-                [_vm._v("\n                In Progress\n            ")]
-              )
-            ],
-            1
-          )
+          })
         ],
         1
       ),

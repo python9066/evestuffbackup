@@ -12,7 +12,7 @@
                 hide-details
             ></v-text-field>
 
-            <v-btn-toggle
+            <!-- <v-btn-toggle
                 right-align
                 v-model="toggle_exclusive"
                 mandatory
@@ -39,7 +39,7 @@
                 >
                     In Progress
                 </v-btn>
-            </v-btn-toggle>
+            </v-btn-toggle> -->
         </div>
         <v-data-table
             :headers="headers"
@@ -172,7 +172,7 @@ export default {
 
                 // { text: "Vulernable End Time", value: "vulnerable_end_time" }
             ],
-            statusflag: 2,
+            statusflag: 1,
             loadingt: true,
             loadingf: true,
             loadingr: true,
