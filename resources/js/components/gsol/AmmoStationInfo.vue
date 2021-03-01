@@ -231,23 +231,31 @@
                                 </v-data-table>
                             </v-card-text>
                         </v-card>
-                        <v-card class=" ml-2">
-                            <v-card-text>
-                                Current Ammo
-                            </v-card-text>
-                            <v-card-text>
-                                <v-list dense>
-                                    <v-list-item
-                                        v-for="(currentAmmo,
-                                        index) in currentAmmos"
-                                        :key="index"
-                                    >
-                                        {{ currentAmmo[0] }} x
-                                        {{ currentAmmo[1] }}
-                                    </v-list-item>
-                                </v-list>
-                            </v-card-text>
-                        </v-card>
+                        <div>
+                            <v-card class=" ml-2">
+                                <v-card-text>
+                                    Current Ammo
+                                </v-card-text>
+                                <v-card-text>
+                                    <v-list dense>
+                                        <v-list-item
+                                            v-for="(currentAmmo,
+                                            index) in currentAmmos"
+                                            :key="index"
+                                        >
+                                            {{ currentAmmo[0] }} x
+                                            {{ currentAmmo[1] }}
+                                        </v-list-item>
+                                    </v-list>
+                                </v-card-text>
+                            </v-card>
+                            <v-card
+                                ><v-card-title>Request</v-card-title
+                                ><v-card-text>{{
+                                    request_text
+                                }}</v-card-text></v-card
+                            >
+                        </div>
                     </div>
                 </v-card-text>
                 <v-spacer></v-spacer
