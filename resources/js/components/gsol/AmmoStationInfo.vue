@@ -317,6 +317,12 @@ export default {
             }
         },
 
+        currentAmmos() {
+            var text = this.station.current_ammo;
+            var t = text.split("\n");
+            console.log(t);
+        },
+
         lastUpdated() {
             if (this.fit[0]["r_updated_at"] != null) {
                 var ago = moment(this.fit[0]["r_updated_at"]).fromNow();
@@ -327,19 +333,16 @@ export default {
         }
     },
 
+    created() {
+        this.currentAmmos();
+    },
+
     computed: {
         ...mapGetters([
             "getStationItemsByStationID",
             "getCoreByStationID",
             "getStationFitByStationID"
         ]),
-
-        currentAmmos() {
-            var text = this.station.current_ammo;
-            var t = text.split("\n");
-            console.log(t);
-            return t;
-        },
 
         items() {
             return this.getStationItemsByStationID(this.station.station_id);

@@ -7032,6 +7032,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         return false;
       }
     },
+    currentAmmos: function currentAmmos() {
+      var text = this.station.current_ammo;
+      var t = text.split("\n");
+      console.log(t);
+    },
     lastUpdated: function lastUpdated() {
       if (this.fit[0]["r_updated_at"] != null) {
         var ago = moment__WEBPACK_IMPORTED_MODULE_1___default()(this.fit[0]["r_updated_at"]).fromNow();
@@ -7041,13 +7046,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }
     }
   },
+  created: function created() {
+    this.currentAmmos();
+  },
   computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(["getStationItemsByStationID", "getCoreByStationID", "getStationFitByStationID"])), {}, {
-    currentAmmos: function currentAmmos() {
-      var text = this.station.current_ammo;
-      var t = text.split("\n");
-      console.log(t);
-      return t;
-    },
     items: function items() {
       return this.getStationItemsByStationID(this.station.station_id);
     },
