@@ -7124,14 +7124,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       return data;
     },
     showTakeTask: function showTakeTask() {
-      if (station.user_id == null) {
+      if (this.station.user_id == null) {
         return true;
       } else {
         return false;
       }
     },
     showAssignName: function showAssignName() {
-      if (station.user_id == null) {
+      if (this.station.user_id == null) {
         return "None";
       } else {
         return this.station.user_name;

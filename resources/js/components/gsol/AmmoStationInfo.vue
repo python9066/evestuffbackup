@@ -423,7 +423,7 @@ export default {
         },
 
         showTakeTask() {
-            if (station.user_id == null) {
+            if (this.station.user_id == null) {
                 return true;
             } else {
                 return false;
@@ -431,7 +431,7 @@ export default {
         },
 
         showAssignName() {
-            if (station.user_id == null) {
+            if (this.station.user_id == null) {
                 return "None";
             } else {
                 return this.station.user_name;
