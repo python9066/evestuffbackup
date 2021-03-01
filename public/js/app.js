@@ -30381,20 +30381,12 @@ var render = function() {
                                                 _c(
                                                   "v-btn",
                                                   {
-                                                    directives: [
-                                                      {
-                                                        name: "show",
-                                                        rawName: "v-show",
-                                                        value:
-                                                          _vm.showNodeButton,
-                                                        expression:
-                                                          "showNodeButton"
-                                                      }
-                                                    ],
                                                     attrs: {
                                                       icon: "",
                                                       fixed: "",
                                                       left: "",
+                                                      disabled:
+                                                        _vm.showNodeButton,
                                                       color: "success"
                                                     },
                                                     on: {
