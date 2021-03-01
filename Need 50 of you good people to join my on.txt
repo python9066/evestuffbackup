@@ -29,6 +29,7 @@ time_left(ms) = [current_time(real)]-[saved_end_time]
 
 new_time = ((time_left/100)*tidi)+time_left
 
+[00:53:48] JohnMonty > <url=showinfo:35833//1028390646976>LUA5-L - under construction (Tactically Armed Vanguard)</url>
 
 
 notification_id":1379941956,
@@ -101,13 +102,71 @@ Comms: Op 9 https://gnf.lt/l7zng0s.html
 Doctrine: Jackdaw Fleet (Boosters > Scalpel / Kirin > Jackdaw > Keres / Hyena > Tackle)
 
 
+Standup Super-heavy Torpedo	2500
+Standup XL Cruise Missile	2380
+Standup Heavy Guided Bomb	95
+Standup Heavy Guided Bomb	100
+Standup Light Guided Bomb	65
+Standup Light Guided Bomb	150
+Standup Focused Warp Scrambling Script	1
+Standup Ametat I	6
+Standup Malleus I	12
+Standup Einherji I	9
+Standup Siren I	15
 
 
-
-
-
-
-
+[2021-03-01 01:27:14] production.ERROR: SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'node_id' cannot be null (SQL: insert into `campaign_systems` (`campaign_id`, `custom_campaign_id`, `system_id`, `node_id`, `updated_at`, `created_at`) values (90087, 1614555355873, 30004785, ?, 2021-03-01 01:27:14, 2021-03-01 01:27:14)) {"userId":91832,"exception":"[object] (Illuminate\\Database\\QueryException(code: 23000): SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'node_id' cannot be null (SQL: insert into `campaign_systems` (`campaign_id`, `custom_campaign_id`, `system_id`, `node_id`, `updated_at`, `created_at`) values (90087, 1614555355873, 30004785, ?, 2021-03-01 01:27:14, 2021-03-01 01:27:14)) at /homepages/28/d841558152/htdocs/eve/vendor/laravel/framework/src/Illuminate/Database/Connection.php:678)
+[stacktrace]
+#0 /homepages/28/d841558152/htdocs/eve/vendor/laravel/framework/src/Illuminate/Database/Connection.php(638): Illuminate\\Database\\Connection->runQueryCallback('insert into `ca...', Array, Object(Closure))
+#1 /homepages/28/d841558152/htdocs/eve/vendor/laravel/framework/src/Illuminate/Database/Connection.php(472): Illuminate\\Database\\Connection->run('insert into `ca...', Array, Object(Closure))
+#2 /homepages/28/d841558152/htdocs/eve/vendor/laravel/framework/src/Illuminate/Database/Connection.php(424): Illuminate\\Database\\Connection->statement('insert into `ca...', Array)
+#3 /homepages/28/d841558152/htdocs/eve/vendor/laravel/framework/src/Illuminate/Database/Query/Processors/Processor.php(32): Illuminate\\Database\\Connection->insert('insert into `ca...', Array)
+#4 /homepages/28/d841558152/htdocs/eve/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php(2882): Illuminate\\Database\\Query\\Processors\\Processor->processInsertGetId(Object(Illuminate\\Database\\Query\\Builder), 'insert into `ca...', Array, 'id')
+#5 /homepages/28/d841558152/htdocs/eve/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Builder.php(1547): Illuminate\\Database\\Query\\Builder->insertGetId(Array, 'id')
+#6 /homepages/28/d841558152/htdocs/eve/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Model.php(1051): Illuminate\\Database\\Eloquent\\Builder->__call('insertGetId', Array)
+#7 /homepages/28/d841558152/htdocs/eve/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Model.php(1016): Illuminate\\Database\\Eloquent\\Model->insertAndSetId(Object(Illuminate\\Database\\Eloquent\\Builder), Array)
+#8 /homepages/28/d841558152/htdocs/eve/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Model.php(857): Illuminate\\Database\\Eloquent\\Model->performInsert(Object(Illuminate\\Database\\Eloquent\\Builder))
+#9 /homepages/28/d841558152/htdocs/eve/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Builder.php(816): Illuminate\\Database\\Eloquent\\Model->save()
+#10 /homepages/28/d841558152/htdocs/eve/vendor/laravel/framework/src/Illuminate/Support/helpers.php(263): Illuminate\\Database\\Eloquent\\Builder->Illuminate\\Database\\Eloquent\\{closure}(Object(App\\Models\\CampaignSystem))
+#11 /homepages/28/d841558152/htdocs/eve/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Builder.php(817): tap(Object(App\\Models\\CampaignSystem), Object(Closure))
+#12 /homepages/28/d841558152/htdocs/eve/vendor/laravel/framework/src/Illuminate/Support/Traits/ForwardsCalls.php(23): Illuminate\\Database\\Eloquent\\Builder->create(Array)
+#13 /homepages/28/d841558152/htdocs/eve/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Model.php(1885): Illuminate\\Database\\Eloquent\\Model->forwardCallTo(Object(Illuminate\\Database\\Eloquent\\Builder), 'create', Array)
+#14 /homepages/28/d841558152/htdocs/eve/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Model.php(1897): Illuminate\\Database\\Eloquent\\Model->__call('create', Array)
+#15 /homepages/28/d841558152/htdocs/eve/app/Http/Controllers/CampaignSystemsController.php(192): Illuminate\\Database\\Eloquent\\Model::__callStatic('create', Array)
+#16 /homepages/28/d841558152/htdocs/eve/vendor/laravel/framework/src/Illuminate/Routing/Controller.php(54): App\\Http\\Controllers\\CampaignSystemsController->store(Object(Illuminate\\Http\\Request), '1614555355873')
+#17 /homepages/28/d841558152/htdocs/eve/vendor/laravel/framework/src/Illuminate/Routing/ControllerDispatcher.php(45): Illuminate\\Routing\\Controller->callAction('store', Array)
+#18 /homepages/28/d841558152/htdocs/eve/vendor/laravel/framework/src/Illuminate/Routing/Route.php(254): Illuminate\\Routing\\ControllerDispatcher->dispatch(Object(Illuminate\\Routing\\Route), Object(App\\Http\\Controllers\\CampaignSystemsController), 'store')
+#19 /homepages/28/d841558152/htdocs/eve/vendor/laravel/framework/src/Illuminate/Routing/Route.php(197): Illuminate\\Routing\\Route->runController()
+#20 /homepages/28/d841558152/htdocs/eve/vendor/laravel/framework/src/Illuminate/Routing/Router.php(693): Illuminate\\Routing\\Route->run()
+#21 /homepages/28/d841558152/htdocs/eve/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(128): Illuminate\\Routing\\Router->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#22 /homepages/28/d841558152/htdocs/eve/vendor/laravel/framework/src/Illuminate/Routing/Middleware/SubstituteBindings.php(50): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#23 /homepages/28/d841558152/htdocs/eve/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(167): Illuminate\\Routing\\Middleware\\SubstituteBindings->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#24 /homepages/28/d841558152/htdocs/eve/vendor/laravel/framework/src/Illuminate/Auth/Middleware/Authenticate.php(44): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#25 /homepages/28/d841558152/htdocs/eve/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(167): Illuminate\\Auth\\Middleware\\Authenticate->handle(Object(Illuminate\\Http\\Request), Object(Closure), 'api')
+#26 /homepages/28/d841558152/htdocs/eve/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(103): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#27 /homepages/28/d841558152/htdocs/eve/vendor/laravel/framework/src/Illuminate/Routing/Router.php(695): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#28 /homepages/28/d841558152/htdocs/eve/vendor/laravel/framework/src/Illuminate/Routing/Router.php(670): Illuminate\\Routing\\Router->runRouteWithinStack(Object(Illuminate\\Routing\\Route), Object(Illuminate\\Http\\Request))
+#29 /homepages/28/d841558152/htdocs/eve/vendor/laravel/framework/src/Illuminate/Routing/Router.php(636): Illuminate\\Routing\\Router->runRoute(Object(Illuminate\\Http\\Request), Object(Illuminate\\Routing\\Route))
+#30 /homepages/28/d841558152/htdocs/eve/vendor/laravel/framework/src/Illuminate/Routing/Router.php(625): Illuminate\\Routing\\Router->dispatchToRoute(Object(Illuminate\\Http\\Request))
+#31 /homepages/28/d841558152/htdocs/eve/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(166): Illuminate\\Routing\\Router->dispatch(Object(Illuminate\\Http\\Request))
+#32 /homepages/28/d841558152/htdocs/eve/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(128): Illuminate\\Foundation\\Http\\Kernel->Illuminate\\Foundation\\Http\\{closure}(Object(Illuminate\\Http\\Request))
+#33 /homepages/28/d841558152/htdocs/eve/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#34 /homepages/28/d841558152/htdocs/eve/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(167): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#35 /homepages/28/d841558152/htdocs/eve/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#36 /homepages/28/d841558152/htdocs/eve/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(167): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#37 /homepages/28/d841558152/htdocs/eve/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ValidatePostSize.php(27): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#38 /homepages/28/d841558152/htdocs/eve/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(167): Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#39 /homepages/28/d841558152/htdocs/eve/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/PreventRequestsDuringMaintenance.php(86): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#40 /homepages/28/d841558152/htdocs/eve/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(167): Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#41 /homepages/28/d841558152/htdocs/eve/vendor/fruitcake/laravel-cors/src/HandleCors.php(57): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#42 /homepages/28/d841558152/htdocs/eve/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(167): Fruitcake\\Cors\\HandleCors->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#43 /homepages/28/d841558152/htdocs/eve/vendor/fideloper/proxy/src/TrustProxies.php(57): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#44 /homepages/28/d841558152/htdocs/eve/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(167): Fideloper\\Proxy\\TrustProxies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#45 /homepages/28/d841558152/htdocs/eve/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(103): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#46 /homepages/28/d841558152/htdocs/eve/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(141): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#47 /homepages/28/d841558152/htdocs/eve/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(110): Illuminate\\Foundation\\Http\\Kernel->sendRequestThroughRouter(Object(Illuminate\\Http\\Request))
+#48 /homepages/28/d841558152/htdocs/eve/public/index.php(55): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
+#49 {main}
 
 
 

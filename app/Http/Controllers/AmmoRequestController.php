@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\AmmoRequestDelete;
+use App\Events\AmmoRequestNew;
+use App\Events\AmmoRequestUpdate;
 use App\Events\StationNotificationUpdate;
 use App\Models\AmmoRequest;
 use App\Models\AmmoRequestRecords;
@@ -82,6 +85,12 @@ class AmmoRequestController extends Controller
             'message' => $message
         ]);
         broadcast(new StationNotificationUpdate($flag));
+
+        $message = AmmoRequestRecords::where('id', $new->id)->first();
+        $flag = collect([
+            'message' => $message
+        ]);
+        broadcast(new AmmoRequestNew($flag));
     }
 
     /**
@@ -105,6 +114,12 @@ class AmmoRequestController extends Controller
     public function update(Request $request, $id)
     {
         AmmoRequest::find($id)->update($request->all());
+
+        $message = AmmoRequestRecords::where('id', $id)->first();
+        $flag = collect([
+            'message' => $message
+        ]);
+        broadcast(new AmmoRequestUpdate($flag));
     }
 
     /**
@@ -115,6 +130,10 @@ class AmmoRequestController extends Controller
      */
     public function destroy($id)
     {
+        $flag = collect([
+            'id' => $id
+        ]);
+        broadcast(new AmmoRequestDelete($flag));
         AmmoRequest::destroy($id);
         Station::where('ammo_request_id', $id)->first()->update(['ammo_request_id' => null]);
     }

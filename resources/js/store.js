@@ -53,6 +53,25 @@ export default new Vuex.Store({
             state.ammoRequest = ammorequest;
         },
 
+        DELETE_AMMO_REQUEST(state, id) {
+            let index = state.ammoRequest.findIndex(e => e.id == id)
+            if(index >= 0){state.ammoRequest.splice(index, 1)}
+        },
+
+        ADD_AMMO_REQUEST(state, data) {
+            state.ammoRequest.push(data)
+        },
+
+        UPDATE_AMMO_REQUEST(state, data) {
+            const item = state.ammoRequest.find(item => item.id === data.id);
+            const count = state.ammoRequest.filter(item => item.id === data.id).length
+            if (count > 0) {
+                Object.assign(item, data);
+            } else {
+                state.ammoRequest.push(data)
+            }
+        },
+
         SET_SYSTEMLIST(state, systemlist) {
             state.systemlist = systemlist;
         },
@@ -152,8 +171,6 @@ export default new Vuex.Store({
         SET_STATIONS_FIT(state, fit) {
             state.stationFits = fit;
         },
-
-
 
         UPDATE_STATION_NOTIFICATION(state, data) {
             const item = state.stations.find(item => item.id === data.id);
@@ -739,12 +756,20 @@ export default new Vuex.Store({
             commit("UPDATE_USERS_CHARS", data);
         },
 
+        updateAmmoRequest({ commit }, data) {
+            commit("UPDATE_AMMO_REQUEST", data);
+        },
+
         updateNodeJoin({ commit }, data) {
             commit('UPDATE_NODE_JOIN', data)
         },
 
         addNodeJoin({ commit }, data) {
             commit("ADD_NODE_JOIN", data)
+        },
+
+        addAmmoRequest({ commit }, data) {
+            commit("ADD_AMMO_REQUEST", data)
         },
 
         addStationNotification({ commit }, data) {
@@ -778,6 +803,12 @@ export default new Vuex.Store({
         deleteNodeJoin({ commit }, id) {
             commit("DELETE_NODE_JOIN",id)
         },
+
+        deleteAmmoRequest({ commit }, id) {
+            commit("DELETE_AMMO_REQUEST",id)
+        },
+
+
 
         deleteTower({ commit }, id) {
             commit("DELETE_TOWERS",id)
