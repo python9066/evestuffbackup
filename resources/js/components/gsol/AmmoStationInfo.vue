@@ -242,7 +242,7 @@
                                         index) in currentAmmos"
                                         :key="index"
                                     >
-                                        {{ currentAmmo[0] }}
+                                        {{ currentAmmo }}
                                     </v-list-item>
                                 </v-list>
                             </v-card-text>

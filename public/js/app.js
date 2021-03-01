@@ -30368,7 +30368,7 @@ var render = function() {
                                 return _c("v-list-item", { key: index }, [
                                   _vm._v(
                                     "\n                                    " +
-                                      _vm._s(currentAmmo[0]) +
+                                      _vm._s(currentAmmo) +
                                       "\n                                "
                                   )
                                 ])
