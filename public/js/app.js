@@ -30368,7 +30368,10 @@ var render = function() {
                     _vm._v(" "),
                     _c(
                       "v-card",
-                      { staticClass: " mx-4", attrs: { elevation: "24" } },
+                      {
+                        staticClass: " mx-4",
+                        attrs: { elevation: "24", "max-height": "500px" }
+                      },
                       [
                         _c("v-card-title", [
                           _vm._v(
@@ -30410,7 +30413,7 @@ var render = function() {
                     _vm._v(" "),
                     _c(
                       "v-card",
-                      { attrs: { elevation: "24" } },
+                      { attrs: { elevation: "24", "max-height": "500px" } },
                       [
                         _c("v-card-title", [_vm._v("Request")]),
                         _c("v-card-text", [
