@@ -30407,6 +30407,7 @@ var render = function() {
                         _vm._v(" "),
                         _c(
                           "v-card",
+                          { staticClass: " mt-2" },
                           [
                             _c("v-card-title", [_vm._v("Request")]),
                             _c("v-card-text", [

@@ -249,7 +249,7 @@
                                     </v-list>
                                 </v-card-text>
                             </v-card>
-                            <v-card
+                            <v-card class=" mt-2"
                                 ><v-card-title>Request</v-card-title
                                 ><v-card-text>{{
                                     station.request_text
