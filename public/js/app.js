@@ -7036,7 +7036,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -7186,6 +7185,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   created: function created() {},
   computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(["getStationItemsByStationID", "getCoreByStationID", "getStationFitByStationID"])), {}, {
+    maxW: function maxW() {
+      if (this.showfit) {
+        return "1200px";
+      } else {
+        return "700px";
+      }
+    },
     items: function items() {
       return this.getStationItemsByStationID(this.station.station_id);
     },
@@ -30169,11 +30175,7 @@ var render = function() {
       _c(
         "v-dialog",
         {
-          attrs: {
-            "max-width": "1200px",
-            "min-width": "700px",
-            "z-index": "0"
-          },
+          attrs: { "max-width": _vm.maxW, "z-index": "0" },
           on: {
             "click:outside": function($event) {
               return _vm.close()
@@ -30235,7 +30237,7 @@ var render = function() {
               staticClass: " d-flex flex-column justify-center",
               attrs: {
                 tile: "",
-                "max-width": "1200px",
+                "max-width": _vm.maxW,
                 "min-width": "700px",
                 "min-height": "200px",
                 "max-height": "1000px"

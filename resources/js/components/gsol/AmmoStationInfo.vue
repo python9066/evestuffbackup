@@ -1,8 +1,7 @@
 <template>
     <div>
         <v-dialog
-            max-width="1200px"
-            min-width="700px"
+            :max-width="maxW"
             z-index="0"
             v-model="showInfo"
             @click:outside="close()"
@@ -26,7 +25,7 @@
 
             <v-card
                 tile
-                max-width="1200px"
+                :max-width="maxW"
                 min-width="700px"
                 min-height="200px"
                 max-height="1000px"
@@ -425,6 +424,14 @@ export default {
             "getCoreByStationID",
             "getStationFitByStationID"
         ]),
+
+        maxW() {
+            if (this.showfit) {
+                return "1200px";
+            } else {
+                return "700px";
+            }
+        },
 
         items() {
             return this.getStationItemsByStationID(this.station.station_id);
