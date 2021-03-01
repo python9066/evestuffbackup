@@ -296,6 +296,7 @@
                                                 icon
                                                 fixed
                                                 left
+                                                :disabled="showNodeButton"
                                                 color="success"
                                                 @click="addNode()"
                                                 ><v-icon
@@ -1199,7 +1200,7 @@ export default {
         },
 
         showNodeButton() {
-            if (this.nodeText != null) {
+            if (this.nodeText == "") {
                 return true;
             } else {
                 return false;
