@@ -13,7 +13,7 @@ class CreateAmmoRequestTable extends Migration
      */
     public function up()
     {
-        Schema::create('ammo_request_tables', function (Blueprint $table) {
+        Schema::create('ammo_request', function (Blueprint $table) {
             $table->id();
             $table->foreignId('station_id');
             $table->foreignId('user_id');
@@ -30,6 +30,6 @@ class CreateAmmoRequestTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ammo_request_tables');
+        Schema::dropIfExists('ammo_request');
     }
 }
