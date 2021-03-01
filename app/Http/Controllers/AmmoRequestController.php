@@ -44,7 +44,7 @@ class AmmoRequestController extends Controller
 
             array_push($coreData, $data1);
 
-            $joins = StationItemJoin::where('station_id', $station->id);
+            $joins = StationItemJoin::where('station_id', $station->id)->get();
             foreach ($joins as $join) {
                 $name = StationItems::where('id', $join->station_item_id)->first();
                 $data = [
