@@ -236,7 +236,7 @@
                                 Current Ammo
                             </v-card-text>
                             <v-card-text>
-                                {{ station.current_ammo }}
+                                {{ currentAmmoText }}
                             </v-card-text>
                         </v-card>
                     </div>
@@ -307,6 +307,11 @@ export default {
             } else {
                 return false;
             }
+        },
+
+        currentAmmoText() {
+            var text = station.current_ammo;
+            return text.split("/n");
         },
 
         lastUpdated() {

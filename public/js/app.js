@@ -7024,6 +7024,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         return false;
       }
     },
+    currentAmmoText: function currentAmmoText() {
+      var text = station.current_ammo;
+      return text.split("/n");
+    },
     lastUpdated: function lastUpdated() {
       if (this.fit[0]["r_updated_at"] != null) {
         var ago = moment__WEBPACK_IMPORTED_MODULE_1___default()(this.fit[0]["r_updated_at"]).fromNow();
@@ -30345,7 +30349,7 @@ var render = function() {
                         _c("v-card-text", [
                           _vm._v(
                             "\n                            " +
-                              _vm._s(_vm.station.current_ammo) +
+                              _vm._s(_vm.currentAmmoText) +
                               "\n                        "
                           )
                         ])
