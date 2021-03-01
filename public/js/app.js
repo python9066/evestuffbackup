@@ -29848,22 +29848,13 @@ var render = function() {
                   ]
                 }
               },
-              _vm.$can("gunner")
-                ? {
-                    key: "item.actions",
-                    fn: function(ref) {
-                      var item = ref.item
-                      return [
-                        _c(
-                          "div",
-                          { staticClass: " d-inline-flex" },
-                          [_c("AmmoStationInfo", { attrs: { station: item } })],
-                          1
-                        )
-                      ]
-                    }
-                  }
-                : null
+              {
+                key: "item.actions",
+                fn: function(ref) {
+                  var item = ref.item
+                  return [_c("div", { staticClass: " d-inline-flex" })]
+                }
+              }
             ],
             null,
             true
