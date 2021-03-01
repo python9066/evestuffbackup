@@ -30370,7 +30370,7 @@ var render = function() {
                           "v-card",
                           { staticClass: " ml-2" },
                           [
-                            _c("v-card-text", [
+                            _c("v-card-title", [
                               _vm._v(
                                 "\n                                Current Ammo\n                            "
                               )

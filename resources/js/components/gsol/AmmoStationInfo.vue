@@ -233,9 +233,9 @@
                         </v-card>
                         <div>
                             <v-card class=" ml-2">
-                                <v-card-text>
+                                <v-card-title>
                                     Current Ammo
-                                </v-card-text>
+                                </v-card-title>
                                 <v-card-text>
                                     <v-list dense>
                                         <v-list-item
