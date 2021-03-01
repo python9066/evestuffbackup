@@ -28,6 +28,7 @@ class AmmoRequestController extends Controller
     public function loadAmmoRequestData()
     {
         $coreData = [];
+        $items = [];
         $stations = Station::where('ammo_request_id', '!=', null)->get();
         foreach ($stations as $station) {
             if ($station->r_cored == "Yes") {
@@ -42,7 +43,7 @@ class AmmoRequestController extends Controller
             ];
 
             array_push($coreData, $data1);
-            $items = [];
+
             $joins = StationItemJoin::where('station_id', $station->id);
             foreach ($joins as $join) {
                 $name = StationItems::where('id', $join->station_item_id)->first();
