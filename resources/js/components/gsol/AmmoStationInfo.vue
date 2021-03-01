@@ -289,6 +289,15 @@
                     </v-btn>
                     <v-btn
                         v-show="showDoneTask"
+                        :key="'dropbtn' + this.station.id"
+                        class="white--text"
+                        color="red"
+                        @click="taskDrop()"
+                    >
+                        Task Done
+                    </v-btn>
+                    <v-btn
+                        v-show="showDoneTask"
                         :key="'donebtn' + this.station.id"
                         class="white--text"
                         color="warning"
@@ -340,6 +349,22 @@ export default {
         async taskTask() {
             var request = {
                 user_id: this.$store.state.user_id
+            };
+            await axios({
+                method: "post",
+                url: "/api/ammorequestupdate/" + this.station.id,
+                data: request,
+                headers: {
+                    Authorization: "Bearer " + this.$store.state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                }
+            });
+        },
+
+        async taskDrop() {
+            var request = {
+                user_id: null
             };
             await axios({
                 method: "post",

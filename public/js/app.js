@@ -7030,6 +7030,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -7089,19 +7098,23 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee);
       }))();
     },
-    taskDone: function taskDone() {
+    taskDrop: function taskDrop() {
       var _this2 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+        var request;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                _this2.showInfo = false;
+                request = {
+                  user_id: null
+                };
                 _context2.next = 3;
                 return axios({
-                  method: "delete",
-                  url: "/api/ammorequestdelete/" + _this2.station.id,
+                  method: "post",
+                  url: "/api/ammorequestupdate/" + _this2.station.id,
+                  data: request,
                   headers: {
                     Authorization: "Bearer " + _this2.$store.state.token,
                     Accept: "application/json",
@@ -7115,6 +7128,34 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             }
           }
         }, _callee2);
+      }))();
+    },
+    taskDone: function taskDone() {
+      var _this3 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                _this3.showInfo = false;
+                _context3.next = 3;
+                return axios({
+                  method: "delete",
+                  url: "/api/ammorequestdelete/" + _this3.station.id,
+                  headers: {
+                    Authorization: "Bearer " + _this3.$store.state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                  }
+                });
+
+              case 3:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3);
       }))();
     },
     url: function url(item) {
@@ -30594,6 +30635,33 @@ var render = function() {
                     [
                       _vm._v(
                         "\n                    Take Task\n                "
+                      )
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-btn",
+                    {
+                      directives: [
+                        {
+                          name: "show",
+                          rawName: "v-show",
+                          value: _vm.showDoneTask,
+                          expression: "showDoneTask"
+                        }
+                      ],
+                      key: "dropbtn" + this.station.id,
+                      staticClass: "white--text",
+                      attrs: { color: "red" },
+                      on: {
+                        click: function($event) {
+                          return _vm.taskDrop()
+                        }
+                      }
+                    },
+                    [
+                      _vm._v(
+                        "\n                    Task Done\n                "
                       )
                     ]
                   ),
