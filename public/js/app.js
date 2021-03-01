@@ -29891,7 +29891,7 @@ var render = function() {
                       on
                     ),
                     [
-                      _c("v-icon", { attrs: { left: "" } }, [
+                      _c("v-icon", { attrs: { left: "", small: "" } }, [
                         _vm._v(
                           "\n                    faSvg fa-info-circle\n                "
                         )

@@ -16,7 +16,7 @@
                     v-on="on"
                     @click="open()"
                 >
-                    <v-icon left>
+                    <v-icon left small>
                         faSvg fa-info-circle
                     </v-icon>
                     Info
