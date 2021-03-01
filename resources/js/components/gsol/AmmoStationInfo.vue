@@ -7,9 +7,18 @@
             @click:outside="close()"
         >
             <template v-slot:activator="{ on, attrs }">
-                <v-icon color="blue" v-bind="attrs" v-on="on" @click="open()">
-                    faSvg fa-info-circle
-                </v-icon>
+                <v-chip
+                    pill
+                    small
+                    color="blue"
+                    v-bind="attrs"
+                    v-on="on"
+                    @click="open()"
+                >
+                    <v-icon left>
+                        faSvg fa-info-circle
+                    </v-icon>
+                </v-chip>
             </template>
 
             <v-card
