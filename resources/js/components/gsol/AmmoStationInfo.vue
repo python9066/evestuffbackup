@@ -242,7 +242,7 @@
                                         :key="index"
                                     >
                                     </v-list-item>
-                                    <v-list-item>{{ list }}</v-list-item>
+                                    <v-list-item>{{ list[0] }}</v-list-item>
                                 </v-list>
                             </v-card-text>
                         </v-card>

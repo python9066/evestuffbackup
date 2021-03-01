@@ -30368,7 +30368,7 @@ var render = function() {
                                   return _c("v-list-item", { key: index })
                                 }),
                                 _vm._v(" "),
-                                _c("v-list-item", [_vm._v(_vm._s(_vm.list))])
+                                _c("v-list-item", [_vm._v(_vm._s(_vm.list[0]))])
                               ],
                               2
                             )
