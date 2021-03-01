@@ -12299,29 +12299,17 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   data: function data() {
     return {
-      messageCount: 0,
-      showNumber: false,
-      showStationNotes: false,
+      showAmmoRequest: false,
       editText: null,
       editLoadout: null
     };
   },
   created: function created() {
-    var _this = this;
-
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              Echo["private"]("stationmessage." + _this.station.id).listen("StationMessageUpdate", function (e) {
-                _this.showNumber = true;
-                _this.messageCount = _this.messageCount + 1;
-
-                _this.$store.dispatch("updateStationNotification", e.flag.message);
-              });
-
-            case 1:
             case "end":
               return _context.stop();
           }
@@ -12332,29 +12320,20 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   methods: {
     close: function close() {
       this.editText = null;
-      this.showStationNotes = false;
-      console.log("close");
+      this.showAmmoRequest = false;
+      this.editLoadout = null;
     },
-    open: function open() {
-      this.showNumber = false, this.messageCount = 0;
-    },
-    updatetext: function updatetext() {
-      this.editText = this.editText + "\n";
-
-      if (this.station.notes == null) {
-        var note = moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc().format("HH:mm:ss") + " - " + this.$store.state.user_name + ": " + this.editText;
-      } else {
-        var note = moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc().format("HH:mm:ss") + " - " + this.$store.state.user_name + ": " + this.editText + this.station.notes;
-      }
-
-      this.station.notes = note;
+    open: function open() {},
+    submitAmmo: function submitAmmo() {
       var request = {
-        notes: note
+        station_id: this.station.id,
+        current_ammo: this.editLoadout,
+        request_text: this.editText
       };
-      this.$store.dispatch("updateStationNotification", this.station);
       axios({
-        method: "put",
-        url: "/api/stationmessage/" + this.station.id,
+        method: "post",
+        //you can set what request you want to be
+        url: "api/ammorequest",
         data: request,
         headers: {
           Authorization: "Bearer " + this.$store.state.token,
@@ -12362,7 +12341,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           "Content-Type": "application/json"
         }
       });
-      this.editText = null;
     }
   },
   computed: {
@@ -12374,16 +12352,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }
     },
     submitActive: function submitActive() {
-      if (this.editText != null) {
+      if (this.editText != null && this.editLoadout != null) {
         return false;
       } else {
         return true;
       }
     }
   },
-  beforeDestroy: function beforeDestroy() {
-    Echo.leave("stationmessage." + this.station.id);
-  }
+  beforeDestroy: function beforeDestroy() {}
 });
 
 /***/ }),
@@ -35431,7 +35407,7 @@ var render = function() {
                                         },
                                         on: {
                                           click: function($event) {
-                                            return _vm.taskRequest()
+                                            return _vm.ammoRequest()
                                           }
                                         }
                                       },
@@ -35486,11 +35462,11 @@ var render = function() {
             }
           ]),
           model: {
-            value: _vm.showStationNotes,
+            value: _vm.showAmmoRequest,
             callback: function($$v) {
-              _vm.showStationNotes = $$v
+              _vm.showAmmoRequest = $$v
             },
-            expression: "showStationNotes"
+            expression: "showAmmoRequest"
           }
         },
         [
@@ -35575,7 +35551,7 @@ var render = function() {
                       attrs: { color: "green", disabled: _vm.submitActive },
                       on: {
                         click: function($event) {
-                          return _vm.updatetext()
+                          return _vm.submitAmmo()
                         }
                       }
                     },

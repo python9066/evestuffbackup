@@ -3,7 +3,7 @@
         <v-dialog
             max-width="700px"
             z-index="0"
-            v-model="showStationNotes"
+            v-model="showAmmoRequest"
             @click:outside="close()"
         >
             <template v-slot:activator="{ on: menu, attrs }">
@@ -27,7 +27,7 @@
                             outlined
                             v-show="station.ammo_request == 0"
                             color="teal"
-                            @click="taskRequest()"
+                            @click="ammoRequest()"
                         >
                             Request restock
                         </v-chip>
@@ -84,7 +84,7 @@
                     <v-btn
                         class="white--text"
                         color="green"
-                        @click="updatetext()"
+                        @click="submitAmmo()"
                         :disabled="submitActive"
                     >
                         Submit
@@ -96,12 +96,12 @@
                 >
             </v-card>
 
-            <!-- <ShowStationNotes
+            <!-- <showAmmoRequest
                 :nodeNoteItem="nodeNoteItem"
                 v-if="$can('super')"
-                @closeMessage="showStationNotes = false"
+                @closeMessage="showAmmoRequest = false"
             >
-            </ShowStationNotes> -->
+            </showAmmoRequest> -->
         </v-dialog>
     </div>
 </template>
@@ -115,66 +115,33 @@ export default {
     },
     data() {
         return {
-            messageCount: 0,
-            showNumber: false,
-            showStationNotes: false,
+            showAmmoRequest: false,
             editText: null,
             editLoadout: null
         };
     },
 
-    async created() {
-        Echo.private("stationmessage." + this.station.id).listen(
-            "StationMessageUpdate",
-            e => {
-                this.showNumber = true;
-                this.messageCount = this.messageCount + 1;
-                this.$store.dispatch(
-                    "updateStationNotification",
-                    e.flag.message
-                );
-            }
-        );
-    },
+    async created() {},
 
     methods: {
         close() {
             this.editText = null;
-            this.showStationNotes = false;
-            console.log("close");
+            this.showAmmoRequest = false;
+            this.editLoadout = null;
         },
 
-        open() {
-            (this.showNumber = false), (this.messageCount = 0);
-        },
+        open() {},
 
-        updatetext() {
-            this.editText = this.editText + "\n";
-            if (this.station.notes == null) {
-                var note =
-                    moment.utc().format("HH:mm:ss") +
-                    " - " +
-                    this.$store.state.user_name +
-                    ": " +
-                    this.editText;
-            } else {
-                var note =
-                    moment.utc().format("HH:mm:ss") +
-                    " - " +
-                    this.$store.state.user_name +
-                    ": " +
-                    this.editText +
-                    this.station.notes;
-            }
-
-            this.station.notes = note;
-            let request = {
-                notes: note
+        submitAmmo() {
+            var request = {
+                station_id: this.station.id,
+                current_ammo: this.editLoadout,
+                request_text: this.editText
             };
-            this.$store.dispatch("updateStationNotification", this.station);
+
             axios({
-                method: "put",
-                url: "/api/stationmessage/" + this.station.id,
+                method: "post", //you can set what request you want to be
+                url: "api/ammorequest",
                 data: request,
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
@@ -182,7 +149,6 @@ export default {
                     "Content-Type": "application/json"
                 }
             });
-            this.editText = null;
         }
     },
 
@@ -196,7 +162,7 @@ export default {
         },
 
         submitActive() {
-            if (this.editText != null) {
+            if (this.editText != null && this.editLoadout != null) {
                 return false;
             } else {
                 return true;
@@ -204,9 +170,7 @@ export default {
         }
     },
 
-    beforeDestroy() {
-        Echo.leave("stationmessage." + this.station.id);
-    }
+    beforeDestroy() {}
 };
 </script>
 

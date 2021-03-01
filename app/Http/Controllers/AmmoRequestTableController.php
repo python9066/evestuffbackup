@@ -2,7 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\StationNotificationUpdate;
+use App\Models\AmmoRequestTable;
+use App\Models\Station;
+use App\Models\StationRecords;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AmmoRequestTableController extends Controller
 {
@@ -24,7 +29,14 @@ class AmmoRequestTableController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $id = Auth::id();
+        $new = AmmoRequestTable::create($request->all());
+        Station::where('id', $new->station_id)->updated(['ammo_request' => $new->id]);
+        $message = StationRecords::where('id', $new->station_id)->first();
+        $flag = collect([
+            'message' => $message
+        ]);
+        broadcast(new StationNotificationUpdate($flag));
     }
 
     /**
