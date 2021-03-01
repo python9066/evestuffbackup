@@ -30384,7 +30384,7 @@ var render = function() {
                           [
                             _c(
                               "v-list",
-                              { attrs: { dense: "" } },
+                              { attrs: { dense: "", "max-height": " 600px" } },
                               _vm._l(_vm.currentAmmos, function(
                                 currentAmmo,
                                 index

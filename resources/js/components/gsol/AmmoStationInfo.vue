@@ -237,7 +237,7 @@
                                 Current Ammo
                             </v-card-title>
                             <v-card-text>
-                                <v-list dense>
+                                <v-list dense max-height=" 600px">
                                     <v-list-item
                                         v-for="(currentAmmo,
                                         index) in currentAmmos"
