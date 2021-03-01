@@ -31,7 +31,7 @@ class AmmoRequestTableController extends Controller
     {
         $new = AmmoRequestTable::create($request->all());
         $requestID = $new->id;
-        Station::where('id', $request->station_id)->updated(['ammo_request_id' => $requestID]);
+        Station::where('id', $request->station_id)->first()->updated(['ammo_request_id' => $requestID]);
         $message = StationRecords::where('id', $new->station_id)->first();
         $flag = collect([
             'message' => $message
