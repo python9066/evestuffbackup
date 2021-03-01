@@ -104,7 +104,7 @@ class AmmoRequestController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        AmmoRequest::find($id)->update($request->all());
     }
 
     /**

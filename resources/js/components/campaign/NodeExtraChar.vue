@@ -75,12 +75,6 @@ export default {
                     "Content-Type": "application/json"
                 }
             });
-
-            let payload = {
-                campaign_id: this.$route.params.id,
-                user_id: this.$store.state.user_id,
-                type: 1
-            };
             // await this.$store.dispatch("loadCampaignSystemData", payload);
         },
 

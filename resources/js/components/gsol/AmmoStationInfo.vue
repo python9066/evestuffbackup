@@ -337,10 +337,20 @@ export default {
             this.showInfo = false;
         },
 
-        taskTask() {
+        async taskTask() {
             var request = {
                 user_id: this.$store.state.user_id
             };
+            await axios({
+                method: "post",
+                url: "/api/ammorequestupdate/" + station.id,
+                data: request,
+                headers: {
+                    Authorization: "Bearer " + this.$store.state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                }
+            });
         },
 
         async taskDone() {
@@ -348,7 +358,6 @@ export default {
             await axios({
                 method: "delete",
                 url: "/api/ammorequestdelete/" + station.id,
-                data: request,
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
                     Accept: "application/json",

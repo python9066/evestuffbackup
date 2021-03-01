@@ -393,7 +393,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var _this = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-        var addChar, request, payload;
+        var addChar, request;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
@@ -438,13 +438,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 });
 
               case 8:
-                payload = {
-                  campaign_id: _this.$route.params.id,
-                  user_id: _this.$store.state.user_id,
-                  type: 1
-                }; // await this.$store.dispatch("loadCampaignSystemData", payload);
-
-              case 9:
               case "end":
                 return _context.stop();
             }
@@ -7065,23 +7058,21 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       this.showInfo = false;
     },
     taskTask: function taskTask() {
-      var request = {
-        user_id: this.$store.state.user_id
-      };
-    },
-    taskDone: function taskDone() {
       var _this = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        var request;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                _this.showInfo = false;
+                request = {
+                  user_id: _this.$store.state.user_id
+                };
                 _context.next = 3;
                 return axios({
-                  method: "delete",
-                  url: "/api/ammorequestdelete/" + station.id,
+                  method: "post",
+                  url: "/api/ammorequestupdate/" + station.id,
                   data: request,
                   headers: {
                     Authorization: "Bearer " + _this.$store.state.token,
@@ -7096,6 +7087,34 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             }
           }
         }, _callee);
+      }))();
+    },
+    taskDone: function taskDone() {
+      var _this2 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                _this2.showInfo = false;
+                _context2.next = 3;
+                return axios({
+                  method: "delete",
+                  url: "/api/ammorequestdelete/" + station.id,
+                  headers: {
+                    Authorization: "Bearer " + _this2.$store.state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                  }
+                });
+
+              case 3:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2);
       }))();
     },
     url: function url(item) {
