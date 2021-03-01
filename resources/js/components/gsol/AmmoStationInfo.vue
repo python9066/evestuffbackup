@@ -231,7 +231,7 @@
                                 </v-data-table>
                             </v-card-text>
                         </v-card>
-                        <v-card>
+                        <v-card class=" ml-2">
                             <v-card-text>
                                 Current Ammo
                             </v-card-text>

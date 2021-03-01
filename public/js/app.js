@@ -30350,6 +30350,7 @@ var render = function() {
                     _vm._v(" "),
                     _c(
                       "v-card",
+                      { staticClass: " ml-2" },
                       [
                         _c("v-card-text", [
                           _vm._v(
