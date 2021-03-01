@@ -6554,6 +6554,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
 
 
 
@@ -30176,7 +30179,10 @@ var render = function() {
                       [
                         _c("AmmoStocker", { attrs: { station: item } }),
                         _vm._v(" "),
-                        _c("AmmoStationInfo", { attrs: { station: item } })
+                        _c("AmmoStationInfo", {
+                          staticClass: " ml-3",
+                          attrs: { station: item }
+                        })
                       ],
                       1
                     )
@@ -30995,7 +31001,7 @@ var render = function() {
                               "\n                        fas fa-plus\n                    "
                             )
                           ]),
-                          _vm._v("\n                    Stocker")
+                          _vm._v("\n                    Take Task")
                         ],
                         1
                       )

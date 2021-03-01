@@ -30,7 +30,7 @@
                         <v-icon x-small dark>
                             fas fa-plus
                         </v-icon>
-                        Stocker</v-btn
+                        Take Task</v-btn
                     >
                 </template>
                 <span>
