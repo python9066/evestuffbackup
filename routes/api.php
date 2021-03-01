@@ -145,5 +145,5 @@ Route::middleware('auth:api')->group(function () {
     Route::put('/stationattackmessage/{id}', 'StationController@updateAttackMessage');
     Route::put('/stationmessage/{id}', 'StationController@updateMessage');
     Route::put('/towermessage/{id}', 'TowerRecordsController@updateMessage');
-    Route::post('/ammorequest', 'AmmoRequestTableController@store');
+    Route::post('/ammorequest', 'AmmoRequestController@store');
 });

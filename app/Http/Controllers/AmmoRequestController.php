@@ -9,7 +9,7 @@ use App\Models\StationRecords;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class AmmoRequestTableController extends Controller
+class AmmoRequestController extends Controller
 {
     /**
      * Display a listing of the resource.
