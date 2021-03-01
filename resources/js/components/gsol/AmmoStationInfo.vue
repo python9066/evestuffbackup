@@ -238,8 +238,7 @@
                             <v-card-text>
                                 <v-list>
                                     <v-list-item
-                                        v-for="(list,
-                                        index) in currentAmmoText()"
+                                        v-for="(list, index) in currentAmmoText"
                                         :key="index"
                                     >
                                     </v-list-item>
@@ -317,13 +316,6 @@ export default {
             }
         },
 
-        currentAmmoText() {
-            var text = this.station.current_ammo;
-            var t = text.split("\n");
-            console.log(t);
-            return t;
-        },
-
         lastUpdated() {
             if (this.fit[0]["r_updated_at"] != null) {
                 var ago = moment(this.fit[0]["r_updated_at"]).fromNow();
@@ -340,6 +332,13 @@ export default {
             "getCoreByStationID",
             "getStationFitByStationID"
         ]),
+
+        currentAmmoText() {
+            var text = this.station.current_ammo;
+            var t = text.split("\n");
+            console.log(t);
+            return t;
+        },
 
         items() {
             return this.getStationItemsByStationID(this.station.station_id);
