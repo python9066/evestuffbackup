@@ -330,7 +330,8 @@ export default {
                 }
             ],
             showInfo: false,
-            fitted: false
+            fitted: false,
+            maxW: "700px"
         };
     },
 
@@ -390,7 +391,13 @@ export default {
             return "https://images.evetech.net/types/" + item.item_id + "/icon";
         },
 
-        open() {},
+        open() {
+            if (this.showfit()) {
+                this.maxW = "700px";
+            } else {
+                this.maxW = "1200px";
+            }
+        },
 
         openRecon(hash) {
             var url = "https://recon.gnf.lt/structures/" + hash + "/view";
@@ -424,14 +431,6 @@ export default {
             "getCoreByStationID",
             "getStationFitByStationID"
         ]),
-
-        maxW() {
-            if (this.showfit) {
-                return "700px";
-            } else {
-                return "1200px";
-            }
-        },
 
         items() {
             return this.getStationItemsByStationID(this.station.station_id);

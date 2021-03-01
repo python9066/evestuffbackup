@@ -7056,7 +7056,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         align: "start"
       }],
       showInfo: false,
-      fitted: false
+      fitted: false,
+      maxW: "700px"
     };
   },
   methods: {
@@ -7161,7 +7162,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     url: function url(item) {
       return "https://images.evetech.net/types/" + item.item_id + "/icon";
     },
-    open: function open() {},
+    open: function open() {
+      if (this.showfit()) {
+        this.maxW = "700px";
+      } else {
+        this.maxW = "1200px";
+      }
+    },
     openRecon: function openRecon(hash) {
       var url = "https://recon.gnf.lt/structures/" + hash + "/view";
       var win = window.open(url, "_blank");
@@ -7185,13 +7192,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   created: function created() {},
   computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(["getStationItemsByStationID", "getCoreByStationID", "getStationFitByStationID"])), {}, {
-    maxW: function maxW() {
-      if (this.showfit) {
-        return "700px";
-      } else {
-        return "1200px";
-      }
-    },
     items: function items() {
       return this.getStationItemsByStationID(this.station.station_id);
     },
