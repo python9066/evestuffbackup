@@ -100,7 +100,7 @@
 
             <template v-slot:[`item.actions`]="{ item }">
                 <div class=" d-inline-flex">
-                    <!-- <AmmoStationInfo :station="item"></AmmoStationInfo> -->
+                    <AmmoStationInfo :station="item"></AmmoStationInfo>
                 </div>
             </template>
         </v-data-table>

@@ -29874,7 +29874,14 @@ var render = function() {
                 key: "item.actions",
                 fn: function(ref) {
                   var item = ref.item
-                  return [_c("div", { staticClass: " d-inline-flex" })]
+                  return [
+                    _c(
+                      "div",
+                      { staticClass: " d-inline-flex" },
+                      [_c("AmmoStationInfo", { attrs: { station: item } })],
+                      1
+                    )
+                  ]
                 }
               }
             ],
