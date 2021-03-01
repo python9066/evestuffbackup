@@ -310,7 +310,7 @@ export default {
         },
 
         currentAmmoText() {
-            var text = station.current_ammo;
+            var text = this.station.current_ammo;
             var t = text.split("\n");
             console.log(t);
             return t;

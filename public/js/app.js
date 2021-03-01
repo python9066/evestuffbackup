@@ -7025,7 +7025,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }
     },
     currentAmmoText: function currentAmmoText() {
-      var text = station.current_ammo;
+      var text = this.station.current_ammo;
       var t = text.split("\n");
       console.log(t);
       return t;
