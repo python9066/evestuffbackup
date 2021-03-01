@@ -12,7 +12,8 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
     state: {
-        allianceticklist:[],
+        allianceticklist: [],
+        ammoRequest:[],
         campaigns: [],
         campaignJoin: [],
         campaignSolaSystems:[],
@@ -48,6 +49,10 @@ export default new Vuex.Store({
         userschars: [],
     },
     mutations: {
+        SET_AMMO_REQUEST(state, ammorequest) {
+            state.ammoRequest = ammorequest;
+        },
+
         SET_SYSTEMLIST(state, systemlist) {
             state.systemlist = systemlist;
         },
@@ -370,6 +375,19 @@ export default new Vuex.Store({
                 }
             });
             commit("SET_SYSTEMLIST", res.data.systemlist);
+        },
+
+        async getAmmoRequest({ commit, state }) {
+            let res = await axios({
+                method: "get",
+                url: "/api/ammorequestrecords",
+                headers: {
+                    Authorization: "Bearer " + state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                }
+            });
+            commit("SET_AMMO_REQUEST", res.data.ammorequest);
         },
 
         async getMoonList({ commit, state }, system_id) {

@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class CampaignRecords extends Model
 {
-    protected $guarded =[];
+    protected $guarded = [];
     public $timestamps = false;
 
     protected $casts = [
@@ -26,7 +26,8 @@ class CampaignRecords extends Model
         'notification_type_id' => 'double',
     ];
 
-    public function campaignjoin(){
+    public function campaignjoin()
+    {
         return $this->hasMany(CampaignJoin::class);
     }
 }

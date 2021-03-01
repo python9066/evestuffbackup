@@ -27,24 +27,29 @@ use Illuminate\Support\Facades\Route;
 // Route::get('/notifications','NotificationRecordsController@index');
 
 Route::middleware('auth:api')->group(function () {
+
+    //BROISES FEED//
     Route::post('/brois', 'testController@notifications');
+
+    //HACKING NOTIFICATION APIS//
     Route::get('/notifications/{region_id}', 'NotificationRecordsController@regionLink');
     Route::get('/notifications', 'NotificationRecordsController@index');
     Route::put('/notifications/{id}', 'NotificationController@update');
     Route::put('/notificationsaddtime/{id}', 'NotificationController@addTime');
 
+    //IHUB-TCU WINDOWS//
     Route::get('/timers', 'TimerController@getTimerData');
 
+    //HACKING Campaign APIs
     Route::get('/campaigns', 'CampaignRecordsController@index');
     Route::get('/campaignslist', 'CampaignRecordsController@campaignslist');
     Route::put('/campaigns/{id}', 'CampaignRecordsController@update');
-    Route::get('/systemsinconstellation/{id}', 'SystemController@systemsinconstellation');
 
+    //CAMPIGN USERS
     Route::get('/campaignusersrecords/{id}', 'CampaignUserRecordsController@show');
     Route::get('/campaignusersrecordsbychar/{id}', 'CampaignUserRecordsController@bychar');
     Route::put('/campaignusersrecords/{id}/{campid}', 'CampaignUserRecordsController@update');
     Route::post('/campaignusersrecords/{id}/{campid}', 'CampaignUserRecordsController@store');
-
 
     Route::post('/campaignusers/{campid}', 'CampaignUserController@store');
     Route::put('/campaignusers/{id}/{campid}', 'CampaignUserController@update');
@@ -52,11 +57,14 @@ Route::middleware('auth:api')->group(function () {
     Route::put('/campaignusersremove/{id}/{campid}', 'CampaignUserController@updateremove');
     Route::delete('/campaignusers/{id}/{campid}/{siteid}', 'CampaignUserController@destroy');
 
+
+    //Campagin NODES
     Route::get('/campaignsystemsrecords', 'CampaignSystemRecordsController@index');
     Route::get('/campaignsystemsrecords/{id}', 'CampaignSystemRecordsController@show');
     Route::put('/campaignsystemsrecords/{id}/{campid}', 'CampaignSystemRecordsController@update');
     Route::post('/campaignsystemsrecords/{id}/{campid}', 'CampaignSystemRecordsController@store');
     Route::delete('/campaginsystemsrecords/{id}/{campid}', 'CampaignSystemRecordsController@destroy');
+
 
     Route::post('/campaignsystemload', 'CampaignSystemsController@load');
     Route::post('/afterextranodeload', 'CampaignSystemsController@afterExtraNodeLoad');
@@ -75,6 +83,15 @@ Route::middleware('auth:api')->group(function () {
     Route::put('campaignsystemstidi/{sysid}/{campid}', 'CampaignSystemsController@tidi');
     Route::put('campaignsystemstidimulti/{sysid}/{campid}', 'CampaignSystemsController@tidimulti');
 
+    Route::post('/multicampaigns/{campid}/{name}', 'CustomCampaignsController@store');
+    Route::get('/multicampaigns', 'CustomCampaignsController@index');
+    Route::delete('/multicampaigns/{id}', 'CustomCampaignsController@destroy');
+    Route::post('/multicampaignsedit/{campid}/{name}', 'CustomCampaignsController@edit');
+
+    //SYSTEM API
+    Route::get('/systemsinconstellation/{id}', 'SystemController@systemsinconstellation');
+    Route::get('/systemlist', 'SystemController@index');
+
     Route::get('/users', 'AuthController@index');
     Route::get('/userrolerecord', 'UserRolesRecordsController@index');
 
@@ -87,22 +104,6 @@ Route::middleware('auth:api')->group(function () {
     Route::get('/campaignsystemusers/{campid}', 'CampaignSystemUsersController@index');
     Route::delete('/campaignsystemusers/{id}/{campid}', 'CampaignSystemUsersController@destroy');
 
-    Route::get('/stationrecords', 'StationRecordsController@index');
-    Route::put('/stationrecords/{id}', 'StationRecordsController@update');
-
-    Route::get('/towersrecords', 'TowerRecordsController@index');
-    Route::put('/towerrecords/{id}', 'TowerRecordsController@update');
-    Route::put('/towerrecords', 'TowerRecordsController@store');
-
-    Route::post('/feedback', 'FeedBackController@store');
-    Route::get('/feedback', 'FeedBackController@index');
-    Route::delete('/feedback/{id}', 'FeedBackController@destroy');
-
-    Route::post('/multicampaigns/{campid}/{name}', 'CustomCampaignsController@store');
-    Route::get('/multicampaigns', 'CustomCampaignsController@index');
-    Route::delete('/multicampaigns/{id}', 'CustomCampaignsController@destroy');
-    Route::post('/multicampaignsedit/{campid}/{name}', 'CustomCampaignsController@edit');
-
     Route::get('/campaignjoin', 'CampaignJoinsController@index');
     Route::get('/campaignjoinbyid/{campid}', 'CampaignJoinsController@indexByID');
     Route::get('/campaignjoin/{id}', 'CampaignJoinsController@show');
@@ -111,6 +112,26 @@ Route::middleware('auth:api')->group(function () {
 
     Route::get('/campaignsolasystems', 'CampaignSolaSystemsController@index');
     Route::put('/campaignsolasystems/{solaid}/{campid}', 'CampaignSolaSystemsController@update');
+
+    Route::get('/nodejoin/{campid}', 'NodeJoinsController@tableindex');
+    Route::post('/nodejoin/{campid}', 'NodeJoinsController@store');
+    Route::put('/nodejoinupdate/{id}/{campid}', 'NodeJoinsController@update');
+    Route::put('/removecharfromnode/{id}/{campid}', 'NodeJoinsController@removeCharForNode');
+    Route::put('/addchartonodeadmin/{id}/{campid}', 'NodeJoinsController@addCharToNodeAdmin');
+    Route::put('/deleteextranode/{id}/{campid}', 'NodeJoinsController@deleteExtraNode');
+
+    Route::get('/stationrecords', 'StationRecordsController@index');
+    Route::put('/stationrecords/{id}', 'StationRecordsController@update');
+
+    Route::get('/towersrecords', 'TowerRecordsController@index');
+    Route::put('/towerrecords/{id}', 'TowerRecordsController@update');
+    Route::put('/towerrecords', 'TowerRecordsController@store');
+    Route::put('/towermessage/{id}', 'TowerRecordsController@updateMessage');
+
+    Route::post('/feedback', 'FeedBackController@store');
+    Route::get('/feedback', 'FeedBackController@index');
+    Route::delete('/feedback/{id}', 'FeedBackController@destroy');
+
 
     Route::post('/checkaddnode/{campid}', 'LoggingController@NodeAdd');
     Route::post('/checkdeletenode/{campid}', 'LoggingController@NodeDelete');
@@ -123,27 +144,27 @@ Route::middleware('auth:api')->group(function () {
     Route::get('/checkcampaign/{campid}', 'LoggingController@logCampaign');
     Route::get('/checkadmin', 'LoggingController@logAdmin');
 
-    Route::get('/nodejoin/{campid}', 'NodeJoinsController@tableindex');
-    Route::post('/nodejoin/{campid}', 'NodeJoinsController@store');
-    Route::put('/nodejoinupdate/{id}/{campid}', 'NodeJoinsController@update');
-    Route::put('/removecharfromnode/{id}/{campid}', 'NodeJoinsController@removeCharForNode');
-    Route::put('/addchartonodeadmin/{id}/{campid}', 'NodeJoinsController@addCharToNodeAdmin');
-    Route::put('/deleteextranode/{id}/{campid}', 'NodeJoinsController@deleteExtraNode');
+
 
     Route::get('/loadstationdata', 'StationController@loadStationData');
     Route::post('/taskrequest', 'StationController@taskRequest');
     Route::put('/updatestationnotification/{id}', 'StationController@update');
-
-    Route::get('/systemlist', 'SystemController@index');
-    Route::get('/ticklist', 'CorpController@index');
-    Route::get('/allianceticklist', 'AllianceController@allianceTickList');
     Route::put('/stationname', 'StationController@reconPullbyname');
-    Route::get('/structurelist', 'ItemController@index');
-    Route::get('/towerlist', 'ItemController@towerlist');
     Route::put('/stationnew', 'StationController@store');
-    Route::get('/moons/{sysid}', 'MoonController@bySystem');
     Route::put('/stationattackmessage/{id}', 'StationController@updateAttackMessage');
     Route::put('/stationmessage/{id}', 'StationController@updateMessage');
-    Route::put('/towermessage/{id}', 'TowerRecordsController@updateMessage');
+
+
+    Route::get('/ticklist', 'CorpController@index');
+
+    Route::get('/allianceticklist', 'AllianceController@allianceTickList');
+
+    Route::get('/structurelist', 'ItemController@index');
+    Route::get('/towerlist', 'ItemController@towerlist');
+
+    Route::get('/moons/{sysid}', 'MoonController@bySystem');
+
     Route::post('/ammorequest', 'AmmoRequestController@store');
+
+    Route::get('/ammorequestrecords', 'AmmoRequestController@index');
 });
