@@ -16,7 +16,7 @@ class CreateAmmoRequestTable extends Migration
         Schema::create('ammo_requests', function (Blueprint $table) {
             $table->id();
             $table->foreignId('station_id');
-            $table->foreignId('user_id');
+            $table->foreignId('user_id')->nullable();
             $table->text('current_ammo')->nullable();
             $table->text('request_text')->nullable();
             $table->timestamps();
