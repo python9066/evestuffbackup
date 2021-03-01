@@ -7187,9 +7187,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(["getStationItemsByStationID", "getCoreByStationID", "getStationFitByStationID"])), {}, {
     maxW: function maxW() {
       if (this.showfit) {
-        return "1200px";
-      } else {
         return "700px";
+      } else {
+        return "1200px";
       }
     },
     items: function items() {

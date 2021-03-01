@@ -427,9 +427,9 @@ export default {
 
         maxW() {
             if (this.showfit) {
-                return "1200px";
-            } else {
                 return "700px";
+            } else {
+                return "1200px";
             }
         },
 
