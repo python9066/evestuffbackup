@@ -30174,7 +30174,7 @@ var render = function() {
                       "div",
                       { staticClass: " d-inline-flex" },
                       [
-                        _c("AmmoGsol", { attrs: { station: item } }),
+                        _c("AmmoStocker", { attrs: { station: item } }),
                         _vm._v(" "),
                         _c("AmmoStationInfo", { attrs: { station: item } })
                       ],
