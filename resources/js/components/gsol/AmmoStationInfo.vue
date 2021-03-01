@@ -1,7 +1,7 @@
 <template>
     <div>
         <v-dialog
-            max-width="1400px"
+            max-width="1000px"
             z-index="0"
             v-model="showInfo"
             @click:outside="close()"
@@ -25,7 +25,7 @@
 
             <v-card
                 tile
-                max-width="1400px"
+                max-width="1000px"
                 min-height="200px"
                 max-height="1000px"
                 class=" d-flex flex-column justify-center"

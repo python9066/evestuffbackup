@@ -29900,7 +29900,7 @@ var render = function() {
       _c(
         "v-dialog",
         {
-          attrs: { "max-width": "1400px", "z-index": "0" },
+          attrs: { "max-width": "1000px", "z-index": "0" },
           on: {
             "click:outside": function($event) {
               return _vm.close()
@@ -29962,7 +29962,7 @@ var render = function() {
               staticClass: " d-flex flex-column justify-center",
               attrs: {
                 tile: "",
-                "max-width": "1400px",
+                "max-width": "1000px",
                 "min-height": "200px",
                 "max-height": "1000px"
               }
