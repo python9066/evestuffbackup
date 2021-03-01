@@ -7054,8 +7054,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         align: "start"
       }],
       showInfo: false,
-      editText: null,
-      editAdashLink: null,
       fitted: false
     };
   },
@@ -7076,7 +7074,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                _context.next = 2;
+                _this.showInfo = false;
+                _context.next = 3;
                 return axios({
                   method: "delete",
                   url: "/api/ammorequestdelete/" + station.id,
@@ -7088,7 +7087,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   }
                 });
 
-              case 2:
+              case 3:
               case "end":
                 return _context.stop();
             }

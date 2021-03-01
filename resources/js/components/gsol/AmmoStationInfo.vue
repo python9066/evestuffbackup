@@ -325,8 +325,6 @@ export default {
                 }
             ],
             showInfo: false,
-            editText: null,
-            editAdashLink: null,
             fitted: false
         };
     },
@@ -343,6 +341,7 @@ export default {
         },
 
         async taskDone() {
+            this.showInfo = false;
             await axios({
                 method: "delete",
                 url: "/api/ammorequestdelete/" + station.id,
