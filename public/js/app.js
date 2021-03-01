@@ -6575,7 +6575,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
 
 
 
@@ -6630,7 +6629,10 @@ function sleep(ms) {
         align: "start"
       } // { text: "Vulernable End Time", value: "vulnerable_end_time" }
       ],
-      statusflag: 2
+      statusflag: 2,
+      loadingt: true,
+      loadingf: true,
+      loadingr: true
     };
   },
   created: function created() {
@@ -29308,29 +29310,14 @@ var render = function() {
           attrs: {
             headers: _vm.headers,
             items: _vm.filteredItems,
-            "item-class": _vm.itemRowBackground,
             "item-key": "id",
             loading: _vm.loadingt,
             "items-per-page": 25,
             "footer-props": { "items-per-page-options": [15, 25, 50, 100, -1] },
-            "sort-by": _vm.sortby,
+            "sort-by": ["start_time"],
             search: _vm.search,
-            "sort-desc": _vm.sortdesc,
+            "sort-desc": [true, false],
             "multi-sort": ""
-          },
-          on: {
-            "update:sortBy": function($event) {
-              _vm.sortby = $event
-            },
-            "update:sort-by": function($event) {
-              _vm.sortby = $event
-            },
-            "update:sortDesc": function($event) {
-              _vm.sortdesc = $event
-            },
-            "update:sort-desc": function($event) {
-              _vm.sortdesc = $event
-            }
           },
           scopedSlots: _vm._u(
             [

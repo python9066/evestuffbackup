@@ -44,14 +44,13 @@
         <v-data-table
             :headers="headers"
             :items="filteredItems"
-            :item-class="itemRowBackground"
             item-key="id"
             :loading="loadingt"
             :items-per-page="25"
             :footer-props="{ 'items-per-page-options': [15, 25, 50, 100, -1] }"
-            :sort-by.sync="sortby"
+            :sort-by="['start_time']"
             :search="search"
-            :sort-desc.sync="sortdesc"
+            :sort-desc="[true, false]"
             multi-sort
             class="elevation-1"
         >
@@ -184,7 +183,10 @@ export default {
 
                 // { text: "Vulernable End Time", value: "vulnerable_end_time" }
             ],
-            statusflag: 2
+            statusflag: 2,
+            loadingt: true,
+            loadingf: true,
+            loadingr: true
         };
     },
 
