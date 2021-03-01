@@ -27,7 +27,6 @@
                             outlined
                             v-show="station.ammo_request == 0"
                             color="teal"
-                            @click="ammoRequest()"
                         >
                             Request restock
                         </v-chip>
