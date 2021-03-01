@@ -30561,7 +30561,7 @@ var render = function() {
                     "div",
                     {
                       key: "takebtn" + this.station.id,
-                      attrs: { "v-show": _vm.showTakeTask }
+                      attrs: { "v-if": _vm.showTakeTask }
                     },
                     [
                       _c(
@@ -30589,7 +30589,7 @@ var render = function() {
                     "div",
                     {
                       key: "donebtn" + this.station.id,
-                      attrs: { "v-show": _vm.showDoneTask }
+                      attrs: { "v-if": _vm.showDoneTask }
                     },
                     [
                       _c(

@@ -278,7 +278,7 @@
                         Close
                     </v-btn>
                     <div
-                        :v-show="showTakeTask"
+                        :v-if="showTakeTask"
                         :key="'takebtn' + this.station.id"
                     >
                         <v-btn
@@ -290,7 +290,7 @@
                         </v-btn>
                     </div>
                     <div
-                        :v-show="showDoneTask"
+                        :v-if="showDoneTask"
                         :key="'donebtn' + this.station.id"
                     >
                         <v-btn
