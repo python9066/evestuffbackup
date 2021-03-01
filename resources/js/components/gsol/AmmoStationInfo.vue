@@ -391,6 +391,7 @@ export default {
                 delete s[1];
                 data.push(s);
             });
+            console.log(data);
             return data;
         },
 

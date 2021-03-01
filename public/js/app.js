@@ -7093,6 +7093,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         delete s[1];
         data.push(s);
       });
+      console.log(data);
       return data;
     },
     showLinkButton: function showLinkButton() {
