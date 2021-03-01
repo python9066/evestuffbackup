@@ -26,6 +26,7 @@
             <v-card
                 tile
                 max-width="1200px"
+                min-width="700px"
                 min-height="200px"
                 max-height="1000px"
                 class=" d-flex flex-column justify-center"
