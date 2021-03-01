@@ -82,6 +82,10 @@ Broadcast::channel('chillstations', function () {
     return Auth::check();
 });
 
+Broadcast::channel('ammorequest', function () {
+    return Auth::check();
+});
+
 
 
 
