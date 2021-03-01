@@ -6549,32 +6549,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -6684,7 +6658,11 @@ function sleep(ms) {
       }, _callee2);
     }))();
   },
-  methods: {},
+  methods: {
+    numberDay: function numberDay(day) {
+      return parseInt(day, 10) + "d";
+    }
+  },
   computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapState"])(["ammoRequest"])), {}, {
     filteredItems: function filteredItems() {
       var filter = this.ammoRequest;
@@ -29328,101 +29306,37 @@ var render = function() {
                 fn: function(ref) {
                   var item = ref.item
                   return [
-                    _vm.showCountDown(item)
-                      ? _c("CountDowntimer", {
-                          attrs: {
-                            "start-time": _vm.countDownStartTime(item),
-                            "end-text": "Coming Out",
-                            interval: 1000,
-                            "day-text": "Days"
-                          },
-                          on: {
-                            campaignStart: function($event) {
-                              return _vm.campaignStart(item)
+                    _c("VueCountUptimer", {
+                      attrs: {
+                        "start-time": _vm.moment.utc(item.start_time).unix(),
+                        "end-text": "Window Closed",
+                        interval: 1000
+                      },
+                      scopedSlots: _vm._u(
+                        [
+                          {
+                            key: "countup",
+                            fn: function(scope) {
+                              return [
+                                _c("span", { staticClass: "red--text pl-3" }, [
+                                  _vm._v(
+                                    _vm._s(_vm.numberDay(scope.props.days)) +
+                                      "\n                        " +
+                                      _vm._s(scope.props.hours) +
+                                      ":" +
+                                      _vm._s(scope.props.minutes) +
+                                      ":" +
+                                      _vm._s(scope.props.seconds)
+                                  )
+                                ])
+                              ]
                             }
-                          },
-                          scopedSlots: _vm._u(
-                            [
-                              {
-                                key: "countdown",
-                                fn: function(scope) {
-                                  return [
-                                    scope.props.days == 0
-                                      ? _c(
-                                          "span",
-                                          { class: _vm.countDownColor(item) },
-                                          [
-                                            _vm._v(
-                                              _vm._s(scope.props.hours) +
-                                                ":" +
-                                                _vm._s(scope.props.minutes) +
-                                                ":" +
-                                                _vm._s(scope.props.seconds)
-                                            )
-                                          ]
-                                        )
-                                      : _vm._e(),
-                                    _vm._v(" "),
-                                    scope.props.days != 0
-                                      ? _c(
-                                          "span",
-                                          { class: _vm.countDownColor(item) },
-                                          [
-                                            _vm._v(
-                                              _vm._s(
-                                                _vm.numberDay(scope.props.days)
-                                              ) +
-                                                "\n                        " +
-                                                _vm._s(scope.props.hours) +
-                                                ":" +
-                                                _vm._s(scope.props.minutes) +
-                                                ":" +
-                                                _vm._s(scope.props.seconds)
-                                            )
-                                          ]
-                                        )
-                                      : _vm._e()
-                                  ]
-                                }
-                              }
-                            ],
-                            null,
-                            true
-                          )
-                        })
-                      : _c("VueCountUptimer", {
-                          attrs: {
-                            "start-time": _vm.moment.utc(item.timestamp).unix(),
-                            "end-text": "Window Closed",
-                            interval: 1000
-                          },
-                          scopedSlots: _vm._u(
-                            [
-                              {
-                                key: "countup",
-                                fn: function(scope) {
-                                  return [
-                                    _c(
-                                      "span",
-                                      { staticClass: "red--text pl-3" },
-                                      [
-                                        _vm._v(
-                                          _vm._s(scope.props.hours) +
-                                            ":" +
-                                            _vm._s(scope.props.minutes) +
-                                            ":" +
-                                            _vm._s(scope.props.seconds)
-                                        )
-                                      ]
-                                    )
-                                  ]
-                                }
-                              }
-                            ],
-                            null,
-                            true
-                          )
-                        })
+                          }
+                        ],
+                        null,
+                        true
+                      )
+                    })
                   ]
                 }
               },

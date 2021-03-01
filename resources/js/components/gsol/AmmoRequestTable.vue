@@ -60,43 +60,17 @@
                 No Ammo Requests At The Moment
             </template>
             <template v-slot:item.count="{ item }">
-                <CountDowntimer
-                    v-if="showCountDown(item)"
-                    :start-time="countDownStartTime(item)"
-                    :end-text="'Coming Out'"
-                    :interval="1000"
-                    :day-text="'Days'"
-                    @campaignStart="campaignStart(item)"
-                >
-                    <template slot="countdown" slot-scope="scope">
-                        <span
-                            :class="countDownColor(item)"
-                            v-if="scope.props.days == 0"
-                            >{{ scope.props.hours }}:{{
-                                scope.props.minutes
-                            }}:{{ scope.props.seconds }}</span
-                        >
-                        <span
-                            :class="countDownColor(item)"
-                            v-if="scope.props.days != 0"
-                            >{{ numberDay(scope.props.days) }}
-                            {{ scope.props.hours }}:{{ scope.props.minutes }}:{{
-                                scope.props.seconds
-                            }}</span
-                        >
-                    </template>
-                </CountDowntimer>
                 <VueCountUptimer
-                    v-else
-                    :start-time="moment.utc(item.timestamp).unix()"
+                    :start-time="moment.utc(item.start_time).unix()"
                     :end-text="'Window Closed'"
                     :interval="1000"
                 >
                     <template slot="countup" slot-scope="scope">
                         <span class="red--text pl-3"
-                            >{{ scope.props.hours }}:{{
-                                scope.props.minutes
-                            }}:{{ scope.props.seconds }}</span
+                            >{{ numberDay(scope.props.days) }}
+                            {{ scope.props.hours }}:{{ scope.props.minutes }}:{{
+                                scope.props.seconds
+                            }}</span
                         >
                     </template>
                 </VueCountUptimer>
@@ -216,7 +190,11 @@ export default {
     },
 
     async mounted() {},
-    methods: {},
+    methods: {
+        numberDay(day) {
+            return parseInt(day, 10) + "d";
+        }
+    },
 
     computed: {
         ...mapState(["ammoRequest"]),
