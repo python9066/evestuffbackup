@@ -296,7 +296,6 @@
                                                 icon
                                                 fixed
                                                 left
-                                                :disabled="showNodeButton"
                                                 color="success"
                                                 @click="addNode()"
                                                 ><v-icon
