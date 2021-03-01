@@ -296,6 +296,7 @@
                                                 icon
                                                 fixed
                                                 left
+                                                :disabled="showNodeButton"
                                                 color="success"
                                                 @click="addNode()"
                                                 ><v-icon
@@ -1192,6 +1193,14 @@ export default {
             };
             let count = this.getsActiveCampaignById(payload).length;
             if (count == 0) {
+                return false;
+            } else {
+                return true;
+            }
+        },
+
+        showNodeButton() {
+            if (this.nodeText != null) {
                 return false;
             } else {
                 return true;

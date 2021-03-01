@@ -7666,6 +7666,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -8399,6 +8400,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var count = this.getsActiveCampaignById(payload).length;
 
       if (count == 0) {
+        return false;
+      } else {
+        return true;
+      }
+    },
+    showNodeButton: function showNodeButton() {
+      if (this.nodeText != null) {
         return false;
       } else {
         return true;
@@ -30377,6 +30385,8 @@ var render = function() {
                                                       icon: "",
                                                       fixed: "",
                                                       left: "",
+                                                      disabled:
+                                                        _vm.showNodeButton,
                                                       color: "success"
                                                     },
                                                     on: {
