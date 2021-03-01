@@ -132,7 +132,60 @@ function sleep(ms) {
 }
 export default {
     data() {
-        return {};
+        return {
+            headers: [
+                {
+                    text: "Region",
+                    value: "region_name",
+                    width: "5%"
+                },
+                {
+                    text: "Constellation",
+                    value: "constellation_name",
+                    width: "8%"
+                },
+                {
+                    text: "System",
+                    value: "system_name",
+                    width: "8%"
+                },
+                {
+                    text: "Alliance",
+                    value: "alliance_ticker",
+                    width: "10%"
+                },
+                {
+                    text: "Type",
+                    value: "item_name",
+                    width: "10%"
+                },
+                {
+                    text: "Name",
+                    value: "station_name",
+                    width: "15%"
+                },
+                {
+                    text: "Timestamp",
+                    value: "start_time",
+                    align: "center",
+                    width: "15%"
+                },
+                {
+                    text: "Age/CountDown",
+                    value: "count",
+                    width: "5%"
+                },
+                {
+                    text: "",
+                    value: "actions",
+                    width: "10%",
+                    align: "start"
+                }
+
+                // { text: "Vulernable End Time", value: "vulnerable_end_time" }
+            ],
+            statusflag: 2
+        };
     },
 
     async created() {
@@ -151,7 +204,7 @@ export default {
                 this.$store.dispatch("getStationData");
             });
 
-        this.$store.dispatch("loadAmmoRequestData").then(() => {
+        this.$store.dispatch("getAmmoRequest").then(() => {
             this.loadingt = false;
             this.loadingf = false;
             this.loadingr = false;
@@ -161,7 +214,21 @@ export default {
     async mounted() {},
     methods: {},
 
-    computed: {},
+    computed: {
+        ...mapState(["ammoRequest"]),
+
+        filteredItems() {
+            const filter = this.ammoRequest;
+            if (this.statusflag == 2) {
+                return filter.filter(f => s.user_id == null);
+            }
+            if (this.statusflag == 3) {
+                return filter.filter(f => s.user_id != null);
+            } else {
+                return filter;
+            }
+        }
+    },
     beforeDestroy() {
         Echo.leave("ammorequest");
     }
