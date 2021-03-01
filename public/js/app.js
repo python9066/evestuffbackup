@@ -7028,6 +7028,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var text = station.current_ammo;
       var t = text.split("\n");
       console.log(t);
+      return t;
     },
     lastUpdated: function lastUpdated() {
       if (this.fit[0]["r_updated_at"] != null) {
@@ -30350,7 +30351,7 @@ var render = function() {
                         _c("v-card-text", [
                           _vm._v(
                             "\n                            " +
-                              _vm._s(_vm.currentAmmoText) +
+                              _vm._s(_vm.currentAmmoText()) +
                               "\n                        "
                           )
                         ])
