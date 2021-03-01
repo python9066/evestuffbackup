@@ -7026,7 +7026,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     currentAmmoText: function currentAmmoText() {
       var text = station.current_ammo;
-      return text.split("/n");
+      return text.split("\n");
     },
     lastUpdated: function lastUpdated() {
       if (this.fit[0]["r_updated_at"] != null) {
