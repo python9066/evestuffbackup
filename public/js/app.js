@@ -7033,11 +7033,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }
     },
     currentAmmos: function currentAmmos() {
-      var data = {};
+      var data = [];
       var text = this.station.current_ammo;
       var t = text.split("\n");
       t.forEach(function (a) {
         var s = a.split("\t");
+        s["item"] = s[0];
         data.push(s);
       });
       console.log(data);
