@@ -1,7 +1,7 @@
 <template>
     <div>
         <v-dialog
-            max-width="700px"
+            max-width="1400px"
             z-index="0"
             v-model="showInfo"
             @click:outside="close()"
@@ -28,7 +28,7 @@
                 max-width="1400px"
                 min-height="200px"
                 max-height="1000px"
-                class=" d-flex flex-column"
+                class=" d-flex flex-column justify-content-around"
             >
                 <v-card-title class="justify-center"
                     ><p>
@@ -231,8 +231,14 @@
                                 </v-data-table>
                             </v-card-text>
                         </v-card>
-                        <div>
-                            <v-card class=" ml-2">
+                        <div class=" ml-2">
+                            <v-card class=" mb-2"
+                                ><v-card-title>Request</v-card-title
+                                ><v-card-text>{{
+                                    station.request_text
+                                }}</v-card-text></v-card
+                            >
+                            <v-card>
                                 <v-card-title>
                                     Current Ammo
                                 </v-card-title>
@@ -243,18 +249,15 @@
                                             index) in currentAmmos"
                                             :key="index"
                                         >
-                                            {{ currentAmmo[0] }} x
+                                            <strong>{{
+                                                currentAmmo[0]
+                                            }}</strong>
+                                            x
                                             {{ currentAmmo[1] }}
                                         </v-list-item>
                                     </v-list>
                                 </v-card-text>
                             </v-card>
-                            <v-card class=" mt-2"
-                                ><v-card-title>Request</v-card-title
-                                ><v-card-text>{{
-                                    station.request_text
-                                }}</v-card-text></v-card
-                            >
                         </div>
                     </div>
                 </v-card-text>

@@ -6996,6 +6996,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -29897,7 +29900,7 @@ var render = function() {
       _c(
         "v-dialog",
         {
-          attrs: { "max-width": "700px", "z-index": "0" },
+          attrs: { "max-width": "1400px", "z-index": "0" },
           on: {
             "click:outside": function($event) {
               return _vm.close()
@@ -29956,7 +29959,7 @@ var render = function() {
           _c(
             "v-card",
             {
-              staticClass: " d-flex flex-column",
+              staticClass: " d-flex flex-column justify-content-around",
               attrs: {
                 tile: "",
                 "max-width": "1400px",
@@ -30365,10 +30368,22 @@ var render = function() {
                     _vm._v(" "),
                     _c(
                       "div",
+                      { staticClass: " ml-2" },
                       [
                         _c(
                           "v-card",
-                          { staticClass: " ml-2" },
+                          { staticClass: " mb-2" },
+                          [
+                            _c("v-card-title", [_vm._v("Request")]),
+                            _c("v-card-text", [
+                              _vm._v(_vm._s(_vm.station.request_text))
+                            ])
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "v-card",
                           [
                             _c("v-card-title", [
                               _vm._v(
@@ -30387,10 +30402,11 @@ var render = function() {
                                     index
                                   ) {
                                     return _c("v-list-item", { key: index }, [
+                                      _c("strong", [
+                                        _vm._v(_vm._s(currentAmmo[0]))
+                                      ]),
                                       _vm._v(
-                                        "\n                                        " +
-                                          _vm._s(currentAmmo[0]) +
-                                          " x\n                                        " +
+                                        "\n                                        x\n                                        " +
                                           _vm._s(currentAmmo[1]) +
                                           "\n                                    "
                                       )
@@ -30401,18 +30417,6 @@ var render = function() {
                               ],
                               1
                             )
-                          ],
-                          1
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "v-card",
-                          { staticClass: " mt-2" },
-                          [
-                            _c("v-card-title", [_vm._v("Request")]),
-                            _c("v-card-text", [
-                              _vm._v(_vm._s(_vm.station.request_text))
-                            ])
                           ],
                           1
                         )
