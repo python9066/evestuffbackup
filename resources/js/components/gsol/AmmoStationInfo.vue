@@ -327,9 +327,7 @@ export default {
         }
     },
 
-    created() {
-        this.currentAmmos();
-    },
+    created() {},
 
     computed: {
         ...mapGetters([

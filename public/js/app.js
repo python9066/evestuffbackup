@@ -7041,9 +7041,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }
     }
   },
-  created: function created() {
-    this.currentAmmos();
-  },
+  created: function created() {},
   computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(["getStationItemsByStationID", "getCoreByStationID", "getStationFitByStationID"])), {}, {
     items: function items() {
       return this.getStationItemsByStationID(this.station.station_id);
