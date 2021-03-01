@@ -75,7 +75,7 @@ export default {
 
     methods: {
         async stockerAdd() {
-            request = {
+            var request = {
                 user_id: this.$store.state.user_id
             };
 
