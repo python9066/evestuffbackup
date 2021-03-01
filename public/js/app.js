@@ -6632,7 +6632,8 @@ function sleep(ms) {
       statusflag: 2,
       loadingt: true,
       loadingf: true,
-      loadingr: true
+      loadingr: true,
+      search: ""
     };
   },
   created: function created() {

@@ -186,7 +186,8 @@ export default {
             statusflag: 2,
             loadingt: true,
             loadingf: true,
-            loadingr: true
+            loadingr: true,
+            search: ""
         };
     },
 
