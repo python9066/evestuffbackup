@@ -55,7 +55,8 @@ ammo_requests.user_id AS 'user_id',
 users.name AS 'user_name',
 ammo_requests.current_ammo AS 'current_ammo',
 ammo_requests.request_text AS 'request_text',
-ammo_requests.created_at AS 'start_time'
+ammo_requests.created_at AS 'start_time',
+alliances.url AS 'url'
 FROM ammo_requests
 JOIN stations ON ammo_requests.station_id = stations.id
 JOIN systems ON stations.system_id = systems.id
