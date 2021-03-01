@@ -35414,7 +35414,7 @@ var render = function() {
                                   ),
                                   [
                                     _vm._v(
-                                      "\n                        Request restock\n                    "
+                                      "\n                        Request Ammo Request\n                    "
                                     )
                                   ]
                                 )

@@ -28,7 +28,7 @@
                             v-show="station.ammo_request == 0"
                             color="teal"
                         >
-                            Request restock
+                            Request Ammo Request
                         </v-chip>
                     </template>
                     <span>
