@@ -7036,6 +7036,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -30552,41 +30558,59 @@ var render = function() {
                   ),
                   _vm._v(" "),
                   _c(
-                    "v-btn",
+                    "div",
                     {
                       key: "takebtn" + this.station.id,
-                      staticClass: "white--text",
-                      attrs: { "v-show": _vm.showTakeTask, color: "green" },
-                      on: {
-                        click: function($event) {
-                          return _vm.taskTask()
-                        }
-                      }
+                      attrs: { "v-show": _vm.showTakeTask }
                     },
                     [
-                      _vm._v(
-                        "\n                    Take Task\n                "
+                      _c(
+                        "v-btn",
+                        {
+                          staticClass: "white--text",
+                          attrs: { color: "green" },
+                          on: {
+                            click: function($event) {
+                              return _vm.taskTask()
+                            }
+                          }
+                        },
+                        [
+                          _vm._v(
+                            "\n                        Take Task\n                    "
+                          )
+                        ]
                       )
-                    ]
+                    ],
+                    1
                   ),
                   _vm._v(" "),
                   _c(
-                    "v-btn",
+                    "div",
                     {
                       key: "donebtn" + this.station.id,
-                      staticClass: "white--text",
-                      attrs: { "v-show": _vm.showDoneTask, color: "warning" },
-                      on: {
-                        click: function($event) {
-                          return _vm.taskDone()
-                        }
-                      }
+                      attrs: { "v-show": _vm.showDoneTask }
                     },
                     [
-                      _vm._v(
-                        "\n                    Task Done\n                "
+                      _c(
+                        "v-btn",
+                        {
+                          staticClass: "white--text",
+                          attrs: { color: "warning" },
+                          on: {
+                            click: function($event) {
+                              return _vm.taskDone()
+                            }
+                          }
+                        },
+                        [
+                          _vm._v(
+                            "\n                        Task Done\n                    "
+                          )
+                        ]
                       )
-                    ]
+                    ],
+                    1
                   )
                 ],
                 1
