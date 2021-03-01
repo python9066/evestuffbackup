@@ -29897,7 +29897,7 @@ var render = function() {
       _c(
         "v-dialog",
         {
-          attrs: { "max-width": "1000px", "z-index": "0" },
+          attrs: { "max-width": "1200px", "z-index": "0" },
           on: {
             "click:outside": function($event) {
               return _vm.close()
@@ -29959,7 +29959,7 @@ var render = function() {
               staticClass: " d-flex flex-column justify-center",
               attrs: {
                 tile: "",
-                "max-width": "1000px",
+                "max-width": "1200px",
                 "min-height": "200px",
                 "max-height": "1000px"
               }
@@ -30365,6 +30365,7 @@ var render = function() {
                     _vm._v(" "),
                     _c(
                       "v-card",
+                      { staticClass: " my-4" },
                       [
                         _c("v-card-title", [
                           _vm._v(
@@ -30387,7 +30388,7 @@ var render = function() {
                                     _vm._v(_vm._s(currentAmmo[0]))
                                   ]),
                                   _vm._v(
-                                    "\n                                    x\n                                    " +
+                                    ' "\n                                    " x\n                                    ' +
                                       _vm._s(currentAmmo[1]) +
                                       "\n                                "
                                   )

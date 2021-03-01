@@ -1,7 +1,7 @@
 <template>
     <div>
         <v-dialog
-            max-width="1000px"
+            max-width="1200px"
             z-index="0"
             v-model="showInfo"
             @click:outside="close()"
@@ -25,7 +25,7 @@
 
             <v-card
                 tile
-                max-width="1000px"
+                max-width="1200px"
                 min-height="200px"
                 max-height="1000px"
                 class=" d-flex flex-column justify-center"
@@ -232,7 +232,7 @@
                             </v-card-text>
                         </v-card>
 
-                        <v-card>
+                        <v-card class=" my-4">
                             <v-card-title>
                                 Current Ammo
                             </v-card-title>
@@ -243,8 +243,8 @@
                                         index) in currentAmmos"
                                         :key="index"
                                     >
-                                        <strong>{{ currentAmmo[0] }}</strong>
-                                        x
+                                        <strong>{{ currentAmmo[0] }}</strong> "
+                                        " x
                                         {{ currentAmmo[1] }}
                                     </v-list-item>
                                 </v-list>
