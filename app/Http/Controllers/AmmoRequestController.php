@@ -4,8 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Events\StationNotificationUpdate;
 use App\Models\AmmoRequest;
+use App\Models\AmmoRequestRecords;
 use App\Models\Station;
+use App\Models\StationItemJoin;
+use App\Models\StationItems;
 use App\Models\StationRecords;
+use App\Models\System;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -19,6 +23,47 @@ class AmmoRequestController extends Controller
     public function index()
     {
         //
+    }
+
+    public function loadAmmoRequestData()
+    {
+        $coreData = [];
+        $stations = Station::where('ammo_request_id', '!=', null)->get();
+        foreach ($stations as $station) {
+            if ($station->r_cored == "Yes") {
+                $core = "Yes";
+            } else {
+                $core = "No";
+            }
+
+            $data1 = [
+                "station_id" => $station->id,
+                "cored" => $core,
+            ];
+
+            array_push($coreData, $data1);
+            $items = [];
+            $joins = StationItemJoin::where('station_id', $station->id);
+            foreach ($joins as $join) {
+                $name = StationItems::where('id', $join->station_item_id)->first();
+                $data = [
+                    "station_id" => $join->station_id,
+                    "item_name" => $name->item_name,
+                    "item_id" => $name->id
+                ];
+                array_push($items, $data);
+            }
+        }
+
+
+
+
+        return [
+            'cores' => $coreData,
+            'fit' => Station::where('r_hash', '!=', null)->where('ammo_request_id', '!=', null)->get(),
+            'items' => $items,
+            'ammorequest' => AmmoRequestRecords::all()
+        ];
     }
 
     /**

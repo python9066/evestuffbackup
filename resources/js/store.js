@@ -937,8 +937,29 @@ export default new Vuex.Store({
             }
         },
 
+        async loadStationInfo({ commit, state }) {
+
+            let res = await axios({
+                method: "get", //you can set what request you want to be
+                url: "/api/loadammorequestdata",
+                headers: {
+                    Authorization: "Bearer " + state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                }
+            });
+
+            if (res.data.length != 0) {
+                commit("SET_CORES", res.data.cores);
+                commit("SET_ITEMS", res.data.items);
+                commit("SET_STATIONS_FIT", res.data.fit);
+                commit("SET_AMMO_REQUEST", res.data.ammorequest);
+            }
+        },
+
 
     },
+
     getters: {
 
         getCampaignsCount: state => {

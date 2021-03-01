@@ -193,7 +193,7 @@ export default {
                 this.$store.dispatch("getStationData");
             });
 
-        this.$store.dispatch("getAmmoRequest").then(() => {
+        this.$store.dispatch("loadAmmoRequestInfo").then(() => {
             this.loadingt = false;
             this.loadingf = false;
             this.loadingr = false;

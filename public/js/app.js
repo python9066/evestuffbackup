@@ -6642,7 +6642,7 @@ function sleep(ms) {
                 _this.$store.dispatch("getStationData");
               });
 
-              _this.$store.dispatch("getAmmoRequest").then(function () {
+              _this.$store.dispatch("loadAmmoRequestInfo").then(function () {
                 _this.loadingt = false;
                 _this.loadingf = false;
                 _this.loadingr = false;
@@ -51696,6 +51696,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _service_apil__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./service/apil */ "./resources/js/service/apil.js");
 
 
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
@@ -52043,7 +52045,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
       state.periodbasisLink = periodbasisLink;
     }
   },
-  actions: {
+  actions: _defineProperty({
     getTimerDataAll: function getTimerDataAll(_ref) {
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
         var commit, state, res;
@@ -53172,7 +53174,44 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
         }, _callee31);
       }))();
     }
-  },
+  }, "loadStationInfo", function loadStationInfo(_ref61) {
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee32() {
+      var commit, state, res;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee32$(_context32) {
+        while (1) {
+          switch (_context32.prev = _context32.next) {
+            case 0:
+              commit = _ref61.commit, state = _ref61.state;
+              _context32.next = 3;
+              return axios({
+                method: "get",
+                //you can set what request you want to be
+                url: "/api/loadammorequestdata",
+                headers: {
+                  Authorization: "Bearer " + state.token,
+                  Accept: "application/json",
+                  "Content-Type": "application/json"
+                }
+              });
+
+            case 3:
+              res = _context32.sent;
+
+              if (res.data.length != 0) {
+                commit("SET_CORES", res.data.cores);
+                commit("SET_ITEMS", res.data.items);
+                commit("SET_STATIONS_FIT", res.data.fit);
+                commit("SET_AMMO_REQUEST", res.data.ammorequest);
+              }
+
+            case 5:
+            case "end":
+              return _context32.stop();
+          }
+        }
+      }, _callee32);
+    }))();
+  }),
   getters: {
     getCampaignsCount: function getCampaignsCount(state) {
       return state.campaigns.length;
