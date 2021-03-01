@@ -208,7 +208,7 @@
                     <div v-if="!showfit()">
                         No Fit Info
                     </div>
-                    <div class=" d-inline-flex">
+                    <div class=" d-inline-flex justify-content-center">
                         <v-card v-if="showfit()">
                             <v-card-title>
                                 Fitting

@@ -30583,7 +30583,7 @@ var render = function() {
                 _vm._v(" "),
                 _c(
                   "div",
-                  { staticClass: " d-inline-flex" },
+                  { staticClass: " d-inline-flex justify-content-center" },
                   [
                     _vm.showfit()
                       ? _c(
