@@ -220,7 +220,7 @@
                     No hacking notifications to show, which I would say is a
                     good thing?
                 </template>
-                <template v-slot:item.count="{ item }">
+                <template v-slot:[`item.count`]="{ item }">
                     <VueCountUptimer
                         :start-time="moment.utc(item.timestamp).unix()"
                         :end-text="'Window Closed'"
@@ -238,7 +238,7 @@
                 </template>
 
                 <template
-                    v-slot:item.status_name="{ item }"
+                    v-slot:[`item.status_name`]="{ item }"
                     class="align-items-center d-inline-flex"
                 >
                     <div
@@ -452,7 +452,7 @@
                     </td>
                 </template>
                 <template
-                    v-slot:item.user_name="{ item }"
+                    v-slot:[`item.user_name`]="{ item }"
                     class="d-flex align-center"
                 >
                     <p v-if="$can('edit_notifications')">

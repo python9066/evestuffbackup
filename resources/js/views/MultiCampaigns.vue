@@ -26,10 +26,10 @@
             <template slot="no-data">
                 No Multi Campaigns have been made
             </template>
-            <template v-slot:item.system="{ item }">
+            <template v-slot:[`item.system`]="{ item }">
                 <SystemItemList :campaignID="item.id"> </SystemItemList>
             </template>
-            <template v-slot:item.actions="{ item }">
+            <template v-slot:[`item.actions`]="{ item }">
                 <v-btn
                     icon
                     @click="

@@ -24632,356 +24632,365 @@ var render = function() {
                     "hide-default-footer": "",
                     "disable-pagination": ""
                   },
-                  scopedSlots: _vm._u([
-                    {
-                      key: "item.status_name",
-                      fn: function(ref) {
-                        var item = ref.item
-                        return [
-                          _c(
-                            "v-menu",
-                            {
-                              attrs: { "offset-y": "" },
-                              scopedSlots: _vm._u(
-                                [
-                                  {
-                                    key: "activator",
-                                    fn: function(ref) {
-                                      var on = ref.on
-                                      var attrs = ref.attrs
-                                      return [
-                                        _c(
-                                          "div",
-                                          [
-                                            _c(
-                                              "v-chip",
-                                              _vm._g(
-                                                _vm._b(
-                                                  {
-                                                    attrs: {
-                                                      pill: "",
-                                                      outlined: _vm.pillOutlined(
-                                                        item
-                                                      ),
-                                                      small: "",
-                                                      color: _vm.pillColor(item)
-                                                    }
-                                                  },
-                                                  "v-chip",
-                                                  attrs,
-                                                  false
-                                                ),
-                                                on
-                                              ),
-                                              [
-                                                _vm._v(
-                                                  "\n                                    " +
-                                                    _vm._s(item.status_name) +
-                                                    "\n                                "
-                                                )
-                                              ]
-                                            )
-                                          ],
-                                          1
-                                        )
-                                      ]
-                                    }
-                                  }
-                                ],
-                                null,
-                                true
-                              )
-                            },
-                            [
-                              _vm._v(" "),
-                              _c(
-                                "v-list",
-                                _vm._l(_vm.dropdown_edit, function(
-                                  list,
-                                  index
-                                ) {
-                                  return _c(
-                                    "v-list-item",
+                  scopedSlots: _vm._u(
+                    [
+                      {
+                        key: "item.status_name",
+                        fn: function(ref) {
+                          var item = ref.item
+                          return [
+                            _c(
+                              "v-menu",
+                              {
+                                attrs: { "offset-y": "" },
+                                scopedSlots: _vm._u(
+                                  [
                                     {
-                                      key: index,
-                                      on: {
-                                        click: function($event) {
-                                          ;(item.status_id = list.value),
-                                            (item.status_name = list.title),
-                                            _vm.statusClick(item)
-                                        }
-                                      }
-                                    },
-                                    [
-                                      _c("v-list-item-title", [
-                                        _vm._v(_vm._s(list.title))
-                                      ])
-                                    ],
-                                    1
-                                  )
-                                }),
-                                1
-                              )
-                            ],
-                            1
-                          )
-                        ]
-                      }
-                    },
-                    {
-                      key: "item.user_name",
-                      fn: function(ref) {
-                        var item = ref.item
-                        return [
-                          _c(
-                            "div",
-                            {
-                              staticClass: " d-inline-flex align-items-center"
-                            },
-                            [
-                              _vm.checkShowAdd(item)
-                                ? _c(
-                                    "v-menu",
-                                    {
-                                      attrs: { "offset-y": "" },
-                                      scopedSlots: _vm._u(
-                                        [
-                                          {
-                                            key: "activator",
-                                            fn: function(ref) {
-                                              var on = ref.on
-                                              var attrs = ref.attrs
-                                              return [
-                                                _c(
-                                                  "div",
-                                                  [
-                                                    _c(
-                                                      "v-chip",
-                                                      _vm._g(
-                                                        _vm._b(
-                                                          {
-                                                            attrs: {
-                                                              pill: "",
-                                                              outlined: "",
-                                                              small: "",
-                                                              color:
-                                                                "light-green accent-3"
-                                                            }
-                                                          },
-                                                          "v-chip",
-                                                          attrs,
-                                                          false
-                                                        ),
-                                                        on
-                                                      ),
-                                                      [
-                                                        _vm._v(
-                                                          "\n                                        Add\n                                    "
-                                                        )
-                                                      ]
-                                                    )
-                                                  ],
-                                                  1
-                                                )
-                                              ]
-                                            }
-                                          }
-                                        ],
-                                        null,
-                                        true
-                                      )
-                                    },
-                                    [
-                                      _vm._v(" "),
-                                      _c(
-                                        "v-list",
-                                        _vm._l(_vm.charsFree, function(
-                                          list,
-                                          index
-                                        ) {
-                                          return _c(
-                                            "v-list-item",
-                                            {
-                                              key: index,
-                                              on: {
-                                                click: function($event) {
-                                                  ;(_vm.charAddNode = list.id),
-                                                    _vm.clickCharAddNode(item)
-                                                }
-                                              }
-                                            },
-                                            [
-                                              _c("v-list-item-title", [
-                                                _vm._v(_vm._s(list.char_name))
-                                              ])
-                                            ],
-                                            1
-                                          )
-                                        }),
-                                        1
-                                      )
-                                    ],
-                                    1
-                                  )
-                                : item.user_name != null
-                                ? _c(
-                                    "div",
-                                    {
-                                      staticClass:
-                                        " d-inline-flex align-items-center"
-                                    },
-                                    [
-                                      _vm._v(
-                                        "\n                            " +
-                                          _vm._s(item.user_name) +
-                                          "\n                            "
-                                      ),
-                                      _vm.checkShowAddRemove(item)
-                                        ? _c(
-                                            "v-btn",
-                                            {
-                                              attrs: {
-                                                icon: "",
-                                                color: "orange darken-3"
-                                              },
-                                              on: {
-                                                click: function($event) {
-                                                  ;(item.user_name = null),
-                                                    (item.main_name = null),
-                                                    _vm.removeCharNode(item)
-                                                }
-                                              }
-                                            },
+                                      key: "activator",
+                                      fn: function(ref) {
+                                        var on = ref.on
+                                        var attrs = ref.attrs
+                                        return [
+                                          _c(
+                                            "div",
                                             [
                                               _c(
-                                                "v-icon",
-                                                { attrs: { small: "" } },
-                                                [_vm._v("fas fa-trash-alt")]
+                                                "v-chip",
+                                                _vm._g(
+                                                  _vm._b(
+                                                    {
+                                                      attrs: {
+                                                        pill: "",
+                                                        outlined: _vm.pillOutlined(
+                                                          item
+                                                        ),
+                                                        small: "",
+                                                        color: _vm.pillColor(
+                                                          item
+                                                        )
+                                                      }
+                                                    },
+                                                    "v-chip",
+                                                    attrs,
+                                                    false
+                                                  ),
+                                                  on
+                                                ),
+                                                [
+                                                  _vm._v(
+                                                    "\n                                    " +
+                                                      _vm._s(item.status_name) +
+                                                      "\n                                "
+                                                  )
+                                                ]
                                               )
                                             ],
                                             1
                                           )
-                                        : _vm._e(),
-                                      _vm._v(" "),
-                                      _c("NodeExtraChar", {
-                                        attrs: { item: item }
-                                      })
-                                    ],
-                                    1
-                                  )
-                                : _vm._e(),
-                              _vm._v(" "),
-                              _vm.$can("campaigns_admin_access")
-                                ? _c("AdminHackUserTable", {
-                                    attrs: { nodeItem: item }
-                                  })
-                                : _vm._e()
-                            ],
-                            1
-                          )
-                        ]
-                      }
-                    },
-                    {
-                      key: "item.count",
-                      fn: function(ref) {
-                        var item = ref.item
-                        return [
-                          _c("SystemTableTimer", {
-                            attrs: {
-                              item: item,
-                              CampaignSolaSystem: _vm.CampaignSolaSystem
-                            }
-                          })
-                        ]
-                      }
-                    },
-                    {
-                      key: "expanded-item",
-                      fn: function(ref) {
-                        var headers = ref.headers
-                        var item = ref.item
-                        return [
-                          _c(
-                            "td",
-                            {
-                              attrs: {
-                                colspan: headers.length,
-                                align: "center"
-                              }
-                            },
-                            [
-                              _c("JoinNodeTable", { attrs: { sysid: item.id } })
-                            ],
-                            1
-                          )
-                        ]
-                      }
-                    },
-                    {
-                      key: "item.actions",
-                      fn: function(ref) {
-                        var item = ref.item
-                        return [
-                          _c(
-                            "div",
-                            { staticClass: " d-inline-flex" },
-                            [
-                              _c("SystemAttackMessage", {
-                                staticClass: " pr-3",
-                                attrs: { item: item }
-                              }),
-                              _vm._v(" "),
-                              _c("SystemMessage", { attrs: { item: item } }),
-                              _vm._v(" "),
-                              item.status_id != 4 && item.status_id != 5
-                                ? _c(
-                                    "v-icon",
-                                    {
-                                      staticClass: "pl-5",
-                                      attrs: {
-                                        color: "orange darken-3",
-                                        small: ""
-                                      },
-                                      on: {
-                                        click: function($event) {
-                                          return _vm.deleteNode(item)
-                                        }
+                                        ]
                                       }
-                                    },
-                                    [
-                                      _vm._v(
-                                        "\n                            fas fa-trash-alt\n                        "
-                                      )
-                                    ]
-                                  )
-                                : _vm._e()
-                            ],
-                            1
-                          )
-                        ]
-                      }
-                    },
-                    {
-                      key: "item.user_ship",
-                      fn: function(ref) {
-                        var item = ref.item
-                        return [
-                          item.user_name != null
-                            ? _c("span", [
-                                _vm._v(
-                                  "\n                        " +
-                                    _vm._s(item.user_ship) +
-                                    " - T" +
-                                    _vm._s(item.user_link) +
-                                    "\n                    "
+                                    }
+                                  ],
+                                  null,
+                                  true
                                 )
-                              ])
-                            : _vm._e()
-                        ]
+                              },
+                              [
+                                _vm._v(" "),
+                                _c(
+                                  "v-list",
+                                  _vm._l(_vm.dropdown_edit, function(
+                                    list,
+                                    index
+                                  ) {
+                                    return _c(
+                                      "v-list-item",
+                                      {
+                                        key: index,
+                                        on: {
+                                          click: function($event) {
+                                            ;(item.status_id = list.value),
+                                              (item.status_name = list.title),
+                                              _vm.statusClick(item)
+                                          }
+                                        }
+                                      },
+                                      [
+                                        _c("v-list-item-title", [
+                                          _vm._v(_vm._s(list.title))
+                                        ])
+                                      ],
+                                      1
+                                    )
+                                  }),
+                                  1
+                                )
+                              ],
+                              1
+                            )
+                          ]
+                        }
+                      },
+                      {
+                        key: "item.user_name",
+                        fn: function(ref) {
+                          var item = ref.item
+                          return [
+                            _c(
+                              "div",
+                              {
+                                staticClass: " d-inline-flex align-items-center"
+                              },
+                              [
+                                _vm.checkShowAdd(item)
+                                  ? _c(
+                                      "v-menu",
+                                      {
+                                        attrs: { "offset-y": "" },
+                                        scopedSlots: _vm._u(
+                                          [
+                                            {
+                                              key: "activator",
+                                              fn: function(ref) {
+                                                var on = ref.on
+                                                var attrs = ref.attrs
+                                                return [
+                                                  _c(
+                                                    "div",
+                                                    [
+                                                      _c(
+                                                        "v-chip",
+                                                        _vm._g(
+                                                          _vm._b(
+                                                            {
+                                                              attrs: {
+                                                                pill: "",
+                                                                outlined: "",
+                                                                small: "",
+                                                                color:
+                                                                  "light-green accent-3"
+                                                              }
+                                                            },
+                                                            "v-chip",
+                                                            attrs,
+                                                            false
+                                                          ),
+                                                          on
+                                                        ),
+                                                        [
+                                                          _vm._v(
+                                                            "\n                                        Add\n                                    "
+                                                          )
+                                                        ]
+                                                      )
+                                                    ],
+                                                    1
+                                                  )
+                                                ]
+                                              }
+                                            }
+                                          ],
+                                          null,
+                                          true
+                                        )
+                                      },
+                                      [
+                                        _vm._v(" "),
+                                        _c(
+                                          "v-list",
+                                          _vm._l(_vm.charsFree, function(
+                                            list,
+                                            index
+                                          ) {
+                                            return _c(
+                                              "v-list-item",
+                                              {
+                                                key: index,
+                                                on: {
+                                                  click: function($event) {
+                                                    ;(_vm.charAddNode =
+                                                      list.id),
+                                                      _vm.clickCharAddNode(item)
+                                                  }
+                                                }
+                                              },
+                                              [
+                                                _c("v-list-item-title", [
+                                                  _vm._v(_vm._s(list.char_name))
+                                                ])
+                                              ],
+                                              1
+                                            )
+                                          }),
+                                          1
+                                        )
+                                      ],
+                                      1
+                                    )
+                                  : item.user_name != null
+                                  ? _c(
+                                      "div",
+                                      {
+                                        staticClass:
+                                          " d-inline-flex align-items-center"
+                                      },
+                                      [
+                                        _vm._v(
+                                          "\n                            " +
+                                            _vm._s(item.user_name) +
+                                            "\n                            "
+                                        ),
+                                        _vm.checkShowAddRemove(item)
+                                          ? _c(
+                                              "v-btn",
+                                              {
+                                                attrs: {
+                                                  icon: "",
+                                                  color: "orange darken-3"
+                                                },
+                                                on: {
+                                                  click: function($event) {
+                                                    ;(item.user_name = null),
+                                                      (item.main_name = null),
+                                                      _vm.removeCharNode(item)
+                                                  }
+                                                }
+                                              },
+                                              [
+                                                _c(
+                                                  "v-icon",
+                                                  { attrs: { small: "" } },
+                                                  [_vm._v("fas fa-trash-alt")]
+                                                )
+                                              ],
+                                              1
+                                            )
+                                          : _vm._e(),
+                                        _vm._v(" "),
+                                        _c("NodeExtraChar", {
+                                          attrs: { item: item }
+                                        })
+                                      ],
+                                      1
+                                    )
+                                  : _vm._e(),
+                                _vm._v(" "),
+                                _vm.$can("campaigns_admin_access")
+                                  ? _c("AdminHackUserTable", {
+                                      attrs: { nodeItem: item }
+                                    })
+                                  : _vm._e()
+                              ],
+                              1
+                            )
+                          ]
+                        }
+                      },
+                      {
+                        key: "item.count",
+                        fn: function(ref) {
+                          var item = ref.item
+                          return [
+                            _c("SystemTableTimer", {
+                              attrs: {
+                                item: item,
+                                CampaignSolaSystem: _vm.CampaignSolaSystem
+                              }
+                            })
+                          ]
+                        }
+                      },
+                      {
+                        key: "expanded-item",
+                        fn: function(ref) {
+                          var headers = ref.headers
+                          var item = ref.item
+                          return [
+                            _c(
+                              "td",
+                              {
+                                attrs: {
+                                  colspan: headers.length,
+                                  align: "center"
+                                }
+                              },
+                              [
+                                _c("JoinNodeTable", {
+                                  attrs: { sysid: item.id }
+                                })
+                              ],
+                              1
+                            )
+                          ]
+                        }
+                      },
+                      {
+                        key: "item.actions",
+                        fn: function(ref) {
+                          var item = ref.item
+                          return [
+                            _c(
+                              "div",
+                              { staticClass: " d-inline-flex" },
+                              [
+                                _c("SystemAttackMessage", {
+                                  staticClass: " pr-3",
+                                  attrs: { item: item }
+                                }),
+                                _vm._v(" "),
+                                _c("SystemMessage", { attrs: { item: item } }),
+                                _vm._v(" "),
+                                item.status_id != 4 && item.status_id != 5
+                                  ? _c(
+                                      "v-icon",
+                                      {
+                                        staticClass: "pl-5",
+                                        attrs: {
+                                          color: "orange darken-3",
+                                          small: ""
+                                        },
+                                        on: {
+                                          click: function($event) {
+                                            return _vm.deleteNode(item)
+                                          }
+                                        }
+                                      },
+                                      [
+                                        _vm._v(
+                                          "\n                            fas fa-trash-alt\n                        "
+                                        )
+                                      ]
+                                    )
+                                  : _vm._e()
+                              ],
+                              1
+                            )
+                          ]
+                        }
+                      },
+                      {
+                        key: "item.user_ship",
+                        fn: function(ref) {
+                          var item = ref.item
+                          return [
+                            item.user_name != null
+                              ? _c("span", [
+                                  _vm._v(
+                                    "\n                        " +
+                                      _vm._s(item.user_ship) +
+                                      " - T" +
+                                      _vm._s(item.user_link) +
+                                      "\n                    "
+                                  )
+                                ])
+                              : _vm._e()
+                          ]
+                        }
                       }
-                    }
-                  ])
+                    ],
+                    null,
+                    true
+                  )
                 },
                 [
                   _vm._v(" "),
@@ -26136,8 +26145,7 @@ var render = function() {
                 }
               ],
               null,
-              false,
-              2642160916
+              true
             )
           })
         : _vm._e()
@@ -27192,103 +27200,107 @@ var render = function() {
                         "fixed-header": "",
                         "hide-default-footer": ""
                       },
-                      scopedSlots: _vm._u([
-                        {
-                          key: "item.addRemove",
-                          fn: function(ref) {
-                            var item = ref.item
-                            return [
-                              _c(
-                                "span",
-                                [
-                                  _c(
-                                    "v-btn",
-                                    {
-                                      attrs: {
-                                        rounded: "",
-                                        outlined: true,
-                                        "x-small": "",
-                                        color: _vm.pillColor(item)
-                                      },
-                                      on: {
-                                        click: function($event) {
-                                          return _vm.pillClick(item)
-                                        }
-                                      }
-                                    },
-                                    [
-                                      _c(
-                                        "v-icon",
-                                        {
-                                          attrs: {
-                                            "x-small": "",
-                                            left: "",
-                                            dark: ""
-                                          }
+                      scopedSlots: _vm._u(
+                        [
+                          {
+                            key: "item.addRemove",
+                            fn: function(ref) {
+                              var item = ref.item
+                              return [
+                                _c(
+                                  "span",
+                                  [
+                                    _c(
+                                      "v-btn",
+                                      {
+                                        attrs: {
+                                          rounded: "",
+                                          outlined: true,
+                                          "x-small": "",
+                                          color: _vm.pillColor(item)
                                         },
-                                        [
-                                          _vm._v(
-                                            "\n                                    " +
-                                              _vm._s(_vm.pillIcon(item)) +
-                                              "\n                                "
-                                          )
-                                        ]
-                                      ),
-                                      _vm._v(
-                                        "\n                                " +
-                                          _vm._s(_vm.pillText(item)) +
-                                          "\n                            "
-                                      )
-                                    ],
-                                    1
-                                  )
-                                ],
-                                1
-                              )
-                            ]
-                          }
-                        },
-                        {
-                          key: "item.actions",
-                          fn: function(ref) {
-                            var item = ref.item
-                            return [
-                              _c(
-                                "span",
-                                [
-                                  _c("UsersCharsEdit", {
-                                    attrs: {
-                                      char: item,
-                                      campaign_id: _vm.campaign_id
-                                    }
-                                  }),
-                                  _vm._v(" "),
-                                  _c(
-                                    "v-icon",
-                                    {
-                                      attrs: {
-                                        color: "orange darken-3",
-                                        small: ""
-                                      },
-                                      on: {
-                                        click: function($event) {
-                                          return _vm.removeChar(item)
+                                        on: {
+                                          click: function($event) {
+                                            return _vm.pillClick(item)
+                                          }
                                         }
+                                      },
+                                      [
+                                        _c(
+                                          "v-icon",
+                                          {
+                                            attrs: {
+                                              "x-small": "",
+                                              left: "",
+                                              dark: ""
+                                            }
+                                          },
+                                          [
+                                            _vm._v(
+                                              "\n                                    " +
+                                                _vm._s(_vm.pillIcon(item)) +
+                                                "\n                                "
+                                            )
+                                          ]
+                                        ),
+                                        _vm._v(
+                                          "\n                                " +
+                                            _vm._s(_vm.pillText(item)) +
+                                            "\n                            "
+                                        )
+                                      ],
+                                      1
+                                    )
+                                  ],
+                                  1
+                                )
+                              ]
+                            }
+                          },
+                          {
+                            key: "item.actions",
+                            fn: function(ref) {
+                              var item = ref.item
+                              return [
+                                _c(
+                                  "span",
+                                  [
+                                    _c("UsersCharsEdit", {
+                                      attrs: {
+                                        char: item,
+                                        campaign_id: _vm.campaign_id
                                       }
-                                    },
-                                    [
-                                      _vm._v(
-                                        "\n                                fas fa-trash-alt\n                            "
-                                      )
-                                    ]
-                                  )
-                                ],
-                                1
-                              )
-                            ]
+                                    }),
+                                    _vm._v(" "),
+                                    _c(
+                                      "v-icon",
+                                      {
+                                        attrs: {
+                                          color: "orange darken-3",
+                                          small: ""
+                                        },
+                                        on: {
+                                          click: function($event) {
+                                            return _vm.removeChar(item)
+                                          }
+                                        }
+                                      },
+                                      [
+                                        _vm._v(
+                                          "\n                                fas fa-trash-alt\n                            "
+                                        )
+                                      ]
+                                    )
+                                  ],
+                                  1
+                                )
+                              ]
+                            }
                           }
-                        }
-                      ])
+                        ],
+                        null,
+                        true
+                      )
                     },
                     [
                       _c("template", { slot: "no-data" }, [
@@ -27667,54 +27679,60 @@ var render = function() {
                         dense: "",
                         "sort-by": ["user_name"]
                       },
-                      scopedSlots: _vm._u([
-                        {
-                          key: "item.check",
-                          fn: function(ref) {
-                            var item = ref.item
-                            return [
-                              _vm.userCheck(item)
-                                ? _c("span", [_vm._v("Yes")])
-                                : _c("span", [_vm._v("No")])
-                            ]
-                          }
-                        },
-                        {
-                          key: "item.action",
-                          fn: function(ref) {
-                            var item = ref.item
-                            return [
-                              _c(
-                                "span",
-                                { staticClass: " d-inline-flex" },
-                                [
-                                  _c(
-                                    "v-btn",
-                                    {
-                                      staticClass: " ma-2",
-                                      attrs: { tile: "", icon: "" },
-                                      on: {
-                                        click: function($event) {
-                                          return _vm.kickUser(item)
+                      scopedSlots: _vm._u(
+                        [
+                          {
+                            key: "item.check",
+                            fn: function(ref) {
+                              var item = ref.item
+                              return [
+                                _vm.userCheck(item)
+                                  ? _c("span", [_vm._v("Yes")])
+                                  : _c("span", [_vm._v("No")])
+                              ]
+                            }
+                          },
+                          {
+                            key: "item.action",
+                            fn: function(ref) {
+                              var item = ref.item
+                              return [
+                                _c(
+                                  "span",
+                                  { staticClass: " d-inline-flex" },
+                                  [
+                                    _c(
+                                      "v-btn",
+                                      {
+                                        staticClass: " ma-2",
+                                        attrs: { tile: "", icon: "" },
+                                        on: {
+                                          click: function($event) {
+                                            return _vm.kickUser(item)
+                                          }
                                         }
-                                      }
-                                    },
-                                    [
-                                      _c(
-                                        "v-icon",
-                                        { attrs: { small: "", color: "red" } },
-                                        [_vm._v("faSvg fa-user-minus")]
-                                      )
-                                    ],
-                                    1
-                                  )
-                                ],
-                                1
-                              )
-                            ]
+                                      },
+                                      [
+                                        _c(
+                                          "v-icon",
+                                          {
+                                            attrs: { small: "", color: "red" }
+                                          },
+                                          [_vm._v("faSvg fa-user-minus")]
+                                        )
+                                      ],
+                                      1
+                                    )
+                                  ],
+                                  1
+                                )
+                              ]
+                            }
                           }
-                        }
-                      ])
+                        ],
+                        null,
+                        true
+                      )
                     },
                     [
                       _vm._v(" "),
@@ -27877,49 +27895,53 @@ var render = function() {
                     search: _vm.search,
                     dense: ""
                   },
-                  scopedSlots: _vm._u([
-                    {
-                      key: "item.actions",
-                      fn: function(ref) {
-                        var item = ref.item
-                        return [
-                          _c(
-                            "v-btn",
-                            {
-                              attrs: {
-                                rounded: "",
-                                outlined: true,
-                                "x-small": "",
-                                color: "green"
-                              },
-                              on: {
-                                click: function($event) {
-                                  return _vm.addChar(item)
-                                }
-                              }
-                            },
-                            [
-                              _c(
-                                "v-icon",
-                                {
-                                  attrs: { "x-small": "", left: "", dark: "" }
+                  scopedSlots: _vm._u(
+                    [
+                      {
+                        key: "item.actions",
+                        fn: function(ref) {
+                          var item = ref.item
+                          return [
+                            _c(
+                              "v-btn",
+                              {
+                                attrs: {
+                                  rounded: "",
+                                  outlined: true,
+                                  "x-small": "",
+                                  color: "green"
                                 },
-                                [
-                                  _vm._v(
-                                    "\n                            fas fa-plus\n                        "
-                                  )
-                                ]
-                              ),
-                              _vm._v(
-                                "\n                        Add\n                    "
-                              )
-                            ],
-                            1
-                          )
-                        ]
+                                on: {
+                                  click: function($event) {
+                                    return _vm.addChar(item)
+                                  }
+                                }
+                              },
+                              [
+                                _c(
+                                  "v-icon",
+                                  {
+                                    attrs: { "x-small": "", left: "", dark: "" }
+                                  },
+                                  [
+                                    _vm._v(
+                                      "\n                            fas fa-plus\n                        "
+                                    )
+                                  ]
+                                ),
+                                _vm._v(
+                                  "\n                        Add\n                    "
+                                )
+                              ],
+                              1
+                            )
+                          ]
+                        }
                       }
-                    }
-                  ])
+                    ],
+                    null,
+                    true
+                  )
                 },
                 [
                   _vm._v(" "),
@@ -30563,83 +30585,87 @@ var render = function() {
                 "hide-default-footer": "",
                 search: _vm.search
               },
-              scopedSlots: _vm._u([
-                {
-                  key: "item.created_at",
-                  fn: function(ref) {
-                    var item = ref.item
-                    return [
-                      _c("div", { staticClass: " subtitle-1" }, [
-                        _vm._v(
-                          "\n                    " +
-                            _vm._s(item.created_at) +
-                            "\n                "
-                        )
-                      ])
-                    ]
+              scopedSlots: _vm._u(
+                [
+                  {
+                    key: "item.created_at",
+                    fn: function(ref) {
+                      var item = ref.item
+                      return [
+                        _c("div", { staticClass: " subtitle-1" }, [
+                          _vm._v(
+                            "\n                    " +
+                              _vm._s(item.created_at) +
+                              "\n                "
+                          )
+                        ])
+                      ]
+                    }
+                  },
+                  {
+                    key: "item.logging_type_name",
+                    fn: function(ref) {
+                      var item = ref.item
+                      return [
+                        _c("div", { staticClass: " subtitle-1" }, [
+                          _vm._v(
+                            "\n                    " +
+                              _vm._s(item.logging_type_name) +
+                              "\n                "
+                          )
+                        ])
+                      ]
+                    }
+                  },
+                  {
+                    key: "item.user_name",
+                    fn: function(ref) {
+                      var item = ref.item
+                      return [
+                        _c("div", { staticClass: " subtitle-1" }, [
+                          _vm._v(
+                            "\n                    " +
+                              _vm._s(item.user_name) +
+                              "\n                "
+                          )
+                        ])
+                      ]
+                    }
+                  },
+                  {
+                    key: "item.admin_user_name",
+                    fn: function(ref) {
+                      var item = ref.item
+                      return [
+                        _c("div", { staticClass: " subtitle-1" }, [
+                          _vm._v(
+                            "\n                    " +
+                              _vm._s(item.admin_user_name) +
+                              "\n                "
+                          )
+                        ])
+                      ]
+                    }
+                  },
+                  {
+                    key: "item.text",
+                    fn: function(ref) {
+                      var item = ref.item
+                      return [
+                        _c("div", { staticClass: " subtitle-1" }, [
+                          _vm._v(
+                            "\n                    " +
+                              _vm._s(item.text) +
+                              "\n                "
+                          )
+                        ])
+                      ]
+                    }
                   }
-                },
-                {
-                  key: "item.logging_type_name",
-                  fn: function(ref) {
-                    var item = ref.item
-                    return [
-                      _c("div", { staticClass: " subtitle-1" }, [
-                        _vm._v(
-                          "\n                    " +
-                            _vm._s(item.logging_type_name) +
-                            "\n                "
-                        )
-                      ])
-                    ]
-                  }
-                },
-                {
-                  key: "item.user_name",
-                  fn: function(ref) {
-                    var item = ref.item
-                    return [
-                      _c("div", { staticClass: " subtitle-1" }, [
-                        _vm._v(
-                          "\n                    " +
-                            _vm._s(item.user_name) +
-                            "\n                "
-                        )
-                      ])
-                    ]
-                  }
-                },
-                {
-                  key: "item.admin_user_name",
-                  fn: function(ref) {
-                    var item = ref.item
-                    return [
-                      _c("div", { staticClass: " subtitle-1" }, [
-                        _vm._v(
-                          "\n                    " +
-                            _vm._s(item.admin_user_name) +
-                            "\n                "
-                        )
-                      ])
-                    ]
-                  }
-                },
-                {
-                  key: "item.text",
-                  fn: function(ref) {
-                    var item = ref.item
-                    return [
-                      _c("div", { staticClass: " subtitle-1" }, [
-                        _vm._v(
-                          "\n                    " +
-                            _vm._s(item.text) +
-                            "\n                "
-                        )
-                      ])
-                    ]
-                  }
-                }
-              ])
+                ],
+                null,
+                true
+              )
             },
             [
               _vm._v(" "),
@@ -30765,68 +30791,72 @@ var render = function() {
                 "hide-default-footer": "",
                 search: _vm.search
               },
-              scopedSlots: _vm._u([
-                {
-                  key: "item.created_at",
-                  fn: function(ref) {
-                    var item = ref.item
-                    return [
-                      _c("div", { staticClass: " subtitle-1" }, [
-                        _vm._v(
-                          "\n                    " +
-                            _vm._s(item.created_at) +
-                            "\n                "
-                        )
-                      ])
-                    ]
+              scopedSlots: _vm._u(
+                [
+                  {
+                    key: "item.created_at",
+                    fn: function(ref) {
+                      var item = ref.item
+                      return [
+                        _c("div", { staticClass: " subtitle-1" }, [
+                          _vm._v(
+                            "\n                    " +
+                              _vm._s(item.created_at) +
+                              "\n                "
+                          )
+                        ])
+                      ]
+                    }
+                  },
+                  {
+                    key: "item.logging_type_name",
+                    fn: function(ref) {
+                      var item = ref.item
+                      return [
+                        _c("div", { staticClass: " subtitle-1" }, [
+                          _vm._v(
+                            "\n                    " +
+                              _vm._s(item.logging_type_name) +
+                              "\n                "
+                          )
+                        ])
+                      ]
+                    }
+                  },
+                  {
+                    key: "item.user_name",
+                    fn: function(ref) {
+                      var item = ref.item
+                      return [
+                        _c("div", { staticClass: " subtitle-1" }, [
+                          _vm._v(
+                            "\n                    " +
+                              _vm._s(item.user_name) +
+                              "\n                "
+                          )
+                        ])
+                      ]
+                    }
+                  },
+                  {
+                    key: "item.text",
+                    fn: function(ref) {
+                      var item = ref.item
+                      return [
+                        _c("div", { staticClass: " subtitle-1" }, [
+                          _vm._v(
+                            "\n                    " +
+                              _vm._s(item.text) +
+                              "\n                "
+                          )
+                        ])
+                      ]
+                    }
                   }
-                },
-                {
-                  key: "item.logging_type_name",
-                  fn: function(ref) {
-                    var item = ref.item
-                    return [
-                      _c("div", { staticClass: " subtitle-1" }, [
-                        _vm._v(
-                          "\n                    " +
-                            _vm._s(item.logging_type_name) +
-                            "\n                "
-                        )
-                      ])
-                    ]
-                  }
-                },
-                {
-                  key: "item.user_name",
-                  fn: function(ref) {
-                    var item = ref.item
-                    return [
-                      _c("div", { staticClass: " subtitle-1" }, [
-                        _vm._v(
-                          "\n                    " +
-                            _vm._s(item.user_name) +
-                            "\n                "
-                        )
-                      ])
-                    ]
-                  }
-                },
-                {
-                  key: "item.text",
-                  fn: function(ref) {
-                    var item = ref.item
-                    return [
-                      _c("div", { staticClass: " subtitle-1" }, [
-                        _vm._v(
-                          "\n                    " +
-                            _vm._s(item.text) +
-                            "\n                "
-                        )
-                      ])
-                    ]
-                  }
-                }
-              ])
+                ],
+                null,
+                true
+              )
             },
             [
               _vm._v(" "),
@@ -30955,68 +30985,72 @@ var render = function() {
                 "hide-default-footer": "",
                 search: _vm.search
               },
-              scopedSlots: _vm._u([
-                {
-                  key: "item.created_at",
-                  fn: function(ref) {
-                    var item = ref.item
-                    return [
-                      _c("div", { staticClass: " subtitle-1" }, [
-                        _vm._v(
-                          "\n                    " +
-                            _vm._s(item.created_at) +
-                            "\n                "
-                        )
-                      ])
-                    ]
+              scopedSlots: _vm._u(
+                [
+                  {
+                    key: "item.created_at",
+                    fn: function(ref) {
+                      var item = ref.item
+                      return [
+                        _c("div", { staticClass: " subtitle-1" }, [
+                          _vm._v(
+                            "\n                    " +
+                              _vm._s(item.created_at) +
+                              "\n                "
+                          )
+                        ])
+                      ]
+                    }
+                  },
+                  {
+                    key: "item.logging_type_name",
+                    fn: function(ref) {
+                      var item = ref.item
+                      return [
+                        _c("div", { staticClass: " subtitle-1" }, [
+                          _vm._v(
+                            "\n                    " +
+                              _vm._s(item.logging_type_name) +
+                              "\n                "
+                          )
+                        ])
+                      ]
+                    }
+                  },
+                  {
+                    key: "item.user_name",
+                    fn: function(ref) {
+                      var item = ref.item
+                      return [
+                        _c("div", { staticClass: " subtitle-1" }, [
+                          _vm._v(
+                            "\n                    " +
+                              _vm._s(item.user_name) +
+                              "\n                "
+                          )
+                        ])
+                      ]
+                    }
+                  },
+                  {
+                    key: "item.text",
+                    fn: function(ref) {
+                      var item = ref.item
+                      return [
+                        _c("div", { staticClass: " subtitle-1" }, [
+                          _vm._v(
+                            "\n                    " +
+                              _vm._s(item.text) +
+                              "\n                "
+                          )
+                        ])
+                      ]
+                    }
                   }
-                },
-                {
-                  key: "item.logging_type_name",
-                  fn: function(ref) {
-                    var item = ref.item
-                    return [
-                      _c("div", { staticClass: " subtitle-1" }, [
-                        _vm._v(
-                          "\n                    " +
-                            _vm._s(item.logging_type_name) +
-                            "\n                "
-                        )
-                      ])
-                    ]
-                  }
-                },
-                {
-                  key: "item.user_name",
-                  fn: function(ref) {
-                    var item = ref.item
-                    return [
-                      _c("div", { staticClass: " subtitle-1" }, [
-                        _vm._v(
-                          "\n                    " +
-                            _vm._s(item.user_name) +
-                            "\n                "
-                        )
-                      ])
-                    ]
-                  }
-                },
-                {
-                  key: "item.text",
-                  fn: function(ref) {
-                    var item = ref.item
-                    return [
-                      _c("div", { staticClass: " subtitle-1" }, [
-                        _vm._v(
-                          "\n                    " +
-                            _vm._s(item.text) +
-                            "\n                "
-                        )
-                      ])
-                    ]
-                  }
-                }
-              ])
+                ],
+                null,
+                true
+              )
             },
             [
               _vm._v(" "),
@@ -32525,8 +32559,7 @@ var render = function() {
                           }
                         ],
                         null,
-                        false,
-                        1535736181
+                        true
                       )
                     },
                     [
@@ -36063,8 +36096,7 @@ var render = function() {
                                     }
                                   ],
                                   null,
-                                  false,
-                                  916954536
+                                  true
                                 )
                               })
                             ],
@@ -40467,160 +40499,169 @@ var render = function() {
                           "items-per-page-options": [10, 20, 50, 100, -1]
                         }
                       },
-                      scopedSlots: _vm._u([
-                        {
-                          key: "item.roles",
-                          fn: function(ref) {
-                            var item = ref.item
-                            return [
-                              _c(
-                                "div",
-                                { staticClass: " d-inline-flex" },
-                                [
-                                  _c(
-                                    "v-menu",
-                                    {
-                                      scopedSlots: _vm._u(
-                                        [
-                                          {
-                                            key: "activator",
-                                            fn: function(ref) {
-                                              var on = ref.on
-                                              var attrs = ref.attrs
-                                              return [
-                                                _c(
-                                                  "div",
-                                                  [
-                                                    _c(
-                                                      "v-btn",
-                                                      _vm._g(
-                                                        _vm._b(
-                                                          {
-                                                            attrs: {
-                                                              icon: "",
-                                                              color: "success"
-                                                            }
-                                                          },
-                                                          "v-btn",
-                                                          attrs,
-                                                          false
+                      scopedSlots: _vm._u(
+                        [
+                          {
+                            key: "item.roles",
+                            fn: function(ref) {
+                              var item = ref.item
+                              return [
+                                _c(
+                                  "div",
+                                  { staticClass: " d-inline-flex" },
+                                  [
+                                    _c(
+                                      "v-menu",
+                                      {
+                                        scopedSlots: _vm._u(
+                                          [
+                                            {
+                                              key: "activator",
+                                              fn: function(ref) {
+                                                var on = ref.on
+                                                var attrs = ref.attrs
+                                                return [
+                                                  _c(
+                                                    "div",
+                                                    [
+                                                      _c(
+                                                        "v-btn",
+                                                        _vm._g(
+                                                          _vm._b(
+                                                            {
+                                                              attrs: {
+                                                                icon: "",
+                                                                color: "success"
+                                                              }
+                                                            },
+                                                            "v-btn",
+                                                            attrs,
+                                                            false
+                                                          ),
+                                                          on
                                                         ),
-                                                        on
-                                                      ),
-                                                      [
-                                                        _c("v-icon", [
-                                                          _vm._v("fas fa-plus")
-                                                        ])
-                                                      ],
-                                                      1
-                                                    )
-                                                  ],
-                                                  1
-                                                )
-                                              ]
-                                            }
-                                          }
-                                        ],
-                                        null,
-                                        true
-                                      )
-                                    },
-                                    [
-                                      _vm._v(" "),
-                                      _c(
-                                        "v-list",
-                                        _vm._l(
-                                          _vm.filterDropdownList(item.roles),
-                                          function(list, index) {
-                                            return _c(
-                                              "v-list-item",
-                                              {
-                                                key: index,
-                                                on: {
-                                                  click: function($event) {
-                                                    ;(_vm.userAddRoleText =
-                                                      list.id),
-                                                      _vm.userAddRole(item)
-                                                  }
-                                                }
-                                              },
-                                              [
-                                                _c("v-list-item-title", [
-                                                  _vm._v(_vm._s(list.name))
-                                                ])
-                                              ],
-                                              1
-                                            )
-                                          }
-                                        ),
-                                        1
-                                      )
-                                    ],
-                                    1
-                                  )
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "div",
-                                { staticClass: " d-inline-flex" },
-                                _vm._l(_vm.filterRoles(item.roles), function(
-                                  role,
-                                  index
-                                ) {
-                                  return _c(
-                                    "div",
-                                    { key: index, staticClass: " pr-2" },
-                                    [
-                                      _c(
-                                        "v-chip",
-                                        {
-                                          class: _vm.mittin(item),
-                                          attrs: {
-                                            pill: "",
-                                            close: _vm.pillClose(role.name),
-                                            dark: ""
-                                          },
-                                          on: {
-                                            "click:close": function($event) {
-                                              ;(_vm.userRemoveRoleText =
-                                                role.id),
-                                                _vm.userRemoveRole(item)
-                                            }
-                                          }
-                                        },
-                                        [
-                                          role.name == "Wizard"
-                                            ? _c(
-                                                "v-icon",
-                                                {
-                                                  attrs: { small: "", left: "" }
-                                                },
-                                                [
-                                                  _vm._v(
-                                                    "\n                                        faSvg fa-hat-wizard\n                                    "
+                                                        [
+                                                          _c("v-icon", [
+                                                            _vm._v(
+                                                              "fas fa-plus"
+                                                            )
+                                                          ])
+                                                        ],
+                                                        1
+                                                      )
+                                                    ],
+                                                    1
                                                   )
                                                 ]
+                                              }
+                                            }
+                                          ],
+                                          null,
+                                          true
+                                        )
+                                      },
+                                      [
+                                        _vm._v(" "),
+                                        _c(
+                                          "v-list",
+                                          _vm._l(
+                                            _vm.filterDropdownList(item.roles),
+                                            function(list, index) {
+                                              return _c(
+                                                "v-list-item",
+                                                {
+                                                  key: index,
+                                                  on: {
+                                                    click: function($event) {
+                                                      ;(_vm.userAddRoleText =
+                                                        list.id),
+                                                        _vm.userAddRole(item)
+                                                    }
+                                                  }
+                                                },
+                                                [
+                                                  _c("v-list-item-title", [
+                                                    _vm._v(_vm._s(list.name))
+                                                  ])
+                                                ],
+                                                1
                                               )
-                                            : _vm._e(),
-                                          _vm._v(" "),
-                                          _c("span", [
-                                            _vm._v(" " + _vm._s(role.name))
-                                          ])
-                                        ],
-                                        1
-                                      )
-                                    ],
-                                    1
-                                  )
-                                }),
-                                0
-                              )
-                            ]
+                                            }
+                                          ),
+                                          1
+                                        )
+                                      ],
+                                      1
+                                    )
+                                  ],
+                                  1
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "div",
+                                  { staticClass: " d-inline-flex" },
+                                  _vm._l(_vm.filterRoles(item.roles), function(
+                                    role,
+                                    index
+                                  ) {
+                                    return _c(
+                                      "div",
+                                      { key: index, staticClass: " pr-2" },
+                                      [
+                                        _c(
+                                          "v-chip",
+                                          {
+                                            class: _vm.mittin(item),
+                                            attrs: {
+                                              pill: "",
+                                              close: _vm.pillClose(role.name),
+                                              dark: ""
+                                            },
+                                            on: {
+                                              "click:close": function($event) {
+                                                ;(_vm.userRemoveRoleText =
+                                                  role.id),
+                                                  _vm.userRemoveRole(item)
+                                              }
+                                            }
+                                          },
+                                          [
+                                            role.name == "Wizard"
+                                              ? _c(
+                                                  "v-icon",
+                                                  {
+                                                    attrs: {
+                                                      small: "",
+                                                      left: ""
+                                                    }
+                                                  },
+                                                  [
+                                                    _vm._v(
+                                                      "\n                                        faSvg fa-hat-wizard\n                                    "
+                                                    )
+                                                  ]
+                                                )
+                                              : _vm._e(),
+                                            _vm._v(" "),
+                                            _c("span", [
+                                              _vm._v(" " + _vm._s(role.name))
+                                            ])
+                                          ],
+                                          1
+                                        )
+                                      ],
+                                      1
+                                    )
+                                  }),
+                                  0
+                                )
+                              ]
+                            }
                           }
-                        }
-                      ])
+                        ],
+                        null,
+                        true
+                      )
                     },
                     [
                       _vm._v(" "),
@@ -42993,75 +43034,83 @@ var render = function() {
               _vm.expanded = $event
             }
           },
-          scopedSlots: _vm._u([
-            {
-              key: "expanded-item",
-              fn: function(ref) {
-                var headers = ref.headers
-                var item = ref.item
-                return [
-                  _c(
-                    "td",
-                    { attrs: { colspan: headers.length, align: "center" } },
-                    [
-                      _c(
-                        "div",
-                        [
-                          _c(
-                            "v-col",
-                            { staticClass: "align-center" },
-                            [
-                              _c(
-                                "v-textarea",
-                                {
-                                  attrs: {
-                                    readonly: "",
-                                    label: "What do people think?",
-                                    outlined: "",
-                                    shaped: ""
-                                  },
-                                  model: {
-                                    value: item.text,
-                                    callback: function($$v) {
-                                      _vm.$set(item, "text", $$v)
+          scopedSlots: _vm._u(
+            [
+              {
+                key: "expanded-item",
+                fn: function(ref) {
+                  var headers = ref.headers
+                  var item = ref.item
+                  return [
+                    _c(
+                      "td",
+                      { attrs: { colspan: headers.length, align: "center" } },
+                      [
+                        _c(
+                          "div",
+                          [
+                            _c(
+                              "v-col",
+                              { staticClass: "align-center" },
+                              [
+                                _c(
+                                  "v-textarea",
+                                  {
+                                    attrs: {
+                                      readonly: "",
+                                      label: "What do people think?",
+                                      outlined: "",
+                                      shaped: ""
                                     },
-                                    expression: "item.text"
-                                  }
-                                },
-                                [_vm._v(_vm._s(item.text))]
-                              )
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      )
-                    ]
-                  )
-                ]
-              }
-            },
-            {
-              key: "item.actions",
-              fn: function(ref) {
-                var item = ref.item
-                return [
-                  _c(
-                    "v-icon",
-                    {
-                      attrs: { color: "orange darken-3", small: "" },
-                      on: {
-                        click: function($event) {
-                          return _vm.deleteFeedBack(item)
+                                    model: {
+                                      value: item.text,
+                                      callback: function($$v) {
+                                        _vm.$set(item, "text", $$v)
+                                      },
+                                      expression: "item.text"
+                                    }
+                                  },
+                                  [_vm._v(_vm._s(item.text))]
+                                )
+                              ],
+                              1
+                            )
+                          ],
+                          1
+                        )
+                      ]
+                    )
+                  ]
+                }
+              },
+              {
+                key: "item.actions",
+                fn: function(ref) {
+                  var item = ref.item
+                  return [
+                    _c(
+                      "v-icon",
+                      {
+                        attrs: { color: "orange darken-3", small: "" },
+                        on: {
+                          click: function($event) {
+                            return _vm.deleteFeedBack(item)
+                          }
                         }
-                      }
-                    },
-                    [_vm._v("\n                fas fa-trash-alt\n            ")]
-                  )
-                ]
+                      },
+                      [
+                        _vm._v(
+                          "\n                fas fa-trash-alt\n            "
+                        )
+                      ]
+                    )
+                  ]
+                }
               }
-            }
-          ])
+            ],
+            null,
+            true
+          )
         },
         [
           _vm._v("\n        >\n\n        "),
@@ -43794,75 +43843,79 @@ var render = function() {
             "items-per-page": 25,
             "footer-props": { "items-per-page-options": [15, 25, 50, 100, -1] }
           },
-          scopedSlots: _vm._u([
-            {
-              key: "item.system",
-              fn: function(ref) {
-                var item = ref.item
-                return [
-                  _c("SystemItemList", { attrs: { campaignID: item.id } })
-                ]
+          scopedSlots: _vm._u(
+            [
+              {
+                key: "item.system",
+                fn: function(ref) {
+                  var item = ref.item
+                  return [
+                    _c("SystemItemList", { attrs: { campaignID: item.id } })
+                  ]
+                }
+              },
+              {
+                key: "item.actions",
+                fn: function(ref) {
+                  var item = ref.item
+                  return [
+                    _c(
+                      "v-btn",
+                      {
+                        attrs: { icon: "", color: "warning" },
+                        on: {
+                          click: function($event) {
+                            ;(_vm.overlayEditID = item.id),
+                              (_vm.overlayEditName = item.name),
+                              (_vm.overlayEdit = !_vm.overlayEdit)
+                          }
+                        }
+                      },
+                      [
+                        _c("v-icon", { attrs: { small: "" } }, [
+                          _vm._v("fas fa-edit")
+                        ])
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "v-btn",
+                      {
+                        attrs: { icon: "", color: "warning" },
+                        on: {
+                          click: function($event) {
+                            return _vm.deleteCampaign(item)
+                          }
+                        }
+                      },
+                      [
+                        _c("v-icon", { attrs: { small: "" } }, [
+                          _vm._v("fas fa-trash")
+                        ])
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "v-btn",
+                      {
+                        attrs: { color: "green" },
+                        on: {
+                          click: function($event) {
+                            return _vm.clickCampaign(item)
+                          }
+                        }
+                      },
+                      [_vm._v("View")]
+                    )
+                  ]
+                }
               }
-            },
-            {
-              key: "item.actions",
-              fn: function(ref) {
-                var item = ref.item
-                return [
-                  _c(
-                    "v-btn",
-                    {
-                      attrs: { icon: "", color: "warning" },
-                      on: {
-                        click: function($event) {
-                          ;(_vm.overlayEditID = item.id),
-                            (_vm.overlayEditName = item.name),
-                            (_vm.overlayEdit = !_vm.overlayEdit)
-                        }
-                      }
-                    },
-                    [
-                      _c("v-icon", { attrs: { small: "" } }, [
-                        _vm._v("fas fa-edit")
-                      ])
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "v-btn",
-                    {
-                      attrs: { icon: "", color: "warning" },
-                      on: {
-                        click: function($event) {
-                          return _vm.deleteCampaign(item)
-                        }
-                      }
-                    },
-                    [
-                      _c("v-icon", { attrs: { small: "" } }, [
-                        _vm._v("fas fa-trash")
-                      ])
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "v-btn",
-                    {
-                      attrs: { color: "green" },
-                      on: {
-                        click: function($event) {
-                          return _vm.clickCampaign(item)
-                        }
-                      }
-                    },
-                    [_vm._v("View")]
-                  )
-                ]
-              }
-            }
-          ])
+            ],
+            null,
+            true
+          )
         },
         [
           _c("template", { slot: "no-data" }, [
@@ -44547,596 +44600,607 @@ var render = function() {
                   _vm.expanded = $event
                 }
               },
-              scopedSlots: _vm._u([
-                {
-                  key: "item.count",
-                  fn: function(ref) {
-                    var item = ref.item
-                    return [
-                      _c("VueCountUptimer", {
-                        attrs: {
-                          "start-time": _vm.moment.utc(item.timestamp).unix(),
-                          "end-text": "Window Closed",
-                          interval: 1000
-                        },
-                        on: {
-                          timecheck: function($event) {
-                            return _vm.timecheck(item)
-                          }
-                        },
-                        scopedSlots: _vm._u(
-                          [
-                            {
-                              key: "countup",
-                              fn: function(scope) {
-                                return [
-                                  _c(
-                                    "span",
-                                    { staticClass: "red--text pl-3" },
-                                    [
-                                      _vm._v(
-                                        _vm._s(scope.props.hours) +
-                                          ":" +
-                                          _vm._s(scope.props.minutes) +
-                                          ":" +
-                                          _vm._s(scope.props.seconds)
-                                      )
-                                    ]
-                                  )
-                                ]
-                              }
+              scopedSlots: _vm._u(
+                [
+                  {
+                    key: "item.count",
+                    fn: function(ref) {
+                      var item = ref.item
+                      return [
+                        _c("VueCountUptimer", {
+                          attrs: {
+                            "start-time": _vm.moment.utc(item.timestamp).unix(),
+                            "end-text": "Window Closed",
+                            interval: 1000
+                          },
+                          on: {
+                            timecheck: function($event) {
+                              return _vm.timecheck(item)
                             }
-                          ],
-                          null,
-                          true
-                        )
-                      })
-                    ]
-                  }
-                },
-                {
-                  key: "item.status_name",
-                  fn: function(ref) {
-                    var item = ref.item
-                    return [
-                      _vm.$can("edit_notifications")
-                        ? _c(
-                            "div",
-                            {
-                              staticClass: " d-inline-flex align-items-center"
-                            },
+                          },
+                          scopedSlots: _vm._u(
                             [
-                              _c(
-                                "v-menu",
-                                {
-                                  attrs: { "offset-y": "" },
-                                  scopedSlots: _vm._u(
-                                    [
-                                      {
-                                        key: "activator",
-                                        fn: function(ref) {
-                                          var on = ref.on
-                                          var attrs = ref.attrs
-                                          return [
-                                            _c(
-                                              "div",
-                                              {
-                                                staticClass:
-                                                  "align-content-center d-inline-flex"
-                                              },
-                                              [
-                                                _c(
-                                                  "v-btn",
-                                                  _vm._g(
-                                                    _vm._b(
-                                                      {
-                                                        staticClass: "ma-2",
-                                                        attrs: {
-                                                          tile: "",
-                                                          outlined: "",
-                                                          color: _vm.statusButtonColor(
-                                                            item
-                                                          )
-                                                        }
-                                                      },
-                                                      "v-btn",
-                                                      attrs,
-                                                      false
-                                                    ),
-                                                    on
-                                                  ),
-                                                  [
-                                                    _c(
-                                                      "v-icon",
-                                                      { attrs: { left: "" } },
-                                                      [
-                                                        _vm._v(
-                                                          _vm._s(
-                                                            _vm.statusButtonIcon(
-                                                              item
-                                                            )
-                                                          )
-                                                        )
-                                                      ]
-                                                    ),
-                                                    _vm._v(
-                                                      "\n                                    " +
-                                                        _vm._s(
-                                                          item.status_name
-                                                        ) +
-                                                        "\n                                "
-                                                    )
-                                                  ],
-                                                  1
-                                                )
-                                              ],
-                                              1
-                                            )
-                                          ]
-                                        }
-                                      }
-                                    ],
-                                    null,
-                                    true
-                                  )
-                                },
-                                [
-                                  _vm._v(" "),
-                                  _c(
-                                    "v-list",
-                                    _vm._l(_vm.dropdown_edit, function(
-                                      list,
-                                      index
-                                    ) {
-                                      return _c(
-                                        "v-list-item",
-                                        {
-                                          key: index,
-                                          on: {
-                                            click: function($event) {
-                                              ;(item.status_id = list.value),
-                                                (item.status_name = list.title),
-                                                (item.user_name =
-                                                  _vm.user_name),
-                                                _vm.click(item)
-                                            }
-                                          }
-                                        },
-                                        [
-                                          _c("v-list-item-title", [
-                                            _vm._v(_vm._s(list.title))
-                                          ])
-                                        ],
-                                        1
-                                      )
-                                    }),
-                                    1
-                                  )
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "v-slide-x-transition",
-                                { attrs: { group: "" } },
-                                [
-                                  _c(
-                                    "v-chip",
-                                    {
-                                      directives: [
-                                        {
-                                          name: "show",
-                                          rawName: "v-show",
-                                          value:
-                                            item.status_id == 5 &&
-                                            !_vm.expanded.includes(item),
-                                          expression:
-                                            "\n                                item.status_id == 5 &&\n                                    !expanded.includes(item)\n                            "
-                                        }
-                                      ],
-                                      key: "adash" + item.id,
-                                      attrs: {
-                                        pill: "",
-                                        outlined: "",
-                                        small: "",
-                                        color: "success"
-                                      },
-                                      on: {
-                                        click: function($event) {
-                                          ;(_vm.expanded = [item]),
-                                            (_vm.expanded_id = item.id)
-                                        }
-                                      }
-                                    },
-                                    [_vm._v("aDash")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "v-btn",
-                                    {
-                                      directives: [
-                                        {
-                                          name: "show",
-                                          rawName: "v-show",
-                                          value:
-                                            item.status_id == 5 &&
-                                            _vm.expanded.includes(item),
-                                          expression:
-                                            "\n                                item.status_id == 5 &&\n                                    expanded.includes(item)\n                            "
-                                        }
-                                      ],
-                                      key: "adash_" + item.id,
-                                      attrs: { icon: "", color: "error" },
-                                      on: {
-                                        click: function($event) {
-                                          ;(_vm.expanded = []),
-                                            (_vm.expanded_id = 0)
-                                        }
-                                      }
-                                    },
-                                    [_c("v-icon", [_vm._v("fas fa-minus")])],
-                                    1
-                                  )
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "v-slide-x-transition",
-                                [
-                                  _c("NotificationTimer", {
-                                    directives: [
-                                      {
-                                        name: "show",
-                                        rawName: "v-show",
-                                        value:
-                                          (item.status_id == 5 ||
-                                            item.status_id == 3) &&
-                                          _vm.$can("edit_notifications"),
-                                        expression:
-                                          "\n                                (item.status_id == 5 ||\n                                    item.status_id == 3) &&\n                                    $can('edit_notifications')\n                            "
-                                      }
-                                    ],
-                                    key: "NoteTimer" + item.id,
-                                    attrs: { item: item }
-                                  })
-                                ],
-                                1
-                              )
+                              {
+                                key: "countup",
+                                fn: function(scope) {
+                                  return [
+                                    _c(
+                                      "span",
+                                      { staticClass: "red--text pl-3" },
+                                      [
+                                        _vm._v(
+                                          _vm._s(scope.props.hours) +
+                                            ":" +
+                                            _vm._s(scope.props.minutes) +
+                                            ":" +
+                                            _vm._s(scope.props.seconds)
+                                        )
+                                      ]
+                                    )
+                                  ]
+                                }
+                              }
                             ],
-                            1
+                            null,
+                            true
                           )
-                        : _c(
-                            "div",
-                            [
+                        })
+                      ]
+                    }
+                  },
+                  {
+                    key: "item.status_name",
+                    fn: function(ref) {
+                      var item = ref.item
+                      return [
+                        _vm.$can("edit_notifications")
+                          ? _c(
+                              "div",
+                              {
+                                staticClass: " d-inline-flex align-items-center"
+                              },
                               [
                                 _c(
-                                  "div",
+                                  "v-menu",
                                   {
-                                    staticClass:
-                                      "align-items-center d-inline-flex"
+                                    attrs: { "offset-y": "" },
+                                    scopedSlots: _vm._u(
+                                      [
+                                        {
+                                          key: "activator",
+                                          fn: function(ref) {
+                                            var on = ref.on
+                                            var attrs = ref.attrs
+                                            return [
+                                              _c(
+                                                "div",
+                                                {
+                                                  staticClass:
+                                                    "align-content-center d-inline-flex"
+                                                },
+                                                [
+                                                  _c(
+                                                    "v-btn",
+                                                    _vm._g(
+                                                      _vm._b(
+                                                        {
+                                                          staticClass: "ma-2",
+                                                          attrs: {
+                                                            tile: "",
+                                                            outlined: "",
+                                                            color: _vm.statusButtonColor(
+                                                              item
+                                                            )
+                                                          }
+                                                        },
+                                                        "v-btn",
+                                                        attrs,
+                                                        false
+                                                      ),
+                                                      on
+                                                    ),
+                                                    [
+                                                      _c(
+                                                        "v-icon",
+                                                        { attrs: { left: "" } },
+                                                        [
+                                                          _vm._v(
+                                                            _vm._s(
+                                                              _vm.statusButtonIcon(
+                                                                item
+                                                              )
+                                                            )
+                                                          )
+                                                        ]
+                                                      ),
+                                                      _vm._v(
+                                                        "\n                                    " +
+                                                          _vm._s(
+                                                            item.status_name
+                                                          ) +
+                                                          "\n                                "
+                                                      )
+                                                    ],
+                                                    1
+                                                  )
+                                                ],
+                                                1
+                                              )
+                                            ]
+                                          }
+                                        }
+                                      ],
+                                      null,
+                                      true
+                                    )
                                   },
                                   [
-                                    item.status_id == 1
-                                      ? _c(
-                                          "v-chip",
-                                          {
-                                            staticClass: "ma-2",
-                                            attrs: {
-                                              label: "",
-                                              color: "success"
-                                            }
-                                          },
-                                          [
-                                            _c(
-                                              "v-icon",
-                                              { attrs: { left: "" } },
-                                              [_vm._v("fas fa-plus")]
-                                            ),
-                                            _vm._v(
-                                              "\n                                " +
-                                                _vm._s(item.status_name) +
-                                                "\n                            "
-                                            )
-                                          ],
-                                          1
-                                        )
-                                      : _vm._e(),
                                     _vm._v(" "),
-                                    item.status_id == 2
-                                      ? _c(
-                                          "v-chip",
+                                    _c(
+                                      "v-list",
+                                      _vm._l(_vm.dropdown_edit, function(
+                                        list,
+                                        index
+                                      ) {
+                                        return _c(
+                                          "v-list-item",
                                           {
-                                            staticClass: "ma-2",
-                                            attrs: { label: "", color: "error" }
-                                          },
-                                          [
-                                            _c(
-                                              "v-icon",
-                                              { attrs: { left: "" } },
-                                              [_vm._v("fas fa-fire fa-sm")]
-                                            ),
-                                            _vm._v(
-                                              "\n                                " +
-                                                _vm._s(item.status_name) +
-                                                "\n                            "
-                                            )
-                                          ],
-                                          1
-                                        )
-                                      : _vm._e(),
-                                    _vm._v(" "),
-                                    item.status_id == 3
-                                      ? _c(
-                                          "v-chip",
-                                          {
-                                            staticClass: "ma-2",
-                                            attrs: {
-                                              label: "",
-                                              color: "dark-orange"
-                                            }
-                                          },
-                                          [
-                                            _c(
-                                              "v-icon",
-                                              { attrs: { left: "" } },
-                                              [_vm._v("fas fa-toolbox")]
-                                            ),
-                                            _vm._v(
-                                              "\n                                " +
-                                                _vm._s(item.status_name) +
-                                                "\n                            "
-                                            )
-                                          ],
-                                          1
-                                        )
-                                      : _vm._e(),
-                                    _vm._v(" "),
-                                    item.status_id == 4
-                                      ? _c(
-                                          "v-chip",
-                                          {
-                                            staticClass: "ma-2",
-                                            attrs: {
-                                              label: "",
-                                              color: "primary"
-                                            }
-                                          },
-                                          [
-                                            _c(
-                                              "v-icon",
-                                              { attrs: { left: "" } },
-                                              [_vm._v("fas fa-thumbs-up")]
-                                            ),
-                                            _vm._v(
-                                              "\n                                " +
-                                                _vm._s(item.status_name) +
-                                                "\n                            "
-                                            )
-                                          ],
-                                          1
-                                        )
-                                      : _vm._e(),
-                                    _vm._v(" "),
-                                    item.status_id == 5
-                                      ? _c(
-                                          "v-chip",
-                                          {
-                                            staticClass: "ma-2",
-                                            attrs: {
-                                              label: "",
-                                              color: "warning"
-                                            }
-                                          },
-                                          [
-                                            _c(
-                                              "v-icon",
-                                              { attrs: { left: "" } },
-                                              [
-                                                _vm._v(
-                                                  "fas fa-exclamation-circle"
-                                                )
-                                              ]
-                                            ),
-                                            _vm._v(
-                                              "\n                                " +
-                                                _vm._s(item.status_name) +
-                                                "\n                            "
-                                            )
-                                          ],
-                                          1
-                                        )
-                                      : _vm._e(),
-                                    _vm._v(" "),
-                                    item.status_id == 6
-                                      ? _c(
-                                          "v-chip",
-                                          {
-                                            staticClass: "ma-2",
-                                            attrs: {
-                                              label: "",
-                                              color: "light-green darken-1"
-                                            }
-                                          },
-                                          [
-                                            _c(
-                                              "v-icon",
-                                              { attrs: { left: "" } },
-                                              [_vm._v("fas fa-search")]
-                                            ),
-                                            _vm._v(
-                                              "\n                                " +
-                                                _vm._s(item.status_name) +
-                                                "\n                            "
-                                            )
-                                          ],
-                                          1
-                                        )
-                                      : _vm._e(),
-                                    _vm._v(" "),
-                                    (item.status_id == 3 ||
-                                      item.status_id == 5) &&
-                                    item.end_time != null
-                                      ? _c("CountDowntimer", {
-                                          attrs: {
-                                            "start-time": _vm.moment
-                                              .utc(item.end_time)
-                                              .unix(),
-                                            interval: 1000,
-                                            "end-text": "Is it Secured?"
-                                          },
-                                          scopedSlots: _vm._u(
-                                            [
-                                              {
-                                                key: "countdown",
-                                                fn: function(scope) {
-                                                  return [
-                                                    _c(
-                                                      "span",
-                                                      {
-                                                        staticClass:
-                                                          "blue--text pl-3"
-                                                      },
-                                                      [
-                                                        _vm._v(
-                                                          _vm._s(
-                                                            scope.props.minutes
-                                                          ) +
-                                                            ":" +
-                                                            _vm._s(
-                                                              scope.props
-                                                                .seconds
-                                                            )
-                                                        )
-                                                      ]
-                                                    )
-                                                  ]
-                                                }
+                                            key: index,
+                                            on: {
+                                              click: function($event) {
+                                                ;(item.status_id = list.value),
+                                                  (item.status_name =
+                                                    list.title),
+                                                  (item.user_name =
+                                                    _vm.user_name),
+                                                  _vm.click(item)
                                               }
-                                            ],
-                                            null,
-                                            true
-                                          )
-                                        })
-                                      : _vm._e()
+                                            }
+                                          },
+                                          [
+                                            _c("v-list-item-title", [
+                                              _vm._v(_vm._s(list.title))
+                                            ])
+                                          ],
+                                          1
+                                        )
+                                      }),
+                                      1
+                                    )
+                                  ],
+                                  1
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "v-slide-x-transition",
+                                  { attrs: { group: "" } },
+                                  [
+                                    _c(
+                                      "v-chip",
+                                      {
+                                        directives: [
+                                          {
+                                            name: "show",
+                                            rawName: "v-show",
+                                            value:
+                                              item.status_id == 5 &&
+                                              !_vm.expanded.includes(item),
+                                            expression:
+                                              "\n                                item.status_id == 5 &&\n                                    !expanded.includes(item)\n                            "
+                                          }
+                                        ],
+                                        key: "adash" + item.id,
+                                        attrs: {
+                                          pill: "",
+                                          outlined: "",
+                                          small: "",
+                                          color: "success"
+                                        },
+                                        on: {
+                                          click: function($event) {
+                                            ;(_vm.expanded = [item]),
+                                              (_vm.expanded_id = item.id)
+                                          }
+                                        }
+                                      },
+                                      [_vm._v("aDash")]
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "v-btn",
+                                      {
+                                        directives: [
+                                          {
+                                            name: "show",
+                                            rawName: "v-show",
+                                            value:
+                                              item.status_id == 5 &&
+                                              _vm.expanded.includes(item),
+                                            expression:
+                                              "\n                                item.status_id == 5 &&\n                                    expanded.includes(item)\n                            "
+                                          }
+                                        ],
+                                        key: "adash_" + item.id,
+                                        attrs: { icon: "", color: "error" },
+                                        on: {
+                                          click: function($event) {
+                                            ;(_vm.expanded = []),
+                                              (_vm.expanded_id = 0)
+                                          }
+                                        }
+                                      },
+                                      [_c("v-icon", [_vm._v("fas fa-minus")])],
+                                      1
+                                    )
+                                  ],
+                                  1
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "v-slide-x-transition",
+                                  [
+                                    _c("NotificationTimer", {
+                                      directives: [
+                                        {
+                                          name: "show",
+                                          rawName: "v-show",
+                                          value:
+                                            (item.status_id == 5 ||
+                                              item.status_id == 3) &&
+                                            _vm.$can("edit_notifications"),
+                                          expression:
+                                            "\n                                (item.status_id == 5 ||\n                                    item.status_id == 3) &&\n                                    $can('edit_notifications')\n                            "
+                                        }
+                                      ],
+                                      key: "NoteTimer" + item.id,
+                                      attrs: { item: item }
+                                    })
                                   ],
                                   1
                                 )
-                              ]
-                            ],
-                            2
-                          )
-                    ]
-                  }
-                },
-                {
-                  key: "expanded-item",
-                  fn: function(ref) {
-                    var headers = ref.headers
-                    var item = ref.item
-                    return [
-                      _c(
-                        "td",
-                        { attrs: { colspan: headers.length, align: "center" } },
-                        [
-                          _c(
-                            "div",
-                            [
-                              _c(
-                                "v-col",
-                                { staticClass: "align-center" },
-                                [
-                                  _c("v-text-field", {
-                                    attrs: {
-                                      value: item.text,
-                                      label:
-                                        "aDash Board Link - needs to be a link to a scan, making a new scan from where will not save",
-                                      outlined: "",
-                                      shaped: ""
-                                    },
-                                    on: {
-                                      change: function($event) {
-                                        ;(_vm.payload = $event),
-                                          _vm.updatetext(_vm.payload, item)
-                                      }
-                                    }
-                                  })
-                                ],
-                                1
-                              )
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          item.text != null &&
-                          item.text.includes(
-                            "https://adashboard.info/intel/dscan/"
-                          )
-                            ? _c(
-                                "div",
+                              ],
+                              1
+                            )
+                          : _c(
+                              "div",
+                              [
                                 [
                                   _c(
-                                    "v-card",
+                                    "div",
                                     {
-                                      staticClass: "mx-auto",
-                                      attrs: { elevation: "24" }
+                                      staticClass:
+                                        "align-items-center d-inline-flex"
                                     },
                                     [
-                                      _c("iframe", {
-                                        staticStyle: {
-                                          left: "0",
-                                          bottom: "0",
-                                          right: "0",
-                                          width: "100%",
-                                          height: "600px",
-                                          border: "none",
-                                          margin: "0",
-                                          padding: "0",
-                                          overflow: "hidden",
-                                          "z-index": "999999"
-                                        },
-                                        attrs: {
-                                          name: "ifram" + item.id,
-                                          src: item.text
-                                        }
-                                      })
-                                    ]
+                                      item.status_id == 1
+                                        ? _c(
+                                            "v-chip",
+                                            {
+                                              staticClass: "ma-2",
+                                              attrs: {
+                                                label: "",
+                                                color: "success"
+                                              }
+                                            },
+                                            [
+                                              _c(
+                                                "v-icon",
+                                                { attrs: { left: "" } },
+                                                [_vm._v("fas fa-plus")]
+                                              ),
+                                              _vm._v(
+                                                "\n                                " +
+                                                  _vm._s(item.status_name) +
+                                                  "\n                            "
+                                              )
+                                            ],
+                                            1
+                                          )
+                                        : _vm._e(),
+                                      _vm._v(" "),
+                                      item.status_id == 2
+                                        ? _c(
+                                            "v-chip",
+                                            {
+                                              staticClass: "ma-2",
+                                              attrs: {
+                                                label: "",
+                                                color: "error"
+                                              }
+                                            },
+                                            [
+                                              _c(
+                                                "v-icon",
+                                                { attrs: { left: "" } },
+                                                [_vm._v("fas fa-fire fa-sm")]
+                                              ),
+                                              _vm._v(
+                                                "\n                                " +
+                                                  _vm._s(item.status_name) +
+                                                  "\n                            "
+                                              )
+                                            ],
+                                            1
+                                          )
+                                        : _vm._e(),
+                                      _vm._v(" "),
+                                      item.status_id == 3
+                                        ? _c(
+                                            "v-chip",
+                                            {
+                                              staticClass: "ma-2",
+                                              attrs: {
+                                                label: "",
+                                                color: "dark-orange"
+                                              }
+                                            },
+                                            [
+                                              _c(
+                                                "v-icon",
+                                                { attrs: { left: "" } },
+                                                [_vm._v("fas fa-toolbox")]
+                                              ),
+                                              _vm._v(
+                                                "\n                                " +
+                                                  _vm._s(item.status_name) +
+                                                  "\n                            "
+                                              )
+                                            ],
+                                            1
+                                          )
+                                        : _vm._e(),
+                                      _vm._v(" "),
+                                      item.status_id == 4
+                                        ? _c(
+                                            "v-chip",
+                                            {
+                                              staticClass: "ma-2",
+                                              attrs: {
+                                                label: "",
+                                                color: "primary"
+                                              }
+                                            },
+                                            [
+                                              _c(
+                                                "v-icon",
+                                                { attrs: { left: "" } },
+                                                [_vm._v("fas fa-thumbs-up")]
+                                              ),
+                                              _vm._v(
+                                                "\n                                " +
+                                                  _vm._s(item.status_name) +
+                                                  "\n                            "
+                                              )
+                                            ],
+                                            1
+                                          )
+                                        : _vm._e(),
+                                      _vm._v(" "),
+                                      item.status_id == 5
+                                        ? _c(
+                                            "v-chip",
+                                            {
+                                              staticClass: "ma-2",
+                                              attrs: {
+                                                label: "",
+                                                color: "warning"
+                                              }
+                                            },
+                                            [
+                                              _c(
+                                                "v-icon",
+                                                { attrs: { left: "" } },
+                                                [
+                                                  _vm._v(
+                                                    "fas fa-exclamation-circle"
+                                                  )
+                                                ]
+                                              ),
+                                              _vm._v(
+                                                "\n                                " +
+                                                  _vm._s(item.status_name) +
+                                                  "\n                            "
+                                              )
+                                            ],
+                                            1
+                                          )
+                                        : _vm._e(),
+                                      _vm._v(" "),
+                                      item.status_id == 6
+                                        ? _c(
+                                            "v-chip",
+                                            {
+                                              staticClass: "ma-2",
+                                              attrs: {
+                                                label: "",
+                                                color: "light-green darken-1"
+                                              }
+                                            },
+                                            [
+                                              _c(
+                                                "v-icon",
+                                                { attrs: { left: "" } },
+                                                [_vm._v("fas fa-search")]
+                                              ),
+                                              _vm._v(
+                                                "\n                                " +
+                                                  _vm._s(item.status_name) +
+                                                  "\n                            "
+                                              )
+                                            ],
+                                            1
+                                          )
+                                        : _vm._e(),
+                                      _vm._v(" "),
+                                      (item.status_id == 3 ||
+                                        item.status_id == 5) &&
+                                      item.end_time != null
+                                        ? _c("CountDowntimer", {
+                                            attrs: {
+                                              "start-time": _vm.moment
+                                                .utc(item.end_time)
+                                                .unix(),
+                                              interval: 1000,
+                                              "end-text": "Is it Secured?"
+                                            },
+                                            scopedSlots: _vm._u(
+                                              [
+                                                {
+                                                  key: "countdown",
+                                                  fn: function(scope) {
+                                                    return [
+                                                      _c(
+                                                        "span",
+                                                        {
+                                                          staticClass:
+                                                            "blue--text pl-3"
+                                                        },
+                                                        [
+                                                          _vm._v(
+                                                            _vm._s(
+                                                              scope.props
+                                                                .minutes
+                                                            ) +
+                                                              ":" +
+                                                              _vm._s(
+                                                                scope.props
+                                                                  .seconds
+                                                              )
+                                                          )
+                                                        ]
+                                                      )
+                                                    ]
+                                                  }
+                                                }
+                                              ],
+                                              null,
+                                              true
+                                            )
+                                          })
+                                        : _vm._e()
+                                    ],
+                                    1
                                   )
-                                ],
-                                1
+                                ]
+                              ],
+                              2
+                            )
+                      ]
+                    }
+                  },
+                  {
+                    key: "expanded-item",
+                    fn: function(ref) {
+                      var headers = ref.headers
+                      var item = ref.item
+                      return [
+                        _c(
+                          "td",
+                          {
+                            attrs: { colspan: headers.length, align: "center" }
+                          },
+                          [
+                            _c(
+                              "div",
+                              [
+                                _c(
+                                  "v-col",
+                                  { staticClass: "align-center" },
+                                  [
+                                    _c("v-text-field", {
+                                      attrs: {
+                                        value: item.text,
+                                        label:
+                                          "aDash Board Link - needs to be a link to a scan, making a new scan from where will not save",
+                                        outlined: "",
+                                        shaped: ""
+                                      },
+                                      on: {
+                                        change: function($event) {
+                                          ;(_vm.payload = $event),
+                                            _vm.updatetext(_vm.payload, item)
+                                        }
+                                      }
+                                    })
+                                  ],
+                                  1
+                                )
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            item.text != null &&
+                            item.text.includes(
+                              "https://adashboard.info/intel/dscan/"
+                            )
+                              ? _c(
+                                  "div",
+                                  [
+                                    _c(
+                                      "v-card",
+                                      {
+                                        staticClass: "mx-auto",
+                                        attrs: { elevation: "24" }
+                                      },
+                                      [
+                                        _c("iframe", {
+                                          staticStyle: {
+                                            left: "0",
+                                            bottom: "0",
+                                            right: "0",
+                                            width: "100%",
+                                            height: "600px",
+                                            border: "none",
+                                            margin: "0",
+                                            padding: "0",
+                                            overflow: "hidden",
+                                            "z-index": "999999"
+                                          },
+                                          attrs: {
+                                            name: "ifram" + item.id,
+                                            src: item.text
+                                          }
+                                        })
+                                      ]
+                                    )
+                                  ],
+                                  1
+                                )
+                              : _vm._e(),
+                            _vm._v(" "),
+                            _c("div", [
+                              _vm._v(
+                                "\n                        " +
+                                  _vm._s(item.text) +
+                                  "\n                    "
                               )
-                            : _vm._e(),
-                          _vm._v(" "),
-                          _c("div", [
-                            _vm._v(
-                              "\n                        " +
-                                _vm._s(item.text) +
-                                "\n                    "
-                            )
-                          ])
-                        ]
-                      )
-                    ]
+                            ])
+                          ]
+                        )
+                      ]
+                    }
+                  },
+                  {
+                    key: "item.user_name",
+                    fn: function(ref) {
+                      var item = ref.item
+                      return [
+                        _vm.$can("edit_notifications")
+                          ? _c("p", [
+                              _vm._v(
+                                "\n                    " +
+                                  _vm._s(item.user_name) +
+                                  "\n                "
+                              )
+                            ])
+                          : _vm._e()
+                      ]
+                    }
                   }
-                },
-                {
-                  key: "item.user_name",
-                  fn: function(ref) {
-                    var item = ref.item
-                    return [
-                      _vm.$can("edit_notifications")
-                        ? _c("p", [
-                            _vm._v(
-                              "\n                    " +
-                                _vm._s(item.user_name) +
-                                "\n                "
-                            )
-                          ])
-                        : _vm._e()
-                    ]
-                  }
-                }
-              ])
+                ],
+                null,
+                true
+              )
             },
             [
               _vm._v("\n            >\n\n            "),
@@ -45421,142 +45485,152 @@ var render = function() {
             "sort-desc": [false, true],
             "multi-sort": ""
           },
-          scopedSlots: _vm._u([
-            {
-              key: "item.alliance",
-              fn: function(ref) {
-                var item = ref.item
-                return [
-                  _c("v-avatar", { attrs: { size: "35" } }, [
-                    _c("img", { attrs: { src: item.url } })
-                  ]),
-                  _vm._v(" "),
-                  item.standing > 0
-                    ? _c("span", { staticClass: " blue--text pl-3" }, [
-                        _vm._v(_vm._s(item.alliance) + "\n            ")
-                      ])
-                    : item.standing < 0
-                    ? _c("span", { staticClass: "red--text pl-3" }, [
-                        _vm._v(_vm._s(item.alliance) + "\n            ")
-                      ])
-                    : _c("span", { staticClass: "pl-3" }, [
-                        _vm._v(_vm._s(item.alliance))
-                      ])
-                ]
-              }
-            },
-            {
-              key: "item.count",
-              fn: function(ref) {
-                var item = ref.item
-                return [
-                  [
-                    _c("vue-countdown-timer", {
-                      attrs: {
-                        "start-time": _vm.moment.utc(item.start).unix(),
-                        "end-time": _vm.moment.utc(item.end).unix(),
-                        "end-text": "Window Closed",
-                        interval: 1000
-                      },
-                      on: {
-                        end_callback: function($event) {
-                          ;(item.status = 1), _vm.handleCountdownEnd(item)
-                        }
-                      },
-                      scopedSlots: _vm._u(
-                        [
-                          {
-                            key: "countdown",
-                            fn: function(scope) {
-                              return [
-                                _c("span", { staticClass: "red--text pl-3" }, [
-                                  _vm._v(
-                                    _vm._s(scope.props.hours) +
-                                      ":" +
-                                      _vm._s(scope.props.minutes) +
-                                      ":" +
-                                      _vm._s(scope.props.seconds)
+          scopedSlots: _vm._u(
+            [
+              {
+                key: "item.alliance",
+                fn: function(ref) {
+                  var item = ref.item
+                  return [
+                    _c("v-avatar", { attrs: { size: "35" } }, [
+                      _c("img", { attrs: { src: item.url } })
+                    ]),
+                    _vm._v(" "),
+                    item.standing > 0
+                      ? _c("span", { staticClass: " blue--text pl-3" }, [
+                          _vm._v(_vm._s(item.alliance) + "\n            ")
+                        ])
+                      : item.standing < 0
+                      ? _c("span", { staticClass: "red--text pl-3" }, [
+                          _vm._v(_vm._s(item.alliance) + "\n            ")
+                        ])
+                      : _c("span", { staticClass: "pl-3" }, [
+                          _vm._v(_vm._s(item.alliance))
+                        ])
+                  ]
+                }
+              },
+              {
+                key: "item.count",
+                fn: function(ref) {
+                  var item = ref.item
+                  return [
+                    [
+                      _c("vue-countdown-timer", {
+                        attrs: {
+                          "start-time": _vm.moment.utc(item.start).unix(),
+                          "end-time": _vm.moment.utc(item.end).unix(),
+                          "end-text": "Window Closed",
+                          interval: 1000
+                        },
+                        on: {
+                          end_callback: function($event) {
+                            ;(item.status = 1), _vm.handleCountdownEnd(item)
+                          }
+                        },
+                        scopedSlots: _vm._u(
+                          [
+                            {
+                              key: "countdown",
+                              fn: function(scope) {
+                                return [
+                                  _c(
+                                    "span",
+                                    { staticClass: "red--text pl-3" },
+                                    [
+                                      _vm._v(
+                                        _vm._s(scope.props.hours) +
+                                          ":" +
+                                          _vm._s(scope.props.minutes) +
+                                          ":" +
+                                          _vm._s(scope.props.seconds)
+                                      )
+                                    ]
                                   )
-                                ])
-                              ]
+                                ]
+                              }
                             }
-                          }
-                        ],
-                        null,
-                        true
-                      )
-                    })
+                          ],
+                          null,
+                          true
+                        )
+                      })
+                    ]
                   ]
-                ]
-              }
-            },
-            {
-              key: "item.window_station",
-              fn: function(ref) {
-                var item = ref.item
-                return [
-                  item.window_station == "Open"
-                    ? _c("span", { staticClass: " green--text" }, [
-                        _vm._v(_vm._s(item.window_station) + "\n            ")
-                      ])
-                    : _vm._e(),
-                  _vm._v(" "),
-                  item.window_station == "Closed"
-                    ? _c("span", { staticClass: " red--text" }, [
-                        _vm._v(_vm._s(item.window_station) + "\n            ")
-                      ])
-                    : _vm._e()
-                ]
-              }
-            },
-            {
-              key: "item.age",
-              fn: function(ref) {
-                var item = ref.item
-                return [
-                  [
-                    _c("VueCountUptimer", {
-                      attrs: {
-                        "start-time": _vm.moment.utc(item.age).unix(),
-                        "end-text": "Window Closed",
-                        interval: 1000,
-                        leadingZero: false
-                      },
-                      scopedSlots: _vm._u(
-                        [
-                          {
-                            key: "countup",
-                            fn: function(scope) {
-                              return [
-                                _c(
-                                  "span",
-                                  { staticClass: "green--text pl-3" },
-                                  [
-                                    scope.props.days != 0
-                                      ? _c("span", [
-                                          _vm._v(
-                                            "\n                                " +
-                                              _vm._s(scope.props.days) +
-                                              " Days - "
-                                          )
-                                        ])
-                                      : _vm._e(),
-                                    _vm._v(_vm._s(scope.props.hours) + " Hours")
-                                  ]
-                                )
-                              ]
+                }
+              },
+              {
+                key: "item.window_station",
+                fn: function(ref) {
+                  var item = ref.item
+                  return [
+                    item.window_station == "Open"
+                      ? _c("span", { staticClass: " green--text" }, [
+                          _vm._v(_vm._s(item.window_station) + "\n            ")
+                        ])
+                      : _vm._e(),
+                    _vm._v(" "),
+                    item.window_station == "Closed"
+                      ? _c("span", { staticClass: " red--text" }, [
+                          _vm._v(_vm._s(item.window_station) + "\n            ")
+                        ])
+                      : _vm._e()
+                  ]
+                }
+              },
+              {
+                key: "item.age",
+                fn: function(ref) {
+                  var item = ref.item
+                  return [
+                    [
+                      _c("VueCountUptimer", {
+                        attrs: {
+                          "start-time": _vm.moment.utc(item.age).unix(),
+                          "end-text": "Window Closed",
+                          interval: 1000,
+                          leadingZero: false
+                        },
+                        scopedSlots: _vm._u(
+                          [
+                            {
+                              key: "countup",
+                              fn: function(scope) {
+                                return [
+                                  _c(
+                                    "span",
+                                    { staticClass: "green--text pl-3" },
+                                    [
+                                      scope.props.days != 0
+                                        ? _c("span", [
+                                            _vm._v(
+                                              "\n                                " +
+                                                _vm._s(scope.props.days) +
+                                                " Days - "
+                                            )
+                                          ])
+                                        : _vm._e(),
+                                      _vm._v(
+                                        _vm._s(scope.props.hours) + " Hours"
+                                      )
+                                    ]
+                                  )
+                                ]
+                              }
                             }
-                          }
-                        ],
-                        null,
-                        true
-                      )
-                    })
+                          ],
+                          null,
+                          true
+                        )
+                      })
+                    ]
                   ]
-                ]
+                }
               }
-            }
-          ])
+            ],
+            null,
+            true
+          )
         },
         [
           _c("template", { slot: "no-data" }, [
@@ -45740,465 +45814,477 @@ var render = function() {
               _vm.expanded = $event
             }
           },
-          scopedSlots: _vm._u([
-            {
-              key: "item.count",
-              fn: function(ref) {
-                var item = ref.item
-                return [
-                  _c("VueCountUptimer", {
-                    attrs: {
-                      "start-time": _vm.moment.utc(item.timestamp).unix(),
-                      "end-text": "Window Closed",
-                      interval: 1000
-                    },
-                    on: {
-                      timecheck: function($event) {
-                        return _vm.timecheck(item)
-                      }
-                    },
-                    scopedSlots: _vm._u(
-                      [
-                        {
-                          key: "countup",
-                          fn: function(scope) {
-                            return [
-                              _c("span", { staticClass: "red--text pl-3" }, [
-                                _vm._v(
-                                  _vm._s(scope.props.hours) +
-                                    ":" +
-                                    _vm._s(scope.props.minutes) +
-                                    ":" +
-                                    _vm._s(scope.props.seconds)
-                                )
-                              ])
-                            ]
-                          }
+          scopedSlots: _vm._u(
+            [
+              {
+                key: "item.count",
+                fn: function(ref) {
+                  var item = ref.item
+                  return [
+                    _c("VueCountUptimer", {
+                      attrs: {
+                        "start-time": _vm.moment.utc(item.timestamp).unix(),
+                        "end-text": "Window Closed",
+                        interval: 1000
+                      },
+                      on: {
+                        timecheck: function($event) {
+                          return _vm.timecheck(item)
                         }
-                      ],
-                      null,
-                      true
-                    )
-                  })
-                ]
-              }
-            },
-            {
-              key: "item.alliance_name",
-              fn: function(ref) {
-                var item = ref.item
-                return [
-                  _c("v-avatar", { attrs: { size: "35" } }, [
-                    _c("img", { attrs: { src: item.url } })
-                  ]),
-                  _vm._v(" "),
-                  item.standing > 0
-                    ? _c("span", { staticClass: " blue--text pl-3" }, [
-                        _vm._v(_vm._s(item.alliance_name) + "\n            ")
-                      ])
-                    : item.standing < 0
-                    ? _c("span", { staticClass: "red--text pl-3" }, [
-                        _vm._v(_vm._s(item.alliance_name) + "\n            ")
-                      ])
-                    : _c("span", { staticClass: "pl-3" }, [
-                        _vm._v(_vm._s(item.alliance_name))
-                      ])
-                ]
-              }
-            },
-            {
-              key: "item.tower_status_name",
-              fn: function(ref) {
-                var item = ref.item
-                return [
-                  _c(
-                    "div",
-                    { staticClass: "align-items-center d-inline-flex" },
-                    [
-                      _c(
-                        "v-menu",
-                        {
-                          attrs: { "offset-y": "" },
-                          scopedSlots: _vm._u(
-                            [
-                              {
-                                key: "activator",
-                                fn: function(ref) {
-                                  var on = ref.on
-                                  var attrs = ref.attrs
-                                  return [
-                                    _c(
-                                      "v-btn",
-                                      _vm._g(
-                                        _vm._b(
-                                          {
-                                            staticClass: "ma-2",
-                                            attrs: {
-                                              tile: "",
-                                              outlined: "",
-                                              color: _vm.pillColor(
-                                                item.tower_status_id
-                                              )
-                                            }
-                                          },
-                                          "v-btn",
-                                          attrs,
-                                          false
-                                        ),
-                                        on
-                                      ),
-                                      [
-                                        _c("v-icon", { attrs: { left: "" } }, [
-                                          _vm._v(
-                                            _vm._s(
-                                              _vm.pillIcon(item.tower_status_id)
-                                            )
-                                          )
-                                        ]),
-                                        _vm._v(
-                                          "\n                            " +
-                                            _vm._s(item.tower_status_name) +
-                                            "\n                        "
-                                        )
-                                      ],
-                                      1
-                                    )
-                                  ]
-                                }
-                              }
-                            ],
-                            null,
-                            true
-                          )
-                        },
+                      },
+                      scopedSlots: _vm._u(
                         [
-                          _vm._v(" "),
-                          _c(
-                            "v-list",
-                            _vm._l(_vm.dropdown_edit, function(list, index) {
-                              return _c(
-                                "v-list-item",
-                                {
-                                  key: index,
-                                  on: {
-                                    click: function($event) {
-                                      return _vm.click(item, list)
-                                    }
-                                  }
-                                },
-                                [
-                                  _c("v-list-item-title", [
-                                    _vm._v(_vm._s(list.title))
-                                  ])
-                                ],
-                                1
-                              )
-                            }),
-                            1
-                          )
+                          {
+                            key: "countup",
+                            fn: function(scope) {
+                              return [
+                                _c("span", { staticClass: "red--text pl-3" }, [
+                                  _vm._v(
+                                    _vm._s(scope.props.hours) +
+                                      ":" +
+                                      _vm._s(scope.props.minutes) +
+                                      ":" +
+                                      _vm._s(scope.props.seconds)
+                                  )
+                                ])
+                              ]
+                            }
+                          }
                         ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "v-fab-transition",
-                        { attrs: { group: "" } },
-                        [
-                          _c(
-                            "v-tooltip",
-                            {
-                              key: "tooltip" + item.id,
-                              attrs: {
-                                color: "#121212",
-                                bottom: "",
-                                "open-delay": 2000,
-                                disabled: _vm.$store.state.tooltipToggle
-                              },
-                              scopedSlots: _vm._u(
-                                [
-                                  {
-                                    key: "activator",
-                                    fn: function(ref) {
-                                      var on = ref.on
-                                      var attrs = ref.attrs
-                                      return [
-                                        _c(
-                                          "v-chip",
-                                          _vm._g(
-                                            _vm._b(
-                                              {
-                                                directives: [
-                                                  {
-                                                    name: "show",
-                                                    rawName: "v-show",
-                                                    value:
-                                                      item.tower_status_id !=
-                                                        6 &&
-                                                      item.tower_status_id !=
-                                                        1 &&
-                                                      !_vm.expanded.includes(
-                                                        item
-                                                      ),
-                                                    expression:
-                                                      "\n                                    item.tower_status_id != 6 &&\n                                        item.tower_status_id != 1 &&\n                                        !expanded.includes(item)\n                                "
-                                                  }
-                                                ],
-                                                key: "chip" + item.id,
-                                                attrs: {
-                                                  pill: "",
-                                                  outlined: "",
-                                                  small: "",
-                                                  color: _vm.adashColor(item)
-                                                },
-                                                on: {
-                                                  click: function($event) {
-                                                    ;(_vm.expanded = [item]),
-                                                      (_vm.expanded_id =
-                                                        item.id)
-                                                  }
-                                                }
-                                              },
-                                              "v-chip",
-                                              attrs,
-                                              false
-                                            ),
-                                            on
+                        null,
+                        true
+                      )
+                    })
+                  ]
+                }
+              },
+              {
+                key: "item.alliance_name",
+                fn: function(ref) {
+                  var item = ref.item
+                  return [
+                    _c("v-avatar", { attrs: { size: "35" } }, [
+                      _c("img", { attrs: { src: item.url } })
+                    ]),
+                    _vm._v(" "),
+                    item.standing > 0
+                      ? _c("span", { staticClass: " blue--text pl-3" }, [
+                          _vm._v(_vm._s(item.alliance_name) + "\n            ")
+                        ])
+                      : item.standing < 0
+                      ? _c("span", { staticClass: "red--text pl-3" }, [
+                          _vm._v(_vm._s(item.alliance_name) + "\n            ")
+                        ])
+                      : _c("span", { staticClass: "pl-3" }, [
+                          _vm._v(_vm._s(item.alliance_name))
+                        ])
+                  ]
+                }
+              },
+              {
+                key: "item.tower_status_name",
+                fn: function(ref) {
+                  var item = ref.item
+                  return [
+                    _c(
+                      "div",
+                      { staticClass: "align-items-center d-inline-flex" },
+                      [
+                        _c(
+                          "v-menu",
+                          {
+                            attrs: { "offset-y": "" },
+                            scopedSlots: _vm._u(
+                              [
+                                {
+                                  key: "activator",
+                                  fn: function(ref) {
+                                    var on = ref.on
+                                    var attrs = ref.attrs
+                                    return [
+                                      _c(
+                                        "v-btn",
+                                        _vm._g(
+                                          _vm._b(
+                                            {
+                                              staticClass: "ma-2",
+                                              attrs: {
+                                                tile: "",
+                                                outlined: "",
+                                                color: _vm.pillColor(
+                                                  item.tower_status_id
+                                                )
+                                              }
+                                            },
+                                            "v-btn",
+                                            attrs,
+                                            false
                                           ),
-                                          [_vm._v("adash")]
-                                        )
-                                      ]
+                                          on
+                                        ),
+                                        [
+                                          _c(
+                                            "v-icon",
+                                            { attrs: { left: "" } },
+                                            [
+                                              _vm._v(
+                                                _vm._s(
+                                                  _vm.pillIcon(
+                                                    item.tower_status_id
+                                                  )
+                                                )
+                                              )
+                                            ]
+                                          ),
+                                          _vm._v(
+                                            "\n                            " +
+                                              _vm._s(item.tower_status_name) +
+                                              "\n                        "
+                                          )
+                                        ],
+                                        1
+                                      )
+                                    ]
+                                  }
+                                }
+                              ],
+                              null,
+                              true
+                            )
+                          },
+                          [
+                            _vm._v(" "),
+                            _c(
+                              "v-list",
+                              _vm._l(_vm.dropdown_edit, function(list, index) {
+                                return _c(
+                                  "v-list-item",
+                                  {
+                                    key: index,
+                                    on: {
+                                      click: function($event) {
+                                        return _vm.click(item, list)
+                                      }
                                     }
+                                  },
+                                  [
+                                    _c("v-list-item-title", [
+                                      _vm._v(_vm._s(list.title))
+                                    ])
+                                  ],
+                                  1
+                                )
+                              }),
+                              1
+                            )
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "v-fab-transition",
+                          { attrs: { group: "" } },
+                          [
+                            _c(
+                              "v-tooltip",
+                              {
+                                key: "tooltip" + item.id,
+                                attrs: {
+                                  color: "#121212",
+                                  bottom: "",
+                                  "open-delay": 2000,
+                                  disabled: _vm.$store.state.tooltipToggle
+                                },
+                                scopedSlots: _vm._u(
+                                  [
+                                    {
+                                      key: "activator",
+                                      fn: function(ref) {
+                                        var on = ref.on
+                                        var attrs = ref.attrs
+                                        return [
+                                          _c(
+                                            "v-chip",
+                                            _vm._g(
+                                              _vm._b(
+                                                {
+                                                  directives: [
+                                                    {
+                                                      name: "show",
+                                                      rawName: "v-show",
+                                                      value:
+                                                        item.tower_status_id !=
+                                                          6 &&
+                                                        item.tower_status_id !=
+                                                          1 &&
+                                                        !_vm.expanded.includes(
+                                                          item
+                                                        ),
+                                                      expression:
+                                                        "\n                                    item.tower_status_id != 6 &&\n                                        item.tower_status_id != 1 &&\n                                        !expanded.includes(item)\n                                "
+                                                    }
+                                                  ],
+                                                  key: "chip" + item.id,
+                                                  attrs: {
+                                                    pill: "",
+                                                    outlined: "",
+                                                    small: "",
+                                                    color: _vm.adashColor(item)
+                                                  },
+                                                  on: {
+                                                    click: function($event) {
+                                                      ;(_vm.expanded = [item]),
+                                                        (_vm.expanded_id =
+                                                          item.id)
+                                                    }
+                                                  }
+                                                },
+                                                "v-chip",
+                                                attrs,
+                                                false
+                                              ),
+                                              on
+                                            ),
+                                            [_vm._v("adash")]
+                                          )
+                                        ]
+                                      }
+                                    }
+                                  ],
+                                  null,
+                                  true
+                                )
+                              },
+                              [
+                                _vm._v(" "),
+                                _c("span", [
+                                  _vm._v(
+                                    '\n                            Where to add/view aDash of tower (click the\n                            "more" on aDash to see Structures)'
+                                  )
+                                ])
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "v-btn",
+                              {
+                                directives: [
+                                  {
+                                    name: "show",
+                                    rawName: "v-show",
+                                    value:
+                                      (item.tower_status_id != 6 ||
+                                        item.tower_status_id != 1) &&
+                                      _vm.expanded.includes(item),
+                                    expression:
+                                      "\n                            (item.tower_status_id != 6 ||\n                                item.tower_status_id != 1) &&\n                                expanded.includes(item)\n                        "
                                   }
                                 ],
-                                null,
-                                true
-                              )
+                                key: "button" + item.id,
+                                attrs: { icon: "", color: "error" },
+                                on: {
+                                  click: function($event) {
+                                    ;(_vm.expanded = []), (_vm.expanded_id = 0)
+                                  }
+                                }
+                              },
+                              [_c("v-icon", [_vm._v("fas fa-minus")])],
+                              1
+                            )
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "v-tooltip",
+                          {
+                            attrs: {
+                              color: "#121212",
+                              bottom: "",
+                              "open-delay": 2000,
+                              disabled: _vm.$store.state.tooltipToggle
                             },
-                            [
-                              _vm._v(" "),
-                              _c("span", [
-                                _vm._v(
-                                  '\n                            Where to add/view aDash of tower (click the\n                            "more" on aDash to see Structures)'
-                                )
-                              ])
-                            ]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "v-btn",
-                            {
+                            scopedSlots: _vm._u(
+                              [
+                                {
+                                  key: "activator",
+                                  fn: function(ref) {
+                                    var tooltip = ref.on
+                                    var atooltip = ref.attrs
+                                    return [
+                                      _c(
+                                        "div",
+                                        _vm._g(
+                                          _vm._b(
+                                            {},
+                                            "div",
+                                            Object.assign({}, atooltip),
+                                            false
+                                          ),
+                                          Object.assign({}, tooltip)
+                                        ),
+                                        [
+                                          _c("TowerMessage", {
+                                            key: "towermessage" + item.id,
+                                            staticClass: " pl-2",
+                                            attrs: { tower: item }
+                                          })
+                                        ],
+                                        1
+                                      )
+                                    ]
+                                  }
+                                }
+                              ],
+                              null,
+                              true
+                            )
+                          },
+                          [
+                            _vm._v(" "),
+                            _c("span", [
+                              _vm._v(" Where to enter notes about the Tower ")
+                            ])
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "v-slide-x-transition",
+                          [
+                            _c("TowerRefTimer", {
                               directives: [
                                 {
                                   name: "show",
                                   rawName: "v-show",
-                                  value:
-                                    (item.tower_status_id != 6 ||
-                                      item.tower_status_id != 1) &&
-                                    _vm.expanded.includes(item),
-                                  expression:
-                                    "\n                            (item.tower_status_id != 6 ||\n                                item.tower_status_id != 1) &&\n                                expanded.includes(item)\n                        "
+                                  value: item.tower_status_id == 5,
+                                  expression: "item.tower_status_id == 5"
                                 }
                               ],
-                              key: "button" + item.id,
-                              attrs: { icon: "", color: "error" },
-                              on: {
-                                click: function($event) {
-                                  ;(_vm.expanded = []), (_vm.expanded_id = 0)
-                                }
-                              }
-                            },
-                            [_c("v-icon", [_vm._v("fas fa-minus")])],
-                            1
-                          )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "v-tooltip",
-                        {
-                          attrs: {
-                            color: "#121212",
-                            bottom: "",
-                            "open-delay": 2000,
-                            disabled: _vm.$store.state.tooltipToggle
-                          },
-                          scopedSlots: _vm._u(
-                            [
-                              {
-                                key: "activator",
-                                fn: function(ref) {
-                                  var tooltip = ref.on
-                                  var atooltip = ref.attrs
-                                  return [
-                                    _c(
-                                      "div",
-                                      _vm._g(
-                                        _vm._b(
-                                          {},
-                                          "div",
-                                          Object.assign({}, atooltip),
-                                          false
-                                        ),
-                                        Object.assign({}, tooltip)
-                                      ),
-                                      [
-                                        _c("TowerMessage", {
-                                          key: "towermessage" + item.id,
-                                          staticClass: " pl-2",
-                                          attrs: { tower: item }
-                                        })
-                                      ],
-                                      1
-                                    )
-                                  ]
-                                }
-                              }
-                            ],
-                            null,
-                            true
-                          )
-                        },
-                        [
-                          _vm._v(" "),
-                          _c("span", [
-                            _vm._v(" Where to enter notes about the Tower ")
-                          ])
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "v-slide-x-transition",
-                        [
-                          _c("TowerRefTimer", {
-                            directives: [
-                              {
-                                name: "show",
-                                rawName: "v-show",
-                                value: item.tower_status_id == 5,
-                                expression: "item.tower_status_id == 5"
-                              }
-                            ],
-                            key: "towerreftimer" + item.id,
-                            attrs: { item: item }
-                          })
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "v-slide-x-transition",
-                        [
-                          _c("TowerOnlineTimer", {
-                            directives: [
-                              {
-                                name: "show",
-                                rawName: "v-show",
-                                value: item.tower_status_id == 3,
-                                expression: "item.tower_status_id == 3"
-                              }
-                            ],
-                            key: "TowerOnlineTimer" + item.id,
-                            attrs: { item: item }
-                          })
-                        ],
-                        1
-                      )
-                    ],
-                    1
-                  )
-                ]
-              }
-            },
-            {
-              key: "expanded-item",
-              fn: function(ref) {
-                var headers = ref.headers
-                var item = ref.item
-                return [
-                  _c(
-                    "td",
-                    { attrs: { colspan: headers.length, align: "center" } },
-                    [
-                      _c(
-                        "div",
-                        [
-                          _c(
-                            "v-col",
-                            { staticClass: "align-center" },
-                            [
-                              _c("v-text-field", {
-                                attrs: {
-                                  value: item.text,
-                                  label:
-                                    "aDash Board Link - needs to be a link to a scan, making a new scan from where will not save",
-                                  outlined: "",
-                                  shaped: ""
-                                },
-                                on: {
-                                  change: function($event) {
-                                    ;(_vm.payload = $event),
-                                      _vm.updatetext(_vm.payload, item)
-                                  }
-                                }
-                              })
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      item.text != null &&
-                      item.text.includes("https://adashboard.info/intel/dscan/")
-                        ? _c(
-                            "div",
-                            [
-                              _c(
-                                "v-card",
+                              key: "towerreftimer" + item.id,
+                              attrs: { item: item }
+                            })
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "v-slide-x-transition",
+                          [
+                            _c("TowerOnlineTimer", {
+                              directives: [
                                 {
-                                  staticClass: "mx-auto",
-                                  attrs: { elevation: "24" }
-                                },
-                                [
-                                  _c("iframe", {
-                                    staticStyle: {
-                                      left: "0",
-                                      bottom: "0",
-                                      right: "0",
-                                      width: "100%",
-                                      height: "600px",
-                                      border: "none",
-                                      margin: "0",
-                                      padding: "0",
-                                      overflow: "hidden",
-                                      "z-index": "999999"
-                                    },
-                                    attrs: {
-                                      name: "ifram" + item.id,
-                                      src: item.text
-                                    }
-                                  })
-                                ]
-                              )
-                            ],
-                            1
-                          )
-                        : _vm._e(),
-                      _vm._v(" "),
-                      _c("div", [
-                        _vm._v(
-                          "\n                    " +
-                            _vm._s(item.text) +
-                            "\n                "
+                                  name: "show",
+                                  rawName: "v-show",
+                                  value: item.tower_status_id == 3,
+                                  expression: "item.tower_status_id == 3"
+                                }
+                              ],
+                              key: "TowerOnlineTimer" + item.id,
+                              attrs: { item: item }
+                            })
+                          ],
+                          1
                         )
-                      ])
-                    ]
-                  )
-                ]
+                      ],
+                      1
+                    )
+                  ]
+                }
+              },
+              {
+                key: "expanded-item",
+                fn: function(ref) {
+                  var headers = ref.headers
+                  var item = ref.item
+                  return [
+                    _c(
+                      "td",
+                      { attrs: { colspan: headers.length, align: "center" } },
+                      [
+                        _c(
+                          "div",
+                          [
+                            _c(
+                              "v-col",
+                              { staticClass: "align-center" },
+                              [
+                                _c("v-text-field", {
+                                  attrs: {
+                                    value: item.text,
+                                    label:
+                                      "aDash Board Link - needs to be a link to a scan, making a new scan from where will not save",
+                                    outlined: "",
+                                    shaped: ""
+                                  },
+                                  on: {
+                                    change: function($event) {
+                                      ;(_vm.payload = $event),
+                                        _vm.updatetext(_vm.payload, item)
+                                    }
+                                  }
+                                })
+                              ],
+                              1
+                            )
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        item.text != null &&
+                        item.text.includes(
+                          "https://adashboard.info/intel/dscan/"
+                        )
+                          ? _c(
+                              "div",
+                              [
+                                _c(
+                                  "v-card",
+                                  {
+                                    staticClass: "mx-auto",
+                                    attrs: { elevation: "24" }
+                                  },
+                                  [
+                                    _c("iframe", {
+                                      staticStyle: {
+                                        left: "0",
+                                        bottom: "0",
+                                        right: "0",
+                                        width: "100%",
+                                        height: "600px",
+                                        border: "none",
+                                        margin: "0",
+                                        padding: "0",
+                                        overflow: "hidden",
+                                        "z-index": "999999"
+                                      },
+                                      attrs: {
+                                        name: "ifram" + item.id,
+                                        src: item.text
+                                      }
+                                    })
+                                  ]
+                                )
+                              ],
+                              1
+                            )
+                          : _vm._e(),
+                        _vm._v(" "),
+                        _c("div", [
+                          _vm._v(
+                            "\n                    " +
+                              _vm._s(item.text) +
+                              "\n                "
+                          )
+                        ])
+                      ]
+                    )
+                  ]
+                }
               }
-            }
-          ])
+            ],
+            null,
+            true
+          )
         },
         [
           _vm._v("\n        >\n\n        "),

@@ -298,7 +298,7 @@
                     disable-pagination
                     class="elevation-12"
                 >
-                    <template v-slot:item.status_name="{ item }">
+                    <template v-slot:[`item.status_name`]="{ item }">
                         <v-menu offset-y>
                             <template v-slot:activator="{ on, attrs }">
                                 <div>
@@ -332,7 +332,7 @@
                             </v-list>
                         </v-menu>
                     </template>
-                    <template v-slot:item.user_name="{ item }">
+                    <template v-slot:[`item.user_name`]="{ item }">
                         <div class=" d-inline-flex align-items-center">
                             <v-menu offset-y v-if="checkShowAdd(item)">
                                 <template v-slot:activator="{ on, attrs }">
@@ -392,7 +392,7 @@
                             ></AdminHackUserTable>
                         </div>
                     </template>
-                    <template v-slot:item.count="{ item }">
+                    <template v-slot:[`item.count`]="{ item }">
                         <SystemTableTimer
                             :item="item"
                             :CampaignSolaSystem="CampaignSolaSystem"
@@ -405,7 +405,7 @@
                             <JoinNodeTable :sysid="item.id"></JoinNodeTable>
                         </td>
                     </template>
-                    <template v-slot:item.actions="{ item }">
+                    <template v-slot:[`item.actions`]="{ item }">
                         <div class=" d-inline-flex">
                             <SystemAttackMessage
                                 class=" pr-3"
@@ -426,7 +426,7 @@
                         </div>
                     </template>
 
-                    <template v-slot:item.user_ship="{ item }">
+                    <template v-slot:[`item.user_ship`]="{ item }">
                         <span v-if="item.user_name != null">
                             {{ item.user_ship }} - T{{ item.user_link }}
                         </span>

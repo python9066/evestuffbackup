@@ -11,14 +11,14 @@
             disable-pagination
             class=""
         >
-            <template v-slot:item.charname="{ item }">
+            <template v-slot:[`item.charname`]="{ item }">
                 <div class=" d-inline-flex align-items-center">
                     <div class=" d-inline-flex align-items-center">
                         {{ item.charname }}
                     </div>
                 </div>
             </template>
-            <template v-slot:item.statusName="{ item }">
+            <template v-slot:[`item.statusName`]="{ item }">
                 <div class=" d-inline-flex align-items-center">
                     <v-menu offset-y>
                         <template v-slot:activator="{ on, attrs }">
@@ -63,7 +63,7 @@
                     </v-icon>
                 </div>
             </template>
-            <template v-slot:item.ship="{ item }" class=" pl-0">
+            <template v-slot:[`item.ship`]="{ item }" class=" pl-0">
                 <span v-if="item.charname != null">
                     {{ item.ship }} - T{{ item.link }}
                 </span>

@@ -260,7 +260,7 @@
                                 class="elevation-12"
                                 height="500px"
                             >
-                                <template v-slot:item.icon="{ item }">
+                                <template v-slot:[`item.icon`]="{ item }">
                                     <v-avatar>
                                         <img :src="url(item)" />
                                     </v-avatar>

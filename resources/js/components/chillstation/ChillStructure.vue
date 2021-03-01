@@ -77,7 +77,7 @@
                 No one is shooting our stuff atm, which I would say is a good
                 thing?
             </template>
-            <template v-slot:item.count="{ item }">
+            <template v-slot:[`item.count`]="{ item }">
                 <CountDowntimer
                     v-if="showCountDown(item)"
                     :start-time="countDownStartTime(item)"
@@ -121,7 +121,7 @@
             </template>
 
             <template
-                v-slot:item.station_status_name="{ item }"
+                v-slot:[`item.station_status_name`]="{ item }"
                 class="align-items-center"
             >
                 <div
@@ -259,13 +259,13 @@
             </template>
 
             <template
-                v-slot:item.station_name="{ item }"
+                v-slot:[`item.station_name`]="{ item }"
                 class="d-inline-flex align-center"
             >
                 {{ item.station_name }}
             </template>
             <template
-                v-slot:item.alliance_ticker="{ item }"
+                v-slot:[`item.alliance_ticker`]="{ item }"
                 class="d-inline-flex align-center"
             >
                 <v-avatar size="35"><img :src="item.url"/></v-avatar>
@@ -279,7 +279,7 @@
             </template>
 
             <template
-                v-slot:item.actions="{ item }"
+                v-slot:[`item.actions`]="{ item }"
                 v-if="$can('edit_chill_timers')"
             >
                 <div class=" d-inline-flex">

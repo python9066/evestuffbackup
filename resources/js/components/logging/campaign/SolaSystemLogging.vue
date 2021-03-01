@@ -36,22 +36,22 @@
                 :search="search"
                 class="elevation-24"
             >
-                <template v-slot:item.created_at="{ item }">
+                <template v-slot:[`item.created_at`]="{ item }">
                     <div class=" subtitle-1">
                         {{ item.created_at }}
                     </div>
                 </template>
-                <template v-slot:item.logging_type_name="{ item }">
+                <template v-slot:[`item.logging_type_name`]="{ item }">
                     <div class=" subtitle-1">
                         {{ item.logging_type_name }}
                     </div>
                 </template>
-                <template v-slot:item.user_name="{ item }">
+                <template v-slot:[`item.user_name`]="{ item }">
                     <div class=" subtitle-1">
                         {{ item.user_name }}
                     </div>
                 </template>
-                <template v-slot:item.text="{ item }">
+                <template v-slot:[`item.text`]="{ item }">
                     <div class=" subtitle-1">
                         {{ item.text }}
                     </div>

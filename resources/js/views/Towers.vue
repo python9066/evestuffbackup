@@ -84,7 +84,7 @@
                 No one is shooting our stuff atm, which I would say is a good
                 thing?
             </template>
-            <template v-slot:item.count="{ item }">
+            <template v-slot:[`item.count`]="{ item }">
                 <VueCountUptimer
                     :start-time="moment.utc(item.timestamp).unix()"
                     :end-text="'Window Closed'"
@@ -102,7 +102,7 @@
             </template>
 
             <template
-                v-slot:item.alliance_name="{ item }"
+                v-slot:[`item.alliance_name`]="{ item }"
                 class="d-inline-flex align-center"
             >
                 <v-avatar size="35"><img :src="item.url"/></v-avatar>
@@ -116,7 +116,7 @@
             </template>
 
             <template
-                v-slot:item.tower_status_name="{ item }"
+                v-slot:[`item.tower_status_name`]="{ item }"
                 class="align-items-center"
             >
                 <div class="align-items-center d-inline-flex">

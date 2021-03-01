@@ -176,7 +176,7 @@
                         }"
                         class="elevation-5"
                     >
-                        <template v-slot:item.roles="{ item }">
+                        <template v-slot:[`item.roles`]="{ item }">
                             <div class=" d-inline-flex">
                                 <v-menu>
                                     <template v-slot:activator="{ on, attrs }">

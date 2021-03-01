@@ -60,7 +60,7 @@
                 </td>
             </template>
 
-            <template v-slot:item.actions="{ item }">
+            <template v-slot:[`item.actions`]="{ item }">
                 <v-icon
                     color="orange darken-3"
                     small

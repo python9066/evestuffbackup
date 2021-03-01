@@ -122,7 +122,7 @@
                             You have no saved Chars
                         </template>
                         <!-- :color="pillColor(item)" -->
-                        <template v-slot:item.addRemove="{ item }">
+                        <template v-slot:[`item.addRemove`]="{ item }">
                             <span>
                                 <v-btn
                                     rounded
@@ -138,7 +138,7 @@
                                 </v-btn>
                             </span>
                         </template>
-                        <template v-slot:item.actions="{ item }">
+                        <template v-slot:[`item.actions`]="{ item }">
                             <span>
                                 <UsersCharsEdit
                                     :char="item"

@@ -51,11 +51,11 @@
                         dense
                         :sort-by="['user_name']"
                     >
-                        <template v-slot:item.check="{ item }">
+                        <template v-slot:[`item.check`]="{ item }">
                             <span v-if="userCheck(item)">Yes</span>
                             <span v-else>No</span>
                         </template>
-                        <template v-slot:item.action="{ item }">
+                        <template v-slot:[`item.action`]="{ item }">
                             <span class=" d-inline-flex">
                                 <v-btn
                                     class=" ma-2"

@@ -101,7 +101,7 @@
             <template slot="no-data">
                 No open Windows
             </template>
-            <template v-slot:item.alliance="{ item }">
+            <template v-slot:[`item.alliance`]="{ item }">
                 <!-- <v-img src="https://images.evetech.net/Alliance/1354830081_64.png"  style="height: inherit"></v-img> -->
                 <v-avatar size="35"><img :src="item.url"/></v-avatar>
                 <span v-if="item.standing > 0" class=" blue--text pl-3"
@@ -113,7 +113,7 @@
                 <span v-else class="pl-3">{{ item.alliance }}</span>
             </template>
 
-            <template v-slot:item.count="{ item }">
+            <template v-slot:[`item.count`]="{ item }">
                 <template>
                     <vue-countdown-timer
                         @end_callback="
@@ -134,7 +134,7 @@
                     </vue-countdown-timer>
                 </template>
             </template>
-            <template v-slot:item.window_station="{ item }">
+            <template v-slot:[`item.window_station`]="{ item }">
                 <span v-if="item.window_station == 'Open'" class=" green--text"
                     >{{ item.window_station }}
                 </span>
@@ -142,7 +142,7 @@
                     >{{ item.window_station }}
                 </span>
             </template>
-            <template v-slot:item.age="{ item }">
+            <template v-slot:[`item.age`]="{ item }">
                 <template>
                     <VueCountUptimer
                         :start-time="moment.utc(item.age).unix()"

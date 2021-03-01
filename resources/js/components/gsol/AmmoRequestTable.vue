@@ -59,7 +59,7 @@
             <template slot="no-data">
                 No Ammo Requests At The Moment
             </template>
-            <template v-slot:item.count="{ item }">
+            <template v-slot:[`item.count`]="{ item }">
                 <VueCountUptimer
                     :start-time="moment.utc(item.start_time).unix()"
                     :end-text="'Window Closed'"
