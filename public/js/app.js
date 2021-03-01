@@ -29959,7 +29959,7 @@ var render = function() {
           _c(
             "v-card",
             {
-              staticClass: " d-flex flex-column justify-content-around",
+              staticClass: " d-flex flex-column justify-center",
               attrs: {
                 tile: "",
                 "max-width": "1400px",

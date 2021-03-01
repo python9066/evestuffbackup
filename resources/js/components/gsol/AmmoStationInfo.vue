@@ -28,7 +28,7 @@
                 max-width="1400px"
                 min-height="200px"
                 max-height="1000px"
-                class=" d-flex flex-column justify-content-around"
+                class=" d-flex flex-column justify-center"
             >
                 <v-card-title class="justify-center"
                     ><p>
