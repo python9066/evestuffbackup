@@ -19,6 +19,7 @@
                     <v-icon left>
                         faSvg fa-info-circle
                     </v-icon>
+                    Info
                 </v-chip>
             </template>
 
