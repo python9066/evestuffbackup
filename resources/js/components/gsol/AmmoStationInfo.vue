@@ -320,6 +320,10 @@ export default {
         currentAmmos() {
             var text = this.station.current_ammo;
             var t = text.split("\n");
+            array.forEach(t => {
+                var a = t.split("\t");
+                console.log(a);
+            });
             console.log(t);
         },
 
