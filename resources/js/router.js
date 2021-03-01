@@ -124,7 +124,7 @@ export default new Router({
             name: "gsol",
             component: Gsol,
               beforeEnter(to, from, next) {
-                if(Permissions.indexOf('super' )!== -1){
+                if(Permissions.indexOf('view_gsol' )!== -1){
                     next()
                 }else{
                    next("/notifications")

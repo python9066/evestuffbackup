@@ -1,5 +1,7 @@
 <template>
-    <div class=" pr-16 pl-16"><AmmoRequestTable></AmmoRequestTable></div>
+    <div class=" pr-16 pl-16">
+        <AmmoRequestTable v-if="$can('view_ammo_requests')"></AmmoRequestTable>
+    </div>
 </template>
 <script>
 import Axios from "axios";

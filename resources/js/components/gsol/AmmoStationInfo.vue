@@ -40,7 +40,6 @@
                             outlined
                             color="teal"
                             @click="openRecon(fit[0]['r_hash'])"
-                            v-if="showLinkButton"
                         >
                             View On Recon Tool
                         </v-chip>
@@ -307,13 +306,6 @@
                     </v-btn>
                 </v-card-actions>
             </v-card>
-
-            <!-- <ShowInfo
-                :nodeNotestation="nodeNotestation"
-                v-if="$can('super')"
-                @closeMessage="showInfo = false"
-            >
-            </ShowInfo> -->
         </v-dialog>
     </div>
 </template>
@@ -508,17 +500,6 @@ export default {
                 return "None";
             } else {
                 return this.station.user_name;
-            }
-        },
-
-        showLinkButton() {
-            if (
-                this.$can("request_recon_task") &&
-                this.fit[0]["r_research"] != null
-            ) {
-                return true;
-            } else {
-                return false;
             }
         }
     },

@@ -7035,14 +7035,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -7260,13 +7252,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         return "None";
       } else {
         return this.station.user_name;
-      }
-    },
-    showLinkButton: function showLinkButton() {
-      if (this.$can("request_recon_task") && this.fit[0]["r_research"] != null) {
-        return true;
-      } else {
-        return false;
       }
     }
   }),
@@ -19178,6 +19163,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
 
 
 
@@ -30257,30 +30244,28 @@ var render = function() {
                         _vm._s(_vm.station.station_name) +
                         "\n                    "
                     ),
-                    _vm.showLinkButton
-                      ? _c(
-                          "v-chip",
-                          {
-                            staticClass: " ml-2",
-                            attrs: {
-                              pill: "",
-                              small: "",
-                              outlined: "",
-                              color: "teal"
-                            },
-                            on: {
-                              click: function($event) {
-                                return _vm.openRecon(_vm.fit[0]["r_hash"])
-                              }
-                            }
-                          },
-                          [
-                            _vm._v(
-                              "\n                        View On Recon Tool\n                    "
-                            )
-                          ]
+                    _c(
+                      "v-chip",
+                      {
+                        staticClass: " ml-2",
+                        attrs: {
+                          pill: "",
+                          small: "",
+                          outlined: "",
+                          color: "teal"
+                        },
+                        on: {
+                          click: function($event) {
+                            return _vm.openRecon(_vm.fit[0]["r_hash"])
+                          }
+                        }
+                      },
+                      [
+                        _vm._v(
+                          "\n                        View On Recon Tool\n                    "
                         )
-                      : _vm._e()
+                      ]
+                    )
                   ],
                   1
                 )
@@ -41293,7 +41278,7 @@ var render = function() {
                       ])
                     : _vm._e(),
                   _vm._v(" "),
-                  _vm.$can("super")
+                  _vm.$can("view_gsol")
                     ? _c("v-tab", { attrs: { link: "", to: "/gsol" } }, [
                         _vm._v("\n                    GSOL\n                ")
                       ])
@@ -43675,7 +43660,12 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: " pr-16 pl-16" }, [_c("AmmoRequestTable")], 1)
+  return _c(
+    "div",
+    { staticClass: " pr-16 pl-16" },
+    [_vm.$can("view_ammo_requests") ? _c("AmmoRequestTable") : _vm._e()],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -52264,7 +52254,7 @@ vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(vue_router__WEBPACK_IMPORTED_MODU
     name: "gsol",
     component: _views_Gsol__WEBPACK_IMPORTED_MODULE_19__["default"],
     beforeEnter: function beforeEnter(to, from, next) {
-      if (Permissions.indexOf('super') !== -1) {
+      if (Permissions.indexOf('view_gsol') !== -1) {
         next();
       } else {
         next("/notifications");

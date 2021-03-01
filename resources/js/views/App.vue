@@ -42,7 +42,7 @@
                         Towers
                     </v-tab>
 
-                    <v-tab link to="/gsol" v-if="$can('super')">
+                    <v-tab link to="/gsol" v-if="$can('view_gsol')">
                         GSOL
                     </v-tab>
 
