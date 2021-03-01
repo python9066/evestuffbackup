@@ -277,31 +277,25 @@
                     <v-btn class="white--text" color="teal" @click="close()">
                         Close
                     </v-btn>
-                    <div>
-                        <v-btn
-                            :v-show="showTakeTask"
-                            :key="'takebtn' + this.station.id"
-                            class="white--text"
-                            color="green"
-                            @click="taskTask()"
-                        >
-                            Take Task
-                        </v-btn>
-                    </div>
-                    <div>
-                        <v-btn
-                            :v-show="
-                                this.station.user_id ==
-                                    this.$store.state.user_id
-                            "
-                            :key="'donebtn' + this.station.id"
-                            class="white--text"
-                            color="warning"
-                            @click="taskDone()"
-                        >
-                            Task Done
-                        </v-btn>
-                    </div>
+
+                    <v-btn
+                        v-show="showTakeTask"
+                        :key="'takebtn' + this.station.id"
+                        class="white--text"
+                        color="green"
+                        @click="taskTask()"
+                    >
+                        Take Task
+                    </v-btn>
+                    <v-btn
+                        v-show="showDoneTask"
+                        :key="'donebtn' + this.station.id"
+                        class="white--text"
+                        color="warning"
+                        @click="taskDone()"
+                    >
+                        Task Done
+                    </v-btn>
                 </v-card-actions>
             </v-card>
 

@@ -7037,12 +7037,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -30559,57 +30553,57 @@ var render = function() {
                   ),
                   _vm._v(" "),
                   _c(
-                    "div",
-                    [
-                      _c(
-                        "v-btn",
+                    "v-btn",
+                    {
+                      directives: [
                         {
-                          key: "takebtn" + this.station.id,
-                          staticClass: "white--text",
-                          attrs: { "v-show": _vm.showTakeTask, color: "green" },
-                          on: {
-                            click: function($event) {
-                              return _vm.taskTask()
-                            }
-                          }
-                        },
-                        [
-                          _vm._v(
-                            "\n                        Take Task\n                    "
-                          )
-                        ]
+                          name: "show",
+                          rawName: "v-show",
+                          value: _vm.showTakeTask,
+                          expression: "showTakeTask"
+                        }
+                      ],
+                      key: "takebtn" + this.station.id,
+                      staticClass: "white--text",
+                      attrs: { color: "green" },
+                      on: {
+                        click: function($event) {
+                          return _vm.taskTask()
+                        }
+                      }
+                    },
+                    [
+                      _vm._v(
+                        "\n                    Take Task\n                "
                       )
-                    ],
-                    1
+                    ]
                   ),
                   _vm._v(" "),
                   _c(
-                    "div",
-                    [
-                      _c(
-                        "v-btn",
+                    "v-btn",
+                    {
+                      directives: [
                         {
-                          key: "donebtn" + this.station.id,
-                          staticClass: "white--text",
-                          attrs: {
-                            "v-show":
-                              this.station.user_id == this.$store.state.user_id,
-                            color: "warning"
-                          },
-                          on: {
-                            click: function($event) {
-                              return _vm.taskDone()
-                            }
-                          }
-                        },
-                        [
-                          _vm._v(
-                            "\n                        Task Done\n                    "
-                          )
-                        ]
+                          name: "show",
+                          rawName: "v-show",
+                          value: _vm.showDoneTask,
+                          expression: "showDoneTask"
+                        }
+                      ],
+                      key: "donebtn" + this.station.id,
+                      staticClass: "white--text",
+                      attrs: { color: "warning" },
+                      on: {
+                        click: function($event) {
+                          return _vm.taskDone()
+                        }
+                      }
+                    },
+                    [
+                      _vm._v(
+                        "\n                    Task Done\n                "
                       )
-                    ],
-                    1
+                    ]
                   )
                 ],
                 1
