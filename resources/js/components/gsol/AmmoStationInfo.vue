@@ -47,6 +47,7 @@
                     </p>
                 </v-card-title>
                 <v-card-subtitle>
+                    <div>Assigned too: {{ showAssignName }}</div>
                     <div>
                         Cored: <strong :class="textcolor"> {{ core }} </strong>
                     </div>
@@ -426,6 +427,14 @@ export default {
                 return true;
             } else {
                 return false;
+            }
+        },
+
+        showAssignName() {
+            if (station.user_id == null) {
+                return "None";
+            } else {
+                return this.station.user_name;
             }
         },
 

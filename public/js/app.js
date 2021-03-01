@@ -7017,6 +7017,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -7127,6 +7128,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         return true;
       } else {
         return false;
+      }
+    },
+    showAssignName: function showAssignName() {
+      if (station.user_id == null) {
+        return "None";
+      } else {
+        return this.station.user_name;
       }
     },
     showLinkButton: function showLinkButton() {
@@ -30032,6 +30040,10 @@ var render = function() {
               ]),
               _vm._v(" "),
               _c("v-card-subtitle", [
+                _c("div", [
+                  _vm._v("Assigned too: " + _vm._s(_vm.showAssignName))
+                ]),
+                _vm._v(" "),
                 _c("div", [
                   _vm._v("\n                    Cored: "),
                   _c("strong", { class: _vm.textcolor }, [
