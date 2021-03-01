@@ -41,55 +41,6 @@
                     </div>
                     <div class=" d-inline-flex">
                         Last Updated: {{ lastUpdated() }}
-                        <v-tooltip
-                            color="#121212"
-                            bottom
-                            :open-delay="2000"
-                            :disabled="$store.state.tooltipToggle"
-                        >
-                            <template
-                                v-slot:activator="{
-                                    on: tooltip,
-                                    attrs: atooltip
-                                }"
-                            >
-                                <v-chip
-                                    v-on="{ ...tooltip }"
-                                    v-bind="{ ...atooltip }"
-                                    pill
-                                    class=" ml-2"
-                                    small
-                                    outlined
-                                    color="teal"
-                                    v-if="
-                                        $can('request_recon_task') &&
-                                            !taskFlag()
-                                    "
-                                    @click="taskRequest()"
-                                >
-                                    Request Update
-                                </v-chip>
-                            </template>
-                            <span>
-                                Request Recon to do a system scan update.
-                                Pressing this button will ping the recon channel
-                                and make a new task in the recon tool
-                            </span>
-                        </v-tooltip>
-                        <v-chip
-                            pill
-                            small
-                            class=" ml-2"
-                            color="teal"
-                            v-if="$can('request_recon_task') && taskFlag()"
-                        >
-                            Request Made
-                        </v-chip>
-                        <StationRequestAmmo
-                            v-if="$can('super')"
-                            :station="station"
-                            :key="'ammorequest' + station.id"
-                        ></StationRequestAmmo>
                     </div>
                 </v-card-subtitle>
                 <v-card-text>
@@ -260,7 +211,7 @@
                                 class="elevation-12"
                                 height="500px"
                             >
-                                <template v-slot:item.icon="{ item }">
+                                <template v-slot:[`item.icon`]="{ item }">
                                     <v-avatar>
                                         <img :src="url(item)" />
                                     </v-avatar>

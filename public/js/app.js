@@ -6958,55 +6958,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -30038,103 +29989,13 @@ var render = function() {
                   ])
                 ]),
                 _vm._v(" "),
-                _c(
-                  "div",
-                  { staticClass: " d-inline-flex" },
-                  [
-                    _vm._v(
-                      "\n                    Last Updated: " +
-                        _vm._s(_vm.lastUpdated()) +
-                        "\n                    "
-                    ),
-                    _c(
-                      "v-tooltip",
-                      {
-                        attrs: {
-                          color: "#121212",
-                          bottom: "",
-                          "open-delay": 2000,
-                          disabled: _vm.$store.state.tooltipToggle
-                        },
-                        scopedSlots: _vm._u([
-                          {
-                            key: "activator",
-                            fn: function(ref) {
-                              var tooltip = ref.on
-                              var atooltip = ref.attrs
-                              return [
-                                _vm.$can("request_recon_task") &&
-                                !_vm.taskFlag()
-                                  ? _c(
-                                      "v-chip",
-                                      _vm._g(
-                                        _vm._b(
-                                          {
-                                            staticClass: " ml-2",
-                                            attrs: {
-                                              pill: "",
-                                              small: "",
-                                              outlined: "",
-                                              color: "teal"
-                                            },
-                                            on: {
-                                              click: function($event) {
-                                                return _vm.taskRequest()
-                                              }
-                                            }
-                                          },
-                                          "v-chip",
-                                          Object.assign({}, atooltip),
-                                          false
-                                        ),
-                                        Object.assign({}, tooltip)
-                                      ),
-                                      [
-                                        _vm._v(
-                                          "\n                                Request Update\n                            "
-                                        )
-                                      ]
-                                    )
-                                  : _vm._e()
-                              ]
-                            }
-                          }
-                        ])
-                      },
-                      [
-                        _vm._v(" "),
-                        _c("span", [
-                          _vm._v(
-                            "\n                            Request Recon to do a system scan update.\n                            Pressing this button will ping the recon channel\n                            and make a new task in the recon tool\n                        "
-                          )
-                        ])
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _vm.$can("request_recon_task") && _vm.taskFlag()
-                      ? _c(
-                          "v-chip",
-                          {
-                            staticClass: " ml-2",
-                            attrs: { pill: "", small: "", color: "teal" }
-                          },
-                          [
-                            _vm._v(
-                              "\n                        Request Made\n                    "
-                            )
-                          ]
-                        )
-                      : _vm._e(),
-                    _vm._v(" "),
-                    _vm.$can("super")
-                      ? _c("StationRequestAmmo", {
-                          key: "ammorequest" + _vm.station.id,
-                          attrs: { station: _vm.station }
-                        })
-                      : _vm._e()
-                  ],
-                  1
-                )
+                _c("div", { staticClass: " d-inline-flex" }, [
+                  _vm._v(
+                    "\n                    Last Updated: " +
+                      _vm._s(_vm.lastUpdated()) +
+                      "\n                "
+                  )
+                ])
               ]),
               _vm._v(" "),
               _c(
@@ -30467,8 +30328,7 @@ var render = function() {
                                     }
                                   ],
                                   null,
-                                  false,
-                                  916954536
+                                  true
                                 )
                               })
                             ],
