@@ -85,7 +85,7 @@
                 </VueCountUptimer>
             </template>
             <template
-                v-slot:[item.alliance_ticker]="{ item }"
+                v-slot:[`item.alliance_ticker`]="{ item }"
                 class="d-inline-flex align-center"
             >
                 <v-avatar size="35"><img :src="item.url"/></v-avatar>
