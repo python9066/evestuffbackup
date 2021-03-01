@@ -6999,6 +6999,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -30370,7 +30378,11 @@ var render = function() {
                       "v-card",
                       {
                         staticClass: " mx-4",
-                        attrs: { elevation: "5", "max-height": "600px" }
+                        attrs: {
+                          elevation: "5",
+                          "max-height": "600px",
+                          "min-width": "300px"
+                        }
                       },
                       [
                         _c("v-card-title", [
@@ -30413,7 +30425,13 @@ var render = function() {
                     _vm._v(" "),
                     _c(
                       "v-card",
-                      { attrs: { elevation: "5", "max-height": "600px" } },
+                      {
+                        attrs: {
+                          elevation: "5",
+                          "max-height": "600px",
+                          "min-width": "300px"
+                        }
+                      },
                       [
                         _c("v-card-title", [_vm._v("Request")]),
                         _c("v-card-text", [
