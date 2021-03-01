@@ -306,11 +306,11 @@ export default {
         ]),
 
         items() {
-            return this.getStationItemsByStationID(this.station.id);
+            return this.getStationItemsByStationID(this.station.station_id);
         },
 
         fit() {
-            var fit = this.getStationFitByStationID(this.station.id);
+            var fit = this.getStationFitByStationID(this.station.station_id);
             if (fit[0]["r_fitted"] == "Fitted") {
                 this.fitted = true;
             }
@@ -323,10 +323,10 @@ export default {
         },
 
         stationInfo() {
-            return this.getCoreByStationID(this.station.id);
+            return this.getCoreByStationID(this.station.station_id);
         },
         core() {
-            var core = this.getCoreByStationID(this.station.id);
+            var core = this.getCoreByStationID(this.station.station_id);
 
             if (this.fit == "NO") {
                 return "No Info";

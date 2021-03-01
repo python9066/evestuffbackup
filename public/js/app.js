@@ -7014,10 +7014,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(["getStationItemsByStationID", "getCoreByStationID", "getStationFitByStationID"])), {}, {
     items: function items() {
-      return this.getStationItemsByStationID(this.station.id);
+      return this.getStationItemsByStationID(this.station.station_id);
     },
     fit: function fit() {
-      var fit = this.getStationFitByStationID(this.station.id);
+      var fit = this.getStationFitByStationID(this.station.station_id);
 
       if (fit[0]["r_fitted"] == "Fitted") {
         this.fitted = true;
@@ -7029,10 +7029,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       return this.fit.r_updated_at;
     },
     stationInfo: function stationInfo() {
-      return this.getCoreByStationID(this.station.id);
+      return this.getCoreByStationID(this.station.station_id);
     },
     core: function core() {
-      var core = this.getCoreByStationID(this.station.id);
+      var core = this.getCoreByStationID(this.station.station_id);
 
       if (this.fit == "NO") {
         return "No Info";
