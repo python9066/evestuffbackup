@@ -29237,7 +29237,7 @@ var render = function() {
           _c(
             "v-btn-toggle",
             {
-              attrs: { "right-align": "", mandatory: "", value: 2 },
+              attrs: { "right-align": "", mandatory: "", value: 1 },
               model: {
                 value: _vm.toggle_exclusive,
                 callback: function($$v) {
