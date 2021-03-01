@@ -86,7 +86,7 @@
                             Request Made
                         </v-chip>
                         <StationRequestAmmo
-                            v-if="$can('super')"
+                            v-if="$can('gunner')"
                             :station="station"
                             :key="'ammorequest' + station.id"
                         ></StationRequestAmmo>

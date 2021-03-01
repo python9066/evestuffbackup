@@ -35958,7 +35958,7 @@ var render = function() {
                         )
                       : _vm._e(),
                     _vm._v(" "),
-                    _vm.$can("super")
+                    _vm.$can("gunner")
                       ? _c("StationRequestAmmo", {
                           key: "ammorequest" + _vm.station.id,
                           attrs: { station: _vm.station }
