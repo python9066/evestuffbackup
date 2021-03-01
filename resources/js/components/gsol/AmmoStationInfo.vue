@@ -322,7 +322,7 @@ export default {
             var text = this.station.current_ammo;
             var t = text.split("\n");
             t.forEach(a => {
-                s = a.split("\t");
+                var s = a.split("\t");
                 data.push(s);
             });
             console.log(data);
