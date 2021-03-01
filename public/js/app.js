@@ -7034,6 +7034,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -30552,8 +30554,9 @@ var render = function() {
                   _c(
                     "v-btn",
                     {
+                      key: "takebtn" + this.station.id,
                       staticClass: "white--text",
-                      attrs: { "v-if": _vm.showTakeTask, color: "green" },
+                      attrs: { "v-show": _vm.showTakeTask, color: "green" },
                       on: {
                         click: function($event) {
                           return _vm.taskTask()
@@ -30570,8 +30573,9 @@ var render = function() {
                   _c(
                     "v-btn",
                     {
+                      key: "donebtn" + this.station.id,
                       staticClass: "white--text",
-                      attrs: { "v-if": _vm.showDoneTask, color: "warning" },
+                      attrs: { "v-show": _vm.showDoneTask, color: "warning" },
                       on: {
                         click: function($event) {
                           return _vm.taskDone()

@@ -278,7 +278,8 @@
                         Close
                     </v-btn>
                     <v-btn
-                        :v-if="showTakeTask"
+                        :v-show="showTakeTask"
+                        :key="'takebtn' + this.station.id"
                         class="white--text"
                         color="green"
                         @click="taskTask()"
@@ -286,7 +287,8 @@
                         Take Task
                     </v-btn>
                     <v-btn
-                        :v-if="showDoneTask"
+                        :v-show="showDoneTask"
+                        :key="'donebtn' + this.station.id"
                         class="white--text"
                         color="warning"
                         @click="taskDone()"
