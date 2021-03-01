@@ -6996,9 +6996,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -30367,59 +30364,52 @@ var render = function() {
                       : _vm._e(),
                     _vm._v(" "),
                     _c(
-                      "div",
-                      { staticClass: " ml-2" },
+                      "v-card",
                       [
-                        _c(
-                          "v-card",
-                          { staticClass: " mb-2" },
-                          [
-                            _c("v-card-title", [_vm._v("Request")]),
-                            _c("v-card-text", [
-                              _vm._v(_vm._s(_vm.station.request_text))
-                            ])
-                          ],
-                          1
-                        ),
+                        _c("v-card-title", [
+                          _vm._v(
+                            "\n                            Current Ammo\n                        "
+                          )
+                        ]),
                         _vm._v(" "),
                         _c(
-                          "v-card",
+                          "v-card-text",
                           [
-                            _c("v-card-title", [
-                              _vm._v(
-                                "\n                                Current Ammo\n                            "
-                              )
-                            ]),
-                            _vm._v(" "),
                             _c(
-                              "v-card-text",
-                              [
-                                _c(
-                                  "v-list",
-                                  { attrs: { dense: "" } },
-                                  _vm._l(_vm.currentAmmos, function(
-                                    currentAmmo,
-                                    index
-                                  ) {
-                                    return _c("v-list-item", { key: index }, [
-                                      _c("strong", [
-                                        _vm._v(_vm._s(currentAmmo[0]))
-                                      ]),
-                                      _vm._v(
-                                        "\n                                        x\n                                        " +
-                                          _vm._s(currentAmmo[1]) +
-                                          "\n                                    "
-                                      )
-                                    ])
-                                  }),
-                                  1
-                                )
-                              ],
+                              "v-list",
+                              { attrs: { dense: "" } },
+                              _vm._l(_vm.currentAmmos, function(
+                                currentAmmo,
+                                index
+                              ) {
+                                return _c("v-list-item", { key: index }, [
+                                  _c("strong", [
+                                    _vm._v(_vm._s(currentAmmo[0]))
+                                  ]),
+                                  _vm._v(
+                                    "\n                                    x\n                                    " +
+                                      _vm._s(currentAmmo[1]) +
+                                      "\n                                "
+                                  )
+                                ])
+                              }),
                               1
                             )
                           ],
                           1
                         )
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "v-card",
+                      { staticClass: " mb-2" },
+                      [
+                        _c("v-card-title", [_vm._v("Request")]),
+                        _c("v-card-text", [
+                          _vm._v(_vm._s(_vm.station.request_text))
+                        ])
                       ],
                       1
                     )

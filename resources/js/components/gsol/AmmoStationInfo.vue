@@ -231,34 +231,31 @@
                                 </v-data-table>
                             </v-card-text>
                         </v-card>
-                        <div class=" ml-2">
-                            <v-card class=" mb-2"
-                                ><v-card-title>Request</v-card-title
-                                ><v-card-text>{{
-                                    station.request_text
-                                }}</v-card-text></v-card
-                            >
-                            <v-card>
-                                <v-card-title>
-                                    Current Ammo
-                                </v-card-title>
-                                <v-card-text>
-                                    <v-list dense>
-                                        <v-list-item
-                                            v-for="(currentAmmo,
-                                            index) in currentAmmos"
-                                            :key="index"
-                                        >
-                                            <strong>{{
-                                                currentAmmo[0]
-                                            }}</strong>
-                                            x
-                                            {{ currentAmmo[1] }}
-                                        </v-list-item>
-                                    </v-list>
-                                </v-card-text>
-                            </v-card>
-                        </div>
+
+                        <v-card>
+                            <v-card-title>
+                                Current Ammo
+                            </v-card-title>
+                            <v-card-text>
+                                <v-list dense>
+                                    <v-list-item
+                                        v-for="(currentAmmo,
+                                        index) in currentAmmos"
+                                        :key="index"
+                                    >
+                                        <strong>{{ currentAmmo[0] }}</strong>
+                                        x
+                                        {{ currentAmmo[1] }}
+                                    </v-list-item>
+                                </v-list>
+                            </v-card-text>
+                        </v-card>
+                        <v-card class=" mb-2"
+                            ><v-card-title>Request</v-card-title
+                            ><v-card-text>{{
+                                station.request_text
+                            }}</v-card-text></v-card
+                        >
                     </div>
                 </v-card-text>
                 <v-spacer></v-spacer
