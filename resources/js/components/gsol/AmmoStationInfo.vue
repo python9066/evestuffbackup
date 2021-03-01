@@ -238,11 +238,12 @@
                             <v-card-text>
                                 <v-list>
                                     <v-list-item
-                                        v-for="(list, index) in currentAmmoText"
+                                        v-for="(currentAmmo,
+                                        index) in currentAmmos"
                                         :key="index"
                                     >
                                     </v-list-item>
-                                    <v-list-item>{{ list[0] }}</v-list-item>
+                                    <v-list-item>{{ currentAmmo }}</v-list-item>
                                 </v-list>
                             </v-card-text>
                         </v-card>
@@ -333,7 +334,7 @@ export default {
             "getStationFitByStationID"
         ]),
 
-        currentAmmoText() {
+        currentAmmos() {
             var text = this.station.current_ammo;
             var t = text.split("\n");
             console.log(t);

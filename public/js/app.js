@@ -6986,6 +6986,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -7041,7 +7042,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     }
   },
   computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(["getStationItemsByStationID", "getCoreByStationID", "getStationFitByStationID"])), {}, {
-    currentAmmoText: function currentAmmoText() {
+    currentAmmos: function currentAmmos() {
       var text = this.station.current_ammo;
       var t = text.split("\n");
       console.log(t);
@@ -30361,14 +30362,16 @@ var render = function() {
                             _c(
                               "v-list",
                               [
-                                _vm._l(_vm.currentAmmoText, function(
-                                  list,
+                                _vm._l(_vm.currentAmmos, function(
+                                  currentAmmo,
                                   index
                                 ) {
                                   return _c("v-list-item", { key: index })
                                 }),
                                 _vm._v(" "),
-                                _c("v-list-item", [_vm._v(_vm._s(_vm.list[0]))])
+                                _c("v-list-item", [
+                                  _vm._v(_vm._s(_vm.currentAmmo))
+                                ])
                               ],
                               2
                             )
