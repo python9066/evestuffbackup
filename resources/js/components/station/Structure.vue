@@ -22,6 +22,7 @@
                         multiple
                         chips
                         deletable-chips
+                        hide-details
                     ></v-select>
                 </v-card-text>
             </v-card>

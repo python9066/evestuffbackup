@@ -14017,6 +14017,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 
@@ -38363,7 +38364,8 @@ var render = function() {
                           label: "Filter by Structure Type",
                           multiple: "",
                           chips: "",
-                          "deletable-chips": ""
+                          "deletable-chips": "",
+                          "hide-details": ""
                         },
                         model: {
                           value: _vm.typePicked,
