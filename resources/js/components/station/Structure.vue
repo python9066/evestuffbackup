@@ -725,7 +725,7 @@ export default {
         },
 
         filter_end() {
-            let data = [];
+            let data = {};
             if (this.typePicked.length != 0) {
                 this.typePicked.forEach(p => {
                     console.log(p);
