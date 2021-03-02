@@ -14443,10 +14443,11 @@ function sleep(ms) {
       var _this3 = this;
 
       var data = [];
-      console.log(this.typePicked);
 
       if (this.typePicked.length != 0) {
         this.typePicked.forEach(function (p) {
+          console.log(p);
+
           var pick = _this3.filteredItems.filter(function (f) {
             return f.item_name == p.value;
           });
