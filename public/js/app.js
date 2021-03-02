@@ -14450,7 +14450,7 @@ function sleep(ms) {
       //         return opts.includes(data.item_name);
       //     }
       // });
-      return this.filteredItems.filter(function (a) {
+      return this.filteredItems.like(function (a) {
         return a.item_name == _this3.typePicked.value;
       });
     },
