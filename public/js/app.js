@@ -14460,6 +14460,8 @@ function sleep(ms) {
 
         if (data.length > 0) {
           return data;
+        } else {
+          return null;
         }
       }
 
