@@ -14080,34 +14080,34 @@ function sleep(ms) {
         value: 1
       }],
       dropdown_search: [{
-        title: "Astrahus",
+        name: "Astrahus",
         value: "Astrahus"
       }, {
-        title: "Athanor",
+        name: "Athanor",
         value: "Athanor"
       }, {
-        title: "Cyno Beacon",
+        name: "Cyno Beacon",
         value: "Beacon"
       }, {
-        title: "Fortizar",
+        name: "Fortizar",
         value: "Fortizar"
       }, {
-        title: "Cyno Jammer",
+        name: "Cyno Jammer",
         value: "Jammer"
       }, {
-        title: "Jump Gate",
+        name: "Jump Gate",
         value: "Jump"
       }, {
-        title: "Keepstar",
+        name: "Keepstar",
         value: "Keepstar"
       }, {
-        title: "Raitaru",
+        name: "Raitaru",
         value: "Raitaru"
       }, {
-        title: "Sotiyo",
+        name: "Sotiyo",
         value: "Sotiyo"
       }, {
-        title: "Tatara",
+        name: "Tatara",
         value: "Tatara"
       }]
     };
