@@ -14440,12 +14440,17 @@ function sleep(ms) {
       }
     },
     filter_end: function filter_end() {
-      // return this.filteredItems.filter(data => {
-      //     if (this.typePicked == null) return this.filteredItems;
-      //     const opts = this.typePicked.map(opt => opt.item_name);
-      //     return opts.includes(data);
-      // });
-      return this.filteredItems;
+      var _this3 = this;
+
+      return this.filteredItems.filter(function (data) {
+        if (_this3.typePicked == null) return _this3.filteredItems;
+
+        var opts = _this3.typePicked.map(function (opt) {
+          return opt.value;
+        });
+
+        return opts.includes(data.item_name);
+      });
     },
     user_name: function user_name() {
       return this.$store.state.user_name;
