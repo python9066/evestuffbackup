@@ -14454,8 +14454,8 @@ function sleep(ms) {
           });
 
           if (pick != null) {
-            array.pick(function (p1) {
-              data.push(p1);
+            pick.forEach(function (pk) {
+              data.push(pk);
             });
           }
         });
