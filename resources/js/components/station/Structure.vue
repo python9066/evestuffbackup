@@ -12,7 +12,7 @@
                 single-line
                 hide-details
             ></v-text-field>
-            <v-card max-width="200px">
+            <v-card max-width="600px">
                 <v-card-text>
                     <v-select
                         v-if="$can('super')"

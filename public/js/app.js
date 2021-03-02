@@ -38346,7 +38346,7 @@ var render = function() {
           _vm._v(" "),
           _c(
             "v-card",
-            { attrs: { "max-width": "200px" } },
+            { attrs: { "max-width": "600px" } },
             [
               _c(
                 "v-card-text",
