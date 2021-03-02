@@ -12,13 +12,13 @@
                 single-line
                 hide-details
             ></v-text-field>
-            <v-card max-width="600px" min-width="600px">
+            <v-card max-width="600px" min-width="600px" color="#121212">
                 <v-card-text>
                     <v-select
                         v-if="$can('super')"
                         v-model="typePicked"
                         :items="dropdown_search"
-                        label="Select"
+                        label="Filter by Structure Type"
                         multiple
                         chips
                         deletable-chips

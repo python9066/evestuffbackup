@@ -38345,7 +38345,13 @@ var render = function() {
           _vm._v(" "),
           _c(
             "v-card",
-            { attrs: { "max-width": "600px", "min-width": "600px" } },
+            {
+              attrs: {
+                "max-width": "600px",
+                "min-width": "600px",
+                color: "#121212"
+              }
+            },
             [
               _c(
                 "v-card-text",
@@ -38354,7 +38360,7 @@ var render = function() {
                     ? _c("v-select", {
                         attrs: {
                           items: _vm.dropdown_search,
-                          label: "Select",
+                          label: "Filter by Structure Type",
                           multiple: "",
                           chips: "",
                           "deletable-chips": ""
