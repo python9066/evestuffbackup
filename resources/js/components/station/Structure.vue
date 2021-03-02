@@ -726,12 +726,13 @@ export default {
         },
 
         filter_end() {
-            return this.filteredItems.filter(data => {
-                if (this.typePicked == null) return this.filteredItems;
+            // return this.filteredItems.filter(data => {
+            //     if (this.typePicked == null) return this.filteredItems;
 
-                const opts = this.typePicked.map(opt => opt.item_name);
-                return opts.includes(data);
-            });
+            //     const opts = this.typePicked.map(opt => opt.item_name);
+            //     return opts.includes(data);
+            // });
+            return this.filteredItems;
         },
 
         user_name() {
