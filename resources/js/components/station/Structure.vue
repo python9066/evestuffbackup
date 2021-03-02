@@ -22,7 +22,6 @@
                         multiple
                         chips
                         deletable-chips
-                        hint="Fiilter by Type"
                     ></v-select>
                 </v-card-text>
             </v-card>
