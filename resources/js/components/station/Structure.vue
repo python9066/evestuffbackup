@@ -734,7 +734,7 @@ export default {
             //         return opts.includes(data.item_name);
             //     }
             // });
-            return this.filteredItems.like(
+            return this.filteredItems.filter(
                 a => a.item_name == this.typePicked.value
             );
         },
