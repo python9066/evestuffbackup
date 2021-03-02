@@ -14437,6 +14437,19 @@ function sleep(ms) {
         });
       }
     },
+    filter_end: function filter_end() {
+      var _this3 = this;
+
+      return this.filteredItems.filter(function (data) {
+        if (_this3.typePicked == null) return _this3.filteredItems;
+
+        var opts = _this3.typePicked.map(function (opt) {
+          return opt.item_name;
+        });
+
+        return opts.includes(data);
+      });
+    },
     user_name: function user_name() {
       return this.$store.state.user_name;
     },

@@ -723,6 +723,15 @@ export default {
             }
         },
 
+        filter_end() {
+            return this.filteredItems.filter(data => {
+                if (this.typePicked == null) return this.filteredItems;
+
+                const opts = this.typePicked.map(opt => opt.item_name);
+                return opts.includes(data);
+            });
+        },
+
         user_name() {
             return this.$store.state.user_name;
         },
