@@ -14444,7 +14444,7 @@ function sleep(ms) {
 
       var data = [];
 
-      if (this.typePicked != null) {
+      if (this.typePicked.length < 1) {
         this.typePicked.forEach(function (p) {
           var pick = _this3.filteredItems.filter(function (f) {
             return f.item_name == p.value;

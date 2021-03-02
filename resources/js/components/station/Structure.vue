@@ -727,7 +727,7 @@ export default {
 
         filter_end() {
             let data = [];
-            if (this.typePicked != null) {
+            if (this.typePicked.length < 1) {
                 this.typePicked.forEach(p => {
                     let pick = this.filteredItems.filter(
                         f => f.item_name == p.value
