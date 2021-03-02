@@ -14442,7 +14442,7 @@ function sleep(ms) {
     filter_end: function filter_end() {
       var _this3 = this;
 
-      data = [];
+      var data = [];
       typePicked.forEach(function (p) {
         var pick = _this3.filteredItems.filter(function (f) {
           return f.item_name == p.value;
