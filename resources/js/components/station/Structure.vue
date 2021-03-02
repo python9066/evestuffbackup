@@ -379,16 +379,16 @@ export default {
             ],
 
             dropdown_search: [
-                { name: "Astrahus", value: "Astrahus" },
-                { name: "Athanor", value: "Athanor" },
-                { name: "Cyno Beacon", value: "Beacon" },
-                { name: "Fortizar", value: "Fortizar" },
-                { name: "Cyno Jammer", value: "Jammer" },
-                { name: "Jump Gate", value: "Jump" },
-                { name: "Keepstar", value: "Keepstar" },
-                { name: "Raitaru", value: "Raitaru" },
-                { name: "Sotiyo", value: "Sotiyo" },
-                { name: "Tatara", value: "Tatara" }
+                { text: "Astrahus", value: "Astrahus" },
+                { text: "Athanor", value: "Athanor" },
+                { text: "Cyno Beacon", value: "Beacon" },
+                { text: "Fortizar", value: "Fortizar" },
+                { text: "Cyno Jammer", value: "Jammer" },
+                { text: "Jump Gate", value: "Jump" },
+                { text: "Keepstar", value: "Keepstar" },
+                { text: "Raitaru", value: "Raitaru" },
+                { text: "Sotiyo", value: "Sotiyo" },
+                { text: "Tatara", value: "Tatara" }
             ]
         };
     },
