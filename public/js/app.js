@@ -14443,6 +14443,7 @@ function sleep(ms) {
       var _this3 = this;
 
       var data = [];
+      console.log(this.typePicked);
 
       if (this.typePicked.length < 1) {
         this.typePicked.forEach(function (p) {
