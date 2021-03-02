@@ -12,19 +12,20 @@
                 single-line
                 hide-details
             ></v-text-field>
-            <div>
-                <v-select
-                    class=" mx-3"
-                    v-if="$can('super')"
-                    v-model="typePicked"
-                    :items="dropdown_search"
-                    label="Select"
-                    multiple
-                    chips
-                    deletable-chips
-                    hint="Fiilter by Type"
-                ></v-select>
-            </div>
+            <v-card max-width="200px">
+                <v-card-text>
+                    <v-select
+                        v-if="$can('super')"
+                        v-model="typePicked"
+                        :items="dropdown_search"
+                        label="Select"
+                        multiple
+                        chips
+                        deletable-chips
+                        hint="Fiilter by Type"
+                    ></v-select>
+                </v-card-text>
+            </v-card>
             <v-btn-toggle
                 right-align
                 v-model="toggle_exclusive"

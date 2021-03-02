@@ -14017,6 +14017,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 
@@ -38344,28 +38345,34 @@ var render = function() {
           }),
           _vm._v(" "),
           _c(
-            "div",
+            "v-card",
+            { attrs: { "max-width": "200px" } },
             [
-              _vm.$can("super")
-                ? _c("v-select", {
-                    staticClass: " mx-3",
-                    attrs: {
-                      items: _vm.dropdown_search,
-                      label: "Select",
-                      multiple: "",
-                      chips: "",
-                      "deletable-chips": "",
-                      hint: "Fiilter by Type"
-                    },
-                    model: {
-                      value: _vm.typePicked,
-                      callback: function($$v) {
-                        _vm.typePicked = $$v
-                      },
-                      expression: "typePicked"
-                    }
-                  })
-                : _vm._e()
+              _c(
+                "v-card-text",
+                [
+                  _vm.$can("super")
+                    ? _c("v-select", {
+                        attrs: {
+                          items: _vm.dropdown_search,
+                          label: "Select",
+                          multiple: "",
+                          chips: "",
+                          "deletable-chips": "",
+                          hint: "Fiilter by Type"
+                        },
+                        model: {
+                          value: _vm.typePicked,
+                          callback: function($$v) {
+                            _vm.typePicked = $$v
+                          },
+                          expression: "typePicked"
+                        }
+                      })
+                    : _vm._e()
+                ],
+                1
+              )
             ],
             1
           ),
