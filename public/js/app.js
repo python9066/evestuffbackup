@@ -14452,7 +14452,7 @@ function sleep(ms) {
           data.push(pick);
         }
       });
-      return pick;
+      return data;
     },
     user_name: function user_name() {
       return this.$store.state.user_name;

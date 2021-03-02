@@ -735,7 +735,7 @@ export default {
                     data.push(pick);
                 }
             });
-            return pick;
+            return data;
         },
 
         user_name() {
