@@ -28,7 +28,7 @@
                             v-show="station.ammo_request == 0"
                             color="teal"
                         >
-                            Request Ammo Request
+                            Request Ammo Reload
                         </v-chip>
                     </template>
                     <span>
