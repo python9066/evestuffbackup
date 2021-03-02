@@ -21,7 +21,7 @@
                 chips
                 deletable-chips
                 hint="Fiilter by Type"
-                :menu-props="{ maxHeight: '400' }"
+                :menu-props="{ maxWidth: '400' }"
             ></v-select>
 
             <v-btn-toggle

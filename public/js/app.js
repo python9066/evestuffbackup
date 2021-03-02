@@ -38351,7 +38351,7 @@ var render = function() {
                   chips: "",
                   "deletable-chips": "",
                   hint: "Fiilter by Type",
-                  "menu-props": { maxHeight: "400" }
+                  "menu-props": { maxWidth: "400" }
                 },
                 model: {
                   value: _vm.typePicked,
