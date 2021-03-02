@@ -22,7 +22,8 @@
                 chips
                 deletable-chips
                 hint="Fiilter by Type"
-                persistent-hint
+                max-width="200px"
+                class=" px-3"
             ></v-select>
 
             <v-btn-toggle
