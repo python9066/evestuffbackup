@@ -14016,8 +14016,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
 
 
 
@@ -38346,7 +38344,6 @@ var render = function() {
           _vm._v(" "),
           _vm.$can("super")
             ? _c("v-select", {
-                staticClass: " px-3",
                 attrs: {
                   items: _vm.dropdown_search,
                   label: "Select",
@@ -38354,7 +38351,7 @@ var render = function() {
                   chips: "",
                   "deletable-chips": "",
                   hint: "Fiilter by Type",
-                  "max-width": "200px"
+                  "menu-props": { maxHeight: "400" }
                 },
                 model: {
                   value: _vm.typePicked,

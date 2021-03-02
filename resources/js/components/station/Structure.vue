@@ -12,7 +12,6 @@
                 single-line
                 hide-details
             ></v-text-field>
-
             <v-select
                 v-if="$can('super')"
                 v-model="typePicked"
@@ -22,8 +21,7 @@
                 chips
                 deletable-chips
                 hint="Fiilter by Type"
-                max-width="200px"
-                class=" px-3"
+                :menu-props="{ maxHeight: '400' }"
             ></v-select>
 
             <v-btn-toggle
