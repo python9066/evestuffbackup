@@ -4,6 +4,8 @@
             <v-card-title>Structure Notifications</v-card-title>
             <AddStation v-if="$can('add_timer')"></AddStation>
 
+            <span v-if="$can('super')"> {{ filter_end }}</span>
+
             <v-text-field
                 class=" ml-5"
                 v-model="search"
