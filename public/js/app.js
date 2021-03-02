@@ -14443,7 +14443,7 @@ function sleep(ms) {
       var _this3 = this;
 
       var data = [];
-      typePicked.forEach(function (p) {
+      this.typePicked.forEach(function (p) {
         var pick = _this3.filteredItems.filter(function (f) {
           return f.item_name == p.value;
         });
