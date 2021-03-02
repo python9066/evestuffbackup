@@ -14449,7 +14449,7 @@ function sleep(ms) {
           console.log(p);
 
           var pick = _this3.filteredItems.filter(function (f) {
-            return f.item_name == p.value;
+            return f.item_name == p;
           });
 
           if (pick != null) {

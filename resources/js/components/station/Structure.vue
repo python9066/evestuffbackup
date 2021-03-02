@@ -730,9 +730,7 @@ export default {
             if (this.typePicked.length != 0) {
                 this.typePicked.forEach(p => {
                     console.log(p);
-                    let pick = this.filteredItems.filter(
-                        f => f.item_name == p.value
-                    );
+                    let pick = this.filteredItems.filter(f => f.item_name == p);
                     if (pick != null) {
                         data.push(pick);
                     }
