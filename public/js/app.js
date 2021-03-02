@@ -38324,15 +38324,15 @@ var render = function() {
                   multiple: "",
                   chips: "",
                   "deletable-chips": "",
-                  hint: "Which Campaigns do you want",
+                  hint: "Fiilter by Type",
                   "persistent-hint": ""
                 },
                 model: {
-                  value: _vm.picked,
+                  value: _vm.typePicked,
                   callback: function($$v) {
-                    _vm.picked = $$v
+                    _vm.typePicked = $$v
                   },
-                  expression: "picked"
+                  expression: "typePicked"
                 }
               })
             : _vm._e(),

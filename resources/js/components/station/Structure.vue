@@ -15,13 +15,13 @@
 
             <v-select
                 v-if="$can('super')"
-                v-model="picked"
+                v-model="typePicked"
                 :items="dropdown_search"
                 label="Select"
                 multiple
                 chips
                 deletable-chips
-                hint="Which Campaigns do you want"
+                hint="Fiilter by Type"
                 persistent-hint
             ></v-select>
 
