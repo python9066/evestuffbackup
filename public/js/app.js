@@ -38342,26 +38342,31 @@ var render = function() {
             }
           }),
           _vm._v(" "),
-          _vm.$can("super")
-            ? _c("v-select", {
-                attrs: {
-                  items: _vm.dropdown_search,
-                  label: "Select",
-                  multiple: "",
-                  chips: "",
-                  "deletable-chips": "",
-                  hint: "Fiilter by Type",
-                  "menu-props": { maxWidth: "400" }
-                },
-                model: {
-                  value: _vm.typePicked,
-                  callback: function($$v) {
-                    _vm.typePicked = $$v
-                  },
-                  expression: "typePicked"
-                }
-              })
-            : _vm._e(),
+          _c(
+            "div",
+            [
+              _vm.$can("super")
+                ? _c("v-select", {
+                    attrs: {
+                      items: _vm.dropdown_search,
+                      label: "Select",
+                      multiple: "",
+                      chips: "",
+                      "deletable-chips": "",
+                      hint: "Fiilter by Type"
+                    },
+                    model: {
+                      value: _vm.typePicked,
+                      callback: function($$v) {
+                        _vm.typePicked = $$v
+                      },
+                      expression: "typePicked"
+                    }
+                  })
+                : _vm._e()
+            ],
+            1
+          ),
           _vm._v(" "),
           _c(
             "v-btn-toggle",

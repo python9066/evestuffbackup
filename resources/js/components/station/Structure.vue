@@ -12,18 +12,18 @@
                 single-line
                 hide-details
             ></v-text-field>
-            <v-select
-                v-if="$can('super')"
-                v-model="typePicked"
-                :items="dropdown_search"
-                label="Select"
-                multiple
-                chips
-                deletable-chips
-                hint="Fiilter by Type"
-                :menu-props="{ maxWidth: '400' }"
-            ></v-select>
-
+            <div>
+                <v-select
+                    v-if="$can('super')"
+                    v-model="typePicked"
+                    :items="dropdown_search"
+                    label="Select"
+                    multiple
+                    chips
+                    deletable-chips
+                    hint="Fiilter by Type"
+                ></v-select>
+            </div>
             <v-btn-toggle
                 right-align
                 v-model="toggle_exclusive"
