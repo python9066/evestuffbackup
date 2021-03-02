@@ -14,6 +14,7 @@
             ></v-text-field>
             <div>
                 <v-select
+                    class=" mx-3"
                     v-if="$can('super')"
                     v-model="typePicked"
                     :items="dropdown_search"

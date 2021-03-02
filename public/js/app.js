@@ -14016,6 +14016,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 
@@ -38347,6 +38348,7 @@ var render = function() {
             [
               _vm.$can("super")
                 ? _c("v-select", {
+                    staticClass: " mx-3",
                     attrs: {
                       items: _vm.dropdown_search,
                       label: "Select",
