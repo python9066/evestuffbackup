@@ -727,15 +727,18 @@ export default {
 
         filter_end() {
             let data = [];
-            this.typePicked.forEach(p => {
-                let pick = this.filteredItems.filter(
-                    f => f.item_name == p.value
-                );
-                if (pick != null) {
-                    data.push(pick);
-                }
-            });
-            return data;
+            if (this.typePicked != null) {
+                this.typePicked.forEach(p => {
+                    let pick = this.filteredItems.filter(
+                        f => f.item_name == p.value
+                    );
+                    if (pick != null) {
+                        data.push(pick);
+                    }
+                });
+                return data;
+            }
+            return this.filteredItems;
         },
 
         user_name() {

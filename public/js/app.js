@@ -14443,16 +14443,21 @@ function sleep(ms) {
       var _this3 = this;
 
       var data = [];
-      this.typePicked.forEach(function (p) {
-        var pick = _this3.filteredItems.filter(function (f) {
-          return f.item_name == p.value;
-        });
 
-        if (pick != null) {
-          data.push(pick);
-        }
-      });
-      return data;
+      if (this.typePicked != null) {
+        this.typePicked.forEach(function (p) {
+          var pick = _this3.filteredItems.filter(function (f) {
+            return f.item_name == p.value;
+          });
+
+          if (pick != null) {
+            data.push(pick);
+          }
+        });
+        return data;
+      }
+
+      return this.filteredItems;
     },
     user_name: function user_name() {
       return this.$store.state.user_name;
