@@ -735,7 +735,7 @@ export default {
             //     }
             // });
             return this.filteredItems.filter(
-                a => a.item_name == typePicked.value
+                a => a.item_name == this.typePicked.value
             );
         },
 

@@ -14440,6 +14440,8 @@ function sleep(ms) {
       }
     },
     filter_end: function filter_end() {
+      var _this3 = this;
+
       // return this.filteredItems.filter(data => {
       //     if (this.typePicked == null) {
       //         return this.filteredItems;
@@ -14449,7 +14451,7 @@ function sleep(ms) {
       //     }
       // });
       return this.filteredItems.filter(function (a) {
-        return a.item_name == typePicked.value;
+        return a.item_name == _this3.typePicked.value;
       });
     },
     user_name: function user_name() {
