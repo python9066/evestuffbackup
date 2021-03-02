@@ -14088,6 +14088,9 @@ function sleep(ms) {
         text: "Athanor",
         value: "Athanor"
       }, {
+        text: "Azbel",
+        value: "Azbel"
+      }, {
         text: "Cyno Beacon",
         value: "Beacon"
       }, {
@@ -38324,7 +38327,7 @@ var render = function() {
           _vm.$can("add_timer") ? _c("AddStation") : _vm._e(),
           _vm._v(" "),
           _vm.$can("super")
-            ? _c("span", [_vm._v(" " + _vm._s(_vm.filter_end))])
+            ? _c("span", [_vm._v(" " + _vm._s(_vm.filter_end.station_name))])
             : _vm._e(),
           _vm._v(" "),
           _c("v-text-field", {

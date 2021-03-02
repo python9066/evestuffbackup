@@ -4,7 +4,7 @@
             <v-card-title>Structure Notifications</v-card-title>
             <AddStation v-if="$can('add_timer')"></AddStation>
 
-            <span v-if="$can('super')"> {{ filter_end }}</span>
+            <span v-if="$can('super')"> {{ filter_end.station_name }}</span>
 
             <v-text-field
                 class=" ml-5"
@@ -383,6 +383,7 @@ export default {
             dropdown_search: [
                 { text: "Astrahus", value: "Astrahus" },
                 { text: "Athanor", value: "Athanor" },
+                { text: "Azbel", value: "Azbel" },
                 { text: "Cyno Beacon", value: "Beacon" },
                 { text: "Fortizar", value: "Fortizar" },
                 { text: "Cyno Jammer", value: "Jammer" },
