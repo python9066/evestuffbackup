@@ -731,7 +731,9 @@ export default {
                     console.log(p);
                     let pick = this.filteredItems.filter(f => f.item_name == p);
                     if (pick != null) {
-                        data.push(pick);
+                        array.pick(p1 => {
+                            data.push(p1);
+                        });
                     }
                 });
                 if (data.length > 0) {
