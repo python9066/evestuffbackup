@@ -116,7 +116,7 @@
             <template slot="no-data">
                 No Active or Upcoming Campaigns
             </template>
-            <template v-slot:item.alliance="{ item }">
+            <template v-slot:[`item.alliance`]="{ item }">
                 <v-avatar size="35"><img :src="item.url"/></v-avatar>
                 <span v-if="item.standing > 0" class=" blue--text pl-3"
                     >{{ item.alliance }}
@@ -127,7 +127,7 @@
                 <span v-else class="pl-3">{{ item.alliance }}</span>
             </template>
 
-            <template v-slot:item.start="{ item }">
+            <template v-slot:[`item.start`]="{ item }">
                 <span v-if="item.status_id == 1"> {{ item.start }} </span>
                 <span
                     v-else-if="item.status_id != 3 && item.status_id != 4"
@@ -249,7 +249,7 @@
                 </span>
             </template>
 
-            <template v-slot:item.count="{ item }">
+            <template v-slot:[`item.count`]="{ item }">
                 <div class=" d-inline-flex align-center">
                     <CountDowntimer
                         v-if="item.status_id == 1"
