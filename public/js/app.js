@@ -14092,11 +14092,11 @@ function sleep(ms) {
         text: "Cyno Beacon",
         value: "Beacon"
       }, {
-        text: "Fortizar",
-        value: "Fortizar"
-      }, {
         text: "Cyno Jammer",
         value: "Jammer"
+      }, {
+        text: "Fortizar",
+        value: "Fortizar"
       }, {
         text: "Jump Gate",
         value: "Jump"
