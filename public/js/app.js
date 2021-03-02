@@ -14449,7 +14449,7 @@ function sleep(ms) {
       //     }
       // });
       return this.filteredItems.filter(function (a) {
-        return a.item_name == typePicked.vale;
+        return a.item_name == typePicked.value;
       });
     },
     user_name: function user_name() {
