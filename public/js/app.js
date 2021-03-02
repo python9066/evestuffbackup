@@ -14443,13 +14443,15 @@ function sleep(ms) {
       var _this3 = this;
 
       return this.filteredItems.filter(function (data) {
-        if (_this3.typePicked == null) return _this3.filteredItems;
+        if (_this3.typePicked == null) {
+          return _this3.filteredItems;
+        } else {
+          var opts = _this3.typePicked.map(function (opt) {
+            return opt.value;
+          });
 
-        var opts = _this3.typePicked.map(function (opt) {
-          return opt.value;
-        });
-
-        return opts.includes(data.item_name);
+          return opts.includes(data.item_name);
+        }
       });
     },
     user_name: function user_name() {
