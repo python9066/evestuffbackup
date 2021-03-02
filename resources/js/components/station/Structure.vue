@@ -734,7 +734,9 @@ export default {
                         data.push(pick);
                     }
                 });
-                return data;
+                if (data.length > 0) {
+                    return data;
+                }
             }
             return this.filteredItems;
         },
