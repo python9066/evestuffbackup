@@ -21,7 +21,6 @@
                 <v-card-text>
                     <v-select
                         class=" pb-2"
-                        v-if="$can('super')"
                         v-model="typePicked"
                         :items="dropdown_search"
                         label="Filter by Structure Type"
