@@ -14019,6 +14019,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 
@@ -38351,7 +38356,8 @@ var render = function() {
               attrs: {
                 "max-width": "600px",
                 "min-width": "600px",
-                color: "#121212"
+                color: "#121212",
+                elevation: "0"
               }
             },
             [
@@ -38360,7 +38366,7 @@ var render = function() {
                 [
                   _vm.$can("super")
                     ? _c("v-select", {
-                        staticClass: " pb-5",
+                        staticClass: " pb-2",
                         attrs: {
                           items: _vm.dropdown_search,
                           label: "Filter by Structure Type",

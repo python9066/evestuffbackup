@@ -12,10 +12,15 @@
                 single-line
                 hide-details
             ></v-text-field>
-            <v-card max-width="600px" min-width="600px" color="#121212">
+            <v-card
+                max-width="600px"
+                min-width="600px"
+                color="#121212"
+                elevation="0"
+            >
                 <v-card-text>
                     <v-select
-                        class=" pb-5"
+                        class=" pb-2"
                         v-if="$can('super')"
                         v-model="typePicked"
                         :items="dropdown_search"
