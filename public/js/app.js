@@ -14448,7 +14448,9 @@ function sleep(ms) {
           return f.item_name == p.value;
         });
 
-        data.push(pick);
+        if (!pick) {
+          data.push(pick);
+        }
       });
       return pick;
     },
