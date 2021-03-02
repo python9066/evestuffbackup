@@ -726,15 +726,14 @@ export default {
         },
 
         filter_end() {
-            // return this.filteredItems.filter(data => {
-            //     if (this.typePicked == null) {
-            //         return this.filteredItems;
-            //     } else {
-            //         const opts = this.typePicked.map(opt => opt.value);
-            //         return opts.includes(data.item_name);
-            //     }
-            // });
-            return this.filteredItems;
+            data = [];
+            typePicked.forEach(p => {
+                var pick = this.filteredItems.filter(
+                    f => f.item_name == p.value
+                );
+                data.push(pick);
+            });
+            return pick;
         },
 
         user_name() {
