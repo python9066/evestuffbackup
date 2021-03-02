@@ -4,7 +4,7 @@
             <v-card-title>Structure Notifications</v-card-title>
             <AddStation v-if="$can('add_timer')"></AddStation>
 
-            <span v-if="$can('super')"> {{ filter_end.station_name }}</span>
+            <span v-if="$can('super')"> {{ filter_end.item_name }}</span>
 
             <v-text-field
                 class=" ml-5"
