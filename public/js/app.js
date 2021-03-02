@@ -11775,7 +11775,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }
     },
     structureList: function structureList() {
-      console.log(this.structurelist);
       return this.structurelist;
     },
     stationLable: function stationLable() {
@@ -14006,6 +14005,18 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -14036,6 +14047,7 @@ function sleep(ms) {
       poll: null,
       search: "",
       statusflag: 2,
+      typePicked: [],
       snack: false,
       snackColor: "",
       snackText: "",
@@ -14066,6 +14078,37 @@ function sleep(ms) {
       }, {
         title: "New",
         value: 1
+      }],
+      dropdown_search: [{
+        title: "Astrahus",
+        value: "Astrahus"
+      }, {
+        title: "Athanor",
+        value: "Athanor"
+      }, {
+        title: "Cyno Beacon",
+        value: "Beacon"
+      }, {
+        title: "Fortizar",
+        value: "Fortizar"
+      }, {
+        title: "Cyno Jammer",
+        value: "Jammer"
+      }, {
+        title: "Jump Gate",
+        value: "Jump"
+      }, {
+        title: "Keepstar",
+        value: "Keepstar"
+      }, {
+        title: "Raitaru",
+        value: "Raitaru"
+      }, {
+        title: "Sotiyo",
+        value: "Sotiyo"
+      }, {
+        title: "Tatara",
+        value: "Tatara"
       }]
     };
   },
@@ -38272,6 +38315,27 @@ var render = function() {
               expression: "search"
             }
           }),
+          _vm._v(" "),
+          _vm.$can("super")
+            ? _c("v-select", {
+                attrs: {
+                  items: _vm.dropdown_search,
+                  label: "Select",
+                  multiple: "",
+                  chips: "",
+                  "deletable-chips": "",
+                  hint: "Which Campaigns do you want",
+                  "persistent-hint": ""
+                },
+                model: {
+                  value: _vm.picked,
+                  callback: function($$v) {
+                    _vm.picked = $$v
+                  },
+                  expression: "picked"
+                }
+              })
+            : _vm._e(),
           _vm._v(" "),
           _c(
             "v-btn-toggle",

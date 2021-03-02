@@ -13,6 +13,18 @@
                 hide-details
             ></v-text-field>
 
+            <v-select
+                v-if="$can('super')"
+                v-model="picked"
+                :items="dropdown_search"
+                label="Select"
+                multiple
+                chips
+                deletable-chips
+                hint="Which Campaigns do you want"
+                persistent-hint
+            ></v-select>
+
             <v-btn-toggle
                 right-align
                 v-model="toggle_exclusive"
@@ -345,6 +357,7 @@ export default {
             poll: null,
             search: "",
             statusflag: 2,
+            typePicked: [],
             snack: false,
             snackColor: "",
             snackText: "",
@@ -363,6 +376,19 @@ export default {
                 { title: "Destroyed", value: 7 },
                 { title: "Anchoring", value: 14 },
                 { title: "New", value: 1 }
+            ],
+
+            dropdown_search: [
+                { title: "Astrahus", value: "Astrahus" },
+                { title: "Athanor", value: "Athanor" },
+                { title: "Cyno Beacon", value: "Beacon" },
+                { title: "Fortizar", value: "Fortizar" },
+                { title: "Cyno Jammer", value: "Jammer" },
+                { title: "Jump Gate", value: "Jump" },
+                { title: "Keepstar", value: "Keepstar" },
+                { title: "Raitaru", value: "Raitaru" },
+                { title: "Sotiyo", value: "Sotiyo" },
+                { title: "Tatara", value: "Tatara" }
             ]
         };
     },
