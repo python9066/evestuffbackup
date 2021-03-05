@@ -416,6 +416,7 @@ export default {
             this.loadingt = false;
             this.loadingf = false;
             this.loadingr = false;
+            this.loading3 = false;
         });
     },
 

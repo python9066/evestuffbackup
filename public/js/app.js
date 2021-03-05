@@ -22555,6 +22555,7 @@ function sleep(ms) {
       _this.loadingt = false;
       _this.loadingf = false;
       _this.loadingr = false;
+      _this.loading3 = false;
     });
   },
   mounted: function mounted() {
