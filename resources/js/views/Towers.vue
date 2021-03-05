@@ -497,6 +497,7 @@ export default {
             this.loadingr = true;
             this.$store.dispatch("getTowerData").then(() => {
                 this.loadingr = false;
+                this.loading3 = false;
             });
             // console.log("30secs");
         },

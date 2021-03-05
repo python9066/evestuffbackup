@@ -22655,6 +22655,7 @@ function sleep(ms) {
       this.loadingr = true;
       this.$store.dispatch("getTowerData").then(function () {
         _this2.loadingr = false;
+        _this2.loading3 = false;
       }); // console.log("30secs");
     },
     pillColor: function pillColor(statusId) {
