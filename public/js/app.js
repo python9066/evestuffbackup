@@ -22459,6 +22459,7 @@ function sleep(ms) {
       loadingt: true,
       loadingf: true,
       loadingr: true,
+      loading3: true,
       name: "Timer",
       poll: null,
       periodbasis: 0,
