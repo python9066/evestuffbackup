@@ -21,22 +21,22 @@
                 :value="2"
             >
                 <v-btn
-                    :loading="loading3"
-                    :disabled="loading3"
+                    :loading="loadingf"
+                    :disabled="loadingf"
                     @click="standingFlag = 1"
                 >
                     All
                 </v-btn>
                 <v-btn
-                    :loading="loading3"
-                    :disabled="loading3"
+                    :loading="loadingf"
+                    :disabled="loadingf"
                     @click="standingFlag = 2"
                 >
                     Hostile
                 </v-btn>
                 <v-btn
-                    :loading="loading3"
-                    :disabled="loading3"
+                    :loading="loadingf"
+                    :disabled="loadingf"
                     @click="standingFlag = 3"
                 >
                     Friendly

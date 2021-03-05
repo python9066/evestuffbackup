@@ -46380,7 +46380,7 @@ var render = function() {
               _c(
                 "v-btn",
                 {
-                  attrs: { loading: _vm.loading3, disabled: _vm.loading3 },
+                  attrs: { loading: _vm.loadingf, disabled: _vm.loadingf },
                   on: {
                     click: function($event) {
                       _vm.standingFlag = 1
@@ -46393,7 +46393,7 @@ var render = function() {
               _c(
                 "v-btn",
                 {
-                  attrs: { loading: _vm.loading3, disabled: _vm.loading3 },
+                  attrs: { loading: _vm.loadingf, disabled: _vm.loadingf },
                   on: {
                     click: function($event) {
                       _vm.standingFlag = 2
@@ -46406,7 +46406,7 @@ var render = function() {
               _c(
                 "v-btn",
                 {
-                  attrs: { loading: _vm.loading3, disabled: _vm.loading3 },
+                  attrs: { loading: _vm.loadingf, disabled: _vm.loadingf },
                   on: {
                     click: function($event) {
                       _vm.standingFlag = 3
