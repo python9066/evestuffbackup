@@ -22822,13 +22822,13 @@ function sleep(ms) {
 
       if (this.standingFlag == 2) {
         return this.filteredItems.filter(function (s) {
-          return s.item.standing < 0.1;
+          return s.standing < 0.1;
         });
       }
 
       if (this.standingFlag == 3) {
         return this.filteredItems.filter(function (s) {
-          return s.item.standing > 0;
+          return s.standing > 0;
         });
       }
     },

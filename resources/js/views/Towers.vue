@@ -644,10 +644,10 @@ export default {
                 return this.filteredItems;
             }
             if (this.standingFlag == 2) {
-                return this.filteredItems.filter(s => s.item.standing < 0.1);
+                return this.filteredItems.filter(s => s.standing < 0.1);
             }
             if (this.standingFlag == 3) {
-                return this.filteredItems.filter(s => s.item.standing > 0);
+                return this.filteredItems.filter(s => s.standing > 0);
             }
         },
 
