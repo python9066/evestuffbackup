@@ -15,6 +15,35 @@
             ></v-text-field>
 
             <v-btn-toggle
+                v-model="toggle_exclusive1"
+                mandatory
+                class=" ml-4 mr-15"
+                :value="2"
+            >
+                <v-btn
+                    :loading="loading3"
+                    :disabled="loading3"
+                    @click="standingFlag = 1"
+                >
+                    All
+                </v-btn>
+                <v-btn
+                    :loading="loading3"
+                    :disabled="loading3"
+                    @click="standingFlag = 2"
+                >
+                    Hostile
+                </v-btn>
+                <v-btn
+                    :loading="loading3"
+                    :disabled="loading3"
+                    @click="standingFlag = 3"
+                >
+                    Friendly
+                </v-btn>
+            </v-btn-toggle>
+
+            <v-btn-toggle
                 right-align
                 v-model="toggle_exclusive"
                 mandatory
@@ -66,7 +95,7 @@
         </div>
         <v-data-table
             :headers="headers"
-            :items="filteredItems"
+            :items="filter_end"
             :expanded.sync="expanded"
             item-key="id"
             :loading="loadingt"
@@ -326,6 +355,8 @@ export default {
             text: "center",
             toggle_none: null,
             querious: 0,
+            toggle_exclusive1: 1,
+            standingFlag: 2,
 
             dropdown_edit: [
                 { title: "Scouted", value: 2 },
@@ -604,6 +635,18 @@ export default {
                 return this.towers.filter(
                     towers => towers.tower_status_id != 10
                 );
+            }
+        },
+
+        filter_end() {
+            if (this.standingFlag == 1) {
+                return this.filteredItems;
+            }
+            if (this.standingFlag == 2) {
+                return this.standingFlag.filter(s => s.item.standing < 0.1);
+            }
+            if (this.standingFlag == 3) {
+                return this.standingFlag.filter(s => s.item.standing > 0);
             }
         },
 
