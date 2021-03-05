@@ -4,7 +4,7 @@
         <div class=" d-flex align-items-center">
             <v-card-title>Towers</v-card-title>
 
-            <AddTower></AddTower>
+            <AddTower class=" pr-3"></AddTower>
 
             <v-text-field
                 v-model="search"

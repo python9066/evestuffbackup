@@ -46345,7 +46345,7 @@ var render = function() {
         [
           _c("v-card-title", [_vm._v("Towers")]),
           _vm._v(" "),
-          _c("AddTower"),
+          _c("AddTower", { staticClass: " pr-3" }),
           _vm._v(" "),
           _c("v-text-field", {
             attrs: {
