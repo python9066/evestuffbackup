@@ -261,7 +261,7 @@
                                     moment.utc(item.repair_time).unix()
                                 "
                                 :interval="1000"
-                                end-text="Is it Secured?"
+                                :end-text="'Is it Secured?'"
                             >
                                 <template slot="countdown" slot-scope="scope">
                                     <span class="blue--text pl-3"
