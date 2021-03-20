@@ -326,6 +326,7 @@ export default {
             let scout = [];
             let superChilled = [];
             let start = [];
+            let topChill = [];
             if (this.$can("edit_all_users")) {
                 return filter;
             }
@@ -350,6 +351,9 @@ export default {
             if (this.$can("edit_super_chilled_users")) {
                 superChilled = filter.filter(f => f.name == "Super Chilled");
             }
+            if (this.$can("edit_top_chill_users")) {
+                topChill = filter.filter(f => f.name == "Top Chill");
+            }
 
             return start.concat(
                 chill,
@@ -358,7 +362,8 @@ export default {
                 gunner,
                 recon,
                 scout,
-                superChilled
+                superChilled,
+                topChill
             );
         },
 
