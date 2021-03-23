@@ -756,7 +756,7 @@ export default {
             }
 
             if (this.statusflag == 5) {
-                return filter.filter(s => s.station_status_id == 5);
+                return filter.filter(s => s.station_status_id == 14);
             }
 
             if (this.statusflag == 4) {

@@ -6406,7 +6406,7 @@ function sleep(ms) {
 
       if (this.statusflag == 5) {
         return filter.filter(function (s) {
-          return s.station_status_id == 5;
+          return s.station_status_id == 14;
         });
       }
 
