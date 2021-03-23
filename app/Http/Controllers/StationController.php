@@ -325,7 +325,7 @@ class StationController extends Controller
     {
 
         Station::find($id)->update($request->all());
-        $oldStatus = Station::where('id', $id)->get()->pluck('station_status_id');
+        $oldStatus = Station::where('id', $id)->first()->pluck('station_status_id');
         dd($oldStatus);
         $message = StationRecords::where('id', $id)->first();
         $flag = collect([
