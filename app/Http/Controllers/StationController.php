@@ -325,14 +325,14 @@ class StationController extends Controller
     {
 
         Station::find($id)->update($request->all());
-        $oldStatus = Station::where('id', $id)->first();
-        $oldStatus = $oldStatus->station_status_id;
+        $oldStatus = Station::where('id', $id)->select('station_status_id')->get();
+        dd($oldStatus);
         $message = StationRecords::where('id', $id)->first();
         $flag = collect([
             'message' => $message
         ]);
         broadcast(new StationNotificationUpdate($flag));
-        $text = Auth::user()->name . " Changed the status from " . StationStatus::where('id', $oldStatus)->select('name')->get() . " to " . StationStatus::where($request->station_status_id, $oldStatus)->select('name')->get() . ' at ' . now();
+        $text = Auth::user()->name . " Changed the status from " . $oldStatus . " to " . StationStatus::where($request->station_status_id, $oldStatus)->select('name')->get() . ' at ' . now();
         $logNew = Logging::Create(['structure_id' => $message->id, 'user_id' => Auth::id(), 'logging_type_id' => 18, 'text' => $text]);
     }
 
