@@ -15,6 +15,7 @@ use App\Models\Station;
 use App\Models\StationItemJoin;
 use App\Models\StationItems;
 use App\Models\StationRecords;
+use App\Models\StationStatus;
 use App\Models\System;
 use Illuminate\Http\Request;
 use GuzzleHttp\Client as GuzzleHttpClient;
@@ -324,11 +325,15 @@ class StationController extends Controller
     {
 
         Station::find($id)->update($request->all());
+        $oldStatus = Station::where('id', $id)->first();
+        $oldStatus = $oldStatus->station_status_id;
         $message = StationRecords::where('id', $id)->first();
         $flag = collect([
             'message' => $message
         ]);
         broadcast(new StationNotificationUpdate($flag));
+        $text = Auth::user()->name . " Changed the status from " . StationStatus::where('id', $oldStatus)->select('name') . " to " . StationStatus::where($request->station_status_id, $oldStatus)->select('name') . ' at ' . now();
+        $logNew = Logging::Create(['structure_id' => $message->id, 'user_id' => Auth::id(), 'logging_type_id' => 18, 'text' => $text]);
     }
 
     /**
