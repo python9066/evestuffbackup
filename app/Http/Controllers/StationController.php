@@ -260,7 +260,7 @@ class StationController extends Controller
         ]);
         broadcast(new StationNotificationNew($flag));
         $text = Auth::user()->name . " Added " . $request->name . " At " . now();
-        $logNew = Logging::Create(['structure_id' => $message->id, 'user_id' => Auth::id(), 'type_id' => 17, 'text' => $text]);
+        $logNew = Logging::Create(['structure_id' => $message->id, 'user_id' => Auth::id(), 'logging_type_id' => 17, 'text' => $text]);
     }
 
     public function updateAttackMessage(Request $request, $id)
