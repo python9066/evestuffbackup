@@ -332,7 +332,7 @@ class StationController extends Controller
             'message' => $message
         ]);
         broadcast(new StationNotificationUpdate($flag));
-        $text = Auth::user()->name . " Changed the status from " . StationStatus::where('id', $oldStatus)->select('name') . " to " . StationStatus::where($request->station_status_id, $oldStatus)->select('name') . ' at ' . now();
+        $text = Auth::user()->name . " Changed the status from " . StationStatus::where('id', $oldStatus)->select('name')->get() . " to " . StationStatus::where($request->station_status_id, $oldStatus)->select('name') . ' at ' . now();
         $logNew = Logging::Create(['structure_id' => $message->id, 'user_id' => Auth::id(), 'logging_type_id' => 18, 'text' => $text]);
     }
 
