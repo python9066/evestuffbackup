@@ -51,6 +51,17 @@
                 <v-btn
                     :loading="loadingf"
                     :disabled="loadingf"
+                    @click="
+                        (statusflag = 5),
+                            (sortby = 'timestamp'),
+                            (sortdesc = false)
+                    "
+                >
+                    Anchoring
+                </v-btn>
+                <v-btn
+                    :loading="loadingf"
+                    :disabled="loadingf"
                     @click="statusflag = 4"
                 >
                     Reffed
@@ -735,13 +746,17 @@ export default {
                         s.station_status_id == 11 ||
                         (s.station_status_id == 13 &&
                             s.out_time < hourBefore) ||
-                        s.station_status_id == 14
+                        (s.station_status_id == 14 && s.out_time < hourBefore)
                 );
             }
             if (this.statusflag == 3) {
                 return filter.filter(
-                    s => s.station_status_id == 5 || s.station_status_id == 13
+                    s => s.station_status_id == 14 || s.station_status_id == 13
                 );
+            }
+
+            if (this.statusflag == 5) {
+                return filter.filter(s => s.station_status_id == 5);
             }
 
             if (this.statusflag == 4) {

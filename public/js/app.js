@@ -5971,6 +5971,17 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -6383,13 +6394,19 @@ function sleep(ms) {
 
       if (this.statusflag == 2) {
         return filter.filter(function (s) {
-          return s.station_status_id == 1 || s.station_status_id == 4 || s.station_status_id == 5 && s.out_time < hourBefore || s.station_status_id == 6 || s.station_status_id == 8 || s.station_status_id == 9 || s.station_status_id == 11 || s.station_status_id == 13 && s.out_time < hourBefore || s.station_status_id == 14;
+          return s.station_status_id == 1 || s.station_status_id == 4 || s.station_status_id == 5 && s.out_time < hourBefore || s.station_status_id == 6 || s.station_status_id == 8 || s.station_status_id == 9 || s.station_status_id == 11 || s.station_status_id == 13 && s.out_time < hourBefore || s.station_status_id == 14 && s.out_time < hourBefore;
         });
       }
 
       if (this.statusflag == 3) {
         return filter.filter(function (s) {
-          return s.station_status_id == 5 || s.station_status_id == 13;
+          return s.station_status_id == 14 || s.station_status_id == 13;
+        });
+      }
+
+      if (this.statusflag == 5) {
+        return filter.filter(function (s) {
+          return s.station_status_id == 5;
         });
       }
 
@@ -29115,6 +29132,21 @@ var render = function() {
                   }
                 },
                 [_vm._v("\n                UpComing\n            ")]
+              ),
+              _vm._v(" "),
+              _c(
+                "v-btn",
+                {
+                  attrs: { loading: _vm.loadingf, disabled: _vm.loadingf },
+                  on: {
+                    click: function($event) {
+                      ;(_vm.statusflag = 5),
+                        (_vm.sortby = "timestamp"),
+                        (_vm.sortdesc = false)
+                    }
+                  }
+                },
+                [_vm._v("\n                Anchoring\n            ")]
               ),
               _vm._v(" "),
               _c(
