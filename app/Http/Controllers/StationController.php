@@ -10,6 +10,7 @@ use App\Events\StationNotificationNew;
 use App\Events\StationNotificationUpdate;
 use App\Models\Corp;
 use App\Models\Item;
+use App\Models\Logging;
 use App\Models\Station;
 use App\Models\StationItemJoin;
 use App\Models\StationItems;
@@ -17,7 +18,9 @@ use App\Models\StationRecords;
 use App\Models\System;
 use Illuminate\Http\Request;
 use GuzzleHttp\Client as GuzzleHttpClient;
+use GuzzleHttp\Promise\Create;
 use GuzzleHttp\Utils;
+use Illuminate\Support\Facades\Auth;
 
 class StationController extends Controller
 {
@@ -256,6 +259,8 @@ class StationController extends Controller
             'message' => $message
         ]);
         broadcast(new StationNotificationNew($flag));
+        $text = Auth::user()->name . " Added " . $request->name . " At " . now();
+        $logNew = Logging::Create(['structure_id' => $message->id, 'user_id' => Auth::id(), 'type_id' => 17, 'text' => $text]);
     }
 
     public function updateAttackMessage(Request $request, $id)
