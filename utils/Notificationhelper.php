@@ -57,7 +57,7 @@ class Notifications
     {
 
 
-        $stations = Station::all();
+        $stations = Station::where('id', '>=', 1000000000);
         foreach ($stations as $station) {
             $url = "https://recon.gnf.lt/api/structure/" . $station->id;
             $client = new GuzzleHttpClient();
@@ -120,7 +120,7 @@ class Notifications
                 }
             }
         }
-        $stations = Station::where('id', '<', 1000000001);
+        $stations = Station::where('id', '<', 1000000000);
         foreach ($stations as $station) {
             $url = "https://recon.gnf.lt/api/structure/" . $station->name;
             $client = new GuzzleHttpClient();

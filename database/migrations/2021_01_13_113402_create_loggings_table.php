@@ -18,6 +18,7 @@ class CreateLoggingsTable extends Migration
             $table->id();
             $table->foreignId('campaign_id')->nullable();
             $table->foreignId('campaign_sola_system_id')->nullable();
+            $table->foreignId('structure_id')->nullable();
             $table->string('campaign_system_id', 4)->nullable();
             $table->foreignId('user_id')->nullable();
             $table->foreignId('logging_type_id')->nullable();
