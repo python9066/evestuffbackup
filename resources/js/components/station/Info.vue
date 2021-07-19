@@ -411,6 +411,7 @@ export default {
         },
         core() {
             var core = this.getCoreByStationID(this.station.id);
+            console.log(core);
 
             if (this.fit == "NO") {
                 return "No Info";
