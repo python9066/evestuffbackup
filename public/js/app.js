@@ -7234,7 +7234,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         return "No Info";
       }
 
-      if (core.cored == "Yes") {
+      if (core[0].cored == "Yes" == "Yes") {
         return "Yes";
       } else {
         return "No";
@@ -12225,7 +12225,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     core: function core() {
       var core = this.getCoreByStationID(this.station.id);
-      console.log(core[0].cored);
 
       if (this.fit == "NO") {
         return "No Info";

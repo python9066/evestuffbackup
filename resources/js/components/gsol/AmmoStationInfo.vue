@@ -459,7 +459,7 @@ export default {
                 return "No Info";
             }
 
-            if (core.cored == "Yes") {
+            if ((core[0].cored == "Yes") == "Yes") {
                 return "Yes";
             } else {
                 return "No";
