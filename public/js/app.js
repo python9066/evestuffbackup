@@ -12225,7 +12225,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     core: function core() {
       var core = this.getCoreByStationID(this.station.id);
-      console.log(core.cored);
+      console.log(core);
 
       if (this.fit == "NO") {
         return "No Info";
