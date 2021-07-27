@@ -136,11 +136,13 @@ class AuthController extends Controller
 
     public function purgeRoles($user)
     {
-        $user->removeRole(4);
-        $user->removeRole(5);
-        $user->removeRole(6);
-        $user->removeRole(13);
-        $user->removeRole(17);
+        $user->removeRole(4); // Coord
+        $user->removeRole(5); // Recon
+        $user->removeRole(6); // ops
+        $user->removeRole(13); // Director
+        $user->removeRole(14); // Recon Leader
+        $user->removeRole(16); // GSFOE Leader
+        $user->removeRole(17); // GSOL
     }
 
     public function addRoles($user, $role_id)
@@ -169,10 +171,22 @@ class AuthController extends Controller
             $user->assignRole(13);
         }
 
+        if ($role_id == 1094) {
+
+            // function to assign recon leader
+            $user->assignRole(14);
+        }
+
         if ($role_id == 47) {
 
             // function to assign gsol role
             $user->assignRole(17);
+        }
+
+        if ($role_id == 1045) {
+
+            // function to assign GSFOE Leader role
+            $user->assignRole(16);
         }
     }
 }
