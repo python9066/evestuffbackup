@@ -143,6 +143,7 @@ class AuthController extends Controller
         $user->removeRole(14); // Recon Leader
         $user->removeRole(16); // GSFOE Leader
         $user->removeRole(17); // GSOL
+        $user->removeRole(12); // SC
     }
 
     public function addRoles($user, $role_id)
@@ -187,6 +188,12 @@ class AuthController extends Controller
 
             // function to assign GSFOE Leader role
             $user->assignRole(16);
+        }
+
+        if ($role_id == 28) {
+
+            // function to assign FC role
+            $user->assignRole(12);
         }
     }
 }
