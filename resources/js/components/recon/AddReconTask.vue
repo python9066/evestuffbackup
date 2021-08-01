@@ -59,6 +59,18 @@
                                     outlined
                                 ></v-autocomplete>
                             </div>
+
+                            <!-- <div class=" d-inline-flex justify-content-around">
+                                <v-autocomplete
+                                    v-model="system_test"
+                                    chips
+                                    deletable-chips
+                                    multiple
+                                    :items="system_test_items"
+                                    label="System Test"
+                                    outlined
+                                ></v-autocomplete>
+                            </div> -->
                         </div>
                     </v-fade-transition>
                     <v-fade-transition>
@@ -121,7 +133,8 @@ export default {
             sysItems: [],
             systemEdit: null,
             sysSearch: null,
-            sysSelect: null,
+            sysSelect: [],
+            system_test: [],
             sysLoading: false,
             ticktemEdit: null,
             tickerEdit: null,
@@ -245,36 +258,12 @@ export default {
         systemList() {
             return this.systemlist;
         },
-
-        stationReadonly() {
-            if (this.state == 1) {
-                return false;
-            } else {
-                return true;
-            }
-        },
         showSubmit() {
             if (this.sysSelect != null) {
                 return false;
             } else {
                 return true;
             }
-        },
-
-        stationOutlined() {
-            if (this.state == 1) {
-                return true;
-            } else {
-                return false;
-            }
-        },
-
-        structureList() {
-            return this.structurelist;
-        },
-
-        tickList() {
-            return this.ticklist;
         }
     },
 

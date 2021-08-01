@@ -11373,6 +11373,18 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -11387,7 +11399,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       sysItems: [],
       systemEdit: null,
       sysSearch: null,
-      sysSelect: null,
+      sysSelect: [],
+      system_test: [],
       sysLoading: false,
       ticktemEdit: null,
       tickerEdit: null,
@@ -11545,32 +11558,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     systemList: function systemList() {
       return this.systemlist;
     },
-    stationReadonly: function stationReadonly() {
-      if (this.state == 1) {
-        return false;
-      } else {
-        return true;
-      }
-    },
     showSubmit: function showSubmit() {
       if (this.sysSelect != null) {
         return false;
       } else {
         return true;
       }
-    },
-    stationOutlined: function stationOutlined() {
-      if (this.state == 1) {
-        return true;
-      } else {
-        return false;
-      }
-    },
-    structureList: function structureList() {
-      return this.structurelist;
-    },
-    tickList: function tickList() {
-      return this.ticklist;
     }
   }),
   beforeDestroy: function beforeDestroy() {}
