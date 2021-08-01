@@ -11790,13 +11790,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         text: "Last Checked (date)",
         value: "updated_at"
       }, {
+        text: "Checked by",
+        value: "user_name"
+      }, {
         text: "Last Checked (time)",
         value: "count",
         width: "20%",
         align: "center"
-      }, {
-        text: "Checked by",
-        value: "user_name"
       }, {
         text: "",
         value: "actions",
