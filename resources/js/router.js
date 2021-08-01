@@ -18,6 +18,7 @@ import MultiCampagins from "./views/MultiCampaigns.vue";
 import campaignFinished from "./views/redirect/campaignOver.vue";
 import chillstations from "./components/chillstation/ChillStructure.vue";
 import Gsol from "./views/Gsol"
+import Recon from "./views/Recon";
 
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
@@ -222,6 +223,20 @@ export default new Router({
             component: chillstations,
             beforeEnter(to, from, next) {
                 if(Permissions.indexOf('view_chill_timers')!== -1){
+                    next()
+                }else{
+                   next("/notifications")
+                }
+
+              }
+        },
+
+        {
+            path: "/recon",
+            name: "recon",
+            component: Recon,
+            beforeEnter(to, from, next) {
+                if(Permissions.indexOf('view_recon')!== -1){
                     next()
                 }else{
                    next("/notifications")

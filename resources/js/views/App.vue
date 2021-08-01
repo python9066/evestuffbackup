@@ -30,7 +30,7 @@
                         Notifications
                     </v-tab>
 
-                    <v-tab v-if="$can('super')" link to="/towers">
+                    <v-tab v-if="$can('super')" link to="/recon">
                         Recon
                     </v-tab>
 
