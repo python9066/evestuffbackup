@@ -2,7 +2,7 @@
     <div class=" d-inline-flex align-items-md-center ">
         <div>
             <!-- <span :v-if="item.user_id != null" class=" d-inline-flex mb-4"> -->
-            <span class=" d-inline-flex mb-4 align-items-md-center">
+            <span class=" d-inline-flex mb-4 pt-12">
                 <VueCountUptimer
                     :start-time="moment.utc(item.updated_at).unix()"
                     :end-text="'Window Closed'"
@@ -25,7 +25,7 @@ import { mapState, mapGetters } from "vuex";
 import moment from "moment";
 export default {
     props: {
-        item: Array
+        item: Object
     },
     data() {
         return {

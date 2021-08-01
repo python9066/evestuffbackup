@@ -11506,7 +11506,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
-    item: Array
+    item: Object
   },
   data: function data() {
     return {
@@ -36545,7 +36545,7 @@ var render = function() {
     _c("div", [
       _c(
         "span",
-        { staticClass: " d-inline-flex mb-4 align-items-md-center" },
+        { staticClass: " d-inline-flex mb-4 pt-12" },
         [
           _c("VueCountUptimer", {
             attrs: {
