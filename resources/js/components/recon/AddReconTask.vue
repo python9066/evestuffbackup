@@ -110,7 +110,8 @@ export default {
         return {
             systemValue: [],
             taskName: null,
-            infoText: null
+            infoText: null,
+            showReconTask: false
         };
     },
 

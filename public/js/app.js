@@ -11376,7 +11376,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     return {
       systemValue: [],
       taskName: null,
-      infoText: null
+      infoText: null,
+      showReconTask: false
     };
   },
   methods: {
