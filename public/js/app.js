@@ -23124,9 +23124,8 @@ function sleep(ms) {
               case 2:
                 res = _context2.sent;
                 _this2.tasks = res.data.tasks;
-                _this2.tasksLoaded = true;
 
-              case 5:
+              case 4:
               case "end":
                 return _context2.stop();
             }
@@ -48256,13 +48255,7 @@ var render = function() {
       _vm._v(" "),
       _c(
         "v-row",
-        {
-          attrs: {
-            "no-gutters": "",
-            justify: "center",
-            "v-if": _vm.tasksLoaded == true
-          }
-        },
+        { attrs: { "no-gutters": "", justify: "center" } },
         _vm._l(_vm.tasks, function(task, index) {
           return _c("ReconTaskTable", {
             key: task.id,
