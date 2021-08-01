@@ -184,32 +184,9 @@ export default {
     data() {
         return {
             headers: [
-                { text: "NodeID", value: "node", width: "5%", align: "start" },
-                {
-                    text: "Pilot",
-                    value: "user_name",
-                    width: "25%",
-                    align: "start"
-                },
-                {
-                    text: "Main",
-                    value: "main_name",
-                    width: "10%",
-                    align: "start"
-                },
-                {
-                    text: "Ship",
-                    value: "user_ship",
-                    width: "15%",
-                    align: "start"
-                },
-
-                {
-                    text: "Status",
-                    value: "status_name",
-                    width: "20%",
-                    align: "center"
-                },
+                { text: "Region", value: "region", width: "10%" },
+                { text: "Constellation", value: "constellation" },
+                { text: "System", value: "system" },
                 {
                     text: "Age/Hack",
                     value: "count",
