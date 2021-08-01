@@ -81,6 +81,7 @@ Vue.component('AmmoRequestTable', require('./components/gsol/AmmoRequestTable.vu
 Vue.component('AmmoStationInfo', require('./components/gsol/AmmoStationInfo.vue').default);
 Vue.component('AmmoStocker', require('./components/gsol/AmmoStocker.vue').default);
 Vue.component('AddReconTask', require('./components/recon/AddReconTask.vue').default);
+Vue.component('ReconTaskTable', require('./components/recon/ReconTaskTable.vue').default);
 
 
 

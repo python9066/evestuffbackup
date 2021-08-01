@@ -20,6 +20,21 @@
                 ></v-card>
             </v-col>
         </v-row>
+        <v-row no-gutters justify="center" :v-if="tasksLoaded == true">
+            <SystemTable
+                class=" px-5 pt-5"
+                v-for="(task, index) in tasks"
+                :created_at="task.created_at"
+                :edited_by_user_id="task.edited_by_user_id"
+                :info="task.info"
+                :made_by_user_id="task.made_by_user_id"
+                :title="task.title"
+                :updated_at="task.updated_at"
+                :index="index"
+                :key="task.id"
+            >
+            </SystemTable>
+        </v-row>
     </div>
 </template>
 
@@ -36,6 +51,7 @@ function sleep(ms) {
 export default {
     date() {
         tasks = [];
+        tasksLoaded = false;
     },
 
     created() {},
