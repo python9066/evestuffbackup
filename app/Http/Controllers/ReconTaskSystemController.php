@@ -57,7 +57,7 @@ class ReconTaskSystemController extends Controller
             "message" => $message,
             'id' => $task_id,
         ]);
-        broadcast(new ReconTimerUpdate($flag));
+        broadcast(new ReconTimerUpdate($flag))->toOthers();
     }
     /**
      * Remove the specified resource from storage.
