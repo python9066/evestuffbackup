@@ -11667,7 +11667,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     made_by_user_id: Number,
     title: String,
     updated_at: String,
-    size: Number
+    size: Number,
+    id: Number
   },
   data: function data() {
     return {
@@ -12367,7 +12368,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }
     }
   },
-  computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapState"])(["campaignsystems", "user_id"])), Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(["getCampaignUsersByUserIdEntosis", "getCampaignUsersByUserIdEntosisCount", "getCampaignUsersByUserIdEntosisFree", "getCampaignSolaSystemFilter", "getTotalNodeCountBySystem", "getHackingNodeCountBySystem", "getNodeValue", "getRedHackingNodeCountBySystem", "getSystemReadyToGoCount", "getSystemOnTheWayCount", "getCampaignUsersReadyToGoAll", "getCampaignUsersOnTheWayAll", "getCampaignUsersByUserIdEntosisFreeCount", "getSystemTableExpandable"])), {}, {
+  computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapState"])(["recontasksystems", "user_id"])), Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(["getCampaignUsersByUserIdEntosis", "getCampaignUsersByUserIdEntosisCount", "getCampaignUsersByUserIdEntosisFree", "getCampaignSolaSystemFilter", "getTotalNodeCountBySystem", "getHackingNodeCountBySystem", "getNodeValue", "getRedHackingNodeCountBySystem", "getSystemReadyToGoCount", "getSystemOnTheWayCount", "getCampaignUsersReadyToGoAll", "getCampaignUsersOnTheWayAll", "getCampaignUsersByUserIdEntosisFreeCount", "getSystemTableExpandable"])), {}, {
     fabOnTheWayDisbale: function fabOnTheWayDisbale() {
       if (this.OnTheWayCount == 0) {
         return true;
@@ -12386,33 +12387,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var _this8 = this;
 
       // var timers = this.$store.state.timers;
-      if (this.statusflag == 1) {
-        return this.campaignsystems.filter(function (s) {
-          return s.status_id == 1 && s.system_id == _this8.system_id && s.campaign_id == _this8.campaign_id;
-        });
-      }
-
-      if (this.statusflag == 3) {
-        return this.campaignsystems.filter(function (s) {
-          return s.status_id == 3 && s.system_id == _this8.system_id && s.campaign_id == _this8.campaign_id;
-        });
-      }
-
-      if (this.statusflag == 5) {
-        return this.campaignsystems.filter(function (s) {
-          return s.status_id == 5 && s.system_id == _this8.system_id && s.campaign_id == _this8.campaign_id;
-        });
-      }
-
-      if (this.statusflag == 6) {
-        return this.campaignsystems.filter(function (s) {
-          return s.status_id == 6 && s.system_id == _this8.system_id && s.campaign_id == _this8.campaign_id;
-        });
-      } else {
-        return this.campaignsystems.filter(function (s) {
-          return s.status_id != 10 && s.system_id == _this8.system_id && s.campaign_id == _this8.campaign_id;
-        });
-      }
+      return this.recontasksystems.filter(function (s) {
+        return s.id == _this8.id;
+      });
     },
     chars: function chars() {
       return this.getCampaignUsersByUserIdEntosis(this.$store.state.user_id);
@@ -23007,6 +22984,7 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
+//
 //
 //
 //
@@ -48267,6 +48245,7 @@ var render = function() {
             staticClass: " px-5 pt-5",
             attrs: {
               created_at: task.created_at,
+              id: task.id,
               edited_by_user_id: task.edited_by_user_id,
               info: task.info,
               made_by_user_id: task.made_by_user_id,

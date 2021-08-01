@@ -26,6 +26,7 @@
                 class=" px-5 pt-5"
                 v-for="(task, index) in tasks"
                 :created_at="task.created_at"
+                :id="task.id"
                 :edited_by_user_id="task.edited_by_user_id"
                 :info="task.info"
                 :made_by_user_id="task.made_by_user_id"
