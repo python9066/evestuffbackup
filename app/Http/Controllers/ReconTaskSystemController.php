@@ -51,7 +51,7 @@ class ReconTaskSystemController extends Controller
     {
         ReconTaskSystems::find($id)->update(['user_id' => null]);
         ReconTaskSystems::find($id)->update($request->all());
-        $task_id = ReconTaskSystems::find($id)->value('recon_task_id')->get();
+        $task_id = ReconTaskSystems::find($id)->value('recon_task_id');
         dd($task_id);
         $flag = collect([
             'id' => $id,
