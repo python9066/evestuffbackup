@@ -20,7 +20,6 @@
                 ></v-card>
             </v-col>
         </v-row>
-        ewfeawffeefef
         <v-row no-gutters justify="center" :v-if="taskLoaded == true">
             <ReconTaskTable
                 class=" px-5 pt-5"
@@ -59,10 +58,9 @@ export default {
         };
     },
 
-    created() {
+    async created() {
         Echo.private("recon").listen("ReconTimerUpdate", e => {
-            console.log("yayay");
-            this.$store.dispatch("getReconTaskSystemsRecords");
+            this.updateTasks();
         });
     },
 
@@ -90,6 +88,11 @@ export default {
 
             this.tasks = res.data.tasks;
             this.taskLoaded = true;
+        },
+
+        async updateTasks() {
+            await this.getTasks();
+            await this.$store.dispatch("getReconTaskSystemsRecords");
         }
     },
 

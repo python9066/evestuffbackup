@@ -22372,7 +22372,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
 
 
 
@@ -22395,30 +22394,16 @@ function sleep(ms) {
   created: function created() {
     var _this = this;
 
-    Echo["private"]("recon").listen("ReconTimerUpdate", function (e) {
-      console.log("yayay");
-
-      _this.$store.dispatch("getReconTaskSystemsRecords");
-    });
-  },
-  beforeMount: function beforeMount() {},
-  beforeCreate: function beforeCreate() {},
-  mounted: function mounted() {
-    var _this2 = this;
-
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              _context.next = 2;
-              return _this2.getTasks();
+              Echo["private"]("recon").listen("ReconTimerUpdate", function (e) {
+                _this.updateTasks();
+              });
 
-            case 2:
-              _context.next = 4;
-              return _this2.$store.dispatch("getReconTaskSystemsRecords");
-
-            case 4:
+            case 1:
             case "end":
               return _context.stop();
           }
@@ -22426,17 +22411,42 @@ function sleep(ms) {
       }, _callee);
     }))();
   },
+  beforeMount: function beforeMount() {},
+  beforeCreate: function beforeCreate() {},
+  mounted: function mounted() {
+    var _this2 = this;
+
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              _context2.next = 2;
+              return _this2.getTasks();
+
+            case 2:
+              _context2.next = 4;
+              return _this2.$store.dispatch("getReconTaskSystemsRecords");
+
+            case 4:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      }, _callee2);
+    }))();
+  },
   methods: {
     getTasks: function getTasks() {
       var _this3 = this;
 
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
         var res;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
           while (1) {
-            switch (_context2.prev = _context2.next) {
+            switch (_context3.prev = _context3.next) {
               case 0:
-                _context2.next = 2;
+                _context3.next = 2;
                 return axios({
                   method: "get",
                   url: "/api/recontask",
@@ -22448,16 +22458,39 @@ function sleep(ms) {
                 });
 
               case 2:
-                res = _context2.sent;
+                res = _context3.sent;
                 _this3.tasks = res.data.tasks;
                 _this3.taskLoaded = true;
 
               case 5:
               case "end":
-                return _context2.stop();
+                return _context3.stop();
             }
           }
-        }, _callee2);
+        }, _callee3);
+      }))();
+    },
+    updateTasks: function updateTasks() {
+      var _this4 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
+          while (1) {
+            switch (_context4.prev = _context4.next) {
+              case 0:
+                _context4.next = 2;
+                return _this4.getTasks();
+
+              case 2:
+                _context4.next = 4;
+                return _this4.$store.dispatch("getReconTaskSystemsRecords");
+
+              case 4:
+              case "end":
+                return _context4.stop();
+            }
+          }
+        }, _callee4);
       }))();
     }
   },
@@ -47325,7 +47358,7 @@ var render = function() {
         ],
         1
       ),
-      _vm._v("\n    ewfeawffeefef\n    "),
+      _vm._v(" "),
       _c(
         "v-row",
         {
