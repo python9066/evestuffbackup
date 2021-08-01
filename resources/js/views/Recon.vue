@@ -20,6 +20,7 @@
                 ></v-card>
             </v-col>
         </v-row>
+        ewfeawffeefef
         <v-row no-gutters justify="center">
             <ReconTaskTable
                 class=" px-5 pt-5"
@@ -50,8 +51,8 @@ function sleep(ms) {
 
 export default {
     date() {
-        tasks = [];
-        tasksLoaded = false;
+        tasks = [],
+        test = "yoyo",
     },
 
     created() {},
