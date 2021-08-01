@@ -24,4 +24,9 @@ class ReconTaskSystems extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    protected $casts = [
+        'created_at' => 'datetime',
+        'updated_at' => 'datetime',
+    ];
 }

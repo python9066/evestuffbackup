@@ -24,4 +24,9 @@ class ReconTasks extends Model
     {
         return $this->hasMany(ReconTaskSystems::class);
     }
+
+    protected $casts = [
+        'created_at' => 'datetime',
+        'updated_at' => 'datetime',
+    ];
 }
