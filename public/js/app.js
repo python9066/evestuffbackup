@@ -46067,6 +46067,10 @@ var render = function() {
                   ),
                   _c(
                     "v-card-actions",
+                    {
+                      staticClass: "justify-center",
+                      attrs: { align: "center" }
+                    },
                     [
                       _vm.$can("super")
                         ? _c(

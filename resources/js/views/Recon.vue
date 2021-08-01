@@ -13,7 +13,7 @@
                         is press the button next to each system after completing
                         the task. This is just so we know when the task was last
                         done.</v-card-text
-                    ><v-card-actions>
+                    ><v-card-actions align="center" class="justify-center">
                         <v-btn
                             v-if="$can('super')"
                             @click="addTask = true"
