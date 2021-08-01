@@ -28,6 +28,7 @@ class ReconTaskController extends Controller
     {
         $new = ReconTasks::Create(['title' => $request->title, 'info' => $request->info, 'made_by_user_id' => $request->made_by_user_id]);
         $id = $new->id;
+        dd($request->systemValue);
         foreach ($request->systemValue as $system) {
             ReconTaskSystems::Create(['recon_task_id' => $id, 'system_id' => $system]);
         }
