@@ -22396,6 +22396,8 @@ function sleep(ms) {
     var _this = this;
 
     Echo["private"]("recon").listen("ReconTimerUpdate", function (e) {
+      console.log("yayay");
+
       _this.$store.dispatch("getReconTaskSystemsRecords");
     });
   },

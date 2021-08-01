@@ -61,6 +61,7 @@ export default {
 
     created() {
         Echo.private("recon").listen("ReconTimerUpdate", e => {
+            console.log("yayay");
             this.$store.dispatch("getReconTaskSystemsRecords");
         });
     },
