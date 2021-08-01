@@ -8,7 +8,7 @@
                             Here you will find your daily tasks
                         </h1>
                     </v-card-title>
-                    <v-card-text>
+                    <v-card-text align="center" class="justify-center">
                         Below you will windows for each task. All you have to do
                         is press the button next to each system after completing
                         the task. This is just so we know when the task was last
