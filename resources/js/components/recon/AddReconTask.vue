@@ -1,11 +1,6 @@
 <template>
     <div>
-        <v-dialog
-            max-width="700px"
-            z-index="0"
-            v-model="showReconTask"
-            @click:outside="close()"
-        >
+        <v-dialog max-width="700px" z-index="0" v-model="showReconTask">
             <template v-slot:activator="{ on, attrs }">
                 <v-btn
                     color="green"
