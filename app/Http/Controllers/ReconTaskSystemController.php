@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\ReconTasks;
 use App\Models\ReconTaskSystems;
 use Illuminate\Http\Request;
 
-class ReconTaskController extends Controller
+class ReconTaskSystemController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +14,7 @@ class ReconTaskController extends Controller
      */
     public function index()
     {
-        return ['tasks' => ReconTasks::all()];
+        //
     }
 
     /**
@@ -26,11 +25,7 @@ class ReconTaskController extends Controller
      */
     public function store(Request $request)
     {
-        $new = ReconTasks::Create(['title' => $request->title, 'info' => $request->info, 'made_by_user_id' => $request->made_by_user_id]);
-        $id = $new->id;
-        foreach ($request->systems as $system) {
-            ReconTaskSystems::Create(['recon_task_id' => $id, 'system_id' => $system]);
-        }
+        //
     }
 
     /**
@@ -53,8 +48,8 @@ class ReconTaskController extends Controller
      */
     public function update(Request $request, $id)
     {
+        ReconTaskSystems::find($id)->update($request->all());
     }
-
     /**
      * Remove the specified resource from storage.
      *
