@@ -50,7 +50,7 @@
                                 <v-autocomplete
                                     v-model="sysSelect"
                                     :loading="sysLoading"
-                                    clearable
+                                    chips
                                     deletable-chips
                                     multiple
                                     :items="sysItems"

@@ -36156,7 +36156,7 @@ var render = function() {
                           _c("v-autocomplete", {
                             attrs: {
                               loading: _vm.sysLoading,
-                              clearable: "",
+                              chips: "",
                               "deletable-chips": "",
                               multiple: "",
                               items: _vm.sysItems,
