@@ -28,7 +28,7 @@
                 class=" d-flex flex-column"
             >
                 <v-card-title class="justify-center">
-                    <p>Enter Task Name Here</p>
+                    <p>Make New Task</p>
                 </v-card-title>
                 <v-card-text>
                     <div
@@ -38,7 +38,8 @@
                             v-model="taskName"
                             autofocus
                             placeholder="Check the stuff around here"
-                            :label="Title"
+                            label="Enter Name Here"
+                            outlined
                             class=" shrink"
                             style="width:600px"
                         ></v-text-field>

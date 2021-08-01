@@ -11467,6 +11467,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -36326,7 +36327,7 @@ var render = function() {
             },
             [
               _c("v-card-title", { staticClass: "justify-center" }, [
-                _c("p", [_vm._v("Enter Task Name Here")])
+                _c("p", [_vm._v("Make New Task")])
               ]),
               _vm._v(" "),
               _c(
@@ -36345,7 +36346,8 @@ var render = function() {
                         attrs: {
                           autofocus: "",
                           placeholder: "Check the stuff around here",
-                          label: _vm.Title
+                          label: "Enter Name Here",
+                          outlined: ""
                         },
                         model: {
                           value: _vm.taskName,
