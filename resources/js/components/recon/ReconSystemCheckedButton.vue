@@ -1,6 +1,6 @@
 <template>
     <div>
-        <v-icon color="red" v-bind="attrs" v-on="on" @click="updateTimer()">
+        <v-icon color="red" @click="updateTimer()">
             {{ icon }}
         </v-icon>
 

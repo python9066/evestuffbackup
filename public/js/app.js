@@ -36685,22 +36685,14 @@ var render = function() {
     [
       _c(
         "v-icon",
-        _vm._g(
-          _vm._b(
-            {
-              attrs: { color: "red" },
-              on: {
-                click: function($event) {
-                  return _vm.updateTimer()
-                }
-              }
-            },
-            "v-icon",
-            _vm.attrs,
-            false
-          ),
-          _vm.on
-        ),
+        {
+          attrs: { color: "red" },
+          on: {
+            click: function($event) {
+              return _vm.updateTimer()
+            }
+          }
+        },
         [_vm._v("\n        " + _vm._s(_vm.icon) + "\n    ")]
       )
     ],
