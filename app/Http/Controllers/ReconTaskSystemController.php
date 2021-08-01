@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Events\ReconTimerUpdate;
+use App\Models\ReconTaskSystemRecords;
 use App\Models\ReconTaskSystems;
 use Illuminate\Http\Request;
 
@@ -52,7 +53,7 @@ class ReconTaskSystemController extends Controller
         ReconTaskSystems::find($id)->update(['user_id' => null]);
         ReconTaskSystems::find($id)->update($request->all());
         $task_id = ReconTaskSystems::find($id)->value('recon_task_id');
-        $message = ReconTaskSystems::where('id', $id)->first();
+        $message = ReconTaskSystemRecords::where('id', $id)->first();
         $flag = collect([
             "message" => $message,
             'id' => $task_id,
