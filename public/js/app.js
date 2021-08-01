@@ -11675,6 +11675,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -36686,6 +36693,17 @@ var render = function() {
                         }
                       },
                       {
+                        key: "item.updated_at",
+                        fn: function(ref) {
+                          var item = ref.item
+                          return [
+                            item.user_id != null
+                              ? _c("span", [_vm._v(_vm._s(item.updated_at))])
+                              : _c("span", [_vm._v(" Not Checked ")])
+                          ]
+                        }
+                      },
+                      {
                         key: "item.actions",
                         fn: function(ref) {
                           var item = ref.item
@@ -36735,6 +36753,7 @@ var render = function() {
                   )
                 },
                 [
+                  _vm._v(" "),
                   _vm._v(" "),
                   _vm._v(" "),
                   _c("template", { slot: "no-data" }, [

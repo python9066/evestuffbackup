@@ -26,6 +26,13 @@
                         ><LastedCheckedRecon :item="item"> </LastedCheckedRecon>
                     </template>
 
+                    <template v-slot:[`item.updated_at`]="{ item }"
+                        ><span v-if="item.user_id != null">{{
+                            item.updated_at
+                        }}</span>
+                        <span v-else> Not Checked </span>
+                    </template>
+
                     <template v-slot:[`item.actions`]="{ item }">
                         <div class=" d-inline-flex">
                             <SystemAttackMessage
