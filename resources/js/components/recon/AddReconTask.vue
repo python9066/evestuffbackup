@@ -1,6 +1,11 @@
 <template>
     <div>
-        <v-dialog max-width="700px" z-index="0" v-model="showReconTask">
+        <v-dialog
+            persistent
+            max-width="700px"
+            z-index="0"
+            v-model="showReconTask"
+        >
             <template v-slot:activator="{ on, attrs }">
                 <v-btn
                     color="green"
@@ -156,7 +161,7 @@ export default {
             if (
                 this.taskName != null &&
                 this.infoText != null &&
-                this.systemValue != null
+                this.systemValue != []
             ) {
                 return true;
             } else {

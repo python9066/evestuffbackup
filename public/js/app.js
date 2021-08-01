@@ -11363,6 +11363,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -11440,7 +11445,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])([])), Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapState"])(["systemlist"])), {}, {
     showSubmit: function showSubmit() {
-      if (this.taskName != null && this.infoText != null && this.systemValue != null) {
+      if (this.taskName != null && this.infoText != null && this.systemValue != []) {
         return true;
       } else {
         return false;
@@ -35920,7 +35925,7 @@ var render = function() {
       _c(
         "v-dialog",
         {
-          attrs: { "max-width": "700px", "z-index": "0" },
+          attrs: { persistent: "", "max-width": "700px", "z-index": "0" },
           scopedSlots: _vm._u([
             {
               key: "activator",
