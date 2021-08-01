@@ -17,7 +17,7 @@
                             }}
                         </div>
                         <div v-else>
-                            Not Checked
+                            N/A
                         </div>
                     </template>
                 </VueCountUptimer>

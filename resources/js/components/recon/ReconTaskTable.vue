@@ -23,34 +23,23 @@
                     class="elevation-12"
                 >
                     <template v-slot:[`item.count`]="{ item }"
-                        ><LastedCheckedRecon :item="item"> </LastedCheckedRecon>
+                        ><LastedCheckedTimerRecon :item="item">
+                        </LastedCheckedTimerRecon>
                     </template>
 
                     <template v-slot:[`item.updated_at`]="{ item }"
                         ><span v-if="item.user_id != null">{{
                             item.updated_at
                         }}</span>
-                        <span v-else> Not Checked </span>
+                        <span v-else> N/A </span>
                     </template>
 
                     <template v-slot:[`item.actions`]="{ item }">
                         <div class=" d-inline-flex">
-                            <SystemAttackMessage
+                            <ReconSystemCheckedButton
                                 class=" pr-3"
                                 :item="item"
-                            ></SystemAttackMessage>
-                            <SystemMessage :item="item"> </SystemMessage>
-                            <v-icon
-                                v-if="
-                                    item.status_id != 4 && item.status_id != 5
-                                "
-                                color="orange darken-3"
-                                small
-                                class="pl-5"
-                                @click="deleteNode(item)"
-                            >
-                                fas fa-trash-alt
-                            </v-icon>
+                            ></ReconSystemCheckedButton>
                         </div>
                     </template>
 
