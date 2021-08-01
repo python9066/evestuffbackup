@@ -157,33 +157,10 @@
                 </v-card-text>
                 <v-spacer></v-spacer
                 ><v-card-actions>
-                    <v-chip
-                        v-if="state == 1"
-                        pill
-                        :disabled="submitTask"
-                        color="green"
-                        @click="reconTaskAdd()"
-                    >
-                        Add
-                    </v-chip>
                     <v-btn class="white--text" color="teal" @click="close()">
                         Close
                     </v-btn>
-                    <v-btn
-                        class="white--text"
-                        color="green"
-                        :disabled="showSubmit"
-                        @click="submit()"
-                        v-if="state == 2"
-                    >
-                        Submit </v-btn
-                    ><v-btn
-                        class="white--text"
-                        color="green"
-                        :disabled="showSubmit3"
-                        @click="submit3()"
-                        v-if="state == 3"
-                    >
+                    <v-btn class="white--text" color="green" @click="submit()">
                         Submit
                     </v-btn></v-card-actions
                 >
@@ -377,60 +354,6 @@ export default {
             );
         },
 
-        async submit3() {
-            var d = parseInt(this.refTime.substr(0, 1));
-            var h = parseInt(this.refTime.substr(3, 2));
-            var m = parseInt(this.refTime.substr(6, 2));
-            var s = parseInt(this.refTime.substr(9, 2));
-            var ds = d * 24 * 60 * 60;
-            var hs = h * 60 * 60;
-            var ms = m * 60;
-            var sec = ds + hs + ms + s;
-            var outTime = moment
-                .utc()
-                .add(sec, "seconds")
-                .format("YYYY-MM-DD HH:mm:ss");
-
-            var request = {
-                station_status_id: this.refType,
-                out_time: outTime,
-                status_update: moment.utc().format("YYYY-MM-DD HH:mm:ss"),
-                show_on_main: 1
-            };
-
-            await axios({
-                method: "put", //you can set what request you want to be
-                url:
-                    "api/updatestationnotification/" +
-                    this.stationPull.station_id,
-                data: request,
-                headers: {
-                    Authorization: "Bearer " + this.$store.state.token,
-                    Accept: "application/json",
-                    "Content-Type": "application/json"
-                }
-            }).then(
-                (this.taskName = null),
-                (this.showReconTask = false),
-                (this.refType = null),
-                (this.refTime = null),
-                (this.stationName = null),
-                (this.taskName = null),
-                (this.structItems = []),
-                (this.structSearch = null),
-                (this.structSelect = null),
-                (this.sysItems = []),
-                (this.sysSearch = null),
-                (this.sysSelect = null),
-                (this.systems = []),
-                (this.tickItems = []),
-                (this.tickSearch = null),
-                (this.tickSelect = null),
-                (this.state = 1),
-                (this.showReconTask = false)
-            );
-        },
-
         async open() {
             await this.$store.dispatch("getSystemList");
             await this.$store.dispatch("getTickList");
@@ -502,13 +425,7 @@ export default {
                 return true;
             }
         },
-        showSubmit3() {
-            if (this.refType != null && this.refTime != null) {
-                return false;
-            } else {
-                return true;
-            }
-        },
+
         stationOutlined() {
             if (this.state == 1) {
                 return true;
