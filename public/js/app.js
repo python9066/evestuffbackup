@@ -11363,6 +11363,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -11378,7 +11383,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     close: function close() {
       this.taskName = null;
       this.showReconTask = false;
-      this.taskName = null;
+      this.infoText = null;
       this.systemValue = [];
     },
     submit: function submit() {
@@ -11391,20 +11396,23 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context.prev = _context.next) {
               case 0:
                 request = {
-                  name: _this.stationName
+                  title: _this.taskName,
+                  info: _this.infoText,
+                  made_by_user_id: _this.$store.state.user_id,
+                  systems: _this.systemValue
                 };
                 _context.next = 3;
                 return axios({
-                  method: "put",
+                  method: "post",
                   //you can set what request you want to be
-                  url: "api/stationnew",
+                  url: "api/recontask",
                   data: request,
                   headers: {
                     Authorization: "Bearer " + _this.$store.state.token,
                     Accept: "application/json",
                     "Content-Type": "application/json"
                   }
-                }).then(_this.taskName = null, _this.showReconTask = false, _this.stationName = null, _this.taskName = null, _this.systems = [], _this.state = 1, _this.showReconTask = false);
+                }).then(_this.taskName = null, _this.showReconTask = false, _this.systemValue = [], _this.infoText = null);
 
               case 3:
               case "end":
@@ -11426,71 +11434,17 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return _this2.$store.dispatch("getSystemList");
 
               case 2:
-                _context2.next = 4;
-                return _this2.$store.dispatch("getTickList");
-
-              case 4:
-                _context2.next = 6;
-                return _this2.$store.dispatch("getStructureList");
-
-              case 6:
               case "end":
                 return _context2.stop();
             }
           }
         }, _callee2);
       }))();
-    },
-    reconTaskAdd: function reconTaskAdd() {
-      var _this3 = this;
-
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
-        var request;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
-          while (1) {
-            switch (_context3.prev = _context3.next) {
-              case 0:
-                request = {
-                  title: _this3.taskName
-                };
-                _context3.next = 3;
-                return axios({
-                  method: "put",
-                  //you can set what request you want to be
-                  url: "api/stationname",
-                  data: request,
-                  headers: {
-                    Authorization: "Bearer " + _this3.$store.state.token,
-                    Accept: "application/json",
-                    "Content-Type": "application/json"
-                  }
-                }).then(function (response) {
-                  var res = response.data;
-
-                  if (res.state == 2) {
-                    _this3.stationPull = res;
-                    _this3.stationName = res.station_name;
-                    _this3.state = res.state;
-                  }
-
-                  if (res.state == 3) {
-                    _this3.stationPull = res;
-                    _this3.state = res.state;
-                  }
-                });
-
-              case 3:
-              case "end":
-                return _context3.stop();
-            }
-          }
-        }, _callee3);
-      }))();
     }
   },
-  computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])([])), Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapState"])(["systemlist", "ticklist", "structurelist"])), {}, {
-    submitTask: function submitTask() {
-      if (this.taskName == null) {
+  computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])([])), Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapState"])(["systemlist"])), {}, {
+    showSubmit: function showSubmit() {
+      if (this.taskName != null && this.infoText != null && systemValue != null) {
         return true;
       } else {
         return false;
@@ -36160,7 +36114,7 @@ var render = function() {
                     "v-btn",
                     {
                       staticClass: "white--text",
-                      attrs: { color: "green" },
+                      attrs: { color: "green", disabled: _vm.showSubmit },
                       on: {
                         click: function($event) {
                           return _vm.submit()

@@ -80,7 +80,12 @@
                     <v-btn class="white--text" color="teal" @click="close()">
                         Close
                     </v-btn>
-                    <v-btn class="white--text" color="green" @click="submit()">
+                    <v-btn
+                        class="white--text"
+                        color="green"
+                        :disabled="showSubmit"
+                        @click="submit()"
+                    >
                         Submit
                     </v-btn></v-card-actions
                 >
@@ -113,18 +118,21 @@ export default {
         close() {
             this.taskName = null;
             this.showReconTask = false;
-            this.taskName = null;
+            this.infoText = null;
             this.systemValue = [];
         },
 
         async submit() {
             var request = {
-                name: this.stationName
+                title: this.taskName,
+                info: this.infoText,
+                made_by_user_id: this.$store.state.user_id,
+                systems: this.systemValue
             };
 
             await axios({
-                method: "put", //you can set what request you want to be
-                url: "api/stationnew",
+                method: "post", //you can set what request you want to be
+                url: "api/recontask",
                 data: request,
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
@@ -134,55 +142,26 @@ export default {
             }).then(
                 (this.taskName = null),
                 (this.showReconTask = false),
-                (this.stationName = null),
-                (this.taskName = null),
-                (this.systems = []),
-                (this.state = 1),
-                (this.showReconTask = false)
+                (this.systemValue = []),
+                (this.infoText = null)
             );
         },
 
         async open() {
             await this.$store.dispatch("getSystemList");
-            await this.$store.dispatch("getTickList");
-            await this.$store.dispatch("getStructureList");
-        },
-
-        async reconTaskAdd() {
-            var request = {
-                title: this.taskName
-            };
-            await axios({
-                method: "put", //you can set what request you want to be
-                url: "api/stationname",
-                data: request,
-                headers: {
-                    Authorization: "Bearer " + this.$store.state.token,
-                    Accept: "application/json",
-                    "Content-Type": "application/json"
-                }
-            }).then(response => {
-                let res = response.data;
-                if (res.state == 2) {
-                    this.stationPull = res;
-                    this.stationName = res.station_name;
-                    this.state = res.state;
-                }
-
-                if (res.state == 3) {
-                    this.stationPull = res;
-                    this.state = res.state;
-                }
-            });
         }
     },
 
     computed: {
         ...mapGetters([]),
-        ...mapState(["systemlist", "ticklist", "structurelist"]),
+        ...mapState(["systemlist"]),
 
-        submitTask() {
-            if (this.taskName == null) {
+        showSubmit() {
+            if (
+                this.taskName != null &&
+                this.infoText != null &&
+                systemValue != null
+            ) {
                 return true;
             } else {
                 return false;
