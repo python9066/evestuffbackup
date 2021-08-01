@@ -26,7 +26,7 @@ class ReconTaskController extends Controller
     public function store(Request $request)
     {
         $new = ReconTasks::Create(['title' => $request->title, 'info' => $request->info, 'made_by_user_id' => $request->made_by_user_id]);
-        dd($new);
+        dd($new->id);
     }
 
     /**
