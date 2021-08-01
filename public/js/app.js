@@ -11666,7 +11666,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     info: String,
     made_by_user_id: Number,
     title: String,
-    updated_at: String
+    updated_at: String,
+    size: Number
   },
   data: function data() {
     return {
@@ -23006,6 +23007,7 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
+//
 //
 //
 //
@@ -37352,7 +37354,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "v-col",
-    { attrs: { cols: "10", "align-self": "stretch" } },
+    { attrs: { cols: _vm.size, "align-self": "stretch" } },
     [
       _c(
         "v-card",
@@ -48198,7 +48200,7 @@ var render = function() {
         [
           _c(
             "v-col",
-            { attrs: { md: _vm.size } },
+            { attrs: { md: "10" } },
             [
               _c(
                 "v-card",
@@ -48270,7 +48272,8 @@ var render = function() {
               made_by_user_id: task.made_by_user_id,
               title: task.title,
               updated_at: task.updated_at,
-              index: index
+              index: index,
+              size: "10"
             }
           })
         }),

@@ -1,7 +1,7 @@
 <template>
     <div>
         <v-row no-gutters class="pt-5" justify="space-around">
-            <v-col :md="size">
+            <v-col md="10">
                 <v-card class="pa-2" title width="100%">
                     <v-card-title align="center" class="justify-center">
                         <h1>
@@ -33,6 +33,7 @@
                 :updated_at="task.updated_at"
                 :index="index"
                 :key="task.id"
+                size="10"
             >
             </ReconTaskTable>
         </v-row>

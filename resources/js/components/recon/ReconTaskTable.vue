@@ -1,5 +1,5 @@
 <template>
-    <v-col cols="10" align-self="stretch">
+    <v-col :cols="size" align-self="stretch">
         <v-card tile height="100%" class="d-flex flex-column">
             <v-card-text>
                 <template>
@@ -179,7 +179,8 @@ export default {
         info: String,
         made_by_user_id: Number,
         title: String,
-        updated_at: String
+        updated_at: String,
+        size: Number
     },
     data() {
         return {
