@@ -1,6 +1,16 @@
 <template>
     <div>
-        yoyo
+        <v-row no-gutters class="pt-5" justify="space-around">
+            <v-col md="10">
+                <v-card class="pa-2" title width="100%">
+                    <v-card-title align="center" class="justify-center">
+                        <h1>
+                            Here you will find your daily tasks
+                        </h1>
+                    </v-card-title></v-card
+                >
+            </v-col>
+        </v-row>
     </div>
 </template>
 

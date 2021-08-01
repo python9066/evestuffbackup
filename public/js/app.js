@@ -21725,6 +21725,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -45995,7 +46005,50 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [_vm._v("\n    yoyo\n")])
+  return _c(
+    "div",
+    [
+      _c(
+        "v-row",
+        {
+          staticClass: "pt-5",
+          attrs: { "no-gutters": "", justify: "space-around" }
+        },
+        [
+          _c(
+            "v-col",
+            { attrs: { md: "10" } },
+            [
+              _c(
+                "v-card",
+                { staticClass: "pa-2", attrs: { title: "", width: "100%" } },
+                [
+                  _c(
+                    "v-card-title",
+                    {
+                      staticClass: "justify-center",
+                      attrs: { align: "center" }
+                    },
+                    [
+                      _c("h1", [
+                        _vm._v(
+                          "\n                        Here you will find your daily tasks\n                    "
+                        )
+                      ])
+                    ]
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          )
+        ],
+        1
+      )
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
