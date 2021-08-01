@@ -30,4 +30,6 @@ class ReconTasks extends Model
         'made_by_user_id' => 'integer',
         'edited_by_user_id' => 'integer'
     ];
+
+    protected $dateFormat = 'Y-m-d H:i:s';
 }
