@@ -5,7 +5,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Schema;
 
-class CallTheReconTaskSystemsRecordsCommand extends Migration
+class CallTheReconTaskSystemRecordsCommand extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,7 @@ class CallTheReconTaskSystemsRecordsCommand extends Migration
      */
     public function up()
     {
-        Artisan::call("view:CreateOrReplaceReconTaskSystemsRecordsView");
+        Artisan::call("view:CreateOrReplaceReconTaskSystemRecordsView");
     }
 
     /**
