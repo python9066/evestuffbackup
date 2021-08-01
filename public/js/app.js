@@ -11508,6 +11508,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -36667,50 +36670,68 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: " d-inline-flex align-items-md-center " }, [
-    _c("div", [
-      _c(
-        "span",
-        { staticClass: " d-inline-flex mb-4 pt-4" },
-        [
-          _c("VueCountUptimer", {
-            attrs: {
-              "start-time": _vm.moment.utc(_vm.item.updated_at).unix(),
-              "end-text": "Window Closed",
-              interval: 1000
-            },
-            scopedSlots: _vm._u([
-              {
-                key: "countup",
-                fn: function(scope) {
-                  return [
-                    _vm.item.user_name != null
-                      ? _c("div", { staticClass: "green--text pl-2 pr-2" }, [
-                          _vm._v(
-                            "\n                        " +
-                              _vm._s(scope.props.hours) +
-                              ":" +
-                              _vm._s(scope.props.minutes) +
-                              ":" +
-                              _vm._s(scope.props.seconds) +
-                              "\n                    "
-                          )
-                        ])
-                      : _c("div", [
-                          _vm._v(
-                            "\n                        N/A\n                    "
-                          )
-                        ])
-                  ]
+  return _c(
+    "div",
+    { staticClass: " d-inline-flex align-items-md-center " },
+    [
+      _c("div", [
+        _c(
+          "span",
+          { staticClass: " d-inline-flex mb-4 pt-4" },
+          [
+            _c("VueCountUptimer", {
+              attrs: {
+                "start-time": _vm.moment.utc(_vm.item.updated_at).unix(),
+                "end-text": "Window Closed",
+                interval: 1000
+              },
+              scopedSlots: _vm._u([
+                {
+                  key: "countup",
+                  fn: function(scope) {
+                    return [
+                      _vm.item.user_name != null
+                        ? _c("div", { staticClass: "green--text pl-2 pr-2" }, [
+                            _vm._v(
+                              "\n                        " +
+                                _vm._s(scope.props.hours) +
+                                ":" +
+                                _vm._s(scope.props.minutes) +
+                                ":" +
+                                _vm._s(scope.props.seconds) +
+                                "\n                    "
+                            )
+                          ])
+                        : _c("div", [
+                            _vm._v(
+                              "\n                        N/A\n                    "
+                            )
+                          ])
+                    ]
+                  }
                 }
-              }
-            ])
-          })
-        ],
-        1
+              ])
+            })
+          ],
+          1
+        )
+      ]),
+      _vm._v(" "),
+      _c(
+        "v-icon",
+        {
+          attrs: { color: "blue" },
+          on: {
+            click: function($event) {
+              return _vm.updateTimer()
+            }
+          }
+        },
+        [_vm._v("\n        " + _vm._s(_vm.icon) + "\n    ")]
       )
-    ])
-  ])
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true

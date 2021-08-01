@@ -23,6 +23,9 @@
                 </VueCountUptimer>
             </span>
         </div>
+        <v-icon color="blue" @click="updateTimer()">
+            {{ icon }}
+        </v-icon>
     </div>
 </template>
 
