@@ -9,7 +9,7 @@
                             class="d-flex justify-space-between align-center"
                             style=" width: 100%;"
                         >
-                            <div>{{ title }}</div>
+                            <div>{{ item.title }}</div>
                             <v-divider class="mx-4 my-0" vertical></v-divider>
                         </v-card-title>
                     </v-card>

@@ -36802,7 +36802,7 @@ var render = function() {
                         attrs: { "max-width": "" }
                       },
                       [
-                        _c("div", [_vm._v(_vm._s(_vm.title))]),
+                        _c("div", [_vm._v(_vm._s(_vm.item.title))]),
                         _vm._v(" "),
                         _c("v-divider", {
                           staticClass: "mx-4 my-0",
