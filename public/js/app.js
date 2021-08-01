@@ -11371,78 +11371,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -11459,139 +11387,70 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       sysSearch: null,
       sysSelect: null,
       sysLoading: false,
-      tickItems: [],
       ticktemEdit: null,
-      tickSearch: null,
-      tickSelect: null,
-      tickLoading: false,
       tickerEdit: null,
       stationPull: [],
-      structItems: [],
       structtemEdit: null,
-      structSearch: null,
-      structSelect: null,
-      structLoading: false,
-      structerEdit: null,
-      refType: null,
-      refTime: {
-        d: "",
-        hh: "",
-        mm: "",
-        ss: ""
-      }
+      structerEdit: null
     };
   },
   watch: {
     sysSearch: function sysSearch(val) {
       val && val !== this.sysSelect && this.sysQuerySelections(val);
-    },
-    tickSearch: function tickSearch(val) {
-      val && val !== this.tickSelect && this.tickQuerySelections(val);
-    },
-    structSearch: function structSearch(val) {
-      val && val !== this.structSelect && this.structQuerySelections(val);
     }
   },
   methods: {
-    tickQuerySelections: function tickQuerySelections(v) {
-      var _this = this;
-
-      this.tickLoading = true; // Simulated ajax query
-
-      setTimeout(function () {
-        _this.tickItems = _this.tickList.filter(function (e) {
-          return (e.text || "").toLowerCase().indexOf((v || "").toLowerCase()) > -1;
-        });
-        _this.tickLoading = false;
-      }, 500);
-    },
-    structQuerySelections: function structQuerySelections(v) {
-      var _this2 = this;
-
-      this.structLoading = true; // Simulated ajax query
-
-      setTimeout(function () {
-        _this2.structItems = _this2.structureList.filter(function (e) {
-          return (e.text || "").toLowerCase().indexOf((v || "").toLowerCase()) > -1;
-        });
-        _this2.structLoading = false;
-      }, 500);
-    },
     sysQuerySelections: function sysQuerySelections(v) {
-      var _this3 = this;
+      var _this = this;
 
       this.sysLoading = true; // Simulated ajax query
 
       setTimeout(function () {
-        _this3.sysItems = _this3.systemList.filter(function (e) {
+        _this.sysItems = _this.systemList.filter(function (e) {
           return (e.text || "").toLowerCase().indexOf((v || "").toLowerCase()) > -1;
         });
-        _this3.sysLoading = false;
+        _this.sysLoading = false;
       }, 500);
     },
     close: function close() {
       this.taskName = null;
       this.showReconTask = false;
-      this.refType = null;
-      this.refTime = null;
       this.stationName = null;
       this.taskName = null;
-      this.structItems = [];
-      this.structSearch = null;
-      this.structSelect = null;
       this.sysItems = [];
       this.sysSearch = null;
       this.sysSelect = null;
       this.systems = [];
-      this.tickItems = [];
-      this.tickSearch = null;
-      this.tickSelect = null;
       this.state = 1;
       this.showReconTask = false;
     },
     submit: function submit() {
-      var _this4 = this;
+      var _this2 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-        var d, h, m, s, ds, hs, ms, sec, outTime, request;
+        var request;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                d = parseInt(_this4.refTime.substr(0, 1));
-                h = parseInt(_this4.refTime.substr(3, 2));
-                m = parseInt(_this4.refTime.substr(6, 2));
-                s = parseInt(_this4.refTime.substr(9, 2));
-                ds = d * 24 * 60 * 60;
-                hs = h * 60 * 60;
-                ms = m * 60;
-                sec = ds + hs + ms + s;
-                outTime = moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc().add(sec, "seconds").format("YYYY-MM-DD HH:mm:ss");
                 request = {
-                  name: _this4.stationName,
-                  system_id: _this4.sysSelect,
-                  corp_id: _this4.tickSelect,
-                  item_id: _this4.structSelect,
-                  station_status_id: _this4.refType,
-                  out_time: outTime,
-                  status_update: moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc().format("YYYY-MM-DD HH:mm:ss"),
-                  timestamp: moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc().format("YYYY-MM-DD HH:mm:ss"),
-                  show_on_main: 1
+                  name: _this2.stationName,
+                  system_id: _this2.sysSelect
                 };
-                _context.next = 12;
+                _context.next = 3;
                 return axios({
                   method: "put",
                   //you can set what request you want to be
                   url: "api/stationnew",
                   data: request,
                   headers: {
-                    Authorization: "Bearer " + _this4.$store.state.token,
+                    Authorization: "Bearer " + _this2.$store.state.token,
                     Accept: "application/json",
                     "Content-Type": "application/json"
                   }
-                }).then(_this4.taskName = null, _this4.showReconTask = false, _this4.refType = null, _this4.refTime = null, _this4.stationName = null, _this4.taskName = null, _this4.structItems = [], _this4.structSearch = null, _this4.structSelect = null, _this4.sysItems = [], _this4.sysSearch = null, _this4.sysSelect = null, _this4.systems = [], _this4.tickItems = [], _this4.tickSearch = null, _this4.tickSelect = null, _this4.state = 1, _this4.showReconTask = false);
+                }).then(_this2.taskName = null, _this2.showReconTask = false, _this2.stationName = null, _this2.taskName = null, _this2.sysItems = [], _this2.sysSearch = null, _this2.sysSelect = null, _this2.systems = [], _this2.state = 1, _this2.showReconTask = false);
 
-              case 12:
+              case 3:
               case "end":
                 return _context.stop();
             }
@@ -11600,7 +11459,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }))();
     },
     open: function open() {
-      var _this5 = this;
+      var _this3 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
@@ -11608,15 +11467,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context2.prev = _context2.next) {
               case 0:
                 _context2.next = 2;
-                return _this5.$store.dispatch("getSystemList");
+                return _this3.$store.dispatch("getSystemList");
 
               case 2:
                 _context2.next = 4;
-                return _this5.$store.dispatch("getTickList");
+                return _this3.$store.dispatch("getTickList");
 
               case 4:
                 _context2.next = 6;
-                return _this5.$store.dispatch("getStructureList");
+                return _this3.$store.dispatch("getStructureList");
 
               case 6:
               case "end":
@@ -11627,7 +11486,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }))();
     },
     reconTaskAdd: function reconTaskAdd() {
-      var _this6 = this;
+      var _this4 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
         var request;
@@ -11636,7 +11495,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context3.prev = _context3.next) {
               case 0:
                 request = {
-                  title: _this6.taskName
+                  title: _this4.taskName
                 };
                 _context3.next = 3;
                 return axios({
@@ -11645,7 +11504,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   url: "api/stationname",
                   data: request,
                   headers: {
-                    Authorization: "Bearer " + _this6.$store.state.token,
+                    Authorization: "Bearer " + _this4.$store.state.token,
                     Accept: "application/json",
                     "Content-Type": "application/json"
                   }
@@ -11653,14 +11512,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   var res = response.data;
 
                   if (res.state == 2) {
-                    _this6.stationPull = res;
-                    _this6.stationName = res.station_name;
-                    _this6.state = res.state;
+                    _this4.stationPull = res;
+                    _this4.stationName = res.station_name;
+                    _this4.state = res.state;
                   }
 
                   if (res.state == 3) {
-                    _this6.stationPull = res;
-                    _this6.state = res.state;
+                    _this4.stationPull = res;
+                    _this4.state = res.state;
                   }
                 });
 
@@ -11692,7 +11551,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }
     },
     showSubmit: function showSubmit() {
-      if (this.structSelect != null && this.sysSelect != null && this.tickSelect != null && this.refType != null && this.refTime != null) {
+      if (this.sysSelect != null) {
         return false;
       } else {
         return true;
@@ -36285,205 +36144,42 @@ var render = function() {
                   ),
                   _vm._v(" "),
                   _c("v-fade-transition", [
-                    _vm.state == 2
-                      ? _c("div", [
-                          _c(
-                            "div",
-                            [
-                              _c("v-autocomplete", {
-                                attrs: {
-                                  loading: _vm.structLoading,
-                                  items: _vm.structItems,
-                                  "search-input": _vm.structSearch,
-                                  clearable: "",
-                                  autofocus: "",
-                                  label: "Structure Type",
-                                  outlined: ""
-                                },
-                                on: {
-                                  "update:searchInput": function($event) {
-                                    _vm.structSearch = $event
-                                  },
-                                  "update:search-input": function($event) {
-                                    _vm.structSearch = $event
-                                  }
-                                },
-                                model: {
-                                  value: _vm.structSelect,
-                                  callback: function($$v) {
-                                    _vm.structSelect = $$v
-                                  },
-                                  expression: "structSelect"
-                                }
-                              })
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "div",
-                            {
-                              staticClass:
-                                " d-inline-flex justify-content-around"
+                    _c("div", [
+                      _c(
+                        "div",
+                        {
+                          staticClass: " d-inline-flex justify-content-around"
+                        },
+                        [
+                          _c("v-autocomplete", {
+                            attrs: {
+                              loading: _vm.sysLoading,
+                              clearable: "",
+                              items: _vm.sysItems,
+                              "search-input": _vm.sysSearch,
+                              label: "System Name",
+                              outlined: ""
                             },
-                            [
-                              _c("v-autocomplete", {
-                                attrs: {
-                                  loading: _vm.sysLoading,
-                                  clearable: "",
-                                  items: _vm.sysItems,
-                                  "search-input": _vm.sysSearch,
-                                  label: "System Name",
-                                  outlined: ""
-                                },
-                                on: {
-                                  "update:searchInput": function($event) {
-                                    _vm.sysSearch = $event
-                                  },
-                                  "update:search-input": function($event) {
-                                    _vm.sysSearch = $event
-                                  }
-                                },
-                                model: {
-                                  value: _vm.sysSelect,
-                                  callback: function($$v) {
-                                    _vm.sysSelect = $$v
-                                  },
-                                  expression: "sysSelect"
-                                }
-                              }),
-                              _vm._v(" "),
-                              _c("v-autocomplete", {
-                                staticClass: " ml-2",
-                                attrs: {
-                                  loading: _vm.tickLoading,
-                                  clearable: "",
-                                  items: _vm.tickItems,
-                                  "search-input": _vm.tickSearch,
-                                  label: "Corp Ticker",
-                                  outlined: ""
-                                },
-                                on: {
-                                  "update:searchInput": function($event) {
-                                    _vm.tickSearch = $event
-                                  },
-                                  "update:search-input": function($event) {
-                                    _vm.tickSearch = $event
-                                  }
-                                },
-                                model: {
-                                  value: _vm.tickSelect,
-                                  callback: function($$v) {
-                                    _vm.tickSelect = $$v
-                                  },
-                                  expression: "tickSelect"
-                                }
-                              })
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "div",
-                            [
-                              _c("h5", [_c("strong", [_vm._v("Timer Type")])]),
-                              _vm._v(" "),
-                              _c(
-                                "v-radio-group",
-                                {
-                                  attrs: { row: "" },
-                                  model: {
-                                    value: _vm.refType,
-                                    callback: function($$v) {
-                                      _vm.refType = $$v
-                                    },
-                                    expression: "refType"
-                                  }
-                                },
-                                [
-                                  _c("v-radio", {
-                                    attrs: { label: "Anchoring", value: "14" }
-                                  }),
-                                  _vm._v(" "),
-                                  _c("v-radio", {
-                                    attrs: { label: "Armor", value: "5" }
-                                  }),
-                                  _vm._v(" "),
-                                  _c("v-radio", {
-                                    attrs: { label: "Hull", value: "13" }
-                                  })
-                                ],
-                                1
-                              )
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "div",
-                            [
-                              _c("v-text-field", {
-                                directives: [
-                                  {
-                                    name: "mask",
-                                    rawName: "v-mask",
-                                    value: "#d ##:##:##",
-                                    expression: "'#d ##:##:##'"
-                                  }
-                                ],
-                                attrs: {
-                                  label: "Ref Time d hh:mm:ss",
-                                  placeholder: "d:hh:mm:ss"
-                                },
-                                on: {
-                                  keyup: [
-                                    function($event) {
-                                      if (
-                                        !$event.type.indexOf("key") &&
-                                        _vm._k(
-                                          $event.keyCode,
-                                          "enter",
-                                          13,
-                                          $event.key,
-                                          "Enter"
-                                        )
-                                      ) {
-                                        return null
-                                      }
-                                      ;(_vm.timerShown = false),
-                                        _vm.addHacktime()
-                                    },
-                                    function($event) {
-                                      if (
-                                        !$event.type.indexOf("key") &&
-                                        _vm._k(
-                                          $event.keyCode,
-                                          "esc",
-                                          27,
-                                          $event.key,
-                                          ["Esc", "Escape"]
-                                        )
-                                      ) {
-                                        return null
-                                      }
-                                      ;(_vm.timerShown = false),
-                                        (_vm.hackTime = null)
-                                    }
-                                  ]
-                                },
-                                model: {
-                                  value: _vm.refTime,
-                                  callback: function($$v) {
-                                    _vm.refTime = $$v
-                                  },
-                                  expression: "refTime"
-                                }
-                              })
-                            ],
-                            1
-                          )
-                        ])
-                      : _vm._e()
+                            on: {
+                              "update:searchInput": function($event) {
+                                _vm.sysSearch = $event
+                              },
+                              "update:search-input": function($event) {
+                                _vm.sysSearch = $event
+                              }
+                            },
+                            model: {
+                              value: _vm.sysSelect,
+                              callback: function($$v) {
+                                _vm.sysSelect = $$v
+                              },
+                              expression: "sysSelect"
+                            }
+                          })
+                        ],
+                        1
+                      )
+                    ])
                   ]),
                   _vm._v(" "),
                   _c("v-fade-transition", [
@@ -36547,106 +36243,6 @@ var render = function() {
                                     )
                                   },
                                   expression: "stationPull.corp_ticker"
-                                }
-                              })
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "div",
-                            [
-                              _c("h5", [_c("strong", [_vm._v("Timer Type")])]),
-                              _vm._v(" "),
-                              _c(
-                                "v-radio-group",
-                                {
-                                  attrs: { row: "" },
-                                  model: {
-                                    value: _vm.refType,
-                                    callback: function($$v) {
-                                      _vm.refType = $$v
-                                    },
-                                    expression: "refType"
-                                  }
-                                },
-                                [
-                                  _c("v-radio", {
-                                    attrs: { label: "Anchoring", value: "14" }
-                                  }),
-                                  _vm._v(" "),
-                                  _c("v-radio", {
-                                    attrs: { label: "Armor", value: "5" }
-                                  }),
-                                  _vm._v(" "),
-                                  _c("v-radio", {
-                                    attrs: { label: "Hull", value: "13" }
-                                  })
-                                ],
-                                1
-                              )
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "div",
-                            [
-                              _c("v-text-field", {
-                                directives: [
-                                  {
-                                    name: "mask",
-                                    rawName: "v-mask",
-                                    value: "#d ##:##:##",
-                                    expression: "'#d ##:##:##'"
-                                  }
-                                ],
-                                attrs: {
-                                  label: "Ref Time d hh:mm:ss",
-                                  placeholder: "d:hh:mm:ss"
-                                },
-                                on: {
-                                  keyup: [
-                                    function($event) {
-                                      if (
-                                        !$event.type.indexOf("key") &&
-                                        _vm._k(
-                                          $event.keyCode,
-                                          "enter",
-                                          13,
-                                          $event.key,
-                                          "Enter"
-                                        )
-                                      ) {
-                                        return null
-                                      }
-                                      ;(_vm.timerShown = false),
-                                        _vm.addHacktime()
-                                    },
-                                    function($event) {
-                                      if (
-                                        !$event.type.indexOf("key") &&
-                                        _vm._k(
-                                          $event.keyCode,
-                                          "esc",
-                                          27,
-                                          $event.key,
-                                          ["Esc", "Escape"]
-                                        )
-                                      ) {
-                                        return null
-                                      }
-                                      ;(_vm.timerShown = false),
-                                        (_vm.hackTime = null)
-                                    }
-                                  ]
-                                },
-                                model: {
-                                  value: _vm.refTime,
-                                  callback: function($$v) {
-                                    _vm.refTime = $$v
-                                  },
-                                  expression: "refTime"
                                 }
                               })
                             ],
