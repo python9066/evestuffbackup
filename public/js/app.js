@@ -11695,7 +11695,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         text: "System",
         value: "system_name"
       }, {
-        text: "Checked",
+        text: "Last Checked (date)",
         value: "updated_at"
       }, {
         text: "Last Checked (time)",
@@ -36558,7 +36558,7 @@ var render = function() {
                 key: "countup",
                 fn: function(scope) {
                   return [
-                    _c("span", [
+                    _c("span", { staticClass: "pl-2 pr-2" }, [
                       _vm._v(
                         _vm._s(scope.props.hours) +
                           ":" +

@@ -76,7 +76,7 @@ export default {
                 { text: "Region", value: "region_name", width: "10%" },
                 { text: "Constellation", value: "constellation_name" },
                 { text: "System", value: "system_name" },
-                { text: "Checked", value: "updated_at" },
+                { text: "Last Checked (date)", value: "updated_at" },
                 {
                     text: "Last Checked (time)",
                     value: "count",
