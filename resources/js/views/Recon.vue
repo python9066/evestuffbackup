@@ -50,9 +50,8 @@ function sleep(ms) {
 }
 
 export default {
-    date() {
-        tasks = [],
-        test = "yoyo",
+    data() {
+        (tasks = []), (test = "yoyo");
     },
 
     created() {},
