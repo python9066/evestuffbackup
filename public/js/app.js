@@ -11589,7 +11589,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }))();
     }
   },
-  computed: {}
+  computed: {
+    icon: function icon() {
+      return "fas fa-check-circle";
+    }
+  }
 });
 
 /***/ }),

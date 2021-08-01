@@ -104,7 +104,11 @@ export default {
         }
     },
 
-    computed: {}
+    computed: {
+        icon() {
+            return "fas fa-check-circle";
+        }
+    }
 };
 </script>
 
