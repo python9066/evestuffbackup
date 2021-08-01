@@ -11744,7 +11744,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
-    item: Object,
+    data: Object,
     size: Number
   },
   data: function data() {
@@ -11788,7 +11788,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              Echo["private"]("recontask." + _this.item.id).listen("ReconTimerUpdate", function (e) {
+              Echo["private"]("recontask." + _this.data.id).listen("ReconTimerUpdate", function (e) {
                 _this.$store.dispatch("updateReconTaskSystems", e.flag.message);
               });
 
@@ -11840,12 +11840,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
       // var timers = this.$store.state.timers;
       return this.recontasksystems.filter(function (s) {
-        return s.recon_task_id == _this3.item.id;
+        return s.recon_task_id == _this3.data.id;
       });
     }
   }),
   beforeDestroy: function beforeDestroy() {
-    Echo.leave("recontask." + this.item.id);
+    Echo.leave("recontask." + this.data.id);
   }
 });
 
@@ -36802,7 +36802,7 @@ var render = function() {
                         attrs: { "max-width": "" }
                       },
                       [
-                        _c("div", [_vm._v(_vm._s(_vm.item.title))]),
+                        _c("div", [_vm._v(_vm._s(_vm.data.title))]),
                         _vm._v(" "),
                         _c("v-divider", {
                           staticClass: "mx-4 my-0",
@@ -36835,7 +36835,7 @@ var render = function() {
                           var item = ref.item
                           return [
                             item.user_id != null
-                              ? _c("span", [_vm._v(_vm._s(item.updated_at))])
+                              ? _c("span", [_vm._v(_vm._s(_vm.data.last_edit))])
                               : _c("span", [_vm._v(" N/A ")])
                           ]
                         }

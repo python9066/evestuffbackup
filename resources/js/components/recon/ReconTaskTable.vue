@@ -9,7 +9,7 @@
                             class="d-flex justify-space-between align-center"
                             style=" width: 100%;"
                         >
-                            <div>{{ item.title }}</div>
+                            <div>{{ data.title }}</div>
                             <v-divider class="mx-4 my-0" vertical></v-divider>
                         </v-card-title>
                     </v-card>
@@ -24,7 +24,7 @@
                 >
                     <template v-slot:[`item.updated_at`]="{ item }"
                         ><span v-if="item.user_id != null">{{
-                            item.updated_at
+                            data.last_edit
                         }}</span>
                         <span v-else> N/A </span>
                     </template>
@@ -56,7 +56,7 @@ import { mapState, mapGetters } from "vuex";
 import moment from "moment";
 export default {
     props: {
-        item: Object,
+        data: Object,
         size: Number
     },
     data() {
@@ -88,7 +88,7 @@ export default {
     },
 
     async created() {
-        Echo.private("recontask." + this.item.id).listen(
+        Echo.private("recontask." + this.data.id).listen(
             "ReconTimerUpdate",
             e => {
                 this.$store.dispatch("updateReconTaskSystems", e.flag.message);
@@ -113,12 +113,12 @@ export default {
             // var timers = this.$store.state.timers;
 
             return this.recontasksystems.filter(
-                s => s.recon_task_id == this.item.id
+                s => s.recon_task_id == this.data.id
             );
         }
     },
     beforeDestroy() {
-        Echo.leave("recontask." + this.item.id);
+        Echo.leave("recontask." + this.data.id);
     }
 };
 </script>
