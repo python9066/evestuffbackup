@@ -11467,15 +11467,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -11483,9 +11474,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   data: function data() {
     return {
       systems: [],
-      stationNameEdit: null,
+      taskName: null,
       state: 1,
-      showStationTimer: false,
+      showReconTask: false,
       stationName: null,
       sysItems: [],
       systemEdit: null,
@@ -11563,12 +11554,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }, 500);
     },
     close: function close() {
-      this.stationNameEdit = null;
-      this.showStationTimer = false;
+      this.taskName = null;
+      this.showReconTask = false;
       this.refType = null;
       this.refTime = null;
       this.stationName = null;
-      this.stationNameEdit = null;
+      this.taskName = null;
       this.structItems = [];
       this.structSearch = null;
       this.structSelect = null;
@@ -11580,7 +11571,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       this.tickSearch = null;
       this.tickSelect = null;
       this.state = 1;
-      this.showStationTimer = false;
+      this.showReconTask = false;
     },
     submit: function submit() {
       var _this4 = this;
@@ -11622,7 +11613,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                     Accept: "application/json",
                     "Content-Type": "application/json"
                   }
-                }).then(_this4.stationNameEdit = null, _this4.showStationTimer = false, _this4.refType = null, _this4.refTime = null, _this4.stationName = null, _this4.stationNameEdit = null, _this4.structItems = [], _this4.structSearch = null, _this4.structSelect = null, _this4.sysItems = [], _this4.sysSearch = null, _this4.sysSelect = null, _this4.systems = [], _this4.tickItems = [], _this4.tickSearch = null, _this4.tickSelect = null, _this4.state = 1, _this4.showStationTimer = false);
+                }).then(_this4.taskName = null, _this4.showReconTask = false, _this4.refType = null, _this4.refTime = null, _this4.stationName = null, _this4.taskName = null, _this4.structItems = [], _this4.structSearch = null, _this4.structSelect = null, _this4.sysItems = [], _this4.sysSearch = null, _this4.sysSelect = null, _this4.systems = [], _this4.tickItems = [], _this4.tickSearch = null, _this4.tickSelect = null, _this4.state = 1, _this4.showReconTask = false);
 
               case 12:
               case "end":
@@ -11667,7 +11658,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                     Accept: "application/json",
                     "Content-Type": "application/json"
                   }
-                }).then(_this5.stationNameEdit = null, _this5.showStationTimer = false, _this5.refType = null, _this5.refTime = null, _this5.stationName = null, _this5.stationNameEdit = null, _this5.structItems = [], _this5.structSearch = null, _this5.structSelect = null, _this5.sysItems = [], _this5.sysSearch = null, _this5.sysSelect = null, _this5.systems = [], _this5.tickItems = [], _this5.tickSearch = null, _this5.tickSelect = null, _this5.state = 1, _this5.showStationTimer = false);
+                }).then(_this5.taskName = null, _this5.showReconTask = false, _this5.refType = null, _this5.refTime = null, _this5.stationName = null, _this5.taskName = null, _this5.structItems = [], _this5.structSearch = null, _this5.structSelect = null, _this5.sysItems = [], _this5.sysSearch = null, _this5.sysSelect = null, _this5.systems = [], _this5.tickItems = [], _this5.tickSearch = null, _this5.tickSelect = null, _this5.state = 1, _this5.showReconTask = false);
 
               case 12:
               case "end":
@@ -11704,7 +11695,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee3);
       }))();
     },
-    stationNameAdd: function stationNameAdd() {
+    reconTaskAdd: function reconTaskAdd() {
       var _this7 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
@@ -11714,8 +11705,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context4.prev = _context4.next) {
               case 0:
                 request = {
-                  stationName: _this7.stationNameEdit,
-                  show: 1
+                  title: _this7.taskName
                 };
                 _context4.next = 3;
                 return axios({
@@ -11753,8 +11743,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     }
   },
   computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])([])), Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapState"])(["systemlist", "ticklist", "structurelist"])), {}, {
-    stationNameNext: function stationNameNext() {
-      if (this.stationNameEdit == null) {
+    submitTask: function submitTask() {
+      if (this.taskName == null) {
         return true;
       } else {
         return false;
@@ -11793,13 +11783,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
     structureList: function structureList() {
       return this.structurelist;
-    },
-    stationLable: function stationLable() {
-      if (this.state == 1) {
-        return "Enter FULL Structure Name here";
-      } else {
-        return "";
-      }
     },
     tickList: function tickList() {
       return this.ticklist;
@@ -36312,7 +36295,7 @@ var render = function() {
                           "\n                    faSvg fa-plus\n                "
                         )
                       ]),
-                      _vm._v("\n                Add Timer\n            ")
+                      _vm._v("\n                Add Task\n            ")
                     ],
                     1
                   )
@@ -36321,11 +36304,11 @@ var render = function() {
             }
           ]),
           model: {
-            value: _vm.showStationTimer,
+            value: _vm.showReconTask,
             callback: function($$v) {
-              _vm.showStationTimer = $$v
+              _vm.showReconTask = $$v
             },
-            expression: "showStationTimer"
+            expression: "showReconTask"
           }
         },
         [
@@ -36343,94 +36326,68 @@ var render = function() {
             },
             [
               _c("v-card-title", { staticClass: "justify-center" }, [
-                _vm.state == 1
-                  ? _c("p", [_vm._v("Enter Structure Name")])
-                  : _vm._e(),
-                _vm._v(" "),
-                _vm.state == 2
-                  ? _c("p", [
-                      _vm._v(
-                        "\n                    Enter Details for " +
-                          _vm._s(_vm.stationNameEdit) +
-                          "\n                "
-                      )
-                    ])
-                  : _vm._e(),
-                _vm._v(" "),
-                _vm.state == 3
-                  ? _c("p", [
-                      _vm._v(
-                        "\n                    Enter Details for " +
-                          _vm._s(_vm.stationPull.station_name) +
-                          "\n                "
-                      )
-                    ])
-                  : _vm._e()
+                _c("p", [_vm._v("Enter Task Name Here")])
               ]),
               _vm._v(" "),
               _c(
                 "v-card-text",
                 [
-                  _vm.state == 1
-                    ? _c(
-                        "div",
-                        {
-                          staticClass:
-                            " d-inline-flex align-content-center justify-content-around"
+                  _c(
+                    "div",
+                    {
+                      staticClass:
+                        " d-inline-flex align-content-center justify-content-around"
+                    },
+                    [
+                      _c("v-text-field", {
+                        staticClass: " shrink",
+                        staticStyle: { width: "600px" },
+                        attrs: {
+                          autofocus: "",
+                          placeholder: "Check the stuff around here",
+                          label: _vm.Title
                         },
+                        model: {
+                          value: _vm.taskName,
+                          callback: function($$v) {
+                            _vm.taskName = $$v
+                          },
+                          expression: "taskName"
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        { staticClass: " pl-2 pt-2" },
                         [
-                          _c("v-text-field", {
-                            staticClass: " shrink",
-                            staticStyle: { width: "600px" },
-                            attrs: {
-                              readonly: _vm.stationReadonly,
-                              outlined: _vm.stationOutlined,
-                              autofocus: "",
-                              placeholder: "1DQ1-A - Thetastar of Dickbutt",
-                              label: _vm.stationLable
-                            },
-                            model: {
-                              value: _vm.stationNameEdit,
-                              callback: function($$v) {
-                                _vm.stationNameEdit = $$v
-                              },
-                              expression: "stationNameEdit"
-                            }
-                          }),
-                          _vm._v(" "),
-                          _c(
-                            "div",
-                            { staticClass: " pl-2 pt-2" },
-                            [
-                              _vm.state == 1
-                                ? _c(
-                                    "v-chip",
-                                    {
-                                      attrs: {
-                                        pill: "",
-                                        disabled: _vm.stationNameNext,
-                                        color: "green"
-                                      },
-                                      on: {
-                                        click: function($event) {
-                                          return _vm.stationNameAdd()
-                                        }
-                                      }
-                                    },
-                                    [
-                                      _vm._v(
-                                        "\n                            Next\n                        "
-                                      )
-                                    ]
+                          _vm.state == 1
+                            ? _c(
+                                "v-chip",
+                                {
+                                  attrs: {
+                                    pill: "",
+                                    disabled: _vm.submitTask,
+                                    color: "green"
+                                  },
+                                  on: {
+                                    click: function($event) {
+                                      return _vm.reconTaskAdd()
+                                    }
+                                  }
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                            Next\n                        "
                                   )
-                                : _vm._e()
-                            ],
-                            1
-                          )
+                                ]
+                              )
+                            : _vm._e()
                         ],
                         1
                       )
-                    : _vm._e(),
+                    ],
+                    1
+                  ),
                   _vm._v(" "),
                   _c("v-fade-transition", [
                     _vm.state == 2

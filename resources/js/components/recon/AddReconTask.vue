@@ -3,7 +3,7 @@
         <v-dialog
             max-width="700px"
             z-index="0"
-            v-model="showStationTimer"
+            v-model="showReconTask"
             @click:outside="close()"
         >
             <template v-slot:activator="{ on, attrs }">
@@ -16,7 +16,7 @@
                     ><v-icon>
                         faSvg fa-plus
                     </v-icon>
-                    Add Timer
+                    Add Task
                 </v-btn>
             </template>
 
@@ -28,26 +28,17 @@
                 class=" d-flex flex-column"
             >
                 <v-card-title class="justify-center">
-                    <p v-if="state == 1">Enter Structure Name</p>
-                    <p v-if="state == 2">
-                        Enter Details for {{ stationNameEdit }}
-                    </p>
-                    <p v-if="state == 3">
-                        Enter Details for {{ stationPull.station_name }}
-                    </p>
+                    <p>Enter Task Name Here</p>
                 </v-card-title>
                 <v-card-text>
                     <div
                         class=" d-inline-flex align-content-center justify-content-around"
-                        v-if="state == 1"
                     >
                         <v-text-field
-                            v-model="stationNameEdit"
-                            :readonly="stationReadonly"
-                            :outlined="stationOutlined"
+                            v-model="taskName"
                             autofocus
-                            placeholder="1DQ1-A - Thetastar of Dickbutt"
-                            :label="stationLable"
+                            placeholder="Check the stuff around here"
+                            :label="Title"
                             class=" shrink"
                             style="width:600px"
                         ></v-text-field>
@@ -55,9 +46,9 @@
                             <v-chip
                                 v-if="state == 1"
                                 pill
-                                :disabled="stationNameNext"
+                                :disabled="submitTask"
                                 color="green"
-                                @click="stationNameAdd()"
+                                @click="reconTaskAdd()"
                             >
                                 Next
                             </v-chip>
@@ -199,12 +190,12 @@
                 >
             </v-card>
 
-            <!-- <showStationTimer
+            <!-- <showReconTask
                 :nodeNotestation="nodeNotestation"
                 v-if="$can('super')"
-                @closeMessage="showStationTimer = false"
+                @closeMessage="showReconTask = false"
             >
-            </showStationTimer> -->
+            </showReconTask> -->
         </v-dialog>
     </div>
 </template>
@@ -217,9 +208,9 @@ export default {
     data() {
         return {
             systems: [],
-            stationNameEdit: null,
+            taskName: null,
             state: 1,
-            showStationTimer: false,
+            showReconTask: false,
             stationName: null,
             sysItems: [],
             systemEdit: null,
@@ -310,12 +301,12 @@ export default {
         },
 
         close() {
-            this.stationNameEdit = null;
-            this.showStationTimer = false;
+            this.taskName = null;
+            this.showReconTask = false;
             this.refType = null;
             this.refTime = null;
             this.stationName = null;
-            this.stationNameEdit = null;
+            this.taskName = null;
             this.structItems = [];
             this.structSearch = null;
             this.structSelect = null;
@@ -327,7 +318,7 @@ export default {
             this.tickSearch = null;
             this.tickSelect = null;
             this.state = 1;
-            this.showStationTimer = false;
+            this.showReconTask = false;
         },
 
         async submit() {
@@ -366,12 +357,12 @@ export default {
                     "Content-Type": "application/json"
                 }
             }).then(
-                (this.stationNameEdit = null),
-                (this.showStationTimer = false),
+                (this.taskName = null),
+                (this.showReconTask = false),
                 (this.refType = null),
                 (this.refTime = null),
                 (this.stationName = null),
-                (this.stationNameEdit = null),
+                (this.taskName = null),
                 (this.structItems = []),
                 (this.structSearch = null),
                 (this.structSelect = null),
@@ -383,7 +374,7 @@ export default {
                 (this.tickSearch = null),
                 (this.tickSelect = null),
                 (this.state = 1),
-                (this.showStationTimer = false)
+                (this.showReconTask = false)
             );
         },
 
@@ -420,12 +411,12 @@ export default {
                     "Content-Type": "application/json"
                 }
             }).then(
-                (this.stationNameEdit = null),
-                (this.showStationTimer = false),
+                (this.taskName = null),
+                (this.showReconTask = false),
                 (this.refType = null),
                 (this.refTime = null),
                 (this.stationName = null),
-                (this.stationNameEdit = null),
+                (this.taskName = null),
                 (this.structItems = []),
                 (this.structSearch = null),
                 (this.structSelect = null),
@@ -437,7 +428,7 @@ export default {
                 (this.tickSearch = null),
                 (this.tickSelect = null),
                 (this.state = 1),
-                (this.showStationTimer = false)
+                (this.showReconTask = false)
             );
         },
 
@@ -447,10 +438,9 @@ export default {
             await this.$store.dispatch("getStructureList");
         },
 
-        async stationNameAdd() {
+        async reconTaskAdd() {
             var request = {
-                stationName: this.stationNameEdit,
-                show: 1
+                title: this.taskName
             };
             await axios({
                 method: "put", //you can set what request you want to be
@@ -481,8 +471,8 @@ export default {
         ...mapGetters([]),
         ...mapState(["systemlist", "ticklist", "structurelist"]),
 
-        stationNameNext() {
-            if (this.stationNameEdit == null) {
+        submitTask() {
+            if (this.taskName == null) {
                 return true;
             } else {
                 return false;
@@ -530,14 +520,6 @@ export default {
 
         structureList() {
             return this.structurelist;
-        },
-
-        stationLable() {
-            if (this.state == 1) {
-                return "Enter FULL Structure Name here";
-            } else {
-                return "";
-            }
         },
 
         tickList() {
