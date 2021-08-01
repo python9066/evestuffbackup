@@ -80,8 +80,7 @@ Vue.component('StationRequestAmmo', require('./components/station/StationRequest
 Vue.component('AmmoRequestTable', require('./components/gsol/AmmoRequestTable.vue').default);
 Vue.component('AmmoStationInfo', require('./components/gsol/AmmoStationInfo.vue').default);
 Vue.component('AmmoStocker', require('./components/gsol/AmmoStocker.vue').default);
-
-
+Vue.component('AddReconTask', require('./components/recon/AddReconTask.vue').default);
 
 
 

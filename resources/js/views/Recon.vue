@@ -14,16 +14,10 @@
                         the task. This is just so we know when the task was last
                         done.</v-card-text
                     ><v-card-actions align="center" class="justify-center">
-                        <v-btn
+                        <AddReconTask
                             v-if="$can('super')"
-                            @click="addTask = true"
-                            class=" mr-4"
-                            color="blue"
-                        >
-                            Add Task
-                        </v-btn>
-                    </v-card-actions></v-card
-                >
+                        ></AddReconTask> </v-card-actions
+                ></v-card>
             </v-col>
         </v-row>
     </div>
