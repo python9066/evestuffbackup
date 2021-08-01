@@ -22,11 +22,6 @@
                     disable-pagination
                     class="elevation-12"
                 >
-                    <template v-slot:[`item.count`]="{ item }"
-                        ><LastedCheckedTimerRecon :item="item">
-                        </LastedCheckedTimerRecon>
-                    </template>
-
                     <template v-slot:[`item.updated_at`]="{ item }"
                         ><span v-if="item.user_id != null">{{
                             item.updated_at
@@ -34,6 +29,10 @@
                         <span v-else> N/A </span>
                     </template>
 
+                    <template v-slot:[`item.count`]="{ item }"
+                        ><LastedCheckedTimerRecon :item="item">
+                        </LastedCheckedTimerRecon>
+                    </template>
                     <template v-slot:[`item.actions`]="{ item }">
                         <div class=" d-inline-flex">
                             <ReconSystemCheckedButton

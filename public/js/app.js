@@ -11754,7 +11754,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -36839,17 +36838,6 @@ var render = function() {
                   scopedSlots: _vm._u(
                     [
                       {
-                        key: "item.count",
-                        fn: function(ref) {
-                          var item = ref.item
-                          return [
-                            _c("LastedCheckedTimerRecon", {
-                              attrs: { item: item }
-                            })
-                          ]
-                        }
-                      },
-                      {
                         key: "item.updated_at",
                         fn: function(ref) {
                           var item = ref.item
@@ -36857,6 +36845,17 @@ var render = function() {
                             item.user_id != null
                               ? _c("span", [_vm._v(_vm._s(item.updated_at))])
                               : _c("span", [_vm._v(" N/A ")])
+                          ]
+                        }
+                      },
+                      {
+                        key: "item.count",
+                        fn: function(ref) {
+                          var item = ref.item
+                          return [
+                            _c("LastedCheckedTimerRecon", {
+                              attrs: { item: item }
+                            })
                           ]
                         }
                       },
