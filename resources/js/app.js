@@ -83,7 +83,6 @@ Vue.component('AmmoStocker', require('./components/gsol/AmmoStocker.vue').defaul
 Vue.component('AddReconTask', require('./components/recon/AddReconTask.vue').default);
 Vue.component('ReconTaskTable', require('./components/recon/ReconTaskTable.vue').default);
 Vue.component('LastedCheckedTimerRecon', require('./components/recon/LastedCheckedTimerRecon.vue').default);
-Vue.component('ReconSystemCheckedButton', require('./components/recon/ReconSystemCheckedButton.vue').default);
 
 
 
