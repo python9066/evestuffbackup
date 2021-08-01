@@ -30,6 +30,10 @@
                         Notifications
                     </v-tab>
 
+                    <v-tab v-if="$can('super')" link to="/towers">
+                        Recon
+                    </v-tab>
+
                     <v-tab
                         v-if="$can('view_chill_timers')"
                         link

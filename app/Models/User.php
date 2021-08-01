@@ -66,6 +66,21 @@ class User extends Authenticatable
         return $this->hasMany(Logging::class);
     }
 
+    public function reconTasksEdit()
+    {
+        return $this->hasMany(ReconTasks::class, 'made_by_user_id');
+    }
+
+    public function reconTasksMade()
+    {
+        return $this->hasMany(ReconTasks::class, 'edited_by_user_id');
+    }
+
+    public function reconTaskSystem()
+    {
+        return $this->hasMany(ReconTasks::class);
+    }
+
 
 
 

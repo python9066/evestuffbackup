@@ -48,6 +48,11 @@ class System extends Model
         return $this->hasMany(ChillStation::class);
     }
 
+    public function reconTaskSystem()
+    {
+        return $this->hasMany(ReconTasks::class);
+    }
+
     protected $casts = [
         'region_id ' => 'integer',
         'constellation_id' => 'integer',
