@@ -11655,7 +11655,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       };
       axios({
         method: "put",
-        url: "/api/stationattackmessage/" + this.item.id,
+        url: "/api/recontasksystemtimeupdate/" + this.item.id,
         data: request,
         headers: {
           Authorization: "Bearer " + this.$store.state.token,
