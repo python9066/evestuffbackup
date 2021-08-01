@@ -86,6 +86,10 @@ Broadcast::channel('ammorequest', function () {
     return Auth::check();
 });
 
+Broadcast::channel('recon', function () {
+    return Auth::check();
+});
+
 
 
 

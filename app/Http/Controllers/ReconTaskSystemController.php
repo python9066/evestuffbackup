@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\ReconTimerUpdate;
 use App\Models\ReconTaskSystems;
 use Illuminate\Http\Request;
 
@@ -49,6 +50,8 @@ class ReconTaskSystemController extends Controller
     public function update(Request $request, $id)
     {
         ReconTaskSystems::find($id)->update($request->all());
+        $noteification = "yay";
+        broadcast(new ReconTimerUpdate($noteification));
     }
     /**
      * Remove the specified resource from storage.

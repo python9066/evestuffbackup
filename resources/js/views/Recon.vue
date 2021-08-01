@@ -59,7 +59,11 @@ export default {
         };
     },
 
-    created() {},
+    created() {
+        Echo.private("recon").listen("ReconTimerUpdate", e => {
+            this.$store.dispatch("getReconTaskSystemsRecords");
+        });
+    },
 
     beforeMount() {},
 
@@ -94,6 +98,8 @@ export default {
         }
     },
 
-    beforeDestroy() {}
+    beforeDestroy() {
+        Echo.leave("recon");
+    }
 };
 </script>
