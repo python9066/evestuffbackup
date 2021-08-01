@@ -11653,7 +11653,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   computed: {
     icon: function icon() {
-      return "fas fa-crosshairs";
+      return "fas fa-check-circle";
     }
   },
   beforeDestroy: function beforeDestroy() {}

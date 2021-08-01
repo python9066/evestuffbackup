@@ -32,7 +32,7 @@ export default {
 
     computed: {
         icon() {
-            return "fas fa-crosshairs";
+            return "fas fa-check-circle";
         }
     },
 
