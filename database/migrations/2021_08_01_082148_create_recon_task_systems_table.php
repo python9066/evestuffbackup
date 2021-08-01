@@ -18,6 +18,7 @@ class CreateReconTaskSystemsTable extends Migration
             $table->foreignId('recon_task_id');
             $table->foreignId('system_id');
             $table->foreignId('user_id')->nullable();
+            $table->dateTime('last_edit')->nullable();
             $table->timestamps();
         });
     }

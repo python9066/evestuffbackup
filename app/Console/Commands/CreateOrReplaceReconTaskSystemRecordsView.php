@@ -41,6 +41,7 @@ class CreateOrReplaceReconTaskSystemRecordsView extends Command
         DB::statement("CREATE VIEW recon_task_system_records AS SELECT recon_task_systems.id AS id,
         recon_task_systems.recon_task_id AS recon_task_id,
 recon_task_systems.system_id AS system_id,
+recon_task_systems.last_edit AS last_edit,
 systems.system_name AS system_name,
 systems.region_id AS region_id,
 systems.constellation_id AS constellation_id,
