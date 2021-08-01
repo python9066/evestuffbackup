@@ -36545,7 +36545,7 @@ var render = function() {
     _c("div", [
       _c(
         "span",
-        { staticClass: " d-inline-flex mb-4 pt-5" },
+        { staticClass: " d-inline-flex mb-4 pt-4" },
         [
           _c("VueCountUptimer", {
             attrs: {
