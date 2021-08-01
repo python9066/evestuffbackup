@@ -2,6 +2,7 @@
 
 namespace App\Events;
 
+use App\Models\ReconTaskSystems;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Broadcasting\PresenceChannel;
@@ -20,7 +21,7 @@ class ReconTimerUpdate implements ShouldBroadcast
      * @return void
      */
     public $flag;
-    public function __construct($flag)
+    public function __construct(ReconTaskSystems $flag)
     {
         $this->flag = $flag;
     }
