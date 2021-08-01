@@ -17,9 +17,7 @@
                 <v-data-table
                     :headers="headers"
                     :items="filteredItems"
-                    :single-expand="singleExpand"
                     item-key="node"
-                    :item-class="itemRowBackground"
                     hide-default-footer
                     disable-pagination
                     class="elevation-12"
@@ -81,17 +79,11 @@ export default {
                     width: "20%",
                     align: "center"
                 },
+                { text: "Checked by", value: "user_name" },
                 {
                     text: "",
                     value: "actions",
                     sortable: false,
-                    align: "end",
-                    width: "5%"
-                },
-                { text: "Checked by", value: "user_name" },
-                {
-                    text: "",
-                    value: "data-table-expand",
                     align: "end",
                     width: "5%"
                 }

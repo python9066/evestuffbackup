@@ -11540,8 +11540,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -11576,17 +11574,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         width: "20%",
         align: "center"
       }, {
-        text: "",
-        value: "actions",
-        sortable: false,
-        align: "end",
-        width: "5%"
-      }, {
         text: "Checked by",
         value: "user_name"
       }, {
         text: "",
-        value: "data-table-expand",
+        value: "actions",
+        sortable: false,
         align: "end",
         width: "5%"
       } // { text: "Vulernable End Time", value: "vulnerable_end_time" }
@@ -36475,9 +36468,7 @@ var render = function() {
                   attrs: {
                     headers: _vm.headers,
                     items: _vm.filteredItems,
-                    "single-expand": _vm.singleExpand,
                     "item-key": "node",
-                    "item-class": _vm.itemRowBackground,
                     "hide-default-footer": "",
                     "disable-pagination": ""
                   },
