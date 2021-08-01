@@ -26,10 +26,13 @@ class ReconTasks extends Model
     }
 
     protected $casts = [
-        'created_at' => 'timestamp',
-        'updated_at' => 'timestamp',
         'id' => 'integer',
         'made_by_user_id' => 'integer',
         'edited_by_user_id' => 'integer'
+    ];
+
+    protected $dates = [
+        'created_at' => 'timestamp',
+        'updated_at' => 'timestamp',
     ];
 }
