@@ -172,4 +172,5 @@ Route::middleware('auth:api')->group(function () {
     Route::post('/ammorequestupdate/{id}', 'AmmoRequestController@update');
 
     Route::post('/recontask', 'ReconTaskController@store');
+    Route::get('/recontask', 'ReconTaskController@index');
 });

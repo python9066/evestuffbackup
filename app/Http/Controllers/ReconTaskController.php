@@ -15,7 +15,7 @@ class ReconTaskController extends Controller
      */
     public function index()
     {
-        //
+        return ['tasks' => ReconTasks::all()];
     }
 
     /**

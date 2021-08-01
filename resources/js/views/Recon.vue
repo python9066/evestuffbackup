@@ -34,7 +34,9 @@ function sleep(ms) {
 }
 
 export default {
-    date() {},
+    date() {
+        tasks = [];
+    },
 
     created() {},
 
@@ -42,9 +44,27 @@ export default {
 
     beforeCreate() {},
 
-    mounted() {},
+    async mounted() {
+        await this.getTasks();
+    },
 
-    methods: {},
+    methods: {
+        async getTasks() {
+            // console.log(id, this.$store.state.token);
+            let res = await axios({
+                method: "get",
+                url: "/api/recontask/",
+                headers: {
+                    Authorization: "Bearer " + this.$store.state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                }
+            });
+
+            this.tasks = res.data.tasks;
+            this.tasksLoaded = true;
+        }
+    },
 
     computed: {},
 
