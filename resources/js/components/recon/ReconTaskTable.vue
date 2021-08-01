@@ -95,7 +95,7 @@ export default {
 
     async created() {
         Echo.private("recontask." + this.id).listen("ReconTimerUpdate", e => {
-            this.update();
+            this.$store.dispatch("updateReconTaskSystems", e.flag.message);
         });
     },
 

@@ -52,7 +52,9 @@ class ReconTaskSystemController extends Controller
         ReconTaskSystems::find($id)->update(['user_id' => null]);
         ReconTaskSystems::find($id)->update($request->all());
         $task_id = ReconTaskSystems::find($id)->value('recon_task_id');
+        $message = ReconTaskSystems::where('id', $id)->first();
         $flag = collect([
+            "message" => $message,
             'id' => $task_id,
         ]);
         broadcast(new ReconTimerUpdate($flag));

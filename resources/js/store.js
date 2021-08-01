@@ -343,6 +343,11 @@ export default new Vuex.Store({
             state.recontasksystems = systems;
         },
 
+        UPDATE_RECON_TASK_SYSTEMS(state, data) {
+            const item = state.recontasksystems.find(c => c.id === data.id);
+            Object.assign(item, data);
+        },
+
 
 
         SET_TOKEN(state, token) {
@@ -771,6 +776,10 @@ export default new Vuex.Store({
             commit('UPDATE_NODE_JOIN', data)
         },
 
+        updateReconTaskSystems({ commit }, data) {
+            commit("UPDATE_RECON_TASK_SYSTEMS", data);
+        },
+
         addNodeJoin({ commit }, data) {
             commit("ADD_NODE_JOIN", data)
         },
@@ -941,6 +950,7 @@ export default new Vuex.Store({
                 commit("SET_RECON_TASK_SYSTEMS", res.data.systems);
             }
         },
+
 
         async loadCampaignSystemData({ commit, state }, payload) {
             let request = {
