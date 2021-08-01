@@ -48273,7 +48273,7 @@ var render = function() {
               title: task.title,
               updated_at: task.updated_at,
               index: index,
-              size: "10"
+              size: 10
             }
           })
         }),
