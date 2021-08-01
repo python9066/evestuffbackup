@@ -60,18 +60,17 @@
                                 ></v-autocomplete>
                             </div>
 
-                            <div class=" d-inline-flex justify-content-around">
+                            <!-- <div class=" d-inline-flex justify-content-around">
                                 <v-autocomplete
-                                    v-model="system_test_value"
-                                    :items="systemList"
-                                    outlined
-                                    dense
+                                    v-model="system_test"
                                     chips
-                                    small-chips
-                                    label="Outlined"
+                                    deletable-chips
                                     multiple
+                                    :items="system_test_items"
+                                    label="System Test"
+                                    outlined
                                 ></v-autocomplete>
-                            </div>
+                            </div> -->
                         </div>
                     </v-fade-transition>
                     <v-fade-transition>
@@ -135,7 +134,7 @@ export default {
             systemEdit: null,
             sysSearch: null,
             sysSelect: [],
-            system_test_value: [],
+            system_test: [],
             sysLoading: false,
             ticktemEdit: null,
             tickerEdit: null,

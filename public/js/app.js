@@ -11385,6 +11385,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -11400,7 +11401,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       systemEdit: null,
       sysSearch: null,
       sysSelect: [],
-      system_test: [],
+      system_test_value: [],
       sysLoading: false,
       ticktemEdit: null,
       tickerEdit: null,
@@ -36171,6 +36172,34 @@ var render = function() {
                                 _vm.sysSelect = $$v
                               },
                               expression: "sysSelect"
+                            }
+                          })
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        {
+                          staticClass: " d-inline-flex justify-content-around"
+                        },
+                        [
+                          _c("v-autocomplete", {
+                            attrs: {
+                              items: _vm.systemList,
+                              outlined: "",
+                              dense: "",
+                              chips: "",
+                              "small-chips": "",
+                              label: "Outlined",
+                              multiple: ""
+                            },
+                            model: {
+                              value: _vm.system_test_value,
+                              callback: function($$v) {
+                                _vm.system_test_value = $$v
+                              },
+                              expression: "system_test_value"
                             }
                           })
                         ],
