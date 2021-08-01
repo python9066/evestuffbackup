@@ -186,9 +186,10 @@ export default {
     data() {
         return {
             headers: [
-                { text: "Region", value: "region", width: "10%" },
-                { text: "Constellation", value: "constellation" },
-                { text: "System", value: "system" },
+                { text: "Region", value: "region_name", width: "10%" },
+                { text: "Constellation", value: "constellation_name" },
+                { text: "System", value: "system_name" },
+                { text: "Checked", value: "updated_at" },
                 {
                     text: "Age/Hack",
                     value: "count",

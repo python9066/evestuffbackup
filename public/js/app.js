@@ -11674,14 +11674,17 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     return {
       headers: [{
         text: "Region",
-        value: "region",
+        value: "region_name",
         width: "10%"
       }, {
         text: "Constellation",
-        value: "constellation"
+        value: "constellation_name"
       }, {
         text: "System",
-        value: "system"
+        value: "system_name"
+      }, {
+        text: "Checked",
+        value: "updated_at"
       }, {
         text: "Age/Hack",
         value: "count",

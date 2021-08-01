@@ -47,6 +47,7 @@ systems.constellation_id AS constellation_id,
 constellations.constellation_name AS constellation_name,
 regions.region_name AS region_name,
 users.name AS user_name,
+user.id AS user_id,
 recon_task_systems.created_at AS created_at,
 recon_task_systems.updated_at AS updated_at
 FROM recon_task_systems
