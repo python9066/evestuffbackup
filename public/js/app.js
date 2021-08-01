@@ -23078,7 +23078,7 @@ function sleep(ms) {
   data: function data() {
     return {
       tasks: [],
-      test: "yoyo"
+      taskLoaded: false
     };
   },
   created: function created() {},
@@ -23127,8 +23127,9 @@ function sleep(ms) {
               case 2:
                 res = _context2.sent;
                 _this2.tasks = res.data.tasks;
+                _this2.taskLoaded = true;
 
-              case 4:
+              case 5:
               case "end":
                 return _context2.stop();
             }
@@ -48258,7 +48259,13 @@ var render = function() {
       _vm._v("\n    ewfeawffeefef\n    "),
       _c(
         "v-row",
-        { attrs: { "no-gutters": "", justify: "center" } },
+        {
+          attrs: {
+            "no-gutters": "",
+            justify: "center",
+            "v-if": _vm.taskLoaded == true
+          }
+        },
         _vm._l(_vm.tasks, function(task, index) {
           return _c("ReconTaskTable", {
             key: task.id,

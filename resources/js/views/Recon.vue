@@ -21,7 +21,7 @@
             </v-col>
         </v-row>
         ewfeawffeefef
-        <v-row no-gutters justify="center">
+        <v-row no-gutters justify="center" :v-if="taskLoaded == true">
             <ReconTaskTable
                 class=" px-5 pt-5"
                 v-for="(task, index) in tasks"
@@ -53,7 +53,7 @@ export default {
     data() {
         return {
             tasks: [],
-            test: "yoyo"
+            taskLoaded: false
         };
     },
 
@@ -81,6 +81,7 @@ export default {
             });
 
             this.tasks = res.data.tasks;
+            this.taskLoaded = true;
         }
     },
 
