@@ -2,7 +2,7 @@
     <div class=" d-inline-flex align-items-md-center ">
         <div>
             <!-- <span :v-if="item.user_id != null" class=" d-inline-flex mb-4"> -->
-            <span class=" d-inline-flex mb-4 pt-12">
+            <span class=" d-inline-flex mb-4 pt-5">
                 <VueCountUptimer
                     :start-time="moment.utc(item.updated_at).unix()"
                     :end-text="'Window Closed'"
