@@ -21735,6 +21735,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 
@@ -46036,7 +46042,13 @@ var render = function() {
                         )
                       ])
                     ]
-                  )
+                  ),
+                  _vm._v(" "),
+                  _c("v-card-text", [
+                    _vm._v(
+                      "\n                    Below you will windows for each task. All you have to do\n                    is press the button next to each system after completing\n                    the task. This is just so we know when the task was last\n                    done."
+                    )
+                  ])
                 ],
                 1
               )
