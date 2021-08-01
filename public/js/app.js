@@ -23127,7 +23127,11 @@ function sleep(ms) {
       }))();
     }
   },
-  computed: {},
+  computed: {
+    size: function size() {
+      return 12;
+    }
+  },
   beforeDestroy: function beforeDestroy() {}
 });
 
@@ -48194,7 +48198,7 @@ var render = function() {
         [
           _c(
             "v-col",
-            { attrs: { md: "10" } },
+            { attrs: { md: _vm.size } },
             [
               _c(
                 "v-card",

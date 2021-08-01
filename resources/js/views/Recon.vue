@@ -1,7 +1,7 @@
 <template>
     <div>
         <v-row no-gutters class="pt-5" justify="space-around">
-            <v-col md="10">
+            <v-col :md="size">
                 <v-card class="pa-2" title width="100%">
                     <v-card-title align="center" class="justify-center">
                         <h1>
@@ -86,7 +86,11 @@ export default {
         }
     },
 
-    computed: {},
+    computed: {
+        size() {
+            return 12;
+        }
+    },
 
     beforeDestroy() {}
 };
