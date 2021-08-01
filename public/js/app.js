@@ -11445,7 +11445,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])([])), Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapState"])(["systemlist"])), {}, {
     showSubmit: function showSubmit() {
-      if (this.taskName != null && this.infoText != null && systemValue != null) {
+      if (this.taskName != null && this.infoText != null && this.systemValue != null) {
         return true;
       } else {
         return false;

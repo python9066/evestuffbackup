@@ -161,7 +161,7 @@ export default {
             if (
                 this.taskName != null &&
                 this.infoText != null &&
-                systemValue != null
+                this.systemValue != null
             ) {
                 return true;
             } else {
