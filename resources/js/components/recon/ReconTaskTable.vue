@@ -78,7 +78,7 @@ export default {
                 { text: "System", value: "system_name" },
                 { text: "Checked", value: "updated_at" },
                 {
-                    text: "Age/Hack",
+                    text: "Last Checked (time)",
                     value: "count",
                     width: "20%",
                     align: "center"

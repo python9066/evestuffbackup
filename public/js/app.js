@@ -11698,7 +11698,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         text: "Checked",
         value: "updated_at"
       }, {
-        text: "Age/Hack",
+        text: "Last Checked (time)",
         value: "count",
         width: "20%",
         align: "center"
