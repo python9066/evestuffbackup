@@ -48,29 +48,12 @@
                         <div>
                             <div class=" d-inline-flex justify-content-around">
                                 <v-autocomplete
-                                    v-model="sysSelect"
-                                    :loading="sysLoading"
-                                    chips
-                                    deletable-chips
-                                    multiple
-                                    :items="sysItems"
-                                    :search-input.sync="sysSearch"
-                                    label="System Name"
-                                    outlined
-                                ></v-autocomplete>
-                            </div>
-
-                            <div class=" d-inline-flex justify-content-around">
-                                <v-autocomplete
-                                    v-model="system_test_value"
+                                    v-model="systemValue"
                                     :items="systemList"
                                     outlined
-                                    clearable="false"
                                     deletable-chips
-                                    dense
                                     chips
-                                    small-chips
-                                    label="Outlined"
+                                    label="Enter Systems here"
                                     multiple
                                 ></v-autocomplete>
                             </div>
@@ -133,12 +116,8 @@ export default {
             state: 1,
             showReconTask: false,
             stationName: null,
-            sysItems: [],
             systemEdit: null,
-            sysSearch: null,
-            sysSelect: [],
             system_test_value: [],
-            sysLoading: false,
             ticktemEdit: null,
             tickerEdit: null,
             stationPull: [],
@@ -147,36 +126,12 @@ export default {
         };
     },
 
-    watch: {
-        sysSearch(val) {
-            val && val !== this.sysSelect && this.sysQuerySelections(val);
-        }
-    },
-
     methods: {
-        sysQuerySelections(v) {
-            this.sysLoading = true;
-            // Simulated ajax query
-            setTimeout(() => {
-                this.sysItems = this.systemList.filter(e => {
-                    return (
-                        (e.text || "")
-                            .toLowerCase()
-                            .indexOf((v || "").toLowerCase()) > -1
-                    );
-                });
-                this.sysLoading = false;
-            }, 500);
-        },
-
         close() {
             this.taskName = null;
             this.showReconTask = false;
             this.stationName = null;
             this.taskName = null;
-            this.sysItems = [];
-            this.sysSearch = null;
-            this.sysSelect = null;
             this.systems = [];
             this.state = 1;
             this.showReconTask = false;
@@ -184,8 +139,7 @@ export default {
 
         async submit() {
             var request = {
-                name: this.stationName,
-                system_id: this.sysSelect
+                name: this.stationName
             };
 
             await axios({
@@ -202,9 +156,6 @@ export default {
                 (this.showReconTask = false),
                 (this.stationName = null),
                 (this.taskName = null),
-                (this.sysItems = []),
-                (this.sysSearch = null),
-                (this.sysSelect = null),
                 (this.systems = []),
                 (this.state = 1),
                 (this.showReconTask = false)
@@ -260,13 +211,6 @@ export default {
 
         systemList() {
             return this.systemlist;
-        },
-        showSubmit() {
-            if (this.sysSelect != null) {
-                return false;
-            } else {
-                return true;
-            }
         }
     },
 

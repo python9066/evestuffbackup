@@ -11371,23 +11371,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -11399,12 +11382,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       state: 1,
       showReconTask: false,
       stationName: null,
-      sysItems: [],
       systemEdit: null,
-      sysSearch: null,
-      sysSelect: [],
       system_test_value: [],
-      sysLoading: false,
       ticktemEdit: null,
       tickerEdit: null,
       stationPull: [],
@@ -11412,38 +11391,18 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       structerEdit: null
     };
   },
-  watch: {
-    sysSearch: function sysSearch(val) {
-      val && val !== this.sysSelect && this.sysQuerySelections(val);
-    }
-  },
   methods: {
-    sysQuerySelections: function sysQuerySelections(v) {
-      var _this = this;
-
-      this.sysLoading = true; // Simulated ajax query
-
-      setTimeout(function () {
-        _this.sysItems = _this.systemList.filter(function (e) {
-          return (e.text || "").toLowerCase().indexOf((v || "").toLowerCase()) > -1;
-        });
-        _this.sysLoading = false;
-      }, 500);
-    },
     close: function close() {
       this.taskName = null;
       this.showReconTask = false;
       this.stationName = null;
       this.taskName = null;
-      this.sysItems = [];
-      this.sysSearch = null;
-      this.sysSelect = null;
       this.systems = [];
       this.state = 1;
       this.showReconTask = false;
     },
     submit: function submit() {
-      var _this2 = this;
+      var _this = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
         var request;
@@ -11452,8 +11411,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context.prev = _context.next) {
               case 0:
                 request = {
-                  name: _this2.stationName,
-                  system_id: _this2.sysSelect
+                  name: _this.stationName
                 };
                 _context.next = 3;
                 return axios({
@@ -11462,11 +11420,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   url: "api/stationnew",
                   data: request,
                   headers: {
-                    Authorization: "Bearer " + _this2.$store.state.token,
+                    Authorization: "Bearer " + _this.$store.state.token,
                     Accept: "application/json",
                     "Content-Type": "application/json"
                   }
-                }).then(_this2.taskName = null, _this2.showReconTask = false, _this2.stationName = null, _this2.taskName = null, _this2.sysItems = [], _this2.sysSearch = null, _this2.sysSelect = null, _this2.systems = [], _this2.state = 1, _this2.showReconTask = false);
+                }).then(_this.taskName = null, _this.showReconTask = false, _this.stationName = null, _this.taskName = null, _this.systems = [], _this.state = 1, _this.showReconTask = false);
 
               case 3:
               case "end":
@@ -11477,7 +11435,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }))();
     },
     open: function open() {
-      var _this3 = this;
+      var _this2 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
@@ -11485,15 +11443,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context2.prev = _context2.next) {
               case 0:
                 _context2.next = 2;
-                return _this3.$store.dispatch("getSystemList");
+                return _this2.$store.dispatch("getSystemList");
 
               case 2:
                 _context2.next = 4;
-                return _this3.$store.dispatch("getTickList");
+                return _this2.$store.dispatch("getTickList");
 
               case 4:
                 _context2.next = 6;
-                return _this3.$store.dispatch("getStructureList");
+                return _this2.$store.dispatch("getStructureList");
 
               case 6:
               case "end":
@@ -11504,7 +11462,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }))();
     },
     reconTaskAdd: function reconTaskAdd() {
-      var _this4 = this;
+      var _this3 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
         var request;
@@ -11513,7 +11471,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context3.prev = _context3.next) {
               case 0:
                 request = {
-                  title: _this4.taskName
+                  title: _this3.taskName
                 };
                 _context3.next = 3;
                 return axios({
@@ -11522,7 +11480,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   url: "api/stationname",
                   data: request,
                   headers: {
-                    Authorization: "Bearer " + _this4.$store.state.token,
+                    Authorization: "Bearer " + _this3.$store.state.token,
                     Accept: "application/json",
                     "Content-Type": "application/json"
                   }
@@ -11530,14 +11488,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   var res = response.data;
 
                   if (res.state == 2) {
-                    _this4.stationPull = res;
-                    _this4.stationName = res.station_name;
-                    _this4.state = res.state;
+                    _this3.stationPull = res;
+                    _this3.stationName = res.station_name;
+                    _this3.state = res.state;
                   }
 
                   if (res.state == 3) {
-                    _this4.stationPull = res;
-                    _this4.state = res.state;
+                    _this3.stationPull = res;
+                    _this3.state = res.state;
                   }
                 });
 
@@ -11560,13 +11518,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
     systemList: function systemList() {
       return this.systemlist;
-    },
-    showSubmit: function showSubmit() {
-      if (this.sysSelect != null) {
-        return false;
-      } else {
-        return true;
-      }
     }
   }),
   beforeDestroy: function beforeDestroy() {}
@@ -36151,59 +36102,19 @@ var render = function() {
                         [
                           _c("v-autocomplete", {
                             attrs: {
-                              loading: _vm.sysLoading,
-                              chips: "",
-                              "deletable-chips": "",
-                              multiple: "",
-                              items: _vm.sysItems,
-                              "search-input": _vm.sysSearch,
-                              label: "System Name",
-                              outlined: ""
-                            },
-                            on: {
-                              "update:searchInput": function($event) {
-                                _vm.sysSearch = $event
-                              },
-                              "update:search-input": function($event) {
-                                _vm.sysSearch = $event
-                              }
-                            },
-                            model: {
-                              value: _vm.sysSelect,
-                              callback: function($$v) {
-                                _vm.sysSelect = $$v
-                              },
-                              expression: "sysSelect"
-                            }
-                          })
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        {
-                          staticClass: " d-inline-flex justify-content-around"
-                        },
-                        [
-                          _c("v-autocomplete", {
-                            attrs: {
                               items: _vm.systemList,
                               outlined: "",
-                              clearable: "false",
                               "deletable-chips": "",
-                              dense: "",
                               chips: "",
-                              "small-chips": "",
-                              label: "Outlined",
+                              label: "Enter Systems here",
                               multiple: ""
                             },
                             model: {
-                              value: _vm.system_test_value,
+                              value: _vm.systemValue,
                               callback: function($$v) {
-                                _vm.system_test_value = $$v
+                                _vm.systemValue = $$v
                               },
-                              expression: "system_test_value"
+                              expression: "systemValue"
                             }
                           })
                         ],
