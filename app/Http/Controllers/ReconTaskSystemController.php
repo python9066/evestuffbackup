@@ -49,6 +49,7 @@ class ReconTaskSystemController extends Controller
      */
     public function update(Request $request, $id)
     {
+        ReconTaskSystems::find($id)->update(['user_id' => null]);
         ReconTaskSystems::find($id)->update($request->all());
         $noteification = "yay";
         broadcast(new ReconTimerUpdate($noteification));
