@@ -54,7 +54,7 @@ class ReconTaskSystemController extends Controller
         $flag = collect([
             'id' => $id,
         ]);
-        broadcast(new ReconTimerUpdate($id));
+        broadcast(new ReconTimerUpdate($flag));
     }
     /**
      * Remove the specified resource from storage.

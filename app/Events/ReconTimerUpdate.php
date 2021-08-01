@@ -21,7 +21,7 @@ class ReconTimerUpdate implements ShouldBroadcast
      * @return void
      */
     public $flag;
-    public function __construct(ReconTaskSystems $flag)
+    public function __construct($flag)
     {
         $this->flag = $flag;
     }
