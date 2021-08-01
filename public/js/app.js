@@ -48264,7 +48264,7 @@ var render = function() {
           }
         },
         _vm._l(_vm.tasks, function(task, index) {
-          return _c("SystemTable", {
+          return _c("ReconTaskTable", {
             key: task.id,
             staticClass: " px-5 pt-5",
             attrs: {

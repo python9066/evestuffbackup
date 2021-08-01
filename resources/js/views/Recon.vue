@@ -21,7 +21,7 @@
             </v-col>
         </v-row>
         <v-row no-gutters justify="center" :v-if="tasksLoaded == true">
-            <SystemTable
+            <ReconTaskTable
                 class=" px-5 pt-5"
                 v-for="(task, index) in tasks"
                 :created_at="task.created_at"
@@ -33,7 +33,7 @@
                 :index="index"
                 :key="task.id"
             >
-            </SystemTable>
+            </ReconTaskTable>
         </v-row>
     </div>
 </template>
