@@ -11466,8 +11466,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -36356,37 +36354,7 @@ var render = function() {
                           },
                           expression: "taskName"
                         }
-                      }),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        { staticClass: " pl-2 pt-2" },
-                        [
-                          _vm.state == 1
-                            ? _c(
-                                "v-chip",
-                                {
-                                  attrs: {
-                                    pill: "",
-                                    disabled: _vm.submitTask,
-                                    color: "green"
-                                  },
-                                  on: {
-                                    click: function($event) {
-                                      return _vm.reconTaskAdd()
-                                    }
-                                  }
-                                },
-                                [
-                                  _vm._v(
-                                    "\n                            Next\n                        "
-                                  )
-                                ]
-                              )
-                            : _vm._e()
-                        ],
-                        1
-                      )
+                      })
                     ],
                     1
                   ),
@@ -36770,6 +36738,25 @@ var render = function() {
               _c(
                 "v-card-actions",
                 [
+                  _vm.state == 1
+                    ? _c(
+                        "v-chip",
+                        {
+                          attrs: {
+                            pill: "",
+                            disabled: _vm.submitTask,
+                            color: "green"
+                          },
+                          on: {
+                            click: function($event) {
+                              return _vm.reconTaskAdd()
+                            }
+                          }
+                        },
+                        [_vm._v("\n                    Add\n                ")]
+                      )
+                    : _vm._e(),
+                  _vm._v(" "),
                   _c(
                     "v-btn",
                     {

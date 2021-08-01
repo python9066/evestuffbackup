@@ -43,17 +43,6 @@
                             class=" shrink"
                             style="width:600px"
                         ></v-text-field>
-                        <div class=" pl-2 pt-2">
-                            <v-chip
-                                v-if="state == 1"
-                                pill
-                                :disabled="submitTask"
-                                color="green"
-                                @click="reconTaskAdd()"
-                            >
-                                Next
-                            </v-chip>
-                        </div>
                     </div>
                     <v-fade-transition>
                         <div v-if="state == 2">
@@ -168,6 +157,15 @@
                 </v-card-text>
                 <v-spacer></v-spacer
                 ><v-card-actions>
+                    <v-chip
+                        v-if="state == 1"
+                        pill
+                        :disabled="submitTask"
+                        color="green"
+                        @click="reconTaskAdd()"
+                    >
+                        Add
+                    </v-chip>
                     <v-btn class="white--text" color="teal" @click="close()">
                         Close
                     </v-btn>
