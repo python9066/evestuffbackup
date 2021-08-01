@@ -36653,7 +36653,7 @@ var render = function() {
           [
             _c("VueCountUptimer", {
               attrs: {
-                "start-time": _vm.moment.utc(_vm.item.last_update).unix(),
+                "start-time": _vm.moment.utc(_vm.item.last_edit).unix(),
                 "end-text": "Window Closed",
                 interval: 1000
               },

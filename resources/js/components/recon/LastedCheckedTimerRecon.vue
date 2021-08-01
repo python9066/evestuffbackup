@@ -4,7 +4,7 @@
             <!-- <span :v-if="item.user_id != null" class=" d-inline-flex mb-4"> -->
             <span class=" d-inline-flex mb-4 pt-4">
                 <VueCountUptimer
-                    :start-time="moment.utc(item.last_update).unix()"
+                    :start-time="moment.utc(item.last_edit).unix()"
                     :end-text="'Window Closed'"
                     :interval="1000"
                     ><template slot="countup" slot-scope="scope"
