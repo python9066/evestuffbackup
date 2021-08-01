@@ -33,6 +33,6 @@ class ReconTimerUpdate implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new PrivateChannel('recon.' . $this->flag['id']);
+        return new PrivateChannel('recontask.' . $this->flag['id']);
     }
 }
