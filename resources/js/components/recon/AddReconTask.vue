@@ -51,6 +51,8 @@
                                     v-model="sysSelect"
                                     :loading="sysLoading"
                                     clearable
+                                    deletable-chips
+                                    multiple
                                     :items="sysItems"
                                     :search-input.sync="sysSearch"
                                     label="System Name"

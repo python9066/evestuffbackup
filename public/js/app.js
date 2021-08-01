@@ -11371,6 +11371,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -36155,6 +36157,8 @@ var render = function() {
                             attrs: {
                               loading: _vm.sysLoading,
                               clearable: "",
+                              "deletable-chips": "",
+                              multiple: "",
                               items: _vm.sysItems,
                               "search-input": _vm.sysSearch,
                               label: "System Name",
