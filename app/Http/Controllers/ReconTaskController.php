@@ -53,7 +53,7 @@ class ReconTaskController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        ReconTasks::find($id)->update($request->all());
     }
 
     /**

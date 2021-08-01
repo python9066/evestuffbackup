@@ -1,6 +1,6 @@
 <template>
     <div>
-        <v-icon color="red" @click="updateTimer()">
+        <v-icon color="blue" @click="updateTimer()">
             {{ icon }}
         </v-icon>
 
@@ -27,7 +27,21 @@ export default {
     async created() {},
 
     methods: {
-        updateTimer() {}
+        updateTimer() {
+            let request = {
+                edited_by_user_id: this.$store.state.user_id
+            };
+            axios({
+                method: "put",
+                url: "/api/stationattackmessage/" + this.item.id,
+                data: request,
+                headers: {
+                    Authorization: "Bearer " + this.$store.state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                }
+            });
+        }
     },
 
     computed: {

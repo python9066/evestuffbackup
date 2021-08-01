@@ -11649,7 +11649,21 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     }))();
   },
   methods: {
-    updateTimer: function updateTimer() {}
+    updateTimer: function updateTimer() {
+      var request = {
+        edited_by_user_id: this.$store.state.user_id
+      };
+      axios({
+        method: "put",
+        url: "/api/stationattackmessage/" + this.item.id,
+        data: request,
+        headers: {
+          Authorization: "Bearer " + this.$store.state.token,
+          Accept: "application/json",
+          "Content-Type": "application/json"
+        }
+      });
+    }
   },
   computed: {
     icon: function icon() {
@@ -36686,7 +36700,7 @@ var render = function() {
       _c(
         "v-icon",
         {
-          attrs: { color: "red" },
+          attrs: { color: "blue" },
           on: {
             click: function($event) {
               return _vm.updateTimer()
