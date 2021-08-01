@@ -2,13 +2,13 @@
     <div class=" d-inline-flex align-items-md-center ">
         <div>
             <!-- <span :v-if="item.user_id != null" class=" d-inline-flex mb-4"> -->
-            <span class=" d-inline-flex mb-4">
+            <span class=" d-inline-flex mb-4 align-items-md-center">
                 <VueCountUptimer
                     :start-time="moment.utc(item.updated_at).unix()"
                     :end-text="'Window Closed'"
                     :interval="1000"
                     ><template slot="countup" slot-scope="scope"
-                        ><div class="green--text pl-2 pr-2 align-center">
+                        ><div class="green--text pl-2 pr-2">
                             {{ scope.props.hours }}:{{ scope.props.minutes }}:{{
                                 scope.props.seconds
                             }}
