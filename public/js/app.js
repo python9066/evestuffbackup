@@ -11363,43 +11363,23 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {},
   data: function data() {
     return {
-      systems: [],
+      systemValue: [],
       taskName: null,
-      state: 1,
-      showReconTask: false,
-      stationName: null,
-      systemEdit: null,
-      system_test_value: [],
-      ticktemEdit: null,
-      tickerEdit: null,
-      stationPull: [],
-      structtemEdit: null,
-      structerEdit: null
+      infoText: null
     };
   },
   methods: {
     close: function close() {
       this.taskName = null;
       this.showReconTask = false;
-      this.stationName = null;
       this.taskName = null;
-      this.systems = [];
-      this.state = 1;
-      this.showReconTask = false;
+      this.systemValue = [];
     },
     submit: function submit() {
       var _this = this;
@@ -36100,7 +36080,39 @@ var render = function() {
                           staticClass: " d-inline-flex justify-content-around"
                         },
                         [
+                          _c("v-textarea", {
+                            staticClass: "shrink",
+                            staticStyle: { width: "600px" },
+                            attrs: {
+                              outlined: "",
+                              placeholder:
+                                "Enter more details about the task here",
+                              label: "Task Details"
+                            },
+                            model: {
+                              value: _vm.infoText,
+                              callback: function($$v) {
+                                _vm.infoText = $$v
+                              },
+                              expression: "infoText"
+                            }
+                          })
+                        ],
+                        1
+                      )
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("v-fade-transition", [
+                    _c("div", [
+                      _c(
+                        "div",
+                        {
+                          staticClass: " d-inline-flex justify-content-around"
+                        },
+                        [
                           _c("v-autocomplete", {
+                            staticStyle: { width: "600px" },
                             attrs: {
                               items: _vm.systemList,
                               outlined: "",
@@ -36121,76 +36133,6 @@ var render = function() {
                         1
                       )
                     ])
-                  ]),
-                  _vm._v(" "),
-                  _c("v-fade-transition", [
-                    _vm.state == 3
-                      ? _c("div", [
-                          _c(
-                            "div",
-                            [
-                              _c("v-text-field", {
-                                attrs: {
-                                  label: "Structure Type",
-                                  readonly: ""
-                                },
-                                model: {
-                                  value: _vm.stationPull.structure_name,
-                                  callback: function($$v) {
-                                    _vm.$set(
-                                      _vm.stationPull,
-                                      "structure_name",
-                                      $$v
-                                    )
-                                  },
-                                  expression: "stationPull.structure_name"
-                                }
-                              })
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "div",
-                            {
-                              staticClass:
-                                " d-inline-flex justify-content-around"
-                            },
-                            [
-                              _c("v-text-field", {
-                                attrs: { label: "System Name", readonly: "" },
-                                model: {
-                                  value: _vm.stationPull.system_name,
-                                  callback: function($$v) {
-                                    _vm.$set(
-                                      _vm.stationPull,
-                                      "system_name",
-                                      $$v
-                                    )
-                                  },
-                                  expression: "stationPull.system_name"
-                                }
-                              }),
-                              _vm._v(" "),
-                              _c("v-text-field", {
-                                attrs: { label: "Corp Ticker", readonly: "" },
-                                model: {
-                                  value: _vm.stationPull.corp_ticker,
-                                  callback: function($$v) {
-                                    _vm.$set(
-                                      _vm.stationPull,
-                                      "corp_ticker",
-                                      $$v
-                                    )
-                                  },
-                                  expression: "stationPull.corp_ticker"
-                                }
-                              })
-                            ],
-                            1
-                          )
-                        ])
-                      : _vm._e()
                   ])
                 ],
                 1

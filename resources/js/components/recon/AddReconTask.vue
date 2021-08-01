@@ -47,6 +47,20 @@
                     <v-fade-transition>
                         <div>
                             <div class=" d-inline-flex justify-content-around">
+                                <v-textarea
+                                    outlined
+                                    v-model="infoText"
+                                    placeholder="Enter more details about the task here"
+                                    label="Task Details"
+                                    class="shrink"
+                                    style="width:600px"
+                                ></v-textarea>
+                            </div>
+                        </div>
+                    </v-fade-transition>
+                    <v-fade-transition>
+                        <div>
+                            <div class=" d-inline-flex justify-content-around">
                                 <v-autocomplete
                                     v-model="systemValue"
                                     :items="systemList"
@@ -55,30 +69,8 @@
                                     chips
                                     label="Enter Systems here"
                                     multiple
+                                    style="width:600px"
                                 ></v-autocomplete>
-                            </div>
-                        </div>
-                    </v-fade-transition>
-                    <v-fade-transition>
-                        <div v-if="state == 3">
-                            <div>
-                                <v-text-field
-                                    v-model="stationPull.structure_name"
-                                    label="Structure Type"
-                                    readonly
-                                ></v-text-field>
-                            </div>
-                            <div class=" d-inline-flex justify-content-around">
-                                <v-text-field
-                                    v-model="stationPull.system_name"
-                                    label="System Name"
-                                    readonly
-                                ></v-text-field>
-                                <v-text-field
-                                    v-model="stationPull.corp_ticker"
-                                    label="Corp Ticker"
-                                    readonly
-                                ></v-text-field>
                             </div>
                         </div>
                     </v-fade-transition>
@@ -111,18 +103,9 @@ export default {
     props: {},
     data() {
         return {
-            systems: [],
+            systemValue: [],
             taskName: null,
-            state: 1,
-            showReconTask: false,
-            stationName: null,
-            systemEdit: null,
-            system_test_value: [],
-            ticktemEdit: null,
-            tickerEdit: null,
-            stationPull: [],
-            structtemEdit: null,
-            structerEdit: null
+            infoText: null
         };
     },
 
@@ -130,11 +113,8 @@ export default {
         close() {
             this.taskName = null;
             this.showReconTask = false;
-            this.stationName = null;
             this.taskName = null;
-            this.systems = [];
-            this.state = 1;
-            this.showReconTask = false;
+            this.systemValue = [];
         },
 
         async submit() {
