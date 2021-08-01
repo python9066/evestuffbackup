@@ -29,7 +29,7 @@ export default {
     methods: {
         updateTimer() {
             let request = {
-                edited_by_user_id: this.$store.state.user_id
+                user_id: this.$store.state.user_id
             };
             axios({
                 method: "put",

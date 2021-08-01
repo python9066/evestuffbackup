@@ -11651,7 +11651,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   methods: {
     updateTimer: function updateTimer() {
       var request = {
-        edited_by_user_id: this.$store.state.user_id
+        user_id: this.$store.state.user_id
       };
       axios({
         method: "put",
