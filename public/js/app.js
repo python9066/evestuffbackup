@@ -11532,27 +11532,25 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                _this.test1 = _this.CampaignSolaSystem[0]["id"];
                 timeStamp = moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc().format("YYYY-MM-DD HH:mm:ss");
                 data = {
-                  id: _this.CampaignSolaSystem[0]["id"],
-                  last_checked_user_id: _this.$store.state.user_id,
-                  last_checked_user_name: _this.$store.state.user_name,
-                  last_checked: timeStamp
+                  id: _this.item.id,
+                  user_id: _this.$store.state.user_id,
+                  user_name: _this.$store.state.user_name,
+                  updated_at: timeStamp
                 };
 
-                _this.$store.dispatch("updateCampaignSolaSystem", data);
+                _this.$store.dispatch("updateReconTaskSystems", data);
 
                 request = null;
                 request = {
-                  last_checked_user_id: _this.$store.state.user_id,
-                  last_checked: timeStamp
+                  user_id: _this.$store.state.user_id
                 };
-                _context.next = 8;
+                _context.next = 7;
                 return axios({
                   //adds user name of last checked
                   method: "put",
-                  url: "/api/campaignsolasystems/" + _this.CampaignSolaSystem[0]["id"] + "/" + _this.CampaignSolaSystem[0]["campaign_id"],
+                  url: "/api/recontasksystemtimeupdate/" + _this.item.id,
                   data: request,
                   headers: {
                     Authorization: "Bearer " + _this.$store.state.token,
@@ -11561,26 +11559,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   }
                 });
 
-              case 8:
-                //------logging start------//
-                request = null;
-                request = {
-                  user_id: _this.$store.state.user_id,
-                  campaign_sola_system_id: _this.CampaignSolaSystem[0]["id"]
-                };
-                _context.next = 12;
-                return axios({
-                  method: "put",
-                  url: "/api/checklastedchecked/" + _this.CampaignSolaSystem[0]["campaign_id"],
-                  data: request,
-                  headers: {
-                    Authorization: "Bearer " + _this.$store.state.token,
-                    Accept: "application/json",
-                    "Content-Type": "application/json"
-                  }
-                });
-
-              case 12:
+              case 7:
               case "end":
                 return _context.stop();
             }
@@ -36727,7 +36706,7 @@ var render = function() {
           attrs: { color: "blue" },
           on: {
             click: function($event) {
-              return _vm.updateTimer()
+              return _vm.checkClick()
             }
           }
         },

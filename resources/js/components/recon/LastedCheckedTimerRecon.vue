@@ -23,7 +23,7 @@
                 </VueCountUptimer>
             </span>
         </div>
-        <v-icon color="blue" @click="updateTimer()">
+        <v-icon color="blue" @click="checkClick()">
             {{ icon }}
         </v-icon>
     </div>
@@ -44,32 +44,26 @@ export default {
 
     methods: {
         async checkClick() {
-            this.test1 = this.CampaignSolaSystem[0]["id"];
             var timeStamp = moment.utc().format("YYYY-MM-DD HH:mm:ss");
 
             var data = {
-                id: this.CampaignSolaSystem[0]["id"],
-                last_checked_user_id: this.$store.state.user_id,
-                last_checked_user_name: this.$store.state.user_name,
-                last_checked: timeStamp
+                id: this.item.id,
+                user_id: this.$store.state.user_id,
+                user_name: this.$store.state.user_name,
+                updated_at: timeStamp
             };
 
-            this.$store.dispatch("updateCampaignSolaSystem", data);
+            this.$store.dispatch("updateReconTaskSystems", data);
 
             var request = null;
             request = {
-                last_checked_user_id: this.$store.state.user_id,
-                last_checked: timeStamp
+                user_id: this.$store.state.user_id
             };
 
             await axios({
                 //adds user name of last checked
                 method: "put",
-                url:
-                    "/api/campaignsolasystems/" +
-                    this.CampaignSolaSystem[0]["id"] +
-                    "/" +
-                    this.CampaignSolaSystem[0]["campaign_id"],
+                url: "/api/recontasksystemtimeupdate/" + this.item.id,
                 data: request,
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
@@ -79,28 +73,6 @@ export default {
             });
 
             //------logging start------//
-            var request = null;
-            request = {
-                user_id: this.$store.state.user_id,
-                campaign_sola_system_id: this.CampaignSolaSystem[0]["id"]
-            };
-
-            await axios({
-                method: "put",
-                url:
-                    "/api/checklastedchecked/" +
-                    this.CampaignSolaSystem[0]["campaign_id"],
-                data: request,
-                headers: {
-                    Authorization: "Bearer " + this.$store.state.token,
-                    Accept: "application/json",
-                    "Content-Type": "application/json"
-                }
-            });
-
-            //--------logging end------//
-
-            // console.log(timeStamp);
         }
     },
 
