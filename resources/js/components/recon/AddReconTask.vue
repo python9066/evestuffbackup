@@ -65,6 +65,8 @@
                                     v-model="system_test_value"
                                     :items="systemList"
                                     outlined
+                                    clearable="false"
+                                    deletable-chips
                                     dense
                                     chips
                                     small-chips
