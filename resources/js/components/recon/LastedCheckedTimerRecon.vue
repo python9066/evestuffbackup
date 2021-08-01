@@ -50,14 +50,15 @@ export default {
                 id: this.item.id,
                 user_id: this.$store.state.user_id,
                 user_name: this.$store.state.user_name,
-                updated_at: timeStamp
+                last_edit: timeStamp
             };
 
             this.$store.dispatch("updateReconTaskSystems", data);
 
             var request = null;
             request = {
-                user_id: this.$store.state.user_id
+                user_id: this.$store.state.user_id,
+                last_edit: timeStamp
             };
 
             await axios({

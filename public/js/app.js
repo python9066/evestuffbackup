@@ -11537,14 +11537,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   id: _this.item.id,
                   user_id: _this.$store.state.user_id,
                   user_name: _this.$store.state.user_name,
-                  updated_at: timeStamp
+                  last_edit: timeStamp
                 };
 
                 _this.$store.dispatch("updateReconTaskSystems", data);
 
                 request = null;
                 request = {
-                  user_id: _this.$store.state.user_id
+                  user_id: _this.$store.state.user_id,
+                  last_edit: timeStamp
                 };
                 _context.next = 7;
                 return axios({
