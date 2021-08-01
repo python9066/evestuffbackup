@@ -22024,7 +22024,7 @@ function sleep(ms) {
                 _context2.next = 2;
                 return axios({
                   method: "get",
-                  url: "/api/recontask/",
+                  url: "/api/recontask",
                   headers: {
                     Authorization: "Bearer " + _this2.$store.state.token,
                     Accept: "application/json",

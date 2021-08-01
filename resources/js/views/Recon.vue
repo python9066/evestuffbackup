@@ -53,7 +53,7 @@ export default {
             // console.log(id, this.$store.state.token);
             let res = await axios({
                 method: "get",
-                url: "/api/recontask/",
+                url: "/api/recontask",
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
                     Accept: "application/json",
