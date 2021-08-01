@@ -15,8 +15,9 @@ class CreateReconTaskSystemsTable extends Migration
     {
         Schema::create('recon_task_systems', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('task_id');
-            $table->foreignId(`system_id`);
+            $table->foreignId('recon_task_id');
+            $table->foreignId('system_id');
+            $table->foreignId('user_id');
             $table->timestamps();
         });
     }
