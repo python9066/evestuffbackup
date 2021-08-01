@@ -11502,6 +11502,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -36558,15 +36565,25 @@ var render = function() {
                 key: "countup",
                 fn: function(scope) {
                   return [
-                    _c("span", { staticClass: "pl-2 pr-2" }, [
-                      _vm._v(
-                        _vm._s(scope.props.hours) +
-                          ":" +
-                          _vm._s(scope.props.minutes) +
-                          ":" +
-                          _vm._s(scope.props.seconds)
-                      )
-                    ])
+                    scope.props.minutes < 5
+                      ? _c("span", { staticClass: "green--text pl-2 pr-2" }, [
+                          _vm._v(
+                            _vm._s(scope.props.hours) +
+                              ":" +
+                              _vm._s(scope.props.minutes) +
+                              ":" +
+                              _vm._s(scope.props.seconds)
+                          )
+                        ])
+                      : _c("span", { staticClass: "red--text pl-2 pr-2" }, [
+                          _vm._v(
+                            _vm._s(scope.props.hours) +
+                              ":" +
+                              _vm._s(scope.props.minutes) +
+                              ":" +
+                              _vm._s(scope.props.seconds)
+                          )
+                        ])
                   ]
                 }
               }
