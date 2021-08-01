@@ -27,6 +27,7 @@ class ReconTasks extends Model
 
     protected $casts = [
         'created_at' => 'datetime:Y-m-d H:i:s',
+        'updated_at' => 'datetime:Y-m-d H:i:s',
         'id' => 'integer',
         'made_by_user_id' => 'integer',
         'edited_by_user_id' => 'integer'

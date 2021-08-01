@@ -174,12 +174,12 @@ import { mapState, mapGetters } from "vuex";
 import moment from "moment";
 export default {
     props: {
-        created_at: Date,
+        created_at: String,
         edited_by_user_id: Number,
         info: String,
         made_by_user_id: Number,
         title: String,
-        updated_at: Date
+        updated_at: String
     },
     data() {
         return {

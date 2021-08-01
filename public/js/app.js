@@ -11661,12 +11661,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
-    created_at: Date,
+    created_at: String,
     edited_by_user_id: Number,
     info: String,
     made_by_user_id: Number,
     title: String,
-    updated_at: Date
+    updated_at: String
   },
   data: function data() {
     return {
