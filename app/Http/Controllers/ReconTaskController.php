@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\ReconTasks;
+use App\Models\ReconTaskSystems;
 use Illuminate\Http\Request;
 
 class ReconTaskController extends Controller
@@ -26,7 +27,10 @@ class ReconTaskController extends Controller
     public function store(Request $request)
     {
         $new = ReconTasks::Create(['title' => $request->title, 'info' => $request->info, 'made_by_user_id' => $request->made_by_user_id]);
-        dd($new->id);
+        $id = $new->id;
+        foreach ($request->systemValue as $system) {
+            ReconTaskSystems::Create(['recon_task_id' => $id, 'system_id' => $system]);
+        }
     }
 
     /**
