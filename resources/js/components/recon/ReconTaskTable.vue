@@ -34,12 +34,7 @@
                         </LastedCheckedTimerRecon>
                     </template>
                     <template v-slot:[`item.actions`]="{ item }">
-                        <div class=" d-inline-flex">
-                            <ReconSystemCheckedButton
-                                class=" pr-3"
-                                :item="item"
-                            ></ReconSystemCheckedButton>
-                        </div>
+                        <div class=" d-inline-flex"></div>
                     </template>
 
                     <template slot="no-data">

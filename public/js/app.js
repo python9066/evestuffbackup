@@ -11652,11 +11652,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -36731,19 +36726,7 @@ var render = function() {
                         key: "item.actions",
                         fn: function(ref) {
                           var item = ref.item
-                          return [
-                            _c(
-                              "div",
-                              { staticClass: " d-inline-flex" },
-                              [
-                                _c("ReconSystemCheckedButton", {
-                                  staticClass: " pr-3",
-                                  attrs: { item: item }
-                                })
-                              ],
-                              1
-                            )
-                          ]
+                          return [_c("div", { staticClass: " d-inline-flex" })]
                         }
                       }
                     ],
