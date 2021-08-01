@@ -33,7 +33,7 @@
                 :updated_at="task.updated_at"
                 :index="index"
                 :key="task.id"
-                :size="10"
+                :size="6"
             >
             </ReconTaskTable>
         </v-row>
