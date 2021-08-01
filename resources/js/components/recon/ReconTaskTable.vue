@@ -33,9 +33,6 @@
                         ><LastedCheckedTimerRecon :item="item">
                         </LastedCheckedTimerRecon>
                     </template>
-                    <template v-slot:[`item.actions`]="{ item }">
-                        <div class=" d-inline-flex"></div>
-                    </template>
 
                     <template slot="no-data">
                         No nodes have shown up here..... yet!!!!

@@ -11649,9 +11649,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -36721,13 +36718,6 @@ var render = function() {
                             })
                           ]
                         }
-                      },
-                      {
-                        key: "item.actions",
-                        fn: function(ref) {
-                          var item = ref.item
-                          return [_c("div", { staticClass: " d-inline-flex" })]
-                        }
                       }
                     ],
                     null,
@@ -36735,7 +36725,6 @@ var render = function() {
                   )
                 },
                 [
-                  _vm._v(" "),
                   _vm._v(" "),
                   _vm._v(" "),
                   _c("template", { slot: "no-data" }, [
@@ -42678,7 +42667,7 @@ var render = function() {
                     )
                   ]),
                   _vm._v(" "),
-                  _vm.$can("super")
+                  _vm.$can("view_recon")
                     ? _c("v-tab", { attrs: { link: "", to: "/recon" } }, [
                         _vm._v("\n                    Recon\n                ")
                       ])
