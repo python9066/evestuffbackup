@@ -56,14 +56,8 @@ import { mapState, mapGetters } from "vuex";
 import moment from "moment";
 export default {
     props: {
-        created_at: String,
-        edited_by_user_id: Number,
-        info: String,
-        made_by_user_id: Number,
-        title: String,
-        updated_at: String,
-        size: Number,
-        id: Number
+        item: Object,
+        size: Number
     },
     data() {
         return {
@@ -71,7 +65,7 @@ export default {
                 { text: "Region", value: "region_name", width: "10%" },
                 { text: "Constellation", value: "constellation_name" },
                 { text: "System", value: "system_name" },
-                { text: "Last Checked (date)", value: "updated_at" },
+                { text: "Last Checked (date)", value: "last_edit" },
                 { text: "Checked by", value: "user_name" },
                 {
                     text: "Last Checked (time)",
@@ -94,9 +88,12 @@ export default {
     },
 
     async created() {
-        Echo.private("recontask." + this.id).listen("ReconTimerUpdate", e => {
-            this.$store.dispatch("updateReconTaskSystems", e.flag.message);
-        });
+        Echo.private("recontask." + this.item.id).listen(
+            "ReconTimerUpdate",
+            e => {
+                this.$store.dispatch("updateReconTaskSystems", e.flag.message);
+            }
+        );
     },
 
     async mounted() {},
@@ -116,12 +113,12 @@ export default {
             // var timers = this.$store.state.timers;
 
             return this.recontasksystems.filter(
-                s => s.recon_task_id == this.id
+                s => s.recon_task_id == this.item.id
             );
         }
     },
     beforeDestroy() {
-        Echo.leave("recontask." + this.id);
+        Echo.leave("recontask." + this.item.id);
     }
 };
 </script>

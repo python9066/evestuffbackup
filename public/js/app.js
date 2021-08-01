@@ -11744,14 +11744,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
-    created_at: String,
-    edited_by_user_id: Number,
-    info: String,
-    made_by_user_id: Number,
-    title: String,
-    updated_at: String,
-    size: Number,
-    id: Number
+    item: Object,
+    size: Number
   },
   data: function data() {
     return {
@@ -11767,7 +11761,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         value: "system_name"
       }, {
         text: "Last Checked (date)",
-        value: "updated_at"
+        value: "last_edit"
       }, {
         text: "Checked by",
         value: "user_name"
@@ -11794,7 +11788,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              Echo["private"]("recontask." + _this.id).listen("ReconTimerUpdate", function (e) {
+              Echo["private"]("recontask." + _this.item.id).listen("ReconTimerUpdate", function (e) {
                 _this.$store.dispatch("updateReconTaskSystems", e.flag.message);
               });
 
@@ -11846,12 +11840,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
       // var timers = this.$store.state.timers;
       return this.recontasksystems.filter(function (s) {
-        return s.recon_task_id == _this3.id;
+        return s.recon_task_id == _this3.item.id;
       });
     }
   }),
   beforeDestroy: function beforeDestroy() {
-    Echo.leave("recontask." + this.id);
+    Echo.leave("recontask." + this.item.id);
   }
 });
 
@@ -22345,12 +22339,6 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -47373,17 +47361,7 @@ var render = function() {
           return _c("ReconTaskTable", {
             key: task.id,
             staticClass: " px-5 pt-5",
-            attrs: {
-              created_at: task.created_at,
-              id: task.id,
-              edited_by_user_id: task.edited_by_user_id,
-              info: task.info,
-              made_by_user_id: task.made_by_user_id,
-              title: task.title,
-              updated_at: task.updated_at,
-              index: index,
-              size: 6
-            }
+            attrs: { item: task, index: index, size: 6 }
           })
         }),
         1
