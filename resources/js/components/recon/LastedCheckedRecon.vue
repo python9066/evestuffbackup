@@ -12,7 +12,6 @@
                             {{ scope.props.hours }}:{{ scope.props.minutes }}:{{
                                 scope.props.seconds
                             }}
-                            >
                         </div>
                     </template>
                 </VueCountUptimer>

@@ -11502,7 +11502,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -36567,7 +36566,7 @@ var render = function() {
                           _vm._s(scope.props.minutes) +
                           ":" +
                           _vm._s(scope.props.seconds) +
-                          "\n                        >\n                    "
+                          "\n                    "
                       )
                     ])
                   ]
