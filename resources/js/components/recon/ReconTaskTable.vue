@@ -22,6 +22,10 @@
                     disable-pagination
                     class="elevation-12"
                 >
+                    <template v-slot:[`item.count`]="{ item }"
+                        ><LastedCheckedRecon :item="item"> </LastedCheckedRecon>
+                    </template>
+
                     <template v-slot:[`item.actions`]="{ item }">
                         <div class=" d-inline-flex">
                             <SystemAttackMessage
