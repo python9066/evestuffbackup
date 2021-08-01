@@ -93,11 +93,19 @@ export default {
         };
     },
 
-    async created() {},
+    async created() {
+        Echo.private("recontask." + this.id).listen("ReconTimerUpdate", e => {
+            this.update();
+        });
+    },
 
     async mounted() {},
 
-    methods: {},
+    methods: {
+        async update() {
+            await this.$store.dispatch("getReconTaskSystemsRecords");
+        }
+    },
 
     computed: {
         ...mapState(["recontasksystems", "user_id"]),
@@ -111,6 +119,9 @@ export default {
                 s => s.recon_task_id == this.id
             );
         }
+    },
+    beforeDestroy() {
+        Echo.leave("recontask." + this.id);
     }
 };
 </script>

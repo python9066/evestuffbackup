@@ -58,11 +58,7 @@ export default {
         };
     },
 
-    async created() {
-        Echo.private("recon").listen("ReconTimerUpdate", e => {
-            this.updateTasks();
-        });
-    },
+    async created() {},
 
     beforeMount() {},
 
@@ -88,11 +84,6 @@ export default {
 
             this.tasks = res.data.tasks;
             this.taskLoaded = true;
-        },
-
-        async updateTasks() {
-            await this.getTasks();
-            await this.$store.dispatch("getReconTaskSystemsRecords");
         }
     },
 
@@ -102,8 +93,6 @@ export default {
         }
     },
 
-    beforeDestroy() {
-        Echo.leave("recon");
-    }
+    beforeDestroy() {}
 };
 </script>

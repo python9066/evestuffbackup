@@ -11802,11 +11802,18 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     };
   },
   created: function created() {
+    var _this = this;
+
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
+              Echo["private"]("recontask." + _this.id).listen("ReconTimerUpdate", function (e) {
+                _this.update();
+              });
+
+            case 1:
             case "end":
               return _context.stop();
           }
@@ -11827,17 +11834,40 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }, _callee2);
     }))();
   },
-  methods: {},
+  methods: {
+    update: function update() {
+      var _this2 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                _context3.next = 2;
+                return _this2.$store.dispatch("getReconTaskSystemsRecords");
+
+              case 2:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3);
+      }))();
+    }
+  },
   computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapState"])(["recontasksystems", "user_id"])), Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])([])), {}, {
     filteredItems: function filteredItems() {
-      var _this = this;
+      var _this3 = this;
 
       // var timers = this.$store.state.timers;
       return this.recontasksystems.filter(function (s) {
-        return s.recon_task_id == _this.id;
+        return s.recon_task_id == _this3.id;
       });
     }
-  })
+  }),
+  beforeDestroy: function beforeDestroy() {
+    Echo.leave("recontask." + this.id);
+  }
 });
 
 /***/ }),
@@ -22392,18 +22422,11 @@ function sleep(ms) {
     };
   },
   created: function created() {
-    var _this = this;
-
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              Echo["private"]("recon").listen("ReconTimerUpdate", function (e) {
-                _this.updateTasks();
-              });
-
-            case 1:
             case "end":
               return _context.stop();
           }
@@ -22414,7 +22437,7 @@ function sleep(ms) {
   beforeMount: function beforeMount() {},
   beforeCreate: function beforeCreate() {},
   mounted: function mounted() {
-    var _this2 = this;
+    var _this = this;
 
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
@@ -22422,11 +22445,11 @@ function sleep(ms) {
           switch (_context2.prev = _context2.next) {
             case 0:
               _context2.next = 2;
-              return _this2.getTasks();
+              return _this.getTasks();
 
             case 2:
               _context2.next = 4;
-              return _this2.$store.dispatch("getReconTaskSystemsRecords");
+              return _this.$store.dispatch("getReconTaskSystemsRecords");
 
             case 4:
             case "end":
@@ -22438,7 +22461,7 @@ function sleep(ms) {
   },
   methods: {
     getTasks: function getTasks() {
-      var _this3 = this;
+      var _this2 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
         var res;
@@ -22451,7 +22474,7 @@ function sleep(ms) {
                   method: "get",
                   url: "/api/recontask",
                   headers: {
-                    Authorization: "Bearer " + _this3.$store.state.token,
+                    Authorization: "Bearer " + _this2.$store.state.token,
                     Accept: "application/json",
                     "Content-Type": "application/json"
                   }
@@ -22459,8 +22482,8 @@ function sleep(ms) {
 
               case 2:
                 res = _context3.sent;
-                _this3.tasks = res.data.tasks;
-                _this3.taskLoaded = true;
+                _this2.tasks = res.data.tasks;
+                _this2.taskLoaded = true;
 
               case 5:
               case "end":
@@ -22469,29 +22492,6 @@ function sleep(ms) {
           }
         }, _callee3);
       }))();
-    },
-    updateTasks: function updateTasks() {
-      var _this4 = this;
-
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
-          while (1) {
-            switch (_context4.prev = _context4.next) {
-              case 0:
-                _context4.next = 2;
-                return _this4.getTasks();
-
-              case 2:
-                _context4.next = 4;
-                return _this4.$store.dispatch("getReconTaskSystemsRecords");
-
-              case 4:
-              case "end":
-                return _context4.stop();
-            }
-          }
-        }, _callee4);
-      }))();
     }
   },
   computed: {
@@ -22499,9 +22499,7 @@ function sleep(ms) {
       return 12;
     }
   },
-  beforeDestroy: function beforeDestroy() {
-    Echo.leave("recon");
-  }
+  beforeDestroy: function beforeDestroy() {}
 });
 
 /***/ }),

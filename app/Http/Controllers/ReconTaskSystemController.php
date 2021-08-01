@@ -51,8 +51,10 @@ class ReconTaskSystemController extends Controller
     {
         ReconTaskSystems::find($id)->update(['user_id' => null]);
         ReconTaskSystems::find($id)->update($request->all());
-        $noteification = "yay";
-        broadcast(new ReconTimerUpdate($noteification));
+        $flag = collect([
+            'id' => $id,
+        ]);
+        broadcast(new ReconTimerUpdate($id));
     }
     /**
      * Remove the specified resource from storage.

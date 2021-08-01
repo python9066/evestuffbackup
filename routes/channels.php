@@ -90,6 +90,10 @@ Broadcast::channel('recon', function () {
     return Auth::check();
 });
 
+Broadcast::channel('recontask.{id}', function () {
+    return Auth::check();
+});
+
 
 
 

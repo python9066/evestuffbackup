@@ -19,9 +19,10 @@ class ReconTimerUpdate implements ShouldBroadcast
      *
      * @return void
      */
-    public function __construct()
+    public $flag;
+    public function __construct($flag)
     {
-        //
+        $this->flag = $flag;
     }
 
     /**
@@ -31,6 +32,6 @@ class ReconTimerUpdate implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new PrivateChannel('recon');
+        return new PrivateChannel('recon.' . $this->flag['id']);
     }
 }
