@@ -83,7 +83,7 @@
                     <v-btn
                         class="white--text"
                         color="green"
-                        :disabled="showSubmit"
+                        :disabled="!showSubmit"
                         @click="submit()"
                     >
                         Submit

@@ -36115,7 +36115,7 @@ var render = function() {
                     "v-btn",
                     {
                       staticClass: "white--text",
-                      attrs: { color: "green", disabled: _vm.showSubmit },
+                      attrs: { color: "green", disabled: !_vm.showSubmit },
                       on: {
                         click: function($event) {
                           return _vm.submit()
