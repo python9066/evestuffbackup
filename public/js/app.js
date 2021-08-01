@@ -23076,7 +23076,10 @@ function sleep(ms) {
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
-    tasks = [], test = "yoyo";
+    return {
+      tasks: [],
+      test: "yoyo"
+    };
   },
   created: function created() {},
   beforeMount: function beforeMount() {},
