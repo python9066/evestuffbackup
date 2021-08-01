@@ -21741,6 +21741,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -46055,6 +46064,31 @@ var render = function() {
                         "\n                    Below you will windows for each task. All you have to do\n                    is press the button next to each system after completing\n                    the task. This is just so we know when the task was last\n                    done."
                       )
                     ]
+                  ),
+                  _c(
+                    "v-card-actions",
+                    [
+                      _vm.$can("super")
+                        ? _c(
+                            "v-btn",
+                            {
+                              staticClass: " mr-4",
+                              attrs: { color: "blue" },
+                              on: {
+                                click: function($event) {
+                                  _vm.addTask = true
+                                }
+                              }
+                            },
+                            [
+                              _vm._v(
+                                "\n                        Add Task\n                    "
+                              )
+                            ]
+                          )
+                        : _vm._e()
+                    ],
+                    1
                   )
                 ],
                 1
