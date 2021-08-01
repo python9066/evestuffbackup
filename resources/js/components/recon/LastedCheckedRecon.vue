@@ -8,18 +8,12 @@
                     :end-text="'Window Closed'"
                     :interval="1000"
                     ><template slot="countup" slot-scope="scope"
-                        ><span
-                            v-if="scope.props.minutes < 5"
-                            class="green--text pl-2 pr-2"
-                            >{{ scope.props.hours }}:{{
-                                scope.props.minutes
-                            }}:{{ scope.props.seconds }}</span
-                        >
-                        <span v-else class="red--text pl-2 pr-2"
-                            >{{ scope.props.hours }}:{{
-                                scope.props.minutes
-                            }}:{{ scope.props.seconds }}</span
-                        >
+                        ><div class="green--text pl-2 pr-2">
+                            {{ scope.props.hours }}:{{ scope.props.minutes }}:{{
+                                scope.props.seconds
+                            }}
+                            >
+                        </div>
                     </template>
                 </VueCountUptimer>
             </span>
