@@ -23081,6 +23081,10 @@ function sleep(ms) {
               return _this.getTasks();
 
             case 2:
+              _context.next = 4;
+              return _this.$store.dispatch("getReconTaskSystemsRecords");
+
+            case 4:
             case "end":
               return _context.stop();
           }
@@ -55221,6 +55225,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
     notifications: [],
     periodbasisLink: "",
     queriousLink: "",
+    recontasksystems: [],
     rolesList: [],
     stations: [],
     stationFits: [],
@@ -55535,6 +55540,9 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
       if (index >= 0) {
         state.stations.splice(index, 1);
       }
+    },
+    SET_RECON_TASK_SYSTEMS: function SET_RECON_TASK_SYSTEMS(state, systems) {
+      state.recontasksystems = systems;
     },
     SET_TOKEN: function SET_TOKEN(state, token) {
       state.token = token;
@@ -56613,20 +56621,55 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
         }, _callee29);
       }))();
     },
-    loadCampaignSystemData: function loadCampaignSystemData(_ref62, payload) {
+    getReconTaskSystemsRecords: function getReconTaskSystemsRecords(_ref62) {
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee30() {
-        var commit, state, request, res;
+        var commit, state, res;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee30$(_context30) {
           while (1) {
             switch (_context30.prev = _context30.next) {
               case 0:
                 commit = _ref62.commit, state = _ref62.state;
+                _context30.next = 3;
+                return axios({
+                  method: "get",
+                  //you can set what request you want to be
+                  url: "/api/recontasksystems",
+                  headers: {
+                    Authorization: "Bearer " + state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                  }
+                });
+
+              case 3:
+                res = _context30.sent;
+
+                if (res.data.length != 0) {
+                  commit("SET_RECON_TASK_SYSTEMS", res.data.systems);
+                }
+
+              case 5:
+              case "end":
+                return _context30.stop();
+            }
+          }
+        }, _callee30);
+      }))();
+    },
+    loadCampaignSystemData: function loadCampaignSystemData(_ref63, payload) {
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee31() {
+        var commit, state, request, res;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee31$(_context31) {
+          while (1) {
+            switch (_context31.prev = _context31.next) {
+              case 0:
+                commit = _ref63.commit, state = _ref63.state;
                 request = {
                   user_id: payload.user_id,
                   campaign_id: payload.campaign_id,
                   type: payload.type
                 };
-                _context30.next = 4;
+                _context31.next = 4;
                 return axios({
                   method: "post",
                   //you can set what request you want to be
@@ -56640,7 +56683,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
                 });
 
               case 4:
-                res = _context30.sent;
+                res = _context31.sent;
 
                 if (res.data.length != 0) {
                   commit("SET_CAMPAIGN_SOLA_SYSTEMS", res.data.sola);
@@ -56653,50 +56696,13 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
 
               case 6:
               case "end":
-                return _context30.stop();
-            }
-          }
-        }, _callee30);
-      }))();
-    },
-    loadStationInfo: function loadStationInfo(_ref63) {
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee31() {
-        var commit, state, res;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee31$(_context31) {
-          while (1) {
-            switch (_context31.prev = _context31.next) {
-              case 0:
-                commit = _ref63.commit, state = _ref63.state;
-                _context31.next = 3;
-                return axios({
-                  method: "get",
-                  //you can set what request you want to be
-                  url: "/api/loadstationdata",
-                  headers: {
-                    Authorization: "Bearer " + state.token,
-                    Accept: "application/json",
-                    "Content-Type": "application/json"
-                  }
-                });
-
-              case 3:
-                res = _context31.sent;
-
-                if (res.data.length != 0) {
-                  commit("SET_CORES", res.data.cores);
-                  commit("SET_ITEMS", res.data.items);
-                  commit("SET_STATIONS_FIT", res.data.fit);
-                }
-
-              case 5:
-              case "end":
                 return _context31.stop();
             }
           }
         }, _callee31);
       }))();
     },
-    loadAmmoRequestInfo: function loadAmmoRequestInfo(_ref64) {
+    loadStationInfo: function loadStationInfo(_ref64) {
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee32() {
         var commit, state, res;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee32$(_context32) {
@@ -56708,7 +56714,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
                 return axios({
                   method: "get",
                   //you can set what request you want to be
-                  url: "/api/loadammorequestdata",
+                  url: "/api/loadstationdata",
                   headers: {
                     Authorization: "Bearer " + state.token,
                     Accept: "application/json",
@@ -56723,7 +56729,6 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
                   commit("SET_CORES", res.data.cores);
                   commit("SET_ITEMS", res.data.items);
                   commit("SET_STATIONS_FIT", res.data.fit);
-                  commit("SET_AMMO_REQUEST", res.data.ammorequest);
                 }
 
               case 5:
@@ -56732,6 +56737,44 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
             }
           }
         }, _callee32);
+      }))();
+    },
+    loadAmmoRequestInfo: function loadAmmoRequestInfo(_ref65) {
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee33() {
+        var commit, state, res;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee33$(_context33) {
+          while (1) {
+            switch (_context33.prev = _context33.next) {
+              case 0:
+                commit = _ref65.commit, state = _ref65.state;
+                _context33.next = 3;
+                return axios({
+                  method: "get",
+                  //you can set what request you want to be
+                  url: "/api/loadammorequestdata",
+                  headers: {
+                    Authorization: "Bearer " + state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                  }
+                });
+
+              case 3:
+                res = _context33.sent;
+
+                if (res.data.length != 0) {
+                  commit("SET_CORES", res.data.cores);
+                  commit("SET_ITEMS", res.data.items);
+                  commit("SET_STATIONS_FIT", res.data.fit);
+                  commit("SET_AMMO_REQUEST", res.data.ammorequest);
+                }
+
+              case 5:
+              case "end":
+                return _context33.stop();
+            }
+          }
+        }, _callee33);
       }))();
     }
   },

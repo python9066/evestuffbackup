@@ -32,6 +32,7 @@ export default new Vuex.Store({
         notifications: [],
         periodbasisLink: "",
         queriousLink: "",
+        recontasksystems:[],
         rolesList:[],
         stations: [],
         stationFits: [],
@@ -271,6 +272,7 @@ export default new Vuex.Store({
             state.campaignsystems = systems;
         },
 
+
         UPDATE_CAMPAIGN_SYSTEM(state, data) {
             const item = state.campaignsystems.find(item => item.id === data.id);
             Object.assign(item, data);
@@ -334,6 +336,11 @@ export default new Vuex.Store({
             let index = state.stations.findIndex(s => s.id == id)
             if(index >= 0){state.stations.splice(index, 1)}
 
+        },
+
+
+        SET_RECON_TASK_SYSTEMS(state, systems) {
+            state.recontasksystems = systems;
         },
 
 
@@ -917,6 +924,21 @@ export default new Vuex.Store({
             });
             if (res.data.length != 0) {
                 commit("SET_CAMPAIGN_SYSTEMS", res.data.systems);
+            }
+        },
+
+        async getReconTaskSystemsRecords({ commit, state }) {
+            let res = await axios({
+                method: "get", //you can set what request you want to be
+                url: "/api/recontasksystems",
+                headers: {
+                    Authorization: "Bearer " + state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                }
+            });
+            if (res.data.length != 0) {
+                commit("SET_RECON_TASK_SYSTEMS", res.data.systems);
             }
         },
 

@@ -65,6 +65,7 @@ export default {
 
     async mounted() {
         await this.getTasks();
+        await this.$store.dispatch("getReconTaskSystemsRecords");
     },
 
     methods: {
