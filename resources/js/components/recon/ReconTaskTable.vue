@@ -821,7 +821,9 @@ export default {
         filteredItems() {
             // var timers = this.$store.state.timers;
 
-            return this.recontasksystems.filter(s => s.id == this.id);
+            return this.recontasksystems.filter(
+                s => s.recon_task_id == this.id
+            );
         },
 
         chars() {

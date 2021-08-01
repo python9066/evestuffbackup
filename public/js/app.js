@@ -12388,7 +12388,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
       // var timers = this.$store.state.timers;
       return this.recontasksystems.filter(function (s) {
-        return s.id == _this8.id;
+        return s.recon_task_id == _this8.id;
       });
     },
     chars: function chars() {
