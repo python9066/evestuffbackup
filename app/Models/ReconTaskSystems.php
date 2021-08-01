@@ -28,5 +28,9 @@ class ReconTaskSystems extends Model
     protected $casts = [
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
+        'id' => 'integer',
+        'recon_task_id' => 'integer',
+        'system_id' => 'integer',
+        'user_id' => 'integer'
     ];
 }
