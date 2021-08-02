@@ -11816,6 +11816,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -36947,10 +36949,12 @@ var render = function() {
                 )
               ]),
               _vm._v(" "),
-              _c("v-card-text", [_vm._v(_vm._s(_vm.task.info) + " ")]),
-              _vm._v(" "),
-              _c("v-divider"),
-              _vm._v("\n            >"),
+              _c(
+                "v-card-text",
+                [_vm._v(_vm._s(_vm.task.info)), _c("v-divider")],
+                1
+              ),
+              _vm._v("\n\n            >"),
               _c(
                 "v-card-actions",
                 [

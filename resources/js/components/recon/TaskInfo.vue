@@ -21,8 +21,10 @@
                 <v-card-title
                     >Notes for Station {{ task.title }}.
                 </v-card-title>
-                <v-card-text>{{ task.info }} </v-card-text>
-                <v-divider></v-divider>
+                <v-card-text
+                    >{{ task.info }}<v-divider></v-divider>
+                </v-card-text>
+
                 ><v-card-actions>
                     <v-btn class="white--text" color="teal" @click="close()">
                         Close
