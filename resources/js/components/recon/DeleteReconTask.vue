@@ -23,14 +23,14 @@
                 min-height="100px"
                 class=" d-flex flex-column"
             >
-                <v-card-title class="justify-center">
+                <v-card-title class="justify-center ">
                     <p>Delete Task</p>
                 </v-card-title>
-                <v-card-text>
+                <v-card-text class="justify-center ">
                     Are you sure you want delete this task?
                 </v-card-text>
                 <v-spacer></v-spacer
-                ><v-card-actions>
+                ><v-card-actions class="justify-center ">
                     <v-btn class="white--text" color="teal" @click="close()">
                         Close
                     </v-btn>

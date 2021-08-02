@@ -36892,11 +36892,11 @@ var render = function() {
               }
             },
             [
-              _c("v-card-title", { staticClass: "justify-center" }, [
+              _c("v-card-title", { staticClass: "justify-center " }, [
                 _c("p", [_vm._v("Delete Task")])
               ]),
               _vm._v(" "),
-              _c("v-card-text", [
+              _c("v-card-text", { staticClass: "justify-center " }, [
                 _vm._v(
                   "\n                Are you sure you want delete this task?\n            "
                 )
@@ -36905,6 +36905,7 @@ var render = function() {
               _c("v-spacer"),
               _c(
                 "v-card-actions",
+                { staticClass: "justify-center " },
                 [
                   _c(
                     "v-btn",
