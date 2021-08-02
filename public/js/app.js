@@ -38096,8 +38096,8 @@ var render = function() {
                 attrs: {
                   items: _vm.list,
                   label: "Select",
-                  "item-text": _vm.list.constellation_name,
-                  "item-value": _vm.list.id,
+                  "item-text": _vm.constellation_name,
+                  "item-value": _vm.id,
                   multiple: "",
                   chips: "",
                   "deletable-chips": "",
