@@ -94,7 +94,7 @@ export default {
             if (this.taskcount > 1) {
                 return 6;
             } else {
-                return 12;
+                return 10;
             }
         }
     },
