@@ -27,7 +27,7 @@
                 :data="task"
                 :index="index"
                 :key="task.id"
-                :size="size()"
+                :size="size"
             >
             </ReconTaskTable>
         </v-row>
