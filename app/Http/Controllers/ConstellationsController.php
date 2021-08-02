@@ -18,6 +18,25 @@ class ConstellationsController extends Controller
         return ['constellationlist' => $data];
     }
 
+    public function constellationlist()
+    {
+        $data = [];
+        $pull = Constellation::all();
+        foreach ($pull as $pull) {
+            $data1 = [];
+            $data1 = [
+                "text" => $pull['constellation_name'],
+                'value' => $pull['id']
+            ];
+
+            array_push($data, $data1);
+        }
+
+        // dd($data);
+
+        return ['constellationlist' => $data];
+    }
+
     /**
      * Store a newly created resource in storage.
      *

@@ -177,5 +177,5 @@ Route::middleware('auth:api')->group(function () {
     Route::put('recontasksystemtimeupdate/{id}', 'ReconTaskSystemController@update');
     Route::delete('/recontask/{id}', 'ReconTaskController@destroy');
 
-    Route::get('/constellations', 'ConstellationsController@index');
+    Route::get('/constellations', 'ConstellationsController@constellationlist');
 });
