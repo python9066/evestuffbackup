@@ -12646,7 +12646,7 @@ function sleep(ms) {
   },
   computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapState"])(["constellationlist"])), {}, {
     list: function list() {
-      return this.constellationlist.constellation_name;
+      return this.constellationlist;
     }
   })
 });
