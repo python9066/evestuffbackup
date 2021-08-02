@@ -11765,6 +11765,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -37083,7 +37084,10 @@ var render = function() {
                           "div",
                           { staticClass: " d-inline-flex" },
                           [
-                            _c("TaskInfo", { attrs: { task: _vm.data } }),
+                            _c("TaskInfo", {
+                              staticClass: " pr-3",
+                              attrs: { task: _vm.data }
+                            }),
                             _vm._v(" "),
                             _vm.$can("super")
                               ? _c("DeleteReconTask", {
