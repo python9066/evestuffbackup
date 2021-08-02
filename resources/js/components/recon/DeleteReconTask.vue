@@ -1,6 +1,11 @@
 <template>
     <div>
-        <v-dialog max-width="700px" z-index="0" v-model="showReconTaskDelete">
+        <v-dialog
+            max-width="700px"
+            min-width="500px"
+            z-index="0"
+            v-model="showReconTaskDelete"
+        >
             <template v-slot:activator="{ on, attrs }">
                 <v-btn color="red" dark v-bind="attrs" v-on="on"
                     ><v-icon left>
