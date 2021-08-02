@@ -79,7 +79,7 @@ export default {
 
     computed: {
         icon() {
-            return "fas fa-check-circle";
+            return "faSvg fa-undo";
         }
     }
 };
