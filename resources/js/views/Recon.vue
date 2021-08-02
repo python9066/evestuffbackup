@@ -48,7 +48,8 @@ export default {
     data() {
         return {
             tasks: [],
-            taskLoaded: false
+            taskLoaded: false,
+            taskcount: 0
         };
     },
 
@@ -84,6 +85,7 @@ export default {
 
             this.tasks = res.data.tasks;
             this.taskLoaded = true;
+            this.taskcount = res.data.tasks.length;
         }
     },
 

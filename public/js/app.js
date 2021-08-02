@@ -22531,7 +22531,8 @@ function sleep(ms) {
   data: function data() {
     return {
       tasks: [],
-      taskLoaded: false
+      taskLoaded: false,
+      taskcount: 0
     };
   },
   created: function created() {
@@ -22608,8 +22609,9 @@ function sleep(ms) {
                 res = _context3.sent;
                 _this3.tasks = res.data.tasks;
                 _this3.taskLoaded = true;
+                _this3.taskcount = res.data.tasks.length;
 
-              case 5:
+              case 6:
               case "end":
                 return _context3.stop();
             }
