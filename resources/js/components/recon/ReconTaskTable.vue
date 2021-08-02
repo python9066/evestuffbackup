@@ -18,16 +18,14 @@
                                 ></v-divider>
                                 <TaskInfo :task="data" class=" pr-3">
                                 </TaskInfo>
-                                <span>
-                                    <v-divider
-                                        class="mx-4 my-0"
-                                        vertical
-                                    ></v-divider>
-                                    <DeleteReconTask
-                                        v-if="$can('super')"
-                                        :item="data"
-                                    ></DeleteReconTask>
-                                </span>
+                                <v-divider
+                                    class="mx-4 my-0"
+                                    vertical
+                                ></v-divider>
+                                <DeleteReconTask
+                                    v-if="$can('super')"
+                                    :item="data"
+                                ></DeleteReconTask>
                             </div>
                         </v-card-title>
                     </v-card>
