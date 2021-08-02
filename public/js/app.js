@@ -37081,6 +37081,7 @@ var render = function() {
                         _vm._v(" "),
                         _c(
                           "div",
+                          { staticClass: " d-inline-flex" },
                           [
                             _c("TaskInfo", { attrs: { task: _vm.data } }),
                             _vm._v(" "),

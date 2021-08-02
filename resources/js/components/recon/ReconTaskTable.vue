@@ -11,7 +11,7 @@
                         >
                             <div>{{ data.title }}</div>
                             <v-divider class="mx-4 my-0" vertical></v-divider>
-                            <div>
+                            <div class=" d-inline-flex">
                                 <TaskInfo :task="data"> </TaskInfo>
                                 <DeleteReconTask
                                     v-if="$can('super')"
