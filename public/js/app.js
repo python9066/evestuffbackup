@@ -36836,7 +36836,7 @@ var render = function() {
       _c(
         "v-dialog",
         {
-          attrs: { "max-width": "700px", "min-width": "500px", "z-index": "0" },
+          attrs: { "max-width": "500px", "min-width": "500px", "z-index": "0" },
           scopedSlots: _vm._u([
             {
               key: "activator",
@@ -36885,10 +36885,10 @@ var render = function() {
               staticClass: " d-flex flex-column",
               attrs: {
                 tile: "",
-                "max-width": "700px",
-                "min-height": "100px",
+                "max-width": "500px",
                 "min-width": "500px",
-                "max-height": "1000px"
+                "max-height": "1000px",
+                "min-height": "100px"
               }
             },
             [

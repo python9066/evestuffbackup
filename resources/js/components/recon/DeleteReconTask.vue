@@ -1,7 +1,7 @@
 <template>
     <div>
         <v-dialog
-            max-width="700px"
+            max-width="500px"
             min-width="500px"
             z-index="0"
             v-model="showReconTaskDelete"
@@ -17,10 +17,10 @@
 
             <v-card
                 tile
-                max-width="700px"
-                min-height="100px"
+                max-width="500px"
                 min-width="500px"
                 max-height="1000px"
+                min-height="100px"
                 class=" d-flex flex-column"
             >
                 <v-card-title class="justify-center">
