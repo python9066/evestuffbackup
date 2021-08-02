@@ -48,7 +48,7 @@ import { mapState, mapGetters } from "vuex";
 import moment from "moment";
 export default {
     props: {
-        station: Object
+        task: Object
     },
     data() {
         return {
