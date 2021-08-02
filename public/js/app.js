@@ -47809,7 +47809,7 @@ var render = function() {
           return _c("ReconTaskTable", {
             key: task.id,
             staticClass: " px-5 pt-5",
-            attrs: { data: task, index: index, size: 6 }
+            attrs: { data: task, index: index, size: _vm.size() }
           })
         }),
         1
