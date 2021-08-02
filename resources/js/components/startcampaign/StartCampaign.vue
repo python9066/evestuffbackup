@@ -1,8 +1,15 @@
 <template>
-    <div class=" pr-16 pl-16">
-        <messageComponent></messageComponent>
-        <MultiCampaigns></MultiCampaigns>
-        <StartCampaign></StartCampaign>
+    <div class=" d-flex align-items-center">
+        <v-card-title>Campaigns</v-card-title>
+
+        <v-btn
+            :loading="loadingf"
+            :disabled="loadingf"
+            @click="overlay = !overlay"
+            color="light-blue darken-4"
+        >
+            ADD INITIAL CAMPAIGN
+        </v-btn>
     </div>
 </template>
 <script>
