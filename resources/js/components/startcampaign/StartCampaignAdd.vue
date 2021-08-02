@@ -76,10 +76,10 @@ export default {
     },
 
     computed: {
-        ...mapState(["campaignslist"]),
+        ...mapState(["constellationlist"]),
 
         list() {
-            return this.campaignslist;
+            return this.constellationlist;
         }
     }
 };

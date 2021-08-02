@@ -12642,9 +12642,9 @@ function sleep(ms) {
       this.$emit("closeAdd");
     }
   },
-  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapState"])(["campaignslist"])), {}, {
+  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapState"])(["constellationlist"])), {}, {
     list: function list() {
-      return this.campaignslist;
+      return this.constellationlist;
     }
   })
 });
