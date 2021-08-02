@@ -79,7 +79,7 @@ export default {
         ...mapState(["constellationlist"]),
 
         list() {
-            return this.constellationlist;
+            return this.constellationlist.name;
         }
     }
 };
