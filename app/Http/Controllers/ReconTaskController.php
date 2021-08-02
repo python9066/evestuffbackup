@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\ReconTaskNew;
 use App\Models\ReconTasks;
 use App\Models\ReconTaskSystems;
 use Illuminate\Http\Request;
@@ -31,6 +32,7 @@ class ReconTaskController extends Controller
         foreach ($request->systems as $system) {
             ReconTaskSystems::Create(['recon_task_id' => $id, 'system_id' => $system]);
         }
+        broadcast(new ReconTaskNew);
     }
 
     /**
