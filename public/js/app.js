@@ -57296,10 +57296,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
 
               case 3:
                 res = _context31.sent;
-
-                if (res.data.length != 0) {
-                  commit("SET_RECON_TASK_SYSTEMS", res.data.constellationlist);
-                }
+                commit("SET_CONSTELLATION_LIST", res.data.constellationlist);
 
               case 5:
               case "end":

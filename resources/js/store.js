@@ -966,9 +966,9 @@ export default new Vuex.Store({
                     "Content-Type": "application/json"
                 }
             });
-            if (res.data.length != 0) {
-                commit("SET_RECON_TASK_SYSTEMS", res.data.constellationlist);
-            }
+
+                commit("SET_CONSTELLATION_LIST", res.data.constellationlist);
+
         },
 
 
