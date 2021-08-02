@@ -11770,6 +11770,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -37093,11 +37099,22 @@ var render = function() {
                               attrs: { task: _vm.data }
                             }),
                             _vm._v(" "),
-                            _vm.$can("super")
-                              ? _c("DeleteReconTask", {
-                                  attrs: { item: _vm.data }
-                                })
-                              : _vm._e()
+                            _c(
+                              "span",
+                              [
+                                _c("v-divider", {
+                                  staticClass: "mx-4 my-0",
+                                  attrs: { vertical: "" }
+                                }),
+                                _vm._v(" "),
+                                _vm.$can("super")
+                                  ? _c("DeleteReconTask", {
+                                      attrs: { item: _vm.data }
+                                    })
+                                  : _vm._e()
+                              ],
+                              1
+                            )
                           ],
                           1
                         )
