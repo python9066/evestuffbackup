@@ -6,6 +6,11 @@
             v-model="showTaskInfo"
             @click:outside="close()"
         >
+            <template v-slot:activator="{ on, attrs }">
+                <v-icon color="blue" v-bind="attrs" v-on="on" @click="open()">
+                    {{ icon }}
+                </v-icon>
+            </template>
             <v-card
                 tile
                 max-width="700px"
@@ -64,7 +69,11 @@ export default {
         }
     },
 
-    computed: {},
+    computed: {
+        icon() {
+            return "far fa-comment-alt";
+        }
+    },
 
     beforeDestroy() {}
 };

@@ -11821,6 +11821,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -11854,7 +11859,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       this.showNumber = false;
     }
   },
-  computed: {},
+  computed: {
+    icon: function icon() {
+      return "far fa-comment-alt";
+    }
+  },
   beforeDestroy: function beforeDestroy() {}
 });
 
@@ -36881,6 +36890,43 @@ var render = function() {
               return _vm.close()
             }
           },
+          scopedSlots: _vm._u([
+            {
+              key: "activator",
+              fn: function(ref) {
+                var on = ref.on
+                var attrs = ref.attrs
+                return [
+                  _c(
+                    "v-icon",
+                    _vm._g(
+                      _vm._b(
+                        {
+                          attrs: { color: "blue" },
+                          on: {
+                            click: function($event) {
+                              return _vm.open()
+                            }
+                          }
+                        },
+                        "v-icon",
+                        attrs,
+                        false
+                      ),
+                      on
+                    ),
+                    [
+                      _vm._v(
+                        "\n                " +
+                          _vm._s(_vm.icon) +
+                          "\n            "
+                      )
+                    ]
+                  )
+                ]
+              }
+            }
+          ]),
           model: {
             value: _vm.showTaskInfo,
             callback: function($$v) {
@@ -36890,6 +36936,7 @@ var render = function() {
           }
         },
         [
+          _vm._v(" "),
           _c(
             "v-card",
             {
