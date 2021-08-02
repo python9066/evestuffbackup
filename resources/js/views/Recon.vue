@@ -52,7 +52,11 @@ export default {
         };
     },
 
-    async created() {},
+    async created() {
+        Echo.private("recon").listen("ReconTaskNew", e => {
+            this.$store.dispatch("getReconTaskSystemsRecords");
+        });
+    },
 
     beforeMount() {},
 
@@ -87,6 +91,8 @@ export default {
         }
     },
 
-    beforeDestroy() {}
+    beforeDestroy() {
+        Echo.leave("recon");
+    }
 };
 </script>

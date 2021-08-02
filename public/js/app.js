@@ -22535,11 +22535,18 @@ function sleep(ms) {
     };
   },
   created: function created() {
+    var _this = this;
+
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
+              Echo["private"]("recon").listen("ReconTaskNew", function (e) {
+                _this.$store.dispatch("getReconTaskSystemsRecords");
+              });
+
+            case 1:
             case "end":
               return _context.stop();
           }
@@ -22550,7 +22557,7 @@ function sleep(ms) {
   beforeMount: function beforeMount() {},
   beforeCreate: function beforeCreate() {},
   mounted: function mounted() {
-    var _this = this;
+    var _this2 = this;
 
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
@@ -22558,11 +22565,11 @@ function sleep(ms) {
           switch (_context2.prev = _context2.next) {
             case 0:
               _context2.next = 2;
-              return _this.getTasks();
+              return _this2.getTasks();
 
             case 2:
               _context2.next = 4;
-              return _this.$store.dispatch("getReconTaskSystemsRecords");
+              return _this2.$store.dispatch("getReconTaskSystemsRecords");
 
             case 4:
             case "end":
@@ -22574,7 +22581,7 @@ function sleep(ms) {
   },
   methods: {
     getTasks: function getTasks() {
-      var _this2 = this;
+      var _this3 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
         var res;
@@ -22587,7 +22594,7 @@ function sleep(ms) {
                   method: "get",
                   url: "/api/recontask",
                   headers: {
-                    Authorization: "Bearer " + _this2.$store.state.token,
+                    Authorization: "Bearer " + _this3.$store.state.token,
                     Accept: "application/json",
                     "Content-Type": "application/json"
                   }
@@ -22595,8 +22602,8 @@ function sleep(ms) {
 
               case 2:
                 res = _context3.sent;
-                _this2.tasks = res.data.tasks;
-                _this2.taskLoaded = true;
+                _this3.tasks = res.data.tasks;
+                _this3.taskLoaded = true;
 
               case 5:
               case "end":
@@ -22612,7 +22619,9 @@ function sleep(ms) {
       return 12;
     }
   },
-  beforeDestroy: function beforeDestroy() {}
+  beforeDestroy: function beforeDestroy() {
+    Echo.leave("recon");
+  }
 });
 
 /***/ }),
