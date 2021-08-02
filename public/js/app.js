@@ -12585,6 +12585,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
 
 
 
@@ -38094,6 +38096,8 @@ var render = function() {
                 attrs: {
                   items: _vm.list,
                   label: "Select",
+                  "item-text": "constellation_name",
+                  "item-value": "id",
                   multiple: "",
                   chips: "",
                   "deletable-chips": "",
