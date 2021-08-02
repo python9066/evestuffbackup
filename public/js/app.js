@@ -11853,7 +11853,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   computed: {
     icon: function icon() {
-      return "far fa-info-circle";
+      return "fas fa-info-circle";
     }
   },
   beforeDestroy: function beforeDestroy() {}

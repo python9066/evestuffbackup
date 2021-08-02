@@ -63,7 +63,7 @@ export default {
 
     computed: {
         icon() {
-            return "far fa-info-circle";
+            return "fas fa-info-circle";
         }
     },
 
