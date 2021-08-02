@@ -12415,6 +12415,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
 
 
 
@@ -37692,31 +37694,33 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: " d-flex align-items-center" },
-    [
-      _c("v-card-title", [_vm._v("Campaigns")]),
-      _vm._v(" "),
-      _c(
-        "v-btn",
-        {
-          attrs: {
-            loading: _vm.loadingf,
-            disabled: _vm.loadingf,
-            color: "light-blue darken-4"
-          },
-          on: {
-            click: function($event) {
-              _vm.overlay = !_vm.overlay
+  return _c("div", { staticClass: " pr-16 pl-16" }, [
+    _c(
+      "div",
+      { staticClass: " d-flex align-items-center" },
+      [
+        _c("v-card-title", [_vm._v("Campaigns")]),
+        _vm._v(" "),
+        _c(
+          "v-btn",
+          {
+            attrs: {
+              loading: _vm.loadingf,
+              disabled: _vm.loadingf,
+              color: "light-blue darken-4"
+            },
+            on: {
+              click: function($event) {
+                _vm.overlay = !_vm.overlay
+              }
             }
-          }
-        },
-        [_vm._v("\n        ADD INITIAL CAMPAIGN\n    ")]
-      )
-    ],
-    1
-  )
+          },
+          [_vm._v("\n            ADD INITIAL CAMPAIGN\n        ")]
+        )
+      ],
+      1
+    )
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
