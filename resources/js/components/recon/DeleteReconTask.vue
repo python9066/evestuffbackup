@@ -3,7 +3,7 @@
         <v-dialog max-width="700px" z-index="0" v-model="showReconTaskDelete">
             <template v-slot:activator="{ on, attrs }">
                 <v-btn color="red" dark v-bind="attrs" v-on="on"
-                    ><v-icon>
+                    ><v-icon left>
                         faSvg fa-trash-alt
                     </v-icon>
                     Delete
@@ -28,12 +28,7 @@
                     <v-btn class="white--text" color="teal" @click="close()">
                         Close
                     </v-btn>
-                    <v-btn
-                        class="white--text"
-                        color="red"
-                        :disabled="!showSubmit"
-                        @click="submit()"
-                    >
+                    <v-btn class="white--text" color="red" @click="submit()">
                         Delete
                     </v-btn></v-card-actions
                 >

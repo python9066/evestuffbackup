@@ -11519,11 +11519,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -36845,7 +36840,7 @@ var render = function() {
                       on
                     ),
                     [
-                      _c("v-icon", [
+                      _c("v-icon", { attrs: { left: "" } }, [
                         _vm._v(
                           "\n                    faSvg fa-trash-alt\n                "
                         )
@@ -36912,7 +36907,7 @@ var render = function() {
                     "v-btn",
                     {
                       staticClass: "white--text",
-                      attrs: { color: "red", disabled: !_vm.showSubmit },
+                      attrs: { color: "red" },
                       on: {
                         click: function($event) {
                           return _vm.submit()
