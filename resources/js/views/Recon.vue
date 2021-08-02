@@ -54,6 +54,8 @@ export default {
 
     async created() {
         Echo.private("recon").listen("ReconTaskNew", e => {
+            console.log("New task");
+            this.getTasks();
             this.$store.dispatch("getReconTaskSystemsRecords");
         });
     },

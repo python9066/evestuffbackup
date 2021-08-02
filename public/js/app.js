@@ -22543,6 +22543,10 @@ function sleep(ms) {
           switch (_context.prev = _context.next) {
             case 0:
               Echo["private"]("recon").listen("ReconTaskNew", function (e) {
+                console.log("New task");
+
+                _this.getTasks();
+
                 _this.$store.dispatch("getReconTaskSystemsRecords");
               });
 
