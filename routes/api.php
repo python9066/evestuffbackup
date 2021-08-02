@@ -175,4 +175,5 @@ Route::middleware('auth:api')->group(function () {
     Route::get('/recontask', 'ReconTaskController@index');
     Route::get('/recontasksystems', 'ReconTaskSystemRecordsController@index');
     Route::put('recontasksystemtimeupdate/{id}', 'ReconTaskSystemController@update');
+    Route::delete('/recontask/{id}', 'ReconTaskController@destroy');
 });

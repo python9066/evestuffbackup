@@ -84,6 +84,8 @@ Vue.component('AddReconTask', require('./components/recon/AddReconTask.vue').def
 Vue.component('ReconTaskTable', require('./components/recon/ReconTaskTable.vue').default);
 Vue.component('LastedCheckedTimerRecon', require('./components/recon/LastedCheckedTimerRecon.vue').default);
 Vue.component('TaskInfo', require('./components/recon/TaskInfo.vue').default);
+Vue.component('DeleteReconTask', require('./components/recon/DeleteReconTask.vue').default);
+
 
 
 

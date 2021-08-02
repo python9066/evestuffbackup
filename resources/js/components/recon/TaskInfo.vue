@@ -25,7 +25,7 @@
                     >{{ task.info }}<v-divider></v-divider>
                 </v-card-text>
 
-                ><v-card-actions>
+                <v-card-actions>
                     <v-btn class="white--text" color="teal" @click="close()">
                         Close
                     </v-btn></v-card-actions
