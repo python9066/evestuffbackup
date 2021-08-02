@@ -64,7 +64,7 @@ class ReconTaskController extends Controller
     public function destroy($id)
     {
         ReconTasks::destroy($id);
-        $systems = ReconTaskSystems::where('recon_task_id', $id)->get();
+        $systems = ReconTaskSystems::where('recon_task_id', $id);
         $systems->delete();
     }
 }
