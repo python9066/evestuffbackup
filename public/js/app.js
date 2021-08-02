@@ -11816,16 +11816,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -11861,7 +11851,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   computed: {
     icon: function icon() {
-      return "far fa-comment-alt";
+      return "far fa-info-circle";
     }
   },
   beforeDestroy: function beforeDestroy() {}
@@ -36957,32 +36947,10 @@ var render = function() {
                 )
               ]),
               _vm._v(" "),
-              _c(
-                "v-card-text",
-                [
-                  _c("v-textarea", {
-                    attrs: {
-                      height: "400px",
-                      readonly: "",
-                      "no-resize": "",
-                      outlined: "",
-                      placeholder: "No Notes"
-                    },
-                    model: {
-                      value: _vm.task.info,
-                      callback: function($$v) {
-                        _vm.$set(_vm.task, "info", $$v)
-                      },
-                      expression: "task.info"
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c("v-divider")
-                ],
-                1
-              ),
+              _c("v-card-text", [_vm._v(_vm._s(_vm.task.info) + " ")]),
               _vm._v(" "),
-              _c("v-spacer"),
+              _c("v-divider"),
+              _vm._v("\n            >"),
               _c(
                 "v-card-actions",
                 [

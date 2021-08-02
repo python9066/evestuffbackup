@@ -21,18 +21,8 @@
                 <v-card-title
                     >Notes for Station {{ task.title }}.
                 </v-card-title>
-                <v-card-text>
-                    <v-textarea
-                        height="400px"
-                        readonly
-                        no-resize
-                        v-model="task.info"
-                        outlined
-                        placeholder="No Notes"
-                    ></v-textarea>
-                    <v-divider></v-divider>
-                </v-card-text>
-                <v-spacer></v-spacer
+                <v-card-text>{{ task.info }} </v-card-text>
+                <v-divider></v-divider>
                 ><v-card-actions>
                     <v-btn class="white--text" color="teal" @click="close()">
                         Close
@@ -71,7 +61,7 @@ export default {
 
     computed: {
         icon() {
-            return "far fa-comment-alt";
+            return "far fa-info-circle";
         }
     },
 
