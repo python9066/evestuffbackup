@@ -68,5 +68,6 @@ class ReconTaskController extends Controller
         ReconTasks::destroy($id);
         $systems = ReconTaskSystems::where('recon_task_id', $id);
         $systems->delete();
+        broadcast(new ReconTaskNew);
     }
 }
