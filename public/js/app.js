@@ -36617,7 +36617,7 @@ var render = function() {
                       on
                     ),
                     [
-                      _c("v-icon", [
+                      _c("v-icon", { attrs: { left: "" } }, [
                         _vm._v(
                           "\n                    faSvg fa-plus\n                "
                         )

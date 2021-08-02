@@ -13,7 +13,7 @@
                     v-bind="attrs"
                     v-on="on"
                     @click="open()"
-                    ><v-icon>
+                    ><v-icon left>
                         faSvg fa-plus
                     </v-icon>
                     Add Task
