@@ -16,8 +16,8 @@
                     v-model="picked"
                     :items="list"
                     label="Select"
-                    item-text="constellation_name"
-                    item-value="id"
+                    :item-text="list.constellation_name"
+                    :item-value="list.id"
                     multiple
                     chips
                     deletable-chips
