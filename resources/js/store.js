@@ -21,6 +21,7 @@ export default new Vuex.Store({
         campaignusers: [],
         campaignsystems: [],
         campaignmembers: [],
+        constellationlist:[],
         cores:[],
         delveLink: "",
         items:[],
@@ -75,6 +76,10 @@ export default new Vuex.Store({
 
         SET_SYSTEMLIST(state, systemlist) {
             state.systemlist = systemlist;
+        },
+
+        SET_CONSTELLATION_LIST(state, constellationlist) {
+            state.constellationlist = constellationlist;
         },
 
         UPDATE_TOOLTIP_TOGGLE(state, tooltipToggle) {
@@ -948,6 +953,21 @@ export default new Vuex.Store({
             });
             if (res.data.length != 0) {
                 commit("SET_RECON_TASK_SYSTEMS", res.data.systems);
+            }
+        },
+
+        async getConstellationList({ commit, state }) {
+            let res = await axios({
+                method: "get", //you can set what request you want to be
+                url: "/api/constellations",
+                headers: {
+                    Authorization: "Bearer " + state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                }
+            });
+            if (res.data.length != 0) {
+                commit("SET_RECON_TASK_SYSTEMS", res.data.constellationlist);
             }
         },
 

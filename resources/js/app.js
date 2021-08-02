@@ -87,7 +87,7 @@ Vue.component('TaskInfo', require('./components/recon/TaskInfo.vue').default);
 Vue.component('DeleteReconTask', require('./components/recon/DeleteReconTask.vue').default);
 Vue.component('MultiCampaigns', require('./components/multicampaigns/MultiCampaigns.vue').default);
 Vue.component('StartCampaign', require('./components/startcampaign/StartCampaign.vue').default);
-
+Vue.component('StartCampaignAdd', require('./components/startcampaign/StartCampaignAdd.vue').default);
 
 
 

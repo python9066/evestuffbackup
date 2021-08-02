@@ -12417,6 +12417,45 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -12430,9 +12469,26 @@ function sleep(ms) {
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
-    return {};
+    return {
+      headers: [{
+        text: "Name",
+        value: "name",
+        width: "10%"
+      }, {
+        text: "Constellations - Target",
+        value: "system",
+        width: "70%",
+        align: "center"
+      }, {
+        text: "",
+        value: "actions",
+        align: "end"
+      }]
+    };
   },
-  created: function created() {},
+  created: function created() {
+    this.$store.dispatch("getConstellationList");
+  },
   mounted: function mounted() {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
@@ -12449,6 +12505,135 @@ function sleep(ms) {
   methods: {},
   computed: {},
   beforeDestroy: function beforeDestroy() {}
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/startcampaign/StartCampaignAdd.vue?vue&type=script&lang=js&":
+/*!*****************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/startcampaign/StartCampaignAdd.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_2__);
+
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+function sleep(ms) {
+  return new Promise(function (resolve) {
+    return setTimeout(resolve, ms);
+  });
+}
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      name: "",
+      picked: []
+    };
+  },
+  created: function created() {},
+  methods: {
+    addCampaignDone: function addCampaignDone() {
+      var _this = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        var id;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                id = moment__WEBPACK_IMPORTED_MODULE_2___default()().format("x");
+                _context.next = 3;
+                return axios({
+                  method: "POST",
+                  url: "/api/multicampaigns/" + id + "/" + _this.name,
+                  data: _this.picked,
+                  headers: {
+                    Authorization: "Bearer " + _this.$store.state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                  }
+                });
+
+              case 3:
+                _this.$emit("closeAddNew");
+
+              case 4:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }))();
+    },
+    addCampaignClose: function addCampaignClose() {
+      this.picked = [];
+      this.name = "";
+      this.$emit("closeAdd");
+    }
+  },
+  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapState"])(["campaignslist"])), {}, {
+    list: function list() {
+      return this.campaignslist;
+    }
+  })
 });
 
 /***/ }),
@@ -20194,7 +20379,9 @@ function sleep(ms) {
   data: function data() {
     return {};
   },
-  created: function created() {},
+  created: function created() {
+    this.$store.dispatch("getConstellationList");
+  },
   mounted: function mounted() {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
@@ -37694,33 +37881,263 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: " pr-16 pl-16" }, [
-    _c(
-      "div",
-      { staticClass: " d-flex align-items-center" },
-      [
-        _c("v-card-title", [_vm._v("Campaigns")]),
-        _vm._v(" "),
-        _c(
-          "v-btn",
-          {
-            attrs: {
-              loading: _vm.loadingf,
-              disabled: _vm.loadingf,
-              color: "light-blue darken-4"
+  return _c(
+    "div",
+    { staticClass: " pr-16 pl-16" },
+    [
+      _c(
+        "div",
+        { staticClass: " d-flex align-items-center" },
+        [
+          _c("v-card-title", [_vm._v(" Initial Campaigns")]),
+          _vm._v(" "),
+          _c(
+            "v-btn",
+            {
+              attrs: {
+                loading: _vm.loadingf,
+                disabled: _vm.loadingf,
+                color: "light-blue darken-4"
+              },
+              on: {
+                click: function($event) {
+                  _vm.overlay = !_vm.overlay
+                }
+              }
             },
+            [_vm._v("\n            ADD CAMPAIGN\n        ")]
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "v-data-table",
+        {
+          staticClass: "elevation-1",
+          attrs: {
+            headers: _vm.headers,
+            items: _vm.campaigns,
+            "item-key": "id",
+            loading: _vm.loading,
+            "items-per-page": 25,
+            "footer-props": { "items-per-page-options": [15, 25, 50, 100, -1] }
+          },
+          scopedSlots: _vm._u(
+            [
+              {
+                key: "item.system",
+                fn: function(ref) {
+                  var item = ref.item
+                  return [
+                    _c("SystemItemList", { attrs: { campaignID: item.id } })
+                  ]
+                }
+              },
+              {
+                key: "item.actions",
+                fn: function(ref) {
+                  var item = ref.item
+                  return [
+                    _c(
+                      "v-btn",
+                      {
+                        attrs: { icon: "", color: "warning" },
+                        on: {
+                          click: function($event) {
+                            ;(_vm.overlayEditID = item.id),
+                              (_vm.overlayEditName = item.name),
+                              (_vm.overlayEdit = !_vm.overlayEdit)
+                          }
+                        }
+                      },
+                      [
+                        _c("v-icon", { attrs: { small: "" } }, [
+                          _vm._v("fas fa-edit")
+                        ])
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "v-btn",
+                      {
+                        attrs: { icon: "", color: "warning" },
+                        on: {
+                          click: function($event) {
+                            return _vm.deleteCampaign(item)
+                          }
+                        }
+                      },
+                      [
+                        _c("v-icon", { attrs: { small: "" } }, [
+                          _vm._v("fas fa-trash")
+                        ])
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "v-btn",
+                      {
+                        attrs: { color: "green" },
+                        on: {
+                          click: function($event) {
+                            return _vm.clickCampaign(item)
+                          }
+                        }
+                      },
+                      [_vm._v("View")]
+                    )
+                  ]
+                }
+              }
+            ],
+            null,
+            true
+          )
+        },
+        [
+          _c("template", { slot: "no-data" }, [
+            _vm._v("\n            No Multi Campaigns have been made\n        ")
+          ])
+        ],
+        2
+      ),
+      _vm._v(" "),
+      _c(
+        "v-overlay",
+        { attrs: { value: _vm.overlay } },
+        [
+          _c("StartCampaignAdd", {
             on: {
-              click: function($event) {
+              closeAddNew: function($event) {
+                return _vm.updatemultiCampaginAdd()
+              },
+              closeAdd: function($event) {
                 _vm.overlay = !_vm.overlay
               }
             }
-          },
-          [_vm._v("\n            ADD INITIAL CAMPAIGN\n        ")]
-        )
-      ],
-      1
-    )
-  ])
+          })
+        ],
+        1
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/startcampaign/StartCampaignAdd.vue?vue&type=template&id=31884fd7&":
+/*!*********************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/startcampaign/StartCampaignAdd.vue?vue&type=template&id=31884fd7& ***!
+  \*********************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    [
+      _c(
+        "v-card",
+        { attrs: { "min-width": "1200", "max-width": "1200" } },
+        [
+          _c("v-card-title", [
+            _vm._v("\n            Make your Inital-Campaign Here\n        ")
+          ]),
+          _vm._v(" "),
+          _c(
+            "v-card-text",
+            [
+              _c("v-text-field", {
+                attrs: {
+                  label: "Inital-Campaign Name",
+                  hint: "Enter The name of your Campaign here",
+                  filled: ""
+                },
+                model: {
+                  value: _vm.name,
+                  callback: function($$v) {
+                    _vm.name = $$v
+                  },
+                  expression: "name"
+                }
+              }),
+              _vm._v(" "),
+              _c("v-select", {
+                attrs: {
+                  items: _vm.list,
+                  label: "Select",
+                  multiple: "",
+                  chips: "",
+                  "deletable-chips": "",
+                  hint: "Which Campaigns do you want",
+                  "persistent-hint": ""
+                },
+                model: {
+                  value: _vm.picked,
+                  callback: function($$v) {
+                    _vm.picked = $$v
+                  },
+                  expression: "picked"
+                }
+              })
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "v-card-actions",
+            [
+              _c(
+                "v-btn",
+                {
+                  staticClass: "mr-4",
+                  attrs: { color: "success" },
+                  on: {
+                    click: function($event) {
+                      return _vm.addCampaignDone()
+                    }
+                  }
+                },
+                [_vm._v("Done")]
+              ),
+              _vm._v(" "),
+              _c(
+                "v-btn",
+                {
+                  staticClass: "mr-4",
+                  attrs: { color: "warning" },
+                  on: {
+                    click: function($event) {
+                      return _vm.addCampaignClose()
+                    }
+                  }
+                },
+                [_vm._v("Close")]
+              )
+            ],
+            1
+          )
+        ],
+        1
+      )
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -49474,6 +49891,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('TaskInfo', __webpack_requi
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('DeleteReconTask', __webpack_require__(/*! ./components/recon/DeleteReconTask.vue */ "./resources/js/components/recon/DeleteReconTask.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('MultiCampaigns', __webpack_require__(/*! ./components/multicampaigns/MultiCampaigns.vue */ "./resources/js/components/multicampaigns/MultiCampaigns.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('StartCampaign', __webpack_require__(/*! ./components/startcampaign/StartCampaign.vue */ "./resources/js/components/startcampaign/StartCampaign.vue")["default"]);
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('StartCampaignAdd', __webpack_require__(/*! ./components/startcampaign/StartCampaignAdd.vue */ "./resources/js/components/startcampaign/StartCampaignAdd.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.prototype.moment = moment__WEBPACK_IMPORTED_MODULE_11___default.a; // import '@fortawesome/fontawesome-f      ree/css/all.css'
 
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(_components_countdown_index__WEBPACK_IMPORTED_MODULE_14__["default"]);
@@ -53894,6 +54312,75 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/startcampaign/StartCampaignAdd.vue":
+/*!********************************************************************!*\
+  !*** ./resources/js/components/startcampaign/StartCampaignAdd.vue ***!
+  \********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _StartCampaignAdd_vue_vue_type_template_id_31884fd7___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./StartCampaignAdd.vue?vue&type=template&id=31884fd7& */ "./resources/js/components/startcampaign/StartCampaignAdd.vue?vue&type=template&id=31884fd7&");
+/* harmony import */ var _StartCampaignAdd_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./StartCampaignAdd.vue?vue&type=script&lang=js& */ "./resources/js/components/startcampaign/StartCampaignAdd.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _StartCampaignAdd_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _StartCampaignAdd_vue_vue_type_template_id_31884fd7___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _StartCampaignAdd_vue_vue_type_template_id_31884fd7___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/startcampaign/StartCampaignAdd.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/startcampaign/StartCampaignAdd.vue?vue&type=script&lang=js&":
+/*!*********************************************************************************************!*\
+  !*** ./resources/js/components/startcampaign/StartCampaignAdd.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_StartCampaignAdd_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./StartCampaignAdd.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/startcampaign/StartCampaignAdd.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_StartCampaignAdd_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/startcampaign/StartCampaignAdd.vue?vue&type=template&id=31884fd7&":
+/*!***************************************************************************************************!*\
+  !*** ./resources/js/components/startcampaign/StartCampaignAdd.vue?vue&type=template&id=31884fd7& ***!
+  \***************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_StartCampaignAdd_vue_vue_type_template_id_31884fd7___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./StartCampaignAdd.vue?vue&type=template&id=31884fd7& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/startcampaign/StartCampaignAdd.vue?vue&type=template&id=31884fd7&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_StartCampaignAdd_vue_vue_type_template_id_31884fd7___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_StartCampaignAdd_vue_vue_type_template_id_31884fd7___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/components/station/AddStation.vue":
 /*!********************************************************!*\
   !*** ./resources/js/components/station/AddStation.vue ***!
@@ -55331,6 +55818,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
     campaignusers: [],
     campaignsystems: [],
     campaignmembers: [],
+    constellationlist: [],
     cores: [],
     delveLink: "",
     items: [],
@@ -55391,6 +55879,9 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
     },
     SET_SYSTEMLIST: function SET_SYSTEMLIST(state, systemlist) {
       state.systemlist = systemlist;
+    },
+    SET_CONSTELLATION_LIST: function SET_CONSTELLATION_LIST(state, constellationlist) {
+      state.constellationlist = constellationlist;
     },
     UPDATE_TOOLTIP_TOGGLE: function UPDATE_TOOLTIP_TOGGLE(state, tooltipToggle) {
       if (tooltipToggle) {
@@ -56783,20 +57274,55 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
         }, _callee30);
       }))();
     },
-    loadCampaignSystemData: function loadCampaignSystemData(_ref64, payload) {
+    getConstellationList: function getConstellationList(_ref64) {
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee31() {
-        var commit, state, request, res;
+        var commit, state, res;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee31$(_context31) {
           while (1) {
             switch (_context31.prev = _context31.next) {
               case 0:
                 commit = _ref64.commit, state = _ref64.state;
+                _context31.next = 3;
+                return axios({
+                  method: "get",
+                  //you can set what request you want to be
+                  url: "/api/constellations",
+                  headers: {
+                    Authorization: "Bearer " + state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                  }
+                });
+
+              case 3:
+                res = _context31.sent;
+
+                if (res.data.length != 0) {
+                  commit("SET_RECON_TASK_SYSTEMS", res.data.constellationlist);
+                }
+
+              case 5:
+              case "end":
+                return _context31.stop();
+            }
+          }
+        }, _callee31);
+      }))();
+    },
+    loadCampaignSystemData: function loadCampaignSystemData(_ref65, payload) {
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee32() {
+        var commit, state, request, res;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee32$(_context32) {
+          while (1) {
+            switch (_context32.prev = _context32.next) {
+              case 0:
+                commit = _ref65.commit, state = _ref65.state;
                 request = {
                   user_id: payload.user_id,
                   campaign_id: payload.campaign_id,
                   type: payload.type
                 };
-                _context31.next = 4;
+                _context32.next = 4;
                 return axios({
                   method: "post",
                   //you can set what request you want to be
@@ -56810,7 +57336,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
                 });
 
               case 4:
-                res = _context31.sent;
+                res = _context32.sent;
 
                 if (res.data.length != 0) {
                   commit("SET_CAMPAIGN_SOLA_SYSTEMS", res.data.sola);
@@ -56823,50 +57349,13 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
 
               case 6:
               case "end":
-                return _context31.stop();
-            }
-          }
-        }, _callee31);
-      }))();
-    },
-    loadStationInfo: function loadStationInfo(_ref65) {
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee32() {
-        var commit, state, res;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee32$(_context32) {
-          while (1) {
-            switch (_context32.prev = _context32.next) {
-              case 0:
-                commit = _ref65.commit, state = _ref65.state;
-                _context32.next = 3;
-                return axios({
-                  method: "get",
-                  //you can set what request you want to be
-                  url: "/api/loadstationdata",
-                  headers: {
-                    Authorization: "Bearer " + state.token,
-                    Accept: "application/json",
-                    "Content-Type": "application/json"
-                  }
-                });
-
-              case 3:
-                res = _context32.sent;
-
-                if (res.data.length != 0) {
-                  commit("SET_CORES", res.data.cores);
-                  commit("SET_ITEMS", res.data.items);
-                  commit("SET_STATIONS_FIT", res.data.fit);
-                }
-
-              case 5:
-              case "end":
                 return _context32.stop();
             }
           }
         }, _callee32);
       }))();
     },
-    loadAmmoRequestInfo: function loadAmmoRequestInfo(_ref66) {
+    loadStationInfo: function loadStationInfo(_ref66) {
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee33() {
         var commit, state, res;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee33$(_context33) {
@@ -56878,7 +57367,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
                 return axios({
                   method: "get",
                   //you can set what request you want to be
-                  url: "/api/loadammorequestdata",
+                  url: "/api/loadstationdata",
                   headers: {
                     Authorization: "Bearer " + state.token,
                     Accept: "application/json",
@@ -56893,7 +57382,6 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
                   commit("SET_CORES", res.data.cores);
                   commit("SET_ITEMS", res.data.items);
                   commit("SET_STATIONS_FIT", res.data.fit);
-                  commit("SET_AMMO_REQUEST", res.data.ammorequest);
                 }
 
               case 5:
@@ -56902,6 +57390,44 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
             }
           }
         }, _callee33);
+      }))();
+    },
+    loadAmmoRequestInfo: function loadAmmoRequestInfo(_ref67) {
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee34() {
+        var commit, state, res;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee34$(_context34) {
+          while (1) {
+            switch (_context34.prev = _context34.next) {
+              case 0:
+                commit = _ref67.commit, state = _ref67.state;
+                _context34.next = 3;
+                return axios({
+                  method: "get",
+                  //you can set what request you want to be
+                  url: "/api/loadammorequestdata",
+                  headers: {
+                    Authorization: "Bearer " + state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                  }
+                });
+
+              case 3:
+                res = _context34.sent;
+
+                if (res.data.length != 0) {
+                  commit("SET_CORES", res.data.cores);
+                  commit("SET_ITEMS", res.data.items);
+                  commit("SET_STATIONS_FIT", res.data.fit);
+                  commit("SET_AMMO_REQUEST", res.data.ammorequest);
+                }
+
+              case 5:
+              case "end":
+                return _context34.stop();
+            }
+          }
+        }, _callee34);
       }))();
     }
   },

@@ -19,7 +19,9 @@ export default {
         return {};
     },
 
-    created() {},
+    created() {
+        this.$store.dispatch("getConstellationList");
+    },
 
     async mounted() {},
     methods: {},
