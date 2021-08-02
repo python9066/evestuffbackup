@@ -12470,6 +12470,19 @@ function sleep(ms) {
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
+      loadingr: true,
+      loadingf: true,
+      loading: true,
+      endcount: "",
+      search: "",
+      componentKey: 0,
+      toggle_exclusive: 0,
+      colorflag: 4,
+      name: "Timer",
+      overlay: false,
+      overlayEdit: false,
+      overlayEditID: "",
+      overlayEditName: "",
       headers: [{
         text: "Name",
         value: "name",
