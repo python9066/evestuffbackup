@@ -11519,6 +11519,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -36881,6 +36882,7 @@ var render = function() {
                 tile: "",
                 "max-width": "700px",
                 "min-height": "100px",
+                "min-width": "500px",
                 "max-height": "1000px"
               }
             },

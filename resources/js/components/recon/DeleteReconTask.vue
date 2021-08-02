@@ -14,6 +14,7 @@
                 tile
                 max-width="700px"
                 min-height="100px"
+                min-width="500px"
                 max-height="1000px"
                 class=" d-flex flex-column"
             >
