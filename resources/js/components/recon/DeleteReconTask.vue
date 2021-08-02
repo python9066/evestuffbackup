@@ -27,7 +27,7 @@
                     <p>Delete Task</p>
                 </v-card-title>
                 <v-card-text class="justify-center ">
-                    Are you sure you want delete this task?
+                    <p>Are you sure you want delete this task?</p>
                 </v-card-text>
                 <v-spacer></v-spacer
                 ><v-card-actions class="justify-center ">
