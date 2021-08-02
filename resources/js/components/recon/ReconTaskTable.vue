@@ -11,6 +11,7 @@
                         >
                             <div>{{ data.title }}</div>
                             <v-divider class="mx-4 my-0" vertical></v-divider>
+                            <TaskInfo :task="data"> </TaskInfo>
                         </v-card-title>
                     </v-card>
                 </template>
