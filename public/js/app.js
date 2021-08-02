@@ -12470,9 +12470,9 @@ function sleep(ms) {
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      loadingr: true,
-      loadingf: true,
-      loading: true,
+      loadingr: false,
+      loadingf: false,
+      loading: false,
       endcount: "",
       search: "",
       componentKey: 0,

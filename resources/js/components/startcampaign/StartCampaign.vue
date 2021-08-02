@@ -65,9 +65,9 @@ function sleep(ms) {
 export default {
     data() {
         return {
-            loadingr: true,
-            loadingf: true,
-            loading: true,
+            loadingr: false,
+            loadingf: false,
+            loading: false,
             endcount: "",
             search: "",
             componentKey: 0,
