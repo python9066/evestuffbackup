@@ -36898,7 +36898,7 @@ var render = function() {
               _vm._v(" "),
               _c(
                 "v-card-text",
-                { staticClass: "justify-center align-center " },
+                { staticClass: "justify-center ", attrs: { align: "center" } },
                 [_c("p", [_vm._v("Are you sure you want delete this task?")])]
               ),
               _vm._v(" "),
