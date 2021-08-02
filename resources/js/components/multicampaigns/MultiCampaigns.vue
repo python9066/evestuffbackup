@@ -1,6 +1,5 @@
 <template>
     <div class=" pr-16 pl-16">
-        <messageComponent></messageComponent>
         <div class=" d-flex align-items-center">
             <v-card-title>Campaigns</v-card-title>
 
