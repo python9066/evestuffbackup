@@ -37102,7 +37102,7 @@ var render = function() {
                               attrs: { vertical: "" }
                             }),
                             _vm._v(" "),
-                            _vm.$can("super")
+                            _vm.$can("edit_recon_task")
                               ? _c("DeleteReconTask", {
                                   attrs: { item: _vm.data }
                                 })
@@ -47752,7 +47752,11 @@ var render = function() {
                       staticClass: "justify-center",
                       attrs: { align: "center" }
                     },
-                    [_vm.$can("super") ? _c("AddReconTask") : _vm._e()],
+                    [
+                      _vm.$can("edit_recon_task")
+                        ? _c("AddReconTask")
+                        : _vm._e()
+                    ],
                     1
                   )
                 ],

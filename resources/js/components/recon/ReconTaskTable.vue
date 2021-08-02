@@ -23,7 +23,7 @@
                                     vertical
                                 ></v-divider>
                                 <DeleteReconTask
-                                    v-if="$can('super')"
+                                    v-if="$can('edit_recon_task')"
                                     :item="data"
                                 ></DeleteReconTask>
                             </div>

@@ -15,7 +15,7 @@
                         done.</v-card-text
                     ><v-card-actions align="center" class="justify-center">
                         <AddReconTask
-                            v-if="$can('super')"
+                            v-if="$can('edit_recon_task')"
                         ></AddReconTask> </v-card-actions
                 ></v-card>
             </v-col>
