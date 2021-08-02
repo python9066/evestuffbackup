@@ -11547,7 +11547,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   method: "delete",
                   //you can set what request you want to be
                   url: "api/recontask" + _this.item.id,
-                  data: request,
                   headers: {
                     Authorization: "Bearer " + _this.$store.state.token,
                     Accept: "application/json",
