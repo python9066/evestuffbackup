@@ -14,7 +14,7 @@ import Towers from "./views/Towers.vue"
 import store from "./store";
 import FeedBack from "./views/FeedBack.vue";
 import campaginSystemKick from "./views/redirect/campaginSystemKick.vue";
-import MultiCampagins from "./views/MultiCampaigns.vue";
+import MultiCampagins from "./views/CustomCampaigns.vue";
 import campaignFinished from "./views/redirect/campaignOver.vue";
 import chillstations from "./components/chillstation/ChillStructure.vue";
 import Gsol from "./views/Gsol"
