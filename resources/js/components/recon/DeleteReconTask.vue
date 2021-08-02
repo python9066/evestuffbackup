@@ -26,7 +26,7 @@
                 <v-card-title class="justify-center ">
                     <p>Delete Task</p>
                 </v-card-title>
-                <v-card-text class="justify-center ">
+                <v-card-text class="justify-center align-center ">
                     <p>Are you sure you want delete this task?</p>
                 </v-card-text>
                 <v-spacer></v-spacer
