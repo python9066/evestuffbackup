@@ -11766,6 +11766,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -37075,15 +37079,15 @@ var render = function() {
                       [
                         _c("div", [_vm._v(_vm._s(_vm.data.title))]),
                         _vm._v(" "),
-                        _c("v-divider", {
-                          staticClass: "mx-4 my-0",
-                          attrs: { vertical: "" }
-                        }),
-                        _vm._v(" "),
                         _c(
                           "div",
                           { staticClass: " d-inline-flex" },
                           [
+                            _c("v-divider", {
+                              staticClass: "mx-4 my-0",
+                              attrs: { vertical: "" }
+                            }),
+                            _vm._v(" "),
                             _c("TaskInfo", {
                               staticClass: " pr-3",
                               attrs: { task: _vm.data }
@@ -37097,8 +37101,7 @@ var render = function() {
                           ],
                           1
                         )
-                      ],
-                      1
+                      ]
                     )
                   ],
                   1

@@ -10,8 +10,12 @@
                             style=" width: 100%;"
                         >
                             <div>{{ data.title }}</div>
-                            <v-divider class="mx-4 my-0" vertical></v-divider>
+
                             <div class=" d-inline-flex">
+                                <v-divider
+                                    class="mx-4 my-0"
+                                    vertical
+                                ></v-divider>
                                 <TaskInfo :task="data" class=" pr-3">
                                 </TaskInfo>
                                 <DeleteReconTask
