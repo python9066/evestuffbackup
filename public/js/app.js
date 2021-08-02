@@ -21293,6 +21293,72 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -46243,6 +46309,166 @@ var render = function() {
     { staticClass: " pr-16 pl-16" },
     [
       _c("messageComponent"),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: " d-flex align-items-center" },
+        [
+          _c("v-card-title", [_vm._v("Campaigns")]),
+          _vm._v(" "),
+          _c(
+            "v-btn",
+            {
+              attrs: {
+                loading: _vm.loadingf,
+                disabled: _vm.loadingf,
+                color: "light-blue darken-4"
+              },
+              on: {
+                click: function($event) {
+                  _vm.overlay = !_vm.overlay
+                }
+              }
+            },
+            [_vm._v("\n            ADD CAMPAIGN\n        ")]
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "v-data-table",
+        {
+          staticClass: "elevation-1",
+          attrs: {
+            headers: _vm.headers,
+            items: _vm.campaigns,
+            "item-key": "id",
+            loading: _vm.loading,
+            "items-per-page": 25,
+            "footer-props": { "items-per-page-options": [15, 25, 50, 100, -1] }
+          },
+          scopedSlots: _vm._u(
+            [
+              {
+                key: "item.system",
+                fn: function(ref) {
+                  var item = ref.item
+                  return [
+                    _c("SystemItemList", { attrs: { campaignID: item.id } })
+                  ]
+                }
+              },
+              {
+                key: "item.actions",
+                fn: function(ref) {
+                  var item = ref.item
+                  return [
+                    _c(
+                      "v-btn",
+                      {
+                        attrs: { icon: "", color: "warning" },
+                        on: {
+                          click: function($event) {
+                            ;(_vm.overlayEditID = item.id),
+                              (_vm.overlayEditName = item.name),
+                              (_vm.overlayEdit = !_vm.overlayEdit)
+                          }
+                        }
+                      },
+                      [
+                        _c("v-icon", { attrs: { small: "" } }, [
+                          _vm._v("fas fa-edit")
+                        ])
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "v-btn",
+                      {
+                        attrs: { icon: "", color: "warning" },
+                        on: {
+                          click: function($event) {
+                            return _vm.deleteCampaign(item)
+                          }
+                        }
+                      },
+                      [
+                        _c("v-icon", { attrs: { small: "" } }, [
+                          _vm._v("fas fa-trash")
+                        ])
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "v-btn",
+                      {
+                        attrs: { color: "green" },
+                        on: {
+                          click: function($event) {
+                            return _vm.clickCampaign(item)
+                          }
+                        }
+                      },
+                      [_vm._v("View")]
+                    )
+                  ]
+                }
+              }
+            ],
+            null,
+            true
+          )
+        },
+        [
+          _c("template", { slot: "no-data" }, [
+            _vm._v("\n            No Multi Campaigns have been made\n        ")
+          ])
+        ],
+        2
+      ),
+      _vm._v(" "),
+      _c(
+        "v-overlay",
+        { attrs: { value: _vm.overlay } },
+        [
+          _c("MultiCampaignAdd", {
+            on: {
+              closeAddNew: function($event) {
+                return _vm.updatemultiCampaginAdd()
+              },
+              closeAdd: function($event) {
+                _vm.overlay = !_vm.overlay
+              }
+            }
+          })
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "v-overlay",
+        { attrs: { value: _vm.overlayEdit } },
+        [
+          _c("MultiCampaignEdit", {
+            attrs: {
+              campaignID: _vm.getCampaignID(),
+              nameProp: _vm.getCampaignName()
+            },
+            on: {
+              closeEditNew: function($event) {
+                return _vm.updatemultiCampaginEdit()
+              },
+              closeEdit: function($event) {
+                _vm.overlayEdit = !_vm.overlayEdit
+              }
+            }
+          })
+        ],
+        1
+      ),
       _vm._v(" "),
       _c(
         "div",

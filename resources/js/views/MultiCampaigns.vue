@@ -64,6 +64,72 @@
                 @closeEdit="overlayEdit = !overlayEdit"
             ></MultiCampaignEdit>
         </v-overlay>
+
+        <!-- --------------- -->
+
+        <div class=" d-flex align-items-center">
+            <v-card-title>Campaigns</v-card-title>
+
+            <v-btn
+                :loading="loadingf"
+                :disabled="loadingf"
+                @click="overlay = !overlay"
+                color="light-blue darken-4"
+            >
+                ADD CAMPAIGN
+            </v-btn>
+        </div>
+        <v-data-table
+            :headers="headers"
+            :items="campaigns"
+            item-key="id"
+            :loading="loading"
+            :items-per-page="25"
+            :footer-props="{ 'items-per-page-options': [15, 25, 50, 100, -1] }"
+            class="elevation-1"
+        >
+            <!-- @click:row="rowClick($event)" -->
+            <template slot="no-data">
+                No Multi Campaigns have been made
+            </template>
+            <template v-slot:[`item.system`]="{ item }">
+                <SystemItemList :campaignID="item.id"> </SystemItemList>
+            </template>
+            <template v-slot:[`item.actions`]="{ item }">
+                <v-btn
+                    icon
+                    @click="
+                        (overlayEditID = item.id),
+                            (overlayEditName = item.name),
+                            (overlayEdit = !overlayEdit)
+                    "
+                    color="warning"
+                    ><v-icon small>fas fa-edit</v-icon></v-btn
+                >
+                <v-btn icon @click="deleteCampaign(item)" color="warning"
+                    ><v-icon small>fas fa-trash</v-icon></v-btn
+                >
+                <v-btn @click="clickCampaign(item)" color="green">View</v-btn>
+            </template>
+
+            <!-- <template v-slot:actions.="{ item }">
+                LALALALA
+            </template> -->
+        </v-data-table>
+        <v-overlay :value="overlay">
+            <MultiCampaignAdd
+                @closeAddNew="updatemultiCampaginAdd()"
+                @closeAdd="overlay = !overlay"
+            ></MultiCampaignAdd>
+        </v-overlay>
+        <v-overlay :value="overlayEdit">
+            <MultiCampaignEdit
+                :campaignID="getCampaignID()"
+                :nameProp="getCampaignName()"
+                @closeEditNew="updatemultiCampaginEdit()"
+                @closeEdit="overlayEdit = !overlayEdit"
+            ></MultiCampaignEdit>
+        </v-overlay>
     </div>
 </template>
 <script>
