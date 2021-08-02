@@ -58,7 +58,7 @@ export default {
         async submit() {
             await axios({
                 method: "delete", //you can set what request you want to be
-                url: "api/recontask" + this.item.id,
+                url: "api/recontask/" + this.item.id,
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
                     Accept: "application/json",
