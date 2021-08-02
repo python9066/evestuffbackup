@@ -36880,7 +36880,7 @@ var render = function() {
               attrs: {
                 tile: "",
                 "max-width": "700px",
-                "min-height": "200px",
+                "min-height": "100px",
                 "max-height": "1000px"
               }
             },
