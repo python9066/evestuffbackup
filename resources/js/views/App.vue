@@ -62,7 +62,7 @@
                         v-if="$can('access_multi_campaigns')"
                         to="/mcampaigns"
                     >
-                        Multi-Campaign
+                        Custom-Campaign
                     </v-tab>
                     <v-tab v-if="$can('edit_users')" link to="/pannel">
                         Users

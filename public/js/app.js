@@ -43304,7 +43304,7 @@ var render = function() {
                   _vm.$can("access_multi_campaigns")
                     ? _c("v-tab", { attrs: { to: "/mcampaigns" } }, [
                         _vm._v(
-                          "\n                    Multi-Campaign\n                "
+                          "\n                    Custom-Campaign\n                "
                         )
                       ])
                     : _vm._e(),
