@@ -11,11 +11,13 @@
                         >
                             <div>{{ data.title }}</div>
                             <v-divider class="mx-4 my-0" vertical></v-divider>
-                            <TaskInfo :task="data"> </TaskInfo>
-                            <DeleteReconTask
-                                v-if="$can('super')"
-                                :item="data"
-                            ></DeleteReconTask>
+                            <div>
+                                <TaskInfo :task="data"> </TaskInfo>
+                                <DeleteReconTask
+                                    v-if="$can('super')"
+                                    :item="data"
+                                ></DeleteReconTask>
+                            </div>
                         </v-card-title>
                     </v-card>
                 </template>
