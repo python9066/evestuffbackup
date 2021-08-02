@@ -37085,7 +37085,7 @@ var render = function() {
                         _vm._v(" "),
                         _c("TaskInfo", { attrs: { task: _vm.data } }),
                         _vm._v(" "),
-                        _vm.can("super")
+                        _vm.$can("super")
                           ? _c("DeleteReconTask", { attrs: { item: _vm.data } })
                           : _vm._e()
                       ],
