@@ -184,4 +184,5 @@ Route::middleware('auth:api')->group(function () {
     Route::delete('/startcampaigns/{id}', 'StartCampaignController@destroy');
     Route::get('/startcampaignjoinbyid/{campid}', 'StartCampaignJoinController@indexByID');
     Route::get('/startcampaignsystemsrecords', 'StartCampaignSystemRecordsController@index');
+    Route::put('/startcampaignsystemupdate/{id}', 'StartCampaignSystemController@update');
 });

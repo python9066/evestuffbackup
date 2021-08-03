@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Auth;
+use App\Models\CampaignUser;
+use App\Models\StartCampaigns;
+use App\Models\StartCampaignSystemRecords;
 use Illuminate\Http\Request;
 
 class StartCampaignSystemController extends Controller
@@ -47,7 +51,14 @@ class StartCampaignSystemController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $char = CampaignUser::where(['site_id' => $request->campaign_user_id])->first();
+        if ($char->count() != null) {
+            $char->update(['campaign_id' => $id, 'campaign_system_id' => $request->sys]);
+        } else {
+            $char =  CampaignUser::create(['site_id' => Auth::id(), 'campaign_id' => $id, 'campaign_system_id' => $request->sys, 'char_name' => Auth::user()]);
+        }
+
+        StartCampaigns::find($id)->update(['campaign_user_id' => $char->id]);
     }
 
     /**

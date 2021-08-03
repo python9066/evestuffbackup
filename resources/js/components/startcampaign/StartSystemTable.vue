@@ -72,7 +72,7 @@ export default {
 
             headers: [
                 { text: "System", value: "system_name" },
-                { text: "Pilot", value: "main_name" },
+                { text: "Pilot", value: "main_name", align: "start" },
 
                 {
                     text: "",
@@ -94,14 +94,30 @@ export default {
     async created() {},
 
     methods: {
-        clickaddchar(item) {
+        async clickaddchar(item) {
             var data = {
                 id: item.id,
                 main_name: this.$store.state.user_name,
                 site_id: this.$store.state.user_id
             };
 
+            var request = {
+                user_id: this.$store.state.user_id,
+                sys: item.system_id
+            };
+
             this.$store.dispatch("updateStartCampaignSystem", data);
+
+            await axios({
+                method: "put",
+                url: "/api/startcampaignsystemupdate/" + item.id,
+                data: request,
+                headers: {
+                    Authorization: "Bearer " + this.$store.state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                }
+            });
         }
     },
 

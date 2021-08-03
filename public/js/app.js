@@ -12912,7 +12912,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         value: "system_name"
       }, {
         text: "Pilot",
-        value: "main_name"
+        value: "main_name",
+        align: "start"
       }, {
         text: "",
         value: "actions",
@@ -12956,20 +12957,53 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   methods: {
     clickaddchar: function clickaddchar(item) {
-      var data = {
-        id: item.id,
-        main_name: this.$store.state.user_name,
-        site_id: this.$store.state.user_id
-      };
-      this.$store.dispatch("updateStartCampaignSystem", data);
+      var _this2 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
+        var data, request;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                data = {
+                  id: item.id,
+                  main_name: _this2.$store.state.user_name,
+                  site_id: _this2.$store.state.user_id
+                };
+                request = {
+                  user_id: _this2.$store.state.user_id,
+                  sys: item.system_id
+                };
+
+                _this2.$store.dispatch("updateStartCampaignSystem", data);
+
+                _context3.next = 5;
+                return axios({
+                  method: "put",
+                  url: "/api/startcampaignsystemupdate/" + item.id,
+                  data: request,
+                  headers: {
+                    Authorization: "Bearer " + _this2.$store.state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                  }
+                });
+
+              case 5:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3);
+      }))();
     }
   },
   computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapState"])(["startcampaignsystems", "user_id"])), {}, {
     filteredItems: function filteredItems() {
-      var _this2 = this;
+      var _this3 = this;
 
       return this.startcampaignsystems.filter(function (s) {
-        return s.constellation_id == _this2.data.constellation_id && s.start_campaign_id == _this2.data.start_campaign_id;
+        return s.constellation_id == _this3.data.constellation_id && s.start_campaign_id == _this3.data.start_campaign_id;
       });
     }
   }),
