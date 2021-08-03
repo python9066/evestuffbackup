@@ -68,11 +68,11 @@ export default {
         ...mapGetters(["getStartCampaignsById", "getStartCampaignById"]),
 
         startcampaign() {
-            return this.getStartCampaignsById(this.campaign_id);
+            return this.getStartCampaignsById(this.$route.params.id);
         },
 
         startcampaignjoins() {
-            return this.getStartCampaignById(this.campaign_id);
+            return this.getStartCampaignById(this.$route.params.id);
         },
 
         size() {

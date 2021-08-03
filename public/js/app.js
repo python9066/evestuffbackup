@@ -23571,10 +23571,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   methods: {},
   computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(["getStartCampaignsById", "getStartCampaignById"])), {}, {
     startcampaign: function startcampaign() {
-      return this.getStartCampaignsById(this.campaign_id);
+      return this.getStartCampaignsById(this.$route.params.id);
     },
     startcampaignjoins: function startcampaignjoins() {
-      return this.getStartCampaignById(this.campaign_id);
+      return this.getStartCampaignById(this.$route.params.id);
     },
     size: function size() {
       var count = this.getStartCampaignById(this.campaign_id).length;
