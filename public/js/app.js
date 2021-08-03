@@ -23170,13 +23170,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -23184,26 +23177,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   data: function data() {
     return {};
   },
-  mounted: function mounted() {
-    var _this = this;
-
+  created: function created() {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              _context.next = 2;
-              return _this.$store.dispatch("getCampaigns");
-
-            case 2:
-              _context.next = 4;
-              return _this.$store.dispatch("getMultiCampaigns");
-
-            case 4:
-              _context.next = 6;
-              return _this.$store.dispatch("getCampaignJoinDataByCampaign", _this.$route.params.id);
-
-            case 6:
             case "end":
               return _context.stop();
           }
@@ -23211,16 +23190,16 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }, _callee);
     }))();
   },
-  created: function created() {
-    var _this2 = this;
+  mounted: function mounted() {
+    var _this = this;
 
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
         while (1) {
           switch (_context2.prev = _context2.next) {
             case 0:
-              _this2.campaignId = _this2.$route.params.id;
-              _this2.campaign_id = parseInt(_this2.$route.params.id);
+              _context2.next = 2;
+              return _this.$store.dispatch("getStartCampaignJoinDataByCampaign", _this.$route.params.id);
 
             case 2:
             case "end":
@@ -23231,11 +23210,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     }))();
   },
   methods: {},
-  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(["getStartCampaignById", "getActiveCampaigns", "getCampaignsCount", "getCampaignUsersByUserId", "getCampaignUsersByUserIdCount", "getTotalNodeCountByMultiCampaign", "getHackingNodeCountByMultiCampaign", "getRedHackingNodeCountByMultiCampaign", "getMultiCampaignName"])), {}, {
-    StartCampaigns: function StartCampaigns() {
-      return this.getStartCampaignById(this.campaignId);
-    }
-  }),
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(["getStartCampaignById"])),
   beforeDestroy: function beforeDestroy() {}
 });
 
@@ -48807,28 +48782,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _vm._v("\n    this is a thing\n    "),
-      _vm._l(_vm.StartCampaigns, function(StartCampaign, index) {
-        return _c(
-          "span",
-          { key: index },
-          [
-            _c("TitleBar", {
-              attrs: {
-                sCampaignID: _vm.sCampaign.campaign_id,
-                sCampaign: _vm.sCampaigns
-              }
-            })
-          ],
-          1
-        )
-      })
-    ],
-    2
-  )
+  return _c("div", [_vm._v("\n    this is a thing\n")])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -55943,7 +55897,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_chillstation_ChillStructure_vue__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./components/chillstation/ChillStructure.vue */ "./resources/js/components/chillstation/ChillStructure.vue");
 /* harmony import */ var _views_Gsol__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./views/Gsol */ "./resources/js/views/Gsol.vue");
 /* harmony import */ var _views_Recon__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./views/Recon */ "./resources/js/views/Recon.vue");
-/* harmony import */ var _views_StartCampaignSystem_vue__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./views/StartCampaignSystem.vue */ "./resources/js/views/StartCampaignSystem.vue");
+/* harmony import */ var _views_StartCampaignSystem__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./views/StartCampaignSystem */ "./resources/js/views/StartCampaignSystem.vue");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -56033,7 +55987,7 @@ vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(vue_router__WEBPACK_IMPORTED_MODU
   }, {
     path: "/scampaign/:id",
     name: "scampaign",
-    component: _views_StartCampaignSystem_vue__WEBPACK_IMPORTED_MODULE_21__["default"],
+    component: _views_StartCampaignSystem__WEBPACK_IMPORTED_MODULE_21__["default"],
     props: function props(route) {
       var id = Number.parseInt(route.params.id, 10);
 
