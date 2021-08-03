@@ -23177,6 +23177,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -48816,7 +48817,8 @@ var render = function() {
                 startCampaignID: startCampaign.campaign_id,
                 startCampaign: _vm.startCampaigns
               }
-            })
+            }),
+            _vm._v("\n        yo\n    ")
           ],
           1
         )
