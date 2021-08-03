@@ -49540,7 +49540,7 @@ var render = function() {
                   _c(
                     "v-card",
                     {
-                      key: "buttoncard" + _vm.campaign.id,
+                      key: "buttoncard" + _vm.startcampaign.id,
                       staticClass:
                         "pa-2 d-flex justify-space-between full-width align-center",
                       attrs: { tile: "" }
@@ -49561,7 +49561,7 @@ var render = function() {
                                   expression: "showTable == false"
                                 }
                               ],
-                              key: "showchartable" + _vm.campaign.id,
+                              key: "showchartable" + _vm.startcampaign.id,
                               staticClass: "mr-4",
                               attrs: { color: "blue darken-2" },
                               on: {
@@ -49584,7 +49584,7 @@ var render = function() {
                                   expression: "showTable == true"
                                 }
                               ],
-                              key: "hidechartable" + _vm.campaign.id,
+                              key: "hidechartable" + _vm.startcampaign.id,
                               staticClass: "mr-4",
                               attrs: { color: "orange darken-2" },
                               on: {

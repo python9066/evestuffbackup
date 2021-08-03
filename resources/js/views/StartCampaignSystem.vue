@@ -20,12 +20,12 @@
                 <v-card
                     class="pa-2 d-flex justify-space-between full-width align-center"
                     tile
-                    :key="'buttoncard' + campaign.id"
+                    :key="'buttoncard' + startcampaign.id"
                 >
                     <div class=" d-md-inline-flex">
                         <v-btn
                             class="mr-4"
-                            :key="'showchartable' + campaign.id"
+                            :key="'showchartable' + startcampaign.id"
                             color="blue darken-2"
                             v-show="showTable == false"
                             @click="showTable = true"
@@ -34,7 +34,7 @@
                         <v-btn
                             class="mr-4"
                             color="orange darken-2"
-                            :key="'hidechartable' + campaign.id"
+                            :key="'hidechartable' + startcampaign.id"
                             v-show="showTable == true"
                             @click="showTable = false"
                             >Hide Char table</v-btn
