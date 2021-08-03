@@ -23306,7 +23306,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   methods: {},
   computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(["getStartCampaignsById"])), {}, {
     startcampaign: function startcampaign() {
-      return this.getStartCampaignsById(this["this"].campaign_id);
+      return this.getStartCampaignsById(this.campaign_id);
     }
   }),
   beforeDestroy: function beforeDestroy() {}

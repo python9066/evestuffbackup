@@ -45,7 +45,7 @@ export default {
         ...mapGetters(["getStartCampaignsById"]),
 
         startcampaign() {
-            return this.getStartCampaignsById(this.this.campaign_id);
+            return this.getStartCampaignsById(this.campaign_id);
         }
     },
 
