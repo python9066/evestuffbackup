@@ -12937,7 +12937,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     }))();
   },
   methods: {},
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapState"])(["startcampaignsystems", "user_id"])),
+  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapState"])(["startcampaignsystems", "user_id"])), {}, {
+    filteredItems: function filteredItems() {
+      var _this2 = this;
+
+      return this.startcampaignsystems.filter(function (s) {
+        return s.constellation_id == _this2.data.constellation_id;
+      });
+    }
+  }),
   beforeDestroy: function beforeDestroy() {}
 });
 

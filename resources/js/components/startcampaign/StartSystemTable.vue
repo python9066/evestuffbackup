@@ -78,7 +78,13 @@ export default {
     methods: {},
 
     computed: {
-        ...mapState(["startcampaignsystems", "user_id"])
+        ...mapState(["startcampaignsystems", "user_id"]),
+
+        filteredItems() {
+            return this.startcampaignsystems.filter(
+                s => s.constellation_id == this.data.constellation_id
+            );
+        }
     },
 
     beforeDestroy() {}
