@@ -55,9 +55,9 @@ class StartCampaignSystemController extends Controller
         $count = CampaignUser::where(['site_id' => $request->user_id])->count();
         if ($count != null) {
             CampaignUser::first('site_id', $request->user_id)->update(['campaign_id' => $id, 'campaign_system_id' => $request->sys]);
-            $char = CampaignUser::first('site_id', $request->user_id);
+            $char = CampaignUser::first('site_id', $request->user_id)->get();
         } else {
-            $char =  CampaignUser::create(['site_id' => Auth::id(), 'campaign_id' => $id, 'campaign_system_id' => $request->sys, 'char_name' => Auth::user()]);
+            $char =  CampaignUser::create(['site_id' => Auth::id(), 'campaign_id' => $id, 'campaign_system_id' => $request->sys, 'char_name' => Auth::user()])->get();
         }
         dd($char);
         StartCampaignSystems::find($id)->update(['campaign_user_id' => $char->id]);
