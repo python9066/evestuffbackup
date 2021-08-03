@@ -21,7 +21,8 @@ class ConstellationsController extends Controller
     public function constellationlist()
     {
         $data = [];
-        $pull = Constellation::all()->orderBy('constellation_name', 'desc');
+        $start = Constellation::all();
+        $pull = $start->sortBy('constellation_name');
         foreach ($pull as $pull) {
             $data1 = [];
             $data1 = [
