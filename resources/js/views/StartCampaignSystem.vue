@@ -40,17 +40,7 @@ export default {
     methods: {},
 
     computed: {
-        ...mapGetters([
-            "getStartCampaignById",
-            "getActiveCampaigns",
-            "getCampaignsCount",
-            "getCampaignUsersByUserId",
-            "getCampaignUsersByUserIdCount",
-            "getTotalNodeCountByMultiCampaign",
-            "getHackingNodeCountByMultiCampaign",
-            "getRedHackingNodeCountByMultiCampaign",
-            "getMultiCampaignName"
-        ]),
+        ...mapGetters(["getStartCampaignById"]),
 
         startCampaigns() {
             return this.getStartCampaignById(this.campaignId);
