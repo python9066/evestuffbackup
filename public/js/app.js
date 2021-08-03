@@ -23176,6 +23176,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -48794,22 +48795,25 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    _vm._l(_vm.StartCampaigns, function(StartCampaign, index) {
-      return _c(
-        "span",
-        { key: index },
-        [
-          _c("TitleBar", {
-            attrs: {
-              sCampaignID: _vm.sCampaign.campaign_id,
-              sCampaign: _vm.sCampaigns
-            }
-          })
-        ],
-        1
-      )
-    }),
-    0
+    [
+      _vm._v("\n    this is a thing\n    "),
+      _vm._l(_vm.StartCampaigns, function(StartCampaign, index) {
+        return _c(
+          "span",
+          { key: index },
+          [
+            _c("TitleBar", {
+              attrs: {
+                sCampaignID: _vm.sCampaign.campaign_id,
+                sCampaign: _vm.sCampaigns
+              }
+            })
+          ],
+          1
+        )
+      })
+    ],
+    2
   )
 }
 var staticRenderFns = []

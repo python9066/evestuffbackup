@@ -1,5 +1,6 @@
 <template>
     <div>
+        this is a thing
         <span v-for="(StartCampaign, index) in StartCampaigns" :key="index">
             <TitleBar
                 :sCampaignID="sCampaign.campaign_id"
