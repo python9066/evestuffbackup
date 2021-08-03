@@ -98,6 +98,10 @@ Broadcast::channel('startcampaigns', function () {
     return Auth::check();
 });
 
+Broadcast::channel('startcampaignsystem.{id}', function () {
+    return Auth::check();
+});
+
 
 
 

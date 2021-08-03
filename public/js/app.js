@@ -23546,16 +23546,21 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         while (1) {
           switch (_context2.prev = _context2.next) {
             case 0:
+              Echo["private"]("startcampaignsystem." + _this.campaign_id).listen("StartCampaignSystemUpdate", function (e) {
+                if (e.flag.message != null) {
+                  _this.$store.dispatch("updateStartCampaignSystem", e.flag.message);
+                }
+              });
               _this.campaignId = _this.$route.params.id;
               _this.campaign_id = parseInt(_this.$route.params.id);
-              _context2.next = 4;
+              _context2.next = 5;
               return _this.$store.dispatch("getStartCampaigns");
 
-            case 4:
-              _context2.next = 6;
+            case 5:
+              _context2.next = 7;
               return _this.$store.dispatch("getStartCampaignJoinData");
 
-            case 6:
+            case 7:
             case "end":
               return _context2.stop();
           }
@@ -23581,7 +23586,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }
     }
   }),
-  beforeDestroy: function beforeDestroy() {}
+  beforeDestroy: function beforeDestroy() {
+    Echo.leave("startcampaignsystem." + this.campaign_id);
+  }
 });
 
 /***/ }),

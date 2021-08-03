@@ -45,6 +45,17 @@ export default {
     async mounted() {},
 
     async created() {
+        Echo.private("startcampaignsystem." + this.campaign_id).listen(
+            "StartCampaignSystemUpdate",
+            e => {
+                if (e.flag.message != null) {
+                    this.$store.dispatch(
+                        "updateStartCampaignSystem",
+                        e.flag.message
+                    );
+                }
+            }
+        );
         this.campaignId = this.$route.params.id;
         this.campaign_id = parseInt(this.$route.params.id);
         await this.$store.dispatch("getStartCampaigns");
@@ -74,7 +85,9 @@ export default {
         }
     },
 
-    beforeDestroy() {}
+    beforeDestroy() {
+        Echo.leave("startcampaignsystem." + this.campaign_id);
+    }
 };
 </script>
 

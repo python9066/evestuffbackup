@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\StartCampaignSystemUpdate;
 use App\Models\Auth;
 use App\Models\CampaignUser;
 use App\Models\StartCampaigns;
@@ -60,12 +61,27 @@ class StartCampaignSystemController extends Controller
             $char =  CampaignUser::create(['site_id' => Auth::id(), 'campaign_id' => $id, 'campaign_system_id' => $request->sys, 'char_name' => Auth::user()])->get();
         }
         StartCampaignSystems::find($id)->update(['campaign_user_id' => $char->id]);
+
+
+        $message = StartCampaignSystemRecords::where('id',)->first();
+        $flag = collect([
+            'message' => $message,
+            'id' => $id
+        ]);
+        broadcast(new StartCampaignSystemUpdate($flag))->toOthers();
     }
 
     public function removeChar($id, $char)
     {
         CampaignUser::find($char)->update(['campaign_id' => null, 'campaign_system_id' => null]);
         StartCampaignSystems::find($id)->update(['campaign_user_id' => null]);
+
+        $message = StartCampaignSystemRecords::where('id',)->first();
+        $flag = collect([
+            'message' => $message,
+            'id' => $id
+        ]);
+        broadcast(new StartCampaignSystemUpdate($flag))->toOthers();
     }
 
     /**
