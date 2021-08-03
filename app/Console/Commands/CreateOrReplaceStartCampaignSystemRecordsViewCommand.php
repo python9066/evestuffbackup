@@ -42,6 +42,7 @@ class CreateOrReplaceStartCampaignSystemRecordsViewCommand extends Command
 start_campaign_systems.start_campaign_id AS start_campaign_id,
 start_campaign_systems.system_id AS system_id,
 systems.system_name AS system_name,
+systems.constellation_id AS constellation_id,
 start_campaign_systems.campaign_user_id AS user_id,
 campaign_users.site_id AS site_id,
 campaign_users.char_name AS user_name,

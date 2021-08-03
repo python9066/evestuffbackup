@@ -77,7 +77,9 @@ export default {
 
     methods: {},
 
-    computed: {},
+    computed: {
+        ...mapState(["startcampaignsystems", "user_id"])
+    },
 
     beforeDestroy() {}
 };
