@@ -34,14 +34,14 @@ export default {
     methods: {},
 
     computed: {
-        ...mapGetters(["getCampaignJoinById"]),
+        ...mapGetters(["getStartJoinById"]),
 
         systems() {
-            return this.getCampaignJoinById(this.campaignID);
+            return this.getStartJoinById(this.campaignID);
         },
 
         systemcount() {
-            let count = this.getCampaignJoinById(this.campaignID).length;
+            let count = this.getStartJoinById(this.campaignID).length;
             if (count == 0) {
                 return false;
             } else {

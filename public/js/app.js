@@ -12740,12 +12740,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     }))();
   },
   methods: {},
-  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(["getCampaignJoinById"])), {}, {
+  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(["getStartJoinById"])), {}, {
     systems: function systems() {
-      return this.getCampaignJoinById(this.campaignID);
+      return this.getStartJoinById(this.campaignID);
     },
     systemcount: function systemcount() {
-      var count = this.getCampaignJoinById(this.campaignID).length;
+      var count = this.getStartJoinById(this.campaignID).length;
 
       if (count == 0) {
         return false;
