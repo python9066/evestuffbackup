@@ -47191,7 +47191,7 @@ var render = function() {
       _vm._v(" "),
       _c("MultiCampaigns"),
       _vm._v(" "),
-      _vm.$can("super") ? _c("StartCampaign") : _vm._e()
+      _c("StartCampaign")
     ],
     1
   )
