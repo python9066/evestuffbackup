@@ -10,16 +10,10 @@ import moment from "moment";
 export default {
     props: {},
     data() {
-        return {
-            campaignId: 0,
-            campaign_id: ""
-        };
+        return {};
     },
 
-    async created() {
-        this.campaignId = this.$route.params.id;
-        this.campaign_id = parseInt(this.$route.params.id);
-    },
+    async created() {},
 
     async mounted() {
         // await this.$store.dispatch("getCampaigns");
@@ -33,11 +27,11 @@ export default {
     methods: {},
 
     computed: {
-        ...mapGetters(["getStartCampaignById"]),
+        ...mapGetters(["getStartCampaignById"])
 
-        startCampaigns() {
-            return this.getStartCampaignById(this.campaignId);
-        }
+        // startCampaigns() {
+        //     return this.getStartCampaignById(this.campaignId);
+        // }
     },
 
     beforeDestroy() {}
