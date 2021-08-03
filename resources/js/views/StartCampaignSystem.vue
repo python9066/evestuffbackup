@@ -35,18 +35,10 @@ import { mapState, mapGetters } from "vuex";
 import moment from "moment";
 export default {
     props: {},
-    data() {
-        return {
-            campaignId: 0,
-            campaign_id: ""
-        };
-    },
-
-    async mounted() {},
-
     async created() {
-        await setid();
-        Echo.private("startcampaignsystem." + this.campaign_id).listen(
+        this.campaignId = this.$route.params.id;
+        this.campaign_id = parseInt(this.$route.params.id);
+        Echo.private("startcampaignsystem." + this.$route.params.id).listen(
             "StartCampaignSystemUpdate",
             e => {
                 if (e.flag.message != null) {
@@ -61,13 +53,16 @@ export default {
         await this.$store.dispatch("getStartCampaigns");
         await this.$store.dispatch("getStartCampaignJoinData");
     },
-
-    methods: {
-        setid() {
-            this.campaignId = this.$route.params.id;
-            this.campaign_id = parseInt(this.$route.params.id);
-        }
+    data() {
+        return {
+            campaignId: 0,
+            campaign_id: ""
+        };
     },
+
+    async mounted() {},
+
+    methods: {},
 
     computed: {
         ...mapGetters(["getStartCampaignsById", "getStartCampaignById"]),
@@ -91,7 +86,7 @@ export default {
     },
 
     beforeDestroy() {
-        Echo.leave("startcampaignsystem." + this.campaign_id);
+        Echo.leave("startcampaignsystem." + this.$route.params.id);
     }
 };
 </script>

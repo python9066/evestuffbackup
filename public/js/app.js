@@ -23519,18 +23519,29 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {},
-  data: function data() {
-    return {
-      campaignId: 0,
-      campaign_id: ""
-    };
-  },
-  mounted: function mounted() {
+  created: function created() {
+    var _this = this;
+
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
+              _this.campaignId = _this.$route.params.id;
+              _this.campaign_id = parseInt(_this.$route.params.id);
+              Echo["private"]("startcampaignsystem." + _this.$route.params.id).listen("StartCampaignSystemUpdate", function (e) {
+                if (e.flag.message != null) {
+                  _this.$store.dispatch("updateStartCampaignSystem", e.flag.message);
+                }
+              });
+              _context.next = 5;
+              return _this.$store.dispatch("getStartCampaigns");
+
+            case 5:
+              _context.next = 7;
+              return _this.$store.dispatch("getStartCampaignJoinData");
+
+            case 7:
             case "end":
               return _context.stop();
           }
@@ -23538,31 +23549,18 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }, _callee);
     }))();
   },
-  created: function created() {
-    var _this = this;
-
+  data: function data() {
+    return {
+      campaignId: 0,
+      campaign_id: ""
+    };
+  },
+  mounted: function mounted() {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
         while (1) {
           switch (_context2.prev = _context2.next) {
             case 0:
-              _context2.next = 2;
-              return setid();
-
-            case 2:
-              Echo["private"]("startcampaignsystem." + _this.campaign_id).listen("StartCampaignSystemUpdate", function (e) {
-                if (e.flag.message != null) {
-                  _this.$store.dispatch("updateStartCampaignSystem", e.flag.message);
-                }
-              });
-              _context2.next = 5;
-              return _this.$store.dispatch("getStartCampaigns");
-
-            case 5:
-              _context2.next = 7;
-              return _this.$store.dispatch("getStartCampaignJoinData");
-
-            case 7:
             case "end":
               return _context2.stop();
           }
@@ -23570,12 +23568,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }, _callee2);
     }))();
   },
-  methods: {
-    setid: function setid() {
-      this.campaignId = this.$route.params.id;
-      this.campaign_id = parseInt(this.$route.params.id);
-    }
-  },
+  methods: {},
   computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(["getStartCampaignsById", "getStartCampaignById"])), {}, {
     startcampaign: function startcampaign() {
       return this.getStartCampaignsById(this.campaign_id);
@@ -23594,7 +23587,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     }
   }),
   beforeDestroy: function beforeDestroy() {
-    Echo.leave("startcampaignsystem." + this.campaign_id);
+    Echo.leave("startcampaignsystem." + this.$route.params.id);
   }
 });
 
