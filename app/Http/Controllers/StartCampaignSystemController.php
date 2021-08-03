@@ -51,9 +51,9 @@ class StartCampaignSystemController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $char = CampaignUser::where(['site_id' => $request->user_id])->count();
-        if ($char->count() != null) {
-            $char->first(['site_id' => $request->user_id])->update(['campaign_id' => $id, 'campaign_system_id' => $request->sys]);
+        $count = CampaignUser::where(['site_id' => $request->user_id])->count();
+        if ($count != null) {
+            $char = CampaignUser::first(['site_id' => $request->user_id])->update(['campaign_id' => $id, 'campaign_system_id' => $request->sys]);
         } else {
             $char =  CampaignUser::create(['site_id' => Auth::id(), 'campaign_id' => $id, 'campaign_system_id' => $request->sys, 'char_name' => Auth::user()]);
         }
