@@ -8,7 +8,7 @@
                 >
                     <p class=" pt-5">
                         Inital Campaign page for the
-                        {{ this.startCampaign }}
+                        {{ this.startName }}
                     </p>
                 </v-card-title>
             </v-card>
@@ -24,7 +24,7 @@ function sleep(ms) {
 }
 export default {
     props: {
-        startCampaignID: Number
+        startName: String
     },
     data() {
         return {};
@@ -32,30 +32,9 @@ export default {
 
     async created() {},
 
-    methods: {
-        loadCampaignSystemRecords() {
-            this.$store.dispatch("getCampaignSystemsRecords");
-        }
-    },
+    methods: {},
 
-    computed: {
-        ...mapGetters([
-            "getCampaignById",
-            "getActiveCampaigns",
-            "getCampaignsCount",
-            "getCampaignUsersByUserId",
-            "getCampaignUsersByUserIdCount",
-            "getTotalNodeCountByCampaign",
-            "getHackingNodeCountByCampaign",
-            "getRedHackingNodeCountByCampaign"
-        ]),
-
-        startCampaign() {
-            return this.getCampaignById(this.startCampaignID);
-        }
-    },
-    beforeDestroy() {
-        this.leaving();
-    }
+    computed: {},
+    beforeDestroy() {}
 };
 </script>

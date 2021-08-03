@@ -2,10 +2,7 @@
     <div>
         this is a thing
         <span v-for="(startCampaign, index) in startCampaigns" :key="index">
-            <StartTitleBar
-                :startCampaignID="startCampaign.start_campaign_id"
-                :startCampaign="startCampaigns"
-            >
+            <StartTitleBar :startName="startCampaign.constellation_name">
             </StartTitleBar>
             yo
         </span>
