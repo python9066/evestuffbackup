@@ -12891,6 +12891,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -38824,7 +38825,8 @@ var render = function() {
                                         attrs: {
                                           pill: "",
                                           outlined: "",
-                                          small: "",
+                                          rounded: "",
+                                          "x-small": "",
                                           color: "light-green accent-3"
                                         }
                                       },

@@ -34,7 +34,8 @@
                                 <v-btn
                                     pill
                                     outlined
-                                    small
+                                    rounded
+                                    x-small
                                     color="light-green accent-3"
                                 >
                                     Add
