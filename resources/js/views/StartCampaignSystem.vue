@@ -9,7 +9,7 @@
                         class="justify-center align-center"
                     >
                         <p class=" pt-5">
-                            Inital Campaign page for the
+                            Campaign
                             {{ this.startName }}
                         </p>
                     </v-card-title>
@@ -36,6 +36,10 @@ export default {
     async created() {
         this.campaignId = this.$route.params.id;
         this.campaign_id = parseInt(this.$route.params.id);
+        this.$store.dispatch(
+            "getStartCampaignJoinDataByCampaign",
+            this.$route.params.id
+        );
     },
 
     methods: {},

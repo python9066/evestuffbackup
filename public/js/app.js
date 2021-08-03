@@ -23287,7 +23287,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               _this.campaignId = _this.$route.params.id;
               _this.campaign_id = parseInt(_this.$route.params.id);
 
-            case 2:
+              _this.$store.dispatch("getStartCampaignJoinDataByCampaign", _this.$route.params.id);
+
+            case 3:
             case "end":
               return _context2.stop();
           }
@@ -48965,7 +48967,7 @@ var render = function() {
                     [
                       _c("p", { staticClass: " pt-5" }, [
                         _vm._v(
-                          "\n                        Inital Campaign page for the\n                        " +
+                          "\n                        Campaign\n                        " +
                             _vm._s(this.startName) +
                             "\n                    "
                         )
