@@ -13024,39 +13024,37 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   methods: {
     clickaddchar: function clickaddchar(item) {
-      var _this2 = this;
-
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
-        var data, request;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
           while (1) {
             switch (_context3.prev = _context3.next) {
               case 0:
-                data = {
-                  id: item.id,
-                  main_name: _this2.$store.state.user_name,
-                  site_id: _this2.$store.state.user_id
-                };
-                request = {
-                  user_id: _this2.$store.state.user_id,
-                  sys: item.system_id
-                };
+                console.log(item); // var data = {
+                //     id: item.id,
+                //     main_name: this.$store.state.user_name,
+                //     site_id: this.$store.state.user_id
+                // };
+                // var request = {
+                //     user_id: this.$store.state.user_id,
+                //     sys: item.system_id
+                // };
+                // this.$store.dispatch("updateStartCampaignSystem", data);
+                // await axios({
+                //     method: "put",
+                //     url:
+                //         "/api/startcampaignsystemupdate/" +
+                //         item.id +
+                //         "/" +
+                //         this.data.start_campaign_id,
+                //     data: request,
+                //     headers: {
+                //         Authorization: "Bearer " + this.$store.state.token,
+                //         Accept: "application/json",
+                //         "Content-Type": "application/json"
+                //     }
+                // });
 
-                _this2.$store.dispatch("updateStartCampaignSystem", data);
-
-                _context3.next = 5;
-                return axios({
-                  method: "put",
-                  url: "/api/startcampaignsystemupdate/" + item.id + "/" + _this2.data.start_campaign_id,
-                  data: request,
-                  headers: {
-                    Authorization: "Bearer " + _this2.$store.state.token,
-                    Accept: "application/json",
-                    "Content-Type": "application/json"
-                  }
-                });
-
-              case 5:
+              case 1:
               case "end":
                 return _context3.stop();
             }
@@ -13065,7 +13063,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }))();
     },
     clickremovechar: function clickremovechar(item) {
-      var _this3 = this;
+      var _this2 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
         var data;
@@ -13079,14 +13077,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   site_id: null
                 };
 
-                _this3.$store.dispatch("updateStartCampaignSystem", data);
+                _this2.$store.dispatch("updateStartCampaignSystem", data);
 
                 _context4.next = 4;
                 return axios({
                   method: "delete",
-                  url: "/api/startcampaignsystemremovechar/" + item.id + "/" + item.user_id + "/" + _this3.data.start_campaign_id,
+                  url: "/api/startcampaignsystemremovechar/" + item.id + "/" + item.user_id + "/" + _this2.data.start_campaign_id,
                   headers: {
-                    Authorization: "Bearer " + _this3.$store.state.token,
+                    Authorization: "Bearer " + _this2.$store.state.token,
                     Accept: "application/json",
                     "Content-Type": "application/json"
                   }
@@ -13110,10 +13108,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapState"])(["startcampaignsystems", "user_id"])), Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(["getCampaignUsersByUserIdEntosisFreeCount", "getCampaignUsersByUserIdEntosisFree"])), {}, {
     filteredItems: function filteredItems() {
-      var _this4 = this;
+      var _this3 = this;
 
       return this.startcampaignsystems.filter(function (s) {
-        return s.constellation_id == _this4.data.constellation_id && s.start_campaign_id == _this4.data.start_campaign_id;
+        return s.constellation_id == _this3.data.constellation_id && s.start_campaign_id == _this3.data.start_campaign_id;
       });
     },
     freecharCount: function freecharCount() {
@@ -39134,7 +39132,7 @@ var render = function() {
                                                   click: function($event) {
                                                     ;(_vm.charAddNode =
                                                       list.id),
-                                                      _vm.clickCharAddNode(item)
+                                                      _vm.clickaddchar(item)
                                                   }
                                                 }
                                               },
