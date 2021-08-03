@@ -16,6 +16,21 @@
                 </v-card>
             </v-col>
         </v-row>
+        <v-row no-gutters justify="center" :v-if="systemLoaded == true">
+            <StartSystemTable
+                class=" px-5 pt-5"
+                v-for="(system, index) in systems"
+                :system_name="system.system_name"
+                :constellation_name="system.constellation_name"
+                :system_id="system.id"
+                :campaign_id="campaignId"
+                :constellation_id="system.constellation_id"
+                :index="index"
+                :key="system.id"
+                @openSolaLog="openSolaLog($event)"
+            >
+            </StartSystemTable>
+        </v-row>
     </div>
 </template>
 
@@ -37,15 +52,20 @@ export default {
         this.campaignId = this.$route.params.id;
         this.campaign_id = parseInt(this.$route.params.id);
         this.$store.dispatch("getStartCampaigns");
+        this.$store.dispatch("getStartCampaignJoinData");
     },
 
     methods: {},
 
     computed: {
-        ...mapGetters(["getStartCampaignsById"]),
+        ...mapGetters(["getStartCampaignsById", "getStartCampaignById"]),
 
         startcampaign() {
             return this.getStartCampaignsById(this.campaign_id);
+        },
+
+        startcampaignjoin() {
+            return this.getStartCampaignById(this.campaign_id);
         }
     },
 
