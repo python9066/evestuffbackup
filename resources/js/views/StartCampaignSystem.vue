@@ -65,6 +65,7 @@
                             color="red"
                             class="mr-4"
                         >
+                            Campaign Over
                         </v-btn>
                     </div>
                     <v-spacer></v-spacer>
