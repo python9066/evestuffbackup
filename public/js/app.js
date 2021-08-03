@@ -12988,7 +12988,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 _context3.next = 5;
                 return axios({
                   method: "put",
-                  url: "/api/startcampaignsystemupdate/" + item.id + "/" + data.start_campaign_id,
+                  url: "/api/startcampaignsystemupdate/" + item.id + "/" + _this2.data.start_campaign_id,
                   data: request,
                   headers: {
                     Authorization: "Bearer " + _this2.$store.state.token,
@@ -13025,7 +13025,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 _context4.next = 4;
                 return axios({
                   method: "delete",
-                  url: "/api/startcampaignsystemremovechar/" + item.id + "/" + item.user_id + "/" + data.start_campaign_id,
+                  url: "/api/startcampaignsystemremovechar/" + item.id + "/" + item.user_id + "/" + _this3.data.start_campaign_id,
                   headers: {
                     Authorization: "Bearer " + _this3.$store.state.token,
                     Accept: "application/json",

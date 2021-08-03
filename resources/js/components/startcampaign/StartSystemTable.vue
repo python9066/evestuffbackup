@@ -121,7 +121,7 @@ export default {
                     "/api/startcampaignsystemupdate/" +
                     item.id +
                     "/" +
-                    data.start_campaign_id,
+                    this.data.start_campaign_id,
                 data: request,
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
@@ -147,7 +147,7 @@ export default {
                     "/" +
                     item.user_id +
                     "/" +
-                    data.start_campaign_id,
+                    this.data.start_campaign_id,
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
                     Accept: "application/json",
