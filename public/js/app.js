@@ -12811,6 +12811,440 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/startcampaign/StartTitleBar.vue?vue&type=script&lang=js&":
+/*!**************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/startcampaign/StartTitleBar.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_2__);
+
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+function sleep(ms) {
+  return new Promise(function (resolve) {
+    return setTimeout(resolve, ms);
+  });
+}
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: {
+    startCampaignID: Number
+  },
+  data: function data() {
+    return {};
+  },
+  created: function created() {
+    var _this = this;
+
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              _this.campaignId = _this.startCampaignID;
+              Echo["private"]("campaignsystem." + _this.startCampaignID).listen("CampaignSystemUpdate", function (e) {
+                if (e.flag.flag == 4) {
+                  _this.$store.dispatch("getCampaigns");
+
+                  _this.$store.dispatch("getCampaignSystemsRecords");
+
+                  _this.$store.dispatch("getCampaignJoinData");
+                }
+              });
+              _this.channel = "campaignsystem." + _this.campaignId;
+
+            case 3:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    }))();
+  },
+  methods: {
+    leaving: function leaving() {
+      var _this2 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                Echo.leave(_this2.channel);
+
+              case 1:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2);
+      }))();
+    },
+    loadCampaignSystemRecords: function loadCampaignSystemRecords() {
+      this.$store.dispatch("getCampaignSystemsRecords");
+    },
+    campaignStart: function campaignStart() {
+      var _this3 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
+        var request;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                request = {
+                  status_id: 2
+                };
+                _context3.next = 3;
+                return axios({
+                  method: "put",
+                  //you can set what request you want to be
+                  url: "/api/campaigns/" + _this3.startCampaignID,
+                  data: request,
+                  headers: {
+                    Authorization: "Bearer " + _this3.$store.state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                  }
+                });
+
+              case 3:
+                _this3.$store.dispatch("getCampaigns"); // this.loadcampaigns()
+                // this.$emit("updateNow");
+
+
+              case 4:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3);
+      }))();
+    }
+  },
+  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(["getCampaignById", "getActiveCampaigns", "getCampaignsCount", "getCampaignUsersByUserId", "getCampaignUsersByUserIdCount", "getTotalNodeCountByCampaign", "getHackingNodeCountByCampaign", "getRedHackingNodeCountByCampaign"])), {}, {
+    campaign: function campaign() {
+      return this.getCampaignById(this.startCampaignID);
+    },
+    barColor: function barColor() {
+      var d = this.getCampaignById(this.startCampaignID).defenders_score * 100;
+
+      if (d > 50) {
+        return "blue darken-4";
+      }
+
+      return "red darken-4";
+    },
+    barScoure: function barScoure() {
+      var d = this.getCampaignById(this.startCampaignID).defenders_score * 100;
+      var a = this.getCampaignById(this.startCampaignID).attackers_score * 100;
+
+      if (d > 50) {
+        return d;
+      }
+
+      return a;
+    },
+    barActive: function barActive() {
+      if (this.getCampaignById(this.startCampaignID).status_id > 1) {
+        return true;
+      }
+
+      return false;
+    },
+    barBgcolor: function barBgcolor() {
+      var d = this.getCampaignById(this.startCampaignID).defenders_score * 100;
+      var a = this.getCampaignById(this.startCampaignID).attackers_score * 100;
+
+      if (d > 50) {
+        return "red darken-4";
+      }
+
+      return "blue darken-4";
+    },
+    nodeCountAll: function nodeCountAll() {
+      return this.getTotalNodeCountByCampaign(this.startCampaignID);
+    },
+    nodeCountHackingCountAll: function nodeCountHackingCountAll() {
+      return this.getHackingNodeCountByCampaign(this.startCampaignID);
+    },
+    nodeRedCountHackingCountAll: function nodeRedCountHackingCountAll() {
+      return this.getRedHackingNodeCountByCampaign(this.startCampaignID);
+    },
+    barReverse: function barReverse() {
+      var d = this.getCampaignById(this.startCampaignID).defenders_score * 100;
+
+      if (d > 50) {
+        return false;
+      }
+
+      return true;
+    }
+  }),
+  beforeDestroy: function beforeDestroy() {
+    this.leaving();
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/station/AddStation.vue?vue&type=script&lang=js&":
 /*!*****************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/station/AddStation.vue?vue&type=script&lang=js& ***!
@@ -38467,6 +38901,498 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/startcampaign/StartTitleBar.vue?vue&type=template&id=519debb6&":
+/*!******************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/startcampaign/StartTitleBar.vue?vue&type=template&id=519debb6& ***!
+  \******************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "v-row",
+    {
+      staticClass: "pb-2",
+      attrs: { "no-gutters": "", justify: "space-around" }
+    },
+    [
+      _c(
+        "v-col",
+        { attrs: { md: "10" } },
+        [
+          _c(
+            "v-card",
+            {
+              staticClass: "pr-2 pb-2 pl-2",
+              attrs: { tile: "", width: "100%" }
+            },
+            [
+              _c(
+                "v-card-title",
+                {
+                  staticClass: "justify-center align-center",
+                  attrs: { align: "center" }
+                },
+                [
+                  _c(
+                    "p",
+                    { staticClass: " pt-5" },
+                    [
+                      _vm._v(
+                        "\n                    Campaign page for the\n                    " +
+                          _vm._s(this.campaign.item_name) +
+                          " in\n                    " +
+                          _vm._s(this.campaign.system) +
+                          " -\n                    "
+                      ),
+                      _c("v-avatar", { attrs: { size: "35" } }, [
+                        _c("img", { attrs: { src: this.campaign.url } })
+                      ]),
+                      _vm._v(
+                        "\n                    -\n                    " +
+                          _vm._s(this.campaign.alliance) +
+                          " :\n                "
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  this.campaign.status_id == 1
+                    ? _c(
+                        "div",
+                        {
+                          staticClass: "d-flex full-width align-content-center"
+                        },
+                        [
+                          _c("CountDowntimer", {
+                            attrs: {
+                              "start-time": _vm.moment
+                                .utc(this.campaign.start)
+                                .unix(),
+                              "end-text": "Campaign Started",
+                              interval: 1000
+                            },
+                            on: {
+                              campaignStart: function($event) {
+                                return _vm.campaignStart()
+                              }
+                            },
+                            scopedSlots: _vm._u(
+                              [
+                                {
+                                  key: "countdown",
+                                  fn: function(scope) {
+                                    return [
+                                      _c(
+                                        "span",
+                                        {
+                                          staticClass:
+                                            "red--text pl-3 text-h5 justify-content align-center"
+                                        },
+                                        [
+                                          _vm._v(
+                                            _vm._s(scope.props.hours) +
+                                              ":" +
+                                              _vm._s(scope.props.minutes) +
+                                              ":" +
+                                              _vm._s(scope.props.seconds)
+                                          )
+                                        ]
+                                      )
+                                    ]
+                                  }
+                                }
+                              ],
+                              null,
+                              false,
+                              62371507
+                            )
+                          })
+                        ],
+                        1
+                      )
+                    : _vm._e(),
+                  _vm._v(" "),
+                  this.campaign.status_id == 2
+                    ? _c(
+                        "div",
+                        {
+                          staticClass: "d-flex full-width align-content-center"
+                        },
+                        [
+                          _c("VueCountUptimer", {
+                            attrs: {
+                              "start-time": _vm.moment
+                                .utc(this.campaign.start)
+                                .unix(),
+                              "end-text": "Campaign Started",
+                              interval: 1000
+                            },
+                            scopedSlots: _vm._u(
+                              [
+                                {
+                                  key: "countup",
+                                  fn: function(scope) {
+                                    return [
+                                      _c(
+                                        "span",
+                                        { staticClass: "green--text pl-3" },
+                                        [
+                                          _vm._v(
+                                            _vm._s(scope.props.hours) +
+                                              ":" +
+                                              _vm._s(scope.props.minutes) +
+                                              ":" +
+                                              _vm._s(scope.props.seconds)
+                                          )
+                                        ]
+                                      )
+                                    ]
+                                  }
+                                }
+                              ],
+                              null,
+                              false,
+                              4134734240
+                            )
+                          })
+                        ],
+                        1
+                      )
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _vm.nodeCountAll > 0
+                    ? _c(
+                        "div",
+                        { staticClass: "d-inline-flex align-center" },
+                        [
+                          _c("v-divider", {
+                            staticClass: "mx-4 my-0",
+                            attrs: { vertical: "" }
+                          }),
+                          _vm._v(" "),
+                          _c("p", { staticClass: " pt-4 pr-3" }, [
+                            _vm._v("Active Nodes -")
+                          ]),
+                          _vm._v(" "),
+                          _c(
+                            "v-progress-circular",
+                            {
+                              staticClass: " pr-3",
+                              attrs: {
+                                transitionDuration: 5000,
+                                radius: 25,
+                                strokeWidth: 5,
+                                value:
+                                  (_vm.nodeCountHackingCountAll /
+                                    _vm.nodeCountAll) *
+                                    100 || 0.000001
+                              }
+                            },
+                            [
+                              _c("div", { staticClass: "caption" }, [
+                                _vm._v(
+                                  "\n                            " +
+                                    _vm._s(_vm.nodeCountHackingCountAll) +
+                                    " /\n                            " +
+                                    _vm._s(_vm.nodeCountAll) +
+                                    "\n                        "
+                                )
+                              ])
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-progress-circular",
+                            {
+                              attrs: {
+                                transitionDuration: 5000,
+                                radius: 25,
+                                strokeWidth: 5,
+                                strokeColor: "#FF3D00",
+                                value:
+                                  (_vm.nodeRedCountHackingCountAll /
+                                    _vm.nodeCountAll) *
+                                    100 || 0.000001
+                              }
+                            },
+                            [
+                              _c("div", { staticClass: "caption" }, [
+                                _vm._v(
+                                  "\n                            " +
+                                    _vm._s(_vm.nodeRedCountHackingCountAll) +
+                                    " /\n                            " +
+                                    _vm._s(_vm.nodeCountAll) +
+                                    "\n                        "
+                                )
+                              ])
+                            ]
+                          )
+                        ],
+                        1
+                      )
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _vm.campaign.total_node > 0
+                    ? _c(
+                        "div",
+                        { staticClass: " d-inline-flex align-center" },
+                        [
+                          _c("v-divider", {
+                            staticClass: "mx-4 my-0",
+                            attrs: { vertical: "" }
+                          }),
+                          _vm._v(" "),
+                          _c("p", { staticClass: " pt-4 pr-3" }, [
+                            _vm._v("Finished Nodes -")
+                          ]),
+                          _vm._v(" "),
+                          _c(
+                            "v-progress-circular",
+                            {
+                              staticClass: " pr-3",
+                              attrs: {
+                                transitionDuration: 5000,
+                                radius: 25,
+                                strokeWidth: 5,
+                                value:
+                                  (_vm.campaign.b_node /
+                                    _vm.campaign.total_node) *
+                                    100 || 0.000001
+                              }
+                            },
+                            [
+                              _c("div", { staticClass: "caption" }, [
+                                _vm._v(
+                                  "\n                            " +
+                                    _vm._s(_vm.campaign.b_node) +
+                                    " /\n                            " +
+                                    _vm._s(_vm.campaign.total_node) +
+                                    "\n                        "
+                                )
+                              ])
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-progress-circular",
+                            {
+                              staticClass: " pr-3",
+                              attrs: {
+                                transitionDuration: 5000,
+                                radius: 25,
+                                strokeWidth: 5,
+                                strokeColor: "#FF3D00",
+                                value:
+                                  (_vm.campaign.r_node /
+                                    _vm.campaign.total_node) *
+                                    100 || 0.000001
+                              }
+                            },
+                            [
+                              _c("div", { staticClass: "caption" }, [
+                                _vm._v(
+                                  "\n                            " +
+                                    _vm._s(_vm.campaign.r_node) +
+                                    " /\n                            " +
+                                    _vm._s(_vm.campaign.total_node) +
+                                    "\n                        "
+                                )
+                              ])
+                            ]
+                          )
+                        ],
+                        1
+                      )
+                    : _vm._e()
+                ]
+              ),
+              _vm._v(" "),
+              this.campaign.status_id > 1
+                ? _c(
+                    "div",
+                    { staticClass: "d-flex full-width align-content-center" },
+                    [
+                      this.campaign.defenders_score >
+                        this.campaign.defenders_score_old &&
+                      this.campaign.defenders_score_old > 0
+                        ? _c(
+                            "v-icon",
+                            {
+                              attrs: {
+                                small: "",
+                                left: "",
+                                dark: "",
+                                color: "blue darken-4"
+                              }
+                            },
+                            [
+                              _vm._v(
+                                "\n                    fas fa-arrow-alt-circle-up\n                "
+                              )
+                            ]
+                          )
+                        : _vm._e(),
+                      _vm._v(" "),
+                      this.campaign.defenders_score <
+                        this.campaign.defenders_score_old &&
+                      this.campaign.defenders_score_old > 0
+                        ? _c(
+                            "v-icon",
+                            {
+                              attrs: {
+                                small: "",
+                                left: "",
+                                dark: "",
+                                color: "blue darken-4"
+                              }
+                            },
+                            [
+                              _vm._v(
+                                "\n                    fas fa-arrow-alt-circle-down\n                "
+                              )
+                            ]
+                          )
+                        : _vm._e(),
+                      _vm._v(" "),
+                      this.campaign.defenders_score ==
+                        this.campaign.defenders_score_old ||
+                      this.campaign.defenders_score_old === null
+                        ? _c(
+                            "v-icon",
+                            {
+                              attrs: {
+                                small: "",
+                                left: "",
+                                dark: "",
+                                color: "grey darken-3"
+                              }
+                            },
+                            [
+                              _vm._v(
+                                "\n                    fas fa-minus-circle\n                "
+                              )
+                            ]
+                          )
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _c(
+                        "v-progress-linear",
+                        {
+                          attrs: {
+                            color: this.barColor,
+                            value: this.barScoure,
+                            height: "20",
+                            rounded: "",
+                            active: this.barActive,
+                            reverse: this.barReverse,
+                            "background-color": this.barBgcolor,
+                            "background-opacity": "0.2"
+                          }
+                        },
+                        [
+                          _c("strong", [
+                            _vm._v(
+                              "\n                        " +
+                                _vm._s(this.campaign.defenders_score * 100) +
+                                " /\n                        " +
+                                _vm._s(this.campaign.attackers_score * 100) +
+                                "\n                    "
+                            )
+                          ])
+                        ]
+                      ),
+                      _vm._v(" "),
+                      this.campaign.attackers_score >
+                        this.campaign.attackers_score_old &&
+                      this.campaign.attackers_score_old > 0
+                        ? _c(
+                            "v-icon",
+                            {
+                              attrs: {
+                                small: "",
+                                right: "",
+                                dark: "",
+                                color: "red darken-4"
+                              }
+                            },
+                            [
+                              _vm._v(
+                                "\n                    fas fa-arrow-alt-circle-up\n                "
+                              )
+                            ]
+                          )
+                        : _vm._e(),
+                      _vm._v(" "),
+                      this.campaign.attackers_score <
+                        this.campaign.attackers_score_old &&
+                      this.campaign.attackers_score_old > 0
+                        ? _c(
+                            "v-icon",
+                            {
+                              attrs: {
+                                small: "",
+                                right: "",
+                                dark: "",
+                                color: "red darken-4"
+                              }
+                            },
+                            [
+                              _vm._v(
+                                "\n                    fas fa-arrow-alt-circle-down\n                "
+                              )
+                            ]
+                          )
+                        : _vm._e(),
+                      _vm._v(" "),
+                      this.campaign.attackers_score ==
+                        this.campaign.attackers_score_old ||
+                      this.campaign.attackers_score_old == null
+                        ? _c(
+                            "v-icon",
+                            {
+                              attrs: {
+                                small: "",
+                                right: "",
+                                dark: "",
+                                color: "grey darken-3"
+                              }
+                            },
+                            [
+                              _vm._v(
+                                "\n                    fas fa-minus-circle\n                "
+                              )
+                            ]
+                          )
+                        : _vm._e()
+                    ],
+                    1
+                  )
+                : _vm._e()
+            ],
+            1
+          )
+        ],
+        1
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/station/AddStation.vue?vue&type=template&id=9cf8188e&":
 /*!*********************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/station/AddStation.vue?vue&type=template&id=9cf8188e& ***!
@@ -50260,6 +51186,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('MultiCampaigns', __webpack
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('StartCampaign', __webpack_require__(/*! ./components/startcampaign/StartCampaign.vue */ "./resources/js/components/startcampaign/StartCampaign.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('StartCampaignAdd', __webpack_require__(/*! ./components/startcampaign/StartCampaignAdd.vue */ "./resources/js/components/startcampaign/StartCampaignAdd.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('StartSystemItemList', __webpack_require__(/*! ./components/startcampaign/StartSystemItemList.vue */ "./resources/js/components/startcampaign/StartSystemItemList.vue")["default"]);
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('StartTitleBar', __webpack_require__(/*! ./components/startcampaign/StartTitleBar.vue */ "./resources/js/components/startcampaign/StartTitleBar.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.prototype.moment = moment__WEBPACK_IMPORTED_MODULE_11___default.a; // import '@fortawesome/fontawesome-f      ree/css/all.css'
 
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(_components_countdown_index__WEBPACK_IMPORTED_MODULE_14__["default"]);
@@ -54813,6 +55740,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_StartSystemItemList_vue_vue_type_template_id_f1bf55ac___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_StartSystemItemList_vue_vue_type_template_id_f1bf55ac___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/startcampaign/StartTitleBar.vue":
+/*!*****************************************************************!*\
+  !*** ./resources/js/components/startcampaign/StartTitleBar.vue ***!
+  \*****************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _StartTitleBar_vue_vue_type_template_id_519debb6___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./StartTitleBar.vue?vue&type=template&id=519debb6& */ "./resources/js/components/startcampaign/StartTitleBar.vue?vue&type=template&id=519debb6&");
+/* harmony import */ var _StartTitleBar_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./StartTitleBar.vue?vue&type=script&lang=js& */ "./resources/js/components/startcampaign/StartTitleBar.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _StartTitleBar_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _StartTitleBar_vue_vue_type_template_id_519debb6___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _StartTitleBar_vue_vue_type_template_id_519debb6___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/startcampaign/StartTitleBar.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/startcampaign/StartTitleBar.vue?vue&type=script&lang=js&":
+/*!******************************************************************************************!*\
+  !*** ./resources/js/components/startcampaign/StartTitleBar.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_StartTitleBar_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./StartTitleBar.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/startcampaign/StartTitleBar.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_StartTitleBar_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/startcampaign/StartTitleBar.vue?vue&type=template&id=519debb6&":
+/*!************************************************************************************************!*\
+  !*** ./resources/js/components/startcampaign/StartTitleBar.vue?vue&type=template&id=519debb6& ***!
+  \************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_StartTitleBar_vue_vue_type_template_id_519debb6___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./StartTitleBar.vue?vue&type=template&id=519debb6& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/startcampaign/StartTitleBar.vue?vue&type=template&id=519debb6&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_StartTitleBar_vue_vue_type_template_id_519debb6___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_StartTitleBar_vue_vue_type_template_id_519debb6___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
