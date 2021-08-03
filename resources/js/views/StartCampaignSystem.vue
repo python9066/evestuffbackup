@@ -36,8 +36,8 @@
                             color="orange darken-2"
                             >Hide Char table</v-btn
                         >
-                        <UsersChars :campaign_id="startcampaign.id">
-                        </UsersChars>
+                        <StartUsersChars :campaign_id="startcampaign.id">
+                        </StartUsersChars>
                         <WatchUserTable
                             :campaign_id="startcampaign.id"
                             v-if="$can('view_campaign_members')"
