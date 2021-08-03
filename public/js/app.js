@@ -23270,10 +23270,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -23325,7 +23321,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     startcampaign: function startcampaign() {
       return this.getStartCampaignsById(this.campaign_id);
     },
-    startcampaignjoin: function startcampaignjoin() {
+    startcampaignjoins: function startcampaignjoins() {
       return this.getStartCampaignById(this.campaign_id);
     }
   }),
@@ -49016,25 +49012,12 @@ var render = function() {
       _vm._v(" "),
       _c(
         "v-row",
-        {
-          attrs: {
-            "no-gutters": "",
-            justify: "center",
-            "v-if": _vm.systemLoaded == true
-          }
-        },
-        _vm._l(_vm.systems, function(system, index) {
+        { attrs: { "no-gutters": "", justify: "center" } },
+        _vm._l(_vm.startcampaignjoins, function(startcampaignjoin, index) {
           return _c("StartSystemTable", {
-            key: system.id,
+            key: startcampaignjoin.id,
             staticClass: " px-5 pt-5",
-            attrs: {
-              system_name: system.system_name,
-              constellation_name: system.constellation_name,
-              system_id: system.id,
-              campaign_id: _vm.campaignId,
-              constellation_id: system.constellation_id,
-              index: index
-            },
+            attrs: { data: startcampaignjoin, index: index },
             on: {
               openSolaLog: function($event) {
                 return _vm.openSolaLog($event)

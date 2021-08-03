@@ -16,17 +16,13 @@
                 </v-card>
             </v-col>
         </v-row>
-        <v-row no-gutters justify="center" :v-if="systemLoaded == true">
+        <v-row no-gutters justify="center">
             <StartSystemTable
                 class=" px-5 pt-5"
-                v-for="(system, index) in systems"
-                :system_name="system.system_name"
-                :constellation_name="system.constellation_name"
-                :system_id="system.id"
-                :campaign_id="campaignId"
-                :constellation_id="system.constellation_id"
+                v-for="(startcampaignjoin, index) in startcampaignjoins"
+                :data="startcampaignjoin"
                 :index="index"
-                :key="system.id"
+                :key="startcampaignjoin.id"
                 @openSolaLog="openSolaLog($event)"
             >
             </StartSystemTable>
@@ -64,7 +60,7 @@ export default {
             return this.getStartCampaignsById(this.campaign_id);
         },
 
-        startcampaignjoin() {
+        startcampaignjoins() {
             return this.getStartCampaignById(this.campaign_id);
         }
     },

@@ -25,7 +25,7 @@ class StartCampaignJoinController extends Controller
                 foreach ($constellations as $con) {
                     $data = [];
                     $data = [
-                        "constellation_id" => $pull['id'],
+                        "constellation_id" => $pull['constellation_id'],
                         "start_campaign_id" => $pull['start_campaign_id'],
                         "id" => $pull['id'],
                         "constellation_name" => $con['constellation_name']
@@ -48,7 +48,7 @@ class StartCampaignJoinController extends Controller
                 foreach ($constellations as $con) {
                     $data = [];
                     $data = [
-                        "constellation_id" => $pull['id'],
+                        "constellation_id" => $pull['constellation_id'],
                         "start_campaign_id" => $pull['start_campaign_id'],
                         "id" => $pull['id'],
                         "constellation_name" => $con['constellation_name']
