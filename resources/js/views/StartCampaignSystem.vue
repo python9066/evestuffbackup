@@ -20,7 +20,14 @@ export default {
         return {};
     },
 
-    async mounted() {},
+    async mounted() {
+        await this.$store.dispatch("getCampaigns");
+        await this.$store.dispatch("getMultiCampaigns");
+        await this.$store.dispatch(
+            "getStartCampaignJoinDataByCampaign",
+            this.$route.params.id
+        );
+    },
 
     async created() {
         this.campaignId = this.$route.params.id;

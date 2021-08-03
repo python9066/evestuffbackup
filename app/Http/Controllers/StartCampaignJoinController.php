@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Constellation;
 use App\Models\StartCampaignJoins;
+use App\Models\StartCampaignSystems;
 use Illuminate\Http\Request;
 
 class StartCampaignJoinController extends Controller
@@ -17,6 +18,29 @@ class StartCampaignJoinController extends Controller
     {
         $list = [];
         $pulls = StartCampaignJoins::all();
+        foreach ($pulls as $pull) {
+            $constellations = Constellation::where('id', $pull['constellation_id'])->get();
+            $count = $constellations->count();
+            if ($count != 0) {
+                foreach ($constellations as $con) {
+                    $data = [];
+                    $data = [
+                        "constellation_id" => $pull['id'],
+                        "start_campaign_id" => $pull['start_campaign_id'],
+                        "id" => $pull['id'],
+                        "constellation_name" => $con['constellation_name']
+                    ];
+                }
+                array_push($list, $data);
+            }
+        }
+        return ["value" => $list];
+    }
+
+    public function indexByID($campid)
+    {
+        $list = [];
+        $pulls = StartCampaignSystems::where('start_campaign_id', $campid)->get();
         foreach ($pulls as $pull) {
             $constellations = Constellation::where('id', $pull['constellation_id'])->get();
             $count = $constellations->count();

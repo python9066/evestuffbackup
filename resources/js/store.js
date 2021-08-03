@@ -580,6 +580,20 @@ export default new Vuex.Store({
             commit("SET_CAMPAIGN_JOIN", res.data.value);
         },
 
+        async getStartCampaignJoinDataByCampaign({ commit, state }, campid) {
+            let res = await axios({
+                method: "get",
+                url: "/api/startcampaignjoinbyid/" + campid,
+                data: this.picked,
+                headers: {
+                    Authorization: "Bearer " + state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                }
+            });
+            commit("SET_START_CAMPAIGN_JOIN", res.data.value);
+        },
+
         async getStartCampaignJoinData({ commit, state }, campid) {
             let res = await axios({
                 method: "get",
