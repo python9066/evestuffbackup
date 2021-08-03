@@ -2,7 +2,7 @@
     <div class=" pr-16 pl-16">
         <messageComponent></messageComponent>
         <MultiCampaigns></MultiCampaigns>
-        <StartCampaign></StartCampaign>
+        <StartCampaign v-if="$can('super')"></StartCampaign>
     </div>
 </template>
 <script>
