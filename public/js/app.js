@@ -12507,6 +12507,7 @@ function sleep(ms) {
   },
   created: function created() {
     this.$store.dispatch("getConstellationList");
+    this.$store.dispatch("getStartCampaigns");
   },
   mounted: function mounted() {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {

@@ -93,6 +93,7 @@ export default {
 
     created() {
         this.$store.dispatch("getConstellationList");
+        this.$store.dispatch("getStartCampaigns");
     },
 
     async mounted() {},
