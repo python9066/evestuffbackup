@@ -22,10 +22,18 @@
                     tile
                 >
                     <div class=" d-md-inline-flex">
-                        <v-btn class="mr-4" color="blue darken-2"
+                        <v-btn
+                            v-show="showTable == false"
+                            @click="this.showTable != this.showTable"
+                            class="mr-4"
+                            color="blue darken-2"
                             >Show Char table</v-btn
                         >
-                        <v-btn class="mr-4" color="orange darken-2"
+                        <v-btn
+                            v-show="showTable == true"
+                            @click="this.showTable != this.showTable"
+                            class="mr-4"
+                            color="orange darken-2"
                             >Hide Char table</v-btn
                         >
                         <UsersChars :campaign_id="startcampaign.id">
@@ -69,7 +77,12 @@
             </v-col>
         </v-row>
 
-        <v-row no-gutters justify="space-around" v-if="$can('super')">
+        <v-row
+            no-gutters
+            justify="space-around"
+            v-if="$can('super')"
+            v-show="showTable == true"
+        >
             table here
         </v-row>
 

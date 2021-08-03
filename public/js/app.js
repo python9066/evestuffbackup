@@ -23573,6 +23573,19 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -49543,8 +49556,21 @@ var render = function() {
                           _c(
                             "v-btn",
                             {
+                              directives: [
+                                {
+                                  name: "show",
+                                  rawName: "v-show",
+                                  value: _vm.showTable == false,
+                                  expression: "showTable == false"
+                                }
+                              ],
                               staticClass: "mr-4",
-                              attrs: { color: "blue darken-2" }
+                              attrs: { color: "blue darken-2" },
+                              on: {
+                                click: function($event) {
+                                  this.showTable != this.showTable
+                                }
+                              }
                             },
                             [_vm._v("Show Char table")]
                           ),
@@ -49552,8 +49578,21 @@ var render = function() {
                           _c(
                             "v-btn",
                             {
+                              directives: [
+                                {
+                                  name: "show",
+                                  rawName: "v-show",
+                                  value: _vm.showTable == true,
+                                  expression: "showTable == true"
+                                }
+                              ],
                               staticClass: "mr-4",
-                              attrs: { color: "orange darken-2" }
+                              attrs: { color: "orange darken-2" },
+                              on: {
+                                click: function($event) {
+                                  this.showTable != this.showTable
+                                }
+                              }
                             },
                             [_vm._v("Hide Char table")]
                           ),
@@ -49636,7 +49675,17 @@ var render = function() {
       _vm.$can("super")
         ? _c(
             "v-row",
-            { attrs: { "no-gutters": "", justify: "space-around" } },
+            {
+              directives: [
+                {
+                  name: "show",
+                  rawName: "v-show",
+                  value: _vm.showTable == true,
+                  expression: "showTable == true"
+                }
+              ],
+              attrs: { "no-gutters": "", justify: "space-around" }
+            },
             [_vm._v("\n        table here\n    ")]
           )
         : _vm._e(),
