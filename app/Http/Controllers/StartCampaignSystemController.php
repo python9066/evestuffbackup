@@ -6,6 +6,7 @@ use App\Models\Auth;
 use App\Models\CampaignUser;
 use App\Models\StartCampaigns;
 use App\Models\StartCampaignSystemRecords;
+use App\Models\StartCampaignSystems;
 use Illuminate\Http\Request;
 
 class StartCampaignSystemController extends Controller
@@ -58,8 +59,8 @@ class StartCampaignSystemController extends Controller
         } else {
             $char =  CampaignUser::create(['site_id' => Auth::id(), 'campaign_id' => $id, 'campaign_system_id' => $request->sys, 'char_name' => Auth::user()]);
         }
-        dd(StartCampaigns::find($id));
-        // StartCampaigns::find($id)->update(['campaign_user_id' => $char->id]);
+
+        StartCampaignSystems::find($id)->update(['campaign_user_id' => $char->id]);
     }
 
     /**
