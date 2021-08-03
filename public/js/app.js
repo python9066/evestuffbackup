@@ -23236,6 +23236,23 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -23257,11 +23274,17 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     }))();
   },
   created: function created() {
+    var _this = this;
+
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
         while (1) {
           switch (_context2.prev = _context2.next) {
             case 0:
+              _this.campaignId = _this.$route.params.id;
+              _this.campaign_id = parseInt(_this.$route.params.id);
+
+            case 2:
             case "end":
               return _context2.stop();
           }
@@ -48908,7 +48931,56 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [_vm._v("things")])
+  return _c(
+    "div",
+    [
+      _vm._v("\n    things\n    "),
+      _c(
+        "v-row",
+        {
+          staticClass: "pb-2",
+          attrs: { "no-gutters": "", justify: "space-around" }
+        },
+        [
+          _c(
+            "v-col",
+            { attrs: { md: "10" } },
+            [
+              _c(
+                "v-card",
+                {
+                  staticClass: "pr-2 pb-2 pl-2",
+                  attrs: { tile: "", width: "100%" }
+                },
+                [
+                  _c(
+                    "v-card-title",
+                    {
+                      staticClass: "justify-center align-center",
+                      attrs: { align: "center" }
+                    },
+                    [
+                      _c("p", { staticClass: " pt-5" }, [
+                        _vm._v(
+                          "\n                        Inital Campaign page for the\n                        " +
+                            _vm._s(this.startName) +
+                            "\n                    "
+                        )
+                      ])
+                    ]
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          )
+        ],
+        1
+      )
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
