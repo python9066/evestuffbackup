@@ -13114,7 +13114,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }
     }
   },
-  computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapState"])(["startcampaignsystems", "user_id"])), Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(["getCampaignUsersByUserIdEntosisFreeCount", "getCampaignUsersByUserIdEntosisFree"])), {}, {
+  computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapState"])(["startcampaignsystems", "user_id"])), Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(["getCampaignUsersByUserIdEntosisFreeCount", "getCampaignUsersByUserIdEntosisFree", "getCampaignUsersByUserIdEntosis"])), {}, {
     filteredItems: function filteredItems() {
       var _this4 = this;
 
@@ -13127,6 +13127,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
     charsFree: function charsFree() {
       return this.getCampaignUsersByUserIdEntosisFree(this.$store.state.user_id);
+    },
+    chars: function chars() {
+      return this.getCampaignUsersByUserIdEntosis(this.$store.state.user_id);
     }
   }),
   beforeDestroy: function beforeDestroy() {}

@@ -240,7 +240,8 @@ export default {
 
         ...mapGetters([
             "getCampaignUsersByUserIdEntosisFreeCount",
-            "getCampaignUsersByUserIdEntosisFree"
+            "getCampaignUsersByUserIdEntosisFree",
+            "getCampaignUsersByUserIdEntosis"
         ]),
 
         filteredItems() {
@@ -259,6 +260,12 @@ export default {
 
         charsFree() {
             return this.getCampaignUsersByUserIdEntosisFree(
+                this.$store.state.user_id
+            );
+        },
+
+        chars() {
+            return this.getCampaignUsersByUserIdEntosis(
                 this.$store.state.user_id
             );
         }
