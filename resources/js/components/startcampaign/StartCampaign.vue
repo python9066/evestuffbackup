@@ -101,7 +101,13 @@ export default {
             this.overlay = !this.overlay;
         }
     },
-    computed: {},
+    computed: {
+        ...mapState(["startcampaigns"]),
+
+        campaigns() {
+            return this.startcampaigns;
+        }
+    },
     beforeDestroy() {}
 };
 </script>

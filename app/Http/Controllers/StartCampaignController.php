@@ -18,7 +18,18 @@ class StartCampaignController extends Controller
      */
     public function index()
     {
-        //
+        $list = [];
+        $pull = StartCampaigns::all();
+        foreach ($pull as $pull) {
+            $data = [];
+            $data = [
+                'id' => $pull['id'],
+                'name' => $pull['name']
+            ];
+            array_push($list, $data);
+        };
+
+        return ['campaigns' => $list];
     }
 
     /**

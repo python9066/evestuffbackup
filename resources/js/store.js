@@ -34,7 +34,8 @@ export default new Vuex.Store({
         periodbasisLink: "",
         queriousLink: "",
         recontasksystems:[],
-        rolesList:[],
+        rolesList: [],
+        startcampaigns: [],
         stations: [],
         stationFits: [],
         structurelist:[],
@@ -246,6 +247,10 @@ export default new Vuex.Store({
 
         SET_MULTI_CAMPAIGNS(state, multicampaigns) {
             state.multicampaigns = multicampaigns;
+        },
+
+        SET_START_CAMPAIGNS(state, startcampaigns) {
+            state.startcampaigns = startcampaigns;
         },
 
         SET_CAMPAIGNSLIST(state, campaignslist) {
@@ -673,6 +678,19 @@ export default new Vuex.Store({
                 }
             });
             commit("SET_MULTI_CAMPAIGNS", res.data.campaigns);
+        },
+
+        async getStartCampaigns({ commit, state }) {
+            let res = await axios({
+                method: "get",
+                url: "/api/startcampaigns",
+                headers: {
+                    Authorization: "Bearer " + state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                }
+            });
+            commit("SET_START_CAMPAIGNS", res.data.campaigns);
         },
 
 
