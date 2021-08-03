@@ -96,7 +96,11 @@ export default {
     },
 
     async mounted() {},
-    methods: {},
+    methods: {
+        updatemultiCampaginAdd() {
+            this.overlay = !this.overlay;
+        }
+    },
     computed: {},
     beforeDestroy() {}
 };

@@ -12515,7 +12515,11 @@ function sleep(ms) {
       }, _callee);
     }))();
   },
-  methods: {},
+  methods: {
+    updatemultiCampaginAdd: function updatemultiCampaginAdd() {
+      this.overlay = !this.overlay;
+    }
+  },
   computed: {},
   beforeDestroy: function beforeDestroy() {}
 });
