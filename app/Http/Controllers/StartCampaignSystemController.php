@@ -69,7 +69,6 @@ class StartCampaignSystemController extends Controller
             'message' => $message,
             'id' => $campid
         ]);
-        dd($campid);
         broadcast(new StartCampaignSystemUpdate($flag))->toOthers();
     }
 
