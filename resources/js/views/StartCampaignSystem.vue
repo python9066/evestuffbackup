@@ -1,10 +1,8 @@
 <template>
     <div>
-        this is a thing
         <span v-for="(startCampaign, index) in startCampaigns" :key="index">
             <StartTitleBar :startName="startCampaign.constellation_name">
             </StartTitleBar>
-            yo
         </span>
     </div>
 </template>
