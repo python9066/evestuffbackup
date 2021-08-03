@@ -37,6 +37,7 @@ export default new Vuex.Store({
         rolesList: [],
         startcampaigns: [],
         startcampaignJoin: [],
+        startcampaignsystems:[],
         stations: [],
         stationFits: [],
         structurelist:[],
@@ -286,6 +287,12 @@ export default new Vuex.Store({
         SET_CAMPAIGN_SYSTEMS(state, systems) {
             state.campaignsystems = systems;
         },
+
+        SET_START_CAMPAIGN_SYSTEMS(state, systems) {
+            state.startcampaignsystems = systems;
+        },
+
+
 
 
         UPDATE_CAMPAIGN_SYSTEM(state, data) {
@@ -989,6 +996,22 @@ export default new Vuex.Store({
             });
             if (res.data.length != 0) {
                 commit("SET_CAMPAIGN_SYSTEMS", res.data.systems);
+            }
+        },
+
+
+        async getStartCampaignSystemsRecords({ commit, state }) {
+            let res = await axios({
+                method: "get", //you can set what request you want to be
+                url: "/api/startcampaignsystemsrecords",
+                headers: {
+                    Authorization: "Bearer " + state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                }
+            });
+            if (res.data.length != 0) {
+                commit("SET_START_CAMPAIGN_SYSTEMS", res.data.systems);
             }
         },
 

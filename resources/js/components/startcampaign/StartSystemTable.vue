@@ -69,7 +69,9 @@ export default {
         };
     },
 
-    async mounted() {},
+    async mounted() {
+        this.$store.dispatch("getCampaignSystemsRecords");
+    },
 
     async created() {},
 
