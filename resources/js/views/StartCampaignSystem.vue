@@ -123,6 +123,7 @@ export default {
 
         await this.$store.dispatch("getStartCampaigns");
         await this.$store.dispatch("getStartCampaignJoinData");
+        await this.$store.dispatch("getUsersChars", this.$store.state.user_id);
     },
     data() {
         return {
