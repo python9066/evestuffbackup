@@ -23287,7 +23287,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               _this.campaignId = _this.$route.params.id;
               _this.campaign_id = parseInt(_this.$route.params.id);
 
-              _this.$store.dispatch("getStartCampaignJoinDataByCampaign", _this.$route.params.id);
+              _this.$store.dispatch("getStartCampaigns");
 
             case 3:
             case "end":
