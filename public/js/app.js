@@ -12855,7 +12855,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
 
 
 
@@ -38601,8 +38600,6 @@ var render = function() {
                   _c("p", { staticClass: " pt-5" }, [
                     _vm._v(
                       "\n                    Inital Campaign page for the\n                    " +
-                        _vm._s(this.startCampaign.constellation_name) +
-                        "\n                    " +
                         _vm._s(this.startCampaign) +
                         "\n                "
                     )

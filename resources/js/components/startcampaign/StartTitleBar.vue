@@ -8,7 +8,6 @@
                 >
                     <p class=" pt-5">
                         Inital Campaign page for the
-                        {{ this.startCampaign.constellation_name }}
                         {{ this.startCampaign }}
                     </p>
                 </v-card-title>
