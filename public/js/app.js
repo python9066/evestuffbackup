@@ -49607,7 +49607,7 @@ var render = function() {
                           _vm._v(" "),
                           _vm.$can("view_campaign_members")
                             ? _c("WatchUserTable", {
-                                attrs: { campaign_id: _vm.startcampaign.id }
+                                attrs: { campaign_id: this.$route.params.id }
                               })
                             : _vm._e(),
                           _vm._v(" "),
