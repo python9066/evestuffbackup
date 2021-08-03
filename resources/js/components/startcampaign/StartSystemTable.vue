@@ -28,6 +28,23 @@
                         <span v-else> N/A </span>
                     </template>
 
+                    <template v-slot:[`item.main_name`]="{ item }">
+                        <div class=" d-inline-flex align-items-center">
+                            <div>
+                                <v-chip
+                                    v-bind="attrs"
+                                    v-on="on"
+                                    pill
+                                    outlined
+                                    small
+                                    color="light-green accent-3"
+                                >
+                                    Add
+                                </v-chip>
+                            </div>
+                        </div>
+                    </template>
+
                     <template slot="no-data">
                         No nodes have shown up here..... yet!!!!
                     </template>
@@ -52,6 +69,7 @@ export default {
 
             headers: [
                 { text: "System", value: "system_name" },
+                { text: "Pilot", value: "main_name" },
 
                 {
                     text: "",

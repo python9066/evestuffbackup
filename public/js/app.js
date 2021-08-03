@@ -12876,6 +12876,23 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -12890,6 +12907,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       headers: [{
         text: "System",
         value: "system_name"
+      }, {
+        text: "Pilot",
+        value: "main_name"
       }, {
         text: "",
         value: "actions",
@@ -23373,7 +23393,6 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
-//
 //
 //
 //
@@ -38786,6 +38805,52 @@ var render = function() {
                               : _c("span", [_vm._v(" N/A ")])
                           ]
                         }
+                      },
+                      {
+                        key: "item.main_name",
+                        fn: function(ref) {
+                          var item = ref.item
+                          return [
+                            _c(
+                              "div",
+                              {
+                                staticClass: " d-inline-flex align-items-center"
+                              },
+                              [
+                                _c(
+                                  "div",
+                                  [
+                                    _c(
+                                      "v-chip",
+                                      _vm._g(
+                                        _vm._b(
+                                          {
+                                            attrs: {
+                                              pill: "",
+                                              outlined: "",
+                                              small: "",
+                                              color: "light-green accent-3"
+                                            }
+                                          },
+                                          "v-chip",
+                                          _vm.attrs,
+                                          false
+                                        ),
+                                        _vm.on
+                                      ),
+                                      [
+                                        _vm._v(
+                                          "\n                                Add\n                            "
+                                        )
+                                      ]
+                                    )
+                                  ],
+                                  1
+                                )
+                              ]
+                            )
+                          ]
+                        }
                       }
                     ],
                     null,
@@ -38793,6 +38858,7 @@ var render = function() {
                   )
                 },
                 [
+                  _vm._v(" "),
                   _vm._v(" "),
                   _c("template", { slot: "no-data" }, [
                     _vm._v(
@@ -49224,7 +49290,6 @@ var render = function() {
   return _c(
     "div",
     [
-      _vm._v("\n    things\n    "),
       _c(
         "v-row",
         {
