@@ -39,7 +39,7 @@ class StartCampaignController extends Controller
             $solas = System::where('constellation_id', $data)->get();
             foreach ($solas as $sola) {
 
-                StartCampaignSystems::create(['system_id' => $sola['id'], 'start_campaign_id' => [$campid], 'constellation_id' => $sola['contellation_id']]);
+                StartCampaignSystems::create(['system_id' => $sola['id'], 'start_campaign_id' => $campid, 'constellation_id' => $data]);
             }
         }
     }
