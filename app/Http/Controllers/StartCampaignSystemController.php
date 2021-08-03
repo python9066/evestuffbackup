@@ -63,7 +63,7 @@ class StartCampaignSystemController extends Controller
         StartCampaignSystems::find($id)->update(['campaign_user_id' => $char->id]);
 
 
-        $message = StartCampaignSystemRecords::where('id',)->first();
+        $message = StartCampaignSystemRecords::where('id', $id)->first();
         $flag = null;
         $flag = collect([
             'message' => $message,
