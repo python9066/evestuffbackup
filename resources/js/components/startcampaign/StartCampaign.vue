@@ -115,6 +115,10 @@ export default {
             this.loadStartCampaignJoinData();
         },
 
+        clickCampaign(item) {
+            this.$router.push({ path: `/scampaign/${item.id}` }); // -> /user/123
+        },
+
         loadStartCampaignJoinData() {
             this.$store.dispatch("getStartCampaignJoinData");
         },

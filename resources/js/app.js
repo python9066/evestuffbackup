@@ -89,6 +89,7 @@ Vue.component('MultiCampaigns', require('./components/multicampaigns/MultiCampai
 Vue.component('StartCampaign', require('./components/startcampaign/StartCampaign.vue').default);
 Vue.component('StartCampaignAdd', require('./components/startcampaign/StartCampaignAdd.vue').default);
 Vue.component('StartSystemItemList', require('./components/startcampaign/StartSystemItemList.vue').default);
+Vue.component('StartCampaignSystemTable', require('./components/startcampaign/StartCampaignSystemTable.vue').default);
 
 
 
