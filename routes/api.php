@@ -180,4 +180,5 @@ Route::middleware('auth:api')->group(function () {
     Route::get('/constellations', 'ConstellationsController@constellationlist');
     Route::post('/startcampaigns/{campid}/{name}', 'StartCampaignController@store');
     Route::get('/startcampaigns', 'StartCampaignController@index');
+    Route::get('/startcampaignjoin', 'StartCampaignJoinController@index');
 });

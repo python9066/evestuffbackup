@@ -4,12 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Constellation;
 use App\Models\StartCampaignJoins;
-use App\Models\Station;
-use App\Models\StationItemJoin;
-use App\Models\StationItems;
 use Illuminate\Http\Request;
 
-class StationItemJoinController extends Controller
+class StartCampaignJoinController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,6 +15,25 @@ class StationItemJoinController extends Controller
      */
     public function index()
     {
+        $list = [];
+        $pulls = StartCampaignJoins::all();
+        foreach ($pulls as $pull) {
+            $constellations = Constellation::where('id', $pull['constellation_id'])->get();
+            $count = $constellations->count();
+            if ($count != 0) {
+                foreach ($constellations as $con) {
+                    $data = [];
+                    $data = [
+                        "constellation_id" => $pull['id'],
+                        "start_campaign_id" => $pull['start_campaign_id'],
+                        "id" => $pull['id'],
+                        "constellation_name" => $con['constellation_name']
+                    ];
+                }
+                array_push($list, $data);
+            }
+        }
+        return ["value" => $list];
     }
 
     /**

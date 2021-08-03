@@ -36,6 +36,7 @@ export default new Vuex.Store({
         recontasksystems:[],
         rolesList: [],
         startcampaigns: [],
+        startcampaignJoin: [],
         stations: [],
         stationFits: [],
         structurelist:[],
@@ -146,6 +147,10 @@ export default new Vuex.Store({
 
         SET_CAMPAIGN_JOIN(state, campaignJoin) {
             state.campaignJoin = campaignJoin;
+        },
+
+        SET_START_CAMPAIGN_JOIN(state, startcampaignJoin) {
+            state.startcampaignJoin = startcampaignJoin;
         },
 
         SET_TOWERS(state, towers) {
@@ -573,6 +578,20 @@ export default new Vuex.Store({
                 }
             });
             commit("SET_CAMPAIGN_JOIN", res.data.value);
+        },
+
+        async getStartCampaignJoinData({ commit, state }, campid) {
+            let res = await axios({
+                method: "get",
+                url: "/api/startcampaignjoin",
+                data: this.picked,
+                headers: {
+                    Authorization: "Bearer " + state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                }
+            });
+            commit("SET_START_CAMPAIGN_JOIN", res.data.value);
         },
 
 
@@ -1120,6 +1139,10 @@ export default new Vuex.Store({
 
         getCampaignJoinById: state => id => {
             return state.campaignJoin.filter(c => c.custom_campaign_id == id);
+        },
+
+        getStartJoinById: state => id => {
+            return state.startcampaignJoin.filter(c => c.start_campaign_id == id);
         },
 
         getCampaignMembersByCampaign: state => id => {
