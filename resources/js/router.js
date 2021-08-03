@@ -19,7 +19,7 @@ import campaignFinished from "./views/redirect/campaignOver.vue";
 import chillstations from "./components/chillstation/ChillStructure.vue";
 import Gsol from "./views/Gsol"
 import Recon from "./views/Recon";
-import StarCampaigns from "./components/startcampaign/StartCampaignSystemTable.vue"
+import StartCampaigns from "./views/StartCampaignSystem.vue"
 
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
@@ -85,7 +85,7 @@ export default new Router({
         {
             path: "/scampaign/:id",
             name: "scampaign",
-            component: StarCampaigns,
+            component: StartCampaigns,
             props: route => {
                 const id = Number.parseInt(route.params.id, 10);
                 if (Number.isNaN(id)) {
