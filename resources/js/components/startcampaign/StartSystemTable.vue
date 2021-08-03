@@ -234,7 +234,10 @@ export default {
     computed: {
         ...mapState(["startcampaignsystems", "user_id"]),
 
-        ...mapGetters(["getCampaignUsersByUserIdEntosisFreeCount"]),
+        ...mapGetters([
+            "getCampaignUsersByUserIdEntosisFreeCount",
+            "getCampaignUsersByUserIdEntosisFree"
+        ]),
 
         filteredItems() {
             return this.startcampaignsystems.filter(
@@ -246,6 +249,12 @@ export default {
 
         freecharCount() {
             return this.getCampaignUsersByUserIdEntosisFreeCount(
+                this.$store.state.user_id
+            );
+        },
+
+        charsFree() {
+            return this.getCampaignUsersByUserIdEntosisFree(
                 this.$store.state.user_id
             );
         }
