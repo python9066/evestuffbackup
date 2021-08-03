@@ -70,7 +70,7 @@ export default {
     },
 
     async mounted() {
-        this.$store.dispatch("getCampaignSystemsRecords");
+        this.$store.dispatch("getStartCampaignSystemsRecords");
     },
 
     async created() {},

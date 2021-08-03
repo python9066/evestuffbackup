@@ -12907,7 +12907,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              _this.$store.dispatch("getCampaignSystemsRecords");
+              _this.$store.dispatch("getStartCampaignSystemsRecords");
 
             case 1:
             case "end":
