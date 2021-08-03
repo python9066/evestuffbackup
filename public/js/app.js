@@ -23217,9 +23217,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     }))();
   },
   methods: {},
-  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(["getsCampaignById", "getActiveCampaigns", "getCampaignsCount", "getCampaignUsersByUserId", "getCampaignUsersByUserIdCount", "getTotalNodeCountByMultiCampaign", "getHackingNodeCountByMultiCampaign", "getRedHackingNodeCountByMultiCampaign", "getMultiCampaignName"])), {}, {
-    sCampaigns: function sCampaigns() {
-      return this.getsCampaignById(this.campaignId);
+  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(["getStartCampaignById", "getActiveCampaigns", "getCampaignsCount", "getCampaignUsersByUserId", "getCampaignUsersByUserIdCount", "getTotalNodeCountByMultiCampaign", "getHackingNodeCountByMultiCampaign", "getRedHackingNodeCountByMultiCampaign", "getMultiCampaignName"])), {}, {
+    StartCampaigns: function StartCampaigns() {
+      return this.getStartCampaignById(this.campaignId);
     }
   }),
   beforeDestroy: function beforeDestroy() {}

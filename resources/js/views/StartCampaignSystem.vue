@@ -31,7 +31,7 @@ export default {
 
     computed: {
         ...mapGetters([
-            "getsCampaignById",
+            "getStartCampaignById",
             "getActiveCampaigns",
             "getCampaignsCount",
             "getCampaignUsersByUserId",
@@ -42,8 +42,8 @@ export default {
             "getMultiCampaignName"
         ]),
 
-        sCampaigns() {
-            return this.getsCampaignById(this.campaignId);
+        StartCampaigns() {
+            return this.getStartCampaignById(this.campaignId);
         }
     },
 
