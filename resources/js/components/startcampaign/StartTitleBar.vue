@@ -67,7 +67,7 @@ export default {
             "getRedHackingNodeCountByCampaign"
         ]),
 
-        campaign() {
+        startCampaign() {
             return this.getCampaignById(this.startCampaignID);
         }
     },

@@ -12923,7 +12923,7 @@ function sleep(ms) {
     }
   },
   computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(["getCampaignById", "getActiveCampaigns", "getCampaignsCount", "getCampaignUsersByUserId", "getCampaignUsersByUserIdCount", "getTotalNodeCountByCampaign", "getHackingNodeCountByCampaign", "getRedHackingNodeCountByCampaign"])), {}, {
-    campaign: function campaign() {
+    startCampaign: function startCampaign() {
       return this.getCampaignById(this.startCampaignID);
     }
   }),
