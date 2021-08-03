@@ -35,7 +35,8 @@
                                     pill
                                     outlined
                                     rounded
-                                    x-small
+                                    @click="clickaddchar()"
+                                    small
                                     color="light-green accent-3"
                                 >
                                     Add
