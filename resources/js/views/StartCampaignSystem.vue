@@ -24,14 +24,14 @@
                     <div class=" d-md-inline-flex">
                         <v-btn
                             v-show="showTable == false"
-                            @click="this.showTable = true"
+                            @click="showTable = true"
                             class="mr-4"
                             color="blue darken-2"
                             >Show Char table</v-btn
                         >
                         <v-btn
                             v-show="showTable == true"
-                            @click="this.showTable = false"
+                            @click="showTable = false"
                             class="mr-4"
                             color="orange darken-2"
                             >Hide Char table</v-btn
