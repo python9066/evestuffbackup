@@ -30,7 +30,7 @@ class StartCampaignController extends Controller
     public function store(Request $request, $campid, $name)
     {
         $data = $request->all();
-        $user_id = Auth::userid();
+        $user_id = Auth::id();
         // dd($data);
         StartCampaigns::create(['id' => $campid, 'name' => $name, 'user_id' => $user_id]);
         foreach ($data as $data) {
