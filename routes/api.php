@@ -181,4 +181,5 @@ Route::middleware('auth:api')->group(function () {
     Route::post('/startcampaigns/{campid}/{name}', 'StartCampaignController@store');
     Route::get('/startcampaigns', 'StartCampaignController@index');
     Route::get('/startcampaignjoin', 'StartCampaignJoinController@index');
+    Route::delete('/startcampaigns/{id}', 'StartCampaignController@destroy');
 });

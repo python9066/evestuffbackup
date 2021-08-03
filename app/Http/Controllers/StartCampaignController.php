@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CampaignSystemUsers;
+use App\Models\CampaignUser;
 use App\Models\StartCampaignJoins;
 use App\Models\StartCampaigns;
 use App\Models\StartCampaignSystems;
@@ -86,6 +88,14 @@ class StartCampaignController extends Controller
      */
     public function destroy($id)
     {
-        //
+        StartCampaigns::destroy($id);
+        StartCampaignJoins::where('start_campaign_id', $id)->delete();
+        StartCampaignSystems::where('start_campaign_id', $id)->delete();
+        CampaignSystemUsers::where('campaign_id', $id)->delete();
+        CampaignUser::where('campaign_id', $id)->update([
+            'campaign_id' => null,
+            'campaign_system_id' => null,
+            'status_id' => 1
+        ]);
     }
 }

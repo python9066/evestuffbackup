@@ -103,8 +103,25 @@ export default {
         updatemultiCampaginAdd() {
             this.overlay = !this.overlay;
         },
+
         loadStartCampaignJoinData() {
             this.$store.dispatch("getStartCampaignJoinData");
+        },
+
+        async deleteCampaign(item) {
+            await axios({
+                method: "delete", //you can set what request you want to be
+                url: "/api/startcampaigns/" + item.id,
+                headers: {
+                    Authorization: "Bearer " + this.$store.state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                }
+            });
+
+            sleep(500);
+
+            this.$store.dispatch("getMultiCampaigns");
         }
     },
     computed: {

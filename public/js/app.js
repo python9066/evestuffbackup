@@ -12530,6 +12530,39 @@ function sleep(ms) {
     },
     loadStartCampaignJoinData: function loadStartCampaignJoinData() {
       this.$store.dispatch("getStartCampaignJoinData");
+    },
+    deleteCampaign: function deleteCampaign(item) {
+      var _this = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                _context2.next = 2;
+                return axios({
+                  method: "delete",
+                  //you can set what request you want to be
+                  url: "/api/startcampaigns/" + item.id,
+                  headers: {
+                    Authorization: "Bearer " + _this.$store.state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                  }
+                });
+
+              case 2:
+                sleep(500);
+
+                _this.$store.dispatch("getMultiCampaigns");
+
+              case 4:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2);
+      }))();
     }
   },
   computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapState"])(["startcampaigns"])), {}, {
