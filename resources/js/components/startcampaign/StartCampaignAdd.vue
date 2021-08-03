@@ -12,7 +12,7 @@
                     filled
                 >
                 </v-text-field>
-                <v-select
+                <v-autocomplete
                     v-model="picked"
                     :items="list"
                     label="Select"
@@ -21,7 +21,7 @@
                     deletable-chips
                     hint="Which Campaigns do you want"
                     persistent-hint
-                ></v-select>
+                ></v-autocomplete>
             </v-card-text>
             <v-card-actions>
                 <v-btn color="success" class="mr-4" @click="addCampaignDone()"

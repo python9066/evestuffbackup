@@ -38090,7 +38090,7 @@ var render = function() {
                 }
               }),
               _vm._v(" "),
-              _c("v-select", {
+              _c("v-autocomplete", {
                 attrs: {
                   items: _vm.list,
                   label: "Select",
