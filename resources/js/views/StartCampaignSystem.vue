@@ -15,7 +15,7 @@
                 </v-card>
             </v-col>
         </v-row>
-        <!-- <v-row no-gutters v-if="$can('super')" justify="space-around">
+        <v-row no-gutters v-if="$can('super')" justify="space-around">
             <v-col md="10">
                 <v-card
                     class="pa-2 d-flex justify-space-between full-width align-center"
@@ -82,7 +82,7 @@
                     <v-spacer></v-spacer>
                 </v-card>
             </v-col>
-        </v-row> -->
+        </v-row>
         <v-row no-gutters justify="center">
             <StartSystemTable
                 class=" px-5 pt-5"
