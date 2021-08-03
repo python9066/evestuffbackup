@@ -48978,7 +48978,7 @@ var render = function() {
                       _c("p", { staticClass: " pt-5" }, [
                         _vm._v(
                           "\n                        Campaign\n                        " +
-                            _vm._s(_vm.startcampaign["name"]) +
+                            _vm._s(_vm.startcampaign.name) +
                             "\n                    "
                         )
                       ])
