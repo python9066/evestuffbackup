@@ -35,7 +35,7 @@
                                     pill
                                     outlined
                                     rounded
-                                    @click="clickaddchar()"
+                                    @click="clickaddchar(item)"
                                     small
                                     color="light-green accent-3"
                                 >
@@ -90,7 +90,17 @@ export default {
 
     async created() {},
 
-    methods: {},
+    methods: {
+        clickaddchar(item) {
+            var data = {
+                id: item.id,
+                main_name: this.$state.user_name,
+                site_id: this.$state.user_id
+            };
+
+            this.$store.dispatch("updateStartCampaignSystem", data);
+        }
+    },
 
     computed: {
         ...mapState(["startcampaignsystems", "user_id"]),

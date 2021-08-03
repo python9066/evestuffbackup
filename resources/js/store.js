@@ -292,7 +292,10 @@ export default new Vuex.Store({
             state.startcampaignsystems = systems;
         },
 
-
+        UPDATE_START_CAMPAIGN_SYSTEM(state, data) {
+            const item = state.startcampaignsystems.find(item => item.id === data.id);
+            Object.assign(item, data);
+        },
 
 
         UPDATE_CAMPAIGN_SYSTEM(state, data) {
@@ -801,6 +804,10 @@ export default new Vuex.Store({
 
         updateCampaignSystem({ commit }, data) {
             commit("UPDATE_CAMPAIGN_SYSTEM", data);
+        },
+
+        updateStartCampaignSystem({ commit }, data) {
+            commit("UPDATE_START_CAMPAIGN_SYSTEM", data);
         },
 
         updateTooltipToggle({ commit }, data) {
