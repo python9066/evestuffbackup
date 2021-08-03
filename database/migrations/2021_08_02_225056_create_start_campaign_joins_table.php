@@ -15,7 +15,7 @@ class CreateStartCampaignJoinsTable extends Migration
     {
         Schema::create('start_campaign_joins', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('start_campaigns_id');
+            $table->foreignId('start_campaign_id');
             $table->foreignId('constellation_id');
             $table->timestamps();
         });
