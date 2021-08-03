@@ -12893,6 +12893,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -38826,34 +38829,42 @@ var render = function() {
                                 staticClass: " d-inline-flex align-items-center"
                               },
                               [
-                                _c(
-                                  "div",
-                                  [
-                                    _c(
-                                      "v-btn",
-                                      {
-                                        attrs: {
-                                          pill: "",
-                                          outlined: "",
-                                          rounded: "",
-                                          small: "",
-                                          color: "light-green accent-3"
-                                        },
-                                        on: {
-                                          click: function($event) {
-                                            return _vm.clickaddchar(item)
-                                          }
-                                        }
-                                      },
+                                item.site_id != null
+                                  ? _c("div", [
+                                      _vm._v(
+                                        "\n                            " +
+                                          _vm._s(item.main_name) +
+                                          "\n                        "
+                                      )
+                                    ])
+                                  : _c(
+                                      "div",
                                       [
-                                        _vm._v(
-                                          "\n                                Add\n                            "
+                                        _c(
+                                          "v-btn",
+                                          {
+                                            attrs: {
+                                              pill: "",
+                                              outlined: "",
+                                              rounded: "",
+                                              small: "",
+                                              color: "light-green accent-3"
+                                            },
+                                            on: {
+                                              click: function($event) {
+                                                return _vm.clickaddchar(item)
+                                              }
+                                            }
+                                          },
+                                          [
+                                            _vm._v(
+                                              "\n                                Add\n                            "
+                                            )
+                                          ]
                                         )
-                                      ]
+                                      ],
+                                      1
                                     )
-                                  ],
-                                  1
-                                )
                               ]
                             )
                           ]

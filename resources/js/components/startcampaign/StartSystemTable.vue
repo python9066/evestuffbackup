@@ -30,7 +30,10 @@
 
                     <template v-slot:[`item.main_name`]="{ item }">
                         <div class=" d-inline-flex align-items-center">
-                            <div>
+                            <div v-if="item.site_id != null">
+                                {{ item.main_name }}
+                            </div>
+                            <div v-else>
                                 <v-btn
                                     pill
                                     outlined
