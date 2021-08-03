@@ -48812,7 +48812,7 @@ var render = function() {
           "span",
           { key: index },
           [
-            _c("TitleBar", {
+            _c("StartTitleBar", {
               attrs: {
                 startCampaignID: startCampaign.start_campaign_id,
                 startCampaign: _vm.startCampaigns

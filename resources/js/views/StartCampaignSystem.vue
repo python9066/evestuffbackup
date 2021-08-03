@@ -2,11 +2,11 @@
     <div>
         this is a thing
         <span v-for="(startCampaign, index) in startCampaigns" :key="index">
-            <TitleBar
+            <StartTitleBar
                 :startCampaignID="startCampaign.start_campaign_id"
                 :startCampaign="startCampaigns"
             >
-            </TitleBar>
+            </StartTitleBar>
             yo
         </span>
     </div>
