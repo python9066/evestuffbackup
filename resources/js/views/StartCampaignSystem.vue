@@ -118,7 +118,8 @@ export default {
     data() {
         return {
             campaignId: 0,
-            campaign_id: ""
+            campaign_id: "",
+            showTable: false
         };
     },
 

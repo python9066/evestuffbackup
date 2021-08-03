@@ -23614,7 +23614,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   data: function data() {
     return {
       campaignId: 0,
-      campaign_id: ""
+      campaign_id: "",
+      showTable: false
     };
   },
   mounted: function mounted() {
