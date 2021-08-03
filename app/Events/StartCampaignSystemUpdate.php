@@ -13,7 +13,7 @@ use Illuminate\Queue\SerializesModels;
 class StartCampaignSystemUpdate implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
-
+    public $flag;
     /**
      * Create a new event instance.
      *
