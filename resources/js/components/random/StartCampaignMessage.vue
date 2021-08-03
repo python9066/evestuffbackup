@@ -15,7 +15,7 @@
                 <strong> JohnMonty</strong> on Jabber if its a big problem.
             </p>
             <p class="text-center">
-                Take note. To assign yourself to a node, you
+                Take note. To assign yourself to a system, you
                 <strong>HAVE TO</strong> press the "CHARACTERS" button and
                 pick<strong> Hacker </strong>as your role.
             </p>

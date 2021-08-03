@@ -37016,7 +37016,7 @@ var render = function() {
           _vm._v(" "),
           _c("p", { staticClass: "text-center" }, [
             _vm._v(
-              "\n            Take note. To assign yourself to a node, you\n            "
+              "\n            Take note. To assign yourself to a system, you\n            "
             ),
             _c("strong", [_vm._v("HAVE TO")]),
             _vm._v(' press the "CHARACTERS" button and\n            pick'),
