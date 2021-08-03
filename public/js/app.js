@@ -12837,6 +12837,42 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -12846,7 +12882,22 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   data: function data() {
     return {
       campaignId: 0,
-      campaign_id: ""
+      campaign_id: "",
+      headers: [{
+        text: "Region",
+        value: "region_name",
+        width: "10%"
+      }, {
+        text: "System",
+        value: "system_name"
+      }, {
+        text: "",
+        value: "actions",
+        sortable: false,
+        align: "end",
+        width: "5%"
+      } // { text: "Vulernable End Time", value: "vulnerable_end_time" }
+      ]
     };
   },
   mounted: function mounted() {
@@ -38648,7 +38699,97 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [_vm._v("\n    things>\n")])
+  return _c(
+    "v-col",
+    { attrs: { cols: _vm.size, "align-self": "stretch" } },
+    [
+      _c(
+        "v-card",
+        {
+          staticClass: "d-flex flex-column",
+          attrs: { tile: "", height: "100%" }
+        },
+        [
+          _c(
+            "v-card-text",
+            [
+              [
+                _c(
+                  "v-card",
+                  {
+                    attrs: {
+                      flat: "",
+                      "max-width": "",
+                      elevation: "24",
+                      color: "grey darken-4"
+                    }
+                  },
+                  [
+                    _c(
+                      "v-card-title",
+                      {
+                        staticClass:
+                          "d-flex justify-space-between align-center",
+                        staticStyle: { width: "100%" },
+                        attrs: { "max-width": "" }
+                      },
+                      [_c("div", [_vm._v(_vm._s(_vm.data.constellation_name))])]
+                    )
+                  ],
+                  1
+                )
+              ],
+              _vm._v(" "),
+              _c(
+                "v-data-table",
+                {
+                  staticClass: "elevation-12",
+                  attrs: {
+                    headers: _vm.headers,
+                    items: _vm.filteredItems,
+                    "item-key": "node",
+                    "hide-default-footer": "",
+                    "disable-pagination": ""
+                  },
+                  scopedSlots: _vm._u(
+                    [
+                      {
+                        key: "item.updated_at",
+                        fn: function(ref) {
+                          var item = ref.item
+                          return [
+                            item.user_id != null
+                              ? _c("span", [_vm._v(_vm._s(_vm.data.last_edit))])
+                              : _c("span", [_vm._v(" N/A ")])
+                          ]
+                        }
+                      }
+                    ],
+                    null,
+                    true
+                  )
+                },
+                [
+                  _vm._v(" "),
+                  _c("template", { slot: "no-data" }, [
+                    _vm._v(
+                      "\n                    No nodes have shown up here..... yet!!!!\n                "
+                    )
+                  ])
+                ],
+                2
+              )
+            ],
+            2
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c("div", [_vm._v("\n        things\n    ")])
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true

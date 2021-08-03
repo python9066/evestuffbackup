@@ -1,7 +1,43 @@
 <template>
-    <div>
-        things>
-    </div>
+    <v-col :cols="size" align-self="stretch">
+        <v-card tile height="100%" class="d-flex flex-column">
+            <v-card-text>
+                <template>
+                    <v-card flat max-width elevation="24" color="grey darken-4">
+                        <v-card-title
+                            max-width
+                            class="d-flex justify-space-between align-center"
+                            style=" width: 100%;"
+                        >
+                            <div>{{ data.constellation_name }}</div>
+                        </v-card-title>
+                    </v-card>
+                </template>
+                <v-data-table
+                    :headers="headers"
+                    :items="filteredItems"
+                    item-key="node"
+                    hide-default-footer
+                    disable-pagination
+                    class="elevation-12"
+                >
+                    <template v-slot:[`item.updated_at`]="{ item }"
+                        ><span v-if="item.user_id != null">{{
+                            data.last_edit
+                        }}</span>
+                        <span v-else> N/A </span>
+                    </template>
+
+                    <template slot="no-data">
+                        No nodes have shown up here..... yet!!!!
+                    </template>
+                </v-data-table>
+            </v-card-text>
+        </v-card>
+        <div>
+            things
+        </div>
+    </v-col>
 </template>
 
 <script>
@@ -14,7 +50,22 @@ export default {
     data() {
         return {
             campaignId: 0,
-            campaign_id: ""
+            campaign_id: "",
+
+            headers: [
+                { text: "Region", value: "region_name", width: "10%" },
+                { text: "System", value: "system_name" },
+
+                {
+                    text: "",
+                    value: "actions",
+                    sortable: false,
+                    align: "end",
+                    width: "5%"
+                }
+
+                // { text: "Vulernable End Time", value: "vulnerable_end_time" }
+            ]
         };
     },
 
