@@ -12958,10 +12958,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -39211,20 +39207,10 @@ var render = function() {
                                               ],
                                               1
                                             )
-                                          : _vm._e(),
-                                        _vm._v(" "),
-                                        _c("NodeExtraChar", {
-                                          attrs: { item: item }
-                                        })
+                                          : _vm._e()
                                       ],
                                       1
                                     )
-                                  : _vm._e(),
-                                _vm._v(" "),
-                                _vm.$can("campaigns_admin_access")
-                                  ? _c("AdminHackUserTable", {
-                                      attrs: { nodeItem: item }
-                                    })
                                   : _vm._e()
                               ],
                               1

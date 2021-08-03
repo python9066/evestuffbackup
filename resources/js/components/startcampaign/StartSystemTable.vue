@@ -105,12 +105,8 @@
                                         >fas fa-trash-alt</v-icon
                                     ></v-btn
                                 >
-                                <NodeExtraChar :item="item"></NodeExtraChar>
+                                <!-- <NodeExtraChar :item="item"></NodeExtraChar> -->
                             </div>
-                            <AdminHackUserTable
-                                v-if="$can('campaigns_admin_access')"
-                                :nodeItem="item"
-                            ></AdminHackUserTable>
                         </div>
                     </template>
 
