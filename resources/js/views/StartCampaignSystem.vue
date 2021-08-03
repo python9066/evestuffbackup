@@ -1,6 +1,6 @@
 <template>
     <div>
-        <span v-for="(sCampaign, index) in sCampaigns" :key="index">
+        <span v-for="(StartCampaign, index) in StartCampaigns" :key="index">
             <TitleBar
                 :sCampaignID="sCampaign.campaign_id"
                 :sCampaign="sCampaigns"
@@ -28,7 +28,23 @@ export default {
 
     methods: {},
 
-    computed: {},
+    computed: {
+        ...mapGetters([
+            "getsCampaignById",
+            "getActiveCampaigns",
+            "getCampaignsCount",
+            "getCampaignUsersByUserId",
+            "getCampaignUsersByUserIdCount",
+            "getTotalNodeCountByMultiCampaign",
+            "getHackingNodeCountByMultiCampaign",
+            "getRedHackingNodeCountByMultiCampaign",
+            "getMultiCampaignName"
+        ]),
+
+        sCampaigns() {
+            return this.getsCampaignById(this.campaignId);
+        }
+    },
 
     beforeDestroy() {}
 };

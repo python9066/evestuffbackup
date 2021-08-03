@@ -1,10 +1,5 @@
 <template>
-    <v-row
-        no-gutters
-        v-if="this.getCampaignsCount > 1 && campaign.status_id < 3"
-        class="pb-2"
-        justify="space-around"
-    >
+    <v-row no-gutters class="pb-2" justify="space-around">
         <v-col md="10">
             <v-card class="pr-2 pb-2 pl-2" tile width="100%">
                 <v-card-title
