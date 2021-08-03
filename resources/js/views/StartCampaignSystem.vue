@@ -25,7 +25,10 @@ import moment from "moment";
 export default {
     props: {},
     data() {
-        return {};
+        return {
+            campaignId: 0,
+            campaign_id: ""
+        };
     },
 
     async mounted() {},
