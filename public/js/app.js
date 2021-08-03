@@ -38292,7 +38292,7 @@ var render = function() {
               "span",
               { key: index, staticClass: " pr-2" },
               [
-                _c("v-chip", { attrs: { pill: "", color: "Red", dark: "" } }, [
+                _c("v-chip", { attrs: { pill: "", color: "red", dark: "" } }, [
                   _c("span", [_vm._v(" " + _vm._s(system.constellation_name))])
                 ])
               ],
