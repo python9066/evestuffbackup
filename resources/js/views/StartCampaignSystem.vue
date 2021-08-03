@@ -1,6 +1,13 @@
 <template>
     <div>
         this is a thing
+        <span v-for="(startCampaign, index) in startCampaigns" :key="index">
+            <TitleBar
+                :startCampaignID="startCampaign.campaign_id"
+                :startCampaign="startCampaigns"
+            >
+            </TitleBar>
+        </span>
     </div>
 </template>
 
@@ -10,10 +17,11 @@ import moment from "moment";
 export default {
     props: {},
     data() {
-        return {};
+        return {
+            campaignId: 0,
+            campaign_id: ""
+        };
     },
-
-    async created() {},
 
     async mounted() {
         // await this.$store.dispatch("getCampaigns");
@@ -24,14 +32,29 @@ export default {
         );
     },
 
+    async created() {
+        this.campaignId = this.$route.params.id;
+        this.campaign_id = parseInt(this.$route.params.id);
+    },
+
     methods: {},
 
     computed: {
-        ...mapGetters(["getStartCampaignById"])
+        ...mapGetters([
+            "getStartCampaignById",
+            "getActiveCampaigns",
+            "getCampaignsCount",
+            "getCampaignUsersByUserId",
+            "getCampaignUsersByUserIdCount",
+            "getTotalNodeCountByMultiCampaign",
+            "getHackingNodeCountByMultiCampaign",
+            "getRedHackingNodeCountByMultiCampaign",
+            "getMultiCampaignName"
+        ]),
 
-        // startCampaigns() {
-        //     return this.getStartCampaignById(this.campaignId);
-        // }
+        startCampaigns() {
+            return this.getStartCampaignById(this.campaignId);
+        }
     },
 
     beforeDestroy() {}
