@@ -1,10 +1,10 @@
 <template>
     <div>
         this is a thing
-        <span v-for="(StartCampaign, index) in StartCampaigns" :key="index">
+        <span v-for="(startCampaign, index) in startCampaigns" :key="index">
             <TitleBar
-                :sCampaignID="sCampaign.campaign_id"
-                :sCampaign="sCampaigns"
+                :startCampaignID="startCampaign.campaign_id"
+                :startCampaign="startCampaigns"
             >
             </TitleBar>
         </span>
@@ -49,7 +49,7 @@ export default {
             "getMultiCampaignName"
         ]),
 
-        StartCampaigns() {
+        startCampaigns() {
             return this.getStartCampaignById(this.campaignId);
         }
     },
