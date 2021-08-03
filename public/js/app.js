@@ -12896,6 +12896,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -12996,14 +13003,51 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           }
         }, _callee3);
       }))();
+    },
+    clickremovechar: function clickremovechar(item) {
+      var _this3 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
+        var data;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
+          while (1) {
+            switch (_context4.prev = _context4.next) {
+              case 0:
+                data = {
+                  id: item.id,
+                  main_name: null,
+                  site_id: null
+                };
+
+                _this3.$store.dispatch("updateStartCampaignSystem", data);
+
+                _context4.next = 4;
+                return axios({
+                  method: "delete",
+                  url: "/api/startcampaignsystemremovechar/" + item.id + "/" + item.user_id,
+                  data: request,
+                  headers: {
+                    Authorization: "Bearer " + _this3.$store.state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                  }
+                });
+
+              case 4:
+              case "end":
+                return _context4.stop();
+            }
+          }
+        }, _callee4);
+      }))();
     }
   },
   computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapState"])(["startcampaignsystems", "user_id"])), {}, {
     filteredItems: function filteredItems() {
-      var _this3 = this;
+      var _this4 = this;
 
       return this.startcampaignsystems.filter(function (s) {
-        return s.constellation_id == _this3.data.constellation_id && s.start_campaign_id == _this3.data.start_campaign_id;
+        return s.constellation_id == _this4.data.constellation_id && s.start_campaign_id == _this4.data.start_campaign_id;
       });
     }
   }),
@@ -38864,13 +38908,36 @@ var render = function() {
                               },
                               [
                                 item.site_id != null
-                                  ? _c("div", [
-                                      _vm._v(
-                                        "\n                            " +
-                                          _vm._s(item.main_name) +
-                                          "\n                        "
-                                      )
-                                    ])
+                                  ? _c(
+                                      "div",
+                                      [
+                                        _vm._v(
+                                          "\n                            " +
+                                            _vm._s(item.main_name) +
+                                            "\n                            "
+                                        ),
+                                        _c(
+                                          "v-icon",
+                                          {
+                                            attrs: {
+                                              color: "orange darken-3",
+                                              small: ""
+                                            },
+                                            on: {
+                                              click: function($event) {
+                                                return _vm.clickremovechar(item)
+                                              }
+                                            }
+                                          },
+                                          [
+                                            _vm._v(
+                                              "\n                                fas fa-trash-alt\n                            "
+                                            )
+                                          ]
+                                        )
+                                      ],
+                                      1
+                                    )
                                   : _c(
                                       "div",
                                       [

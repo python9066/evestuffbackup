@@ -62,6 +62,12 @@ class StartCampaignSystemController extends Controller
         StartCampaignSystems::find($id)->update(['campaign_user_id' => $char->id]);
     }
 
+    public function removeChar($id, $char)
+    {
+        CampaignUser::find($char)->update(['campaign_id' => null, 'campaign_system_id' => null]);
+        StartCampaignSystems::find($id)->update(['campaign_user_id' => null]);
+    }
+
     /**
      * Remove the specified resource from storage.
      *

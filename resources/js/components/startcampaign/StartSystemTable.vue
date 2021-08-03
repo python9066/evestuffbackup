@@ -32,6 +32,13 @@
                         <div class=" d-inline-flex align-items-center">
                             <div v-if="item.site_id != null">
                                 {{ item.main_name }}
+                                <v-icon
+                                    color="orange darken-3"
+                                    small
+                                    @click="clickremovechar(item)"
+                                >
+                                    fas fa-trash-alt
+                                </v-icon>
                             </div>
                             <div v-else>
                                 <v-btn
@@ -111,6 +118,30 @@ export default {
             await axios({
                 method: "put",
                 url: "/api/startcampaignsystemupdate/" + item.id,
+                data: request,
+                headers: {
+                    Authorization: "Bearer " + this.$store.state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                }
+            });
+        },
+
+        async clickremovechar(item) {
+            var data = {
+                id: item.id,
+                main_name: null,
+                site_id: null
+            };
+            this.$store.dispatch("updateStartCampaignSystem", data);
+
+            await axios({
+                method: "delete",
+                url:
+                    "/api/startcampaignsystemremovechar/" +
+                    item.id +
+                    "/" +
+                    item.user_id,
                 data: request,
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
