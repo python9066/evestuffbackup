@@ -34,7 +34,7 @@
         "@fortawesome/free-brands-svg-icons": "^5.15.3",
         "@fortawesome/free-regular-svg-icons": "^5.15.3",
         "easy-circular-progress": "^1.0.4",
-        "laravel-echo": "^1.11.0",
+        "laravel-echo": "^1.11.1",
         "moment": "^2.29.1",
         "pusher-js": "^7.0.3",
         "v-mask": "^2.2.4",
