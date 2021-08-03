@@ -23,6 +23,11 @@ export default {
         };
     },
 
+    async created() {
+        this.campaignId = this.$route.params.id;
+        this.campaign_id = parseInt(this.$route.params.id);
+    },
+
     async mounted() {
         // await this.$store.dispatch("getCampaigns");
         // await this.$store.dispatch("getMultiCampaigns");
@@ -30,11 +35,6 @@ export default {
             "getStartCampaignJoinDataByCampaign",
             this.$route.params.id
         );
-    },
-
-    async created() {
-        this.campaignId = this.$route.params.id;
-        this.campaign_id = parseInt(this.$route.params.id);
     },
 
     methods: {},
