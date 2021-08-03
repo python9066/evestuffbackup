@@ -62,6 +62,15 @@ export default {
 
         startcampaignjoins() {
             return this.getStartCampaignById(this.campaign_id);
+        },
+
+        size() {
+            let count = this.getStartCampaignById(this.campaign_id).length;
+            if (count > 1) {
+                return 6;
+            } else {
+                return 10;
+            }
         }
     },
 

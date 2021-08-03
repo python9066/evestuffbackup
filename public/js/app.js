@@ -12876,9 +12876,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -23462,6 +23459,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
     startcampaignjoins: function startcampaignjoins() {
       return this.getStartCampaignById(this.campaign_id);
+    },
+    size: function size() {
+      var count = this.getStartCampaignById(this.campaign_id).length;
+
+      if (count > 1) {
+        return 6;
+      } else {
+        return 10;
+      }
     }
   }),
   beforeDestroy: function beforeDestroy() {}
@@ -38799,9 +38805,7 @@ var render = function() {
           )
         ],
         1
-      ),
-      _vm._v(" "),
-      _c("div", [_vm._v("\n        things\n    ")])
+      )
     ],
     1
   )

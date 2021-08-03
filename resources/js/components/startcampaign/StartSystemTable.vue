@@ -34,9 +34,6 @@
                 </v-data-table>
             </v-card-text>
         </v-card>
-        <div>
-            things
-        </div>
     </v-col>
 </template>
 
