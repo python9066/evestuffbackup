@@ -1200,6 +1200,8 @@ export default new Vuex.Store({
             );
         },
 
+
+
         getCampaignUsersByUserIdEntosisFree: state => id => {
             return state.campaignusers.filter(
                 campaignusers => campaignusers.site_id == id && campaignusers.role_id == 1 && campaignusers.node_id == null
@@ -1339,6 +1341,11 @@ export default new Vuex.Store({
 
         getNodeJoinByNodeCount: state => sysid => {
             return state.nodeJoin.filter(node => node.campaign_system_id == sysid).length
+        },
+
+
+        getStartCampaignsById: state => campid => {
+            return state.startcampaigns.filter(c => c.id == campid)
         },
 
         getSystemTableExpandable: state => payload => {

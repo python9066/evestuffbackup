@@ -10,7 +10,7 @@
                     >
                         <p class=" pt-5">
                             Campaign
-                            {{ this.startName }}
+                            {{ this.startcampaign.name }}
                         </p>
                     </v-card-title>
                 </v-card>
@@ -41,7 +41,13 @@ export default {
 
     methods: {},
 
-    computed: {},
+    computed: {
+        ...mapGetters(["getStartCampaignsById"]),
+
+        startcampaign() {
+            return this.getStartCampaignsById(this.this.campaign_id);
+        }
+    },
 
     beforeDestroy() {}
 };
