@@ -23567,11 +23567,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -49541,7 +49536,6 @@ var render = function() {
                           _c(
                             "v-btn",
                             {
-                              key: "showchartable" + _vm.startcampaign.id,
                               staticClass: "mr-4",
                               attrs: { color: "blue darken-2" }
                             },
@@ -49551,12 +49545,15 @@ var render = function() {
                           _c(
                             "v-btn",
                             {
-                              key: "hidechartable" + _vm.startcampaign.id,
                               staticClass: "mr-4",
                               attrs: { color: "orange darken-2" }
                             },
                             [_vm._v("Hide Char table")]
                           ),
+                          _vm._v(" "),
+                          _c("UsersChars", {
+                            attrs: { campaign_id: _vm.campaign.id }
+                          }),
                           _vm._v(" "),
                           _vm.$can("view_campaign_members")
                             ? _c("WatchUserTable", {

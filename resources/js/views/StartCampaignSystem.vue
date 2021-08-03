@@ -22,18 +22,13 @@
                     tile
                 >
                     <div class=" d-md-inline-flex">
-                        <v-btn
-                            class="mr-4"
-                            :key="'showchartable' + startcampaign.id"
-                            color="blue darken-2"
+                        <v-btn class="mr-4" color="blue darken-2"
                             >Show Char table</v-btn
                         >
-                        <v-btn
-                            class="mr-4"
-                            color="orange darken-2"
-                            :key="'hidechartable' + startcampaign.id"
+                        <v-btn class="mr-4" color="orange darken-2"
                             >Hide Char table</v-btn
                         >
+                        <UsersChars :campaign_id="campaign.id"> </UsersChars>
                         <WatchUserTable
                             :campaign_id="startcampaign.id"
                             v-if="$can('view_campaign_members')"
