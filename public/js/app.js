@@ -23686,6 +23686,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               return _this.$store.dispatch("getUsersChars", _this.$store.state.user_id);
 
             case 9:
+              _context.next = 11;
+              return _this.$store.dispatch("getCampaignUsersRecords", _this.campaign_id);
+
+            case 11:
             case "end":
               return _context.stop();
           }
