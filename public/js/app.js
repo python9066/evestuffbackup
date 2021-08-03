@@ -48814,7 +48814,7 @@ var render = function() {
           [
             _c("TitleBar", {
               attrs: {
-                startCampaignID: startCampaign.campaign_id,
+                startCampaignID: startCampaign.start_campaign_id,
                 startCampaign: _vm.startCampaigns
               }
             }),

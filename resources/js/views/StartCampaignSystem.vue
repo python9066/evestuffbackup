@@ -3,7 +3,7 @@
         this is a thing
         <span v-for="(startCampaign, index) in startCampaigns" :key="index">
             <TitleBar
-                :startCampaignID="startCampaign.campaign_id"
+                :startCampaignID="startCampaign.start_campaign_id"
                 :startCampaign="startCampaigns"
             >
             </TitleBar>
