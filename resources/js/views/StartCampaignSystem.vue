@@ -1,13 +1,13 @@
 <template>
     <div>
         this is a thing
-        <span v-for="(startCampaign, index) in startCampaigns" :key="index">
+        <!-- <span v-for="(startCampaign, index) in startCampaigns" :key="index">
             <TitleBar
                 :startCampaignID="startCampaign.campaign_id"
                 :startCampaign="startCampaigns"
             >
             </TitleBar>
-        </span>
+        </span> -->
     </div>
 </template>
 
