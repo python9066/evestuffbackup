@@ -112,8 +112,7 @@ export default {
         updatemultiCampaginAdd() {
             this.overlay = !this.overlay;
             this.$store.dispatch("getStartCampaigns");
-            sleep(500);
-            this.loadCampaignJoinData();
+            this.loadStartCampaignJoinData();
         },
 
         loadStartCampaignJoinData() {
