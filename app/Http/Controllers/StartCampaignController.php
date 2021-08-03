@@ -7,6 +7,7 @@ use App\Models\StartCampaigns;
 use App\Models\StartCampaignSystems;
 use App\Models\System;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class StartCampaignController extends Controller
 {
@@ -29,8 +30,9 @@ class StartCampaignController extends Controller
     public function store(Request $request, $campid, $name)
     {
         $data = $request->all();
+        $user_id = Auth::userid();
         // dd($data);
-        StartCampaigns::create(['id' => $campid, 'name' => $name]);
+        StartCampaigns::create(['id' => $campid, 'name' => $name, 'user_id' => $user_id]);
         foreach ($data as $data) {
             // dd($data);
             StartCampaignJoins::create(['start_campaign_id' => $campid, 'constellation_id' => $data]);
