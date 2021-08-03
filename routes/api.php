@@ -178,4 +178,5 @@ Route::middleware('auth:api')->group(function () {
     Route::delete('/recontask/{id}', 'ReconTaskController@destroy');
 
     Route::get('/constellations', 'ConstellationsController@constellationlist');
+    Route::post('/multicampaigns/{campid}/{name}', 'StartCampaignController@store');
 });

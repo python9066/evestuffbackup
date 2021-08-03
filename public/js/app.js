@@ -12616,7 +12616,7 @@ function sleep(ms) {
                 _context.next = 3;
                 return axios({
                   method: "POST",
-                  url: "/api/multicampaigns/" + id + "/" + _this.name,
+                  url: "/api/startcampaigns/" + id + "/" + _this.name,
                   data: _this.picked,
                   headers: {
                     Authorization: "Bearer " + _this.$store.state.token,
