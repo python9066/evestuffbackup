@@ -58,8 +58,8 @@ class StartCampaignSystemController extends Controller
         } else {
             $char =  CampaignUser::create(['site_id' => Auth::id(), 'campaign_id' => $id, 'campaign_system_id' => $request->sys, 'char_name' => Auth::user()]);
         }
-
-        StartCampaigns::find($id)->update(['campaign_user_id' => $char->id]);
+        dd(StartCampaigns::find($id));
+        // StartCampaigns::find($id)->update(['campaign_user_id' => $char->id]);
     }
 
     /**
