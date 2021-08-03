@@ -12855,6 +12855,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 
@@ -12872,26 +12873,11 @@ function sleep(ms) {
     return {};
   },
   created: function created() {
-    var _this = this;
-
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              _this.campaignId = _this.startCampaignID;
-              Echo["private"]("campaignsystem." + _this.startCampaignID).listen("CampaignSystemUpdate", function (e) {
-                if (e.flag.flag == 4) {
-                  _this.$store.dispatch("getCampaigns");
-
-                  _this.$store.dispatch("getCampaignSystemsRecords");
-
-                  _this.$store.dispatch("getCampaignJoinData");
-                }
-              });
-              _this.channel = "campaignsystem." + _this.campaignId;
-
-            case 3:
             case "end":
               return _context.stop();
           }
@@ -12900,24 +12886,6 @@ function sleep(ms) {
     }))();
   },
   methods: {
-    leaving: function leaving() {
-      var _this2 = this;
-
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
-          while (1) {
-            switch (_context2.prev = _context2.next) {
-              case 0:
-                Echo.leave(_this2.channel);
-
-              case 1:
-              case "end":
-                return _context2.stop();
-            }
-          }
-        }, _callee2);
-      }))();
-    },
     loadCampaignSystemRecords: function loadCampaignSystemRecords() {
       this.$store.dispatch("getCampaignSystemsRecords");
     }
@@ -38634,6 +38602,8 @@ var render = function() {
                     _vm._v(
                       "\n                    Inital Campaign page for the\n                    " +
                         _vm._s(this.startCampaign.constellation_name) +
+                        "\n                    " +
+                        _vm._s(this.startCampaign) +
                         "\n                "
                     )
                   ])

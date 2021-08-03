@@ -9,6 +9,7 @@
                     <p class=" pt-5">
                         Inital Campaign page for the
                         {{ this.startCampaign.constellation_name }}
+                        {{ this.startCampaign }}
                     </p>
                 </v-card-title>
             </v-card>
@@ -30,26 +31,9 @@ export default {
         return {};
     },
 
-    async created() {
-        this.campaignId = this.startCampaignID;
-        Echo.private("campaignsystem." + this.startCampaignID).listen(
-            "CampaignSystemUpdate",
-            e => {
-                if (e.flag.flag == 4) {
-                    this.$store.dispatch("getCampaigns");
-                    this.$store.dispatch("getCampaignSystemsRecords");
-                    this.$store.dispatch("getCampaignJoinData");
-                }
-            }
-        );
-        this.channel = "campaignsystem." + this.campaignId;
-    },
+    async created() {},
 
     methods: {
-        async leaving() {
-            Echo.leave(this.channel);
-        },
-
         loadCampaignSystemRecords() {
             this.$store.dispatch("getCampaignSystemsRecords");
         }
