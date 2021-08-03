@@ -94,6 +94,10 @@ Broadcast::channel('recontask.{id}', function () {
     return Auth::check();
 });
 
+Broadcast::channel('startcampaigns', function () {
+    return Auth::check();
+});
+
 
 
 

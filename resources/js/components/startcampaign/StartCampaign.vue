@@ -66,9 +66,9 @@ function sleep(ms) {
 export default {
     data() {
         return {
-            loadingr: false,
-            loadingf: false,
-            loading: false,
+            loadingr: true,
+            loadingf: true,
+            loading: true,
             endcount: "",
             search: "",
             componentKey: 0,
@@ -94,14 +94,25 @@ export default {
 
     created() {
         this.$store.dispatch("getConstellationList");
-        this.$store.dispatch("getStartCampaigns");
+        this.$store.dispatch("getStartCampaigns").then(() => {
+            this.loadingf = false;
+            this.loadingr = false;
+            this.loading = false;
+        });
         this.loadStartCampaignJoinData();
+
+        Echo.private("startcampaigns").listen("StartcampaignUpdate", e => {
+            this.$store.dispatch("getStartCampaigns");
+            this.loadStartCampaignJoinData();
+        });
     },
 
     async mounted() {},
     methods: {
         updatemultiCampaginAdd() {
             this.overlay = !this.overlay;
+            this.$store.dispatch("getStartCampaigns");
+            this.loadCampaignJoinData();
         },
 
         loadStartCampaignJoinData() {
@@ -121,7 +132,7 @@ export default {
 
             sleep(500);
 
-            this.$store.dispatch("getMultiCampaigns");
+            this.$store.dispatch("getStartCampaigns");
         }
     },
     computed: {
@@ -131,6 +142,8 @@ export default {
             return this.startcampaigns;
         }
     },
-    beforeDestroy() {}
+    beforeDestroy() {
+        Echo.leave("startcampaigns");
+    }
 };
 </script>

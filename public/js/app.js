@@ -12477,9 +12477,9 @@ function sleep(ms) {
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      loadingr: false,
-      loadingf: false,
-      loading: false,
+      loadingr: true,
+      loadingf: true,
+      loading: true,
       endcount: "",
       search: "",
       componentKey: 0,
@@ -12507,9 +12507,20 @@ function sleep(ms) {
     };
   },
   created: function created() {
+    var _this = this;
+
     this.$store.dispatch("getConstellationList");
-    this.$store.dispatch("getStartCampaigns");
+    this.$store.dispatch("getStartCampaigns").then(function () {
+      _this.loadingf = false;
+      _this.loadingr = false;
+      _this.loading = false;
+    });
     this.loadStartCampaignJoinData();
+    Echo["private"]("startcampaigns").listen("StartcampaignUpdate", function (e) {
+      _this.$store.dispatch("getStartCampaigns");
+
+      _this.loadStartCampaignJoinData();
+    });
   },
   mounted: function mounted() {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
@@ -12527,12 +12538,14 @@ function sleep(ms) {
   methods: {
     updatemultiCampaginAdd: function updatemultiCampaginAdd() {
       this.overlay = !this.overlay;
+      this.$store.dispatch("getStartCampaigns");
+      this.loadCampaignJoinData();
     },
     loadStartCampaignJoinData: function loadStartCampaignJoinData() {
       this.$store.dispatch("getStartCampaignJoinData");
     },
     deleteCampaign: function deleteCampaign(item) {
-      var _this = this;
+      var _this2 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
@@ -12545,7 +12558,7 @@ function sleep(ms) {
                   //you can set what request you want to be
                   url: "/api/startcampaigns/" + item.id,
                   headers: {
-                    Authorization: "Bearer " + _this.$store.state.token,
+                    Authorization: "Bearer " + _this2.$store.state.token,
                     Accept: "application/json",
                     "Content-Type": "application/json"
                   }
@@ -12554,7 +12567,7 @@ function sleep(ms) {
               case 2:
                 sleep(500);
 
-                _this.$store.dispatch("getMultiCampaigns");
+                _this2.$store.dispatch("getStartCampaigns");
 
               case 4:
               case "end":
@@ -12570,7 +12583,9 @@ function sleep(ms) {
       return this.startcampaigns;
     }
   }),
-  beforeDestroy: function beforeDestroy() {}
+  beforeDestroy: function beforeDestroy() {
+    Echo.leave("startcampaigns");
+  }
 });
 
 /***/ }),
