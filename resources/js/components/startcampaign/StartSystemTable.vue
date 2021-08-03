@@ -135,6 +135,7 @@ export default {
         return {
             campaignId: 0,
             campaign_id: "",
+            charAddNode: null,
 
             headers: [
                 { text: "System", value: "system_name", width: "10%" },
@@ -161,7 +162,7 @@ export default {
 
     methods: {
         async clickaddchar(item) {
-            console.log(item);
+            console.log(item + this.charAddNode);
             // var data = {
             //     id: item.id,
             //     main_name: this.$store.state.user_name,
