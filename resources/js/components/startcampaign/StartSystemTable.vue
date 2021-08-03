@@ -142,7 +142,6 @@ export default {
                     item.id +
                     "/" +
                     item.user_id,
-                data: request,
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
                     Accept: "application/json",

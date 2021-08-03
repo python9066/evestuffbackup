@@ -13025,7 +13025,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return axios({
                   method: "delete",
                   url: "/api/startcampaignsystemremovechar/" + item.id + "/" + item.user_id,
-                  data: request,
                   headers: {
                     Authorization: "Bearer " + _this3.$store.state.token,
                     Accept: "application/json",
