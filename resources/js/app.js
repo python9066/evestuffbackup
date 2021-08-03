@@ -90,7 +90,7 @@ Vue.component('StartCampaign', require('./components/startcampaign/StartCampaign
 Vue.component('StartCampaignAdd', require('./components/startcampaign/StartCampaignAdd.vue').default);
 Vue.component('StartSystemItemList', require('./components/startcampaign/StartSystemItemList.vue').default);
 Vue.component('StartTitleBar', require('./components/startcampaign/StartTitleBar.vue').default);
-
+Vue.component('StartSystemTable', require('./components/startcampaign/StartSystemTable.vue').default);
 
 
 

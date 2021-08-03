@@ -47,8 +47,8 @@ export default {
     async created() {
         this.campaignId = this.$route.params.id;
         this.campaign_id = parseInt(this.$route.params.id);
-        this.$store.dispatch("getStartCampaigns");
-        this.$store.dispatch("getStartCampaignJoinData");
+        await this.$store.dispatch("getStartCampaigns");
+        await this.$store.dispatch("getStartCampaignJoinData");
     },
 
     methods: {},
