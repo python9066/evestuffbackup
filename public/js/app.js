@@ -12891,8 +12891,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -38821,23 +38819,15 @@ var render = function() {
                                   "div",
                                   [
                                     _c(
-                                      "v-chip",
-                                      _vm._g(
-                                        _vm._b(
-                                          {
-                                            attrs: {
-                                              pill: "",
-                                              outlined: "",
-                                              small: "",
-                                              color: "light-green accent-3"
-                                            }
-                                          },
-                                          "v-chip",
-                                          _vm.attrs,
-                                          false
-                                        ),
-                                        _vm.on
-                                      ),
+                                      "v-btn",
+                                      {
+                                        attrs: {
+                                          pill: "",
+                                          outlined: "",
+                                          small: "",
+                                          color: "light-green accent-3"
+                                        }
+                                      },
                                       [
                                         _vm._v(
                                           "\n                                Add\n                            "

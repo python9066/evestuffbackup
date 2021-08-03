@@ -31,16 +31,14 @@
                     <template v-slot:[`item.main_name`]="{ item }">
                         <div class=" d-inline-flex align-items-center">
                             <div>
-                                <v-chip
-                                    v-bind="attrs"
-                                    v-on="on"
+                                <v-btn
                                     pill
                                     outlined
                                     small
                                     color="light-green accent-3"
                                 >
                                     Add
-                                </v-chip>
+                                </v-btn>
                             </div>
                         </div>
                     </template>
