@@ -49637,6 +49637,20 @@ var render = function() {
           )
         : _vm._e(),
       _vm._v(" "),
+      _vm.$can("super")
+        ? _c(
+            "v-row",
+            { attrs: { "no-gutters": "", justify: "space-around" } },
+            [
+              _c("UserTable", {
+                key: "chartable" + _vm.startcampaignjoin.id,
+                attrs: { campaign_id: _vm.startcampaignjoin.id }
+              })
+            ],
+            1
+          )
+        : _vm._e(),
+      _vm._v(" "),
       _c(
         "v-row",
         { attrs: { "no-gutters": "", justify: "center" } },
