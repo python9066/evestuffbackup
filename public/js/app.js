@@ -13116,6 +13116,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       } else {
         return false;
       }
+    },
+    checkShowAddRemove: function checkShowAddRemove(item) {
+      if (item.user_name != null && this.charCount != 0 && item.status_id != 4 && item.status_id != 5 && item.status_id != 7 && item.status_id != 8) {
+        return true;
+      } else if (this.$can("campaigns_admin_access")) {
+        return true;
+      } else {
+        return false;
+      }
     }
   },
   computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapState"])(["startcampaignsystems", "user_id"])), Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(["getCampaignUsersByUserIdEntosisFreeCount", "getCampaignUsersByUserIdEntosisFree", "getCampaignUsersByUserIdEntosis"])), {}, {

@@ -236,6 +236,22 @@ export default {
             } else {
                 return false;
             }
+        },
+        checkShowAddRemove(item) {
+            if (
+                item.user_name != null &&
+                this.charCount != 0 &&
+                item.status_id != 4 &&
+                item.status_id != 5 &&
+                item.status_id != 7 &&
+                item.status_id != 8
+            ) {
+                return true;
+            } else if (this.$can("campaigns_admin_access")) {
+                return true;
+            } else {
+                return false;
+            }
         }
     },
 
