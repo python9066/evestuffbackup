@@ -12958,8 +12958,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     clickaddchar: function clickaddchar(item) {
       var data = {
         id: item.id,
-        main_name: this.$state.user_name,
-        site_id: this.$state.user_id
+        main_name: this.$store.state.user_name,
+        site_id: this.$store.state.user_id
       };
       this.$store.dispatch("updateStartCampaignSystem", data);
     }
