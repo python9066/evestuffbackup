@@ -39,7 +39,7 @@
                         <UsersChars :campaign_id="startcampaign.id">
                         </UsersChars>
                         <WatchUserTable
-                            :campaign_id="this.$route.params.id"
+                            :campaign_id="startcampaign.id"
                             v-if="$can('view_campaign_members')"
                         >
                         </WatchUserTable>
