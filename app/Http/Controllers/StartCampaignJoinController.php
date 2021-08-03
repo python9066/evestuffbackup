@@ -40,7 +40,7 @@ class StartCampaignJoinController extends Controller
     public function indexByID($campid)
     {
         $list = [];
-        $pulls = StartCampaignSystems::where('start_campaign_id', $campid)->get();
+        $pulls = StartCampaignJoins::all();
         foreach ($pulls as $pull) {
             $constellations = Constellation::where('id', $pull['constellation_id'])->get();
             $count = $constellations->count();
