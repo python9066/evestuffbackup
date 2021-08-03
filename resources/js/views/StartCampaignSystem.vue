@@ -15,6 +15,74 @@
                 </v-card>
             </v-col>
         </v-row>
+        <v-row no-gutters v-if="$can('super')" justify="space-around">
+            <v-col md="10">
+                <v-card
+                    class="pa-2 d-flex justify-space-between full-width align-center"
+                    tile
+                    :key="'buttoncard' + campaign.id"
+                >
+                    <div class=" d-md-inline-flex">
+                        <v-btn
+                            class="mr-4"
+                            :key="'showchartable' + campaign.id"
+                            color="blue darken-2"
+                            v-show="showTable == false"
+                            @click="showTable = true"
+                            >Show Char table</v-btn
+                        >
+                        <v-btn
+                            class="mr-4"
+                            color="orange darken-2"
+                            :key="'hidechartable' + campaign.id"
+                            v-show="showTable == true"
+                            @click="showTable = false"
+                            >Hide Char table</v-btn
+                        >
+                        <WatchUserTable
+                            :campaign_id="campaign.id"
+                            v-if="$can('view_campaign_members')"
+                        >
+                        </WatchUserTable>
+
+                        <v-btn
+                            v-if="$can('view_campaign_logs')"
+                            @click="showLog = true"
+                            class=" mr-4"
+                            color="blue"
+                        >
+                            Campaign Logs
+                        </v-btn>
+                        <v-btn
+                            v-if="$can('super')"
+                            @click="showNotes = !showNotes"
+                        >
+                            test
+                        </v-btn>
+                        <v-btn
+                            v-if="$can('access_campaigns')"
+                            fab
+                            dark
+                            class="mr-4"
+                            small
+                            @click="sendAddCharMessage()"
+                        >
+                            <v-icon>fas fa-bullhorn</v-icon>
+                        </v-btn>
+                        <v-btn
+                            v-if="$can('view_campaign_members')"
+                            dark
+                            color="red"
+                            class="mr-4"
+                            @click="finishCampaign()"
+                        >
+                            Campaign Over
+                        </v-btn>
+                    </div>
+                    <v-spacer></v-spacer>
+                </v-card>
+            </v-col>
+        </v-row>
         <v-row no-gutters justify="center">
             <StartSystemTable
                 class=" px-5 pt-5"
