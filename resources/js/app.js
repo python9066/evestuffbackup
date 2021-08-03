@@ -91,6 +91,7 @@ Vue.component('StartCampaignAdd', require('./components/startcampaign/StartCampa
 Vue.component('StartSystemItemList', require('./components/startcampaign/StartSystemItemList.vue').default);
 Vue.component('StartTitleBar', require('./components/startcampaign/StartTitleBar.vue').default);
 Vue.component('StartSystemTable', require('./components/startcampaign/StartSystemTable.vue').default);
+Vue.component('StartCampaignMessage', require('./components/random/StartCampaignMessage').default);
 
 
 
