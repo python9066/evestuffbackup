@@ -23571,18 +23571,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -49540,7 +49528,6 @@ var render = function() {
                   _c(
                     "v-card",
                     {
-                      key: "buttoncard" + _vm.startcampaign.id,
                       staticClass:
                         "pa-2 d-flex justify-space-between full-width align-center",
                       attrs: { tile: "" }
@@ -49553,22 +49540,9 @@ var render = function() {
                           _c(
                             "v-btn",
                             {
-                              directives: [
-                                {
-                                  name: "show",
-                                  rawName: "v-show",
-                                  value: _vm.showTable == false,
-                                  expression: "showTable == false"
-                                }
-                              ],
                               key: "showchartable" + _vm.startcampaign.id,
                               staticClass: "mr-4",
-                              attrs: { color: "blue darken-2" },
-                              on: {
-                                click: function($event) {
-                                  _vm.showTable = true
-                                }
-                              }
+                              attrs: { color: "blue darken-2" }
                             },
                             [_vm._v("Show Char table")]
                           ),
@@ -49576,22 +49550,9 @@ var render = function() {
                           _c(
                             "v-btn",
                             {
-                              directives: [
-                                {
-                                  name: "show",
-                                  rawName: "v-show",
-                                  value: _vm.showTable == true,
-                                  expression: "showTable == true"
-                                }
-                              ],
                               key: "hidechartable" + _vm.startcampaign.id,
                               staticClass: "mr-4",
-                              attrs: { color: "orange darken-2" },
-                              on: {
-                                click: function($event) {
-                                  _vm.showTable = false
-                                }
-                              }
+                              attrs: { color: "orange darken-2" }
                             },
                             [_vm._v("Hide Char table")]
                           ),
@@ -49607,12 +49568,7 @@ var render = function() {
                                 "v-btn",
                                 {
                                   staticClass: " mr-4",
-                                  attrs: { color: "blue" },
-                                  on: {
-                                    click: function($event) {
-                                      _vm.showLog = true
-                                    }
-                                  }
+                                  attrs: { color: "blue" }
                                 },
                                 [
                                   _vm._v(
@@ -49623,21 +49579,11 @@ var render = function() {
                             : _vm._e(),
                           _vm._v(" "),
                           _vm.$can("super")
-                            ? _c(
-                                "v-btn",
-                                {
-                                  on: {
-                                    click: function($event) {
-                                      _vm.showNotes = !_vm.showNotes
-                                    }
-                                  }
-                                },
-                                [
-                                  _vm._v(
-                                    "\n                        test\n                    "
-                                  )
-                                ]
-                              )
+                            ? _c("v-btn", [
+                                _vm._v(
+                                  "\n                        test\n                    "
+                                )
+                              ])
                             : _vm._e(),
                           _vm._v(" "),
                           _vm.$can("access_campaigns")
@@ -49645,12 +49591,7 @@ var render = function() {
                                 "v-btn",
                                 {
                                   staticClass: "mr-4",
-                                  attrs: { fab: "", dark: "", small: "" },
-                                  on: {
-                                    click: function($event) {
-                                      return _vm.sendAddCharMessage()
-                                    }
-                                  }
+                                  attrs: { fab: "", dark: "", small: "" }
                                 },
                                 [_c("v-icon", [_vm._v("fas fa-bullhorn")])],
                                 1
@@ -49658,23 +49599,10 @@ var render = function() {
                             : _vm._e(),
                           _vm._v(" "),
                           _vm.$can("view_campaign_members")
-                            ? _c(
-                                "v-btn",
-                                {
-                                  staticClass: "mr-4",
-                                  attrs: { dark: "", color: "red" },
-                                  on: {
-                                    click: function($event) {
-                                      return _vm.finishCampaign()
-                                    }
-                                  }
-                                },
-                                [
-                                  _vm._v(
-                                    "\n                        Campaign Over\n                    "
-                                  )
-                                ]
-                              )
+                            ? _c("v-btn", {
+                                staticClass: "mr-4",
+                                attrs: { dark: "", color: "red" }
+                              })
                             : _vm._e()
                         ],
                         1

@@ -20,23 +20,18 @@
                 <v-card
                     class="pa-2 d-flex justify-space-between full-width align-center"
                     tile
-                    :key="'buttoncard' + startcampaign.id"
                 >
                     <div class=" d-md-inline-flex">
                         <v-btn
                             class="mr-4"
                             :key="'showchartable' + startcampaign.id"
                             color="blue darken-2"
-                            v-show="showTable == false"
-                            @click="showTable = true"
                             >Show Char table</v-btn
                         >
                         <v-btn
                             class="mr-4"
                             color="orange darken-2"
                             :key="'hidechartable' + startcampaign.id"
-                            v-show="showTable == true"
-                            @click="showTable = false"
                             >Hide Char table</v-btn
                         >
                         <WatchUserTable
@@ -47,16 +42,12 @@
 
                         <v-btn
                             v-if="$can('view_campaign_logs')"
-                            @click="showLog = true"
                             class=" mr-4"
                             color="blue"
                         >
                             Campaign Logs
                         </v-btn>
-                        <v-btn
-                            v-if="$can('super')"
-                            @click="showNotes = !showNotes"
-                        >
+                        <v-btn v-if="$can('super')">
                             test
                         </v-btn>
                         <v-btn
@@ -65,7 +56,6 @@
                             dark
                             class="mr-4"
                             small
-                            @click="sendAddCharMessage()"
                         >
                             <v-icon>fas fa-bullhorn</v-icon>
                         </v-btn>
@@ -74,9 +64,7 @@
                             dark
                             color="red"
                             class="mr-4"
-                            @click="finishCampaign()"
                         >
-                            Campaign Over
                         </v-btn>
                     </div>
                     <v-spacer></v-spacer>
