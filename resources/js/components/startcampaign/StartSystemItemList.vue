@@ -3,7 +3,7 @@
         <span v-if="systemcount">
             <span v-for="(system, index) in systems" :key="index" class=" pr-2">
                 <v-chip pill color="Red" dark>
-                    <span> {{ system.text }}</span>
+                    <span> {{ system.constellation_name }}</span>
                 </v-chip>
             </span>
         </span>

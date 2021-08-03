@@ -38293,7 +38293,7 @@ var render = function() {
               { key: index, staticClass: " pr-2" },
               [
                 _c("v-chip", { attrs: { pill: "", color: "Red", dark: "" } }, [
-                  _c("span", [_vm._v(" " + _vm._s(system.text))])
+                  _c("span", [_vm._v(" " + _vm._s(system.constellation_name))])
                 ])
               ],
               1
