@@ -1,5 +1,13 @@
 <template>
-    <div>THIS IS A START CAMPAIGN!!!!!!!</div>
+    <div>
+        <span v-for="(sCampaign, index) in sCampaigns" :key="index">
+            <TitleBar
+                :sCampaignID="sCampaign.campaign_id"
+                :sCampaign="sCampaigns"
+            >
+            </TitleBar>
+        </span>
+    </div>
 </template>
 
 <script>
@@ -11,13 +19,14 @@ export default {
         return {};
     },
 
-    async created() {},
+    async mounted() {},
 
-    methods: {
-        close() {},
-
-        open() {}
+    async created() {
+        this.campaignId = this.$route.params.id;
+        this.campaign_id = parseInt(this.$route.params.id);
     },
+
+    methods: {},
 
     computed: {},
 
