@@ -13074,23 +13074,22 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var _this3 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
-        var data;
+        var userId;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
           while (1) {
             switch (_context4.prev = _context4.next) {
               case 0:
-                data = {
-                  id: item.id,
-                  main_name: null,
-                  site_id: null
-                };
+                userId = item.user_id;
+                item.user_id = null;
+                item.user_ship = null;
+                item.user_link = null;
 
-                _this3.$store.dispatch("updateStartCampaignSystem", data);
+                _this3.$store.dispatch("updateStartCampaignSystem", item);
 
-                _context4.next = 4;
+                _context4.next = 7;
                 return axios({
                   method: "delete",
-                  url: "/api/startcampaignsystemremovechar/" + item.id + "/" + item.user_id + "/" + _this3.data.start_campaign_id,
+                  url: "/api/startcampaignsystemremovechar/" + item.id + "/" + userId + "/" + _this3.data.start_campaign_id,
                   headers: {
                     Authorization: "Bearer " + _this3.$store.state.token,
                     Accept: "application/json",
@@ -13098,7 +13097,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   }
                 });
 
-              case 4:
+              case 7:
               case "end":
                 return _context4.stop();
             }
@@ -39194,7 +39193,7 @@ var render = function() {
                                                   click: function($event) {
                                                     ;(item.user_name = null),
                                                       (item.main_name = null),
-                                                      _vm.removeCharNode(item)
+                                                      _vm.clickremovechar(item)
                                                   }
                                                 }
                                               },

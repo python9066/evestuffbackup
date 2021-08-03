@@ -97,7 +97,7 @@
                                     @click="
                                         (item.user_name = null),
                                             (item.main_name = null),
-                                            removeCharNode(item)
+                                            clickremovechar(item)
                                     "
                                     color="orange darken-3"
                                 >
@@ -195,12 +195,11 @@ export default {
         },
 
         async clickremovechar(item) {
-            var data = {
-                id: item.id,
-                main_name: null,
-                site_id: null
-            };
-            this.$store.dispatch("updateStartCampaignSystem", data);
+            var userId = item.user_id;
+            item.user_id = null;
+            item.user_ship = null;
+            item.user_link = null;
+            this.$store.dispatch("updateStartCampaignSystem", item);
 
             await axios({
                 method: "delete",
@@ -208,7 +207,7 @@ export default {
                     "/api/startcampaignsystemremovechar/" +
                     item.id +
                     "/" +
-                    item.user_id +
+                    userId +
                     "/" +
                     this.data.start_campaign_id,
                 headers: {
