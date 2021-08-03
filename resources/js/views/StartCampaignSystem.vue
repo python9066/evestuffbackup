@@ -1,10 +1,5 @@
 <template>
-    <div>
-        <span v-for="(startCampaign, index) in startCampaigns" :key="index">
-            <StartTitleBar :startName="startCampaign.constellation_name">
-            </StartTitleBar>
-        </span>
-    </div>
+    <div>things</div>
 </template>
 
 <script>
@@ -13,45 +8,16 @@ import moment from "moment";
 export default {
     props: {},
     data() {
-        return {
-            campaignId: 0,
-            campaign_id: ""
-        };
+        return {};
     },
 
-    async mounted() {
-        // await this.$store.dispatch("getCampaigns");
-        // await this.$store.dispatch("getMultiCampaigns");
-        await this.$store.dispatch(
-            "getStartCampaignJoinDataByCampaign",
-            this.$route.params.id
-        );
-    },
+    async mounted() {},
 
-    async created() {
-        this.campaignId = this.$route.params.id;
-        this.campaign_id = parseInt(this.$route.params.id);
-    },
+    async created() {},
 
     methods: {},
 
-    computed: {
-        ...mapGetters([
-            "getStartCampaignById",
-            "getActiveCampaigns",
-            "getCampaignsCount",
-            "getCampaignUsersByUserId",
-            "getCampaignUsersByUserIdCount",
-            "getTotalNodeCountByMultiCampaign",
-            "getHackingNodeCountByMultiCampaign",
-            "getRedHackingNodeCountByMultiCampaign",
-            "getMultiCampaignName"
-        ]),
-
-        startCampaigns() {
-            return this.getStartCampaignById(this.campaignId);
-        }
-    },
+    computed: {},
 
     beforeDestroy() {}
 };
