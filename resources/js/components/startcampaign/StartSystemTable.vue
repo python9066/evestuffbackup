@@ -53,7 +53,6 @@ export default {
             campaign_id: "",
 
             headers: [
-                { text: "Region", value: "region_name" },
                 { text: "System", value: "system_name" },
 
                 {
