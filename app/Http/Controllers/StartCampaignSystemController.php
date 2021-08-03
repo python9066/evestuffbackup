@@ -51,14 +51,14 @@ class StartCampaignSystemController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id, $campid)
     {
         $count = CampaignUser::where(['site_id' => $request->user_id])->count();
         if ($count != null) {
             CampaignUser::first('site_id', $request->user_id)->update(['campaign_id' => $id, 'campaign_system_id' => $request->sys]);
             $char = CampaignUser::where('site_id', $request->user_id)->first();
         } else {
-            $char =  CampaignUser::create(['site_id' => Auth::id(), 'campaign_id' => $id, 'campaign_system_id' => $request->sys, 'char_name' => Auth::user()])->get();
+            $char =  CampaignUser::create(['site_id' => Auth::id(), 'campaign_id' => $campid, 'campaign_system_id' => $request->sys, 'char_name' => Auth::user()])->get();
         }
         StartCampaignSystems::find($id)->update(['campaign_user_id' => $char->id]);
 
@@ -67,21 +67,21 @@ class StartCampaignSystemController extends Controller
         $flag = null;
         $flag = collect([
             'message' => $message,
-            'id' => $id
+            'id' => $campid
         ]);
         broadcast(new StartCampaignSystemUpdate($flag))->toOthers();
     }
 
-    public function removeChar($id, $char)
+    public function removeChar($id, $char, $campid)
     {
         CampaignUser::find($char)->update(['campaign_id' => null, 'campaign_system_id' => null]);
         StartCampaignSystems::find($id)->update(['campaign_user_id' => null]);
 
-        $message = StartCampaignSystemRecords::where('id',)->first();
+        $message = StartCampaignSystemRecords::where('id', $id)->first();
         $flag = null;
         $flag = collect([
             'message' => $message,
-            'id' => $id
+            'id' => $campid
         ]);
         broadcast(new StartCampaignSystemUpdate($flag))->toOthers();
     }

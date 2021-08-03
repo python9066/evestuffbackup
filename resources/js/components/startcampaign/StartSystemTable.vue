@@ -117,7 +117,11 @@ export default {
 
             await axios({
                 method: "put",
-                url: "/api/startcampaignsystemupdate/" + item.id,
+                url:
+                    "/api/startcampaignsystemupdate/" +
+                    item.id +
+                    "/" +
+                    data.start_campaign_id,
                 data: request,
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
@@ -141,7 +145,9 @@ export default {
                     "/api/startcampaignsystemremovechar/" +
                     item.id +
                     "/" +
-                    item.user_id,
+                    item.user_id +
+                    "/" +
+                    data.start_campaign_id,
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
                     Accept: "application/json",
