@@ -50668,7 +50668,7 @@ var render = function() {
                             [_vm._v("Hide Char table")]
                           ),
                           _vm._v(" "),
-                          _c("StartUsersChars", {
+                          _c("UsersChars", {
                             attrs: { campaign_id: this.campaign_id }
                           }),
                           _vm._v(" "),
