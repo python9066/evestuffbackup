@@ -167,12 +167,16 @@ export default {
             console.log(addChar);
             var data = {
                 id: item.id,
-                main_name: this.$store.state.user_name,
-                site_id: this.$store.state.user_id
+                user_id: addChar.id,
+                site_id: this.$store.state.user_id,
+                user_name: addChar.char_name,
+                main_name: addChar.main_name,
+                user_ship: addChar.ship,
+                user_link: addChar.link
             };
 
             var request = {
-                user_id: this.$store.state.user_id,
+                user_id: addChar.id,
                 sys: item.system_id
             };
 

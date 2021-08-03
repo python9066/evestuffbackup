@@ -55,10 +55,8 @@ class StartCampaignSystemController extends Controller
     {
 
 
-        CampaignUser::first('site_id', $request->user_id)->update(['campaign_id' => $id, 'campaign_system_id' => $request->sys]);
-        $char = CampaignUser::where('site_id', $request->user_id)->first();
-
-        StartCampaignSystems::find($id)->update(['campaign_user_id' => $char->id]);
+        CampaignUser::where('id', $request->user_id)->update(['campaign_system_id' => $request->sys]);
+        StartCampaignSystems::find($id)->update(['campaign_user_id' => $request->user_id]);
 
 
         $message = StartCampaignSystemRecords::where('id', $id)->first();

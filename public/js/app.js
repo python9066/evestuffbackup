@@ -13040,11 +13040,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 console.log(addChar);
                 data = {
                   id: item.id,
-                  main_name: _this2.$store.state.user_name,
-                  site_id: _this2.$store.state.user_id
+                  user_id: addChar.id,
+                  site_id: _this2.$store.state.user_id,
+                  user_name: addChar.char_name,
+                  main_name: addChar.main_name,
+                  user_ship: addChar.ship,
+                  user_link: addChar.link
                 };
                 request = {
-                  user_id: _this2.$store.state.user_id,
+                  user_id: addChar.id,
                   sys: item.system_id
                 };
 
