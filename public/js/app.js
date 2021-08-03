@@ -12509,6 +12509,7 @@ function sleep(ms) {
   created: function created() {
     this.$store.dispatch("getConstellationList");
     this.$store.dispatch("getStartCampaigns");
+    this.loadStartCampaignJoinData();
   },
   mounted: function mounted() {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
@@ -12526,6 +12527,9 @@ function sleep(ms) {
   methods: {
     updatemultiCampaginAdd: function updatemultiCampaginAdd() {
       this.overlay = !this.overlay;
+    },
+    loadStartCampaignJoinData: function loadStartCampaignJoinData() {
+      this.$store.dispatch("getStartCampaignJoinData");
     }
   },
   computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapState"])(["startcampaigns"])), {}, {

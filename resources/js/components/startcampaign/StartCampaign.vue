@@ -95,12 +95,16 @@ export default {
     created() {
         this.$store.dispatch("getConstellationList");
         this.$store.dispatch("getStartCampaigns");
+        this.loadStartCampaignJoinData();
     },
 
     async mounted() {},
     methods: {
         updatemultiCampaginAdd() {
             this.overlay = !this.overlay;
+        },
+        loadStartCampaignJoinData() {
+            this.$store.dispatch("getStartCampaignJoinData");
         }
     },
     computed: {
