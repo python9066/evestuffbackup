@@ -12939,7 +12939,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var _this2 = this;
 
       return this.startcampaignsystems.filter(function (s) {
-        return s.constellation_id == _this2.data.constellation_id;
+        return s.constellation_id == _this2.data.constellation_id && s.start_campaign_id == _this2.data.start_campaign_id;
       });
     }
   }),

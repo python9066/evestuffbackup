@@ -81,7 +81,9 @@ export default {
 
         filteredItems() {
             return this.startcampaignsystems.filter(
-                s => s.constellation_id == this.data.constellation_id
+                s =>
+                    s.constellation_id == this.data.constellation_id &&
+                    s.start_campaign_id == this.data.start_campaign_id
             );
         }
     },
