@@ -12880,7 +12880,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
-    data: Object
+    data: Object,
+    size: Number
   },
   data: function data() {
     return {
@@ -23372,6 +23373,7 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
+//
 //
 //
 //
@@ -49274,7 +49276,7 @@ var render = function() {
           return _c("StartSystemTable", {
             key: startcampaignjoin.id,
             staticClass: " px-5 pt-5",
-            attrs: { data: startcampaignjoin, index: index },
+            attrs: { data: startcampaignjoin, size: _vm.size, index: index },
             on: {
               openSolaLog: function($event) {
                 return _vm.openSolaLog($event)

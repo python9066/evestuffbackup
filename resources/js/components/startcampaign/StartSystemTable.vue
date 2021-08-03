@@ -42,7 +42,8 @@ import { mapState, mapGetters } from "vuex";
 import moment from "moment";
 export default {
     props: {
-        data: Object
+        data: Object,
+        size: Number
     },
     data() {
         return {

@@ -21,6 +21,7 @@
                 class=" px-5 pt-5"
                 v-for="(startcampaignjoin, index) in startcampaignjoins"
                 :data="startcampaignjoin"
+                :size="size"
                 :index="index"
                 :key="startcampaignjoin.id"
                 @openSolaLog="openSolaLog($event)"
