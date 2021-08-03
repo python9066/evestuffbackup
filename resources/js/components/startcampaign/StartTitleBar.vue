@@ -243,15 +243,15 @@ function sleep(ms) {
 }
 export default {
     props: {
-        sCampaignID: Number
+        startCampaignID: Number
     },
     data() {
         return {};
     },
 
     async created() {
-        this.campaignId = this.sCampaignID;
-        Echo.private("campaignsystem." + this.sCampaignID).listen(
+        this.campaignId = this.startCampaignID;
+        Echo.private("campaignsystem." + this.startCampaignID).listen(
             "CampaignSystemUpdate",
             e => {
                 if (e.flag.flag == 4) {
@@ -280,7 +280,7 @@ export default {
 
             await axios({
                 method: "put", //you can set what request you want to be
-                url: "/api/campaigns/" + this.sCampaignID,
+                url: "/api/campaigns/" + this.startCampaignID,
                 data: request,
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
@@ -309,11 +309,12 @@ export default {
         ]),
 
         campaign() {
-            return this.getCampaignById(this.sCampaignID);
+            return this.getCampaignById(this.startCampaignID);
         },
         barColor() {
             var d =
-                this.getCampaignById(this.sCampaignID).defenders_score * 100;
+                this.getCampaignById(this.startCampaignID).defenders_score *
+                100;
             if (d > 50) {
                 return "blue darken-4";
             }
@@ -323,9 +324,11 @@ export default {
 
         barScoure() {
             var d =
-                this.getCampaignById(this.sCampaignID).defenders_score * 100;
+                this.getCampaignById(this.startCampaignID).defenders_score *
+                100;
             var a =
-                this.getCampaignById(this.sCampaignID).attackers_score * 100;
+                this.getCampaignById(this.startCampaignID).attackers_score *
+                100;
 
             if (d > 50) {
                 return d;
@@ -335,7 +338,7 @@ export default {
         },
 
         barActive() {
-            if (this.getCampaignById(this.sCampaignID).status_id > 1) {
+            if (this.getCampaignById(this.startCampaignID).status_id > 1) {
                 return true;
             }
             return false;
@@ -343,9 +346,11 @@ export default {
 
         barBgcolor() {
             var d =
-                this.getCampaignById(this.sCampaignID).defenders_score * 100;
+                this.getCampaignById(this.startCampaignID).defenders_score *
+                100;
             var a =
-                this.getCampaignById(this.sCampaignID).attackers_score * 100;
+                this.getCampaignById(this.startCampaignID).attackers_score *
+                100;
 
             if (d > 50) {
                 return "red darken-4";
@@ -355,20 +360,21 @@ export default {
         },
 
         nodeCountAll() {
-            return this.getTotalNodeCountByCampaign(this.sCampaignID);
+            return this.getTotalNodeCountByCampaign(this.startCampaignID);
         },
 
         nodeCountHackingCountAll() {
-            return this.getHackingNodeCountByCampaign(this.sCampaignID);
+            return this.getHackingNodeCountByCampaign(this.startCampaignID);
         },
 
         nodeRedCountHackingCountAll() {
-            return this.getRedHackingNodeCountByCampaign(this.sCampaignID);
+            return this.getRedHackingNodeCountByCampaign(this.startCampaignID);
         },
 
         barReverse() {
             var d =
-                this.getCampaignById(this.sCampaignID).defenders_score * 100;
+                this.getCampaignById(this.startCampaignID).defenders_score *
+                100;
             if (d > 50) {
                 return false;
             }
