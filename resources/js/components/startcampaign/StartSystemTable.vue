@@ -29,7 +29,7 @@
                     </template>
 
                     <template v-slot:[`item.main_name`]="{ item }">
-                        <div class=" d-inline-flex align-items-center">
+                        <!-- <div class=" d-inline-flex align-items-center">
                             <div v-if="item.site_id != null">
                                 {{ item.main_name }}
                                 <v-icon
@@ -52,6 +52,65 @@
                                     Add
                                 </v-btn>
                             </div>
+                        </div> -->
+
+                        <div class=" d-inline-flex align-items-center">
+                            <v-menu offset-y v-if="checkShowAdd(item)">
+                                <template v-slot:activator="{ on, attrs }">
+                                    <div>
+                                        <v-chip
+                                            v-bind="attrs"
+                                            v-on="on"
+                                            pill
+                                            outlined
+                                            small
+                                            color="light-green accent-3"
+                                        >
+                                            Add
+                                        </v-chip>
+                                    </div>
+                                </template>
+
+                                <v-list>
+                                    <v-list-item
+                                        v-for="(list, index) in charsFree"
+                                        :key="index"
+                                        @click="
+                                            (charAddNode = list.id),
+                                                clickCharAddNode(item)
+                                        "
+                                    >
+                                        <v-list-item-title>{{
+                                            list.char_name
+                                        }}</v-list-item-title>
+                                    </v-list-item>
+                                </v-list>
+                            </v-menu>
+                            <div
+                                v-else-if="item.user_name != null"
+                                class=" d-inline-flex align-items-center"
+                            >
+                                {{ item.user_name }}
+                                <v-btn
+                                    v-if="checkShowAddRemove(item)"
+                                    icon
+                                    @click="
+                                        (item.user_name = null),
+                                            (item.main_name = null),
+                                            removeCharNode(item)
+                                    "
+                                    color="orange darken-3"
+                                >
+                                    <v-icon small
+                                        >fas fa-trash-alt</v-icon
+                                    ></v-btn
+                                >
+                                <NodeExtraChar :item="item"></NodeExtraChar>
+                            </div>
+                            <AdminHackUserTable
+                                v-if="$can('campaigns_admin_access')"
+                                :nodeItem="item"
+                            ></AdminHackUserTable>
                         </div>
                     </template>
 
@@ -154,17 +213,40 @@ export default {
                     "Content-Type": "application/json"
                 }
             });
+        },
+
+        checkShowAdd(item) {
+            if (
+                item.user_name == null &&
+                this.freecharCount != 0 &&
+                item.status_id != 4 &&
+                item.status_id != 5 &&
+                item.status_id != 7 &&
+                item.status_id != 8
+            ) {
+                return true;
+            } else {
+                return false;
+            }
         }
     },
 
     computed: {
         ...mapState(["startcampaignsystems", "user_id"]),
 
+        ...mapGetters(["getCampaignUsersByUserIdEntosisFreeCount"]),
+
         filteredItems() {
             return this.startcampaignsystems.filter(
                 s =>
                     s.constellation_id == this.data.constellation_id &&
                     s.start_campaign_id == this.data.start_campaign_id
+            );
+        },
+
+        freecharCount() {
+            return this.getCampaignUsersByUserIdEntosisFreeCount(
+                this.$store.state.user_id
             );
         }
     },

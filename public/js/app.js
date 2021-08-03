@@ -12903,6 +12903,65 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -13040,15 +13099,25 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           }
         }, _callee4);
       }))();
+    },
+    checkShowAdd: function checkShowAdd(item) {
+      if (item.user_name == null && this.freecharCount != 0 && item.status_id != 4 && item.status_id != 5 && item.status_id != 7 && item.status_id != 8) {
+        return true;
+      } else {
+        return false;
+      }
     }
   },
-  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapState"])(["startcampaignsystems", "user_id"])), {}, {
+  computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapState"])(["startcampaignsystems", "user_id"])), Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(["getCampaignUsersByUserIdEntosisFreeCount"])), {}, {
     filteredItems: function filteredItems() {
       var _this4 = this;
 
       return this.startcampaignsystems.filter(function (s) {
         return s.constellation_id == _this4.data.constellation_id && s.start_campaign_id == _this4.data.start_campaign_id;
       });
+    },
+    freecharCount: function freecharCount() {
+      return this.getCampaignUsersByUserIdEntosisFreeCount(this.$store.state.user_id);
     }
   }),
   beforeDestroy: function beforeDestroy() {}
@@ -38990,66 +39059,146 @@ var render = function() {
                                 staticClass: " d-inline-flex align-items-center"
                               },
                               [
-                                item.site_id != null
+                                _vm.checkShowAdd(item)
+                                  ? _c(
+                                      "v-menu",
+                                      {
+                                        attrs: { "offset-y": "" },
+                                        scopedSlots: _vm._u(
+                                          [
+                                            {
+                                              key: "activator",
+                                              fn: function(ref) {
+                                                var on = ref.on
+                                                var attrs = ref.attrs
+                                                return [
+                                                  _c(
+                                                    "div",
+                                                    [
+                                                      _c(
+                                                        "v-chip",
+                                                        _vm._g(
+                                                          _vm._b(
+                                                            {
+                                                              attrs: {
+                                                                pill: "",
+                                                                outlined: "",
+                                                                small: "",
+                                                                color:
+                                                                  "light-green accent-3"
+                                                              }
+                                                            },
+                                                            "v-chip",
+                                                            attrs,
+                                                            false
+                                                          ),
+                                                          on
+                                                        ),
+                                                        [
+                                                          _vm._v(
+                                                            "\n                                        Add\n                                    "
+                                                          )
+                                                        ]
+                                                      )
+                                                    ],
+                                                    1
+                                                  )
+                                                ]
+                                              }
+                                            }
+                                          ],
+                                          null,
+                                          true
+                                        )
+                                      },
+                                      [
+                                        _vm._v(" "),
+                                        _c(
+                                          "v-list",
+                                          _vm._l(_vm.charsFree, function(
+                                            list,
+                                            index
+                                          ) {
+                                            return _c(
+                                              "v-list-item",
+                                              {
+                                                key: index,
+                                                on: {
+                                                  click: function($event) {
+                                                    ;(_vm.charAddNode =
+                                                      list.id),
+                                                      _vm.clickCharAddNode(item)
+                                                  }
+                                                }
+                                              },
+                                              [
+                                                _c("v-list-item-title", [
+                                                  _vm._v(_vm._s(list.char_name))
+                                                ])
+                                              ],
+                                              1
+                                            )
+                                          }),
+                                          1
+                                        )
+                                      ],
+                                      1
+                                    )
+                                  : item.user_name != null
                                   ? _c(
                                       "div",
+                                      {
+                                        staticClass:
+                                          " d-inline-flex align-items-center"
+                                      },
                                       [
                                         _vm._v(
                                           "\n                            " +
-                                            _vm._s(item.main_name) +
+                                            _vm._s(item.user_name) +
                                             "\n                            "
                                         ),
-                                        _c(
-                                          "v-icon",
-                                          {
-                                            attrs: {
-                                              color: "orange darken-3",
-                                              small: ""
-                                            },
-                                            on: {
-                                              click: function($event) {
-                                                return _vm.clickremovechar(item)
-                                              }
-                                            }
-                                          },
-                                          [
-                                            _vm._v(
-                                              "\n                                fas fa-trash-alt\n                            "
+                                        _vm.checkShowAddRemove(item)
+                                          ? _c(
+                                              "v-btn",
+                                              {
+                                                attrs: {
+                                                  icon: "",
+                                                  color: "orange darken-3"
+                                                },
+                                                on: {
+                                                  click: function($event) {
+                                                    ;(item.user_name = null),
+                                                      (item.main_name = null),
+                                                      _vm.removeCharNode(item)
+                                                  }
+                                                }
+                                              },
+                                              [
+                                                _c(
+                                                  "v-icon",
+                                                  { attrs: { small: "" } },
+                                                  [_vm._v("fas fa-trash-alt")]
+                                                )
+                                              ],
+                                              1
                                             )
-                                          ]
-                                        )
+                                          : _vm._e(),
+                                        _vm._v(" "),
+                                        _c("NodeExtraChar", {
+                                          attrs: { item: item }
+                                        })
                                       ],
                                       1
                                     )
-                                  : _c(
-                                      "div",
-                                      [
-                                        _c(
-                                          "v-btn",
-                                          {
-                                            attrs: {
-                                              pill: "",
-                                              outlined: "",
-                                              rounded: "",
-                                              small: "",
-                                              color: "light-green accent-3"
-                                            },
-                                            on: {
-                                              click: function($event) {
-                                                return _vm.clickaddchar(item)
-                                              }
-                                            }
-                                          },
-                                          [
-                                            _vm._v(
-                                              "\n                                Add\n                            "
-                                            )
-                                          ]
-                                        )
-                                      ],
-                                      1
-                                    )
-                              ]
+                                  : _vm._e(),
+                                _vm._v(" "),
+                                _vm.$can("campaigns_admin_access")
+                                  ? _c("AdminHackUserTable", {
+                                      attrs: { nodeItem: item }
+                                    })
+                                  : _vm._e()
+                              ],
+                              1
                             )
                           ]
                         }
