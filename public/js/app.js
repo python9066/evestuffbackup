@@ -50669,7 +50669,7 @@ var render = function() {
                           ),
                           _vm._v(" "),
                           _c("StartUsersChars", {
-                            attrs: { campaign_id: _vm.startcampaign.id }
+                            attrs: { campaign_id: this.campaign_id }
                           }),
                           _vm._v(" "),
                           _vm.$can("view_campaign_members")
