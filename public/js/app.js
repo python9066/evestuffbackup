@@ -12916,7 +12916,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       campaign_id: "",
       headers: [{
         text: "System",
-        value: "system_name"
+        value: "system_name",
+        width: "10%"
       }, {
         text: "Pilot",
         value: "main_name",

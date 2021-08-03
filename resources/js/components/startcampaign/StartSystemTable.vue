@@ -78,7 +78,7 @@ export default {
             campaign_id: "",
 
             headers: [
-                { text: "System", value: "system_name" },
+                { text: "System", value: "system_name", width: "10%" },
                 { text: "Pilot", value: "main_name", align: "start" },
 
                 {
