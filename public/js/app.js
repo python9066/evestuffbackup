@@ -23573,10 +23573,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -49641,13 +49637,7 @@ var render = function() {
         ? _c(
             "v-row",
             { attrs: { "no-gutters": "", justify: "space-around" } },
-            [
-              _c("UserTable", {
-                key: "chartable" + _vm.startcampaignjoin.id,
-                attrs: { campaign_id: _vm.startcampaignjoin.id }
-              })
-            ],
-            1
+            [_vm._v("\n        table here\n    ")]
           )
         : _vm._e(),
       _vm._v(" "),

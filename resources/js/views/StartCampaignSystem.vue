@@ -70,11 +70,7 @@
         </v-row>
 
         <v-row no-gutters justify="space-around" v-if="$can('super')">
-            <UserTable
-                :key="'chartable' + startcampaignjoin.id"
-                :campaign_id="startcampaignjoin.id"
-            >
-            </UserTable>
+            table here
         </v-row>
 
         <v-row no-gutters justify="center">
