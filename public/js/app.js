@@ -49568,7 +49568,7 @@ var render = function() {
                               attrs: { color: "blue darken-2" },
                               on: {
                                 click: function($event) {
-                                  this.showTable != this.showTable
+                                  this.showTable = true
                                 }
                               }
                             },
@@ -49590,7 +49590,7 @@ var render = function() {
                               attrs: { color: "orange darken-2" },
                               on: {
                                 click: function($event) {
-                                  this.showTable != this.showTable
+                                  this.showTable = false
                                 }
                               }
                             },
