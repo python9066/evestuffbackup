@@ -162,34 +162,36 @@ export default {
 
     methods: {
         async clickaddchar(item) {
-            console.log(item + this.charAddNode);
-            // var data = {
-            //     id: item.id,
-            //     main_name: this.$store.state.user_name,
-            //     site_id: this.$store.state.user_id
-            // };
+            var addChar = this.chars.find(user => user.id == this.charAddNode);
+            console.log(item);
+            console.log(addChar);
+            var data = {
+                id: item.id,
+                main_name: this.$store.state.user_name,
+                site_id: this.$store.state.user_id
+            };
 
-            // var request = {
-            //     user_id: this.$store.state.user_id,
-            //     sys: item.system_id
-            // };
+            var request = {
+                user_id: this.$store.state.user_id,
+                sys: item.system_id
+            };
 
-            // this.$store.dispatch("updateStartCampaignSystem", data);
+            this.$store.dispatch("updateStartCampaignSystem", data);
 
-            // await axios({
-            //     method: "put",
-            //     url:
-            //         "/api/startcampaignsystemupdate/" +
-            //         item.id +
-            //         "/" +
-            //         this.data.start_campaign_id,
-            //     data: request,
-            //     headers: {
-            //         Authorization: "Bearer " + this.$store.state.token,
-            //         Accept: "application/json",
-            //         "Content-Type": "application/json"
-            //     }
-            // });
+            await axios({
+                method: "put",
+                url:
+                    "/api/startcampaignsystemupdate/" +
+                    item.id +
+                    "/" +
+                    this.data.start_campaign_id,
+                data: request,
+                headers: {
+                    Authorization: "Bearer " + this.$store.state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                }
+            });
         },
 
         async clickremovechar(item) {

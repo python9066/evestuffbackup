@@ -13028,36 +13028,41 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var _this2 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
+        var addChar, data, request;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
           while (1) {
             switch (_context3.prev = _context3.next) {
               case 0:
-                console.log(item + _this2.charAddNode); // var data = {
-                //     id: item.id,
-                //     main_name: this.$store.state.user_name,
-                //     site_id: this.$store.state.user_id
-                // };
-                // var request = {
-                //     user_id: this.$store.state.user_id,
-                //     sys: item.system_id
-                // };
-                // this.$store.dispatch("updateStartCampaignSystem", data);
-                // await axios({
-                //     method: "put",
-                //     url:
-                //         "/api/startcampaignsystemupdate/" +
-                //         item.id +
-                //         "/" +
-                //         this.data.start_campaign_id,
-                //     data: request,
-                //     headers: {
-                //         Authorization: "Bearer " + this.$store.state.token,
-                //         Accept: "application/json",
-                //         "Content-Type": "application/json"
-                //     }
-                // });
+                addChar = _this2.chars.find(function (user) {
+                  return user.id == _this2.charAddNode;
+                });
+                console.log(item);
+                console.log(addChar);
+                data = {
+                  id: item.id,
+                  main_name: _this2.$store.state.user_name,
+                  site_id: _this2.$store.state.user_id
+                };
+                request = {
+                  user_id: _this2.$store.state.user_id,
+                  sys: item.system_id
+                };
 
-              case 1:
+                _this2.$store.dispatch("updateStartCampaignSystem", data);
+
+                _context3.next = 8;
+                return axios({
+                  method: "put",
+                  url: "/api/startcampaignsystemupdate/" + item.id + "/" + _this2.data.start_campaign_id,
+                  data: request,
+                  headers: {
+                    Authorization: "Bearer " + _this2.$store.state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                  }
+                });
+
+              case 8:
               case "end":
                 return _context3.stop();
             }
