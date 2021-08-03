@@ -10,7 +10,7 @@
                     >
                         <p class=" pt-5">
                             Campaign
-                            {{ startcampaign.name }}
+                            {{ this.startcampaign[0]["name"] }}
                         </p>
                     </v-card-title>
                 </v-card>
