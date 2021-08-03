@@ -68,6 +68,15 @@
                 </v-card>
             </v-col>
         </v-row>
+
+        <v-row no-gutters justify="space-around" v-show="showTable == true">
+            <UserTable
+                :key="'chartable' + startcampaignjoin.id"
+                :campaign_id="startcampaignjoin.id"
+            >
+            </UserTable>
+        </v-row>
+
         <v-row no-gutters justify="center">
             <StartSystemTable
                 class=" px-5 pt-5"
