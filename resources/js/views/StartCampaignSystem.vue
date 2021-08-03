@@ -45,6 +45,7 @@ export default {
     async mounted() {},
 
     async created() {
+        await setid();
         Echo.private("startcampaignsystem." + this.campaign_id).listen(
             "StartCampaignSystemUpdate",
             e => {
@@ -56,13 +57,17 @@ export default {
                 }
             }
         );
-        this.campaignId = this.$route.params.id;
-        this.campaign_id = parseInt(this.$route.params.id);
+
         await this.$store.dispatch("getStartCampaigns");
         await this.$store.dispatch("getStartCampaignJoinData");
     },
 
-    methods: {},
+    methods: {
+        setid() {
+            this.campaignId = this.$route.params.id;
+            this.campaign_id = parseInt(this.$route.params.id);
+        }
+    },
 
     computed: {
         ...mapGetters(["getStartCampaignsById", "getStartCampaignById"]),

@@ -23546,13 +23546,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         while (1) {
           switch (_context2.prev = _context2.next) {
             case 0:
+              _context2.next = 2;
+              return setid();
+
+            case 2:
               Echo["private"]("startcampaignsystem." + _this.campaign_id).listen("StartCampaignSystemUpdate", function (e) {
                 if (e.flag.message != null) {
                   _this.$store.dispatch("updateStartCampaignSystem", e.flag.message);
                 }
               });
-              _this.campaignId = _this.$route.params.id;
-              _this.campaign_id = parseInt(_this.$route.params.id);
               _context2.next = 5;
               return _this.$store.dispatch("getStartCampaigns");
 
@@ -23568,7 +23570,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }, _callee2);
     }))();
   },
-  methods: {},
+  methods: {
+    setid: function setid() {
+      this.campaignId = this.$route.params.id;
+      this.campaign_id = parseInt(this.$route.params.id);
+    }
+  },
   computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(["getStartCampaignsById", "getStartCampaignById"])), {}, {
     startcampaign: function startcampaign() {
       return this.getStartCampaignsById(this.campaign_id);
