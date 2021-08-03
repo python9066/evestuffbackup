@@ -35,7 +35,7 @@
                             >Hide Char table</v-btn
                         >
                         <WatchUserTable
-                            :campaign_id="campaign.id"
+                            :campaign_id="startcampaign.id"
                             v-if="$can('view_campaign_members')"
                         >
                         </WatchUserTable>

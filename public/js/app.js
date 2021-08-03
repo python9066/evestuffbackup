@@ -49559,7 +49559,7 @@ var render = function() {
                           _vm._v(" "),
                           _vm.$can("view_campaign_members")
                             ? _c("WatchUserTable", {
-                                attrs: { campaign_id: _vm.campaign.id }
+                                attrs: { campaign_id: _vm.startcampaign.id }
                               })
                             : _vm._e(),
                           _vm._v(" "),
