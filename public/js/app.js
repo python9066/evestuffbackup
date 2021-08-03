@@ -23667,14 +23667,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -49699,28 +49691,28 @@ var render = function() {
         1
       ),
       _vm._v(" "),
-      _vm.$can("super")
-        ? _c(
-            "v-row",
-            { attrs: { "no-gutters": "", justify: "space-around" } },
+      _c(
+        "v-row",
+        { attrs: { "no-gutters": "", justify: "space-around" } },
+        [
+          _c(
+            "v-col",
+            { attrs: { md: "10" } },
             [
               _c(
-                "v-col",
-                { attrs: { md: "10" } },
+                "v-card",
+                {
+                  staticClass:
+                    "pa-2 d-flex justify-space-between full-width align-center",
+                  attrs: { tile: "" }
+                },
                 [
                   _c(
-                    "v-card",
-                    {
-                      staticClass:
-                        "pa-2 d-flex justify-space-between full-width align-center",
-                      attrs: { tile: "" }
-                    },
+                    "div",
+                    { staticClass: " d-md-inline-flex" },
                     [
-                      _c(
-                        "div",
-                        { staticClass: " d-md-inline-flex" },
-                        [
-                          _c(
+                      _vm.$can("super")
+                        ? _c(
                             "v-btn",
                             {
                               directives: [
@@ -49740,9 +49732,11 @@ var render = function() {
                               }
                             },
                             [_vm._v("Show Char table")]
-                          ),
-                          _vm._v(" "),
-                          _c(
+                          )
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _vm.$can("super")
+                        ? _c(
                             "v-btn",
                             {
                               directives: [
@@ -49762,82 +49756,79 @@ var render = function() {
                               }
                             },
                             [_vm._v("Hide Char table")]
-                          ),
-                          _vm._v(" "),
-                          _c("UsersChars", {
-                            attrs: { campaign_id: this.campaign_id }
-                          }),
-                          _vm._v(" "),
-                          _vm.$can("view_campaign_members")
-                            ? _c("WatchUserTable", {
-                                attrs: { campaign_id: _vm.startcampaign.id }
-                              })
-                            : _vm._e(),
-                          _vm._v(" "),
-                          _vm.$can("view_campaign_logs")
-                            ? _c(
-                                "v-btn",
-                                {
-                                  staticClass: " mr-4",
-                                  attrs: { color: "blue" }
-                                },
-                                [
-                                  _vm._v(
-                                    "\n                        Campaign Logs\n                    "
-                                  )
-                                ]
-                              )
-                            : _vm._e(),
-                          _vm._v(" "),
-                          _vm.$can("super")
-                            ? _c("v-btn", [
-                                _vm._v(
-                                  "\n                        test\n                    "
-                                )
-                              ])
-                            : _vm._e(),
-                          _vm._v(" "),
-                          _vm.$can("access_campaigns")
-                            ? _c(
-                                "v-btn",
-                                {
-                                  staticClass: "mr-4",
-                                  attrs: { fab: "", dark: "", small: "" }
-                                },
-                                [_c("v-icon", [_vm._v("fas fa-bullhorn")])],
-                                1
-                              )
-                            : _vm._e(),
-                          _vm._v(" "),
-                          _vm.$can("view_campaign_members")
-                            ? _c(
-                                "v-btn",
-                                {
-                                  staticClass: "mr-4",
-                                  attrs: { dark: "", color: "red" }
-                                },
-                                [
-                                  _vm._v(
-                                    "\n                        Campaign Over\n                    "
-                                  )
-                                ]
-                              )
-                            : _vm._e()
-                        ],
-                        1
-                      ),
+                          )
+                        : _vm._e(),
                       _vm._v(" "),
-                      _c("v-spacer")
+                      _c("UsersChars", {
+                        attrs: { campaign_id: this.campaign_id }
+                      }),
+                      _vm._v(" "),
+                      _vm.$can("super")
+                        ? _c("WatchUserTable", {
+                            attrs: { campaign_id: _vm.startcampaign.id }
+                          })
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _vm.$can("super")
+                        ? _c(
+                            "v-btn",
+                            { staticClass: " mr-4", attrs: { color: "blue" } },
+                            [
+                              _vm._v(
+                                "\n                        Campaign Logs\n                    "
+                              )
+                            ]
+                          )
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _vm.$can("super")
+                        ? _c("v-btn", [
+                            _vm._v(
+                              "\n                        test\n                    "
+                            )
+                          ])
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _vm.$can("super")
+                        ? _c(
+                            "v-btn",
+                            {
+                              staticClass: "mr-4",
+                              attrs: { fab: "", dark: "", small: "" }
+                            },
+                            [_c("v-icon", [_vm._v("fas fa-bullhorn")])],
+                            1
+                          )
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _vm.$can("super")
+                        ? _c(
+                            "v-btn",
+                            {
+                              staticClass: "mr-4",
+                              attrs: { dark: "", color: "red" }
+                            },
+                            [
+                              _vm._v(
+                                "\n                        Campaign Over\n                    "
+                              )
+                            ]
+                          )
+                        : _vm._e()
                     ],
                     1
-                  )
+                  ),
+                  _vm._v(" "),
+                  _c("v-spacer")
                 ],
                 1
               )
             ],
             1
           )
-        : _vm._e(),
+        ],
+        1
+      ),
       _vm._v(" "),
       _vm.$can("super")
         ? _c(

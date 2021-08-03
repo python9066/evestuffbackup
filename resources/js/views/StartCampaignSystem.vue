@@ -15,7 +15,7 @@
                 </v-card>
             </v-col>
         </v-row>
-        <v-row no-gutters v-if="$can('super')" justify="space-around">
+        <v-row no-gutters justify="space-around">
             <v-col md="10">
                 <v-card
                     class="pa-2 d-flex justify-space-between full-width align-center"
@@ -23,6 +23,7 @@
                 >
                     <div class=" d-md-inline-flex">
                         <v-btn
+                            v-if="$can('super')"
                             v-show="showTable == false"
                             @click="showTable = true"
                             class="mr-4"
@@ -30,6 +31,7 @@
                             >Show Char table</v-btn
                         >
                         <v-btn
+                            v-if="$can('super')"
                             v-show="showTable == true"
                             @click="showTable = false"
                             class="mr-4"
@@ -40,31 +42,21 @@
                         </UsersChars>
                         <WatchUserTable
                             :campaign_id="startcampaign.id"
-                            v-if="$can('view_campaign_members')"
+                            v-if="$can('super')"
                         >
                         </WatchUserTable>
 
-                        <v-btn
-                            v-if="$can('view_campaign_logs')"
-                            class=" mr-4"
-                            color="blue"
-                        >
+                        <v-btn v-if="$can('super')" class=" mr-4" color="blue">
                             Campaign Logs
                         </v-btn>
                         <v-btn v-if="$can('super')">
                             test
                         </v-btn>
-                        <v-btn
-                            v-if="$can('access_campaigns')"
-                            fab
-                            dark
-                            class="mr-4"
-                            small
-                        >
+                        <v-btn v-if="$can('super')" fab dark class="mr-4" small>
                             <v-icon>fas fa-bullhorn</v-icon>
                         </v-btn>
                         <v-btn
-                            v-if="$can('view_campaign_members')"
+                            v-if="$can('super')"
                             dark
                             color="red"
                             class="mr-4"
