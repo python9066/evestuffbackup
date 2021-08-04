@@ -12995,7 +12995,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }, {
         text: "Pilot",
         value: "main_name",
-        align: "30%"
+        align: "start",
+        width: "20%"
       }, {
         text: "Timer",
         value: "count"

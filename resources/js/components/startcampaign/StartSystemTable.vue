@@ -115,7 +115,12 @@ export default {
 
             headers: [
                 { text: "System", value: "system_name", width: "15%" },
-                { text: "Pilot", value: "main_name", align: "30%" },
+                {
+                    text: "Pilot",
+                    value: "main_name",
+                    align: "start",
+                    width: "20%"
+                },
                 { text: "Timer", value: "count" },
 
                 {
