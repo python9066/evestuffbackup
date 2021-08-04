@@ -223,7 +223,11 @@ export default {
         },
 
         checkHackUserEdit(item) {
-            return true;
+            if (item.site_id == this.$store.state.user_id) {
+                return true;
+            } else {
+                return false;
+            }
         },
 
         hackTextColor(item) {
