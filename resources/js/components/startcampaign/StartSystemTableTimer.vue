@@ -1,6 +1,6 @@
 <template>
     <v-col>
-        <!-- <v-menu
+        <v-menu
             :close-on-content-click="false"
             :value="timerShown"
             v-if="checkHackUser(item)"
@@ -55,9 +55,9 @@
                     </v-card-text>
                 </v-card>
             </template>
-            v-else-if="item.end != null"
-        </v-menu> -->
+        </v-menu>
         <CountDowntimer
+            v-else-if="item.end != null"
             :start-time="moment.utc(item.end).unix()"
             :end-text="endText(item)"
             :interval="1000"
