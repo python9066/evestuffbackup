@@ -114,9 +114,9 @@ export default {
             charAddNode: null,
 
             headers: [
-                { text: "System", value: "system_name", width: "10%" },
-                { text: "Pilot", value: "main_name", align: "start" },
-                { text: "Timer", value: "count", align: "start" },
+                { text: "System", value: "system_name", width: "15%" },
+                { text: "Pilot", value: "main_name", align: "30%" },
+                { text: "Timer", value: "count" },
 
                 {
                     text: "",

@@ -12991,15 +12991,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       headers: [{
         text: "System",
         value: "system_name",
-        width: "10%"
+        width: "15%"
       }, {
         text: "Pilot",
         value: "main_name",
-        align: "start"
+        align: "30%"
       }, {
         text: "Timer",
-        value: "count",
-        align: "start"
+        value: "count"
       }, {
         text: "",
         value: "actions",
