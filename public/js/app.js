@@ -13327,25 +13327,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -13424,9 +13405,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
     checkHackUser: function checkHackUser(item) {
       if ( // item.site_id == this.$store.state.user_id &&
-      item.end == null && item.status_id == 3) {
-        return true;
-      } else if (item.end == null && (item.status_id == 7 || item.status_id == 8 || item.status_id == 9)) {
+      item.end == null) {
         return true;
       } else {
         return false;
@@ -39715,88 +39694,52 @@ var render = function() {
   return _c(
     "v-col",
     [
-      _vm.item.end_time == null
-        ? _c("VueCountUptimer", {
-            attrs: {
-              "start-time": _vm.moment.utc(_vm.item.start).unix(),
-              "end-text": "Window Closed",
-              interval: 1000
-            },
-            scopedSlots: _vm._u(
-              [
-                {
-                  key: "countup",
-                  fn: function(scope) {
-                    return [
-                      scope.props.minutes < 5
-                        ? _c("span", { staticClass: "green--text pl-3" }, [
-                            _vm._v(
-                              _vm._s(scope.props.hours) +
-                                ":" +
-                                _vm._s(scope.props.minutes) +
-                                ":" +
-                                _vm._s(scope.props.seconds)
-                            )
-                          ])
-                        : _c("span", { staticClass: "red--text pl-3" }, [
-                            _vm._v(
-                              _vm._s(scope.props.hours) +
-                                ":" +
-                                _vm._s(scope.props.minutes) +
-                                ":" +
-                                _vm._s(scope.props.seconds)
-                            )
-                          ])
-                    ]
-                  }
-                }
-              ],
-              null,
-              false,
-              3275764649
-            )
-          })
-        : _vm.checkHackUser(_vm.item)
+      _vm.checkHackUser(_vm.item)
         ? _c(
             "v-menu",
             {
               attrs: { "close-on-content-click": false, value: _vm.timerShown },
-              scopedSlots: _vm._u([
-                {
-                  key: "activator",
-                  fn: function(ref) {
-                    var on = ref.on
-                    var attrs = ref.attrs
-                    return [
-                      _c(
-                        "v-chip",
-                        _vm._g(
-                          _vm._b(
-                            {
-                              attrs: {
-                                pill: "",
-                                outlined: _vm.pillOutlined(_vm.item),
-                                small: "",
-                                color: "warning"
-                              },
-                              on: {
-                                click: function($event) {
-                                  _vm.timerShown = true
+              scopedSlots: _vm._u(
+                [
+                  {
+                    key: "activator",
+                    fn: function(ref) {
+                      var on = ref.on
+                      var attrs = ref.attrs
+                      return [
+                        _c(
+                          "v-chip",
+                          _vm._g(
+                            _vm._b(
+                              {
+                                attrs: {
+                                  pill: "",
+                                  outlined: _vm.pillOutlined(_vm.item),
+                                  small: "",
+                                  color: "warning"
+                                },
+                                on: {
+                                  click: function($event) {
+                                    _vm.timerShown = true
+                                  }
                                 }
-                              }
-                            },
-                            "v-chip",
-                            attrs,
-                            false
+                              },
+                              "v-chip",
+                              attrs,
+                              false
+                            ),
+                            on
                           ),
-                          on
-                        ),
-                        [_vm._v("\n                Add Time\n            ")]
-                      )
-                    ]
+                          [_vm._v("\n                Add Time\n            ")]
+                        )
+                      ]
+                    }
                   }
-                }
-              ])
+                ],
+                null,
+                false,
+                3172732814
+              )
             },
             [
               _vm._v(" "),

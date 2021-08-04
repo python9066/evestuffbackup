@@ -1,28 +1,9 @@
 <template>
     <v-col>
-        <VueCountUptimer
-            v-if="item.end_time == null"
-            :start-time="moment.utc(item.start).unix()"
-            :end-text="'Window Closed'"
-            :interval="1000"
-        >
-            <template slot="countup" slot-scope="scope">
-                <span v-if="scope.props.minutes < 5" class="green--text pl-3"
-                    >{{ scope.props.hours }}:{{ scope.props.minutes }}:{{
-                        scope.props.seconds
-                    }}</span
-                >
-                <span v-else class="red--text pl-3"
-                    >{{ scope.props.hours }}:{{ scope.props.minutes }}:{{
-                        scope.props.seconds
-                    }}</span
-                >
-            </template>
-        </VueCountUptimer>
         <v-menu
             :close-on-content-click="false"
             :value="timerShown"
-            v-else-if="checkHackUser(item)"
+            v-if="checkHackUser(item)"
         >
             <template v-slot:activator="{ on, attrs }">
                 <v-chip
@@ -223,15 +204,7 @@ export default {
         checkHackUser(item) {
             if (
                 // item.site_id == this.$store.state.user_id &&
-                item.end == null &&
-                item.status_id == 3
-            ) {
-                return true;
-            } else if (
-                item.end == null &&
-                (item.status_id == 7 ||
-                    item.status_id == 8 ||
-                    item.status_id == 9)
+                item.end == null
             ) {
                 return true;
             } else {
