@@ -39629,7 +39629,7 @@ var render = function() {
                           ]
                         }
                       },
-                      _vm.$can("super")
+                      _vm.$can("super") && _vm.checkShowAdd(_vm.item)
                         ? {
                             key: "item.count",
                             fn: function(ref) {
