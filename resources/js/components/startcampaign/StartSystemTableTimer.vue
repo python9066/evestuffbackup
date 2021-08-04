@@ -203,8 +203,7 @@ export default {
         checkHackUser(item) {
             if (
                 // item.site_id == this.$store.state.user_id &&
-                item.end == null &&
-                item.user_id != null
+                item.end == null
             ) {
                 return true;
             } else {
