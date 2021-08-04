@@ -13000,6 +13000,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         value: "main_name",
         align: "start"
       }, {
+        text: "Timer",
+        value: "count",
+        align: "start"
+      }, {
         text: "",
         value: "actions",
         sortable: false,
