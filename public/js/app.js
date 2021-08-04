@@ -39671,402 +39671,221 @@ var render = function() {
   return _c(
     "v-col",
     [
-      _vm.checkHackUser(_vm.item)
-        ? _c(
-            "v-menu",
-            {
-              attrs: { "close-on-content-click": false, value: _vm.timerShown },
-              scopedSlots: _vm._u(
-                [
-                  {
-                    key: "activator",
-                    fn: function(ref) {
-                      var on = ref.on
-                      var attrs = ref.attrs
-                      return [
-                        _c(
-                          "v-chip",
-                          _vm._g(
-                            _vm._b(
-                              {
-                                attrs: {
-                                  pill: "",
-                                  outlined: "",
-                                  small: "",
-                                  color: "warning"
-                                },
-                                on: {
-                                  click: function($event) {
-                                    _vm.timerShown = true
-                                  }
-                                }
-                              },
-                              "v-chip",
-                              attrs,
-                              false
-                            ),
-                            on
-                          ),
-                          [_vm._v("\n                Add Time\n            ")]
-                        )
-                      ]
-                    }
-                  }
-                ],
-                null,
-                false,
-                1451940391
-              )
-            },
-            [
-              _vm._v(" "),
-              [
+      _c("CountDowntimer", {
+        attrs: {
+          "start-time": _vm.moment.utc(_vm.item.end).unix(),
+          "end-text": _vm.endText(_vm.item),
+          interval: 1000
+        },
+        scopedSlots: _vm._u([
+          {
+            key: "countdown",
+            fn: function(scope) {
+              return [
+                _c("span", { class: _vm.hackCountDownTextColor(_vm.item) }, [
+                  scope.props.hours > 0
+                    ? _c("span", [_vm._v(_vm._s(scope.props.hours) + ":")])
+                    : _vm._e(),
+                  _vm._v(
+                    _vm._s(scope.props.minutes) +
+                      ":" +
+                      _vm._s(scope.props.seconds)
+                  )
+                ]),
+                _vm._v(" "),
                 _c(
-                  "v-card",
-                  { attrs: { tile: "", "min-height": "150px" } },
-                  [
-                    _c(
-                      "v-card-title",
-                      { staticClass: " pb-0" },
+                  "v-menu",
+                  {
+                    attrs: {
+                      "close-on-content-click": false,
+                      value: _vm.timerShown
+                    },
+                    scopedSlots: _vm._u(
                       [
-                        _c("v-text-field", {
-                          directives: [
-                            {
-                              name: "mask",
-                              rawName: "v-mask",
-                              value: "##:##",
-                              expression: "'##:##'"
-                            }
-                          ],
-                          attrs: {
-                            label: "Hack Time mm:ss",
-                            autofocus: "",
-                            placeholder: "mm:ss"
-                          },
-                          on: {
-                            keyup: [
-                              function($event) {
-                                if (
-                                  !$event.type.indexOf("key") &&
-                                  _vm._k(
-                                    $event.keyCode,
-                                    "enter",
-                                    13,
-                                    $event.key,
-                                    "Enter"
-                                  )
-                                ) {
-                                  return null
-                                }
-                                ;(_vm.timerShown = false),
-                                  _vm.addHacktime(_vm.item)
-                              },
-                              function($event) {
-                                if (
-                                  !$event.type.indexOf("key") &&
-                                  _vm._k(
-                                    $event.keyCode,
-                                    "esc",
-                                    27,
-                                    $event.key,
-                                    ["Esc", "Escape"]
-                                  )
-                                ) {
-                                  return null
-                                }
-                                ;(_vm.timerShown = false), (_vm.hackTime = null)
-                              }
-                            ]
-                          },
-                          model: {
-                            value: _vm.hackTime,
-                            callback: function($$v) {
-                              _vm.hackTime = $$v
-                            },
-                            expression: "hackTime"
-                          }
-                        })
-                      ],
-                      1
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "v-card-text",
-                      [
-                        _c(
-                          "v-btn",
-                          {
-                            attrs: {
-                              icon: "",
-                              fixed: "",
-                              left: "",
-                              color: "success"
-                            },
-                            on: {
-                              click: function($event) {
-                                ;(_vm.timerShown = false),
-                                  _vm.addHacktime(_vm.item)
-                              }
-                            }
-                          },
-                          [_c("v-icon", [_vm._v("fas fa-check")])],
-                          1
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "v-btn",
-                          {
-                            attrs: {
-                              fixed: "",
-                              right: "",
-                              icon: "",
-                              color: "warning"
-                            },
-                            on: {
-                              click: function($event) {
-                                ;(_vm.timerShown = false), (_vm.hackTime = null)
-                              }
-                            }
-                          },
-                          [_c("v-icon", [_vm._v("fas fa-times")])],
-                          1
-                        )
-                      ],
-                      1
-                    )
-                  ],
-                  1
-                )
-              ]
-            ],
-            2
-          )
-        : _vm.item.end != null
-        ? _c("CountDowntimer", {
-            attrs: {
-              "start-time": _vm.moment.utc(_vm.item.end).unix(),
-              "end-text": _vm.endText(_vm.item),
-              interval: 1000
-            },
-            scopedSlots: _vm._u([
-              {
-                key: "countdown",
-                fn: function(scope) {
-                  return [
-                    _c(
-                      "span",
-                      { class: _vm.hackCountDownTextColor(_vm.item) },
-                      [
-                        scope.props.hours > 0
-                          ? _c("span", [
-                              _vm._v(_vm._s(scope.props.hours) + ":")
-                            ])
-                          : _vm._e(),
-                        _vm._v(
-                          _vm._s(scope.props.minutes) +
-                            ":" +
-                            _vm._s(scope.props.seconds)
-                        )
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "v-menu",
-                      {
-                        attrs: {
-                          "close-on-content-click": false,
-                          value: _vm.timerShown
-                        },
-                        scopedSlots: _vm._u(
-                          [
-                            {
-                              key: "activator",
-                              fn: function(ref) {
-                                var on = ref.on
-                                var attrs = ref.attrs
-                                return [
-                                  _vm.checkHackUserEdit(_vm.item)
-                                    ? _c(
+                        {
+                          key: "activator",
+                          fn: function(ref) {
+                            var on = ref.on
+                            var attrs = ref.attrs
+                            return [
+                              _vm.checkHackUserEdit(_vm.item)
+                                ? _c(
+                                    "v-btn",
+                                    _vm._g(
+                                      _vm._b(
+                                        {
+                                          attrs: { icon: "", color: "warning" },
+                                          on: {
+                                            click: function($event) {
+                                              ;(_vm.timerShown = true),
+                                                (_vm.hackTime = null)
+                                            }
+                                          }
+                                        },
                                         "v-btn",
-                                        _vm._g(
-                                          _vm._b(
-                                            {
-                                              attrs: {
-                                                icon: "",
-                                                color: "warning"
-                                              },
-                                              on: {
-                                                click: function($event) {
-                                                  ;(_vm.timerShown = true),
-                                                    (_vm.hackTime = null)
-                                                }
-                                              }
-                                            },
-                                            "v-btn",
-                                            attrs,
-                                            false
-                                          ),
-                                          on
-                                        ),
-                                        [
-                                          _c(
-                                            "v-icon",
-                                            { attrs: { "x-small": "" } },
-                                            [_vm._v("fas fa-edit")]
-                                          )
-                                        ],
-                                        1
+                                        attrs,
+                                        false
+                                      ),
+                                      on
+                                    ),
+                                    [
+                                      _c(
+                                        "v-icon",
+                                        { attrs: { "x-small": "" } },
+                                        [_vm._v("fas fa-edit")]
                                       )
-                                    : _vm._e()
-                                ]
-                              }
-                            }
-                          ],
-                          null,
-                          true
-                        )
-                      },
-                      [
-                        _vm._v(" "),
+                                    ],
+                                    1
+                                  )
+                                : _vm._e()
+                            ]
+                          }
+                        }
+                      ],
+                      null,
+                      true
+                    )
+                  },
+                  [
+                    _vm._v(" "),
+                    [
+                      _c(
+                        "v-card",
+                        { attrs: { tile: "", "min-height": "150px" } },
                         [
                           _c(
-                            "v-card",
-                            { attrs: { tile: "", "min-height": "150px" } },
+                            "v-card-title",
+                            { staticClass: " pb-0" },
+                            [
+                              _c("v-text-field", {
+                                directives: [
+                                  {
+                                    name: "mask",
+                                    rawName: "v-mask",
+                                    value: "##:##",
+                                    expression: "'##:##'"
+                                  }
+                                ],
+                                attrs: {
+                                  label: "Hack Time mm:ss",
+                                  autofocus: "",
+                                  placeholder: "mm:ss"
+                                },
+                                on: {
+                                  keyup: [
+                                    function($event) {
+                                      if (
+                                        !$event.type.indexOf("key") &&
+                                        _vm._k(
+                                          $event.keyCode,
+                                          "enter",
+                                          13,
+                                          $event.key,
+                                          "Enter"
+                                        )
+                                      ) {
+                                        return null
+                                      }
+                                      ;(_vm.timerShown = false),
+                                        _vm.addHacktime(_vm.item)
+                                    },
+                                    function($event) {
+                                      if (
+                                        !$event.type.indexOf("key") &&
+                                        _vm._k(
+                                          $event.keyCode,
+                                          "esc",
+                                          27,
+                                          $event.key,
+                                          ["Esc", "Escape"]
+                                        )
+                                      ) {
+                                        return null
+                                      }
+                                      ;(_vm.timerShown = false),
+                                        (_vm.hackTime = null)
+                                    }
+                                  ]
+                                },
+                                model: {
+                                  value: _vm.hackTime,
+                                  callback: function($$v) {
+                                    _vm.hackTime = $$v
+                                  },
+                                  expression: "hackTime"
+                                }
+                              })
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-card-text",
                             [
                               _c(
-                                "v-card-title",
-                                { staticClass: " pb-0" },
-                                [
-                                  _c("v-text-field", {
-                                    directives: [
-                                      {
-                                        name: "mask",
-                                        rawName: "v-mask",
-                                        value: "##:##",
-                                        expression: "'##:##'"
-                                      }
-                                    ],
-                                    attrs: {
-                                      label: "Hack Time mm:ss",
-                                      autofocus: "",
-                                      placeholder: "mm:ss"
-                                    },
-                                    on: {
-                                      keyup: [
-                                        function($event) {
-                                          if (
-                                            !$event.type.indexOf("key") &&
-                                            _vm._k(
-                                              $event.keyCode,
-                                              "enter",
-                                              13,
-                                              $event.key,
-                                              "Enter"
-                                            )
-                                          ) {
-                                            return null
-                                          }
-                                          ;(_vm.timerShown = false),
-                                            _vm.addHacktime(_vm.item)
-                                        },
-                                        function($event) {
-                                          if (
-                                            !$event.type.indexOf("key") &&
-                                            _vm._k(
-                                              $event.keyCode,
-                                              "esc",
-                                              27,
-                                              $event.key,
-                                              ["Esc", "Escape"]
-                                            )
-                                          ) {
-                                            return null
-                                          }
-                                          ;(_vm.timerShown = false),
-                                            (_vm.hackTime = null)
-                                        }
-                                      ]
-                                    },
-                                    model: {
-                                      value: _vm.hackTime,
-                                      callback: function($$v) {
-                                        _vm.hackTime = $$v
-                                      },
-                                      expression: "hackTime"
+                                "v-btn",
+                                {
+                                  attrs: {
+                                    icon: "",
+                                    fixed: "",
+                                    left: "",
+                                    color: "success"
+                                  },
+                                  on: {
+                                    click: function($event) {
+                                      ;(_vm.timerShown = false),
+                                        _vm.addHacktime(_vm.item)
                                     }
-                                  })
-                                ],
+                                  }
+                                },
+                                [_c("v-icon", [_vm._v("fas fa-check")])],
                                 1
                               ),
                               _vm._v(" "),
                               _c(
-                                "v-card-text",
-                                [
-                                  _c(
-                                    "v-btn",
-                                    {
-                                      attrs: {
-                                        icon: "",
-                                        fixed: "",
-                                        left: "",
-                                        color: "success"
-                                      },
-                                      on: {
-                                        click: function($event) {
-                                          ;(_vm.timerShown = false),
-                                            _vm.addHacktime(_vm.item)
-                                        }
-                                      }
-                                    },
-                                    [_c("v-icon", [_vm._v("fas fa-check")])],
-                                    1
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "v-btn",
-                                    {
-                                      attrs: {
-                                        fixed: "",
-                                        right: "",
-                                        icon: "",
-                                        color: "warning"
-                                      },
-                                      on: {
-                                        click: function($event) {
-                                          ;(_vm.timerShown = false),
-                                            (_vm.hackTime = null)
-                                        }
-                                      }
-                                    },
-                                    [_c("v-icon", [_vm._v("fas fa-times")])],
-                                    1
-                                  )
-                                ],
+                                "v-btn",
+                                {
+                                  attrs: {
+                                    fixed: "",
+                                    right: "",
+                                    icon: "",
+                                    color: "warning"
+                                  },
+                                  on: {
+                                    click: function($event) {
+                                      ;(_vm.timerShown = false),
+                                        (_vm.hackTime = null)
+                                    }
+                                  }
+                                },
+                                [_c("v-icon", [_vm._v("fas fa-times")])],
                                 1
                               )
                             ],
                             1
                           )
-                        ]
-                      ],
-                      2
-                    )
-                  ]
-                }
-              },
-              {
-                key: "end-text",
-                fn: function(scope) {
-                  return [
-                    _c("span", { style: _vm.hackTextColor(_vm.item) }, [
-                      _vm._v(_vm._s(scope.props.endText))
-                    ])
-                  ]
-                }
-              }
-            ])
-          })
-        : _vm._e()
+                        ],
+                        1
+                      )
+                    ]
+                  ],
+                  2
+                )
+              ]
+            }
+          },
+          {
+            key: "end-text",
+            fn: function(scope) {
+              return [
+                _c("span", { style: _vm.hackTextColor(_vm.item) }, [
+                  _vm._v(_vm._s(scope.props.endText))
+                ])
+              ]
+            }
+          }
+        ])
+      })
     ],
     1
   )
