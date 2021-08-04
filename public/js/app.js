@@ -13397,6 +13397,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         return "blue--text pl-3";
       }
     },
+    checkHackUser: function checkHackUser(item) {
+      if (item.site_id == this.$store.state.user_id && item.end == null) {
+        return true;
+      } else {
+        return false;
+      }
+    },
     endText: function endText(item) {
       if (item.status_id == 7 || item.status_id == 8) {
         return "Did they Finish?";
@@ -13419,21 +13426,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }
     }
   },
-  computed: {
-    checkHackUser: function checkHackUser(item) {
-      if ( // item.site_id == this.$store.state.user_id &&
-      item.end == null) {
-        return true;
-      } else {
-        return false;
-      } // if (item.end == null) {
-      //     return true;
-      // } else {
-      //     return false;
-      // }
-
-    }
-  }
+  computed: {}
 });
 
 /***/ }),
