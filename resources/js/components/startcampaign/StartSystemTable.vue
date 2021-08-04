@@ -86,10 +86,7 @@
                     </template>
 
                     <template v-slot:[`item.count`]="{ item }">
-                        <StartSystemTableTimer
-                            :item="item"
-                            v-if="$can('super')"
-                        >
+                        <StartSystemTableTimer :item="item">
                         </StartSystemTableTimer>
                     </template>
 

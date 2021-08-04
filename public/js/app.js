@@ -12976,9 +12976,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -39611,11 +39608,9 @@ var render = function() {
                         fn: function(ref) {
                           var item = ref.item
                           return [
-                            _vm.$can("super")
-                              ? _c("StartSystemTableTimer", {
-                                  attrs: { item: item }
-                                })
-                              : _vm._e()
+                            _c("StartSystemTableTimer", {
+                              attrs: { item: item }
+                            })
                           ]
                         }
                       }
