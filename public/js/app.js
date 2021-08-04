@@ -39629,19 +39629,19 @@ var render = function() {
                           ]
                         }
                       },
-                      _vm.$can("super") && _vm.checkShowAdd(_vm.item)
-                        ? {
-                            key: "item.count",
-                            fn: function(ref) {
-                              var item = ref.item
-                              return [
-                                _c("StartSystemTableTimer", {
+                      {
+                        key: "item.count",
+                        fn: function(ref) {
+                          var item = ref.item
+                          return [
+                            _vm.$can("super") && _vm.checkShowAdd(item)
+                              ? _c("StartSystemTableTimer", {
                                   attrs: { item: item }
                                 })
-                              ]
-                            }
-                          }
-                        : null
+                              : _vm._e()
+                          ]
+                        }
+                      }
                     ],
                     null,
                     true
