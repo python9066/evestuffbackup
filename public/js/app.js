@@ -39634,7 +39634,7 @@ var render = function() {
                         fn: function(ref) {
                           var item = ref.item
                           return [
-                            _vm.$can("super") && !_vm.checkShowAdd(item)
+                            _vm.$can("super")
                               ? _c("StartSystemTableTimer", {
                                   attrs: { item: item }
                                 })
@@ -39864,7 +39864,8 @@ var render = function() {
             ],
             2
           )
-        : _c("CountDowntimer", {
+        : _vm.item.end != null
+        ? _c("CountDowntimer", {
             attrs: {
               "start-time": _vm.moment.utc(_vm.item.end).unix(),
               "end-text": _vm.endText(_vm.item),
@@ -40088,6 +40089,7 @@ var render = function() {
               }
             ])
           })
+        : _vm._e()
     ],
     1
   )

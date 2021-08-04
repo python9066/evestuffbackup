@@ -57,7 +57,7 @@
             </template>
         </v-menu>
         <CountDowntimer
-            v-else
+            v-else-if="item.end != null"
             :start-time="moment.utc(item.end).unix()"
             :end-text="endText(item)"
             :interval="1000"
