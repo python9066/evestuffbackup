@@ -68,6 +68,21 @@ class StartCampaignSystemController extends Controller
         broadcast(new StartCampaignSystemUpdate($flag))->toOthers();
     }
 
+    public function updatetimer(Request $request, $id, $campid)
+    {
+
+        StartCampaignSystems::find($id)->update($request->all());
+
+
+        $message = StartCampaignSystemRecords::where('id', $id)->first();
+        $flag = null;
+        $flag = collect([
+            'message' => $message,
+            'id' => $campid
+        ]);
+        broadcast(new StartCampaignSystemUpdate($flag))->toOthers();
+    }
+
     public function removeChar($id, $char, $campid)
     {
         CampaignUser::find($char)->update(['campaign_id' => null, 'campaign_system_id' => null]);
