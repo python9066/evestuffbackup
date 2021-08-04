@@ -13373,7 +13373,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 _context.next = 11;
                 return axios({
                   method: "put",
-                  url: "/api/startcampaignsystemupdate/" + item.id + "/" + item.start_campaign_id,
+                  url: "/api/campaignsystems/" + item.id + "/" + item.start_campaign_id,
                   data: request,
                   headers: {
                     Authorization: "Bearer " + _this.$store.state.token,
