@@ -12979,9 +12979,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -13349,8 +13346,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
-    item: Object,
-    CampaignSolaSystem: Array
+    item: Object
   },
   data: function data() {
     return {
@@ -13449,16 +13445,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }
     },
     checkHackUserEdit: function checkHackUserEdit(item) {
-      // if (
-      //     item.site_id == this.$store.state.user_id &&
-      //     item.status_id == 3
-      // ) {
-      //     return true;
-      // } else if (item.status_id == 7 || item.status_id == 8) {
-      //     return true;
-      // } else {
-      //     return false;
-      // }
       if (item.status_id == 7 || item.status_id == 8 || item.status_id == 3 || item.status_id == 9) {
         return true;
       } else {
@@ -25693,7 +25679,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.style-2 {\r\n    background-color: rgb(30, 30, 30, 1);\n}\n.style-1 {\r\n    background-color: rgb(184, 22, 35);\n}\r\n", ""]);
+exports.push([module.i, "\n.style-2 {\n    background-color: rgb(30, 30, 30, 1);\n}\n.style-1 {\n    background-color: rgb(184, 22, 35);\n}\n", ""]);
 
 // exports
 
@@ -39667,10 +39653,7 @@ var render = function() {
                               var item = ref.item
                               return [
                                 _c("StartSystemTableTimer", {
-                                  attrs: {
-                                    item: item,
-                                    CampaignSolaSystem: _vm.CampaignSolaSystem
-                                  }
+                                  attrs: { item: item }
                                 })
                               ]
                             }
@@ -39728,7 +39711,7 @@ var render = function() {
   return _c(
     "v-col",
     [
-      _vm.item.status_id < 3 && _vm.item.end_time == null
+      _vm.item.end_time == null
         ? _c("VueCountUptimer", {
             attrs: {
               "start-time": _vm.moment.utc(_vm.item.start).unix(),

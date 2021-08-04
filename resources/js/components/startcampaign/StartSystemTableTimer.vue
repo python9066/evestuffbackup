@@ -1,7 +1,7 @@
 <template>
     <v-col>
         <VueCountUptimer
-            v-if="item.status_id < 3 && item.end_time == null"
+            v-if="item.end_time == null"
             :start-time="moment.utc(item.start).unix()"
             :end-text="'Window Closed'"
             :interval="1000"
@@ -159,8 +159,7 @@ import { mapState, mapGetters } from "vuex";
 import moment from "moment";
 export default {
     props: {
-        item: Object,
-        CampaignSolaSystem: Array
+        item: Object
     },
     data() {
         return {
@@ -258,17 +257,6 @@ export default {
         },
 
         checkHackUserEdit(item) {
-            // if (
-            //     item.site_id == this.$store.state.user_id &&
-            //     item.status_id == 3
-            // ) {
-            //     return true;
-            // } else if (item.status_id == 7 || item.status_id == 8) {
-            //     return true;
-            // } else {
-            //     return false;
-            // }
-
             if (
                 item.status_id == 7 ||
                 item.status_id == 8 ||

@@ -89,10 +89,7 @@
                         v-slot:[`item.count`]="{ item }"
                         v-if="$can('super')"
                     >
-                        <StartSystemTableTimer
-                            :item="item"
-                            :CampaignSolaSystem="CampaignSolaSystem"
-                        >
+                        <StartSystemTableTimer :item="item">
                         </StartSystemTableTimer>
                     </template>
 
