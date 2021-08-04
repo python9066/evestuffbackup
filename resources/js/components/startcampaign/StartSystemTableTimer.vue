@@ -177,7 +177,7 @@ export default {
             await axios({
                 method: "put",
                 url:
-                    "/api/campaignsystems/" +
+                    "/api/startcampaignsystemupdate/" +
                     item.id +
                     "/" +
                     item.start_campaign_id,
