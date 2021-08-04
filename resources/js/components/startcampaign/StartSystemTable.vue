@@ -29,31 +29,6 @@
                     </template>
 
                     <template v-slot:[`item.main_name`]="{ item }">
-                        <!-- <div class=" d-inline-flex align-items-center">
-                            <div v-if="item.site_id != null">
-                                {{ item.main_name }}
-                                <v-icon
-                                    color="orange darken-3"
-                                    small
-                                    @click="clickremovechar(item)"
-                                >
-                                    fas fa-trash-alt
-                                </v-icon>
-                            </div>
-                            <div v-else>
-                                <v-btn
-                                    pill
-                                    outlined
-                                    rounded
-                                    @click="clickaddchar(item)"
-                                    small
-                                    color="light-green accent-3"
-                                >
-                                    Add
-                                </v-btn>
-                            </div>
-                        </div> -->
-
                         <div class=" d-inline-flex align-items-center">
                             <v-menu offset-y v-if="checkShowAdd(item)">
                                 <template v-slot:activator="{ on, attrs }">
@@ -108,6 +83,17 @@
                                 <!-- <NodeExtraChar :item="item"></NodeExtraChar> -->
                             </div>
                         </div>
+                    </template>
+
+                    <template
+                        v-slot:[`item.count`]="{ item }"
+                        v-if="$can('super')"
+                    >
+                        <StartSystemTableTimer
+                            :item="item"
+                            :CampaignSolaSystem="CampaignSolaSystem"
+                        >
+                        </StartSystemTableTimer>
                     </template>
 
                     <template slot="no-data">

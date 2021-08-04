@@ -92,6 +92,7 @@ Vue.component('StartSystemItemList', require('./components/startcampaign/StartSy
 Vue.component('StartTitleBar', require('./components/startcampaign/StartTitleBar.vue').default);
 Vue.component('StartSystemTable', require('./components/startcampaign/StartSystemTable.vue').default);
 Vue.component('StartCampaignMessage', require('./components/random/StartCampaignMessage').default);
+Vue.component('StartSystemTableTimer', require('./components/startcampaign/StartSystemTableTimer.vue').default);
 
 
 
