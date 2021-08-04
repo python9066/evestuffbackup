@@ -200,22 +200,6 @@ export default {
             }
         },
 
-        checkHackUser(item) {
-            if (
-                // item.site_id == this.$store.state.user_id &&
-                item.end == null
-            ) {
-                return true;
-            } else {
-                return false;
-            }
-
-            // if (item.end == null) {
-            //     return true;
-            // } else {
-            //     return false;
-            // }
-        },
         endText(item) {
             if (item.status_id == 7 || item.status_id == 8) {
                 return "Did they Finish?";
@@ -241,7 +225,24 @@ export default {
         }
     },
 
-    computed: {}
+    computed: {
+        checkHackUser(item) {
+            if (
+                // item.site_id == this.$store.state.user_id &&
+                item.end == null
+            ) {
+                return true;
+            } else {
+                return false;
+            }
+
+            // if (item.end == null) {
+            //     return true;
+            // } else {
+            //     return false;
+            // }
+        }
+    }
 };
 </script>
 
