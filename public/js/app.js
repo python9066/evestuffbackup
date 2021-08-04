@@ -39634,7 +39634,7 @@ var render = function() {
                         fn: function(ref) {
                           var item = ref.item
                           return [
-                            _vm.$can("super") && _vm.checkShowAdd(item)
+                            _vm.$can("super") && !_vm.checkShowAdd(item)
                               ? _c("StartSystemTableTimer", {
                                   attrs: { item: item }
                                 })
