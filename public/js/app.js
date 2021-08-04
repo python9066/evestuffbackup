@@ -13347,7 +13347,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var _this = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-        var min, sec, base, finishTime, request, campid;
+        var min, sec, base, finishTime, request;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
@@ -13356,30 +13356,24 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 sec = parseInt(_this.hackTime.substr(3, 2));
                 base = min * 60 + sec;
                 sec = min * 60 + sec;
-                sec = sec / (_this.CampaignSolaSystem[0]["tidi"] / 100); // var sec = sec / (10 / 100);
+                sec = sec / (100 / 100); // var sec = sec / (this.CampaignSolaSystem[0]["tidi"] / 100);
+                // var sec = sec / (10 / 100);
                 // console.log(sec);
 
                 finishTime = moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc().add(sec, "seconds").format("YYYY-MM-DD HH:mm:ss");
                 item.end = finishTime;
 
-                _this.$store.dispatch("updateCampaignSystem", item);
+                _this.$store.dispatch("updateStartCampaignSystem", item);
 
                 request = {
                   end_time: finishTime,
                   input_time: moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc().format("YYYY-MM-DD HH:mm:ss"),
                   base_time: base
-                }; // console.log(base);
-
-                if (_this.item.custom_campaign_id != null) {
-                  campid = _this.$route.params.id;
-                } else {
-                  campid = _this.item.campaign_id;
-                }
-
-                _context.next = 12;
+                };
+                _context.next = 11;
                 return axios({
                   method: "put",
-                  url: "/api/campaignsystems/" + item.id + "/" + campid,
+                  url: "/api/campaignsystems/" + item.id + "/" + item.start_campaign_id,
                   data: request,
                   headers: {
                     Authorization: "Bearer " + _this.$store.state.token,
@@ -13388,7 +13382,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   }
                 });
 
-              case 12:
+              case 11:
               case "end":
                 return _context.stop();
             }
@@ -13428,24 +13422,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }
     },
     checkHackUserEdit: function checkHackUserEdit(item) {
-      if (item.status_id == 7 || item.status_id == 8 || item.status_id == 3 || item.status_id == 9) {
-        return true;
-      } else {
-        return false;
-      }
+      return true;
     },
     hackTextColor: function hackTextColor(item) {
       if (item.status_id == 7) {
         return "color: while";
       } else {
         return "color: green";
-      }
-    },
-    pillOutlined: function pillOutlined(item) {
-      if (item.status_id == 7) {
-        return false;
-      } else {
-        return true;
       }
     }
   },
@@ -39714,7 +39697,7 @@ var render = function() {
                               {
                                 attrs: {
                                   pill: "",
-                                  outlined: _vm.pillOutlined(_vm.item),
+                                  outlined: "",
                                   small: "",
                                   color: "warning"
                                 },
@@ -39738,7 +39721,7 @@ var render = function() {
                 ],
                 null,
                 false,
-                3172732814
+                1451940391
               )
             },
             [

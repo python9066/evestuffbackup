@@ -10,7 +10,7 @@
                     v-bind="attrs"
                     v-on="on"
                     pill
-                    :outlined="pillOutlined(item)"
+                    outlined
                     @click="timerShown = true"
                     small
                     color="warning"
@@ -158,7 +158,8 @@ export default {
             var sec = parseInt(this.hackTime.substr(3, 2));
             var base = min * 60 + sec;
             var sec = min * 60 + sec;
-            var sec = sec / (this.CampaignSolaSystem[0]["tidi"] / 100);
+            var sec = sec / (100 / 100);
+            // var sec = sec / (this.CampaignSolaSystem[0]["tidi"] / 100);
             // var sec = sec / (10 / 100);
             // console.log(sec);
             var finishTime = moment
@@ -166,22 +167,20 @@ export default {
                 .add(sec, "seconds")
                 .format("YYYY-MM-DD HH:mm:ss");
             item.end = finishTime;
-            this.$store.dispatch("updateCampaignSystem", item);
+            this.$store.dispatch("updateStartCampaignSystem", item);
             var request = {
                 end_time: finishTime,
                 input_time: moment.utc().format("YYYY-MM-DD HH:mm:ss"),
                 base_time: base
             };
-            // console.log(base);
-            if (this.item.custom_campaign_id != null) {
-                var campid = this.$route.params.id;
-            } else {
-                var campid = this.item.campaign_id;
-            }
 
             await axios({
                 method: "put",
-                url: "/api/campaignsystems/" + item.id + "/" + campid,
+                url:
+                    "/api/campaignsystems/" +
+                    item.id +
+                    "/" +
+                    item.start_campaign_id,
                 data: request,
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
@@ -231,16 +230,7 @@ export default {
         },
 
         checkHackUserEdit(item) {
-            if (
-                item.status_id == 7 ||
-                item.status_id == 8 ||
-                item.status_id == 3 ||
-                item.status_id == 9
-            ) {
-                return true;
-            } else {
-                return false;
-            }
+            return true;
         },
 
         hackTextColor(item) {
@@ -248,14 +238,6 @@ export default {
                 return "color: while";
             } else {
                 return "color: green";
-            }
-        },
-
-        pillOutlined(item) {
-            if (item.status_id == 7) {
-                return false;
-            } else {
-                return true;
             }
         }
     },
