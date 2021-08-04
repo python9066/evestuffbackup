@@ -13361,7 +13361,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 // console.log(sec);
 
                 finishTime = moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc().add(sec, "seconds").format("YYYY-MM-DD HH:mm:ss");
-                item.end = finishTime;
+                item.end_time = finishTime;
 
                 _this.$store.dispatch("updateStartCampaignSystem", item);
 
@@ -13398,7 +13398,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }
     },
     checkHackUser: function checkHackUser(item) {
-      if (item.site_id == this.$store.state.user_id && item.end == null) {
+      if (item.site_id == this.$store.state.user_id && item.end_time == null) {
         return true;
       } else {
         return false;
@@ -39841,10 +39841,10 @@ var render = function() {
             ],
             2
           )
-        : _vm.item.end != null
+        : _vm.item.end_time != null
         ? _c("CountDowntimer", {
             attrs: {
-              "start-time": _vm.moment.utc(_vm.item.end).unix(),
+              "start-time": _vm.moment.utc(_vm.item.end_time).unix(),
               "end-text": _vm.endText(_vm.item),
               interval: 1000
             },

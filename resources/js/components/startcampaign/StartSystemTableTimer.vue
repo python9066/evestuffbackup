@@ -57,8 +57,8 @@
             </template>
         </v-menu>
         <CountDowntimer
-            v-else-if="item.end != null"
-            :start-time="moment.utc(item.end).unix()"
+            v-else-if="item.end_time != null"
+            :start-time="moment.utc(item.end_time).unix()"
             :end-text="endText(item)"
             :interval="1000"
         >
@@ -166,7 +166,7 @@ export default {
                 .utc()
                 .add(sec, "seconds")
                 .format("YYYY-MM-DD HH:mm:ss");
-            item.end = finishTime;
+            item.end_time = finishTime;
             this.$store.dispatch("updateStartCampaignSystem", item);
             var request = {
                 end_time: finishTime,
@@ -201,7 +201,10 @@ export default {
         },
 
         checkHackUser(item) {
-            if (item.site_id == this.$store.state.user_id && item.end == null) {
+            if (
+                item.site_id == this.$store.state.user_id &&
+                item.end_time == null
+            ) {
                 return true;
             } else {
                 return false;
