@@ -166,7 +166,7 @@ class CustomCampaignsController extends Controller
     public function destroy($id)
     {
 
-        return view('auth.emily');
+
         // CustomCampaign::destroy($id);
         // CampaignJoin::where('custom_campaign_id', $id)->delete();
         // CampaignSystem::where('custom_campaign_id', $id)->delete();
