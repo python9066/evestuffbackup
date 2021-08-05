@@ -75,7 +75,6 @@ export default {
                     "Content-Type": "application/json"
                 }
             });
-            // await this.$store.dispatch("loadCampaignSystemData", payload);
         },
 
         checkShowAdd(item) {

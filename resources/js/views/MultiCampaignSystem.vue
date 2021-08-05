@@ -431,10 +431,10 @@ export default {
             user_id: this.$store.state.user_id,
             type: 2
         };
-        await this.$store.dispatch("loadCampaignSystemData", payload);
         await this.getSystems(this.campaignId);
         await this.addMember();
         await this.$store.dispatch("getCampaignSolaSystems");
+        await this.$store.dispatch("loadCampaignSystemData", payload);
     },
     methods: {
         updateBar() {

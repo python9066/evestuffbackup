@@ -84,7 +84,6 @@ export default {
                 user_id: this.$store.state.user_id,
                 type: 2
             };
-            // await this.$store.dispatch("loadCampaignSystemData", payload);
         },
 
         checkShowAdd(item) {
