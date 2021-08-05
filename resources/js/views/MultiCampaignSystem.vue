@@ -36,7 +36,10 @@
                         >
                         <UsersChars :campaign_id="campaign_id"> </UsersChars>
 
-                        <WatchUserTable :campaign_id="this.campaign_id">
+                        <WatchUserTable
+                            :campaign_id="this.campaign_id"
+                            v-if="$can('view_campaign_members')"
+                        >
                         </WatchUserTable>
                         <v-btn
                             v-if="$can('view_campaign_logs')"
