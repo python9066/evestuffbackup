@@ -9,7 +9,6 @@
             dense
             hide-default-footer
             disable-pagination
-            hide-default-header
             class=""
         >
             <template v-slot:[`item.charname`]="{ item }">
