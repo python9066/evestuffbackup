@@ -84,6 +84,12 @@ export default {
         return {
             headers: [
                 {
+                    text: "",
+                    value: "padding",
+                    width: "5%",
+                    align: "start"
+                },
+                {
                     text: "Pilot",
                     value: "charname",
                     width: "25%",
