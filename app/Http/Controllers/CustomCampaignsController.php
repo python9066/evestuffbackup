@@ -167,16 +167,16 @@ class CustomCampaignsController extends Controller
     {
 
 
-        // CustomCampaign::destroy($id);
-        // CampaignJoin::where('custom_campaign_id', $id)->delete();
-        // CampaignSystem::where('custom_campaign_id', $id)->delete();
-        // NodeJoin::where('campaign_id', $id)->delete();
-        // CampaignSystemUsers::where('custom_campaign_id', $id)->delete();
-        // CampaignUser::where('campaign_id', $id)->update([
-        //     'campaign_id' => null,
-        //     'campaign_system_id' => null,
-        //     'status_id' => 1
-        // ]);
-        // CampaignSolaSystem::where('campaign_id', $id)->delete();
+        CustomCampaign::destroy($id);
+        CampaignJoin::where('custom_campaign_id', $id)->delete();
+        CampaignSystem::where('custom_campaign_id', $id)->delete();
+        NodeJoin::where('campaign_id', $id)->delete();
+        CampaignSystemUsers::where('custom_campaign_id', $id)->delete();
+        CampaignUser::where('campaign_id', $id)->update([
+            'campaign_id' => null,
+            'campaign_system_id' => null,
+            'status_id' => 1
+        ]);
+        CampaignSolaSystem::where('campaign_id', $id)->delete();
     }
 }
