@@ -22187,19 +22187,19 @@ function sleep(ms) {
                 type: 2
               };
               _context3.next = 11;
-              return _this2.getSystems(_this2.campaignId);
+              return _this2.$store.dispatch("loadCampaignSystemData", payload);
 
             case 11:
               _context3.next = 13;
-              return _this2.addMember();
+              return _this2.getSystems(_this2.campaignId);
 
             case 13:
               _context3.next = 15;
-              return _this2.$store.dispatch("getCampaignSolaSystems");
+              return _this2.addMember();
 
             case 15:
               _context3.next = 17;
-              return _this2.$store.dispatch("loadCampaignSystemData", payload);
+              return _this2.$store.dispatch("getCampaignSolaSystems");
 
             case 17:
             case "end":
