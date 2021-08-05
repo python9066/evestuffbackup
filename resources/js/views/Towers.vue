@@ -21,6 +21,7 @@
                 :value="2"
             >
                 <v-btn
+                    v-if="$can('view_towers_all')"
                     :loading="loadingf"
                     :disabled="loadingf"
                     @click="standingFlag = 1"
@@ -35,6 +36,7 @@
                     Hostile
                 </v-btn>
                 <v-btn
+                    v-if="$can('view_towers_all')"
                     :loading="loadingf"
                     :disabled="loadingf"
                     @click="standingFlag = 3"

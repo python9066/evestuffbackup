@@ -25,6 +25,8 @@ Doctrine: Jackdaw Fleet (Boosters > Scalpel / Kirin > Jackdaw > Keres / Hyena > 
  Comms: Op 9 https://gnf.lt/l7zng0s.html
  Doctrine: Torp Bombers (Purifier > Hound > Astero)
 
+ Geekvape Aegis L200 Legend 2
+
 /usr/bin/php7.4-cli artisan
 
 
