@@ -858,6 +858,8 @@ export default {
                 return "style-1";
             } else if (item.status_id == 8) {
                 return "style-2";
+            } else if (item.under_attack == 1) {
+                return "style-4";
             }
         },
 
@@ -1410,6 +1412,9 @@ export default {
 </script>
 
 <style>
+.style-4 {
+    background-color: rgba(255, 153, 0, 0.199);
+}
 .style-3 {
     background-color: rgb(255, 172, 77);
 }
