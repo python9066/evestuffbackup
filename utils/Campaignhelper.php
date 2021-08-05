@@ -70,6 +70,11 @@ class Campaignhelper
                 Campaign::where('id', $toDelete->id)->delete(); //
                 CampaignJoin::where('campaign_id', $toDelete->id)->delete(); //
                 CampaignSolaSystem::where('campaign_id', $toDelete->id)->delete(); //
+                $flag = collect([
+                    'flag' => 4,
+                    'id' => $toDelete->id
+                ]);
+                broadcast(new CampaignSystemUpdate($flag));
             }
         }
 
@@ -350,7 +355,7 @@ class Campaignhelper
                 'id' => $check
             ]);
             echo "yoyo";
-            broadcast(new CampaignChanged($flag))->toOthers()->toOthers();
+            broadcast(new CampaignChanged($flag))->toOthers();
         }
     }
 
@@ -403,7 +408,7 @@ class Campaignhelper
                 'message' => $message,
                 'id' => $check
             ]);
-            broadcast(new CampaignUserUpdate($flag))->toOthers();
+            broadcast(new CampaignUserUpdate($flag));
         }
 
 
@@ -416,7 +421,7 @@ class Campaignhelper
                 'campSysID' => $del['id'],
                 'id' => $check
             ]);
-            broadcast(new CampaignSystemDelete($flag))->toOthers();
+            broadcast(new CampaignSystemDelete($flag));
         };
 
         $campaign->campaignsystems()
@@ -430,7 +435,7 @@ class Campaignhelper
             'id' => $check
         ]);
         echo "8";
-        broadcast(new CampaignUpdate($flag))->toOthers();
+        broadcast(new CampaignUpdate($flag));
         return;
     }
 }
