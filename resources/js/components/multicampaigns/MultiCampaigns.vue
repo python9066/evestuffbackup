@@ -28,7 +28,7 @@
             <template v-slot:[`item.system`]="{ item }">
                 <SystemItemList :campaignID="item.id"> </SystemItemList>
             </template>
-            <template v-slot:[`item.actions`]="{ item }">
+            <template v-slot:[`item.actions`]="{ item }" class=" d-inline-flex">
                 <v-btn
                     icon
                     @click="
