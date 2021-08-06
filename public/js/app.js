@@ -34507,7 +34507,7 @@ var render = function() {
                             color: "purple accent-3",
                             dark: "",
                             icon: "",
-                            small: ""
+                            "x-small": ""
                           },
                           on: {
                             click: function($event) {

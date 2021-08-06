@@ -6,7 +6,7 @@
                     color="purple accent-3"
                     dark
                     icon
-                    small
+                    x-small
                     v-bind="attrs"
                     v-on="on"
                     @click="open()"
