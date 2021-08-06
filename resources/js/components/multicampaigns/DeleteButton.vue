@@ -21,23 +21,17 @@
                 <v-card-title class="justify-center">
                     <p>ARE YOU SURE EMILY!!!!!!!!!!!</p>
                 </v-card-title>
-                <v-card-actions class=" d-inline-flex">
-                    <div class="justify-center">
-                        <v-btn
-                            class="white--text"
-                            color="teal"
-                            @click="close()"
-                        >
-                            Close
-                        </v-btn>
-                        <v-btn
-                            class="white--text"
-                            color="green"
-                            @click="deleteCampaign(item)"
-                        >
-                            YES
-                        </v-btn>
-                    </div>
+                <v-card-actions class="justify-center">
+                    <v-btn class="white--text" color="teal" @click="close()">
+                        Close
+                    </v-btn>
+                    <v-btn
+                        class="white--text"
+                        color="green"
+                        @click="deleteCampaign(item)"
+                    >
+                        YES
+                    </v-btn>
                 </v-card-actions>
             </v-card>
 
