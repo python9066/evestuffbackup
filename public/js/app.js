@@ -34557,7 +34557,7 @@ var render = function() {
                 _c("p", [_vm._v("ARE YOU SURE EMILY!!!!!!!!!!!")])
               ]),
               _vm._v(" "),
-              _c("v-card-actions", [
+              _c("v-card-actions", { staticClass: " d-inline-flex" }, [
                 _c(
                   "div",
                   { staticClass: "justify-center" },
