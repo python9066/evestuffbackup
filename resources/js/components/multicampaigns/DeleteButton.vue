@@ -17,13 +17,7 @@
                 </v-btn>
             </template>
 
-            <v-card
-                tile
-                max-width="700px"
-                min-height="200px"
-                max-height="1000px"
-                class=" d-flex flex-column"
-            >
+            <v-card tile class=" d-flex flex-column">
                 <v-card-title class="justify-center">
                     <p>ARE YOU SURE EMILY!!!!!!!!!!!</p>
                 </v-card-title>

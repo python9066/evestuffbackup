@@ -7943,12 +7943,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
-//
 
 
 
@@ -34557,15 +34551,7 @@ var render = function() {
           _vm._v(" "),
           _c(
             "v-card",
-            {
-              staticClass: " d-flex flex-column",
-              attrs: {
-                tile: "",
-                "max-width": "700px",
-                "min-height": "200px",
-                "max-height": "1000px"
-              }
-            },
+            { staticClass: " d-flex flex-column", attrs: { tile: "" } },
             [
               _c("v-card-title", { staticClass: "justify-center" }, [
                 _c("p", [_vm._v("ARE YOU SURE EMILY!!!!!!!!!!!")])
