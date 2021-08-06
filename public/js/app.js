@@ -34502,32 +34502,30 @@ var render = function() {
                 var on = ref.on
                 var attrs = ref.attrs
                 return [
+                  _vm._v("\n            >"),
                   _c(
-                    "v-btn",
+                    "v-icon",
                     _vm._g(
                       _vm._b(
                         {
-                          attrs: { color: "purple accent-3", dark: "" },
+                          attrs: {
+                            left: "",
+                            color: "purple accent-3",
+                            dark: ""
+                          },
                           on: {
                             click: function($event) {
                               return _vm.open()
                             }
                           }
                         },
-                        "v-btn",
+                        "v-icon",
                         attrs,
                         false
                       ),
                       on
                     ),
-                    [
-                      _c("v-icon", { attrs: { left: "" } }, [
-                        _vm._v(
-                          "\n                    fas fa-trash\n                "
-                        )
-                      ])
-                    ],
-                    1
+                    [_vm._v("\n                fas fa-trash\n            ")]
                   )
                 ]
               }
