@@ -27,19 +27,24 @@
                 <v-card-title class="justify-center">
                     <p>ARE YOU SURE EMILY!!!!!!!!!!!</p>
                 </v-card-title>
-                <v-spacer></v-spacer
                 ><v-card-actions>
-                    <v-btn class="white--text" color="teal" @click="close()">
-                        Close
-                    </v-btn>
-                    <v-btn
-                        class="white--text"
-                        color="green"
-                        @click="deleteCampaign(item)"
-                    >
-                        YES
-                    </v-btn></v-card-actions
-                >
+                    <div align="space-around">
+                        <v-btn
+                            class="white--text"
+                            color="teal"
+                            @click="close()"
+                        >
+                            Close
+                        </v-btn>
+                        <v-btn
+                            class="white--text"
+                            color="green"
+                            @click="deleteCampaign(item)"
+                        >
+                            YES
+                        </v-btn>
+                    </div>
+                </v-card-actions>
             </v-card>
 
             <!-- <showReconTask

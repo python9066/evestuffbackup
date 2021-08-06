@@ -7944,6 +7944,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 
@@ -34565,41 +34570,51 @@ var render = function() {
               _c("v-card-title", { staticClass: "justify-center" }, [
                 _c("p", [_vm._v("ARE YOU SURE EMILY!!!!!!!!!!!")])
               ]),
-              _vm._v(" "),
-              _c("v-spacer"),
-              _c(
-                "v-card-actions",
-                [
-                  _c(
-                    "v-btn",
-                    {
-                      staticClass: "white--text",
-                      attrs: { color: "teal" },
-                      on: {
-                        click: function($event) {
-                          return _vm.close()
+              _vm._v("\n            >"),
+              _c("v-card-actions", [
+                _c(
+                  "div",
+                  { attrs: { align: "space-around" } },
+                  [
+                    _c(
+                      "v-btn",
+                      {
+                        staticClass: "white--text",
+                        attrs: { color: "teal" },
+                        on: {
+                          click: function($event) {
+                            return _vm.close()
+                          }
                         }
-                      }
-                    },
-                    [_vm._v("\n                    Close\n                ")]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "v-btn",
-                    {
-                      staticClass: "white--text",
-                      attrs: { color: "green" },
-                      on: {
-                        click: function($event) {
-                          return _vm.deleteCampaign(_vm.item)
+                      },
+                      [
+                        _vm._v(
+                          "\n                        Close\n                    "
+                        )
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "v-btn",
+                      {
+                        staticClass: "white--text",
+                        attrs: { color: "green" },
+                        on: {
+                          click: function($event) {
+                            return _vm.deleteCampaign(_vm.item)
+                          }
                         }
-                      }
-                    },
-                    [_vm._v("\n                    YES\n                ")]
-                  )
-                ],
-                1
-              )
+                      },
+                      [
+                        _vm._v(
+                          "\n                        YES\n                    "
+                        )
+                      ]
+                    )
+                  ],
+                  1
+                )
+              ])
             ],
             1
           )
