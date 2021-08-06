@@ -34570,11 +34570,11 @@ var render = function() {
               _c("v-card-title", { staticClass: "justify-center" }, [
                 _c("p", [_vm._v("ARE YOU SURE EMILY!!!!!!!!!!!")])
               ]),
-              _vm._v("\n            >"),
+              _vm._v(" "),
               _c("v-card-actions", [
                 _c(
                   "div",
-                  { attrs: { align: "space-around" } },
+                  { staticClass: "justify-center" },
                   [
                     _c(
                       "v-btn",

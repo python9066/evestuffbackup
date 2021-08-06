@@ -27,8 +27,8 @@
                 <v-card-title class="justify-center">
                     <p>ARE YOU SURE EMILY!!!!!!!!!!!</p>
                 </v-card-title>
-                ><v-card-actions>
-                    <div align="space-around">
+                <v-card-actions>
+                    <div class="justify-center">
                         <v-btn
                             class="white--text"
                             color="teal"
