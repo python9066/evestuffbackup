@@ -7942,6 +7942,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 
@@ -34505,7 +34506,8 @@ var render = function() {
                           attrs: {
                             color: "purple accent-3",
                             dark: "",
-                            icon: ""
+                            icon: "",
+                            small: ""
                           },
                           on: {
                             click: function($event) {
