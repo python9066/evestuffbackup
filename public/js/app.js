@@ -8471,6 +8471,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
 
 
 
@@ -34911,38 +34915,45 @@ var render = function() {
                   var item = ref.item
                   return [
                     _c(
-                      "v-btn",
-                      {
-                        attrs: { icon: "", color: "warning" },
-                        on: {
-                          click: function($event) {
-                            ;(_vm.overlayEditID = item.id),
-                              (_vm.overlayEditName = item.name),
-                              (_vm.overlayEdit = !_vm.overlayEdit)
-                          }
-                        }
-                      },
+                      "div",
+                      { staticClass: " d-inline-flex" },
                       [
-                        _c("v-icon", { attrs: { small: "" } }, [
-                          _vm._v("fas fa-edit")
-                        ])
+                        _c(
+                          "v-btn",
+                          {
+                            attrs: { icon: "", color: "warning" },
+                            on: {
+                              click: function($event) {
+                                ;(_vm.overlayEditID = item.id),
+                                  (_vm.overlayEditName = item.name),
+                                  (_vm.overlayEdit = !_vm.overlayEdit)
+                              }
+                            }
+                          },
+                          [
+                            _c("v-icon", { attrs: { small: "" } }, [
+                              _vm._v("fas fa-edit")
+                            ])
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c("DeleteButton", { attrs: { item: item } }),
+                        _vm._v(" "),
+                        _c(
+                          "v-btn",
+                          {
+                            attrs: { color: "green" },
+                            on: {
+                              click: function($event) {
+                                return _vm.clickCampaign(item)
+                              }
+                            }
+                          },
+                          [_vm._v("View")]
+                        )
                       ],
                       1
-                    ),
-                    _vm._v(" "),
-                    _c("DeleteButton", { attrs: { item: item } }),
-                    _vm._v(" "),
-                    _c(
-                      "v-btn",
-                      {
-                        attrs: { color: "green" },
-                        on: {
-                          click: function($event) {
-                            return _vm.clickCampaign(item)
-                          }
-                        }
-                      },
-                      [_vm._v("View")]
                     )
                   ]
                 }

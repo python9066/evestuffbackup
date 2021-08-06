@@ -28,19 +28,23 @@
             <template v-slot:[`item.system`]="{ item }">
                 <SystemItemList :campaignID="item.id"> </SystemItemList>
             </template>
-            <template v-slot:[`item.actions`]="{ item }" class=" d-inline-flex">
-                <v-btn
-                    icon
-                    @click="
-                        (overlayEditID = item.id),
-                            (overlayEditName = item.name),
-                            (overlayEdit = !overlayEdit)
-                    "
-                    color="warning"
-                    ><v-icon small>fas fa-edit</v-icon></v-btn
-                >
-                <DeleteButton :item="item"></DeleteButton>
-                <v-btn @click="clickCampaign(item)" color="green">View</v-btn>
+            <template v-slot:[`item.actions`]="{ item }">
+                <div class=" d-inline-flex">
+                    <v-btn
+                        icon
+                        @click="
+                            (overlayEditID = item.id),
+                                (overlayEditName = item.name),
+                                (overlayEdit = !overlayEdit)
+                        "
+                        color="warning"
+                        ><v-icon small>fas fa-edit</v-icon></v-btn
+                    >
+                    <DeleteButton :item="item"></DeleteButton>
+                    <v-btn @click="clickCampaign(item)" color="green"
+                        >View</v-btn
+                    >
+                </div>
             </template>
 
             <!-- <template v-slot:actions.="{ item }">
