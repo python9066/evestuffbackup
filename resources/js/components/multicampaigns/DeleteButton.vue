@@ -33,7 +33,6 @@
                     <v-btn
                         class="white--text"
                         color="green"
-                        :disabled="!showSubmit"
                         @click="deleteCampaign(item)"
                     >
                         YES
@@ -60,19 +59,13 @@ export default {
     },
     data() {
         return {
-            systemValue: [],
-            taskName: null,
-            infoText: null,
-            showReconTask: false
+            showDelete: false
         };
     },
 
     methods: {
         close() {
-            this.taskName = null;
-            this.showReconTask = false;
-            this.infoText = null;
-            this.systemValue = [];
+            this.showDelete = false;
         },
 
         async submit() {
@@ -116,9 +109,7 @@ export default {
             this.$store.dispatch("getMultiCampaigns");
         },
 
-        async open() {
-            await this.$store.dispatch("getSystemList");
-        }
+        async open() {}
     },
 
     computed: {

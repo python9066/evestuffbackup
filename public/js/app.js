@@ -7942,7 +7942,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -7951,18 +7950,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   data: function data() {
     return {
-      systemValue: [],
-      taskName: null,
-      infoText: null,
-      showReconTask: false
+      showDelete: false
     };
   },
   methods: {
     close: function close() {
-      this.taskName = null;
-      this.showReconTask = false;
-      this.infoText = null;
-      this.systemValue = [];
+      this.showDelete = false;
     },
     submit: function submit() {
       var _this = this;
@@ -8034,17 +8027,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }))();
     },
     open: function open() {
-      var _this3 = this;
-
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
           while (1) {
             switch (_context3.prev = _context3.next) {
               case 0:
-                _context3.next = 2;
-                return _this3.$store.dispatch("getSystemList");
-
-              case 2:
               case "end":
                 return _context3.stop();
             }
@@ -34586,7 +34573,7 @@ var render = function() {
                     "v-btn",
                     {
                       staticClass: "white--text",
-                      attrs: { color: "green", disabled: !_vm.showSubmit },
+                      attrs: { color: "green" },
                       on: {
                         click: function($event) {
                           return _vm.deleteCampaign(_vm.item)
