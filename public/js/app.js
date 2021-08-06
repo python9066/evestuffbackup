@@ -7942,6 +7942,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -34503,14 +34504,14 @@ var render = function() {
                 var attrs = ref.attrs
                 return [
                   _c(
-                    "v-icon",
+                    "v-btn",
                     _vm._g(
                       _vm._b(
                         {
                           attrs: {
-                            left: "",
                             color: "purple accent-3",
-                            dark: ""
+                            dark: "",
+                            icon: ""
                           },
                           on: {
                             click: function($event) {
@@ -34518,13 +34519,20 @@ var render = function() {
                             }
                           }
                         },
-                        "v-icon",
+                        "v-btn",
                         attrs,
                         false
                       ),
                       on
                     ),
-                    [_vm._v("\n                fas fa-trash\n            ")]
+                    [
+                      _c("v-icon", { attrs: { left: "" } }, [
+                        _vm._v(
+                          "\n                    fas fa-trash\n                "
+                        )
+                      ])
+                    ],
+                    1
                   )
                 ]
               }

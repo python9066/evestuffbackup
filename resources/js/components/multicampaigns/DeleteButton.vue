@@ -2,16 +2,17 @@
     <div>
         <v-dialog persistent max-width="700px" z-index="0" v-model="showDelete">
             <template v-slot:activator="{ on, attrs }">
-                <v-icon
-                    left
+                <v-btn
                     color="purple accent-3"
                     dark
+                    icon
                     v-bind="attrs"
                     v-on="on"
                     @click="open()"
-                >
-                    fas fa-trash
-                </v-icon>
+                    ><v-icon left>
+                        fas fa-trash
+                    </v-icon>
+                </v-btn>
             </template>
 
             <v-card
