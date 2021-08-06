@@ -39,9 +39,7 @@
                     color="warning"
                     ><v-icon small>fas fa-edit</v-icon></v-btn
                 >
-                <v-btn icon @click="deleteCampaign(item)" color="warning"
-                    ><v-icon small>fas fa-trash</v-icon></v-btn
-                >
+                <DeleteButton :item="item"></DeleteButton>
                 <v-btn @click="clickCampaign(item)" color="green">View</v-btn>
             </template>
 
@@ -137,22 +135,6 @@ export default {
 
         loadCampaignJoinData() {
             this.$store.dispatch("getCampaignJoinData");
-        },
-
-        async deleteCampaign(item) {
-            await axios({
-                method: "delete", //you can set what request you want to be
-                url: "/api/multicampaigns/" + item.id,
-                headers: {
-                    Authorization: "Bearer " + this.$store.state.token,
-                    Accept: "application/json",
-                    "Content-Type": "application/json"
-                }
-            });
-
-            sleep(500);
-
-            this.$store.dispatch("getMultiCampaigns");
         },
 
         updatemultiCampaginAdd() {

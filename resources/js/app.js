@@ -93,6 +93,7 @@ Vue.component('StartTitleBar', require('./components/startcampaign/StartTitleBar
 Vue.component('StartSystemTable', require('./components/startcampaign/StartSystemTable.vue').default);
 Vue.component('StartCampaignMessage', require('./components/random/StartCampaignMessage').default);
 Vue.component('StartSystemTableTimer', require('./components/startcampaign/StartSystemTableTimer.vue').default);
+Vue.component('DeleteButton', require('./components/multicampaigns/DeleteButton.vue').default);
 
 
 
