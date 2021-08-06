@@ -7937,6 +7937,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
 
 
 
@@ -34548,7 +34552,12 @@ var render = function() {
             { staticClass: " d-flex flex-column", attrs: { tile: "" } },
             [
               _c("v-card-title", { staticClass: "justify-center" }, [
-                _c("p", [_vm._v("ARE YOU SURE EMILY!!!!!!!!!!!")])
+                _c("p", [
+                  _vm._v("\n                    ARE YOU SURE"),
+                  _c("strong", { staticClass: "purple--text test--accent-3" }, [
+                    _vm._v("\n                        EMILY!!!!!!!!!!!")
+                  ])
+                ])
               ]),
               _vm._v(" "),
               _c(

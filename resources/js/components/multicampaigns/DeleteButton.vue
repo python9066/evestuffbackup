@@ -19,7 +19,11 @@
 
             <v-card tile class=" d-flex flex-column">
                 <v-card-title class="justify-center">
-                    <p>ARE YOU SURE EMILY!!!!!!!!!!!</p>
+                    <p>
+                        ARE YOU SURE<strong class="purple--text test--accent-3">
+                            EMILY!!!!!!!!!!!</strong
+                        >
+                    </p>
                 </v-card-title>
                 <v-card-actions class="justify-center">
                     <v-btn class="white--text" color="teal" @click="close()">
