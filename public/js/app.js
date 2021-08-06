@@ -34502,7 +34502,6 @@ var render = function() {
                 var on = ref.on
                 var attrs = ref.attrs
                 return [
-                  _vm._v("\n            >"),
                   _c(
                     "v-icon",
                     _vm._g(
