@@ -7943,6 +7943,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 
@@ -34507,6 +34508,7 @@ var render = function() {
                     _vm._g(
                       _vm._b(
                         {
+                          staticClass: " pt-10",
                           attrs: {
                             color: "purple accent-3",
                             dark: "",
