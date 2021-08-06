@@ -3,7 +3,7 @@
         <v-dialog persistent max-width="700px" z-index="0" v-model="showDelete">
             <template v-slot:activator="{ on, attrs }">
                 <v-btn
-                    class=" pt-5"
+                    class=" pt-4"
                     color="purple accent-3"
                     dark
                     icon

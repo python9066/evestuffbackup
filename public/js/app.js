@@ -34508,7 +34508,7 @@ var render = function() {
                     _vm._g(
                       _vm._b(
                         {
-                          staticClass: " pt-5",
+                          staticClass: " pt-4",
                           attrs: {
                             color: "purple accent-3",
                             dark: "",
