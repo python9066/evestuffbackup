@@ -7944,6 +7944,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 
 
+
+function sleep(ms) {
+  return new Promise(function (resolve) {
+    return setTimeout(resolve, ms);
+  });
+}
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     item: Object
