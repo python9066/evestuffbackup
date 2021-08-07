@@ -20,7 +20,6 @@ class TimerController extends Controller
         $data = [];
         $pull = TimersRecord::all();
         $pull = $pull->unique('region_id');
-        dd($pull);
         $pull = $pull->sortBy('region');
 
         foreach ($pull as $pull) {
