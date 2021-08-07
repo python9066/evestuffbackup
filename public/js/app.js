@@ -19175,9 +19175,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  title: function title() {
-    return "eve test";
-  },
   props: ["username", "token", "user_id"],
   mounted: function mounted() {},
   data: function data() {
@@ -19817,6 +19814,9 @@ function sleep(ms) {
 }
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+  title: function title() {
+    return "EVE";
+  },
   data: function data() {
     return {
       dropdown_roles: [{
@@ -21121,6 +21121,9 @@ function sleep(ms) {
 }
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+  title: function title() {
+    return "EVE";
+  },
   data: function data() {
     return {
       //timersAll: [869349],
@@ -21426,6 +21429,9 @@ function sleep(ms) {
 }
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+  title: function title() {
+    return "EVE";
+  },
   data: function data() {
     return {};
   },
@@ -21571,6 +21577,9 @@ function sleep(ms) {
 }
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+  title: function title() {
+    return "EVE";
+  },
   data: function data() {
     return {
       atime: null,
@@ -21808,6 +21817,9 @@ function sleep(ms) {
 }
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+  title: function title() {
+    return "EVE";
+  },
   data: function data() {
     return {};
   },
@@ -23512,6 +23524,9 @@ function sleep(ms) {
 }
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+  title: function title() {
+    return "EVE";
+  },
   data: function data() {
     return {
       atime: null,
@@ -23951,6 +23966,9 @@ function sleep(ms) {
 }
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+  title: function title() {
+    return "EVE";
+  },
   data: function data() {
     return {
       tasks: [],
@@ -24185,6 +24203,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {},
+  title: function title() {
+    return "EVE";
+  },
   created: function created() {
     var _this = this;
 
@@ -24487,6 +24508,9 @@ function sleep(ms) {
 }
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+  title: function title() {
+    return "EVE";
+  },
   data: function data() {
     return {
       check: "not here",
@@ -25010,6 +25034,9 @@ function sleep(ms) {
 }
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+  title: function title() {
+    return "EVE";
+  },
   data: function data() {
     return {
       atime: null,

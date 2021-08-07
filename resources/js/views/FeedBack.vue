@@ -89,6 +89,9 @@ function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 export default {
+    title() {
+        return `EVE`;
+    },
     data() {
         return {
             atime: null,

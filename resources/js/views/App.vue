@@ -175,9 +175,6 @@ import ClickOutside from "vue-click-outside";
 import { mapState } from "vuex";
 
 export default {
-    title() {
-        return `eve test`;
-    },
     props: ["username", "token", "user_id"],
     mounted() {},
     data: () => ({

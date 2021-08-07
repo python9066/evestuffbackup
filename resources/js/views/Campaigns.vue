@@ -356,6 +356,9 @@ function sleep(ms) {
 }
 
 export default {
+    title() {
+        return `EVE`;
+    },
     data() {
         return {
             //timersAll: [869349],

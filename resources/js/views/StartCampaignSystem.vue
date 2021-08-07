@@ -99,6 +99,9 @@ import { mapState, mapGetters } from "vuex";
 import moment from "moment";
 export default {
     props: {},
+    title() {
+        return `EVE`;
+    },
     async created() {
         this.campaignId = this.$route.params.id;
         this.campaign_id = parseInt(this.$route.params.id);
