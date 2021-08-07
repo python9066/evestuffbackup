@@ -238,7 +238,7 @@ function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 export default {
-    title: getMultiCampaignName(),
+    title: "test"
     data() {
         return {
             dropdown_roles: [
