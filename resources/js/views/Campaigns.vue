@@ -559,17 +559,11 @@ export default {
         }
     },
     computed: {
-        ...mapState(["campaigns"]),
+        ...mapState(["campaigns", "getCampaignsRegions"]),
 
         dropdownList() {
-            let region = this.campaigns;
-            things.thing = region.filter(
-                (thing, index, self) =>
-                    self.findIndex(
-                        t => t.place === thing.place && t.name === thing.name
-                    ) === index
-            );
-            return things.thing;
+            let region = this.getCampaignsRegions;
+            return region;
         },
 
         filteredItems_start() {

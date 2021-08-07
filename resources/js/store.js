@@ -15,6 +15,7 @@ export default new Vuex.Store({
         allianceticklist: [],
         ammoRequest:[],
         campaigns: [],
+        campaignsRegion: [],
         campaignJoin: [],
         campaignSolaSystems:[],
         campaignslist: [],
@@ -240,6 +241,11 @@ export default new Vuex.Store({
         SET_CAMPAIGNS(state, campaigns) {
             state.campaigns = campaigns;
         },
+
+        SET_CAMPAIGNS_REGION(state, campaignsRegion) {
+            state.campaignsRegion = campaignsRegion;
+        },
+
 
         UPDATE_CAMPAIGNS(state, data) {
             const item = state.campaigns.find(c => c.id === data.id);
@@ -709,6 +715,20 @@ export default new Vuex.Store({
             });
             commit("SET_CAMPAIGNS", res.data.campaigns);
         },
+
+        async getCampaignsRegions({ commit, state }) {
+            let res = await axios({
+                method: "get",
+                url: "/api/campaignsregion",
+                headers: {
+                    Authorization: "Bearer " + state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                }
+            });
+            commit("SET_CAMPAIGNS_REGION", res.data.campaignslistRegion);
+        },
+
 
         async getMultiCampaigns({ commit, state }) {
             let res = await axios({

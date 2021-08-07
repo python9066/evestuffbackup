@@ -38,6 +38,26 @@ class CampaignRecordsController extends Controller
         return ['campaignslist' => $data];
     }
 
+    public function campaignslistRegion()
+    {
+        $data = [];
+        $pull = CampaignRecords::where('status_id', "<", 3)->orderBy('start', 'asc')->get();
+        $pull = $pull->unique();
+        foreach ($pull as $pull) {
+            $data1 = [];
+            $data1 = [
+                "text" => $pull['region'],
+                "value" => $pull['region_id']
+            ];
+
+            array_push($data, $data1);
+        }
+
+        // dd($data);
+
+        return ['campaignslistRegion' => $data];
+    }
+
     /**
      * Store a newly created resource in storage.
      *

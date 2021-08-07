@@ -42,6 +42,7 @@ Route::middleware('auth:api')->group(function () {
 
     //HACKING Campaign APIs
     Route::get('/campaigns', 'CampaignRecordsController@index');
+    Route::get('/campaignsregion', 'CampaignRecordsController@campaignslistRegion');
     Route::get('/campaignslist', 'CampaignRecordsController@campaignslist');
     Route::put('/campaigns/{id}', 'CampaignRecordsController@update');
 

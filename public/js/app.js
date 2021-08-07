@@ -21383,15 +21383,10 @@ function sleep(ms) {
       this.$store.dispatch("markOver", item);
     }
   },
-  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapState"])(["campaigns"])), {}, {
+  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapState"])(["campaigns", "getCampaignsRegions"])), {}, {
     dropdownList: function dropdownList() {
-      var region = this.campaigns;
-      things.thing = region.filter(function (thing, index, self) {
-        return self.findIndex(function (t) {
-          return t.place === thing.place && t.name === thing.name;
-        }) === index;
-      });
-      return things.thing;
+      var region = this.getCampaignsRegions;
+      return region;
     },
     filteredItems_start: function filteredItems_start() {
       // var timers = this.$store.state.timers;
@@ -59188,6 +59183,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
     allianceticklist: [],
     ammoRequest: [],
     campaigns: [],
+    campaignsRegion: [],
     campaignJoin: [],
     campaignSolaSystems: [],
     campaignslist: [],
@@ -59414,6 +59410,9 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
     },
     SET_CAMPAIGNS: function SET_CAMPAIGNS(state, campaigns) {
       state.campaigns = campaigns;
+    },
+    SET_CAMPAIGNS_REGION: function SET_CAMPAIGNS_REGION(state, campaignsRegion) {
+      state.campaignsRegion = campaignsRegion;
     },
     UPDATE_CAMPAIGNS: function UPDATE_CAMPAIGNS(state, data) {
       var item = state.campaigns.find(function (c) {
@@ -60246,7 +60245,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
         }, _callee21);
       }))();
     },
-    getMultiCampaigns: function getMultiCampaigns(_ref22) {
+    getCampaignsRegions: function getCampaignsRegions(_ref22) {
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee22() {
         var commit, state, res;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee22$(_context22) {
@@ -60255,6 +60254,37 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
               case 0:
                 commit = _ref22.commit, state = _ref22.state;
                 _context22.next = 3;
+                return axios({
+                  method: "get",
+                  url: "/api/campaignsregion",
+                  headers: {
+                    Authorization: "Bearer " + state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                  }
+                });
+
+              case 3:
+                res = _context22.sent;
+                commit("SET_CAMPAIGNS_REGION", res.data.campaignslistRegion);
+
+              case 5:
+              case "end":
+                return _context22.stop();
+            }
+          }
+        }, _callee22);
+      }))();
+    },
+    getMultiCampaigns: function getMultiCampaigns(_ref23) {
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee23() {
+        var commit, state, res;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee23$(_context23) {
+          while (1) {
+            switch (_context23.prev = _context23.next) {
+              case 0:
+                commit = _ref23.commit, state = _ref23.state;
+                _context23.next = 3;
                 return axios({
                   method: "get",
                   url: "/api/multicampaigns",
@@ -60266,26 +60296,26 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
                 });
 
               case 3:
-                res = _context22.sent;
+                res = _context23.sent;
                 commit("SET_MULTI_CAMPAIGNS", res.data.campaigns);
 
               case 5:
               case "end":
-                return _context22.stop();
+                return _context23.stop();
             }
           }
-        }, _callee22);
+        }, _callee23);
       }))();
     },
-    getStartCampaigns: function getStartCampaigns(_ref23) {
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee23() {
+    getStartCampaigns: function getStartCampaigns(_ref24) {
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee24() {
         var commit, state, res;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee23$(_context23) {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee24$(_context24) {
           while (1) {
-            switch (_context23.prev = _context23.next) {
+            switch (_context24.prev = _context24.next) {
               case 0:
-                commit = _ref23.commit, state = _ref23.state;
-                _context23.next = 3;
+                commit = _ref24.commit, state = _ref24.state;
+                _context24.next = 3;
                 return axios({
                   method: "get",
                   url: "/api/startcampaigns",
@@ -60297,26 +60327,26 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
                 });
 
               case 3:
-                res = _context23.sent;
+                res = _context24.sent;
                 commit("SET_START_CAMPAIGNS", res.data.campaigns);
 
               case 5:
               case "end":
-                return _context23.stop();
+                return _context24.stop();
             }
           }
-        }, _callee23);
+        }, _callee24);
       }))();
     },
-    getCampaignsList: function getCampaignsList(_ref24) {
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee24() {
+    getCampaignsList: function getCampaignsList(_ref25) {
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee25() {
         var commit, state, res;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee24$(_context24) {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee25$(_context25) {
           while (1) {
-            switch (_context24.prev = _context24.next) {
+            switch (_context25.prev = _context25.next) {
               case 0:
-                commit = _ref24.commit, state = _ref24.state;
-                _context24.next = 3;
+                commit = _ref25.commit, state = _ref25.state;
+                _context25.next = 3;
                 return axios({
                   method: "get",
                   url: "/api/campaignslist",
@@ -60328,26 +60358,26 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
                 });
 
               case 3:
-                res = _context24.sent;
+                res = _context25.sent;
                 commit("SET_CAMPAIGNSLIST", res.data.campaignslist);
 
               case 5:
               case "end":
-                return _context24.stop();
+                return _context25.stop();
             }
           }
-        }, _callee24);
+        }, _callee25);
       }))();
     },
-    getLoggingCampaign: function getLoggingCampaign(_ref25, campaign_id) {
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee25() {
+    getLoggingCampaign: function getLoggingCampaign(_ref26, campaign_id) {
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee26() {
         var commit, state, res;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee25$(_context25) {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee26$(_context26) {
           while (1) {
-            switch (_context25.prev = _context25.next) {
+            switch (_context26.prev = _context26.next) {
               case 0:
-                commit = _ref25.commit, state = _ref25.state;
-                _context25.next = 3;
+                commit = _ref26.commit, state = _ref26.state;
+                _context26.next = 3;
                 return axios({
                   method: "get",
                   url: "/api/checkcampaign/" + campaign_id,
@@ -60359,26 +60389,26 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
                 });
 
               case 3:
-                res = _context25.sent;
+                res = _context26.sent;
                 commit("SET_LOGGING_CAMPAIGN", res.data.logs);
 
               case 5:
               case "end":
-                return _context25.stop();
+                return _context26.stop();
             }
           }
-        }, _callee25);
+        }, _callee26);
       }))();
     },
-    getLoggingAdmin: function getLoggingAdmin(_ref26) {
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee26() {
+    getLoggingAdmin: function getLoggingAdmin(_ref27) {
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee27() {
         var commit, state, res;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee26$(_context26) {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee27$(_context27) {
           while (1) {
-            switch (_context26.prev = _context26.next) {
+            switch (_context27.prev = _context27.next) {
               case 0:
-                commit = _ref26.commit, state = _ref26.state;
-                _context26.next = 3;
+                commit = _ref27.commit, state = _ref27.state;
+                _context27.next = 3;
                 return axios({
                   method: "get",
                   url: "/api/checkadmin",
@@ -60390,150 +60420,150 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
                 });
 
               case 3:
-                res = _context26.sent;
+                res = _context27.sent;
                 commit("SET_LOGGING_ADMIN", res.data.logs);
 
               case 5:
               case "end":
-                return _context26.stop();
+                return _context27.stop();
             }
           }
-        }, _callee26);
+        }, _callee27);
       }))();
     },
-    markOver: function markOver(_ref27, timer) {
-      var commit = _ref27.commit;
+    markOver: function markOver(_ref28, timer) {
+      var commit = _ref28.commit;
       commit("MARK_TIMER_OVER", timer);
     },
-    updateNotification: function updateNotification(_ref28, data) {
-      var commit = _ref28.commit;
+    updateNotification: function updateNotification(_ref29, data) {
+      var commit = _ref29.commit;
       commit("UPDATE_NOTIFICATIONS", data);
     },
-    updateStationNotification: function updateStationNotification(_ref29, data) {
-      var commit = _ref29.commit;
+    updateStationNotification: function updateStationNotification(_ref30, data) {
+      var commit = _ref30.commit;
       commit("UPDATE_STATION_NOTIFICATION", data);
     },
-    updateCores: function updateCores(_ref30, data) {
-      var commit = _ref30.commit;
+    updateCores: function updateCores(_ref31, data) {
+      var commit = _ref31.commit;
       commit("UPDATE_CORES", data);
     },
-    updateCampaigns: function updateCampaigns(_ref31, data) {
-      var commit = _ref31.commit;
+    updateCampaigns: function updateCampaigns(_ref32, data) {
+      var commit = _ref32.commit;
       commit("UPDATE_CAMPAIGNS", data);
     },
-    updateTowers: function updateTowers(_ref32, data) {
-      var commit = _ref32.commit;
+    updateTowers: function updateTowers(_ref33, data) {
+      var commit = _ref33.commit;
       commit("UPDATE_TOWERS", data);
     },
-    updateCampaignSystem: function updateCampaignSystem(_ref33, data) {
-      var commit = _ref33.commit;
+    updateCampaignSystem: function updateCampaignSystem(_ref34, data) {
+      var commit = _ref34.commit;
       commit("UPDATE_CAMPAIGN_SYSTEM", data);
     },
-    updateStartCampaignSystem: function updateStartCampaignSystem(_ref34, data) {
-      var commit = _ref34.commit;
+    updateStartCampaignSystem: function updateStartCampaignSystem(_ref35, data) {
+      var commit = _ref35.commit;
       commit("UPDATE_START_CAMPAIGN_SYSTEM", data);
     },
-    updateTooltipToggle: function updateTooltipToggle(_ref35, data) {
-      var commit = _ref35.commit;
+    updateTooltipToggle: function updateTooltipToggle(_ref36, data) {
+      var commit = _ref36.commit;
       commit("UPDATE_TOOLTIP_TOGGLE", data);
     },
-    updateCampaignSystemByUserID: function updateCampaignSystemByUserID(_ref36, payload) {
-      var commit = _ref36.commit;
+    updateCampaignSystemByUserID: function updateCampaignSystemByUserID(_ref37, payload) {
+      var commit = _ref37.commit;
       commit("UPDATE_CAMPAIGN_SYSTEM_BY_USER_ID", payload);
     },
-    updateCampaignSolaSystem: function updateCampaignSolaSystem(_ref37, data) {
-      var commit = _ref37.commit;
+    updateCampaignSolaSystem: function updateCampaignSolaSystem(_ref38, data) {
+      var commit = _ref38.commit;
       commit("UPDATE_CAMPAIGN_SOLA_SYSTEMS", data);
     },
-    updateCampaignSystemBar: function updateCampaignSystemBar(_ref38, data) {
-      var commit = _ref38.commit;
+    updateCampaignSystemBar: function updateCampaignSystemBar(_ref39, data) {
+      var commit = _ref39.commit;
       commit("UPDATE_CAMPAIGN_SYSTEM_UPDATE", data);
     },
-    updateCampaign: function updateCampaign(_ref39, data) {
-      var commit = _ref39.commit;
+    updateCampaign: function updateCampaign(_ref40, data) {
+      var commit = _ref40.commit;
       commit("UPDATE_CAMPAIGN", data);
     },
-    updateCampaignUsers: function updateCampaignUsers(_ref40, data) {
-      var commit = _ref40.commit;
+    updateCampaignUsers: function updateCampaignUsers(_ref41, data) {
+      var commit = _ref41.commit;
       commit("UPDATE_CAMPAIGN_USERS", data);
     },
-    updateUsersChars: function updateUsersChars(_ref41, data) {
-      var commit = _ref41.commit;
+    updateUsersChars: function updateUsersChars(_ref42, data) {
+      var commit = _ref42.commit;
       commit("UPDATE_USERS_CHARS", data);
     },
-    updateAmmoRequest: function updateAmmoRequest(_ref42, data) {
-      var commit = _ref42.commit;
+    updateAmmoRequest: function updateAmmoRequest(_ref43, data) {
+      var commit = _ref43.commit;
       commit("UPDATE_AMMO_REQUEST", data);
     },
-    updateNodeJoin: function updateNodeJoin(_ref43, data) {
-      var commit = _ref43.commit;
+    updateNodeJoin: function updateNodeJoin(_ref44, data) {
+      var commit = _ref44.commit;
       commit('UPDATE_NODE_JOIN', data);
     },
-    updateReconTaskSystems: function updateReconTaskSystems(_ref44, data) {
-      var commit = _ref44.commit;
+    updateReconTaskSystems: function updateReconTaskSystems(_ref45, data) {
+      var commit = _ref45.commit;
       commit("UPDATE_RECON_TASK_SYSTEMS", data);
     },
-    addNodeJoin: function addNodeJoin(_ref45, data) {
-      var commit = _ref45.commit;
+    addNodeJoin: function addNodeJoin(_ref46, data) {
+      var commit = _ref46.commit;
       commit("ADD_NODE_JOIN", data);
     },
-    addAmmoRequest: function addAmmoRequest(_ref46, data) {
-      var commit = _ref46.commit;
+    addAmmoRequest: function addAmmoRequest(_ref47, data) {
+      var commit = _ref47.commit;
       commit("ADD_AMMO_REQUEST", data);
     },
-    addStationNotification: function addStationNotification(_ref47, data) {
-      var commit = _ref47.commit;
+    addStationNotification: function addStationNotification(_ref48, data) {
+      var commit = _ref48.commit;
       commit("ADD_STATION_NOTIFICATION", data);
     },
-    addLoggingCampaign: function addLoggingCampaign(_ref48, data) {
-      var commit = _ref48.commit;
+    addLoggingCampaign: function addLoggingCampaign(_ref49, data) {
+      var commit = _ref49.commit;
       commit("ADD_LOGGING_CAMPGIN", data);
     },
-    addCampaignUserNew: function addCampaignUserNew(_ref49, data) {
-      var commit = _ref49.commit;
+    addCampaignUserNew: function addCampaignUserNew(_ref50, data) {
+      var commit = _ref50.commit;
       commit("ADD_CAMPAIGN_USERS", data);
     },
-    addCampaignSystem: function addCampaignSystem(_ref50, data) {
-      var commit = _ref50.commit;
+    addCampaignSystem: function addCampaignSystem(_ref51, data) {
+      var commit = _ref51.commit;
       commit("ADD_CAMPAIGN_SYSTEM", data);
     },
-    deleteCampaignUser: function deleteCampaignUser(_ref51, id) {
-      var commit = _ref51.commit;
+    deleteCampaignUser: function deleteCampaignUser(_ref52, id) {
+      var commit = _ref52.commit;
       commit("DELETE_CAMPAIGN_USER", id);
     },
-    deleteStationNotification: function deleteStationNotification(_ref52, id) {
-      var commit = _ref52.commit;
+    deleteStationNotification: function deleteStationNotification(_ref53, id) {
+      var commit = _ref53.commit;
       commit("DELETE_STATION_NOTIFICATION", id);
     },
-    deleteUsersChars: function deleteUsersChars(_ref53, id) {
-      var commit = _ref53.commit;
+    deleteUsersChars: function deleteUsersChars(_ref54, id) {
+      var commit = _ref54.commit;
       commit("DELETE_USER_CHAR", id);
     },
-    deleteNodeJoin: function deleteNodeJoin(_ref54, id) {
-      var commit = _ref54.commit;
+    deleteNodeJoin: function deleteNodeJoin(_ref55, id) {
+      var commit = _ref55.commit;
       commit("DELETE_NODE_JOIN", id);
     },
-    deleteAmmoRequest: function deleteAmmoRequest(_ref55, id) {
-      var commit = _ref55.commit;
+    deleteAmmoRequest: function deleteAmmoRequest(_ref56, id) {
+      var commit = _ref56.commit;
       commit("DELETE_AMMO_REQUEST", id);
     },
-    deleteTower: function deleteTower(_ref56, id) {
-      var commit = _ref56.commit;
+    deleteTower: function deleteTower(_ref57, id) {
+      var commit = _ref57.commit;
       commit("DELETE_TOWERS", id);
     },
-    deleteCampaignSystem: function deleteCampaignSystem(_ref57, id) {
-      var commit = _ref57.commit;
+    deleteCampaignSystem: function deleteCampaignSystem(_ref58, id) {
+      var commit = _ref58.commit;
       commit("DELETE_CAMPAIGN_SYSTEM", id);
     },
-    getNotifications: function getNotifications(_ref58) {
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee27() {
+    getNotifications: function getNotifications(_ref59) {
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee28() {
         var commit, state, res;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee27$(_context27) {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee28$(_context28) {
           while (1) {
-            switch (_context27.prev = _context27.next) {
+            switch (_context28.prev = _context28.next) {
               case 0:
-                commit = _ref58.commit, state = _ref58.state;
-                _context27.next = 3;
+                commit = _ref59.commit, state = _ref59.state;
+                _context28.next = 3;
                 return axios({
                   method: "get",
                   //you can set what request you want to be
@@ -60547,26 +60577,26 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
                 });
 
               case 3:
-                res = _context27.sent;
+                res = _context28.sent;
                 commit("SET_NOTIFICATIONS", res.data.notifications);
 
               case 5:
               case "end":
-                return _context27.stop();
+                return _context28.stop();
             }
           }
-        }, _callee27);
+        }, _callee28);
       }))();
     },
-    getdelveLink: function getdelveLink(_ref59) {
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee28() {
+    getdelveLink: function getdelveLink(_ref60) {
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee29() {
         var commit, state, res;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee28$(_context28) {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee29$(_context29) {
           while (1) {
-            switch (_context28.prev = _context28.next) {
+            switch (_context29.prev = _context29.next) {
               case 0:
-                commit = _ref59.commit, state = _ref59.state;
-                _context28.next = 3;
+                commit = _ref60.commit, state = _ref60.state;
+                _context29.next = 3;
                 return axios({
                   method: "get",
                   //you can set what request you want to be
@@ -60579,26 +60609,26 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
                 });
 
               case 3:
-                res = _context28.sent;
+                res = _context29.sent;
                 commit("SET_DELVE_LINK", res.data.link);
 
               case 5:
               case "end":
-                return _context28.stop();
+                return _context29.stop();
             }
           }
-        }, _callee28);
+        }, _callee29);
       }))();
     },
-    getqueriousLink: function getqueriousLink(_ref60) {
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee29() {
+    getqueriousLink: function getqueriousLink(_ref61) {
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee30() {
         var commit, state, res;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee29$(_context29) {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee30$(_context30) {
           while (1) {
-            switch (_context29.prev = _context29.next) {
+            switch (_context30.prev = _context30.next) {
               case 0:
-                commit = _ref60.commit, state = _ref60.state;
-                _context29.next = 3;
+                commit = _ref61.commit, state = _ref61.state;
+                _context30.next = 3;
                 return axios({
                   method: "get",
                   //you can set what request you want to be
@@ -60611,26 +60641,26 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
                 });
 
               case 3:
-                res = _context29.sent;
+                res = _context30.sent;
                 commit("SET_QUERIOUS_LINK", res.data.link);
 
               case 5:
               case "end":
-                return _context29.stop();
+                return _context30.stop();
             }
           }
-        }, _callee29);
+        }, _callee30);
       }))();
     },
-    getperiodbasisLink: function getperiodbasisLink(_ref61) {
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee30() {
+    getperiodbasisLink: function getperiodbasisLink(_ref62) {
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee31() {
         var commit, state, res;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee30$(_context30) {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee31$(_context31) {
           while (1) {
-            switch (_context30.prev = _context30.next) {
+            switch (_context31.prev = _context31.next) {
               case 0:
-                commit = _ref61.commit, state = _ref61.state;
-                _context30.next = 3;
+                commit = _ref62.commit, state = _ref62.state;
+                _context31.next = 3;
                 return axios({
                   method: "get",
                   //you can set what request you want to be
@@ -60643,38 +60673,38 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
                 });
 
               case 3:
-                res = _context30.sent;
+                res = _context31.sent;
                 commit("SET_PERIOD_BASIS_LINK", res.data.link);
 
               case 5:
               case "end":
-                return _context30.stop();
+                return _context31.stop();
             }
           }
-        }, _callee30);
+        }, _callee31);
       }))();
     },
-    setToken: function setToken(_ref62, token) {
-      var commit = _ref62.commit;
+    setToken: function setToken(_ref63, token) {
+      var commit = _ref63.commit;
       commit("SET_TOKEN", token);
     },
-    setUser_id: function setUser_id(_ref63, user_id) {
-      var commit = _ref63.commit;
+    setUser_id: function setUser_id(_ref64, user_id) {
+      var commit = _ref64.commit;
       commit("SET_USER_ID", user_id);
     },
-    setUser_name: function setUser_name(_ref64, user_name) {
-      var commit = _ref64.commit;
+    setUser_name: function setUser_name(_ref65, user_name) {
+      var commit = _ref65.commit;
       commit("SET_USER_NAME", user_name);
     },
-    getCampaignUsersRecords: function getCampaignUsersRecords(_ref65, id) {
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee31() {
+    getCampaignUsersRecords: function getCampaignUsersRecords(_ref66, id) {
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee32() {
         var commit, state, res;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee31$(_context31) {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee32$(_context32) {
           while (1) {
-            switch (_context31.prev = _context31.next) {
+            switch (_context32.prev = _context32.next) {
               case 0:
-                commit = _ref65.commit, state = _ref65.state;
-                _context31.next = 3;
+                commit = _ref66.commit, state = _ref66.state;
+                _context32.next = 3;
                 return axios({
                   method: "get",
                   //you can set what request you want to be
@@ -60687,7 +60717,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
                 });
 
               case 3:
-                res = _context31.sent;
+                res = _context32.sent;
 
                 if (res.data.length != 0) {
                   commit("SET_CAMPAIGN_USERS", res.data.users);
@@ -60695,21 +60725,21 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
 
               case 5:
               case "end":
-                return _context31.stop();
+                return _context32.stop();
             }
           }
-        }, _callee31);
+        }, _callee32);
       }))();
     },
-    getCampaignSystemsRecords: function getCampaignSystemsRecords(_ref66) {
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee32() {
+    getCampaignSystemsRecords: function getCampaignSystemsRecords(_ref67) {
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee33() {
         var commit, state, res;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee32$(_context32) {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee33$(_context33) {
           while (1) {
-            switch (_context32.prev = _context32.next) {
+            switch (_context33.prev = _context33.next) {
               case 0:
-                commit = _ref66.commit, state = _ref66.state;
-                _context32.next = 3;
+                commit = _ref67.commit, state = _ref67.state;
+                _context33.next = 3;
                 return axios({
                   method: "get",
                   //you can set what request you want to be
@@ -60722,7 +60752,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
                 });
 
               case 3:
-                res = _context32.sent;
+                res = _context33.sent;
 
                 if (res.data.length != 0) {
                   commit("SET_CAMPAIGN_SYSTEMS", res.data.systems);
@@ -60730,21 +60760,21 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
 
               case 5:
               case "end":
-                return _context32.stop();
+                return _context33.stop();
             }
           }
-        }, _callee32);
+        }, _callee33);
       }))();
     },
-    getStartCampaignSystemsRecords: function getStartCampaignSystemsRecords(_ref67) {
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee33() {
+    getStartCampaignSystemsRecords: function getStartCampaignSystemsRecords(_ref68) {
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee34() {
         var commit, state, res;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee33$(_context33) {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee34$(_context34) {
           while (1) {
-            switch (_context33.prev = _context33.next) {
+            switch (_context34.prev = _context34.next) {
               case 0:
-                commit = _ref67.commit, state = _ref67.state;
-                _context33.next = 3;
+                commit = _ref68.commit, state = _ref68.state;
+                _context34.next = 3;
                 return axios({
                   method: "get",
                   //you can set what request you want to be
@@ -60757,7 +60787,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
                 });
 
               case 3:
-                res = _context33.sent;
+                res = _context34.sent;
 
                 if (res.data.length != 0) {
                   commit("SET_START_CAMPAIGN_SYSTEMS", res.data.systems);
@@ -60765,21 +60795,21 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
 
               case 5:
               case "end":
-                return _context33.stop();
+                return _context34.stop();
             }
           }
-        }, _callee33);
+        }, _callee34);
       }))();
     },
-    getReconTaskSystemsRecords: function getReconTaskSystemsRecords(_ref68) {
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee34() {
+    getReconTaskSystemsRecords: function getReconTaskSystemsRecords(_ref69) {
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee35() {
         var commit, state, res;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee34$(_context34) {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee35$(_context35) {
           while (1) {
-            switch (_context34.prev = _context34.next) {
+            switch (_context35.prev = _context35.next) {
               case 0:
-                commit = _ref68.commit, state = _ref68.state;
-                _context34.next = 3;
+                commit = _ref69.commit, state = _ref69.state;
+                _context35.next = 3;
                 return axios({
                   method: "get",
                   //you can set what request you want to be
@@ -60792,7 +60822,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
                 });
 
               case 3:
-                res = _context34.sent;
+                res = _context35.sent;
 
                 if (res.data.length != 0) {
                   commit("SET_RECON_TASK_SYSTEMS", res.data.systems);
@@ -60800,21 +60830,21 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
 
               case 5:
               case "end":
-                return _context34.stop();
+                return _context35.stop();
             }
           }
-        }, _callee34);
+        }, _callee35);
       }))();
     },
-    getConstellationList: function getConstellationList(_ref69) {
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee35() {
+    getConstellationList: function getConstellationList(_ref70) {
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee36() {
         var commit, state, res;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee35$(_context35) {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee36$(_context36) {
           while (1) {
-            switch (_context35.prev = _context35.next) {
+            switch (_context36.prev = _context36.next) {
               case 0:
-                commit = _ref69.commit, state = _ref69.state;
-                _context35.next = 3;
+                commit = _ref70.commit, state = _ref70.state;
+                _context36.next = 3;
                 return axios({
                   method: "get",
                   //you can set what request you want to be
@@ -60827,31 +60857,31 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
                 });
 
               case 3:
-                res = _context35.sent;
+                res = _context36.sent;
                 commit("SET_CONSTELLATION_LIST", res.data.constellationlist);
 
               case 5:
               case "end":
-                return _context35.stop();
+                return _context36.stop();
             }
           }
-        }, _callee35);
+        }, _callee36);
       }))();
     },
-    loadCampaignSystemData: function loadCampaignSystemData(_ref70, payload) {
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee36() {
+    loadCampaignSystemData: function loadCampaignSystemData(_ref71, payload) {
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee37() {
         var commit, state, request, res;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee36$(_context36) {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee37$(_context37) {
           while (1) {
-            switch (_context36.prev = _context36.next) {
+            switch (_context37.prev = _context37.next) {
               case 0:
-                commit = _ref70.commit, state = _ref70.state;
+                commit = _ref71.commit, state = _ref71.state;
                 request = {
                   user_id: payload.user_id,
                   campaign_id: payload.campaign_id,
                   type: payload.type
                 };
-                _context36.next = 4;
+                _context37.next = 4;
                 return axios({
                   method: "post",
                   //you can set what request you want to be
@@ -60865,7 +60895,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
                 });
 
               case 4:
-                res = _context36.sent;
+                res = _context37.sent;
 
                 if (res.data.length != 0) {
                   commit("SET_CAMPAIGN_SOLA_SYSTEMS", res.data.sola);
@@ -60878,50 +60908,13 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
 
               case 6:
               case "end":
-                return _context36.stop();
-            }
-          }
-        }, _callee36);
-      }))();
-    },
-    loadStationInfo: function loadStationInfo(_ref71) {
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee37() {
-        var commit, state, res;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee37$(_context37) {
-          while (1) {
-            switch (_context37.prev = _context37.next) {
-              case 0:
-                commit = _ref71.commit, state = _ref71.state;
-                _context37.next = 3;
-                return axios({
-                  method: "get",
-                  //you can set what request you want to be
-                  url: "/api/loadstationdata",
-                  headers: {
-                    Authorization: "Bearer " + state.token,
-                    Accept: "application/json",
-                    "Content-Type": "application/json"
-                  }
-                });
-
-              case 3:
-                res = _context37.sent;
-
-                if (res.data.length != 0) {
-                  commit("SET_CORES", res.data.cores);
-                  commit("SET_ITEMS", res.data.items);
-                  commit("SET_STATIONS_FIT", res.data.fit);
-                }
-
-              case 5:
-              case "end":
                 return _context37.stop();
             }
           }
         }, _callee37);
       }))();
     },
-    loadAmmoRequestInfo: function loadAmmoRequestInfo(_ref72) {
+    loadStationInfo: function loadStationInfo(_ref72) {
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee38() {
         var commit, state, res;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee38$(_context38) {
@@ -60933,7 +60926,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
                 return axios({
                   method: "get",
                   //you can set what request you want to be
-                  url: "/api/loadammorequestdata",
+                  url: "/api/loadstationdata",
                   headers: {
                     Authorization: "Bearer " + state.token,
                     Accept: "application/json",
@@ -60948,7 +60941,6 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
                   commit("SET_CORES", res.data.cores);
                   commit("SET_ITEMS", res.data.items);
                   commit("SET_STATIONS_FIT", res.data.fit);
-                  commit("SET_AMMO_REQUEST", res.data.ammorequest);
                 }
 
               case 5:
@@ -60957,6 +60949,44 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
             }
           }
         }, _callee38);
+      }))();
+    },
+    loadAmmoRequestInfo: function loadAmmoRequestInfo(_ref73) {
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee39() {
+        var commit, state, res;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee39$(_context39) {
+          while (1) {
+            switch (_context39.prev = _context39.next) {
+              case 0:
+                commit = _ref73.commit, state = _ref73.state;
+                _context39.next = 3;
+                return axios({
+                  method: "get",
+                  //you can set what request you want to be
+                  url: "/api/loadammorequestdata",
+                  headers: {
+                    Authorization: "Bearer " + state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                  }
+                });
+
+              case 3:
+                res = _context39.sent;
+
+                if (res.data.length != 0) {
+                  commit("SET_CORES", res.data.cores);
+                  commit("SET_ITEMS", res.data.items);
+                  commit("SET_STATIONS_FIT", res.data.fit);
+                  commit("SET_AMMO_REQUEST", res.data.ammorequest);
+                }
+
+              case 5:
+              case "end":
+                return _context39.stop();
+            }
+          }
+        }, _callee39);
       }))();
     }
   },
