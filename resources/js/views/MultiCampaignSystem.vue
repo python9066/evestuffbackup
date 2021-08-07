@@ -239,7 +239,7 @@ function sleep(ms) {
 }
 export default {
     title() {
-        return this.campaignNameText;
+        return this.$route.params.id;
     },
     data() {
         return {
@@ -436,6 +436,7 @@ export default {
 
     async beforeCreate() {
         await this.$store.dispatch("getMultiCampaigns");
+        await this.$store.dispatch("getCampaigns");
     },
 
     async mounted() {

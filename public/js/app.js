@@ -22098,7 +22098,7 @@ function sleep(ms) {
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   title: function title() {
-    return this.campaignNameText;
+    return this.$route.params.id;
   },
   data: function data() {
     return {
@@ -22342,6 +22342,10 @@ function sleep(ms) {
               return _this2.$store.dispatch("getMultiCampaigns");
 
             case 2:
+              _context2.next = 4;
+              return _this2.$store.dispatch("getCampaigns");
+
+            case 4:
             case "end":
               return _context2.stop();
           }
