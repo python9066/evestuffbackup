@@ -31,7 +31,7 @@
                 color="#121212"
                 elevation="0"
             >
-                <v-card-text>
+                <v-card-text v-if="$can('super')">
                     <v-select
                         class=" pb-2"
                         v-model="typePicked"
@@ -563,7 +563,12 @@ export default {
 
         dropdownList() {
             let region = this.campaigns;
-
+            things.thing = things.thing.filter(
+                (thing, index, self) =>
+                    self.findIndex(
+                        t => t.place === thing.place && t.name === thing.name
+                    ) === index
+            );
             return region;
         },
 
