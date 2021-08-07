@@ -21352,9 +21352,9 @@ function sleep(ms) {
       this.$store.dispatch("markOver", item);
     }
   },
-  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapState"])(["campaigns", "getCampaignsRegions"])), {}, {
+  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapState"])(["campaigns", "CampaignsRegions"])), {}, {
     dropdown_search_list: function dropdown_search_list() {
-      return this.getCampaignsRegions;
+      return this.$store.state.getCampaignsRegions;
     },
     filteredItems_start: function filteredItems_start() {
       // var timers = this.$store.state.timers;
