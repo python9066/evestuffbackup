@@ -433,18 +433,19 @@ export default {
         Echo.private("campaigns").listen("CampaignChanged", e => {
             this.loadcampaigns();
         }),
-            this.$store.dispatch("getCampaigns").then(() => {
-                this.loadingf = false;
-                this.loadingr = false;
-                this.loading = false;
-            });
+            this.$store.dispatch("getCampaignsRegions");
+        this.$store.dispatch("getCampaigns").then(() => {
+            this.loadingf = false;
+            this.loadingr = false;
+            this.loading = false;
+        });
     },
 
     async mounted() {},
     methods: {
         async loadcampaigns() {
             this.loadingr = true;
-            this.$sotre.dispatch("getCampaignsRegions");
+            this.$store.dispatch("getCampaignsRegions");
             this.$store.dispatch("getCampaigns").then(() => {
                 this.loadingr = false;
             });

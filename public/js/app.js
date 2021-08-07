@@ -21233,7 +21233,8 @@ function sleep(ms) {
 
     Echo["private"]("campaigns").listen("CampaignChanged", function (e) {
       _this.loadcampaigns();
-    }), this.$store.dispatch("getCampaigns").then(function () {
+    }), this.$store.dispatch("getCampaignsRegions");
+    this.$store.dispatch("getCampaigns").then(function () {
       _this.loadingf = false;
       _this.loadingr = false;
       _this.loading = false;
@@ -21263,7 +21264,7 @@ function sleep(ms) {
               case 0:
                 _this2.loadingr = true;
 
-                _this2.$sotre.dispatch("getCampaignsRegions");
+                _this2.$store.dispatch("getCampaignsRegions");
 
                 _this2.$store.dispatch("getCampaigns").then(function () {
                   _this2.loadingr = false;
