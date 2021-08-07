@@ -239,7 +239,7 @@ function sleep(ms) {
 }
 export default {
     title() {
-        return `Foo Page — ${this.campaignName[0][]}`;
+        return `Foo Page — ${this.siteName}`;
     },
     data() {
         return {
@@ -544,7 +544,7 @@ export default {
         },
 
         setSitetitle() {
-                this.siteName = this.getMultiCampaignName;
+            this.siteName = this.getMultiCampaignName;
         },
 
         async finishCampaign() {
