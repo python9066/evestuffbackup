@@ -239,9 +239,7 @@ function sleep(ms) {
 }
 export default {
     title() {
-        let name = this.campaignNameText;
-        sleep(1000);
-        return name;
+        return this.campaignNameText;
     },
     data() {
         return {

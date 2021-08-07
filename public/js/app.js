@@ -22098,9 +22098,7 @@ function sleep(ms) {
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   title: function title() {
-    var name = this.campaignName;
-    sleep(1000);
-    return name;
+    return this.campaignNameText;
   },
   data: function data() {
     return {
