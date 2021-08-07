@@ -21842,7 +21842,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _event_bus__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../event-bus */ "./resources/js/event-bus.js");
 /* harmony import */ var _service_apil__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../service/apil */ "./resources/js/service/apil.js");
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
-!(function webpackMissingModule() { var e = new Error("Cannot find module './mixins/titleMixin'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
+!(function webpackMissingModule() { var e = new Error("Cannot find module '..mixins/titleMixin'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
 
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
@@ -22098,7 +22098,7 @@ function sleep(ms) {
   });
 }
 
-Vue.mixin(!(function webpackMissingModule() { var e = new Error("Cannot find module './mixins/titleMixin'"); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+Vue.mixin(!(function webpackMissingModule() { var e = new Error("Cannot find module '..mixins/titleMixin'"); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
