@@ -21385,8 +21385,7 @@ function sleep(ms) {
   },
   computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapState"])(["campaigns", "getCampaignsRegions"])), {}, {
     dropdownList: function dropdownList() {
-      var region = this.getCampaignsRegions;
-      return region;
+      return this.getCampaignsRegions;
     },
     filteredItems_start: function filteredItems_start() {
       // var timers = this.$store.state.timers;

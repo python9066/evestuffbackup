@@ -562,8 +562,7 @@ export default {
         ...mapState(["campaigns", "getCampaignsRegions"]),
 
         dropdownList() {
-            let region = this.getCampaignsRegions;
-            return region;
+            return this.getCampaignsRegions;
         },
 
         filteredItems_start() {
