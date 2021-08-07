@@ -563,13 +563,13 @@ export default {
 
         dropdownList() {
             let region = this.campaigns;
-            things.thing = things.thing.filter(
+            things.thing = region.filter(
                 (thing, index, self) =>
                     self.findIndex(
                         t => t.place === thing.place && t.name === thing.name
                     ) === index
             );
-            return region;
+            return things.thing;
         },
 
         filteredItems_start() {

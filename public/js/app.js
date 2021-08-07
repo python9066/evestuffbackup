@@ -21386,12 +21386,12 @@ function sleep(ms) {
   computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapState"])(["campaigns"])), {}, {
     dropdownList: function dropdownList() {
       var region = this.campaigns;
-      things.thing = things.thing.filter(function (thing, index, self) {
+      things.thing = region.filter(function (thing, index, self) {
         return self.findIndex(function (t) {
           return t.place === thing.place && t.name === thing.name;
         }) === index;
       });
-      return region;
+      return things.thing;
     },
     filteredItems_start: function filteredItems_start() {
       // var timers = this.$store.state.timers;
