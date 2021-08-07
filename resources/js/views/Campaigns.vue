@@ -550,7 +550,7 @@ export default {
         ...mapState(["campaigns", "campaignsRegion"]),
 
         dropdown_search_list() {
-            return this.$store.state.campaignsRegion;
+            return this.campaignsRegion;
         },
 
         filteredItems_start() {
