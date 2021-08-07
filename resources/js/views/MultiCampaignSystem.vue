@@ -239,7 +239,7 @@ function sleep(ms) {
 }
 export default {
     title() {
-        return `Foo Page — ${this.campaignNameText}`;
+        return `Foo Page — ${this.sitetest}`;
     },
     data() {
         return {
@@ -294,6 +294,7 @@ export default {
             campaignId: 0,
             campaign_id: "",
             showUsers: false,
+            sitetest: "testf",
             channel: "",
             overlay: false,
             bullhorn: false,
@@ -457,7 +458,6 @@ export default {
         await this.getSystems(this.campaignId);
         await this.addMember();
         await this.$store.dispatch("getCampaignSolaSystems");
-        await this.setSitetitle();
     },
     methods: {
         updateBar() {
@@ -541,10 +541,6 @@ export default {
 
             this.systems = res.data.systems;
             this.systemLoaded = true;
-        },
-
-        setSitetitle() {
-            this.siteName = this.getMultiCampaignName;
         },
 
         async finishCampaign() {

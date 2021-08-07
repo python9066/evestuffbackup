@@ -22098,7 +22098,7 @@ function sleep(ms) {
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   title: function title() {
-    return "Foo Page \u2014 ".concat(this.campaignNameText);
+    return "Foo Page \u2014 ".concat(this.sitetest);
   },
   data: function data() {
     return {
@@ -22181,6 +22181,7 @@ function sleep(ms) {
       campaignId: 0,
       campaign_id: "",
       showUsers: false,
+      sitetest: "testf",
       channel: "",
       overlay: false,
       bullhorn: false,
@@ -22394,10 +22395,6 @@ function sleep(ms) {
               return _this2.$store.dispatch("getCampaignSolaSystems");
 
             case 17:
-              _context3.next = 19;
-              return _this2.setSitetitle();
-
-            case 19:
             case "end":
               return _context3.stop();
           }
@@ -22619,9 +22616,6 @@ function sleep(ms) {
           }
         }, _callee12);
       }))();
-    },
-    setSitetitle: function setSitetitle() {
-      this.siteName = this.getMultiCampaignName;
     },
     finishCampaign: function finishCampaign() {
       var _this12 = this;
