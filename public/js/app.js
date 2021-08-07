@@ -51368,32 +51368,30 @@ var render = function() {
               }
             },
             [
-              _vm.$can("super")
-                ? _c(
-                    "v-card-text",
-                    [
-                      _c("v-select", {
-                        staticClass: " pb-2",
-                        attrs: {
-                          items: _vm.dropdown_search_list,
-                          label: "Filter by Region",
-                          multiple: "",
-                          chips: "",
-                          "deletable-chips": "",
-                          "hide-details": ""
-                        },
-                        model: {
-                          value: _vm.typePicked,
-                          callback: function($$v) {
-                            _vm.typePicked = $$v
-                          },
-                          expression: "typePicked"
-                        }
-                      })
-                    ],
-                    1
-                  )
-                : _vm._e()
+              _c(
+                "v-card-text",
+                [
+                  _c("v-select", {
+                    staticClass: " pb-2",
+                    attrs: {
+                      items: _vm.dropdown_search_list,
+                      label: "Filter by Region",
+                      multiple: "",
+                      chips: "",
+                      "deletable-chips": "",
+                      "hide-details": ""
+                    },
+                    model: {
+                      value: _vm.typePicked,
+                      callback: function($$v) {
+                        _vm.typePicked = $$v
+                      },
+                      expression: "typePicked"
+                    }
+                  })
+                ],
+                1
+              )
             ],
             1
           ),

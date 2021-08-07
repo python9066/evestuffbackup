@@ -31,7 +31,7 @@
                 color="#121212"
                 elevation="0"
             >
-                <v-card-text v-if="$can('super')">
+                <v-card-text>
                     <v-select
                         class=" pb-2"
                         v-model="typePicked"
