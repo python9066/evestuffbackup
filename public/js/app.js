@@ -21389,7 +21389,8 @@ function sleep(ms) {
       return region;
     },
     filteredItems_start: function filteredItems_start() {
-      // var timers = this.$store.state.timers;
+      var timers = this.$store.state.timers;
+
       if (this.colorflag == 1) {
         return this.campaigns.filter(function (campaigns) {
           return campaigns.color == 1 && campaigns.status_id != 3 && campaigns.status_id != 4;

@@ -567,7 +567,7 @@ export default {
         },
 
         filteredItems_start() {
-            // var timers = this.$store.state.timers;
+            var timers = this.$store.state.timers;
             if (this.colorflag == 1) {
                 return this.campaigns.filter(
                     campaigns =>
