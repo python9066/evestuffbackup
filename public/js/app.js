@@ -22098,7 +22098,7 @@ function sleep(ms) {
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   title: function title() {
-    return "Foo Page \u2014 ".concat(this.campaignName);
+    return "Foo Page \u2014 ".concat(this.campaignNameText);
   },
   data: function data() {
     return {
@@ -22952,6 +22952,9 @@ function sleep(ms) {
     },
     campaignName: function campaignName() {
       return this.getMultiCampaignName(this.$route.params.id);
+    },
+    campaignNameText: function campaignNameText() {
+      return this.campaignName[0]["name"];
     },
     campaignNameCount: function campaignNameCount() {
       return this.getMultiCampaignName(this.$route.params.id).length;

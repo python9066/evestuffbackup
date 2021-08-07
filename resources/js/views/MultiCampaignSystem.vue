@@ -239,7 +239,7 @@ function sleep(ms) {
 }
 export default {
     title() {
-        return `Foo Page — ${this.campaignName}`;
+        return `Foo Page — ${this.campaignNameText}`;
     },
     data() {
         return {
@@ -828,6 +828,10 @@ export default {
 
         campaignName() {
             return this.getMultiCampaignName(this.$route.params.id);
+        },
+
+        campaignNameText() {
+            return this.campaignName[0]["name"];
         },
 
         campaignNameCount() {
