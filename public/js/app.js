@@ -59600,7 +59600,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
                 _context2.next = 3;
                 return axios({
                   method: "get",
-                  url: "/api/CampaignRecordsController@campaignslistRegion",
+                  url: "/api/timersregions",
                   headers: {
                     Authorization: "Bearer " + state.token,
                     Accept: "application/json",
