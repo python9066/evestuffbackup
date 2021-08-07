@@ -8575,7 +8575,7 @@ function sleep(ms) {
     },
     clickCampaign: function clickCampaign(item) {
       this.$router.push({
-        path: "/mcampaign/".concat(item.id)
+        path: "/mcampaign/".concat(item.id, "/").concat(item.name)
       }); // -> /user/123
     },
     loadCampaignJoinData: function loadCampaignJoinData() {

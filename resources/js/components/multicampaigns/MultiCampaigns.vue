@@ -134,7 +134,7 @@ export default {
         },
 
         clickCampaign(item) {
-            this.$router.push({ path: `/mcampaign/${item.id}` }); // -> /user/123
+            this.$router.push({ path: `/mcampaign/${item.id}/${item.name}` }); // -> /user/123
         },
 
         loadCampaignJoinData() {
