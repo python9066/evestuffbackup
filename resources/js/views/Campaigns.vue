@@ -561,6 +561,12 @@ export default {
     computed: {
         ...mapState(["campaigns"]),
 
+        dropdownList() {
+            let region = this.campaigns;
+
+            return region;
+        },
+
         filteredItems_start() {
             // var timers = this.$store.state.timers;
             if (this.colorflag == 1) {
@@ -624,7 +630,7 @@ export default {
             if (this.typePicked.length != 0) {
                 this.typePicked.forEach(p => {
                     console.log(p);
-                    let pick = this.filteredItems.filter(f => f.item_name == p);
+                    let pick = this.filteredItems.filter(f => f.region_id == p);
                     if (pick != null) {
                         pick.forEach(pk => {
                             data.push(pk);

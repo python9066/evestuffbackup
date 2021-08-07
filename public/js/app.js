@@ -21384,6 +21384,10 @@ function sleep(ms) {
     }
   },
   computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapState"])(["campaigns"])), {}, {
+    dropdownList: function dropdownList() {
+      var region = this.campaigns;
+      return region;
+    },
     filteredItems_start: function filteredItems_start() {
       // var timers = this.$store.state.timers;
       if (this.colorflag == 1) {
@@ -21443,7 +21447,7 @@ function sleep(ms) {
           console.log(p);
 
           var pick = _this3.filteredItems.filter(function (f) {
-            return f.item_name == p;
+            return f.region_id == p;
           });
 
           if (pick != null) {
