@@ -822,6 +822,10 @@ export default {
             return this.getMultiCampaignName(this.$route.params.id);
         },
 
+        campaignNameCount() {
+            return this.getMultiCampaignName(this.$route.params.id).length;
+        },
+
         userCharsDrop() {
             return this.getCampaignUsersByUserId(this.$store.state.user_id);
         },

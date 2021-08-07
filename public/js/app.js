@@ -22941,6 +22941,9 @@ function sleep(ms) {
     campaignName: function campaignName() {
       return this.getMultiCampaignName(this.$route.params.id);
     },
+    campaignNameCount: function campaignNameCount() {
+      return this.getMultiCampaignName(this.$route.params.id).length;
+    },
     userCharsDrop: function userCharsDrop() {
       return this.getCampaignUsersByUserId(this.$store.state.user_id);
     },
