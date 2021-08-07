@@ -21842,7 +21842,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _event_bus__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../event-bus */ "./resources/js/event-bus.js");
 /* harmony import */ var _service_apil__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../service/apil */ "./resources/js/service/apil.js");
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
-/* harmony import */ var _mixins_titleMixin__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../mixins/titleMixin */ "./resources/js/mixins/titleMixin.js");
 
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
@@ -22091,15 +22090,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 
 
-
 function sleep(ms) {
   return new Promise(function (resolve) {
     return setTimeout(resolve, ms);
   });
-} // Vue.mixin(titleMixin);
-
+}
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+  title: "test",
   data: function data() {
     return {
       dropdown_roles: [{
@@ -22141,7 +22139,6 @@ function sleep(ms) {
         return !!v || "Ship is required";
       }],
       newLink: null,
-      title: "Foo Page",
       newLinkRules: [function (v) {
         return !!v || "T1 or T2?";
       }],
@@ -52487,12 +52484,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_countdown_index__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./components/countdown/index */ "./resources/js/components/countdown/index.js");
 /* harmony import */ var v_mask__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! v-mask */ "./node_modules/v-mask/dist/v-mask.esm.js");
 /* harmony import */ var _mixins_Permissions_vue__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./mixins/Permissions.vue */ "./resources/js/mixins/Permissions.vue");
+/* harmony import */ var _mixins_titleMixin__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./mixins/titleMixin */ "./resources/js/mixins/titleMixin.js");
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
  * building robust, powerful web applications using Vue and Laravel.
  */
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js"); // window.Vue = require('vue');
+
 
 
 
@@ -52594,6 +52593,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.config.productionTip = false;
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component(_chenfengyuan_vue_countdown__WEBPACK_IMPORTED_MODULE_7___default.a.name, _chenfengyuan_vue_countdown__WEBPACK_IMPORTED_MODULE_7___default.a);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(v_mask__WEBPACK_IMPORTED_MODULE_15__["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.mixin(_mixins_Permissions_vue__WEBPACK_IMPORTED_MODULE_16__["default"]);
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.mixin(_mixins_titleMixin__WEBPACK_IMPORTED_MODULE_17__["default"]);
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue

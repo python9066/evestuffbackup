@@ -23,6 +23,7 @@ import VueCountupTimer from './components/countup/index'
 import CountdownTimer from './components/countdown/index'
 import VueMask from 'v-mask'
 import Permissions from './mixins/Permissions.vue'
+import titleMixin from './mixins/titleMixin'
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 library.add(fas) // Include needed icons
@@ -114,6 +115,7 @@ Vue.config.productionTip = false
 Vue.component(VueCountdown.name, VueCountdown);
 Vue.use(VueMask)
 Vue.mixin(Permissions);
+Vue.mixin(titleMixin)
 
 /**
  * The following block of code may be used to automatically register your

@@ -238,6 +238,7 @@ function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 export default {
+    title: "test",
     data() {
         return {
             dropdown_roles: [
@@ -260,7 +261,6 @@ export default {
             newShip: null,
             newShipRules: [v => !!v || "Ship is required"],
             newLink: null,
-            title: "Foo Page",
             newLinkRules: [v => !!v || "T1 or T2?"],
 
             editCharName: null,
