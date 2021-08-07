@@ -48921,7 +48921,7 @@ var render = function() {
   return _c(
     "div",
     [
-      this.getCampaignsCount > 1 && _vm.campaign.status_id < 3
+      this.getCampaignsCount > 1
         ? _c(
             "v-row",
             {
