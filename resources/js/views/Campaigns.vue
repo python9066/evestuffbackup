@@ -25,6 +25,26 @@
                 hide-details
             ></v-text-field>
 
+            <v-card
+                max-width="600px"
+                min-width="600px"
+                color="#121212"
+                elevation="0"
+            >
+                <v-card-text>
+                    <v-select
+                        class=" pb-2"
+                        v-model="typePicked"
+                        :items="dropdown_search"
+                        label="Filter by Structure Type"
+                        multiple
+                        chips
+                        deletable-chips
+                        hide-details
+                    ></v-select>
+                </v-card-text>
+            </v-card>
+
             <v-btn-toggle
                 v-model="toggle_exclusive1"
                 mandatory
@@ -101,7 +121,7 @@
         </div>
         <v-data-table
             :headers="headers"
-            :items="filteredItems"
+            :items="filter_end"
             item-key="id"
             :loading="loading"
             :items-per-page="25"
@@ -374,6 +394,7 @@ export default {
             colorflag: 4,
             itemFlag: 2,
             name: "Timer",
+            typePicked: [],
 
             headers: [
                 { text: "Region", value: "region", width: "10%" },
@@ -390,6 +411,20 @@ export default {
                     align: "center"
                 },
                 { text: "Countdown/Age", value: "count", sortable: false }
+            ],
+
+            dropdown_search: [
+                { text: "Astrahus", value: "Astrahus" },
+                { text: "Athanor", value: "Athanor" },
+                { text: "Azbel", value: "Azbel" },
+                { text: "Cyno Beacon", value: "Cyno Beacon" },
+                { text: "Cyno Jammer", value: "Cyno Jammer" },
+                { text: "Fortizar", value: "Fortizar" },
+                { text: "Jump Gate", value: "Jump" },
+                { text: "Keepstar", value: "Keepstar" },
+                { text: "Raitaru", value: "Raitaru" },
+                { text: "Sotiyo", value: "Sotiyo" },
+                { text: "Tatara", value: "Tatara" }
             ]
         };
     },
@@ -582,6 +617,23 @@ export default {
                     c => c.item_name == "TCU"
                 );
             }
+        },
+
+        filter_end() {
+            let data = [];
+            if (this.typePicked.length != 0) {
+                this.typePicked.forEach(p => {
+                    console.log(p);
+                    let pick = this.filteredItems.filter(f => f.item_name == p);
+                    if (pick != null) {
+                        pick.forEach(pk => {
+                            data.push(pk);
+                        });
+                    }
+                });
+                return data;
+            }
+            return this.filteredItems;
         }
     },
     beforeDestroy() {

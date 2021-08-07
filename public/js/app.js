@@ -21109,6 +21109,26 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -21138,6 +21158,7 @@ function sleep(ms) {
       colorflag: 4,
       itemFlag: 2,
       name: "Timer",
+      typePicked: [],
       headers: [{
         text: "Region",
         value: "region",
@@ -21170,6 +21191,40 @@ function sleep(ms) {
         text: "Countdown/Age",
         value: "count",
         sortable: false
+      }],
+      dropdown_search: [{
+        text: "Astrahus",
+        value: "Astrahus"
+      }, {
+        text: "Athanor",
+        value: "Athanor"
+      }, {
+        text: "Azbel",
+        value: "Azbel"
+      }, {
+        text: "Cyno Beacon",
+        value: "Cyno Beacon"
+      }, {
+        text: "Cyno Jammer",
+        value: "Cyno Jammer"
+      }, {
+        text: "Fortizar",
+        value: "Fortizar"
+      }, {
+        text: "Jump Gate",
+        value: "Jump"
+      }, {
+        text: "Keepstar",
+        value: "Keepstar"
+      }, {
+        text: "Raitaru",
+        value: "Raitaru"
+      }, {
+        text: "Sotiyo",
+        value: "Sotiyo"
+      }, {
+        text: "Tatara",
+        value: "Tatara"
       }]
     };
   },
@@ -21377,6 +21432,30 @@ function sleep(ms) {
           return c.item_name == "TCU";
         });
       }
+    },
+    filter_end: function filter_end() {
+      var _this3 = this;
+
+      var data = [];
+
+      if (this.typePicked.length != 0) {
+        this.typePicked.forEach(function (p) {
+          console.log(p);
+
+          var pick = _this3.filteredItems.filter(function (f) {
+            return f.item_name == p;
+          });
+
+          if (pick != null) {
+            pick.forEach(function (pk) {
+              data.push(pk);
+            });
+          }
+        });
+        return data;
+      }
+
+      return this.filteredItems;
     }
   }),
   beforeDestroy: function beforeDestroy() {
@@ -47984,6 +48063,45 @@ var render = function() {
           }),
           _vm._v(" "),
           _c(
+            "v-card",
+            {
+              attrs: {
+                "max-width": "600px",
+                "min-width": "600px",
+                color: "#121212",
+                elevation: "0"
+              }
+            },
+            [
+              _c(
+                "v-card-text",
+                [
+                  _c("v-select", {
+                    staticClass: " pb-2",
+                    attrs: {
+                      items: _vm.dropdown_search,
+                      label: "Filter by Structure Type",
+                      multiple: "",
+                      chips: "",
+                      "deletable-chips": "",
+                      "hide-details": ""
+                    },
+                    model: {
+                      value: _vm.typePicked,
+                      callback: function($$v) {
+                        _vm.typePicked = $$v
+                      },
+                      expression: "typePicked"
+                    }
+                  })
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
             "v-btn-toggle",
             {
               staticClass: " ml-4 mr-15",
@@ -48142,7 +48260,7 @@ var render = function() {
           staticClass: "elevation-1",
           attrs: {
             headers: _vm.headers,
-            items: _vm.filteredItems,
+            items: _vm.filter_end,
             "item-key": "id",
             loading: _vm.loading,
             "items-per-page": 25,
