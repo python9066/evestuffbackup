@@ -234,11 +234,9 @@ import Axios from "axios";
 import { EventBus } from "../event-bus";
 import ApiL from "../service/apil";
 import { mapGetters, mapState } from "vuex";
-import titleMixin from "../mixins/titleMixin";
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
-// Vue.mixin(titleMixin);
 export default {
     data() {
         return {
