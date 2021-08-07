@@ -239,7 +239,9 @@ function sleep(ms) {
 }
 export default {
     title() {
-        return `Foo Page — ${this.sitetest}`;
+        let name = this.campaignName;
+        sleep(1000);
+        return name;
     },
     data() {
         return {
