@@ -35,7 +35,7 @@
                     <v-select
                         class=" pb-2"
                         v-model="typePicked"
-                        :items="this.dropdown_search"
+                        :items="dropdown_search_list"
                         label="Filter by Structure Type"
                         multiple
                         chips
@@ -471,6 +471,8 @@ export default {
             }
         },
 
+        dropdown_search() {},
+
         barScoure(item) {
             var d = item.defenders_score * 100;
             var a = item.attackers_score * 100;
@@ -549,8 +551,8 @@ export default {
     computed: {
         ...mapState(["campaigns", "getCampaignsRegions"]),
 
-        dropdown_search() {
-            return this.getCampaignsRegions;
+        dropdown_search_list() {
+            return [this.getCampaignsRegions];
         },
 
         filteredItems_start() {

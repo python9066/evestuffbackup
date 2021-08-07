@@ -21277,6 +21277,7 @@ function sleep(ms) {
         }
       }
     },
+    dropdown_search: function dropdown_search() {},
     barScoure: function barScoure(item) {
       var d = item.defenders_score * 100;
       var a = item.attackers_score * 100;
@@ -21353,8 +21354,8 @@ function sleep(ms) {
     }
   },
   computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapState"])(["campaigns", "getCampaignsRegions"])), {}, {
-    dropdown_search: function dropdown_search() {
-      return this.getCampaignsRegions;
+    dropdown_search_list: function dropdown_search_list() {
+      return [this.getCampaignsRegions];
     },
     filteredItems_start: function filteredItems_start() {
       // var timers = this.$store.state.timers;
@@ -48052,7 +48053,7 @@ var render = function() {
                       _c("v-select", {
                         staticClass: " pb-2",
                         attrs: {
-                          items: this.dropdown_search,
+                          items: _vm.dropdown_search_list,
                           label: "Filter by Structure Type",
                           multiple: "",
                           chips: "",
