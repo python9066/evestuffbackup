@@ -22098,7 +22098,7 @@ function sleep(ms) {
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   title: function title() {
-    return "Foo Page \u2014 ".concat(this.campaignName);
+    return "Foo Page \u2014 ".concat(this.campaignName[0]["name"]);
   },
   data: function data() {
     return {

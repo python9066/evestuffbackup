@@ -239,7 +239,7 @@ function sleep(ms) {
 }
 export default {
     title() {
-        return `Foo Page — ${this.campaignName}`;
+        return `Foo Page — ${this.campaignName[0]["name"]}`;
     },
     data() {
         return {
