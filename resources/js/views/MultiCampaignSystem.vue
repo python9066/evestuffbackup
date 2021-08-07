@@ -239,7 +239,7 @@ function sleep(ms) {
 }
 export default {
     title() {
-        let name = this.campaignName;
+        let name = this.campaignNameText;
         sleep(1000);
         return name;
     },
