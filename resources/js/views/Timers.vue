@@ -256,7 +256,7 @@ export default {
     },
     computed: {
         ...mapState(["timers", "timersRegions"]),
-        filteredItems() {
+        filteredItems_start() {
             if (this.colorflag == 1) {
                 return this.timers.filter(
                     timers => timers.color == 1 && timers.status == 0
@@ -280,22 +280,39 @@ export default {
             return this.timersRegions;
         },
 
-        filterEnd() {
+        filteredItems() {
             if (this.itemFlag == 1) {
-                return this.filteredItems;
+                return this.filteredItems_start;
             }
 
             if (this.itemFlag == 2) {
-                return this.filteredItems.filter(
+                return this.filteredItems_start.filter(
                     t => t.window_station === "Open"
                 );
             }
 
             if (this.itemFlag == 3) {
-                return this.filteredItems.filter(
+                return this.filteredItems_start.filter(
                     t => t.window_station === "Closed"
                 );
             }
+        },
+
+        filterEnd() {
+            let data = [];
+            if (this.typePicked.length != 0) {
+                this.typePicked.forEach(p => {
+                    console.log(p);
+                    let pick = this.filteredItems.filter(f => f.region_id == p);
+                    if (pick != null) {
+                        pick.forEach(pk => {
+                            data.push(pk);
+                        });
+                    }
+                });
+                return data;
+            }
+            return this.filteredItems;
         }
     }
 };

@@ -24703,7 +24703,7 @@ function sleep(ms) {
     }
   },
   computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapState"])(["timers", "timersRegions"])), {}, {
-    filteredItems: function filteredItems() {
+    filteredItems_start: function filteredItems_start() {
       if (this.colorflag == 1) {
         return this.timers.filter(function (timers) {
           return timers.color == 1 && timers.status == 0;
@@ -24729,22 +24729,46 @@ function sleep(ms) {
     dropdown_search_list: function dropdown_search_list() {
       return this.timersRegions;
     },
-    filterEnd: function filterEnd() {
+    filteredItems: function filteredItems() {
       if (this.itemFlag == 1) {
-        return this.filteredItems;
+        return this.filteredItems_start;
       }
 
       if (this.itemFlag == 2) {
-        return this.filteredItems.filter(function (t) {
+        return this.filteredItems_start.filter(function (t) {
           return t.window_station === "Open";
         });
       }
 
       if (this.itemFlag == 3) {
-        return this.filteredItems.filter(function (t) {
+        return this.filteredItems_start.filter(function (t) {
           return t.window_station === "Closed";
         });
       }
+    },
+    filterEnd: function filterEnd() {
+      var _this3 = this;
+
+      var data = [];
+
+      if (this.typePicked.length != 0) {
+        this.typePicked.forEach(function (p) {
+          console.log(p);
+
+          var pick = _this3.filteredItems.filter(function (f) {
+            return f.region_id == p;
+          });
+
+          if (pick != null) {
+            pick.forEach(function (pk) {
+              data.push(pk);
+            });
+          }
+        });
+        return data;
+      }
+
+      return this.filteredItems;
     }
   })
 });
