@@ -22935,7 +22935,7 @@ function sleep(ms) {
       }
     },
     campaignName: function campaignName() {
-      return this.getMultiCampaignName(this.$route.params.id);
+      return this.getMultiCampaignName(this.$route.params.id).name;
     },
     userCharsDrop: function userCharsDrop() {
       return this.getCampaignUsersByUserId(this.$store.state.user_id);

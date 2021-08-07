@@ -815,7 +815,7 @@ export default {
         },
 
         campaignName() {
-            return this.getMultiCampaignName(this.$route.params.id);
+            return this.getMultiCampaignName(this.$route.params.id).name;
         },
 
         userCharsDrop() {
