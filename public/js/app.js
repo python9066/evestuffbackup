@@ -22081,6 +22081,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
 
 
 
@@ -48943,9 +48947,20 @@ var render = function() {
                       attrs: { tile: "", width: "100%" }
                     },
                     [
-                      _c("v-card-title", [
-                        _vm._v(_vm._s(_vm.campaignName[0]["name"]) + " ")
-                      ])
+                      _c(
+                        "v-card-title",
+                        {
+                          staticClass: "justify-center align-center",
+                          attrs: { align: "center" }
+                        },
+                        [
+                          _vm._v(
+                            "MultiCampaign - " +
+                              _vm._s(_vm.campaignName[0]["name"]) +
+                              "\n                "
+                          )
+                        ]
+                      )
                     ],
                     1
                   )
