@@ -220,6 +220,7 @@ export default {
     methods: {
         async loadtimers() {
             await this.$store.dispatch("getTimerDataAll");
+            await this.$store.dispatch("getTimerDataAllRegion");
             this.loading3 = false;
             this.loading = false;
         },

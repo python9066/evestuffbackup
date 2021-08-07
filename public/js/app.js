@@ -24632,10 +24632,14 @@ function sleep(ms) {
                 return _this2.$store.dispatch("getTimerDataAll");
 
               case 2:
+                _context2.next = 4;
+                return _this2.$store.dispatch("getTimerDataAllRegion");
+
+              case 4:
                 _this2.loading3 = false;
                 _this2.loading = false;
 
-              case 4:
+              case 6:
               case "end":
                 return _context2.stop();
             }
