@@ -239,7 +239,7 @@ function sleep(ms) {
 }
 export default {
     title() {
-        return this.$route.params.name;
+        return `EVE — ${this.$route.params.name}`;
     },
     data() {
         return {

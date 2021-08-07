@@ -18489,6 +18489,9 @@ function sleep(ms) {
 }
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+  title: function title() {
+    return "EVE \u2014 Admin";
+  },
   data: function data() {
     return {
       //timersAll: [],
@@ -19172,6 +19175,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+  title: function title() {
+    return "eve test";
+  },
   props: ["username", "token", "user_id"],
   mounted: function mounted() {},
   data: function data() {
@@ -22098,7 +22104,7 @@ function sleep(ms) {
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   title: function title() {
-    return this.$route.params.name;
+    return "EVE \u2014 ".concat(this.$route.params.name);
   },
   data: function data() {
     return {

@@ -269,6 +269,9 @@ function sleep(ms) {
 }
 
 export default {
+    title() {
+        return `EVE — Admin`;
+    },
     data() {
         return {
             //timersAll: [],
