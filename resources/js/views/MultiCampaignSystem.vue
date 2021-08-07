@@ -239,7 +239,7 @@ function sleep(ms) {
 }
 export default {
     title() {
-        return `Foo Page — ${this.campaignName[0]["name"]}`;
+        return `Foo Page — ${this.campaignName[0][]}`;
     },
     data() {
         return {
@@ -289,6 +289,7 @@ export default {
             addShown: false,
             removeShown: false,
             showTable: false,
+            siteName: "eve",
             systemLoaded: false,
             campaignId: 0,
             campaign_id: "",
@@ -543,8 +544,7 @@ export default {
         },
 
         setSitetitle() {
-            let name = this.campaignName;
-            this.siteTitle = name[0]["name"];
+                this.siteName = this.getMultiCampaignName;
         },
 
         async finishCampaign() {
