@@ -444,6 +444,7 @@ export default {
     methods: {
         async loadcampaigns() {
             this.loadingr = true;
+            this.$sotre.dispatch("getCampaignsRegions");
             this.$store.dispatch("getCampaigns").then(() => {
                 this.loadingr = false;
             });

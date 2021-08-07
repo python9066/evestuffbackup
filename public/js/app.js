@@ -21263,11 +21263,13 @@ function sleep(ms) {
               case 0:
                 _this2.loadingr = true;
 
+                _this2.$sotre.dispatch("getCampaignsRegions");
+
                 _this2.$store.dispatch("getCampaigns").then(function () {
                   _this2.loadingr = false;
                 });
 
-              case 2:
+              case 3:
               case "end":
                 return _context2.stop();
             }
