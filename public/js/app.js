@@ -22097,7 +22097,7 @@ function sleep(ms) {
 }
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  title: "test",
+  title: getMultiCampaignName,
   data: function data() {
     return {
       dropdown_roles: [{
