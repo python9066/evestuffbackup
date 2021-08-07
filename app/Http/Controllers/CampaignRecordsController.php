@@ -42,7 +42,7 @@ class CampaignRecordsController extends Controller
     {
         $data = [];
         $pull = CampaignRecords::where('status_id', "<", 3)->orderBy('start', 'asc')->get();
-        $pull = $pull->unique();
+        $pull = $pull->unique('region_id');
         dd($pull);
         foreach ($pull as $pull) {
             $data1 = [];
