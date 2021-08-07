@@ -22096,9 +22096,9 @@ function sleep(ms) {
   return new Promise(function (resolve) {
     return setTimeout(resolve, ms);
   });
-}
+} // Vue.mixin(titleMixin);
 
-Vue.mixin(_mixins_titleMixin__WEBPACK_IMPORTED_MODULE_5__["default"]);
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {

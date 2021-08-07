@@ -238,7 +238,7 @@ import titleMixin from "../mixins/titleMixin";
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
-Vue.mixin(titleMixin);
+// Vue.mixin(titleMixin);
 export default {
     data() {
         return {
