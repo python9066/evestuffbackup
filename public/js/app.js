@@ -47993,31 +47993,6 @@ var render = function() {
         [
           _c("v-card-title", [_vm._v("Campaigns")]),
           _vm._v(" "),
-          _c(
-            "v-btn",
-            {
-              staticClass: "ma-2 white--text",
-              attrs: {
-                loading: _vm.loadingr,
-                disabled: _vm.loadingr,
-                color: "primary"
-              },
-              on: {
-                click: function($event) {
-                  _vm.loadingr = true
-                  _vm.loadcampaigns()
-                }
-              }
-            },
-            [
-              _vm._v("\n            Update\n            "),
-              _c("v-icon", { attrs: { right: "", dark: "" } }, [
-                _vm._v("fas fa-sync-alt fa-xs")
-              ])
-            ],
-            1
-          ),
-          _vm._v(" "),
           _c("v-text-field", {
             attrs: {
               "append-icon": "mdi-magnify",
@@ -48045,32 +48020,30 @@ var render = function() {
               }
             },
             [
-              _vm.$can("super")
-                ? _c(
-                    "v-card-text",
-                    [
-                      _c("v-select", {
-                        staticClass: " pb-2",
-                        attrs: {
-                          items: _vm.dropdown_search_list,
-                          label: "Filter by Structure Type",
-                          multiple: "",
-                          chips: "",
-                          "deletable-chips": "",
-                          "hide-details": ""
-                        },
-                        model: {
-                          value: _vm.typePicked,
-                          callback: function($$v) {
-                            _vm.typePicked = $$v
-                          },
-                          expression: "typePicked"
-                        }
-                      })
-                    ],
-                    1
-                  )
-                : _vm._e()
+              _c(
+                "v-card-text",
+                [
+                  _c("v-select", {
+                    staticClass: " pb-2",
+                    attrs: {
+                      items: _vm.dropdown_search_list,
+                      label: "Filter by Region",
+                      multiple: "",
+                      chips: "",
+                      "deletable-chips": "",
+                      "hide-details": ""
+                    },
+                    model: {
+                      value: _vm.typePicked,
+                      callback: function($$v) {
+                        _vm.typePicked = $$v
+                      },
+                      expression: "typePicked"
+                    }
+                  })
+                ],
+                1
+              )
             ],
             1
           ),

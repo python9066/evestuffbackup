@@ -4,7 +4,7 @@
         <div class=" d-flex align-items-center">
             <v-card-title>Campaigns</v-card-title>
 
-            <v-btn
+            <!-- <v-btn
                 :loading="loadingr"
                 :disabled="loadingr"
                 color="primary"
@@ -16,7 +16,7 @@
             >
                 Update
                 <v-icon right dark>fas fa-sync-alt fa-xs</v-icon>
-            </v-btn>
+            </v-btn> -->
             <v-text-field
                 v-model="search"
                 append-icon="mdi-magnify"
@@ -31,12 +31,12 @@
                 color="#121212"
                 elevation="0"
             >
-                <v-card-text v-if="$can('super')">
+                <v-card-text>
                     <v-select
                         class=" pb-2"
                         v-model="typePicked"
                         :items="dropdown_search_list"
-                        label="Filter by Structure Type"
+                        label="Filter by Region"
                         multiple
                         chips
                         deletable-chips
