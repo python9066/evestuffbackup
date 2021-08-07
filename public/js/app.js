@@ -22935,7 +22935,7 @@ function sleep(ms) {
       }
     },
     campaignName: function campaignName() {
-      return this.getMultiCampaignName(this.$route.params.id).name;
+      return this.getMultiCampaignName(this.$route.params.id);
     },
     userCharsDrop: function userCharsDrop() {
       return this.getCampaignUsersByUserId(this.$store.state.user_id);
@@ -48944,7 +48944,7 @@ var render = function() {
                     },
                     [
                       _c("v-card-title", [
-                        _vm._v(_vm._s(_vm.campaignName) + " ")
+                        _vm._v(_vm._s(_vm.campaignName[0]["name"]) + " ")
                       ])
                     ],
                     1
