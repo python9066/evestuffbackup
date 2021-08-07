@@ -48052,7 +48052,7 @@ var render = function() {
                       _c("v-select", {
                         staticClass: " pb-2",
                         attrs: {
-                          items: _vm.dropdown_search(),
+                          items: this.dropdown_search,
                           label: "Filter by Structure Type",
                           multiple: "",
                           chips: "",

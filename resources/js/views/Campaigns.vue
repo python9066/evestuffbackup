@@ -35,7 +35,7 @@
                     <v-select
                         class=" pb-2"
                         v-model="typePicked"
-                        :items="dropdown_search()"
+                        :items="this.dropdown_search"
                         label="Filter by Structure Type"
                         multiple
                         chips
