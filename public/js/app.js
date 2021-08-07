@@ -21277,7 +21277,6 @@ function sleep(ms) {
         }
       }
     },
-    dropdown_search: function dropdown_search() {},
     barScoure: function barScoure(item) {
       var d = item.defenders_score * 100;
       var a = item.attackers_score * 100;
@@ -21355,7 +21354,7 @@ function sleep(ms) {
   },
   computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapState"])(["campaigns", "getCampaignsRegions"])), {}, {
     dropdown_search_list: function dropdown_search_list() {
-      return [this.getCampaignsRegions];
+      return this.getCampaignsRegions;
     },
     filteredItems_start: function filteredItems_start() {
       // var timers = this.$store.state.timers;

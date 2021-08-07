@@ -471,8 +471,6 @@ export default {
             }
         },
 
-        dropdown_search() {},
-
         barScoure(item) {
             var d = item.defenders_score * 100;
             var a = item.attackers_score * 100;
@@ -552,7 +550,7 @@ export default {
         ...mapState(["campaigns", "getCampaignsRegions"]),
 
         dropdown_search_list() {
-            return [this.getCampaignsRegions];
+            return this.getCampaignsRegions;
         },
 
         filteredItems_start() {
