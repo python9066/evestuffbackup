@@ -22331,11 +22331,17 @@ function sleep(ms) {
   },
   beforeMonunt: function beforeMonunt() {},
   beforeCreate: function beforeCreate() {
+    var _this2 = this;
+
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
         while (1) {
           switch (_context2.prev = _context2.next) {
             case 0:
+              _context2.next = 2;
+              return _this2.$store.dispatch("getMultiCampaigns");
+
+            case 2:
             case "end":
               return _context2.stop();
           }
@@ -22344,7 +22350,7 @@ function sleep(ms) {
     }))();
   },
   mounted: function mounted() {
-    var _this2 = this;
+    var _this3 = this;
 
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
       var payload;
@@ -22352,47 +22358,47 @@ function sleep(ms) {
         while (1) {
           switch (_context3.prev = _context3.next) {
             case 0:
-              if (!(_this2.$store.getters.getCampaignsCount == 0)) {
+              if (!(_this3.$store.getters.getCampaignsCount == 0)) {
                 _context3.next = 3;
                 break;
               }
 
               _context3.next = 3;
-              return _this2.$store.dispatch("getCampaigns");
+              return _this3.$store.dispatch("getCampaigns");
 
             case 3:
-              if (!(_this2.$store.getters.getMultiCampaignsCount == 0)) {
+              if (!(_this3.$store.getters.getMultiCampaignsCount == 0)) {
                 _context3.next = 6;
                 break;
               }
 
               _context3.next = 6;
-              return _this2.$store.dispatch("getMultiCampaigns");
+              return _this3.$store.dispatch("getMultiCampaigns");
 
             case 6:
               _context3.next = 8;
-              return _this2.$store.dispatch("getCampaignJoinDataByCampaign", _this2.$route.params.id);
+              return _this3.$store.dispatch("getCampaignJoinDataByCampaign", _this3.$route.params.id);
 
             case 8:
               payload = {
-                campaign_id: _this2.$route.params.id,
-                user_id: _this2.$store.state.user_id,
+                campaign_id: _this3.$route.params.id,
+                user_id: _this3.$store.state.user_id,
                 type: 2
               };
               _context3.next = 11;
-              return _this2.$store.dispatch("loadCampaignSystemData", payload);
+              return _this3.$store.dispatch("loadCampaignSystemData", payload);
 
             case 11:
               _context3.next = 13;
-              return _this2.getSystems(_this2.campaignId);
+              return _this3.getSystems(_this3.campaignId);
 
             case 13:
               _context3.next = 15;
-              return _this2.addMember();
+              return _this3.addMember();
 
             case 15:
               _context3.next = 17;
-              return _this2.$store.dispatch("getCampaignSolaSystems");
+              return _this3.$store.dispatch("getCampaignSolaSystems");
 
             case 17:
             case "end":
@@ -22417,20 +22423,20 @@ function sleep(ms) {
       this.solalog = true;
     },
     loadCampaignlogs: function loadCampaignlogs() {
-      var _this3 = this;
+      var _this4 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
           while (1) {
             switch (_context4.prev = _context4.next) {
               case 0:
-                if (!_this3.$can("view_campaign_logs")) {
+                if (!_this4.$can("view_campaign_logs")) {
                   _context4.next = 3;
                   break;
                 }
 
                 _context4.next = 3;
-                return _this3.$store.dispatch("getLoggingCampaign", _this3.campaignId);
+                return _this4.$store.dispatch("getLoggingCampaign", _this4.campaignId);
 
               case 3:
               case "end":
@@ -22441,7 +22447,7 @@ function sleep(ms) {
       }))();
     },
     loadCampaigns: function loadCampaigns() {
-      var _this4 = this;
+      var _this5 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee5() {
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee5$(_context5) {
@@ -22449,7 +22455,7 @@ function sleep(ms) {
             switch (_context5.prev = _context5.next) {
               case 0:
                 _context5.next = 2;
-                return _this4.$store.dispatch("getCampaigns");
+                return _this5.$store.dispatch("getCampaigns");
 
               case 2:
               case "end":
@@ -22460,7 +22466,7 @@ function sleep(ms) {
       }))();
     },
     loadUsersRecords: function loadUsersRecords() {
-      var _this5 = this;
+      var _this6 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee6() {
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee6$(_context6) {
@@ -22468,7 +22474,7 @@ function sleep(ms) {
             switch (_context6.prev = _context6.next) {
               case 0:
                 _context6.next = 2;
-                return _this5.$store.dispatch("getCampaignUsersRecords", _this5.campaignId);
+                return _this6.$store.dispatch("getCampaignUsersRecords", _this6.campaignId);
 
               case 2:
               case "end":
@@ -22479,7 +22485,7 @@ function sleep(ms) {
       }))();
     },
     loadCampaignSolaSystems: function loadCampaignSolaSystems() {
-      var _this6 = this;
+      var _this7 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee7() {
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee7$(_context7) {
@@ -22487,7 +22493,7 @@ function sleep(ms) {
             switch (_context7.prev = _context7.next) {
               case 0:
                 _context7.next = 2;
-                return _this6.$store.dispatch("getCampaignSolaSystems");
+                return _this7.$store.dispatch("getCampaignSolaSystems");
 
               case 2:
               case "end":
@@ -22498,7 +22504,7 @@ function sleep(ms) {
       }))();
     },
     loadCampaignSystemRecords: function loadCampaignSystemRecords() {
-      var _this7 = this;
+      var _this8 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee8() {
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee8$(_context8) {
@@ -22506,7 +22512,7 @@ function sleep(ms) {
             switch (_context8.prev = _context8.next) {
               case 0:
                 _context8.next = 2;
-                return _this7.$store.dispatch("getCampaignSystemsRecords");
+                return _this8.$store.dispatch("getCampaignSystemsRecords");
 
               case 2:
               case "end":
@@ -22517,17 +22523,17 @@ function sleep(ms) {
       }))();
     },
     loadcampaigns: function loadcampaigns() {
-      var _this8 = this;
+      var _this9 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee9() {
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee9$(_context9) {
           while (1) {
             switch (_context9.prev = _context9.next) {
               case 0:
-                _this8.loadingr = true;
+                _this9.loadingr = true;
                 _context9.next = 3;
-                return _this8.$store.dispatch("getCampaigns").then(function () {
-                  _this8.loadingr = false;
+                return _this9.$store.dispatch("getCampaigns").then(function () {
+                  _this9.loadingr = false;
                 });
 
               case 3:
@@ -22539,7 +22545,7 @@ function sleep(ms) {
       }))();
     },
     loadCampaignNodeJoin: function loadCampaignNodeJoin() {
-      var _this9 = this;
+      var _this10 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee10() {
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee10$(_context10) {
@@ -22547,7 +22553,7 @@ function sleep(ms) {
             switch (_context10.prev = _context10.next) {
               case 0:
                 _context10.next = 2;
-                return _this9.$store.dispatch("getNodeJoinByCampaignId", _this9.campaignId);
+                return _this10.$store.dispatch("getNodeJoinByCampaignId", _this10.campaignId);
 
               case 2:
               case "end":
@@ -22558,7 +22564,7 @@ function sleep(ms) {
       }))();
     },
     sendAddCharMessage: function sendAddCharMessage() {
-      var _this10 = this;
+      var _this11 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee11() {
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee11$(_context11) {
@@ -22568,9 +22574,9 @@ function sleep(ms) {
                 _context11.next = 2;
                 return axios({
                   method: "get",
-                  url: "/api/campaignsystemcheckaddchar/" + _this10.campaignId,
+                  url: "/api/campaignsystemcheckaddchar/" + _this11.campaignId,
                   headers: {
-                    Authorization: "Bearer " + _this10.$store.state.token,
+                    Authorization: "Bearer " + _this11.$store.state.token,
                     Accept: "application/json",
                     "Content-Type": "application/json"
                   }
@@ -22585,7 +22591,7 @@ function sleep(ms) {
       }))();
     },
     getSystems: function getSystems(id) {
-      var _this11 = this;
+      var _this12 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee12() {
         var res;
@@ -22598,7 +22604,7 @@ function sleep(ms) {
                   method: "get",
                   url: "/api/campaignjoinsystems/" + id,
                   headers: {
-                    Authorization: "Bearer " + _this11.$store.state.token,
+                    Authorization: "Bearer " + _this12.$store.state.token,
                     Accept: "application/json",
                     "Content-Type": "application/json"
                   }
@@ -22606,8 +22612,8 @@ function sleep(ms) {
 
               case 2:
                 res = _context12.sent;
-                _this11.systems = res.data.systems;
-                _this11.systemLoaded = true;
+                _this12.systems = res.data.systems;
+                _this12.systemLoaded = true;
 
               case 5:
               case "end":
@@ -22618,7 +22624,7 @@ function sleep(ms) {
       }))();
     },
     finishCampaign: function finishCampaign() {
-      var _this12 = this;
+      var _this13 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee13() {
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee13$(_context13) {
@@ -22628,9 +22634,9 @@ function sleep(ms) {
                 _context13.next = 2;
                 return axios({
                   method: "get",
-                  url: "/api/mcampaignsystemfinished/" + _this12.$route.params.id,
+                  url: "/api/mcampaignsystemfinished/" + _this13.$route.params.id,
                   headers: {
-                    Authorization: "Bearer " + _this12.$store.state.token,
+                    Authorization: "Bearer " + _this13.$store.state.token,
                     Accept: "application/json",
                     "Content-Type": "application/json"
                   }
@@ -22640,16 +22646,16 @@ function sleep(ms) {
                 _context13.next = 4;
                 return axios({
                   method: "delete",
-                  url: "/api/multicampaigns/" + _this12.$route.params.id,
+                  url: "/api/multicampaigns/" + _this13.$route.params.id,
                   headers: {
-                    Authorization: "Bearer " + _this12.$store.state.token,
+                    Authorization: "Bearer " + _this13.$store.state.token,
                     Accept: "application/json",
                     "Content-Type": "application/json"
                   }
                 });
 
               case 4:
-                _this12.$router.push("/campaignfinished");
+                _this13.$router.push("/campaignfinished");
 
               case 5:
               case "end":
@@ -22660,7 +22666,7 @@ function sleep(ms) {
       }))();
     },
     addMember: function addMember() {
-      var _this13 = this;
+      var _this14 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee14() {
         var user_id, request;
@@ -22668,20 +22674,20 @@ function sleep(ms) {
           while (1) {
             switch (_context14.prev = _context14.next) {
               case 0:
-                user_id = _this13.$store.state.user_id;
+                user_id = _this14.$store.state.user_id;
                 request = {
                   user_id: user_id,
-                  campaign_id: _this13.$route.params.id,
+                  campaign_id: _this14.$route.params.id,
                   type: 2
                 };
                 console.log("dance");
                 _context14.next = 5;
                 return axios({
                   method: "POST",
-                  url: "/api/campaignsystemusers/" + _this13.$route.params.id,
+                  url: "/api/campaignsystemusers/" + _this14.$route.params.id,
                   data: request,
                   headers: {
-                    Authorization: "Bearer " + _this13.$store.state.token,
+                    Authorization: "Bearer " + _this14.$store.state.token,
                     Accept: "application/json",
                     "Content-Type": "application/json"
                   }
@@ -22691,9 +22697,9 @@ function sleep(ms) {
                 _context14.next = 7;
                 return axios({
                   method: "GET",
-                  url: "/api/mcheckjoinleavecampaign/" + _this13.campaignId + "/" + _this13.$store.state.user_id + "/4",
+                  url: "/api/mcheckjoinleavecampaign/" + _this14.campaignId + "/" + _this14.$store.state.user_id + "/4",
                   headers: {
-                    Authorization: "Bearer " + _this13.$store.state.token,
+                    Authorization: "Bearer " + _this14.$store.state.token,
                     Accept: "application/json",
                     "Content-Type": "application/json"
                   }
@@ -22708,21 +22714,21 @@ function sleep(ms) {
       }))();
     },
     leaving: function leaving() {
-      var _this14 = this;
+      var _this15 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee15() {
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee15$(_context15) {
           while (1) {
             switch (_context15.prev = _context15.next) {
               case 0:
-                Echo.leave(_this14.channel);
-                Echo.leave(_this14.logchannel);
+                Echo.leave(_this15.channel);
+                Echo.leave(_this15.logchannel);
                 _context15.next = 4;
                 return axios({
                   method: "delete",
-                  url: "/api/campaignsystemusers/" + _this14.$store.state.user_id + "/" + _this14.campaignId,
+                  url: "/api/campaignsystemusers/" + _this15.$store.state.user_id + "/" + _this15.campaignId,
                   headers: {
-                    Authorization: "Bearer " + _this14.$store.state.token,
+                    Authorization: "Bearer " + _this15.$store.state.token,
                     Accept: "application/json",
                     "Content-Type": "application/json"
                   }
@@ -22732,9 +22738,9 @@ function sleep(ms) {
                 _context15.next = 6;
                 return axios({
                   method: "GET",
-                  url: "/api/mcheckjoinleavecampaign/" + _this14.campaignId + "/" + _this14.$store.state.user_id + "/5",
+                  url: "/api/mcheckjoinleavecampaign/" + _this15.campaignId + "/" + _this15.$store.state.user_id + "/5",
                   headers: {
-                    Authorization: "Bearer " + _this14.$store.state.token,
+                    Authorization: "Bearer " + _this15.$store.state.token,
                     Accept: "application/json",
                     "Content-Type": "application/json"
                   }
@@ -22787,7 +22793,7 @@ function sleep(ms) {
       this.editrole = null;
     },
     newCharForm: function newCharForm() {
-      var _this15 = this;
+      var _this16 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee16() {
         var request;
@@ -22796,34 +22802,34 @@ function sleep(ms) {
             switch (_context16.prev = _context16.next) {
               case 0:
                 request = {
-                  site_id: _this15.$store.state.user_id,
-                  campaign_id: _this15.campaignId,
-                  char_name: _this15.newCharName,
-                  link: _this15.newLink,
-                  ship: _this15.newShip,
-                  campaign_role_id: _this15.newRole
+                  site_id: _this16.$store.state.user_id,
+                  campaign_id: _this16.campaignId,
+                  char_name: _this16.newCharName,
+                  link: _this16.newLink,
+                  ship: _this16.newShip,
+                  campaign_role_id: _this16.newRole
                 };
                 _context16.next = 3;
                 return axios({
                   method: "POST",
-                  url: "/api/campaignusers/" + _this15.campaignId,
+                  url: "/api/campaignusers/" + _this16.campaignId,
                   data: request,
                   headers: {
-                    Authorization: "Bearer " + _this15.$store.state.token,
+                    Authorization: "Bearer " + _this16.$store.state.token,
                     Accept: "application/json",
                     "Content-Type": "application/json"
                   }
                 });
 
               case 3:
-                _this15.$store.dispatch("getCampaignUsersRecords", _this15.campaignId);
+                _this16.$store.dispatch("getCampaignUsersRecords", _this16.campaignId);
 
-                _this15.role = null;
-                _this15.newCharName = null;
-                _this15.newLink = null;
-                _this15.newShip = null;
-                _this15.newRole = null;
-                _this15.addShown = false;
+                _this16.role = null;
+                _this16.newCharName = null;
+                _this16.newLink = null;
+                _this16.newShip = null;
+                _this16.newRole = null;
+                _this16.addShown = false;
 
               case 10:
               case "end":
@@ -22887,7 +22893,7 @@ function sleep(ms) {
       this.editTextLink = null;
     },
     editFormRemove: function editFormRemove() {
-      var _this16 = this;
+      var _this17 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee17() {
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee17$(_context17) {
@@ -22897,27 +22903,27 @@ function sleep(ms) {
                 _context17.next = 2;
                 return axios({
                   method: "DELETE",
-                  url: "/api/campaignusers/" + _this16.oldChar.id + "/" + _this16.campaignId,
+                  url: "/api/campaignusers/" + _this17.oldChar.id + "/" + _this17.campaignId,
                   headers: {
-                    Authorization: "Bearer " + _this16.$store.state.token,
+                    Authorization: "Bearer " + _this17.$store.state.token,
                     Accept: "application/json",
                     "Content-Type": "application/json"
                   }
                 });
 
               case 2:
-                _this16.removeShown = false;
-                _this16.editCharName = null;
-                _this16.editRole = null;
-                _this16.editTextRole = null;
-                _this16.editShip = null;
-                _this16.editTextShip = null;
-                _this16.editLink = null;
-                _this16.editTextLink = null;
+                _this17.removeShown = false;
+                _this17.editCharName = null;
+                _this17.editRole = null;
+                _this17.editTextRole = null;
+                _this17.editShip = null;
+                _this17.editTextShip = null;
+                _this17.editLink = null;
+                _this17.editTextLink = null;
 
-                _this16.$store.dispatch("getCampaignUsersRecords", _this16.campaignId);
+                _this17.$store.dispatch("getCampaignUsersRecords", _this17.campaignId);
 
-                _this16.$store.dispatch("getCampaignSystemsRecords");
+                _this17.$store.dispatch("getCampaignSystemsRecords");
 
               case 12:
               case "end":

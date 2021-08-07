@@ -434,7 +434,9 @@ export default {
 
     beforeMonunt() {},
 
-    async beforeCreate() {},
+    async beforeCreate() {
+        await this.$store.dispatch("getMultiCampaigns");
+    },
 
     async mounted() {
         if (this.$store.getters.getCampaignsCount == 0) {
