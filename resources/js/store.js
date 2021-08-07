@@ -430,7 +430,7 @@ export default new Vuex.Store({
             commit("SET_TIMERS", res.data.timers);
         },
 
-        async getTimerDataAll({ commit, state }) {
+        async getTimerDataAllRegion({ commit, state }) {
             let res = await axios({
                 method: "get",
                 url: "/api/CampaignRecordsController@campaignslistRegion",
