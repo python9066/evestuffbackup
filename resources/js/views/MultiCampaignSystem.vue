@@ -543,7 +543,7 @@ export default {
         },
 
         setSitetitle() {
-            let name = campaignName();
+            let name = campaignName;
             this.siteTitle = name[0]["name"];
         },
 

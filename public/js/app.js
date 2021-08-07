@@ -22620,7 +22620,7 @@ function sleep(ms) {
       }))();
     },
     setSitetitle: function setSitetitle() {
-      var name = campaignName();
+      var name = campaignName;
       this.siteTitle = name[0]["name"];
     },
     finishCampaign: function finishCampaign() {
