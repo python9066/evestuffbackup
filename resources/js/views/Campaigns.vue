@@ -547,10 +547,10 @@ export default {
         }
     },
     computed: {
-        ...mapState(["campaigns", "CampaignsRegions"]),
+        ...mapState(["campaigns", "campaignsRegion"]),
 
         dropdown_search_list() {
-            return this.$store.state.getCampaignsRegions;
+            return this.$store.state.campaignsRegion;
         },
 
         filteredItems_start() {
