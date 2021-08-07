@@ -6,7 +6,7 @@
             class="pb-2"
             justify="space-around"
         >
-            <v-col md="10">
+            <v-col md="10" v-if="campaignNameCount > 0">
                 <v-card class="pr-2 pb-2 pl-2" tile width="100%">
                     <v-card-title
                         align="center"

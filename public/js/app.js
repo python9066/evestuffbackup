@@ -48939,37 +48939,39 @@ var render = function() {
               attrs: { "no-gutters": "", justify: "space-around" }
             },
             [
-              _c(
-                "v-col",
-                { attrs: { md: "10" } },
-                [
-                  _c(
-                    "v-card",
-                    {
-                      staticClass: "pr-2 pb-2 pl-2",
-                      attrs: { tile: "", width: "100%" }
-                    },
+              _vm.campaignNameCount > 0
+                ? _c(
+                    "v-col",
+                    { attrs: { md: "10" } },
                     [
                       _c(
-                        "v-card-title",
+                        "v-card",
                         {
-                          staticClass: "justify-center align-center",
-                          attrs: { align: "center" }
+                          staticClass: "pr-2 pb-2 pl-2",
+                          attrs: { tile: "", width: "100%" }
                         },
                         [
-                          _vm._v(
-                            "MultiCampaign - " +
-                              _vm._s(_vm.campaignName[0]["name"]) +
-                              "\n                "
+                          _c(
+                            "v-card-title",
+                            {
+                              staticClass: "justify-center align-center",
+                              attrs: { align: "center" }
+                            },
+                            [
+                              _vm._v(
+                                "MultiCampaign - " +
+                                  _vm._s(_vm.campaignName[0]["name"]) +
+                                  "\n                "
+                              )
+                            ]
                           )
-                        ]
+                        ],
+                        1
                       )
                     ],
                     1
                   )
-                ],
-                1
-              )
+                : _vm._e()
             ],
             1
           )
