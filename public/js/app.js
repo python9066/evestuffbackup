@@ -58753,7 +58753,7 @@ vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(vue_router__WEBPACK_IMPORTED_MODU
     //   }
 
   }, {
-    path: "/mcampaign/:id",
+    path: "/mcampaign/:id/:name",
     name: "mcampaign",
     component: _views_MultiCampaignSystem__WEBPACK_IMPORTED_MODULE_7__["default"],
     props: function props(route) {

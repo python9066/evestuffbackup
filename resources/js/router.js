@@ -59,7 +59,7 @@ export default new Router({
         },
 
         {
-            path: "/mcampaign/:id",
+            path: "/mcampaign/:id/:name",
             name: "mcampaign",
             component: MultiCampaign,
             props: route => {
