@@ -238,7 +238,9 @@ function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 export default {
-    title: "test",
+    title() {
+        return `Foo Page — ${this.siteTitle}`;
+    },
     data() {
         return {
             dropdown_roles: [
@@ -276,7 +278,7 @@ export default {
             editLinkRules: [v => !!v || "T1 or T2?"],
             editUserForm: 1,
             editrole_name: null,
-
+            siteTitle: "eve",
             oldChar: [],
             role: 0,
             editrole: 0,
@@ -454,6 +456,7 @@ export default {
         await this.getSystems(this.campaignId);
         await this.addMember();
         await this.$store.dispatch("getCampaignSolaSystems");
+        await this.setSitetitle();
     },
     methods: {
         updateBar() {
@@ -537,6 +540,11 @@ export default {
 
             this.systems = res.data.systems;
             this.systemLoaded = true;
+        },
+
+        setSitetitle() {
+            let name = campaignName();
+            this.siteTitle = name[0]["name"];
         },
 
         async finishCampaign() {
