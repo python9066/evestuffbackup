@@ -22098,7 +22098,7 @@ function sleep(ms) {
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   title: function title() {
-    return "Foo Page \u2014 ".concat(this.siteTitle);
+    return "Foo Page \u2014 ".concat(this.campaignName);
   },
   data: function data() {
     return {
@@ -22620,7 +22620,7 @@ function sleep(ms) {
       }))();
     },
     setSitetitle: function setSitetitle() {
-      var name = campaignName;
+      var name = this.campaignName;
       this.siteTitle = name[0]["name"];
     },
     finishCampaign: function finishCampaign() {

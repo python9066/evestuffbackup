@@ -239,7 +239,7 @@ function sleep(ms) {
 }
 export default {
     title() {
-        return `Foo Page — ${this.siteTitle}`;
+        return `Foo Page — ${this.campaignName}`;
     },
     data() {
         return {
