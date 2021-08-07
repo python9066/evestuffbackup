@@ -21191,40 +21191,6 @@ function sleep(ms) {
         text: "Countdown/Age",
         value: "count",
         sortable: false
-      }],
-      dropdown_search: [{
-        text: "Astrahus",
-        value: "Astrahus"
-      }, {
-        text: "Athanor",
-        value: "Athanor"
-      }, {
-        text: "Azbel",
-        value: "Azbel"
-      }, {
-        text: "Cyno Beacon",
-        value: "Cyno Beacon"
-      }, {
-        text: "Cyno Jammer",
-        value: "Cyno Jammer"
-      }, {
-        text: "Fortizar",
-        value: "Fortizar"
-      }, {
-        text: "Jump Gate",
-        value: "Jump"
-      }, {
-        text: "Keepstar",
-        value: "Keepstar"
-      }, {
-        text: "Raitaru",
-        value: "Raitaru"
-      }, {
-        text: "Sotiyo",
-        value: "Sotiyo"
-      }, {
-        text: "Tatara",
-        value: "Tatara"
       }]
     };
   },
@@ -21387,7 +21353,7 @@ function sleep(ms) {
     }
   },
   computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapState"])(["campaigns", "getCampaignsRegions"])), {}, {
-    dropdownList: function dropdownList() {
+    dropdown_search: function dropdown_search() {
       return this.getCampaignsRegions;
     },
     filteredItems_start: function filteredItems_start() {

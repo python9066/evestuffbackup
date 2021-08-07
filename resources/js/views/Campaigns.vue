@@ -411,20 +411,6 @@ export default {
                     align: "center"
                 },
                 { text: "Countdown/Age", value: "count", sortable: false }
-            ],
-
-            dropdown_search: [
-                { text: "Astrahus", value: "Astrahus" },
-                { text: "Athanor", value: "Athanor" },
-                { text: "Azbel", value: "Azbel" },
-                { text: "Cyno Beacon", value: "Cyno Beacon" },
-                { text: "Cyno Jammer", value: "Cyno Jammer" },
-                { text: "Fortizar", value: "Fortizar" },
-                { text: "Jump Gate", value: "Jump" },
-                { text: "Keepstar", value: "Keepstar" },
-                { text: "Raitaru", value: "Raitaru" },
-                { text: "Sotiyo", value: "Sotiyo" },
-                { text: "Tatara", value: "Tatara" }
             ]
         };
     },
@@ -563,7 +549,7 @@ export default {
     computed: {
         ...mapState(["campaigns", "getCampaignsRegions"]),
 
-        dropdownList() {
+        dropdown_search() {
             return this.getCampaignsRegions;
         },
 
