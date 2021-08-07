@@ -22934,6 +22934,9 @@ function sleep(ms) {
         return false;
       }
     },
+    campaignName: function campaignName() {
+      return this.getMultiCampaignName(this.$route.params.id);
+    },
     userCharsDrop: function userCharsDrop() {
       return this.getCampaignUsersByUserId(this.$store.state.user_id);
     },
@@ -48939,7 +48942,11 @@ var render = function() {
                       staticClass: "pr-2 pb-2 pl-2",
                       attrs: { tile: "", width: "100%" }
                     },
-                    [_c("v-card-title")],
+                    [
+                      _c("v-card-title", [
+                        _vm._v(_vm._s(_vm.campaignName) + " ")
+                      ])
+                    ],
                     1
                   )
                 ],

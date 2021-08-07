@@ -8,7 +8,7 @@
         >
             <v-col md="10">
                 <v-card class="pr-2 pb-2 pl-2" tile width="100%">
-                    <v-card-title> </v-card-title>
+                    <v-card-title>{{ campaignName }} </v-card-title>
                 </v-card>
             </v-col>
         </v-row>
@@ -812,6 +812,10 @@ export default {
             } else {
                 return false;
             }
+        },
+
+        campaignName() {
+            return this.getMultiCampaignName(this.$route.params.id);
         },
 
         userCharsDrop() {

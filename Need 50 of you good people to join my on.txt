@@ -14,18 +14,19 @@ Doctrine: Jackdaw Fleet (Boosters > Scalpel / Kirin > Jackdaw > Keres / Hyena > 
 
 !all The jack is, according to my sources, whack.  We also have some reds to shoot at
 
- !all Mother delve is healing
+!all Lets go boys! Get in
 
- Need a blops
- 5 asteros & Capped 30
 
- FC Name: Xavindo Sirober
- Formup Location: 1DQ1-A
- Pap Type: Strategic
- Comms: Op 9 https://gnf.lt/l7zng0s.html
- Doctrine: Torp Bombers (Purifier > Hound > Astero)
+!all Mother delve is healing
 
- Geekvape Aegis L200 Legend 2
+Need a blops & 5 asteros
+Capped 40
+
+FC Name: Xavindo Sirober
+Formup Location: 1DQ1-A
+Pap Type: Strategic
+Comms: Op 10 https://gnf.lt/g5jrVqZ.html
+Doctrine: Torp Bombers (Purifier > Hound > Astero)
 
 /usr/bin/php7.4-cli artisan
 
