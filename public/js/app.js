@@ -21831,9 +21831,1141 @@ function sleep(ms) {
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/MultiCampaignSystem.vue?vue&type=script&lang=js& ***!
   \*************************************************************************************************************************************************************************/
 /*! exports provided: default */
-/***/ (function(module, exports) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: G:\\code\\eve\\resources\\js\\views\\MultiCampaignSystem.vue: Unexpected token, expected \",\" (242:4)\n\n\u001b[0m \u001b[90m 240 | \u001b[39m\u001b[36mexport\u001b[39m \u001b[36mdefault\u001b[39m {\u001b[0m\n\u001b[0m \u001b[90m 241 | \u001b[39m    title\u001b[33m:\u001b[39m \u001b[32m\"test\"\u001b[39m\u001b[0m\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 242 | \u001b[39m    data() {\u001b[0m\n\u001b[0m \u001b[90m     | \u001b[39m    \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 243 | \u001b[39m        \u001b[36mreturn\u001b[39m {\u001b[0m\n\u001b[0m \u001b[90m 244 | \u001b[39m            dropdown_roles\u001b[33m:\u001b[39m [\u001b[0m\n\u001b[0m \u001b[90m 245 | \u001b[39m                { text\u001b[33m:\u001b[39m \u001b[32m\"Hacker\"\u001b[39m\u001b[33m,\u001b[39m value\u001b[33m:\u001b[39m \u001b[35m1\u001b[39m }\u001b[33m,\u001b[39m\u001b[0m\n    at Parser._raise (G:\\code\\eve\\node_modules\\@babel\\parser\\lib\\index.js:790:17)\n    at Parser.raiseWithData (G:\\code\\eve\\node_modules\\@babel\\parser\\lib\\index.js:783:17)\n    at Parser.raise (G:\\code\\eve\\node_modules\\@babel\\parser\\lib\\index.js:777:17)\n    at Parser.unexpected (G:\\code\\eve\\node_modules\\@babel\\parser\\lib\\index.js:9095:16)\n    at Parser.expect (G:\\code\\eve\\node_modules\\@babel\\parser\\lib\\index.js:9081:28)\n    at Parser.parseObjectLike (G:\\code\\eve\\node_modules\\@babel\\parser\\lib\\index.js:10886:14)\n    at Parser.parseExprAtom (G:\\code\\eve\\node_modules\\@babel\\parser\\lib\\index.js:10445:23)\n    at Parser.parseExprSubscripts (G:\\code\\eve\\node_modules\\@babel\\parser\\lib\\index.js:10094:23)\n    at Parser.parseUpdate (G:\\code\\eve\\node_modules\\@babel\\parser\\lib\\index.js:10074:21)\n    at Parser.parseMaybeUnary (G:\\code\\eve\\node_modules\\@babel\\parser\\lib\\index.js:10063:17)\n    at Parser.parseExprOps (G:\\code\\eve\\node_modules\\@babel\\parser\\lib\\index.js:9933:23)\n    at Parser.parseMaybeConditional (G:\\code\\eve\\node_modules\\@babel\\parser\\lib\\index.js:9907:23)\n    at Parser.parseMaybeAssign (G:\\code\\eve\\node_modules\\@babel\\parser\\lib\\index.js:9870:21)\n    at G:\\code\\eve\\node_modules\\@babel\\parser\\lib\\index.js:9837:39\n    at Parser.allowInAnd (G:\\code\\eve\\node_modules\\@babel\\parser\\lib\\index.js:11504:16)\n    at Parser.parseMaybeAssignAllowIn (G:\\code\\eve\\node_modules\\@babel\\parser\\lib\\index.js:9837:17)\n    at Parser.parseExportDefaultExpression (G:\\code\\eve\\node_modules\\@babel\\parser\\lib\\index.js:12851:24)\n    at Parser.parseExport (G:\\code\\eve\\node_modules\\@babel\\parser\\lib\\index.js:12761:31)\n    at Parser.parseStatementContent (G:\\code\\eve\\node_modules\\@babel\\parser\\lib\\index.js:11745:27)\n    at Parser.parseStatement (G:\\code\\eve\\node_modules\\@babel\\parser\\lib\\index.js:11639:17)\n    at Parser.parseBlockOrModuleBlockBody (G:\\code\\eve\\node_modules\\@babel\\parser\\lib\\index.js:12221:25)\n    at Parser.parseBlockBody (G:\\code\\eve\\node_modules\\@babel\\parser\\lib\\index.js:12207:10)\n    at Parser.parseTopLevel (G:\\code\\eve\\node_modules\\@babel\\parser\\lib\\index.js:11570:10)\n    at Parser.parse (G:\\code\\eve\\node_modules\\@babel\\parser\\lib\\index.js:13381:10)\n    at parse (G:\\code\\eve\\node_modules\\@babel\\parser\\lib\\index.js:13434:38)\n    at parser (G:\\code\\eve\\node_modules\\@babel\\core\\lib\\parser\\index.js:54:34)\n    at parser.next (<anonymous>)\n    at normalizeFile (G:\\code\\eve\\node_modules\\@babel\\core\\lib\\transformation\\normalize-file.js:99:38)\n    at normalizeFile.next (<anonymous>)\n    at run (G:\\code\\eve\\node_modules\\@babel\\core\\lib\\transformation\\index.js:31:50)\n    at run.next (<anonymous>)\n    at Function.transform (G:\\code\\eve\\node_modules\\@babel\\core\\lib\\transform.js:27:41)\n    at transform.next (<anonymous>)\n    at step (G:\\code\\eve\\node_modules\\gensync\\index.js:261:32)\n    at G:\\code\\eve\\node_modules\\gensync\\index.js:273:13\n    at async.call.result.err.err (G:\\code\\eve\\node_modules\\gensync\\index.js:223:11)");
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _event_bus__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../event-bus */ "./resources/js/event-bus.js");
+/* harmony import */ var _service_apil__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../service/apil */ "./resources/js/service/apil.js");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
+
+function sleep(ms) {
+  return new Promise(function (resolve) {
+    return setTimeout(resolve, ms);
+  });
+}
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  title: "test",
+  data: function data() {
+    return {
+      dropdown_roles: [{
+        text: "Hacker",
+        value: 1
+      }, {
+        text: "Support",
+        value: 5
+      }, {
+        text: "Scout",
+        value: 2
+      }, {
+        text: "FC",
+        value: 3
+      }, {
+        text: "Command",
+        value: 4
+      }],
+      dropdown_status: [{
+        text: "None",
+        value: 1
+      }, {
+        text: "On the way",
+        value: 2
+      }, {
+        text: "Ready to go",
+        value: 3
+      }],
+      newCharName: null,
+      newNameRules: [function (v) {
+        return !!v || "Name is required";
+      }],
+      newRole: null,
+      newRoleRules: [function (v) {
+        return !!v || "You need to pick a role";
+      }],
+      newShip: null,
+      newShipRules: [function (v) {
+        return !!v || "Ship is required";
+      }],
+      newLink: null,
+      newLinkRules: [function (v) {
+        return !!v || "T1 or T2?";
+      }],
+      editCharName: null,
+      editNameRules: [function (v) {
+        return !!v || "Name is required";
+      }],
+      editRole: null,
+      editTextRole: null,
+      editRoleRules: [function (v) {
+        return !!v || "You need to pick a role";
+      }],
+      editShip: null,
+      editTextShip: null,
+      editShipRules: [function (v) {
+        return !!v || "Ship is required";
+      }],
+      editLink: null,
+      editTextLink: null,
+      editLinkRules: [function (v) {
+        return !!v || "T1 or T2?";
+      }],
+      editUserForm: 1,
+      editrole_name: null,
+      oldChar: [],
+      role: 0,
+      editrole: 0,
+      systems: [],
+      test: 1,
+      test2: "",
+      valid: false,
+      addShown: false,
+      removeShown: false,
+      showTable: false,
+      systemLoaded: false,
+      campaignId: 0,
+      campaign_id: "",
+      showUsers: false,
+      channel: "",
+      overlay: false,
+      bullhorn: false,
+      nodeItem: null,
+      showLog: false,
+      solalog: false,
+      solaid: 0,
+      load: 0,
+      logName: null,
+      solaName: null
+    };
+  },
+  created: function created() {
+    var _this = this;
+
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              _this.campaignId = _this.$route.params.id;
+              _this.campaign_id = parseInt(_this.$route.params.id);
+
+              if (_this.$can("view_campaign_logs")) {
+                Echo["private"]("campaignlogs." + _this.campaignId).listen("LoggingUpdate", function (e) {
+                  _this.$store.dispatch("addLoggingCampaign", e.flag.message);
+                });
+              }
+
+              Echo["private"]("campaignsystem." + _this.$route.params.id).listen("CampaignSystemUpdate", function (e) {
+                if (e.flag.message != null) {
+                  _this.$store.dispatch("updateCampaignSystem", e.flag.message);
+                }
+
+                if (e.flag.flag == 2) {
+                  _this.loadCampaignSystemRecords();
+
+                  _this.loadCampaignNodeJoin();
+                }
+
+                if (e.flag.flag == 3) {
+                  _this.loadCampaignSystemRecords();
+
+                  _this.loadUsersRecords();
+
+                  _this.loadCampaignNodeJoin();
+                }
+
+                if (e.flag.flag == 4) {
+                  _this.loadcampaigns();
+
+                  _this.loadCampaignSystemRecords();
+
+                  _this.loadUsersRecords();
+
+                  _this.loadCampaignNodeJoin();
+                }
+
+                if (e.flag.flag == 5) {
+                  _this.checkAddUser();
+                }
+
+                if (e.flag.flag == 7) {
+                  _this.$router.push("/campaignfinished");
+                }
+
+                if (e.flag.flag == 8) {
+                  _this.loadCampaignSolaSystems();
+                }
+
+                if (e.flag.flag == 9) {
+                  _this.loadCampaignSolaSystems();
+
+                  _this.loadCampaignSystemRecords();
+
+                  _this.loadCampaignNodeJoin();
+                }
+
+                if (e.flag.flag == 10) {
+                  _this.loadCampaignlogs();
+                }
+
+                if (e.flag.flag == 11) {
+                  if (_this.$store.getters.getCampaignsCount == 0) {
+                    _this.$store.dispatch("getCampaigns");
+                  }
+
+                  if (_this.$store.getters.getMultiCampaignsCount == 0) {
+                    _this.$store.dispatch("getMultiCampaigns");
+                  }
+
+                  _this.$store.dispatch("getCampaignJoinDataByCampaign", _this.$route.params.id);
+
+                  var payload = {
+                    campaign_id: _this.$route.params.id,
+                    user_id: _this.$store.state.user_id,
+                    type: 2
+                  };
+
+                  _this.$store.dispatch("loadCampaignSystemData", payload);
+
+                  _this.getSystems(_this.campaignId);
+
+                  _this.addMember();
+
+                  _this.$store.dispatch("getCampaignSolaSystems");
+                }
+              }).listen("CampaignUserNew", function (e) {
+                _this.$store.dispatch("addCampaignUserNew", e.flag.message);
+              }).listen("CampaignUserDelete", function (e) {
+                _this.$store.dispatch("deleteCampaignUser", e.flag.userid);
+              }).listen("KickUserFromCampaign", function (e) {
+                if (_this.$store.state.user_id == e.flag.user_id) {
+                  _this.$router.push("/campaignkick");
+                }
+              }).listen("CampaignSolaSystemUpdate", function (e) {
+                _this.$store.dispatch("updateCampaignSolaSystem", e.flag.message);
+              }).listen("CampaignUserUpdate", function (e) {
+                if (e.flag.message != null) {
+                  _this.$store.dispatch("updateCampaignUsers", e.flag.message);
+                }
+              }).listen("NodeJoinDelete", function (e) {
+                _this.$store.dispatch("deleteNodeJoin", e.flag.joinNodeID);
+              }).listen("NodeJoinNew", function (e) {
+                _this.$store.dispatch("addNodeJoin", e.flag.message);
+              }).listen("NodeJoinUpdate", function (e) {
+                _this.$store.dispatch("updateNodeJoin", e.flag.message);
+              }).listen("CampaignSystemDelete", function (e) {
+                _this.$store.dispatch("deleteCampaignSystem", e.flag.campSysID);
+              }).listen("CampaignSystemNew", function (e) {
+                _this.$store.dispatch("addCampaignSystem", e.flag.message);
+              }).listen("CampaignUpdate", function (e) {
+                _this.$store.dispatch("updateCampaign", e.flag.message);
+              });
+              window.addEventListener("beforeunload", _this.leaving);
+              _this.channel = "campaignsystem." + _this.campaignId;
+              _this.logchannel = "campaignlogs." + _this.campaignId;
+              _this.navdrawer = true;
+
+            case 8:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    }))();
+  },
+  beforeMonunt: function beforeMonunt() {},
+  beforeCreate: function beforeCreate() {
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      }, _callee2);
+    }))();
+  },
+  mounted: function mounted() {
+    var _this2 = this;
+
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
+      var payload;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
+        while (1) {
+          switch (_context3.prev = _context3.next) {
+            case 0:
+              if (!(_this2.$store.getters.getCampaignsCount == 0)) {
+                _context3.next = 3;
+                break;
+              }
+
+              _context3.next = 3;
+              return _this2.$store.dispatch("getCampaigns");
+
+            case 3:
+              if (!(_this2.$store.getters.getMultiCampaignsCount == 0)) {
+                _context3.next = 6;
+                break;
+              }
+
+              _context3.next = 6;
+              return _this2.$store.dispatch("getMultiCampaigns");
+
+            case 6:
+              _context3.next = 8;
+              return _this2.$store.dispatch("getCampaignJoinDataByCampaign", _this2.$route.params.id);
+
+            case 8:
+              payload = {
+                campaign_id: _this2.$route.params.id,
+                user_id: _this2.$store.state.user_id,
+                type: 2
+              };
+              _context3.next = 11;
+              return _this2.$store.dispatch("loadCampaignSystemData", payload);
+
+            case 11:
+              _context3.next = 13;
+              return _this2.getSystems(_this2.campaignId);
+
+            case 13:
+              _context3.next = 15;
+              return _this2.addMember();
+
+            case 15:
+              _context3.next = 17;
+              return _this2.$store.dispatch("getCampaignSolaSystems");
+
+            case 17:
+            case "end":
+              return _context3.stop();
+          }
+        }
+      }, _callee3);
+    }))();
+  },
+  methods: {
+    updateBar: function updateBar() {
+      this.loadcampaigns();
+    },
+    checkAddUser: function checkAddUser() {
+      if (this.userCount == 0) {
+        this.bullhorn = true;
+      }
+    },
+    openSolaLog: function openSolaLog(item) {
+      this.solaid = item.solaid;
+      this.solaName = item.solaName;
+      this.solalog = true;
+    },
+    loadCampaignlogs: function loadCampaignlogs() {
+      var _this3 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
+          while (1) {
+            switch (_context4.prev = _context4.next) {
+              case 0:
+                if (!_this3.$can("view_campaign_logs")) {
+                  _context4.next = 3;
+                  break;
+                }
+
+                _context4.next = 3;
+                return _this3.$store.dispatch("getLoggingCampaign", _this3.campaignId);
+
+              case 3:
+              case "end":
+                return _context4.stop();
+            }
+          }
+        }, _callee4);
+      }))();
+    },
+    loadCampaigns: function loadCampaigns() {
+      var _this4 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee5() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee5$(_context5) {
+          while (1) {
+            switch (_context5.prev = _context5.next) {
+              case 0:
+                _context5.next = 2;
+                return _this4.$store.dispatch("getCampaigns");
+
+              case 2:
+              case "end":
+                return _context5.stop();
+            }
+          }
+        }, _callee5);
+      }))();
+    },
+    loadUsersRecords: function loadUsersRecords() {
+      var _this5 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee6() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee6$(_context6) {
+          while (1) {
+            switch (_context6.prev = _context6.next) {
+              case 0:
+                _context6.next = 2;
+                return _this5.$store.dispatch("getCampaignUsersRecords", _this5.campaignId);
+
+              case 2:
+              case "end":
+                return _context6.stop();
+            }
+          }
+        }, _callee6);
+      }))();
+    },
+    loadCampaignSolaSystems: function loadCampaignSolaSystems() {
+      var _this6 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee7() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee7$(_context7) {
+          while (1) {
+            switch (_context7.prev = _context7.next) {
+              case 0:
+                _context7.next = 2;
+                return _this6.$store.dispatch("getCampaignSolaSystems");
+
+              case 2:
+              case "end":
+                return _context7.stop();
+            }
+          }
+        }, _callee7);
+      }))();
+    },
+    loadCampaignSystemRecords: function loadCampaignSystemRecords() {
+      var _this7 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee8() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee8$(_context8) {
+          while (1) {
+            switch (_context8.prev = _context8.next) {
+              case 0:
+                _context8.next = 2;
+                return _this7.$store.dispatch("getCampaignSystemsRecords");
+
+              case 2:
+              case "end":
+                return _context8.stop();
+            }
+          }
+        }, _callee8);
+      }))();
+    },
+    loadcampaigns: function loadcampaigns() {
+      var _this8 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee9() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee9$(_context9) {
+          while (1) {
+            switch (_context9.prev = _context9.next) {
+              case 0:
+                _this8.loadingr = true;
+                _context9.next = 3;
+                return _this8.$store.dispatch("getCampaigns").then(function () {
+                  _this8.loadingr = false;
+                });
+
+              case 3:
+              case "end":
+                return _context9.stop();
+            }
+          }
+        }, _callee9);
+      }))();
+    },
+    loadCampaignNodeJoin: function loadCampaignNodeJoin() {
+      var _this9 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee10() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee10$(_context10) {
+          while (1) {
+            switch (_context10.prev = _context10.next) {
+              case 0:
+                _context10.next = 2;
+                return _this9.$store.dispatch("getNodeJoinByCampaignId", _this9.campaignId);
+
+              case 2:
+              case "end":
+                return _context10.stop();
+            }
+          }
+        }, _callee10);
+      }))();
+    },
+    sendAddCharMessage: function sendAddCharMessage() {
+      var _this10 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee11() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee11$(_context11) {
+          while (1) {
+            switch (_context11.prev = _context11.next) {
+              case 0:
+                _context11.next = 2;
+                return axios({
+                  method: "get",
+                  url: "/api/campaignsystemcheckaddchar/" + _this10.campaignId,
+                  headers: {
+                    Authorization: "Bearer " + _this10.$store.state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                  }
+                });
+
+              case 2:
+              case "end":
+                return _context11.stop();
+            }
+          }
+        }, _callee11);
+      }))();
+    },
+    getSystems: function getSystems(id) {
+      var _this11 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee12() {
+        var res;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee12$(_context12) {
+          while (1) {
+            switch (_context12.prev = _context12.next) {
+              case 0:
+                _context12.next = 2;
+                return axios({
+                  method: "get",
+                  url: "/api/campaignjoinsystems/" + id,
+                  headers: {
+                    Authorization: "Bearer " + _this11.$store.state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                  }
+                });
+
+              case 2:
+                res = _context12.sent;
+                _this11.systems = res.data.systems;
+                _this11.systemLoaded = true;
+
+              case 5:
+              case "end":
+                return _context12.stop();
+            }
+          }
+        }, _callee12);
+      }))();
+    },
+    finishCampaign: function finishCampaign() {
+      var _this12 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee13() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee13$(_context13) {
+          while (1) {
+            switch (_context13.prev = _context13.next) {
+              case 0:
+                _context13.next = 2;
+                return axios({
+                  method: "get",
+                  url: "/api/mcampaignsystemfinished/" + _this12.$route.params.id,
+                  headers: {
+                    Authorization: "Bearer " + _this12.$store.state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                  }
+                });
+
+              case 2:
+                _context13.next = 4;
+                return axios({
+                  method: "delete",
+                  url: "/api/multicampaigns/" + _this12.$route.params.id,
+                  headers: {
+                    Authorization: "Bearer " + _this12.$store.state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                  }
+                });
+
+              case 4:
+                _this12.$router.push("/campaignfinished");
+
+              case 5:
+              case "end":
+                return _context13.stop();
+            }
+          }
+        }, _callee13);
+      }))();
+    },
+    addMember: function addMember() {
+      var _this13 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee14() {
+        var user_id, request;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee14$(_context14) {
+          while (1) {
+            switch (_context14.prev = _context14.next) {
+              case 0:
+                user_id = _this13.$store.state.user_id;
+                request = {
+                  user_id: user_id,
+                  campaign_id: _this13.$route.params.id,
+                  type: 2
+                };
+                console.log("dance");
+                _context14.next = 5;
+                return axios({
+                  method: "POST",
+                  url: "/api/campaignsystemusers/" + _this13.$route.params.id,
+                  data: request,
+                  headers: {
+                    Authorization: "Bearer " + _this13.$store.state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                  }
+                });
+
+              case 5:
+                _context14.next = 7;
+                return axios({
+                  method: "GET",
+                  url: "/api/mcheckjoinleavecampaign/" + _this13.campaignId + "/" + _this13.$store.state.user_id + "/4",
+                  headers: {
+                    Authorization: "Bearer " + _this13.$store.state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                  }
+                });
+
+              case 7:
+              case "end":
+                return _context14.stop();
+            }
+          }
+        }, _callee14);
+      }))();
+    },
+    leaving: function leaving() {
+      var _this14 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee15() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee15$(_context15) {
+          while (1) {
+            switch (_context15.prev = _context15.next) {
+              case 0:
+                Echo.leave(_this14.channel);
+                Echo.leave(_this14.logchannel);
+                _context15.next = 4;
+                return axios({
+                  method: "delete",
+                  url: "/api/campaignsystemusers/" + _this14.$store.state.user_id + "/" + _this14.campaignId,
+                  headers: {
+                    Authorization: "Bearer " + _this14.$store.state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                  }
+                });
+
+              case 4:
+                _context15.next = 6;
+                return axios({
+                  method: "GET",
+                  url: "/api/mcheckjoinleavecampaign/" + _this14.campaignId + "/" + _this14.$store.state.user_id + "/5",
+                  headers: {
+                    Authorization: "Bearer " + _this14.$store.state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                  }
+                });
+
+              case 6:
+              case "end":
+                return _context15.stop();
+            }
+          }
+        }, _callee15);
+      }))();
+    },
+    roleForm: function roleForm(a) {
+      this.role = a;
+    },
+    newCharFormClose: function newCharFormClose() {
+      this.addShown = false;
+      this.newCharName = null;
+      this.newRole = null;
+      this.newShip = null;
+      this.newLink = null;
+    },
+    roleEditForm: function roleEditForm(a) {
+      this.editrole = a;
+    },
+    charEditForm: function charEditForm($event) {
+      this.oldChar = this.userCharsDrop.find(function (user) {
+        return user.id == $event;
+      });
+      this.editRole = this.oldChar.role_id;
+      this.editTextShip = this.oldChar.ship;
+      this.editTextLink = this.oldChar.link;
+
+      if (this.oldChar.role_id == 1) {
+        this.editrole = 1;
+      } else {
+        this.editrole = 0;
+      }
+    },
+    editFormClose: function editFormClose() {
+      this.removeShown = false;
+      this.editCharName = null;
+      this.editRole = null;
+      this.editTextRole = null;
+      this.editShip = null;
+      this.editTextShip = null;
+      this.editLink = null;
+      this.editTextLink = null;
+      this.editrole = null;
+    },
+    newCharForm: function newCharForm() {
+      var _this15 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee16() {
+        var request;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee16$(_context16) {
+          while (1) {
+            switch (_context16.prev = _context16.next) {
+              case 0:
+                request = {
+                  site_id: _this15.$store.state.user_id,
+                  campaign_id: _this15.campaignId,
+                  char_name: _this15.newCharName,
+                  link: _this15.newLink,
+                  ship: _this15.newShip,
+                  campaign_role_id: _this15.newRole
+                };
+                _context16.next = 3;
+                return axios({
+                  method: "POST",
+                  url: "/api/campaignusers/" + _this15.campaignId,
+                  data: request,
+                  headers: {
+                    Authorization: "Bearer " + _this15.$store.state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                  }
+                });
+
+              case 3:
+                _this15.$store.dispatch("getCampaignUsersRecords", _this15.campaignId);
+
+                _this15.role = null;
+                _this15.newCharName = null;
+                _this15.newLink = null;
+                _this15.newShip = null;
+                _this15.newRole = null;
+                _this15.addShown = false;
+
+              case 10:
+              case "end":
+                return _context16.stop();
+            }
+          }
+        }, _callee16);
+      }))();
+    },
+    editCharForm: function editCharForm() {
+      this.removeShown = false;
+      var link = this.oldChar.link;
+      var ship = this.oldChar.ship;
+      var role = this.oldChar.role_id;
+      var role_name = this.oldChar.role_name;
+
+      if (this.oldChar.role_id != this.editRole) {
+        var role = this.editRole;
+        var role_name = this.dropdown_roles.find(function (droprole) {
+          return droprole.value == role;
+        }).text;
+      }
+
+      if (this.oldChar.ship != this.editShip) {
+        var ship = this.editShip;
+      }
+
+      if (this.oldChar.link != this.editLink) {
+        var link = this.editLink;
+      }
+
+      var request = {
+        link: link,
+        ship: ship,
+        campaign_role_id: role
+      };
+      var item = {
+        id: this.oldChar.id,
+        link: link,
+        ship: ship,
+        role_id: role,
+        role_name: role_name
+      };
+      this.$store.dispatch("updateCampaignUsers", item);
+      axios({
+        method: "PUT",
+        url: "/api/campaignusers/" + this.oldChar.id + "/" + this.campaignId,
+        data: request,
+        headers: {
+          Authorization: "Bearer " + this.$store.state.token,
+          Accept: "application/json",
+          "Content-Type": "application/json"
+        }
+      });
+      this.editCharName = null;
+      this.editRole = null;
+      this.editTextRole = null;
+      this.editShip = null;
+      this.editTextShip = null;
+      this.editLink = null;
+      this.editTextLink = null;
+    },
+    editFormRemove: function editFormRemove() {
+      var _this16 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee17() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee17$(_context17) {
+          while (1) {
+            switch (_context17.prev = _context17.next) {
+              case 0:
+                _context17.next = 2;
+                return axios({
+                  method: "DELETE",
+                  url: "/api/campaignusers/" + _this16.oldChar.id + "/" + _this16.campaignId,
+                  headers: {
+                    Authorization: "Bearer " + _this16.$store.state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                  }
+                });
+
+              case 2:
+                _this16.removeShown = false;
+                _this16.editCharName = null;
+                _this16.editRole = null;
+                _this16.editTextRole = null;
+                _this16.editShip = null;
+                _this16.editTextShip = null;
+                _this16.editLink = null;
+                _this16.editTextLink = null;
+
+                _this16.$store.dispatch("getCampaignUsersRecords", _this16.campaignId);
+
+                _this16.$store.dispatch("getCampaignSystemsRecords");
+
+              case 12:
+              case "end":
+                return _context17.stop();
+            }
+          }
+        }, _callee17);
+      }))();
+    }
+  },
+  computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapGetters"])(["getsCampaignById", "getActiveCampaigns", "getCampaignsCount", "getCampaignUsersByUserId", "getCampaignUsersByUserIdCount", "getTotalNodeCountByMultiCampaign", "getHackingNodeCountByMultiCampaign", "getRedHackingNodeCountByMultiCampaign", "getMultiCampaignName"])), Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapState"])(["campaignJoin"])), {}, {
+    sCampaigns: function sCampaigns() {
+      return this.getsCampaignById(this.campaignId);
+    },
+    //changeback
+    campaignWarmup: function campaignWarmup() {
+      var count = this.getsCampaignById(this.campaignId).filter(function (c) {
+        return c.warmup == 1;
+      }).length;
+
+      if (count > 0) {
+        return true;
+      } else {
+        return false;
+      }
+    },
+    campaignName: function campaignName() {
+      return this.getMultiCampaignName(this.$route.params.id);
+    },
+    campaignNameCount: function campaignNameCount() {
+      return this.getMultiCampaignName(this.$route.params.id).length;
+    },
+    userCharsDrop: function userCharsDrop() {
+      return this.getCampaignUsersByUserId(this.$store.state.user_id);
+    },
+    userCount: function userCount() {
+      return this.getCampaignUsersByUserIdCount(this.$store.state.user_id);
+    },
+    nodeCountAll: function nodeCountAll() {
+      return this.getTotalNodeCountByMultiCampaign(this.campaignId);
+    },
+    nodeCountHackingCountAll: function nodeCountHackingCountAll() {
+      return this.getHackingNodeCountByMultiCampaign(this.campaignId);
+    },
+    nodeRedCountHackingCountAll: function nodeRedCountHackingCountAll() {
+      return this.getRedHackingNodeCountByMultiCampaign(this.campaignId);
+    }
+  }),
+  beforeDestroy: function beforeDestroy() {
+    this.leaving();
+    window.removeEventListener("beforeunload", this.leaving);
+  }
+});
 
 /***/ }),
 

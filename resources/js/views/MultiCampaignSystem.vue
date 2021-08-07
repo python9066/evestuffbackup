@@ -238,7 +238,7 @@ function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 export default {
-    title: "test"
+    title: "test",
     data() {
         return {
             dropdown_roles: [
