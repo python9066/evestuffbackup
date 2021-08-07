@@ -440,7 +440,7 @@ export default new Vuex.Store({
                     "Content-Type": "application/json"
                 }
             });
-            commit(" SET_TIMERS_REGIONS", res.data.timersregions);
+            commit("SET_TIMERS_REGIONS", res.data.timersregions);
         },
 
 

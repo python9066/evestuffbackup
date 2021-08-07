@@ -59610,7 +59610,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
 
               case 3:
                 res = _context2.sent;
-                commit(" SET_TIMERS_REGIONS", res.data.timersregions);
+                commit("SET_TIMERS_REGIONS", res.data.timersregions);
 
               case 5:
               case "end":
