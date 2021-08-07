@@ -33,7 +33,7 @@ class TimerController extends Controller
             array_push($data, $data1);
         }
 
-        return ['timersregions' => TimersRecord::all()];
+        return ['timersregions' => $data];
     }
 
     public function updateTimerData()
