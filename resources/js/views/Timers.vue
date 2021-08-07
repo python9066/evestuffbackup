@@ -4,7 +4,7 @@
         <div class=" d-flex align-items-center">
             <v-card-title>Vulnerability Windows</v-card-title>
 
-            <v-btn
+            <!-- <v-btn
                 :loading="loading3"
                 :disabled="loading3"
                 color="primary"
@@ -16,7 +16,7 @@
             >
                 Update
                 <v-icon right dark>fas fa-sync-alt fa-xs</v-icon>
-            </v-btn>
+            </v-btn> -->
             <v-text-field
                 v-model="search"
                 append-icon="mdi-magnify"
@@ -24,6 +24,26 @@
                 single-line
                 hide-details
             ></v-text-field>
+
+            <v-card
+                max-width="600px"
+                min-width="600px"
+                color="#121212"
+                elevation="0"
+            >
+                <v-card-text>
+                    <v-select
+                        class=" pb-2"
+                        v-model="typePicked"
+                        :items="dropdown_search_list"
+                        label="Filter by Region"
+                        multiple
+                        chips
+                        deletable-chips
+                        hide-details
+                    ></v-select>
+                </v-card-text>
+            </v-card>
 
             <v-btn-toggle
                 v-model="toggle_exclusive1"
@@ -190,7 +210,8 @@ export default {
             today: moment(),
             name: "Timer",
             test: now(),
-            endtext: "Time Till Close"
+            endtext: "Time Till Close",
+            typePicked: []
         };
     },
     async mounted() {
@@ -233,7 +254,7 @@ export default {
         }
     },
     computed: {
-        ...mapState(["timers"]),
+        ...mapState(["timers", "timersRegions"]),
         filteredItems() {
             if (this.colorflag == 1) {
                 return this.timers.filter(
@@ -252,6 +273,10 @@ export default {
             } else {
                 return this.timers.filter(timers => timers.status == 0);
             }
+        },
+
+        dropdown_search_list() {
+            return this.timersRegions;
         },
 
         filterEnd() {

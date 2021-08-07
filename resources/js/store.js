@@ -45,6 +45,7 @@ export default new Vuex.Store({
         systemlist: [],
         ticklist:[],
         timers: [],
+        timersRegions: [],
         token: "",
         tooltipToggle: true,
         towers: [],
@@ -119,6 +120,12 @@ export default new Vuex.Store({
         SET_TIMERS(state, timers) {
             state.timers = timers;
         },
+
+        SET_TIMERS_REGIONS(state, timersRegions) {
+            state.timersRegions = timersRegions;
+        },
+
+
 
         MARK_TIMER_OVER(state, timer) {
             const item = state.timers.find(item => item.id === timer.id);
@@ -422,6 +429,22 @@ export default new Vuex.Store({
             });
             commit("SET_TIMERS", res.data.timers);
         },
+
+        async getTimerDataAll({ commit, state }) {
+            let res = await axios({
+                method: "get",
+                url: "/api/CampaignRecordsController@campaignslistRegion",
+                headers: {
+                    Authorization: "Bearer " + state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                }
+            });
+            commit(" SET_TIMERS_REGIONS", res.data.timersregions);
+        },
+
+
+
 
 
         async getSystemList({ commit, state }) {
