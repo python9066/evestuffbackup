@@ -31,8 +31,8 @@ class testController extends Controller
     public function rc(Request $request)
     {
 
-
-        dd($request);
+        $array = json_decode($request, true);
+        dd($array);
     }
 
     public function userinfo()
