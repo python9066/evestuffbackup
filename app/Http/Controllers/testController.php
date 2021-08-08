@@ -33,7 +33,7 @@ class testController extends Controller
 
         $timers = $request;
         foreach ($timers as $timer) {
-            dd($timer, $request);
+            dd($timer, $request[0]);
         }
     }
 
