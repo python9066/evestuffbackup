@@ -31,7 +31,7 @@ class testController extends Controller
     public function rc(Request $request)
     {
 
-        $array = json_decode($request, true);
+        $array = json_decode($request[0], true);
         dd($array);
     }
 
