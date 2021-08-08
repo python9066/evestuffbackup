@@ -30,7 +30,12 @@ class testController extends Controller
 
     public function rc(Request $request)
     {
-        $array = json_decode($request, TRUE);
+        $xml = simplexml_load_string($request);
+
+        $json = json_encode($xml);
+
+        $array = json_decode($json, TRUE);
+
         dd($array);
     }
 
