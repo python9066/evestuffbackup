@@ -30,8 +30,8 @@ class testController extends Controller
 
     public function rc(Request $request)
     {
-        $object = (array)json_decode($request);
-        dd($object);
+        $array = json_decode($request, TRUE);
+        dd($array);
     }
 
     public function userinfo()
