@@ -23,8 +23,8 @@
         <v-row no-gutters class="blue" justify="center">
             <v-card
                 ><v-card-text>
-                    <v-text-field> </v-text-field
-                    ><v-btn>Submmit</v-btn></v-card-text
+                    <v-text-field v-model="rcdata"> </v-text-field
+                    ><v-btn @click="submitrcdata()">Submmit</v-btn></v-card-text
                 ></v-card
             >
         </v-row>
@@ -52,6 +52,7 @@ export default {
                 "baseline",
                 "stretch"
             ],
+            rcdata: null,
             alignment: "center",
             dense: false,
             justifyAvailable: [
@@ -74,7 +75,20 @@ export default {
             await this.$store.dispatch("getCampaigns");
         }
     },
-    methods: {},
+    methods: {
+        async sumbitrcdata() {
+            await axios({
+                method: "post", //you can set what request you want to be
+                url: "api/rctest",
+                data: this.rcdata,
+                headers: {
+                    Authorization: "Bearer " + this.$store.state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                }
+            });
+        }
+    },
 
     async created() {
         this.test = 2;

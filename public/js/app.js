@@ -25874,6 +25874,7 @@ function sleep(ms) {
       test: 1,
       test2: "",
       alignmentsAvailable: ["start", "center", "end", "baseline", "stretch"],
+      rcdata: null,
       alignment: "center",
       dense: false,
       justifyAvailable: ["start", "center", "end", "space-around", "space-between"],
@@ -25906,25 +25907,55 @@ function sleep(ms) {
       }, _callee);
     }))();
   },
-  methods: {},
-  created: function created() {
-    var _this2 = this;
+  methods: {
+    sumbitrcdata: function sumbitrcdata() {
+      var _this2 = this;
 
-    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                _context2.next = 2;
+                return axios({
+                  method: "post",
+                  //you can set what request you want to be
+                  url: "api/rctest",
+                  data: _this2.rcdata,
+                  headers: {
+                    Authorization: "Bearer " + _this2.$store.state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                  }
+                });
+
+              case 2:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2);
+      }))();
+    }
+  },
+  created: function created() {
+    var _this3 = this;
+
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
         while (1) {
-          switch (_context2.prev = _context2.next) {
+          switch (_context3.prev = _context3.next) {
             case 0:
-              _this2.test = 2;
-              _this2.test2 = 1;
-              _this2.navdrawer = true;
+              _this3.test = 2;
+              _this3.test2 = 1;
+              _this3.navdrawer = true;
 
             case 3:
             case "end":
-              return _context2.stop();
+              return _context3.stop();
           }
         }
-      }, _callee2);
+      }, _callee3);
     }))();
   },
   computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapGetters"])(["getCampaignById", "getActiveCampaigns", "getCampaignsCount"])), {}, {
@@ -52897,7 +52928,28 @@ var render = function() {
             [
               _c(
                 "v-card-text",
-                [_c("v-text-field"), _c("v-btn", [_vm._v("Submmit")])],
+                [
+                  _c("v-text-field", {
+                    model: {
+                      value: _vm.rcdata,
+                      callback: function($$v) {
+                        _vm.rcdata = $$v
+                      },
+                      expression: "rcdata"
+                    }
+                  }),
+                  _c(
+                    "v-btn",
+                    {
+                      on: {
+                        click: function($event) {
+                          return _vm.submitrcdata()
+                        }
+                      }
+                    },
+                    [_vm._v("Submmit")]
+                  )
+                ],
                 1
               )
             ],
