@@ -52890,6 +52890,7 @@ var render = function() {
       _vm._v(" "),
       _c(
         "v-row",
+        { staticClass: "blue", attrs: { "no-gutters": "", justify: "center" } },
         [
           _c(
             "v-card",

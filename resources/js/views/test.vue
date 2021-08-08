@@ -20,7 +20,7 @@
             <!-- </v-col> -->
         </v-row>
 
-        <v-row>
+        <v-row no-gutters class="blue" justify="center">
             <v-card
                 ><v-card-text>
                     <v-text-field> </v-text-field
