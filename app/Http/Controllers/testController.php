@@ -30,8 +30,7 @@ class testController extends Controller
 
     public function rc(Request $request)
     {
-
-        $array = json_decode($request[0], true);
+        $array = json_decode(preg_replace('/[\x00-\x1F\x80-\xFF]/', '', $request), true);
         dd($array);
     }
 
