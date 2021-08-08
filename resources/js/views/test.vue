@@ -24,7 +24,7 @@
             <v-card
                 ><v-card-text>
                     <v-text-field v-model="rcdata"> </v-text-field
-                    ><v-btn @click="submitrcdata()">Submmit</v-btn></v-card-text
+                    ><v-btn @click="sumbitrcdata()">Submmit</v-btn></v-card-text
                 ></v-card
             >
         </v-row>

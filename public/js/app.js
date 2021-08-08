@@ -52943,7 +52943,7 @@ var render = function() {
                     {
                       on: {
                         click: function($event) {
-                          return _vm.submitrcdata()
+                          return _vm.sumbitrcdata()
                         }
                       }
                     },
