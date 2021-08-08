@@ -25848,6 +25848,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -52871,6 +52880,24 @@ var render = function() {
                 "v-card",
                 { staticClass: "pa-2", attrs: { outlined: "", tile: "" } },
                 [_vm._v("\n                3 of 3\n            ")]
+              )
+            ],
+            1
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "v-row",
+        [
+          _c(
+            "v-card",
+            [
+              _c(
+                "v-card-text",
+                [_c("v-text-field"), _c("v-btn", [_vm._v("Submmit")])],
+                1
               )
             ],
             1

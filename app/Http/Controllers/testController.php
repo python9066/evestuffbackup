@@ -28,6 +28,12 @@ class testController extends Controller
         Notifications::test($request, 1);
     }
 
+    public function rc(Request $request)
+    {
+        $timers = $request;
+        dd($timers);
+    }
+
     public function userinfo()
     {
         $user = Auth::user()->name;

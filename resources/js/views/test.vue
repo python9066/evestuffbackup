@@ -19,6 +19,15 @@
             </v-col>
             <!-- </v-col> -->
         </v-row>
+
+        <v-row>
+            <v-card
+                ><v-card-text>
+                    <v-text-field> </v-text-field
+                    ><v-btn>Submmit</v-btn></v-card-text
+                ></v-card
+            >
+        </v-row>
     </div>
 </template>
 <!-- {{ $route.params.id }} - {{ test }} -  -->

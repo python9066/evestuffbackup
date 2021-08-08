@@ -31,6 +31,8 @@ Route::middleware('auth:api')->group(function () {
     //BROISES FEED//
     Route::post('/brois', 'testController@notifications');
 
+    Route::post('/rctest', 'testController@rc');
+
     //HACKING NOTIFICATION APIS//
     Route::get('/notifications/{region_id}', 'NotificationRecordsController@regionLink');
     Route::get('/notifications', 'NotificationRecordsController@index');
