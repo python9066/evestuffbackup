@@ -31,7 +31,7 @@ class testController extends Controller
     public function rc(Request $request)
     {
         $timers = $request;
-        foreach ($timers as $$timer) {
+        foreach ($timers as $timer) {
             dd($timer);
         }
     }
