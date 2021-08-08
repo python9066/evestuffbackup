@@ -31,8 +31,10 @@ class testController extends Controller
     public function rc(Request $request)
     {
 
-        $array = json_decode($request);
-        dd($array);
+        $timers = $request;
+        foreach ($timers as $timer) {
+            dd($timer);
+        }
     }
 
     public function userinfo()
