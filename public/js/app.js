@@ -24625,6 +24625,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 
@@ -24727,6 +24733,39 @@ function sleep(ms) {
     },
     countDownStartTime: function countDownStartTime(item) {
       return moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc(item.end_time).unix();
+    },
+    pillColor: function pillColor(item) {
+      if (item.status_id == 1) {
+        return "deep-orange lighten-1";
+      }
+
+      if (item.status_id == 2) {
+        return "lime darken-4";
+      }
+
+      if (item.status_id == 3 || item.status_id == 8) {
+        return "green darken-3";
+      }
+
+      if (item.status_id == 4) {
+        return "green accent-4";
+      }
+
+      if (item.status_id == 5) {
+        return "red darken-4";
+      }
+
+      if (item.status_id == 6) {
+        return "#FF5EEA";
+      }
+
+      if (item.status_id == 7) {
+        return "#801916";
+      }
+
+      if (item.status_id == 9) {
+        return "#9C9C9C";
+      }
     },
     numberDay: function numberDay(day) {
       return parseInt(day, 10) + "d";
@@ -52532,11 +52571,24 @@ var render = function() {
                               var item = ref.item
                               return [
                                 item.out == 0
-                                  ? _c("v-chip", [
-                                      _vm._v(
-                                        "\n                            fefe\n                        "
-                                      )
-                                    ])
+                                  ? _c(
+                                      "v-chip",
+                                      {
+                                        attrs: {
+                                          pill: "",
+                                          outlined: "pillOutlined(item)",
+                                          small: "",
+                                          color: _vm.pillColor(item)
+                                        }
+                                      },
+                                      [
+                                        _vm._v(
+                                          "\n                            " +
+                                            _vm._s(item.status_name) +
+                                            ">\n                        "
+                                        )
+                                      ]
+                                    )
                                   : _vm._e(),
                                 _vm._v(" "),
                                 _c(
