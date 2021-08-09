@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use utils\Helper\Helper;
 
 class RCSheet extends Controller
 {
@@ -14,8 +15,8 @@ class RCSheet extends Controller
 
         $inputs = $request->all();
         foreach ($inputs as $input) {
-
-            dd($input);
+            $timer = Helper::fixtime($input->Expires);
+            dd($input, $timer);
         }
     }
 }
