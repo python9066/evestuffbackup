@@ -71,6 +71,7 @@ class RCSheet extends Controller
                     $timer = Helper::fixtime($input['timer_expires']);
                     $corpID = Corp::where('ticker', $input['owning_corp_ticker'])->first();
                     $allianceID = Alliance::where('ticker', $input['owning_alliance_ticker'])->first();
+                    dd($allianceID, $input);
                     if (!$corpID) {
                         if ($allianceID) {
                             $allianceIDID = $allianceID->id;
