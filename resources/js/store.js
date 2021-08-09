@@ -810,7 +810,7 @@ export default new Vuex.Store({
             commit("SET_RC_REGION", res.data.rcsheetlistRegion);
         },
 
-        async SET_RC_TYPE({ commit, state }) {
+        async getRcItems({ commit, state }) {
             let res = await axios({
                 method: "get",
                 url: "/api/rcTypelist",
@@ -820,7 +820,7 @@ export default new Vuex.Store({
                     "Content-Type": "application/json"
                 }
             });
-            commit("SET_RC_REGION", res.data.rcsheetlistRegion);
+            commit("SET_RC_TYPE", res.data.rcsheetlistRegion);
         },
 
 

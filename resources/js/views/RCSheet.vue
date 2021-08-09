@@ -191,7 +191,7 @@ export default {
                 { text: "", value: "actions" }
             ],
             regionPicked: [],
-            typePicked: []
+            itemPicked: []
         };
     },
 

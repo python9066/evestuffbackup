@@ -25034,7 +25034,7 @@ function sleep(ms) {
         value: "actions"
       }],
       regionPicked: [],
-      typePicked: []
+      itemPicked: []
     };
   },
   created: function created() {
@@ -63340,7 +63340,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
         }, _callee24);
       }))();
     },
-    SET_RC_TYPE: function SET_RC_TYPE(_ref25) {
+    getRcItems: function getRcItems(_ref25) {
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee25() {
         var commit, state, res;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee25$(_context25) {
@@ -63361,7 +63361,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
 
               case 3:
                 res = _context25.sent;
-                commit("SET_RC_REGION", res.data.rcsheetlistRegion);
+                commit("SET_RC_TYPE", res.data.rcsheetlistRegion);
 
               case 5:
               case "end":
