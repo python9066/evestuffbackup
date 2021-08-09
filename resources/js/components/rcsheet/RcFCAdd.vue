@@ -154,7 +154,7 @@ export default {
 
         async pillClick(item) {},
 
-        async pilldelete(item) {
+        async pillDelete(item) {
             await axios({
                 method: "DELETE",
                 url: "/api/rcfcdelete/" + item.id,
