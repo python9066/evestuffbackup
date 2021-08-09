@@ -65,6 +65,13 @@
                                 </template>
                             </CountDowntimer>
                         </template>
+                        <template v-slot:[`item.fc_name`]="{ item }">
+                            <StationFC
+                                class=" mr-2"
+                                :station="item"
+                                v-if="showFC(item)"
+                            ></StationFC>
+                        </template>
                         <template slot="no-data">
                             No Active or Upcoming Campaigns
                         </template>
@@ -124,6 +131,13 @@ export default {
         },
         numberDay(day) {
             return parseInt(day, 10) + "d";
+        },
+
+        showFC(item) {
+            if (item.status_id == 540) {
+                return false;
+            }
+            return true;
         }
     },
 

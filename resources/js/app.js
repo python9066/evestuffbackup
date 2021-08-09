@@ -95,6 +95,7 @@ Vue.component('StartSystemTable', require('./components/startcampaign/StartSyste
 Vue.component('StartCampaignMessage', require('./components/random/StartCampaignMessage').default);
 Vue.component('StartSystemTableTimer', require('./components/startcampaign/StartSystemTableTimer.vue').default);
 Vue.component('DeleteButton', require('./components/multicampaigns/DeleteButton.vue').default);
+Vue.component('RcFCButton', require('./components/rcsheet/StationFC.vue').default);
 
 
 
