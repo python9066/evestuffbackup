@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Alliance;
 use Illuminate\Http\Request;
 use utils\Helper\Helper;
 use GuzzleHttp\Client as GuzzleHttpClient;
@@ -27,8 +28,30 @@ class RCSheet extends Controller
             $reconpull = $this->reconPullbyname($stationName);
             $timer = Helper::fixtime($input['Expires']);
             if ($reconpull = false) {
+                $id = Station::where('id', '<', 1000000000)->max('id');
+                if ($id == null) {
+                    $id = 1;
+                } else {
+                    $id = $id + 1;
+                }
+                if ($input['Timer'] == "Armor") {
+                    $statusID = 8;
+                }
+
+                if ($input['Timer'] == "Hull") {
+                    $statusID = 9;
+                }
+                if ($input['Timer'] == "Anchoring") {
+                    $statusID = 14;
+                }
+
+
+                $allianceID = Alliance::where('ticker', $input['Ticker'])->first();
+                $itemID = Item::where('item_name', $input['Type'])->first();
+                $systemID = System::where('system_name', $input['System'])->first();
+                $new = Station::Create(['name' => $input['name'], 'system_id' => $systemID->id, 'alliance_id' => $allianceID->id, 'item_id' => $itemID->id, 'station_status_id' => $statusID, 'out_time' => $timer]);
             }
-            dd($input, $timer, $reconpull);
+            dd($allianceID->id, $input, $timer, $reconpull);
         }
     }
 

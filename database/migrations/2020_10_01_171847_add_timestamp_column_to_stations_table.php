@@ -18,6 +18,7 @@ class AddTimestampColumnToStationsTable extends Migration
             $table->tinyInteger('show_on_main')->after('timestamp')->default('0');
             $table->tinyInteger('show_on_chill')->after('show_on_main')->default('0');
             $table->tinyInteger('show_on_rc')->after('show_on_chill')->default('0');
+            $table->foreignId('alliance_id')->after('corp_id')->default('0');
         });
     }
 
