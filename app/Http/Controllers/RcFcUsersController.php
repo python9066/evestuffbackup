@@ -43,7 +43,7 @@ class RcFcUsersController extends Controller
         $check = User::where('name', $request->char_name)->count();
         // dd($check);
         if ($check == null) {
-            $id = User::where('id', '>', 10000000000)->max('id');
+            $id = User::where('id', '>', 9999999999)->max('id');
             if ($id == null) {
                 $id = 10000000000;
             } else {

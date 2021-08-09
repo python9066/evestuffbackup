@@ -61896,10 +61896,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _service_apil__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./service/apil */ "./resources/js/service/apil.js");
 
 
-var _actions;
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
@@ -62349,7 +62345,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
       state.periodbasisLink = periodbasisLink;
     }
   },
-  actions: (_actions = {
+  actions: {
     getTimerDataAll: function getTimerDataAll(_ref) {
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
         var commit, state, res;
@@ -63256,582 +63252,628 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
     updateRcStation: function updateRcStation(_ref32, data) {
       var commit = _ref32.commit;
       commit("UPDATE_RC_STATION", data);
+    },
+    updateRcFC: function updateRcFC(_ref33, data) {
+      var commit = _ref33.commit;
+      commit("UPDATE_RC_FC", data);
+    },
+    updateCores: function updateCores(_ref34, data) {
+      var commit = _ref34.commit;
+      commit("UPDATE_CORES", data);
+    },
+    updateCampaigns: function updateCampaigns(_ref35, data) {
+      var commit = _ref35.commit;
+      commit("UPDATE_CAMPAIGNS", data);
+    },
+    updateTowers: function updateTowers(_ref36, data) {
+      var commit = _ref36.commit;
+      commit("UPDATE_TOWERS", data);
+    },
+    updateCampaignSystem: function updateCampaignSystem(_ref37, data) {
+      var commit = _ref37.commit;
+      commit("UPDATE_CAMPAIGN_SYSTEM", data);
+    },
+    updateStartCampaignSystem: function updateStartCampaignSystem(_ref38, data) {
+      var commit = _ref38.commit;
+      commit("UPDATE_START_CAMPAIGN_SYSTEM", data);
+    },
+    updateTooltipToggle: function updateTooltipToggle(_ref39, data) {
+      var commit = _ref39.commit;
+      commit("UPDATE_TOOLTIP_TOGGLE", data);
+    },
+    updateCampaignSystemByUserID: function updateCampaignSystemByUserID(_ref40, payload) {
+      var commit = _ref40.commit;
+      commit("UPDATE_CAMPAIGN_SYSTEM_BY_USER_ID", payload);
+    },
+    updateCampaignSolaSystem: function updateCampaignSolaSystem(_ref41, data) {
+      var commit = _ref41.commit;
+      commit("UPDATE_CAMPAIGN_SOLA_SYSTEMS", data);
+    },
+    updateCampaignSystemBar: function updateCampaignSystemBar(_ref42, data) {
+      var commit = _ref42.commit;
+      commit("UPDATE_CAMPAIGN_SYSTEM_UPDATE", data);
+    },
+    updateCampaign: function updateCampaign(_ref43, data) {
+      var commit = _ref43.commit;
+      commit("UPDATE_CAMPAIGN", data);
+    },
+    updateCampaignUsers: function updateCampaignUsers(_ref44, data) {
+      var commit = _ref44.commit;
+      commit("UPDATE_CAMPAIGN_USERS", data);
+    },
+    updateUsersChars: function updateUsersChars(_ref45, data) {
+      var commit = _ref45.commit;
+      commit("UPDATE_USERS_CHARS", data);
+    },
+    updateAmmoRequest: function updateAmmoRequest(_ref46, data) {
+      var commit = _ref46.commit;
+      commit("UPDATE_AMMO_REQUEST", data);
+    },
+    updateNodeJoin: function updateNodeJoin(_ref47, data) {
+      var commit = _ref47.commit;
+      commit('UPDATE_NODE_JOIN', data);
+    },
+    updateReconTaskSystems: function updateReconTaskSystems(_ref48, data) {
+      var commit = _ref48.commit;
+      commit("UPDATE_RECON_TASK_SYSTEMS", data);
+    },
+    addNodeJoin: function addNodeJoin(_ref49, data) {
+      var commit = _ref49.commit;
+      commit("ADD_NODE_JOIN", data);
+    },
+    addAmmoRequest: function addAmmoRequest(_ref50, data) {
+      var commit = _ref50.commit;
+      commit("ADD_AMMO_REQUEST", data);
+    },
+    addStationNotification: function addStationNotification(_ref51, data) {
+      var commit = _ref51.commit;
+      commit("ADD_STATION_NOTIFICATION", data);
+    },
+    addLoggingCampaign: function addLoggingCampaign(_ref52, data) {
+      var commit = _ref52.commit;
+      commit("ADD_LOGGING_CAMPGIN", data);
+    },
+    addCampaignUserNew: function addCampaignUserNew(_ref53, data) {
+      var commit = _ref53.commit;
+      commit("ADD_CAMPAIGN_USERS", data);
+    },
+    addCampaignSystem: function addCampaignSystem(_ref54, data) {
+      var commit = _ref54.commit;
+      commit("ADD_CAMPAIGN_SYSTEM", data);
+    },
+    deleteCampaignUser: function deleteCampaignUser(_ref55, id) {
+      var commit = _ref55.commit;
+      commit("DELETE_CAMPAIGN_USER", id);
+    },
+    deleteStationNotification: function deleteStationNotification(_ref56, id) {
+      var commit = _ref56.commit;
+      commit("DELETE_STATION_NOTIFICATION", id);
+    },
+    deleteUsersChars: function deleteUsersChars(_ref57, id) {
+      var commit = _ref57.commit;
+      commit("DELETE_USER_CHAR", id);
+    },
+    deleteNodeJoin: function deleteNodeJoin(_ref58, id) {
+      var commit = _ref58.commit;
+      commit("DELETE_NODE_JOIN", id);
+    },
+    deleteAmmoRequest: function deleteAmmoRequest(_ref59, id) {
+      var commit = _ref59.commit;
+      commit("DELETE_AMMO_REQUEST", id);
+    },
+    deleteTower: function deleteTower(_ref60, id) {
+      var commit = _ref60.commit;
+      commit("DELETE_TOWERS", id);
+    },
+    deleteCampaignSystem: function deleteCampaignSystem(_ref61, id) {
+      var commit = _ref61.commit;
+      commit("DELETE_CAMPAIGN_SYSTEM", id);
+    },
+    getNotifications: function getNotifications(_ref62) {
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee29() {
+        var commit, state, res;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee29$(_context29) {
+          while (1) {
+            switch (_context29.prev = _context29.next) {
+              case 0:
+                commit = _ref62.commit, state = _ref62.state;
+                _context29.next = 3;
+                return axios({
+                  method: "get",
+                  //you can set what request you want to be
+                  url: "/api/notifications",
+                  // data: {id: varID},
+                  headers: {
+                    Authorization: "Bearer " + state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                  }
+                });
+
+              case 3:
+                res = _context29.sent;
+                commit("SET_NOTIFICATIONS", res.data.notifications);
+
+              case 5:
+              case "end":
+                return _context29.stop();
+            }
+          }
+        }, _callee29);
+      }))();
+    },
+    getdelveLink: function getdelveLink(_ref63) {
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee30() {
+        var commit, state, res;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee30$(_context30) {
+          while (1) {
+            switch (_context30.prev = _context30.next) {
+              case 0:
+                commit = _ref63.commit, state = _ref63.state;
+                _context30.next = 3;
+                return axios({
+                  method: "get",
+                  //you can set what request you want to be
+                  url: "/api/notifications/10000060",
+                  headers: {
+                    Authorization: "Bearer " + state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                  }
+                });
+
+              case 3:
+                res = _context30.sent;
+                commit("SET_DELVE_LINK", res.data.link);
+
+              case 5:
+              case "end":
+                return _context30.stop();
+            }
+          }
+        }, _callee30);
+      }))();
+    },
+    getqueriousLink: function getqueriousLink(_ref64) {
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee31() {
+        var commit, state, res;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee31$(_context31) {
+          while (1) {
+            switch (_context31.prev = _context31.next) {
+              case 0:
+                commit = _ref64.commit, state = _ref64.state;
+                _context31.next = 3;
+                return axios({
+                  method: "get",
+                  //you can set what request you want to be
+                  url: "/api/notifications/10000050",
+                  headers: {
+                    Authorization: "Bearer " + state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                  }
+                });
+
+              case 3:
+                res = _context31.sent;
+                commit("SET_QUERIOUS_LINK", res.data.link);
+
+              case 5:
+              case "end":
+                return _context31.stop();
+            }
+          }
+        }, _callee31);
+      }))();
+    },
+    getperiodbasisLink: function getperiodbasisLink(_ref65) {
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee32() {
+        var commit, state, res;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee32$(_context32) {
+          while (1) {
+            switch (_context32.prev = _context32.next) {
+              case 0:
+                commit = _ref65.commit, state = _ref65.state;
+                _context32.next = 3;
+                return axios({
+                  method: "get",
+                  //you can set what request you want to be
+                  url: "/api/notifications/10000063",
+                  headers: {
+                    Authorization: "Bearer " + state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                  }
+                });
+
+              case 3:
+                res = _context32.sent;
+                commit("SET_PERIOD_BASIS_LINK", res.data.link);
+
+              case 5:
+              case "end":
+                return _context32.stop();
+            }
+          }
+        }, _callee32);
+      }))();
+    },
+    setToken: function setToken(_ref66, token) {
+      var commit = _ref66.commit;
+      commit("SET_TOKEN", token);
+    },
+    setUser_id: function setUser_id(_ref67, user_id) {
+      var commit = _ref67.commit;
+      commit("SET_USER_ID", user_id);
+    },
+    setUser_name: function setUser_name(_ref68, user_name) {
+      var commit = _ref68.commit;
+      commit("SET_USER_NAME", user_name);
+    },
+    getCampaignUsersRecords: function getCampaignUsersRecords(_ref69, id) {
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee33() {
+        var commit, state, res;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee33$(_context33) {
+          while (1) {
+            switch (_context33.prev = _context33.next) {
+              case 0:
+                commit = _ref69.commit, state = _ref69.state;
+                _context33.next = 3;
+                return axios({
+                  method: "get",
+                  //you can set what request you want to be
+                  url: "/api/campaignusersrecords/" + id,
+                  headers: {
+                    Authorization: "Bearer " + state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                  }
+                });
+
+              case 3:
+                res = _context33.sent;
+
+                if (res.data.length != 0) {
+                  commit("SET_CAMPAIGN_USERS", res.data.users);
+                }
+
+              case 5:
+              case "end":
+                return _context33.stop();
+            }
+          }
+        }, _callee33);
+      }))();
+    },
+    getCampaignSystemsRecords: function getCampaignSystemsRecords(_ref70) {
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee34() {
+        var commit, state, res;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee34$(_context34) {
+          while (1) {
+            switch (_context34.prev = _context34.next) {
+              case 0:
+                commit = _ref70.commit, state = _ref70.state;
+                _context34.next = 3;
+                return axios({
+                  method: "get",
+                  //you can set what request you want to be
+                  url: "/api/campaignsystemsrecords",
+                  headers: {
+                    Authorization: "Bearer " + state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                  }
+                });
+
+              case 3:
+                res = _context34.sent;
+
+                if (res.data.length != 0) {
+                  commit("SET_CAMPAIGN_SYSTEMS", res.data.systems);
+                }
+
+              case 5:
+              case "end":
+                return _context34.stop();
+            }
+          }
+        }, _callee34);
+      }))();
+    },
+    getStartCampaignSystemsRecords: function getStartCampaignSystemsRecords(_ref71) {
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee35() {
+        var commit, state, res;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee35$(_context35) {
+          while (1) {
+            switch (_context35.prev = _context35.next) {
+              case 0:
+                commit = _ref71.commit, state = _ref71.state;
+                _context35.next = 3;
+                return axios({
+                  method: "get",
+                  //you can set what request you want to be
+                  url: "/api/startcampaignsystemsrecords",
+                  headers: {
+                    Authorization: "Bearer " + state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                  }
+                });
+
+              case 3:
+                res = _context35.sent;
+
+                if (res.data.length != 0) {
+                  commit("SET_START_CAMPAIGN_SYSTEMS", res.data.systems);
+                }
+
+              case 5:
+              case "end":
+                return _context35.stop();
+            }
+          }
+        }, _callee35);
+      }))();
+    },
+    getReconTaskSystemsRecords: function getReconTaskSystemsRecords(_ref72) {
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee36() {
+        var commit, state, res;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee36$(_context36) {
+          while (1) {
+            switch (_context36.prev = _context36.next) {
+              case 0:
+                commit = _ref72.commit, state = _ref72.state;
+                _context36.next = 3;
+                return axios({
+                  method: "get",
+                  //you can set what request you want to be
+                  url: "/api/recontasksystems",
+                  headers: {
+                    Authorization: "Bearer " + state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                  }
+                });
+
+              case 3:
+                res = _context36.sent;
+
+                if (res.data.length != 0) {
+                  commit("SET_RECON_TASK_SYSTEMS", res.data.systems);
+                }
+
+              case 5:
+              case "end":
+                return _context36.stop();
+            }
+          }
+        }, _callee36);
+      }))();
+    },
+    getRcStationRecords: function getRcStationRecords(_ref73) {
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee37() {
+        var commit, state, res;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee37$(_context37) {
+          while (1) {
+            switch (_context37.prev = _context37.next) {
+              case 0:
+                commit = _ref73.commit, state = _ref73.state;
+                _context37.next = 3;
+                return axios({
+                  method: "get",
+                  //you can set what request you want to be
+                  url: "/api/rcsheet",
+                  headers: {
+                    Authorization: "Bearer " + state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                  }
+                });
+
+              case 3:
+                res = _context37.sent;
+
+                if (res.data.length != 0) {
+                  commit("SET_RC_STATIONS", res.data.stations);
+                }
+
+              case 5:
+              case "end":
+                return _context37.stop();
+            }
+          }
+        }, _callee37);
+      }))();
+    },
+    getRcFcs: function getRcFcs(_ref74) {
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee38() {
+        var commit, state, res;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee38$(_context38) {
+          while (1) {
+            switch (_context38.prev = _context38.next) {
+              case 0:
+                commit = _ref74.commit, state = _ref74.state;
+                _context38.next = 3;
+                return axios({
+                  method: "get",
+                  //you can set what request you want to be
+                  url: "/api/rcfc",
+                  headers: {
+                    Authorization: "Bearer " + state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                  }
+                });
+
+              case 3:
+                res = _context38.sent;
+
+                if (res.data.length != 0) {
+                  commit("SET_RC_FCS", res.data.fcs);
+                }
+
+              case 5:
+              case "end":
+                return _context38.stop();
+            }
+          }
+        }, _callee38);
+      }))();
+    },
+    getConstellationList: function getConstellationList(_ref75) {
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee39() {
+        var commit, state, res;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee39$(_context39) {
+          while (1) {
+            switch (_context39.prev = _context39.next) {
+              case 0:
+                commit = _ref75.commit, state = _ref75.state;
+                _context39.next = 3;
+                return axios({
+                  method: "get",
+                  //you can set what request you want to be
+                  url: "/api/constellations",
+                  headers: {
+                    Authorization: "Bearer " + state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                  }
+                });
+
+              case 3:
+                res = _context39.sent;
+                commit("SET_CONSTELLATION_LIST", res.data.constellationlist);
+
+              case 5:
+              case "end":
+                return _context39.stop();
+            }
+          }
+        }, _callee39);
+      }))();
+    },
+    loadCampaignSystemData: function loadCampaignSystemData(_ref76, payload) {
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee40() {
+        var commit, state, request, res;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee40$(_context40) {
+          while (1) {
+            switch (_context40.prev = _context40.next) {
+              case 0:
+                commit = _ref76.commit, state = _ref76.state;
+                request = {
+                  user_id: payload.user_id,
+                  campaign_id: payload.campaign_id,
+                  type: payload.type
+                };
+                _context40.next = 4;
+                return axios({
+                  method: "post",
+                  //you can set what request you want to be
+                  url: "/api/campaignsystemload",
+                  data: request,
+                  headers: {
+                    Authorization: "Bearer " + state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                  }
+                });
+
+              case 4:
+                res = _context40.sent;
+
+                if (res.data.length != 0) {
+                  commit("SET_CAMPAIGN_SOLA_SYSTEMS", res.data.sola);
+                  commit("SET_NODE_JOIN", res.data.nodejoin);
+                  commit("SET_CAMPAIGN_USERS", res.data.users);
+                  commit("SET_CAMPAIGN_SYSTEMS", res.data.systems);
+                  commit("SET_USERS_CHARS", res.data.usersbyid);
+                  commit("SET_LOGGING_CAMPAIGN", res.data.logs);
+                }
+
+              case 6:
+              case "end":
+                return _context40.stop();
+            }
+          }
+        }, _callee40);
+      }))();
+    },
+    loadStationInfo: function loadStationInfo(_ref77) {
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee41() {
+        var commit, state, res;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee41$(_context41) {
+          while (1) {
+            switch (_context41.prev = _context41.next) {
+              case 0:
+                commit = _ref77.commit, state = _ref77.state;
+                _context41.next = 3;
+                return axios({
+                  method: "get",
+                  //you can set what request you want to be
+                  url: "/api/loadstationdata",
+                  headers: {
+                    Authorization: "Bearer " + state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                  }
+                });
+
+              case 3:
+                res = _context41.sent;
+
+                if (res.data.length != 0) {
+                  commit("SET_CORES", res.data.cores);
+                  commit("SET_ITEMS", res.data.items);
+                  commit("SET_STATIONS_FIT", res.data.fit);
+                }
+
+              case 5:
+              case "end":
+                return _context41.stop();
+            }
+          }
+        }, _callee41);
+      }))();
+    },
+    loadAmmoRequestInfo: function loadAmmoRequestInfo(_ref78) {
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee42() {
+        var commit, state, res;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee42$(_context42) {
+          while (1) {
+            switch (_context42.prev = _context42.next) {
+              case 0:
+                commit = _ref78.commit, state = _ref78.state;
+                _context42.next = 3;
+                return axios({
+                  method: "get",
+                  //you can set what request you want to be
+                  url: "/api/loadammorequestdata",
+                  headers: {
+                    Authorization: "Bearer " + state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                  }
+                });
+
+              case 3:
+                res = _context42.sent;
+
+                if (res.data.length != 0) {
+                  commit("SET_CORES", res.data.cores);
+                  commit("SET_ITEMS", res.data.items);
+                  commit("SET_STATIONS_FIT", res.data.fit);
+                  commit("SET_AMMO_REQUEST", res.data.ammorequest);
+                }
+
+              case 5:
+              case "end":
+                return _context42.stop();
+            }
+          }
+        }, _callee42);
+      }))();
     }
-  }, _defineProperty(_actions, "updateRcStation", function updateRcStation(_ref33, data) {
-    var commit = _ref33.commit;
-    commit("UPDATE_RC_FC", data);
-  }), _defineProperty(_actions, "updateCores", function updateCores(_ref34, data) {
-    var commit = _ref34.commit;
-    commit("UPDATE_CORES", data);
-  }), _defineProperty(_actions, "updateCampaigns", function updateCampaigns(_ref35, data) {
-    var commit = _ref35.commit;
-    commit("UPDATE_CAMPAIGNS", data);
-  }), _defineProperty(_actions, "updateTowers", function updateTowers(_ref36, data) {
-    var commit = _ref36.commit;
-    commit("UPDATE_TOWERS", data);
-  }), _defineProperty(_actions, "updateCampaignSystem", function updateCampaignSystem(_ref37, data) {
-    var commit = _ref37.commit;
-    commit("UPDATE_CAMPAIGN_SYSTEM", data);
-  }), _defineProperty(_actions, "updateStartCampaignSystem", function updateStartCampaignSystem(_ref38, data) {
-    var commit = _ref38.commit;
-    commit("UPDATE_START_CAMPAIGN_SYSTEM", data);
-  }), _defineProperty(_actions, "updateTooltipToggle", function updateTooltipToggle(_ref39, data) {
-    var commit = _ref39.commit;
-    commit("UPDATE_TOOLTIP_TOGGLE", data);
-  }), _defineProperty(_actions, "updateCampaignSystemByUserID", function updateCampaignSystemByUserID(_ref40, payload) {
-    var commit = _ref40.commit;
-    commit("UPDATE_CAMPAIGN_SYSTEM_BY_USER_ID", payload);
-  }), _defineProperty(_actions, "updateCampaignSolaSystem", function updateCampaignSolaSystem(_ref41, data) {
-    var commit = _ref41.commit;
-    commit("UPDATE_CAMPAIGN_SOLA_SYSTEMS", data);
-  }), _defineProperty(_actions, "updateCampaignSystemBar", function updateCampaignSystemBar(_ref42, data) {
-    var commit = _ref42.commit;
-    commit("UPDATE_CAMPAIGN_SYSTEM_UPDATE", data);
-  }), _defineProperty(_actions, "updateCampaign", function updateCampaign(_ref43, data) {
-    var commit = _ref43.commit;
-    commit("UPDATE_CAMPAIGN", data);
-  }), _defineProperty(_actions, "updateCampaignUsers", function updateCampaignUsers(_ref44, data) {
-    var commit = _ref44.commit;
-    commit("UPDATE_CAMPAIGN_USERS", data);
-  }), _defineProperty(_actions, "updateUsersChars", function updateUsersChars(_ref45, data) {
-    var commit = _ref45.commit;
-    commit("UPDATE_USERS_CHARS", data);
-  }), _defineProperty(_actions, "updateAmmoRequest", function updateAmmoRequest(_ref46, data) {
-    var commit = _ref46.commit;
-    commit("UPDATE_AMMO_REQUEST", data);
-  }), _defineProperty(_actions, "updateNodeJoin", function updateNodeJoin(_ref47, data) {
-    var commit = _ref47.commit;
-    commit('UPDATE_NODE_JOIN', data);
-  }), _defineProperty(_actions, "updateReconTaskSystems", function updateReconTaskSystems(_ref48, data) {
-    var commit = _ref48.commit;
-    commit("UPDATE_RECON_TASK_SYSTEMS", data);
-  }), _defineProperty(_actions, "addNodeJoin", function addNodeJoin(_ref49, data) {
-    var commit = _ref49.commit;
-    commit("ADD_NODE_JOIN", data);
-  }), _defineProperty(_actions, "addAmmoRequest", function addAmmoRequest(_ref50, data) {
-    var commit = _ref50.commit;
-    commit("ADD_AMMO_REQUEST", data);
-  }), _defineProperty(_actions, "addStationNotification", function addStationNotification(_ref51, data) {
-    var commit = _ref51.commit;
-    commit("ADD_STATION_NOTIFICATION", data);
-  }), _defineProperty(_actions, "addLoggingCampaign", function addLoggingCampaign(_ref52, data) {
-    var commit = _ref52.commit;
-    commit("ADD_LOGGING_CAMPGIN", data);
-  }), _defineProperty(_actions, "addCampaignUserNew", function addCampaignUserNew(_ref53, data) {
-    var commit = _ref53.commit;
-    commit("ADD_CAMPAIGN_USERS", data);
-  }), _defineProperty(_actions, "addCampaignSystem", function addCampaignSystem(_ref54, data) {
-    var commit = _ref54.commit;
-    commit("ADD_CAMPAIGN_SYSTEM", data);
-  }), _defineProperty(_actions, "deleteCampaignUser", function deleteCampaignUser(_ref55, id) {
-    var commit = _ref55.commit;
-    commit("DELETE_CAMPAIGN_USER", id);
-  }), _defineProperty(_actions, "deleteStationNotification", function deleteStationNotification(_ref56, id) {
-    var commit = _ref56.commit;
-    commit("DELETE_STATION_NOTIFICATION", id);
-  }), _defineProperty(_actions, "deleteUsersChars", function deleteUsersChars(_ref57, id) {
-    var commit = _ref57.commit;
-    commit("DELETE_USER_CHAR", id);
-  }), _defineProperty(_actions, "deleteNodeJoin", function deleteNodeJoin(_ref58, id) {
-    var commit = _ref58.commit;
-    commit("DELETE_NODE_JOIN", id);
-  }), _defineProperty(_actions, "deleteAmmoRequest", function deleteAmmoRequest(_ref59, id) {
-    var commit = _ref59.commit;
-    commit("DELETE_AMMO_REQUEST", id);
-  }), _defineProperty(_actions, "deleteTower", function deleteTower(_ref60, id) {
-    var commit = _ref60.commit;
-    commit("DELETE_TOWERS", id);
-  }), _defineProperty(_actions, "deleteCampaignSystem", function deleteCampaignSystem(_ref61, id) {
-    var commit = _ref61.commit;
-    commit("DELETE_CAMPAIGN_SYSTEM", id);
-  }), _defineProperty(_actions, "getNotifications", function getNotifications(_ref62) {
-    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee29() {
-      var commit, state, res;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee29$(_context29) {
-        while (1) {
-          switch (_context29.prev = _context29.next) {
-            case 0:
-              commit = _ref62.commit, state = _ref62.state;
-              _context29.next = 3;
-              return axios({
-                method: "get",
-                //you can set what request you want to be
-                url: "/api/notifications",
-                // data: {id: varID},
-                headers: {
-                  Authorization: "Bearer " + state.token,
-                  Accept: "application/json",
-                  "Content-Type": "application/json"
-                }
-              });
-
-            case 3:
-              res = _context29.sent;
-              commit("SET_NOTIFICATIONS", res.data.notifications);
-
-            case 5:
-            case "end":
-              return _context29.stop();
-          }
-        }
-      }, _callee29);
-    }))();
-  }), _defineProperty(_actions, "getdelveLink", function getdelveLink(_ref63) {
-    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee30() {
-      var commit, state, res;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee30$(_context30) {
-        while (1) {
-          switch (_context30.prev = _context30.next) {
-            case 0:
-              commit = _ref63.commit, state = _ref63.state;
-              _context30.next = 3;
-              return axios({
-                method: "get",
-                //you can set what request you want to be
-                url: "/api/notifications/10000060",
-                headers: {
-                  Authorization: "Bearer " + state.token,
-                  Accept: "application/json",
-                  "Content-Type": "application/json"
-                }
-              });
-
-            case 3:
-              res = _context30.sent;
-              commit("SET_DELVE_LINK", res.data.link);
-
-            case 5:
-            case "end":
-              return _context30.stop();
-          }
-        }
-      }, _callee30);
-    }))();
-  }), _defineProperty(_actions, "getqueriousLink", function getqueriousLink(_ref64) {
-    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee31() {
-      var commit, state, res;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee31$(_context31) {
-        while (1) {
-          switch (_context31.prev = _context31.next) {
-            case 0:
-              commit = _ref64.commit, state = _ref64.state;
-              _context31.next = 3;
-              return axios({
-                method: "get",
-                //you can set what request you want to be
-                url: "/api/notifications/10000050",
-                headers: {
-                  Authorization: "Bearer " + state.token,
-                  Accept: "application/json",
-                  "Content-Type": "application/json"
-                }
-              });
-
-            case 3:
-              res = _context31.sent;
-              commit("SET_QUERIOUS_LINK", res.data.link);
-
-            case 5:
-            case "end":
-              return _context31.stop();
-          }
-        }
-      }, _callee31);
-    }))();
-  }), _defineProperty(_actions, "getperiodbasisLink", function getperiodbasisLink(_ref65) {
-    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee32() {
-      var commit, state, res;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee32$(_context32) {
-        while (1) {
-          switch (_context32.prev = _context32.next) {
-            case 0:
-              commit = _ref65.commit, state = _ref65.state;
-              _context32.next = 3;
-              return axios({
-                method: "get",
-                //you can set what request you want to be
-                url: "/api/notifications/10000063",
-                headers: {
-                  Authorization: "Bearer " + state.token,
-                  Accept: "application/json",
-                  "Content-Type": "application/json"
-                }
-              });
-
-            case 3:
-              res = _context32.sent;
-              commit("SET_PERIOD_BASIS_LINK", res.data.link);
-
-            case 5:
-            case "end":
-              return _context32.stop();
-          }
-        }
-      }, _callee32);
-    }))();
-  }), _defineProperty(_actions, "setToken", function setToken(_ref66, token) {
-    var commit = _ref66.commit;
-    commit("SET_TOKEN", token);
-  }), _defineProperty(_actions, "setUser_id", function setUser_id(_ref67, user_id) {
-    var commit = _ref67.commit;
-    commit("SET_USER_ID", user_id);
-  }), _defineProperty(_actions, "setUser_name", function setUser_name(_ref68, user_name) {
-    var commit = _ref68.commit;
-    commit("SET_USER_NAME", user_name);
-  }), _defineProperty(_actions, "getCampaignUsersRecords", function getCampaignUsersRecords(_ref69, id) {
-    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee33() {
-      var commit, state, res;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee33$(_context33) {
-        while (1) {
-          switch (_context33.prev = _context33.next) {
-            case 0:
-              commit = _ref69.commit, state = _ref69.state;
-              _context33.next = 3;
-              return axios({
-                method: "get",
-                //you can set what request you want to be
-                url: "/api/campaignusersrecords/" + id,
-                headers: {
-                  Authorization: "Bearer " + state.token,
-                  Accept: "application/json",
-                  "Content-Type": "application/json"
-                }
-              });
-
-            case 3:
-              res = _context33.sent;
-
-              if (res.data.length != 0) {
-                commit("SET_CAMPAIGN_USERS", res.data.users);
-              }
-
-            case 5:
-            case "end":
-              return _context33.stop();
-          }
-        }
-      }, _callee33);
-    }))();
-  }), _defineProperty(_actions, "getCampaignSystemsRecords", function getCampaignSystemsRecords(_ref70) {
-    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee34() {
-      var commit, state, res;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee34$(_context34) {
-        while (1) {
-          switch (_context34.prev = _context34.next) {
-            case 0:
-              commit = _ref70.commit, state = _ref70.state;
-              _context34.next = 3;
-              return axios({
-                method: "get",
-                //you can set what request you want to be
-                url: "/api/campaignsystemsrecords",
-                headers: {
-                  Authorization: "Bearer " + state.token,
-                  Accept: "application/json",
-                  "Content-Type": "application/json"
-                }
-              });
-
-            case 3:
-              res = _context34.sent;
-
-              if (res.data.length != 0) {
-                commit("SET_CAMPAIGN_SYSTEMS", res.data.systems);
-              }
-
-            case 5:
-            case "end":
-              return _context34.stop();
-          }
-        }
-      }, _callee34);
-    }))();
-  }), _defineProperty(_actions, "getStartCampaignSystemsRecords", function getStartCampaignSystemsRecords(_ref71) {
-    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee35() {
-      var commit, state, res;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee35$(_context35) {
-        while (1) {
-          switch (_context35.prev = _context35.next) {
-            case 0:
-              commit = _ref71.commit, state = _ref71.state;
-              _context35.next = 3;
-              return axios({
-                method: "get",
-                //you can set what request you want to be
-                url: "/api/startcampaignsystemsrecords",
-                headers: {
-                  Authorization: "Bearer " + state.token,
-                  Accept: "application/json",
-                  "Content-Type": "application/json"
-                }
-              });
-
-            case 3:
-              res = _context35.sent;
-
-              if (res.data.length != 0) {
-                commit("SET_START_CAMPAIGN_SYSTEMS", res.data.systems);
-              }
-
-            case 5:
-            case "end":
-              return _context35.stop();
-          }
-        }
-      }, _callee35);
-    }))();
-  }), _defineProperty(_actions, "getReconTaskSystemsRecords", function getReconTaskSystemsRecords(_ref72) {
-    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee36() {
-      var commit, state, res;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee36$(_context36) {
-        while (1) {
-          switch (_context36.prev = _context36.next) {
-            case 0:
-              commit = _ref72.commit, state = _ref72.state;
-              _context36.next = 3;
-              return axios({
-                method: "get",
-                //you can set what request you want to be
-                url: "/api/recontasksystems",
-                headers: {
-                  Authorization: "Bearer " + state.token,
-                  Accept: "application/json",
-                  "Content-Type": "application/json"
-                }
-              });
-
-            case 3:
-              res = _context36.sent;
-
-              if (res.data.length != 0) {
-                commit("SET_RECON_TASK_SYSTEMS", res.data.systems);
-              }
-
-            case 5:
-            case "end":
-              return _context36.stop();
-          }
-        }
-      }, _callee36);
-    }))();
-  }), _defineProperty(_actions, "getRcStationRecords", function getRcStationRecords(_ref73) {
-    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee37() {
-      var commit, state, res;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee37$(_context37) {
-        while (1) {
-          switch (_context37.prev = _context37.next) {
-            case 0:
-              commit = _ref73.commit, state = _ref73.state;
-              _context37.next = 3;
-              return axios({
-                method: "get",
-                //you can set what request you want to be
-                url: "/api/rcsheet",
-                headers: {
-                  Authorization: "Bearer " + state.token,
-                  Accept: "application/json",
-                  "Content-Type": "application/json"
-                }
-              });
-
-            case 3:
-              res = _context37.sent;
-
-              if (res.data.length != 0) {
-                commit("SET_RC_STATIONS", res.data.stations);
-              }
-
-            case 5:
-            case "end":
-              return _context37.stop();
-          }
-        }
-      }, _callee37);
-    }))();
-  }), _defineProperty(_actions, "getRcFcs", function getRcFcs(_ref74) {
-    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee38() {
-      var commit, state, res;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee38$(_context38) {
-        while (1) {
-          switch (_context38.prev = _context38.next) {
-            case 0:
-              commit = _ref74.commit, state = _ref74.state;
-              _context38.next = 3;
-              return axios({
-                method: "get",
-                //you can set what request you want to be
-                url: "/api/rcfc",
-                headers: {
-                  Authorization: "Bearer " + state.token,
-                  Accept: "application/json",
-                  "Content-Type": "application/json"
-                }
-              });
-
-            case 3:
-              res = _context38.sent;
-
-              if (res.data.length != 0) {
-                commit("SET_RC_FCS", res.data.fcs);
-              }
-
-            case 5:
-            case "end":
-              return _context38.stop();
-          }
-        }
-      }, _callee38);
-    }))();
-  }), _defineProperty(_actions, "getConstellationList", function getConstellationList(_ref75) {
-    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee39() {
-      var commit, state, res;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee39$(_context39) {
-        while (1) {
-          switch (_context39.prev = _context39.next) {
-            case 0:
-              commit = _ref75.commit, state = _ref75.state;
-              _context39.next = 3;
-              return axios({
-                method: "get",
-                //you can set what request you want to be
-                url: "/api/constellations",
-                headers: {
-                  Authorization: "Bearer " + state.token,
-                  Accept: "application/json",
-                  "Content-Type": "application/json"
-                }
-              });
-
-            case 3:
-              res = _context39.sent;
-              commit("SET_CONSTELLATION_LIST", res.data.constellationlist);
-
-            case 5:
-            case "end":
-              return _context39.stop();
-          }
-        }
-      }, _callee39);
-    }))();
-  }), _defineProperty(_actions, "loadCampaignSystemData", function loadCampaignSystemData(_ref76, payload) {
-    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee40() {
-      var commit, state, request, res;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee40$(_context40) {
-        while (1) {
-          switch (_context40.prev = _context40.next) {
-            case 0:
-              commit = _ref76.commit, state = _ref76.state;
-              request = {
-                user_id: payload.user_id,
-                campaign_id: payload.campaign_id,
-                type: payload.type
-              };
-              _context40.next = 4;
-              return axios({
-                method: "post",
-                //you can set what request you want to be
-                url: "/api/campaignsystemload",
-                data: request,
-                headers: {
-                  Authorization: "Bearer " + state.token,
-                  Accept: "application/json",
-                  "Content-Type": "application/json"
-                }
-              });
-
-            case 4:
-              res = _context40.sent;
-
-              if (res.data.length != 0) {
-                commit("SET_CAMPAIGN_SOLA_SYSTEMS", res.data.sola);
-                commit("SET_NODE_JOIN", res.data.nodejoin);
-                commit("SET_CAMPAIGN_USERS", res.data.users);
-                commit("SET_CAMPAIGN_SYSTEMS", res.data.systems);
-                commit("SET_USERS_CHARS", res.data.usersbyid);
-                commit("SET_LOGGING_CAMPAIGN", res.data.logs);
-              }
-
-            case 6:
-            case "end":
-              return _context40.stop();
-          }
-        }
-      }, _callee40);
-    }))();
-  }), _defineProperty(_actions, "loadStationInfo", function loadStationInfo(_ref77) {
-    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee41() {
-      var commit, state, res;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee41$(_context41) {
-        while (1) {
-          switch (_context41.prev = _context41.next) {
-            case 0:
-              commit = _ref77.commit, state = _ref77.state;
-              _context41.next = 3;
-              return axios({
-                method: "get",
-                //you can set what request you want to be
-                url: "/api/loadstationdata",
-                headers: {
-                  Authorization: "Bearer " + state.token,
-                  Accept: "application/json",
-                  "Content-Type": "application/json"
-                }
-              });
-
-            case 3:
-              res = _context41.sent;
-
-              if (res.data.length != 0) {
-                commit("SET_CORES", res.data.cores);
-                commit("SET_ITEMS", res.data.items);
-                commit("SET_STATIONS_FIT", res.data.fit);
-              }
-
-            case 5:
-            case "end":
-              return _context41.stop();
-          }
-        }
-      }, _callee41);
-    }))();
-  }), _defineProperty(_actions, "loadAmmoRequestInfo", function loadAmmoRequestInfo(_ref78) {
-    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee42() {
-      var commit, state, res;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee42$(_context42) {
-        while (1) {
-          switch (_context42.prev = _context42.next) {
-            case 0:
-              commit = _ref78.commit, state = _ref78.state;
-              _context42.next = 3;
-              return axios({
-                method: "get",
-                //you can set what request you want to be
-                url: "/api/loadammorequestdata",
-                headers: {
-                  Authorization: "Bearer " + state.token,
-                  Accept: "application/json",
-                  "Content-Type": "application/json"
-                }
-              });
-
-            case 3:
-              res = _context42.sent;
-
-              if (res.data.length != 0) {
-                commit("SET_CORES", res.data.cores);
-                commit("SET_ITEMS", res.data.items);
-                commit("SET_STATIONS_FIT", res.data.fit);
-                commit("SET_AMMO_REQUEST", res.data.ammorequest);
-              }
-
-            case 5:
-            case "end":
-              return _context42.stop();
-          }
-        }
-      }, _callee42);
-    }))();
-  }), _actions),
+  },
   getters: {
     getCampaignsCount: function getCampaignsCount(state) {
       return state.campaigns.length;
