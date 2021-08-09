@@ -90,6 +90,15 @@ class RcFcUsersController extends Controller
         Station::where('id', $id)->update(['rc_fc_id' => null]);
     }
 
+    public function removeFC($id)
+    {
+        $fc = RcFcUsers::where('id', $id)->get();
+        if ($fc->user_id > 9999999999) {
+            User::where('id', $fc->user_id)->delete();
+        }
+        RcFcUsers::where('id', $id);
+    }
+
     /**
      * Display the specified resource.
      *

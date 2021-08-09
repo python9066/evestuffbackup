@@ -154,7 +154,19 @@ export default {
 
         async pillClick(item) {},
 
-        async pilldelete(item) {},
+        async pilldelete(item) {
+            await axios({
+                method: "DELETE",
+                url: "/api/rcfcdelete/" + item.id,
+                headers: {
+                    Authorization: "Bearer " + this.$store.state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                }
+            });
+
+            this.$store.dispatch("getRcFcs");
+        },
 
         async newFCForm() {
             var request = {

@@ -12029,11 +12029,28 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }))();
     },
     pilldelete: function pilldelete(item) {
+      var _this = this;
+
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
+                _context2.next = 2;
+                return axios({
+                  method: "DELETE",
+                  url: "/api/rcfcdelete/" + item.id,
+                  headers: {
+                    Authorization: "Bearer " + _this.$store.state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                  }
+                });
+
+              case 2:
+                _this.$store.dispatch("getRcFcs");
+
+              case 3:
               case "end":
                 return _context2.stop();
             }
@@ -12042,7 +12059,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }))();
     },
     newFCForm: function newFCForm() {
-      var _this = this;
+      var _this2 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
         var request;
@@ -12051,7 +12068,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context3.prev = _context3.next) {
               case 0:
                 request = {
-                  char_name: _this.newCharName
+                  char_name: _this2.newCharName
                 };
                 _context3.next = 3;
                 return axios({
@@ -12059,17 +12076,17 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   url: "/api/rcfcnew",
                   data: request,
                   headers: {
-                    Authorization: "Bearer " + _this.$store.state.token,
+                    Authorization: "Bearer " + _this2.$store.state.token,
                     Accept: "application/json",
                     "Content-Type": "application/json"
                   }
                 });
 
               case 3:
-                _this.$store.dispatch("getRcFcs");
+                _this2.$store.dispatch("getRcFcs");
 
-                _this.addShown = false;
-                _this.newFCName = null;
+                _this2.addShown = false;
+                _this2.newFCName = null;
 
               case 6:
               case "end":
@@ -12080,7 +12097,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }))();
     },
     removeChar: function removeChar(item) {
-      var _this2 = this;
+      var _this3 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
@@ -12090,16 +12107,16 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 _context4.next = 2;
                 return axios({
                   method: "DELETE",
-                  url: "/api/campaignusers/" + item.id + "/" + _this2.campaign_id + "/" + _this2.$store.state.user_id,
+                  url: "/api/campaignusers/" + item.id + "/" + _this3.campaign_id + "/" + _this3.$store.state.user_id,
                   headers: {
-                    Authorization: "Bearer " + _this2.$store.state.token,
+                    Authorization: "Bearer " + _this3.$store.state.token,
                     Accept: "application/json",
                     "Content-Type": "application/json"
                   }
                 });
 
               case 2:
-                _this2.$store.dispatch("getCampaignSystemsRecords");
+                _this3.$store.dispatch("getCampaignSystemsRecords");
 
               case 3:
               case "end":
