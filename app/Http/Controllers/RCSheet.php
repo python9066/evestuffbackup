@@ -63,7 +63,7 @@ class RCSheet extends Controller
 
 
                 ) {
-                    dd($input);
+                    // dd($input);
                     $stationName = $input['structure_name'];
                     $timer = Helper::fixtime($input['timer_expires']);
                     $allianceID = Alliance::where('ticker', $input['owning_alliance_ticker'])->first();
@@ -79,14 +79,14 @@ class RCSheet extends Controller
                         $corpIDID = $corpID->id;
                     }
 
-                    if ($input['Timer'] == "Armor") {
+                    if ($input['timer_type'] == "Armor") {
                         $statusID = 8;
                     }
 
-                    if ($input['Timer'] == "Hull") {
+                    if ($input['timer_type'] == "Hull") {
                         $statusID = 9;
                     }
-                    if ($input['Timer'] == "Anchoring") {
+                    if ($input['timer_type'] == "Anchoring") {
                         $statusID = 14;
                     }
 
