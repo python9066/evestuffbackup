@@ -52,7 +52,7 @@ class RCSheet extends Controller
                 $itemID = Item::where('item_name', $input['Type'])->first();
                 $systemID = System::where('system_name', $input['System'])->first();
                 $new = Station::Create(['name' => $input['name'], 'system_id' => $systemID->id, 'alliance_id' => $allianceID->id, 'item_id' => $itemID->id, 'station_status_id' => $statusID, 'out_time' => $timer]);
-                // dd($allianceID->id, $input, $timer, $reconpull);
+                dd($allianceID->id, $input, $timer, $reconpull);
             }
         }
     }
