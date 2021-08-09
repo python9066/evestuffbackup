@@ -101,10 +101,10 @@ class RCSheet extends Controller
 
                         // dd($input);
                         $reconpull = $this->reconPullbyname($stationName);
-                        dd($reconpull, $stationName);
+                        // dd($reconpull, $stationName);
 
 
-                        if (!$reconpull) {
+                        if ($reconpull == false) {
                             // dd("yoyo");
                             $id = Station::where('id', '<', 10000000000)->max('id');
                             if ($id == null) {
@@ -115,11 +115,19 @@ class RCSheet extends Controller
 
 
 
-                            $new = Station::Create(['name' => $input['structure_name'], 'system_id' => $input['solar_system']['solar_system_id'], 'alliance_id' => $allianceIDID, 'corp_id' => $corpIDID, 'item_id' => $input['structure_type']['type_id'], 'station_status_id' => $statusID, 'out_time' => $timer]);
+                            $new = Station::Create(['name' => $input['structure_name'], 'system_id' => $input['solar_system']['solar_system_id'], 'alliance_id' => $allianceIDID, 'corp_id' => $corpIDID, 'item_id' => $input['structure_type']['type_id'], 'station_status_id' => $statusID, 'out_time' => $timer, 'show_on_rc' => 1]);
                             if ($allianceIDID == 0) {
                                 $new->update(['id' => $id, 'text' => $input['owning_corp_ticker']]);
                             } else {
                                 $new->update(['id' => $id]);
+                            }
+                        } else {
+
+                            $check = Station::where('id', $reconpull)->first();
+                            if ($check) {
+                                // $checkid = $check["id"];
+                                $check->update(['station_status_id' => $statusID, 'out_time' => $timer]);
+                                // dd($check->id);
                             }
                         }
                     }
@@ -263,7 +271,7 @@ class RCSheet extends Controller
                 $item = Item::where('id', $stationdata['str_type_id'])->first();
                 $system = System::where('id', $stationdata['str_system_id'])->first();
 
-                return true;
+                return $stationdata['str_structure_id'];
             }
         } else {
             $stationCheck = station::where('name', $stationName)->first();
