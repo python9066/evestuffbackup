@@ -24705,7 +24705,7 @@ function sleep(ms) {
     },
     campaignStart: function campaignStart(item) {
       var data = {
-        id: item.station.id,
+        id: item.id,
         out: 1
       };
       this.$store.dispatch("updateRcStation", data);
