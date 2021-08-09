@@ -33,7 +33,7 @@ class RcSheetContoller extends Controller
     public function rcSheetListRegion()
     {
         $data = [];
-        $pull = Station::where('show_on_rc', 1)->get();
+        $pull = RcStationRecords::all();
         $pull = $pull->unique('region_id');
         $pull = $pull->sortBy('region');
         foreach ($pull as $pull) {
