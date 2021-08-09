@@ -24,6 +24,9 @@ class RCSheet extends Controller
 
         $inputs = $request->all();
         foreach ($inputs as $input) {
+            $check = Station::where(['name' => $input['name'], 'system_id' => $systemID->id, 'alliance_id' => $allianceID->id]);
+            dd($check);
+
             $stationName = $input['name'];
             $reconpull = $this->reconPullbyname($stationName);
             // dd($reconpull);
