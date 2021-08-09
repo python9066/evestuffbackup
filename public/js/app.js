@@ -53461,7 +53461,7 @@ var render = function() {
                                   : _vm._e(),
                                 _vm._v(" "),
                                 !item.fc_user_id
-                                  ? _c("RcFCAdd", { staticClass: " pt-4" })
+                                  ? _c("RcFCAdd", { staticClass: " pl-4" })
                                   : _vm._e()
                               ]
                             }
