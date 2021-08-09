@@ -8,40 +8,27 @@
             </span>
         </div>
         <div>
-            <v-tooltip
-                color="#121212"
-                bottom
-                :key="'gunnertooltip' + station.gunner_id"
-                :open-delay="2000"
-                :disabled="$store.state.tooltipToggle"
+            <v-btn
+                v-show="showGunnerButton"
+                :key="'gunnerbutton' + station.gunner_id"
+                class=""
+                color="blue"
+                x-small
+                outlined
+                @click="fcAdd()"
+                v-bind="attrs"
+                v-on="on"
             >
-                <template v-slot:activator="{ on, attrs }">
-                    <v-btn
-                        v-show="showGunnerButton"
-                        :key="'gunnerbutton' + station.gunner_id"
-                        class=""
-                        color="blue"
-                        x-small
-                        outlined
-                        @click="gunnerAdd()"
-                        v-bind="attrs"
-                        v-on="on"
-                    >
-                        <v-icon x-small dark>
-                            fas fa-plus
-                        </v-icon>
-                        Gunner</v-btn
-                    >
-                </template>
-                <span>
-                    Gunners can assign themselfs here
-                </span>
-            </v-tooltip>
+                <v-icon x-small dark>
+                    fas fa-plus
+                </v-icon>
+                FC</v-btn
+            >
             <v-icon
                 v-show="!showGunnerButton"
                 color="orange darken-3"
                 small
-                @click="gunnerRemove()"
+                @click="fcRemove()"
             >
                 fas fa-trash-alt
             </v-icon>
@@ -57,19 +44,7 @@ export default {
         station: Object
     },
     data() {
-        return {
-            gunnerName: null
-        };
-    },
-
-    watch: {
-        station: {
-            handler() {
-                this.showName;
-                this.showGunnerButton;
-            },
-            deep: true
-        }
+        return {};
     },
 
     mounted() {
@@ -77,68 +52,16 @@ export default {
     },
 
     methods: {
-        async gunnerAdd() {
-            var data = {
-                id: this.station.id,
-                gunner_id: this.$store.state.user_id,
-                gunner_name: this.$store.state.user_name
-            };
-
-            this.$store.dispatch("updateStationNotification", data);
-
-            var request = null;
-            request = {
-                gunner_id: this.$store.state.user_id
-            };
-
-            await axios({
-                method: "put",
-                url: "/api/updatestationnotification/" + this.station.id,
-                data: request,
-                headers: {
-                    Authorization: "Bearer " + this.$store.state.token,
-                    Accept: "application/json",
-                    "Content-Type": "application/json"
-                }
-            });
-        },
-
-        async gunnerRemove() {
-            var request = {
-                gunner_id: null
-            };
-
-            await axios({
-                method: "put",
-                url: "/api/updatestationnotification/" + this.station.id,
-                data: request,
-                headers: {
-                    Authorization: "Bearer " + this.$store.state.token,
-                    Accept: "application/json",
-                    "Content-Type": "application/json"
-                }
-            });
-        }
-    },
-
-    computed: {
-        showGunnerButton() {
-            if (this.station.gunner_id == null) {
-                console.log("true");
+        RcFCButton() {
+            if (station.fc_user_id) {
                 return true;
             } else {
                 return false;
             }
-        },
-
-        showName() {
-            if (this.station.standing > 0) {
-                this.gunnerName = this.station.gunner_name;
-            } else {
-                this.gunnerName = "Has Gunner";
-            }
         }
-    }
+    },
+
+    computed: {}
 };
 </script>
 

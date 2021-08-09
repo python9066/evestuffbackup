@@ -11848,30 +11848,9 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
-/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
-/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_2__);
-
-
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_1__);
 //
 //
 //
@@ -11917,114 +11896,21 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     station: Object
   },
   data: function data() {
-    return {
-      gunnerName: null
-    };
-  },
-  watch: {
-    station: {
-      handler: function handler() {
-        this.showName;
-        this.showGunnerButton;
-      },
-      deep: true
-    }
+    return {};
   },
   mounted: function mounted() {
     this.showName;
   },
   methods: {
-    gunnerAdd: function gunnerAdd() {
-      var _this = this;
-
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-        var data, request;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
-          while (1) {
-            switch (_context.prev = _context.next) {
-              case 0:
-                data = {
-                  id: _this.station.id,
-                  gunner_id: _this.$store.state.user_id,
-                  gunner_name: _this.$store.state.user_name
-                };
-
-                _this.$store.dispatch("updateStationNotification", data);
-
-                request = null;
-                request = {
-                  gunner_id: _this.$store.state.user_id
-                };
-                _context.next = 6;
-                return axios({
-                  method: "put",
-                  url: "/api/updatestationnotification/" + _this.station.id,
-                  data: request,
-                  headers: {
-                    Authorization: "Bearer " + _this.$store.state.token,
-                    Accept: "application/json",
-                    "Content-Type": "application/json"
-                  }
-                });
-
-              case 6:
-              case "end":
-                return _context.stop();
-            }
-          }
-        }, _callee);
-      }))();
-    },
-    gunnerRemove: function gunnerRemove() {
-      var _this2 = this;
-
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
-        var request;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
-          while (1) {
-            switch (_context2.prev = _context2.next) {
-              case 0:
-                request = {
-                  gunner_id: null
-                };
-                _context2.next = 3;
-                return axios({
-                  method: "put",
-                  url: "/api/updatestationnotification/" + _this2.station.id,
-                  data: request,
-                  headers: {
-                    Authorization: "Bearer " + _this2.$store.state.token,
-                    Accept: "application/json",
-                    "Content-Type": "application/json"
-                  }
-                });
-
-              case 3:
-              case "end":
-                return _context2.stop();
-            }
-          }
-        }, _callee2);
-      }))();
-    }
-  },
-  computed: {
-    showGunnerButton: function showGunnerButton() {
-      if (this.station.gunner_id == null) {
-        console.log("true");
+    RcFCButton: function RcFCButton() {
+      if (station.fc_user_id) {
         return true;
       } else {
         return false;
       }
-    },
-    showName: function showName() {
-      if (this.station.standing > 0) {
-        this.gunnerName = this.station.gunner_name;
-      } else {
-        this.gunnerName = "Has Gunner";
-      }
     }
-  }
+  },
+  computed: {}
 });
 
 /***/ }),
@@ -39532,76 +39418,39 @@ var render = function() {
         "div",
         [
           _c(
-            "v-tooltip",
-            {
-              key: "gunnertooltip" + _vm.station.gunner_id,
-              attrs: {
-                color: "#121212",
-                bottom: "",
-                "open-delay": 2000,
-                disabled: _vm.$store.state.tooltipToggle
-              },
-              scopedSlots: _vm._u([
+            "v-btn",
+            _vm._g(
+              _vm._b(
                 {
-                  key: "activator",
-                  fn: function(ref) {
-                    var on = ref.on
-                    var attrs = ref.attrs
-                    return [
-                      _c(
-                        "v-btn",
-                        _vm._g(
-                          _vm._b(
-                            {
-                              directives: [
-                                {
-                                  name: "show",
-                                  rawName: "v-show",
-                                  value: _vm.showGunnerButton,
-                                  expression: "showGunnerButton"
-                                }
-                              ],
-                              key: "gunnerbutton" + _vm.station.gunner_id,
-                              attrs: {
-                                color: "blue",
-                                "x-small": "",
-                                outlined: ""
-                              },
-                              on: {
-                                click: function($event) {
-                                  return _vm.gunnerAdd()
-                                }
-                              }
-                            },
-                            "v-btn",
-                            attrs,
-                            false
-                          ),
-                          on
-                        ),
-                        [
-                          _c("v-icon", { attrs: { "x-small": "", dark: "" } }, [
-                            _vm._v(
-                              "\n                        fas fa-plus\n                    "
-                            )
-                          ]),
-                          _vm._v("\n                    Gunner")
-                        ],
-                        1
-                      )
-                    ]
+                  directives: [
+                    {
+                      name: "show",
+                      rawName: "v-show",
+                      value: _vm.showGunnerButton,
+                      expression: "showGunnerButton"
+                    }
+                  ],
+                  key: "gunnerbutton" + _vm.station.gunner_id,
+                  attrs: { color: "blue", "x-small": "", outlined: "" },
+                  on: {
+                    click: function($event) {
+                      return _vm.fcAdd()
+                    }
                   }
-                }
-              ])
-            },
+                },
+                "v-btn",
+                _vm.attrs,
+                false
+              ),
+              _vm.on
+            ),
             [
-              _vm._v(" "),
-              _c("span", [
-                _vm._v(
-                  "\n                Gunners can assign themselfs here\n            "
-                )
-              ])
-            ]
+              _c("v-icon", { attrs: { "x-small": "", dark: "" } }, [
+                _vm._v("\n                fas fa-plus\n            ")
+              ]),
+              _vm._v("\n            FC")
+            ],
+            1
           ),
           _vm._v(" "),
           _c(
@@ -39618,7 +39467,7 @@ var render = function() {
               attrs: { color: "orange darken-3", small: "" },
               on: {
                 click: function($event) {
-                  return _vm.gunnerRemove()
+                  return _vm.fcRemove()
                 }
               }
             },
