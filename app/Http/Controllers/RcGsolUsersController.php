@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\RcGsolUsers;
+use App\Models\Station;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class RcGsolUsersController extends Controller
@@ -25,6 +28,18 @@ class RcGsolUsersController extends Controller
     public function store(Request $request)
     {
         //
+    }
+
+    public function addRecontoStation(Request $request, $id)
+    {
+
+        Station::where('id', $id)->update(['rc_gsol_id' => $request->user_id]);
+    }
+
+    public function removeRecontoStation($id)
+    {
+
+        Station::where('id', $id)->update(['rc_gsol_id' => null]);
     }
 
     /**

@@ -78,6 +78,13 @@
                                 :station="item"
                             ></RcReconButton>
                         </template>
+
+                        <template v-slot:[`item.gsol_name`]="{ item }">
+                            <RcGsolButton
+                                class=" mr-2"
+                                :station="item"
+                            ></RcGsolButton>
+                        </template>
                         <template slot="no-data">
                             No Active or Upcoming Campaigns
                         </template>
