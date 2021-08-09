@@ -25206,7 +25206,7 @@ function sleep(ms) {
       if (this.itemPicked.length != 0) {
         this.itemPicked.forEach(function (p) {
           var pick = _this3.filteredItems.filter(function (f) {
-            return f.region_id == p;
+            return f.item_id == p;
           });
 
           if (pick != null) {

@@ -302,7 +302,7 @@ export default {
             let data = [];
             if (this.itemPicked.length != 0) {
                 this.itemPicked.forEach(p => {
-                    let pick = this.filteredItems.filter(f => f.region_id == p);
+                    let pick = this.filteredItems.filter(f => f.item_id == p);
                     if (pick != null) {
                         pick.forEach(pk => {
                             data.push(pk);
