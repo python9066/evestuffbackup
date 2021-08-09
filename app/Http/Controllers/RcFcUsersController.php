@@ -54,6 +54,7 @@ class RcFcUsersController extends Controller
         } else {
             $id = User::where('name', $name)->value('id');
         }
+        dd($id);
         RcFcUsers::Create(['user_id', $id]);
     }
 
