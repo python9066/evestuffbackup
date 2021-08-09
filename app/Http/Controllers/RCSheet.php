@@ -107,7 +107,7 @@ class RCSheet extends Controller
                     if ($count > 0) {
                         // dd($check[0]['station_status_id']);
                         // $checkid = $check["id"];
-                        if ($check[0]['station_status_id'] == 5) {
+                        if ($check[0]['station_status_id'] > 4) {
                             $statusID = 5;
                         }
                         Station::where('name', $input['structure_name'])->where('system_id', $input['solar_system']['solar_system_id'])->where('alliance_id', $allianceIDID)->update(['station_status_id' => $statusID, 'out_time' => $timer, 'show_on_rc' => 1]);
