@@ -359,7 +359,7 @@ export default {
                 });
                 return data;
             }
-            return this.filteredItems;
+            return this.filter_start;
         },
 
         filter_end() {

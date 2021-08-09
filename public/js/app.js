@@ -25274,7 +25274,7 @@ function sleep(ms) {
         return data;
       }
 
-      return this.filteredItems;
+      return this.filter_start;
     },
     filter_end: function filter_end() {
       var _this5 = this;
