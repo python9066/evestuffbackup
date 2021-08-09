@@ -2,14 +2,14 @@
     <div class=" d-inline-flex align-items-md-center  pl-4">
         <div>
             <span class="d-inline-flex align-items-md-center pr-2">
-                <span class="pl-2" v-show="!showGunnerButton">
-                    {{ gunnerName }}
+                <span class="pl-2" v-show="!showRcFCButton">
+                    {{ station.fc_name }}
                 </span>
             </span>
         </div>
         <div>
             <v-btn
-                v-show="showGunnerButton"
+                v-show="showRcFCButton"
                 :key="'gunnerbutton' + station.gunner_id"
                 class=""
                 color="blue"
@@ -25,7 +25,7 @@
                 FC</v-btn
             >
             <v-icon
-                v-show="!showGunnerButton"
+                v-show="!showRcFCButton"
                 color="orange darken-3"
                 small
                 @click="fcRemove()"
@@ -52,7 +52,7 @@ export default {
     },
 
     methods: {
-        RcFCButton() {
+        showRcFCButton() {
             if (station.fc_user_id) {
                 return true;
             } else {

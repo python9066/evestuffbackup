@@ -11902,7 +11902,7 @@ __webpack_require__.r(__webpack_exports__);
     this.showName;
   },
   methods: {
-    RcFCButton: function RcFCButton() {
+    showRcFCButton: function showRcFCButton() {
       if (station.fc_user_id) {
         return true;
       } else {
@@ -39396,8 +39396,8 @@ var render = function() {
                   {
                     name: "show",
                     rawName: "v-show",
-                    value: !_vm.showGunnerButton,
-                    expression: "!showGunnerButton"
+                    value: !_vm.showRcFCButton,
+                    expression: "!showRcFCButton"
                   }
                 ],
                 staticClass: "pl-2"
@@ -39405,7 +39405,7 @@ var render = function() {
               [
                 _vm._v(
                   "\n                " +
-                    _vm._s(_vm.gunnerName) +
+                    _vm._s(_vm.station.fc_name) +
                     "\n            "
                 )
               ]
@@ -39426,8 +39426,8 @@ var render = function() {
                     {
                       name: "show",
                       rawName: "v-show",
-                      value: _vm.showGunnerButton,
-                      expression: "showGunnerButton"
+                      value: _vm.showRcFCButton,
+                      expression: "showRcFCButton"
                     }
                   ],
                   key: "gunnerbutton" + _vm.station.gunner_id,
@@ -39460,8 +39460,8 @@ var render = function() {
                 {
                   name: "show",
                   rawName: "v-show",
-                  value: !_vm.showGunnerButton,
-                  expression: "!showGunnerButton"
+                  value: !_vm.showRcFCButton,
+                  expression: "!showRcFCButton"
                 }
               ],
               attrs: { color: "orange darken-3", small: "" },
