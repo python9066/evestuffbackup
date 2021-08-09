@@ -34,9 +34,8 @@ class testController extends Controller
         // $array = json_decode($request, TRUE);
         // dd($array, $arry1, $request[0], $request);
 
-        foreach ($request as $timer) {
-            dd($timer);
-        }
+        $input = $request->all();
+        dd($input);
     }
 
     public function userinfo()
