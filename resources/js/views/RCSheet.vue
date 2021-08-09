@@ -83,7 +83,7 @@ export default {
     computed: {
         ...mapState(["rcstations"]),
         filteredItems() {
-            return rcstations;
+            return this.rcstations;
         }
     },
     beforeDestroy() {}

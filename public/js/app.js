@@ -24144,7 +24144,7 @@ function sleep(ms) {
   methods: {},
   computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapState"])(["rcstations"])), {}, {
     filteredItems: function filteredItems() {
-      return rcstations;
+      return this.rcstations;
     }
   }),
   beforeDestroy: function beforeDestroy() {}
