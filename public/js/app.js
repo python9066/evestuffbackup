@@ -25000,6 +25000,21 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -25063,7 +25078,8 @@ function sleep(ms) {
       }],
       regionPicked: [],
       itemPicked: [],
-      statusPicked: []
+      statusPicked: [],
+      search: ""
     };
   },
   created: function created() {
@@ -53248,7 +53264,34 @@ var render = function() {
           _c(
             "v-col",
             { staticClass: " d-inline-flex", attrs: { cols: "12" } },
-            [_vm._v("\n            more to come\n        ")]
+            [
+              _c(
+                "v-card",
+                {
+                  staticClass: "align-start",
+                  attrs: { width: "500", tile: "", flat: "", color: "#121212" }
+                },
+                [
+                  _c("v-text-field", {
+                    attrs: {
+                      "append-icon": "mdi-magnify",
+                      label: "Search for Users",
+                      "single-line": "",
+                      "hide-details": ""
+                    },
+                    model: {
+                      value: _vm.search,
+                      callback: function($$v) {
+                        _vm.search = $$v
+                      },
+                      expression: "search"
+                    }
+                  })
+                ],
+                1
+              )
+            ],
+            1
           )
         ],
         1
@@ -53350,53 +53393,51 @@ var render = function() {
             1
           ),
           _vm._v(" "),
-          _vm.$can("super")
-            ? _c(
-                "v-col",
-                { staticClass: " d-inline-flex", attrs: { cols: "4" } },
+          _c(
+            "v-col",
+            { staticClass: " d-inline-flex", attrs: { cols: "4" } },
+            [
+              _c(
+                "v-card",
+                {
+                  attrs: {
+                    "max-width": "600px",
+                    "min-width": "600px",
+                    color: "#121212",
+                    elevation: "0"
+                  }
+                },
                 [
                   _c(
-                    "v-card",
-                    {
-                      attrs: {
-                        "max-width": "600px",
-                        "min-width": "600px",
-                        color: "#121212",
-                        elevation: "0"
-                      }
-                    },
+                    "v-card-text",
                     [
-                      _c(
-                        "v-card-text",
-                        [
-                          _c("v-select", {
-                            staticClass: " pb-2",
-                            attrs: {
-                              items: _vm.dropdown_status_list,
-                              label: "Filter by Status",
-                              multiple: "",
-                              chips: "",
-                              "deletable-chips": "",
-                              "hide-details": ""
-                            },
-                            model: {
-                              value: _vm.statusPicked,
-                              callback: function($$v) {
-                                _vm.statusPicked = $$v
-                              },
-                              expression: "statusPicked"
-                            }
-                          })
-                        ],
-                        1
-                      )
+                      _c("v-select", {
+                        staticClass: " pb-2",
+                        attrs: {
+                          items: _vm.dropdown_status_list,
+                          label: "Filter by Status",
+                          multiple: "",
+                          chips: "",
+                          "deletable-chips": "",
+                          "hide-details": ""
+                        },
+                        model: {
+                          value: _vm.statusPicked,
+                          callback: function($$v) {
+                            _vm.statusPicked = $$v
+                          },
+                          expression: "statusPicked"
+                        }
+                      })
                     ],
                     1
                   )
                 ],
                 1
               )
-            : _vm._e()
+            ],
+            1
+          )
         ],
         1
       ),
@@ -53422,6 +53463,7 @@ var render = function() {
                       staticClass: "elevation-5",
                       attrs: {
                         dense: "",
+                        search: _vm.search,
                         headers: _vm.headers,
                         items: _vm.filter_end,
                         "item-key": "id",

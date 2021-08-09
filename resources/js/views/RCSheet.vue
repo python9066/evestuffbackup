@@ -2,7 +2,21 @@
     <div class="pr-16 pl-16">
         <v-row no-gutters justify="center">
             <v-col class=" d-inline-flex" cols="12">
-                more to come
+                <v-card
+                    width="500"
+                    tile
+                    flat
+                    color="#121212"
+                    class="align-start"
+                >
+                    <v-text-field
+                        v-model="search"
+                        append-icon="mdi-magnify"
+                        label="Search for Users"
+                        single-line
+                        hide-details
+                    ></v-text-field>
+                </v-card>
             </v-col>
         </v-row>
         <v-row no-gutters justify="center">
@@ -48,7 +62,7 @@
                     </v-card-text>
                 </v-card>
             </v-col>
-            <v-col class=" d-inline-flex" cols="4" v-if="$can('super')">
+            <v-col class=" d-inline-flex" cols="4">
                 <v-card
                     max-width="600px"
                     min-width="600px"
@@ -78,6 +92,7 @@
                 <v-card width="100%">
                     <v-data-table
                         dense
+                        :search="search"
                         :headers="headers"
                         :items="filter_end"
                         item-key="id"
@@ -216,7 +231,8 @@ export default {
             ],
             regionPicked: [],
             itemPicked: [],
-            statusPicked: []
+            statusPicked: [],
+            search: ""
         };
     },
 
