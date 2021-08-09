@@ -24911,6 +24911,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
 
 
 
@@ -53227,7 +53230,8 @@ var render = function() {
                                     })
                                   : _vm._e(),
                                 _vm._v(" "),
-                                !item.fc_user_id
+                                !item.fc_user_id &&
+                                _vm.$can("view_killsheet_add_fc")
                                   ? _c("RcFCAdd", {
                                       staticClass: " pl-6",
                                       attrs: { station: item }

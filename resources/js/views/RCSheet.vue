@@ -73,7 +73,10 @@
                                 v-if="showFC(item)"
                             ></RcFCButton>
                             <RcFCAdd
-                                v-if="!item.fc_user_id"
+                                v-if="
+                                    !item.fc_user_id &&
+                                        $can('view_killsheet_add_fc')
+                                "
                                 :station="item"
                                 class=" pl-6"
                             ></RcFCAdd>
