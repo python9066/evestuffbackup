@@ -24587,6 +24587,44 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -52489,6 +52527,114 @@ var render = function() {
                             }
                           },
                           {
+                            key: "item.status_name",
+                            fn: function(ref) {
+                              var item = ref.item
+                              return [
+                                item.out == 0
+                                  ? _c("v-chip", [
+                                      _vm._v(
+                                        "\n                            fefe\n                        "
+                                      )
+                                    ])
+                                  : _vm._e(),
+                                _vm._v(" "),
+                                _c(
+                                  "v-menu",
+                                  {
+                                    attrs: { "offset-y": "" },
+                                    scopedSlots: _vm._u(
+                                      [
+                                        {
+                                          key: "activator",
+                                          fn: function(ref) {
+                                            var on = ref.on
+                                            var attrs = ref.attrs
+                                            return [
+                                              _c(
+                                                "div",
+                                                [
+                                                  _c(
+                                                    "v-chip",
+                                                    _vm._g(
+                                                      _vm._b(
+                                                        {
+                                                          attrs: {
+                                                            pill: "",
+                                                            outlined: _vm.pillOutlined(
+                                                              item
+                                                            ),
+                                                            small: "",
+                                                            color: _vm.pillColor(
+                                                              item
+                                                            )
+                                                          }
+                                                        },
+                                                        "v-chip",
+                                                        attrs,
+                                                        false
+                                                      ),
+                                                      on
+                                                    ),
+                                                    [
+                                                      _vm._v(
+                                                        "\n                                        " +
+                                                          _vm._s(
+                                                            item.status_name
+                                                          ) +
+                                                          "\n                                    "
+                                                      )
+                                                    ]
+                                                  )
+                                                ],
+                                                1
+                                              )
+                                            ]
+                                          }
+                                        }
+                                      ],
+                                      null,
+                                      true
+                                    )
+                                  },
+                                  [
+                                    _vm._v(" "),
+                                    _c(
+                                      "v-list",
+                                      _vm._l(_vm.dropdown_edit, function(
+                                        list,
+                                        index
+                                      ) {
+                                        return _c(
+                                          "v-list-item",
+                                          {
+                                            key: index,
+                                            on: {
+                                              click: function($event) {
+                                                ;(item.status_id = list.value),
+                                                  (item.status_name =
+                                                    list.title),
+                                                  _vm.statusClick(item)
+                                              }
+                                            }
+                                          },
+                                          [
+                                            _c("v-list-item-title", [
+                                              _vm._v(_vm._s(list.title))
+                                            ])
+                                          ],
+                                          1
+                                        )
+                                      }),
+                                      1
+                                    )
+                                  ],
+                                  1
+                                )
+                              ]
+                            }
+                          },
+                          {
                             key: "item.gsol_name",
                             fn: function(ref) {
                               var item = ref.item
@@ -52506,6 +52652,7 @@ var render = function() {
                       )
                     },
                     [
+                      _vm._v(" "),
                       _vm._v(" "),
                       _vm._v(" "),
                       _vm._v(" "),
