@@ -40,7 +40,7 @@ class RcFcUsersController extends Controller
     public function newfc(Request $request)
     {
         $name = $request->name;
-        $check = User::where('name', $name)->get();
+        $check = User::where('name', $name)->count();
         dd($check);
         if ($check == null) {
             $id = User::where('id', '>', 10000000000)->max('id');
