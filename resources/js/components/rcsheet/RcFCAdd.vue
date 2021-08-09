@@ -164,8 +164,8 @@ export default {
             };
 
             await axios({
-                method: "POST",
-                url: "/api/campaignusers/" + this.campaign_id,
+                method: "PUT",
+                url: "/api/rcfcnew",
                 data: request,
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
@@ -173,19 +173,9 @@ export default {
                     "Content-Type": "application/json"
                 }
             });
-
-            //------logging Start-----//
-            request = null;
-            request = {
-                user_id: this.$store.state.user_id,
-                type: "added",
-                char_name: this.newCharName
-            };
         },
 
         async removeChar(item) {
-            this.$store.dispatch("deleteUsersChars", item.id);
-            this.$store.dispatch("deleteCampaignUser", item.id);
             await axios({
                 method: "DELETE",
                 url:

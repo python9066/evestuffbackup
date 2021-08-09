@@ -37,6 +37,26 @@ class RcFcUsersController extends Controller
         return ['fcs' => $fclist];
     }
 
+    public function newfc($request)
+    {
+        $name = $request->name;
+        $check = User::where('name', $name)->get();
+        if ($check == null) {
+            $id = User::where('id', '>', 10000000000)->max('id');
+            if ($id == null) {
+                $id = 10000000000;
+            } else {
+                $id = $id + 1;
+            }
+
+            $new = User::Create('name', $name);
+            $new->update(['id' => $id]);
+        } else {
+            $id = User::where('name', $name)->value('id');
+        }
+        RcFcUsers::Create('user_id', $id);
+    }
+
     /**
      * Store a newly created resource in storage.
      *

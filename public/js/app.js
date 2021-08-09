@@ -12057,8 +12057,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 };
                 _context3.next = 3;
                 return axios({
-                  method: "POST",
-                  url: "/api/campaignusers/" + _this.campaign_id,
+                  method: "PUT",
+                  url: "/api/rcfcnew",
                   data: request,
                   headers: {
                     Authorization: "Bearer " + _this.$store.state.token,
@@ -12068,15 +12068,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 });
 
               case 3:
-                //------logging Start-----//
-                request = null;
-                request = {
-                  user_id: _this.$store.state.user_id,
-                  type: "added",
-                  char_name: _this.newCharName
-                };
-
-              case 5:
               case "end":
                 return _context3.stop();
             }
@@ -12092,11 +12083,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context4.prev = _context4.next) {
               case 0:
-                _this2.$store.dispatch("deleteUsersChars", item.id);
-
-                _this2.$store.dispatch("deleteCampaignUser", item.id);
-
-                _context4.next = 4;
+                _context4.next = 2;
                 return axios({
                   method: "DELETE",
                   url: "/api/campaignusers/" + item.id + "/" + _this2.campaign_id + "/" + _this2.$store.state.user_id,
@@ -12107,10 +12094,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   }
                 });
 
-              case 4:
+              case 2:
                 _this2.$store.dispatch("getCampaignSystemsRecords");
 
-              case 5:
+              case 3:
               case "end":
                 return _context4.stop();
             }
