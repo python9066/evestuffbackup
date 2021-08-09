@@ -30,6 +30,7 @@ class RCSheet extends Controller
             $timer = Helper::fixtime($input['Expires']);
 
             if ($reconpull = false) {
+                dd("yoyo");
                 $id = Station::where('id', '<', 1000000000)->max('id');
                 if ($id == null) {
                     $id = 1;
