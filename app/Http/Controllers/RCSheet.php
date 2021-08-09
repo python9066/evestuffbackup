@@ -99,9 +99,10 @@ class RCSheet extends Controller
                         $statusID = 4;
                     }
 
-
-                    $check = Station::where('name', "shit face")->where('system_id', $input['solar_system']['solar_system_id'])->where('alliance_id', $allianceIDID)->first();
-
+                    $check = null;
+                    $check = Station::where('name', "shit face")->where('system_id', $input['solar_system']['solar_system_id'])->where('alliance_id', $allianceIDID)->get();
+                    $count = $check->count();
+                    dd($count);
                     if ($check != null) {
                         // $checkid = $check["id"];
                         if ($check->station_status_id == 5) {
