@@ -9,4 +9,9 @@ class RcFcUsers extends Model
 {
     use HasFactory;
     protected $guarded = [];
+
+    protected $casts = [
+        'id' => 'integer',
+        'user_id' => 'integer'
+    ];
 }
