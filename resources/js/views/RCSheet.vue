@@ -200,7 +200,7 @@ export default {
         return {
             headers: [
                 { text: "Region", value: "region_name" },
-                { text: "System", value: "constellation_name" },
+                { text: "Const", value: "constellation_name" },
                 { text: "System", value: "system_name" },
                 { text: "Name", value: "name" },
                 { text: "Type", value: "item_name" },

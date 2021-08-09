@@ -25020,7 +25020,7 @@ function sleep(ms) {
         text: "Region",
         value: "region_name"
       }, {
-        text: "System",
+        text: "Const",
         value: "constellation_name"
       }, {
         text: "System",
