@@ -820,7 +820,7 @@ export default new Vuex.Store({
                     "Content-Type": "application/json"
                 }
             });
-            commit("SET_RC_TYPE", res.data.rcsheetlistRegion);
+            commit("SET_RC_TYPE", res.data.rcsheetlistType);
         },
 
 

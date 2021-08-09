@@ -63367,7 +63367,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
 
               case 3:
                 res = _context25.sent;
-                commit("SET_RC_TYPE", res.data.rcsheetlistRegion);
+                commit("SET_RC_TYPE", res.data.rcsheetlistType);
 
               case 5:
               case "end":
