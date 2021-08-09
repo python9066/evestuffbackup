@@ -18,69 +18,70 @@ class RCSheet extends Controller
 {
     public function RCInput(Request $request)
     {
+        dd($request);
         // $arry1 = (json_decode(utf8_encode($request), true));
         // $array = json_decode($request, TRUE);
         // dd($array, $arry1, $request[0], $request);
 
-        $inputs = $request->all();
-        foreach ($inputs as $input) {
-            $stationName = $input['name'];
-            $timer = Helper::fixtime($input['Expires']);
-            $allianceID = Alliance::where('ticker', $input['Ticker'])->first();
-            if (!$allianceID) {
-                $allianceIDID = 0;
-            } else {
-                $allianceIDID = $allianceID->id;
-            }
-            $itemID = Item::where('item_name', $input['Type'])->first();
-            $systemID = System::where('system_name', $input['System'])->first();
+        // $inputs = $request->all();
+        // foreach ($inputs as $input) {
+        //     $stationName = $input['name'];
+        //     $timer = Helper::fixtime($input['Expires']);
+        //     $allianceID = Alliance::where('ticker', $input['Ticker'])->first();
+        //     if (!$allianceID) {
+        //         $allianceIDID = 0;
+        //     } else {
+        //         $allianceIDID = $allianceID->id;
+        //     }
+        //     $itemID = Item::where('item_name', $input['Type'])->first();
+        //     $systemID = System::where('system_name', $input['System'])->first();
 
-            if ($input['Timer'] == "Armor") {
-                $statusID = 8;
-            }
+        //     if ($input['Timer'] == "Armor") {
+        //         $statusID = 8;
+        //     }
 
-            if ($input['Timer'] == "Hull") {
-                $statusID = 9;
-            }
-            if ($input['Timer'] == "Anchoring") {
-                $statusID = 14;
-            }
-
-
-            $check = Station::where(['name' => $input['name'], 'system_id' => $systemID->id, 'alliance_id' => $allianceIDID])->first();
-            if ($check) {
-                // $checkid = $check["id"];
-                $check->update(['station_status_id' => $statusID, 'out_time' => $timer]);
-                // dd($check->id);
-            } else {
+        //     if ($input['Timer'] == "Hull") {
+        //         $statusID = 9;
+        //     }
+        //     if ($input['Timer'] == "Anchoring") {
+        //         $statusID = 14;
+        //     }
 
 
-
-                $reconpull = $this->reconPullbyname($stationName);
-                // dd($reconpull);
-
-
-                if (!$reconpull) {
-                    // dd("yoyo");
-                    $id = Station::where('id', '<', 10000000000)->max('id');
-                    if ($id == null) {
-                        $id = 1;
-                    } else {
-                        $id = $id + 1;
-                    }
+        //     $check = Station::where(['name' => $input['name'], 'system_id' => $systemID->id, 'alliance_id' => $allianceIDID])->first();
+        //     if ($check) {
+        //         // $checkid = $check["id"];
+        //         $check->update(['station_status_id' => $statusID, 'out_time' => $timer]);
+        //         // dd($check->id);
+        //     } else {
 
 
 
-                    $new = Station::Create(['name' => $input['name'], 'system_id' => $systemID->id, 'alliance_id' => $allianceIDID, 'item_id' => $itemID->id, 'station_status_id' => $statusID, 'out_time' => $timer]);
-                    if ($allianceIDID == 0) {
-                        $new->update(['id' => $id, 'text' => $input['Ticker']]);
-                    } else {
-                        $new->update(['id' => $id]);
-                    }
-                }
-            }
-            // dd('yo');
-        }
+        //         $reconpull = $this->reconPullbyname($stationName);
+        //         // dd($reconpull);
+
+
+        //         if (!$reconpull) {
+        //             // dd("yoyo");
+        //             $id = Station::where('id', '<', 10000000000)->max('id');
+        //             if ($id == null) {
+        //                 $id = 1;
+        //             } else {
+        //                 $id = $id + 1;
+        //             }
+
+
+
+        //             $new = Station::Create(['name' => $input['name'], 'system_id' => $systemID->id, 'alliance_id' => $allianceIDID, 'item_id' => $itemID->id, 'station_status_id' => $statusID, 'out_time' => $timer]);
+        //             if ($allianceIDID == 0) {
+        //                 $new->update(['id' => $id, 'text' => $input['Ticker']]);
+        //             } else {
+        //                 $new->update(['id' => $id]);
+        //             }
+        //         }
+        //     }
+        //     // dd('yo');
+        // }
     }
 
     public static function reconPullbyname($stationName)
