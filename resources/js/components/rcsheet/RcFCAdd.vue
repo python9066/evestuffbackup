@@ -1,11 +1,6 @@
 <template>
     <div>
-        <v-dialog
-            v-model="overlay"
-            max-width="700px"
-            z-index="0"
-            @click:outside="close()"
-        >
+        <v-dialog v-model="overlay" z-index="0" @click:outside="close()">
             <template v-slot:activator="{ on, attrs }">
                 <v-btn
                     class="mr-4"
@@ -17,12 +12,7 @@
                 >
             </template>
 
-            <v-card
-                tile
-                max-width="700px"
-                min-height="200px"
-                max-height="700px"
-            >
+            <v-card tile max-width="500px" min-height="200px">
                 <v-card-title
                     class="d-flex justify-space-between align-center "
                 >
@@ -105,6 +95,14 @@
                                 >
                                     ADD
                                 </v-btn>
+                                <v-icon
+                                    rounded
+                                    :outlined="true"
+                                    x-small
+                                    @click="pillDelete(item)"
+                                >
+                                    fas fa-trash-alt
+                                </v-icon>
                             </span>
                         </template>
                     </v-data-table>
@@ -152,6 +150,8 @@ export default {
         },
 
         async pillClick(item) {},
+
+        async pilldelete(item) {},
 
         async newFCForm() {
             var request = {

@@ -11982,8 +11982,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -12027,19 +12025,32 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee);
       }))();
     },
-    newFCForm: function newFCForm() {
-      var _this = this;
-
+    pilldelete: function pilldelete(item) {
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
-        var request;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2);
+      }))();
+    },
+    newFCForm: function newFCForm() {
+      var _this = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
+        var request;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
                 request = {
                   char_name: _this.newCharName
                 };
-                _context2.next = 3;
+                _context3.next = 3;
                 return axios({
                   method: "POST",
                   url: "/api/campaignusers/" + _this.campaign_id,
@@ -12062,25 +12073,25 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               case 5:
               case "end":
-                return _context2.stop();
+                return _context3.stop();
             }
           }
-        }, _callee2);
+        }, _callee3);
       }))();
     },
     removeChar: function removeChar(item) {
       var _this2 = this;
 
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
           while (1) {
-            switch (_context3.prev = _context3.next) {
+            switch (_context4.prev = _context4.next) {
               case 0:
                 _this2.$store.dispatch("deleteUsersChars", item.id);
 
                 _this2.$store.dispatch("deleteCampaignUser", item.id);
 
-                _context3.next = 4;
+                _context4.next = 4;
                 return axios({
                   method: "DELETE",
                   url: "/api/campaignusers/" + item.id + "/" + _this2.campaign_id + "/" + _this2.$store.state.user_id,
@@ -12096,10 +12107,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               case 5:
               case "end":
-                return _context3.stop();
+                return _context4.stop();
             }
           }
-        }, _callee3);
+        }, _callee4);
       }))();
     }
   },
@@ -40174,7 +40185,7 @@ var render = function() {
       _c(
         "v-dialog",
         {
-          attrs: { "max-width": "700px", "z-index": "0" },
+          attrs: { "z-index": "0" },
           on: {
             "click:outside": function($event) {
               return _vm.close()
@@ -40220,12 +40231,7 @@ var render = function() {
           _c(
             "v-card",
             {
-              attrs: {
-                tile: "",
-                "max-width": "700px",
-                "min-height": "200px",
-                "max-height": "700px"
-              }
+              attrs: { tile: "", "max-width": "500px", "min-height": "200px" }
             },
             [
               _c(
@@ -40414,6 +40420,27 @@ var render = function() {
                                       [
                                         _vm._v(
                                           "\n                                ADD\n                            "
+                                        )
+                                      ]
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "v-icon",
+                                      {
+                                        attrs: {
+                                          rounded: "",
+                                          outlined: true,
+                                          "x-small": ""
+                                        },
+                                        on: {
+                                          click: function($event) {
+                                            return _vm.pillDelete(item)
+                                          }
+                                        }
+                                      },
+                                      [
+                                        _vm._v(
+                                          "\n                                fas fa-trash-alt\n                            "
                                         )
                                       ]
                                     )
