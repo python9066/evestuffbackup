@@ -57,7 +57,7 @@ export default {
     data() {
         return {
             headers: [
-                { text: "System", value: "name" },
+                { text: "System", value: "system_name" },
                 { text: "Name", value: "name" },
                 { text: "Type", value: "item_name" },
                 { text: "Timer", value: "status_name" },
