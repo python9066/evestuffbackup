@@ -46,7 +46,7 @@ regions.region_name AS region_name,
 stations.alliance_id AS alliance_id,
 alliances.name AS alliance_name,
 alliances.ticker AS alliance_ticker,
-alliances.url AS url
+alliances.url AS 'url',
 stations.item_id AS item_id,
 items.item_name AS item_name,
 stations.station_status_id AS status_id,
