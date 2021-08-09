@@ -26,7 +26,7 @@ class RCSheet extends Controller
         foreach ($inputs as $input) {
             $stationName = $input['name'];
             $reconpull = $this->reconPullbyname($stationName);
-            dd($reconpull);
+            // dd($reconpull);
             $timer = Helper::fixtime($input['Expires']);
 
             if ($reconpull = false) {
