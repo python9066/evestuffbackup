@@ -1085,7 +1085,7 @@ export default new Vuex.Store({
             }
         },
 
-        async getReconTaskSystemsRecords({ commit, state }) {
+        async getRcStationRecords({ commit, state }) {
             let res = await axios({
                 method: "get", //you can set what request you want to be
                 url: "/api/rcsheet",

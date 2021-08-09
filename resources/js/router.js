@@ -20,6 +20,7 @@ import chillstations from "./components/chillstation/ChillStructure.vue";
 import Gsol from "./views/Gsol"
 import Recon from "./views/Recon";
 import StartCampaign from "./views/StartCampaignSystem"
+import KillList from "./views/RCsheet.vue"
 
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
@@ -137,6 +138,20 @@ export default new Router({
             path: "/feedback",
             name: "feedback",
             component: FeedBack,
+              beforeEnter(to, from, next) {
+                if(Permissions.indexOf('super' )!== -1){
+                    next()
+                }else{
+                   next("/notifications")
+                }
+
+              }
+        },
+
+        {
+            path: "/killlist",
+            name: "killlist",
+            component: KillList,
               beforeEnter(to, from, next) {
                 if(Permissions.indexOf('super' )!== -1){
                     next()
