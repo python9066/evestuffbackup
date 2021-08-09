@@ -15,7 +15,7 @@ class RCSheet extends Controller
 
         $inputs = $request->all();
         foreach ($inputs as $input) {
-            $timer = Helper::fixtime($input->Expires);
+            $timer = Helper::fixtime($input['Expires']);
             dd($input, $timer);
         }
     }
