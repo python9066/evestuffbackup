@@ -72,7 +72,7 @@ class RCSheet extends Controller
                     $corpID = Corp::where('ticker', $input['owning_corp_ticker'])->first();
                     $allianceID = Alliance::where('ticker', $input['owning_alliance_ticker'])->first();
                     if (!$corpID) {
-                        if (!$allianceID) {
+                        if ($allianceID) {
                             $allianceIDID = $allianceID->id;
                         }
                     } else {
