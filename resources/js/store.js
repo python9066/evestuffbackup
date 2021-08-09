@@ -36,7 +36,8 @@ export default new Vuex.Store({
         queriousLink: "",
         rcfcs: [],
         rcsheetRegion: [],
-        rcsheetItem:[],
+        rcsheetItem: [],
+        rcsheetStatus:[],
         rcstations:[],
         recontasksystems:[],
         rolesList: [],
@@ -284,6 +285,12 @@ export default new Vuex.Store({
         SET_RC_TYPE(state, rcsheetItem) {
             state.rcsheetItem = rcsheetItem;
         },
+
+        SET_RC_STATUS(state, rcsheetStatus) {
+            state.rcsheetStatus = rcsheetStatus;
+        },
+
+
 
 
 
@@ -821,6 +828,19 @@ export default new Vuex.Store({
                 }
             });
             commit("SET_RC_TYPE", res.data.rcsheetlistType);
+        },
+
+        async getRcStatus({ commit, state }) {
+            let res = await axios({
+                method: "get",
+                url: "/api/rcStatuslist",
+                headers: {
+                    Authorization: "Bearer " + state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                }
+            });
+            commit("SET_RC_STATUS", res.data.rcsheetlistType);
         },
 
 

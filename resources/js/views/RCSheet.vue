@@ -318,16 +318,37 @@ export default {
     },
 
     computed: {
-        ...mapState(["rcstations", "rcsheetRegion", "rcsheetItem"]),
+        ...mapState([
+            "rcstations",
+            "rcsheetRegion",
+            "rcsheetItem",
+            "getRcStatus"
+        ]),
         filteredItems() {
             return this.rcstations;
+        },
+
+        filter_start() {
+            let data = [];
+            if (this.statusPicked.length != 0) {
+                this.statusPicked.forEach(p => {
+                    let pick = this.filteredItems.filter(f => f.status_id == p);
+                    if (pick != null) {
+                        pick.forEach(pk => {
+                            data.push(pk);
+                        });
+                    }
+                });
+                return data;
+            }
+            return this.filteredItems;
         },
 
         filter_mid() {
             let data = [];
             if (this.itemPicked.length != 0) {
                 this.itemPicked.forEach(p => {
-                    let pick = this.filteredItems.filter(f => f.item_id == p);
+                    let pick = this.filter_start.filter(f => f.item_id == p);
                     if (pick != null) {
                         pick.forEach(pk => {
                             data.push(pk);
@@ -361,6 +382,10 @@ export default {
 
         dropdown_type_list() {
             return this.rcsheetItem;
+        },
+
+        dropdown_type_status() {
+            return this.getRcStatus;
         }
     },
     beforeDestroy() {

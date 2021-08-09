@@ -206,4 +206,5 @@ Route::middleware('auth:api')->group(function () {
     Route::post('/rcfcadd/{id}', 'RcFcUsersController@addFCadd');
     Route::get('/rcregionlist', 'RcSheetContoller@rcSheetListRegion');
     Route::get('/rcTypelist', 'RcSheetContoller@rcSheetListType');
+    Route::get('/rcStatuslist', 'RcSheetContoller@rcSheetListStatus');
 });

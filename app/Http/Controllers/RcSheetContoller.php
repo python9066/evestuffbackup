@@ -54,6 +54,27 @@ class RcSheetContoller extends Controller
         return ['rcsheetlistType' => $data];
     }
 
+    public function rcSheetListStatus()
+    {
+        $data = [];
+        $pull = RcStationRecords::all();
+        $pull = $pull->unique('status_id');
+        $pull = $pull->sortBy('status_name');
+        foreach ($pull as $pull) {
+            $data1 = [];
+            $data1 = [
+                "text" => $pull['status_id'],
+                "value" => $pull['status_name']
+            ];
+
+            array_push($data, $data1);
+        }
+
+        // dd($data);
+
+        return ['rcsheetlistStatus' => $data];
+    }
+
 
     public function rcSheetListRegion()
     {
