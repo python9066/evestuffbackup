@@ -23,7 +23,6 @@
                         :headers="headers"
                         :items="filteredItems"
                         item-key="id"
-                        :loading="loading"
                         :sort-by="['name']"
                         :items-per-page="20"
                         :search="search"
@@ -86,7 +85,7 @@ export default {
                 { text: "Status", value: "status_name" },
                 { text: "Ticker", value: "alliance_ticker" },
                 { text: "Expires", value: "end_time" },
-                { text: "CoutDown", value: "" },
+                { text: "CountDown", value: "count" },
                 { text: "FC", value: "fc_name" },
                 { text: "Recon", value: "recon_name" },
                 { text: "GSOL", value: "gsol_name" },

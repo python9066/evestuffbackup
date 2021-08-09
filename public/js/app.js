@@ -24078,7 +24078,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
 
 
 
@@ -24115,8 +24114,8 @@ function sleep(ms) {
         text: "Expires",
         value: "end_time"
       }, {
-        text: "CoutDown",
-        value: ""
+        text: "CountDown",
+        value: "count"
       }, {
         text: "FC",
         value: "fc_name"
@@ -51495,7 +51494,6 @@ var render = function() {
                         headers: _vm.headers,
                         items: _vm.filteredItems,
                         "item-key": "id",
-                        loading: _vm.loading,
                         "sort-by": ["name"],
                         "items-per-page": 20,
                         search: _vm.search,
