@@ -97,6 +97,7 @@ class RcFcUsersController extends Controller
         if ($user_id > 9999999999) {
             User::where('id', $user_id)->delete();
         }
+        Station::where('rc_fc_id', $id)->update(['fc_fc_id' => 0]);
         RcFcUsers::where('id', $id)->delete();
     }
 
