@@ -216,7 +216,7 @@ class RCSheet extends Controller
         ]);
 
         $stationdata = Utils::jsonDecode($response->getBody(), true);
-        dd($stationdata);
+        // dd($stationdata);
         if ($response->getStatusCode() == 200) {
             if ($stationdata == "Error, Structure Not Found") {
 
@@ -257,7 +257,7 @@ class RCSheet extends Controller
                     'show_on_rc' => 1
                 ]);
                 // dd($stationdata);
-                if ($stationdata['str_has_no_fitting'] != null) {
+                if ($stationdata['str_has_no_fitting'] != null || $stationdata['str_has_no_fitting'] == "No Fitting") {
                     $items = Utils::jsonDecode($stationdata['str_fitting'], true);
 
                     foreach ($items as $item) {
