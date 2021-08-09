@@ -53371,7 +53371,7 @@ var render = function() {
                             staticClass: " pb-2",
                             attrs: {
                               items: _vm.dropdown_status_list,
-                              label: "Filter by Type",
+                              label: "Filter by Status",
                               multiple: "",
                               chips: "",
                               "deletable-chips": "",

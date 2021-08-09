@@ -60,7 +60,7 @@
                             class=" pb-2"
                             v-model="statusPicked"
                             :items="dropdown_status_list"
-                            label="Filter by Type"
+                            label="Filter by Status"
                             multiple
                             chips
                             deletable-chips
