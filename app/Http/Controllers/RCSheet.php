@@ -29,7 +29,7 @@ class RCSheet extends Controller
             // dd($reconpull);
             $timer = Helper::fixtime($input['Expires']);
 
-            if ($reconpull == false) {
+            if (!$reconpull) {
                 // dd("yoyo");
                 $id = Station::where('id', '<', 1000000000)->max('id');
                 if ($id == null) {
@@ -51,8 +51,8 @@ class RCSheet extends Controller
                 $allianceID = Alliance::where('ticker', $input['Ticker'])->first();
                 $itemID = Item::where('item_name', $input['Type'])->first();
                 $systemID = System::where('system_name', $input['System'])->first();
-                // $new = Station::Create(['name' => $input['name'], 'system_id' => $systemID->id, 'alliance_id' => $allianceID->id, 'item_id' => $itemID->id, 'station_status_id' => $statusID, 'out_time' => $timer]);
-                dd($allianceID->id, $input, $timer, $reconpull);
+                $new = Station::Create(['name' => $input['name'], 'system_id' => $systemID->id, 'alliance_id' => $allianceID->id, 'item_id' => $itemID->id, 'station_status_id' => $statusID, 'out_time' => $timer]);
+                // dd($allianceID->id, $input, $timer, $reconpull);
             }
         }
     }
