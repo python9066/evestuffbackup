@@ -840,7 +840,7 @@ export default new Vuex.Store({
                     "Content-Type": "application/json"
                 }
             });
-            commit("SET_RC_STATUS", res.data.rcsheetlistType);
+            commit("SET_RC_STATUS", res.data.rcsheetlistStatus);
         },
 
 

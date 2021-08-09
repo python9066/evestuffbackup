@@ -63532,7 +63532,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
 
               case 3:
                 res = _context26.sent;
-                commit("SET_RC_STATUS", res.data.rcsheetlistType);
+                commit("SET_RC_STATUS", res.data.rcsheetlistStatus);
 
               case 5:
               case "end":
