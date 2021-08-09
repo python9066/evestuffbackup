@@ -11887,8 +11887,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -39419,31 +39417,23 @@ var render = function() {
         [
           _c(
             "v-btn",
-            _vm._g(
-              _vm._b(
+            {
+              directives: [
                 {
-                  directives: [
-                    {
-                      name: "show",
-                      rawName: "v-show",
-                      value: _vm.showRcFCButton,
-                      expression: "showRcFCButton"
-                    }
-                  ],
-                  key: "gunnerbutton" + _vm.station.gunner_id,
-                  attrs: { color: "blue", "x-small": "", outlined: "" },
-                  on: {
-                    click: function($event) {
-                      return _vm.fcAdd()
-                    }
-                  }
-                },
-                "v-btn",
-                _vm.attrs,
-                false
-              ),
-              _vm.on
-            ),
+                  name: "show",
+                  rawName: "v-show",
+                  value: _vm.showRcFCButton,
+                  expression: "showRcFCButton"
+                }
+              ],
+              key: "gunnerbutton" + _vm.station.gunner_id,
+              attrs: { color: "blue", "x-small": "", outlined: "" },
+              on: {
+                click: function($event) {
+                  return _vm.fcAdd()
+                }
+              }
+            },
             [
               _c("v-icon", { attrs: { "x-small": "", dark: "", left: "" } }, [
                 _vm._v("\n                fas fa-plus\n            ")

@@ -16,8 +16,6 @@
                 x-small
                 outlined
                 @click="fcAdd()"
-                v-bind="attrs"
-                v-on="on"
             >
                 <v-icon x-small dark left>
                     fas fa-plus
