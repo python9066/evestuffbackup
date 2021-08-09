@@ -17,8 +17,8 @@
                     <v-card-text>
                         <v-select
                             class=" pb-2"
-                            v-model="typePicked"
-                            :items="dropdown_search_list"
+                            v-model="regionPicked"
+                            :items="dropdown_region_list"
                             label="Filter by Region"
                             multiple
                             chips
@@ -271,9 +271,12 @@ export default {
     },
 
     computed: {
-        ...mapState(["rcstations"]),
+        ...mapState(["rcstations", "rcsheetRegion"]),
         filteredItems() {
             return this.rcstations;
+        },
+        dropdown_region_list() {
+            return this.rcsheetRegion;
         }
     },
     beforeDestroy() {

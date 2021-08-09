@@ -25168,9 +25168,12 @@ function sleep(ms) {
       return true;
     }
   },
-  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapState"])(["rcstations"])), {}, {
+  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapState"])(["rcstations", "rcsheetRegion"])), {}, {
     filteredItems: function filteredItems() {
       return this.rcstations;
+    },
+    dropdown_region_list: function dropdown_region_list() {
+      return this.rcsheetRegion;
     }
   }),
   beforeDestroy: function beforeDestroy() {
@@ -53144,7 +53147,7 @@ var render = function() {
                       _c("v-select", {
                         staticClass: " pb-2",
                         attrs: {
-                          items: _vm.dropdown_search_list,
+                          items: _vm.dropdown_region_list,
                           label: "Filter by Region",
                           multiple: "",
                           chips: "",
@@ -53152,11 +53155,11 @@ var render = function() {
                           "hide-details": ""
                         },
                         model: {
-                          value: _vm.typePicked,
+                          value: _vm.regionPicked,
                           callback: function($$v) {
-                            _vm.typePicked = $$v
+                            _vm.regionPicked = $$v
                           },
-                          expression: "typePicked"
+                          expression: "regionPicked"
                         }
                       })
                     ],
