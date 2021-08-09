@@ -35,12 +35,12 @@ class RcFcUsersController extends Controller
         $check = RcFcUsers::where('user_id', $request->user_id)->count();
 
         if ($check == 0) {
-            $check =  RcFcUsers::Create(['user_id' => $request->user_id])->get();
+            RcFcUsers::Create(['user_id' => $request->user_id])->get();
         } else {
-            $check = RcFcUsers::where('user_id', $request->user_id)->get();
+            RcFcUsers::where('user_id', $request->user_id)->get();
         }
-        $check->map();
-        $fcid = $check['id'];
+
+        $fcid = RcFcUsers::where('user_id', $request->user_id)->value('id')->get();
         dd($fcid);
         Station::where('id', $id)->update(['fc_fc_id' => $fcid]);
     }
