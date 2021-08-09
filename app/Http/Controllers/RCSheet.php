@@ -72,6 +72,7 @@ class RCSheet extends Controller
         ]);
 
         $stationdata = Utils::jsonDecode($response->getBody(), true);
+        dd($stationdata);
         if ($response->getStatusCode() == 200) {
             if ($stationdata == "Error, Structure Not Found") {
 
