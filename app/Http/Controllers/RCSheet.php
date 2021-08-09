@@ -26,6 +26,8 @@ class RCSheet extends Controller
             $stationName = $input['name'];
             $reconpull = $this->reconPullbyname($stationName);
             $timer = Helper::fixtime($input['Expires']);
+            if ($reconpull = false) {
+            }
             dd($input, $timer, $reconpull);
         }
     }
@@ -49,10 +51,8 @@ class RCSheet extends Controller
         $stationdata = Utils::jsonDecode($response->getBody(), true);
         if ($response->getStatusCode() == 200) {
             if ($stationdata == "Error, Structure Not Found") {
-                $data = [
-                    'found' => false,
-                ];
-                return $data;
+
+                return false;
             } else {
 
                 Station::updateOrCreate(['id' => $stationdata['str_structure_id']], [
@@ -102,20 +102,14 @@ class RCSheet extends Controller
                 $corp = Corp::where('id', $stationdata['str_owner_corporation_id'])->first();
                 $item = Item::where('id', $stationdata['str_type_id'])->first();
                 $system = System::where('id', $stationdata['str_system_id'])->first();
-                $data = [];
-                $data = [
-                    'found' => true
-                ];
-                return $data;
+
+                return true;
             }
         } else {
             $stationCheck = station::where('name', $stationName)->first();
             if ($stationCheck != null) {
             } else {
-                $data = [
-                    'found' => false,
-                ];
-                return $data;
+                return false;
             }
         };
     }
