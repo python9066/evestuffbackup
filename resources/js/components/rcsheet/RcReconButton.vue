@@ -51,7 +51,7 @@ export default {
 
     methods: {
         showRcReconButton() {
-            if (this.station.fc_user_id) {
+            if (this.station.recon_user_id) {
                 return true;
             } else {
                 return false;
