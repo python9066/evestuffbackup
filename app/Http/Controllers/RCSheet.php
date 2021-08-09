@@ -29,6 +29,7 @@ class RCSheet extends Controller
 
         $inputs = $request->all();
         foreach ($inputs as $input) {
+            echo  $input['structure_name'];
             if ($input['is_hostile'] != null) {
                 if (
                     $input['structure_type']['type_id'] != 2774
