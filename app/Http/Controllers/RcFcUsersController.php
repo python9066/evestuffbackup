@@ -99,6 +99,11 @@ class RcFcUsersController extends Controller
     {
 
         Station::where('id', $id)->update(['rc_fc_id' => null]);
+        $message = RcStationRecords::where('id', $id)->first();
+        $flag = collect([
+            'message' => $message,
+        ]);
+        broadcast(new RcSheetUpdate($flag));
     }
 
     public function removeFC($id)
