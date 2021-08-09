@@ -24074,12 +24074,38 @@ function sleep(ms) {
   data: function data() {
     return {
       headers: [{
-        text: "Name",
+        text: "System",
         value: "name"
       }, {
-        text: "Roles",
-        value: "roles",
-        width: "80%"
+        text: "Name",
+        value: "roles"
+      }, {
+        text: "Type",
+        value: "roles"
+      }, {
+        text: "Timer",
+        value: "roles"
+      }, {
+        text: "Ticker",
+        value: "roles"
+      }, {
+        text: "Expires",
+        value: "roles"
+      }, {
+        text: "CoutDown",
+        value: "roles"
+      }, {
+        text: "FC",
+        value: "roles"
+      }, {
+        text: "Recon",
+        value: "roles"
+      }, {
+        text: "GSOL",
+        value: "roles"
+      }, {
+        text: "",
+        value: "actions"
       }]
     };
   },
@@ -24116,8 +24142,10 @@ function sleep(ms) {
     }))();
   },
   methods: {},
-  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapState"])([])), {}, {
-    filteredItems: function filteredItems() {}
+  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapState"])(["rcstations"])), {}, {
+    filteredItems: function filteredItems() {
+      return rcstations;
+    }
   }),
   beforeDestroy: function beforeDestroy() {}
 });

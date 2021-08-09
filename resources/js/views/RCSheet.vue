@@ -57,8 +57,17 @@ export default {
     data() {
         return {
             headers: [
-                { text: "Name", value: "name" },
-                { text: "Roles", value: "roles", width: "80%" }
+                { text: "System", value: "name" },
+                { text: "Name", value: "roles" },
+                { text: "Type", value: "roles" },
+                { text: "Timer", value: "roles" },
+                { text: "Ticker", value: "roles" },
+                { text: "Expires", value: "roles" },
+                { text: "CoutDown", value: "roles" },
+                { text: "FC", value: "roles" },
+                { text: "Recon", value: "roles" },
+                { text: "GSOL", value: "roles" },
+                { text: "", value: "actions" }
             ]
         };
     },
@@ -72,8 +81,10 @@ export default {
     methods: {},
 
     computed: {
-        ...mapState([]),
-        filteredItems() {}
+        ...mapState(["rcstations"]),
+        filteredItems() {
+            return rcstations;
+        }
     },
     beforeDestroy() {}
 };
