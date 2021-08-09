@@ -11987,6 +11987,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -40463,7 +40464,7 @@ var render = function() {
                       _vm._b(
                         {
                           staticClass: "mr-4",
-                          attrs: { color: "green lighten-1" }
+                          attrs: { color: "green lighten-1", "x-small": "" }
                         },
                         "v-btn",
                         attrs,
@@ -40722,7 +40723,7 @@ var render = function() {
                     [
                       _c("template", { slot: "no-data" }, [
                         _vm._v(
-                          "\n                        You have no saved Chars\n                    "
+                          "\n                        No FCs\n                    "
                         )
                       ])
                     ],

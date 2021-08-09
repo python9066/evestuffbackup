@@ -11,6 +11,7 @@
                     class="mr-4"
                     color="green lighten-1"
                     v-bind="attrs"
+                    x-small
                     v-on="on"
                     >FC</v-btn
                 >
@@ -91,7 +92,7 @@
                         class="elevation-24"
                     >
                         <template slot="no-data">
-                            You have no saved Chars
+                            No FCs
                         </template>
                         <!-- :color="pillColor(item)" -->
                         <template v-slot:[`item.addRemove`]="{ item }">
