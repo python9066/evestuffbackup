@@ -39394,8 +39394,8 @@ var render = function() {
                   {
                     name: "show",
                     rawName: "v-show",
-                    value: !_vm.showRcFCButton,
-                    expression: "!showRcFCButton"
+                    value: !_vm.showRcFCButton(),
+                    expression: "!showRcFCButton()"
                   }
                 ],
                 staticClass: "pl-2"
@@ -39422,8 +39422,8 @@ var render = function() {
                 {
                   name: "show",
                   rawName: "v-show",
-                  value: _vm.showRcFCButton,
-                  expression: "showRcFCButton"
+                  value: _vm.showRcFCButton(),
+                  expression: "showRcFCButton()"
                 }
               ],
               key: "gunnerbutton" + _vm.station.gunner_id,
@@ -39450,8 +39450,8 @@ var render = function() {
                 {
                   name: "show",
                   rawName: "v-show",
-                  value: !_vm.showRcFCButton,
-                  expression: "!showRcFCButton"
+                  value: !_vm.showRcFCButton(),
+                  expression: "!showRcFCButton()"
                 }
               ],
               attrs: { color: "orange darken-3", small: "" },

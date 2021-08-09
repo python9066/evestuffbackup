@@ -2,14 +2,14 @@
     <div class=" d-inline-flex align-items-md-center  pl-4">
         <div>
             <span class="d-inline-flex align-items-md-center pr-2">
-                <span class="pl-2" v-show="!showRcFCButton">
+                <span class="pl-2" v-show="!showRcFCButton()">
                     {{ station.fc_name }}
                 </span>
             </span>
         </div>
         <div>
             <v-btn
-                v-show="showRcFCButton"
+                v-show="showRcFCButton()"
                 :key="'gunnerbutton' + station.gunner_id"
                 class=""
                 color="blue"
@@ -23,7 +23,7 @@
                 FC</v-btn
             >
             <v-icon
-                v-show="!showRcFCButton"
+                v-show="!showRcFCButton()"
                 color="orange darken-3"
                 small
                 @click="fcRemove()"
