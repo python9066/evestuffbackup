@@ -28,7 +28,11 @@ class RCSheet extends Controller
             $itemID = Item::where('item_name', $input['Type'])->first();
             $systemID = System::where('system_name', $input['System'])->first();
             $check = Station::where(['name' => $input['name'], 'system_id' => $systemID->id, 'alliance_id' => $allianceID->id])->get();
-            dd($check);
+            if ($check) {
+                dd('yes');
+            } else {
+                dd('no');
+            }
 
             $stationName = $input['name'];
             $reconpull = $this->reconPullbyname($stationName);
