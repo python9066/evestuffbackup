@@ -101,7 +101,7 @@ class RCSheet extends Controller
 
                         // dd($input);
                         $reconpull = $this->reconPullbyname($stationName);
-                        // dd($reconpull);
+                        dd($reconpull);
 
 
                         if (!$reconpull) {
@@ -249,7 +249,7 @@ class RCSheet extends Controller
                 ]);
                 if ($stationdata['str_has_no_fitting'] != null) {
                     $items = Utils::jsonDecode($stationdata['str_fitting'], true);
-                    dd($items);
+                    // dd($items);
                     foreach ($items as $item) {
                         StationItems::where('id', $item['type_id'])->get()->count();
                         if (StationItems::where('id', $item['type_id'])->get()->count() == 0) {
