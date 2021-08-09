@@ -104,7 +104,6 @@ class RCSheet extends Controller
                     if ($check) {
                         // $checkid = $check["id"];
                         if ($check->station_status_id == 5) {
-                            dd($check->station_status_id);
                             $statusID = 5;
                         }
                         $check->update(['station_status_id' => $statusID, 'out_time' => $timer]);
