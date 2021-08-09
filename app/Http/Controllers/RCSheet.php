@@ -29,7 +29,7 @@ class RCSheet extends Controller
 
         $inputs = $request->all();
         foreach ($inputs as $input) {
-            echo  $input['structure_name'];
+            // echo  $input['structure_name'];
             if ($input['is_hostile'] != null) {
                 if (
                     $input['structure_type']['type_id'] != 2774
@@ -256,10 +256,10 @@ class RCSheet extends Controller
                     'r_cored' => $stationdata['str_cored'],
                     'show_on_rc' => 1
                 ]);
-                dd('stationdata');
+                dd($stationdata);
                 if ($stationdata['str_has_no_fitting'] != null) {
                     $items = Utils::jsonDecode($stationdata['str_fitting'], true);
-                    // dd($items);
+
                     foreach ($items as $item) {
                         StationItems::where('id', $item['type_id'])->get()->count();
                         if (StationItems::where('id', $item['type_id'])->get()->count() == 0) {
