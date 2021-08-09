@@ -12068,7 +12068,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   methods: {
     showRcGsolButton: function showRcGsolButton() {
-      if (this.station.gsol) {
+      if (this.station.gsol_user_id) {
         return true;
       } else {
         return false;

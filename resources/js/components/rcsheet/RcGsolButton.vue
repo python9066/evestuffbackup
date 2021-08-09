@@ -51,7 +51,7 @@ export default {
 
     methods: {
         showRcGsolButton() {
-            if (this.station.gsol) {
+            if (this.station.gsol_user_id) {
                 return true;
             } else {
                 return false;
