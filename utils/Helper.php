@@ -138,6 +138,7 @@ class Helper
 
         $time = str_replace("Z", "", $time);
         $time = str_replace("T", " ", $time);
+        $time = str_replace("+00:00", "", $time);
 
         return $time;
     }
