@@ -82,6 +82,26 @@ export default {
                     "Content-Type": "application/json"
                 }
             });
+        },
+
+        async fcRemove() {
+            var data = {
+                id: this.station.id,
+                fc_user_id: null,
+                fc_name: null
+            };
+
+            this.$store.dispatch("updateRcStation", data);
+
+            await axios({
+                method: "put",
+                url: "/api/rcfcuseradd/" + this.station.id,
+                headers: {
+                    Authorization: "Bearer " + this.$store.state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                }
+            });
         }
     },
 

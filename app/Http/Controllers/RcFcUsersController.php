@@ -44,6 +44,12 @@ class RcFcUsersController extends Controller
         Station::where('id', $id)->update(['rc_fc_id' => $fcid]);
     }
 
+    public function removeFCtoStation($id)
+    {
+
+        Station::where('id', $id)->update(['rc_fc_id' => null]);
+    }
+
     /**
      * Display the specified resource.
      *
