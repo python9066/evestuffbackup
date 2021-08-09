@@ -61,7 +61,6 @@
                         item-key="id"
                         :sort-by="['end_time']"
                         :items-per-page="50"
-                        :search="search"
                         :footer-props="{
                             'items-per-page-options': [10, 20, 50, 100, -1]
                         }"
