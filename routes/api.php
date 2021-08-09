@@ -205,4 +205,5 @@ Route::middleware('auth:api')->group(function () {
     Route::delete('/rcfcdelete/{id}', 'RcFcUsersController@removeFC');
     Route::post('/rcfcadd/{id}', 'RcFcUsersController@addFCadd');
     Route::get('/rcregionlist', 'RcSheetContoller@rcSheetListRegion');
+    Route::get('/rcTypelist', 'RcSheetContoller@rcSheetListType');
 });

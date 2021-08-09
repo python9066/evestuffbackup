@@ -30,12 +30,37 @@ class RcSheetContoller extends Controller
         //
     }
 
+
+
+
+    public function rcSheetListType()
+    {
+        $data = [];
+        $pull = RcStationRecords::all();
+        $pull = $pull->unique('item_id');
+        $pull = $pull->sortBy('item_name');
+        foreach ($pull as $pull) {
+            $data1 = [];
+            $data1 = [
+                "text" => $pull['item_name'],
+                "value" => $pull['item_id']
+            ];
+
+            array_push($data, $data1);
+        }
+
+        // dd($data);
+
+        return ['rcsheetlistType' => $data];
+    }
+
+
     public function rcSheetListRegion()
     {
         $data = [];
         $pull = RcStationRecords::all();
         $pull = $pull->unique('region_id');
-        $pull = $pull->sortBy('region');
+        $pull = $pull->sortBy('region_name');
         foreach ($pull as $pull) {
             $data1 = [];
             $data1 = [
