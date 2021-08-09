@@ -19,15 +19,6 @@
             </v-col>
             <!-- </v-col> -->
         </v-row>
-
-        <v-row no-gutters class="blue" justify="center">
-            <v-card
-                ><v-card-text>
-                    <v-text-field v-model="rcdata"> </v-text-field
-                    ><v-btn @click="sumbitrcdata()">Submmit</v-btn></v-card-text
-                ></v-card
-            >
-        </v-row>
     </div>
 </template>
 <!-- {{ $route.params.id }} - {{ test }} -  -->
@@ -75,20 +66,7 @@ export default {
             await this.$store.dispatch("getCampaigns");
         }
     },
-    methods: {
-        async sumbitrcdata() {
-            await axios({
-                method: "post", //you can set what request you want to be
-                url: "api/rctest",
-                data: this.rcdata,
-                headers: {
-                    Authorization: "Bearer " + this.$store.state.token,
-                    Accept: "application/json",
-                    "Content-Type": "application/json"
-                }
-            });
-        }
-    },
+    methods: {},
 
     async created() {
         this.test = 2;

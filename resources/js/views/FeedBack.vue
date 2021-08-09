@@ -70,6 +70,15 @@
                 </v-icon>
             </template>
         </v-data-table>
+        <v-row no-gutters class="blue" justify="center">
+            <v-card
+                ><v-card-text>
+                    <v-text-field v-model="rcdata"> </v-text-field
+                    ><v-btn @click="sumbitrcdata()">Submmit</v-btn></v-card-text
+                ></v-card
+            >
+        </v-row>
+
         <v-snackbar v-model="snack" :timeout="3000" :color="snackColor">
             {{ snackText }}
 
@@ -97,6 +106,7 @@ export default {
             atime: null,
             check: "not here",
             componentKey: 0,
+            rcdata: null,
             data: [],
             dialog1: false,
             dialog2: false,
@@ -178,6 +188,19 @@ export default {
                 }
             });
             this.loadFeedBack();
+        },
+
+        async sumbitrcdata() {
+            await axios({
+                method: "post", //you can set what request you want to be
+                url: "api/rcInput",
+                data: this.rcdata,
+                headers: {
+                    Authorization: "Bearer " + this.$store.state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                }
+            });
         },
 
         save() {

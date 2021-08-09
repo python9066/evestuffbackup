@@ -21615,6 +21615,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -21636,6 +21645,7 @@ function sleep(ms) {
       atime: null,
       check: "not here",
       componentKey: 0,
+      rcdata: null,
       data: [],
       dialog1: false,
       dialog2: false,
@@ -21781,6 +21791,35 @@ function sleep(ms) {
             }
           }
         }, _callee3);
+      }))();
+    },
+    sumbitrcdata: function sumbitrcdata() {
+      var _this3 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
+          while (1) {
+            switch (_context4.prev = _context4.next) {
+              case 0:
+                _context4.next = 2;
+                return axios({
+                  method: "post",
+                  //you can set what request you want to be
+                  url: "api/rcInput",
+                  data: _this3.rcdata,
+                  headers: {
+                    Authorization: "Bearer " + _this3.$store.state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                  }
+                });
+
+              case 2:
+              case "end":
+                return _context4.stop();
+            }
+          }
+        }, _callee4);
       }))();
     },
     save: function save() {
@@ -25848,15 +25887,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -25907,55 +25937,25 @@ function sleep(ms) {
       }, _callee);
     }))();
   },
-  methods: {
-    sumbitrcdata: function sumbitrcdata() {
-      var _this2 = this;
-
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
-          while (1) {
-            switch (_context2.prev = _context2.next) {
-              case 0:
-                _context2.next = 2;
-                return axios({
-                  method: "post",
-                  //you can set what request you want to be
-                  url: "api/rctest",
-                  data: _this2.rcdata,
-                  headers: {
-                    Authorization: "Bearer " + _this2.$store.state.token,
-                    Accept: "application/json",
-                    "Content-Type": "application/json"
-                  }
-                });
-
-              case 2:
-              case "end":
-                return _context2.stop();
-            }
-          }
-        }, _callee2);
-      }))();
-    }
-  },
+  methods: {},
   created: function created() {
-    var _this3 = this;
+    var _this2 = this;
 
-    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
         while (1) {
-          switch (_context3.prev = _context3.next) {
+          switch (_context2.prev = _context2.next) {
             case 0:
-              _this3.test = 2;
-              _this3.test2 = 1;
-              _this3.navdrawer = true;
+              _this2.test = 2;
+              _this2.test2 = 1;
+              _this2.navdrawer = true;
 
             case 3:
             case "end":
-              return _context3.stop();
+              return _context2.stop();
           }
         }
-      }, _callee3);
+      }, _callee2);
     }))();
   },
   computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapGetters"])(["getCampaignById", "getActiveCampaigns", "getCampaignsCount"])), {}, {
@@ -49218,6 +49218,46 @@ var render = function() {
       ),
       _vm._v(" "),
       _c(
+        "v-row",
+        { staticClass: "blue", attrs: { "no-gutters": "", justify: "center" } },
+        [
+          _c(
+            "v-card",
+            [
+              _c(
+                "v-card-text",
+                [
+                  _c("v-text-field", {
+                    model: {
+                      value: _vm.rcdata,
+                      callback: function($$v) {
+                        _vm.rcdata = $$v
+                      },
+                      expression: "rcdata"
+                    }
+                  }),
+                  _c(
+                    "v-btn",
+                    {
+                      on: {
+                        click: function($event) {
+                          return _vm.sumbitrcdata()
+                        }
+                      }
+                    },
+                    [_vm._v("Submmit")]
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
         "v-snackbar",
         {
           attrs: { timeout: 3000, color: _vm.snackColor },
@@ -52911,46 +52951,6 @@ var render = function() {
                 "v-card",
                 { staticClass: "pa-2", attrs: { outlined: "", tile: "" } },
                 [_vm._v("\n                3 of 3\n            ")]
-              )
-            ],
-            1
-          )
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "v-row",
-        { staticClass: "blue", attrs: { "no-gutters": "", justify: "center" } },
-        [
-          _c(
-            "v-card",
-            [
-              _c(
-                "v-card-text",
-                [
-                  _c("v-text-field", {
-                    model: {
-                      value: _vm.rcdata,
-                      callback: function($$v) {
-                        _vm.rcdata = $$v
-                      },
-                      expression: "rcdata"
-                    }
-                  }),
-                  _c(
-                    "v-btn",
-                    {
-                      on: {
-                        click: function($event) {
-                          return _vm.sumbitrcdata()
-                        }
-                      }
-                    },
-                    [_vm._v("Submmit")]
-                  )
-                ],
-                1
               )
             ],
             1
