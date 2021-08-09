@@ -24959,6 +24959,9 @@ function sleep(ms) {
   data: function data() {
     return {
       headers: [{
+        text: "Region",
+        value: "region_name"
+      }, {
         text: "System",
         value: "system_name"
       }, {
