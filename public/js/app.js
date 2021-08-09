@@ -24957,6 +24957,28 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -53182,6 +53204,54 @@ var render = function() {
                             _vm.regionPicked = $$v
                           },
                           expression: "regionPicked"
+                        }
+                      })
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "v-col",
+            { staticClass: " d-inline-flex", attrs: { cols: "12" } },
+            [
+              _c("v-spacer"),
+              _vm._v(" "),
+              _c(
+                "v-card",
+                {
+                  attrs: {
+                    "max-width": "600px",
+                    "min-width": "600px",
+                    color: "#121212",
+                    elevation: "0"
+                  }
+                },
+                [
+                  _c(
+                    "v-card-text",
+                    [
+                      _c("v-select", {
+                        staticClass: " pb-2",
+                        attrs: {
+                          items: _vm.dropdown_type_list,
+                          label: "Filter by Type",
+                          multiple: "",
+                          chips: "",
+                          "deletable-chips": "",
+                          "hide-details": ""
+                        },
+                        model: {
+                          value: _vm.typePicked,
+                          callback: function($$v) {
+                            _vm.typePicked = $$v
+                          },
+                          expression: "typePicked"
                         }
                       })
                     ],
