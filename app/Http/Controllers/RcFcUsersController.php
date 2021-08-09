@@ -37,7 +37,7 @@ class RcFcUsersController extends Controller
         return ['fcs' => $fclist];
     }
 
-    public function newfc($request)
+    public function newfc(Request $request)
     {
         $name = $request->name;
         $check = User::where('name', $name)->get();
