@@ -59,7 +59,8 @@ stations.rc_recon_id AS rc_recon_id,
 recon.user_id AS recon_user_id,
 reconuser.name AS recon_name,
 stations.rc_gsol_id AS gsol_user_id,
-gsoluser.name AS gsol_name
+gsoluser.name AS gsol_name,
+if(stations.out_time> UTC_TIMESTAMP,false,true) AS 'out'
 FROM stations
 LEFT JOIN systems ON systems.id = stations.system_id
 LEFT JOIN regions ON regions.id = systems.region_id
