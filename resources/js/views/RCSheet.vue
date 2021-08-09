@@ -77,6 +77,7 @@
             >
                 <v-card width="100%">
                     <v-data-table
+                        dense
                         :headers="headers"
                         :items="filter_end"
                         item-key="id"
