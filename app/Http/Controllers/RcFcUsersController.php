@@ -97,7 +97,7 @@ class RcFcUsersController extends Controller
         if ($user_id > 9999999999) {
             User::where('id', $user_id)->delete();
         }
-        RcFcUsers::where('id', $id);
+        RcFcUsers::where('id', $id)->delete();
     }
 
     /**
