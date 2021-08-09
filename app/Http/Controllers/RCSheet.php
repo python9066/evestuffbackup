@@ -101,7 +101,8 @@ class RCSheet extends Controller
 
 
                     $check = Station::where(['name' => $input['structure_name'], 'system_id' => $input['solar_system']['solar_system_id'], 'alliance_id' => $allianceIDID])->first();
-
+                    $count = $check->count();
+                    dd($count);
                     if ($check != null) {
                         // $checkid = $check["id"];
                         if ($check->station_status_id == 5) {
