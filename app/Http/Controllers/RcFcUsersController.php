@@ -39,7 +39,7 @@ class RcFcUsersController extends Controller
 
     public function newfc(Request $request)
     {
-        $name = $request->name;
+        $name = $request->char_name;
         $check = User::where('name', $name)->count();
         // dd($check);
         if ($check == null) {
