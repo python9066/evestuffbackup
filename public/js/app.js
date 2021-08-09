@@ -25031,7 +25031,8 @@ function sleep(ms) {
         value: "name"
       }, {
         text: "Type",
-        value: "item_name"
+        value: "item_name",
+        width: "5%"
       }, {
         text: "Status",
         value: "status_name",

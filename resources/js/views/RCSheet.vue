@@ -204,7 +204,7 @@ export default {
                 { text: "Const", value: "constellation_name" },
                 { text: "System", value: "system_name" },
                 { text: "Name", value: "name" },
-                { text: "Type", value: "item_name" },
+                { text: "Type", value: "item_name", width: "5%" },
                 { text: "Status", value: "status_name", align: "center" },
                 { text: "Ticker", value: "alliance_ticker" },
                 { text: "Expires", value: "end_time" },
