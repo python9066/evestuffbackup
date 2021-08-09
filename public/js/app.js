@@ -24056,6 +24056,29 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -24083,7 +24106,7 @@ function sleep(ms) {
         text: "Type",
         value: "item_name"
       }, {
-        text: "Timer",
+        text: "Status",
         value: "status_name"
       }, {
         text: "Ticker",
@@ -24141,7 +24164,21 @@ function sleep(ms) {
       }, _callee2);
     }))();
   },
-  methods: {},
+  methods: {
+    showCountDown: function showCountDown(item) {
+      if (item.status_id != 5) {
+        return true;
+      }
+
+      return false;
+    },
+    countDownStartTime: function countDownStartTime(item) {
+      return moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc(item.end_time).unix();
+    },
+    numberDay: function numberDay(day) {
+      return parseInt(day, 10) + "d";
+    }
+  },
   computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapState"])(["rcstations"])), {}, {
     filteredItems: function filteredItems() {
       return this.rcstations;
@@ -51465,9 +51502,90 @@ var render = function() {
                         "footer-props": {
                           "items-per-page-options": [10, 20, 50, 100, -1]
                         }
-                      }
+                      },
+                      scopedSlots: _vm._u(
+                        [
+                          {
+                            key: "item.count",
+                            fn: function(ref) {
+                              var item = ref.item
+                              return [
+                                _vm.showCountDown(item)
+                                  ? _c("CountDowntimer", {
+                                      attrs: {
+                                        "start-time": _vm.countDownStartTime(
+                                          item
+                                        ),
+                                        "end-text": "Coming Out",
+                                        interval: 1000,
+                                        "day-text": "Days"
+                                      },
+                                      scopedSlots: _vm._u(
+                                        [
+                                          {
+                                            key: "countdown",
+                                            fn: function(scope) {
+                                              return [
+                                                scope.props.days == 0
+                                                  ? _c("span", [
+                                                      _vm._v(
+                                                        _vm._s(
+                                                          scope.props.hours
+                                                        ) +
+                                                          ":" +
+                                                          _vm._s(
+                                                            scope.props.minutes
+                                                          ) +
+                                                          ":" +
+                                                          _vm._s(
+                                                            scope.props.seconds
+                                                          )
+                                                      )
+                                                    ])
+                                                  : _vm._e(),
+                                                _vm._v(" "),
+                                                scope.props.days != 0
+                                                  ? _c("span", [
+                                                      _vm._v(
+                                                        _vm._s(
+                                                          _vm.numberDay(
+                                                            scope.props.days
+                                                          )
+                                                        ) +
+                                                          "\n                                    " +
+                                                          _vm._s(
+                                                            scope.props.hours
+                                                          ) +
+                                                          ":" +
+                                                          _vm._s(
+                                                            scope.props.minutes
+                                                          ) +
+                                                          ":" +
+                                                          _vm._s(
+                                                            scope.props.seconds
+                                                          )
+                                                      )
+                                                    ])
+                                                  : _vm._e()
+                                              ]
+                                            }
+                                          }
+                                        ],
+                                        null,
+                                        true
+                                      )
+                                    })
+                                  : _vm._e()
+                              ]
+                            }
+                          }
+                        ],
+                        null,
+                        true
+                      )
                     },
                     [
+                      _vm._v(" "),
                       _c("template", { slot: "no-data" }, [
                         _vm._v(
                           "\n                        No Active or Upcoming Campaigns\n                    "

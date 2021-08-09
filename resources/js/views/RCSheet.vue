@@ -32,6 +32,29 @@
                         }"
                         class="elevation-5"
                     >
+                        <template v-slot:[`item.count`]="{ item }">
+                            <CountDowntimer
+                                v-if="showCountDown(item)"
+                                :start-time="countDownStartTime(item)"
+                                :end-text="'Coming Out'"
+                                :interval="1000"
+                                :day-text="'Days'"
+                            >
+                                <template slot="countdown" slot-scope="scope">
+                                    <span v-if="scope.props.days == 0"
+                                        >{{ scope.props.hours }}:{{
+                                            scope.props.minutes
+                                        }}:{{ scope.props.seconds }}</span
+                                    >
+                                    <span v-if="scope.props.days != 0"
+                                        >{{ numberDay(scope.props.days) }}
+                                        {{ scope.props.hours }}:{{
+                                            scope.props.minutes
+                                        }}:{{ scope.props.seconds }}</span
+                                    >
+                                </template>
+                            </CountDowntimer>
+                        </template>
                         <template slot="no-data">
                             No Active or Upcoming Campaigns
                         </template>
@@ -60,7 +83,7 @@ export default {
                 { text: "System", value: "system_name" },
                 { text: "Name", value: "name" },
                 { text: "Type", value: "item_name" },
-                { text: "Timer", value: "status_name" },
+                { text: "Status", value: "status_name" },
                 { text: "Ticker", value: "alliance_ticker" },
                 { text: "Expires", value: "end_time" },
                 { text: "CoutDown", value: "" },
@@ -78,7 +101,21 @@ export default {
         await this.$store.dispatch("getRcStationRecords");
     },
 
-    methods: {},
+    methods: {
+        showCountDown(item) {
+            if (item.status_id != 5) {
+                return true;
+            }
+
+            return false;
+        },
+        countDownStartTime(item) {
+            return moment.utc(item.end_time).unix();
+        },
+        numberDay(day) {
+            return parseInt(day, 10) + "d";
+        }
+    },
 
     computed: {
         ...mapState(["rcstations"]),
