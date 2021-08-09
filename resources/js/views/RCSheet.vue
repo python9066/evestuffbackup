@@ -324,7 +324,7 @@ export default {
             "rcstations",
             "rcsheetRegion",
             "rcsheetItem",
-            "getRcStatus"
+            "rcsheetStatus"
         ]),
         filteredItems() {
             return this.rcstations;
@@ -387,7 +387,7 @@ export default {
         },
 
         dropdown_status_list() {
-            return this.getRcStatus;
+            return this.rcsheetStatus;
         }
     },
     beforeDestroy() {
