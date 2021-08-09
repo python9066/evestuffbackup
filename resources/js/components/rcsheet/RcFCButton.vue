@@ -95,7 +95,7 @@ export default {
 
             await axios({
                 method: "put",
-                url: "/api/rcfcuseradd/" + this.station.id,
+                url: "/api/rcfcuserremove/" + this.station.id,
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
                     Accept: "application/json",

@@ -11976,7 +11976,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 _context2.next = 4;
                 return axios({
                   method: "put",
-                  url: "/api/rcfcuseradd/" + _this2.station.id,
+                  url: "/api/rcfcuserremove/" + _this2.station.id,
                   headers: {
                     Authorization: "Bearer " + _this2.$store.state.token,
                     Accept: "application/json",
