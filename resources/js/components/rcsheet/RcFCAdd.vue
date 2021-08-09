@@ -140,7 +140,8 @@ export default {
             ],
             newCharName: null,
 
-            addShown: false
+            addShown: false,
+            overlay: false
         };
     },
 

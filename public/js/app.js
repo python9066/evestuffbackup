@@ -12006,7 +12006,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       } // { text: "Vulernable End Time", value: "vulnerable_end_time" }
       ],
       newCharName: null,
-      addShown: false
+      addShown: false,
+      overlay: false
     };
   },
   methods: {
