@@ -74,7 +74,7 @@
                             ></RcFCButton>
                             <RcFCAdd
                                 v-if="!item.fc_user_id"
-                                class=" pl-4"
+                                class=" pl-6"
                             ></RcFCAdd>
                         </template>
                         <template v-slot:[`item.recon_name`]="{ item }">
