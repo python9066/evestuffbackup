@@ -24,44 +24,50 @@ class RCSheet extends Controller
 
         $inputs = $request->all();
         foreach ($inputs as $input) {
+            $stationName = $input['name'];
+            $timer = Helper::fixtime($input['Expires']);
             $allianceID = Alliance::where('ticker', $input['Ticker'])->first();
             $itemID = Item::where('item_name', $input['Type'])->first();
             $systemID = System::where('system_name', $input['System'])->first();
-            $check = Station::where(['name' => $input['name'], 'system_id' => $systemID->id, 'alliance_id' => $allianceID->id])->get();
-            if ($check) {
-                dd('yes');
-            } else {
-                dd('no');
+
+            if ($input['Timer'] == "Armor") {
+                $statusID = 8;
             }
 
-            $stationName = $input['name'];
-            $reconpull = $this->reconPullbyname($stationName);
-            // dd($reconpull);
-            $timer = Helper::fixtime($input['Expires']);
-
-            if (!$reconpull) {
-                // dd("yoyo");
-                $id = Station::where('id', '<', 10000000000)->max('id');
-                if ($id == null) {
-                    $id = 1;
-                } else {
-                    $id = $id + 1;
-                }
-                if ($input['Timer'] == "Armor") {
-                    $statusID = 8;
-                }
-
-                if ($input['Timer'] == "Hull") {
-                    $statusID = 9;
-                }
-                if ($input['Timer'] == "Anchoring") {
-                    $statusID = 14;
-                }
+            if ($input['Timer'] == "Hull") {
+                $statusID = 9;
+            }
+            if ($input['Timer'] == "Anchoring") {
+                $statusID = 14;
+            }
 
 
-                $new = Station::Create(['name' => $input['name'], 'system_id' => $systemID->id, 'alliance_id' => $allianceID->id, 'item_id' => $itemID->id, 'station_status_id' => $statusID, 'out_time' => $timer]);
-                $new->update(['id' => $id]);
-                dd($allianceID->id, $input, $timer, $reconpull);
+            $check = Station::where(['name' => $input['name'], 'system_id' => $systemID->id, 'alliance_id' => $allianceID->id])->get();
+            if ($check) {
+                $check->update([$statusID, 'out_time' => $timer]);
+            } else {
+
+
+
+                $reconpull = $this->reconPullbyname($stationName);
+                // dd($reconpull);
+
+
+                if (!$reconpull) {
+                    // dd("yoyo");
+                    $id = Station::where('id', '<', 10000000000)->max('id');
+                    if ($id == null) {
+                        $id = 1;
+                    } else {
+                        $id = $id + 1;
+                    }
+
+
+
+                    $new = Station::Create(['name' => $input['name'], 'system_id' => $systemID->id, 'alliance_id' => $allianceID->id, 'item_id' => $itemID->id, 'station_status_id' => $statusID, 'out_time' => $timer]);
+                    $new->update(['id' => $id]);
+                    dd($allianceID->id, $input, $timer, $reconpull);
+                }
             }
         }
     }
