@@ -24078,31 +24078,31 @@ function sleep(ms) {
         value: "name"
       }, {
         text: "Name",
-        value: "roles"
+        value: "name"
       }, {
         text: "Type",
-        value: "roles"
+        value: "item_name"
       }, {
         text: "Timer",
-        value: "roles"
+        value: "status_name"
       }, {
         text: "Ticker",
-        value: "roles"
+        value: "alliance_ticker"
       }, {
         text: "Expires",
-        value: "roles"
+        value: "end_time"
       }, {
         text: "CoutDown",
-        value: "roles"
+        value: ""
       }, {
         text: "FC",
-        value: "roles"
+        value: "fc_name"
       }, {
         text: "Recon",
-        value: "roles"
+        value: "recon_name"
       }, {
         text: "GSOL",
-        value: "roles"
+        value: "gsol_name"
       }, {
         text: "",
         value: "actions"

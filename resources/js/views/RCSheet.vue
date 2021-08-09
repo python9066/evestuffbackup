@@ -58,15 +58,15 @@ export default {
         return {
             headers: [
                 { text: "System", value: "name" },
-                { text: "Name", value: "roles" },
-                { text: "Type", value: "roles" },
-                { text: "Timer", value: "roles" },
-                { text: "Ticker", value: "roles" },
-                { text: "Expires", value: "roles" },
-                { text: "CoutDown", value: "roles" },
-                { text: "FC", value: "roles" },
-                { text: "Recon", value: "roles" },
-                { text: "GSOL", value: "roles" },
+                { text: "Name", value: "name" },
+                { text: "Type", value: "item_name" },
+                { text: "Timer", value: "status_name" },
+                { text: "Ticker", value: "alliance_ticker" },
+                { text: "Expires", value: "end_time" },
+                { text: "CoutDown", value: "" },
+                { text: "FC", value: "fc_name" },
+                { text: "Recon", value: "recon_name" },
+                { text: "GSOL", value: "gsol_name" },
                 { text: "", value: "actions" }
             ]
         };
