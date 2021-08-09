@@ -40303,7 +40303,7 @@ var render = function() {
                                         on: {
                                           submit: function($event) {
                                             $event.preventDefault()
-                                            return _vm.newCharForm()
+                                            return _vm.newFCForm()
                                           }
                                         }
                                       },
