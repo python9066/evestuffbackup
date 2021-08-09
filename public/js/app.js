@@ -25240,7 +25240,7 @@ function sleep(ms) {
         return data;
       }
 
-      return this.filteredItems;
+      return this.filter_mid;
     },
     dropdown_region_list: function dropdown_region_list() {
       return this.rcsheetRegion;

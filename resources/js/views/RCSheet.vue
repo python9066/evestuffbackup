@@ -327,7 +327,7 @@ export default {
                 });
                 return data;
             }
-            return this.filteredItems;
+            return this.filter_mid;
         },
 
         dropdown_region_list() {
