@@ -63,8 +63,8 @@ class RcSheetContoller extends Controller
         foreach ($pull as $pull) {
             $data1 = [];
             $data1 = [
-                "text" => $pull['status_id'],
-                "value" => $pull['status_name']
+                "text" => $pull['status_name'],
+                "value" => $pull['status_id']
             ];
 
             array_push($data, $data1);
