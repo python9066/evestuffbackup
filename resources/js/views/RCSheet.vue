@@ -80,7 +80,11 @@
                             ></RcReconButton>
                         </template>
 
-                        <template v-slot:[`item.status_name`]="{ item }">
+                        <template
+                            v-slot:[`item.status_name`]="{ item }"
+                            class=" d-inline-flex"
+                            justify="center"
+                        >
                             <v-chip
                                 v-if="item.out == 0"
                                 pill
