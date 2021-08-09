@@ -36,8 +36,9 @@ class RcFcUsersController extends Controller
         if (!$check) {
             $check =  RcFcUsers::Create(['user_id' => $request->user_id])->get();
         }
+        dd($check);
         $fcid = $check->id;
-        Station::where('id', $id)->update(['fc_fc_id' => $request->fcid]);
+        Station::where('id', $id)->update(['fc_fc_id' => $fcid]);
     }
 
     /**
