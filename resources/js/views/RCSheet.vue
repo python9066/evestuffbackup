@@ -31,6 +31,17 @@
                         }"
                         class="elevation-5"
                     >
+                        <template
+                            v-slot:[`item.alliance_ticker`]="{ item }"
+                            class="d-inline-flex align-center"
+                        >
+                            <v-avatar size="35"
+                                ><img :src="item.url"
+                            /></v-avatar>
+                            <span class="red--text pl-3"
+                                >{{ item.alliance_ticker }}
+                            </span>
+                        </template>
                         <template v-slot:[`item.count`]="{ item }">
                             <CountDowntimer
                                 v-if="showCountDown(item)"
