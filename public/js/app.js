@@ -11982,6 +11982,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -40185,7 +40190,7 @@ var render = function() {
       _c(
         "v-dialog",
         {
-          attrs: { "z-index": "0" },
+          attrs: { "max-width": "500px", "z-index": "0" },
           on: {
             "click:outside": function($event) {
               return _vm.close()
