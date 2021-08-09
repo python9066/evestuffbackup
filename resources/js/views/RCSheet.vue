@@ -298,11 +298,27 @@ export default {
             return this.rcstations;
         },
 
+        filter_mid() {
+            let data = [];
+            if (this.itemPicked.length != 0) {
+                this.itemPicked.forEach(p => {
+                    let pick = this.filteredItems.filter(f => f.region_id == p);
+                    if (pick != null) {
+                        pick.forEach(pk => {
+                            data.push(pk);
+                        });
+                    }
+                });
+                return data;
+            }
+            return this.filteredItems;
+        },
+
         filter_end() {
             let data = [];
             if (this.regionPicked.length != 0) {
                 this.regionPicked.forEach(p => {
-                    let pick = this.filteredItems.filter(f => f.region_id == p);
+                    let pick = this.filter_mid.filter(f => f.region_id == p);
                     if (pick != null) {
                         pick.forEach(pk => {
                             data.push(pk);

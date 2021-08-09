@@ -25198,14 +25198,36 @@ function sleep(ms) {
     filteredItems: function filteredItems() {
       return this.rcstations;
     },
-    filter_end: function filter_end() {
+    filter_mid: function filter_mid() {
       var _this3 = this;
+
+      var data = [];
+
+      if (this.itemPicked.length != 0) {
+        this.itemPicked.forEach(function (p) {
+          var pick = _this3.filteredItems.filter(function (f) {
+            return f.region_id == p;
+          });
+
+          if (pick != null) {
+            pick.forEach(function (pk) {
+              data.push(pk);
+            });
+          }
+        });
+        return data;
+      }
+
+      return this.filteredItems;
+    },
+    filter_end: function filter_end() {
+      var _this4 = this;
 
       var data = [];
 
       if (this.regionPicked.length != 0) {
         this.regionPicked.forEach(function (p) {
-          var pick = _this3.filteredItems.filter(function (f) {
+          var pick = _this4.filter_mid.filter(function (f) {
             return f.region_id == p;
           });
 
