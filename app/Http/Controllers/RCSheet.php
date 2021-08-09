@@ -248,8 +248,8 @@ class RCSheet extends Controller
                     'show_on_rc' => 1
                 ]);
                 if ($stationdata['str_has_no_fitting'] != null) {
-                    dd($stationdata['str_fitting']);
                     $items = Utils::jsonDecode($stationdata['str_fitting'], true);
+                    dd($items);
                     foreach ($items as $item) {
                         StationItems::where('id', $item['type_id'])->get()->count();
                         if (StationItems::where('id', $item['type_id'])->get()->count() == 0) {
