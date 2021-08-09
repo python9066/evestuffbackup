@@ -45,8 +45,8 @@ class RCSheet extends Controller
             $check = Station::where(['name' => $input['name'], 'system_id' => $systemID->id, 'alliance_id' => $allianceID->id])->first();
             if ($check) {
                 // $checkid = $check["id"];
-                dd($check->id);
                 $check->update([$statusID, 'out_time' => $timer]);
+                dd($check->id);
             } else {
 
 
