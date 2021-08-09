@@ -43,9 +43,7 @@
                             <v-row no-gutters>
                                 <div>
                                     <v-card class="pa-2" tile width="100%">
-                                        <v-form
-                                            @submit.prevent="newFCFormClose()"
-                                        >
+                                        <v-form @submit.prevent="newCharForm()">
                                             <v-text-field
                                                 v-model="newCharName"
                                                 label="FC Name"
