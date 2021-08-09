@@ -26,6 +26,7 @@ class RCSheet extends Controller
         foreach ($inputs as $input) {
             $stationName = $input['name'];
             $reconpull = $this->reconPullbyname($stationName);
+            dd($reconpull);
             $timer = Helper::fixtime($input['Expires']);
 
             if ($reconpull = false) {
@@ -72,7 +73,7 @@ class RCSheet extends Controller
         ]);
 
         $stationdata = Utils::jsonDecode($response->getBody(), true);
-        dd($stationdata);
+
         if ($response->getStatusCode() == 200) {
             if ($stationdata == "Error, Structure Not Found") {
 
