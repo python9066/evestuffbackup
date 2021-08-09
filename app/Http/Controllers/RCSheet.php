@@ -27,7 +27,7 @@ class RCSheet extends Controller
             $allianceID = Alliance::where('ticker', $input['Ticker'])->first();
             $itemID = Item::where('item_name', $input['Type'])->first();
             $systemID = System::where('system_name', $input['System'])->first();
-            $check = Station::where(['name' => $input['name'], 'system_id' => $systemID->id, 'alliance_id' => $allianceID->id]);
+            $check = Station::where(['name' => $input['name'], 'system_id' => $systemID->id, 'alliance_id' => $allianceID->id])->get();
             dd($check);
 
             $stationName = $input['name'];
