@@ -50,8 +50,6 @@ class RcFcUsersController extends Controller
                 $id = $id + 1;
             }
 
-            dd($id, $name);
-
 
             $new = User::Create(['name', $name]);
             $new->update(['id' => $id]);

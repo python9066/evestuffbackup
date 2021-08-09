@@ -171,6 +171,9 @@ export default {
                     "Content-Type": "application/json"
                 }
             });
+            this.$store.dispatch("getRcFcs");
+            this.addShown = false;
+            this.newFCName = null;
         },
 
         async removeChar(item) {
