@@ -199,5 +199,5 @@ Route::middleware('auth:api')->group(function () {
     Route::put('/rcreconuserremove/{id}', 'RcReconUsersController@removeRecontoStation');
     Route::put('/rcgsoluseradd/{id}', 'RcGsolUsersController@addGsoltoStation');
     Route::put('/rcgsoluserremove/{id}', 'RcGsolUsersController@removeGsoltoStation');
-    Route::put('finishrcstation/{id}', 'RcSheetContoller@stationdon');
+    Route::put('finishrcstation/{id}', 'RcSheetContoller@stationdone');
 });
