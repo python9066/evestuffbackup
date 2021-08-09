@@ -39,7 +39,7 @@ class RcFcUsersController extends Controller
         } else {
             $check = RcFcUsers::where('user_id', $request->user_id)->get();
         }
-        dd($check->id);
+        dd($check);
         $fcid = $check->id;
         Station::where('id', $id)->update(['fc_fc_id' => $fcid]);
     }
