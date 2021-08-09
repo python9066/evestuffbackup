@@ -30,13 +30,13 @@ class RcGsolUsersController extends Controller
         //
     }
 
-    public function addRecontoStation(Request $request, $id)
+    public function addGsoltoStation(Request $request, $id)
     {
 
         Station::where('id', $id)->update(['rc_gsol_id' => $request->user_id]);
     }
 
-    public function removeRecontoStation($id)
+    public function removeGsoltoStation($id)
     {
 
         Station::where('id', $id)->update(['rc_gsol_id' => null]);
