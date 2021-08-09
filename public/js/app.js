@@ -11984,10 +11984,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -12001,7 +11997,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         value: "name"
       }, {
         text: "",
-        value: "actions",
+        value: "addRemove",
         align: "end"
       } // { text: "Vulernable End Time", value: "vulnerable_end_time" }
       ],
@@ -40407,8 +40403,7 @@ var render = function() {
                                         attrs: {
                                           rounded: "",
                                           outlined: true,
-                                          "x-small": "",
-                                          color: _vm.pillColor(item)
+                                          "x-small": ""
                                         },
                                         on: {
                                           click: function($event) {
@@ -40417,30 +40412,10 @@ var render = function() {
                                         }
                                       },
                                       [
-                                        _c(
-                                          "v-icon",
-                                          {
-                                            attrs: {
-                                              "x-small": "",
-                                              left: "",
-                                              dark: ""
-                                            }
-                                          },
-                                          [
-                                            _vm._v(
-                                              "\n                                    " +
-                                                _vm._s(_vm.pillIcon(item)) +
-                                                "\n                                "
-                                            )
-                                          ]
-                                        ),
                                         _vm._v(
-                                          "\n                                " +
-                                            _vm._s(_vm.pillText(item)) +
-                                            "\n                            "
+                                          "\n                                ADD\n                            "
                                         )
-                                      ],
-                                      1
+                                      ]
                                     )
                                   ],
                                   1

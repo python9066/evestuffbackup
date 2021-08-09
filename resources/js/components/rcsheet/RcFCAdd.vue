@@ -101,13 +101,9 @@
                                     rounded
                                     :outlined="true"
                                     x-small
-                                    :color="pillColor(item)"
                                     @click="pillClick(item)"
                                 >
-                                    <v-icon x-small left dark>
-                                        {{ pillIcon(item) }}
-                                    </v-icon>
-                                    {{ pillText(item) }}
+                                    ADD
                                 </v-btn>
                             </span>
                         </template>
@@ -134,7 +130,7 @@ export default {
         return {
             headers: [
                 { text: "Name", value: "name" },
-                { text: "", value: "actions", align: "end" }
+                { text: "", value: "addRemove", align: "end" }
 
                 // { text: "Vulernable End Time", value: "vulnerable_end_time" }
             ],
