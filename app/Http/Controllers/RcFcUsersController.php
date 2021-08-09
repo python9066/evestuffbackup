@@ -49,12 +49,12 @@ class RcFcUsersController extends Controller
                 $id = $id + 1;
             }
 
-            $new = User::Create('name', $name);
+            $new = User::Create(['name', $name]);
             $new->update(['id' => $id]);
         } else {
             $id = User::where('name', $name)->value('id');
         }
-        RcFcUsers::Create('user_id', $id);
+        RcFcUsers::Create(['user_id', $id]);
     }
 
     /**
