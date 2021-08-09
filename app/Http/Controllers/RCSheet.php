@@ -19,7 +19,7 @@ class RCSheet extends Controller
 {
     public function RCInput(Request $request)
     {
-        Station::where('show_on_rc', 1)->update(['show_on_rc' => 2]);
+        // Station::where('show_on_rc', 1)->update(['show_on_rc' => 2]);
         // $inputs = $request->all();
         // foreach ($inputs as $input) {
 
@@ -101,6 +101,7 @@ class RCSheet extends Controller
 
 
                     $check = Station::where(['name' => $input['structure_name'], 'system_id' => $input['solar_system']['solar_system_id'], 'alliance_id' => $allianceIDID])->first();
+                    dd($check);
                     if ($check) {
                         // $checkid = $check["id"];
                         if ($check->station_status_id == 5) {
