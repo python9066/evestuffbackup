@@ -24586,6 +24586,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 
@@ -24678,6 +24679,13 @@ function sleep(ms) {
       }
 
       return false;
+    },
+    campaignStart: function campaignStart(item) {
+      var data = {
+        id: item.station.id,
+        out: 1
+      };
+      this.$store.dispatch("updateRcStation", data);
     },
     countDownStartTime: function countDownStartTime(item) {
       return moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc(item.end_time).unix();
@@ -52389,6 +52397,11 @@ var render = function() {
                                         "end-text": "OUT",
                                         interval: 1000,
                                         "day-text": "Days"
+                                      },
+                                      on: {
+                                        campaignStart: function($event) {
+                                          return _vm.campaignStart(item)
+                                        }
                                       },
                                       scopedSlots: _vm._u(
                                         [

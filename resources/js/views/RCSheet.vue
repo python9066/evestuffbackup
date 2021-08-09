@@ -49,6 +49,7 @@
                                 :end-text="'OUT'"
                                 :interval="1000"
                                 :day-text="'Days'"
+                                @campaignStart="campaignStart(item)"
                             >
                                 <template slot="countdown" slot-scope="scope">
                                     <span v-if="scope.props.days == 0"
@@ -138,6 +139,14 @@ export default {
             }
 
             return false;
+        },
+
+        campaignStart(item) {
+            var data = {
+                id: item.station.id,
+                out: 1
+            };
+            this.$store.dispatch("updateRcStation", data);
         },
         countDownStartTime(item) {
             return moment.utc(item.end_time).unix();
