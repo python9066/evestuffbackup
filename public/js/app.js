@@ -25015,6 +25015,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 
@@ -53275,8 +53276,9 @@ var render = function() {
                   _c("v-text-field", {
                     attrs: {
                       "append-icon": "mdi-magnify",
-                      label: "Search for Users",
+                      label: "Search",
                       "single-line": "",
+                      filled: "",
                       "hide-details": ""
                     },
                     model: {

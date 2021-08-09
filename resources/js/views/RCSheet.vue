@@ -12,8 +12,9 @@
                     <v-text-field
                         v-model="search"
                         append-icon="mdi-magnify"
-                        label="Search for Users"
+                        label="Search"
                         single-line
+                        filled
                         hide-details
                     ></v-text-field>
                 </v-card>
