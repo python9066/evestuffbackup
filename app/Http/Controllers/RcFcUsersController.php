@@ -22,7 +22,7 @@ class RcFcUsersController extends Controller
         foreach ($fcs as $fc) {
             $data = [];
 
-            $name = User::where('id', $fc->user_id)->vlaue('name');
+            $name = User::where('id', $fc->user_id)->value('name');
 
 
             $data = [
