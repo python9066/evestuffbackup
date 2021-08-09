@@ -53260,7 +53260,7 @@ var render = function() {
         [
           _c(
             "v-col",
-            { staticClass: " d-inline-flex", attrs: { cols: "6" } },
+            { staticClass: " d-inline-flex", attrs: { cols: "4" } },
             [
               _c(
                 "v-card",
@@ -53306,7 +53306,7 @@ var render = function() {
           _vm._v(" "),
           _c(
             "v-col",
-            { staticClass: " d-inline-flex", attrs: { cols: "6" } },
+            { staticClass: " d-inline-flex", attrs: { cols: "4" } },
             [
               _c(
                 "v-card",
@@ -53353,7 +53353,7 @@ var render = function() {
           _vm.$can("super")
             ? _c(
                 "v-col",
-                { staticClass: " d-inline-flex", attrs: { cols: "6" } },
+                { staticClass: " d-inline-flex", attrs: { cols: "4" } },
                 [
                   _c(
                     "v-card",

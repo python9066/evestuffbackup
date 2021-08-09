@@ -6,7 +6,7 @@
             </v-col>
         </v-row>
         <v-row no-gutters justify="center">
-            <v-col class=" d-inline-flex" cols="6">
+            <v-col class=" d-inline-flex" cols="4">
                 <v-card
                     max-width="600px"
                     min-width="600px"
@@ -27,7 +27,7 @@
                     </v-card-text>
                 </v-card>
             </v-col>
-            <v-col class=" d-inline-flex" cols="6">
+            <v-col class=" d-inline-flex" cols="4">
                 <v-card
                     max-width="600px"
                     min-width="600px"
@@ -48,7 +48,7 @@
                     </v-card-text>
                 </v-card>
             </v-col>
-            <v-col class=" d-inline-flex" cols="6" v-if="$can('super')">
+            <v-col class=" d-inline-flex" cols="4" v-if="$can('super')">
                 <v-card
                     max-width="600px"
                     min-width="600px"
