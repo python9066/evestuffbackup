@@ -95,6 +95,17 @@ class RcFcUsersController extends Controller
         broadcast(new RcSheetUpdate($flag));
     }
 
+    public function addFCadd(Request $request, $id)
+    {
+        Station::where('id', $id)->update($request->all());
+
+        $message = RcStationRecords::where('id', $id)->first();
+        $flag = collect([
+            'message' => $message,
+        ]);
+        broadcast(new RcSheetUpdate($flag));
+    }
+
     public function removeFCtoStation($id)
     {
 

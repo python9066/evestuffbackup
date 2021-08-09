@@ -203,4 +203,5 @@ Route::middleware('auth:api')->group(function () {
     Route::get('/rcfc', 'RcFcUsersController@index');
     Route::put('/rcfcnew', 'RcFcUsersController@newfc');
     Route::delete('/rcfcdelete/{id}', 'RcFcUsersController@removeFC');
+    Route::post('/rcfcadd/{id}', 'RcFcUsersController@addFCadd');
 });
