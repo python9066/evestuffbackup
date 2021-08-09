@@ -51514,7 +51514,7 @@ var render = function() {
                                         "start-time": _vm.countDownStartTime(
                                           item
                                         ),
-                                        "end-text": "Coming Out",
+                                        "end-text": "OUT",
                                         interval: 1000,
                                         "day-text": "Days"
                                       },

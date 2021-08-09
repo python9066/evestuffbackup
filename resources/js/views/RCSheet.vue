@@ -35,7 +35,7 @@
                             <CountDowntimer
                                 v-if="showCountDown(item)"
                                 :start-time="countDownStartTime(item)"
-                                :end-text="'Coming Out'"
+                                :end-text="'OUT'"
                                 :interval="1000"
                                 :day-text="'Days'"
                             >
