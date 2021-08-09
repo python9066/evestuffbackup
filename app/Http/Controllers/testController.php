@@ -32,7 +32,7 @@ class testController extends Controller
     {
 
         $array = json_decode($request, TRUE);
-        dd($array);
+        dd($array, $request[0], $request);
     }
 
     public function userinfo()
