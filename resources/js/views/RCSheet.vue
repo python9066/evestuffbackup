@@ -224,6 +224,7 @@ export default {
         await this.$store.dispatch("getRcStationRecords");
         await this.$store.dispatch("getRcFcs");
         await this.$store.dispatch("getRcItems");
+        await this.$store.dispatch("getRcStatus");
         Echo.private("rcsheet").listen("RcSheetUpdate", e => {
             if (e.flag.message != null) {
                 this.$store.dispatch("updateRcStation", e.flag.message);
@@ -234,6 +235,7 @@ export default {
                 this.$store.dispatch("getRcFcs");
                 this.$store.dispatch("getRcRegions");
                 this.$store.dispatch("getRcItems");
+                this.$store.dispatch("getRcStatus");
             }
 
             if (e.flag.flag == 3) {

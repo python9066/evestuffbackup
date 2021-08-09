@@ -25088,6 +25088,10 @@ function sleep(ms) {
               return _this.$store.dispatch("getRcItems");
 
             case 8:
+              _context.next = 10;
+              return _this.$store.dispatch("getRcStatus");
+
+            case 10:
               Echo["private"]("rcsheet").listen("RcSheetUpdate", function (e) {
                 if (e.flag.message != null) {
                   _this.$store.dispatch("updateRcStation", e.flag.message);
@@ -25101,6 +25105,8 @@ function sleep(ms) {
                   _this.$store.dispatch("getRcRegions");
 
                   _this.$store.dispatch("getRcItems");
+
+                  _this.$store.dispatch("getRcStatus");
                 }
 
                 if (e.flag.flag == 3) {
@@ -25112,7 +25118,7 @@ function sleep(ms) {
                 }
               });
 
-            case 9:
+            case 11:
             case "end":
               return _context.stop();
           }
