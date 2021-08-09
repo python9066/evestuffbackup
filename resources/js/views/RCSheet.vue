@@ -84,11 +84,10 @@
                             <v-chip
                                 v-if="item.out == 0"
                                 pill
-                                outlined="pillOutlined(item)"
                                 small
                                 :color="pillColor(item)"
                             >
-                                {{ item.status_name }}>
+                                {{ item.status_name }}
                             </v-chip>
                             <v-menu offset-y>
                                 <template v-slot:activator="{ on, attrs }">

@@ -24630,7 +24630,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
 
 
 
@@ -52576,7 +52575,6 @@ var render = function() {
                                       {
                                         attrs: {
                                           pill: "",
-                                          outlined: "pillOutlined(item)",
                                           small: "",
                                           color: _vm.pillColor(item)
                                         }
@@ -52585,7 +52583,7 @@ var render = function() {
                                         _vm._v(
                                           "\n                            " +
                                             _vm._s(item.status_name) +
-                                            ">\n                        "
+                                            "\n                        "
                                         )
                                       ]
                                     )
