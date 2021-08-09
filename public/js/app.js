@@ -25172,6 +25172,28 @@ function sleep(ms) {
     filteredItems: function filteredItems() {
       return this.rcstations;
     },
+    filter_end: function filter_end() {
+      var _this3 = this;
+
+      var data = [];
+
+      if (this.regionPicked.length != 0) {
+        this.regionPicked.forEach(function (p) {
+          var pick = _this3.filteredItems.filter(function (f) {
+            return f.region_id == p;
+          });
+
+          if (pick != null) {
+            pick.forEach(function (pk) {
+              data.push(pk);
+            });
+          }
+        });
+        return data;
+      }
+
+      return this.filteredItems;
+    },
     dropdown_region_list: function dropdown_region_list() {
       return this.rcsheetRegion;
     }
@@ -53196,7 +53218,7 @@ var render = function() {
                       staticClass: "elevation-5",
                       attrs: {
                         headers: _vm.headers,
-                        items: _vm.filteredItems,
+                        items: _vm.filter_end,
                         "item-key": "id",
                         "sort-by": ["end_time"],
                         "items-per-page": 50,

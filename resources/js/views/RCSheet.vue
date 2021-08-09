@@ -37,7 +37,7 @@
                 <v-card width="100%">
                     <v-data-table
                         :headers="headers"
-                        :items="filteredItems"
+                        :items="filter_end"
                         item-key="id"
                         :sort-by="['end_time']"
                         :items-per-page="50"
@@ -275,6 +275,23 @@ export default {
         filteredItems() {
             return this.rcstations;
         },
+
+        filter_end() {
+            let data = [];
+            if (this.regionPicked.length != 0) {
+                this.regionPicked.forEach(p => {
+                    let pick = this.filteredItems.filter(f => f.region_id == p);
+                    if (pick != null) {
+                        pick.forEach(pk => {
+                            data.push(pk);
+                        });
+                    }
+                });
+                return data;
+            }
+            return this.filteredItems;
+        },
+
         dropdown_region_list() {
             return this.rcsheetRegion;
         }
