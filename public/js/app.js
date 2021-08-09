@@ -25237,10 +25237,26 @@ function sleep(ms) {
             });
           }
         });
+
+        if (this.itemPicked.length != 0) {
+          this.itemPicked.forEach(function (p) {
+            var pick = _this4.data(function (f) {
+              return f.item == p;
+            });
+
+            if (pick != null) {
+              pick.forEach(function (pk) {
+                data.push(pk);
+              });
+            }
+          });
+          return data;
+        }
+
         return data;
       }
 
-      return this.filter_mid;
+      return this.filteredItems;
     },
     dropdown_region_list: function dropdown_region_list() {
       return this.rcsheetRegion;
