@@ -19,7 +19,7 @@
                 v-bind="attrs"
                 v-on="on"
             >
-                <v-icon x-small dark>
+                <v-icon x-small dark left>
                     fas fa-plus
                 </v-icon>
                 FC</v-btn

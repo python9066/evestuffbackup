@@ -39445,7 +39445,7 @@ var render = function() {
               _vm.on
             ),
             [
-              _c("v-icon", { attrs: { "x-small": "", dark: "" } }, [
+              _c("v-icon", { attrs: { "x-small": "", dark: "", left: "" } }, [
                 _vm._v("\n                fas fa-plus\n            ")
               ]),
               _vm._v("\n            FC")
