@@ -63,17 +63,21 @@ class RCSheet extends Controller
 
 
                 ) {
-                    dd($input);
-                    $stationName = $input['name'];
-                    $timer = Helper::fixtime($input['Expires']);
-                    $allianceID = Alliance::where('ticker', $input['Ticker'])->first();
+
+                    $stationName = $input['structure_name'];
+                    $timer = Helper::fixtime($input['timer_expires']);
+                    $allianceID = Alliance::where('ticker', $input['owning_alliance_ticker'])->first();
                     if (!$allianceID) {
                         $allianceIDID = 0;
                     } else {
                         $allianceIDID = $allianceID->id;
                     }
-                    $itemID = Item::where('item_name', $input['Type'])->first();
-                    $systemID = System::where('system_name', $input['System'])->first();
+                    $corpID = Corp::where('ticker', $input['owning_corp_ticker'])->first();
+                    if (!$corpID) {
+                        $corpIDID = 0;
+                    } else {
+                        $corpIDID = $corpID->id;
+                    }
 
                     if ($input['Timer'] == "Armor") {
                         $statusID = 8;
@@ -87,7 +91,7 @@ class RCSheet extends Controller
                     }
 
 
-                    $check = Station::where(['name' => $input['name'], 'system_id' => $systemID->id, 'alliance_id' => $allianceIDID])->first();
+                    $check = Station::where(['name' => $input['name'], 'system_id' => $input['solar_system']['solar_system_id'], 'alliance_id' => $allianceIDID])->first();
                     if ($check) {
                         // $checkid = $check["id"];
                         $check->update(['station_status_id' => $statusID, 'out_time' => $timer]);
@@ -111,18 +115,18 @@ class RCSheet extends Controller
 
 
 
-                            $new = Station::Create(['name' => $input['name'], 'system_id' => $systemID->id, 'alliance_id' => $allianceIDID, 'item_id' => $itemID->id, 'station_status_id' => $statusID, 'out_time' => $timer]);
+                            $new = Station::Create(['name' => $input['structure_name'], 'system_id' => $input['solar_system']['solar_system_id'], 'alliance_id' => $allianceIDID, 'corp_id' => $corpIDID, 'item_id' => $input['structure_type']['type_id'], 'station_status_id' => $statusID, 'out_time' => $timer]);
                             if ($allianceIDID == 0) {
-                                $new->update(['id' => $id, 'text' => $input['Ticker']]);
+                                $new->update(['id' => $id, 'text' => $input['owning_corp_ticker']]);
                             } else {
                                 $new->update(['id' => $id]);
                             }
                         }
                     }
-                    // dd('yo');
                 }
             }
         }
+        dd('yo');
     }
 
     // $inputs = $request->all();
