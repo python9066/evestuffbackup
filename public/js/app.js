@@ -24977,8 +24977,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
 
 
 
@@ -53170,10 +53168,8 @@ var render = function() {
         [
           _c(
             "v-col",
-            { staticClass: " d-inline-flex", attrs: { cols: "12" } },
+            { staticClass: " d-inline-flex", attrs: { cols: "6" } },
             [
-              _c("v-spacer"),
-              _vm._v(" "),
               _c(
                 "v-card",
                 {
@@ -53218,10 +53214,8 @@ var render = function() {
           _vm._v(" "),
           _c(
             "v-col",
-            { staticClass: " d-inline-flex", attrs: { cols: "12" } },
+            { staticClass: " d-inline-flex", attrs: { cols: "6" } },
             [
-              _c("v-spacer"),
-              _vm._v(" "),
               _c(
                 "v-card",
                 {

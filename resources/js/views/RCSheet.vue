@@ -6,8 +6,7 @@
             </v-col>
         </v-row>
         <v-row no-gutters justify="center">
-            <v-col class=" d-inline-flex" cols="12">
-                <v-spacer></v-spacer>
+            <v-col class=" d-inline-flex" cols="6">
                 <v-card
                     max-width="600px"
                     min-width="600px"
@@ -28,8 +27,7 @@
                     </v-card-text>
                 </v-card>
             </v-col>
-            <v-col class=" d-inline-flex" cols="12">
-                <v-spacer></v-spacer>
+            <v-col class=" d-inline-flex" cols="6">
                 <v-card
                     max-width="600px"
                     min-width="600px"
