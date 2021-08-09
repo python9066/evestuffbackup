@@ -24609,27 +24609,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -24770,6 +24749,7 @@ function sleep(ms) {
     numberDay: function numberDay(day) {
       return parseInt(day, 10) + "d";
     },
+    stationdone: function stationdone(item) {},
     showFC: function showFC(item) {
       if (item.status_id == 540) {
         return false;
@@ -52588,7 +52568,29 @@ var render = function() {
                                         )
                                       ]
                                     )
-                                  : _vm._e()
+                                  : _c(
+                                      "v-chip",
+                                      {
+                                        attrs: {
+                                          pill: "",
+                                          outlined: "",
+                                          small: "",
+                                          color: _vm.pillColor(item)
+                                        },
+                                        on: {
+                                          click: function($event) {
+                                            return _vm.stationdone(item)
+                                          }
+                                        }
+                                      },
+                                      [
+                                        _vm._v(
+                                          "\n                            " +
+                                            _vm._s(item.status_name) +
+                                            " - Done?\n                        "
+                                        )
+                                      ]
+                                    )
                               ]
                             }
                           },

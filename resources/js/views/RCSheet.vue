@@ -89,38 +89,17 @@
                             >
                                 {{ item.status_name }}
                             </v-chip>
-                            <!-- <v-menu offset-y>
-                                <template v-slot:activator="{ on, attrs }">
-                                    <div>
-                                        <v-chip
-                                            v-bind="attrs"
-                                            v-on="on"
-                                            pill
-                                            :outlined="pillOutlined(item)"
-                                            small
-                                            :color="pillColor(item)"
-                                        >
-                                            {{ item.status_name }}
-                                        </v-chip>
-                                    </div>
-                                </template>
 
-                                <v-list>
-                                    <v-list-item
-                                        v-for="(list, index) in dropdown_edit"
-                                        :key="index"
-                                        @click="
-                                            (item.status_id = list.value),
-                                                (item.status_name = list.title),
-                                                statusClick(item)
-                                        "
-                                    >
-                                        <v-list-item-title>{{
-                                            list.title
-                                        }}</v-list-item-title>
-                                    </v-list-item>
-                                </v-list>
-                            </v-menu> -->
+                            <v-chip
+                                v-else
+                                pill
+                                outlined
+                                @click="stationdone(item)"
+                                small
+                                :color="pillColor(item)"
+                            >
+                                {{ item.status_name }} - Done?
+                            </v-chip>
                         </template>
 
                         <template v-slot:[`item.gsol_name`]="{ item }">
@@ -223,6 +202,8 @@ export default {
         numberDay(day) {
             return parseInt(day, 10) + "d";
         },
+
+        stationdone(item) {},
 
         showFC(item) {
             if (item.status_id == 540) {
