@@ -25163,9 +25163,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
 
 
 
@@ -25207,7 +25204,8 @@ function sleep(ms) {
         value: "count"
       }, {
         text: "FC",
-        value: "fc_name"
+        value: "fc_name",
+        align: "center"
       }, {
         text: "Cyno",
         value: "recon_name"
@@ -53459,7 +53457,7 @@ var render = function() {
                                     })
                                   : _vm._e(),
                                 _vm._v(" "),
-                                _c("RcFCAdd")
+                                !item.fc_user_id ? _c("RcFCAdd") : _vm._e()
                               ]
                             }
                           },

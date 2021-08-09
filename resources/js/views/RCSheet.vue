@@ -66,16 +66,13 @@
                                 </template>
                             </CountDowntimer>
                         </template>
-                        <template
-                            v-slot:[`item.fc_name`]="{ item }"
-                            class=" d- d-inline-flex"
-                        >
+                        <template v-slot:[`item.fc_name`]="{ item }">
                             <RcFCButton
                                 class=" mr-2"
                                 :station="item"
                                 v-if="showFC(item)"
                             ></RcFCButton>
-                            <RcFCAdd></RcFCAdd>
+                            <RcFCAdd v-if="!item.fc_user_id"></RcFCAdd>
                         </template>
                         <template v-slot:[`item.recon_name`]="{ item }">
                             <RcReconButton
@@ -144,7 +141,7 @@ export default {
                 { text: "Ticker", value: "alliance_ticker" },
                 { text: "Expires", value: "end_time" },
                 { text: "CountDown", value: "count" },
-                { text: "FC", value: "fc_name" },
+                { text: "FC", value: "fc_name", align: "center" },
                 { text: "Cyno", value: "recon_name" },
                 { text: "GSOL", value: "gsol_name" },
                 { text: "", value: "actions" }
