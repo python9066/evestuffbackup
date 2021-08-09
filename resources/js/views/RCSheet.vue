@@ -72,6 +72,7 @@
                                 :station="item"
                                 v-if="showFC(item)"
                             ></RcFCButton>
+                            <RcFCAdd></RcFCAdd>
                         </template>
                         <template v-slot:[`item.recon_name`]="{ item }">
                             <RcReconButton
@@ -141,7 +142,7 @@ export default {
                 { text: "Expires", value: "end_time" },
                 { text: "CountDown", value: "count" },
                 { text: "FC", value: "fc_name" },
-                { text: "Recon", value: "recon_name" },
+                { text: "Cyno", value: "recon_name" },
                 { text: "GSOL", value: "gsol_name" },
                 { text: "", value: "actions" }
             ]

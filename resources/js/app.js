@@ -98,6 +98,7 @@ Vue.component('DeleteButton', require('./components/multicampaigns/DeleteButton.
 Vue.component('RcFCButton', require('./components/rcsheet/RcFCButton.vue').default);
 Vue.component('RcReconButton', require('./components/rcsheet/RcReconButton.vue').default);
 Vue.component('RcGsolButton', require('./components/rcsheet/RcGsolButton.vue').default);
+Vue.component('RcFCAdd', require('./components/rcsheet/RcFCAdd.vue').default);
 
 
 
