@@ -195,4 +195,6 @@ Route::middleware('auth:api')->group(function () {
     Route::get('/rcsheet', 'RcSheetContoller@index');
     Route::put('/rcfcuseradd/{id}', 'RcFcUsersController@addFCtoStation');
     Route::put('/rcfcuserremove/{id}', 'RcFcUsersController@removeFCtoStation');
+    Route::put('/reconuseradd/{id}', 'RcReconUsersController@addRecontoStation');
+    Route::put('/reconuserremove/{id}', 'RcReconUsersController@removeRecontoStation');
 });

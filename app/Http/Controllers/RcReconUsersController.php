@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\RcReconUsers;
+use App\Models\Station;
 use Illuminate\Http\Request;
 
 class RcReconUsersController extends Controller
@@ -14,6 +16,26 @@ class RcReconUsersController extends Controller
     public function index()
     {
         //
+    }
+
+    public function addRecontoStation(Request $request, $id)
+    {
+        $check = RcReconUsers::where('user_id', $request->user_id)->count();
+
+        if ($check == 0) {
+            RcReconUsers::Create(['user_id' => $request->user_id])->get();
+        } else {
+            RcReconUsers::where('user_id', $request->user_id)->get();
+        }
+
+        $reconid = RcReconUsers::where('user_id', $request->user_id)->value('id');
+        Station::where('id', $id)->update(['rc_recon_id' => $reconid]);
+    }
+
+    public function removeRecontoStation($id)
+    {
+
+        Station::where('id', $id)->update(['rc_recon_id' => null]);
     }
 
     /**

@@ -72,6 +72,12 @@
                                 v-if="showFC(item)"
                             ></RcFCButton>
                         </template>
+                        <template v-slot:[`item.recon_name`]="{ item }">
+                            <RcReconButton
+                                class=" mr-2"
+                                :station="item"
+                            ></RcReconButton>
+                        </template>
                         <template slot="no-data">
                             No Active or Upcoming Campaigns
                         </template>
