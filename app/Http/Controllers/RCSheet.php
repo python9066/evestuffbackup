@@ -81,14 +81,18 @@ class RCSheet extends Controller
                     }
 
                     if ($input['timer_type'] == "Armor") {
-                        $statusID = 8;
+                        $statusID = 2;
                     }
 
                     if ($input['timer_type'] == "Hull") {
-                        $statusID = 9;
+                        $statusID = 1;
                     }
                     if ($input['timer_type'] == "Anchoring") {
-                        $statusID = 14;
+                        $statusID = 3;
+                    }
+
+                    if ($input['timer_type'] == "Unanchoring") {
+                        $statusID = 4;
                     }
 
 
