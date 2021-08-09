@@ -63,7 +63,7 @@ class RCSheet extends Controller
 
 
                 ) {
-
+                    dd($input);
                     $stationName = $input['structure_name'];
                     $timer = Helper::fixtime($input['timer_expires']);
                     $allianceID = Alliance::where('ticker', $input['owning_alliance_ticker'])->first();
