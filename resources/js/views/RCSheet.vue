@@ -384,7 +384,7 @@ export default {
             return this.rcsheetItem;
         },
 
-        dropdown_type_status() {
+        dropdown_status_list() {
             return this.getRcStatus;
         }
     },

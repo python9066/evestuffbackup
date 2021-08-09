@@ -25298,7 +25298,7 @@ function sleep(ms) {
     dropdown_type_list: function dropdown_type_list() {
       return this.rcsheetItem;
     },
-    dropdown_type_status: function dropdown_type_status() {
+    dropdown_status_list: function dropdown_status_list() {
       return this.getRcStatus;
     }
   }),
