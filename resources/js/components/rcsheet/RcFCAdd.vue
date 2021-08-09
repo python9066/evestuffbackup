@@ -152,29 +152,30 @@ export default {
             this.newFCName = null;
         },
 
-        // async pillClick(item) {
-        //     data = {
-        //         id: station.id,
-        //         rc_fc_id: item.rc_fc_id,
+        async pillClick(item) {
+            var data = {
+                id: this.station.id,
+                fc_user_id: item.id,
+                fc_user_name: item.name
+            };
 
-        //     }
-        //     var request = {
-        //         rc_fc_id: item.id
-        //     }
-        //     await axios({
-        //         method: "post",
-        //         url: "/api/rcfcadd/" + item.id,
-        //         data: request,
-        //         headers: {
-        //             Authorization: "Bearer " + this.$store.state.token,
-        //             Accept: "application/json",
-        //             "Content-Type": "application/json"
-        //         }
-        //     });
+            this.$store.dispatch("updateRcStation", data);
 
-        //     this.overlay = false,
+            var request = {
+                rc_fc_id: item.id
+            };
 
-        // },
+            await axios({
+                method: "post",
+                url: "/api/rcfcadd/" + this.station.id,
+                data: request,
+                headers: {
+                    Authorization: "Bearer " + this.$store.state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                }
+            });
+        },
 
         async pillDelete(item) {
             await axios({

@@ -12015,38 +12015,31 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       this.addShown = false;
       this.newFCName = null;
     },
-    // async pillClick(item) {
-    //     data = {
-    //         id: station.id,
-    //         rc_fc_id: item.rc_fc_id,
-    //     }
-    //     var request = {
-    //         rc_fc_id: item.id
-    //     }
-    //     await axios({
-    //         method: "post",
-    //         url: "/api/rcfcadd/" + item.id,
-    //         data: request,
-    //         headers: {
-    //             Authorization: "Bearer " + this.$store.state.token,
-    //             Accept: "application/json",
-    //             "Content-Type": "application/json"
-    //         }
-    //     });
-    //     this.overlay = false,
-    // },
-    pillDelete: function pillDelete(item) {
+    pillClick: function pillClick(item) {
       var _this = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        var data, request;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                _context.next = 2;
+                data = {
+                  id: _this.station.id,
+                  fc_user_id: item.id,
+                  fc_user_name: item.name
+                };
+
+                _this.$store.dispatch("updateRcStation", data);
+
+                request = {
+                  rc_fc_id: item.id
+                };
+                _context.next = 5;
                 return axios({
-                  method: "DELETE",
-                  url: "/api/rcfcdelete/" + item.id,
+                  method: "post",
+                  url: "/api/rcfcadd/" + _this.station.id,
+                  data: request,
                   headers: {
                     Authorization: "Bearer " + _this.$store.state.token,
                     Accept: "application/json",
@@ -12054,10 +12047,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   }
                 });
 
-              case 2:
-                _this.$store.dispatch("getRcFcs");
-
-              case 3:
+              case 5:
               case "end":
                 return _context.stop();
             }
@@ -12065,23 +12055,18 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee);
       }))();
     },
-    newFCForm: function newFCForm() {
+    pillDelete: function pillDelete(item) {
       var _this2 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
-        var request;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                request = {
-                  char_name: _this2.newCharName
-                };
-                _context2.next = 3;
+                _context2.next = 2;
                 return axios({
-                  method: "PUT",
-                  url: "/api/rcfcnew",
-                  data: request,
+                  method: "DELETE",
+                  url: "/api/rcfcdelete/" + item.id,
                   headers: {
                     Authorization: "Bearer " + _this2.$store.state.token,
                     Accept: "application/json",
@@ -12089,13 +12074,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   }
                 });
 
-              case 3:
+              case 2:
                 _this2.$store.dispatch("getRcFcs");
 
-                _this2.addShown = false;
-                _this2.newFCName = null;
-
-              case 6:
+              case 3:
               case "end":
                 return _context2.stop();
             }
@@ -12103,18 +12085,23 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee2);
       }))();
     },
-    removeChar: function removeChar(item) {
+    newFCForm: function newFCForm() {
       var _this3 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
+        var request;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
           while (1) {
             switch (_context3.prev = _context3.next) {
               case 0:
-                _context3.next = 2;
+                request = {
+                  char_name: _this3.newCharName
+                };
+                _context3.next = 3;
                 return axios({
-                  method: "DELETE",
-                  url: "/api/campaignusers/" + item.id + "/" + _this3.campaign_id + "/" + _this3.$store.state.user_id,
+                  method: "PUT",
+                  url: "/api/rcfcnew",
+                  data: request,
                   headers: {
                     Authorization: "Bearer " + _this3.$store.state.token,
                     Accept: "application/json",
@@ -12122,15 +12109,48 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   }
                 });
 
-              case 2:
-                _this3.$store.dispatch("getCampaignSystemsRecords");
-
               case 3:
+                _this3.$store.dispatch("getRcFcs");
+
+                _this3.addShown = false;
+                _this3.newFCName = null;
+
+              case 6:
               case "end":
                 return _context3.stop();
             }
           }
         }, _callee3);
+      }))();
+    },
+    removeChar: function removeChar(item) {
+      var _this4 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
+          while (1) {
+            switch (_context4.prev = _context4.next) {
+              case 0:
+                _context4.next = 2;
+                return axios({
+                  method: "DELETE",
+                  url: "/api/campaignusers/" + item.id + "/" + _this4.campaign_id + "/" + _this4.$store.state.user_id,
+                  headers: {
+                    Authorization: "Bearer " + _this4.$store.state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                  }
+                });
+
+              case 2:
+                _this4.$store.dispatch("getCampaignSystemsRecords");
+
+              case 3:
+              case "end":
+                return _context4.stop();
+            }
+          }
+        }, _callee4);
       }))();
     }
   },
