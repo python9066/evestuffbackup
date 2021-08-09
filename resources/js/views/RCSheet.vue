@@ -66,11 +66,11 @@
                             </CountDowntimer>
                         </template>
                         <template v-slot:[`item.fc_name`]="{ item }">
-                            <StationFC
+                            <RcFCButton
                                 class=" mr-2"
                                 :station="item"
                                 v-if="showFC(item)"
-                            ></StationFC>
+                            ></RcFCButton>
                         </template>
                         <template slot="no-data">
                             No Active or Upcoming Campaigns

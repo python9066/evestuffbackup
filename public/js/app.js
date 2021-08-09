@@ -51974,7 +51974,7 @@ var render = function() {
                               var item = ref.item
                               return [
                                 _vm.showFC(item)
-                                  ? _c("StationFC", {
+                                  ? _c("RcFCButton", {
                                       staticClass: " mr-2",
                                       attrs: { station: item }
                                     })
