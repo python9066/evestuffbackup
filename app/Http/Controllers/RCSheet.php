@@ -95,7 +95,7 @@ class RCSheet extends Controller
                     if ($check) {
                         // $checkid = $check["id"];
                         $check->update(['station_status_id' => $statusID, 'out_time' => $timer]);
-                        dd($check->id);
+                        // dd($check->id);
                     } else {
 
 
@@ -126,7 +126,7 @@ class RCSheet extends Controller
                 }
             }
         }
-        dd('yo');
+        // dd('yo');
     }
 
     // $inputs = $request->all();
