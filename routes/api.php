@@ -193,4 +193,5 @@ Route::middleware('auth:api')->group(function () {
     Route::delete('/startcampaignsystemremovechar/{id}/{char}/{campid}', 'StartCampaignSystemController@removeChar');
 
     Route::get('/rcsheet', 'RcSheetContoller@index');
+    Route::put('/rcfcuseradd/{id}', 'RcFcUsersController@addFCtoStation');
 });

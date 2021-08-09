@@ -56,6 +56,32 @@ export default {
             } else {
                 return false;
             }
+        },
+
+        async fcAdd() {
+            var data = {
+                id: this.station.id,
+                fc_user_id: this.$store.state.user_id,
+                fc_name: this.$store.state.user_name
+            };
+
+            this.$store.dispatch("updateRcStation", data);
+
+            var request = null;
+            request = {
+                user_id: this.$store.state.user_id
+            };
+
+            await axios({
+                method: "put",
+                url: "/api/rcfcuseradd/" + this.station.id,
+                data: request,
+                headers: {
+                    Authorization: "Bearer " + this.$store.state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                }
+            });
         }
     },
 

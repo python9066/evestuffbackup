@@ -204,6 +204,16 @@ export default new Vuex.Store({
             }
         },
 
+        UPDATE_RC_STATION(state, data) {
+            const item = state.rcstations.find(item => item.id === data.id);
+            const count = state.rcstations.filter(item => item.id === data.id).length
+            if (count > 0) {
+                Object.assign(item, data);
+            } else {
+                state.rcstations.push(data)
+            }
+        },
+
         SET_CORES(state, cores) {
             state.cores = cores;
         },
@@ -836,6 +846,10 @@ export default new Vuex.Store({
 
         updateStationNotification({ commit }, data) {
             commit("UPDATE_STATION_NOTIFICATION", data);
+        },
+
+        updateRcStation({ commit }, data) {
+            commit("UPDATE_RC_STATION", data);
         },
 
         updateCores({ commit }, data) {
