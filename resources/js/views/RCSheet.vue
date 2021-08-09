@@ -66,7 +66,10 @@
                                 </template>
                             </CountDowntimer>
                         </template>
-                        <template v-slot:[`item.fc_name`]="{ item }">
+                        <template
+                            v-slot:[`item.fc_name`]="{ item }"
+                            class=" d- d-inline-flex"
+                        >
                             <RcFCButton
                                 class=" mr-2"
                                 :station="item"
