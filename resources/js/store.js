@@ -34,7 +34,8 @@ export default new Vuex.Store({
         notifications: [],
         periodbasisLink: "",
         queriousLink: "",
-        rcfcs:[],
+        rcfcs: [],
+        rcsheetRegion: [],
         rcstations:[],
         recontasksystems:[],
         rolesList: [],
@@ -273,6 +274,10 @@ export default new Vuex.Store({
 
         SET_CAMPAIGNS_REGION(state, campaignsRegion) {
             state.campaignsRegion = campaignsRegion;
+        },
+
+        SET_RC_REGION(state, rcsheetRegion) {
+            state.rcsheetRegion = rcsheetRegion;
         },
 
 
@@ -784,6 +789,20 @@ export default new Vuex.Store({
             });
             commit("SET_CAMPAIGNS_REGION", res.data.campaignslistRegion);
         },
+
+        async getRcRegions({ commit, state }) {
+            let res = await axios({
+                method: "get",
+                url: "/api/rcregionlist",
+                headers: {
+                    Authorization: "Bearer " + state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                }
+            });
+            commit("SET_RC_REGION", res.data.rcsheetlistRegion);
+        },
+
 
 
         async getMultiCampaigns({ commit, state }) {

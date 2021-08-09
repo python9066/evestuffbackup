@@ -30,6 +30,27 @@ class RcSheetContoller extends Controller
         //
     }
 
+    public function rcSheetListRegion()
+    {
+        $data = [];
+        $pull = Station::where('show_on_rc', 1)->get();
+        $pull = $pull->unique('region_id');
+        $pull = $pull->sortBy('region');
+        foreach ($pull as $pull) {
+            $data1 = [];
+            $data1 = [
+                "text" => $pull['region'],
+                "value" => $pull['region_id']
+            ];
+
+            array_push($data, $data1);
+        }
+
+        // dd($data);
+
+        return ['rcsheetlistRegion' => $data];
+    }
+
     public function stationdone($id)
     {
         Station::where('id', $id)->update(['show_on_rc' => 2, 'station_status_id' => 5, 'rc_fc_id' => null, 'rc_gsol_id' => null, 'rc_recon_id' => null]);

@@ -8,8 +8,24 @@
         <v-row no-gutters justify="center">
             <v-col class=" d-inline-flex" cols="12">
                 <v-spacer></v-spacer>
-                <v-card tile flat color="#121212" class="align-end">
-                    mroe to come
+                <v-card
+                    max-width="600px"
+                    min-width="600px"
+                    color="#121212"
+                    elevation="0"
+                >
+                    <v-card-text>
+                        <v-select
+                            class=" pb-2"
+                            v-model="typePicked"
+                            :items="dropdown_search_list"
+                            label="Filter by Region"
+                            multiple
+                            chips
+                            deletable-chips
+                            hide-details
+                        ></v-select>
+                    </v-card-text>
                 </v-card>
             </v-col>
         </v-row>
@@ -153,11 +169,13 @@ export default {
                 { text: "Cyno", value: "recon_name" },
                 { text: "GSOL", value: "gsol_name" },
                 { text: "", value: "actions" }
-            ]
+            ],
+            typePicked: []
         };
     },
 
     async created() {
+        await this.$store.dispatch("getRcRegions");
         await this.$store.dispatch("getRcStationRecords");
         await this.$store.dispatch("getRcFcs");
         Echo.private("rcsheet").listen("RcSheetUpdate", e => {
@@ -168,6 +186,7 @@ export default {
             if (e.flag.flag == 2) {
                 this.$store.dispatch("getRcStationRecords");
                 this.$store.dispatch("getRcFcs");
+                this.$store.dispatch("getRcRegions");
             }
 
             if (e.flag.flag == 3) {
