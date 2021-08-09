@@ -19,7 +19,7 @@ class RCSheet extends Controller
 {
     public function RCInput(Request $request)
     {
-        // Station::where('show_on_rc', 1)->update(['show_on_rc' => 2]);
+        Station::where('show_on_rc', 1)->update(['show_on_rc' => 5]);
         // $inputs = $request->all();
         // foreach ($inputs as $input) {
 
