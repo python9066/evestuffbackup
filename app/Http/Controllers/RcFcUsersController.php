@@ -31,7 +31,7 @@ class RcFcUsersController extends Controller
                 'fleet' => $fc->fleet,
                 'name' => $name
             ];
-            dd($data);
+
             array_push($fclist, $data);
         }
         return ['fcs' => $fclist];
