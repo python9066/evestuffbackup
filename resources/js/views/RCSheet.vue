@@ -80,19 +80,49 @@
                             ></RcReconButton>
                         </template>
 
-                        <template
-                            v-slot:[`item.status_name`]="{ item }"
-                            class=" d-inline-flex"
-                            justify="center"
-                        >
-                            <v-chip
-                                v-if="item.out == 0"
-                                pill
-                                small
-                                :color="pillColor(item)"
-                            >
-                                {{ item.status_name }}
-                            </v-chip>
+                        <template v-slot:[`item.status_name`]="{ item }">
+                            <div class=" d-inline-flex" justify="center">
+                                <v-chip
+                                    v-if="item.out == 0"
+                                    pill
+                                    small
+                                    :color="pillColor(item)"
+                                >
+                                    {{ item.status_name }}
+                                </v-chip>
+                                <!-- <v-menu offset-y>
+                                <template v-slot:activator="{ on, attrs }">
+                                    <div>
+                                        <v-chip
+                                            v-bind="attrs"
+                                            v-on="on"
+                                            pill
+                                            :outlined="pillOutlined(item)"
+                                            small
+                                            :color="pillColor(item)"
+                                        >
+                                            {{ item.status_name }}
+                                        </v-chip>
+                                    </div>
+                                </template>
+
+                                <v-list>
+                                    <v-list-item
+                                        v-for="(list, index) in dropdown_edit"
+                                        :key="index"
+                                        @click="
+                                            (item.status_id = list.value),
+                                                (item.status_name = list.title),
+                                                statusClick(item)
+                                        "
+                                    >
+                                        <v-list-item-title>{{
+                                            list.title
+                                        }}</v-list-item-title>
+                                    </v-list-item>
+                                </v-list>
+                            </v-menu> -->
+                            </div>
                         </template>
 
                         <template v-slot:[`item.gsol_name`]="{ item }">

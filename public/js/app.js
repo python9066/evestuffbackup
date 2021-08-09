@@ -24602,6 +24602,36 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -52541,25 +52571,35 @@ var render = function() {
                             fn: function(ref) {
                               var item = ref.item
                               return [
-                                item.out == 0
-                                  ? _c(
-                                      "v-chip",
-                                      {
-                                        attrs: {
-                                          pill: "",
-                                          small: "",
-                                          color: _vm.pillColor(item)
-                                        }
-                                      },
-                                      [
-                                        _vm._v(
-                                          "\n                            " +
-                                            _vm._s(item.status_name) +
-                                            "\n                        "
+                                _c(
+                                  "div",
+                                  {
+                                    staticClass: " d-inline-flex",
+                                    attrs: { justify: "center" }
+                                  },
+                                  [
+                                    item.out == 0
+                                      ? _c(
+                                          "v-chip",
+                                          {
+                                            attrs: {
+                                              pill: "",
+                                              small: "",
+                                              color: _vm.pillColor(item)
+                                            }
+                                          },
+                                          [
+                                            _vm._v(
+                                              "\n                                " +
+                                                _vm._s(item.status_name) +
+                                                "\n                            "
+                                            )
+                                          ]
                                         )
-                                      ]
-                                    )
-                                  : _vm._e()
+                                      : _vm._e()
+                                  ],
+                                  1
+                                )
                               ]
                             }
                           },
