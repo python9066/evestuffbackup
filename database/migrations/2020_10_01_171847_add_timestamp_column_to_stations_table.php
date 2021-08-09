@@ -16,6 +16,8 @@ class AddTimestampColumnToStationsTable extends Migration
         Schema::table('stations', function (Blueprint $table) {
             $table->dateTime('timestamp')->after('station_status_id')->nullable();
             $table->tinyInteger('show_on_main')->after('timestamp')->default('0');
+            $table->tinyInteger('show_on_chill')->after('show_on_main')->default('0');
+            $table->tinyInteger('show_on_rc')->after('show_on_chill')->default('0');
         });
     }
 
