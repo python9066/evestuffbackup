@@ -40,7 +40,7 @@ class RcFcUsersController extends Controller
             RcFcUsers::where('user_id', $request->user_id)->get();
         }
 
-        $fcid = RcFcUsers::where('user_id', $request->user_id)->value('id')->get();
+        $fcid = RcFcUsers::where('user_id', $request->user_id)->value('id');
         dd($fcid);
         Station::where('id', $id)->update(['fc_fc_id' => $fcid]);
     }
