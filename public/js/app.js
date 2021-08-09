@@ -11998,7 +11998,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     return {
       headers: [{
         text: "Name",
-        value: "char_name"
+        value: "name"
       }, {
         text: "",
         value: "actions",

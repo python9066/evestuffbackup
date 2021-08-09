@@ -133,7 +133,7 @@ export default {
     data() {
         return {
             headers: [
-                { text: "Name", value: "char_name" },
+                { text: "Name", value: "name" },
                 { text: "", value: "actions", align: "end" }
 
                 // { text: "Vulernable End Time", value: "vulnerable_end_time" }
