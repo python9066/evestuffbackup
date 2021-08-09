@@ -32,9 +32,10 @@ class RcFcUsersController extends Controller
 
     public function addFCtoStation(Request $request, $id)
     {
-        $check = RcFcUsers::where('user_id', $request->user_id)->get();
+        $check = RcFcUsers::where(['user_id', $request->user_id])->get();
         if (!$check) {
-            $check =  RcFcUsers::Create(['user_id' => $request->user_id])->get();
+            echo "add";
+            RcFcUsers::Create(['user_id' => $request->user_id])->get();
         }
         dd($check);
         $fcid = $check->id;
