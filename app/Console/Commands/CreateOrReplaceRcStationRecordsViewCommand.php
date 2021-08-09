@@ -44,6 +44,8 @@ stations.system_id AS system_id,
 systems.system_name AS system_name,
 regions.region_name AS region_name,
 regions.id AS region_id,
+systems.constellation_id AS constellation_id,
+constellations.constellation_name AS constellation_name,
 stations.alliance_id AS alliance_id,
 alliances.name AS alliance_name,
 alliances.ticker AS alliance_ticker,
@@ -66,6 +68,7 @@ FROM stations
 LEFT JOIN systems ON systems.id = stations.system_id
 LEFT JOIN regions ON regions.id = systems.region_id
 LEFT JOIN alliances ON alliances.id = stations.alliance_id
+LEFT JOIN constellations on constellations.id = systems.constellation_id
 LEFT JOIN items ON items.id = stations.item_id
 LEFT JOIN rc_station_statuses ON rc_station_statuses.id = stations.station_status_id
 LEFT JOIN rc_fc_users AS fc ON fc.id = stations.rc_fc_id

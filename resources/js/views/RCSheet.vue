@@ -48,6 +48,27 @@
                     </v-card-text>
                 </v-card>
             </v-col>
+            <v-col class=" d-inline-flex" cols="6" v-if="$can('super')">
+                <v-card
+                    max-width="600px"
+                    min-width="600px"
+                    color="#121212"
+                    elevation="0"
+                >
+                    <v-card-text>
+                        <v-select
+                            class=" pb-2"
+                            v-model="statusPicked"
+                            :items="dropdown_status_list"
+                            label="Filter by Type"
+                            multiple
+                            chips
+                            deletable-chips
+                            hide-details
+                        ></v-select>
+                    </v-card-text>
+                </v-card>
+            </v-col>
         </v-row>
         <v-row no-gutters justify="center">
             <v-col
@@ -190,7 +211,8 @@ export default {
                 { text: "", value: "actions" }
             ],
             regionPicked: [],
-            itemPicked: []
+            itemPicked: [],
+            statusPicked: []
         };
     },
 

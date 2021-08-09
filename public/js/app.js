@@ -24976,6 +24976,27 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -25033,7 +25054,8 @@ function sleep(ms) {
         value: "actions"
       }],
       regionPicked: [],
-      itemPicked: []
+      itemPicked: [],
+      statusPicked: []
     };
   },
   created: function created() {
@@ -53287,7 +53309,55 @@ var render = function() {
               )
             ],
             1
-          )
+          ),
+          _vm._v(" "),
+          _vm.$can("super")
+            ? _c(
+                "v-col",
+                { staticClass: " d-inline-flex", attrs: { cols: "6" } },
+                [
+                  _c(
+                    "v-card",
+                    {
+                      attrs: {
+                        "max-width": "600px",
+                        "min-width": "600px",
+                        color: "#121212",
+                        elevation: "0"
+                      }
+                    },
+                    [
+                      _c(
+                        "v-card-text",
+                        [
+                          _c("v-select", {
+                            staticClass: " pb-2",
+                            attrs: {
+                              items: _vm.dropdown_status_list,
+                              label: "Filter by Type",
+                              multiple: "",
+                              chips: "",
+                              "deletable-chips": "",
+                              "hide-details": ""
+                            },
+                            model: {
+                              value: _vm.statusPicked,
+                              callback: function($$v) {
+                                _vm.statusPicked = $$v
+                              },
+                              expression: "statusPicked"
+                            }
+                          })
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            : _vm._e()
         ],
         1
       ),
