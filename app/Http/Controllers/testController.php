@@ -34,8 +34,11 @@ class testController extends Controller
         // $array = json_decode($request, TRUE);
         // dd($array, $arry1, $request[0], $request);
 
-        $input = $request->all();
-        dd($input);
+        $inputs = $request->all();
+        foreach ($inputs as $input) {
+
+            dd($input);
+        }
     }
 
     public function userinfo()
