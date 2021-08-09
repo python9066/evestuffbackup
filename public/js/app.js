@@ -24997,6 +24997,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
 
 
 
@@ -25019,6 +25021,9 @@ function sleep(ms) {
         value: "region_name"
       }, {
         text: "System",
+        value: "constellation_name"
+      }, {
+        text: "System",
         value: "system_name"
       }, {
         text: "Name",
@@ -25038,7 +25043,8 @@ function sleep(ms) {
         value: "end_time"
       }, {
         text: "CountDown",
-        value: "count"
+        value: "count",
+        sortable: false
       }, {
         text: "FC",
         value: "fc_name",
@@ -53386,6 +53392,8 @@ var render = function() {
                         items: _vm.filter_end,
                         "item-key": "id",
                         "sort-by": ["end_time"],
+                        "sort-desc": [false, true],
+                        "multi-sort": "",
                         "items-per-page": 50,
                         "footer-props": {
                           "items-per-page-options": [10, 20, 50, 100, -1]

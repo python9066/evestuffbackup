@@ -81,6 +81,8 @@
                         :items="filter_end"
                         item-key="id"
                         :sort-by="['end_time']"
+                        :sort-desc="[false, true]"
+                        multi-sort
                         :items-per-page="50"
                         :footer-props="{
                             'items-per-page-options': [10, 20, 50, 100, -1]
@@ -198,13 +200,14 @@ export default {
         return {
             headers: [
                 { text: "Region", value: "region_name" },
+                { text: "System", value: "constellation_name" },
                 { text: "System", value: "system_name" },
                 { text: "Name", value: "name" },
                 { text: "Type", value: "item_name" },
                 { text: "Status", value: "status_name", align: "center" },
                 { text: "Ticker", value: "alliance_ticker" },
                 { text: "Expires", value: "end_time" },
-                { text: "CountDown", value: "count" },
+                { text: "CountDown", value: "count", sortable: false },
                 { text: "FC", value: "fc_name", align: "center" },
                 { text: "Cyno", value: "recon_name" },
                 { text: "GSOL", value: "gsol_name" },
