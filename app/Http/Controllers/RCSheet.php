@@ -145,7 +145,7 @@ class RCSheet extends Controller
                             $check = Station::where('id', $reconpull)->first();
 
                             if ($check) {
-                                echo "old";
+                                // echo "old";
                                 // $checkid = $check["id"];
                                 $check->update(['station_status_id' => $statusID, 'out_time' => $timer, 'show_on_rc' => 1]);
                                 // dd($check->id);
