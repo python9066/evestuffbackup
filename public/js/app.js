@@ -24967,11 +24967,42 @@ function sleep(ms) {
     };
   },
   created: function created() {
+    var _this = this;
+
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
+              _context.next = 2;
+              return _this.$store.dispatch("getRcStationRecords");
+
+            case 2:
+              _context.next = 4;
+              return _this.$store.dispatch("getRcFcs");
+
+            case 4:
+              Echo["private"]("rcsheet").listen("RcSheetUpdate", function (e) {
+                if (e.flag.message != null) {
+                  _this.$store.dispatch("updateRcStation", e.flag.message);
+                }
+
+                if (e.flag.flag == 2) {
+                  _this.$store.dispatch("getRcStationRecords");
+
+                  _this.$store.dispatch("getRcFcs");
+                }
+
+                if (e.flag.flag == 3) {
+                  _this.$store.dispatch("getRcFcs");
+                }
+
+                if (e.flag.flag == 4) {
+                  _this.$store.dispatch("getRcStationRecords");
+                }
+              });
+
+            case 5:
             case "end":
               return _context.stop();
           }
@@ -24980,21 +25011,11 @@ function sleep(ms) {
     }))();
   },
   mounted: function mounted() {
-    var _this = this;
-
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
         while (1) {
           switch (_context2.prev = _context2.next) {
             case 0:
-              _context2.next = 2;
-              return _this.$store.dispatch("getRcStationRecords");
-
-            case 2:
-              _context2.next = 4;
-              return _this.$store.dispatch("getRcFcs");
-
-            case 4:
             case "end":
               return _context2.stop();
           }
@@ -25096,7 +25117,9 @@ function sleep(ms) {
       return this.rcstations;
     }
   }),
-  beforeDestroy: function beforeDestroy() {}
+  beforeDestroy: function beforeDestroy() {
+    Echo.leave("rcsheet");
+  }
 });
 
 /***/ }),

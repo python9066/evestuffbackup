@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\RcSheetUpdate;
 use App\Models\RcFcUsers;
 use App\Models\RcStationRecords;
 use App\Models\Station;
@@ -57,6 +58,10 @@ class RcFcUsersController extends Controller
             $id = User::where('name', $request->char_name)->value('id');
         }
         RcFcUsers::Create(['user_id' => $id]);
+        $flag = collect([
+            'flag' => 3
+        ]);
+        broadcast(new RcSheetUpdate($flag));
     }
 
     /**
@@ -82,6 +87,12 @@ class RcFcUsersController extends Controller
 
         $fcid = RcFcUsers::where('user_id', $request->user_id)->value('id');
         Station::where('id', $id)->update(['rc_fc_id' => $fcid]);
+
+        $message = RcStationRecords::where('id', $id)->first();
+        $flag = collect([
+            'message' => $message,
+        ]);
+        broadcast(new RcSheetUpdate($flag));
     }
 
     public function removeFCtoStation($id)
@@ -99,6 +110,10 @@ class RcFcUsersController extends Controller
         }
         Station::where('rc_fc_id', $id)->update(['fc_fc_id' => 0]);
         RcFcUsers::where('id', $id)->delete();
+        $flag = collect([
+            'flag' => 2
+        ]);
+        broadcast(new RcSheetUpdate($flag));
     }
 
     /**

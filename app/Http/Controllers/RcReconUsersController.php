@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\RcSheetUpdate;
 use App\Models\RcReconUsers;
+use App\Models\RcStationRecords;
 use App\Models\Station;
 use Illuminate\Http\Request;
 
@@ -30,12 +32,22 @@ class RcReconUsersController extends Controller
 
         $reconid = RcReconUsers::where('user_id', $request->user_id)->value('id');
         Station::where('id', $id)->update(['rc_recon_id' => $reconid]);
+        $message = RcStationRecords::where('id', $id)->first();
+        $flag = collect([
+            'message' => $message,
+        ]);
+        broadcast(new RcSheetUpdate($flag));
     }
 
     public function removeRecontoStation($id)
     {
 
         Station::where('id', $id)->update(['rc_recon_id' => null]);
+        $message = RcStationRecords::where('id', $id)->first();
+        $flag = collect([
+            'message' => $message,
+        ]);
+        broadcast(new RcSheetUpdate($flag));
     }
 
     /**

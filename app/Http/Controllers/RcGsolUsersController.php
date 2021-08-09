@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\RcSheetUpdate;
 use App\Models\RcGsolUsers;
+use App\Models\RcStationRecords;
 use App\Models\Station;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -34,12 +36,22 @@ class RcGsolUsersController extends Controller
     {
 
         Station::where('id', $id)->update(['rc_gsol_id' => $request->user_id]);
+        $message = RcStationRecords::where('id', $id)->first();
+        $flag = collect([
+            'message' => $message,
+        ]);
+        broadcast(new RcSheetUpdate($flag));
     }
 
     public function removeGsoltoStation($id)
     {
 
         Station::where('id', $id)->update(['rc_gsol_id' => null]);
+        $message = RcStationRecords::where('id', $id)->first();
+        $flag = collect([
+            'message' => $message,
+        ]);
+        broadcast(new RcSheetUpdate($flag));
     }
 
     /**

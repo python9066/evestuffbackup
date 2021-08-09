@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\RcSheetUpdate;
 use App\Models\Alliance;
 use Illuminate\Http\Request;
 use utils\Helper\Helper;
@@ -148,6 +149,12 @@ class RCSheet extends Controller
                 }
             }
         }
+
+
+        $flag = collect([
+            'flag' => 2
+        ]);
+        broadcast(new RcSheetUpdate($flag));
         // dd('yo');
     }
 

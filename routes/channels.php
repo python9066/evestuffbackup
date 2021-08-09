@@ -102,6 +102,10 @@ Broadcast::channel('startcampaignsystem.{id}', function () {
     return Auth::check();
 });
 
+Broadcast::channel('rcsheet', function () {
+    return Auth::check();
+});
+
 
 
 

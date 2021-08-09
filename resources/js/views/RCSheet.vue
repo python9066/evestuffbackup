@@ -153,12 +153,30 @@ export default {
         };
     },
 
-    async created() {},
-
-    async mounted() {
+    async created() {
         await this.$store.dispatch("getRcStationRecords");
         await this.$store.dispatch("getRcFcs");
+        Echo.private("rcsheet").listen("RcSheetUpdate", e => {
+            if (e.flag.message != null) {
+                this.$store.dispatch("updateRcStation", e.flag.message);
+            }
+
+            if (e.flag.flag == 2) {
+                this.$store.dispatch("getRcStationRecords");
+                this.$store.dispatch("getRcFcs");
+            }
+
+            if (e.flag.flag == 3) {
+                this.$store.dispatch("getRcFcs");
+            }
+
+            if (e.flag.flag == 4) {
+                this.$store.dispatch("getRcStationRecords");
+            }
+        });
     },
+
+    async mounted() {},
 
     methods: {
         showCountDown(item) {
@@ -235,7 +253,9 @@ export default {
             return this.rcstations;
         }
     },
-    beforeDestroy() {}
+    beforeDestroy() {
+        Echo.leave("rcsheet");
+    }
 };
 </script>
 <style scoped></style>
