@@ -37,7 +37,7 @@
                     <v-card-text>
                         <v-select
                             class=" pb-2"
-                            v-model="typePicked"
+                            v-model="itemPicked"
                             :items="dropdown_type_list"
                             label="Filter by Type"
                             multiple
@@ -325,21 +325,8 @@ export default {
                         });
                     }
                 });
-                if (this.itemPicked.length != 0) {
-                    this.itemPicked.forEach(p => {
-                        let pick = this.data(f => f.item == p);
-                        if (pick != null) {
-                            pick.forEach(pk => {
-                                data.push(pk);
-                            });
-                        }
-                    });
-
-                    return data;
-                }
                 return data;
             }
-
             return this.filteredItems;
         },
 

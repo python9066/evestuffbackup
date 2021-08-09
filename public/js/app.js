@@ -25237,22 +25237,6 @@ function sleep(ms) {
             });
           }
         });
-
-        if (this.itemPicked.length != 0) {
-          this.itemPicked.forEach(function (p) {
-            var pick = _this4.data(function (f) {
-              return f.item == p;
-            });
-
-            if (pick != null) {
-              pick.forEach(function (pk) {
-                data.push(pk);
-              });
-            }
-          });
-          return data;
-        }
-
         return data;
       }
 
@@ -53289,11 +53273,11 @@ var render = function() {
                               "hide-details": ""
                             },
                             model: {
-                              value: _vm.typePicked,
+                              value: _vm.itemPicked,
                               callback: function($$v) {
-                                _vm.typePicked = $$v
+                                _vm.itemPicked = $$v
                               },
-                              expression: "typePicked"
+                              expression: "itemPicked"
                             }
                           })
                         ],
