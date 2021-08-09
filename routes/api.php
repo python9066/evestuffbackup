@@ -191,4 +191,6 @@ Route::middleware('auth:api')->group(function () {
     Route::put('/startcampaignsystemupdate/{id}/{campid}', 'StartCampaignSystemController@update');
     Route::put('/startcampaignsystemupdatetimer/{id}/{campid}', 'StartCampaignSystemController@updatetimer');
     Route::delete('/startcampaignsystemremovechar/{id}/{char}/{campid}', 'StartCampaignSystemController@removeChar');
+
+    Route::get('/rcsheet', 'RcSheetContoller@index');
 });

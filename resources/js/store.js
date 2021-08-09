@@ -34,6 +34,7 @@ export default new Vuex.Store({
         notifications: [],
         periodbasisLink: "",
         queriousLink: "",
+        rcstations:[],
         recontasksystems:[],
         rolesList: [],
         startcampaigns: [],
@@ -379,6 +380,10 @@ export default new Vuex.Store({
 
         SET_RECON_TASK_SYSTEMS(state, systems) {
             state.recontasksystems = systems;
+        },
+
+        SET_RC_STATIONS(state, stations) {
+            state.rcstations = stations;
         },
 
         UPDATE_RECON_TASK_SYSTEMS(state, data) {
@@ -1079,6 +1084,23 @@ export default new Vuex.Store({
                 commit("SET_RECON_TASK_SYSTEMS", res.data.systems);
             }
         },
+
+        async getReconTaskSystemsRecords({ commit, state }) {
+            let res = await axios({
+                method: "get", //you can set what request you want to be
+                url: "/api/rcsheet",
+                headers: {
+                    Authorization: "Bearer " + state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                }
+            });
+            if (res.data.length != 0) {
+                commit("SET_RC_STATIONS", res.data.stations);
+            }
+        },
+
+
 
         async getConstellationList({ commit, state }) {
             let res = await axios({
