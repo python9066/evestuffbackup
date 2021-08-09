@@ -61759,7 +61759,7 @@ vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(vue_router__WEBPACK_IMPORTED_MODU
     name: "killlist",
     component: _views_RCsheet_vue__WEBPACK_IMPORTED_MODULE_22__["default"],
     beforeEnter: function beforeEnter(to, from, next) {
-      if (Permissions.indexOf('super') !== -1) {
+      if (Permissions.indexOf('view_killsheet') !== -1) {
         next();
       } else {
         next("/notifications");

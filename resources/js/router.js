@@ -153,7 +153,7 @@ export default new Router({
             name: "killlist",
             component: KillList,
               beforeEnter(to, from, next) {
-                if(Permissions.indexOf('super' )!== -1){
+                if(Permissions.indexOf('view_killsheet' )!== -1){
                     next()
                 }else{
                    next("/notifications")
