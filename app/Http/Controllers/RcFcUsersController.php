@@ -39,8 +39,8 @@ class RcFcUsersController extends Controller
 
     public function newfc(Request $request)
     {
-        $name = $request->char_name;
-        $check = User::where('name', $name)->count();
+
+        $check = User::where('name', $request->char_name)->count();
         // dd($check);
         if ($check == null) {
             $id = User::where('id', '>', 10000000000)->max('id');
@@ -51,10 +51,10 @@ class RcFcUsersController extends Controller
             }
 
 
-            $new = User::Create(['name', $name]);
+            $new = User::Create(['name', $request->char_name]);
             $new->update(['id' => $id]);
         } else {
-            $id = User::where('name', $name)->value('id');
+            $id = User::where('name', $request->char_name)->value('id');
         }
         RcFcUsers::Create(['user_id', $id]);
     }

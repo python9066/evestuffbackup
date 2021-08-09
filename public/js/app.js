@@ -12068,7 +12068,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 3:
                 _this.$store.dispatch("getRcFcs");
 
-              case 4:
+                _this.addShown = false;
+                _this.newFCName = null;
+
+              case 6:
               case "end":
                 return _context3.stop();
             }
