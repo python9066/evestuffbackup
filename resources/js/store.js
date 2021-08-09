@@ -34,6 +34,7 @@ export default new Vuex.Store({
         notifications: [],
         periodbasisLink: "",
         queriousLink: "",
+        rcfcs:[],
         rcstations:[],
         recontasksystems:[],
         rolesList: [],
@@ -211,6 +212,16 @@ export default new Vuex.Store({
                 Object.assign(item, data);
             } else {
                 state.rcstations.push(data)
+            }
+        },
+
+        UPDATE_RC_FC(state, data) {
+            const item = state.rcfcs.find(item => item.id === data.id);
+            const count = state.rcfcs.filter(item => item.id === data.id).length
+            if (count > 0) {
+                Object.assign(item, data);
+            } else {
+                state.rcfcs.push(data)
             }
         },
 
@@ -395,6 +406,13 @@ export default new Vuex.Store({
         SET_RC_STATIONS(state, stations) {
             state.rcstations = stations;
         },
+
+        SET_RC_FCS(state, fcs) {
+            state.rcfcs = fcs;
+        },
+
+
+
 
         UPDATE_RECON_TASK_SYSTEMS(state, data) {
             const item = state.recontasksystems.find(c => c.id === data.id);
@@ -852,6 +870,10 @@ export default new Vuex.Store({
             commit("UPDATE_RC_STATION", data);
         },
 
+        updateRcStation({ commit }, data) {
+            commit("UPDATE_RC_FC", data);
+        },
+
         updateCores({ commit }, data) {
             commit("UPDATE_CORES", data);
         },
@@ -1113,6 +1135,25 @@ export default new Vuex.Store({
                 commit("SET_RC_STATIONS", res.data.stations);
             }
         },
+
+
+        async getRcFcs({ commit, state }) {
+            let res = await axios({
+                method: "get", //you can set what request you want to be
+                url: "/api/rcfc",
+                headers: {
+                    Authorization: "Bearer " + state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                }
+            });
+            if (res.data.length != 0) {
+                commit("SET_RC_FCS", res.data.fcs);
+            }
+        },
+
+
+
 
 
 

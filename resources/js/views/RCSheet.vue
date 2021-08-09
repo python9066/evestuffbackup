@@ -74,6 +74,7 @@
                             ></RcFCButton>
                             <RcFCAdd
                                 v-if="!item.fc_user_id"
+                                :station="item"
                                 class=" pl-6"
                             ></RcFCAdd>
                         </template>
@@ -156,6 +157,7 @@ export default {
 
     async mounted() {
         await this.$store.dispatch("getRcStationRecords");
+        await this.$store.dispatch("getRcFcs");
     },
 
     methods: {

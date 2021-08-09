@@ -128,42 +128,17 @@ import { mapGetters } from "vuex";
 import { mapState } from "vuex";
 export default {
     props: {
-        campaign_id: Number
+        station: Object
     },
     data() {
         return {
             headers: [
                 { text: "Name", value: "char_name" },
-                { text: "Role", value: "role_name" },
-                { text: "Ship", value: "ship" },
-                { text: "Entosis", value: "link" },
-                { text: "", value: "addRemove", align: "center" },
                 { text: "", value: "actions", align: "end" }
 
                 // { text: "Vulernable End Time", value: "vulnerable_end_time" }
             ],
-
-            dropdown_roles: [
-                { text: "Hacker", value: 1 },
-                { text: "Support", value: 5 },
-                { text: "Scout", value: 2 },
-                { text: "FC", value: 3 },
-                { text: "Command", value: 4 }
-            ],
-            statusflag: 0,
-            toggle_exclusive: 0,
             newCharName: null,
-            newRole: null,
-            newRoleRules: [v => !!v || "You need to pick a role"],
-            newShip: null,
-            newShipRules: [v => !!v || "Ship is required"],
-            newLink: null,
-            newLinkRules: [v => !!v || "T1 or T2?"],
-
-            role: 0,
-            editrole: 0,
-            oldChar: [],
-            overlay: false,
 
             addShown: false
         };
@@ -179,207 +154,11 @@ export default {
             this.newFCName = null;
         },
 
-        roleEditForm(a) {
-            this.editrole = a;
-            // console.log("LALAL");
-            // console.log(a);
-        },
+        async pillClick(item) {},
 
-        pillColor(item) {
-            if (item.campaign_id == this.campaign_id) {
-                return "red";
-            } else {
-                return "green";
-            }
-        },
-
-        pillText(item) {
-            if (item.campaign_id == this.campaign_id) {
-                return "Remove";
-            } else {
-                return "Add";
-            }
-        },
-
-        pillIcon(item) {
-            if (item.campaign_id == this.campaign_id) {
-                return "fas fa-minus";
-            } else {
-                return "fas fa-plus";
-            }
-        },
-
-        async pillClick(item) {
-            if (item.campaign_id == this.campaign_id) {
-                //removeing char from campaign
-
-                let data = item;
-                data.campaign_id = null;
-                data.campaign_system_id = null;
-                data.system_id = null;
-                data.status_id = 1;
-                data.node_id = null;
-                data.system_name = null;
-                data.user_status_name = "None";
-                this.$store.dispatch("deleteCampaignUser", data.id); //remove char from campaign
-                this.$store.dispatch("updateUsersChars", data); // update user char
-
-                data = null;
-
-                data = {
-                    campaign_system_status_id: 1,
-                    end_time: null,
-                    main_name: null,
-                    site_id: null,
-                    user_id: null,
-                    user_link: null,
-                    user_name: null,
-                    user_ship: null
-                };
-                var payload = {
-                    user_id: item.id,
-                    data: data
-                };
-                this.$store.dispatch("updateCampaignSystemByUserID", payload); // removes from old node for new campaign
-
-                var request = {
-                    campaign_id: null,
-                    campaign_system_id: null,
-                    system_id: null,
-                    status_id: 1
-                };
-
-                await axios({
-                    //removes char from campaign
-                    method: "PUT",
-                    url:
-                        "/api/campaignusersremove/" +
-                        item.id +
-                        "/" +
-                        this.campaign_id,
-                    data: request,
-                    headers: {
-                        Authorization: "Bearer " + this.$store.state.token,
-                        Accept: "application/json",
-                        "Content-Type": "application/json"
-                    }
-                });
-
-                // await this.$store.dispatch(
-                //     "getCampaignUsersRecords",
-                //     this.campaign_id
-                // );
-                // await this.$store.dispatch(
-                //     "getUsersChars",
-                //     this.$store.state.user_id
-                // );
-                // this.$store.dispatch("getCampaignSystemsRecords");
-
-                //------logging---////
-                request = null;
-                request = {
-                    user_id: this.$store.state.user_id,
-                    type: "removed",
-                    char_name: this.newCharName
-                };
-
-                await axios({
-                    method: "put",
-                    url: "/api/checkaddremovechar/" + this.campaign_id,
-                    data: request,
-                    headers: {
-                        Authorization: "Bearer " + this.$store.state.token,
-                        Accept: "application/json",
-                        "Content-Type": "application/json"
-                    }
-                });
-
-                //------logging End-----//
-            } else {
-                //--add char to campaign--//
-                let data = item;
-                data.campaign_id = this.campaign_id;
-                data.campaign_system_id = null;
-                data.system_id = null;
-                data.status_id = 1;
-                data.node_id = null;
-                data.system_name = null;
-                data.user_status_name = "None";
-                this.$store.dispatch("addCampaignUserNew", data); //add char to campaign
-                this.$store.dispatch("updateUsersChars", data); // update user char
-
-                data = null;
-
-                data = {
-                    campaign_system_status_id: 1,
-                    end_time: null,
-                    main_name: null,
-                    site_id: null,
-                    user_id: null,
-                    user_link: null,
-                    user_name: null,
-                    user_ship: null
-                };
-                var payload = {
-                    user_id: item.id,
-                    data: data
-                };
-                this.$store.dispatch("updateCampaignSystemByUserID", payload); // removes from old node for new campaign
-
-                var request = {
-                    campaign_id: this.campaign_id,
-                    campaign_system_id: null,
-                    system_id: null,
-                    status_id: 1
-                };
-
-                // add char to campaign
-                await axios({
-                    method: "PUT",
-                    url:
-                        "/api/campaignusersadd/" +
-                        item.id +
-                        "/" +
-                        this.campaign_id,
-                    data: request,
-                    headers: {
-                        Authorization: "Bearer " + this.$store.state.token,
-                        Accept: "application/json",
-                        "Content-Type": "application/json"
-                    }
-                });
-
-                //--------LOGGING START------------//
-                request = null;
-                request = {
-                    user_id: this.$store.state.user_id,
-                    type: "added",
-                    char_name: this.newCharName
-                };
-
-                await axios({
-                    method: "put",
-                    url: "/api/checkaddremovechar/" + this.campaign_id,
-                    data: request,
-                    headers: {
-                        Authorization: "Bearer " + this.$store.state.token,
-                        Accept: "application/json",
-                        "Content-Type": "application/json"
-                    }
-                });
-
-                //------logging End-----//
-            }
-        },
-
-        async newCharForm() {
+        async newFCForm() {
             var request = {
-                site_id: this.$store.state.user_id,
-                campaign_id: this.campaign_id,
-                char_name: this.newCharName,
-                link: this.newLink,
-                ship: this.newShip,
-                campaign_role_id: this.newRole
+                char_name: this.newCharName
             };
 
             await axios({
@@ -392,14 +171,6 @@ export default {
                     "Content-Type": "application/json"
                 }
             });
-            await this.$store.dispatch(
-                "getCampaignUsersRecords",
-                this.campaign_id
-            );
-            await this.$store.dispatch(
-                "getUsersChars",
-                this.$store.state.user_id
-            );
 
             //------logging Start-----//
             request = null;
@@ -408,26 +179,6 @@ export default {
                 type: "added",
                 char_name: this.newCharName
             };
-
-            await axios({
-                method: "put",
-                url: "/api/checkaddremovechar/" + this.campaign_id,
-                data: request,
-                headers: {
-                    Authorization: "Bearer " + this.$store.state.token,
-                    Accept: "application/json",
-                    "Content-Type": "application/json"
-                }
-            });
-
-            //------logging End-----//
-
-            this.role = null;
-            this.newCharName = null;
-            this.newLink = null;
-            this.newShip = null;
-            this.newRole = null;
-            this.addShown = false;
         },
 
         async removeChar(item) {
@@ -453,9 +204,9 @@ export default {
     },
 
     computed: {
-        ...mapState(["campaignusers", "userschars"]),
+        ...mapState(["rcfcs"]),
         filteredItems() {
-            return this.userschars;
+            return this.rcfcs;
         }
     }
 };

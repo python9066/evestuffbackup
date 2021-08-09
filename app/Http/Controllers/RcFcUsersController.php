@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\RcFcUsers;
 use App\Models\RcStationRecords;
 use App\Models\Station;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class RcFcUsersController extends Controller
@@ -16,7 +17,24 @@ class RcFcUsersController extends Controller
      */
     public function index()
     {
-        //
+        $fclist = [];
+        $fcs = RcFcUsers::all();
+        foreach ($fcs as $fc) {
+            $data = [];
+
+            $name = User::where('id', $fc->user_id)->vlaue('name');
+
+
+            $data = [
+                'id' => $fc->id,
+                'user_id' => $fc->user_id,
+                'fleet' => $fc->fleet,
+                'name' => $name
+            ];
+            dd($data);
+            array_push($fclist, $data);
+        }
+        return ['fcs' => $fclist];
     }
 
     /**
