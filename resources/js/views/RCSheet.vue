@@ -27,7 +27,7 @@
                     </v-card-text>
                 </v-card>
             </v-col>
-            <v-col class=" d-inline-flex" cols="6" v-if="$can('super')">
+            <v-col class=" d-inline-flex" cols="6">
                 <v-card
                     max-width="600px"
                     min-width="600px"

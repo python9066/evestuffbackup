@@ -105,6 +105,7 @@ class RCSheet extends Controller
 
 
                     if ($count > 0) {
+                        dd($check[0]['station_status_id']);
                         // $checkid = $check["id"];
                         if ($check[0]['station_status_id'] == 5) {
                             $statusID = 5;

@@ -53243,53 +53243,51 @@ var render = function() {
             1
           ),
           _vm._v(" "),
-          _vm.$can("super")
-            ? _c(
-                "v-col",
-                { staticClass: " d-inline-flex", attrs: { cols: "6" } },
+          _c(
+            "v-col",
+            { staticClass: " d-inline-flex", attrs: { cols: "6" } },
+            [
+              _c(
+                "v-card",
+                {
+                  attrs: {
+                    "max-width": "600px",
+                    "min-width": "600px",
+                    color: "#121212",
+                    elevation: "0"
+                  }
+                },
                 [
                   _c(
-                    "v-card",
-                    {
-                      attrs: {
-                        "max-width": "600px",
-                        "min-width": "600px",
-                        color: "#121212",
-                        elevation: "0"
-                      }
-                    },
+                    "v-card-text",
                     [
-                      _c(
-                        "v-card-text",
-                        [
-                          _c("v-select", {
-                            staticClass: " pb-2",
-                            attrs: {
-                              items: _vm.dropdown_type_list,
-                              label: "Filter by Type",
-                              multiple: "",
-                              chips: "",
-                              "deletable-chips": "",
-                              "hide-details": ""
-                            },
-                            model: {
-                              value: _vm.itemPicked,
-                              callback: function($$v) {
-                                _vm.itemPicked = $$v
-                              },
-                              expression: "itemPicked"
-                            }
-                          })
-                        ],
-                        1
-                      )
+                      _c("v-select", {
+                        staticClass: " pb-2",
+                        attrs: {
+                          items: _vm.dropdown_type_list,
+                          label: "Filter by Type",
+                          multiple: "",
+                          chips: "",
+                          "deletable-chips": "",
+                          "hide-details": ""
+                        },
+                        model: {
+                          value: _vm.itemPicked,
+                          callback: function($$v) {
+                            _vm.itemPicked = $$v
+                          },
+                          expression: "itemPicked"
+                        }
+                      })
                     ],
                     1
                   )
                 ],
                 1
               )
-            : _vm._e()
+            ],
+            1
+          )
         ],
         1
       ),
