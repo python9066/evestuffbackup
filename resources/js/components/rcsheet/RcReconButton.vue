@@ -3,7 +3,7 @@
         <div>
             <span class="d-inline-flex align-items-md-center pr-2">
                 <span class="pl-2" v-show="showRcReconButton()">
-                    {{ station.fc_name }}
+                    {{ station.recon_name }}
                 </span>
             </span>
         </div>
