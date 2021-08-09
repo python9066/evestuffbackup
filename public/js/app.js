@@ -11984,6 +11984,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -40613,7 +40616,8 @@ var render = function() {
                                             attrs: { color: "warning" },
                                             on: {
                                               click: function($event) {
-                                                return _vm.newCharFormClose()
+                                                ;(_vm.addShown = false),
+                                                  (this.newCharName = null)
                                               }
                                             }
                                           },

@@ -66,7 +66,10 @@
                                             <v-btn
                                                 color="warning"
                                                 class="mr-4"
-                                                @click="newCharFormClose()"
+                                                @click="
+                                                    (addShown = false),
+                                                        (this.newCharName = null)
+                                                "
                                                 >Close</v-btn
                                             >
                                             <!-- <v-btn @click="clear">clear</v-btn> -->
