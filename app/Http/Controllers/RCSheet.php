@@ -19,6 +19,7 @@ class RCSheet extends Controller
 {
     public function RCInput(Request $request)
     {
+        Station::where('show_on_rc', 1)->update(['show_on_rc' => 2]);
         // $inputs = $request->all();
         // foreach ($inputs as $input) {
 
@@ -141,7 +142,7 @@ class RCSheet extends Controller
                             $check = Station::where('id', $reconpull)->first();
                             if ($check) {
                                 // $checkid = $check["id"];
-                                $check->update(['station_status_id' => $statusID, 'out_time' => $timer]);
+                                $check->update(['station_status_id' => $statusID, 'out_time' => $timer, 'show_on_rc' => 1]);
                                 // dd($check->id);
                             }
                         }
