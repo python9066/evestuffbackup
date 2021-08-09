@@ -24630,8 +24630,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
 
 
 
@@ -24660,7 +24658,8 @@ function sleep(ms) {
         value: "item_name"
       }, {
         text: "Status",
-        value: "status_name"
+        value: "status_name",
+        align: "center"
       }, {
         text: "Ticker",
         value: "alliance_ticker"
@@ -52571,35 +52570,25 @@ var render = function() {
                             fn: function(ref) {
                               var item = ref.item
                               return [
-                                _c(
-                                  "div",
-                                  {
-                                    staticClass: " d-inline-flex",
-                                    attrs: { justify: "center" }
-                                  },
-                                  [
-                                    item.out == 0
-                                      ? _c(
-                                          "v-chip",
-                                          {
-                                            attrs: {
-                                              pill: "",
-                                              small: "",
-                                              color: _vm.pillColor(item)
-                                            }
-                                          },
-                                          [
-                                            _vm._v(
-                                              "\n                                " +
-                                                _vm._s(item.status_name) +
-                                                "\n                            "
-                                            )
-                                          ]
+                                item.out == 0
+                                  ? _c(
+                                      "v-chip",
+                                      {
+                                        attrs: {
+                                          pill: "",
+                                          small: "",
+                                          color: _vm.pillColor(item)
+                                        }
+                                      },
+                                      [
+                                        _vm._v(
+                                          "\n                            " +
+                                            _vm._s(item.status_name) +
+                                            "\n                        "
                                         )
-                                      : _vm._e()
-                                  ],
-                                  1
-                                )
+                                      ]
+                                    )
+                                  : _vm._e()
                               ]
                             }
                           },

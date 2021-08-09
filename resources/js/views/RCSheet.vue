@@ -81,16 +81,15 @@
                         </template>
 
                         <template v-slot:[`item.status_name`]="{ item }">
-                            <div class=" d-inline-flex" justify="center">
-                                <v-chip
-                                    v-if="item.out == 0"
-                                    pill
-                                    small
-                                    :color="pillColor(item)"
-                                >
-                                    {{ item.status_name }}
-                                </v-chip>
-                                <!-- <v-menu offset-y>
+                            <v-chip
+                                v-if="item.out == 0"
+                                pill
+                                small
+                                :color="pillColor(item)"
+                            >
+                                {{ item.status_name }}
+                            </v-chip>
+                            <!-- <v-menu offset-y>
                                 <template v-slot:activator="{ on, attrs }">
                                     <div>
                                         <v-chip
@@ -122,7 +121,6 @@
                                     </v-list-item>
                                 </v-list>
                             </v-menu> -->
-                            </div>
                         </template>
 
                         <template v-slot:[`item.gsol_name`]="{ item }">
@@ -159,7 +157,7 @@ export default {
                 { text: "System", value: "system_name" },
                 { text: "Name", value: "name" },
                 { text: "Type", value: "item_name" },
-                { text: "Status", value: "status_name" },
+                { text: "Status", value: "status_name", align: "center" },
                 { text: "Ticker", value: "alliance_ticker" },
                 { text: "Expires", value: "end_time" },
                 { text: "CountDown", value: "count" },
