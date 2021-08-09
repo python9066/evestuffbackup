@@ -101,7 +101,7 @@ class RCSheet extends Controller
 
                         // dd($input);
                         $reconpull = $this->reconPullbyname($stationName);
-                        dd($reconpull);
+                        dd($reconpull, $stationName);
 
 
                         if (!$reconpull) {
