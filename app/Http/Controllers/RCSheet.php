@@ -21,7 +21,7 @@ class RCSheet extends Controller
         $inputs = $request->all();
         foreach ($inputs as $input) {
 
-            dd($input);
+            dd($input['created_by'], $input);
         }
         // $arry1 = (json_decode(utf8_encode($request), true));
         // $array = json_decode($request, TRUE);
