@@ -870,7 +870,7 @@ export default new Vuex.Store({
             commit("UPDATE_RC_STATION", data);
         },
 
-        updateRcStation({ commit }, data) {
+        updateRcFC({ commit }, data) {
             commit("UPDATE_RC_FC", data);
         },
 

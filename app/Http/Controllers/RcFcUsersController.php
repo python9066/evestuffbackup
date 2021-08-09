@@ -44,8 +44,7 @@ class RcFcUsersController extends Controller
         // dd($check);
         if ($check == null) {
             $id = User::where('id', '>', 10000000000)->max('id');
-            dd($id);
-            if ($id == 0) {
+            if ($id == null) {
                 $id = 10000000000;
             } else {
                 $id = $id + 1;
