@@ -11901,7 +11901,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     showRcFCButton: function showRcFCButton() {
-      if (station.fc_user_id) {
+      if (this.station.fc_user_id) {
         return true;
       } else {
         return false;
