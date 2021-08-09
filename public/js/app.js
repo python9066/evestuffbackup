@@ -51494,8 +51494,8 @@ var render = function() {
                         headers: _vm.headers,
                         items: _vm.filteredItems,
                         "item-key": "id",
-                        "sort-by": ["name"],
-                        "items-per-page": 20,
+                        "sort-by": ["end_time"],
+                        "items-per-page": 50,
                         search: _vm.search,
                         "footer-props": {
                           "items-per-page-options": [10, 20, 50, 100, -1]
