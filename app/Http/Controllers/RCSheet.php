@@ -27,6 +27,7 @@ class RCSheet extends Controller
             $stationName = $input['name'];
             $reconpull = $this->reconPullbyname($stationName);
             $timer = Helper::fixtime($input['Expires']);
+            $allianceID = Alliance::where('ticker', $input['Ticker'])->first();
             if ($reconpull = false) {
                 $id = Station::where('id', '<', 1000000000)->max('id');
                 if ($id == null) {
@@ -46,7 +47,6 @@ class RCSheet extends Controller
                 }
 
 
-                $allianceID = Alliance::where('ticker', $input['Ticker'])->first();
                 $itemID = Item::where('item_name', $input['Type'])->first();
                 $systemID = System::where('system_name', $input['System'])->first();
                 // $new = Station::Create(['name' => $input['name'], 'system_id' => $systemID->id, 'alliance_id' => $allianceID->id, 'item_id' => $itemID->id, 'station_status_id' => $statusID, 'out_time' => $timer]);
