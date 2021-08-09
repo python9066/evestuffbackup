@@ -80,7 +80,7 @@ class RCSheet extends Controller
                         $allianceIDID = $corpID->alliance_id;
                     }
 
-                    dd($allianceID->id, $input);
+                    dd($allianceIDID, $corpIDID);
 
                     if ($input['timer_type'] == "Armor") {
                         $statusID = 2;
