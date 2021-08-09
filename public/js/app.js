@@ -11984,54 +11984,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -12081,9 +12033,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       statusflag: 0,
       toggle_exclusive: 0,
       newCharName: null,
-      newNameRules: [function (v) {
-        return !!v || "Name is required";
-      }],
       newRole: null,
       newRoleRules: [function (v) {
         return !!v || "You need to pick a role";
@@ -12107,16 +12056,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     close: function close() {
       this.overlay = false;
     },
-    newCharFormClose: function newCharFormClose() {
+    newFCFormClose: function newFCFormClose() {
       this.addShown = false;
-      this.newCharName = null;
-      this.newRole = null;
-      this.newShip = null;
-      this.newLink = null;
-    },
-    roleForm: function roleForm(a) {
-      this.role = a; // console.log("LALAL");
-      // console.log(a);
+      this.newFCName = null;
     },
     roleEditForm: function roleEditForm(a) {
       this.editrole = a; // console.log("LALAL");
@@ -40526,7 +40468,7 @@ var render = function() {
                       ),
                       on
                     ),
-                    [_vm._v("characters")]
+                    [_vm._v("FC")]
                   )
                 ]
               }
@@ -40557,7 +40499,7 @@ var render = function() {
                 "v-card-title",
                 { staticClass: "d-flex justify-space-between align-center " },
                 [
-                  _c("div", [_vm._v("Table of all your saved Characters")]),
+                  _c("div", [_vm._v("Table of FCs")]),
                   _vm._v(" "),
                   _c(
                     "div",
@@ -40603,7 +40545,7 @@ var render = function() {
                                         [_vm._v("fas fa-plus")]
                                       ),
                                       _vm._v(
-                                        "\n                                Char"
+                                        "\n                                FC"
                                       )
                                     ],
                                     1
@@ -40632,17 +40574,16 @@ var render = function() {
                                         on: {
                                           submit: function($event) {
                                             $event.preventDefault()
-                                            return _vm.newCharForm()
+                                            return _vm.newFCFormClose()
                                           }
                                         }
                                       },
                                       [
                                         _c("v-text-field", {
                                           attrs: {
-                                            label: "Char Name",
+                                            label: "FC Name",
                                             required: "",
-                                            autofocus: "",
-                                            rules: _vm.newNameRules
+                                            autofocus: ""
                                           },
                                           model: {
                                             value: _vm.newCharName,
@@ -40652,81 +40593,6 @@ var render = function() {
                                             expression: "newCharName"
                                           }
                                         }),
-                                        _vm._v(" "),
-                                        _c("v-select", {
-                                          attrs: {
-                                            rules: _vm.newRoleRules,
-                                            items: _vm.dropdown_roles,
-                                            label: "Role",
-                                            required: ""
-                                          },
-                                          on: {
-                                            change: function($event) {
-                                              return _vm.roleForm($event)
-                                            }
-                                          },
-                                          model: {
-                                            value: _vm.newRole,
-                                            callback: function($$v) {
-                                              _vm.newRole = $$v
-                                            },
-                                            expression: "newRole"
-                                          }
-                                        }),
-                                        _vm._v(" "),
-                                        this.role == 1
-                                          ? _c("v-text-field", {
-                                              attrs: {
-                                                rules: _vm.newShipRules,
-                                                label: "Ship",
-                                                required: ""
-                                              },
-                                              model: {
-                                                value: _vm.newShip,
-                                                callback: function($$v) {
-                                                  _vm.newShip = $$v
-                                                },
-                                                expression: "newShip"
-                                              }
-                                            })
-                                          : _vm._e(),
-                                        _vm._v(" "),
-                                        this.role == 1
-                                          ? _c(
-                                              "v-radio-group",
-                                              {
-                                                attrs: {
-                                                  rules: _vm.newLinkRules,
-                                                  row: "",
-                                                  label: "Entosis Link",
-                                                  required: ""
-                                                },
-                                                model: {
-                                                  value: _vm.newLink,
-                                                  callback: function($$v) {
-                                                    _vm.newLink = $$v
-                                                  },
-                                                  expression: "newLink"
-                                                }
-                                              },
-                                              [
-                                                _c("v-radio", {
-                                                  attrs: {
-                                                    label: "Tech 1",
-                                                    value: "1"
-                                                  }
-                                                }),
-                                                _vm._v(" "),
-                                                _c("v-radio", {
-                                                  attrs: {
-                                                    label: "Tech 2",
-                                                    value: "2"
-                                                  }
-                                                })
-                                              ],
-                                              1
-                                            )
-                                          : _vm._e(),
                                         _vm._v(" "),
                                         _c(
                                           "v-btn",
@@ -40837,46 +40703,6 @@ var render = function() {
                                         )
                                       ],
                                       1
-                                    )
-                                  ],
-                                  1
-                                )
-                              ]
-                            }
-                          },
-                          {
-                            key: "item.actions",
-                            fn: function(ref) {
-                              var item = ref.item
-                              return [
-                                _c(
-                                  "span",
-                                  [
-                                    _c("UsersCharsEdit", {
-                                      attrs: {
-                                        char: item,
-                                        campaign_id: _vm.campaign_id
-                                      }
-                                    }),
-                                    _vm._v(" "),
-                                    _c(
-                                      "v-icon",
-                                      {
-                                        attrs: {
-                                          color: "orange darken-3",
-                                          small: ""
-                                        },
-                                        on: {
-                                          click: function($event) {
-                                            return _vm.removeChar(item)
-                                          }
-                                        }
-                                      },
-                                      [
-                                        _vm._v(
-                                          "\n                                fas fa-trash-alt\n                            "
-                                        )
-                                      ]
                                     )
                                   ],
                                   1

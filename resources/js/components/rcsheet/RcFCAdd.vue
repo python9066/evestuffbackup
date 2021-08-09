@@ -12,7 +12,7 @@
                     color="green lighten-1"
                     v-bind="attrs"
                     v-on="on"
-                    >characters</v-btn
+                    >FC</v-btn
                 >
             </template>
 
@@ -25,7 +25,7 @@
                 <v-card-title
                     class="d-flex justify-space-between align-center "
                 >
-                    <div>Table of all your saved Characters</div>
+                    <div>Table of FCs</div>
                     <div>
                         <v-menu
                             :close-on-content-click="false"
@@ -41,52 +41,21 @@
                                     @click="addShown = true"
                                     color="success"
                                     ><v-icon left small>fas fa-plus</v-icon>
-                                    Char</v-btn
+                                    FC</v-btn
                                 >
                             </template>
                             <v-row no-gutters>
                                 <div>
                                     <v-card class="pa-2" tile width="100%">
-                                        <v-form @submit.prevent="newCharForm()">
+                                        <v-form
+                                            @submit.prevent="newFCFormClose()"
+                                        >
                                             <v-text-field
                                                 v-model="newCharName"
-                                                label="Char Name"
+                                                label="FC Name"
                                                 required
                                                 autofocus
-                                                :rules="newNameRules"
                                             ></v-text-field>
-                                            <v-select
-                                                v-model="newRole"
-                                                @change="roleForm($event)"
-                                                :rules="newRoleRules"
-                                                :items="dropdown_roles"
-                                                label="Role"
-                                                required
-                                            ></v-select>
-                                            <v-text-field
-                                                v-model="newShip"
-                                                :rules="newShipRules"
-                                                v-if="this.role == 1"
-                                                label="Ship"
-                                                required
-                                            ></v-text-field>
-                                            <v-radio-group
-                                                v-model="newLink"
-                                                :rules="newLinkRules"
-                                                v-if="this.role == 1"
-                                                row
-                                                label="Entosis Link"
-                                                required
-                                            >
-                                                <v-radio
-                                                    label="Tech 1"
-                                                    value="1"
-                                                ></v-radio>
-                                                <v-radio
-                                                    label="Tech 2"
-                                                    value="2"
-                                                ></v-radio>
-                                            </v-radio-group>
 
                                             <v-btn
                                                 color="success"
@@ -138,23 +107,6 @@
                                 </v-btn>
                             </span>
                         </template>
-                        <template v-slot:[`item.actions`]="{ item }">
-                            <span>
-                                <UsersCharsEdit
-                                    :char="item"
-                                    :campaign_id="campaign_id"
-                                >
-                                </UsersCharsEdit>
-
-                                <v-icon
-                                    color="orange darken-3"
-                                    small
-                                    @click="removeChar(item)"
-                                >
-                                    fas fa-trash-alt
-                                </v-icon>
-                            </span>
-                        </template>
                     </v-data-table>
                 </v-card-text>
                 <v-card-actions>
@@ -197,7 +149,6 @@ export default {
             statusflag: 0,
             toggle_exclusive: 0,
             newCharName: null,
-            newNameRules: [v => !!v || "Name is required"],
             newRole: null,
             newRoleRules: [v => !!v || "You need to pick a role"],
             newShip: null,
@@ -219,18 +170,9 @@ export default {
             this.overlay = false;
         },
 
-        newCharFormClose() {
+        newFCFormClose() {
             this.addShown = false;
-            this.newCharName = null;
-            this.newRole = null;
-            this.newShip = null;
-            this.newLink = null;
-        },
-
-        roleForm(a) {
-            this.role = a;
-            // console.log("LALAL");
-            // console.log(a);
+            this.newFCName = null;
         },
 
         roleEditForm(a) {
