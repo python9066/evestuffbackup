@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\RcStationRecords;
+use App\Models\Station;
 use Illuminate\Http\Request;
 
 class RcSheetContoller extends Controller
@@ -27,6 +28,13 @@ class RcSheetContoller extends Controller
     {
         //
     }
+
+    public function stationdone($id)
+    {
+        Station::where('id', $id)->update(['show_on_rc' => 2, 'rc_fc_id' => null, 'rc_gsol_id => null', 'rc_recon_id' => null]);
+    }
+
+
 
     /**
      * Display the specified resource.

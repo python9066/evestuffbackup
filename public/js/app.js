@@ -24749,7 +24749,33 @@ function sleep(ms) {
     numberDay: function numberDay(day) {
       return parseInt(day, 10) + "d";
     },
-    stationdone: function stationdone(item) {},
+    stationdone: function stationdone(item) {
+      var _this2 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                _context3.next = 2;
+                return axios({
+                  method: "put",
+                  url: "/api/finishrcstation/" + item.station.id,
+                  headers: {
+                    Authorization: "Bearer " + _this2.$store.state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                  }
+                });
+
+              case 2:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3);
+      }))();
+    },
     showFC: function showFC(item) {
       if (item.status_id == 540) {
         return false;

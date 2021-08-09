@@ -203,7 +203,17 @@ export default {
             return parseInt(day, 10) + "d";
         },
 
-        stationdone(item) {},
+        async stationdone(item) {
+            await axios({
+                method: "put",
+                url: "/api/finishrcstation/" + item.station.id,
+                headers: {
+                    Authorization: "Bearer " + this.$store.state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                }
+            });
+        },
 
         showFC(item) {
             if (item.status_id == 540) {
