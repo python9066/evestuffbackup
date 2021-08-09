@@ -25194,7 +25194,7 @@ function sleep(ms) {
       return true;
     }
   },
-  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapState"])(["rcstations", "rcsheetRegion"])), {}, {
+  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapState"])(["rcstations", "rcsheetRegion", "rcsheetItem"])), {}, {
     filteredItems: function filteredItems() {
       return this.rcstations;
     },
@@ -25222,6 +25222,9 @@ function sleep(ms) {
     },
     dropdown_region_list: function dropdown_region_list() {
       return this.rcsheetRegion;
+    },
+    dropdown_type_list: function dropdown_type_list() {
+      return this.rcsheetItem;
     }
   }),
   beforeDestroy: function beforeDestroy() {

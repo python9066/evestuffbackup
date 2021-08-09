@@ -293,7 +293,7 @@ export default {
     },
 
     computed: {
-        ...mapState(["rcstations", "rcsheetRegion"]),
+        ...mapState(["rcstations", "rcsheetRegion", "rcsheetItem"]),
         filteredItems() {
             return this.rcstations;
         },
@@ -316,6 +316,10 @@ export default {
 
         dropdown_region_list() {
             return this.rcsheetRegion;
+        },
+
+        dropdown_type_list() {
+            return this.rcsheetItem;
         }
     },
     beforeDestroy() {
