@@ -206,7 +206,7 @@ export default {
         async stationdone(item) {
             await axios({
                 method: "put",
-                url: "/api/finishrcstation/" + item.station.id,
+                url: "/api/finishrcstation/" + item.id,
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
                     Accept: "application/json",

@@ -24760,7 +24760,7 @@ function sleep(ms) {
                 _context3.next = 2;
                 return axios({
                   method: "put",
-                  url: "/api/finishrcstation/" + item.station.id,
+                  url: "/api/finishrcstation/" + item.id,
                   headers: {
                     Authorization: "Bearer " + _this2.$store.state.token,
                     Accept: "application/json",
