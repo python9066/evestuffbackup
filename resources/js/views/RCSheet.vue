@@ -72,7 +72,10 @@
                                 :station="item"
                                 v-if="showFC(item)"
                             ></RcFCButton>
-                            <RcFCAdd v-if="!item.fc_user_id"></RcFCAdd>
+                            <RcFCAdd
+                                v-if="!item.fc_user_id"
+                                class=" pt-4"
+                            ></RcFCAdd>
                         </template>
                         <template v-slot:[`item.recon_name`]="{ item }">
                             <RcReconButton

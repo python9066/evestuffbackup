@@ -25163,6 +25163,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
 
 
 
@@ -53457,7 +53460,9 @@ var render = function() {
                                     })
                                   : _vm._e(),
                                 _vm._v(" "),
-                                !item.fc_user_id ? _c("RcFCAdd") : _vm._e()
+                                !item.fc_user_id
+                                  ? _c("RcFCAdd", { staticClass: " pt-4" })
+                                  : _vm._e()
                               ]
                             }
                           },
