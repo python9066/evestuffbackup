@@ -256,6 +256,7 @@ class RCSheet extends Controller
                     'r_cored' => $stationdata['str_cored'],
                     'show_on_rc' => 1
                 ]);
+                dd('stationdata');
                 if ($stationdata['str_has_no_fitting'] != null) {
                     $items = Utils::jsonDecode($stationdata['str_fitting'], true);
                     // dd($items);
