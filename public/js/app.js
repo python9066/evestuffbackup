@@ -25013,7 +25013,7 @@ function sleep(ms) {
         text: "",
         value: "actions"
       }],
-      typePicked: []
+      regionPicked: []
     };
   },
   created: function created() {

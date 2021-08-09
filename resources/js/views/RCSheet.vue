@@ -170,7 +170,7 @@ export default {
                 { text: "GSOL", value: "gsol_name" },
                 { text: "", value: "actions" }
             ],
-            typePicked: []
+            regionPicked: []
         };
     },
 
