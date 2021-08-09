@@ -28,7 +28,9 @@ class RCSheet extends Controller
             $timer = Helper::fixtime($input['Expires']);
             $allianceID = Alliance::where('ticker', $input['Ticker'])->first();
             if (!$allianceID) {
-                $allianceID = 0;
+                $allianceIDID = 0;
+            } else {
+                $allianceIDID = $allianceID->id;
             }
             $itemID = Item::where('item_name', $input['Type'])->first();
             $systemID = System::where('system_name', $input['System'])->first();
@@ -45,7 +47,7 @@ class RCSheet extends Controller
             }
 
 
-            $check = Station::where(['name' => $input['name'], 'system_id' => $systemID->id, 'alliance_id' => $allianceID->id])->first();
+            $check = Station::where(['name' => $input['name'], 'system_id' => $systemID->id, 'alliance_id' => $allianceIDID])->first();
             if ($check) {
                 // $checkid = $check["id"];
                 $check->update(['station_status_id' => $statusID, 'out_time' => $timer]);
@@ -69,8 +71,8 @@ class RCSheet extends Controller
 
 
 
-                    $new = Station::Create(['name' => $input['name'], 'system_id' => $systemID->id, 'alliance_id' => $allianceID->id, 'item_id' => $itemID->id, 'station_status_id' => $statusID, 'out_time' => $timer]);
-                    if ($allianceID == 0) {
+                    $new = Station::Create(['name' => $input['name'], 'system_id' => $systemID->id, 'alliance_id' => $allianceIDID, 'item_id' => $itemID->id, 'station_status_id' => $statusID, 'out_time' => $timer]);
+                    if ($allianceIDID == 0) {
                         $new->update(['id' => $id, 'text' => $input['Ticker']]);
                     } else {
                         $new->update(['id' => $id]);
