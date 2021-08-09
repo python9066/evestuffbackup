@@ -24,6 +24,9 @@ class RCSheet extends Controller
 
         $inputs = $request->all();
         foreach ($inputs as $input) {
+            $allianceID = Alliance::where('ticker', $input['Ticker'])->first();
+            $itemID = Item::where('item_name', $input['Type'])->first();
+            $systemID = System::where('system_name', $input['System'])->first();
             $check = Station::where(['name' => $input['name'], 'system_id' => $systemID->id, 'alliance_id' => $allianceID->id]);
             dd($check);
 
@@ -51,9 +54,7 @@ class RCSheet extends Controller
                     $statusID = 14;
                 }
 
-                $allianceID = Alliance::where('ticker', $input['Ticker'])->first();
-                $itemID = Item::where('item_name', $input['Type'])->first();
-                $systemID = System::where('system_name', $input['System'])->first();
+
                 $new = Station::Create(['name' => $input['name'], 'system_id' => $systemID->id, 'alliance_id' => $allianceID->id, 'item_id' => $itemID->id, 'station_status_id' => $statusID, 'out_time' => $timer]);
                 $new->update(['id' => $id]);
                 dd($allianceID->id, $input, $timer, $reconpull);
