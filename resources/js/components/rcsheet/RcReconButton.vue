@@ -24,7 +24,8 @@
             >
             <v-icon
                 v-show="
-                    showRcReconButton() && $can('edit_killsheet_remove_char')
+                    showRcReconButton() &&
+                        $can('edit_killsheet_remove_charfefe')
                 "
                 color="orange darken-3 "
                 small
