@@ -206,6 +206,7 @@
                         </template>
                         <template v-slot:[`item.actions`]="{ item }">
                             <RcStationMessage
+                                v-if="$can('super')"
                                 class=" mr-2"
                                 :station="item"
                             ></RcStationMessage>

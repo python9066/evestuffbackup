@@ -25545,6 +25545,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 
@@ -54895,10 +54896,12 @@ var render = function() {
                             fn: function(ref) {
                               var item = ref.item
                               return [
-                                _c("RcStationMessage", {
-                                  staticClass: " mr-2",
-                                  attrs: { station: item }
-                                })
+                                _vm.$can("super")
+                                  ? _c("RcStationMessage", {
+                                      staticClass: " mr-2",
+                                      attrs: { station: item }
+                                    })
+                                  : _vm._e()
                               ]
                             }
                           }
