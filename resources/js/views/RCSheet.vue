@@ -519,4 +519,15 @@ export default {
     }
 };
 </script>
-<style scoped></style>
+<style scoped>
+#table .v-data-footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background: rgb(0, 0, 0);
+}
+
+#table .v-data-table__wrapper {
+    margin-bottom: 60px;
+}
+</style>
