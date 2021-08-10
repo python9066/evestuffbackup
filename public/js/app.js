@@ -13050,7 +13050,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              Echo["private"]("stationmessage." + _this.station.id).listen("StationMessageUpdate", function (e) {
+              Echo["private"]("rcsheet").listen("StationMessageUpdate", function (e) {
                 _this.showNumber = true;
                 _this.messageCount = _this.messageCount + 1;
 
@@ -13069,7 +13069,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     close: function close() {
       this.editText = null;
       this.showStationNotes = false;
-      console.log("close");
     },
     open: function open() {
       this.showNumber = false, this.messageCount = 0;

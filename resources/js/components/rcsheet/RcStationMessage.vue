@@ -98,24 +98,17 @@ export default {
     },
 
     async created() {
-        Echo.private("stationmessage." + this.station.id).listen(
-            "StationMessageUpdate",
-            e => {
-                this.showNumber = true;
-                this.messageCount = this.messageCount + 1;
-                this.$store.dispatch(
-                    "updateStationNotification",
-                    e.flag.message
-                );
-            }
-        );
+        Echo.private("rcsheet").listen("StationMessageUpdate", e => {
+            this.showNumber = true;
+            this.messageCount = this.messageCount + 1;
+            this.$store.dispatch("updateStationNotification", e.flag.message);
+        });
     },
 
     methods: {
         close() {
             this.editText = null;
             this.showStationNotes = false;
-            console.log("close");
         },
 
         open() {
