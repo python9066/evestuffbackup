@@ -110,7 +110,7 @@
                             v-slot:[`item.alliance_ticker`]="{ item }"
                             class="d-inline-flex align-center"
                         >
-                            <span v-if="!item.url">
+                            <span v-if="item.url">
                                 <v-avatar size="35"
                                     ><img :src="item.url"
                                 /></v-avatar>
@@ -180,7 +180,7 @@
                             </v-chip>
 
                             <v-chip
-                                v-if="item.out == 1"
+                                v-else-if="item.out == 1"
                                 pill
                                 small
                                 :color="pillColor(item)"

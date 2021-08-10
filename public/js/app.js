@@ -53646,7 +53646,7 @@ var render = function() {
                             fn: function(ref) {
                               var item = ref.item
                               return [
-                                !item.url
+                                item.url
                                   ? _c(
                                       "span",
                                       [
@@ -53819,9 +53819,7 @@ var render = function() {
                                         )
                                       ]
                                     )
-                                  : _vm._e(),
-                                _vm._v(" "),
-                                item.out == 1
+                                  : item.out == 1
                                   ? _c(
                                       "v-chip",
                                       {
