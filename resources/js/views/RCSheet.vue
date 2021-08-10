@@ -387,6 +387,14 @@ export default {
             return this.rcstations;
         },
 
+        filter_fc() {
+            if (this.toggleFC) {
+                return filter.filteredItems(s => s.rc_fc_id == null);
+            } else {
+                return this.filteredItems;
+            }
+        },
+
         filter_start() {
             let data = [];
             if (this.statusPicked.length != 0) {
@@ -400,7 +408,7 @@ export default {
                 });
                 return data;
             }
-            return this.filteredItems;
+            return this.filter_fc;
         },
 
         filter_mid() {

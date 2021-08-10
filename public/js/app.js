@@ -25800,6 +25800,15 @@ function sleep(ms) {
     filteredItems: function filteredItems() {
       return this.rcstations;
     },
+    filter_fc: function filter_fc() {
+      if (this.toggleFC) {
+        return filter.filteredItems(function (s) {
+          return s.rc_fc_id == null;
+        });
+      } else {
+        return this.filteredItems;
+      }
+    },
     filter_start: function filter_start() {
       var _this3 = this;
 
@@ -25820,7 +25829,7 @@ function sleep(ms) {
         return data;
       }
 
-      return this.filteredItems;
+      return this.filter_fc;
     },
     filter_mid: function filter_mid() {
       var _this4 = this;
