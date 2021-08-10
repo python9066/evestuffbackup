@@ -25068,6 +25068,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
 
 
 
@@ -53686,6 +53689,12 @@ var render = function() {
                                       ],
                                       1
                                     )
+                                  : _vm.$can("super")
+                                  ? _c("span", [
+                                      _vm._v(
+                                        "\n                            crop - alliance\n                        "
+                                      )
+                                    ])
                                   : _vm._e()
                               ]
                             }

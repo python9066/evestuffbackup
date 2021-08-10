@@ -118,6 +118,9 @@
                                     >{{ item.alliance_ticker }}
                                 </span>
                             </span>
+                            <span v-else-if="$can('super')">
+                                crop - alliance
+                            </span>
                         </template>
                         <template v-slot:[`item.count`]="{ item }">
                             <CountDowntimer
