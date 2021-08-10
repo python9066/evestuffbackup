@@ -20,7 +20,13 @@
                 </v-card>
                 <v-spacer></v-spacer>
                 <v-card v-if="$can('super')" right-align>
-                    here
+                    <v-switch
+                        v-model="ex11"
+                        label="red"
+                        color="red"
+                        value="red"
+                        hide-details
+                    ></v-switch>
                 </v-card>
             </v-col>
         </v-row>
@@ -56,7 +62,7 @@
                     <v-card-text>
                         <v-select
                             class=" pb-2"
-                            v-model="itemPicked"
+                            v-model="showFC"
                             :items="dropdown_type_list"
                             label="Filter by Type"
                             multiple
@@ -261,7 +267,8 @@ export default {
             regionPicked: [],
             itemPicked: [],
             statusPicked: [],
-            search: ""
+            search: "",
+            showFC: true
         };
     },
 

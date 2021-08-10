@@ -25589,6 +25589,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 
@@ -25609,7 +25615,8 @@ function sleep(ms) {
       regionPicked: [],
       itemPicked: [],
       statusPicked: [],
-      search: ""
+      search: "",
+      showFC: true
     };
   },
   created: function created() {
@@ -54526,9 +54533,28 @@ var render = function() {
               _c("v-spacer"),
               _vm._v(" "),
               _vm.$can("super")
-                ? _c("v-card", { attrs: { "right-align": "" } }, [
-                    _vm._v("\n                here\n            ")
-                  ])
+                ? _c(
+                    "v-card",
+                    { attrs: { "right-align": "" } },
+                    [
+                      _c("v-switch", {
+                        attrs: {
+                          label: "red",
+                          color: "red",
+                          value: "red",
+                          "hide-details": ""
+                        },
+                        model: {
+                          value: _vm.ex11,
+                          callback: function($$v) {
+                            _vm.ex11 = $$v
+                          },
+                          expression: "ex11"
+                        }
+                      })
+                    ],
+                    1
+                  )
                 : _vm._e()
             ],
             1
@@ -54616,11 +54642,11 @@ var render = function() {
                           "hide-details": ""
                         },
                         model: {
-                          value: _vm.itemPicked,
+                          value: _vm.showFC,
                           callback: function($$v) {
-                            _vm.itemPicked = $$v
+                            _vm.showFC = $$v
                           },
-                          expression: "itemPicked"
+                          expression: "showFC"
                         }
                       })
                     ],
