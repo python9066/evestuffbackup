@@ -102,7 +102,9 @@ export default {
             if (e.flag.id == this.station.id) {
                 this.$store.dispatch("updateRcStation", e.flag.message);
                 this.showNumber = true;
-                this.messageCount = this.messageCount + 1;
+                if (this.showStationNotes == false) {
+                    this.messageCount = this.messageCount + 1;
+                }
             }
         });
     },
