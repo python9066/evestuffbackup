@@ -25594,7 +25594,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
 
 
 
@@ -54541,7 +54540,6 @@ var render = function() {
                         attrs: {
                           label: "Need FC",
                           color: "pink",
-                          value: "red",
                           "hide-details": ""
                         },
                         model: {
