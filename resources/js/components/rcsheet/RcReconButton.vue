@@ -20,7 +20,7 @@
                 <v-icon x-small dark left>
                     fas fa-plus
                 </v-icon>
-                RECON</v-btn
+                CYNO</v-btn
             >
             <v-icon
                 v-show="
