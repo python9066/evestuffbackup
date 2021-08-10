@@ -12838,9 +12838,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   methods: {
     showRcReconButton: function showRcReconButton() {
-      if (this.$store.user_id == this.station.recon_user_id) {
-        return true;
-      }
+      if (this.$store.user_id == this.station.recon_user_id) {}
 
       if (this.station.recon_user_id && this.$can("edit_killsheet_remove_char")) {
         return true;

@@ -52,7 +52,6 @@ export default {
     methods: {
         showRcReconButton() {
             if (this.$store.user_id == this.station.recon_user_id) {
-                return true;
             }
 
             if (
