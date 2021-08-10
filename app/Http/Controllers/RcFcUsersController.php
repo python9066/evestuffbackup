@@ -90,13 +90,15 @@ class RcFcUsersController extends Controller
         $fcid = RcFcUsers::where('user_id', $request->user_id)->value('id');
         Station::where('id', $id)->update(['rc_fc_id' => $fcid]);
 
+        $fcname = User::where('id', $fcid)->value('name');
+
         $message = RcStationRecords::where('id', $id)->first();
         $flag = collect([
             'message' => $message,
         ]);
         broadcast(new RcSheetUpdate($flag));
 
-        $text = Auth::user()->name . " Added FC to " . $message->name;
+        $text = Auth::user()->name . " Added" . $fcname . " to FC for " . $message->name;
 
         Logging::Create(['station_id' => $id, 'user_id' => Auth::id(), 'text' => $text, 'logging_type_id' => 19]);
     }
@@ -104,24 +106,31 @@ class RcFcUsersController extends Controller
     public function addFCadd(Request $request, $id)
     {
         Station::where('id', $id)->update($request->all());
+        $userid = RcFcUsers::where('id', $request->rc_fc_id)->value('user_id');
+        $userName = User::where('id', $userid)->value('name');
 
         $message = RcStationRecords::where('id', $id)->first();
         $flag = collect([
             'message' => $message,
         ]);
         broadcast(new RcSheetUpdate($flag));
+
+        $text = Auth::user()->name . " Added" . $userName . " as FC for " . $message->name;
+        Logging::Create(['station_id' => $id, 'user_id' => Auth::id(), 'text' => $text, 'logging_type_id' => 19]);
     }
 
     public function removeFCtoStation($id)
     {
-
+        $fcid = Station::where('id', $id)->value('rc_fc_id');
+        $userid = RcFcUsers::where('id', $fcid)->value('user_id');
+        $userName = User::where('id', $userid)->value('name');
         Station::where('id', $id)->update(['rc_fc_id' => null]);
         $message = RcStationRecords::where('id', $id)->first();
         $flag = collect([
             'message' => $message,
         ]);
         broadcast(new RcSheetUpdate($flag));
-        $text = Auth::user()->name . " Removed FC from " . $message->name;
+        $text = Auth::user()->name . " Removed" . $userName . " as FC for " . $message->name;
         Logging::Create(['station_id' => $id, 'user_id' => Auth::id(), 'text' => $text, 'logging_type_id' => 20]);
     }
 

@@ -7,6 +7,7 @@ use App\Models\Logging;
 use App\Models\RcReconUsers;
 use App\Models\RcStationRecords;
 use App\Models\Station;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -32,7 +33,9 @@ class RcReconUsersController extends Controller
             RcReconUsers::where('user_id', $request->user_id)->get();
         }
 
+
         $reconid = RcReconUsers::where('user_id', $request->user_id)->value('id');
+        $reconName = RcReconUsers::where('user_id', $request->user_id)->value('name');
         Station::where('id', $id)->update(['rc_recon_id' => $reconid]);
         $message = RcStationRecords::where('id', $id)->first();
         $flag = collect([
@@ -40,21 +43,23 @@ class RcReconUsersController extends Controller
         ]);
         broadcast(new RcSheetUpdate($flag));
 
-        $text = Auth::user()->name . " Added Cyno to " . $message->name;
+        $text = Auth::user()->name . " Added " . $reconName . " as Cyno" . $message->name;
 
         Logging::Create(['station_id' => $id, 'user_id' => Auth::id(), 'text' => $text, 'logging_type_id' => 21]);
     }
 
     public function removeRecontoStation($id)
     {
-
+        $reconrcid = Station::where('id', $id)->value('rc_recon_id');
+        $userid = RcReconUsers::where('id', $reconrcid)->value('user_id');
+        $username = User::where('id', $userid)->value('name');
         Station::where('id', $id)->update(['rc_recon_id' => null]);
         $message = RcStationRecords::where('id', $id)->first();
         $flag = collect([
             'message' => $message,
         ]);
         broadcast(new RcSheetUpdate($flag));
-        $text = Auth::user()->name . " Removed Cyno from " . $message->name;
+        $text = Auth::user()->name . " Removed " . $username . " As Cyno from " . $message->name;
 
         Logging::Create(['station_id' => $id, 'user_id' => Auth::id(), 'text' => $text, 'logging_type_id' => 22]);
     }
