@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Events\RcSheetUpdate;
+use App\Models\Logging;
 use App\Models\RcGsolUsers;
 use App\Models\RcStationRecords;
 use App\Models\Station;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class RcGsolUsersController extends Controller
 {
@@ -41,6 +43,9 @@ class RcGsolUsersController extends Controller
             'message' => $message,
         ]);
         broadcast(new RcSheetUpdate($flag));
+
+        $text = Auth::user()->name . " Added Gsol to " . $message->name;
+        Logging::Create(['station_id' => $id, 'user_id' => Auth::id(), 'text' => $text, 'logging_type_id' => 23]);
     }
 
     public function removeGsoltoStation($id)
@@ -52,6 +57,8 @@ class RcGsolUsersController extends Controller
             'message' => $message,
         ]);
         broadcast(new RcSheetUpdate($flag));
+        $text = Auth::user()->name . " Removed Gsol from " . $message->name;
+        Logging::Create(['station_id' => $id, 'user_id' => Auth::id(), 'text' => $text, 'logging_type_id' => 24]);
     }
 
     /**

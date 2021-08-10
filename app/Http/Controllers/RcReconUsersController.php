@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Events\RcSheetUpdate;
+use App\Models\Logging;
 use App\Models\RcReconUsers;
 use App\Models\RcStationRecords;
 use App\Models\Station;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class RcReconUsersController extends Controller
 {
@@ -37,6 +39,10 @@ class RcReconUsersController extends Controller
             'message' => $message,
         ]);
         broadcast(new RcSheetUpdate($flag));
+
+        $text = Auth::user()->name . " Added Cyno to " . $message->name;
+
+        Logging::Create(['station_id' => $id, 'user_id' => Auth::id(), 'text' => $text, 'logging_type_id' => 21]);
     }
 
     public function removeRecontoStation($id)
@@ -48,6 +54,9 @@ class RcReconUsersController extends Controller
             'message' => $message,
         ]);
         broadcast(new RcSheetUpdate($flag));
+        $text = Auth::user()->name . " Removed Cyno from " . $message->name;
+
+        Logging::Create(['station_id' => $id, 'user_id' => Auth::id(), 'text' => $text, 'logging_type_id' => 22]);
     }
 
     /**
