@@ -25057,6 +25057,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -53787,6 +53796,26 @@ var render = function() {
                                           "\n                            " +
                                             _vm._s(item.status_name) +
                                             " - Done?\n                        "
+                                        )
+                                      ]
+                                    )
+                                  : _vm._e(),
+                                _vm._v(" "),
+                                item.out == 1
+                                  ? _c(
+                                      "v-chip",
+                                      {
+                                        attrs: {
+                                          pill: "",
+                                          small: "",
+                                          color: _vm.pillColor(item)
+                                        }
+                                      },
+                                      [
+                                        _vm._v(
+                                          "\n                            " +
+                                            _vm._s(item.status_name) +
+                                            " - out\n                        "
                                         )
                                       ]
                                     )

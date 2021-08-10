@@ -177,6 +177,15 @@
                                 {{ item.status_name }} - Done?
                             </v-chip>
 
+                            <v-chip
+                                v-if="item.out == 1"
+                                pill
+                                small
+                                :color="pillColor(item)"
+                            >
+                                {{ item.status_name }} - out
+                            </v-chip>
+
                             <v-chip v-else pill small :color="pillColor(item)">
                                 {{ item.status_name }}
                             </v-chip>
