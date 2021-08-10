@@ -20,7 +20,7 @@
                 <v-icon x-small dark left>
                     fas fa-plus
                 </v-icon>
-                RECON</v-btn
+                CYNO</v-btn
             >
             <v-icon
                 v-show="showRcReconButton()"
@@ -51,10 +51,13 @@ export default {
 
     methods: {
         showRcReconButton() {
+            if (this.$store.user_id == this.station.recon_user_id) {
+                return true;
+            }
+
             if (
-                (this.station.recon_user_id &&
-                    this.$can("edit_killsheet_remove_char")) ||
-                this.$store.user_id == this.station.recon_user_id
+                this.station.recon_user_id &&
+                this.$can("edit_killsheet_remove_char")
             ) {
                 return true;
             } else {

@@ -12838,7 +12838,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   methods: {
     showRcReconButton: function showRcReconButton() {
-      if (this.station.recon_user_id && this.$can("edit_killsheet_remove_char") || this.$store.user_id == this.station.recon_user_id) {
+      if (this.$store.user_id == this.station.recon_user_id) {
+        return true;
+      }
+
+      if (this.station.recon_user_id && this.$can("edit_killsheet_remove_char")) {
         return true;
       } else {
         return false;
@@ -42004,7 +42008,7 @@ var render = function() {
               _c("v-icon", { attrs: { "x-small": "", dark: "", left: "" } }, [
                 _vm._v("\n                fas fa-plus\n            ")
               ]),
-              _vm._v("\n            RECON")
+              _vm._v("\n            CYNO")
             ],
             1
           ),
