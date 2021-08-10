@@ -18,6 +18,9 @@
                         hide-details
                     ></v-text-field>
                 </v-card>
+                <v-card v-if="$can('super')">
+                    here
+                </v-card>
             </v-col>
         </v-row>
         <v-row no-gutters justify="center">
