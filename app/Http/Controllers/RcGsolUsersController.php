@@ -50,14 +50,15 @@ class RcGsolUsersController extends Controller
 
     public function removeGsoltoStation($id)
     {
-
+        $gsolNameID = Station::where('id', $id)->value('rc_gsol_id');
+        $gsolName = User::where('id', $gsolNameID)->value('name');
         Station::where('id', $id)->update(['rc_gsol_id' => null]);
         $message = RcStationRecords::where('id', $id)->first();
         $flag = collect([
             'message' => $message,
         ]);
         broadcast(new RcSheetUpdate($flag));
-        $text = Auth::user()->name . " Removed Gsol from " . $message->name;
+        $text = Auth::user()->name . " Removed Gsol from " . $gsolName . " from " . $message->name;
         Logging::Create(['station_id' => $id, 'user_id' => Auth::id(), 'text' => $text, 'logging_type_id' => 24]);
     }
 
