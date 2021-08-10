@@ -108,6 +108,7 @@
                         :search="search"
                         :headers="_headers"
                         :items="filter_end"
+                        id="table"
                         item-key="id"
                         :sort-by="['end_time']"
                         :sort-desc="[false, true]"

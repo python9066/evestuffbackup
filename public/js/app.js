@@ -25943,6 +25943,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 
@@ -55580,6 +55581,7 @@ var render = function() {
                         search: _vm.search,
                         headers: _vm._headers,
                         items: _vm.filter_end,
+                        id: "table",
                         "item-key": "id",
                         "sort-by": ["end_time"],
                         "sort-desc": [false, true],
