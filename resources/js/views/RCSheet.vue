@@ -19,8 +19,9 @@
                     ></v-text-field>
                 </v-card>
                 <v-spacer></v-spacer>
-                <v-card v-if="$can('super')" right-align>
+                <v-card v-if="$can('super')" right-align class="">
                     <v-switch
+                        class=" px-2"
                         v-model="toggleFC"
                         label="Need FC"
                         color="pink"
@@ -267,7 +268,7 @@ export default {
             itemPicked: [],
             statusPicked: [],
             search: "",
-            toggleFC: true
+            toggleFC: false
         };
     },
 

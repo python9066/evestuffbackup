@@ -25594,6 +25594,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 
@@ -25615,7 +25616,7 @@ function sleep(ms) {
       itemPicked: [],
       statusPicked: [],
       search: "",
-      toggleFC: true
+      toggleFC: false
     };
   },
   created: function created() {
@@ -54537,6 +54538,7 @@ var render = function() {
                     { attrs: { "right-align": "" } },
                     [
                       _c("v-switch", {
+                        staticClass: " px-2",
                         attrs: {
                           label: "Need FC",
                           color: "pink",
