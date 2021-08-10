@@ -99,6 +99,8 @@ Vue.component('RcFCButton', require('./components/rcsheet/RcFCButton.vue').defau
 Vue.component('RcReconButton', require('./components/rcsheet/RcReconButton.vue').default);
 Vue.component('RcGsolButton', require('./components/rcsheet/RcGsolButton.vue').default);
 Vue.component('RcFCAdd', require('./components/rcsheet/RcFCAdd.vue').default);
+Vue.component('AddCorpTicker', require('./components/rcsheet/AddCorpTicker.vue').default);
+Vue.component('AddAllianceTicker', require('./components/rcsheet/AddAllianceTicker.vue').default);
 
 
 
