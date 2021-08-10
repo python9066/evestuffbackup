@@ -128,9 +128,9 @@ class RCSheet extends Controller
                         // dd($check->id);
                     } else {
 
-
+                        $rcid = $input['id'];
                         // dd($input);
-                        $reconpull = $this->reconPullbyname($stationName);
+                        $reconpull = $this->reconPullbyname($stationName, $rcid);
                         // dd($reconpull, $stationName);
 
 
@@ -236,7 +236,7 @@ class RCSheet extends Controller
     // }
 
 
-    public static function reconPullbyname($stationName)
+    public static function reconPullbyname($stationName, $rcid)
     {
 
         $url = "https://recon.gnf.lt/api/structure/" . $stationName;
@@ -291,7 +291,9 @@ class RCSheet extends Controller
                     'r_cloning' => $stationdata['str_cloning'],
                     'r_composite' => $stationdata['str_composite'],
                     'r_cored' => $stationdata['str_cored'],
-                    'show_on_rc' => 1
+                    'show_on_rc' => 1,
+                    'rc_id' => $rcid,
+
                 ]);
                 // dd($stationdata);
                 if ($stationdata['str_has_no_fitting'] != null) {
