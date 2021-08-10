@@ -337,6 +337,7 @@ export default {
             let superChilled = [];
             let start = [];
             let topChill = [];
+            let megaSheet = [];
             if (this.$can("edit_all_users")) {
                 return filter;
             }

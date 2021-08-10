@@ -19420,6 +19420,7 @@ function sleep(ms) {
       var superChilled = [];
       var start = [];
       var topChill = [];
+      var megaSheet = [];
 
       if (this.$can("edit_all_users")) {
         return filter;
