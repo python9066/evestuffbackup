@@ -12826,7 +12826,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -42021,9 +42020,9 @@ var render = function() {
                   rawName: "v-show",
                   value:
                     _vm.showRcReconButton() &&
-                    _vm.$can("edit_killsheet_remove_charfefe"),
+                    _vm.$can("edit_killsheet_remove_char"),
                   expression:
-                    "\n                showRcReconButton() &&\n                    $can('edit_killsheet_remove_charfefe')\n            "
+                    "\n                showRcReconButton() && $can('edit_killsheet_remove_char')\n            "
                 }
               ],
               attrs: { color: "orange darken-3 ", small: "" },
