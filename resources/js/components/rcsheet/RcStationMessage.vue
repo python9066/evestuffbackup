@@ -98,10 +98,12 @@ export default {
     },
 
     async created() {
-        Echo.private("rcsheet").listen("StationMessageUpdate", e => {
-            this.showNumber = true;
-            this.messageCount = this.messageCount + 1;
-            this.$store.dispatch("updateStationNotification", e.flag.message);
+        Echo.private("rcsheet").listen("RcSheetMessageUpdate", e => {
+            if (e.flag.id == this.station.id) {
+                this.$store.dispatch("updateRcStation", e.flag.message);
+                this.showNumber = true;
+                this.messageCount = this.messageCount + 1;
+            }
         });
     },
 
@@ -138,10 +140,10 @@ export default {
             let request = {
                 notes: note
             };
-            this.$store.dispatch("updateStationNotification", this.station);
+            this.$store.dispatch("updateRcStation", this.station);
             axios({
                 method: "put",
-                url: "/api/stationmessage/" + this.station.id,
+                url: "/api/sheetmessage/" + this.station.id,
                 data: request,
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\RcSheetMessageUpdate;
 use App\Events\RcSheetUpdate;
 use App\Models\Alliance;
 use App\Models\Corp;
@@ -103,6 +104,22 @@ class RcSheetContoller extends Controller
         // dd($data);
 
         return ['rcsheetlistStatus' => $data];
+    }
+
+    public function updateMessage(Request $request, $id)
+    {
+        // dd($request->notes);
+
+        Station::where('id', $id)->update($request->all());
+
+        $message = RcStationRecords::where('id', $id)->first();
+        $flag = collect([
+            'message' => $message,
+            'id' => $id
+        ]);
+
+        // dd($request, $id, $flag);
+        broadcast(new RcSheetMessageUpdate($flag))->toOthers();
     }
 
 

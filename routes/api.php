@@ -209,4 +209,5 @@ Route::middleware('auth:api')->group(function () {
     Route::get('/rcStatuslist', 'RcSheetContoller@rcSheetListStatus');
     Route::put('/rcfixcorp/{id}', 'RcSheetContoller@fixcorp');
     Route::put('/rcfixalliance/{id}', 'RcSheetContoller@fixalliance');
+    Route::put('/sheetmessage/{id}', 'StationController@updateMessage');
 });

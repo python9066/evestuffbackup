@@ -13050,11 +13050,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              Echo["private"]("rcsheet").listen("StationMessageUpdate", function (e) {
-                _this.showNumber = true;
-                _this.messageCount = _this.messageCount + 1;
+              Echo["private"]("rcsheet").listen("RcSheetMessageUpdate", function (e) {
+                if (e.flag.id == _this.station.id) {
+                  _this.$store.dispatch("updateRcStation", e.flag.message);
 
-                _this.$store.dispatch("updateStationNotification", e.flag.message);
+                  _this.showNumber = true;
+                  _this.messageCount = _this.messageCount + 1;
+                }
               });
 
             case 1:
@@ -13086,10 +13088,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var request = {
         notes: note
       };
-      this.$store.dispatch("updateStationNotification", this.station);
+      this.$store.dispatch("updateRcStation", this.station);
       axios({
         method: "put",
-        url: "/api/stationmessage/" + this.station.id,
+        url: "/api/sheetmessage/" + this.station.id,
         data: request,
         headers: {
           Authorization: "Bearer " + this.$store.state.token,
