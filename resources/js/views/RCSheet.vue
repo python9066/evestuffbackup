@@ -233,7 +233,7 @@ export default {
     async created() {
         if (this.$can("super")) {
             await this.$store.dispatch("getAllianceTickList");
-            await this.$store.dispatch("ticklist");
+            await this.$store.dispatch("getTickList");
         }
         await this.$store.dispatch("getRcRegions");
         await this.$store.dispatch("getRcStationRecords");
@@ -336,8 +336,8 @@ export default {
 
     computed: {
         ...mapState([
-            "corpList",
-            "alliancelist",
+            "ticklist",
+            "allianceticklist",
             "rcstations",
             "rcsheetRegion",
             "rcsheetItem",

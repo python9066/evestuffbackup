@@ -25109,7 +25109,7 @@ function sleep(ms) {
 
             case 3:
               _context.next = 5;
-              return _this.$store.dispatch("ticklist");
+              return _this.$store.dispatch("getTickList");
 
             case 5:
               _context.next = 7;
@@ -25268,7 +25268,7 @@ function sleep(ms) {
       return true;
     }
   },
-  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapState"])(["corpList", "alliancelist", "rcstations", "rcsheetRegion", "rcsheetItem", "rcsheetStatus"])), {}, {
+  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapState"])(["ticklist", "allianceticklist", "rcstations", "rcsheetRegion", "rcsheetItem", "rcsheetStatus"])), {}, {
     filteredItems: function filteredItems() {
       return this.rcstations;
     },
