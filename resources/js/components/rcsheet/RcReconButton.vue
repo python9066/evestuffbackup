@@ -23,7 +23,9 @@
                 RECON</v-btn
             >
             <v-icon
-                v-show="showRcReconButton()"
+                v-show="
+                    showRcReconButton() && $can('edit_killsheet_remove_char')
+                "
                 color="orange darken-3"
                 small
                 @click="reconRemove()"

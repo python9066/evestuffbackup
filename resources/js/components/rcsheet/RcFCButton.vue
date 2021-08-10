@@ -23,7 +23,7 @@
                 FC</v-btn
             >
             <v-icon
-                v-show="showRcFCButton()"
+                v-show="showRcFCButton() && $can('edit_killsheet_remove_char')"
                 color="orange darken-3"
                 small
                 @click="fcRemove()"

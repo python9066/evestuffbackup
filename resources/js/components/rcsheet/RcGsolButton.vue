@@ -23,7 +23,9 @@
                 GSOL</v-btn
             >
             <v-icon
-                v-show="showRcGsolButton()"
+                v-show="
+                    showRcGsolButton() && $can('edit_killsheet_remove_char')
+                "
                 color="orange darken-3"
                 small
                 @click="gsolRemove()"
