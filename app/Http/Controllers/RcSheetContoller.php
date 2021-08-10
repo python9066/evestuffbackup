@@ -151,6 +151,7 @@ class RcSheetContoller extends Controller
         $flag = collect([
             'message' => $message,
         ]);
+        broadcast(new RcSheetUpdate($flag));
     }
 
 

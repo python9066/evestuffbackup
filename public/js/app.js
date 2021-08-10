@@ -25793,7 +25793,9 @@ function sleep(ms) {
   },
   computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapState"])(["rcstations", "rcsheetRegion", "rcsheetItem", "rcsheetStatus"])), {}, {
     filteredItems: function filteredItems() {
-      return this.rcstations;
+      return this.rcstations.filter(function (f) {
+        return f.show_on_rc == 1;
+      });
     },
     filter_fc: function filter_fc() {
       if (this.toggleFC) {
