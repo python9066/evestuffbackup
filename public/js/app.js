@@ -54492,10 +54492,7 @@ var render = function() {
     [
       _c(
         "v-row",
-        {
-          staticClass: " d-inline-flex",
-          attrs: { "no-gutters": "", cols: "12" }
-        },
+        { attrs: { "no-gutters": "", justify: "center" } },
         [
           _c(
             "v-col",
