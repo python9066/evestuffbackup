@@ -94,7 +94,7 @@
                     <v-data-table
                         dense
                         :search="search"
-                        :headers="headers"
+                        :headers="_headers"
                         :items="filter_end"
                         item-key="id"
                         :sort-by="['end_time']"
@@ -218,21 +218,6 @@ export default {
     },
     data() {
         return {
-            headers: [
-                { text: "Region", value: "region_name" },
-                { text: "Const", value: "constellation_name" },
-                { text: "System", value: "system_name" },
-                { text: "Name", value: "name" },
-                { text: "Type", value: "item_name", width: "5%" },
-                { text: "Status", value: "status_name", align: "center" },
-                { text: "Ticker", value: "alliance_ticker" },
-                { text: "Expires", value: "end_time" },
-                { text: "CountDown", value: "count", sortable: false },
-                { text: "FC", value: "fc_name", align: "center" },
-                { text: "Cyno", value: "recon_name" },
-                { text: "GSOL", value: "gsol_name" },
-                { text: "", value: "actions" }
-            ],
             regionPicked: [],
             itemPicked: [],
             statusPicked: [],
@@ -409,6 +394,43 @@ export default {
 
         dropdown_status_list() {
             return this.rcsheetStatus;
+        },
+
+        _headers() {
+            if (this.$can("view_gsol_killsheet")) {
+                var Headers = [
+                    { text: "Region", value: "region_name" },
+                    { text: "Const", value: "constellation_name" },
+                    { text: "System", value: "system_name" },
+                    { text: "Name", value: "name" },
+                    { text: "Type", value: "item_name", width: "5%" },
+                    { text: "Status", value: "status_name", align: "center" },
+                    { text: "Ticker", value: "alliance_ticker" },
+                    { text: "Expires", value: "end_time" },
+                    { text: "CountDown", value: "count", sortable: false },
+                    { text: "FC", value: "fc_name", align: "center" },
+                    { text: "Cyno", value: "recon_name" },
+                    { text: "GSOL", value: "gsol_name" },
+                    { text: "", value: "actions" }
+                ];
+            } else {
+                var Headers = [
+                    { text: "Region", value: "region_name" },
+                    { text: "Const", value: "constellation_name" },
+                    { text: "System", value: "system_name" },
+                    { text: "Name", value: "name" },
+                    { text: "Type", value: "item_name", width: "5%" },
+                    { text: "Status", value: "status_name", align: "center" },
+                    { text: "Ticker", value: "alliance_ticker" },
+                    { text: "Expires", value: "end_time" },
+                    { text: "CountDown", value: "count", sortable: false },
+                    { text: "FC", value: "fc_name", align: "center" },
+                    { text: "Cyno", value: "recon_name" },
+                    { text: "", value: "actions" }
+                ];
+            }
+
+            return Headers;
         }
     },
     beforeDestroy() {
