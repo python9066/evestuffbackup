@@ -92,7 +92,6 @@
             >
                 <v-card width="100%">
                     <v-data-table
-                        dense
                         :search="search"
                         :headers="_headers"
                         :items="filter_end"
