@@ -12824,6 +12824,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -12838,7 +12843,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   methods: {
     showRcReconButton: function showRcReconButton() {
-      if (this.station.recon_user_id && this.$can("edit_killsheet_remove_char")) {
+      if (this.station.recon_user_id) {
         return true;
       } else {
         return false;
@@ -42004,7 +42009,7 @@ var render = function() {
               _c("v-icon", { attrs: { "x-small": "", dark: "", left: "" } }, [
                 _vm._v("\n                fas fa-plus\n            ")
               ]),
-              _vm._v("\n            CYNO")
+              _vm._v("\n            RECON")
             ],
             1
           ),
@@ -42016,8 +42021,12 @@ var render = function() {
                 {
                   name: "show",
                   rawName: "v-show",
-                  value: _vm.showRcReconButton(),
-                  expression: "showRcReconButton()"
+                  value:
+                    _vm.showRcReconButton() &&
+                    (_vm.$can("edit_killsheet_remove_char") ||
+                      this.station.recon_user_id == this.$store.state.user_id),
+                  expression:
+                    "\n                showRcReconButton() &&\n                    ($can('edit_killsheet_remove_char') ||\n                        this.station.recon_user_id ==\n                            this.$store.state.user_id)\n            "
                 }
               ],
               attrs: { color: "orange darken-3 ", small: "" },

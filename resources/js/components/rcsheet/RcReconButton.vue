@@ -20,10 +20,15 @@
                 <v-icon x-small dark left>
                     fas fa-plus
                 </v-icon>
-                CYNO</v-btn
+                RECON</v-btn
             >
             <v-icon
-                v-show="showRcReconButton()"
+                v-show="
+                    showRcReconButton() &&
+                        ($can('edit_killsheet_remove_char') ||
+                            this.station.recon_user_id ==
+                                this.$store.state.user_id)
+                "
                 color="orange darken-3 "
                 small
                 @click="reconRemove()"
@@ -51,10 +56,7 @@ export default {
 
     methods: {
         showRcReconButton() {
-            if (
-                this.station.recon_user_id &&
-                this.$can("edit_killsheet_remove_char")
-            ) {
+            if (this.station.recon_user_id) {
                 return true;
             } else {
                 return false;
