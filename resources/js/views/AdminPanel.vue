@@ -93,7 +93,7 @@
                         <v-btn
                             :loading="loadingf"
                             :disabled="loadingf"
-                            @click="roleflag = 16"
+                            @click="roleflag = 21"
                         >
                             GSOL Leader
                         </v-btn>
