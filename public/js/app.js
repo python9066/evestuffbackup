@@ -12824,8 +12824,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -12840,7 +12838,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   methods: {
     showRcReconButton: function showRcReconButton() {
-      if (this.station.recon_user_id) {
+      if (this.station.recon_user_id && this.$can("edit_killsheet_remove_char")) {
         return true;
       } else {
         return false;
@@ -42018,11 +42016,8 @@ var render = function() {
                 {
                   name: "show",
                   rawName: "v-show",
-                  value:
-                    _vm.showRcReconButton() &&
-                    _vm.$can("edit_killsheet_remove_char"),
-                  expression:
-                    "\n                showRcReconButton() && $can('edit_killsheet_remove_char')\n            "
+                  value: _vm.showRcReconButton(),
+                  expression: "showRcReconButton()"
                 }
               ],
               attrs: { color: "orange darken-3", small: "" },
