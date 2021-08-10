@@ -54526,7 +54526,9 @@ var render = function() {
               _c("v-spacer"),
               _vm._v(" "),
               _vm.$can("super")
-                ? _c("v-card", [_vm._v("\n                here\n            ")])
+                ? _c("v-card", { attrs: { "right-align": "" } }, [
+                    _vm._v("\n                here\n            ")
+                  ])
                 : _vm._e()
             ],
             1

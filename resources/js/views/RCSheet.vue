@@ -19,7 +19,7 @@
                     ></v-text-field>
                 </v-card>
                 <v-spacer></v-spacer>
-                <v-card v-if="$can('super')">
+                <v-card v-if="$can('super')" right-align>
                     here
                 </v-card>
             </v-col>
