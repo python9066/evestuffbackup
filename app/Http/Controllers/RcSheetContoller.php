@@ -33,7 +33,7 @@ class RcSheetContoller extends Controller
 
     public function fixcorp(Request $request, $id)
     {
-        $corp = Corp::where('id', $request->corpid)->get();
+        $corp = Corp::where('id', $request->corpid)->first();
         $corpid = $corp->id;
         $allianceid = $corp->alliance_id;
 
