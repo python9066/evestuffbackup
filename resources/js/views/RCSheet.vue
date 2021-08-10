@@ -18,7 +18,8 @@
                         hide-details
                     ></v-text-field>
                 </v-card>
-                <v-card v-if="$can('super')" right>
+                <v-spacer></v-spacer>
+                <v-card v-if="$can('super')">
                     here
                 </v-card>
             </v-col>

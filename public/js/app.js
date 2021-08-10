@@ -25588,6 +25588,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 
@@ -54525,10 +54526,10 @@ var render = function() {
                 1
               ),
               _vm._v(" "),
+              _c("v-spacer"),
+              _vm._v(" "),
               _vm.$can("super")
-                ? _c("v-card", { attrs: { right: "" } }, [
-                    _vm._v("\n                here\n            ")
-                  ])
+                ? _c("v-card", [_vm._v("\n                here\n            ")])
                 : _vm._e()
             ],
             1
