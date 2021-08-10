@@ -23,8 +23,10 @@
                 RECON</v-btn
             >
             <v-icon
-                v-show="showRcReconButton()"
-                color="orange darken-3"
+                v-show="
+                    showRcReconButton() && $can('edit_killsheet_remove_char')
+                "
+                color="orange darken-3 "
                 small
                 @click="reconRemove()"
             >
@@ -51,10 +53,7 @@ export default {
 
     methods: {
         showRcReconButton() {
-            if (
-                this.station.recon_user_id &&
-                this.$can("edit_killsheet_remove_char")
-            ) {
+            if (this.station.recon_user_id) {
                 return true;
             } else {
                 return false;
