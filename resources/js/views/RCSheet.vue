@@ -21,7 +21,7 @@
                 <v-spacer></v-spacer>
                 <v-card v-if="$can('super')" right-align class="">
                     <v-switch
-                        class=" px-2"
+                        class=" pl-2 pr-2"
                         v-model="toggleFC"
                         label="Need FC"
                         color="pink"

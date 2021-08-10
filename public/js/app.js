@@ -54538,7 +54538,7 @@ var render = function() {
                     { attrs: { "right-align": "" } },
                     [
                       _c("v-switch", {
-                        staticClass: " px-2",
+                        staticClass: " pl-2 pr-2",
                         attrs: {
                           label: "Need FC",
                           color: "pink",
