@@ -1,7 +1,7 @@
 <template>
     <div class="pr-16 pl-16">
-        <v-row no-gutters justify="center">
-            <v-col class=" d-inline-flex" cols="12" justify="space-between">
+        <v-row no-gutters justify="space-between">
+            <v-col class=" d-inline-flex" cols="12">
                 <v-card
                     width="500"
                     tile

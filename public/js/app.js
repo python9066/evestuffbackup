@@ -54489,14 +54489,11 @@ var render = function() {
     [
       _c(
         "v-row",
-        { attrs: { "no-gutters": "", justify: "center" } },
+        { attrs: { "no-gutters": "", justify: "space-between" } },
         [
           _c(
             "v-col",
-            {
-              staticClass: " d-inline-flex",
-              attrs: { cols: "12", justify: "space-between" }
-            },
+            { staticClass: " d-inline-flex", attrs: { cols: "12" } },
             [
               _c(
                 "v-card",
