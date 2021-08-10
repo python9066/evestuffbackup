@@ -54539,9 +54539,9 @@ var render = function() {
                     [
                       _c("v-switch", {
                         attrs: {
-                          label: "red",
-                          color: "red",
-                          value: "red",
+                          label: "Need FC",
+                          color: "pink",
+                          value: "false",
                           "hide-details": ""
                         },
                         model: {

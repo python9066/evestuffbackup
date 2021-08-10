@@ -22,9 +22,9 @@
                 <v-card v-if="$can('super')" right-align>
                     <v-switch
                         v-model="toggleFC"
-                        label="red"
-                        color="red"
-                        value="red"
+                        label="Need FC"
+                        color="pink"
+                        value="false"
                         hide-details
                     ></v-switch>
                 </v-card>
