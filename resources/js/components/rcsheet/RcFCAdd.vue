@@ -22,6 +22,22 @@
                     class="d-flex justify-space-between align-center "
                 >
                     <div>Table of FCs</div>
+                    <v-card
+                        width="500"
+                        tile
+                        flat
+                        color="#121212"
+                        class="align-start"
+                    >
+                        <v-text-field
+                            v-model="search"
+                            append-icon="mdi-magnify"
+                            label="Search"
+                            single-line
+                            filled
+                            hide-details
+                        ></v-text-field>
+                    </v-card>
                     <div>
                         <v-menu
                             :close-on-content-click="false"
@@ -78,6 +94,7 @@
                     <v-data-table
                         :headers="headers"
                         :items="filteredItems"
+                        :search="search"
                         item-key="id"
                         disable-pagination
                         fixed-header
@@ -138,7 +155,8 @@ export default {
             newCharName: null,
 
             addShown: false,
-            overlay: false
+            overlay: false,
+            search: ""
         };
     },
 

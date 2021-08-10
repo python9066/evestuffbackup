@@ -11985,6 +11985,23 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -12004,7 +12021,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       ],
       newCharName: null,
       addShown: false,
-      overlay: false
+      overlay: false,
+      search: ""
     };
   },
   methods: {
@@ -40513,6 +40531,38 @@ var render = function() {
                   _c("div", [_vm._v("Table of FCs")]),
                   _vm._v(" "),
                   _c(
+                    "v-card",
+                    {
+                      staticClass: "align-start",
+                      attrs: {
+                        width: "500",
+                        tile: "",
+                        flat: "",
+                        color: "#121212"
+                      }
+                    },
+                    [
+                      _c("v-text-field", {
+                        attrs: {
+                          "append-icon": "mdi-magnify",
+                          label: "Search",
+                          "single-line": "",
+                          filled: "",
+                          "hide-details": ""
+                        },
+                        model: {
+                          value: _vm.search,
+                          callback: function($$v) {
+                            _vm.search = $$v
+                          },
+                          expression: "search"
+                        }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
                     "div",
                     [
                       _c(
@@ -40647,7 +40697,8 @@ var render = function() {
                     ],
                     1
                   )
-                ]
+                ],
+                1
               ),
               _vm._v(" "),
               _c(
@@ -40660,6 +40711,7 @@ var render = function() {
                       attrs: {
                         headers: _vm.headers,
                         items: _vm.filteredItems,
+                        search: _vm.search,
                         "item-key": "id",
                         "disable-pagination": "",
                         "fixed-header": "",
