@@ -12268,6 +12268,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -41198,6 +41199,7 @@ var render = function() {
                         attrs: {
                           "append-icon": "mdi-magnify",
                           label: "Search",
+                          "sort-by": ["name"],
                           "single-line": "",
                           filled: "",
                           "hide-details": ""

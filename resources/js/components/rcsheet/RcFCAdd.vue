@@ -33,6 +33,7 @@
                             v-model="search"
                             append-icon="mdi-magnify"
                             label="Search"
+                            :sort-by="['name']"
                             single-line
                             filled
                             hide-details
