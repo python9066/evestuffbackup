@@ -164,7 +164,10 @@
                                 :interval="1000"
                                 ><template slot="countup" slot-scope="scope"
                                     ><span
-                                        v-if="scope.props.minutes < 5"
+                                        v-if="
+                                            scope.props.minutes < 5 &&
+                                                scope.props.hours == 0
+                                        "
                                         class="green--text pl-2 pr-2"
                                         >{{ scope.props.hours }}:{{
                                             scope.props.minutes
