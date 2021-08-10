@@ -365,6 +365,10 @@ export default {
                 topChill = filter.filter(f => f.name == "Top Chill");
             }
 
+            if (this.$can("edit_mega_sheet_user")) {
+                megaSheet = filter.filter(f => f.name == "Megga Sheet");
+            }
+
             return start.concat(
                 chill,
                 fc,
@@ -373,7 +377,8 @@ export default {
                 recon,
                 scout,
                 superChilled,
-                topChill
+                topChill,
+                megaSheet
             );
         },
 
@@ -387,7 +392,8 @@ export default {
             } else if (
                 this.$can("edit_gsfoe_fc") &&
                 this.$can("edit_recon_users") &&
-                this.$can("edit_scout_users")
+                this.$can("edit_scout_users") &&
+                this.$can("edit_mega_sheet_user")
             ) {
                 if (name == "Coord" || name == "Director" || name == "Wizard") {
                     return false;

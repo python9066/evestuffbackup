@@ -19473,7 +19473,13 @@ function sleep(ms) {
         });
       }
 
-      return start.concat(chill, fc, gsfoeFC, gunner, recon, scout, superChilled, topChill);
+      if (this.$can("edit_mega_sheet_user")) {
+        megaSheet = filter.filter(function (f) {
+          return f.name == "Megga Sheet";
+        });
+      }
+
+      return start.concat(chill, fc, gsfoeFC, gunner, recon, scout, superChilled, topChill, megaSheet);
     },
     pillClose: function pillClose(name) {
       if (this.$can("edit_all_users")) {
@@ -19482,7 +19488,7 @@ function sleep(ms) {
         } else {
           return true;
         }
-      } else if (this.$can("edit_gsfoe_fc") && this.$can("edit_recon_users") && this.$can("edit_scout_users")) {
+      } else if (this.$can("edit_gsfoe_fc") && this.$can("edit_recon_users") && this.$can("edit_scout_users") && this.$can("edit_mega_sheet_user")) {
         if (name == "Coord" || name == "Director" || name == "Wizard") {
           return false;
         } else {
