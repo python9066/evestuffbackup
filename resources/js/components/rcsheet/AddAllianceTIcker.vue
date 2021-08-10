@@ -1,11 +1,6 @@
 <template>
     <div>
-        <v-dialog
-            v-model="overlay"
-            max-width="500px"
-            z-index="0"
-            @click:outside="close()"
-        >
+        <v-dialog v-model="overlay" max-width="500px" z-index="0" persistent>
             <template v-slot:activator="{ on, attrs }">
                 <v-btn
                     class="mr-4"

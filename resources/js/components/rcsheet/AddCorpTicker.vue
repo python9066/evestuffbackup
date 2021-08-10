@@ -1,11 +1,6 @@
 <template>
     <div>
-        <v-dialog
-            v-model="overlay"
-            max-width="500px"
-            z-index="0"
-            @click:outside="close()"
-        >
+        <v-dialog persistent v-model="overlay" max-width="500px" z-index="0">
             <template v-slot:activator="{ on, attrs }">
                 <v-btn
                     class="mr-4"
@@ -69,97 +64,11 @@ export default {
     methods: {
         close() {
             this.overlay = false;
-        },
-
-        newFCFormClose() {
-            this.addShown = false;
-            this.newFCName = null;
-        },
-
-        async pillClick(item) {
-            var data = {
-                id: this.station.id,
-                fc_user_id: item.id,
-                fc_user_name: item.name
-            };
-
-            this.$store.dispatch("updateRcStation", data);
-
-            var request = {
-                rc_fc_id: item.id
-            };
-
-            await axios({
-                method: "post",
-                url: "/api/rcfcadd/" + this.station.id,
-                data: request,
-                headers: {
-                    Authorization: "Bearer " + this.$store.state.token,
-                    Accept: "application/json",
-                    "Content-Type": "application/json"
-                }
-            });
-        },
-
-        async pillDelete(item) {
-            await axios({
-                method: "DELETE",
-                url: "/api/rcfcdelete/" + item.id,
-                headers: {
-                    Authorization: "Bearer " + this.$store.state.token,
-                    Accept: "application/json",
-                    "Content-Type": "application/json"
-                }
-            });
-
-            this.$store.dispatch("getRcFcs");
-        },
-
-        async newFCForm() {
-            var request = {
-                char_name: this.newCharName
-            };
-
-            await axios({
-                method: "PUT",
-                url: "/api/rcfcnew",
-                data: request,
-                headers: {
-                    Authorization: "Bearer " + this.$store.state.token,
-                    Accept: "application/json",
-                    "Content-Type": "application/json"
-                }
-            });
-            this.$store.dispatch("getRcFcs");
-            this.addShown = false;
-            this.newFCName = null;
-        },
-
-        async removeChar(item) {
-            await axios({
-                method: "DELETE",
-                url:
-                    "/api/campaignusers/" +
-                    item.id +
-                    "/" +
-                    this.campaign_id +
-                    "/" +
-                    this.$store.state.user_id,
-                headers: {
-                    Authorization: "Bearer " + this.$store.state.token,
-                    Accept: "application/json",
-                    "Content-Type": "application/json"
-                }
-            });
-            this.$store.dispatch("getCampaignSystemsRecords");
         }
     },
 
     computed: {
-        ...mapState(["rcfcs", "ticklist"]),
-        filteredItems() {
-            return this.rcfcs;
-        },
+        ...mapState(["ticklist"]),
         items() {
             return this.ticklist;
         }
