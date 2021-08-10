@@ -18,7 +18,8 @@ class RcStationRecords extends Model
         'rc_recon_id' => 'integer',
         'recon_user_id' => 'integer',
         'status_id' => 'integer',
-        'system_id' => 'integer'
+        'system_id' => 'integer',
+        'out' => 'integer',
 
     ];
 }
