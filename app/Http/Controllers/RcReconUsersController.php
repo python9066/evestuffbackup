@@ -35,7 +35,7 @@ class RcReconUsersController extends Controller
 
 
         $reconid = RcReconUsers::where('user_id', $request->user_id)->value('id');
-        $reconName = RcReconUsers::where('user_id', $request->user_id)->value('name');
+        $reconName = User::where('user_id', $request->user_id)->value('name');
         Station::where('id', $id)->update(['rc_recon_id' => $reconid]);
         $message = RcStationRecords::where('id', $id)->first();
         $flag = collect([
