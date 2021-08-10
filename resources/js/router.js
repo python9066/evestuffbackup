@@ -163,6 +163,20 @@ export default new Router({
         },
 
         {
+            path: "/fornatshealth",
+            name: "killlist",
+            component: KillList,
+              beforeEnter(to, from, next) {
+                if(Permissions.indexOf('view_killsheet' )!== -1){
+                    next()
+                }else{
+                   next("/notifications")
+                }
+
+              }
+        },
+
+        {
             path: "/gsol",
             name: "gsol",
             component: Gsol,
