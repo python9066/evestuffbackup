@@ -25802,7 +25802,7 @@ function sleep(ms) {
     },
     filter_fc: function filter_fc() {
       if (this.toggleFC) {
-        return filter.filteredItems(function (s) {
+        return this.filteredItems.filter(function (s) {
           return s.rc_fc_id == null;
         });
       } else {

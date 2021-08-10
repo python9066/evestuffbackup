@@ -389,7 +389,7 @@ export default {
 
         filter_fc() {
             if (this.toggleFC) {
-                return filter.filteredItems(s => s.rc_fc_id == null);
+                return this.filteredItems.filter(s => s.rc_fc_id == null);
             } else {
                 return this.filteredItems;
             }
