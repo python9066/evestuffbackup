@@ -1,6 +1,6 @@
 <template>
     <div class="pr-16 pl-16">
-        <v-row no-gutters class=" d-inline-flex">
+        <v-row no-gutters class=" d-inline-flex" cols="12">
             <v-col class=" d-inline-flex" cols="12">
                 <div>
                     <v-card
