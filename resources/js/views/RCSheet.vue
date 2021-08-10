@@ -24,7 +24,7 @@
                         v-model="toggleFC"
                         label="Need FC"
                         color="pink"
-                        value="false"
+                        value="red"
                         hide-details
                     ></v-switch>
                 </v-card>

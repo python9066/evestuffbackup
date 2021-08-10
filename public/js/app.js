@@ -54541,7 +54541,7 @@ var render = function() {
                         attrs: {
                           label: "Need FC",
                           color: "pink",
-                          value: "false",
+                          value: "red",
                           "hide-details": ""
                         },
                         model: {
