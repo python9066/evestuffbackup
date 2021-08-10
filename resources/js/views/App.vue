@@ -30,7 +30,11 @@
                         Notifications
                     </v-tab>
 
-                    <v-tab v-if="$can('view_killsheet')" link to="/killlist">
+                    <v-tab
+                        v-if="$can('view_killsheet')"
+                        link
+                        to="/fornatshealth"
+                    >
                         Nats Health
                     </v-tab>
 
