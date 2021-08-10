@@ -54541,30 +54541,28 @@ var render = function() {
               _vm._v(" "),
               _c("v-spacer"),
               _vm._v(" "),
-              _vm.$can("super")
-                ? _c(
-                    "v-card",
-                    { attrs: { "right-align": "" } },
-                    [
-                      _c("v-switch", {
-                        staticClass: " pl-2 pr-2",
-                        attrs: {
-                          label: "Need FC",
-                          color: "pink",
-                          "hide-details": ""
-                        },
-                        model: {
-                          value: _vm.toggleFC,
-                          callback: function($$v) {
-                            _vm.toggleFC = $$v
-                          },
-                          expression: "toggleFC"
-                        }
-                      })
-                    ],
-                    1
-                  )
-                : _vm._e()
+              _c(
+                "v-card",
+                { attrs: { "right-align": "" } },
+                [
+                  _c("v-switch", {
+                    staticClass: " pl-2 pr-2",
+                    attrs: {
+                      label: "No FC",
+                      color: "pink",
+                      "hide-details": ""
+                    },
+                    model: {
+                      value: _vm.toggleFC,
+                      callback: function($$v) {
+                        _vm.toggleFC = $$v
+                      },
+                      expression: "toggleFC"
+                    }
+                  })
+                ],
+                1
+              )
             ],
             1
           )

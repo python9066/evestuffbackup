@@ -19,11 +19,11 @@
                     ></v-text-field>
                 </v-card>
                 <v-spacer></v-spacer>
-                <v-card v-if="$can('super')" right-align class="">
+                <v-card right-align class="">
                     <v-switch
                         class=" pl-2 pr-2"
                         v-model="toggleFC"
-                        label="Need FC"
+                        label="No FC"
                         color="pink"
                         hide-details
                     ></v-switch>
