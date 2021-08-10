@@ -55529,7 +55529,7 @@ var render = function() {
                       staticClass: "elevation-5",
                       attrs: {
                         "fixed-header": "",
-                        height: "400",
+                        height: "12000",
                         search: _vm.search,
                         headers: _vm._headers,
                         items: _vm.filter_end,

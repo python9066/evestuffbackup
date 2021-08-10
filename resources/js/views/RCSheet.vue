@@ -105,7 +105,7 @@
                 <v-card width="100%">
                     <v-data-table
                         fixed-header
-                        height="400"
+                        height="12000"
                         :search="search"
                         :headers="_headers"
                         :items="filter_end"
