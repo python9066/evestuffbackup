@@ -101,6 +101,7 @@ Vue.component('RcGsolButton', require('./components/rcsheet/RcGsolButton.vue').d
 Vue.component('RcFCAdd', require('./components/rcsheet/RcFCAdd.vue').default);
 Vue.component('AddCorpTicker', require('./components/rcsheet/AddCorpTicker.vue').default);
 Vue.component('AddAllianceTicker', require('./components/rcsheet/AddAllianceTicker.vue').default);
+Vue.component('RcStationMessage', require('./components/rcsheet/RcStationMessage.vue').default);
 
 
 

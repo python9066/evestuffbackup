@@ -204,6 +204,12 @@
                                 :station="item"
                             ></RcGsolButton>
                         </template>
+                        <template v-slot:[`item.actions`]="{ item }">
+                            <RcStationMessage
+                                class=" mr-2"
+                                :station="item"
+                            ></RcStationMessage>
+                        </template>
                         <template slot="no-data">
                             No Active or Upcoming Campaigns
                         </template>
