@@ -18,6 +18,8 @@
                         hide-details
                     ></v-text-field>
                 </v-card>
+
+                <AdminLoggingSheet v-if="$can('super')"> </AdminLoggingSheet>
                 <v-spacer></v-spacer>
                 <v-card right-align class="">
                     <v-switch
@@ -271,7 +273,8 @@ export default {
             itemPicked: [],
             statusPicked: [],
             search: "",
-            toggleFC: false
+            toggleFC: false,
+            logs: false
         };
     },
 
