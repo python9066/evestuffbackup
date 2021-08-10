@@ -33,7 +33,6 @@
                             v-model="search"
                             append-icon="mdi-magnify"
                             label="Search"
-                            :sort-by="['name']"
                             single-line
                             filled
                             hide-details
@@ -97,6 +96,7 @@
                         :items="filteredItems"
                         :search="search"
                         item-key="id"
+                        :sort-by="['name']"
                         disable-pagination
                         fixed-header
                         hide-default-footer

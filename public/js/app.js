@@ -41199,7 +41199,6 @@ var render = function() {
                         attrs: {
                           "append-icon": "mdi-magnify",
                           label: "Search",
-                          "sort-by": ["name"],
                           "single-line": "",
                           filled: "",
                           "hide-details": ""
@@ -41367,6 +41366,7 @@ var render = function() {
                         items: _vm.filteredItems,
                         search: _vm.search,
                         "item-key": "id",
+                        "sort-by": ["name"],
                         "disable-pagination": "",
                         "fixed-header": "",
                         "hide-default-footer": ""
