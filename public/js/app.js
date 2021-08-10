@@ -25589,6 +25589,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
 
 
 
@@ -54497,41 +54499,51 @@ var render = function() {
             { staticClass: " d-inline-flex", attrs: { cols: "12" } },
             [
               _c(
-                "v-card",
-                {
-                  staticClass: "align-start",
-                  attrs: { width: "500", tile: "", flat: "", color: "#121212" }
-                },
+                "div",
                 [
-                  _c("v-text-field", {
-                    attrs: {
-                      "append-icon": "mdi-magnify",
-                      label: "Search",
-                      "single-line": "",
-                      filled: "",
-                      "hide-details": ""
+                  _c(
+                    "v-card",
+                    {
+                      staticClass: "align-start",
+                      attrs: {
+                        width: "500",
+                        tile: "",
+                        flat: "",
+                        color: "#121212"
+                      }
                     },
-                    model: {
-                      value: _vm.search,
-                      callback: function($$v) {
-                        _vm.search = $$v
-                      },
-                      expression: "search"
-                    }
-                  })
+                    [
+                      _c("v-text-field", {
+                        attrs: {
+                          "append-icon": "mdi-magnify",
+                          label: "Search",
+                          "single-line": "",
+                          filled: "",
+                          "hide-details": ""
+                        },
+                        model: {
+                          value: _vm.search,
+                          callback: function($$v) {
+                            _vm.search = $$v
+                          },
+                          expression: "search"
+                        }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c("v-spacer"),
+                  _vm._v(" "),
+                  _vm.$can("super")
+                    ? _c("v-card", { attrs: { "right-align": "" } }, [
+                        _vm._v("\n                    here\n                ")
+                      ])
+                    : _vm._e()
                 ],
                 1
-              ),
-              _vm._v(" "),
-              _c("v-spacer"),
-              _vm._v(" "),
-              _vm.$can("super")
-                ? _c("v-card", { attrs: { "right-align": "" } }, [
-                    _vm._v("\n                here\n            ")
-                  ])
-                : _vm._e()
-            ],
-            1
+              )
+            ]
           )
         ],
         1

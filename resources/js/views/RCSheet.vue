@@ -2,26 +2,28 @@
     <div class="pr-16 pl-16">
         <v-row no-gutters class=" d-inline-flex">
             <v-col class=" d-inline-flex" cols="12">
-                <v-card
-                    width="500"
-                    tile
-                    flat
-                    color="#121212"
-                    class="align-start"
-                >
-                    <v-text-field
-                        v-model="search"
-                        append-icon="mdi-magnify"
-                        label="Search"
-                        single-line
-                        filled
-                        hide-details
-                    ></v-text-field>
-                </v-card>
-                <v-spacer></v-spacer>
-                <v-card v-if="$can('super')" right-align>
-                    here
-                </v-card>
+                <div>
+                    <v-card
+                        width="500"
+                        tile
+                        flat
+                        color="#121212"
+                        class="align-start"
+                    >
+                        <v-text-field
+                            v-model="search"
+                            append-icon="mdi-magnify"
+                            label="Search"
+                            single-line
+                            filled
+                            hide-details
+                        ></v-text-field>
+                    </v-card>
+                    <v-spacer></v-spacer>
+                    <v-card v-if="$can('super')" right-align>
+                        here
+                    </v-card>
+                </div>
             </v-col>
         </v-row>
         <v-row no-gutters justify="center">
