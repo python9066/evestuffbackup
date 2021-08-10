@@ -26211,9 +26211,8 @@ function sleep(ms) {
   },
   computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapState"])(["rcstations", "rcsheetRegion", "rcsheetItem", "rcsheetStatus"])), Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapGetters"])(["getActiveRcStations"])), {}, {
     filteredItems: function filteredItems() {
-      return this.rcstations.filter(function (f) {
-        return f.show_on_rc == 1;
-      }); // return this.rcstations;
+      // return this.rcstations.filter(f => f.show_on_rc == 1);
+      return this.getActiveRcStations;
     },
     filter_fc: function filter_fc() {
       if (this.toggleFC) {
@@ -26231,7 +26230,7 @@ function sleep(ms) {
 
       if (this.statusPicked.length != 0) {
         this.statusPicked.forEach(function (p) {
-          var pick = _this6.filteredItems.filter(function (f) {
+          var pick = _this6.filter_fc.filter(function (f) {
             return f.status_id == p;
           });
 

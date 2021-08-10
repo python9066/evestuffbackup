@@ -404,8 +404,8 @@ export default {
 
         ...mapGetters(["getActiveRcStations"]),
         filteredItems() {
-            return this.rcstations.filter(f => f.show_on_rc == 1);
-            // return this.rcstations;
+            // return this.rcstations.filter(f => f.show_on_rc == 1);
+            return this.getActiveRcStations;
         },
 
         filter_fc() {
@@ -420,7 +420,7 @@ export default {
             let data = [];
             if (this.statusPicked.length != 0) {
                 this.statusPicked.forEach(p => {
-                    let pick = this.filteredItems.filter(f => f.status_id == p);
+                    let pick = this.filter_fc.filter(f => f.status_id == p);
                     if (pick != null) {
                         pick.forEach(pk => {
                             data.push(pk);
