@@ -176,7 +176,7 @@
                             </v-chip>
 
                             <v-chip v-else pill small :color="pillColor(item)">
-                                {{ item.status_name }} - Out
+                                {{ item.status_name }}
                             </v-chip>
                         </template>
 

@@ -53802,7 +53802,7 @@ var render = function() {
                                         _vm._v(
                                           "\n                            " +
                                             _vm._s(item.status_name) +
-                                            " - Out\n                        "
+                                            "\n                        "
                                         )
                                       ]
                                     )
