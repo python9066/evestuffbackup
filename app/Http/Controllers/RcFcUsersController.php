@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Events\RcSheetUpdate;
+use App\Models\Logging;
 use App\Models\RcFcUsers;
 use App\Models\RcStationRecords;
 use App\Models\Station;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class RcFcUsersController extends Controller
 {
@@ -93,6 +95,10 @@ class RcFcUsersController extends Controller
             'message' => $message,
         ]);
         broadcast(new RcSheetUpdate($flag));
+
+        $text = Auth::user()->name . " Added FC to " . $message->name;
+
+        Logging::Create(['station_id' => $id, 'user_id' => Auth::id(), 'text' => $text, 'logging_type_id' => 19]);
     }
 
     public function addFCadd(Request $request, $id)
@@ -115,6 +121,8 @@ class RcFcUsersController extends Controller
             'message' => $message,
         ]);
         broadcast(new RcSheetUpdate($flag));
+        $text = Auth::user()->name . " Removed FC from " . $message->name;
+        Logging::Create(['station_id' => $id, 'user_id' => Auth::id(), 'text' => $text, 'logging_type_id' => 20]);
     }
 
     public function removeFC($id)
