@@ -267,8 +267,7 @@ export default {
             regionPicked: [],
             itemPicked: [],
             statusPicked: [],
-            search: "",
-            showFC: true
+            search: ""
         };
     },
 

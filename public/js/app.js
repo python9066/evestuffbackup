@@ -25615,8 +25615,7 @@ function sleep(ms) {
       regionPicked: [],
       itemPicked: [],
       statusPicked: [],
-      search: "",
-      showFC: true
+      search: ""
     };
   },
   created: function created() {
