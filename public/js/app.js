@@ -19476,7 +19476,7 @@ function sleep(ms) {
 
       if (this.$can("edit_mega_sheet_user")) {
         megaSheet = filter.filter(function (f) {
-          return f.name == "Megga Sheet";
+          return f.name == "Mega Sheet";
         });
       }
 

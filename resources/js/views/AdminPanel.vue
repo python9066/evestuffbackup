@@ -367,7 +367,7 @@ export default {
             }
 
             if (this.$can("edit_mega_sheet_user")) {
-                megaSheet = filter.filter(f => f.name == "Megga Sheet");
+                megaSheet = filter.filter(f => f.name == "Mega Sheet");
             }
 
             return start.concat(
