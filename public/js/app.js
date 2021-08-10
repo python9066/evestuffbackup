@@ -25066,6 +25066,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
 
 
 
@@ -53644,16 +53646,34 @@ var render = function() {
                             fn: function(ref) {
                               var item = ref.item
                               return [
-                                _c("v-avatar", { attrs: { size: "35" } }, [
-                                  _c("img", { attrs: { src: item.url } })
-                                ]),
-                                _vm._v(" "),
-                                _c("span", { staticClass: "red--text pl-3" }, [
-                                  _vm._v(
-                                    _vm._s(item.alliance_ticker) +
-                                      "\n                        "
-                                  )
-                                ])
+                                !item.url
+                                  ? _c(
+                                      "span",
+                                      [
+                                        _c(
+                                          "v-avatar",
+                                          { attrs: { size: "35" } },
+                                          [
+                                            _c("img", {
+                                              attrs: { src: item.url }
+                                            })
+                                          ]
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "span",
+                                          { staticClass: "red--text pl-3" },
+                                          [
+                                            _vm._v(
+                                              _vm._s(item.alliance_ticker) +
+                                                "\n                            "
+                                            )
+                                          ]
+                                        )
+                                      ],
+                                      1
+                                    )
+                                  : _vm._e()
                               ]
                             }
                           },
