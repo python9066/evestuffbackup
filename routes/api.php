@@ -207,5 +207,5 @@ Route::middleware('auth:api')->group(function () {
     Route::get('/rcregionlist', 'RcSheetContoller@rcSheetListRegion');
     Route::get('/rcTypelist', 'RcSheetContoller@rcSheetListType');
     Route::get('/rcStatuslist', 'RcSheetContoller@rcSheetListStatus');
-    Route::put('/rcfixcorp', 'RcSheetContoller@fixcorp');
+    Route::put('/rcfixcorp/{id}', 'RcSheetContoller@fixcorp');
 });
