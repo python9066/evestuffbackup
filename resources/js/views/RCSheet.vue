@@ -165,16 +165,7 @@
 
                         <template v-slot:[`item.status_name`]="{ item }">
                             <v-chip
-                                v-if="item.out == 0"
-                                pill
-                                small
-                                :color="pillColor(item)"
-                            >
-                                {{ item.status_name }}
-                            </v-chip>
-
-                            <v-chip
-                                v-else
+                                v-if="item.out == 1 && $can('edit_killsheet')"
                                 pill
                                 outlined
                                 @click="stationdone(item)"
@@ -182,6 +173,10 @@
                                 :color="pillColor(item)"
                             >
                                 {{ item.status_name }} - Done?
+                            </v-chip>
+
+                            <v-chip v-else pill small :color="pillColor(item)">
+                                {{ item.status_name }} - Out
                             </v-chip>
                         </template>
 

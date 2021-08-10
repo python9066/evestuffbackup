@@ -25056,11 +25056,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
 
 
 
@@ -53770,25 +53765,8 @@ var render = function() {
                             fn: function(ref) {
                               var item = ref.item
                               return [
-                                item.out == 0
+                                item.out == 1 && _vm.$can("edit_killsheet")
                                   ? _c(
-                                      "v-chip",
-                                      {
-                                        attrs: {
-                                          pill: "",
-                                          small: "",
-                                          color: _vm.pillColor(item)
-                                        }
-                                      },
-                                      [
-                                        _vm._v(
-                                          "\n                            " +
-                                            _vm._s(item.status_name) +
-                                            "\n                        "
-                                        )
-                                      ]
-                                    )
-                                  : _c(
                                       "v-chip",
                                       {
                                         attrs: {
@@ -53808,6 +53786,23 @@ var render = function() {
                                           "\n                            " +
                                             _vm._s(item.status_name) +
                                             " - Done?\n                        "
+                                        )
+                                      ]
+                                    )
+                                  : _c(
+                                      "v-chip",
+                                      {
+                                        attrs: {
+                                          pill: "",
+                                          small: "",
+                                          color: _vm.pillColor(item)
+                                        }
+                                      },
+                                      [
+                                        _vm._v(
+                                          "\n                            " +
+                                            _vm._s(item.status_name) +
+                                            " - Out\n                        "
                                         )
                                       ]
                                     )
