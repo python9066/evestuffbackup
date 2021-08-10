@@ -72,7 +72,8 @@ class RCSheet extends Controller
                     $stationName = $input['structure_name'];
                     $timer = Helper::fixtime($input['timer_expires']);
                     $corpID = Corp::where('ticker', $input['owning_corp_ticker'])->first();
-                    dd($corpID, $corpID->id);
+                    $count = $corpID->count();
+                    dd($count);
                     $allianceID = Alliance::where('ticker', $input['owning_alliance_ticker'])->first();
                     if (!$corpID) {
                         if ($allianceID) {
