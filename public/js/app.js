@@ -54489,7 +54489,10 @@ var render = function() {
     [
       _c(
         "v-row",
-        { attrs: { "no-gutters": "", justify: "space-between" } },
+        {
+          staticClass: " d-inline-flex",
+          attrs: { "no-gutters": "", justify: "space-between" }
+        },
         [
           _c(
             "v-col",
