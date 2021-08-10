@@ -19278,6 +19278,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -19767,6 +19774,14 @@ function sleep(ms) {
         return this.users.filter(function (u) {
           return u.roles.some(function (role) {
             return role.id == 21;
+          });
+        });
+      }
+
+      if (this.roleflag == 22) {
+        return this.users.filter(function (u) {
+          return u.roles.some(function (role) {
+            return role.id == 22;
           });
         });
       } else {
@@ -48507,6 +48522,26 @@ var render = function() {
                         [
                           _vm._v(
                             "\n                        Super Chill\n                    "
+                          )
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-btn",
+                        {
+                          attrs: {
+                            loading: _vm.loadingf,
+                            disabled: _vm.loadingf
+                          },
+                          on: {
+                            click: function($event) {
+                              _vm.roleflag = 22
+                            }
+                          }
+                        },
+                        [
+                          _vm._v(
+                            "\n                        Mega Sheet\n                    "
                           )
                         ]
                       )

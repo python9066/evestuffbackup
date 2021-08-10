@@ -153,6 +153,13 @@
                         >
                             Super Chill
                         </v-btn>
+                        <v-btn
+                            :loading="loadingf"
+                            :disabled="loadingf"
+                            @click="roleflag = 22"
+                        >
+                            Mega Sheet
+                        </v-btn>
                     </v-btn-toggle>
                 </v-card>
             </v-col>
@@ -620,6 +627,14 @@ export default {
                 return this.users.filter(function(u) {
                     return u.roles.some(function(role) {
                         return role.id == 21;
+                    });
+                });
+            }
+
+            if (this.roleflag == 22) {
+                return this.users.filter(function(u) {
+                    return u.roles.some(function(role) {
+                        return role.id == 22;
                     });
                 });
             } else {
