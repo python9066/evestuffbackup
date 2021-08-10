@@ -25670,14 +25670,6 @@ function sleep(ms) {
 
                 if (e.flag.flag == 2) {
                   _this.$store.dispatch("getRcStationRecords");
-
-                  _this.$store.dispatch("getRcFcs");
-
-                  _this.$store.dispatch("getRcRegions");
-
-                  _this.$store.dispatch("getRcItems");
-
-                  _this.$store.dispatch("getRcStatus");
                 }
 
                 if (e.flag.flag == 3) {

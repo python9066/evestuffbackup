@@ -292,10 +292,6 @@ export default {
 
             if (e.flag.flag == 2) {
                 this.$store.dispatch("getRcStationRecords");
-                this.$store.dispatch("getRcFcs");
-                this.$store.dispatch("getRcRegions");
-                this.$store.dispatch("getRcItems");
-                this.$store.dispatch("getRcStatus");
             }
 
             if (e.flag.flag == 3) {
