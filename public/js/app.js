@@ -25056,6 +25056,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 
@@ -53765,7 +53766,7 @@ var render = function() {
                             fn: function(ref) {
                               var item = ref.item
                               return [
-                                item.out == 1 && _vm.$can("edit_killsheet")
+                                item.out == 1 && _vm.$can("edit_killsheet_done")
                                   ? _c(
                                       "v-chip",
                                       {
@@ -53814,9 +53815,6 @@ var render = function() {
                             fn: function(ref) {
                               var item = ref.item
                               return [
-                                _vm._v(
-                                  "\n                        >\n                        "
-                                ),
                                 _c("RcGsolButton", {
                                   staticClass: " mr-2",
                                   attrs: { station: item }
