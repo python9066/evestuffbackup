@@ -298,7 +298,7 @@ export default {
 
     methods: {
         showCountDown(item) {
-            if (item.status_id != 5) {
+            if (item.out == 0) {
                 return true;
             }
 
