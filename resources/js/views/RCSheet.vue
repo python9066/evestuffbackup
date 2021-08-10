@@ -383,7 +383,7 @@ export default {
             "rcsheetStatus"
         ]),
         filteredItems() {
-            return this.rcstations.filter(f => f.show_on_rc == 1);
+            return this.rcstations.filter(f => f.show_rc == 1);
             // return this.rcstations;
         },
 
