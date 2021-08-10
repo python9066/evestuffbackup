@@ -23,7 +23,12 @@
                 FC</v-btn
             >
             <v-icon
-                v-show="showRcFCButton() && $can('edit_killsheet_remove_char')"
+                v-show="
+                    showRcFCButton() &&
+                        ($can('edit_killsheet_remove_char') ||
+                            this.station.fc_user_id ==
+                                this.$store.state.user_id)
+                "
                 color="orange darken-3"
                 small
                 @click="fcRemove()"

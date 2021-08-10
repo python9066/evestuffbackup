@@ -12504,6 +12504,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -41791,9 +41796,10 @@ var render = function() {
                   rawName: "v-show",
                   value:
                     _vm.showRcFCButton() &&
-                    _vm.$can("edit_killsheet_remove_char"),
+                    (_vm.$can("edit_killsheet_remove_char") ||
+                      this.station.fc_user_id == this.$store.state.user_id),
                   expression:
-                    "showRcFCButton() && $can('edit_killsheet_remove_char')"
+                    "\n                showRcFCButton() &&\n                    ($can('edit_killsheet_remove_char') ||\n                        this.station.fc_user_id ==\n                            this.$store.state.user_id)\n            "
                 }
               ],
               attrs: { color: "orange darken-3", small: "" },
