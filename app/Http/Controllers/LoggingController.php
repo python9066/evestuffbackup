@@ -10,6 +10,7 @@ use App\Models\Campaign;
 use App\Models\CampaignSolaSystem;
 use App\Models\CustomCampaign;
 use App\Models\LoggingType;
+use App\Models\Station;
 use App\Models\System;
 use App\Models\User;
 use PHPUnit\TextUI\Help;
@@ -70,6 +71,32 @@ class LoggingController extends Controller
                 'user_name' => $log->user()->value('name'),
                 'logging_type_id' => $log['logging_type_id'],
                 'logging_type_name' => LoggingType::where('id', $log['logging_type_id'])->value('name'),
+                'text' => $log['text'],
+                'created_at' => $timne
+            ];
+            array_push($data, $data1);
+        }
+
+        return ["logs" => $data];
+    }
+
+
+    public function rcSheetLogging($campid)
+    {
+        // dd($campid);
+        $data = [];
+        $logs = Logging::where('campaign_id', $campid)->get();
+        foreach ($logs as $log) {
+            $timne = Helper::fixtime($log['created_at']);
+            $data1 = null;
+            $data1 = [
+                'id' => $log['id'],
+                'user_id' => $log['user_id'],
+                'user_name' => $log->user()->value('name'),
+                'logging_type_id' => $log['logging_type_id'],
+                'logging_type_name' => LoggingType::where('id', $log['logging_type_id'])->value('name'),
+                'station_id' => $log['station_id'],
+                'station_name' => Station::where('id', $log['station_id'])->value('name'),
                 'text' => $log['text'],
                 'created_at' => $timne
             ];

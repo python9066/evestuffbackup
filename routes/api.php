@@ -150,6 +150,7 @@ Route::middleware('auth:api')->group(function () {
 
 
 
+
     Route::get('/loadstationdata', 'StationController@loadStationData');
     Route::post('/taskrequest', 'StationController@taskRequest');
     Route::put('/updatestationnotification/{id}', 'StationController@update');
@@ -210,4 +211,5 @@ Route::middleware('auth:api')->group(function () {
     Route::put('/rcfixcorp/{id}', 'RcSheetContoller@fixcorp');
     Route::put('/rcfixalliance/{id}', 'RcSheetContoller@fixalliance');
     Route::put('/sheetmessage/{id}', 'RcSheetContoller@updateMessage');
+    Route::get('/rcadminlogs', 'LoggingController@rcSheetLogging');
 });
