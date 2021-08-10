@@ -185,7 +185,10 @@
                             </v-chip>
                         </template>
 
-                        <template v-slot:[`item.gsol_name`]="{ item }">
+                        <template
+                            v-slot:[`item.gsol_name`]="{ item }"
+                            v-if="$can('view_gsol_killsheet')"
+                        >
                             <RcGsolButton
                                 class=" mr-2"
                                 :station="item"

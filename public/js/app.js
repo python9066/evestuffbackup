@@ -25060,6 +25060,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
 
 
 
@@ -53765,18 +53768,20 @@ var render = function() {
                               ]
                             }
                           },
-                          {
-                            key: "item.gsol_name",
-                            fn: function(ref) {
-                              var item = ref.item
-                              return [
-                                _c("RcGsolButton", {
-                                  staticClass: " mr-2",
-                                  attrs: { station: item }
-                                })
-                              ]
-                            }
-                          }
+                          _vm.$can("view_gsol_killsheet")
+                            ? {
+                                key: "item.gsol_name",
+                                fn: function(ref) {
+                                  var item = ref.item
+                                  return [
+                                    _c("RcGsolButton", {
+                                      staticClass: " mr-2",
+                                      attrs: { station: item }
+                                    })
+                                  ]
+                                }
+                              }
+                            : null
                         ],
                         null,
                         true
