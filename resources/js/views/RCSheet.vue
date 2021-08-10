@@ -291,15 +291,15 @@ export default {
             }
 
             if (e.flag.flag == 2) {
-                this.$store.dispatch("getRcStationRecords");
+                this.freshUpdate();
             }
 
             if (e.flag.flag == 3) {
-                this.$store.dispatch("getRcFcs");
+                this.fcupdate();
             }
 
             if (e.flag.flag == 4) {
-                this.$store.dispatch("getRcStationRecords");
+                this.sheetupdate();
             }
         });
     },
@@ -313,6 +313,22 @@ export default {
             }
 
             return false;
+        },
+
+        async freshUpdate() {
+            await this.$store.dispatch("getRcRegions");
+            await this.$store.dispatch("getRcStationRecords");
+            await this.$store.dispatch("getRcFcs");
+            await this.$store.dispatch("getRcItems");
+            await this.$store.dispatch("getRcStatus");
+        },
+
+        async fcupdate() {
+            await this.$store.dispatch("getRcFcs");
+        },
+
+        async sheetupdate() {
+            await this.$store.dispatch("getRcStationRecords");
         },
 
         campaignStart(item) {
