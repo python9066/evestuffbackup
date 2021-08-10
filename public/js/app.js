@@ -42130,7 +42130,7 @@ var render = function() {
               _c("v-card-title", [
                 _vm._v(
                   "Notes for Station " +
-                    _vm._s(_vm.station.station_name) +
+                    _vm._s(_vm.station.name) +
                     ".\n            "
                 )
               ]),

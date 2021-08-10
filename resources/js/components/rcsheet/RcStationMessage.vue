@@ -32,7 +32,7 @@
                 class=" d-flex flex-column"
             >
                 <v-card-title
-                    >Notes for Station {{ station.station_name }}.
+                    >Notes for Station {{ station.name }}.
                 </v-card-title>
                 <v-card-text>
                     <v-textarea
