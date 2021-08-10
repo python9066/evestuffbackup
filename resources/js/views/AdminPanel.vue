@@ -156,7 +156,7 @@
                         <v-btn
                             :loading="loadingf"
                             :disabled="loadingf"
-                            @click="roleflag = 22"
+                            @click="roleflag = 23"
                         >
                             Mega Sheet
                         </v-btn>
@@ -631,10 +631,10 @@ export default {
                 });
             }
 
-            if (this.roleflag == 22) {
+            if (this.roleflag == 23) {
                 return this.users.filter(function(u) {
                     return u.roles.some(function(role) {
-                        return role.id == 22;
+                        return role.id == 23;
                     });
                 });
             } else {
