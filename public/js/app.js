@@ -26209,7 +26209,7 @@ function sleep(ms) {
       return true;
     }
   },
-  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapState"])(["rcstations", "rcsheetRegion", "rcsheetItem", "rcsheetStatus", "getActiveRcStations"])), {}, {
+  computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapState"])(["rcstations", "rcsheetRegion", "rcsheetItem", "rcsheetStatus"])), Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapGetters"])(["getActiveRcStations"])), {}, {
     filteredItems: function filteredItems() {
       return this.rcstations.filter(function (f) {
         return f.show_on_rc == 1;

@@ -258,7 +258,7 @@
 import Axios from "axios";
 import moment, { now, utc } from "moment";
 import { stringify } from "querystring";
-import { mapState } from "vuex";
+import { mapGetters, mapState } from "vuex";
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
@@ -399,9 +399,10 @@ export default {
             "rcstations",
             "rcsheetRegion",
             "rcsheetItem",
-            "rcsheetStatus",
-            "getActiveRcStations"
+            "rcsheetStatus"
         ]),
+
+        ...mapGetters(["getActiveRcStations"]),
         filteredItems() {
             return this.rcstations.filter(f => f.show_on_rc == 1);
             // return this.rcstations;
