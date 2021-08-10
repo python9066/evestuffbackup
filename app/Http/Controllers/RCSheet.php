@@ -73,16 +73,17 @@ class RCSheet extends Controller
                     $timer = Helper::fixtime($input['timer_expires']);
                     $corpID = Corp::where('ticker', $input['owning_corp_ticker'])->first();
                     $allianceID = Alliance::where('ticker', $input['owning_alliance_ticker'])->first();
+                    $alliance_count = Alliance::where('ticker', $input['owning_alliance_ticker'])->count();
                     $corp_count = Corp::where('ticker', $input['owning_corp_ticker'])->count();
-                    if ($corp_count == 0) {
-                        $alliance_count = Alliance::where('ticker', $input['owning_alliance_ticker'])->count();
+                    if ($corp_count > 0) {
+                        $corpIDID = $corpID->id;
+                        $allianceIDID = $allianceID->id;
+                    } else {
                         if ($alliance_count > 0) {
                             $allianceIDID = $allianceID->id;
                         }
-                    } else {
-                        $corpIDID = $corpID->id;
-                        $allianceIDID = $corpID->alliance_id;
                     }
+
 
                     // dd($allianceIDID, $corpIDID);
 
@@ -112,11 +113,18 @@ class RCSheet extends Controller
                         if ($check[0]['station_status_id'] > 4) {
                             $statusID = 5;
                         }
+
+
                         // Station::where('name', $input['structure_name'])->where('system_id', $input['solar_system']['solar_system_id'])->where('alliance_id', $allianceIDID)->update(['station_status_id' => $statusID, 'out_time' => $timer, 'show_on_rc' => 1]);
-                        Station::where('rc_id', $input['id'])->update(['station_status_id' => $statusID, 'out_time' => $timer, 'show_on_rc' => 1]);;
+
+
+
                         if ($statusID == 5) {
                             // Station::where('name', $input['structure_name'])->where('system_id', $input['solar_system']['solar_system_id'])->where('alliance_id', $allianceIDID)->update(['station_status_id' => $statusID, 'show_on_rc' => 2]);
                             Station::where('rc_id', $input['id'])->update(['station_status_id' => $statusID, 'show_on_rc' => 2]);
+                        } else {
+
+                            Station::where('rc_id', $input['id'])->update(['station_status_id' => $statusID, 'out_time' => $timer, 'show_on_rc' => 1]);
                         }
 
                         // dd($check->id);
