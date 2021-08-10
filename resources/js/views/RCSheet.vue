@@ -342,7 +342,6 @@ export default {
 
     computed: {
         ...mapState([
-            "allianceticklist",
             "rcstations",
             "rcsheetRegion",
             "rcsheetItem",

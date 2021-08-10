@@ -11913,90 +11913,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -12005,171 +11921,51 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   data: function data() {
     return {
-      headers: [{
-        text: "Name",
-        value: "name"
-      }, {
-        text: "",
-        value: "addRemove",
-        align: "end"
-      } // { text: "Vulernable End Time", value: "vulnerable_end_time" }
-      ],
-      newCharName: null,
-      addShown: false,
-      overlay: false,
-      search: ""
+      value: null,
+      overlay: null
     };
   },
   methods: {
     close: function close() {
+      this.value = null;
       this.overlay = false;
     },
-    newFCFormClose: function newFCFormClose() {
-      this.addShown = false;
-      this.newFCName = null;
-    },
-    pillClick: function pillClick(item) {
+    done: function done() {
       var _this = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-        var data, request;
+        var request;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                data = {
-                  id: _this.station.id,
-                  fc_user_id: item.id,
-                  fc_user_name: item.name
-                };
-
-                _this.$store.dispatch("updateRcStation", data);
-
                 request = {
-                  rc_fc_id: item.id
+                  allianceid: _this.value
                 };
-                _context.next = 5;
+                _context.next = 3;
                 return axios({
-                  method: "post",
-                  url: "/api/rcfcadd/" + _this.station.id,
+                  method: "put",
+                  url: "/api/rcfixalliance/" + _this.station.id,
                   data: request,
                   headers: {
                     Authorization: "Bearer " + _this.$store.state.token,
                     Accept: "application/json",
                     "Content-Type": "application/json"
                   }
-                });
+                }).then(close());
 
-              case 5:
+              case 3:
               case "end":
                 return _context.stop();
             }
           }
         }, _callee);
       }))();
-    },
-    pillDelete: function pillDelete(item) {
-      var _this2 = this;
-
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
-          while (1) {
-            switch (_context2.prev = _context2.next) {
-              case 0:
-                _context2.next = 2;
-                return axios({
-                  method: "DELETE",
-                  url: "/api/rcfcdelete/" + item.id,
-                  headers: {
-                    Authorization: "Bearer " + _this2.$store.state.token,
-                    Accept: "application/json",
-                    "Content-Type": "application/json"
-                  }
-                });
-
-              case 2:
-                _this2.$store.dispatch("getRcFcs");
-
-              case 3:
-              case "end":
-                return _context2.stop();
-            }
-          }
-        }, _callee2);
-      }))();
-    },
-    newFCForm: function newFCForm() {
-      var _this3 = this;
-
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
-        var request;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
-          while (1) {
-            switch (_context3.prev = _context3.next) {
-              case 0:
-                request = {
-                  char_name: _this3.newCharName
-                };
-                _context3.next = 3;
-                return axios({
-                  method: "PUT",
-                  url: "/api/rcfcnew",
-                  data: request,
-                  headers: {
-                    Authorization: "Bearer " + _this3.$store.state.token,
-                    Accept: "application/json",
-                    "Content-Type": "application/json"
-                  }
-                });
-
-              case 3:
-                _this3.$store.dispatch("getRcFcs");
-
-                _this3.addShown = false;
-                _this3.newFCName = null;
-
-              case 6:
-              case "end":
-                return _context3.stop();
-            }
-          }
-        }, _callee3);
-      }))();
-    },
-    removeChar: function removeChar(item) {
-      var _this4 = this;
-
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
-          while (1) {
-            switch (_context4.prev = _context4.next) {
-              case 0:
-                _context4.next = 2;
-                return axios({
-                  method: "DELETE",
-                  url: "/api/campaignusers/" + item.id + "/" + _this4.campaign_id + "/" + _this4.$store.state.user_id,
-                  headers: {
-                    Authorization: "Bearer " + _this4.$store.state.token,
-                    Accept: "application/json",
-                    "Content-Type": "application/json"
-                  }
-                });
-
-              case 2:
-                _this4.$store.dispatch("getCampaignSystemsRecords");
-
-              case 3:
-              case "end":
-                return _context4.stop();
-            }
-          }
-        }, _callee4);
-      }))();
     }
   },
-  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapState"])(["rcfcs"])), {}, {
-    filteredItems: function filteredItems() {
-      return this.rcfcs;
+  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapState"])(["allianceticklist"])), {}, {
+    items: function items() {
+      return this.allianceticklist;
     }
   })
 });
@@ -12289,7 +12085,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                     Accept: "application/json",
                     "Content-Type": "application/json"
                   }
-                });
+                }).then(close());
 
               case 3:
               case "end":
@@ -25744,7 +25540,7 @@ function sleep(ms) {
       return true;
     }
   },
-  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapState"])(["allianceticklist", "rcstations", "rcsheetRegion", "rcsheetItem", "rcsheetStatus"])), {}, {
+  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapState"])(["rcstations", "rcsheetRegion", "rcsheetItem", "rcsheetStatus"])), {}, {
     filteredItems: function filteredItems() {
       return this.rcstations;
     },
@@ -41020,7 +40816,7 @@ var render = function() {
       _c(
         "v-dialog",
         {
-          attrs: { "max-width": "500px", "z-index": "0", persistent: "" },
+          attrs: { persistent: "", "max-width": "500px", "z-index": "0" },
           scopedSlots: _vm._u([
             {
               key: "activator",
@@ -41042,7 +40838,7 @@ var render = function() {
                       ),
                       on
                     ),
-                    [_vm._v("FC")]
+                    [_vm._v("Alliance")]
                   )
                 ]
               }
@@ -41068,175 +40864,17 @@ var render = function() {
                 "v-card-title",
                 { staticClass: "d-flex justify-space-between align-center " },
                 [
-                  _c("div", [_vm._v("Table of FCs")]),
+                  _c("div", [_vm._v("Alliance List")]),
                   _vm._v(" "),
-                  _c(
-                    "v-card",
-                    {
-                      staticClass: "align-start",
-                      attrs: {
-                        width: "500",
-                        tile: "",
-                        flat: "",
-                        color: "#121212"
-                      }
-                    },
-                    [
-                      _c("v-text-field", {
-                        attrs: {
-                          "append-icon": "mdi-magnify",
-                          label: "Search",
-                          "single-line": "",
-                          filled: "",
-                          "hide-details": ""
-                        },
-                        model: {
-                          value: _vm.search,
-                          callback: function($$v) {
-                            _vm.search = $$v
-                          },
-                          expression: "search"
-                        }
-                      })
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    [
-                      _c(
-                        "v-menu",
-                        {
-                          attrs: {
-                            "close-on-content-click": false,
-                            value: _vm.addShown,
-                            transition: "fab-transition",
-                            origin: "100% -30%"
-                          },
-                          scopedSlots: _vm._u([
-                            {
-                              key: "activator",
-                              fn: function(ref) {
-                                var on = ref.on
-                                var attrs = ref.attrs
-                                return [
-                                  _c(
-                                    "v-btn",
-                                    _vm._g(
-                                      _vm._b(
-                                        {
-                                          attrs: { text: "", color: "success" },
-                                          on: {
-                                            click: function($event) {
-                                              _vm.addShown = true
-                                            }
-                                          }
-                                        },
-                                        "v-btn",
-                                        attrs,
-                                        false
-                                      ),
-                                      on
-                                    ),
-                                    [
-                                      _c(
-                                        "v-icon",
-                                        { attrs: { left: "", small: "" } },
-                                        [_vm._v("fas fa-plus")]
-                                      ),
-                                      _vm._v(
-                                        "\n                                FC"
-                                      )
-                                    ],
-                                    1
-                                  )
-                                ]
-                              }
-                            }
-                          ])
-                        },
-                        [
-                          _vm._v(" "),
-                          _c("v-row", { attrs: { "no-gutters": "" } }, [
-                            _c(
-                              "div",
-                              [
-                                _c(
-                                  "v-card",
-                                  {
-                                    staticClass: "pa-2",
-                                    attrs: { tile: "", width: "100%" }
-                                  },
-                                  [
-                                    _c(
-                                      "v-form",
-                                      {
-                                        on: {
-                                          submit: function($event) {
-                                            $event.preventDefault()
-                                            return _vm.newFCForm()
-                                          }
-                                        }
-                                      },
-                                      [
-                                        _c("v-text-field", {
-                                          attrs: {
-                                            label: "FC Name",
-                                            required: "",
-                                            autofocus: ""
-                                          },
-                                          model: {
-                                            value: _vm.newCharName,
-                                            callback: function($$v) {
-                                              _vm.newCharName = $$v
-                                            },
-                                            expression: "newCharName"
-                                          }
-                                        }),
-                                        _vm._v(" "),
-                                        _c(
-                                          "v-btn",
-                                          {
-                                            staticClass: "mr-4",
-                                            attrs: {
-                                              color: "success",
-                                              type: "submit"
-                                            }
-                                          },
-                                          [_vm._v("submit")]
-                                        ),
-                                        _vm._v(" "),
-                                        _c(
-                                          "v-btn",
-                                          {
-                                            staticClass: "mr-4",
-                                            attrs: { color: "warning" },
-                                            on: {
-                                              click: function($event) {
-                                                ;(_vm.addShown = false),
-                                                  (this.newCharName = null)
-                                              }
-                                            }
-                                          },
-                                          [_vm._v("Close")]
-                                        )
-                                      ],
-                                      1
-                                    )
-                                  ],
-                                  1
-                                )
-                              ],
-                              1
-                            )
-                          ])
-                        ],
-                        1
-                      )
-                    ],
-                    1
-                  )
+                  _c("v-card", {
+                    staticClass: "align-start",
+                    attrs: {
+                      width: "500",
+                      tile: "",
+                      flat: "",
+                      color: "#121212"
+                    }
+                  })
                 ],
                 1
               ),
@@ -41244,90 +40882,21 @@ var render = function() {
               _c(
                 "v-card-text",
                 [
-                  _c(
-                    "v-data-table",
-                    {
-                      staticClass: "elevation-24",
-                      attrs: {
-                        headers: _vm.headers,
-                        items: _vm.filteredItems,
-                        search: _vm.search,
-                        "item-key": "id",
-                        "disable-pagination": "",
-                        "fixed-header": "",
-                        "hide-default-footer": ""
-                      },
-                      scopedSlots: _vm._u(
-                        [
-                          {
-                            key: "item.addRemove",
-                            fn: function(ref) {
-                              var item = ref.item
-                              return [
-                                _c(
-                                  "span",
-                                  [
-                                    _c(
-                                      "v-btn",
-                                      {
-                                        attrs: {
-                                          rounded: "",
-                                          outlined: true,
-                                          "x-small": ""
-                                        },
-                                        on: {
-                                          click: function($event) {
-                                            return _vm.pillClick(item)
-                                          }
-                                        }
-                                      },
-                                      [
-                                        _vm._v(
-                                          "\n                                ADD\n                            "
-                                        )
-                                      ]
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "v-icon",
-                                      {
-                                        attrs: {
-                                          rounded: "",
-                                          outlined: true,
-                                          "x-small": ""
-                                        },
-                                        on: {
-                                          click: function($event) {
-                                            return _vm.pillDelete(item)
-                                          }
-                                        }
-                                      },
-                                      [
-                                        _vm._v(
-                                          "\n                                fas fa-trash-alt\n                            "
-                                        )
-                                      ]
-                                    )
-                                  ],
-                                  1
-                                )
-                              ]
-                            }
-                          }
-                        ],
-                        null,
-                        true
-                      )
+                  _c("v-autocomplete", {
+                    attrs: {
+                      items: _vm.items,
+                      dense: "",
+                      filled: "",
+                      label: "Corp Tickers"
                     },
-                    [
-                      _c("template", { slot: "no-data" }, [
-                        _vm._v(
-                          "\n                        No FCs\n                    "
-                        )
-                      ])
-                    ],
-                    2
-                  )
+                    model: {
+                      value: _vm.value,
+                      callback: function($$v) {
+                        _vm.value = $$v
+                      },
+                      expression: "value"
+                    }
+                  })
                 ],
                 1
               ),
@@ -41335,6 +40904,20 @@ var render = function() {
               _c(
                 "v-card-actions",
                 [
+                  _c(
+                    "v-btn",
+                    {
+                      staticClass: "white--text",
+                      attrs: { color: "teal" },
+                      on: {
+                        click: function($event) {
+                          return _vm.done()
+                        }
+                      }
+                    },
+                    [_vm._v("\n                    Done\n                ")]
+                  ),
+                  _vm._v(" "),
                   _c(
                     "v-btn",
                     {

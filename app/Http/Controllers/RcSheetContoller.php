@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Events\RcSheetUpdate;
+use App\Models\Alliance;
 use App\Models\Corp;
 use App\Models\RcStationRecords;
 use App\Models\Station;
@@ -37,7 +38,26 @@ class RcSheetContoller extends Controller
         $corpid = $corp->id;
         $allianceid = $corp->alliance_id;
 
-        dd($corp, $corpid, $allianceid);
+        Station::where('id', $id)->update(['corp_id' => $corpid, 'alliance_id' => $allianceid]);
+
+        $message = RcStationRecords::where('id', $id)->first();
+        $flag = collect([
+            'message' => $message,
+        ]);
+        broadcast(new RcSheetUpdate($flag));
+    }
+
+    public function fixalliance(Request $request, $id)
+    {
+        $alliance = Alliance::where('id', $request->allianceid)->first();
+        $allianceid = $alliance->id;
+        Station::where('id', $id)->update(['alliance_id' => $allianceid]);
+
+        $message = RcStationRecords::where('id', $id)->first();
+        $flag = collect([
+            'message' => $message,
+        ]);
+        broadcast(new RcSheetUpdate($flag));
     }
 
 
