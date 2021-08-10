@@ -25099,26 +25099,39 @@ function sleep(ms) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              _context.next = 2;
+              if (!_this.$can("super")) {
+                _context.next = 5;
+                break;
+              }
+
+              _context.next = 3;
+              return _this.$store.dispatch("getAllianceTickList");
+
+            case 3:
+              _context.next = 5;
+              return _this.$store.dispatch("ticklist");
+
+            case 5:
+              _context.next = 7;
               return _this.$store.dispatch("getRcRegions");
 
-            case 2:
-              _context.next = 4;
+            case 7:
+              _context.next = 9;
               return _this.$store.dispatch("getRcStationRecords");
 
-            case 4:
-              _context.next = 6;
+            case 9:
+              _context.next = 11;
               return _this.$store.dispatch("getRcFcs");
 
-            case 6:
-              _context.next = 8;
+            case 11:
+              _context.next = 13;
               return _this.$store.dispatch("getRcItems");
 
-            case 8:
-              _context.next = 10;
+            case 13:
+              _context.next = 15;
               return _this.$store.dispatch("getRcStatus");
 
-            case 10:
+            case 15:
               Echo["private"]("rcsheet").listen("RcSheetUpdate", function (e) {
                 if (e.flag.message != null) {
                   _this.$store.dispatch("updateRcStation", e.flag.message);
@@ -25145,7 +25158,7 @@ function sleep(ms) {
                 }
               });
 
-            case 11:
+            case 16:
             case "end":
               return _context.stop();
           }
@@ -25255,7 +25268,7 @@ function sleep(ms) {
       return true;
     }
   },
-  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapState"])(["rcstations", "rcsheetRegion", "rcsheetItem", "rcsheetStatus"])), {}, {
+  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapState"])(["corpList", "alliancelist", "rcstations", "rcsheetRegion", "rcsheetItem", "rcsheetStatus"])), {}, {
     filteredItems: function filteredItems() {
       return this.rcstations;
     },
