@@ -28,6 +28,8 @@ class Corp extends Model
 
     protected $casts = [
         'id' => 'integer',
+        'alliance_id' => 'integer',
+        'active' => 'integer',
         'standingstanding' => 'double',
         'active' => 'integer',
         'color' => 'integer',
