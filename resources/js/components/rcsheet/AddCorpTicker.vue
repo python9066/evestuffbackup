@@ -68,7 +68,7 @@ export default {
             this.overlay = false;
         },
 
-        done(){
+        async done() {
             var request = {
                 corpid: this.value
             };

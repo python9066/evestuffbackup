@@ -12181,9 +12181,131 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/rcsheet/AddCorpTicker.vue?vue&type=script&lang=js& ***!
   \********************************************************************************************************************************************************************************/
 /*! exports provided: default */
-/***/ (function(module, exports) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: G:\\code\\eve\\resources\\js\\components\\rcsheet\\AddCorpTicker.vue: 'await' is only allowed within async functions and at the top levels of modules (76:12)\n\n\u001b[0m \u001b[90m 74 | \u001b[39m            }\u001b[33m;\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 75 | \u001b[39m\u001b[0m\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 76 | \u001b[39m            await axios({\u001b[0m\n\u001b[0m \u001b[90m    | \u001b[39m            \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 77 | \u001b[39m                method\u001b[33m:\u001b[39m \u001b[32m\"put\"\u001b[39m\u001b[33m,\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 78 | \u001b[39m                url\u001b[33m:\u001b[39m \u001b[32m\"/api/rcfixcorp/\"\u001b[39m \u001b[33m+\u001b[39m \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mstation\u001b[33m.\u001b[39mid\u001b[33m,\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 79 | \u001b[39m                data\u001b[33m:\u001b[39m request\u001b[33m,\u001b[39m\u001b[0m\n    at Parser._raise (G:\\code\\eve\\node_modules\\@babel\\parser\\lib\\index.js:790:17)\n    at Parser.raiseWithData (G:\\code\\eve\\node_modules\\@babel\\parser\\lib\\index.js:783:17)\n    at Parser.raise (G:\\code\\eve\\node_modules\\@babel\\parser\\lib\\index.js:777:17)\n    at Parser.checkReservedWord (G:\\code\\eve\\node_modules\\@babel\\parser\\lib\\index.js:11348:14)\n    at Parser.parseIdentifierName (G:\\code\\eve\\node_modules\\@babel\\parser\\lib\\index.js:11312:12)\n    at Parser.parseIdentifier (G:\\code\\eve\\node_modules\\@babel\\parser\\lib\\index.js:11279:23)\n    at Parser.parseExprAtom (G:\\code\\eve\\node_modules\\@babel\\parser\\lib\\index.js:10362:27)\n    at Parser.parseExprSubscripts (G:\\code\\eve\\node_modules\\@babel\\parser\\lib\\index.js:10094:23)\n    at Parser.parseUpdate (G:\\code\\eve\\node_modules\\@babel\\parser\\lib\\index.js:10074:21)\n    at Parser.parseMaybeUnary (G:\\code\\eve\\node_modules\\@babel\\parser\\lib\\index.js:10063:17)\n    at Parser.parseExprOps (G:\\code\\eve\\node_modules\\@babel\\parser\\lib\\index.js:9933:23)\n    at Parser.parseMaybeConditional (G:\\code\\eve\\node_modules\\@babel\\parser\\lib\\index.js:9907:23)\n    at Parser.parseMaybeAssign (G:\\code\\eve\\node_modules\\@babel\\parser\\lib\\index.js:9870:21)\n    at Parser.parseExpressionBase (G:\\code\\eve\\node_modules\\@babel\\parser\\lib\\index.js:9815:23)\n    at G:\\code\\eve\\node_modules\\@babel\\parser\\lib\\index.js:9809:39\n    at Parser.allowInAnd (G:\\code\\eve\\node_modules\\@babel\\parser\\lib\\index.js:11504:16)\n    at Parser.parseExpression (G:\\code\\eve\\node_modules\\@babel\\parser\\lib\\index.js:9809:17)\n    at Parser.parseStatementContent (G:\\code\\eve\\node_modules\\@babel\\parser\\lib\\index.js:11770:23)\n    at Parser.parseStatement (G:\\code\\eve\\node_modules\\@babel\\parser\\lib\\index.js:11639:17)\n    at Parser.parseBlockOrModuleBlockBody (G:\\code\\eve\\node_modules\\@babel\\parser\\lib\\index.js:12221:25)\n    at Parser.parseBlockBody (G:\\code\\eve\\node_modules\\@babel\\parser\\lib\\index.js:12207:10)\n    at Parser.parseBlock (G:\\code\\eve\\node_modules\\@babel\\parser\\lib\\index.js:12191:10)\n    at Parser.parseFunctionBody (G:\\code\\eve\\node_modules\\@babel\\parser\\lib\\index.js:11184:24)\n    at Parser.parseFunctionBodyAndFinish (G:\\code\\eve\\node_modules\\@babel\\parser\\lib\\index.js:11168:10)\n    at Parser.parseMethod (G:\\code\\eve\\node_modules\\@babel\\parser\\lib\\index.js:11118:10)\n    at Parser.parseObjectMethod (G:\\code\\eve\\node_modules\\@babel\\parser\\lib\\index.js:11047:19)\n    at Parser.parseObjPropValue (G:\\code\\eve\\node_modules\\@babel\\parser\\lib\\index.js:11080:23)\n    at Parser.parsePropertyDefinition (G:\\code\\eve\\node_modules\\@babel\\parser\\lib\\index.js:11004:10)\n    at Parser.parseObjectLike (G:\\code\\eve\\node_modules\\@babel\\parser\\lib\\index.js:10894:25)\n    at Parser.parseExprAtom (G:\\code\\eve\\node_modules\\@babel\\parser\\lib\\index.js:10445:23)\n    at Parser.parseExprSubscripts (G:\\code\\eve\\node_modules\\@babel\\parser\\lib\\index.js:10094:23)\n    at Parser.parseUpdate (G:\\code\\eve\\node_modules\\@babel\\parser\\lib\\index.js:10074:21)\n    at Parser.parseMaybeUnary (G:\\code\\eve\\node_modules\\@babel\\parser\\lib\\index.js:10063:17)\n    at Parser.parseExprOps (G:\\code\\eve\\node_modules\\@babel\\parser\\lib\\index.js:9933:23)\n    at Parser.parseMaybeConditional (G:\\code\\eve\\node_modules\\@babel\\parser\\lib\\index.js:9907:23)\n    at Parser.parseMaybeAssign (G:\\code\\eve\\node_modules\\@babel\\parser\\lib\\index.js:9870:21)");
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: {
+    station: Object
+  },
+  data: function data() {
+    return {
+      value: null,
+      overlay: null
+    };
+  },
+  methods: {
+    close: function close() {
+      this.value = null;
+      this.overlay = false;
+    },
+    done: function done() {
+      var _this = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        var request;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                request = {
+                  corpid: _this.value
+                };
+                _context.next = 3;
+                return axios({
+                  method: "put",
+                  url: "/api/rcfixcorp/" + _this.station.id,
+                  data: request,
+                  headers: {
+                    Authorization: "Bearer " + _this.$store.state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                  }
+                });
+
+              case 3:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }))();
+    }
+  },
+  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapState"])(["ticklist"])), {}, {
+    items: function items() {
+      return this.ticklist;
+    }
+  })
+});
 
 /***/ }),
 
