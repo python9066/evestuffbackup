@@ -25615,7 +25615,8 @@ function sleep(ms) {
       regionPicked: [],
       itemPicked: [],
       statusPicked: [],
-      search: ""
+      search: "",
+      toggleFC: true
     };
   },
   created: function created() {
@@ -54544,11 +54545,11 @@ var render = function() {
                           "hide-details": ""
                         },
                         model: {
-                          value: _vm.ex11,
+                          value: _vm.toggleFC,
                           callback: function($$v) {
-                            _vm.ex11 = $$v
+                            _vm.toggleFC = $$v
                           },
-                          expression: "ex11"
+                          expression: "toggleFC"
                         }
                       })
                     ],
@@ -54641,11 +54642,11 @@ var render = function() {
                           "hide-details": ""
                         },
                         model: {
-                          value: _vm.showFC,
+                          value: _vm.itemPicked,
                           callback: function($$v) {
-                            _vm.showFC = $$v
+                            _vm.itemPicked = $$v
                           },
-                          expression: "showFC"
+                          expression: "itemPicked"
                         }
                       })
                     ],
