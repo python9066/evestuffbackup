@@ -72,11 +72,11 @@ class RCSheet extends Controller
                     $stationName = $input['structure_name'];
                     $timer = Helper::fixtime($input['timer_expires']);
                     $corpID = Corp::where('ticker', $input['owning_corp_ticker'])->first();
-                    $count = Corp::where('ticker', $input['owning_corp_ticker'])->count();
-                    dd($count);
                     $allianceID = Alliance::where('ticker', $input['owning_alliance_ticker'])->first();
-                    if (!$corpID) {
-                        if ($allianceID) {
+                    $corp_count = Corp::where('ticker', $input['owning_corp_ticker'])->count();
+                    if ($corp_count == 0) {
+                        $alliance_count = Alliance::where('ticker', $input['owning_alliance_ticker'])->count();
+                        if ($alliance_count > 0) {
                             $allianceIDID = $allianceID->id;
                         }
                     } else {
@@ -102,8 +102,10 @@ class RCSheet extends Controller
                     }
 
                     $check = null;
-                    $check = Station::where('name', $input['structure_name'])->where('system_id', $input['solar_system']['solar_system_id'])->where('alliance_id', $allianceIDID)->get();
+                    // $check = Station::where('name', $input['structure_name'])->where('system_id', $input['solar_system']['solar_system_id'])->where('alliance_id', $allianceIDID)->get();
+                    $check = Station::where('rc_id', $input['id'])->get();
                     $count = $check->count();
+                    dd($count);
 
 
                     if ($count > 0) {
