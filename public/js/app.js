@@ -48889,7 +48889,7 @@ var render = function() {
                     )
                   ]),
                   _vm._v(" "),
-                  _vm.$can("view_mega_list")
+                  _vm.$can("view_killsheet")
                     ? _c("v-tab", { attrs: { link: "", to: "/killlist" } }, [
                         _vm._v(
                           "\n                    Nats Health\n                "

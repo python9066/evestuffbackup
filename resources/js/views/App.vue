@@ -30,7 +30,7 @@
                         Notifications
                     </v-tab>
 
-                    <v-tab v-if="$can('view_mega_list')" link to="/killlist">
+                    <v-tab v-if="$can('view_killsheet')" link to="/killlist">
                         Nats Health
                     </v-tab>
 
