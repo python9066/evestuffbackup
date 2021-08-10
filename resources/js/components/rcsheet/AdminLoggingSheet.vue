@@ -11,9 +11,8 @@
                     class="mr-4"
                     color="green lighten-1"
                     v-bind="attrs"
-                    x-small
                     v-on="on"
-                    >FC</v-btn
+                    >LOGS</v-btn
                 >
             </template>
 

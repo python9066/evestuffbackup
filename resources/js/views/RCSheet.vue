@@ -399,10 +399,11 @@ export default {
             "rcstations",
             "rcsheetRegion",
             "rcsheetItem",
-            "rcsheetStatus"
+            "rcsheetStatus",
+            "getActiveRcStations"
         ]),
         filteredItems() {
-            return this.rcstations.filter(f => f.show_on_rc == 1);
+            return this.getActiveRcStations;
             // return this.rcstations;
         },
 

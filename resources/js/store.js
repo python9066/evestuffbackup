@@ -1543,6 +1543,10 @@ export default new Vuex.Store({
             return state.loggingcampaign.filter(log => log.campaign_sola_system_id == null && log.campaign_id == campid)
         },
 
+        getActiveRcStations: state => {
+            return state.rcstations.filter(station => station.show_on_rc == 1)
+        },
+
         getLoggingAdmin: state => campid => {
             return state.loggingcampaign.filter(log => log.campaign_sola_system_id == null && log.campaign_id == campid)
         },

@@ -12268,7 +12268,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -26210,11 +26209,9 @@ function sleep(ms) {
       return true;
     }
   },
-  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapState"])(["rcstations", "rcsheetRegion", "rcsheetItem", "rcsheetStatus"])), {}, {
+  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapState"])(["rcstations", "rcsheetRegion", "rcsheetItem", "rcsheetStatus", "getActiveRcStations"])), {}, {
     filteredItems: function filteredItems() {
-      return this.rcstations.filter(function (f) {
-        return f.show_on_rc == 1;
-      }); // return this.rcstations;
+      return this.getActiveRcStations; // return this.rcstations;
     },
     filter_fc: function filter_fc() {
       if (this.toggleFC) {
@@ -41828,7 +41825,7 @@ var render = function() {
                       _vm._b(
                         {
                           staticClass: "mr-4",
-                          attrs: { color: "green lighten-1", "x-small": "" }
+                          attrs: { color: "green lighten-1" }
                         },
                         "v-btn",
                         attrs,
@@ -41836,7 +41833,7 @@ var render = function() {
                       ),
                       on
                     ),
-                    [_vm._v("FC")]
+                    [_vm._v("LOGS")]
                   )
                 ]
               }
@@ -67145,6 +67142,11 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
           return log.campaign_sola_system_id == null && log.campaign_id == campid;
         });
       };
+    },
+    getActiveRcStations: function getActiveRcStations(state) {
+      return state.rcstations.filter(function (station) {
+        return station.show_on_rc == 1;
+      });
     },
     getLoggingAdmin: function getLoggingAdmin(state) {
       return function (campid) {
