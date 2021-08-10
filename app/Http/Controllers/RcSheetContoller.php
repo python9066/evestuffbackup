@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Events\RcSheetUpdate;
+use App\Models\Corp;
 use App\Models\RcStationRecords;
 use App\Models\Station;
 use Illuminate\Http\Request;
@@ -28,6 +29,15 @@ class RcSheetContoller extends Controller
     public function store(Request $request)
     {
         //
+    }
+
+    public function fixcorp(Request $request, $id)
+    {
+        $corp = Corp::where('id', $request->corpid)->get();
+        $corpid = $corp->id;
+        $allianceid = $corp->alliance_id;
+
+        dd($corp, $corpid, $allianceid);
     }
 
 

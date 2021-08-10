@@ -64,7 +64,25 @@ export default {
 
     methods: {
         close() {
+            this.value = null;
             this.overlay = false;
+        },
+
+        done(){
+            var request = {
+                corpid: this.value
+            };
+
+            await axios({
+                method: "put",
+                url: "/api/rcfixcorp/" + this.station.id,
+                data: request,
+                headers: {
+                    Authorization: "Bearer " + this.$store.state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                }
+            });
         }
     },
 
