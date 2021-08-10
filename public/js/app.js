@@ -25943,6 +25943,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 
@@ -55528,6 +55529,7 @@ var render = function() {
                       staticClass: "elevation-5",
                       attrs: {
                         "fixed-header": "",
+                        height: "100%",
                         search: _vm.search,
                         headers: _vm._headers,
                         items: _vm.filter_end,
