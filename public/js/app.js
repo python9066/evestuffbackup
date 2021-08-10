@@ -19994,6 +19994,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
 // import { EventBus } from "../event-bus";
 
 
@@ -48884,6 +48888,14 @@ var render = function() {
                       "\n                    Notifications\n                "
                     )
                   ]),
+                  _vm._v(" "),
+                  _vm.$can("view_mega_list")
+                    ? _c("v-tab", { attrs: { link: "", to: "/killlist" } }, [
+                        _vm._v(
+                          "\n                    Nats Health\n                "
+                        )
+                      ])
+                    : _vm._e(),
                   _vm._v(" "),
                   _vm.$can("view_recon")
                     ? _c("v-tab", { attrs: { link: "", to: "/recon" } }, [

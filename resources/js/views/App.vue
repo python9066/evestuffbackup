@@ -30,6 +30,10 @@
                         Notifications
                     </v-tab>
 
+                    <v-tab v-if="$can('view_mega_list')" link to="/killlist">
+                        Nats Health
+                    </v-tab>
+
                     <v-tab v-if="$can('view_recon')" link to="/recon">
                         Recon
                     </v-tab>
