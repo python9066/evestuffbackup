@@ -105,8 +105,6 @@ class RCSheet extends Controller
                     // $check = Station::where('name', $input['structure_name'])->where('system_id', $input['solar_system']['solar_system_id'])->where('alliance_id', $allianceIDID)->get();
                     $check = Station::where('rc_id', $input['id'])->get();
                     $count = $check->count();
-                    dd($count);
-
 
                     if ($count > 0) {
                         // dd($check[0]['station_status_id']);
@@ -114,10 +112,13 @@ class RCSheet extends Controller
                         if ($check[0]['station_status_id'] > 4) {
                             $statusID = 5;
                         }
-                        Station::where('name', $input['structure_name'])->where('system_id', $input['solar_system']['solar_system_id'])->where('alliance_id', $allianceIDID)->update(['station_status_id' => $statusID, 'out_time' => $timer, 'show_on_rc' => 1]);
+                        // Station::where('name', $input['structure_name'])->where('system_id', $input['solar_system']['solar_system_id'])->where('alliance_id', $allianceIDID)->update(['station_status_id' => $statusID, 'out_time' => $timer, 'show_on_rc' => 1]);
+                        Station::where('rc_id', $input['id'])->update(['station_status_id' => $statusID, 'out_time' => $timer, 'show_on_rc' => 1]);;
                         if ($statusID == 5) {
-                            Station::where('name', $input['structure_name'])->where('system_id', $input['solar_system']['solar_system_id'])->where('alliance_id', $allianceIDID)->update(['station_status_id' => $statusID, 'show_on_rc' => 2]);
+                            // Station::where('name', $input['structure_name'])->where('system_id', $input['solar_system']['solar_system_id'])->where('alliance_id', $allianceIDID)->update(['station_status_id' => $statusID, 'show_on_rc' => 2]);
+                            Station::where('rc_id', $input['id'])->update(['station_status_id' => $statusID, 'show_on_rc' => 2]);
                         }
+
                         // dd($check->id);
                     } else {
 
@@ -138,7 +139,7 @@ class RCSheet extends Controller
 
 
 
-                            $new = Station::Create(['name' => $input['structure_name'], 'system_id' => $input['solar_system']['solar_system_id'], 'alliance_id' => $allianceIDID, 'corp_id' => $corpIDID, 'item_id' => $input['structure_type']['type_id'], 'station_status_id' => $statusID, 'out_time' => $timer, 'show_on_rc' => 1]);
+                            $new = Station::Create(['name' => $input['structure_name'], 'system_id' => $input['solar_system']['solar_system_id'], 'alliance_id' => $allianceIDID, 'corp_id' => $corpIDID, 'item_id' => $input['structure_type']['type_id'], 'station_status_id' => $statusID, 'out_time' => $timer, 'show_on_rc' => 1, 'rc_id' => $input['id']]);
                             if ($allianceIDID == 0) {
                                 $new->update(['id' => $id, 'text' => $input['owning_corp_ticker']]);
                             } else {
