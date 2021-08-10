@@ -119,8 +119,10 @@
                                 </span>
                             </span>
                             <span v-else-if="$can('super')">
-                                <AddCorpTicker></AddCorpTicker
-                                ><AddAllianceTicker></AddAllianceTicker>
+                                <AddCorpTicker :station="item"></AddCorpTicker
+                                ><AddAllianceTicker
+                                    :station="item"
+                                ></AddAllianceTicker>
                             </span>
                         </template>
                         <template v-slot:[`item.count`]="{ item }">

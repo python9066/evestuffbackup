@@ -25542,6 +25542,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
 
 
 
@@ -54689,8 +54691,12 @@ var render = function() {
                                   ? _c(
                                       "span",
                                       [
-                                        _c("AddCorpTicker"),
-                                        _c("AddAllianceTicker")
+                                        _c("AddCorpTicker", {
+                                          attrs: { station: item }
+                                        }),
+                                        _c("AddAllianceTicker", {
+                                          attrs: { station: item }
+                                        })
                                       ],
                                       1
                                     )
