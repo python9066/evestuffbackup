@@ -56434,7 +56434,7 @@ var render = function() {
                       "v-icon",
                       {
                         attrs: {
-                          href: _vm.station.timer_image_link,
+                          href: item.timer_image_link,
                           target: "_blank",
                           color: "green"
                         }

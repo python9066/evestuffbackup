@@ -144,7 +144,7 @@
                     :station="item"
                 ></RcStationMessage>
                 <v-icon
-                    :href="station.timer_image_link"
+                    :href="item.timer_image_link"
                     target="_blank"
                     color="green"
                 >
