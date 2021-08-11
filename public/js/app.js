@@ -46341,7 +46341,7 @@ var render = function() {
                                 "div",
                                 [
                                   _c("h5", [
-                                    _c("strong", [_vm._v("Image Link")])
+                                    _c("strong", [_vm._v("Image Link 2")])
                                   ]),
                                   _vm._v(" "),
                                   _c("v-img", {
@@ -46544,7 +46544,7 @@ var render = function() {
                                 "div",
                                 [
                                   _c("h5", [
-                                    _c("strong", [_vm._v("Image Link")])
+                                    _c("strong", [_vm._v("Image Link 1")])
                                   ]),
                                   _vm._v(" "),
                                   _c("v-img", {

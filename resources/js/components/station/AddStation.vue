@@ -116,7 +116,7 @@
                                 </v-radio-group>
                             </div>
                             <div v-if="this.type == 3">
-                                <h5><strong>Image Link</strong></h5>
+                                <h5><strong>Image Link 2</strong></h5>
                                 <v-img src="https://imgur.com/xEHu3gI"> </v-img>
                                 <v-text-field
                                     v-model="imageLink"
@@ -173,7 +173,7 @@
                                 </v-radio-group>
                             </div>
                             <div v-if="this.type == 3">
-                                <h5><strong>Image Link</strong></h5>
+                                <h5><strong>Image Link 1</strong></h5>
                                 <v-img src="https://imgur.com/xEHu3gI"> </v-img>
                                 <v-text-field
                                     v-model="imageLink"
