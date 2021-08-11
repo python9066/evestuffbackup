@@ -229,7 +229,7 @@ export default {
     },
     data() {
         return {
-            imageLink: [],
+            imageLink: null,
             systems: [],
             stationNameEdit: null,
             state: 1,
@@ -542,7 +542,7 @@ export default {
                     this.sysSelect != null &&
                     this.tickSelect != null &&
                     this.refType != null &&
-                    this.refTime != null &&
+                    this.refTime.length() == 0 &&
                     this.imageLink != null
                 ) {
                     return false;
@@ -551,11 +551,12 @@ export default {
                 }
             } else {
                 if (
+                    (console.log(this.refTime),
                     this.structSelect != null &&
-                    this.sysSelect != null &&
-                    this.tickSelect != null &&
-                    this.refType != null &&
-                    this.refTime != null
+                        this.sysSelect != null &&
+                        this.tickSelect != null &&
+                        this.refType != null &&
+                        this.refTime != null)
                 ) {
                     return false;
                 } else {

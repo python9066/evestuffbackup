@@ -15447,7 +15447,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   data: function data() {
     return {
-      imageLink: [],
+      imageLink: null,
       systems: [],
       stationNameEdit: null,
       state: 1,
@@ -15763,13 +15763,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
     showSubmit: function showSubmit() {
       if (this.type == 3) {
-        if (this.structSelect != null && this.sysSelect != null && this.tickSelect != null && this.refType != null && this.refTime != null && this.imageLink != null) {
+        if (this.structSelect != null && this.sysSelect != null && this.tickSelect != null && this.refType != null && this.refTime.length() == 0 && this.imageLink != null) {
           return false;
         } else {
           return true;
         }
       } else {
-        if (this.structSelect != null && this.sysSelect != null && this.tickSelect != null && this.refType != null && this.refTime != null) {
+        if (this.structSelect != null && this.sysSelect != null && this.tickSelect != null && this.refTime.length() == 0 && this.refTime != null) {
           return false;
         } else {
           return true;
