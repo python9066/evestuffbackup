@@ -46340,7 +46340,7 @@ var render = function() {
                                 "div",
                                 [
                                   _c("h5", [
-                                    _c("strong", [_vm._v("Image Li nk")])
+                                    _c("strong", [_vm._v("Im age Li nk")])
                                   ]),
                                   _vm._v(" "),
                                   _c("v-img", {
