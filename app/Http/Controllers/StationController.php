@@ -303,6 +303,11 @@ class StationController extends Controller
     }
 
 
+    public function rcMoveDone($id)
+    {
+        Station::where('id', $id)->update(['show_on_rc_move' => 0]);
+    }
+
     /**
      * Display the specified resource.
      *

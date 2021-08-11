@@ -25890,37 +25890,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -25960,28 +25929,6 @@ function sleep(ms) {
       toggle_none: null,
       sortdesc: true,
       sortby: "timestamp",
-      dropdown_edit: [{
-        title: "Repairing",
-        value: 11
-      }, {
-        title: "Saved",
-        value: 4
-      }, {
-        title: "Reffed - Armor",
-        value: 8
-      }, {
-        title: "Reffed - Hull",
-        value: 9
-      }, {
-        title: "Destroyed",
-        value: 7
-      }, {
-        title: "Anchoring",
-        value: 14
-      }, {
-        title: "New",
-        value: 1
-      }],
       headers: [{
         text: "Region",
         value: "region_name",
@@ -25997,11 +25944,11 @@ function sleep(ms) {
       }, {
         text: "Corp",
         value: "corp_ticker",
-        width: "10%"
+        width: "5%"
       }, {
         text: "Alliance",
         value: "alliance_ticker",
-        width: "10%"
+        width: "5%"
       }, {
         text: "Type",
         value: "item_name",
@@ -26039,22 +25986,8 @@ function sleep(ms) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              Echo["private"]("notes").listen("chillStationNotificationNew", function (e) {
-                if (_this.$can("edit_chill_timers")) {
-                  _this.$store.dispatch("loadStationInfo");
-                }
-
-                _this.$store.dispatch("addStationNotification", e.flag.message);
-              }).listen("StationNotificationUpdate", function (e) {
-                _this.$store.dispatch("updateStationNotification", e.flag.message);
-              }).listen("StationNotificationDelete", function (e) {
-                _this.$store.dispatch("deleteStationNotification", e.flag.id);
-              }).listen("StationDataSet", function (e) {
-                _this.$store.dispatch("getStationData");
-              });
-
               if (!_this.$can("edit_chill_timers")) {
-                _context.next = 5;
+                _context.next = 4;
                 break;
               }
 
@@ -26065,17 +25998,17 @@ function sleep(ms) {
 
                 _this.$store.dispatch("updateCores", e.flag.message);
               });
-              _context.next = 5;
+              _context.next = 4;
               return _this.$store.dispatch("loadStationInfo");
 
-            case 5:
+            case 4:
               _this.$store.dispatch("getStationData").then(function () {
                 _this.loadingt = false;
                 _this.loadingf = false;
                 _this.loadingr = false;
               });
 
-            case 6:
+            case 5:
             case "end":
               return _context.stop();
           }
@@ -26097,45 +26030,6 @@ function sleep(ms) {
     }))();
   },
   methods: {
-    updatetext: function updatetext(payload, item) {
-      // console.log(item);
-      if (item.text != payload) {
-        item.text = payload;
-        var request = {
-          text: item.text
-        };
-        this.$store.dispatch("updateStationNotification", item);
-        axios({
-          method: "put",
-          //you can set what request you want to be
-          url: "api/updatestationnotification/" + item.id,
-          data: request,
-          headers: {
-            Authorization: "Bearer " + this.$store.state.token,
-            Accept: "application/json",
-            "Content-Type": "application/json"
-          }
-        });
-      }
-    },
-    showNewTimer: function showNewTimer(item) {
-      if ((item.station_status_id == 8 || item.station_status_id == 9 || item.station_status_id == 14) && item.out_time == null && this.$can("edit_chill_timers")) {
-        return true;
-      } else {
-        return false;
-      }
-    },
-    showInfo: function showInfo(item) {
-      if (this.$can("edit_chill_timers")) {
-        if (item.item_id == 37534 || item.item_id == 35841 || item.item_id == 35840) {
-          return false;
-        }
-
-        return true;
-      } else {
-        return false;
-      }
-    },
     countDownStartTime: function countDownStartTime(item) {
       if (item.station_status_id == 11) {
         return moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc(item.repair_time).unix();
@@ -26149,25 +26043,6 @@ function sleep(ms) {
       } else {
         return "blue--text pl-3";
       }
-    },
-    showGunner: function showGunner(item) {
-      if (this.$can("edit_chill_timers")) {
-        if (item.item_id == 37534 || item.item_id == 35841 || item.item_id == 35840) {
-          return false;
-        }
-
-        return true;
-      } else {
-        return false;
-      }
-    },
-    loadstations: function loadstations() {
-      var _this2 = this;
-
-      this.loadingr = true;
-      this.$store.dispatch("getStationData").then(function () {
-        _this2.loadingr = false;
-      }); // console.log("30secs");
     },
     pillIcon: function pillIcon(statusId) {
       if (statusId == 1) {
@@ -26254,6 +26129,18 @@ function sleep(ms) {
         return "deep-orange darken-2";
       }
     },
+    removeStation: function removeStation(item) {
+      axios({
+        method: "put",
+        //you can set what request you want to be
+        url: "api/rcmovedone/" + item.id,
+        headers: {
+          Authorization: "Bearer " + this.$store.state.token,
+          Accept: "application/json",
+          "Content-Type": "application/json"
+        }
+      });
+    },
     campaignStart: function campaignStart(item) {
       item.station_status_id = 6;
       this.$store.dispatch("updateStationNotification", item);
@@ -26266,13 +26153,6 @@ function sleep(ms) {
     itemRowBackground: function itemRowBackground(item) {
       if (item.under_attack == 1) {
         return "style-4";
-      }
-    },
-    adashColor: function adashColor(item) {
-      if (item.text != null) {
-        return "green";
-      } else {
-        return "red";
       }
     },
     cancel: function cancel() {
@@ -56260,39 +56140,7 @@ var render = function() {
                             true
                           )
                         })
-                      : _c("VueCountUptimer", {
-                          attrs: {
-                            "start-time": _vm.moment.utc(item.timestamp).unix(),
-                            "end-text": "Window Closed",
-                            interval: 1000
-                          },
-                          scopedSlots: _vm._u(
-                            [
-                              {
-                                key: "countup",
-                                fn: function(scope) {
-                                  return [
-                                    _c(
-                                      "span",
-                                      { staticClass: "red--text pl-3" },
-                                      [
-                                        _vm._v(
-                                          _vm._s(scope.props.hours) +
-                                            ":" +
-                                            _vm._s(scope.props.minutes) +
-                                            ":" +
-                                            _vm._s(scope.props.seconds)
-                                        )
-                                      ]
-                                    )
-                                  ]
-                                }
-                              }
-                            ],
-                            null,
-                            true
-                          )
-                        })
+                      : _vm._e()
                   ]
                 }
               },
@@ -56333,49 +56181,7 @@ var render = function() {
                                   )
                                 ],
                                 1
-                              ),
-                              _vm._v(" "),
-                              item.status_id == 11 && item.end_time != null
-                                ? _c("CountDowntimer", {
-                                    attrs: {
-                                      "start-time": _vm.moment
-                                        .utc(item.repair_time)
-                                        .unix(),
-                                      interval: 1000,
-                                      "end-text": "Is it Secured?"
-                                    },
-                                    scopedSlots: _vm._u(
-                                      [
-                                        {
-                                          key: "countdown",
-                                          fn: function(scope) {
-                                            return [
-                                              _c(
-                                                "span",
-                                                {
-                                                  staticClass: "blue--text pl-3"
-                                                },
-                                                [
-                                                  _vm._v(
-                                                    _vm._s(
-                                                      scope.props.minutes
-                                                    ) +
-                                                      ":" +
-                                                      _vm._s(
-                                                        scope.props.seconds
-                                                      )
-                                                  )
-                                                ]
-                                              )
-                                            ]
-                                          }
-                                        }
-                                      ],
-                                      null,
-                                      true
-                                    )
-                                  })
-                                : _vm._e()
+                              )
                             ],
                             1
                           )
@@ -56448,6 +56254,20 @@ var render = function() {
                           },
                           [_c("v-icon", [_vm._v(" far fa-images")])],
                           1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "v-btn",
+                          {
+                            attrs: { icon: "", color: "red" },
+                            on: {
+                              click: function($event) {
+                                return _vm.removeStation(item)
+                              }
+                            }
+                          },
+                          [_c("v-icon", [_vm._v(" far fa-times-cirle")])],
+                          1
                         )
                       ],
                       1
@@ -56468,8 +56288,6 @@ var render = function() {
         ],
         2
       ),
-      _vm._v(" "),
-      _c("v-img", { attrs: { src: "https://imgur.com/a/o6ZYT5O" } }),
       _vm._v(" "),
       _c(
         "v-snackbar",

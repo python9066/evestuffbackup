@@ -60,20 +60,6 @@
                         >
                     </template>
                 </CountDowntimer>
-                <VueCountUptimer
-                    v-else
-                    :start-time="moment.utc(item.timestamp).unix()"
-                    :end-text="'Window Closed'"
-                    :interval="1000"
-                >
-                    <template slot="countup" slot-scope="scope">
-                        <span class="red--text pl-3"
-                            >{{ scope.props.hours }}:{{
-                                scope.props.minutes
-                            }}:{{ scope.props.seconds }}</span
-                        >
-                    </template>
-                </VueCountUptimer>
             </template>
 
             <template
@@ -93,26 +79,6 @@
                                 }}</v-icon>
                                 {{ item.station_status_name }}
                             </v-chip>
-
-                            <CountDowntimer
-                                v-if="
-                                    item.status_id == 11 &&
-                                        item.end_time != null
-                                "
-                                :start-time="
-                                    moment.utc(item.repair_time).unix()
-                                "
-                                :interval="1000"
-                                end-text="Is it Secured?"
-                            >
-                                <template slot="countdown" slot-scope="scope">
-                                    <span class="blue--text pl-3"
-                                        >{{ scope.props.minutes }}:{{
-                                            scope.props.seconds
-                                        }}</span
-                                    >
-                                </template>
-                            </CountDowntimer>
                         </div>
                     </template>
                 </div>
@@ -151,10 +117,13 @@
                     >
                         <v-icon> far fa-images</v-icon>
                     </v-btn>
+
+                    <v-btn @click="removeStation(item)" icon color="red">
+                        <v-icon> far fa-times-cirle</v-icon>
+                    </v-btn>
                 </div>
             </template>
         </v-data-table>
-        <v-img src="https://imgur.com/a/o6ZYT5O"></v-img>
         <v-snackbar v-model="snack" :timeout="3000" :color="snackColor">
             {{ snackText }}
 
@@ -201,16 +170,6 @@ export default {
             sortdesc: true,
             sortby: "timestamp",
 
-            dropdown_edit: [
-                { title: "Repairing", value: 11 },
-                { title: "Saved", value: 4 },
-                { title: "Reffed - Armor", value: 8 },
-                { title: "Reffed - Hull", value: 9 },
-                { title: "Destroyed", value: 7 },
-                { title: "Anchoring", value: 14 },
-                { title: "New", value: 1 }
-            ],
-
             headers: [
                 {
                     text: "Region",
@@ -230,13 +189,13 @@ export default {
                 {
                     text: "Corp",
                     value: "corp_ticker",
-                    width: "10%"
+                    width: "5%"
                 },
 
                 {
                     text: "Alliance",
                     value: "alliance_ticker",
-                    width: "10%"
+                    width: "5%"
                 },
                 {
                     text: "Type",
@@ -275,26 +234,6 @@ export default {
     },
 
     async created() {
-        Echo.private("notes")
-            .listen("chillStationNotificationNew", e => {
-                if (this.$can("edit_chill_timers")) {
-                    this.$store.dispatch("loadStationInfo");
-                }
-                this.$store.dispatch("addStationNotification", e.flag.message);
-            })
-            .listen("StationNotificationUpdate", e => {
-                this.$store.dispatch(
-                    "updateStationNotification",
-                    e.flag.message
-                );
-            })
-            .listen("StationNotificationDelete", e => {
-                this.$store.dispatch("deleteStationNotification", e.flag.id);
-            })
-            .listen("StationDataSet", e => {
-                this.$store.dispatch("getStationData");
-            });
-
         if (this.$can("edit_chill_timers")) {
             Echo.private("stationinfo")
                 .listen("StationInfoGet", e => {
@@ -317,56 +256,6 @@ export default {
 
     async mounted() {},
     methods: {
-        updatetext(payload, item) {
-            // console.log(item);
-            if (item.text != payload) {
-                item.text = payload;
-                var request = {
-                    text: item.text
-                };
-                this.$store.dispatch("updateStationNotification", item);
-                axios({
-                    method: "put", //you can set what request you want to be
-                    url: "api/updatestationnotification/" + item.id,
-                    data: request,
-                    headers: {
-                        Authorization: "Bearer " + this.$store.state.token,
-                        Accept: "application/json",
-                        "Content-Type": "application/json"
-                    }
-                });
-            }
-        },
-
-        showNewTimer(item) {
-            if (
-                (item.station_status_id == 8 ||
-                    item.station_status_id == 9 ||
-                    item.station_status_id == 14) &&
-                item.out_time == null &&
-                this.$can("edit_chill_timers")
-            ) {
-                return true;
-            } else {
-                return false;
-            }
-        },
-
-        showInfo(item) {
-            if (this.$can("edit_chill_timers")) {
-                if (
-                    item.item_id == 37534 ||
-                    item.item_id == 35841 ||
-                    item.item_id == 35840
-                ) {
-                    return false;
-                }
-                return true;
-            } else {
-                return false;
-            }
-        },
-
         countDownStartTime(item) {
             if (item.station_status_id == 11) {
                 return moment.utc(item.repair_time).unix();
@@ -381,29 +270,6 @@ export default {
             } else {
                 return "blue--text pl-3";
             }
-        },
-
-        showGunner(item) {
-            if (this.$can("edit_chill_timers")) {
-                if (
-                    item.item_id == 37534 ||
-                    item.item_id == 35841 ||
-                    item.item_id == 35840
-                ) {
-                    return false;
-                }
-                return true;
-            } else {
-                return false;
-            }
-        },
-
-        loadstations() {
-            this.loadingr = true;
-            this.$store.dispatch("getStationData").then(() => {
-                this.loadingr = false;
-            });
-            // console.log("30secs");
         },
 
         pillIcon(statusId) {
@@ -476,6 +342,18 @@ export default {
             }
         },
 
+        removeStation(item) {
+            axios({
+                method: "put", //you can set what request you want to be
+                url: "api/rcmovedone/" + item.id,
+                headers: {
+                    Authorization: "Bearer " + this.$store.state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                }
+            });
+        },
+
         campaignStart(item) {
             item.station_status_id = 6;
             this.$store.dispatch("updateStationNotification", item);
@@ -490,14 +368,6 @@ export default {
         itemRowBackground: function(item) {
             if (item.under_attack == 1) {
                 return "style-4";
-            }
-        },
-
-        adashColor(item) {
-            if (item.text != null) {
-                return "green";
-            } else {
-                return "red";
             }
         },
         cancel() {
