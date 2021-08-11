@@ -116,6 +116,11 @@
                             </div>
                             <div v-if="this.type == 3">
                                 <h5><strong>Image Link</strong></h5>
+                                <v-img
+                                    src="https://i.imgur.com/5HrdNxU.png"
+                                    max-width="650px"
+                                >
+                                </v-img>
                                 <v-text-field
                                     v-model="imageLink"
                                     label="Selected Items Screen Shot"
