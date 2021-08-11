@@ -56428,12 +56428,6 @@ var render = function() {
                     _c("RcMoveImage", {
                       staticClass: " mr-2",
                       attrs: { station: item }
-                    }),
-                    _vm._v(" "),
-                    _c("v-img", { attrs: { src: item.timer_image_link } }),
-                    _vm._v(" "),
-                    _c("v-img", {
-                      attrs: { src: "https://imgur.com/a/o6ZYT5O" }
                     })
                   ]
                 }
@@ -56451,6 +56445,10 @@ var render = function() {
         ],
         2
       ),
+      _vm._v(" "),
+      _c("v-img", { attrs: { src: _vm.item.timer_image_link } }),
+      _vm._v(" "),
+      _c("v-img", { attrs: { src: "https://imgur.com/a/o6ZYT5O" } }),
       _vm._v(" "),
       _c(
         "v-snackbar",
