@@ -25775,10 +25775,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
 
 
 
@@ -56156,13 +56152,7 @@ var render = function() {
         2
       ),
       _vm._v(" "),
-      _c("v-img", {
-        attrs: {
-          "max-height": "140",
-          "max-width": "220",
-          src: "https://i.imgur.com/XhMxpRQ.png"
-        }
-      }),
+      _c("v-img", { attrs: { src: "https://i.imgur.com/XhMxpRQ.png" } }),
       _vm._v(" "),
       _c(
         "v-snackbar",
