@@ -12208,7 +12208,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -41738,7 +41737,6 @@ var render = function() {
                         "sort-by": ["created_at"],
                         "sort-desc": [false, true],
                         "fixed-header": "",
-                        "hide-default-footer": "",
                         "items-per-page": 50,
                         "footer-props": {
                           "items-per-page-options": [10, 20, 50, 100, -1]
