@@ -56528,65 +56528,52 @@ var render = function() {
                     }),
                     _vm._v(" "),
                     _c(
-                      "v-slide-x-transition",
-                      { attrs: { group: "" } },
+                      "div",
                       [
-                        _c(
-                          "v-icon",
-                          _vm._g(
-                            _vm._b(
-                              {
-                                directives: [
+                        !_vm.expanded.includes(item)
+                          ? _c(
+                              "v-icon",
+                              _vm._g(
+                                _vm._b(
                                   {
-                                    name: "show",
-                                    rawName: "v-show",
-                                    value: !_vm.expanded.includes(item),
-                                    expression: "!expanded.includes(item)"
-                                  }
-                                ],
-                                key: "adash" + item.id,
-                                attrs: { color: "success" },
+                                    key: "adash" + item.id,
+                                    attrs: { color: "success" },
+                                    on: {
+                                      click: function($event) {
+                                        ;(_vm.expanded = [item]),
+                                          (_vm.expanded_id = item.id)
+                                      }
+                                    }
+                                  },
+                                  "v-icon",
+                                  _vm.attrs,
+                                  false
+                                ),
+                                _vm.on
+                              ),
+                              [
+                                _vm._v(
+                                  "\n                    far fa-images\n                "
+                                )
+                              ]
+                            )
+                          : _vm._e(),
+                        _vm._v(" "),
+                        _vm.expanded.includes(item)
+                          ? _c(
+                              "v-icon",
+                              {
+                                key: "adash_" + item.id,
+                                attrs: { icon: "", color: "error" },
                                 on: {
                                   click: function($event) {
-                                    ;(_vm.expanded = [item]),
-                                      (_vm.expanded_id = item.id)
+                                    ;(_vm.expanded = []), (_vm.expanded_id = 0)
                                   }
                                 }
                               },
-                              "v-icon",
-                              _vm.attrs,
-                              false
-                            ),
-                            _vm.on
-                          ),
-                          [
-                            _vm._v(
-                              "\n                    far fa-images\n                "
+                              [_vm._v("\n                    fas fa-minus")]
                             )
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "v-icon",
-                          {
-                            directives: [
-                              {
-                                name: "show",
-                                rawName: "v-show",
-                                value: _vm.expanded.includes(item),
-                                expression: "expanded.includes(item)"
-                              }
-                            ],
-                            key: "adash_" + item.id,
-                            attrs: { icon: "", color: "error" },
-                            on: {
-                              click: function($event) {
-                                ;(_vm.expanded = []), (_vm.expanded_id = 0)
-                              }
-                            }
-                          },
-                          [_vm._v("\n                    fas fa-minus")]
-                        )
+                          : _vm._e()
                       ],
                       1
                     )

@@ -166,10 +166,10 @@
                     :station="item"
                 ></RcStationMessage>
                 <!-- <RcMoveImage class=" mr-2" :station="item"></RcMoveImage> -->
-                <v-slide-x-transition group>
+                <div>
                     <v-icon
                         @click="(expanded = [item]), (expanded_id = item.id)"
-                        v-show="!expanded.includes(item)"
+                        v-if="!expanded.includes(item)"
                         :key="'adash' + item.id"
                         color="success"
                         v-bind="attrs"
@@ -181,12 +181,12 @@
                         icon
                         :key="'adash_' + item.id"
                         @click="(expanded = []), (expanded_id = 0)"
-                        v-show="expanded.includes(item)"
+                        v-if="expanded.includes(item)"
                         color="error"
                     >
                         fas fa-minus</v-icon
                     >
-                </v-slide-x-transition>
+                </div>
             </template>
         </v-data-table>
         <v-img src="https://imgur.com/a/o6ZYT5O"></v-img>
