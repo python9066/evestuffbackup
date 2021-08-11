@@ -1,6 +1,6 @@
 <template>
     <div>
-        <v-menu bottom offset-y>
+        <v-menu bottom left offset-y>
             <template v-slot:activator="{ on, attrs }">
                 <v-icon color="blue" v-bind="attrs" v-on="on" @click="open()">
                     {{ icon }}

@@ -43454,7 +43454,7 @@ var render = function() {
       _c(
         "v-menu",
         {
-          attrs: { bottom: "", "offset-y": "" },
+          attrs: { bottom: "", left: "", "offset-y": "" },
           scopedSlots: _vm._u([
             {
               key: "activator",
