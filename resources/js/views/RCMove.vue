@@ -555,7 +555,7 @@ export default {
         ...mapState(["stations"]),
 
         filteredItems() {
-            return (filter = this.stations.filter(s => s.show_on_rc_move == 1));
+            return this.stations.filter(s => s.show_on_rc_move == 1);
         },
 
         user_name() {

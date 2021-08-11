@@ -26143,7 +26143,7 @@ function sleep(ms) {
   },
   computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapState"])(["stations"])), {}, {
     filteredItems: function filteredItems() {
-      return filter = this.stations.filter(function (s) {
+      return this.stations.filter(function (s) {
         return s.show_on_rc_move == 1;
       });
     },
