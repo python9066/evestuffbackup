@@ -12205,6 +12205,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -12216,19 +12220,23 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       headers: [{
         text: "Event",
         value: "logging_type_name",
-        align: "start"
+        align: "start",
+        width: "10%"
       }, {
         text: "User",
         value: "user_name",
-        align: "start"
+        align: "start",
+        width: "10%"
       }, {
         text: "Text",
         value: "text",
-        align: "center"
+        align: "center",
+        width: "50%"
       }, {
         text: "Time",
         value: "created_at",
-        align: "end"
+        align: "end",
+        width: "30%"
       } // { text: "Vulernable End Time", value: "vulnerable_end_time" }
       ],
       overlay: false,
@@ -41728,9 +41736,13 @@ var render = function() {
                         "item-key": "id",
                         height: "500px",
                         "sort-by": ["created_at"],
-                        "disable-pagination": "",
+                        "sort-desc": [false, true],
                         "fixed-header": "",
-                        "hide-default-footer": ""
+                        "hide-default-footer": "",
+                        "items-per-page": 50,
+                        "footer-props": {
+                          "items-per-page-options": [10, 20, 50, 100, -1]
+                        }
                       },
                       scopedSlots: _vm._u(
                         [

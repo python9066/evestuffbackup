@@ -41,9 +41,13 @@
                         item-key="id"
                         height="500px"
                         :sort-by="['created_at']"
-                        disable-pagination
+                        :sort-desc="[false, true]"
                         fixed-header
                         hide-default-footer
+                        :items-per-page="50"
+                        :footer-props="{
+                            'items-per-page-options': [10, 20, 50, 100, -1]
+                        }"
                         class="elevation-24"
                     >
                         <template slot="no-data">
@@ -92,10 +96,25 @@ export default {
     data() {
         return {
             headers: [
-                { text: "Event", value: "logging_type_name", align: "start" },
-                { text: "User", value: "user_name", align: "start" },
-                { text: "Text", value: "text", align: "center" },
-                { text: "Time", value: "created_at", align: "end" }
+                {
+                    text: "Event",
+                    value: "logging_type_name",
+                    align: "start",
+                    width: "10%"
+                },
+                {
+                    text: "User",
+                    value: "user_name",
+                    align: "start",
+                    width: "10%"
+                },
+                { text: "Text", value: "text", align: "center", width: "50%" },
+                {
+                    text: "Time",
+                    value: "created_at",
+                    align: "end",
+                    width: "30%"
+                }
 
                 // { text: "Vulernable End Time", value: "vulnerable_end_time" }
             ],
