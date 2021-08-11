@@ -55025,9 +55025,9 @@ var render = function() {
                 1
               ),
               _vm._v(" "),
-              _vm.$can("super") ? _c("AdminLoggingSheet") : _vm._e(),
-              _vm._v(" "),
               _c("v-spacer"),
+              _vm._v(" "),
+              _vm.$can("super") ? _c("AdminLoggingSheet") : _vm._e(),
               _vm._v(" "),
               _c(
                 "v-card",

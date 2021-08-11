@@ -19,8 +19,8 @@
                     ></v-text-field>
                 </v-card>
 
-                <AdminLoggingSheet v-if="$can('super')"> </AdminLoggingSheet>
                 <v-spacer></v-spacer>
+                <AdminLoggingSheet v-if="$can('super')"> </AdminLoggingSheet>
                 <v-card right-align class="">
                     <v-switch
                         class=" pl-2 pr-2"
