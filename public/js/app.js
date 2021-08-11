@@ -15762,6 +15762,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }
     },
     showSubmit: function showSubmit() {
+      var d = parseInt(this.refTime.substr(0, 1));
+      var h = parseInt(this.refTime.substr(3, 2));
+      var m = parseInt(this.refTime.substr(6, 2));
+      var s = parseInt(this.refTime.substr(9, 2));
+      var timer = d + h + m + s;
+      console.log(timer);
+
       if (this.type == 3) {
         if (this.structSelect != null && this.sysSelect != null && this.tickSelect != null && this.refType != null && this.refTime.length() == 0 && this.imageLink != null) {
           return false;
