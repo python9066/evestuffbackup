@@ -113,7 +113,7 @@
                                 <h5><strong>Image Link</strong></h5>
                                 <v-text-field
                                     v-model="imageLink"
-                                    :rules="[rules.required]"
+                                    label="Selected Items Screen Shot"
                                 ></v-text-field>
                             </div>
                             <div>
@@ -536,23 +536,50 @@ export default {
             }
         },
         showSubmit() {
-            if (
-                this.structSelect != null &&
-                this.sysSelect != null &&
-                this.tickSelect != null &&
-                this.refType != null &&
-                this.refTime != null
-            ) {
-                return false;
+            if (this.type == 3) {
+                if (
+                    this.structSelect != null &&
+                    this.sysSelect != null &&
+                    this.tickSelect != null &&
+                    this.refType != null &&
+                    this.refTime != null &&
+                    this.imageLink != null
+                ) {
+                    return false;
+                } else {
+                    return true;
+                }
             } else {
-                return true;
+                if (
+                    this.structSelect != null &&
+                    this.sysSelect != null &&
+                    this.tickSelect != null &&
+                    this.refType != null &&
+                    this.refTime != null
+                ) {
+                    return false;
+                } else {
+                    return true;
+                }
             }
         },
         showSubmit3() {
-            if (this.refType != null && this.refTime != null) {
-                return false;
+            if (this.type == 3) {
+                if (
+                    this.refType != null &&
+                    this.refTime != null &&
+                    this.imageLink != null
+                ) {
+                    return false;
+                } else {
+                    return true;
+                }
             } else {
-                return true;
+                if (this.refType != null && this.refTime != null) {
+                    return false;
+                } else {
+                    return true;
+                }
             }
         },
         stationOutlined() {

@@ -15762,17 +15762,33 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }
     },
     showSubmit: function showSubmit() {
-      if (this.structSelect != null && this.sysSelect != null && this.tickSelect != null && this.refType != null && this.refTime != null) {
-        return false;
+      if (this.type == 3) {
+        if (this.structSelect != null && this.sysSelect != null && this.tickSelect != null && this.refType != null && this.refTime != null && this.imageLink != null) {
+          return false;
+        } else {
+          return true;
+        }
       } else {
-        return true;
+        if (this.structSelect != null && this.sysSelect != null && this.tickSelect != null && this.refType != null && this.refTime != null) {
+          return false;
+        } else {
+          return true;
+        }
       }
     },
     showSubmit3: function showSubmit3() {
-      if (this.refType != null && this.refTime != null) {
-        return false;
+      if (this.type == 3) {
+        if (this.refType != null && this.refTime != null && this.imageLink != null) {
+          return false;
+        } else {
+          return true;
+        }
       } else {
-        return true;
+        if (this.refType != null && this.refTime != null) {
+          return false;
+        } else {
+          return true;
+        }
       }
     },
     stationOutlined: function stationOutlined() {
@@ -45702,7 +45718,9 @@ var render = function() {
                                   ]),
                                   _vm._v(" "),
                                   _c("v-text-field", {
-                                    attrs: { rules: [_vm.rules.required] },
+                                    attrs: {
+                                      label: "Selected Items Screen Shot"
+                                    },
                                     model: {
                                       value: _vm.imageLink,
                                       callback: function($$v) {
