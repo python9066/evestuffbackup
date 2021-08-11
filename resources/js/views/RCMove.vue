@@ -143,9 +143,9 @@
                     class=" mr-2"
                     :station="item"
                 ></RcStationMessage>
+                <RcMoveImage class=" mr-2" :station="item"></RcMoveImage>
             </template>
         </v-data-table>
-        <v-img src="https://ibb.co/PCDnPYB"></v-img>
         <v-snackbar v-model="snack" :timeout="3000" :color="snackColor">
             {{ snackText }}
 
