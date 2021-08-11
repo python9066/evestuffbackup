@@ -56152,7 +56152,7 @@ var render = function() {
         2
       ),
       _vm._v(" "),
-      _c("v-img", { attrs: { src: "https://prnt.sc/1lpfc4k" } }),
+      _c("v-img", { attrs: { src: "https://ibb.co/PCDnPYB" } }),
       _vm._v(" "),
       _c(
         "v-snackbar",
