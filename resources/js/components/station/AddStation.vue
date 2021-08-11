@@ -117,6 +117,7 @@
                                 ></v-text-field>
                             </div>
                             <div>
+                                <h5><strong>Station Timer</strong></h5>
                                 <v-text-field
                                     v-model="refTime"
                                     label="Ref Time d hh:mm:ss"
@@ -164,7 +165,15 @@
                                     <v-radio label="Hull" value="13"></v-radio>
                                 </v-radio-group>
                             </div>
+                            <div v-if="this.type == 3">
+                                <h5><strong>Image Link</strong></h5>
+                                <v-text-field
+                                    v-model="imageLink"
+                                    label="Selected Items Screen Shot"
+                                ></v-text-field>
+                            </div>
                             <div>
+                                <h5><strong>Station Timer</strong></h5>
                                 <v-text-field
                                     v-model="refTime"
                                     label="Ref Time d hh:mm:ss"

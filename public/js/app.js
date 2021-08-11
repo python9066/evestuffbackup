@@ -15421,6 +15421,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -45737,6 +45746,10 @@ var render = function() {
                           _c(
                             "div",
                             [
+                              _c("h5", [
+                                _c("strong", [_vm._v("Station Timer")])
+                              ]),
+                              _vm._v(" "),
                               _c("v-text-field", {
                                 directives: [
                                   {
@@ -45904,9 +45917,38 @@ var render = function() {
                             1
                           ),
                           _vm._v(" "),
+                          this.type == 3
+                            ? _c(
+                                "div",
+                                [
+                                  _c("h5", [
+                                    _c("strong", [_vm._v("Image Link")])
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("v-text-field", {
+                                    attrs: {
+                                      label: "Selected Items Screen Shot"
+                                    },
+                                    model: {
+                                      value: _vm.imageLink,
+                                      callback: function($$v) {
+                                        _vm.imageLink = $$v
+                                      },
+                                      expression: "imageLink"
+                                    }
+                                  })
+                                ],
+                                1
+                              )
+                            : _vm._e(),
+                          _vm._v(" "),
                           _c(
                             "div",
                             [
+                              _c("h5", [
+                                _c("strong", [_vm._v("Station Timer")])
+                              ]),
+                              _vm._v(" "),
                               _c("v-text-field", {
                                 directives: [
                                   {
