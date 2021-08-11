@@ -130,7 +130,7 @@ class RcFcUsersController extends Controller
             'message' => $message,
         ]);
         broadcast(new RcSheetUpdate($flag));
-        $text = Auth::user()->name . " Removed" . $userName . " as FC for " . $message->name;
+        $text = Auth::user()->name . " Removed " . $userName . " as FC for " . $message->name;
         Logging::Create(['station_id' => $id, 'user_id' => Auth::id(), 'text' => $text, 'logging_type_id' => 20]);
     }
 

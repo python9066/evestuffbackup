@@ -35,7 +35,6 @@ class RcReconUsersController extends Controller
 
 
         $reconid = RcReconUsers::where('user_id', $request->user_id)->value('id');
-        $reconName = User::where('id', $reconid)->value('name');
         Station::where('id', $id)->update(['rc_recon_id' => $reconid]);
         $message = RcStationRecords::where('id', $id)->first();
         $flag = collect([
@@ -43,7 +42,7 @@ class RcReconUsersController extends Controller
         ]);
         broadcast(new RcSheetUpdate($flag));
 
-        $text = Auth::user()->name . " Added " . $reconName . " as Cyno" . $message->name;
+        $text = Auth::user()->name . " Added as Cyno for the" . $message->name;
 
         Logging::Create(['station_id' => $id, 'user_id' => Auth::id(), 'text' => $text, 'logging_type_id' => 21]);
     }
