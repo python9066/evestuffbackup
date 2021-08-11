@@ -55028,7 +55028,7 @@ var render = function() {
               _vm._v(" "),
               _c("v-spacer"),
               _vm._v(" "),
-              _vm.$can("super")
+              _vm.$can("view_admin_logs")
                 ? _c("AdminLoggingSheet", { staticClass: " pt-2" })
                 : _vm._e(),
               _vm._v(" "),
