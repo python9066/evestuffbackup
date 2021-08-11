@@ -145,7 +145,7 @@
                 ></RcStationMessage>
             </template>
         </v-data-table>
-        <v-img src="https://i.imgur.com/XhMxpRQ.png"></v-img>
+        <v-img src="https://prnt.sc/1lpfc4k"></v-img>
         <v-snackbar v-model="snack" :timeout="3000" :color="snackColor">
             {{ snackText }}
 
