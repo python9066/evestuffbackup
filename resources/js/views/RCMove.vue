@@ -167,24 +167,24 @@
                 ></RcStationMessage>
                 <!-- <RcMoveImage class=" mr-2" :station="item"></RcMoveImage> -->
                 <v-slide-x-transition group>
-                    <v-chip
-                        pill
-                        :key="'adash' + item.id"
-                        outlined
-                        small
+                    <v-icon
                         @click="(expanded = [item]), (expanded_id = item.id)"
                         v-show="!expanded.includes(item)"
+                        :key="'adash' + item.id"
                         color="success"
-                        >aDash</v-chip
+                        v-bind="attrs"
+                        v-on="on"
                     >
-                    <v-btn
+                        far fa-images
+                    </v-icon>
+                    <v-icon
                         icon
                         :key="'adash_' + item.id"
                         @click="(expanded = []), (expanded_id = 0)"
                         v-show="expanded.includes(item)"
                         color="error"
                     >
-                        <v-icon>fas fa-minus</v-icon></v-btn
+                        fas fa-minus</v-icon
                     >
                 </v-slide-x-transition>
                 >

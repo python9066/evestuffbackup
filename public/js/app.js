@@ -56524,35 +56524,42 @@ var render = function() {
                       { attrs: { group: "" } },
                       [
                         _c(
-                          "v-chip",
-                          {
-                            directives: [
+                          "v-icon",
+                          _vm._g(
+                            _vm._b(
                               {
-                                name: "show",
-                                rawName: "v-show",
-                                value: !_vm.expanded.includes(item),
-                                expression: "!expanded.includes(item)"
-                              }
-                            ],
-                            key: "adash" + item.id,
-                            attrs: {
-                              pill: "",
-                              outlined: "",
-                              small: "",
-                              color: "success"
-                            },
-                            on: {
-                              click: function($event) {
-                                ;(_vm.expanded = [item]),
-                                  (_vm.expanded_id = item.id)
-                              }
-                            }
-                          },
-                          [_vm._v("aDash")]
+                                directives: [
+                                  {
+                                    name: "show",
+                                    rawName: "v-show",
+                                    value: !_vm.expanded.includes(item),
+                                    expression: "!expanded.includes(item)"
+                                  }
+                                ],
+                                key: "adash" + item.id,
+                                attrs: { color: "success" },
+                                on: {
+                                  click: function($event) {
+                                    ;(_vm.expanded = [item]),
+                                      (_vm.expanded_id = item.id)
+                                  }
+                                }
+                              },
+                              "v-icon",
+                              _vm.attrs,
+                              false
+                            ),
+                            _vm.on
+                          ),
+                          [
+                            _vm._v(
+                              "\n                    far fa-images\n                "
+                            )
+                          ]
                         ),
                         _vm._v(" "),
                         _c(
-                          "v-btn",
+                          "v-icon",
                           {
                             directives: [
                               {
@@ -56570,8 +56577,7 @@ var render = function() {
                               }
                             }
                           },
-                          [_c("v-icon", [_vm._v("fas fa-minus")])],
-                          1
+                          [_vm._v("\n                    fas fa-minus")]
                         )
                       ],
                       1
