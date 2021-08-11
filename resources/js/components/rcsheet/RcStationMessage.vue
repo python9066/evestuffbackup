@@ -98,12 +98,9 @@ export default {
     },
 
     async created() {
-        Echo.private("rcmovesheet").listen("RcMoveMessageUpdate", e => {
+        Echo.private("rcsheet").listen("RcSheetMessageUpdate", e => {
             if (e.flag.id == this.station.id) {
-                this.$store.dispatch(
-                    "updateStationNotification",
-                    e.flag.message
-                );
+                this.$store.dispatch("updateRcStation", e.flag.message);
                 this.showNumber = true;
                 if (this.showStationNotes == false) {
                     this.messageCount = this.messageCount + 1;
@@ -178,9 +175,7 @@ export default {
         }
     },
 
-    beforeDestroy() {
-        Echo.leave("rcmovesheet");
-    }
+    beforeDestroy() {}
 };
 </script>
 
