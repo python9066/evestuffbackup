@@ -15780,6 +15780,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -46102,13 +46103,15 @@ var render = function() {
                 "v-card-title",
                 { staticClass: "justify-center" },
                 [
-                  _c("v-img", {
-                    attrs: {
-                      src: "https://i.imgur.com/1ASFxRr.gif",
-                      "max-height": "500px",
-                      "max-width": "650px"
-                    }
-                  }),
+                  _vm.state == 1
+                    ? _c("v-img", {
+                        attrs: {
+                          src: "https://i.imgur.com/1ASFxRr.gif",
+                          "max-height": "500px",
+                          "max-width": "650px"
+                        }
+                      })
+                    : _vm._e(),
                   _vm._v(" "),
                   _vm.state == 1
                     ? _c("p", [_vm._v("Enter Structure Name")])

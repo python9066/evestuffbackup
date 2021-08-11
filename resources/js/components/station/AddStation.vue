@@ -29,6 +29,7 @@
             >
                 <v-card-title class="justify-center">
                     <v-img
+                        v-if="state == 1"
                         src="https://i.imgur.com/1ASFxRr.gif"
                         max-height="500px"
                         max-width="650px"
