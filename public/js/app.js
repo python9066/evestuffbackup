@@ -56433,7 +56433,7 @@ var render = function() {
                       { staticClass: " d-inline-flex" },
                       [
                         _c("RcStationMessage", {
-                          staticClass: " mr-2",
+                          staticClass: " mr-2 pt-2",
                           attrs: { station: item }
                         }),
                         _vm._v(" "),

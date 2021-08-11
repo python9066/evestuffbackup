@@ -141,7 +141,7 @@
             <template v-slot:[`item.actions`]="{ item }">
                 <div class=" d-inline-flex">
                     <RcStationMessage
-                        class=" mr-2"
+                        class=" mr-2 pt-2"
                         :station="item"
                     ></RcStationMessage>
                     <v-btn
