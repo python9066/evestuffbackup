@@ -64,6 +64,7 @@ class CreateOrReplaceStationRecordsViewCommand extends Command
        stations.repair_time AS 'repair_time',
        alliances.standing AS 'standing',
        alliances.url AS 'url',
+       stations.timer_image_link AS timer_image_link,
        stations.show_on_main AS 'show_on_main',
        stations.show_on_chill AS 'show_on_chill',
        stations.show_on_rc_move AS 'show_on_rc_move',
