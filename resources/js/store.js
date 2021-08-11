@@ -28,6 +28,7 @@ export default new Vuex.Store({
         items:[],
         loggingAdmin:[],
         loggingcampaign: [],
+        loggingRcSheet: [],
         moonlist:[],
         multicampaigns: [],
         nodeJoin: [],
@@ -319,6 +320,14 @@ export default new Vuex.Store({
 
         SET_LOGGING_CAMPAIGN(state, logs) {
             state.loggingcampaign = logs;
+        },
+
+        SET_LOGGING_RC_SHEET(state, logs) {
+            state.loggingRcSheet = logs;
+        },
+
+        ADD_LOGGING_RC_SHEET(state, data) {
+            state.loggingcampaign.push(data)
         },
 
         ADD_LOGGING_CAMPGIN(state, data) {
@@ -903,6 +912,21 @@ export default new Vuex.Store({
             commit("SET_LOGGING_CAMPAIGN", res.data.logs);
         },
 
+        async getLoggingRcSheet({ commit, state }, campaign_id) {
+            let res = await axios({
+                method: "get",
+                url: "/api/rcadminlogs/" + campaign_id,
+                headers: {
+                    Authorization: "Bearer " + state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                }
+            });
+            commit("SET_LOGGING_RC_SHEET", res.data.logs);
+        },
+
+
+
         async getLoggingAdmin({ commit, state }) {
             let res = await axios({
                 method: "get",
@@ -1011,6 +1035,11 @@ export default new Vuex.Store({
         addLoggingCampaign({ commit }, data) {
             commit("ADD_LOGGING_CAMPGIN",data)
         },
+
+        addLoggingRcSheet({ commit }, data) {
+            commit("ADD_LOGGING_RC_SHEET",data)
+        },
+
 
         addCampaignUserNew({ commit }, data) {
             commit("ADD_CAMPAIGN_USERS", data)

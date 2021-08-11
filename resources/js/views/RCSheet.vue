@@ -306,6 +306,13 @@ export default {
                 this.sheetupdate();
             }
         });
+
+        if (this.$can("view_admin_logs")) {
+            await this.$store.dispatch("getLoggingRcSheet");
+            Echo.private("rcsheetadminlogs").listen("LoggingUpdate", e => {
+                this.$store.dispatch("addLoggingRcSheet", e.flag.message);
+            });
+        }
     },
 
     async mounted() {},

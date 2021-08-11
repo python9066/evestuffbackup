@@ -106,6 +106,12 @@ Broadcast::channel('rcsheet', function () {
     return Auth::check();
 });
 
+Broadcast::channel('rcsheetadminlogs', function () {
+    return Auth::check();
+});
+
+
+
 
 
 
