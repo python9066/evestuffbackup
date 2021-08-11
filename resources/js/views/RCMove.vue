@@ -18,6 +18,7 @@
             :headers="headers"
             :items="filteredItems"
             :item-class="itemRowBackground"
+            :expanded.sync="expanded"
             item-key="id"
             :loading="loadingt"
             :items-per-page="25"
@@ -29,6 +30,27 @@
             class="elevation-1"
         >
             >
+
+            <template
+                v-slot:expanded-item="{ headers, item }"
+                class="align-center"
+                height="100%"
+            >
+                <td :colspan="headers.length" align="center">
+                    <v-card>
+                        <v-card-title> </v-card-title>
+                        <v-btn
+                            text
+                            :href="item.timer_image_link"
+                            target="_blank"
+                            >Open Image</v-btn
+                        >
+                        <v-card-text>
+                            <v-img :src="item.timer_image_link"></v-img>
+                        </v-card-text>
+                    </v-card>
+                </td>
+            </template>
 
             <template slot="no-data">
                 No timers to move over to RC
@@ -143,7 +165,29 @@
                     class=" mr-2"
                     :station="item"
                 ></RcStationMessage>
-                <RcMoveImage class=" mr-2" :station="item"></RcMoveImage>
+                <!-- <RcMoveImage class=" mr-2" :station="item"></RcMoveImage> -->
+                <v-slide-x-transition group>
+                    <v-chip
+                        pill
+                        :key="'adash' + item.id"
+                        outlined
+                        small
+                        @click="(expanded = [item]), (expanded_id = item.id)"
+                        v-show="!expanded.includes(item)"
+                        color="success"
+                        >aDash</v-chip
+                    >
+                    <v-btn
+                        icon
+                        :key="'adash_' + item.id"
+                        @click="(expanded = []), (expanded_id = 0)"
+                        v-show="expanded.includes(item)"
+                        color="error"
+                    >
+                        <v-icon>fas fa-minus</v-icon></v-btn
+                    >
+                </v-slide-x-transition>
+                >
             </template>
         </v-data-table>
         <v-img src="https://imgur.com/a/o6ZYT5O"></v-img>
@@ -181,6 +225,8 @@ export default {
             loadingr: true,
             name: "Timer",
             poll: null,
+            expanded: [],
+            expanded_id: 0,
             search: "",
             statusflag: 2,
             snack: false,

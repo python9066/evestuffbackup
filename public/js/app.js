@@ -25913,6 +25913,50 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -25941,6 +25985,8 @@ function sleep(ms) {
       loadingr: true,
       name: "Timer",
       poll: null,
+      expanded: [],
+      expanded_id: 0,
       search: "",
       statusflag: 2,
       snack: false,
@@ -56156,6 +56202,7 @@ var render = function() {
             headers: _vm.headers,
             items: _vm.filteredItems,
             "item-class": _vm.itemRowBackground,
+            expanded: _vm.expanded,
             "item-key": "id",
             loading: _vm.loadingt,
             "items-per-page": 25,
@@ -56166,6 +56213,9 @@ var render = function() {
             "multi-sort": ""
           },
           on: {
+            "update:expanded": function($event) {
+              _vm.expanded = $event
+            },
             "update:sortBy": function($event) {
               _vm.sortby = $event
             },
@@ -56181,6 +56231,51 @@ var render = function() {
           },
           scopedSlots: _vm._u(
             [
+              {
+                key: "expanded-item",
+                fn: function(ref) {
+                  var headers = ref.headers
+                  var item = ref.item
+                  return [
+                    _c(
+                      "td",
+                      { attrs: { colspan: headers.length, align: "center" } },
+                      [
+                        _c(
+                          "v-card",
+                          [
+                            _c("v-card-title"),
+                            _vm._v(" "),
+                            _c(
+                              "v-btn",
+                              {
+                                attrs: {
+                                  text: "",
+                                  href: item.timer_image_link,
+                                  target: "_blank"
+                                }
+                              },
+                              [_vm._v("Open Image")]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "v-card-text",
+                              [
+                                _c("v-img", {
+                                  attrs: { src: item.timer_image_link }
+                                })
+                              ],
+                              1
+                            )
+                          ],
+                          1
+                        )
+                      ],
+                      1
+                    )
+                  ]
+                }
+              },
               {
                 key: "item.count",
                 fn: function(ref) {
@@ -56424,10 +56519,64 @@ var render = function() {
                       attrs: { station: item }
                     }),
                     _vm._v(" "),
-                    _c("RcMoveImage", {
-                      staticClass: " mr-2",
-                      attrs: { station: item }
-                    })
+                    _c(
+                      "v-slide-x-transition",
+                      { attrs: { group: "" } },
+                      [
+                        _c(
+                          "v-chip",
+                          {
+                            directives: [
+                              {
+                                name: "show",
+                                rawName: "v-show",
+                                value: !_vm.expanded.includes(item),
+                                expression: "!expanded.includes(item)"
+                              }
+                            ],
+                            key: "adash" + item.id,
+                            attrs: {
+                              pill: "",
+                              outlined: "",
+                              small: "",
+                              color: "success"
+                            },
+                            on: {
+                              click: function($event) {
+                                ;(_vm.expanded = [item]),
+                                  (_vm.expanded_id = item.id)
+                              }
+                            }
+                          },
+                          [_vm._v("aDash")]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "v-btn",
+                          {
+                            directives: [
+                              {
+                                name: "show",
+                                rawName: "v-show",
+                                value: _vm.expanded.includes(item),
+                                expression: "expanded.includes(item)"
+                              }
+                            ],
+                            key: "adash_" + item.id,
+                            attrs: { icon: "", color: "error" },
+                            on: {
+                              click: function($event) {
+                                ;(_vm.expanded = []), (_vm.expanded_id = 0)
+                              }
+                            }
+                          },
+                          [_c("v-icon", [_vm._v("fas fa-minus")])],
+                          1
+                        )
+                      ],
+                      1
+                    ),
+                    _vm._v("\n            >\n        ")
                   ]
                 }
               }
@@ -56438,6 +56587,7 @@ var render = function() {
         },
         [
           _vm._v("\n        >\n\n        "),
+          _vm._v(" "),
           _c("template", { slot: "no-data" }, [
             _vm._v("\n            No timers to move over to RC\n        ")
           ])
