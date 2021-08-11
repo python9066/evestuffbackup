@@ -15770,6 +15770,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -46088,31 +46089,40 @@ var render = function() {
               }
             },
             [
-              _c("v-card-title", { staticClass: "justify-center" }, [
-                _vm.state == 1
-                  ? _c("p", [_vm._v("Enter Structure Name")])
-                  : _vm._e(),
-                _vm._v(" "),
-                _vm.state == 2
-                  ? _c("p", [
-                      _vm._v(
-                        "\n                    Enter Details for " +
-                          _vm._s(_vm.stationNameEdit) +
-                          "\n                "
-                      )
-                    ])
-                  : _vm._e(),
-                _vm._v(" "),
-                _vm.state == 3
-                  ? _c("p", [
-                      _vm._v(
-                        "\n                    Enter Details for " +
-                          _vm._s(_vm.stationPull.station_name) +
-                          "\n                "
-                      )
-                    ])
-                  : _vm._e()
-              ]),
+              _c(
+                "v-card-title",
+                { staticClass: "justify-center" },
+                [
+                  _vm.state == 1
+                    ? _c("p", [_vm._v("Enter Structure Name")])
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _c("v-img", {
+                    attrs: { src: "https://i.imgur.com/1ASFxRr.mp4" }
+                  }),
+                  _vm._v(" "),
+                  _vm.state == 2
+                    ? _c("p", [
+                        _vm._v(
+                          "\n                    Enter Details for " +
+                            _vm._s(_vm.stationNameEdit) +
+                            "\n                "
+                        )
+                      ])
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _vm.state == 3
+                    ? _c("p", [
+                        _vm._v(
+                          "\n                    Enter Details for " +
+                            _vm._s(_vm.stationPull.station_name) +
+                            "\n                "
+                        )
+                      ])
+                    : _vm._e()
+                ],
+                1
+              ),
               _vm._v(" "),
               _c(
                 "v-card-text",

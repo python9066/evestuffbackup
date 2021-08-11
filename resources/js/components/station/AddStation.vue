@@ -29,6 +29,7 @@
             >
                 <v-card-title class="justify-center">
                     <p v-if="state == 1">Enter Structure Name</p>
+                    <v-img src="https://i.imgur.com/1ASFxRr.mp4"></v-img>
                     <p v-if="state == 2">
                         Enter Details for {{ stationNameEdit }}
                     </p>
