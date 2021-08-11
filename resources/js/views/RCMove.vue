@@ -187,7 +187,6 @@
                         fas fa-minus</v-icon
                     >
                 </v-slide-x-transition>
-                >
             </template>
         </v-data-table>
         <v-img src="https://imgur.com/a/o6ZYT5O"></v-img>
@@ -396,6 +395,16 @@ export default {
                 return true;
             } else {
                 return false;
+            }
+        },
+
+        checkexpanded(notifications) {
+            // console.log(notifications);
+            if (notifications.status_id != 5) {
+                if (notifications.id == this.expanded_id) {
+                    this.expanded = [];
+                    this.expanded_id = 0;
+                }
             }
         },
 

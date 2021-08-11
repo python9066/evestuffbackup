@@ -25956,7 +25956,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
 
 
 
@@ -26168,6 +26167,15 @@ function sleep(ms) {
         return true;
       } else {
         return false;
+      }
+    },
+    checkexpanded: function checkexpanded(notifications) {
+      // console.log(notifications);
+      if (notifications.status_id != 5) {
+        if (notifications.id == this.expanded_id) {
+          this.expanded = [];
+          this.expanded_id = 0;
+        }
       }
     },
     countDownStartTime: function countDownStartTime(item) {
@@ -56581,8 +56589,7 @@ var render = function() {
                         )
                       ],
                       1
-                    ),
-                    _vm._v("\n            >\n        ")
+                    )
                   ]
                 }
               }
