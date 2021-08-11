@@ -85,7 +85,7 @@ class LoggingController extends Controller
     {
         // dd($campid);
         $data = [];
-        $logs = Logging::where('logging_type_id', '>', 19)->where('logging_type_id', '<', 25)->get();
+        $logs = Logging::where('logging_type_id', '>', 18)->where('logging_type_id', '<', 25)->get();
         foreach ($logs as $log) {
             $timne = Helper::fixtime($log['created_at']);
             $data1 = null;
