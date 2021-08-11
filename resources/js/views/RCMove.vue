@@ -146,7 +146,6 @@
                 <RcMoveImage class=" mr-2" :station="item"></RcMoveImage>
             </template>
         </v-data-table>
-        <v-img :src="item.timer_image_link"></v-img>
         <v-img src="https://imgur.com/a/o6ZYT5O"></v-img>
         <v-snackbar v-model="snack" :timeout="3000" :color="snackColor">
             {{ snackText }}
