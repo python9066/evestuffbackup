@@ -41681,7 +41681,7 @@ var render = function() {
           _c(
             "v-card",
             {
-              attrs: { tile: "", "max-width": "500px", "min-height": "200px" }
+              attrs: { tile: "", "max-width": "800px", "min-height": "200px" }
             },
             [
               _c(
