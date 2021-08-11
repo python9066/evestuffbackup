@@ -15182,9 +15182,649 @@ function sleep(ms) {
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/station/AddStation.vue?vue&type=script&lang=js& ***!
   \*****************************************************************************************************************************************************************************/
 /*! exports provided: default */
-/***/ (function(module, exports) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: G:\\code\\eve\\resources\\js\\components\\station\\AddStation.vue: Unexpected token (399:33)\n\n\u001b[0m \u001b[90m 397 | \u001b[39m                show_on_chill\u001b[33m:\u001b[39m \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mshow_on_chill\u001b[33m,\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 398 | \u001b[39m                show_on_rc_move\u001b[33m:\u001b[39m \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mshow_on_rc_move\u001b[33m,\u001b[39m\u001b[0m\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 399 | \u001b[39m                timer_image_link \u001b[33m=\u001b[39m \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mimageLink\u001b[0m\n\u001b[0m \u001b[90m     | \u001b[39m                                 \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 400 | \u001b[39m            }\u001b[33m;\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 401 | \u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 402 | \u001b[39m            await axios({\u001b[0m\n    at Parser._raise (G:\\code\\eve\\node_modules\\@babel\\parser\\lib\\index.js:790:17)\n    at Parser.raiseWithData (G:\\code\\eve\\node_modules\\@babel\\parser\\lib\\index.js:783:17)\n    at Parser.raise (G:\\code\\eve\\node_modules\\@babel\\parser\\lib\\index.js:777:17)\n    at Parser.unexpected (G:\\code\\eve\\node_modules\\@babel\\parser\\lib\\index.js:9095:16)\n    at Parser.checkExpressionErrors (G:\\code\\eve\\node_modules\\@babel\\parser\\lib\\index.js:9183:12)\n    at Parser.parseMaybeAssign (G:\\code\\eve\\node_modules\\@babel\\parser\\lib\\index.js:9897:12)\n    at G:\\code\\eve\\node_modules\\@babel\\parser\\lib\\index.js:9837:39\n    at Parser.allowInAnd (G:\\code\\eve\\node_modules\\@babel\\parser\\lib\\index.js:11504:16)\n    at Parser.parseMaybeAssignAllowIn (G:\\code\\eve\\node_modules\\@babel\\parser\\lib\\index.js:9837:17)\n    at Parser.parseVar (G:\\code\\eve\\node_modules\\@babel\\parser\\lib\\index.js:12305:70)\n    at Parser.parseVarStatement (G:\\code\\eve\\node_modules\\@babel\\parser\\lib\\index.js:12114:10)\n    at Parser.parseStatementContent (G:\\code\\eve\\node_modules\\@babel\\parser\\lib\\index.js:11706:21)\n    at Parser.parseStatement (G:\\code\\eve\\node_modules\\@babel\\parser\\lib\\index.js:11639:17)\n    at Parser.parseBlockOrModuleBlockBody (G:\\code\\eve\\node_modules\\@babel\\parser\\lib\\index.js:12221:25)\n    at Parser.parseBlockBody (G:\\code\\eve\\node_modules\\@babel\\parser\\lib\\index.js:12207:10)\n    at Parser.parseBlock (G:\\code\\eve\\node_modules\\@babel\\parser\\lib\\index.js:12191:10)\n    at Parser.parseFunctionBody (G:\\code\\eve\\node_modules\\@babel\\parser\\lib\\index.js:11184:24)\n    at Parser.parseFunctionBodyAndFinish (G:\\code\\eve\\node_modules\\@babel\\parser\\lib\\index.js:11168:10)\n    at Parser.parseMethod (G:\\code\\eve\\node_modules\\@babel\\parser\\lib\\index.js:11118:10)\n    at Parser.parseObjectMethod (G:\\code\\eve\\node_modules\\@babel\\parser\\lib\\index.js:11047:19)\n    at Parser.parseObjPropValue (G:\\code\\eve\\node_modules\\@babel\\parser\\lib\\index.js:11080:23)\n    at Parser.parsePropertyDefinition (G:\\code\\eve\\node_modules\\@babel\\parser\\lib\\index.js:11004:10)\n    at Parser.parseObjectLike (G:\\code\\eve\\node_modules\\@babel\\parser\\lib\\index.js:10894:25)\n    at Parser.parseExprAtom (G:\\code\\eve\\node_modules\\@babel\\parser\\lib\\index.js:10445:23)\n    at Parser.parseExprSubscripts (G:\\code\\eve\\node_modules\\@babel\\parser\\lib\\index.js:10094:23)\n    at Parser.parseUpdate (G:\\code\\eve\\node_modules\\@babel\\parser\\lib\\index.js:10074:21)\n    at Parser.parseMaybeUnary (G:\\code\\eve\\node_modules\\@babel\\parser\\lib\\index.js:10063:17)\n    at Parser.parseExprOps (G:\\code\\eve\\node_modules\\@babel\\parser\\lib\\index.js:9933:23)\n    at Parser.parseMaybeConditional (G:\\code\\eve\\node_modules\\@babel\\parser\\lib\\index.js:9907:23)\n    at Parser.parseMaybeAssign (G:\\code\\eve\\node_modules\\@babel\\parser\\lib\\index.js:9870:21)\n    at G:\\code\\eve\\node_modules\\@babel\\parser\\lib\\index.js:9837:39\n    at Parser.allowInAnd (G:\\code\\eve\\node_modules\\@babel\\parser\\lib\\index.js:11510:12)\n    at Parser.parseMaybeAssignAllowIn (G:\\code\\eve\\node_modules\\@babel\\parser\\lib\\index.js:9837:17)\n    at Parser.parseObjectProperty (G:\\code\\eve\\node_modules\\@babel\\parser\\lib\\index.js:11055:101)\n    at Parser.parseObjPropValue (G:\\code\\eve\\node_modules\\@babel\\parser\\lib\\index.js:11080:100)\n    at Parser.parsePropertyDefinition (G:\\code\\eve\\node_modules\\@babel\\parser\\lib\\index.js:11004:10)");
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_2__);
+
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: {
+    type: Number
+  },
+  created: function created() {
+    var _this = this;
+
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              _this.setShow();
+
+            case 1:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    }))();
+  },
+  data: function data() {
+    return {
+      imageLink: null,
+      systems: [],
+      stationNameEdit: null,
+      state: 1,
+      showStationTimer: false,
+      stationName: null,
+      sysItems: [],
+      systemEdit: null,
+      sysSearch: null,
+      sysSelect: null,
+      sysLoading: false,
+      tickItems: [],
+      ticktemEdit: null,
+      tickSearch: null,
+      tickSelect: null,
+      tickLoading: false,
+      tickerEdit: null,
+      stationPull: [],
+      structItems: [],
+      structtemEdit: null,
+      structSearch: null,
+      structSelect: null,
+      structLoading: false,
+      structerEdit: null,
+      refType: null,
+      refTime: {
+        d: "",
+        hh: "",
+        mm: "",
+        ss: ""
+      },
+      rules: {
+        required: function required(value) {
+          return !!value || "Required.";
+        }
+      },
+      show_on_main: 0,
+      show_on_chill: 0,
+      show_on_rc_move: 0
+    };
+  },
+  watch: {
+    sysSearch: function sysSearch(val) {
+      val && val !== this.sysSelect && this.sysQuerySelections(val);
+    },
+    tickSearch: function tickSearch(val) {
+      val && val !== this.tickSelect && this.tickQuerySelections(val);
+    },
+    structSearch: function structSearch(val) {
+      val && val !== this.structSelect && this.structQuerySelections(val);
+    }
+  },
+  methods: {
+    setShow: function setShow() {
+      if (this.type == 1) {
+        this.show_on_main = 1;
+      }
+
+      if (this.type == 2) {
+        this.show_on_chill = 1;
+      }
+
+      if (this.type == 3) {
+        this.show_on_rc_move = 1;
+      }
+    },
+    tickQuerySelections: function tickQuerySelections(v) {
+      var _this2 = this;
+
+      this.tickLoading = true; // Simulated ajax query
+
+      setTimeout(function () {
+        _this2.tickItems = _this2.tickList.filter(function (e) {
+          return (e.text || "").toLowerCase().indexOf((v || "").toLowerCase()) > -1;
+        });
+        _this2.tickLoading = false;
+      }, 500);
+    },
+    structQuerySelections: function structQuerySelections(v) {
+      var _this3 = this;
+
+      this.structLoading = true; // Simulated ajax query
+
+      setTimeout(function () {
+        _this3.structItems = _this3.structureList.filter(function (e) {
+          return (e.text || "").toLowerCase().indexOf((v || "").toLowerCase()) > -1;
+        });
+        _this3.structLoading = false;
+      }, 500);
+    },
+    sysQuerySelections: function sysQuerySelections(v) {
+      var _this4 = this;
+
+      this.sysLoading = true; // Simulated ajax query
+
+      setTimeout(function () {
+        _this4.sysItems = _this4.systemList.filter(function (e) {
+          return (e.text || "").toLowerCase().indexOf((v || "").toLowerCase()) > -1;
+        });
+        _this4.sysLoading = false;
+      }, 500);
+    },
+    close: function close() {
+      this.stationNameEdit = null;
+      this.showStationTimer = false;
+      this.refType = null;
+      this.refTime = null;
+      this.stationName = null;
+      this.stationNameEdit = null;
+      this.structItems = [];
+      this.structSearch = null;
+      this.structSelect = null;
+      this.sysItems = [];
+      this.sysSearch = null;
+      this.sysSelect = null;
+      this.systems = [];
+      this.tickItems = [];
+      this.tickSearch = null;
+      this.tickSelect = null;
+      this.state = 1;
+      this.showStationTimer = false;
+    },
+    submit: function submit() {
+      var _this5 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+        var d, h, m, s, ds, hs, ms, sec, outTime, request;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                d = parseInt(_this5.refTime.substr(0, 1));
+                h = parseInt(_this5.refTime.substr(3, 2));
+                m = parseInt(_this5.refTime.substr(6, 2));
+                s = parseInt(_this5.refTime.substr(9, 2));
+                ds = d * 24 * 60 * 60;
+                hs = h * 60 * 60;
+                ms = m * 60;
+                sec = ds + hs + ms + s;
+                outTime = moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc().add(sec, "seconds").format("YYYY-MM-DD HH:mm:ss");
+                request = {
+                  name: _this5.stationName,
+                  system_id: _this5.sysSelect,
+                  corp_id: _this5.tickSelect,
+                  item_id: _this5.structSelect,
+                  station_status_id: _this5.refType,
+                  out_time: outTime,
+                  status_update: moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc().format("YYYY-MM-DD HH:mm:ss"),
+                  timestamp: moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc().format("YYYY-MM-DD HH:mm:ss"),
+                  show_on_main: _this5.show_on_main,
+                  show_on_chill: _this5.show_on_chill,
+                  show_on_rc_move: _this5.show_on_rc_move,
+                  timer_image_link: _this5.imageLink
+                };
+                _context2.next = 12;
+                return axios({
+                  method: "put",
+                  //you can set what request you want to be
+                  url: "api/stationnew",
+                  data: request,
+                  headers: {
+                    Authorization: "Bearer " + _this5.$store.state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                  }
+                }).then(_this5.stationNameEdit = null, _this5.showStationTimer = false, _this5.refType = null, _this5.refTime = null, _this5.stationName = null, _this5.stationNameEdit = null, _this5.structItems = [], _this5.structSearch = null, _this5.structSelect = null, _this5.sysItems = [], _this5.sysSearch = null, _this5.sysSelect = null, _this5.systems = [], _this5.tickItems = [], _this5.tickSearch = null, _this5.tickSelect = null, _this5.state = 1, _this5.showStationTimer = false);
+
+              case 12:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2);
+      }))();
+    },
+    submit3: function submit3() {
+      var _this6 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
+        var d, h, m, s, ds, hs, ms, sec, outTime, request;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                d = parseInt(_this6.refTime.substr(0, 1));
+                h = parseInt(_this6.refTime.substr(3, 2));
+                m = parseInt(_this6.refTime.substr(6, 2));
+                s = parseInt(_this6.refTime.substr(9, 2));
+                ds = d * 24 * 60 * 60;
+                hs = h * 60 * 60;
+                ms = m * 60;
+                sec = ds + hs + ms + s;
+                outTime = moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc().add(sec, "seconds").format("YYYY-MM-DD HH:mm:ss");
+                request = {
+                  station_status_id: _this6.refType,
+                  out_time: outTime,
+                  status_update: moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc().format("YYYY-MM-DD HH:mm:ss"),
+                  show_on_main: _this6.show_on_main,
+                  show_on_chill: _this6.show_on_chill,
+                  show_on_rc_move: _this6.show_on_rc_move,
+                  timer_image_link: _this6.imageLink
+                };
+                _context3.next = 12;
+                return axios({
+                  method: "put",
+                  //you can set what request you want to be
+                  url: "api/updatestationnotification/" + _this6.stationPull.station_id,
+                  data: request,
+                  headers: {
+                    Authorization: "Bearer " + _this6.$store.state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                  }
+                }).then(_this6.stationNameEdit = null, _this6.showStationTimer = false, _this6.refType = null, _this6.refTime = null, _this6.stationName = null, _this6.stationNameEdit = null, _this6.structItems = [], _this6.structSearch = null, _this6.structSelect = null, _this6.sysItems = [], _this6.sysSearch = null, _this6.sysSelect = null, _this6.systems = [], _this6.tickItems = [], _this6.tickSearch = null, _this6.tickSelect = null, _this6.state = 1, _this6.showStationTimer = false);
+
+              case 12:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3);
+      }))();
+    },
+    open: function open() {
+      var _this7 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
+          while (1) {
+            switch (_context4.prev = _context4.next) {
+              case 0:
+                _context4.next = 2;
+                return _this7.$store.dispatch("getSystemList");
+
+              case 2:
+                _context4.next = 4;
+                return _this7.$store.dispatch("getTickList");
+
+              case 4:
+                _context4.next = 6;
+                return _this7.$store.dispatch("getStructureList");
+
+              case 6:
+              case "end":
+                return _context4.stop();
+            }
+          }
+        }, _callee4);
+      }))();
+    },
+    stationNameAdd: function stationNameAdd() {
+      var _this8 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee5() {
+        var request;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee5$(_context5) {
+          while (1) {
+            switch (_context5.prev = _context5.next) {
+              case 0:
+                request = {
+                  stationName: _this8.stationNameEdit,
+                  show: _this8.type
+                };
+                _context5.next = 3;
+                return axios({
+                  method: "put",
+                  //you can set what request you want to be
+                  url: "api/stationname",
+                  data: request,
+                  headers: {
+                    Authorization: "Bearer " + _this8.$store.state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                  }
+                }).then(function (response) {
+                  var res = response.data;
+
+                  if (res.state == 2) {
+                    _this8.stationPull = res;
+                    _this8.stationName = res.station_name;
+                    _this8.state = res.state;
+                  }
+
+                  if (res.state == 3) {
+                    _this8.stationPull = res;
+                    _this8.state = res.state;
+                  }
+                });
+
+              case 3:
+              case "end":
+                return _context5.stop();
+            }
+          }
+        }, _callee5);
+      }))();
+    }
+  },
+  computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])([])), Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapState"])(["systemlist", "ticklist", "structurelist"])), {}, {
+    stationNameNext: function stationNameNext() {
+      if (this.stationNameEdit == null) {
+        return true;
+      } else {
+        return false;
+      }
+    },
+    systemList: function systemList() {
+      return this.systemlist;
+    },
+    stationReadonly: function stationReadonly() {
+      if (this.state == 1) {
+        return false;
+      } else {
+        return true;
+      }
+    },
+    showSubmit: function showSubmit() {
+      if (this.type == 3) {
+        if (this.structSelect != null && this.sysSelect != null && this.tickSelect != null && this.refType != null && this.refTime != "" && this.imageLink != null) {
+          return false;
+        } else {
+          return true;
+        }
+      } else {
+        if (console.log(this.refTime), this.structSelect != null && this.sysSelect != null && this.tickSelect != null && this.refType != null && this.refTime != "") {
+          return false;
+        } else {
+          return true;
+        }
+      }
+    },
+    showSubmit3: function showSubmit3() {
+      if (this.type == 3) {
+        if (this.refType != null && this.refTime != "" && this.imageLink != null) {
+          return false;
+        } else {
+          return true;
+        }
+      } else {
+        if (this.refType != null && this.refTime != "") {
+          return false;
+        } else {
+          return true;
+        }
+      }
+    },
+    stationOutlined: function stationOutlined() {
+      if (this.state == 1) {
+        return true;
+      } else {
+        return false;
+      }
+    },
+    structureList: function structureList() {
+      return this.structurelist;
+    },
+    stationLable: function stationLable() {
+      if (this.state == 1) {
+        return "Enter FULL Structure Name here";
+      } else {
+        return "";
+      }
+    },
+    tickList: function tickList() {
+      return this.ticklist;
+    }
+  }),
+  beforeDestroy: function beforeDestroy() {}
+});
 
 /***/ }),
 
@@ -24978,11 +25618,6 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
-//
-//
-//
-//
-//
 //
 //
 //
@@ -55516,15 +56151,6 @@ var render = function() {
         ],
         2
       ),
-      _vm._v(" "),
-      _c("v-img", {
-        attrs: {
-          "lazy-src": "https://picsum.photos/id/11/10/6",
-          "max-height": "300",
-          "max-width": "500",
-          src: "https://picsum.photos/id/11/500/300"
-        }
-      }),
       _vm._v(" "),
       _c(
         "v-snackbar",
