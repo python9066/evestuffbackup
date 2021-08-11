@@ -13084,11 +13084,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   computed: {
     icon: function icon() {
-      if (this.station.notes == null) {
-        return "far fa-comment-alt";
-      } else {
-        return "fas fa-comment-alt";
-      }
+      return "far fa-images";
     },
     submitActive: function submitActive() {
       if (this.editText != null) {
@@ -43463,12 +43459,30 @@ var render = function() {
                 var attrs = ref.attrs
                 return [
                   _c(
-                    "v-btn",
+                    "v-icon",
                     _vm._g(
-                      _vm._b({ staticClass: "ma-2" }, "v-btn", attrs, false),
+                      _vm._b(
+                        {
+                          attrs: { color: "blue" },
+                          on: {
+                            click: function($event) {
+                              return _vm.open()
+                            }
+                          }
+                        },
+                        "v-icon",
+                        attrs,
+                        false
+                      ),
                       on
                     ),
-                    [_vm._v("\n                A Menu\n            ")]
+                    [
+                      _vm._v(
+                        "\n                " +
+                          _vm._s(_vm.icon) +
+                          "\n            "
+                      )
+                    ]
                   )
                 ]
               }

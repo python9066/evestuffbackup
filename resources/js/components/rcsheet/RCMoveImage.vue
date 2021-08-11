@@ -2,9 +2,9 @@
     <div>
         <v-menu bottom offset-y>
             <template v-slot:activator="{ on, attrs }">
-                <v-btn class="ma-2" v-bind="attrs" v-on="on">
-                    A Menu
-                </v-btn>
+                <v-icon color="blue" v-bind="attrs" v-on="on" @click="open()">
+                    {{ icon }}
+                </v-icon>
             </template>
             <v-img
                 lazy-src="https://picsum.photos/id/11/10/6"
@@ -94,11 +94,7 @@ export default {
 
     computed: {
         icon() {
-            if (this.station.notes == null) {
-                return "far fa-comment-alt";
-            } else {
-                return "fas fa-comment-alt";
-            }
+            return "far fa-images";
         },
 
         submitActive() {
