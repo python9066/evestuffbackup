@@ -6,7 +6,15 @@
                     {{ icon }}
                 </v-icon>
             </template>
-            <v-img src="https://picsum.photos/id/11/500/300"></v-img>
+            <v-card>
+                <v-card-title> </v-card-title>
+                <v-btn text :href="station.timer_image_link" target="_blank"
+                    >Open Image</v-btn
+                >
+                <v-card-text>
+                    <v-img :src="station.timer_image_link"></v-img>
+                </v-card-text>
+            </v-card>
         </v-menu>
     </div>
 </template>

@@ -13000,6 +13000,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -43486,7 +43494,31 @@ var render = function() {
         },
         [
           _vm._v(" "),
-          _c("v-img", { attrs: { src: "https://picsum.photos/id/11/500/300" } })
+          _c(
+            "v-card",
+            [
+              _c("v-card-title"),
+              _vm._v(" "),
+              _c(
+                "v-btn",
+                {
+                  attrs: {
+                    text: "",
+                    href: _vm.station.timer_image_link,
+                    target: "_blank"
+                  }
+                },
+                [_vm._v("Open Image")]
+              ),
+              _vm._v(" "),
+              _c(
+                "v-card-text",
+                [_c("v-img", { attrs: { src: _vm.station.timer_image_link } })],
+                1
+              )
+            ],
+            1
+          )
         ],
         1
       )
