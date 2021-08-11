@@ -13000,11 +13000,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -43491,14 +43486,7 @@ var render = function() {
         },
         [
           _vm._v(" "),
-          _c("v-img", {
-            attrs: {
-              "lazy-src": "https://picsum.photos/id/11/10/6",
-              "max-height": "150",
-              "max-width": "250",
-              src: "https://picsum.photos/id/11/500/300"
-            }
-          })
+          _c("v-img", { attrs: { src: "https://picsum.photos/id/11/500/300" } })
         ],
         1
       )
