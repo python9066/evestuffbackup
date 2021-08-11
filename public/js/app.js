@@ -29370,7 +29370,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.imageview {\n    position: absolute;\n    bottom: 0;\n    right: 0;\n}\n", ""]);
+exports.push([module.i, "\n.custom-textarea v-dialog {\n    position: absolute;\n    bottom: 0;\n    right: 0;\n}\n", ""]);
 
 // exports
 
@@ -43520,7 +43520,8 @@ var render = function() {
       _c(
         "v-dialog",
         {
-          attrs: { "max-width": "700px", "z-index": "5", id: "imageview" },
+          staticClass: "custom-textarea",
+          attrs: { "max-width": "700px", "z-index": "5" },
           on: {
             "click:outside": function($event) {
               return _vm.close()
