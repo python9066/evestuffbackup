@@ -92,10 +92,10 @@ export default {
     data() {
         return {
             headers: [
-                { text: "Event", value: "logging_type_name" },
-                { text: "User", value: "user_name" },
-                { text: "Text", value: "text", align: "end", witdth: "80%" },
-                { text: "Time", value: "created_at" }
+                { text: "Event", value: "logging_type_name", align: "start" },
+                { text: "User", value: "user_name", align: "start" },
+                { text: "Text", value: "text", align: "center" },
+                { text: "Time", value: "created_at", align: "end" }
 
                 // { text: "Vulernable End Time", value: "vulnerable_end_time" }
             ],

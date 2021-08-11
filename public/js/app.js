@@ -12215,18 +12215,20 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     return {
       headers: [{
         text: "Event",
-        value: "logging_type_name"
+        value: "logging_type_name",
+        align: "start"
       }, {
         text: "User",
-        value: "user_name"
+        value: "user_name",
+        align: "start"
       }, {
         text: "Text",
         value: "text",
-        align: "end",
-        witdth: "80%"
+        align: "center"
       }, {
         text: "Time",
-        value: "created_at"
+        value: "created_at",
+        align: "end"
       } // { text: "Vulernable End Time", value: "vulnerable_end_time" }
       ],
       overlay: false,
