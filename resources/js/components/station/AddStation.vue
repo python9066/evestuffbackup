@@ -109,6 +109,15 @@
                                     <v-radio label="Hull" value="13"></v-radio>
                                 </v-radio-group>
                             </div>
+                            <div v-if="this.type == 3">
+                                <h5><strong>Image Link</strong></h5>
+                                <text-field
+                                    v-model="imageLink"
+                                    :rules="[
+                                        rules.required444444444444444444444
+                                    ]"
+                                ></text-field>
+                            </div>
                             <div>
                                 <v-text-field
                                     v-model="refTime"
@@ -222,6 +231,7 @@ export default {
     },
     data() {
         return {
+            imageLink: [],
             systems: [],
             stationNameEdit: null,
             state: 1,
@@ -251,6 +261,9 @@ export default {
                 hh: "",
                 mm: "",
                 ss: ""
+            },
+            rules: {
+                required: value => !!value || "Required."
             },
             show_on_main: 0,
             show_on_chill: 0,

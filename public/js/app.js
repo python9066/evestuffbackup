@@ -15414,6 +15414,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -15440,6 +15449,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   data: function data() {
     return {
+      imageLink: [],
       systems: [],
       stationNameEdit: null,
       state: 1,
@@ -15469,6 +15479,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         hh: "",
         mm: "",
         ss: ""
+      },
+      rules: {
+        required: function required(value) {
+          return !!value || "Required.";
+        }
       },
       show_on_main: 0,
       show_on_chill: 0,
@@ -45679,6 +45694,33 @@ var render = function() {
                             ],
                             1
                           ),
+                          _vm._v(" "),
+                          this.type == 3
+                            ? _c(
+                                "div",
+                                [
+                                  _c("h5", [
+                                    _c("strong", [_vm._v("Image Link")])
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("text-field", {
+                                    attrs: {
+                                      rules: [
+                                        _vm.rules.required444444444444444444444
+                                      ]
+                                    },
+                                    model: {
+                                      value: _vm.imageLink,
+                                      callback: function($$v) {
+                                        _vm.imageLink = $$v
+                                      },
+                                      expression: "imageLink"
+                                    }
+                                  })
+                                ],
+                                1
+                              )
+                            : _vm._e(),
                           _vm._v(" "),
                           _c(
                             "div",
