@@ -26143,38 +26143,9 @@ function sleep(ms) {
   },
   computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapState"])(["stations"])), {}, {
     filteredItems: function filteredItems() {
-      var hourBefore = moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc().add(1, "hour").format("YYYY-MM-DD HH:mm:ss");
-      var filter = this.stations.filter(function (s) {
-        return s.show_on_chill == 1;
+      return filter = this.stations.filter(function (s) {
+        return s.show_on_rc_move == 1;
       });
-
-      if (this.statusflag == 2) {
-        return filter.filter(function (s) {
-          return s.station_status_id == 1 || s.station_status_id == 4 || s.station_status_id == 5 && s.out_time < hourBefore || s.station_status_id == 6 || s.station_status_id == 8 || s.station_status_id == 9 || s.station_status_id == 11 || s.station_status_id == 13 && s.out_time < hourBefore || s.station_status_id == 14 && s.out_time < hourBefore;
-        });
-      }
-
-      if (this.statusflag == 3) {
-        return filter.filter(function (s) {
-          return s.station_status_id == 14 || s.station_status_id == 13;
-        });
-      }
-
-      if (this.statusflag == 5) {
-        return filter.filter(function (s) {
-          return s.station_status_id == 14;
-        });
-      }
-
-      if (this.statusflag == 4) {
-        return filter.filter(function (s) {
-          return s.station_status_id == 8 || s.station_status_id == 9 || s.station_status_id == 7;
-        });
-      } else {
-        return filter.filter(function (s) {
-          return s.station_status_id != 10;
-        });
-      }
     },
     user_name: function user_name() {
       return this.$store.state.user_name;
