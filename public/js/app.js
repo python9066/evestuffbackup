@@ -46344,7 +46344,7 @@ var render = function() {
                                 "div",
                                 [
                                   _c("h5", [
-                                    _c("strong", [_vm._v("Image Link")])
+                                    _c("strong", [_vm._v("Image Li nk")])
                                   ]),
                                   _vm._v(" "),
                                   _c("v-img", {

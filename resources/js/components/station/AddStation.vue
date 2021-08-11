@@ -116,7 +116,7 @@
                                 </v-radio-group>
                             </div>
                             <div v-if="this.type == 3">
-                                <h5><strong>Image Link</strong></h5>
+                                <h5><strong>Image Li nk</strong></h5>
                                 <v-img
                                     src="https://i.imgur.com/xEHu3gI.png"
                                     max-width="650px"
