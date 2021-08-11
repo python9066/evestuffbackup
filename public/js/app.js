@@ -56266,7 +56266,7 @@ var render = function() {
                               }
                             }
                           },
-                          [_c("v-icon", [_vm._v(" far fa-times-cirle")])],
+                          [_c("v-icon", [_vm._v(" fas fa-times-circle")])],
                           1
                         )
                       ],

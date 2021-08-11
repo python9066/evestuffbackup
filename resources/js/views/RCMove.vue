@@ -119,7 +119,7 @@
                     </v-btn>
 
                     <v-btn @click="removeStation(item)" icon color="red">
-                        <v-icon> far fa-times-cirle</v-icon>
+                        <v-icon> fas fa-times-circle</v-icon>
                     </v-btn>
                 </div>
             </template>
