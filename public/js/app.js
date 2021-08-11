@@ -12221,22 +12221,22 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         text: "Event",
         value: "logging_type_name",
         align: "start",
-        width: "10%"
+        width: "20%"
       }, {
         text: "User",
         value: "user_name",
         align: "start",
-        width: "10%"
+        width: "20%"
       }, {
         text: "Text",
         value: "text",
         align: "center",
-        width: "50%"
+        width: "40%"
       }, {
         text: "Time",
         value: "created_at",
         align: "end",
-        width: "30%"
+        width: "20%"
       } // { text: "Vulernable End Time", value: "vulnerable_end_time" }
       ],
       overlay: false,
