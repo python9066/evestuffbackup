@@ -181,4 +181,10 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.v-dialog {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+</style>
