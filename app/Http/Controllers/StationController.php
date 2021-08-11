@@ -146,24 +146,21 @@ class StationController extends Controller
             } else {
 
                 $checkifthere = Station::find($stationdata['str_structure_id']);
+                $showMain = 0;
+                $showChill = 0;
+                $showRcMove = 0;
                 if ($checkifthere) {
                     $showMain = $checkifthere->show_on_main;
                     $showChill = $checkifthere->show_on_chill;
+                    $showRcMove =  $checkifthere->show_on_rc_move;
                     if ($request->show == 1) {
                         $showMain = 1;
                     }
                     if ($request->show == 2) {
                         $showChill = 1;
                     }
-                } else {
-                    if ($request->show == 1) {
-                        $showMain = 1;
-                        $showChill = 0;
-                    }
-
-                    if ($request->show == 2) {
-                        $showMain = 0;
-                        $showChill = 1;
+                    if ($request->show == 3) {
+                        $showRcMove = 1;
                     }
                 }
 
@@ -201,7 +198,8 @@ class StationController extends Controller
                     'r_composite' => $stationdata['str_composite'],
                     'r_cored' => $stationdata['str_cored'],
                     'show_on_main' => $showMain,
-                    'show_on_chill' => $showChill
+                    'show_on_chill' => $showChill,
+                    'show_on_rc_move' => $showRcMove,
                 ]);
                 if ($stationdata['str_has_no_fitting'] != null) {
                     $items = Utils::jsonDecode($stationdata['str_fitting'], true);
