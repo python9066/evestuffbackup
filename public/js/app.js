@@ -13068,8 +13068,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -43550,11 +43548,7 @@ var render = function() {
             },
             [
               _c("v-card-title", [
-                _vm._v(
-                  "Notes for Station " +
-                    _vm._s(_vm.station.name) +
-                    ".\n            "
-                )
+                _vm._v("Image for " + _vm._s(_vm.station.name) + ". ")
               ]),
               _vm._v(" "),
               _c(

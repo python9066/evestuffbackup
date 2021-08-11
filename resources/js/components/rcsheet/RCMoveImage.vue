@@ -31,9 +31,7 @@
                 max-height="700px"
                 class=" d-flex flex-column"
             >
-                <v-card-title
-                    >Notes for Station {{ station.name }}.
-                </v-card-title>
+                <v-card-title>Image for {{ station.name }}. </v-card-title>
                 <v-card-text>
                     <v-textarea
                         height="400px"
