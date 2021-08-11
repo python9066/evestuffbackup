@@ -111,12 +111,12 @@
                             </div>
                             <div v-if="this.type == 3">
                                 <h5><strong>Image Link</strong></h5>
-                                <text-field
+                                <v-text-field
                                     v-model="imageLink"
                                     :rules="[
                                         rules.required444444444444444444444
                                     ]"
-                                ></text-field>
+                                ></v-text-field>
                             </div>
                             <div>
                                 <v-text-field

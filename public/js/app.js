@@ -45703,7 +45703,7 @@ var render = function() {
                                     _c("strong", [_vm._v("Image Link")])
                                   ]),
                                   _vm._v(" "),
-                                  _c("text-field", {
+                                  _c("v-text-field", {
                                     attrs: {
                                       rules: [
                                         _vm.rules.required444444444444444444444
