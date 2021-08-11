@@ -96,7 +96,7 @@
                         :headers="headers"
                         :items="filteredItems"
                         :search="search"
-                        height="1000px"
+                        height="500px"
                         item-key="id"
                         :sort-by="['name']"
                         disable-pagination

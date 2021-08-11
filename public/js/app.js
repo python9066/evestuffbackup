@@ -42441,7 +42441,7 @@ var render = function() {
                         headers: _vm.headers,
                         items: _vm.filteredItems,
                         search: _vm.search,
-                        height: "1000px",
+                        height: "500px",
                         "item-key": "id",
                         "sort-by": ["name"],
                         "disable-pagination": "",
