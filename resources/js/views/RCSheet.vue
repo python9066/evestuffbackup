@@ -309,7 +309,7 @@ export default {
 
         if (this.$can("view_admin_logs")) {
             await this.$store.dispatch("getLoggingRcSheet");
-            Echo.private("rcsheetadminlogs").listen("AddLoggingRcSheet", e => {
+            Echo.private("rcsheetadminlogs").listen("RcSheetAddLogging", e => {
                 console.log("ytoyoyo");
                 this.$store.dispatch("addLoggingRcSheet", e.flag.message);
             });

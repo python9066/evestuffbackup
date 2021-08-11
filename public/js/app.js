@@ -26036,7 +26036,7 @@ function sleep(ms) {
               return _this.$store.dispatch("getLoggingRcSheet");
 
             case 19:
-              Echo["private"]("rcsheetadminlogs").listen("AddLoggingRcSheet", function (e) {
+              Echo["private"]("rcsheetadminlogs").listen("RcSheetAddLogging", function (e) {
                 console.log("ytoyoyo");
 
                 _this.$store.dispatch("addLoggingRcSheet", e.flag.message);

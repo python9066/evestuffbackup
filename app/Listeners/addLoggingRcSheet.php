@@ -2,10 +2,11 @@
 
 namespace App\Listeners;
 
+use App\Events\RcSheetAddLogging;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 
-class addLoggingRcSheet
+class SendRcSheetAddLogging
 {
     /**
      * Create the event listener.
@@ -20,10 +21,10 @@ class addLoggingRcSheet
     /**
      * Handle the event.
      *
-     * @param  object  $event
+     * @param  RcSheetAddLogging  $event
      * @return void
      */
-    public function handle($event)
+    public function handle(RcSheetAddLogging $event)
     {
         //
     }
