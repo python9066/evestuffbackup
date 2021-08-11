@@ -84,13 +84,15 @@ class RcFcUsersController extends Controller
 
         if ($check == 0) {
             RcFcUsers::Create(['user_id' => $request->user_id])->get();
+        } else {
+            RcFcUsers::where('user_id', $request->user_id)->get();
         }
 
-        $fcid = RcFcUsers::where('user_id', $request->user_id)->value('user_id');
-        dd($fcid);
+        $fcid = RcFcUsers::where('user_id', $request->user_id)->value('id');
+        $userid = RcFcUsers::where('user_id', $request->user_id)->value('user_id');
         Station::where('id', $id)->update(['rc_fc_id' => $fcid]);
 
-        $fcname = User::where('id', $fcid)->value('name');
+        $fcname = User::where('id', $userid)->value('name');
 
         $message = RcStationRecords::where('id', $id)->first();
         $flag = collect([
