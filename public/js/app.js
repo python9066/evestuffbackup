@@ -5293,7 +5293,27 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: {},
+  props: {
+    tpye: Number
+  },
+  created: function created() {
+    var _this = this;
+
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              _this.setShow();
+
+            case 1:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    }))();
+  },
   data: function data() {
     return {
       systems: [],
@@ -5325,7 +5345,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         hh: "",
         mm: "",
         ss: ""
-      }
+      },
+      show_on_main: 0,
+      show_on_chill: 0,
+      show_on_rc: 0
     };
   },
   watch: {
@@ -5340,40 +5363,53 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     }
   },
   methods: {
+    setShow: function setShow() {
+      if (this.type == 1) {
+        this.show_on_main == 1;
+      }
+
+      if (this.type == 2) {
+        this.show_on_chill == 1;
+      }
+
+      if (this.type == 3) {
+        this.show_on_rc == 1;
+      }
+    },
     tickQuerySelections: function tickQuerySelections(v) {
-      var _this = this;
+      var _this2 = this;
 
       this.tickLoading = true; // Simulated ajax query
 
       setTimeout(function () {
-        _this.tickItems = _this.tickList.filter(function (e) {
+        _this2.tickItems = _this2.tickList.filter(function (e) {
           return (e.text || "").toLowerCase().indexOf((v || "").toLowerCase()) > -1;
         });
-        _this.tickLoading = false;
+        _this2.tickLoading = false;
       }, 500);
     },
     structQuerySelections: function structQuerySelections(v) {
-      var _this2 = this;
+      var _this3 = this;
 
       this.structLoading = true; // Simulated ajax query
 
       setTimeout(function () {
-        _this2.structItems = _this2.structureList.filter(function (e) {
+        _this3.structItems = _this3.structureList.filter(function (e) {
           return (e.text || "").toLowerCase().indexOf((v || "").toLowerCase()) > -1;
         });
-        _this2.structLoading = false;
+        _this3.structLoading = false;
       }, 500);
     },
     sysQuerySelections: function sysQuerySelections(v) {
-      var _this3 = this;
+      var _this4 = this;
 
       this.sysLoading = true; // Simulated ajax query
 
       setTimeout(function () {
-        _this3.sysItems = _this3.systemList.filter(function (e) {
+        _this4.sysItems = _this4.systemList.filter(function (e) {
           return (e.text || "").toLowerCase().indexOf((v || "").toLowerCase()) > -1;
         });
-        _this3.sysLoading = false;
+        _this4.sysLoading = false;
       }, 500);
     },
     close: function close() {
@@ -5397,56 +5433,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       this.showStationTimer = false;
     },
     submit: function submit() {
-      var _this4 = this;
-
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-        var d, h, m, s, ds, hs, ms, sec, outTime, request;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
-          while (1) {
-            switch (_context.prev = _context.next) {
-              case 0:
-                d = parseInt(_this4.refTime.substr(0, 1));
-                h = parseInt(_this4.refTime.substr(3, 2));
-                m = parseInt(_this4.refTime.substr(6, 2));
-                s = parseInt(_this4.refTime.substr(9, 2));
-                ds = d * 24 * 60 * 60;
-                hs = h * 60 * 60;
-                ms = m * 60;
-                sec = ds + hs + ms + s;
-                outTime = moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc().add(sec, "seconds").format("YYYY-MM-DD HH:mm:ss");
-                request = {
-                  name: _this4.stationName,
-                  system_id: _this4.sysSelect,
-                  corp_id: _this4.tickSelect,
-                  item_id: _this4.structSelect,
-                  station_status_id: _this4.refType,
-                  out_time: outTime,
-                  status_update: moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc().format("YYYY-MM-DD HH:mm:ss"),
-                  timestamp: moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc().format("YYYY-MM-DD HH:mm:ss"),
-                  show_on_chill: 1
-                };
-                _context.next = 12;
-                return axios({
-                  method: "put",
-                  //you can set what request you want to be
-                  url: "api/stationnew",
-                  data: request,
-                  headers: {
-                    Authorization: "Bearer " + _this4.$store.state.token,
-                    Accept: "application/json",
-                    "Content-Type": "application/json"
-                  }
-                }).then(_this4.stationNameEdit = null, _this4.showStationTimer = false, _this4.refType = null, _this4.refTime = null, _this4.stationName = null, _this4.stationNameEdit = null, _this4.structItems = [], _this4.structSearch = null, _this4.structSelect = null, _this4.sysItems = [], _this4.sysSearch = null, _this4.sysSelect = null, _this4.systems = [], _this4.tickItems = [], _this4.tickSearch = null, _this4.tickSelect = null, _this4.state = 1, _this4.showStationTimer = false);
-
-              case 12:
-              case "end":
-                return _context.stop();
-            }
-          }
-        }, _callee);
-      }))();
-    },
-    submit3: function submit3() {
       var _this5 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
@@ -5465,16 +5451,23 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 sec = ds + hs + ms + s;
                 outTime = moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc().add(sec, "seconds").format("YYYY-MM-DD HH:mm:ss");
                 request = {
+                  name: _this5.stationName,
+                  system_id: _this5.sysSelect,
+                  corp_id: _this5.tickSelect,
+                  item_id: _this5.structSelect,
                   station_status_id: _this5.refType,
                   out_time: outTime,
                   status_update: moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc().format("YYYY-MM-DD HH:mm:ss"),
-                  show_on_chill: 1
+                  timestamp: moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc().format("YYYY-MM-DD HH:mm:ss"),
+                  show_on_main: _this5.show_on_main,
+                  show_on_chill: _this5.show_on_chill,
+                  show_on_rc: _this5.show_on_rc
                 };
                 _context2.next = 12;
                 return axios({
                   method: "put",
                   //you can set what request you want to be
-                  url: "api/updatestationnotification/" + _this5.stationPull.station_id,
+                  url: "api/stationnew",
                   data: request,
                   headers: {
                     Authorization: "Bearer " + _this5.$store.state.token,
@@ -5491,26 +5484,46 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee2);
       }))();
     },
-    open: function open() {
+    submit3: function submit3() {
       var _this6 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
+        var d, h, m, s, ds, hs, ms, sec, outTime, request;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
           while (1) {
             switch (_context3.prev = _context3.next) {
               case 0:
-                _context3.next = 2;
-                return _this6.$store.dispatch("getSystemList");
+                d = parseInt(_this6.refTime.substr(0, 1));
+                h = parseInt(_this6.refTime.substr(3, 2));
+                m = parseInt(_this6.refTime.substr(6, 2));
+                s = parseInt(_this6.refTime.substr(9, 2));
+                ds = d * 24 * 60 * 60;
+                hs = h * 60 * 60;
+                ms = m * 60;
+                sec = ds + hs + ms + s;
+                outTime = moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc().add(sec, "seconds").format("YYYY-MM-DD HH:mm:ss");
+                request = {
+                  station_status_id: _this6.refType,
+                  out_time: outTime,
+                  status_update: moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc().format("YYYY-MM-DD HH:mm:ss"),
+                  show_on_main: _this6.show_on_main,
+                  show_on_chill: _this6.show_on_chill,
+                  show_on_rc: _this6.show_on_rc
+                };
+                _context3.next = 12;
+                return axios({
+                  method: "put",
+                  //you can set what request you want to be
+                  url: "api/updatestationnotification/" + _this6.stationPull.station_id,
+                  data: request,
+                  headers: {
+                    Authorization: "Bearer " + _this6.$store.state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                  }
+                }).then(_this6.stationNameEdit = null, _this6.showStationTimer = false, _this6.refType = null, _this6.refTime = null, _this6.stationName = null, _this6.stationNameEdit = null, _this6.structItems = [], _this6.structSearch = null, _this6.structSelect = null, _this6.sysItems = [], _this6.sysSearch = null, _this6.sysSelect = null, _this6.systems = [], _this6.tickItems = [], _this6.tickSearch = null, _this6.tickSelect = null, _this6.state = 1, _this6.showStationTimer = false);
 
-              case 2:
-                _context3.next = 4;
-                return _this6.$store.dispatch("getTickList");
-
-              case 4:
-                _context3.next = 6;
-                return _this6.$store.dispatch("getStructureList");
-
-              case 6:
+              case 12:
               case "end":
                 return _context3.stop();
             }
@@ -5518,27 +5531,54 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee3);
       }))();
     },
-    stationNameAdd: function stationNameAdd() {
+    open: function open() {
       var _this7 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
-        var request;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
           while (1) {
             switch (_context4.prev = _context4.next) {
               case 0:
+                _context4.next = 2;
+                return _this7.$store.dispatch("getSystemList");
+
+              case 2:
+                _context4.next = 4;
+                return _this7.$store.dispatch("getTickList");
+
+              case 4:
+                _context4.next = 6;
+                return _this7.$store.dispatch("getStructureList");
+
+              case 6:
+              case "end":
+                return _context4.stop();
+            }
+          }
+        }, _callee4);
+      }))();
+    },
+    stationNameAdd: function stationNameAdd() {
+      var _this8 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee5() {
+        var request;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee5$(_context5) {
+          while (1) {
+            switch (_context5.prev = _context5.next) {
+              case 0:
                 request = {
-                  stationName: _this7.stationNameEdit,
-                  show: 2
+                  stationName: _this8.stationNameEdit,
+                  show: _this8.type
                 };
-                _context4.next = 3;
+                _context5.next = 3;
                 return axios({
                   method: "put",
                   //you can set what request you want to be
                   url: "api/stationname",
                   data: request,
                   headers: {
-                    Authorization: "Bearer " + _this7.$store.state.token,
+                    Authorization: "Bearer " + _this8.$store.state.token,
                     Accept: "application/json",
                     "Content-Type": "application/json"
                   }
@@ -5546,23 +5586,23 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   var res = response.data;
 
                   if (res.state == 2) {
-                    _this7.stationPull = res;
-                    _this7.stationName = res.station_name;
-                    _this7.state = res.state;
+                    _this8.stationPull = res;
+                    _this8.stationName = res.station_name;
+                    _this8.state = res.state;
                   }
 
                   if (res.state == 3) {
-                    _this7.stationPull = res;
-                    _this7.state = res.state;
+                    _this8.stationPull = res;
+                    _this8.state = res.state;
                   }
                 });
 
               case 3:
               case "end":
-                return _context4.stop();
+                return _context5.stop();
             }
           }
-        }, _callee4);
+        }, _callee5);
       }))();
     }
   },
@@ -15376,7 +15416,27 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: {},
+  props: {
+    tpye: Number
+  },
+  created: function created() {
+    var _this = this;
+
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              _this.setShow();
+
+            case 1:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    }))();
+  },
   data: function data() {
     return {
       systems: [],
@@ -15408,7 +15468,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         hh: "",
         mm: "",
         ss: ""
-      }
+      },
+      show_on_main: 0,
+      show_on_chill: 0,
+      show_on_rc: 0
     };
   },
   watch: {
@@ -15423,40 +15486,53 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     }
   },
   methods: {
+    setShow: function setShow() {
+      if (this.type == 1) {
+        this.show_on_main == 1;
+      }
+
+      if (this.type == 2) {
+        this.show_on_chill == 1;
+      }
+
+      if (this.type == 3) {
+        this.show_on_rc == 1;
+      }
+    },
     tickQuerySelections: function tickQuerySelections(v) {
-      var _this = this;
+      var _this2 = this;
 
       this.tickLoading = true; // Simulated ajax query
 
       setTimeout(function () {
-        _this.tickItems = _this.tickList.filter(function (e) {
+        _this2.tickItems = _this2.tickList.filter(function (e) {
           return (e.text || "").toLowerCase().indexOf((v || "").toLowerCase()) > -1;
         });
-        _this.tickLoading = false;
+        _this2.tickLoading = false;
       }, 500);
     },
     structQuerySelections: function structQuerySelections(v) {
-      var _this2 = this;
+      var _this3 = this;
 
       this.structLoading = true; // Simulated ajax query
 
       setTimeout(function () {
-        _this2.structItems = _this2.structureList.filter(function (e) {
+        _this3.structItems = _this3.structureList.filter(function (e) {
           return (e.text || "").toLowerCase().indexOf((v || "").toLowerCase()) > -1;
         });
-        _this2.structLoading = false;
+        _this3.structLoading = false;
       }, 500);
     },
     sysQuerySelections: function sysQuerySelections(v) {
-      var _this3 = this;
+      var _this4 = this;
 
       this.sysLoading = true; // Simulated ajax query
 
       setTimeout(function () {
-        _this3.sysItems = _this3.systemList.filter(function (e) {
+        _this4.sysItems = _this4.systemList.filter(function (e) {
           return (e.text || "").toLowerCase().indexOf((v || "").toLowerCase()) > -1;
         });
-        _this3.sysLoading = false;
+        _this4.sysLoading = false;
       }, 500);
     },
     close: function close() {
@@ -15480,56 +15556,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       this.showStationTimer = false;
     },
     submit: function submit() {
-      var _this4 = this;
-
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-        var d, h, m, s, ds, hs, ms, sec, outTime, request;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
-          while (1) {
-            switch (_context.prev = _context.next) {
-              case 0:
-                d = parseInt(_this4.refTime.substr(0, 1));
-                h = parseInt(_this4.refTime.substr(3, 2));
-                m = parseInt(_this4.refTime.substr(6, 2));
-                s = parseInt(_this4.refTime.substr(9, 2));
-                ds = d * 24 * 60 * 60;
-                hs = h * 60 * 60;
-                ms = m * 60;
-                sec = ds + hs + ms + s;
-                outTime = moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc().add(sec, "seconds").format("YYYY-MM-DD HH:mm:ss");
-                request = {
-                  name: _this4.stationName,
-                  system_id: _this4.sysSelect,
-                  corp_id: _this4.tickSelect,
-                  item_id: _this4.structSelect,
-                  station_status_id: _this4.refType,
-                  out_time: outTime,
-                  status_update: moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc().format("YYYY-MM-DD HH:mm:ss"),
-                  timestamp: moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc().format("YYYY-MM-DD HH:mm:ss"),
-                  show_on_main: 1
-                };
-                _context.next = 12;
-                return axios({
-                  method: "put",
-                  //you can set what request you want to be
-                  url: "api/stationnew",
-                  data: request,
-                  headers: {
-                    Authorization: "Bearer " + _this4.$store.state.token,
-                    Accept: "application/json",
-                    "Content-Type": "application/json"
-                  }
-                }).then(_this4.stationNameEdit = null, _this4.showStationTimer = false, _this4.refType = null, _this4.refTime = null, _this4.stationName = null, _this4.stationNameEdit = null, _this4.structItems = [], _this4.structSearch = null, _this4.structSelect = null, _this4.sysItems = [], _this4.sysSearch = null, _this4.sysSelect = null, _this4.systems = [], _this4.tickItems = [], _this4.tickSearch = null, _this4.tickSelect = null, _this4.state = 1, _this4.showStationTimer = false);
-
-              case 12:
-              case "end":
-                return _context.stop();
-            }
-          }
-        }, _callee);
-      }))();
-    },
-    submit3: function submit3() {
       var _this5 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
@@ -15548,16 +15574,23 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 sec = ds + hs + ms + s;
                 outTime = moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc().add(sec, "seconds").format("YYYY-MM-DD HH:mm:ss");
                 request = {
+                  name: _this5.stationName,
+                  system_id: _this5.sysSelect,
+                  corp_id: _this5.tickSelect,
+                  item_id: _this5.structSelect,
                   station_status_id: _this5.refType,
                   out_time: outTime,
                   status_update: moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc().format("YYYY-MM-DD HH:mm:ss"),
-                  show_on_main: 1
+                  timestamp: moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc().format("YYYY-MM-DD HH:mm:ss"),
+                  show_on_main: _this5.show_on_main,
+                  show_on_chill: _this5.show_on_chill,
+                  show_on_rc: _this5.show_on_rc
                 };
                 _context2.next = 12;
                 return axios({
                   method: "put",
                   //you can set what request you want to be
-                  url: "api/updatestationnotification/" + _this5.stationPull.station_id,
+                  url: "api/stationnew",
                   data: request,
                   headers: {
                     Authorization: "Bearer " + _this5.$store.state.token,
@@ -15574,26 +15607,46 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee2);
       }))();
     },
-    open: function open() {
+    submit3: function submit3() {
       var _this6 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
+        var d, h, m, s, ds, hs, ms, sec, outTime, request;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
           while (1) {
             switch (_context3.prev = _context3.next) {
               case 0:
-                _context3.next = 2;
-                return _this6.$store.dispatch("getSystemList");
+                d = parseInt(_this6.refTime.substr(0, 1));
+                h = parseInt(_this6.refTime.substr(3, 2));
+                m = parseInt(_this6.refTime.substr(6, 2));
+                s = parseInt(_this6.refTime.substr(9, 2));
+                ds = d * 24 * 60 * 60;
+                hs = h * 60 * 60;
+                ms = m * 60;
+                sec = ds + hs + ms + s;
+                outTime = moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc().add(sec, "seconds").format("YYYY-MM-DD HH:mm:ss");
+                request = {
+                  station_status_id: _this6.refType,
+                  out_time: outTime,
+                  status_update: moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc().format("YYYY-MM-DD HH:mm:ss"),
+                  show_on_main: _this6.show_on_main,
+                  show_on_chill: _this6.show_on_chill,
+                  show_on_rc: _this6.show_on_rc
+                };
+                _context3.next = 12;
+                return axios({
+                  method: "put",
+                  //you can set what request you want to be
+                  url: "api/updatestationnotification/" + _this6.stationPull.station_id,
+                  data: request,
+                  headers: {
+                    Authorization: "Bearer " + _this6.$store.state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                  }
+                }).then(_this6.stationNameEdit = null, _this6.showStationTimer = false, _this6.refType = null, _this6.refTime = null, _this6.stationName = null, _this6.stationNameEdit = null, _this6.structItems = [], _this6.structSearch = null, _this6.structSelect = null, _this6.sysItems = [], _this6.sysSearch = null, _this6.sysSelect = null, _this6.systems = [], _this6.tickItems = [], _this6.tickSearch = null, _this6.tickSelect = null, _this6.state = 1, _this6.showStationTimer = false);
 
-              case 2:
-                _context3.next = 4;
-                return _this6.$store.dispatch("getTickList");
-
-              case 4:
-                _context3.next = 6;
-                return _this6.$store.dispatch("getStructureList");
-
-              case 6:
+              case 12:
               case "end":
                 return _context3.stop();
             }
@@ -15601,27 +15654,54 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee3);
       }))();
     },
-    stationNameAdd: function stationNameAdd() {
+    open: function open() {
       var _this7 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
-        var request;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
           while (1) {
             switch (_context4.prev = _context4.next) {
               case 0:
+                _context4.next = 2;
+                return _this7.$store.dispatch("getSystemList");
+
+              case 2:
+                _context4.next = 4;
+                return _this7.$store.dispatch("getTickList");
+
+              case 4:
+                _context4.next = 6;
+                return _this7.$store.dispatch("getStructureList");
+
+              case 6:
+              case "end":
+                return _context4.stop();
+            }
+          }
+        }, _callee4);
+      }))();
+    },
+    stationNameAdd: function stationNameAdd() {
+      var _this8 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee5() {
+        var request;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee5$(_context5) {
+          while (1) {
+            switch (_context5.prev = _context5.next) {
+              case 0:
                 request = {
-                  stationName: _this7.stationNameEdit,
-                  show: 1
+                  stationName: _this8.stationNameEdit,
+                  show: _this8.type
                 };
-                _context4.next = 3;
+                _context5.next = 3;
                 return axios({
                   method: "put",
                   //you can set what request you want to be
                   url: "api/stationname",
                   data: request,
                   headers: {
-                    Authorization: "Bearer " + _this7.$store.state.token,
+                    Authorization: "Bearer " + _this8.$store.state.token,
                     Accept: "application/json",
                     "Content-Type": "application/json"
                   }
@@ -15629,23 +15709,23 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   var res = response.data;
 
                   if (res.state == 2) {
-                    _this7.stationPull = res;
-                    _this7.stationName = res.station_name;
-                    _this7.state = res.state;
+                    _this8.stationPull = res;
+                    _this8.stationName = res.station_name;
+                    _this8.state = res.state;
                   }
 
                   if (res.state == 3) {
-                    _this7.stationPull = res;
-                    _this7.state = res.state;
+                    _this8.stationPull = res;
+                    _this8.state = res.state;
                   }
                 });
 
               case 3:
               case "end":
-                return _context4.stop();
+                return _context5.stop();
             }
           }
-        }, _callee4);
+        }, _callee5);
       }))();
     }
   },
@@ -47490,7 +47570,9 @@ var render = function() {
         [
           _c("v-card-title", [_vm._v("Structure Notifications")]),
           _vm._v(" "),
-          _vm.$can("add_timer") ? _c("AddStation") : _vm._e(),
+          _vm.$can("add_timer")
+            ? _c("AddStation", { attrs: { type: 1 } })
+            : _vm._e(),
           _vm._v(" "),
           _c("v-text-field", {
             staticClass: " ml-5",

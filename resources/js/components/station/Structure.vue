@@ -2,7 +2,7 @@
     <div class=" pt-16">
         <div class=" d-flex align-items-center">
             <v-card-title>Structure Notifications</v-card-title>
-            <AddStation v-if="$can('add_timer')"></AddStation>
+            <AddStation v-if="$can('add_timer')" :type="1"></AddStation>
 
             <v-text-field
                 class=" ml-5"

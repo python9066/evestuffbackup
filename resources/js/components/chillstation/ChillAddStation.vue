@@ -213,7 +213,13 @@
 import { mapState, mapGetters } from "vuex";
 import moment from "moment";
 export default {
-    props: {},
+    props: {
+        tpye: Number
+    },
+
+    async created() {
+        this.setShow();
+    },
     data() {
         return {
             systems: [],
@@ -245,7 +251,10 @@ export default {
                 hh: "",
                 mm: "",
                 ss: ""
-            }
+            },
+            show_on_main: 0,
+            show_on_chill: 0,
+            show_on_rc: 0
         };
     },
 
@@ -264,6 +273,17 @@ export default {
     },
 
     methods: {
+        setShow() {
+            if (this.type == 1) {
+                this.show_on_main == 1;
+            }
+            if (this.type == 2) {
+                this.show_on_chill == 1;
+            }
+            if (this.type == 3) {
+                this.show_on_rc == 1;
+            }
+        },
         tickQuerySelections(v) {
             this.tickLoading = true;
             // Simulated ajax query
@@ -353,7 +373,9 @@ export default {
                 out_time: outTime,
                 status_update: moment.utc().format("YYYY-MM-DD HH:mm:ss"),
                 timestamp: moment.utc().format("YYYY-MM-DD HH:mm:ss"),
-                show_on_chill: 1
+                show_on_main: this.show_on_main,
+                show_on_chill: this.show_on_chill,
+                show_on_rc: this.show_on_rc
             };
 
             await axios({
@@ -405,7 +427,9 @@ export default {
                 station_status_id: this.refType,
                 out_time: outTime,
                 status_update: moment.utc().format("YYYY-MM-DD HH:mm:ss"),
-                show_on_chill: 1
+                show_on_main: this.show_on_main,
+                show_on_chill: this.show_on_chill,
+                show_on_rc: this.show_on_rc
             };
 
             await axios({
@@ -450,7 +474,7 @@ export default {
         async stationNameAdd() {
             var request = {
                 stationName: this.stationNameEdit,
-                show: 2
+                show: this.type
             };
             await axios({
                 method: "put", //you can set what request you want to be
