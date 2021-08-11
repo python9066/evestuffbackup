@@ -395,7 +395,8 @@ export default {
                 timestamp: moment.utc().format("YYYY-MM-DD HH:mm:ss"),
                 show_on_main: this.show_on_main,
                 show_on_chill: this.show_on_chill,
-                show_on_rc_move: this.show_on_rc_move
+                show_on_rc_move: this.show_on_rc_move,
+                timer_image_link = this.imageLink
             };
 
             await axios({
@@ -449,7 +450,8 @@ export default {
                 status_update: moment.utc().format("YYYY-MM-DD HH:mm:ss"),
                 show_on_main: this.show_on_main,
                 show_on_chill: this.show_on_chill,
-                show_on_rc_move: this.show_on_rc_move
+                show_on_rc_move: this.show_on_rc_move,
+                timer_image_link = this.imageLink
             };
 
             await axios({
