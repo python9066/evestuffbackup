@@ -117,8 +117,7 @@ class StationController extends Controller
 
         $name = preg_replace("/\([^\)]+\)(\R|$)/", "$1", $request->stationName);
         $name = rtrim($name);
-        dd($name);
-        $url = "https://recon.gnf.lt/api/structure/" . $request->stationName;
+        $url = "https://recon.gnf.lt/api/structure/" . $name;
 
         $client = new GuzzleHttpClient();
         $headers = [
@@ -134,13 +133,13 @@ class StationController extends Controller
         $stationdata = Utils::jsonDecode($response->getBody(), true);
         if ($response->getStatusCode() == 200) {
             if ($stationdata == "Error, Structure Not Found") {
-                $stationCheck = station::where('name', $request->stationName)->first();
+                $stationCheck = station::where('name', $name)->first();
                 if ($stationCheck != null) {
                     $data = [];
                 } else {
                     $data = [
                         'state' => 2,
-                        'station_name' => $request->stationName
+                        'station_name' => $name
                     ];
                     return $data;
                 }
@@ -230,12 +229,12 @@ class StationController extends Controller
                 return $data;
             }
         } else {
-            $stationCheck = station::where('name', $request->stationName)->first();
+            $stationCheck = station::where('name', $name)->first();
             if ($stationCheck != null) {
             } else {
                 $data = [
                     'state' => 2,
-                    'station_name' => $request->stationName
+                    'station_name' => $name
                 ];
                 return $data;
             }
