@@ -15777,10 +15777,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -46348,10 +46344,7 @@ var render = function() {
                                   ]),
                                   _vm._v(" "),
                                   _c("v-img", {
-                                    attrs: {
-                                      src: "https://imgur.com/xEHu3gI",
-                                      "max-width": "650px"
-                                    }
+                                    attrs: { src: "https://imgur.com/xEHu3gI" }
                                   }),
                                   _vm._v(" "),
                                   _c("v-text-field", {
