@@ -3,6 +3,7 @@
         <v-dialog
             max-width="700px"
             z-index="5"
+            id="imageview"
             v-model="showMoveImage"
             @click:outside="close()"
         >
@@ -182,7 +183,7 @@ export default {
 </script>
 
 <style>
-.v-dialog {
+.imageview {
     position: absolute;
     bottom: 0;
     right: 0;
