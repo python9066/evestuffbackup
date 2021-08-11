@@ -15489,15 +15489,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   methods: {
     setShow: function setShow() {
       if (this.type == 1) {
-        this.show_on_main == 1;
+        this.show_on_main = 1;
       }
 
       if (this.type == 2) {
-        this.show_on_chill == 1;
+        this.show_on_chill = 1;
       }
 
       if (this.type == 3) {
-        this.show_on_rc_move == 1;
+        this.show_on_rc_move = 1;
       }
     },
     tickQuerySelections: function tickQuerySelections(v) {
