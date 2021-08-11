@@ -55769,7 +55769,7 @@ var render = function() {
         "div",
         { staticClass: " d-flex align-items-center" },
         [
-          _c("v-card-title", [_vm._v("Structure Notifications")]),
+          _c("v-card-title", [_vm._v("Timers to input to RC")]),
           _vm._v(" "),
           _vm.$can("add_timer")
             ? _c("AddStation", { attrs: { type: 3 } })
