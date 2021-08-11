@@ -915,7 +915,7 @@ export default new Vuex.Store({
         async getLoggingRcSheet({ commit, state }, campaign_id) {
             let res = await axios({
                 method: "get",
-                url: "/api/rcadminlogs/" + campaign_id,
+                url: "/api/rcadminlogs",
                 headers: {
                     Authorization: "Bearer " + state.token,
                     Accept: "application/json",
