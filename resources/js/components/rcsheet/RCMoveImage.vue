@@ -2,8 +2,8 @@
     <div>
         <v-dialog
             max-width="700px"
-            z-index="0"
-            v-model="showStationNotes"
+            z-index="5"
+            v-model="showMoveImage"
             @click:outside="close()"
         >
             <template v-slot:activator="{ on, attrs }">
@@ -71,12 +71,12 @@
                 >
             </v-card>
 
-            <!-- <ShowStationNotes
+            <!-- <showMoveImage
                 :nodeNoteItem="nodeNoteItem"
                 v-if="$can('super')"
-                @closeMessage="showStationNotes = false"
+                @closeMessage="showMoveImage = false"
             >
-            </ShowStationNotes> -->
+            </showMoveImage> -->
         </v-dialog>
     </div>
 </template>
@@ -92,7 +92,7 @@ export default {
         return {
             messageCount: 0,
             showNumber: false,
-            showStationNotes: false,
+            showMoveImage: false,
             editText: null
         };
     },
@@ -102,7 +102,7 @@ export default {
             if (e.flag.id == this.station.id) {
                 this.$store.dispatch("updateRcStation", e.flag.message);
                 this.showNumber = true;
-                if (this.showStationNotes == false) {
+                if (this.showMoveImage == false) {
                     this.messageCount = this.messageCount + 1;
                 }
             }
@@ -112,7 +112,7 @@ export default {
     methods: {
         close() {
             this.editText = null;
-            this.showStationNotes = false;
+            this.showMoveImage = false;
         },
 
         open() {

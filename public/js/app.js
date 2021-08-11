@@ -13080,7 +13080,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     return {
       messageCount: 0,
       showNumber: false,
-      showStationNotes: false,
+      showMoveImage: false,
       editText: null
     };
   },
@@ -13098,7 +13098,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                   _this.showNumber = true;
 
-                  if (_this.showStationNotes == false) {
+                  if (_this.showMoveImage == false) {
                     _this.messageCount = _this.messageCount + 1;
                   }
                 }
@@ -13115,7 +13115,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   methods: {
     close: function close() {
       this.editText = null;
-      this.showStationNotes = false;
+      this.showMoveImage = false;
     },
     open: function open() {
       this.showNumber = false, this.messageCount = 0;
@@ -43470,7 +43470,7 @@ var render = function() {
       _c(
         "v-dialog",
         {
-          attrs: { "max-width": "700px", "z-index": "0" },
+          attrs: { "max-width": "700px", "z-index": "5" },
           on: {
             "click:outside": function($event) {
               return _vm.close()
@@ -43528,11 +43528,11 @@ var render = function() {
             }
           ]),
           model: {
-            value: _vm.showStationNotes,
+            value: _vm.showMoveImage,
             callback: function($$v) {
-              _vm.showStationNotes = $$v
+              _vm.showMoveImage = $$v
             },
-            expression: "showStationNotes"
+            expression: "showMoveImage"
           }
         },
         [
