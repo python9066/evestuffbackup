@@ -12221,17 +12221,17 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         text: "Event",
         value: "logging_type_name",
         align: "start",
-        width: "20%"
+        width: "15%"
       }, {
         text: "User",
         value: "user_name",
         align: "start",
-        width: "20%"
+        width: "15%"
       }, {
         text: "Text",
         value: "text",
         align: "center",
-        width: "40%"
+        width: "50%"
       }, {
         text: "Time",
         value: "created_at",
