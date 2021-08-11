@@ -46323,7 +46323,7 @@ var render = function() {
                                   }),
                                   _vm._v(" "),
                                   _c("v-radio", {
-                                    attrs: { label: "Armor", value: "50" }
+                                    attrs: { label: "Armor", value: "5" }
                                   }),
                                   _vm._v(" "),
                                   _c("v-radio", {
