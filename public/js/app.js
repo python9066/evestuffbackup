@@ -25775,6 +25775,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 
@@ -56151,6 +56156,15 @@ var render = function() {
         ],
         2
       ),
+      _vm._v(" "),
+      _c("v-img", {
+        attrs: {
+          "lazy-src": "https://picsum.photos/id/11/10/6",
+          "max-height": "140",
+          "max-width": "220",
+          src: "https://picsum.photos/id/11/500/300"
+        }
+      }),
       _vm._v(" "),
       _c(
         "v-snackbar",

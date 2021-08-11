@@ -145,7 +145,12 @@
                 ></RcStationMessage>
             </template>
         </v-data-table>
-
+        <v-img
+            lazy-src="https://picsum.photos/id/11/10/6"
+            max-height="140"
+            max-width="220"
+            src="https://picsum.photos/id/11/500/300"
+        ></v-img>
         <v-snackbar v-model="snack" :timeout="3000" :color="snackColor">
             {{ snackText }}
 
