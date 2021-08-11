@@ -43522,7 +43522,7 @@ var render = function() {
       _c(
         "v-dialog",
         {
-          staticClass: "custom-textarea",
+          staticClass: "Imageview",
           attrs: {
             "max-width": "700px",
             "z-index": "5",

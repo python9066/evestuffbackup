@@ -2,7 +2,7 @@
     <div>
         <v-dialog
             max-width="700px"
-            class="custom-textarea"
+            class="Imageview"
             z-index="5"
             id="Imageview"
             name="Imageview"
