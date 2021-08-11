@@ -214,7 +214,7 @@ import { mapState, mapGetters } from "vuex";
 import moment from "moment";
 export default {
     props: {
-        tpye: Number
+        type: Number
     },
 
     async created() {
