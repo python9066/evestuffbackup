@@ -185,7 +185,7 @@ export default {
 </script>
 
 <style>
-.v-dialog #Imageview {
+.Imageview {
     position: absolute;
     bottom: 0;
     right: 0;
