@@ -113,9 +113,7 @@
                                 <h5><strong>Image Link</strong></h5>
                                 <v-text-field
                                     v-model="imageLink"
-                                    :rules="[
-                                        rules.required444444444444444444444
-                                    ]"
+                                    :rules="[rules.required]"
                                 ></v-text-field>
                             </div>
                             <div>

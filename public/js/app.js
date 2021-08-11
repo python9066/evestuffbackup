@@ -15421,8 +15421,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -45704,11 +45702,7 @@ var render = function() {
                                   ]),
                                   _vm._v(" "),
                                   _c("v-text-field", {
-                                    attrs: {
-                                      rules: [
-                                        _vm.rules.required444444444444444444444
-                                      ]
-                                    },
+                                    attrs: { rules: [_vm.rules.required] },
                                     model: {
                                       value: _vm.imageLink,
                                       callback: function($$v) {
