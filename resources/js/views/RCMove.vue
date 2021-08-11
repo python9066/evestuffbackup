@@ -554,7 +554,7 @@ export default {
     computed: {
         ...mapState(["stations"]),
 
-        filter() {
+        filteredItems() {
             return (filter = this.stations.filter(s => s.show_on_rc_move == 1));
         },
 

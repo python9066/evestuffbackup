@@ -26142,21 +26142,11 @@ function sleep(ms) {
     }
   },
   computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapState"])(["stations"])), {}, {
-    filter: function (_filter) {
-      function filter() {
-        return _filter.apply(this, arguments);
-      }
-
-      filter.toString = function () {
-        return _filter.toString();
-      };
-
-      return filter;
-    }(function () {
+    filteredItems: function filteredItems() {
       return filter = this.stations.filter(function (s) {
         return s.show_on_rc_move == 1;
       });
-    }),
+    },
     user_name: function user_name() {
       return this.$store.state.user_name;
     }
