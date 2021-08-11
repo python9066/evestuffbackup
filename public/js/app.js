@@ -25913,6 +25913,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 
@@ -56424,10 +56430,17 @@ var render = function() {
                       attrs: { station: item }
                     }),
                     _vm._v(" "),
-                    _c("RcMoveImage", {
-                      staticClass: " mr-2",
-                      attrs: { station: item }
-                    })
+                    _c(
+                      "v-icon",
+                      {
+                        attrs: {
+                          href: _vm.station.timer_image_link,
+                          target: "_blank",
+                          color: "green"
+                        }
+                      },
+                      [_vm._v("\n                far fa-images\n            ")]
+                    )
                   ]
                 }
               }

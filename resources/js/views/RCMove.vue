@@ -143,7 +143,13 @@
                     class=" mr-2"
                     :station="item"
                 ></RcStationMessage>
-                <RcMoveImage class=" mr-2" :station="item"></RcMoveImage>
+                <v-icon
+                    :href="station.timer_image_link"
+                    target="_blank"
+                    color="green"
+                >
+                    far fa-images
+                </v-icon>
             </template>
         </v-data-table>
         <v-img src="https://imgur.com/a/o6ZYT5O"></v-img>
