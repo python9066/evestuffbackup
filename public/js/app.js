@@ -15471,7 +15471,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       },
       show_on_main: 0,
       show_on_chill: 0,
-      show_on_rc: 0
+      show_on_rc_move: 0
     };
   },
   watch: {
@@ -15496,7 +15496,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }
 
       if (this.type == 3) {
-        this.show_on_rc == 1;
+        this.show_on_rc_move == 1;
       }
     },
     tickQuerySelections: function tickQuerySelections(v) {
@@ -15584,7 +15584,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   timestamp: moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc().format("YYYY-MM-DD HH:mm:ss"),
                   show_on_main: _this5.show_on_main,
                   show_on_chill: _this5.show_on_chill,
-                  show_on_rc: _this5.show_on_rc
+                  show_on_rc_move: _this5.show_on_rc_move
                 };
                 _context2.next = 12;
                 return axios({
@@ -15631,7 +15631,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   status_update: moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc().format("YYYY-MM-DD HH:mm:ss"),
                   show_on_main: _this6.show_on_main,
                   show_on_chill: _this6.show_on_chill,
-                  show_on_rc: _this6.show_on_rc
+                  show_on_rc_move: _this6.show_on_rc_move
                 };
                 _context3.next = 12;
                 return axios({

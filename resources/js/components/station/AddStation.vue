@@ -254,7 +254,7 @@ export default {
             },
             show_on_main: 0,
             show_on_chill: 0,
-            show_on_rc: 0
+            show_on_rc_move: 0
         };
     },
 
@@ -281,7 +281,7 @@ export default {
                 this.show_on_chill == 1;
             }
             if (this.type == 3) {
-                this.show_on_rc == 1;
+                this.show_on_rc_move == 1;
             }
         },
         tickQuerySelections(v) {
@@ -375,7 +375,7 @@ export default {
                 timestamp: moment.utc().format("YYYY-MM-DD HH:mm:ss"),
                 show_on_main: this.show_on_main,
                 show_on_chill: this.show_on_chill,
-                show_on_rc: this.show_on_rc
+                show_on_rc_move: this.show_on_rc_move
             };
 
             await axios({
@@ -429,7 +429,7 @@ export default {
                 status_update: moment.utc().format("YYYY-MM-DD HH:mm:ss"),
                 show_on_main: this.show_on_main,
                 show_on_chill: this.show_on_chill,
-                show_on_rc: this.show_on_rc
+                show_on_rc_move: this.show_on_rc_move
             };
 
             await axios({
