@@ -104,7 +104,7 @@ class RcFcUsersController extends Controller
 
         $log = Logging::Create(['station_id' => $id, 'user_id' => Auth::id(), 'text' => $text, 'logging_type_id' => 19]);
         $log = $log->id;
-        dd($log);
+        // dd($log);
         Helper::sheetlogs($log);
     }
 
