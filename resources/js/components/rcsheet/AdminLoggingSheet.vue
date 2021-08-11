@@ -2,7 +2,7 @@
     <div>
         <v-dialog
             v-model="overlay"
-            max-width="800px"
+            max-width="1200px"
             max-hight="1200px"
             z-index="0"
             @click:outside="close()"
@@ -17,18 +17,12 @@
                 >
             </template>
 
-            <v-card tile max-width="800px" min-height="200px">
+            <v-card tile min-height="200px">
                 <v-card-title
                     class="d-flex justify-space-between align-center "
                 >
                     <div>Logs for Nats Health</div>
-                    <v-card
-                        width="500"
-                        tile
-                        flat
-                        color="#121212"
-                        class="align-start"
-                    >
+                    <v-card tile flat color="#121212" class="align-start">
                         <v-text-field
                             v-model="search"
                             append-icon="mdi-magnify"

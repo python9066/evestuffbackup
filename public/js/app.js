@@ -12205,12 +12205,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -41632,7 +41626,7 @@ var render = function() {
         "v-dialog",
         {
           attrs: {
-            "max-width": "800px",
+            "max-width": "1200px",
             "max-hight": "1200px",
             "z-index": "0"
           },
@@ -41680,9 +41674,7 @@ var render = function() {
           _vm._v(" "),
           _c(
             "v-card",
-            {
-              attrs: { tile: "", "max-width": "800px", "min-height": "200px" }
-            },
+            { attrs: { tile: "", "min-height": "200px" } },
             [
               _c(
                 "v-card-title",
@@ -41694,12 +41686,7 @@ var render = function() {
                     "v-card",
                     {
                       staticClass: "align-start",
-                      attrs: {
-                        width: "500",
-                        tile: "",
-                        flat: "",
-                        color: "#121212"
-                      }
+                      attrs: { tile: "", flat: "", color: "#121212" }
                     },
                     [
                       _c("v-text-field", {
