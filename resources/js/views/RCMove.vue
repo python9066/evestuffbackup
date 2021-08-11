@@ -128,7 +128,6 @@
                 v-slot:[`item.alliance_ticker`]="{ item }"
                 class="d-inline-flex align-center"
             >
-                <v-avatar size="35"><img :src="item.url"/></v-avatar>
                 <span v-if="item.standing > 0" class=" blue--text pl-3"
                     >{{ item.alliance_ticker }}
                 </span>
