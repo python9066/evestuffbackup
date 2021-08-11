@@ -25913,49 +25913,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -25984,8 +25941,6 @@ function sleep(ms) {
       loadingr: true,
       name: "Timer",
       poll: null,
-      expanded: [],
-      expanded_id: 0,
       search: "",
       statusflag: 2,
       snack: false,
@@ -26167,15 +26122,6 @@ function sleep(ms) {
         return true;
       } else {
         return false;
-      }
-    },
-    checkexpanded: function checkexpanded(notifications) {
-      // console.log(notifications);
-      if (notifications.status_id != 5) {
-        if (notifications.id == this.expanded_id) {
-          this.expanded = [];
-          this.expanded_id = 0;
-        }
       }
     },
     countDownStartTime: function countDownStartTime(item) {
@@ -56210,7 +56156,6 @@ var render = function() {
             headers: _vm.headers,
             items: _vm.filteredItems,
             "item-class": _vm.itemRowBackground,
-            expanded: _vm.expanded,
             "item-key": "id",
             loading: _vm.loadingt,
             "items-per-page": 25,
@@ -56221,9 +56166,6 @@ var render = function() {
             "multi-sort": ""
           },
           on: {
-            "update:expanded": function($event) {
-              _vm.expanded = $event
-            },
             "update:sortBy": function($event) {
               _vm.sortby = $event
             },
@@ -56239,51 +56181,6 @@ var render = function() {
           },
           scopedSlots: _vm._u(
             [
-              {
-                key: "expanded-item",
-                fn: function(ref) {
-                  var headers = ref.headers
-                  var item = ref.item
-                  return [
-                    _c(
-                      "td",
-                      { attrs: { colspan: headers.length, align: "center" } },
-                      [
-                        _c(
-                          "v-card",
-                          [
-                            _c("v-card-title"),
-                            _vm._v(" "),
-                            _c(
-                              "v-btn",
-                              {
-                                attrs: {
-                                  text: "",
-                                  href: item.timer_image_link,
-                                  target: "_blank"
-                                }
-                              },
-                              [_vm._v("Open Image")]
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "v-card-text",
-                              [
-                                _c("v-img", {
-                                  attrs: { src: item.timer_image_link }
-                                })
-                              ],
-                              1
-                            )
-                          ],
-                          1
-                        )
-                      ],
-                      1
-                    )
-                  ]
-                }
-              },
               {
                 key: "item.count",
                 fn: function(ref) {
@@ -56527,56 +56424,10 @@ var render = function() {
                       attrs: { station: item }
                     }),
                     _vm._v(" "),
-                    _c(
-                      "div",
-                      [
-                        !_vm.expanded.includes(item)
-                          ? _c(
-                              "v-icon",
-                              _vm._g(
-                                _vm._b(
-                                  {
-                                    key: "adash" + item.id,
-                                    attrs: { color: "success" },
-                                    on: {
-                                      click: function($event) {
-                                        ;(_vm.expanded = [item]),
-                                          (_vm.expanded_id = item.id)
-                                      }
-                                    }
-                                  },
-                                  "v-icon",
-                                  _vm.attrs,
-                                  false
-                                ),
-                                _vm.on
-                              ),
-                              [
-                                _vm._v(
-                                  "\n                    far fa-images\n                "
-                                )
-                              ]
-                            )
-                          : _vm._e(),
-                        _vm._v(" "),
-                        _vm.expanded.includes(item)
-                          ? _c(
-                              "v-icon",
-                              {
-                                key: "adash_" + item.id,
-                                attrs: { icon: "", color: "error" },
-                                on: {
-                                  click: function($event) {
-                                    ;(_vm.expanded = []), (_vm.expanded_id = 0)
-                                  }
-                                }
-                              },
-                              [_vm._v("\n                    fas fa-minus")]
-                            )
-                          : _vm._e()
-                      ],
-                      1
-                    )
+                    _c("RcMoveImage", {
+                      staticClass: " mr-2",
+                      attrs: { station: item }
+                    })
                   ]
                 }
               }
@@ -56587,7 +56438,6 @@ var render = function() {
         },
         [
           _vm._v("\n        >\n\n        "),
-          _vm._v(" "),
           _c("template", { slot: "no-data" }, [
             _vm._v("\n            No timers to move over to RC\n        ")
           ])

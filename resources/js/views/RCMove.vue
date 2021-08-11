@@ -18,7 +18,6 @@
             :headers="headers"
             :items="filteredItems"
             :item-class="itemRowBackground"
-            :expanded.sync="expanded"
             item-key="id"
             :loading="loadingt"
             :items-per-page="25"
@@ -30,27 +29,6 @@
             class="elevation-1"
         >
             >
-
-            <template
-                v-slot:expanded-item="{ headers, item }"
-                class="align-center"
-                height="100%"
-            >
-                <td :colspan="headers.length" align="center">
-                    <v-card>
-                        <v-card-title> </v-card-title>
-                        <v-btn
-                            text
-                            :href="item.timer_image_link"
-                            target="_blank"
-                            >Open Image</v-btn
-                        >
-                        <v-card-text>
-                            <v-img :src="item.timer_image_link"></v-img>
-                        </v-card-text>
-                    </v-card>
-                </td>
-            </template>
 
             <template slot="no-data">
                 No timers to move over to RC
@@ -165,28 +143,7 @@
                     class=" mr-2"
                     :station="item"
                 ></RcStationMessage>
-                <!-- <RcMoveImage class=" mr-2" :station="item"></RcMoveImage> -->
-                <div>
-                    <v-icon
-                        @click="(expanded = [item]), (expanded_id = item.id)"
-                        v-if="!expanded.includes(item)"
-                        :key="'adash' + item.id"
-                        color="success"
-                        v-bind="attrs"
-                        v-on="on"
-                    >
-                        far fa-images
-                    </v-icon>
-                    <v-icon
-                        icon
-                        :key="'adash_' + item.id"
-                        @click="(expanded = []), (expanded_id = 0)"
-                        v-if="expanded.includes(item)"
-                        color="error"
-                    >
-                        fas fa-minus</v-icon
-                    >
-                </div>
+                <RcMoveImage class=" mr-2" :station="item"></RcMoveImage>
             </template>
         </v-data-table>
         <v-img src="https://imgur.com/a/o6ZYT5O"></v-img>
@@ -224,8 +181,6 @@ export default {
             loadingr: true,
             name: "Timer",
             poll: null,
-            expanded: [],
-            expanded_id: 0,
             search: "",
             statusflag: 2,
             snack: false,
@@ -395,16 +350,6 @@ export default {
                 return true;
             } else {
                 return false;
-            }
-        },
-
-        checkexpanded(notifications) {
-            // console.log(notifications);
-            if (notifications.status_id != 5) {
-                if (notifications.id == this.expanded_id) {
-                    this.expanded = [];
-                    this.expanded_id = 0;
-                }
             }
         },
 
