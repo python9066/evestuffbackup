@@ -1,85 +1,18 @@
 <template>
     <div>
-        <v-dialog
-            max-width="700px"
-            class="Imageview"
-            z-index="0"
-            id="Imageview"
-            v-model="showMoveImage"
-            @click:outside="close()"
-        >
+        <v-menu bottom offset-y>
             <template v-slot:activator="{ on, attrs }">
-                <v-badge
-                    color="green"
-                    overlap
-                    :content="messageCount"
-                    :value="showNumber"
-                >
-                    <v-icon
-                        color="blue"
-                        v-bind="attrs"
-                        v-on="on"
-                        @click="open()"
-                    >
-                        {{ icon }}
-                    </v-icon>
-                </v-badge>
+                <v-btn class="ma-2" v-bind="attrs" v-on="on">
+                    A Menu
+                </v-btn>
             </template>
-
-            <v-card
-                tile
-                max-width="700px"
-                min-height="200px"
-                max-height="700px"
-                class=" d-flex flex-column"
-            >
-                <v-card-title
-                    >Image for {{ station.station_name }}.
-                </v-card-title>
-                <v-card-text>
-                    <v-textarea
-                        height="400px"
-                        readonly
-                        no-resize
-                        v-model="station.notes"
-                        outlined
-                        placeholder="No Notes"
-                    ></v-textarea>
-                    <v-divider></v-divider>
-                    <div>
-                        <v-text-field
-                            v-model="editText"
-                            auto-grow
-                            filled
-                            autofocus
-                            label="Enter New Notes Here"
-                        ></v-text-field>
-                    </div>
-                </v-card-text>
-                <v-spacer></v-spacer
-                ><v-card-actions>
-                    <v-btn
-                        class="white--text"
-                        color="green"
-                        @click="updatetext()"
-                        :disabled="submitActive"
-                    >
-                        Submit
-                    </v-btn>
-
-                    <v-btn class="white--text" color="teal" @click="close()">
-                        Close
-                    </v-btn></v-card-actions
-                >
-            </v-card>
-
-            <!-- <showMoveImage
-                :nodeNoteItem="nodeNoteItem"
-                v-if="$can('super')"
-                @closeMessage="showMoveImage = false"
-            >
-            </showMoveImage> -->
-        </v-dialog>
+            <v-img
+                lazy-src="https://picsum.photos/id/11/10/6"
+                max-height="150"
+                max-width="250"
+                src="https://picsum.photos/id/11/500/300"
+            ></v-img>
+        </v-menu>
     </div>
 </template>
 

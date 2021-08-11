@@ -13005,73 +13005,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -43519,15 +43452,9 @@ var render = function() {
     "div",
     [
       _c(
-        "v-dialog",
+        "v-menu",
         {
-          staticClass: "Imageview",
-          attrs: { "max-width": "700px", "z-index": "0", id: "Imageview" },
-          on: {
-            "click:outside": function($event) {
-              return _vm.close()
-            }
-          },
+          attrs: { bottom: "", "offset-y": "" },
           scopedSlots: _vm._u([
             {
               key: "activator",
@@ -43536,163 +43463,28 @@ var render = function() {
                 var attrs = ref.attrs
                 return [
                   _c(
-                    "v-badge",
-                    {
-                      attrs: {
-                        color: "green",
-                        overlap: "",
-                        content: _vm.messageCount,
-                        value: _vm.showNumber
-                      }
-                    },
-                    [
-                      _c(
-                        "v-icon",
-                        _vm._g(
-                          _vm._b(
-                            {
-                              attrs: { color: "blue" },
-                              on: {
-                                click: function($event) {
-                                  return _vm.open()
-                                }
-                              }
-                            },
-                            "v-icon",
-                            attrs,
-                            false
-                          ),
-                          on
-                        ),
-                        [
-                          _vm._v(
-                            "\n                    " +
-                              _vm._s(_vm.icon) +
-                              "\n                "
-                          )
-                        ]
-                      )
-                    ],
-                    1
+                    "v-btn",
+                    _vm._g(
+                      _vm._b({ staticClass: "ma-2" }, "v-btn", attrs, false),
+                      on
+                    ),
+                    [_vm._v("\n                A Menu\n            ")]
                   )
                 ]
               }
             }
-          ]),
-          model: {
-            value: _vm.showMoveImage,
-            callback: function($$v) {
-              _vm.showMoveImage = $$v
-            },
-            expression: "showMoveImage"
-          }
+          ])
         },
         [
           _vm._v(" "),
-          _c(
-            "v-card",
-            {
-              staticClass: " d-flex flex-column",
-              attrs: {
-                tile: "",
-                "max-width": "700px",
-                "min-height": "200px",
-                "max-height": "700px"
-              }
-            },
-            [
-              _c("v-card-title", [
-                _vm._v(
-                  "Image for " +
-                    _vm._s(_vm.station.station_name) +
-                    ".\n            "
-                )
-              ]),
-              _vm._v(" "),
-              _c(
-                "v-card-text",
-                [
-                  _c("v-textarea", {
-                    attrs: {
-                      height: "400px",
-                      readonly: "",
-                      "no-resize": "",
-                      outlined: "",
-                      placeholder: "No Notes"
-                    },
-                    model: {
-                      value: _vm.station.notes,
-                      callback: function($$v) {
-                        _vm.$set(_vm.station, "notes", $$v)
-                      },
-                      expression: "station.notes"
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c("v-divider"),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    [
-                      _c("v-text-field", {
-                        attrs: {
-                          "auto-grow": "",
-                          filled: "",
-                          autofocus: "",
-                          label: "Enter New Notes Here"
-                        },
-                        model: {
-                          value: _vm.editText,
-                          callback: function($$v) {
-                            _vm.editText = $$v
-                          },
-                          expression: "editText"
-                        }
-                      })
-                    ],
-                    1
-                  )
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c("v-spacer"),
-              _c(
-                "v-card-actions",
-                [
-                  _c(
-                    "v-btn",
-                    {
-                      staticClass: "white--text",
-                      attrs: { color: "green", disabled: _vm.submitActive },
-                      on: {
-                        click: function($event) {
-                          return _vm.updatetext()
-                        }
-                      }
-                    },
-                    [_vm._v("\n                    Submit\n                ")]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "v-btn",
-                    {
-                      staticClass: "white--text",
-                      attrs: { color: "teal" },
-                      on: {
-                        click: function($event) {
-                          return _vm.close()
-                        }
-                      }
-                    },
-                    [_vm._v("\n                    Close\n                ")]
-                  )
-                ],
-                1
-              )
-            ],
-            1
-          )
+          _c("v-img", {
+            attrs: {
+              "lazy-src": "https://picsum.photos/id/11/10/6",
+              "max-height": "150",
+              "max-width": "250",
+              src: "https://picsum.photos/id/11/500/300"
+            }
+          })
         ],
         1
       )
