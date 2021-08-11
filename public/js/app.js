@@ -15777,6 +15777,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -46340,7 +46341,7 @@ var render = function() {
                                 "div",
                                 [
                                   _c("h5", [
-                                    _c("strong", [_vm._v("Im age Li nk")])
+                                    _c("strong", [_vm._v("Image Link")])
                                   ]),
                                   _vm._v(" "),
                                   _c("v-img", {
@@ -46545,6 +46546,10 @@ var render = function() {
                                   _c("h5", [
                                     _c("strong", [_vm._v("Image Link")])
                                   ]),
+                                  _vm._v(" "),
+                                  _c("v-img", {
+                                    attrs: { src: "https://imgur.com/xEHu3gI" }
+                                  }),
                                   _vm._v(" "),
                                   _c("v-text-field", {
                                     attrs: {
