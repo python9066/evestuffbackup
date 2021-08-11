@@ -25919,6 +25919,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 
@@ -56431,15 +56432,17 @@ var render = function() {
                     }),
                     _vm._v(" "),
                     _c(
-                      "v-icon",
+                      "v-btn",
                       {
                         attrs: {
                           href: item.timer_image_link,
                           target: "_blank",
+                          icon: "",
                           color: "green"
                         }
                       },
-                      [_vm._v("\n                far fa-images\n            ")]
+                      [_c("v-icon", [_vm._v(" far fa-images")])],
+                      1
                     )
                   ]
                 }
