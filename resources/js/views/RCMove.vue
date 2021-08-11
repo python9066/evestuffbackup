@@ -144,6 +144,8 @@
                     :station="item"
                 ></RcStationMessage>
                 <RcMoveImage class=" mr-2" :station="item"></RcMoveImage>
+                <v-img :src="item.timer_image_link"></v-img>
+                <v-img src="https://imgur.com/a/o6ZYT5O"></v-img>
             </template>
         </v-data-table>
         <v-snackbar v-model="snack" :timeout="3000" :color="snackColor">

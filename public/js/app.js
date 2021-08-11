@@ -25912,6 +25912,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
 
 
 
@@ -56426,6 +56428,12 @@ var render = function() {
                     _c("RcMoveImage", {
                       staticClass: " mr-2",
                       attrs: { station: item }
+                    }),
+                    _vm._v(" "),
+                    _c("v-img", { attrs: { src: item.timer_image_link } }),
+                    _vm._v(" "),
+                    _c("v-img", {
+                      attrs: { src: "https://imgur.com/a/o6ZYT5O" }
                     })
                   ]
                 }
