@@ -98,9 +98,12 @@ export default {
     },
 
     async created() {
-        Echo.private("rcsheet").listen("RcSheetMessageUpdate", e => {
+        Echo.private("rcmovesheet").listen("RcMoveMessageUpdate", e => {
             if (e.flag.id == this.station.id) {
-                this.$store.dispatch("updateRcStation", e.flag.message);
+                this.$store.dispatch(
+                    "updateStationNotification",
+                    e.flag.message
+                );
                 this.showNumber = true;
                 if (this.showStationNotes == false) {
                     this.messageCount = this.messageCount + 1;
@@ -142,7 +145,7 @@ export default {
             let request = {
                 notes: note
             };
-            this.$store.dispatch("updateRcStation", this.station);
+            this.$store.dispatch("updateStationNotification", this.station);
             axios({
                 method: "put",
                 url: "/api/sheetmessage/" + this.station.id,
@@ -176,7 +179,7 @@ export default {
     },
 
     beforeDestroy() {
-        Echo.leave("stationmessage." + this.station.id);
+        Echo.leave("rcmovesheet");
     }
 };
 </script>

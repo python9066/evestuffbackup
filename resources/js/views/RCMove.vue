@@ -233,19 +233,33 @@ export default {
         };
     },
 
-    async created() {
-        if (this.$can("edit_chill_timers")) {
-            Echo.private("stationinfo")
-                .listen("StationInfoGet", e => {
-                    this.$store.dispatch("loadStationInfo");
-                })
-                .listen("StationCoreUpdate", e => {
-                    console.log(e);
-                    this.$store.dispatch("updateCores", e.flag.message);
-                });
+    // Echo.private("rcsheet").listen("RcSheetUpdate", e => {
+    //         if (e.flag.message != null) {
+    //             this.$store.dispatch("updateRcStation", e.flag.message);
+    //         }
 
-            await this.$store.dispatch("loadStationInfo");
-        }
+    //         if (e.flag.flag == 2) {
+    //             this.freshUpdate();
+    //         }
+
+    //         if (e.flag.flag == 3) {
+    //             this.fcupdate();
+    //         }
+
+    //         if (e.flag.flag == 4) {
+    //             this.sheetupdate();
+    //         }
+    //     });
+
+    async created() {
+        Echo.private("rcmovesheet").listen("RcMoveUpdate", e => {
+            if (e.flag.message != null) {
+                this.$store.dispatch(
+                    "updateStationNotification",
+                    e.flag.message
+                );
+            }
+        });
 
         this.$store.dispatch("getStationData").then(() => {
             this.loadingt = false;
@@ -444,8 +458,7 @@ export default {
         }
     },
     beforeDestroy() {
-        Echo.leave("notes");
-        Echo.leave("stationinfo");
+        Echo.leave("rcmovesheet");
     }
 };
 </script>

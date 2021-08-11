@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Broadcast;
 
-/*
+/*44444444444444444444444444444444444444444444
 |--------------------------------------------------------------------------
 | Broadcast Channels
 |--------------------------------------------------------------------------
@@ -110,7 +110,9 @@ Broadcast::channel('rcsheetadminlogs', function () {
     return Auth::check();
 });
 
-
+Broadcast::channel('rcmovesheet', function () {
+    return Auth::check();
+});
 
 
 

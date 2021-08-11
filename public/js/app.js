@@ -13596,9 +13596,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              Echo["private"]("rcsheet").listen("RcSheetMessageUpdate", function (e) {
+              Echo["private"]("rcmovesheet").listen("RcMoveMessageUpdate", function (e) {
                 if (e.flag.id == _this.station.id) {
-                  _this.$store.dispatch("updateRcStation", e.flag.message);
+                  _this.$store.dispatch("updateStationNotification", e.flag.message);
 
                   _this.showNumber = true;
 
@@ -13637,7 +13637,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var request = {
         notes: note
       };
-      this.$store.dispatch("updateRcStation", this.station);
+      this.$store.dispatch("updateStationNotification", this.station);
       axios({
         method: "put",
         url: "/api/sheetmessage/" + this.station.id,
@@ -13668,7 +13668,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     }
   },
   beforeDestroy: function beforeDestroy() {
-    Echo.leave("stationmessage." + this.station.id);
+    Echo.leave("rcmovesheet");
   }
 });
 
@@ -26181,6 +26181,20 @@ function sleep(ms) {
       }]
     };
   },
+  // Echo.private("rcsheet").listen("RcSheetUpdate", e => {
+  //         if (e.flag.message != null) {
+  //             this.$store.dispatch("updateRcStation", e.flag.message);
+  //         }
+  //         if (e.flag.flag == 2) {
+  //             this.freshUpdate();
+  //         }
+  //         if (e.flag.flag == 3) {
+  //             this.fcupdate();
+  //         }
+  //         if (e.flag.flag == 4) {
+  //             this.sheetupdate();
+  //         }
+  //     });
   created: function created() {
     var _this = this;
 
@@ -26189,29 +26203,19 @@ function sleep(ms) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              if (!_this.$can("edit_chill_timers")) {
-                _context.next = 4;
-                break;
-              }
-
-              Echo["private"]("stationinfo").listen("StationInfoGet", function (e) {
-                _this.$store.dispatch("loadStationInfo");
-              }).listen("StationCoreUpdate", function (e) {
-                console.log(e);
-
-                _this.$store.dispatch("updateCores", e.flag.message);
+              Echo["private"]("rcmovesheet").listen("RcMoveUpdate", function (e) {
+                if (e.flag.message != null) {
+                  _this.$store.dispatch("updateStationNotification", e.flag.message);
+                }
               });
-              _context.next = 4;
-              return _this.$store.dispatch("loadStationInfo");
 
-            case 4:
               _this.$store.dispatch("getStationData").then(function () {
                 _this.loadingt = false;
                 _this.loadingf = false;
                 _this.loadingr = false;
               });
 
-            case 5:
+            case 2:
             case "end":
               return _context.stop();
           }
@@ -26421,8 +26425,7 @@ function sleep(ms) {
     }
   }),
   beforeDestroy: function beforeDestroy() {
-    Echo.leave("notes");
-    Echo.leave("stationinfo");
+    Echo.leave("rcmovesheet");
   }
 });
 

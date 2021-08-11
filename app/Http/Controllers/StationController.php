@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Events\ChillStationCoreUpdate;
+use App\Events\RcMoveUpdate;
 use App\Events\StationAttackMessageUpdate;
 use App\Events\StationCoreUpdate;
 use App\Events\StationMessageUpdate;
@@ -260,6 +261,7 @@ class StationController extends Controller
             'message' => $message
         ]);
         broadcast(new StationNotificationNew($flag));
+        broadcast(new RcMoveUpdate($flag));
         $text = Auth::user()->name . " Added " . $request->name . " At " . now();
         $logNew = Logging::Create(['structure_id' => $message->id, 'user_id' => Auth::id(), 'logging_type_id' => 17, 'text' => $text]);
     }
@@ -306,6 +308,11 @@ class StationController extends Controller
     public function rcMoveDone($id)
     {
         Station::where('id', $id)->update(['show_on_rc_move' => 0]);
+        $message = StationRecords::where('id', $id)->first();
+        $flag = collect([
+            'message' => $message
+        ]);
+        broadcast(new RcMoveUpdate($flag));
     }
 
     /**
@@ -339,6 +346,7 @@ class StationController extends Controller
             'message' => $message
         ]);
         broadcast(new StationNotificationUpdate($flag));
+        broadcast(new RcMoveUpdate($flag));
         $text = Auth::user()->name . " Changed the status from " . $oldStatusName . " to " . $newStatusName . ' at ' . now();
         $logNew = Logging::Create(['structure_id' => $message->id, 'user_id' => Auth::id(), 'logging_type_id' => 18, 'text' => $text]);
     }
