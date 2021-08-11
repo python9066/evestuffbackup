@@ -46549,7 +46549,7 @@ var render = function() {
                                   ]),
                                   _vm._v(" "),
                                   _c("v-img", {
-                                    attrs: { src: "https://imgur.com/xEHu3gI" }
+                                    attrs: { src: "../image/info.png" }
                                   }),
                                   _vm._v(" "),
                                   _c("v-text-field", {
@@ -56732,8 +56732,6 @@ var render = function() {
         ],
         2
       ),
-      _vm._v(" "),
-      _c("v-img", { attrs: { src: "../image/info.png" } }),
       _vm._v(" "),
       _c(
         "v-snackbar",
