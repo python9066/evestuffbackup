@@ -3,6 +3,7 @@
         <div class=" d-flex align-items-center">
             <v-card-title>Structure Notifications</v-card-title>
             <ChillAddStation v-if="$can('edit_chill_timers')"></ChillAddStation>
+            <AddStation v-if="$can('add_timer')" :type="2"></AddStation>
 
             <v-text-field
                 class=" ml-5"

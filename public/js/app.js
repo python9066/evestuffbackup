@@ -6028,6 +6028,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 
@@ -34497,6 +34498,10 @@ var render = function() {
           _c("v-card-title", [_vm._v("Structure Notifications")]),
           _vm._v(" "),
           _vm.$can("edit_chill_timers") ? _c("ChillAddStation") : _vm._e(),
+          _vm._v(" "),
+          _vm.$can("add_timer")
+            ? _c("AddStation", { attrs: { type: 2 } })
+            : _vm._e(),
           _vm._v(" "),
           _c("v-text-field", {
             staticClass: " ml-5",
