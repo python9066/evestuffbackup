@@ -25734,10 +25734,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
 
 
 
@@ -25838,9 +25834,8 @@ function sleep(ms) {
         align: "center",
         width: "10%"
       }, {
-        text: "Gunner/Info",
+        text: "",
         value: "actions",
-        width: "10%",
         align: "start"
       }]
     };
@@ -55981,12 +55976,7 @@ var render = function() {
                                       true
                                     )
                                   })
-                                : _vm._e(),
-                              _vm._v(" "),
-                              _c("RcStationMessage", {
-                                staticClass: " mr-2",
-                                attrs: { station: item }
-                              })
+                                : _vm._e()
                             ],
                             1
                           )
@@ -56037,15 +56027,18 @@ var render = function() {
                   ]
                 }
               },
-              _vm.$can("edit_chill_timers")
-                ? {
-                    key: "item.actions",
-                    fn: function(ref) {
-                      var item = ref.item
-                      return undefined
-                    }
-                  }
-                : null
+              {
+                key: "item.actions",
+                fn: function(ref) {
+                  var item = ref.item
+                  return [
+                    _c("RcStationMessage", {
+                      staticClass: " mr-2",
+                      attrs: { station: item }
+                    })
+                  ]
+                }
+              }
             ],
             null,
             true

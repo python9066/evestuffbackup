@@ -113,11 +113,6 @@
                                     >
                                 </template>
                             </CountDowntimer>
-
-                            <RcStationMessage
-                                class=" mr-2"
-                                :station="item"
-                            ></RcStationMessage>
                         </div>
                     </template>
                 </div>
@@ -143,10 +138,11 @@
                 <span v-else class="pl-3">{{ item.alliance_ticker }}</span>
             </template>
 
-            <template
-                v-slot:[`item.actions`]="{ item }"
-                v-if="$can('edit_chill_timers')"
-            >
+            <template v-slot:[`item.actions`]="{ item }">
+                <RcStationMessage
+                    class=" mr-2"
+                    :station="item"
+                ></RcStationMessage>
             </template>
         </v-data-table>
         <v-snackbar v-model="snack" :timeout="3000" :color="snackColor">
@@ -254,9 +250,8 @@ export default {
                     width: "10%"
                 },
                 {
-                    text: "Gunner/Info",
+                    text: "",
                     value: "actions",
-                    width: "10%",
                     align: "start"
                 }
             ]
