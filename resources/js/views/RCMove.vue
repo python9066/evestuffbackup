@@ -124,8 +124,6 @@
                 </div>
             </template>
         </v-data-table>
-
-        <v-img src="https://i.imgur.com/1ASFxRr.gif"></v-img>
         <v-snackbar v-model="snack" :timeout="3000" :color="snackColor">
             {{ snackText }}
 
