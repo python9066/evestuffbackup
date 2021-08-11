@@ -55029,7 +55029,7 @@ var render = function() {
               _c("v-spacer"),
               _vm._v(" "),
               _vm.$can("super")
-                ? _c("AdminLoggingSheet", { staticClass: " pt-4" })
+                ? _c("AdminLoggingSheet", { staticClass: " pt-2" })
                 : _vm._e(),
               _vm._v(" "),
               _c(

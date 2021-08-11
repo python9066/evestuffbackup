@@ -20,7 +20,7 @@
                 </v-card>
 
                 <v-spacer></v-spacer>
-                <AdminLoggingSheet v-if="$can('super')" class=" pt-4">
+                <AdminLoggingSheet v-if="$can('super')" class=" pt-2">
                 </AdminLoggingSheet>
                 <v-card right-align class="">
                     <v-switch
