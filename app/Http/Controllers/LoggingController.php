@@ -16,9 +16,15 @@ use App\Models\User;
 use PHPUnit\TextUI\Help;
 use Spatie\Permission\Models\Role;
 use utils\Helper\Helper;
+use Spatie\Permission\Traits\HasPermissions;
+use Spatie\Permission\Traits\HasRoles;
+use Illuminate\Support\Facades\Auth;
+
 
 class LoggingController extends Controller
 {
+
+    use HasPermissions;
     /**
      * Display a listing of the resource.
      *
@@ -84,26 +90,31 @@ class LoggingController extends Controller
     public function rcSheetLogging()
     {
         // dd($campid);
-        $data = [];
-        $logs = Logging::where('logging_type_id', '>', 18)->where('logging_type_id', '<', 25)->get();
-        foreach ($logs as $log) {
-            $timne = Helper::fixtime($log['created_at']);
-            $data1 = null;
-            $data1 = [
-                'id' => $log['id'],
-                'user_id' => $log['user_id'],
-                'user_name' => $log->user()->value('name'),
-                'logging_type_id' => $log['logging_type_id'],
-                'logging_type_name' => LoggingType::where('id', $log['logging_type_id'])->value('name'),
-                'station_id' => $log['station_id'],
-                'station_name' => Station::where('id', $log['station_id'])->value('name'),
-                'text' => $log['text'],
-                'created_at' => $timne
-            ];
-            array_push($data, $data1);
-        }
+        $check = Auth::user();
+        if ($check->hasPermissionTo('view_admin_logs')) {
+            $data = [];
+            $logs = Logging::where('logging_type_id', '>', 18)->where('logging_type_id', '<', 25)->get();
+            foreach ($logs as $log) {
+                $timne = Helper::fixtime($log['created_at']);
+                $data1 = null;
+                $data1 = [
+                    'id' => $log['id'],
+                    'user_id' => $log['user_id'],
+                    'user_name' => $log->user()->value('name'),
+                    'logging_type_id' => $log['logging_type_id'],
+                    'logging_type_name' => LoggingType::where('id', $log['logging_type_id'])->value('name'),
+                    'station_id' => $log['station_id'],
+                    'station_name' => Station::where('id', $log['station_id'])->value('name'),
+                    'text' => $log['text'],
+                    'created_at' => $timne
+                ];
+                array_push($data, $data1);
+            }
 
-        return ["logs" => $data];
+            return ["logs" => $data];
+        } else {
+            return ["logs" => null];
+        }
     }
 
     public function logAdmin()

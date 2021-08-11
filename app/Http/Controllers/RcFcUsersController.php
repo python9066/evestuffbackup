@@ -10,6 +10,7 @@ use App\Models\Station;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use utils\Helper\Helper;
 
 class RcFcUsersController extends Controller
 {
@@ -100,7 +101,9 @@ class RcFcUsersController extends Controller
 
         $text = Auth::user()->name . " Added" . $fcname . " to FC for " . $message->name;
 
-        Logging::Create(['station_id' => $id, 'user_id' => Auth::id(), 'text' => $text, 'logging_type_id' => 19]);
+        $log = Logging::Create(['station_id' => $id, 'user_id' => Auth::id(), 'text' => $text, 'logging_type_id' => 19]);
+        $log = $log->id;
+        Helper::sheetlogs($log);
     }
 
     public function addFCadd(Request $request, $id)
@@ -116,7 +119,9 @@ class RcFcUsersController extends Controller
         broadcast(new RcSheetUpdate($flag));
 
         $text = Auth::user()->name . " Added" . $userName . " as FC for " . $message->name;
-        Logging::Create(['station_id' => $id, 'user_id' => Auth::id(), 'text' => $text, 'logging_type_id' => 19]);
+        $log = Logging::Create(['station_id' => $id, 'user_id' => Auth::id(), 'text' => $text, 'logging_type_id' => 19]);
+        $log = $log->id;
+        Helper::sheetlogs($log);
     }
 
     public function removeFCtoStation($id)
@@ -131,7 +136,9 @@ class RcFcUsersController extends Controller
         ]);
         broadcast(new RcSheetUpdate($flag));
         $text = Auth::user()->name . " Removed " . $userName . " as FC for " . $message->name;
-        Logging::Create(['station_id' => $id, 'user_id' => Auth::id(), 'text' => $text, 'logging_type_id' => 20]);
+        $log = Logging::Create(['station_id' => $id, 'user_id' => Auth::id(), 'text' => $text, 'logging_type_id' => 20]);
+        $log = $log->id;
+        Helper::sheetlogs($log);
     }
 
     public function removeFC($id)

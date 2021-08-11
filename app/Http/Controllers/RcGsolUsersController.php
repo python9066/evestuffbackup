@@ -10,6 +10,7 @@ use App\Models\Station;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use utils\Helper\Helper;
 
 class RcGsolUsersController extends Controller
 {
@@ -46,7 +47,9 @@ class RcGsolUsersController extends Controller
         broadcast(new RcSheetUpdate($flag));
 
         $text = Auth::user()->name . " Added to Gsol for the " . $message->name . " station ";
-        Logging::Create(['station_id' => $id, 'user_id' => Auth::id(), 'text' => $text, 'logging_type_id' => 23]);
+        $log = Logging::Create(['station_id' => $id, 'user_id' => Auth::id(), 'text' => $text, 'logging_type_id' => 23]);
+        $log = $log->id;
+        Helper::sheetlogs($log);
     }
 
     public function removeGsoltoStation($id)
@@ -60,7 +63,9 @@ class RcGsolUsersController extends Controller
         ]);
         broadcast(new RcSheetUpdate($flag));
         $text = Auth::user()->name . " Removed " . $gsolName . " from Gsol for the " . $message->name . " station ";
-        Logging::Create(['station_id' => $id, 'user_id' => Auth::id(), 'text' => $text, 'logging_type_id' => 24]);
+        $log = Logging::Create(['station_id' => $id, 'user_id' => Auth::id(), 'text' => $text, 'logging_type_id' => 24]);
+        $log = $log->id;
+        Helper::sheetlogs($log);
     }
 
     /**
