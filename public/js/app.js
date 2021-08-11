@@ -29372,7 +29372,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n#Imageview .v-dialog {\n    position: absolute;\n    bottom: 0;\n    right: 0;\n}\n", ""]);
+exports.push([module.i, "\n.v-dialog #Imageview {\n    position: absolute;\n    bottom: 0;\n    right: 0;\n}\n", ""]);
 
 // exports
 
