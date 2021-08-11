@@ -2,7 +2,7 @@
 
 namespace utils\Helper;
 
-use App\Events\addLoggingRcSheet;
+use App\Events\RcSheetAddLogging;
 use App\Models\Auth;
 use App\Models\Campaign;
 use App\Models\Client;
@@ -253,6 +253,6 @@ class Helper
         $flag = collect([
             'message' => $message,
         ]);
-        broadcast(new addLoggingRcSheet($flag));
+        broadcast(new RcSheetAddLogging($flag));
     }
 }
