@@ -25996,6 +25996,10 @@ function sleep(ms) {
         value: "system_name",
         width: "8%"
       }, {
+        text: "Corp",
+        value: "corp_ticker",
+        width: "10%"
+      }, {
         text: "Alliance",
         value: "alliance_ticker",
         width: "10%"
