@@ -25920,6 +25920,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
 
 
 
@@ -56426,22 +56428,29 @@ var render = function() {
                 fn: function(ref) {
                   var item = ref.item
                   return [
-                    _c("RcStationMessage", {
-                      staticClass: " mr-2",
-                      attrs: { station: item }
-                    }),
-                    _vm._v(" "),
                     _c(
-                      "v-btn",
-                      {
-                        attrs: {
-                          href: item.timer_image_link,
-                          target: "_blank",
-                          icon: "",
-                          color: "green"
-                        }
-                      },
-                      [_c("v-icon", [_vm._v(" far fa-images")])],
+                      "div",
+                      { staticClass: " d-inline-flex" },
+                      [
+                        _c("RcStationMessage", {
+                          staticClass: " mr-2",
+                          attrs: { station: item }
+                        }),
+                        _vm._v(" "),
+                        _c(
+                          "v-btn",
+                          {
+                            attrs: {
+                              href: item.timer_image_link,
+                              target: "_blank",
+                              icon: "",
+                              color: "green"
+                            }
+                          },
+                          [_c("v-icon", [_vm._v(" far fa-images")])],
+                          1
+                        )
+                      ],
                       1
                     )
                   ]

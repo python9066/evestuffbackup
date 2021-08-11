@@ -139,18 +139,20 @@
             </template>
 
             <template v-slot:[`item.actions`]="{ item }">
-                <RcStationMessage
-                    class=" mr-2"
-                    :station="item"
-                ></RcStationMessage>
-                <v-btn
-                    :href="item.timer_image_link"
-                    target="_blank"
-                    icon
-                    color="green"
-                >
-                    <v-icon> far fa-images</v-icon>
-                </v-btn>
+                <div class=" d-inline-flex">
+                    <RcStationMessage
+                        class=" mr-2"
+                        :station="item"
+                    ></RcStationMessage>
+                    <v-btn
+                        :href="item.timer_image_link"
+                        target="_blank"
+                        icon
+                        color="green"
+                    >
+                        <v-icon> far fa-images</v-icon>
+                    </v-btn>
+                </div>
             </template>
         </v-data-table>
         <v-img src="https://imgur.com/a/o6ZYT5O"></v-img>
