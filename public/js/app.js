@@ -13071,6 +13071,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -29370,7 +29372,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.custom-textarea v-dialog {\n    position: absolute;\n    bottom: 0;\n    right: 0;\n}\n", ""]);
+exports.push([module.i, "\n.v-dialog.Imageview {\n    position: absolute;\n    bottom: 0;\n    right: 0;\n}\n", ""]);
 
 // exports
 
@@ -43521,7 +43523,12 @@ var render = function() {
         "v-dialog",
         {
           staticClass: "custom-textarea",
-          attrs: { "max-width": "700px", "z-index": "5" },
+          attrs: {
+            "max-width": "700px",
+            "z-index": "5",
+            id: "Imageview",
+            name: "Imageview"
+          },
           on: {
             "click:outside": function($event) {
               return _vm.close()

@@ -4,6 +4,8 @@
             max-width="700px"
             class="custom-textarea"
             z-index="5"
+            id="Imageview"
+            name="Imageview"
             v-model="showMoveImage"
             @click:outside="close()"
         >
@@ -183,7 +185,7 @@ export default {
 </script>
 
 <style>
-.custom-textarea v-dialog {
+.v-dialog.Imageview {
     position: absolute;
     bottom: 0;
     right: 0;
