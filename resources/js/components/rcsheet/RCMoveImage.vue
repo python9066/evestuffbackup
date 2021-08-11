@@ -2,7 +2,6 @@
     <div>
         <v-dialog
             max-width="700px"
-            right
             z-index="0"
             v-model="showStationNotes"
             @click:outside="close()"
