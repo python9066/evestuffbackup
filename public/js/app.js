@@ -46349,7 +46349,7 @@ var render = function() {
                                   _vm._v(" "),
                                   _c("v-img", {
                                     attrs: {
-                                      src: "https://i.imgur.com/xEHu3gI.png",
+                                      src: "https://imgur.com/xEHu3gI",
                                       "max-width": "650px"
                                     }
                                   }),
