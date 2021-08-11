@@ -41,7 +41,7 @@
                         item-key="id"
                         height="500px"
                         :sort-by="['created_at']"
-                        :sort-desc="[false, true]"
+                        :sort-desc="[true, false]"
                         fixed-header
                         :items-per-page="50"
                         :footer-props="{
