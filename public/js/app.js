@@ -26096,7 +26096,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
 
 
 
@@ -56713,8 +56712,8 @@ var render = function() {
         ],
         2
       ),
-      _vm._v("\n\n    Here\n    "),
-      _c("v-img", { attrs: { src: "https://i.imgur.com/1ASFxRr.mp4" } }),
+      _vm._v(" "),
+      _c("v-img", { attrs: { src: "https://i.imgur.com/1ASFxRr.gif" } }),
       _vm._v(" "),
       _c(
         "v-snackbar",
