@@ -15769,7 +15769,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           return true;
         }
       } else {
-        if (this.structSelect != null && this.sysSelect != null && this.tickSelect != null && this.refTime.length() == 0 && this.refTime != null) {
+        if (console.log(this.refTime), this.structSelect != null && this.sysSelect != null && this.tickSelect != null && this.refType != null && this.refTime != null) {
           return false;
         } else {
           return true;
