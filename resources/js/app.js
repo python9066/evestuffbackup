@@ -104,7 +104,7 @@ Vue.component('AddAllianceTicker', require('./components/rcsheet/AddAllianceTick
 Vue.component('RcStationMessage', require('./components/rcsheet/RcStationMessage.vue').default);
 Vue.component('AdminLoggingSheet', require('./components/rcsheet/AdminLoggingSheet.vue').default);
 Vue.component('RcMoveImage', require('./components/rcsheet/RcMoveImage.vue').default);
-
+Vue.component('RcMoveMessage', require('./components/rcsheet/RcMoveMessage.vue').default);
 
 
 
