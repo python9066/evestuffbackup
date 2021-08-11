@@ -43,7 +43,7 @@ class RcReconUsersController extends Controller
         ]);
         broadcast(new RcSheetUpdate($flag));
 
-        $text = Auth::user()->name . " Added as Cyno for the" . $message->name;
+        $text = Auth::user()->name . " Added as Cyno for the " . $message->name;
 
         $log = Logging::Create(['station_id' => $id, 'user_id' => Auth::id(), 'text' => $text, 'logging_type_id' => 21]);
         $log = $log->id;

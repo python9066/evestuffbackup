@@ -100,7 +100,7 @@ class RcFcUsersController extends Controller
         ]);
         broadcast(new RcSheetUpdate($flag));
 
-        $text = Auth::user()->name . " Added" . $fcname . " to FC for " . $message->name;
+        $text = Auth::user()->name . " Added " . $fcname . " to FC for " . $message->name;
 
         $log = Logging::Create(['station_id' => $id, 'user_id' => Auth::id(), 'text' => $text, 'logging_type_id' => 19]);
         $log = $log->id;
