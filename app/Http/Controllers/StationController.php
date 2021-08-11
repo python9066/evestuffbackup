@@ -115,6 +115,8 @@ class StationController extends Controller
     public static function reconPullbyname(Request $request)
     {
 
+        $name = preg_replace("/\([^\)]+\)(\R|$)/", "$1", $request->stationName);
+        dd($name);
         $url = "https://recon.gnf.lt/api/structure/" . $request->stationName;
 
         $client = new GuzzleHttpClient();
