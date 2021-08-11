@@ -15763,13 +15763,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
     showSubmit: function showSubmit() {
       if (this.type == 3) {
-        if (this.structSelect != null && this.sysSelect != null && this.tickSelect != null && this.refType != null && this.refTime != null && this.imageLink != null) {
+        if (this.structSelect != null && this.sysSelect != null && this.tickSelect != null && this.refType != null && this.refTime != "" && this.imageLink != null) {
           return false;
         } else {
           return true;
         }
       } else {
-        if (console.log(this.refTime), this.structSelect != null && this.sysSelect != null && this.tickSelect != null && this.refType != null && this.refTime != null) {
+        if (console.log(this.refTime), this.structSelect != null && this.sysSelect != null && this.tickSelect != null && this.refType != null && this.refTime != "") {
           return false;
         } else {
           return true;
@@ -15778,13 +15778,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
     showSubmit3: function showSubmit3() {
       if (this.type == 3) {
-        if (this.refType != null && this.refTime != null && this.imageLink != null) {
+        if (this.refType != null && this.refTime != "" && this.imageLink != null) {
           return false;
         } else {
           return true;
         }
       } else {
-        if (this.refType != null && this.refTime != null) {
+        if (this.refType != null && this.refTime != "") {
           return false;
         } else {
           return true;

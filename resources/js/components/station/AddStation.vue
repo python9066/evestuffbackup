@@ -542,7 +542,7 @@ export default {
                     this.sysSelect != null &&
                     this.tickSelect != null &&
                     this.refType != null &&
-                    this.refTime != null &&
+                    this.refTime != "" &&
                     this.imageLink != null
                 ) {
                     return false;
@@ -556,7 +556,7 @@ export default {
                         this.sysSelect != null &&
                         this.tickSelect != null &&
                         this.refType != null &&
-                        this.refTime != null)
+                        this.refTime != "")
                 ) {
                     return false;
                 } else {
@@ -568,7 +568,7 @@ export default {
             if (this.type == 3) {
                 if (
                     this.refType != null &&
-                    this.refTime != null &&
+                    this.refTime != "" &&
                     this.imageLink != null
                 ) {
                     return false;
@@ -576,7 +576,7 @@ export default {
                     return true;
                 }
             } else {
-                if (this.refType != null && this.refTime != null) {
+                if (this.refType != null && this.refTime != "") {
                     return false;
                 } else {
                     return true;
