@@ -551,7 +551,7 @@ export default {
                 }
             } else {
                 if (
-                    (console.log(this.refTime.length()),
+                    (console.log(this.refTime),
                     this.structSelect != null &&
                         this.sysSelect != null &&
                         this.tickSelect != null &&
