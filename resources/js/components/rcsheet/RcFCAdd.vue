@@ -3,6 +3,7 @@
         <v-dialog
             v-model="overlay"
             max-width="500px"
+            max-hight="1200px"
             z-index="0"
             @click:outside="close()"
         >
