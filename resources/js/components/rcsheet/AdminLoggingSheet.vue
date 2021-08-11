@@ -2,7 +2,8 @@
     <div>
         <v-dialog
             v-model="overlay"
-            max-width="500px"
+            max-width="800px"
+            max-hight="1200px"
             z-index="0"
             @click:outside="close()"
         >
@@ -20,7 +21,7 @@
                 <v-card-title
                     class="d-flex justify-space-between align-center "
                 >
-                    <div>Table of FCs</div>
+                    <div>Logs for Nats Health</div>
                     <v-card
                         width="500"
                         tile
@@ -37,57 +38,6 @@
                             hide-details
                         ></v-text-field>
                     </v-card>
-                    <div>
-                        <v-menu
-                            :close-on-content-click="false"
-                            :value="addShown"
-                            transition="fab-transition"
-                            origin="100% -30%"
-                        >
-                            <template v-slot:activator="{ on, attrs }">
-                                <v-btn
-                                    text
-                                    v-bind="attrs"
-                                    v-on="on"
-                                    @click="addShown = true"
-                                    color="success"
-                                    ><v-icon left small>fas fa-plus</v-icon>
-                                    FC</v-btn
-                                >
-                            </template>
-                            <v-row no-gutters>
-                                <div>
-                                    <v-card class="pa-2" tile width="100%">
-                                        <v-form @submit.prevent="newFCForm()">
-                                            <v-text-field
-                                                v-model="newCharName"
-                                                label="FC Name"
-                                                required
-                                                autofocus
-                                            ></v-text-field>
-
-                                            <v-btn
-                                                color="success"
-                                                class="mr-4"
-                                                type="submit"
-                                                >submit</v-btn
-                                            >
-                                            <v-btn
-                                                color="warning"
-                                                class="mr-4"
-                                                @click="
-                                                    (addShown = false),
-                                                        (this.newCharName = null)
-                                                "
-                                                >Close</v-btn
-                                            >
-                                            <!-- <v-btn @click="clear">clear</v-btn> -->
-                                        </v-form>
-                                    </v-card>
-                                </div>
-                            </v-row>
-                        </v-menu>
-                    </div>
                 </v-card-title>
                 <v-card-text>
                     <v-data-table
@@ -95,7 +45,8 @@
                         :items="filteredItems"
                         :search="search"
                         item-key="id"
-                        :sort-by="['name']"
+                        height="500px"
+                        :sort-by="['created_at']"
                         disable-pagination
                         fixed-header
                         hide-default-footer
@@ -147,14 +98,13 @@ export default {
     data() {
         return {
             headers: [
-                { text: "Name", value: "name" },
-                { text: "", value: "addRemove", align: "end" }
+                { text: "Event", value: "logging_type_name" },
+                { text: "User", value: "user_name" },
+                { text: "Text", value: "text", align: "end", witdth: "80%" },
+                { text: "Time", value: "created_at" }
 
                 // { text: "Vulernable End Time", value: "vulnerable_end_time" }
             ],
-            newCharName: null,
-
-            addShown: false,
             overlay: false,
             search: ""
         };
@@ -163,96 +113,13 @@ export default {
     methods: {
         close() {
             this.overlay = false;
-        },
-
-        newFCFormClose() {
-            this.addShown = false;
-            this.newFCName = null;
-        },
-
-        async pillClick(item) {
-            var data = {
-                id: this.station.id,
-                fc_user_id: item.id,
-                fc_user_name: item.name
-            };
-
-            this.$store.dispatch("updateRcStation", data);
-
-            var request = {
-                rc_fc_id: item.id
-            };
-
-            await axios({
-                method: "post",
-                url: "/api/rcfcadd/" + this.station.id,
-                data: request,
-                headers: {
-                    Authorization: "Bearer " + this.$store.state.token,
-                    Accept: "application/json",
-                    "Content-Type": "application/json"
-                }
-            });
-        },
-
-        async pillDelete(item) {
-            await axios({
-                method: "DELETE",
-                url: "/api/rcfcdelete/" + item.id,
-                headers: {
-                    Authorization: "Bearer " + this.$store.state.token,
-                    Accept: "application/json",
-                    "Content-Type": "application/json"
-                }
-            });
-
-            this.$store.dispatch("getRcFcs");
-        },
-
-        async newFCForm() {
-            var request = {
-                char_name: this.newCharName
-            };
-
-            await axios({
-                method: "PUT",
-                url: "/api/rcfcnew",
-                data: request,
-                headers: {
-                    Authorization: "Bearer " + this.$store.state.token,
-                    Accept: "application/json",
-                    "Content-Type": "application/json"
-                }
-            });
-            this.$store.dispatch("getRcFcs");
-            this.addShown = false;
-            this.newFCName = null;
-        },
-
-        async removeChar(item) {
-            await axios({
-                method: "DELETE",
-                url:
-                    "/api/campaignusers/" +
-                    item.id +
-                    "/" +
-                    this.campaign_id +
-                    "/" +
-                    this.$store.state.user_id,
-                headers: {
-                    Authorization: "Bearer " + this.$store.state.token,
-                    Accept: "application/json",
-                    "Content-Type": "application/json"
-                }
-            });
-            this.$store.dispatch("getCampaignSystemsRecords");
         }
     },
 
     computed: {
-        ...mapState(["rcfcs"]),
+        ...mapState(["loggingRcSheet"]),
         filteredItems() {
-            return this.rcfcs;
+            return this.loggingRcSheet;
         }
     }
 };
