@@ -21,6 +21,7 @@ import Gsol from "./views/Gsol"
 import Recon from "./views/Recon";
 import StartCampaign from "./views/StartCampaignSystem"
 import KillList from "./views/RCsheet.vue"
+import RCMOVETIMER from "./views/RCMove.vue"
 
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
@@ -138,6 +139,20 @@ export default new Router({
             path: "/feedback",
             name: "feedback",
             component: FeedBack,
+              beforeEnter(to, from, next) {
+                if(Permissions.indexOf('super' )!== -1){
+                    next()
+                }else{
+                   next("/notifications")
+                }
+
+              }
+        },
+
+        {
+            path: "/timerstomove",
+            name: "timerstomove",
+            component: RCMOVETIMER,
               beforeEnter(to, from, next) {
                 if(Permissions.indexOf('super' )!== -1){
                     next()
