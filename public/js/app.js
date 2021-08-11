@@ -46093,13 +46093,13 @@ var render = function() {
                 "v-card-title",
                 { staticClass: "justify-center" },
                 [
-                  _vm.state == 1
-                    ? _c("p", [_vm._v("Enter Structure Name")])
-                    : _vm._e(),
-                  _vm._v(" "),
                   _c("v-img", {
                     attrs: { src: "https://i.imgur.com/1ASFxRr.mp4" }
                   }),
+                  _vm._v(" "),
+                  _vm.state == 1
+                    ? _c("p", [_vm._v("Enter Structure Name")])
+                    : _vm._e(),
                   _vm._v(" "),
                   _vm.state == 2
                     ? _c("p", [
