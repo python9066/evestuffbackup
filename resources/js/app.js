@@ -103,7 +103,7 @@ Vue.component('AddCorpTicker', require('./components/rcsheet/AddCorpTicker.vue')
 Vue.component('AddAllianceTicker', require('./components/rcsheet/AddAllianceTicker.vue').default);
 Vue.component('RcStationMessage', require('./components/rcsheet/RcStationMessage.vue').default);
 Vue.component('AdminLoggingSheet', require('./components/rcsheet/AdminLoggingSheet.vue').default);
-Vue.component('RCMoveImage', require('./components/rcsheet/RCMoveImage.vue').default);
+Vue.component('RcMoveImage', require('./components/rcsheet/RcMoveImage.vue').default);
 
 
 
