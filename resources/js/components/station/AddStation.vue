@@ -28,7 +28,11 @@
                 class=" d-flex flex-column"
             >
                 <v-card-title class="justify-center">
-                    <v-img src="https://i.imgur.com/1ASFxRr.mp4"></v-img>
+                    <v-img
+                        src="https://i.imgur.com/1ASFxRr.gif"
+                        max-height="500px"
+                        max-width="650px"
+                    ></v-img>
                     <p v-if="state == 1">Enter Structure Name</p>
                     <p v-if="state == 2">
                         Enter Details for {{ stationNameEdit }}
