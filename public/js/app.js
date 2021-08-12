@@ -57327,7 +57327,7 @@ var render = function() {
             "v-col",
             {
               staticClass: " d-inline-flex",
-              attrs: { cols: "4", justify: "end", right: "" }
+              attrs: { cols: "4", justify: "end" }
             },
             [
               _vm.$can("view_admin_logs")
@@ -57343,10 +57343,10 @@ var render = function() {
             [
               _c(
                 "v-card",
-                { attrs: { "max-width": "200px", "min-height": "60px" } },
+                { attrs: { "mix-width": "150px", "min-height": "60px" } },
                 [
                   _c("v-switch", {
-                    staticClass: " pl-2 pr-2",
+                    staticClass: " pl-2 pr-2 pt-2",
                     attrs: {
                       label: "No FC",
                       color: "pink",
