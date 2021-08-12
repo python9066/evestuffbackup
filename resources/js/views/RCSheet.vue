@@ -18,7 +18,7 @@
                     class=" pt-2"
                 ></AddStation>
             </v-col>
-            <v-col cols="6" class=" d-inline-flex">
+            <v-col cols="6" class=" d-inline-flex" justify="end">
                 <AdminLoggingSheet v-if="$can('view_admin_logs')" class=" pt-2">
                 </AdminLoggingSheet>
                 <v-card max-width="200px">
