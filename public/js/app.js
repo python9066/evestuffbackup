@@ -26444,7 +26444,7 @@ function sleep(ms) {
     },
     removeStationBad: function removeStationBad(item) {
       axios({
-        method: "put",
+        method: "delete",
         //you can set what request you want to be
         url: "api/rcmovedonebad/" + item.id,
         headers: {
