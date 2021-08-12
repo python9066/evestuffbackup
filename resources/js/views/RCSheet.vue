@@ -458,7 +458,7 @@ export default {
         },
 
         highthtest() {
-            let num = this.windowSize.y - 270;
+            let num = this.windowSize.y - 300;
             // num = tostring(num);
             // num.concat("px");
             return num;
