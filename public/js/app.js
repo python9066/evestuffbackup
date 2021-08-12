@@ -26886,6 +26886,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 
@@ -57279,7 +57280,12 @@ var render = function() {
         "v-row",
         {
           staticClass: " d-inline-flex",
-          attrs: { "no-gutters": "", justify: "space-between", align: "center" }
+          attrs: {
+            "no-gutters": "",
+            justify: "space-between",
+            align: "center",
+            cols: "12"
+          }
         },
         [
           _c(
