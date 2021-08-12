@@ -108,7 +108,7 @@
                         :search="search"
                         :headers="_headers"
                         :items="filter_end"
-                        :height="height"
+                        :height="highthtest"
                         fixed-header
                         id="table"
                         item-key="id"

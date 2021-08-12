@@ -57472,7 +57472,7 @@ var render = function() {
                         search: _vm.search,
                         headers: _vm._headers,
                         items: _vm.filter_end,
-                        height: _vm.height,
+                        height: _vm.highthtest,
                         "fixed-header": "",
                         id: "table",
                         "item-key": "id",
