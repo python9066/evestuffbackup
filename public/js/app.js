@@ -57322,8 +57322,6 @@ var render = function() {
             1
           ),
           _vm._v(" "),
-          _c("v-spacer"),
-          _vm._v(" "),
           _c(
             "v-col",
             {
@@ -57331,6 +57329,8 @@ var render = function() {
               attrs: { cols: "4", justify: "end", align: "end" }
             },
             [
+              _c("v-spacer"),
+              _vm._v(" "),
               _vm.$can("view_admin_logs")
                 ? _c("AdminLoggingSheet", { staticClass: " pt-2 pl-2" })
                 : _vm._e(),
