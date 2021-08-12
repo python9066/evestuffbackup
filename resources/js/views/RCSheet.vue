@@ -361,8 +361,8 @@ export default {
             return false;
         },
 
-        loading(){
-            this.loadingt = true
+        loading() {
+            this.loadingt = false;
         },
 
         onResize() {

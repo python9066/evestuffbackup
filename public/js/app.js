@@ -27491,7 +27491,7 @@ function sleep(ms) {
       return false;
     },
     loading: function loading() {
-      this.loadingt = true;
+      this.loadingt = false;
     },
     onResize: function onResize() {
       this.windowSize = {
