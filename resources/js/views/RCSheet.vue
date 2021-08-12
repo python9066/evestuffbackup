@@ -2,7 +2,7 @@
     <div class="pr-16 pl-16" v-resize="onResize">
         <v-row no-gutters justify="space-between" align="center">
             <v-col cols="8" align="center">
-                <v-card tile flat color="#121212" min-width="500px">
+                <v-card tile flat color="#121212" width="500px">
                     <v-text-field
                         v-model="search"
                         append-icon="mdi-magnify"

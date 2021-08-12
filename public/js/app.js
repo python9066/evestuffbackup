@@ -57287,7 +57287,7 @@ var render = function() {
                     tile: "",
                     flat: "",
                     color: "#121212",
-                    "min-width": "500px"
+                    width: "500px"
                   }
                 },
                 [
