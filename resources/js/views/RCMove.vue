@@ -79,9 +79,7 @@
                                 }}</v-icon>
                                 <button
                                     v-clipboard="fixStatusText(item)"
-                                    v-clipboard:success="
-                                        copied('Status copied')
-                                    "
+                                    v-clipboard:success="Statuscopied"
                                 >
                                     {{ fixStatusText(item) }}
                                 </button>
@@ -97,7 +95,7 @@
             >
                 <button
                     v-clipboard="item.station_name"
-                    v-clipboard:success="copied"
+                    v-clipboard:success="test('gfjeogje')"
                 >
                     {{ item.station_name }}
                 </button>
@@ -450,10 +448,52 @@ export default {
             this.$store.dispatch("updateStationNotification", item);
         },
 
-        copied(text) {
+        Statuscopied() {
             this.snack = true;
             this.snackColor = "success";
-            this.snackText = text;
+            this.snackText = "Status Copied";
+        },
+
+        Systemcopied() {
+            this.snack = true;
+            this.snackColor = "success";
+            this.snackText = "System Copied";
+        },
+
+        Corpcopied() {
+            this.snack = true;
+            this.snackColor = "success";
+            this.snackText = "Corp Ticker Copied";
+        },
+
+        test(text) {
+            this.snack = true;
+            this.snackColor = "success";
+            this.snackText = tex;
+        },
+
+        Alliancecopied() {
+            this.snack = true;
+            this.snackColor = "success";
+            this.snackText = "Alliance Ticker Copied";
+        },
+
+        Stationcopied() {
+            this.snack = true;
+            this.snackColor = "success";
+            this.snackText = "Station Type Copied";
+        },
+
+        Namecopied() {
+            this.snack = true;
+            this.snackColor = "success";
+            this.snackText = "Station Name Copied";
+        },
+
+        Timecopied() {
+            this.snack = true;
+            this.snackColor = "success";
+            this.snackText = "Absolute Time Copied";
         },
 
         itemRowBackground: function(item) {

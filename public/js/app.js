@@ -26174,8 +26174,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
 
 
 
@@ -26435,10 +26433,45 @@ function sleep(ms) {
       item.station_status_id = 6;
       this.$store.dispatch("updateStationNotification", item);
     },
-    copied: function copied(text) {
+    Statuscopied: function Statuscopied() {
       this.snack = true;
       this.snackColor = "success";
-      this.snackText = text;
+      this.snackText = "Status Copied";
+    },
+    Systemcopied: function Systemcopied() {
+      this.snack = true;
+      this.snackColor = "success";
+      this.snackText = "System Copied";
+    },
+    Corpcopied: function Corpcopied() {
+      this.snack = true;
+      this.snackColor = "success";
+      this.snackText = "Corp Ticker Copied";
+    },
+    test: function test(text) {
+      this.snack = true;
+      this.snackColor = "success";
+      this.snackText = tex;
+    },
+    Alliancecopied: function Alliancecopied() {
+      this.snack = true;
+      this.snackColor = "success";
+      this.snackText = "Alliance Ticker Copied";
+    },
+    Stationcopied: function Stationcopied() {
+      this.snack = true;
+      this.snackColor = "success";
+      this.snackText = "Station Type Copied";
+    },
+    Namecopied: function Namecopied() {
+      this.snack = true;
+      this.snackColor = "success";
+      this.snackText = "Station Name Copied";
+    },
+    Timecopied: function Timecopied() {
+      this.snack = true;
+      this.snackColor = "success";
+      this.snackText = "Absolute Time Copied";
     },
     itemRowBackground: function itemRowBackground(item) {
       if (item.under_attack == 1) {
@@ -56718,9 +56751,8 @@ var render = function() {
                                         {
                                           name: "clipboard",
                                           rawName: "v-clipboard:success",
-                                          value: _vm.copied("Status copied"),
-                                          expression:
-                                            "\n                                    copied('Status copied')\n                                ",
+                                          value: _vm.Statuscopied,
+                                          expression: "Statuscopied",
                                           arg: "success"
                                         }
                                       ]
@@ -56764,8 +56796,8 @@ var render = function() {
                           {
                             name: "clipboard",
                             rawName: "v-clipboard:success",
-                            value: _vm.copied,
-                            expression: "copied",
+                            value: _vm.test("gfjeogje"),
+                            expression: "test('gfjeogje')",
                             arg: "success"
                           }
                         ]
