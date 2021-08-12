@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Events\ChillStationCoreUpdate;
+use App\Events\RcMoveDelete;
 use App\Events\RcMoveUpdate;
 use App\Events\StationAttackMessageUpdate;
 use App\Events\StationCoreUpdate;
@@ -367,5 +368,9 @@ class StationController extends Controller
     {
         Station::where('id', $id)->delete();
         StationItemJoin::where('station_id', $id)->delete();
+        $flag = collect([
+            'id' => $id
+        ]);
+        broadcast(new RcMoveDelete($flag));
     }
 }

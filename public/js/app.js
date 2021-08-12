@@ -26301,6 +26301,8 @@ function sleep(ms) {
                 if (e.flag.message != null) {
                   _this.$store.dispatch("updateStationNotification", e.flag.message);
                 }
+              }).listen("RcMoveDelete", function (e) {
+                _this.$store.dispatch("deleteStationNotification", e.flag.id);
               });
 
               _this.$store.dispatch("getStationData").then(function () {

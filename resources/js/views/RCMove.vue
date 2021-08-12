@@ -342,14 +342,18 @@ export default {
     //     });
 
     async created() {
-        Echo.private("rcmovesheet").listen("RcMoveUpdate", e => {
-            if (e.flag.message != null) {
-                this.$store.dispatch(
-                    "updateStationNotification",
-                    e.flag.message
-                );
-            }
-        });
+        Echo.private("rcmovesheet")
+            .listen("RcMoveUpdate", e => {
+                if (e.flag.message != null) {
+                    this.$store.dispatch(
+                        "updateStationNotification",
+                        e.flag.message
+                    );
+                }
+            })
+            .listen("RcMoveDelete", e => {
+                this.$store.dispatch("deleteStationNotification", e.flag.id);
+            });
 
         this.$store.dispatch("getStationData").then(() => {
             this.loadingt = false;
