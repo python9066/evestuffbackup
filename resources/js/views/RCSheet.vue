@@ -8,6 +8,7 @@
                         append-icon="mdi-magnify"
                         label="Search"
                         single-line
+                        :loading="loadingt"
                         filled
                         hide-details
                     ></v-text-field>
@@ -71,6 +72,7 @@
                             v-model="itemPicked"
                             :items="dropdown_type_list"
                             label="Filter by Type"
+                            :loading="loadingt"
                             multiple
                             chips
                             deletable-chips
@@ -92,6 +94,7 @@
                             v-model="statusPicked"
                             :items="dropdown_status_list"
                             label="Filter by Status"
+                            :loading="loadingt"
                             multiple
                             chips
                             deletable-chips
@@ -111,6 +114,7 @@
                         :search="search"
                         :headers="_headers"
                         :items="filter_end"
+                        :loading="loadingt"
                         :height="height"
                         fixed-header
                         id="table"
@@ -316,7 +320,7 @@ export default {
         await this.$store.dispatch("getRcFcs");
         await this.$store.dispatch("getRcItems");
         await this.$store.dispatch("getRcStatus");
-        this.loadingt = ture;
+        this.loadingt = true;
         Echo.private("rcsheet").listen("RcSheetUpdate", e => {
             if (e.flag.message != null) {
                 this.$store.dispatch("updateRcStation", e.flag.message);
