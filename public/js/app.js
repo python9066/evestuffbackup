@@ -26875,6 +26875,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 
@@ -57294,7 +57295,11 @@ var render = function() {
                       },
                       expression: "search"
                     }
-                  })
+                  }),
+                  _vm._v(" "),
+                  _vm.$can("super")
+                    ? _c("AddStation", { attrs: { type: 3 } })
+                    : _vm._e()
                 ],
                 1
               ),

@@ -17,6 +17,7 @@
                         filled
                         hide-details
                     ></v-text-field>
+                    <AddStation v-if="$can('super')" :type="3"></AddStation>
                 </v-card>
 
                 <v-spacer></v-spacer>
