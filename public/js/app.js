@@ -59007,7 +59007,15 @@ var render = function() {
                                                     false
                                                   ),
                                                   Object.assign({}, tooltip)
-                                                )
+                                                ),
+                                                [
+                                                  _vm.showInfo(item)
+                                                    ? _c("Info", {
+                                                        attrs: { station: item }
+                                                      })
+                                                    : _vm._e()
+                                                ],
+                                                1
                                               )
                                             ]
                                           }

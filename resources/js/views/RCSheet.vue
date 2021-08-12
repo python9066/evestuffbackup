@@ -266,10 +266,10 @@
                                         v-on="{ ...tooltip }"
                                         v-bind="{ ...atooltip }"
                                     >
-                                        <!-- <Info
+                                        <Info
                                             :station="item"
                                             v-if="showInfo(item)"
-                                        ></Info> -->
+                                        ></Info>
                                     </div>
                                 </template>
                                 <span>
