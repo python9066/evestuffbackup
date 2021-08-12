@@ -26870,11 +26870,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
 
 
 
@@ -57276,10 +57271,7 @@ var render = function() {
             [
               _c(
                 "v-card",
-                {
-                  staticClass: "align-start d-inline-flex",
-                  attrs: { tile: "", flat: "", color: "#121212" }
-                },
+                { attrs: { tile: "", flat: "", color: "#121212" } },
                 [
                   _c("v-text-field", {
                     attrs: {
@@ -57296,14 +57288,14 @@ var render = function() {
                       },
                       expression: "search"
                     }
-                  }),
-                  _vm._v(" "),
-                  _vm.$can("super")
-                    ? _c("AddStation", { attrs: { type: 3 } })
-                    : _vm._e()
+                  })
                 ],
                 1
-              )
+              ),
+              _vm._v(" "),
+              _vm.$can("super")
+                ? _c("AddStation", { attrs: { type: 3 } })
+                : _vm._e()
             ],
             1
           ),
@@ -57318,7 +57310,7 @@ var render = function() {
               _vm._v(" "),
               _c(
                 "v-card",
-                { attrs: { "right-align": "", "max-width": "50px" } },
+                { attrs: { "right-align": "", "max-width": "100px" } },
                 [
                   _c("v-switch", {
                     staticClass: " pl-2 pr-2",

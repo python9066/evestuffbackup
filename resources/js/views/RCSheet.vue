@@ -2,12 +2,7 @@
     <div class="pr-16 pl-16" v-resize="onResize">
         <v-row no-gutters justify="space-between" align="center">
             <v-col cols="6">
-                <v-card
-                    tile
-                    flat
-                    color="#121212"
-                    class="align-start d-inline-flex"
-                >
+                <v-card tile flat color="#121212">
                     <v-text-field
                         v-model="search"
                         append-icon="mdi-magnify"
@@ -16,13 +11,13 @@
                         filled
                         hide-details
                     ></v-text-field>
-                    <AddStation v-if="$can('super')" :type="3"></AddStation>
                 </v-card>
+                <AddStation v-if="$can('super')" :type="3"></AddStation>
             </v-col>
             <v-col cols="6">
                 <AdminLoggingSheet v-if="$can('view_admin_logs')" class=" pt-2">
                 </AdminLoggingSheet>
-                <v-card right-align max-width="50px">
+                <v-card right-align max-width="100px">
                     <v-switch
                         class=" pl-2 pr-2"
                         v-model="toggleFC"
