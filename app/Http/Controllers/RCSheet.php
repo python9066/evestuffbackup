@@ -108,6 +108,12 @@ class RCSheet extends Controller
                     $count = $check->count();
 
                     if ($count > 0) {
+                    } else {
+                        $check = Station::where('name', $input['structure_name'])->where('system_id', $input['solar_system']['solar_system_id'])->where('alliance_id', $allianceIDID)->get();
+                        $count = $check->count();
+                    }
+
+                    if ($count > 0) {
                         // dd($check[0]['station_status_id']);
                         // $checkid = $check["id"];
                         if ($check[0]['station_status_id'] > 4) {
@@ -117,12 +123,23 @@ class RCSheet extends Controller
 
                         // Station::where('name', $input['structure_name'])->where('system_id', $input['solar_system']['solar_system_id'])->where('alliance_id', $allianceIDID)->update(['station_status_id' => $statusID, 'out_time' => $timer, 'show_on_rc' => 1]);
 
+                        if ($check['rc_id'] != null) {
+                            if ($statusID == 5) {
 
-                        if ($statusID == 5) {
-                            // Station::where('name', $input['structure_name'])->where('system_id', $input['solar_system']['solar_system_id'])->where('alliance_id', $allianceIDID)->update(['station_status_id' => $statusID, 'show_on_rc' => 2]);
-                            Station::where('rc_id', $input['id'])->update(['station_status_id' => $statusID, 'show_on_rc' => 2]);
+                                // Station::where('name', $input['structure_name'])->where('system_id', $input['solar_system']['solar_system_id'])->where('alliance_id', $allianceIDID)->update(['station_status_id' => $statusID, 'show_on_rc' => 2]);
+                                Station::where('rc_id', $input['id'])->update(['station_status_id' => $statusID, 'show_on_rc' => 2]);
+                            } else {
+                                Station::where('rc_id', $input['id'])->update(['station_status_id' => $statusID, 'out_time' => $timer, 'show_on_rc' => 1]);;
+                            }
                         } else {
-                            Station::where('rc_id', $input['id'])->update(['station_status_id' => $statusID, 'out_time' => $timer, 'show_on_rc' => 1]);;
+
+                            if ($statusID == 5) {
+
+                                // Station::where('name', $input['structure_name'])->where('system_id', $input['solar_system']['solar_system_id'])->where('alliance_id', $allianceIDID)->update(['station_status_id' => $statusID, 'show_on_rc' => 2]);
+                                Station::where('name', $input['structure_name'])->where('system_id', $input['solar_system']['solar_system_id'])->where('alliance_id', $allianceIDID)->update(['station_status_id' => $statusID, 'show_on_rc' => 2]);
+                            } else {
+                                Station::where('name', $input['structure_name'])->where('system_id', $input['solar_system']['solar_system_id'])->where('alliance_id', $allianceIDID)->update(['station_status_id' => $statusID, 'out_time' => $timer, 'show_on_rc' => 1]);;
+                            }
                         }
 
                         // dd($check->id);
