@@ -95,7 +95,7 @@
             >
                 <button
                     v-clipboard="item.station_name"
-                    v-clipboard:success="test('gfjeogje')"
+                    v-clipboard:success="Namecopied"
                 >
                     {{ item.station_name }}
                 </button>
@@ -106,7 +106,7 @@
             >
                 <button
                     v-clipboard="item.corp_ticker"
-                    v-clipboard:success="copied"
+                    v-clipboard:success="Corpcopied"
                 >
                     {{ item.corp_ticker }}
                 </button>
@@ -117,7 +117,7 @@
             >
                 <button
                     v-clipboard="item.system_name"
-                    v-clipboard:success="copied"
+                    v-clipboard:success="Systemcopied"
                 >
                     {{ item.system_name }}
                 </button>
@@ -128,9 +128,9 @@
             >
                 <button
                     v-clipboard="item.item_name"
-                    v-clipboard:success="copied"
+                    v-clipboard:success="Stationcopied"
                 >
-                    {{ item.item_name }} test
+                    {{ item.item_name }}
                 </button>
             </template>
             <template
@@ -140,7 +140,7 @@
                 <span v-if="item.standing > 0" class=" blue--text pl-3"
                     ><button
                         v-clipboard="item.alliance_ticker"
-                        v-clipboard:success="copied"
+                        v-clipboard:success="Alliancecopied"
                     >
                         {{ item.alliance_ticker }}
                     </button>
@@ -148,7 +148,7 @@
                 <span v-else-if="item.standing < 0" class="red--text pl-3"
                     ><button
                         v-clipboard="item.alliance_ticker"
-                        v-clipboard:success="copied"
+                        v-clipboard:success="Alliancecopied"
                     >
                         {{ item.alliance_ticker }}
                     </button>
@@ -156,7 +156,7 @@
                 <span v-else class="pl-3"
                     ><button
                         v-clipboard="item.alliance_ticker"
-                        v-clipboard:success="copied"
+                        v-clipboard:success="Alliancecopied"
                     >
                         {{ item.alliance_ticker }}
                     </button></span
@@ -190,7 +190,7 @@
             >
                 <button
                     v-clipboard="fixTimeStamp(item)"
-                    v-clipboard:success="copied"
+                    v-clipboard:success="Timecopied"
                 >
                     {{ item.timestamp }}
                 </button>
@@ -464,12 +464,6 @@ export default {
             this.snack = true;
             this.snackColor = "success";
             this.snackText = "Corp Ticker Copied";
-        },
-
-        test(text) {
-            this.snack = true;
-            this.snackColor = "success";
-            this.snackText = tex;
         },
 
         Alliancecopied() {

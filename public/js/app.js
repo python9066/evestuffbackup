@@ -26448,11 +26448,6 @@ function sleep(ms) {
       this.snackColor = "success";
       this.snackText = "Corp Ticker Copied";
     },
-    test: function test(text) {
-      this.snack = true;
-      this.snackColor = "success";
-      this.snackText = tex;
-    },
     Alliancecopied: function Alliancecopied() {
       this.snack = true;
       this.snackColor = "success";
@@ -56796,8 +56791,8 @@ var render = function() {
                           {
                             name: "clipboard",
                             rawName: "v-clipboard:success",
-                            value: _vm.test("gfjeogje"),
-                            expression: "test('gfjeogje')",
+                            value: _vm.Namecopied,
+                            expression: "Namecopied",
                             arg: "success"
                           }
                         ]
@@ -56831,8 +56826,8 @@ var render = function() {
                           {
                             name: "clipboard",
                             rawName: "v-clipboard:success",
-                            value: _vm.copied,
-                            expression: "copied",
+                            value: _vm.Corpcopied,
+                            expression: "Corpcopied",
                             arg: "success"
                           }
                         ]
@@ -56866,8 +56861,8 @@ var render = function() {
                           {
                             name: "clipboard",
                             rawName: "v-clipboard:success",
-                            value: _vm.copied,
-                            expression: "copied",
+                            value: _vm.Systemcopied,
+                            expression: "Systemcopied",
                             arg: "success"
                           }
                         ]
@@ -56901,8 +56896,8 @@ var render = function() {
                           {
                             name: "clipboard",
                             rawName: "v-clipboard:success",
-                            value: _vm.copied,
-                            expression: "copied",
+                            value: _vm.Stationcopied,
+                            expression: "Stationcopied",
                             arg: "success"
                           }
                         ]
@@ -56911,7 +56906,7 @@ var render = function() {
                         _vm._v(
                           "\n                " +
                             _vm._s(item.item_name) +
-                            " test\n            "
+                            "\n            "
                         )
                       ]
                     )
@@ -56938,8 +56933,8 @@ var render = function() {
                                 {
                                   name: "clipboard",
                                   rawName: "v-clipboard:success",
-                                  value: _vm.copied,
-                                  expression: "copied",
+                                  value: _vm.Alliancecopied,
+                                  expression: "Alliancecopied",
                                   arg: "success"
                                 }
                               ]
@@ -56968,8 +56963,8 @@ var render = function() {
                                 {
                                   name: "clipboard",
                                   rawName: "v-clipboard:success",
-                                  value: _vm.copied,
-                                  expression: "copied",
+                                  value: _vm.Alliancecopied,
+                                  expression: "Alliancecopied",
                                   arg: "success"
                                 }
                               ]
@@ -56997,8 +56992,8 @@ var render = function() {
                                 {
                                   name: "clipboard",
                                   rawName: "v-clipboard:success",
-                                  value: _vm.copied,
-                                  expression: "copied",
+                                  value: _vm.Alliancecopied,
+                                  expression: "Alliancecopied",
                                   arg: "success"
                                 }
                               ]
@@ -57080,8 +57075,8 @@ var render = function() {
                           {
                             name: "clipboard",
                             rawName: "v-clipboard:success",
-                            value: _vm.copied,
-                            expression: "copied",
+                            value: _vm.Timecopied,
+                            expression: "Timecopied",
                             arg: "success"
                           }
                         ]
