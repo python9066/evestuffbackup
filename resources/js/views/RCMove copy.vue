@@ -77,10 +77,7 @@
                                 <v-icon left>{{
                                     pillIcon(item.station_status_id)
                                 }}</v-icon>
-                                <button
-                                    v-clipboard="fixStatusText(item)"
-                                    v-clipboard:success="copied"
-                                >
+                                <button v-clipboard="fixStatusText(item)">
                                     {{ fixStatusText(item) }}
                                 </button>
                             </v-chip>
@@ -93,10 +90,7 @@
                 v-slot:[`item.station_name`]="{ item }"
                 class="d-inline-flex align-center"
             >
-                <button
-                    v-clipboard="item.station_name"
-                    v-clipboard:success="copied"
-                >
+                <button v-clipboard="item.station_name">
                     {{ item.station_name }}
                 </button>
             </template>
@@ -104,10 +98,7 @@
                 v-slot:[`item.corp_ticker`]="{ item }"
                 class="d-inline-flex align-center"
             >
-                <button
-                    v-clipboard="item.corp_ticker"
-                    v-clipboard:success="copied"
-                >
+                <button v-clipboard="item.corp_ticker">
                     {{ item.corp_ticker }}
                 </button>
             </template>
@@ -115,10 +106,7 @@
                 v-slot:[`item.system_name`]="{ item }"
                 class="d-inline-flex align-center"
             >
-                <button
-                    v-clipboard="item.system_name"
-                    v-clipboard:success="copied"
-                >
+                <button v-clipboard="item.system_name">
                     {{ item.system_name }}
                 </button>
             </template>
@@ -126,10 +114,7 @@
                 v-slot:[`item.item_name`]="{ item }"
                 class="d-inline-flex align-center"
             >
-                <button
-                    v-clipboard="item.item_name"
-                    v-clipboard:success="copied"
-                >
+                <button v-clipboard="item.item_name">
                     {{ item.item_name }} test
                 </button>
             </template>
@@ -138,26 +123,17 @@
                 class="d-inline-flex align-center"
             >
                 <span v-if="item.standing > 0" class=" blue--text pl-3"
-                    ><button
-                        v-clipboard="item.alliance_ticker"
-                        v-clipboard:success="copied"
-                    >
+                    ><button v-clipboard="item.alliance_ticker">
                         {{ item.alliance_ticker }}
                     </button>
                 </span>
                 <span v-else-if="item.standing < 0" class="red--text pl-3"
-                    ><button
-                        v-clipboard="item.alliance_ticker"
-                        v-clipboard:success="copied"
-                    >
+                    ><button v-clipboard="item.alliance_ticker">
                         {{ item.alliance_ticker }}
                     </button>
                 </span>
                 <span v-else class="pl-3"
-                    ><button
-                        v-clipboard="item.alliance_ticker"
-                        v-clipboard:success="copied"
-                    >
+                    ><button v-clipboard="item.alliance_ticker">
                         {{ item.alliance_ticker }}
                     </button></span
                 >
@@ -188,10 +164,7 @@
                 v-slot:[`item.timestamp`]="{ item }"
                 class="d-inline-flex align-center"
             >
-                <button
-                    v-clipboard="fixTimeStamp(item)"
-                    v-clipboard:success="copied"
-                >
+                <button v-clipboard="fixTimeStamp(item)">
                     {{ item.timestamp }}
                 </button>
             </template>
@@ -448,10 +421,10 @@ export default {
             this.$store.dispatch("updateStationNotification", item);
         },
 
-        copied() {
+        save() {
             this.snack = true;
             this.snackColor = "success";
-            this.snackText = "Data Copied!!";
+            this.snackText = "Data saved";
         },
 
         itemRowBackground: function(item) {

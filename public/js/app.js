@@ -26145,6 +26145,35 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -26404,10 +26433,10 @@ function sleep(ms) {
       item.station_status_id = 6;
       this.$store.dispatch("updateStationNotification", item);
     },
-    save: function save() {
+    copied: function copied() {
       this.snack = true;
       this.snackColor = "success";
-      this.snackText = "Data saved";
+      this.snackText = "Data Copied!!";
     },
     itemRowBackground: function itemRowBackground(item) {
       if (item.under_attack == 1) {
@@ -56683,6 +56712,13 @@ var render = function() {
                                           rawName: "v-clipboard",
                                           value: _vm.fixStatusText(item),
                                           expression: "fixStatusText(item)"
+                                        },
+                                        {
+                                          name: "clipboard",
+                                          rawName: "v-clipboard:success",
+                                          value: _vm.copied,
+                                          expression: "copied",
+                                          arg: "success"
                                         }
                                       ]
                                     },
@@ -56721,6 +56757,13 @@ var render = function() {
                             rawName: "v-clipboard",
                             value: item.station_name,
                             expression: "item.station_name"
+                          },
+                          {
+                            name: "clipboard",
+                            rawName: "v-clipboard:success",
+                            value: _vm.copied,
+                            expression: "copied",
+                            arg: "success"
                           }
                         ]
                       },
@@ -56749,6 +56792,13 @@ var render = function() {
                             rawName: "v-clipboard",
                             value: item.corp_ticker,
                             expression: "item.corp_ticker"
+                          },
+                          {
+                            name: "clipboard",
+                            rawName: "v-clipboard:success",
+                            value: _vm.copied,
+                            expression: "copied",
+                            arg: "success"
                           }
                         ]
                       },
@@ -56777,6 +56827,13 @@ var render = function() {
                             rawName: "v-clipboard",
                             value: item.system_name,
                             expression: "item.system_name"
+                          },
+                          {
+                            name: "clipboard",
+                            rawName: "v-clipboard:success",
+                            value: _vm.copied,
+                            expression: "copied",
+                            arg: "success"
                           }
                         ]
                       },
@@ -56805,6 +56862,13 @@ var render = function() {
                             rawName: "v-clipboard",
                             value: item.item_name,
                             expression: "item.item_name"
+                          },
+                          {
+                            name: "clipboard",
+                            rawName: "v-clipboard:success",
+                            value: _vm.copied,
+                            expression: "copied",
+                            arg: "success"
                           }
                         ]
                       },
@@ -56835,6 +56899,13 @@ var render = function() {
                                   rawName: "v-clipboard",
                                   value: item.alliance_ticker,
                                   expression: "item.alliance_ticker"
+                                },
+                                {
+                                  name: "clipboard",
+                                  rawName: "v-clipboard:success",
+                                  value: _vm.copied,
+                                  expression: "copied",
+                                  arg: "success"
                                 }
                               ]
                             },
@@ -56858,6 +56929,13 @@ var render = function() {
                                   rawName: "v-clipboard",
                                   value: item.alliance_ticker,
                                   expression: "item.alliance_ticker"
+                                },
+                                {
+                                  name: "clipboard",
+                                  rawName: "v-clipboard:success",
+                                  value: _vm.copied,
+                                  expression: "copied",
+                                  arg: "success"
                                 }
                               ]
                             },
@@ -56880,6 +56958,13 @@ var render = function() {
                                   rawName: "v-clipboard",
                                   value: item.alliance_ticker,
                                   expression: "item.alliance_ticker"
+                                },
+                                {
+                                  name: "clipboard",
+                                  rawName: "v-clipboard:success",
+                                  value: _vm.copied,
+                                  expression: "copied",
+                                  arg: "success"
                                 }
                               ]
                             },
@@ -56956,6 +57041,13 @@ var render = function() {
                             rawName: "v-clipboard",
                             value: _vm.fixTimeStamp(item),
                             expression: "fixTimeStamp(item)"
+                          },
+                          {
+                            name: "clipboard",
+                            rawName: "v-clipboard:success",
+                            value: _vm.copied,
+                            expression: "copied",
+                            arg: "success"
                           }
                         ]
                       },
@@ -57009,7 +57101,7 @@ var render = function() {
                       attrs,
                       false
                     ),
-                    [_vm._v("Close")]
+                    [_vm._v("\n                Copied\n            ")]
                   )
                 ]
               }
