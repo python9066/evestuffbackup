@@ -1,7 +1,7 @@
 <template>
     <div class="pr-16 pl-16" v-resize="onResize">
         <v-row no-gutters justify="center" align="center">
-            <v-col class=" d-inline-flex" cols="12">
+            <v-col cols="6">
                 <v-card
                     tile
                     flat
@@ -18,7 +18,8 @@
                     ></v-text-field>
                     <AddStation v-if="$can('super')" :type="3"></AddStation>
                 </v-card>
-
+            </v-col>
+            <v-col cols="6">
                 <AdminLoggingSheet v-if="$can('view_admin_logs')" class=" pt-2">
                 </AdminLoggingSheet>
                 <v-card right-align class="">

@@ -26874,6 +26874,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 
@@ -57269,7 +57270,7 @@ var render = function() {
         [
           _c(
             "v-col",
-            { staticClass: " d-inline-flex", attrs: { cols: "12" } },
+            { attrs: { cols: "6" } },
             [
               _c(
                 "v-card",
@@ -57300,8 +57301,15 @@ var render = function() {
                     : _vm._e()
                 ],
                 1
-              ),
-              _vm._v(" "),
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "v-col",
+            { attrs: { cols: "6" } },
+            [
               _vm.$can("view_admin_logs")
                 ? _c("AdminLoggingSheet", { staticClass: " pt-2" })
                 : _vm._e(),
