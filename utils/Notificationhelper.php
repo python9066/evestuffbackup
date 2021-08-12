@@ -107,7 +107,7 @@ class Notifications
                 ]);
                 if ($stationdata['str_has_no_fitting'] != null) {
                     if ($stationdata['str_has_no_fitting'] != 'No Fitting') {
-                        echo $station->id . " - ";
+                        StationItemJoin::where('station_id', $station->id)->delete();
                         $items = Utils::jsonDecode($stationdata['str_fitting'], true);
                         foreach ($items as $item) {
                             StationItems::where('id', $item['type_id'])->get()->count();
