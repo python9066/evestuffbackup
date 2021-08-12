@@ -24,7 +24,7 @@ class RCSheet extends Controller
         foreach ($stations as $station) {
             $items = StationItemJoin::where('station_id', $station->station_id)->get();
             foreach ($items as $item) {
-                StationItemJoin::where('station_item_id', $item->station_item_id)->where('station_id', $station)->delete();
+                StationItemJoin::where('station_item_id', $item->station_item_id)->where('station_id', $station->station_id)->delete();
                 StationItemJoin::Create(['station_item_id' => $item, 'station_id' => $station]);
             }
         }
