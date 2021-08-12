@@ -1,5 +1,5 @@
 <template>
-    <div class="pr-16 pl-16">
+    <div class="pr-16 pl-16" v-resize="onResize">
         <v-row no-gutters justify="center">
             <v-col class=" d-inline-flex" cols="12">
                 <v-card
@@ -256,12 +256,7 @@
                 </v-card>
             </v-col>
         </v-row>
-        <v-row
-            v-if="$can('super')"
-            v-resize="onResize"
-            align="center"
-            justify="center"
-        >
+        <v-row v-if="$can('super')" align="center" justify="center">
             <v-subheader>Window Size</v-subheader>
             {{ windowSize }}
         </v-row>

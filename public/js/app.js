@@ -26848,11 +26848,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
 
 
 
@@ -57221,7 +57216,17 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "pr-16 pl-16" },
+    {
+      directives: [
+        {
+          name: "resize",
+          rawName: "v-resize",
+          value: _vm.onResize,
+          expression: "onResize"
+        }
+      ],
+      staticClass: "pr-16 pl-16"
+    },
     [
       _c(
         "v-row",
@@ -57833,17 +57838,7 @@ var render = function() {
       _vm.$can("super")
         ? _c(
             "v-row",
-            {
-              directives: [
-                {
-                  name: "resize",
-                  rawName: "v-resize",
-                  value: _vm.onResize,
-                  expression: "onResize"
-                }
-              ],
-              attrs: { align: "center", justify: "center" }
-            },
+            { attrs: { align: "center", justify: "center" } },
             [
               _c("v-subheader", [_vm._v("Window Size")]),
               _vm._v("\n        " + _vm._s(_vm.windowSize) + "\n    ")
