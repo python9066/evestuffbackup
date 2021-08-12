@@ -14,6 +14,7 @@ use App\Events\StationNotificationUpdate;
 use App\Models\Corp;
 use App\Models\Item;
 use App\Models\Logging;
+use App\Models\RcStationRecords;
 use App\Models\Station;
 use App\Models\StationItemJoin;
 use App\Models\StationItems;
@@ -327,8 +328,14 @@ class StationController extends Controller
             'message' => $message
         ]);
         broadcast(new RcMoveUpdate($flag));
-        broadcast(new RcSheetUpdate($message));
+
+        $message = RcStationRecords::where('id', $id)->first();
+        $flag = collect([
+            'message' => $message,
+        ]);
+        broadcast(new RcSheetUpdate($flag));
     }
+
 
     /**
      * Display the specified resource.
