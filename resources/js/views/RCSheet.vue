@@ -19,7 +19,7 @@
                 ></AddStation>
             </v-col>
             <v-spacer></v-spacer>
-            <v-col cols="4" justify="end">
+            <v-col cols="4" justify="end" class=" d-inline-flex">
                 <AdminLoggingSheet
                     v-if="$can('view_admin_logs')"
                     class=" pt-2 pl-2"
