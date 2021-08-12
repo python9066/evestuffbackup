@@ -457,6 +457,10 @@ export default {
             }
         },
 
+        highthtest() {
+            return this.windowSize.y - 270;
+        },
+
         filter_start() {
             let data = [];
             if (this.statusPicked.length != 0) {

@@ -27177,6 +27177,9 @@ function sleep(ms) {
           return "800px";
       }
     },
+    highthtest: function highthtest() {
+      return this.windowSize.y - 270;
+    },
     filter_start: function filter_start() {
       var _this7 = this;
 
