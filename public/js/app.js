@@ -57312,7 +57312,10 @@ var render = function() {
               ),
               _vm._v(" "),
               _vm.$can("super")
-                ? _c("AddStation", { staticClass: " pt-2", attrs: { type: 3 } })
+                ? _c("AddStation", {
+                    staticClass: " pt-2 pl-2",
+                    attrs: { type: 3 }
+                  })
                 : _vm._e()
             ],
             1
@@ -57322,7 +57325,7 @@ var render = function() {
             "v-col",
             {
               staticClass: " d-inline-flex",
-              attrs: { cols: "6", justify: "end" }
+              attrs: { cols: "6", justify: "end", right: "" }
             },
             [
               _vm.$can("view_admin_logs")
