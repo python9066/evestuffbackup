@@ -57839,25 +57839,7 @@ var render = function() {
           )
         ],
         1
-      ),
-      _vm._v(" "),
-      _vm.$can("super")
-        ? _c(
-            "v-row",
-            { attrs: { align: "center", justify: "center" } },
-            [
-              _c("v-subheader", [_vm._v("Window Size")]),
-              _vm._v(
-                "\n        " +
-                  _vm._s(_vm.windowSize) +
-                  " abd " +
-                  _vm._s(_vm.highthtest) +
-                  "\n    "
-              )
-            ],
-            1
-          )
-        : _vm._e()
+      )
     ],
     1
   )

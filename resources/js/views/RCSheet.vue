@@ -256,10 +256,10 @@
                 </v-card>
             </v-col>
         </v-row>
-        <v-row v-if="$can('super')" align="center" justify="center">
+        <!-- <v-row v-if="$can('super')" align="center" justify="center">
             <v-subheader>Window Size</v-subheader>
             {{ windowSize }} abd {{ highthtest }}
-        </v-row>
+        </v-row> -->
     </div>
 </template>
 <script>
