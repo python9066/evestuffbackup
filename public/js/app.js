@@ -26870,6 +26870,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
 
 
 
@@ -57297,7 +57301,7 @@ var render = function() {
               ),
               _vm._v(" "),
               _vm.$can("super")
-                ? _c("AddStation", { attrs: { type: 3 } })
+                ? _c("AddStation", { staticClass: " pt-2", attrs: { type: 3 } })
                 : _vm._e()
             ],
             1

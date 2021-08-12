@@ -12,7 +12,11 @@
                         hide-details
                     ></v-text-field>
                 </v-card>
-                <AddStation v-if="$can('super')" :type="3"></AddStation>
+                <AddStation
+                    v-if="$can('super')"
+                    :type="3"
+                    class=" pt-2"
+                ></AddStation>
             </v-col>
             <v-col cols="6" class=" d-inline-flex">
                 <AdminLoggingSheet v-if="$can('view_admin_logs')" class=" pt-2">
