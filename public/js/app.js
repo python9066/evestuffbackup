@@ -26100,6 +26100,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
 
 
 
@@ -26419,6 +26421,11 @@ function sleep(ms) {
       }
 
       return false;
+    },
+    copyStationName: function copyStationName(item) {
+      var textToCopy = item.stationname;
+      textToCopy.select();
+      document.execCommand("copy");
     }
   },
   computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapState"])(["stations"])), {}, {
@@ -56639,10 +56646,23 @@ var render = function() {
                 fn: function(ref) {
                   var item = ref.item
                   return [
-                    _vm._v(
-                      "\n            " +
-                        _vm._s(item.station_name) +
-                        "\n        "
+                    _c(
+                      "v-btn",
+                      {
+                        attrs: { text: "" },
+                        on: {
+                          click: function($event) {
+                            return _vm.copyStationName(item)
+                          }
+                        }
+                      },
+                      [
+                        _vm._v(
+                          "\n                " +
+                            _vm._s(item.station_name) +
+                            "\n            "
+                        )
+                      ]
                     )
                   ]
                 }

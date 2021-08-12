@@ -88,7 +88,9 @@
                 v-slot:[`item.station_name`]="{ item }"
                 class="d-inline-flex align-center"
             >
-                {{ item.station_name }}
+                <v-btn text @click="copyStationName(item)">
+                    {{ item.station_name }}
+                </v-btn>
             </template>
             <template
                 v-slot:[`item.alliance_ticker`]="{ item }"
@@ -444,6 +446,12 @@ export default {
             }
 
             return false;
+        },
+
+        copyStationName(item) {
+            let textToCopy = item.stationname;
+            textToCopy.select();
+            document.execCommand("copy");
         }
     },
 
