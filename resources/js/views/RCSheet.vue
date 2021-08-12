@@ -458,7 +458,7 @@ export default {
                     (item.item_id == 37534 ||
                         item.item_id == 35841 ||
                         item.item_id == 35840) &&
-                    item.fitted == "Fitted"
+                    item.fitted != "Fitted"
                 ) {
                     return false;
                 }
