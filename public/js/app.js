@@ -57419,14 +57419,14 @@ var render = function() {
                         search: _vm.search,
                         headers: _vm._headers,
                         items: _vm.filter_end,
-                        height: "500px",
+                        height: "800px",
                         "fixed-header": "",
                         id: "table",
                         "item-key": "id",
                         "sort-by": ["end_time"],
                         "sort-desc": [false, true],
                         "multi-sort": "",
-                        "items-per-page": 20,
+                        "items-per-page": 50,
                         "footer-props": {
                           "items-per-page-options": [10, 20, 30, 50, 100, -1]
                         }
