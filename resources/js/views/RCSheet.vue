@@ -439,9 +439,9 @@ export default {
             }
             return true;
         },
-        // view_station_info_killsheet
+        //
         showInfo(item) {
-            if (this.$can("super")) {
+            if (this.$can("view_station_info_killsheet")) {
                 if (
                     item.item_id == 37534 ||
                     item.item_id == 35841 ||
