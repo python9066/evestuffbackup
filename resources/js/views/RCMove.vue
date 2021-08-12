@@ -177,10 +177,6 @@
                     >
                         <v-icon> far fa-images</v-icon>
                     </v-btn>
-
-                    <v-btn @click="removeStation(item)" icon color="red">
-                        <v-icon> fas fa-times-circle</v-icon>
-                    </v-btn>
                 </div>
             </template>
 
@@ -194,6 +190,19 @@
                 >
                     {{ item.timestamp }}
                 </button>
+            </template>
+
+            <template
+                v-slot:[`item.actions2`]="{ item }"
+                class="d-inline-flex align-center"
+            >
+                <v-btn @click="removeStationGood(item)" icon color="green">
+                    <v-icon> fas fa-check-circle</v-icon>
+                </v-btn>
+
+                <v-btn @click="removeStationBad(item)" icon color="red">
+                    <v-icon> fas fa-times-circle</v-icon>
+                </v-btn>
             </template>
         </v-data-table>
 
@@ -303,6 +312,12 @@ export default {
                     text: "",
                     value: "actions",
                     align: "start"
+                },
+
+                {
+                    text: "",
+                    value: "actions2",
+                    align: "end"
                 }
             ]
         };
@@ -431,10 +446,22 @@ export default {
             }
         },
 
-        removeStation(item) {
+        removeStationGood(item) {
             axios({
                 method: "put", //you can set what request you want to be
                 url: "api/rcmovedone/" + item.id,
+                headers: {
+                    Authorization: "Bearer " + this.$store.state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                }
+            });
+        },
+
+        removeStationBad(item) {
+            axios({
+                method: "put", //you can set what request you want to be
+                url: "api/rcmovedonebad/" + item.id,
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
                     Accept: "application/json",

@@ -213,4 +213,5 @@ Route::middleware('auth:api')->group(function () {
     Route::put('/sheetmessage/{id}', 'RcSheetContoller@updateMessage');
     Route::get('/rcadminlogs', 'LoggingController@rcSheetLogging');
     Route::put('/rcmovedone/{id}', 'StationController@rcMoveDone');
+    Route::delete('/rcmovedonebad/{id}', 'StationController@destroy');
 });

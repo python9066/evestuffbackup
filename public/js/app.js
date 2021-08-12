@@ -26174,6 +26174,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -26259,6 +26268,10 @@ function sleep(ms) {
         text: "",
         value: "actions",
         align: "start"
+      }, {
+        text: "",
+        value: "actions2",
+        align: "end"
       }]
     };
   },
@@ -26417,11 +26430,23 @@ function sleep(ms) {
         return "deep-orange darken-2";
       }
     },
-    removeStation: function removeStation(item) {
+    removeStationGood: function removeStationGood(item) {
       axios({
         method: "put",
         //you can set what request you want to be
         url: "api/rcmovedone/" + item.id,
+        headers: {
+          Authorization: "Bearer " + this.$store.state.token,
+          Accept: "application/json",
+          "Content-Type": "application/json"
+        }
+      });
+    },
+    removeStationBad: function removeStationBad(item) {
+      axios({
+        method: "put",
+        //you can set what request you want to be
+        url: "api/rcmovedonebad/" + item.id,
         headers: {
           Authorization: "Bearer " + this.$store.state.token,
           Accept: "application/json",
@@ -57065,20 +57090,6 @@ var render = function() {
                           },
                           [_c("v-icon", [_vm._v(" far fa-images")])],
                           1
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "v-btn",
-                          {
-                            attrs: { icon: "", color: "red" },
-                            on: {
-                              click: function($event) {
-                                return _vm.removeStation(item)
-                              }
-                            }
-                          },
-                          [_c("v-icon", [_vm._v(" fas fa-times-circle")])],
-                          1
                         )
                       ],
                       1
@@ -57117,6 +57128,41 @@ var render = function() {
                             "\n            "
                         )
                       ]
+                    )
+                  ]
+                }
+              },
+              {
+                key: "item.actions2",
+                fn: function(ref) {
+                  var item = ref.item
+                  return [
+                    _c(
+                      "v-btn",
+                      {
+                        attrs: { icon: "", color: "green" },
+                        on: {
+                          click: function($event) {
+                            return _vm.removeStationGood(item)
+                          }
+                        }
+                      },
+                      [_c("v-icon", [_vm._v(" fas fa-check-circle")])],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "v-btn",
+                      {
+                        attrs: { icon: "", color: "red" },
+                        on: {
+                          click: function($event) {
+                            return _vm.removeStationBad(item)
+                          }
+                        }
+                      },
+                      [_c("v-icon", [_vm._v(" fas fa-times-circle")])],
+                      1
                     )
                   ]
                 }

@@ -365,6 +365,7 @@ class StationController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Station::where('id', $id)->delete;
+        StationItemJoin::where('station_id', $id)->delete;
     }
 }
