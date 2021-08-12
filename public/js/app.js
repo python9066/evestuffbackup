@@ -26886,7 +26886,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
 
 
 
@@ -57273,19 +57272,14 @@ var render = function() {
           expression: "onResize"
         }
       ],
-      staticClass: "pr-16 pl-16"
+      staticClass: "pr-16 pl-16 d-inline-flex"
     },
     [
       _c(
         "v-row",
         {
           staticClass: " d-inline-flex",
-          attrs: {
-            "no-gutters": "",
-            justify: "space-between",
-            align: "center",
-            cols: "12"
-          }
+          attrs: { "no-gutters": "", justify: "space-between", align: "center" }
         },
         [
           _c(

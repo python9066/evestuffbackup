@@ -1,11 +1,10 @@
 <template>
-    <div class="pr-16 pl-16" v-resize="onResize">
+    <div class="pr-16 pl-16 d-inline-flex" v-resize="onResize">
         <v-row
             no-gutters
             justify="space-between"
             align="center"
             class=" d-inline-flex"
-            cols="12"
         >
             <v-col cols="8" align="center">
                 <v-card tile flat color="#121212" min-width="500px">
