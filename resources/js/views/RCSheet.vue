@@ -1,7 +1,7 @@
 <template>
     <div class="pr-16 pl-16" v-resize="onResize">
         <v-row no-gutters justify="space-between" align="center">
-            <v-col cols="6" class=" d-inline-flex" align="center">
+            <v-col cols="4" class=" d-inline-flex" align="center">
                 <v-card tile flat color="#121212" md="3" min-width="500px">
                     <v-text-field
                         v-model="search"
@@ -18,12 +18,14 @@
                     class=" pt-2 pl-2"
                 ></AddStation>
             </v-col>
-            <v-col cols="6" class=" d-inline-flex" justify="end" right>
+            <v-col cols="4" class=" d-inline-flex" justify="end" right>
                 <AdminLoggingSheet
                     v-if="$can('view_admin_logs')"
                     class=" pt-2 pl-2"
                 >
                 </AdminLoggingSheet>
+            </v-col>
+            <v-col cols="4">
                 <v-card max-width="200px" min-height="60px">
                     <v-switch
                         class=" pl-2 pr-2"
