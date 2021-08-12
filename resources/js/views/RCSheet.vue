@@ -1,6 +1,6 @@
 <template>
     <div class="pr-16 pl-16" v-resize="onResize">
-        <v-row no-gutters justify="center">
+        <v-row no-gutters justify="center" align="center">
             <v-col class=" d-inline-flex" cols="12">
                 <v-card
                     tile
