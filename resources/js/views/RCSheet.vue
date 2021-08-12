@@ -14,7 +14,7 @@
                 </v-card>
             </v-col>
 
-            <v-col cols="2">
+            <v-col cols="2" align="center">
                 <AddStation
                     v-if="$can('super')"
                     :type="3"

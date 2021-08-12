@@ -57316,7 +57316,7 @@ var render = function() {
           _vm._v(" "),
           _c(
             "v-col",
-            { attrs: { cols: "2" } },
+            { attrs: { cols: "2", align: "center" } },
             [
               _vm.$can("super")
                 ? _c("AddStation", {
