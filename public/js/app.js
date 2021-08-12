@@ -26874,6 +26874,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
 
 
 
@@ -57323,7 +57326,7 @@ var render = function() {
             },
             [
               _vm.$can("view_admin_logs")
-                ? _c("AdminLoggingSheet", { staticClass: " pt-2" })
+                ? _c("AdminLoggingSheet", { staticClass: " pt-2 pl-2" })
                 : _vm._e(),
               _vm._v(" "),
               _c(
