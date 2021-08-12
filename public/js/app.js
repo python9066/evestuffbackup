@@ -27661,11 +27661,15 @@ function sleep(ms) {
     // view_station_info_killsheet
     showInfo: function showInfo(item) {
       if (this.$can("super")) {
-        if ((item.item_id == 37534 || item.item_id == 35841 || item.item_id == 35840) && item.fitted != "Fitted") {
+        if (item.item_id == 37534 || item.item_id == 35841 || item.item_id == 35840) {
           return false;
         }
 
-        return true;
+        if (item.fitted == "Fitted") {
+          return true;
+        } else {
+          return false;
+        }
       } else {
         return false;
       }
