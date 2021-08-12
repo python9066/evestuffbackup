@@ -27419,10 +27419,7 @@ function sleep(ms) {
               return _this.$store.dispatch("getRcStatus");
 
             case 18:
-              _context.next = 20;
-              return loading();
-
-            case 20:
+              _this.loadingt = false;
               Echo["private"]("rcsheet").listen("RcSheetUpdate", function (e) {
                 if (e.flag.message != null) {
                   _this.$store.dispatch("updateRcStation", e.flag.message);
@@ -27442,21 +27439,21 @@ function sleep(ms) {
               });
 
               if (!_this.$can("view_admin_logs")) {
-                _context.next = 25;
+                _context.next = 24;
                 break;
               }
 
-              _context.next = 24;
+              _context.next = 23;
               return _this.$store.dispatch("getLoggingRcSheet");
 
-            case 24:
+            case 23:
               Echo["private"]("rcsheetadminlogs").listen("RcSheetAddLogging", function (e) {
                 console.log("ytoyoyo");
 
                 _this.$store.dispatch("addLoggingRcSheet", e.flag.message);
               });
 
-            case 25:
+            case 24:
             case "end":
               return _context.stop();
           }
@@ -27489,9 +27486,6 @@ function sleep(ms) {
       }
 
       return false;
-    },
-    loading: function loading() {
-      this.loadingt = false;
     },
     onResize: function onResize() {
       this.windowSize = {
