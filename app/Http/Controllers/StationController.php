@@ -255,7 +255,8 @@ class StationController extends Controller
             $id = $id + 1;
         }
         $new = Station::Create($request->all());
-        $new->update(['id' => $id]);
+        $noteText = "Submitted By " . Auth::user()->name;
+        $new->update(['id' => $id, 'added_by_user_id' => Auth::id(), "notes" => $noteText]);
         $message = StationRecords::where('id', $new->id)->first();
         $flag = collect([
             'message' => $message
@@ -340,7 +341,9 @@ class StationController extends Controller
         $oldStatusName = StationStatus::where('id', $oldStatusID)->pluck('name')->first();
         $newStatusID = $request->station_status_id;
         $newStatusName = StationStatus::where('id', $newStatusID)->pluck('name')->first();
-        Station::find($id)->update($request->all());
+        $new = Station::find($id)->update($request->all());
+        $noteText = "Submitted By " . Auth::user()->name;
+        $new->update(['id' => $id, 'added_by_user_id' => Auth::id(), "notes" => $noteText]);
         $message = StationRecords::where('id', $id)->first();
         $flag = collect([
             'message' => $message
@@ -350,6 +353,7 @@ class StationController extends Controller
         $text = Auth::user()->name . " Changed the status from " . $oldStatusName . " to " . $newStatusName . ' at ' . now();
         $logNew = Logging::Create(['structure_id' => $message->id, 'user_id' => Auth::id(), 'logging_type_id' => 18, 'text' => $text]);
     }
+
 
     /**
      * Remove the specified resource from storage.
