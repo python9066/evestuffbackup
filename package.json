@@ -37,6 +37,7 @@
         "laravel-echo": "^1.11.1",
         "moment": "^2.29.1",
         "pusher-js": "^7.0.3",
+        "v-clipboard": "^2.2.3",
         "v-mask": "^2.2.4",
         "vue-click-outside": "^1.1.0",
         "vue-router": "^3.5.2",

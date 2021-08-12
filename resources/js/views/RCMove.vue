@@ -88,6 +88,9 @@
                 v-slot:[`item.station_name`]="{ item }"
                 class="d-inline-flex align-center"
             >
+                <button v-clipboard="item.station_name">
+                    {{ item.station_name }} test
+                </button>
                 <v-btn text @click="copyStationName(item)">
                     {{ item.station_name }}
                 </v-btn>
