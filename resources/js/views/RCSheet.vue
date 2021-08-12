@@ -108,7 +108,7 @@
                         :search="search"
                         :headers="_headers"
                         :items="filter_end"
-                        :height="highthtest"
+                        :height="height"
                         fixed-header
                         id="table"
                         item-key="id"
@@ -443,22 +443,7 @@ export default {
         },
 
         height() {
-            switch (this.$vuetify.breakpoint.name) {
-                case "xs":
-                    return "220px";
-                case "sm":
-                    return "400px";
-                case "md":
-                    return "500px";
-                case "lg":
-                    return "600px";
-                case "xl":
-                    return "800px";
-            }
-        },
-
-        highthtest() {
-            let num = this.windowSize.y - 350;
+            let num = this.windowSize.y - 360;
             // num = tostring(num);
             // num.concat("px");
             return num;

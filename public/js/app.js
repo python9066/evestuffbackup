@@ -27160,25 +27160,7 @@ function sleep(ms) {
       }
     },
     height: function height() {
-      switch (this.$vuetify.breakpoint.name) {
-        case "xs":
-          return "220px";
-
-        case "sm":
-          return "400px";
-
-        case "md":
-          return "500px";
-
-        case "lg":
-          return "600px";
-
-        case "xl":
-          return "800px";
-      }
-    },
-    highthtest: function highthtest() {
-      var num = this.windowSize.y - 350; // num = tostring(num);
+      var num = this.windowSize.y - 360; // num = tostring(num);
       // num.concat("px");
 
       return num;
@@ -57472,7 +57454,7 @@ var render = function() {
                         search: _vm.search,
                         headers: _vm._headers,
                         items: _vm.filter_end,
-                        height: _vm.highthtest,
+                        height: _vm.height,
                         "fixed-header": "",
                         id: "table",
                         "item-key": "id",
