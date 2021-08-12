@@ -27178,7 +27178,10 @@ function sleep(ms) {
       }
     },
     highthtest: function highthtest() {
-      return this.windowSize.y - 270;
+      var num = this.windowSize.y - 270;
+      num = tostring(num);
+      num.concat("px");
+      return num;
     },
     filter_start: function filter_start() {
       var _this7 = this;

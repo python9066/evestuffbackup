@@ -458,7 +458,10 @@ export default {
         },
 
         highthtest() {
-            return this.windowSize.y - 270;
+            let num = this.windowSize.y - 270;
+            num = tostring(num);
+            num.concat("px");
+            return num;
         },
 
         filter_start() {
