@@ -460,7 +460,7 @@ export default {
 
         removeStationBad(item) {
             axios({
-                method: "put", //you can set what request you want to be
+                method: "delete", //you can set what request you want to be
                 url: "api/rcmovedonebad/" + item.id,
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
