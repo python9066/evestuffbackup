@@ -57271,7 +57271,7 @@ var render = function() {
             [
               _c(
                 "v-card",
-                { attrs: { tile: "", flat: "", color: "#121212" } },
+                { attrs: { tile: "", flat: "", color: "#121212", md: "3" } },
                 [
                   _c("v-text-field", {
                     attrs: {
