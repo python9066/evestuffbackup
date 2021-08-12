@@ -67,9 +67,10 @@ stations.rc_gsol_id AS gsol_user_id,
 gsoluser.name AS gsol_name,
 if(stations.out_time> UTC_TIMESTAMP,false,true) AS 'out'
 FROM stations
+LEFT JOIN corps ON corps.id = stations.corp_id
 LEFT JOIN systems ON systems.id = stations.system_id
 LEFT JOIN regions ON regions.id = systems.region_id
-LEFT JOIN alliances ON alliances.id = stations.alliance_id
+LEFT JOIN alliances ON alliances.id = corps.alliance_id
 LEFT JOIN constellations on constellations.id = systems.constellation_id
 LEFT JOIN items ON items.id = stations.item_id
 LEFT JOIN rc_station_statuses ON rc_station_statuses.id = stations.station_status_id
