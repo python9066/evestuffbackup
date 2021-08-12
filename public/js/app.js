@@ -26844,12 +26844,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
-//
 
 
 
@@ -57425,22 +57419,16 @@ var render = function() {
                         search: _vm.search,
                         headers: _vm._headers,
                         items: _vm.filter_end,
+                        height: "500px",
+                        "fixed-header": "",
                         id: "table",
                         "item-key": "id",
                         "sort-by": ["end_time"],
                         "sort-desc": [false, true],
                         "multi-sort": "",
-                        "items-per-page": 50,
+                        "items-per-page": 20,
                         "footer-props": {
-                          "items-per-page-options": [
-                            10,
-                            20,
-                            25,
-                            30,
-                            50,
-                            100,
-                            -1
-                          ]
+                          "items-per-page-options": [10, 20, 30, 50, 100, -1]
                         }
                       },
                       scopedSlots: _vm._u(
