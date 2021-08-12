@@ -57278,7 +57278,15 @@ var render = function() {
             [
               _c(
                 "v-card",
-                { attrs: { tile: "", flat: "", color: "#121212", md: "3" } },
+                {
+                  attrs: {
+                    tile: "",
+                    flat: "",
+                    color: "#121212",
+                    md: "3",
+                    "min-width": "500px"
+                  }
+                },
                 [
                   _c("v-text-field", {
                     attrs: {
@@ -57320,7 +57328,7 @@ var render = function() {
               _vm._v(" "),
               _c(
                 "v-card",
-                { attrs: { "max-width": "200px", "min-height": "50px" } },
+                { attrs: { "max-width": "200px", "min-height": "60px" } },
                 [
                   _c("v-switch", {
                     staticClass: " pl-2 pr-2",
