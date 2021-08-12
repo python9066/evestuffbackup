@@ -27,7 +27,7 @@
                 </AdminLoggingSheet>
                 <v-card width="150px" min-height="60px">
                     <v-switch
-                        class=" pl-2 pr-2 pt-2"
+                        class=" pl-2 pr-2 pt-3"
                         v-model="toggleFC"
                         label="No FC"
                         color="pink"
