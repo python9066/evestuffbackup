@@ -1,6 +1,11 @@
 <template>
     <div class="pr-16 pl-16" v-resize="onResize">
-        <v-row no-gutters justify="space-between" align="center">
+        <v-row
+            no-gutters
+            justify="space-between"
+            align="center"
+            class=" d-inline-flex"
+        >
             <v-col cols="4" class=" d-inline-flex" align="center">
                 <v-card tile flat color="#121212" md="3" min-width="500px">
                     <v-text-field
