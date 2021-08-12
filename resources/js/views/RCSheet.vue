@@ -4,7 +4,7 @@
             no-gutters
             justify="space-between"
             align="center"
-            class=" d-inline-flex"
+            class=" d-inline-block"
         >
             <v-col cols="8" align="center">
                 <v-card tile flat color="#121212" min-width="500px">

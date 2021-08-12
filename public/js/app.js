@@ -57278,7 +57278,7 @@ var render = function() {
       _c(
         "v-row",
         {
-          staticClass: " d-inline-flex",
+          staticClass: " d-inline-block",
           attrs: { "no-gutters": "", justify: "space-between", align: "center" }
         },
         [
