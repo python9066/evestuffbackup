@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Events\ChillStationCoreUpdate;
 use App\Events\RcMoveDelete;
 use App\Events\RcMoveUpdate;
+use App\Events\RcSheetUpdate;
 use App\Events\StationAttackMessageUpdate;
 use App\Events\StationCoreUpdate;
 use App\Events\StationMessageUpdate;
@@ -326,6 +327,7 @@ class StationController extends Controller
             'message' => $message
         ]);
         broadcast(new RcMoveUpdate($flag));
+        broadcast(new RcSheetUpdate($message));
     }
 
     /**
