@@ -1,7 +1,7 @@
 <template>
     <div class="pr-16 pl-16" v-resize="onResize">
         <v-row no-gutters justify="space-between" align="center">
-            <v-col cols="6" class=" d-inline-flex">
+            <v-col cols="6" class=" d-inline-flex" align="center">
                 <v-card tile flat color="#121212" md="3">
                     <v-text-field
                         v-model="search"

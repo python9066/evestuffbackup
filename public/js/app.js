@@ -57267,7 +57267,10 @@ var render = function() {
         [
           _c(
             "v-col",
-            { staticClass: " d-inline-flex", attrs: { cols: "6" } },
+            {
+              staticClass: " d-inline-flex",
+              attrs: { cols: "6", align: "center" }
+            },
             [
               _c(
                 "v-card",
