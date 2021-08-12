@@ -38,7 +38,7 @@ class CreateOrReplaceStationRecordsViewCommand extends Command
      */
     public function handle()
     {
-        DB::statement("CREATE VIEW station_records AS SELECT stations.id AS 'id',
+        DB::statement("CREATE VIEW SELECT stations.id AS 'id',
        stations.name AS 'station_name',
        stations.system_id AS 'system_id',
        systems.system_name AS 'system_name',
@@ -59,6 +59,8 @@ class CreateOrReplaceStationRecordsViewCommand extends Command
        alliances.ticker AS 'alliance_ticker',
        stations.text AS 'text',
        stations.notes AS 'notes',
+       stations.added_by_user_id AS 'added_by_user_id',
+       i.name AS 'added_name',
        stations.attack_notes AS 'attack_notes',
        stations.attack_adash_link AS 'attack_adash_link',
        if(((stations.attack_notes IS NULL) AND (stations.attack_adash_link IS NULL)),0,1) AS under_attack,
@@ -80,6 +82,7 @@ class CreateOrReplaceStationRecordsViewCommand extends Command
        JOIN station_statuses ON station_statuses.id = stations.station_status_id
        LEFT JOIN users AS s ON s.id = stations.user_id
        LEFT JOIN users AS g ON g.id = stations.gunner_id
+       LEFT JOIN users AS i on i.id = stations.added_by_user_id
        WHERE stations.station_status_id != 10");
     }
 }
