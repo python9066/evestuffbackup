@@ -245,7 +245,10 @@
                                 :station="item"
                             ></RcGsolButton>
                         </template>
-                        <template v-slot:[`item.actions`]="{ item }">
+                        <template
+                            v-slot:[`item.actions`]="{ item }"
+                            class=" d-inline-flex"
+                        >
                             <RcStationMessage
                                 class=" mr-2"
                                 :station="item"
