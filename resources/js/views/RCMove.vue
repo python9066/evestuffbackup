@@ -165,7 +165,7 @@
                 class="d-inline-flex align-center"
             >
                 <button v-clipboard="fixTimeStamp(item)">
-                    {{ item.timestamp }} test
+                    {{ item.timestamp }}
                 </button>
             </template>
         </v-data-table>
@@ -501,6 +501,7 @@ export default {
             ret = item.timestamp.replace(":", "");
             ret = item.timestamp.replace(" ", "");
             ret.substring(2);
+            console.log(ret);
             return ret;
         }
     },

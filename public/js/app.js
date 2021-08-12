@@ -26474,6 +26474,7 @@ function sleep(ms) {
       ret = item.timestamp.replace(":", "");
       ret = item.timestamp.replace(" ", "");
       ret.substring(2);
+      console.log(ret);
       return ret;
     }
   },
@@ -56962,7 +56963,7 @@ var render = function() {
                         _vm._v(
                           "\n                " +
                             _vm._s(item.timestamp) +
-                            " test\n            "
+                            "\n            "
                         )
                       ]
                     )
