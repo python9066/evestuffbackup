@@ -57340,7 +57340,7 @@ var render = function() {
                 { attrs: { width: "150px", "min-height": "60px" } },
                 [
                   _c("v-switch", {
-                    staticClass: " pl-2 pr-2 pt-3",
+                    staticClass: " pl-2 pr-2 pt-1",
                     attrs: {
                       label: "No FC",
                       color: "pink",
