@@ -14,11 +14,13 @@ use App\Models\StationItems;
 use App\Models\Corp;
 use App\Models\Item;
 use App\Models\System;
+use Illuminate\Support\Facades\Auth;
 
 class RCSheet extends Controller
 {
     public function RCInput(Request $request)
     {
+        dd(Auth::user()->name, Auth::user(), Auth::id());
         Station::where('show_on_rc', 1)->update(['show_on_rc' => 5]);
         // $inputs = $request->all();
         // foreach ($inputs as $input) {

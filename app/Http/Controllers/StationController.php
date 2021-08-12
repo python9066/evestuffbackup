@@ -205,6 +205,7 @@ class StationController extends Controller
                     'show_on_main' => $showMain,
                     'show_on_chill' => $showChill,
                     'show_on_rc_move' => $showRcMove,
+                    'added_by_user_id' => Auth::id()
                 ]);
                 if ($stationdata['str_has_no_fitting'] != null) {
                     $items = Utils::jsonDecode($stationdata['str_fitting'], true);
