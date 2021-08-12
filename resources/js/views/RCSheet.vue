@@ -250,6 +250,33 @@
                                 class=" mr-2"
                                 :station="item"
                             ></RcStationMessage>
+                            <v-tooltip
+                                color="#121212"
+                                bottom
+                                :open-delay="2000"
+                                :disabled="$store.state.tooltipToggle"
+                            >
+                                <template
+                                    v-slot:activator="{
+                                        on: tooltip,
+                                        attrs: atooltip
+                                    }"
+                                >
+                                    <div
+                                        v-on="{ ...tooltip }"
+                                        v-bind="{ ...atooltip }"
+                                    >
+                                        <Info
+                                            :station="item"
+                                            v-if="showInfo(item)"
+                                        ></Info>
+                                    </div>
+                                </template>
+                                <span>
+                                    Where to see fitting of station, core
+                                    status</span
+                                >
+                            </v-tooltip>
                         </template>
                         <template slot="no-data">
                             No Active or Upcoming Campaigns
@@ -296,6 +323,11 @@ export default {
         if (this.$can("super")) {
             await this.$store.dispatch("getAllianceTickList");
             await this.$store.dispatch("getTickList");
+        }
+
+        if (this.$can("view_station_info_killsheet")) {
+            await this.$store.dispatch("loadStationInfo");
+            p;
         }
         await this.$store.dispatch("getRcRegions");
         await this.$store.dispatch("getRcStationRecords");
@@ -419,6 +451,21 @@ export default {
                 return false;
             }
             return true;
+        },
+        // view_station_info_killsheet
+        showInfo(item) {
+            if (this.$can("super")) {
+                if (
+                    item.item_id == 37534 ||
+                    item.item_id == 35841 ||
+                    item.item_id == 35840
+                ) {
+                    return false;
+                }
+                return true;
+            } else {
+                return false;
+            }
         }
     },
 
