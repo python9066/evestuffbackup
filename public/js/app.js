@@ -27272,14 +27272,14 @@ function sleep(ms) {
     _headers: function _headers() {
       if (this.$can("view_gsol_killsheet")) {
         var Headers = [{
-          text: "Region",
-          value: "region_name"
+          text: "System",
+          value: "system_name"
         }, {
           text: "Const",
           value: "constellation_name"
         }, {
-          text: "System",
-          value: "system_name"
+          text: "Region",
+          value: "region_name"
         }, {
           text: "Name",
           value: "name"
@@ -27317,14 +27317,14 @@ function sleep(ms) {
         }];
       } else {
         var Headers = [{
-          text: "Region",
-          value: "region_name"
+          text: "System",
+          value: "system_name"
         }, {
           text: "Const",
           value: "constellation_name"
         }, {
-          text: "System",
-          value: "system_name"
+          text: "Region",
+          value: "region_name"
         }, {
           text: "Name",
           value: "name"
