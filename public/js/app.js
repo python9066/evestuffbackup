@@ -27140,6 +27140,24 @@ function sleep(ms) {
         return this.filteredItems;
       }
     },
+    height: function height() {
+      switch (this.$vuetify.breakpoint.name) {
+        case "xs":
+          return "220px";
+
+        case "sm":
+          return "400px";
+
+        case "md":
+          return "500px";
+
+        case "lg":
+          return "600px";
+
+        case "xl":
+          return "800px";
+      }
+    },
     filter_start: function filter_start() {
       var _this6 = this;
 
@@ -57419,7 +57437,7 @@ var render = function() {
                         search: _vm.search,
                         headers: _vm._headers,
                         items: _vm.filter_end,
-                        height: "800px",
+                        height: _vm.height,
                         "fixed-header": "",
                         id: "table",
                         "item-key": "id",
