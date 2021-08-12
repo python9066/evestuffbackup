@@ -498,6 +498,7 @@ export default {
 
         fixTimeStamp(item) {
             var str = item.timestamp.replace(/\s+/g, "");
+            console.log(typeof str);
             str = str.replace(":", "");
             str = str.replace("-", "");
             console.log(str);
