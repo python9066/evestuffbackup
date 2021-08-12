@@ -57302,7 +57302,7 @@ var render = function() {
           _vm._v(" "),
           _c(
             "v-col",
-            { attrs: { cols: "6" } },
+            { attrs: { cols: "6", justify: "end" } },
             [
               _vm.$can("view_admin_logs")
                 ? _c("AdminLoggingSheet", { staticClass: " pt-2" })
@@ -57310,7 +57310,7 @@ var render = function() {
               _vm._v(" "),
               _c(
                 "v-card",
-                { attrs: { "right-align": "", "max-width": "100px" } },
+                { attrs: { "max-width": "200px" } },
                 [
                   _c("v-switch", {
                     staticClass: " pl-2 pr-2",

@@ -14,10 +14,10 @@
                 </v-card>
                 <AddStation v-if="$can('super')" :type="3"></AddStation>
             </v-col>
-            <v-col cols="6">
+            <v-col cols="6" justify="end">
                 <AdminLoggingSheet v-if="$can('view_admin_logs')" class=" pt-2">
                 </AdminLoggingSheet>
-                <v-card right-align max-width="100px">
+                <v-card max-width="200px">
                     <v-switch
                         class=" pl-2 pr-2"
                         v-model="toggleFC"
