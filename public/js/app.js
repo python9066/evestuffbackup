@@ -27178,7 +27178,7 @@ function sleep(ms) {
       }
     },
     highthtest: function highthtest() {
-      var num = this.windowSize.y - 300; // num = tostring(num);
+      var num = this.windowSize.y - 350; // num = tostring(num);
       // num.concat("px");
 
       return num;
