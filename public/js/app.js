@@ -27160,7 +27160,7 @@ function sleep(ms) {
       }
     },
     height: function height() {
-      var num = this.windowSize.y - 360; // num = tostring(num);
+      var num = this.windowSize.y - 370; // num = tostring(num);
       // num.concat("px");
 
       return num;
