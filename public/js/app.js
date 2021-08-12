@@ -26875,7 +26875,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
 
 
 
@@ -57282,7 +57281,6 @@ var render = function() {
                 [
                   _c("v-text-field", {
                     attrs: {
-                      width: "500px",
                       "append-icon": "mdi-magnify",
                       label: "Search",
                       "single-line": "",

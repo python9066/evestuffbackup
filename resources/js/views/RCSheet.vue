@@ -10,7 +10,6 @@
                 >
                     <v-text-field
                         v-model="search"
-                        width="500px"
                         append-icon="mdi-magnify"
                         label="Search"
                         single-line
