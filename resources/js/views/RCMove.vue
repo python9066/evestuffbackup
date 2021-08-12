@@ -449,6 +449,7 @@ export default {
         },
 
         copyStationName(item) {
+            console.log("cop");
             let textToCopy = item.stationname;
             textToCopy.select();
             document.execCommand("copy");

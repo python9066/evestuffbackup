@@ -26423,6 +26423,7 @@ function sleep(ms) {
       return false;
     },
     copyStationName: function copyStationName(item) {
+      console.log("cop");
       var textToCopy = item.stationname;
       textToCopy.select();
       document.execCommand("copy");
