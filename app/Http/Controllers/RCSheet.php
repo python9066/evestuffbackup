@@ -125,8 +125,6 @@ class RCSheet extends Controller
                             Station::where('rc_id', $input['id'])->update(['station_status_id' => $statusID, 'out_time' => $timer, 'show_on_rc' => 1]);;
                         }
 
-
-
                         // dd($check->id);
                     } else {
 
