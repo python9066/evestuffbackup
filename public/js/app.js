@@ -57330,7 +57330,10 @@ var render = function() {
           _vm._v(" "),
           _c(
             "v-col",
-            { attrs: { cols: "4", justify: "end", align: "end" } },
+            {
+              staticClass: " d-inline-flex",
+              attrs: { cols: "4", justify: "end", align: "end" }
+            },
             [
               _c("v-spacer"),
               _vm._v(" "),
