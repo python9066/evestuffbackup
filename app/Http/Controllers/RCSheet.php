@@ -20,7 +20,7 @@ class RCSheet extends Controller
 {
     public function RCInput(Request $request)
     {
-        $stations = StationItemJoin::all();
+        $stations = StationItemJoin::where("id", ">", 1)->get();
         foreach ($stations as $station) {
             $items = StationItemJoin::where('station_id', $station->station_id)->get();
             foreach ($items as $item) {
