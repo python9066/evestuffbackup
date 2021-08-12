@@ -57278,7 +57278,7 @@ var render = function() {
         [
           _c(
             "v-col",
-            { attrs: { cols: "8", align: "start" } },
+            { attrs: { cols: "4", align: "start" } },
             [
               _c(
                 "v-card",
