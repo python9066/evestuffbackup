@@ -367,8 +367,7 @@ class StationController extends Controller
         $new = Station::find($id)->update($request->all());
         $now = now();
         $noteText = $now . " -  Submitted By :" . Auth::user()->name;
-        dd($noteText, Auth::user()->name, Auth::id());
-        $new->update(['id' => $id, 'added_by_user_id' => Auth::id(), "notes" => $noteText]);
+        Station::find($id)->update(['added_by_user_id' => Auth::id(), "notes" => $noteText]);
         $message = StationRecords::where('id', $id)->first();
         $flag = collect([
             'message' => $message
