@@ -26120,6 +26120,31 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -26442,6 +26467,13 @@ function sleep(ms) {
     },
     fixStatusText: function fixStatusText(item) {
       var ret = item.station_status_name.replace("Upcoming - ", "");
+      return ret;
+    },
+    fixTimeStamp: function fixTimeStamp(item) {
+      var ret = item.timestamp.replace("-", "");
+      ret = item.timestamp.replace(":", "");
+      ret = item.timestamp.replace(" ", "");
+      ret.substring(2);
       return ret;
     }
   },
@@ -56695,7 +56727,35 @@ var render = function() {
                         _vm._v(
                           "\n                " +
                             _vm._s(item.station_name) +
-                            " test\n            "
+                            "\n            "
+                        )
+                      ]
+                    )
+                  ]
+                }
+              },
+              {
+                key: "item.corp_ticker",
+                fn: function(ref) {
+                  var item = ref.item
+                  return [
+                    _c(
+                      "button",
+                      {
+                        directives: [
+                          {
+                            name: "clipboard",
+                            rawName: "v-clipboard",
+                            value: item.corp_ticker,
+                            expression: "item.corp_ticker"
+                          }
+                        ]
+                      },
+                      [
+                        _vm._v(
+                          "\n                " +
+                            _vm._s(item.corp_ticker) +
+                            "\n            "
                         )
                       ]
                     )
@@ -56765,18 +56825,71 @@ var render = function() {
                   return [
                     item.standing > 0
                       ? _c("span", { staticClass: " blue--text pl-3" }, [
-                          _vm._v(
-                            _vm._s(item.alliance_ticker) + "\n            "
+                          _c(
+                            "button",
+                            {
+                              directives: [
+                                {
+                                  name: "clipboard",
+                                  rawName: "v-clipboard",
+                                  value: item.alliance_ticker,
+                                  expression: "item.alliance_ticker"
+                                }
+                              ]
+                            },
+                            [
+                              _vm._v(
+                                "\n                    " +
+                                  _vm._s(item.alliance_ticker) +
+                                  "\n                "
+                              )
+                            ]
                           )
                         ])
                       : item.standing < 0
                       ? _c("span", { staticClass: "red--text pl-3" }, [
-                          _vm._v(
-                            _vm._s(item.alliance_ticker) + "\n            "
+                          _c(
+                            "button",
+                            {
+                              directives: [
+                                {
+                                  name: "clipboard",
+                                  rawName: "v-clipboard",
+                                  value: item.alliance_ticker,
+                                  expression: "item.alliance_ticker"
+                                }
+                              ]
+                            },
+                            [
+                              _vm._v(
+                                "\n                    " +
+                                  _vm._s(item.alliance_ticker) +
+                                  "\n                "
+                              )
+                            ]
                           )
                         ])
                       : _c("span", { staticClass: "pl-3" }, [
-                          _vm._v(_vm._s(item.alliance_ticker))
+                          _c(
+                            "button",
+                            {
+                              directives: [
+                                {
+                                  name: "clipboard",
+                                  rawName: "v-clipboard",
+                                  value: item.alliance_ticker,
+                                  expression: "item.alliance_ticker"
+                                }
+                              ]
+                            },
+                            [
+                              _vm._v(
+                                "\n                    " +
+                                  _vm._s(item.alliance_ticker) +
+                                  "\n                "
+                              )
+                            ]
+                          )
                         ])
                   ]
                 }
@@ -56824,6 +56937,34 @@ var render = function() {
                         )
                       ],
                       1
+                    )
+                  ]
+                }
+              },
+              {
+                key: "item.timestamp",
+                fn: function(ref) {
+                  var item = ref.item
+                  return [
+                    _c(
+                      "button",
+                      {
+                        directives: [
+                          {
+                            name: "clipboard",
+                            rawName: "v-clipboard",
+                            value: _vm.fixTimeStamp(item),
+                            expression: "fixTimeStamp(item)"
+                          }
+                        ]
+                      },
+                      [
+                        _vm._v(
+                          "\n                " +
+                            _vm._s(item.timestamp) +
+                            " test\n            "
+                        )
+                      ]
                     )
                   ]
                 }
