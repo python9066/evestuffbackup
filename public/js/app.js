@@ -26470,12 +26470,10 @@ function sleep(ms) {
       return ret;
     },
     fixTimeStamp: function fixTimeStamp(item) {
-      var ret = item.timestamp.replace("-", "");
-      ret = item.timestamp.replace(":", "");
-      ret = item.timestamp.replace(" ", "");
-      ret.substring(2);
-      console.log(ret);
-      return ret;
+      var str = item.timestamp.replace(/\s+/g, "");
+      str.substring(2);
+      console.log(str);
+      return str;
     }
   },
   computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapState"])(["stations"])), {}, {
