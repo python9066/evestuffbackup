@@ -18,14 +18,13 @@
                     class=" pt-2 pl-2"
                 ></AddStation>
             </v-col>
-            <v-col cols="4" class=" d-inline-flex" justify="end">
+            <v-spacer></v-spacer>
+            <v-col cols="4" justify="end">
                 <AdminLoggingSheet
                     v-if="$can('view_admin_logs')"
                     class=" pt-2 pl-2"
                 >
                 </AdminLoggingSheet>
-            </v-col>
-            <v-col cols="4">
                 <v-card width="150px" min-height="60px">
                     <v-switch
                         class=" pl-2 pr-2 pt-2"
