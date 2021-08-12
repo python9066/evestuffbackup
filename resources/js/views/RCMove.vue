@@ -77,7 +77,7 @@
                                 <v-icon left>{{
                                     pillIcon(item.station_status_id)
                                 }}</v-icon>
-                                <button v-clipboard="item.station_status_name">
+                                <button v-clipboard="fixStatusText(item)">
                                     {{ fixStatusText(item) }}
                                 </button>
                             </v-chip>
@@ -478,7 +478,6 @@ export default {
         filteredItems() {
             return this.stations.filter(s => s.show_on_rc_move == 1);
         },
-
         user_name() {
             return this.$store.state.user_name;
         }

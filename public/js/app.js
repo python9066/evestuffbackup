@@ -56648,8 +56648,8 @@ var render = function() {
                                         {
                                           name: "clipboard",
                                           rawName: "v-clipboard",
-                                          value: item.station_status_name,
-                                          expression: "item.station_status_name"
+                                          value: _vm.fixStatusText(item),
+                                          expression: "fixStatusText(item)"
                                         }
                                       ]
                                     },
