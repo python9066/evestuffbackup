@@ -1,5 +1,5 @@
 <template>
-    <div class="pr-16 pl-16 d-inline-flex" v-resize="onResize">
+    <div class="pr-16 pl-16" v-resize="onResize">
         <v-row
             no-gutters
             justify="space-between"

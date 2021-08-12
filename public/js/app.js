@@ -57272,7 +57272,7 @@ var render = function() {
           expression: "onResize"
         }
       ],
-      staticClass: "pr-16 pl-16 d-inline-flex"
+      staticClass: "pr-16 pl-16"
     },
     [
       _c(
