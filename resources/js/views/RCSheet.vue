@@ -327,7 +327,6 @@ export default {
 
         if (this.$can("view_station_info_killsheet")) {
             await this.$store.dispatch("loadStationInfo");
-            p;
         }
         await this.$store.dispatch("getRcRegions");
         await this.$store.dispatch("getRcStationRecords");

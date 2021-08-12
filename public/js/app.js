@@ -27404,7 +27404,7 @@ function sleep(ms) {
 
             case 5:
               if (!_this.$can("view_station_info_killsheet")) {
-                _context.next = 9;
+                _context.next = 8;
                 break;
               }
 
@@ -27412,29 +27412,26 @@ function sleep(ms) {
               return _this.$store.dispatch("loadStationInfo");
 
             case 8:
-              p;
-
-            case 9:
-              _context.next = 11;
+              _context.next = 10;
               return _this.$store.dispatch("getRcRegions");
 
-            case 11:
-              _context.next = 13;
+            case 10:
+              _context.next = 12;
               return _this.$store.dispatch("getRcStationRecords");
 
-            case 13:
-              _context.next = 15;
+            case 12:
+              _context.next = 14;
               return _this.$store.dispatch("getRcFcs");
 
-            case 15:
-              _context.next = 17;
+            case 14:
+              _context.next = 16;
               return _this.$store.dispatch("getRcItems");
 
-            case 17:
-              _context.next = 19;
+            case 16:
+              _context.next = 18;
               return _this.$store.dispatch("getRcStatus");
 
-            case 19:
+            case 18:
               Echo["private"]("rcsheet").listen("RcSheetUpdate", function (e) {
                 if (e.flag.message != null) {
                   _this.$store.dispatch("updateRcStation", e.flag.message);
@@ -27454,21 +27451,21 @@ function sleep(ms) {
               });
 
               if (!_this.$can("view_admin_logs")) {
-                _context.next = 24;
+                _context.next = 23;
                 break;
               }
 
-              _context.next = 23;
+              _context.next = 22;
               return _this.$store.dispatch("getLoggingRcSheet");
 
-            case 23:
+            case 22:
               Echo["private"]("rcsheetadminlogs").listen("RcSheetAddLogging", function (e) {
                 console.log("ytoyoyo");
 
                 _this.$store.dispatch("addLoggingRcSheet", e.flag.message);
               });
 
-            case 24:
+            case 23:
             case "end":
               return _context.stop();
           }
