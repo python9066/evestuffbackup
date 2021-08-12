@@ -46224,7 +46224,7 @@ var render = function() {
                     _vm._g(
                       _vm._b(
                         {
-                          attrs: { color: "green", dark: "" },
+                          attrs: { color: "pink darken-2", dark: "" },
                           on: {
                             click: function($event) {
                               return _vm.open()
