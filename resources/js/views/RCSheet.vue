@@ -26,7 +26,7 @@
                 </AdminLoggingSheet>
             </v-col>
             <v-col cols="4">
-                <v-card mix-width="150px" min-height="60px">
+                <v-card width="150px" min-height="60px">
                     <v-switch
                         class=" pl-2 pr-2 pt-2"
                         v-model="toggleFC"
