@@ -26174,6 +26174,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
 
 
 
@@ -26433,10 +26435,10 @@ function sleep(ms) {
       item.station_status_id = 6;
       this.$store.dispatch("updateStationNotification", item);
     },
-    copied: function copied() {
+    copied: function copied(text) {
       this.snack = true;
       this.snackColor = "success";
-      this.snackText = "Data Copied!!";
+      this.snackText = text;
     },
     itemRowBackground: function itemRowBackground(item) {
       if (item.under_attack == 1) {
@@ -56716,8 +56718,9 @@ var render = function() {
                                         {
                                           name: "clipboard",
                                           rawName: "v-clipboard:success",
-                                          value: _vm.copied,
-                                          expression: "copied",
+                                          value: _vm.copied("Status copied"),
+                                          expression:
+                                            "\n                                    copied('Status copied')\n                                ",
                                           arg: "success"
                                         }
                                       ]

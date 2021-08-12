@@ -79,7 +79,9 @@
                                 }}</v-icon>
                                 <button
                                     v-clipboard="fixStatusText(item)"
-                                    v-clipboard:success="copied"
+                                    v-clipboard:success="
+                                        copied('Status copied')
+                                    "
                                 >
                                     {{ fixStatusText(item) }}
                                 </button>
@@ -448,10 +450,10 @@ export default {
             this.$store.dispatch("updateStationNotification", item);
         },
 
-        copied() {
+        copied(text) {
             this.snack = true;
             this.snackColor = "success";
-            this.snackText = "Data Copied!!";
+            this.snackText = text;
         },
 
         itemRowBackground: function(item) {
