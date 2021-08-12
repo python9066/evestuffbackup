@@ -57266,7 +57266,9 @@ var render = function() {
     [
       _c(
         "v-row",
-        { attrs: { "no-gutters": "", justify: "center", align: "center" } },
+        {
+          attrs: { "no-gutters": "", justify: "space-between", align: "center" }
+        },
         [
           _c(
             "v-col",
