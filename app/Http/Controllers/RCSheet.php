@@ -20,6 +20,13 @@ class RCSheet extends Controller
 {
     public function RCInput(Request $request)
     {
+        $station = 1028507969993;
+        $item = 35921;
+
+        StationItemJoin::where('station_item_id', $item)->where('station_id', $station)->delete();
+        StationItemJoin::Create(['station_item_id' => $item, 'station_id' => $station]);
+        dd("stop");
+
         Station::where('show_on_rc', 1)->update(['show_on_rc' => 5]);
         // $inputs = $request->all();
         // foreach ($inputs as $input) {
