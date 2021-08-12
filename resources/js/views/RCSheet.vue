@@ -22,7 +22,7 @@
             <v-col cols="6">
                 <AdminLoggingSheet v-if="$can('view_admin_logs')" class=" pt-2">
                 </AdminLoggingSheet>
-                <v-card right-align class="">
+                <v-card right-align max-width="50px">
                     <v-switch
                         class=" pl-2 pr-2"
                         v-model="toggleFC"

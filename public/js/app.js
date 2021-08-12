@@ -57316,7 +57316,7 @@ var render = function() {
               _vm._v(" "),
               _c(
                 "v-card",
-                { attrs: { "right-align": "" } },
+                { attrs: { "right-align": "", "max-width": "50px" } },
                 [
                   _c("v-switch", {
                     staticClass: " pl-2 pr-2",
