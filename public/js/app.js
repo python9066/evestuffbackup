@@ -26105,6 +26105,21 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -56627,10 +56642,26 @@ var render = function() {
                                       )
                                     )
                                   ]),
-                                  _vm._v(
-                                    "\n                            " +
-                                      _vm._s(item.station_status_name) +
-                                      "\n                        "
+                                  _vm._v(" "),
+                                  _c(
+                                    "button",
+                                    {
+                                      directives: [
+                                        {
+                                          name: "clipboard",
+                                          rawName: "v-clipboard",
+                                          value: item.station_status_name,
+                                          expression: "item.station_status_name"
+                                        }
+                                      ]
+                                    },
+                                    [
+                                      _vm._v(
+                                        "\n                                " +
+                                          _vm._s(item.station_status_name) +
+                                          "\n                            "
+                                      )
+                                    ]
                                   )
                                 ],
                                 1
@@ -56669,23 +56700,60 @@ var render = function() {
                             " test\n            "
                         )
                       ]
-                    ),
-                    _vm._v(" "),
+                    )
+                  ]
+                }
+              },
+              {
+                key: "item.system_name",
+                fn: function(ref) {
+                  var item = ref.item
+                  return [
                     _c(
-                      "v-btn",
+                      "button",
                       {
-                        attrs: { text: "" },
-                        on: {
-                          click: function($event) {
-                            return _vm.copyStationName(item)
+                        directives: [
+                          {
+                            name: "clipboard",
+                            rawName: "v-clipboard",
+                            value: item.system_name,
+                            expression: "item.system_name"
                           }
-                        }
+                        ]
                       },
                       [
                         _vm._v(
                           "\n                " +
-                            _vm._s(item.station_name) +
+                            _vm._s(item.system_name) +
                             "\n            "
+                        )
+                      ]
+                    )
+                  ]
+                }
+              },
+              {
+                key: "item.item_name",
+                fn: function(ref) {
+                  var item = ref.item
+                  return [
+                    _c(
+                      "button",
+                      {
+                        directives: [
+                          {
+                            name: "clipboard",
+                            rawName: "v-clipboard",
+                            value: item.item_name,
+                            expression: "item.item_name"
+                          }
+                        ]
+                      },
+                      [
+                        _vm._v(
+                          "\n                " +
+                            _vm._s(item.item_name) +
+                            " test\n            "
                         )
                       ]
                     )

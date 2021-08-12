@@ -77,7 +77,9 @@
                                 <v-icon left>{{
                                     pillIcon(item.station_status_id)
                                 }}</v-icon>
-                                {{ item.station_status_name }}
+                                <button v-clipboard="item.station_status_name">
+                                    {{ item.station_status_name }}
+                                </button>
                             </v-chip>
                         </div>
                     </template>
@@ -91,9 +93,22 @@
                 <button v-clipboard="item.station_name">
                     {{ item.station_name }} test
                 </button>
-                <v-btn text @click="copyStationName(item)">
-                    {{ item.station_name }}
-                </v-btn>
+            </template>
+            <template
+                v-slot:[`item.system_name`]="{ item }"
+                class="d-inline-flex align-center"
+            >
+                <button v-clipboard="item.system_name">
+                    {{ item.system_name }}
+                </button>
+            </template>
+            <template
+                v-slot:[`item.item_name`]="{ item }"
+                class="d-inline-flex align-center"
+            >
+                <button v-clipboard="item.item_name">
+                    {{ item.item_name }} test
+                </button>
             </template>
             <template
                 v-slot:[`item.alliance_ticker`]="{ item }"
