@@ -245,41 +245,19 @@
                                 :station="item"
                             ></RcGsolButton>
                         </template>
-                        <template
-                            v-slot:[`item.actions`]="{ item }"
-                            class=" d-inline-flex"
-                        >
-                            <RcStationMessage
-                                class=" mr-2"
-                                :station="item"
-                            ></RcStationMessage>
-                            <v-tooltip
-                                color="#121212"
-                                bottom
-                                :open-delay="2000"
-                                :disabled="$store.state.tooltipToggle"
-                            >
-                                <template
-                                    v-slot:activator="{
-                                        on: tooltip,
-                                        attrs: atooltip
-                                    }"
-                                >
-                                    <div
-                                        v-on="{ ...tooltip }"
-                                        v-bind="{ ...atooltip }"
-                                    >
-                                        <Info
-                                            :station="item"
-                                            v-if="showInfo(item)"
-                                        ></Info>
-                                    </div>
-                                </template>
-                                <span>
-                                    Where to see fitting of station, core
-                                    status</span
-                                >
-                            </v-tooltip>
+                        <template v-slot:[`item.actions`]="{ item }">
+                            <div class=" d-inline-flex">
+                                <RcStationMessage
+                                    class=" mr-2"
+                                    :station="item"
+                                ></RcStationMessage>
+                                <div>
+                                    <Info
+                                        :station="item"
+                                        v-if="showInfo(item)"
+                                    ></Info>
+                                </div>
+                            </div>
                         </template>
                         <template slot="no-data">
                             No Active or Upcoming Campaigns
