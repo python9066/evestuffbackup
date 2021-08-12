@@ -26866,7 +26866,11 @@ function sleep(ms) {
       statusPicked: [],
       search: "",
       toggleFC: false,
-      logs: false
+      logs: false,
+      windowSize: {
+        x: 0,
+        y: 0
+      }
     };
   },
   created: function created() {
@@ -26952,11 +26956,16 @@ function sleep(ms) {
     }))();
   },
   mounted: function mounted() {
+    var _this2 = this;
+
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
         while (1) {
           switch (_context2.prev = _context2.next) {
             case 0:
+              _this2.onResize();
+
+            case 1:
             case "end":
               return _context2.stop();
           }
@@ -26972,8 +26981,14 @@ function sleep(ms) {
 
       return false;
     },
+    onResize: function onResize() {
+      this.windowSize = {
+        x: window.innerWidth,
+        y: window.innerHeight
+      };
+    },
     freshUpdate: function freshUpdate() {
-      var _this2 = this;
+      var _this3 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
@@ -26981,23 +26996,23 @@ function sleep(ms) {
             switch (_context3.prev = _context3.next) {
               case 0:
                 _context3.next = 2;
-                return _this2.$store.dispatch("getRcRegions");
+                return _this3.$store.dispatch("getRcRegions");
 
               case 2:
                 _context3.next = 4;
-                return _this2.$store.dispatch("getRcStationRecords");
+                return _this3.$store.dispatch("getRcStationRecords");
 
               case 4:
                 _context3.next = 6;
-                return _this2.$store.dispatch("getRcFcs");
+                return _this3.$store.dispatch("getRcFcs");
 
               case 6:
                 _context3.next = 8;
-                return _this2.$store.dispatch("getRcItems");
+                return _this3.$store.dispatch("getRcItems");
 
               case 8:
                 _context3.next = 10;
-                return _this2.$store.dispatch("getRcStatus");
+                return _this3.$store.dispatch("getRcStatus");
 
               case 10:
               case "end":
@@ -27008,7 +27023,7 @@ function sleep(ms) {
       }))();
     },
     fcupdate: function fcupdate() {
-      var _this3 = this;
+      var _this4 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
@@ -27016,7 +27031,7 @@ function sleep(ms) {
             switch (_context4.prev = _context4.next) {
               case 0:
                 _context4.next = 2;
-                return _this3.$store.dispatch("getRcFcs");
+                return _this4.$store.dispatch("getRcFcs");
 
               case 2:
               case "end":
@@ -27027,7 +27042,7 @@ function sleep(ms) {
       }))();
     },
     sheetupdate: function sheetupdate() {
-      var _this4 = this;
+      var _this5 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee5() {
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee5$(_context5) {
@@ -27035,7 +27050,7 @@ function sleep(ms) {
             switch (_context5.prev = _context5.next) {
               case 0:
                 _context5.next = 2;
-                return _this4.$store.dispatch("getRcStationRecords");
+                return _this5.$store.dispatch("getRcStationRecords");
 
               case 2:
               case "end":
@@ -27092,7 +27107,7 @@ function sleep(ms) {
       return parseInt(day, 10) + "d";
     },
     stationdone: function stationdone(item) {
-      var _this5 = this;
+      var _this6 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee6() {
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee6$(_context6) {
@@ -27104,7 +27119,7 @@ function sleep(ms) {
                   method: "put",
                   url: "/api/finishrcstation/" + item.id,
                   headers: {
-                    Authorization: "Bearer " + _this5.$store.state.token,
+                    Authorization: "Bearer " + _this6.$store.state.token,
                     Accept: "application/json",
                     "Content-Type": "application/json"
                   }
@@ -27159,13 +27174,13 @@ function sleep(ms) {
       }
     },
     filter_start: function filter_start() {
-      var _this6 = this;
+      var _this7 = this;
 
       var data = [];
 
       if (this.statusPicked.length != 0) {
         this.statusPicked.forEach(function (p) {
-          var pick = _this6.filter_fc.filter(function (f) {
+          var pick = _this7.filter_fc.filter(function (f) {
             return f.status_id == p;
           });
 
@@ -27181,13 +27196,13 @@ function sleep(ms) {
       return this.filter_fc;
     },
     filter_mid: function filter_mid() {
-      var _this7 = this;
+      var _this8 = this;
 
       var data = [];
 
       if (this.itemPicked.length != 0) {
         this.itemPicked.forEach(function (p) {
-          var pick = _this7.filter_start.filter(function (f) {
+          var pick = _this8.filter_start.filter(function (f) {
             return f.item_id == p;
           });
 
@@ -27203,13 +27218,13 @@ function sleep(ms) {
       return this.filter_start;
     },
     filter_end: function filter_end() {
-      var _this8 = this;
+      var _this9 = this;
 
       var data = [];
 
       if (this.regionPicked.length != 0) {
         this.regionPicked.forEach(function (p) {
-          var pick = _this8.filter_mid.filter(function (f) {
+          var pick = _this9.filter_mid.filter(function (f) {
             return f.region_id == p;
           });
 

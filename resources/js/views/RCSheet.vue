@@ -278,7 +278,11 @@ export default {
             statusPicked: [],
             search: "",
             toggleFC: false,
-            logs: false
+            logs: false,
+            windowSize: {
+                x: 0,
+                y: 0
+            }
         };
     },
 
@@ -319,7 +323,9 @@ export default {
         }
     },
 
-    async mounted() {},
+    async mounted() {
+        this.onResize();
+    },
 
     methods: {
         showCountDown(item) {
@@ -328,6 +334,10 @@ export default {
             }
 
             return false;
+        },
+
+        onResize() {
+            this.windowSize = { x: window.innerWidth, y: window.innerHeight };
         },
 
         async freshUpdate() {
