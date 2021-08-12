@@ -26844,6 +26844,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -57819,7 +57828,29 @@ var render = function() {
           )
         ],
         1
-      )
+      ),
+      _vm._v(" "),
+      _vm.$can("super")
+        ? _c(
+            "v-row",
+            {
+              directives: [
+                {
+                  name: "resize",
+                  rawName: "v-resize",
+                  value: _vm.onResize,
+                  expression: "onResize"
+                }
+              ],
+              attrs: { align: "center", justify: "center" }
+            },
+            [
+              _c("v-subheader", [_vm._v("Window Size")]),
+              _vm._v("\n        " + _vm._s(_vm.windowSize) + "\n    ")
+            ],
+            1
+          )
+        : _vm._e()
     ],
     1
   )

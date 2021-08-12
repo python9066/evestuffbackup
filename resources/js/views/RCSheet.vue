@@ -256,6 +256,15 @@
                 </v-card>
             </v-col>
         </v-row>
+        <v-row
+            v-if="$can('super')"
+            v-resize="onResize"
+            align="center"
+            justify="center"
+        >
+            <v-subheader>Window Size</v-subheader>
+            {{ windowSize }}
+        </v-row>
     </div>
 </template>
 <script>
