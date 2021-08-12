@@ -19,7 +19,6 @@
                     <AddStation v-if="$can('super')" :type="3"></AddStation>
                 </v-card>
 
-                <v-spacer></v-spacer>
                 <AdminLoggingSheet v-if="$can('view_admin_logs')" class=" pt-2">
                 </AdminLoggingSheet>
                 <v-card right-align class="">
