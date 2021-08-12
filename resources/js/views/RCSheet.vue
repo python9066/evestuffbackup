@@ -483,7 +483,7 @@ export default {
         },
 
         dropdown_status_list() {
-            return this.rcsheetStatus;
+            return this.rcsheetStatus.filter(l => l.text != null);
         },
 
         _headers() {

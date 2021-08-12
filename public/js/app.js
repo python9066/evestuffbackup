@@ -27211,7 +27211,9 @@ function sleep(ms) {
       return this.rcsheetItem;
     },
     dropdown_status_list: function dropdown_status_list() {
-      return this.rcsheetStatus;
+      return this.rcsheetStatus.filter(function (l) {
+        return l.text != null;
+      });
     },
     _headers: function _headers() {
       if (this.$can("view_gsol_killsheet")) {
