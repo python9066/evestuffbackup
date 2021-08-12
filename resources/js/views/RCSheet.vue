@@ -6,8 +6,8 @@
             align="center"
             class=" d-inline-flex"
         >
-            <v-col cols="4" class=" d-inline-flex" align="center">
-                <v-card tile flat color="#121212" md="3" min-width="500px">
+            <v-col cols="8" align="center">
+                <v-card tile flat color="#121212" min-width="500px">
                     <v-text-field
                         v-model="search"
                         append-icon="mdi-magnify"
@@ -19,14 +19,14 @@
                 </v-card>
             </v-col>
 
-            <v-col class=" d-inline-flex">
+            <v-col cols="2">
                 <AddStation
                     v-if="$can('super')"
                     :type="3"
                     class=" pt-2 pl-2"
                 ></AddStation
             ></v-col>
-            <v-col cols="4" justify="end" align="end" class=" d-inline-flex">
+            <v-col cols="2" justify="end" align="end">
                 <v-spacer></v-spacer>
                 <AdminLoggingSheet
                     v-if="$can('view_admin_logs')"

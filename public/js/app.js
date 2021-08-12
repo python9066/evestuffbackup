@@ -57284,10 +57284,7 @@ var render = function() {
         [
           _c(
             "v-col",
-            {
-              staticClass: " d-inline-flex",
-              attrs: { cols: "4", align: "center" }
-            },
+            { attrs: { cols: "8", align: "center" } },
             [
               _c(
                 "v-card",
@@ -57296,7 +57293,6 @@ var render = function() {
                     tile: "",
                     flat: "",
                     color: "#121212",
-                    md: "3",
                     "min-width": "500px"
                   }
                 },
@@ -57326,7 +57322,7 @@ var render = function() {
           _vm._v(" "),
           _c(
             "v-col",
-            { staticClass: " d-inline-flex" },
+            { attrs: { cols: "2" } },
             [
               _vm.$can("super")
                 ? _c("AddStation", {
@@ -57340,10 +57336,7 @@ var render = function() {
           _vm._v(" "),
           _c(
             "v-col",
-            {
-              staticClass: " d-inline-flex",
-              attrs: { cols: "4", justify: "end", align: "end" }
-            },
+            { attrs: { cols: "2", justify: "end", align: "end" } },
             [
               _c("v-spacer"),
               _vm._v(" "),
