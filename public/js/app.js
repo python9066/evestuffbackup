@@ -26471,7 +26471,8 @@ function sleep(ms) {
     },
     fixTimeStamp: function fixTimeStamp(item) {
       var str = item.timestamp.replace(/\s+/g, "");
-      str.substring(2);
+      str = str.replace(":", "");
+      str = str.replace("-", "");
       console.log(str);
       return str;
     }
