@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddTimerImageLinkToStationsTable extends Migration
+class AddAddedByUserIdToStationsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,7 @@ class AddTimerImageLinkToStationsTable extends Migration
     public function up()
     {
         Schema::table('stations', function (Blueprint $table) {
-            $table->string('timer_image_link')->after('show_on_rc_move')->default(0);
+            $table->foreignId('added_by_user_id')->after('show_on_rc_move')->default(0);
         });
     }
 
