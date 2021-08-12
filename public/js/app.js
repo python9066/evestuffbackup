@@ -26440,11 +26440,9 @@ function sleep(ms) {
 
       return false;
     },
-    copyStationName: function copyStationName(item) {
-      console.log("cop");
-      var textToCopy = item.stationname;
-      textToCopy.select();
-      document.execCommand("copy");
+    fixStatusText: function fixStatusText(item) {
+      var ret = item.station_status_name.replace("Upcoming - ", "");
+      return ret;
     }
   },
   computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapState"])(["stations"])), {}, {
@@ -56658,7 +56656,7 @@ var render = function() {
                                     [
                                       _vm._v(
                                         "\n                                " +
-                                          _vm._s(item.station_status_name) +
+                                          _vm._s(_vm.fixStatusText(item)) +
                                           "\n                            "
                                       )
                                     ]

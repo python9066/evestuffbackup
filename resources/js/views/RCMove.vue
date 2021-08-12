@@ -78,7 +78,7 @@
                                     pillIcon(item.station_status_id)
                                 }}</v-icon>
                                 <button v-clipboard="item.station_status_name">
-                                    {{ item.station_status_name }}
+                                    {{ fixStatusText(item) }}
                                 </button>
                             </v-chip>
                         </div>
@@ -466,11 +466,9 @@ export default {
             return false;
         },
 
-        copyStationName(item) {
-            console.log("cop");
-            let textToCopy = item.stationname;
-            textToCopy.select();
-            document.execCommand("copy");
+        fixStatusText(item) {
+            var ret = item.station_status_name.replace("Upcoming - ", "");
+            return ret;
         }
     },
 
