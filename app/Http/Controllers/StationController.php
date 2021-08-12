@@ -121,6 +121,7 @@ class StationController extends Controller
 
         $name = preg_replace("/\([^\)]+\)(\R|$)/", "$1", $request->stationName);
         $name = rtrim($name);
+        dd($name);
         $url = "https://recon.gnf.lt/api/structure/" . $name;
 
         $client = new GuzzleHttpClient();
