@@ -57844,7 +57844,13 @@ var render = function() {
             { attrs: { align: "center", justify: "center" } },
             [
               _c("v-subheader", [_vm._v("Window Size")]),
-              _vm._v("\n        " + _vm._s(_vm.windowSize) + "\n    ")
+              _vm._v(
+                "\n        " +
+                  _vm._s(_vm.windowSize) +
+                  " abd " +
+                  _vm._s(_vm.highthtest) +
+                  "\n    "
+              )
             ],
             1
           )

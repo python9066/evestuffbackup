@@ -258,7 +258,7 @@
         </v-row>
         <v-row v-if="$can('super')" align="center" justify="center">
             <v-subheader>Window Size</v-subheader>
-            {{ windowSize }}
+            {{ windowSize }} abd {{ highthtest }}
         </v-row>
     </div>
 </template>
