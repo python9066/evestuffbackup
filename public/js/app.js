@@ -26870,12 +26870,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
-//
 
 
 
@@ -57277,7 +57271,7 @@ var render = function() {
                 "v-card",
                 {
                   staticClass: "align-start",
-                  attrs: { width: "500", tile: "", flat: "", color: "#121212" }
+                  attrs: { tile: "", flat: "", color: "#121212" }
                 },
                 [
                   _c("v-text-field", {
