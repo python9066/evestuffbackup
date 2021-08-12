@@ -321,7 +321,7 @@ class StationController extends Controller
         if ($statusID == 14) {
             $statusID = 3;
         };
-        Station::where('id', $id)->update(['show_on_rc_move' => 0, 'show_on_FC' => 1, 'station_status_id' => $statusID]);
+        Station::where('id', $id)->update(['show_on_rc_move' => 0, 'show_on_rc' => 1, 'station_status_id' => $statusID]);
         $message = StationRecords::where('id', $id)->first();
         $flag = collect([
             'message' => $message
