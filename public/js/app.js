@@ -57328,7 +57328,7 @@ var render = function() {
             "v-col",
             {
               staticClass: " d-inline-flex",
-              attrs: { cols: "4", justify: "end" }
+              attrs: { cols: "4", justify: "end", align: "end" }
             },
             [
               _vm.$can("view_admin_logs")
