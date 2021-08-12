@@ -50,6 +50,7 @@
                             :items="dropdown_region_list"
                             label="Filter by Region"
                             multiple
+                            :loading="loadingt"
                             chips
                             deletable-chips
                             hide-details
@@ -293,6 +294,7 @@ export default {
             search: "",
             toggleFC: false,
             logs: false,
+            loadingt: true,
             windowSize: {
                 x: 0,
                 y: 0
@@ -314,6 +316,7 @@ export default {
         await this.$store.dispatch("getRcFcs");
         await this.$store.dispatch("getRcItems");
         await this.$store.dispatch("getRcStatus");
+        this.loadingt = ture;
         Echo.private("rcsheet").listen("RcSheetUpdate", e => {
             if (e.flag.message != null) {
                 this.$store.dispatch("updateRcStation", e.flag.message);

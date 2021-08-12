@@ -27334,6 +27334,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 
@@ -27357,6 +27358,7 @@ function sleep(ms) {
       search: "",
       toggleFC: false,
       logs: false,
+      loadingt: true,
       windowSize: {
         x: 0,
         y: 0
@@ -27413,6 +27415,7 @@ function sleep(ms) {
               return _this.$store.dispatch("getRcStatus");
 
             case 18:
+              _this.loadingt = ture;
               Echo["private"]("rcsheet").listen("RcSheetUpdate", function (e) {
                 if (e.flag.message != null) {
                   _this.$store.dispatch("updateRcStation", e.flag.message);
@@ -27432,21 +27435,21 @@ function sleep(ms) {
               });
 
               if (!_this.$can("view_admin_logs")) {
-                _context.next = 23;
+                _context.next = 24;
                 break;
               }
 
-              _context.next = 22;
+              _context.next = 23;
               return _this.$store.dispatch("getLoggingRcSheet");
 
-            case 22:
+            case 23:
               Echo["private"]("rcsheetadminlogs").listen("RcSheetAddLogging", function (e) {
                 console.log("ytoyoyo");
 
                 _this.$store.dispatch("addLoggingRcSheet", e.flag.message);
               });
 
-            case 23:
+            case 24:
             case "end":
               return _context.stop();
           }
@@ -58489,6 +58492,7 @@ var render = function() {
                           items: _vm.dropdown_region_list,
                           label: "Filter by Region",
                           multiple: "",
+                          loading: _vm.loadingt,
                           chips: "",
                           "deletable-chips": "",
                           "hide-details": ""
