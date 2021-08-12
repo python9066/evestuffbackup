@@ -500,6 +500,7 @@ export default {
             var str = item.timestamp.replace(/\s+/g, "");
             str = str.replace(/[:]/g, "");
             str = str.replace(/[-]/g, "");
+            str = str.substring(2);
             console.log(str);
             return str;
         }
