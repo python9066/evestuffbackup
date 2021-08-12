@@ -26870,6 +26870,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 
@@ -57270,12 +57276,13 @@ var render = function() {
               _c(
                 "v-card",
                 {
-                  staticClass: "align-start",
+                  staticClass: "align-start d-inline-flex",
                   attrs: { tile: "", flat: "", color: "#121212" }
                 },
                 [
                   _c("v-text-field", {
                     attrs: {
+                      width: "500px",
                       "append-icon": "mdi-magnify",
                       label: "Search",
                       "single-line": "",

@@ -2,9 +2,15 @@
     <div class="pr-16 pl-16" v-resize="onResize">
         <v-row no-gutters justify="center">
             <v-col class=" d-inline-flex" cols="12">
-                <v-card tile flat color="#121212" class="align-start">
+                <v-card
+                    tile
+                    flat
+                    color="#121212"
+                    class="align-start d-inline-flex"
+                >
                     <v-text-field
                         v-model="search"
+                        width="500px"
                         append-icon="mdi-magnify"
                         label="Search"
                         single-line
