@@ -21,7 +21,7 @@
             <v-col cols="6" class=" d-inline-flex" justify="end">
                 <AdminLoggingSheet v-if="$can('view_admin_logs')" class=" pt-2">
                 </AdminLoggingSheet>
-                <v-card max-width="500px">
+                <v-card max-width="200px" min-height="100px">
                     <v-switch
                         class=" pl-2 pr-2"
                         v-model="toggleFC"

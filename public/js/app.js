@@ -57320,7 +57320,7 @@ var render = function() {
               _vm._v(" "),
               _c(
                 "v-card",
-                { attrs: { "max-width": "500px" } },
+                { attrs: { "max-width": "200px", "min-height": "100px" } },
                 [
                   _c("v-switch", {
                     staticClass: " pl-2 pr-2",
