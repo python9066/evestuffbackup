@@ -26881,11 +26881,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
 
 
 
@@ -57278,7 +57273,6 @@ var render = function() {
       _c(
         "v-row",
         {
-          staticClass: " d-inline-block",
           attrs: { "no-gutters": "", justify: "space-between", align: "center" }
         },
         [
