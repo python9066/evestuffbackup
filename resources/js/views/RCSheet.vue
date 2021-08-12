@@ -455,9 +455,10 @@ export default {
         showInfo(item) {
             if (this.$can("super")) {
                 if (
-                    item.item_id == 37534 ||
-                    item.item_id == 35841 ||
-                    item.item_id == 35840
+                    (item.item_id == 37534 ||
+                        item.item_id == 35841 ||
+                        item.item_id == 35840) &&
+                    item.fitted == "Fitted"
                 ) {
                     return false;
                 }
