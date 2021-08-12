@@ -57305,7 +57305,7 @@ var render = function() {
           _vm._v(" "),
           _c(
             "v-col",
-            { attrs: { cols: "6", justify: "end" } },
+            { staticClass: " d-inline-flex", attrs: { cols: "6" } },
             [
               _vm.$can("view_admin_logs")
                 ? _c("AdminLoggingSheet", { staticClass: " pt-2" })
