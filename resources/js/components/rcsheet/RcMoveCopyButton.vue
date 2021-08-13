@@ -22,7 +22,7 @@ export default {
 
     computed: {
         button() {
-            if (type == "outtime") {
+            if (this.type == "outtime") {
                 var str = item.out_time.replace(/\s+/g, "");
                 str = str.replace(/[:]/g, "");
                 str = str.replace(/[-]/g, "");

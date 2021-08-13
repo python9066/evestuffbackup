@@ -13441,7 +13441,7 @@ __webpack_require__.r(__webpack_exports__);
   methods: {},
   computed: {
     button: function button() {
-      if (type == "outtime") {
+      if (this.type == "outtime") {
         var str = item.out_time.replace(/\s+/g, "");
         str = str.replace(/[:]/g, "");
         str = str.replace(/[-]/g, "");
