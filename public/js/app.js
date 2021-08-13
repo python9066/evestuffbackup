@@ -61195,6 +61195,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('AdminLoggingSheet', __webp
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('RcMoveImage', __webpack_require__(/*! ./components/rcsheet/RcMoveImage.vue */ "./resources/js/components/rcsheet/RcMoveImage.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('RcMoveMessage', __webpack_require__(/*! ./components/rcsheet/RcMoveMessage.vue */ "./resources/js/components/rcsheet/RcMoveMessage.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('RcInfo', __webpack_require__(/*! ./components/rcsheet/RcInfo.vue */ "./resources/js/components/rcsheet/RcInfo.vue")["default"]);
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('StationEdit', __webpack_require__(/*! ./components/station/StationEdit.vue */ "./resources/js/components/station/StationEdit.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.prototype.moment = moment__WEBPACK_IMPORTED_MODULE_11___default.a; // import '@fortawesome/fontawesome-f      ree/css/all.css'
 
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(v_clipboard__WEBPACK_IMPORTED_MODULE_18___default.a);
@@ -67135,6 +67136,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_StationAttack_vue_vue_type_template_id_7fb395b4___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
+
+/***/ }),
+
+/***/ "./resources/js/components/station/StationEdit.vue":
+/*!*********************************************************!*\
+  !*** ./resources/js/components/station/StationEdit.vue ***!
+  \*********************************************************/
+/*! exports provided: default */
+/***/ (function(module, exports) {
+
+throw new Error("Module build failed (from ./node_modules/vue-loader/lib/index.js):\nError: ENOENT: no such file or directory, open 'G:\\code\\eve\\resources\\js\\components\\station\\StationEdit.vue'");
 
 /***/ }),
 
