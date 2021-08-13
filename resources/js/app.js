@@ -107,7 +107,7 @@ Vue.component('AdminLoggingSheet', require('./components/rcsheet/AdminLoggingShe
 Vue.component('RcMoveImage', require('./components/rcsheet/RcMoveImage.vue').default);
 Vue.component('RcMoveMessage', require('./components/rcsheet/RcMoveMessage.vue').default);
 Vue.component('RcInfo', require('./components/rcsheet/RcInfo.vue').default);
-Vue.component('StationEdit', require('./components/station/StationEdit.vue').default);
+
 
 
 
