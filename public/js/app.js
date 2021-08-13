@@ -59202,8 +59202,10 @@ var render = function() {
                           {
                             name: "clipboard",
                             rawName: "v-clipboard",
-                            value: _vm.fixTimeStamp(item),
-                            expression: "fixTimeStamp(item)"
+                            value: function() {
+                              return _vm.fixTimestamp(item)
+                            },
+                            expression: "() => fixTimestamp(item)"
                           },
                           {
                             name: "clipboard",
