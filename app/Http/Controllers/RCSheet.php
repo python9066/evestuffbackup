@@ -149,9 +149,9 @@ class RCSheet extends Controller
 
                             if ($statusID == 5) {
 
-                                Station::where('name', $input['structure_name'])->where('system_id', $input['solar_system']['solar_system_id'])->where('alliance_id', $allianceIDID)->update(['station_status_id' => $statusID, 'show_on_rc' => 2]);
+                                Station::where('name', $input['structure_name'])->update(['station_status_id' => $statusID, 'show_on_rc' => 2]);
                             } else {
-                                Station::where('name', $input['structure_name'])->where('system_id', $input['solar_system']['solar_system_id'])->where('alliance_id', $allianceIDID)->update(['station_status_id' => $statusID, 'out_time' => $timer, 'show_on_rc' => 1]);;
+                                Station::where('name', $input['structure_name'])->update(['station_status_id' => $statusID, 'out_time' => $timer, 'show_on_rc' => 1]);;
                             }
                         }
 
