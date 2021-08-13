@@ -129,7 +129,7 @@
                                     v-model="refTime"
                                     label="Reinforced unit YYYY.MM.DD hh:mm:ss"
                                     v-mask="'####-##-## ##:##:##'"
-                                    placeholder="YYYY.MM.DD hh:mm:ss"
+                                    placeholder="YYYY.MM.DD HH:mm:ss"
                                     @keyup.enter="
                                         (timerShown = false), addHacktime()
                                     "
@@ -379,19 +379,27 @@ export default {
         },
 
         async submit() {
-            var d = parseInt(this.refTime.substr(0, 1));
-            var h = parseInt(this.refTime.substr(3, 2));
-            var m = parseInt(this.refTime.substr(6, 2));
-            var s = parseInt(this.refTime.substr(9, 2));
-            var ds = d * 24 * 60 * 60;
-            var hs = h * 60 * 60;
-            var ms = m * 60;
-            var sec = ds + hs + ms + s;
-            var outTime = moment
-                .utc()
-                .add(sec, "seconds")
-                .format("YYYY-MM-DD HH:mm:ss");
+            var y = this.refTime.substr(0, 4);
+            var mo = this.refTime.substr(5, 2);
+            var d = this.refTime.substr(8, 2);
+            var h = this.refTime.substr(11, 2);
+            var m = this.refTime.substr(14, 2);
+            var s = this.refTime.substr(17, 2);
+            var sting = y + "-" + mo + "-" + d + " " + h + ":" + d + ":" + s;
 
+            // var ds = d * 24 * 60 * 60;
+            // var hs = h * 60 * 60;
+            // var ms = m * 60;
+            // var sec = ds + hs + ms + s;
+            // var outTime = moment
+            //     .utc()
+            //     .add(sec, "seconds")
+            //     .format("YYYY-MM-DD HH:mm:ss");
+
+            var outTime = moment(sting)
+                .utc()
+                .format("YYYY-MM-DD HH:mm:ss");
+            console.log(string + " - - - - " + outTime);
             var request = {
                 name: this.stationName,
                 system_id: this.sysSelect,

@@ -16369,20 +16369,28 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var _this5 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
-        var d, h, m, s, ds, hs, ms, sec, outTime, request;
+        var y, mo, d, h, m, s, sting, outTime, request;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                d = parseInt(_this5.refTime.substr(0, 1));
-                h = parseInt(_this5.refTime.substr(3, 2));
-                m = parseInt(_this5.refTime.substr(6, 2));
-                s = parseInt(_this5.refTime.substr(9, 2));
-                ds = d * 24 * 60 * 60;
-                hs = h * 60 * 60;
-                ms = m * 60;
-                sec = ds + hs + ms + s;
-                outTime = moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc().add(sec, "seconds").format("YYYY-MM-DD HH:mm:ss");
+                y = _this5.refTime.substr(0, 4);
+                mo = _this5.refTime.substr(5, 2);
+                d = _this5.refTime.substr(8, 2);
+                h = _this5.refTime.substr(11, 2);
+                m = _this5.refTime.substr(14, 2);
+                s = _this5.refTime.substr(17, 2);
+                sting = y + "-" + mo + "-" + d + " " + h + ":" + d + ":" + s; // var ds = d * 24 * 60 * 60;
+                // var hs = h * 60 * 60;
+                // var ms = m * 60;
+                // var sec = ds + hs + ms + s;
+                // var outTime = moment
+                //     .utc()
+                //     .add(sec, "seconds")
+                //     .format("YYYY-MM-DD HH:mm:ss");
+
+                outTime = moment__WEBPACK_IMPORTED_MODULE_2___default()(sting).utc().format("YYYY-MM-DD HH:mm:ss");
+                console.log(string + " - - - - " + outTime);
                 request = {
                   name: _this5.stationName,
                   system_id: _this5.sysSelect,
@@ -47771,7 +47779,7 @@ var render = function() {
                                 ],
                                 attrs: {
                                   label: "Reinforced unit YYYY.MM.DD hh:mm:ss",
-                                  placeholder: "YYYY.MM.DD hh:mm:ss"
+                                  placeholder: "YYYY.MM.DD HH:mm:ss"
                                 },
                                 on: {
                                   keyup: [
