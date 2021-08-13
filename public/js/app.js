@@ -22141,10 +22141,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
 // import { EventBus } from "../event-bus";
 
 
@@ -54457,13 +54453,13 @@ var render = function() {
                       )
                     : _vm._e(),
                   _vm._v(" "),
-                  _vm.$can("finish_move_timer ")
+                  _vm.$can("finish_move_timer")
                     ? _c("v-tab", { attrs: { link: "", to: "/addtimer" } }, [
                         _vm._v(
                           "\n                    Move To RC\n                "
                         )
                       ])
-                    : _vm.$can("view_move_timers  ")
+                    : _vm.$can("view_move_timers")
                     ? _c("v-tab", { attrs: { link: "", to: "/addtimer" } }, [
                         _vm._v(
                           "\n                    ADD TIMER\n                "
