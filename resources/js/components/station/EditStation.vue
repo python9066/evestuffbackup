@@ -110,12 +110,7 @@
                     <v-btn class="white--text" color="teal" @click="close()">
                         Close
                     </v-btn>
-                    <v-btn
-                        class="white--text"
-                        color="green"
-                        :disabled="showSubmit"
-                        @click="submit()"
-                    >
+                    <v-btn class="white--text" color="green" @click="submit()">
                         Submit
                     </v-btn></v-card-actions
                 >
@@ -360,9 +355,6 @@ export default {
             } else {
                 return true;
             }
-        },
-        showSubmit() {
-            return true;
         },
         stationOutlined() {
             if (this.state == 1) {

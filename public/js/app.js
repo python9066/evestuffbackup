@@ -16777,11 +16777,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -17018,9 +17013,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       } else {
         return true;
       }
-    },
-    showSubmit: function showSubmit() {
-      return true;
     },
     stationOutlined: function stationOutlined() {
       if (this.state == 1) {
@@ -48952,7 +48944,7 @@ var render = function() {
                     "v-btn",
                     {
                       staticClass: "white--text",
-                      attrs: { color: "green", disabled: _vm.showSubmit },
+                      attrs: { color: "green" },
                       on: {
                         click: function($event) {
                           return _vm.submit()
