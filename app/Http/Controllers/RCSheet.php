@@ -82,6 +82,7 @@ class RCSheet extends Controller
 
                 ) {
                     // dd($input);
+                    $skip = 0;
                     $corpIDID = 0;
                     $allianceIDID = 0;
                     $stationName = $input['structure_name'];
@@ -97,6 +98,11 @@ class RCSheet extends Controller
                         if ($alliance_count > 0) {
                             $allianceIDID = $allianceID->id;
                         }
+                    }
+
+                    $current = now();
+                    if ($timer < $current) {
+                        $skip = 1;
                     }
 
 
@@ -130,6 +136,7 @@ class RCSheet extends Controller
                             Station::where('name', $input['structure_name'])->update(['rc_id' => $input['id']]);
                         }
                     }
+
 
                     if ($count > 0) {
                         if ($check[0]['station_status_id'] > 4) {
