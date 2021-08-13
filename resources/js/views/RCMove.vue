@@ -266,7 +266,8 @@ export default {
                 {
                     text: "Name",
                     value: "station_name",
-                    width: "15%"
+                    width: "15%",
+                    align: "center"
                 },
                 {
                     text: "Timestamp",
