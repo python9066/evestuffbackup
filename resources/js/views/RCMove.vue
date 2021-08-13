@@ -189,7 +189,7 @@
                     v-clipboard="fixTimeStamp(item)"
                     v-clipboard:success="Timecopied"
                 >
-                    {{ item.timestamp }}
+                    {{ item.out_time }}
                 </button>
             </template>
 
@@ -618,7 +618,7 @@ export default {
         },
 
         fixTimeStamp(item) {
-            var str = item.timestamp.replace(/\s+/g, "");
+            var str = item.out_time.replace(/\s+/g, "");
             str = str.replace(/[:]/g, "");
             str = str.replace(/[-]/g, "");
             str = str.substring(2);

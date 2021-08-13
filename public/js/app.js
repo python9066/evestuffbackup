@@ -27452,7 +27452,7 @@ function sleep(ms) {
       return ret;
     },
     fixTimeStamp: function fixTimeStamp(item) {
-      var str = item.timestamp.replace(/\s+/g, "");
+      var str = item.out_time.replace(/\s+/g, "");
       str = str.replace(/[:]/g, "");
       str = str.replace(/[-]/g, "");
       str = str.substring(2);
@@ -59217,7 +59217,7 @@ var render = function() {
                       [
                         _vm._v(
                           "\n                " +
-                            _vm._s(item.timestamp) +
+                            _vm._s(item.out_time) +
                             "\n            "
                         )
                       ]
