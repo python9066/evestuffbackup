@@ -129,7 +129,7 @@
                                     v-model="refTime"
                                     label="Reinforced unit YYYY.MM.DD hh:mm:ss"
                                     v-mask="'YYYY-MM-DD HH:mm:ss'"
-                                    placeholder="YYYY.MM.DD hh:mm:ss"
+                                    placeholder="####-##-## ##:##:##"
                                     @keyup.enter="
                                         (timerShown = false), addHacktime()
                                     "

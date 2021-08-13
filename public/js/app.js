@@ -47771,7 +47771,7 @@ var render = function() {
                                 ],
                                 attrs: {
                                   label: "Reinforced unit YYYY.MM.DD hh:mm:ss",
-                                  placeholder: "YYYY.MM.DD hh:mm:ss"
+                                  placeholder: "####-##-## ##:##:##"
                                 },
                                 on: {
                                   keyup: [
