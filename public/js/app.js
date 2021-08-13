@@ -26736,7 +26736,7 @@ function sleep(ms) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              if (_this.$can("finish_move_timers")) {
+              if (_this.$can("finish_move_timer")) {
                 Echo["private"]("rcmovesheet").listen("RcMoveUpdate", function (e) {
                   if (e.flag.message != null) {
                     console.log(e.flag.message.added_by_user_id);

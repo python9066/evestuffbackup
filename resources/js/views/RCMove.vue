@@ -324,7 +324,7 @@ export default {
     },
 
     async created() {
-        if (this.$can("finish_move_timers")) {
+        if (this.$can("finish_move_timer")) {
             Echo.private("rcmovesheet")
                 .listen("RcMoveUpdate", e => {
                     if (e.flag.message != null) {
