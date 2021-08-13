@@ -140,7 +140,7 @@ class StationController extends Controller
 
         $stationdata = Utils::jsonDecode($response->getBody(), true);
         if ($response->getStatusCode() == 200) {
-            dd('here');
+
             if ($stationdata == "Error, Structure Not Found") {
                 $stationCheck = station::where('name', $name)->get();
                 $check = $stationCheck->count();
@@ -238,6 +238,7 @@ class StationController extends Controller
                 return $data;
             }
         } else {
+            dd('here');
             $stationCheck = station::where('name', $name)->get();
             $check = $stationCheck->count();
             if ($check > null) {
