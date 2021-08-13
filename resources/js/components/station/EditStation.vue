@@ -250,10 +250,13 @@ export default {
             var full = y + "-" + mo + "-" + d + " " + h + ":" + m + ":" + s;
 
             var outTimecheck = moment(full).format("YYYY-MM-DD HH:mm:ss");
-            if (outTimecheck != null && outTimecheck != this.item.out_time) {
+            var itemOutTime = moment(this.item.out_time).format(
+                "YYYY-MM-DD HH:mm:ss"
+            );
+            if (outTimecheck != null && outTimecheck != itemOutTime) {
                 var outTime = outTimecheck;
             } else {
-                var outTime = this.item.out_time;
+                var outTime = itemOutTime;
             }
 
             if (
