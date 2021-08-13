@@ -16899,7 +16899,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 outTime = null;
                 console.log(_this4.refTime);
 
-                if (_this4.refTime != "") {
+                if (_this4.refTime != "" || _this4.refTime != null) {
                   y = _this4.refTime.substr(0, 4);
                   mo = _this4.refTime.substr(5, 2);
                   d = _this4.refTime.substr(8, 2);
