@@ -13428,6 +13428,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -13436,7 +13445,11 @@ __webpack_require__.r(__webpack_exports__);
     type: String
   },
   data: function data() {
-    return {};
+    return {
+      snack: false,
+      snackColor: "",
+      snackText: ""
+    };
   },
   methods: {},
   computed: {
@@ -13446,6 +13459,8 @@ __webpack_require__.r(__webpack_exports__);
         str = str.replace(/[:]/g, "");
         str = str.replace(/[-]/g, "");
         str = str.substring(2);
+        this.snackColor = "success";
+        this.snackText = "Absolute Time Copied";
         return str;
       }
     }
@@ -45485,24 +45500,70 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c(
-      "button",
-      {
-        directives: [
-          {
-            name: "clipboard",
-            rawName: "v-clipboard",
-            value: function() {
-              return _vm.button
+  return _c(
+    "div",
+    [
+      _c(
+        "button",
+        {
+          directives: [
+            {
+              name: "clipboard",
+              rawName: "v-clipboard",
+              value: function() {
+                return _vm.button
+              },
+              expression: "() => button"
+            }
+          ]
+        },
+        [_vm._v("\n        " + _vm._s(_vm.item.out_time) + "\n    ")]
+      ),
+      _vm._v(" "),
+      _c(
+        "v-snackbar",
+        {
+          attrs: { timeout: 3000, color: _vm.snackColor },
+          scopedSlots: _vm._u([
+            {
+              key: "action",
+              fn: function(ref) {
+                var attrs = ref.attrs
+                return [
+                  _c(
+                    "v-btn",
+                    _vm._b(
+                      {
+                        attrs: { text: "" },
+                        on: {
+                          click: function($event) {
+                            _vm.snack = false
+                          }
+                        }
+                      },
+                      "v-btn",
+                      attrs,
+                      false
+                    ),
+                    [_vm._v("\n                Copied\n            ")]
+                  )
+                ]
+              }
+            }
+          ]),
+          model: {
+            value: _vm.snack,
+            callback: function($$v) {
+              _vm.snack = $$v
             },
-            expression: "() => button"
+            expression: "snack"
           }
-        ]
-      },
-      [_vm._v("\n        " + _vm._s(_vm.item.out_time) + "\n    ")]
-    )
-  ])
+        },
+        [_vm._v("\n        " + _vm._s(_vm.snackText) + "\n\n        ")]
+      )
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
