@@ -248,7 +248,7 @@ class StationController extends Controller
                     'station_name' => $station->name,
                     'structure_name' => $station->item_name,
                     'system_name' => $station->system_name,
-                    'corp_ticker' => $station->ticker,
+                    'corp_ticker' => $station->corp_ticker,
                 ];
             } else {
                 $data = [
