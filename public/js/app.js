@@ -26736,15 +26736,31 @@ function sleep(ms) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              Echo["private"]("rcmovesheet").listen("RcMoveUpdate", function (e) {
-                if (e.flag.message != null) {
-                  _this.$store.dispatch("updateStationNotification", e.flag.message);
-                }
-              }).listen("RcMoveDelete", function (e) {
-                _this.$store.dispatch("deleteStationNotification", e.flag.id);
-              });
-
               if (_this.$can("finish_move_timers")) {
+                Echo["private"]("rcmovesheet").listen("RcMoveUpdate", function (e) {
+                  if (e.flag.message != null) {
+                    console.log(e.flag.message.added_by_user_id);
+
+                    _this.$store.dispatch("updateStationNotification", e.flag.message);
+                  }
+                }).listen("RcMoveDelete", function (e) {
+                  _this.$store.dispatch("deleteStationNotification", e.flag.id);
+                });
+
+                _this.$store.dispatch("getStationData").then(function () {
+                  _this.loadingt = false;
+                  _this.loadingf = false;
+                  _this.loadingr = false;
+                });
+              } else {
+                Echo["private"]("rcmovesheet").listen("RcMoveUpdate", function (e) {
+                  if (e.flag.message != null) {
+                    _this.$store.dispatch("updateStationNotification", e.flag.message);
+                  }
+                }).listen("RcMoveDelete", function (e) {
+                  _this.$store.dispatch("deleteStationNotification", e.flag.id);
+                });
+
                 _this.$store.dispatch("getStationDataByUserId").then(function () {
                   _this.loadingt = false;
                   _this.loadingf = false;
@@ -26752,9 +26768,7 @@ function sleep(ms) {
                 });
               }
 
-              _this.$store.dispatch("getStationDataByUserId");
-
-            case 3:
+            case 1:
             case "end":
               return _context.stop();
           }

@@ -324,28 +324,50 @@ export default {
     },
 
     async created() {
-        Echo.private("rcmovesheet")
-            .listen("RcMoveUpdate", e => {
-                if (e.flag.message != null) {
-                    this.$store.dispatch(
-                        "updateStationNotification",
-                        e.flag.message
-                    );
-                }
-            })
-            .listen("RcMoveDelete", e => {
-                this.$store.dispatch("deleteStationNotification", e.flag.id);
-            });
-
         if (this.$can("finish_move_timers")) {
+            Echo.private("rcmovesheet")
+                .listen("RcMoveUpdate", e => {
+                    if (e.flag.message != null) {
+                        console.log(e.flag.message.added_by_user_id);
+                        this.$store.dispatch(
+                            "updateStationNotification",
+                            e.flag.message
+                        );
+                    }
+                })
+                .listen("RcMoveDelete", e => {
+                    this.$store.dispatch(
+                        "deleteStationNotification",
+                        e.flag.id
+                    );
+                });
+            this.$store.dispatch("getStationData").then(() => {
+                this.loadingt = false;
+                this.loadingf = false;
+                this.loadingr = false;
+            });
+        } else {
+            Echo.private("rcmovesheet")
+                .listen("RcMoveUpdate", e => {
+                    if (e.flag.message != null) {
+                        this.$store.dispatch(
+                            "updateStationNotification",
+                            e.flag.message
+                        );
+                    }
+                })
+                .listen("RcMoveDelete", e => {
+                    this.$store.dispatch(
+                        "deleteStationNotification",
+                        e.flag.id
+                    );
+                });
             this.$store.dispatch("getStationDataByUserId").then(() => {
                 this.loadingt = false;
                 this.loadingf = false;
                 this.loadingr = false;
             });
         }
-
-        this.$store.dispatch("getStationDataByUserId");
     },
 
     async mounted() {},
