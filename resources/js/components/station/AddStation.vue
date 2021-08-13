@@ -506,7 +506,7 @@ export default {
                 show_on_main: this.show_on_main,
                 show_on_chill: this.show_on_chill,
                 show_on_rc_move: this.show_on_rc_move,
-                show__on_rc: this.show_rc
+                show_on_rc: this.show_rc
             };
 
             await axios({
