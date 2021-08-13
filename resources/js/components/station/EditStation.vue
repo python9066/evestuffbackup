@@ -7,7 +7,7 @@
             @click:outside="close()"
         >
             <template v-slot:activator="{ on, attrs }">
-                <v-btn
+                <v-icon
                     color="pink darken-2"
                     dark
                     v-bind="attrs"
@@ -16,7 +16,6 @@
                     ><v-icon>
                         faSvg fa-edit
                     </v-icon>
-                </v-btn>
             </template>
 
             <v-card
