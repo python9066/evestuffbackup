@@ -300,7 +300,7 @@ export default {
                 var timer_image_link = this.item.timer_image_link;
             }
 
-            if (outTime != null) {
+            if (outTime != null || outTime != "Invalid date") {
                 var request = {
                     system_id: system_id,
                     corp_id: corp_id,
