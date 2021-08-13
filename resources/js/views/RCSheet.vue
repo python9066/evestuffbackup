@@ -163,7 +163,7 @@
                                 icon
                                 color="green"
                             >
-                                <v-icon> far fa-images</v-icon>
+                                <v-icon> fas fa-map fa-xs</v-icon>
                             </v-btn>
                         </template>
                         <template v-slot:[`item.count`]="{ item }">

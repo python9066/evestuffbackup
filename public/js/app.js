@@ -58870,7 +58870,7 @@ var render = function() {
                                       color: "green"
                                     }
                                   },
-                                  [_c("v-icon", [_vm._v(" far fa-images")])],
+                                  [_c("v-icon", [_vm._v(" fas fa-map fa-xs")])],
                                   1
                                 )
                               ]
