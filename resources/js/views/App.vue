@@ -38,11 +38,7 @@
                         Nats Health
                     </v-tab>
 
-                    <v-tab
-                        v-if="$can('view_move_timers')"
-                        link
-                        to="/timerstomove"
-                    >
+                    <v-tab v-if="$can('view_move_timers')" link to="/addtimer">
                         Move To RC
                     </v-tab>
 
