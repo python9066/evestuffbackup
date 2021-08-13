@@ -3,7 +3,7 @@
         <div class=" d-flex align-items-center">
             <v-card-title>Timers to input to RC</v-card-title>
             <!-- <ChillAddStation v-if="$can('edit_chill_timers')"></ChillAddStation> -->
-            <AddStation v-if="$can('add_timer')" :type="3"></AddStation>
+            <AddStation :type="3"></AddStation>
 
             <v-text-field
                 class=" ml-5"

@@ -58717,9 +58717,7 @@ var render = function() {
         [
           _c("v-card-title", [_vm._v("Timers to input to RC")]),
           _vm._v(" "),
-          _vm.$can("add_timer")
-            ? _c("AddStation", { attrs: { type: 3 } })
-            : _vm._e(),
+          _c("AddStation", { attrs: { type: 3 } }),
           _vm._v(" "),
           _c("v-text-field", {
             staticClass: " ml-5",
