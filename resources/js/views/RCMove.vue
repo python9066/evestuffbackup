@@ -240,12 +240,12 @@ export default {
                 {
                     text: "Constellation",
                     value: "constellation_name",
-                    width: "8%"
+                    width: "5%"
                 },
                 {
                     text: "System",
                     value: "system_name",
-                    width: "8%"
+                    width: "5%"
                 },
                 {
                     text: "Corp",
@@ -256,7 +256,7 @@ export default {
                 {
                     text: "Alliance",
                     value: "alliance_ticker",
-                    width: "5%"
+                    width: "10%"
                 },
                 {
                     text: "Type",
