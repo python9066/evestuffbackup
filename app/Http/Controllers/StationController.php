@@ -239,9 +239,8 @@ class StationController extends Controller
             }
         } else {
 
-            $stationCheck = station::where('name', $name)->get();
-            $check = $stationCheck->count();
-            if ($check > null) {
+            $stationCheck = station::where('name', $name)->first();;
+            if ($stationCheck) {
                 dd('here');
             } else {
                 $data = [
