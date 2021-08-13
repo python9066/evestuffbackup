@@ -51,7 +51,7 @@ export default {
                 this.snackColor = "success";
                 this.snackText = "Station Status Copied";
 
-                return this.station_status_name;
+                return this.item.station_status_name;
             }
 
             if (this.type == "name") {
@@ -59,7 +59,7 @@ export default {
                 this.snackColor = "success";
                 this.snackText = "Station Name Copied";
 
-                return this.station_name;
+                return this.item.station_name;
             }
 
             if (this.type == "corp") {
@@ -67,7 +67,7 @@ export default {
                 this.snackColor = "success";
                 this.snackText = "Corp Ticker Copied";
 
-                return this.corp_ticker;
+                return this.item.corp_ticker;
             }
 
             if (this.type == "system") {
@@ -75,7 +75,7 @@ export default {
                 this.snackColor = "success";
                 this.snackText = "System Name Copied";
 
-                return this.system_name;
+                return this.item.system_name;
             }
 
             if (this.type == "station") {
@@ -83,7 +83,7 @@ export default {
                 this.snackColor = "success";
                 this.snackText = "Station Type Copied";
 
-                return this.item_name;
+                return this.item.item_name;
             }
 
             if (this.type == "alliance") {
@@ -91,38 +91,41 @@ export default {
                 this.snackColor = "success";
                 this.snackText = "Alliance ticker Copied";
 
-                return this.alliance_ticker;
+                return this.item.alliance_ticker;
             }
         },
 
         buttontext() {
             if (this.type == "outtime") {
-                var str = this.item.out_time;
+                return this.item.out_time;
             }
 
             if (this.type == "status") {
-                var ret = item.station_status_name.replace("Upcoming - ", "");
+                var ret = this.item.station_status_name.replace(
+                    "Upcoming - ",
+                    ""
+                );
                 return ret;
             }
 
             if (this.type == "name") {
-                return this.station_name;
+                return this.item.station_name;
             }
 
             if (this.type == "corp") {
-                return this.corp_ticker;
+                return this.item.corp_ticker;
             }
 
             if (this.type == "system") {
-                return this.system_name;
+                return this.item.system_name;
             }
 
             if (this.type == "station") {
-                return this.item_name;
+                return this.item.item_name;
             }
 
             if (this.type == "alliance") {
-                return this.alliance_ticker;
+                return this.item.alliance_ticker;
             }
         }
     },
