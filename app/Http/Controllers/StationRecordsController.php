@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 use App\Models\Station;
 use App\Models\StationRecords;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class StationRecordsController extends Controller
 {
@@ -17,6 +18,12 @@ class StationRecordsController extends Controller
     public function index()
     {
         return ['stations' => StationRecords::all()];
+    }
+
+    public function indexById()
+    {
+
+        return ['stations' => StationRecords::where('added_by_user_id', Auth::id())];
     }
 
     /**

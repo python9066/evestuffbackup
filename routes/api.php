@@ -125,6 +125,7 @@ Route::middleware('auth:api')->group(function () {
     Route::put('/deleteextranode/{id}/{campid}', 'NodeJoinsController@deleteExtraNode');
 
     Route::get('/stationrecords', 'StationRecordsController@index');
+    Route::get('/stationrecordsbyid', 'StationRecordsController@indexById');
     Route::put('/stationrecords/{id}', 'StationRecordsController@update');
 
     Route::get('/towersrecords', 'TowerRecordsController@index');

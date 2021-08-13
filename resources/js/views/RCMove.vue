@@ -323,24 +323,6 @@ export default {
         };
     },
 
-    // Echo.private("rcsheet").listen("RcSheetUpdate", e => {
-    //         if (e.flag.message != null) {
-    //             this.$store.dispatch("updateRcStation", e.flag.message);
-    //         }
-
-    //         if (e.flag.flag == 2) {
-    //             this.freshUpdate();
-    //         }
-
-    //         if (e.flag.flag == 3) {
-    //             this.fcupdate();
-    //         }
-
-    //         if (e.flag.flag == 4) {
-    //             this.sheetupdate();
-    //         }
-    //     });
-
     async created() {
         Echo.private("rcmovesheet")
             .listen("RcMoveUpdate", e => {
@@ -355,11 +337,15 @@ export default {
                 this.$store.dispatch("deleteStationNotification", e.flag.id);
             });
 
-        this.$store.dispatch("getStationData").then(() => {
-            this.loadingt = false;
-            this.loadingf = false;
-            this.loadingr = false;
-        });
+        if (this.$can("finish_move_timers")) {
+            this.$store.dispatch("getStationDataByUserId").then(() => {
+                this.loadingt = false;
+                this.loadingf = false;
+                this.loadingr = false;
+            });
+        }
+
+        this.$store.dispatch("getStationDataByUserId");
     },
 
     async mounted() {},

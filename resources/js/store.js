@@ -649,6 +649,19 @@ export default new Vuex.Store({
             commit("SET_STATIONS", res.data.stations);
         },
 
+        async getStationDataByUserId({ commit, state }) {
+            let res = await axios({
+                method: "get",
+                url: "/api/stationrecordsbyid",
+                headers: {
+                    Authorization: "Bearer " + state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                }
+            });
+            commit("SET_STATIONS", res.data.stations);
+        },
+
 
 
 
