@@ -13,9 +13,9 @@
                     v-bind="attrs"
                     v-on="on"
                     @click="open()"
-                    ><v-icon>
-                        faSvg fa-edit
-                    </v-icon>
+                >
+                    faSvg fa-edit
+                </v-icon>
             </template>
 
             <v-card
