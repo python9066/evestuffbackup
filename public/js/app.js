@@ -27359,6 +27359,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -27509,6 +27517,93 @@ function sleep(ms) {
       }
 
       return false;
+    },
+    link: function link(item) {
+      if (item.region_name == "Black Rise") {
+        return "https://evemaps.dotlan.net/map/Black_Rise/" + item.system_name + "#const";
+      }
+
+      if (item.region_name == "The Bleak Lands") {
+        return "https://evemaps.dotlan.net/map/The_Bleak_Lands/" + item.system_name + "#const";
+      }
+
+      if (item.region_name == "The Citadel") {
+        return "https://evemaps.dotlan.net/map/The_Citadel/" + item.system_name + "#const";
+      }
+
+      if (item.region_name == "Cloud Ring") {
+        return "https://evemaps.dotlan.net/map/Cloud_Ring/" + item.system_name + "#const";
+      }
+
+      if (item.region_name == "Cobalt Edge") {
+        return "https://evemaps.dotlan.net/map/Cobalt_Edge/" + item.system_name + "#const";
+      }
+
+      if (item.region_name == "Etherium Reach") {
+        return "https://evemaps.dotlan.net/map/Etherium_Reach/" + item.system_name + "#const";
+      }
+
+      if (item.region_name == "The Forge") {
+        return "https://evemaps.dotlan.net/map/The_Forge/" + item.system_name + "#const";
+      }
+
+      if (item.region_name == "The Kalevala Expanse") {
+        return "https://evemaps.dotlan.net/map/The_Kalevala_Expanse/" + item.system_name + "#const";
+      }
+
+      if (item.region_name == "Molden Heath") {
+        return "https://evemaps.dotlan.net/map/Molden_Heath/" + item.system_name + "#const";
+      }
+
+      if (item.region_name == "Outer Passage") {
+        return "https://evemaps.dotlan.net/map/Outer_Passage/" + item.system_name + "#const";
+      }
+
+      if (item.region_name == "Outer Ring") {
+        return "https://evemaps.dotlan.net/map/Outer_Ring/" + item.system_name + "#const";
+      }
+
+      if (item.region_name == "Paragon Soul") {
+        return "https://evemaps.dotlan.net/map/Paragon_Soul/" + item.system_name + "#const";
+      }
+
+      if (item.region_name == "Period Basis") {
+        return "https://evemaps.dotlan.net/map/Period_Basis/" + item.system_name + "#const";
+      }
+
+      if (item.region_name == "Perrigen Falls") {
+        return "https://evemaps.dotlan.net/map/Perrigen_Falls/" + item.system_name + "#const";
+      }
+
+      if (item.region_name == "Pure Blind") {
+        return "https://evemaps.dotlan.net/map/Pure_Blind/" + item.system_name + "#const";
+      }
+
+      if (item.region_name == "Scalding Pass") {
+        return "https://evemaps.dotlan.net/map/Scalding_Pass/" + item.system_name + "#const";
+      }
+
+      if (item.region_name == "Sinq Laison") {
+        return "https://evemaps.dotlan.net/map/Sinq_Laison/" + item.system_name + "#const";
+      }
+
+      if (item.region_name == "The Spire") {
+        return "https://evemaps.dotlan.net/map/The_Spire/" + item.system_name + "#const";
+      }
+
+      if (item.region_name == "Vale of the Silent") {
+        return "https://evemaps.dotlan.net/map/Vale_of_the_Silent/" + item.system_name + "#const";
+      }
+
+      if (item.region_name == "Verge Vendor") {
+        return "https://evemaps.dotlan.net/map/Verge_Vendor/" + item.system_name + "#const";
+      }
+
+      if (item.region_name == "Wicked Creek") {
+        return "https://evemaps.dotlan.net/map/Wicked_Creek/" + item.system_name + "#const";
+      }
+
+      return "https://evemaps.dotlan.net/map/" + item.region_name + "/" + item.system_name + "#const";
     },
     onResize: function onResize() {
       this.windowSize = {
@@ -58763,6 +58858,20 @@ var render = function() {
                                         "\n                        "
                                     )
                                   ]
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "v-btn",
+                                  {
+                                    attrs: {
+                                      href: _vm.link(item),
+                                      target: "_blank",
+                                      icon: "",
+                                      color: "green"
+                                    }
+                                  },
+                                  [_c("v-icon", [_vm._v(" far fa-images")])],
+                                  1
                                 )
                               ]
                             }
