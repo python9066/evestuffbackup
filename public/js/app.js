@@ -16939,13 +16939,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   timer_image_link = _this4.item.timer_image_link;
                 }
 
-                if (_this4.refTime != "Invalid date") {
+                if (_this4.refTime == "Invalid date") {
                   request = {
                     system_id: system_id,
                     corp_id: corp_id,
                     item_id: item_id,
                     station_status_id: station_status_id,
-                    out_time: outTime,
                     timer_image_link: timer_image_link
                   };
                 } else {
@@ -16954,6 +16953,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                     corp_id: corp_id,
                     item_id: item_id,
                     station_status_id: station_status_id,
+                    out_time: outTime,
                     timer_image_link: timer_image_link
                   };
                 }

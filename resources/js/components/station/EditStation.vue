@@ -242,6 +242,7 @@ export default {
 
         async submit() {
             var outTime = null;
+            console.log(this.refTime);
             if (this.refTime != null) {
                 var y = this.refTime.substr(0, 4);
                 var mo = this.refTime.substr(5, 2);
@@ -298,7 +299,8 @@ export default {
             } else {
                 var timer_image_link = this.item.timer_image_link;
             }
-            if (this.refTime != "Invalid date") {
+
+            if (outTime != null) {
                 var request = {
                     system_id: system_id,
                     corp_id: corp_id,
