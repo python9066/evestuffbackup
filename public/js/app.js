@@ -59232,7 +59232,7 @@ var render = function() {
         [
           _vm._v("\n        >\n\n        "),
           _c("template", { slot: "no-data" }, [
-            _vm.$can("inish_move_timer")
+            _vm.$can("finish_move_timer")
               ? _c("p", [
                   _vm._v(
                     "\n                No timers to move over to RC\n            "

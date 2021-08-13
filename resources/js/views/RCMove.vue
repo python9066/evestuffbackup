@@ -29,7 +29,7 @@
             >
 
             <template slot="no-data">
-                <p v-if="$can('inish_move_timer')">
+                <p v-if="$can('finish_move_timer')">
                     No timers to move over to RC
                 </p>
                 <p v-else>All your timers have been move</p>
