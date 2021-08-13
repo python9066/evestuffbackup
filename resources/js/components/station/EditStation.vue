@@ -295,7 +295,7 @@ export default {
             } else {
                 var timer_image_link = this.item.timer_image_link;
             }
-            if (this.refTime != null) {
+            if (this.refTime != "Invalid date") {
                 var request = {
                     system_id: system_id,
                     corp_id: corp_id,
