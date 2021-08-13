@@ -178,7 +178,7 @@ export default {
 
     async mounted() {
         await this.$store.dispatch("getUsers");
-        await this.$store.dispatch("getRoles");
+        await this.$store.dispatch("getKeys");
     },
 
     methods: {
@@ -383,7 +383,7 @@ export default {
     computed: {
         ...mapState(["users", "rolesList"]),
         filteredItems() {
-            return this.keysList;
+            return this.users;
         }
     },
     beforeDestroy() {

@@ -81,6 +81,11 @@ class User extends Authenticatable
         return $this->hasMany(ReconTasks::class);
     }
 
+    public function keys()
+    {
+        return $this->hasMany(UserKeyJoin::class);
+    }
+
 
 
 

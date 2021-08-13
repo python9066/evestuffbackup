@@ -25071,7 +25071,7 @@ function sleep(ms) {
 
             case 2:
               _context2.next = 4;
-              return _this2.$store.dispatch("getRoles");
+              return _this2.$store.dispatch("getKeys");
 
             case 4:
             case "end":
@@ -25355,7 +25355,7 @@ function sleep(ms) {
   },
   computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapState"])(["users", "rolesList"])), {}, {
     filteredItems: function filteredItems() {
-      return this.keysList;
+      return this.users;
     }
   }),
   beforeDestroy: function beforeDestroy() {
