@@ -356,7 +356,7 @@ export default {
                 .listen("RcMoveUpdate", e => {
                     if (e.flag.message != null) {
                         console.log("got ping");
-                        if (e.flag.message.added_by_user_id == user_id()) {
+                        if (e.flag.message.added_by_user_id == this.user_id) {
                             console.log("belongs to me");
                             this.$store.dispatch(
                                 "updateStationNotification",

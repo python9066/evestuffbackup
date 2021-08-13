@@ -27183,7 +27183,7 @@ function sleep(ms) {
                   if (e.flag.message != null) {
                     console.log("got ping");
 
-                    if (e.flag.message.added_by_user_id == user_id()) {
+                    if (e.flag.message.added_by_user_id == _this.user_id) {
                       console.log("belongs to me");
 
                       _this.$store.dispatch("updateStationNotification", e.flag.message);
