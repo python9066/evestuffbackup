@@ -108,7 +108,7 @@ Vue.component('RcMoveImage', require('./components/rcsheet/RcMoveImage.vue').def
 Vue.component('RcMoveMessage', require('./components/rcsheet/RcMoveMessage.vue').default);
 Vue.component('RcInfo', require('./components/rcsheet/RcInfo.vue').default);
 Vue.component('EditStation', require('./components/station/EditStation.vue').default);
-
+Vue.component('RcMoveCopyButton', require('./components/rcsheet/RcMoveCopyButton.vue').default);
 
 
 

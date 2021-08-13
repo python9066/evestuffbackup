@@ -185,12 +185,10 @@
                 v-slot:[`item.timestamp`]="{ item }"
                 class="d-inline-flex align-center"
             >
-                <button
-                    v-clipboard="() => this.fixTimestamp(item)"
-                    v-clipboard:success="Timecopied"
-                >
-                    {{ item.out_time }}
-                </button>
+                <RcMoveCopyButton
+                    :item="item"
+                    type="outtime"
+                ></RcMoveCopyButton>
             </template>
 
             <template v-slot:[`item.actions2`]="{ item }">
