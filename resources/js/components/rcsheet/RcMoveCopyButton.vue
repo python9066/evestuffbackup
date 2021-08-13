@@ -40,6 +40,7 @@ export default {
                 str = str.replace(/[:]/g, "");
                 str = str.replace(/[-]/g, "");
                 str = str.substring(2);
+                this.snack = true;
                 this.snackColor = "success";
                 this.snackText = "Absolute Time Copied";
                 return str;

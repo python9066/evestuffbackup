@@ -13459,6 +13459,7 @@ __webpack_require__.r(__webpack_exports__);
         str = str.replace(/[:]/g, "");
         str = str.replace(/[-]/g, "");
         str = str.substring(2);
+        this.snack = true;
         this.snackColor = "success";
         this.snackText = "Absolute Time Copied";
         return str;
@@ -26901,8 +26902,6 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
-//
-//
 //
 //
 //
@@ -58902,24 +58901,8 @@ var render = function() {
             loading: _vm.loadingt,
             "items-per-page": 25,
             "footer-props": { "items-per-page-options": [15, 25, 50, 100, -1] },
-            "sort-by": _vm.sortby,
             search: _vm.search,
-            "sort-desc": _vm.sortdesc,
             "multi-sort": ""
-          },
-          on: {
-            "update:sortBy": function($event) {
-              _vm.sortby = $event
-            },
-            "update:sort-by": function($event) {
-              _vm.sortby = $event
-            },
-            "update:sortDesc": function($event) {
-              _vm.sortdesc = $event
-            },
-            "update:sort-desc": function($event) {
-              _vm.sortdesc = $event
-            }
           },
           scopedSlots: _vm._u(
             [
