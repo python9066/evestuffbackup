@@ -29,7 +29,10 @@
             >
 
             <template slot="no-data">
-                No timers to move over to RC
+                <p v-if="$can('inish_move_timer')">
+                    No timers to move over to RC
+                </p>
+                <p v-else>All your timers have been move</p>
             </template>
             <template v-slot:[`item.count`]="{ item }">
                 <CountDowntimer

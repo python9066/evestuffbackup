@@ -27179,6 +27179,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
 
 
 
@@ -59229,7 +59232,13 @@ var render = function() {
         [
           _vm._v("\n        >\n\n        "),
           _c("template", { slot: "no-data" }, [
-            _vm._v("\n            No timers to move over to RC\n        ")
+            _vm.$can("inish_move_timer")
+              ? _c("p", [
+                  _vm._v(
+                    "\n                No timers to move over to RC\n            "
+                  )
+                ])
+              : _c("p", [_vm._v("All your timers have been move")])
           ])
         ],
         2
