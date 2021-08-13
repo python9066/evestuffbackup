@@ -242,7 +242,7 @@ export default {
 
         async submit() {
             var outTime = null;
-            console.log(typeof this.refTime);
+            console.log(this.refTime);
 
             if (this.refTime != null) {
                 var y = this.refTime.substr(0, 4);
