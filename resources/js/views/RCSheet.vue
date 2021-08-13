@@ -147,6 +147,17 @@
                                 ></AddAllianceTicker>
                             </span>
                         </template>
+                        <template
+                            v-slot:[`item.system_name`]="{ item }"
+                            class="d-inline-flex align-center"
+                        >
+                            <button
+                                v-clipboard="item.system_name"
+                                v-clipboard:success="Systemcopied"
+                            >
+                                {{ item.system_name }}
+                            </button>
+                        </template>
                         <template v-slot:[`item.count`]="{ item }">
                             <CountDowntimer
                                 v-if="showCountDown(item)"
@@ -270,6 +281,15 @@
                     </v-data-table>
                 </v-card>
             </v-col>
+            <v-snackbar v-model="snack" :timeout="3000" :color="snackColor">
+                {{ snackText }}
+
+                <template v-slot:action="{ attrs }">
+                    <v-btn v-bind="attrs" text @click="snack = false">
+                        Copied
+                    </v-btn>
+                </template>
+            </v-snackbar>
         </v-row>
         <!-- <v-row v-if="$can('super')" align="center" justify="center">
             <v-subheader>Window Size</v-subheader>
@@ -298,6 +318,9 @@ export default {
             search: "",
             toggleFC: false,
             logs: false,
+            snack: false,
+            snackColor: "",
+            snackText: "",
             loadingt: true,
             windowSize: {
                 x: 0,
@@ -431,6 +454,12 @@ export default {
                     "Content-Type": "application/json"
                 }
             });
+        },
+
+        Systemcopied() {
+            this.snack = true;
+            this.snackColor = "success";
+            this.snackText = "System Copied";
         },
 
         showFC(item) {

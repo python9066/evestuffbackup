@@ -27339,6 +27339,26 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -27362,6 +27382,9 @@ function sleep(ms) {
       search: "",
       toggleFC: false,
       logs: false,
+      snack: false,
+      snackColor: "",
+      snackText: "",
       loadingt: true,
       windowSize: {
         x: 0,
@@ -27638,6 +27661,11 @@ function sleep(ms) {
           }
         }, _callee6);
       }))();
+    },
+    Systemcopied: function Systemcopied() {
+      this.snack = true;
+      this.snackColor = "success";
+      this.snackText = "System Copied";
     },
     showFC: function showFC(item) {
       if (item.status_id == 540) {
@@ -58705,6 +58733,41 @@ var render = function() {
                             }
                           },
                           {
+                            key: "item.system_name",
+                            fn: function(ref) {
+                              var item = ref.item
+                              return [
+                                _c(
+                                  "button",
+                                  {
+                                    directives: [
+                                      {
+                                        name: "clipboard",
+                                        rawName: "v-clipboard",
+                                        value: item.system_name,
+                                        expression: "item.system_name"
+                                      },
+                                      {
+                                        name: "clipboard",
+                                        rawName: "v-clipboard:success",
+                                        value: _vm.Systemcopied,
+                                        expression: "Systemcopied",
+                                        arg: "success"
+                                      }
+                                    ]
+                                  },
+                                  [
+                                    _vm._v(
+                                      "\n                            " +
+                                        _vm._s(item.system_name) +
+                                        "\n                        "
+                                    )
+                                  ]
+                                )
+                              ]
+                            }
+                          },
+                          {
                             key: "item.count",
                             fn: function(ref) {
                               var item = ref.item
@@ -59011,6 +59074,7 @@ var render = function() {
                       _vm._v(" "),
                       _vm._v(" "),
                       _vm._v(" "),
+                      _vm._v(" "),
                       _c("template", { slot: "no-data" }, [
                         _vm._v(
                           "\n                        No Active or Upcoming Campaigns\n                    "
@@ -59024,6 +59088,56 @@ var render = function() {
               )
             ],
             1
+          ),
+          _vm._v(" "),
+          _c(
+            "v-snackbar",
+            {
+              attrs: { timeout: 3000, color: _vm.snackColor },
+              scopedSlots: _vm._u([
+                {
+                  key: "action",
+                  fn: function(ref) {
+                    var attrs = ref.attrs
+                    return [
+                      _c(
+                        "v-btn",
+                        _vm._b(
+                          {
+                            attrs: { text: "" },
+                            on: {
+                              click: function($event) {
+                                _vm.snack = false
+                              }
+                            }
+                          },
+                          "v-btn",
+                          attrs,
+                          false
+                        ),
+                        [
+                          _vm._v(
+                            "\n                    Copied\n                "
+                          )
+                        ]
+                      )
+                    ]
+                  }
+                }
+              ]),
+              model: {
+                value: _vm.snack,
+                callback: function($$v) {
+                  _vm.snack = $$v
+                },
+                expression: "snack"
+              }
+            },
+            [
+              _vm._v(
+                "\n            " + _vm._s(_vm.snackText) + "\n\n            "
+              )
+            ]
           )
         ],
         1
