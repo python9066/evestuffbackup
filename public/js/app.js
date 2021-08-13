@@ -16645,6 +16645,8 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
@@ -16897,6 +16899,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context2.prev = _context2.next) {
               case 0:
                 outTime = null;
+                console.log(_typeof(_this4.refTime));
 
                 if (_this4.refTime != null) {
                   y = _this4.refTime.substr(0, 4);
@@ -16906,6 +16909,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   m = _this4.refTime.substr(14, 2);
                   s = _this4.refTime.substr(17, 2);
                   full = y + "-" + mo + "-" + d + " " + h + ":" + m + ":" + s;
+                  console.log("DANCE");
                   outTime = moment__WEBPACK_IMPORTED_MODULE_2___default()(full).format("YYYY-MM-DD HH:mm:ss");
                 }
 
@@ -16939,15 +16943,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   timer_image_link = _this4.item.timer_image_link;
                 }
 
-                if (_this4.refTime == "Invalid date") {
-                  request = {
-                    system_id: system_id,
-                    corp_id: corp_id,
-                    item_id: item_id,
-                    station_status_id: station_status_id,
-                    timer_image_link: timer_image_link
-                  };
-                } else {
+                if (outTime != null || outTime != "Invalid date") {
                   request = {
                     system_id: system_id,
                     corp_id: corp_id,
@@ -16956,9 +16952,17 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                     out_time: outTime,
                     timer_image_link: timer_image_link
                   };
+                } else {
+                  request = {
+                    system_id: system_id,
+                    corp_id: corp_id,
+                    item_id: item_id,
+                    station_status_id: station_status_id,
+                    timer_image_link: timer_image_link
+                  };
                 }
 
-                _context2.next = 10;
+                _context2.next = 11;
                 return axios({
                   method: "put",
                   //you can set what request you want to be
@@ -16971,7 +16975,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   }
                 }).then(_this4.showStationTimer = false, _this4.refType = null, _this4.refTime = null, _this4.structItems = [], _this4.structSearch = null, _this4.structSelect = null, _this4.sysItems = [], _this4.sysSearch = null, _this4.sysSelect = null, _this4.systems = [], _this4.tickItems = [], _this4.tickSearch = null, _this4.tickSelect = null, _this4.state = 1, _this4.showStationTimer = false);
 
-              case 10:
+              case 11:
               case "end":
                 return _context2.stop();
             }
