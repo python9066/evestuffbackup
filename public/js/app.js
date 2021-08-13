@@ -13469,7 +13469,8 @@ __webpack_require__.r(__webpack_exports__);
         this.snack = true;
         this.snackColor = "success";
         this.snackText = "Station Status Copied";
-        return this.item.station_status_name;
+        var ret = this.item.station_status_name.replace("Upcoming - ", "");
+        return ret;
       }
 
       if (this.type == "name") {
