@@ -118,25 +118,25 @@ class RCSheet extends Controller
                     }
 
                     $check = null;
-                    // $check = Station::where('name', $input['structure_name'])->where('system_id', $input['solar_system']['solar_system_id'])->where('alliance_id', $allianceIDID)->get();
                     $check = Station::where('rc_id', $input['id'])->get();
                     $count = $check->count();
 
-                    if ($count > 0) {
-                    } else {
-                        $check = Station::where('name', $input['structure_name'])->where('system_id', $input['solar_system']['solar_system_id'])->where('alliance_id', $allianceIDID)->get();
+
+
+                    if ($count == 0) {
+                        $check = Station::where('name', $input['structure_name'])->get();
                         $count = $check->count();
+                        if ($count > 0) {
+                            Station::where('name', $input['structure_name'])->update(['rc_id' => $input['id']]);
+                        }
                     }
 
                     if ($count > 0) {
-                        // dd($check[0]['station_status_id']);
-                        // $checkid = $check["id"];
                         if ($check[0]['station_status_id'] > 4) {
                             $statusID = 5;
                         }
 
 
-                        // Station::where('name', $input['structure_name'])->where('system_id', $input['solar_system']['solar_system_id'])->where('alliance_id', $allianceIDID)->update(['station_status_id' => $statusID, 'out_time' => $timer, 'show_on_rc' => 1]);
 
                         if ($check[0]['rc_id'] != null) {
                             if ($statusID == 5) {
@@ -184,11 +184,11 @@ class RCSheet extends Controller
                         } else {
 
                             $check = Station::where('id', $reconpull)->first();
+                            $check->update(['station_status_id' => $statusID, 'out_time' => $timer, 'show_on_rc' => 1]);
 
                             if ($check) {
                                 // echo "old";
                                 // $checkid = $check["id"];
-                                $check->update(['station_status_id' => $statusID, 'out_time' => $timer, 'show_on_rc' => 1]);
                                 // dd($check->id);
                             }
                         }
