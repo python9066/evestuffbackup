@@ -154,7 +154,7 @@ export default new Router({
             name: "timerstomove",
             component: RCMOVETIMER,
               beforeEnter(to, from, next) {
-                if(Permissions.indexOf('super' )!== -1){
+                if(Permissions.indexOf('view_move_timers' )!== -1){
                     next()
                 }else{
                    next("/notifications")
