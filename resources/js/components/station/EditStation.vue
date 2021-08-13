@@ -184,17 +184,6 @@ export default {
     },
 
     methods: {
-        setShow() {
-            if (this.type == 1) {
-                this.show_on_main = 1;
-            }
-            if (this.type == 2) {
-                this.show_on_chill = 1;
-            }
-            if (this.type == 3) {
-                this.show_on_rc_move = 1;
-            }
-        },
         tickQuerySelections(v) {
             this.tickLoading = true;
             // Simulated ajax query
@@ -373,33 +362,7 @@ export default {
             }
         },
         showSubmit() {
-            if (this.type == 3) {
-                if (
-                    this.structSelect != null &&
-                    this.sysSelect != null &&
-                    this.tickSelect != null &&
-                    this.refType != null &&
-                    this.refTime != "" &&
-                    this.imageLink != null
-                ) {
-                    return false;
-                } else {
-                    return true;
-                }
-            } else {
-                if (
-                    (console.log(this.refTime),
-                    this.structSelect != null &&
-                        this.sysSelect != null &&
-                        this.tickSelect != null &&
-                        this.refType != null &&
-                        this.refTime != "")
-                ) {
-                    return false;
-                } else {
-                    return true;
-                }
-            }
+            return true;
         },
         stationOutlined() {
             if (this.state == 1) {

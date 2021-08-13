@@ -16844,19 +16844,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     }
   },
   methods: {
-    setShow: function setShow() {
-      if (this.type == 1) {
-        this.show_on_main = 1;
-      }
-
-      if (this.type == 2) {
-        this.show_on_chill = 1;
-      }
-
-      if (this.type == 3) {
-        this.show_on_rc_move = 1;
-      }
-    },
     tickQuerySelections: function tickQuerySelections(v) {
       var _this2 = this;
 
@@ -17033,19 +17020,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }
     },
     showSubmit: function showSubmit() {
-      if (this.type == 3) {
-        if (this.structSelect != null && this.sysSelect != null && this.tickSelect != null && this.refType != null && this.refTime != "" && this.imageLink != null) {
-          return false;
-        } else {
-          return true;
-        }
-      } else {
-        if (console.log(this.refTime), this.structSelect != null && this.sysSelect != null && this.tickSelect != null && this.refType != null && this.refTime != "") {
-          return false;
-        } else {
-          return true;
-        }
-      }
+      return true;
     },
     stationOutlined: function stationOutlined() {
       if (this.state == 1) {
