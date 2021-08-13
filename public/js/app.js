@@ -27069,7 +27069,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
 
 
 
@@ -59233,9 +59232,7 @@ var render = function() {
                       "div",
                       { staticClass: "d-inline-flex align-center" },
                       [
-                        _vm.$can("super")
-                          ? _c("EditStation", { attrs: { item: item } })
-                          : _vm._e(),
+                        _c("EditStation", { attrs: { item: item } }),
                         _vm._v(" "),
                         _vm.show()
                           ? _c(
