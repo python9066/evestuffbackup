@@ -16436,7 +16436,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       },
       show_on_main: 0,
       show_on_chill: 0,
-      show_on_rc_move: 0
+      show_on_rc_move: 0,
+      show_rc: 0
     };
   },
   watch: {
@@ -16524,6 +16525,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var _this5 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+        var _request;
+
         var y, mo, d, h, m, s, full, outTime, request;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
           while (1) {
@@ -16550,7 +16553,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 //     .format("YYYY-MM-DD HH:mm:ss");
 
 
-                request = {
+                request = (_request = {
                   name: _this5.stationName,
                   system_id: _this5.sysSelect,
                   corp_id: _this5.tickSelect,
@@ -16568,7 +16571,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   rc_fc_id: null,
                   rc_gsol_id: null,
                   rc_recon_id: null
-                };
+                }, _defineProperty(_request, "show_on_main", _this5.show_on_main), _defineProperty(_request, "show_on_chill", _this5.show_on_chill), _defineProperty(_request, "show_on_rc_move", _this5.show_on_rc_move), _defineProperty(_request, "show_rc", _this5.show_rc), _request);
                 _context2.next = 4;
                 return axios({
                   method: "put",
@@ -16594,6 +16597,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var _this6 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
+        var _request2;
+
         var y, mo, d, h, m, s, full, outTime, request;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
           while (1) {
@@ -16612,7 +16617,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   outTime = moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc().format("YYYY-MM-DD HH:mm:ss");
                 }
 
-                request = {
+                request = (_request2 = {
                   station_status_id: _this6.refType,
                   out_time: outTime,
                   status_update: moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc().format("YYYY-MM-DD HH:mm:ss"),
@@ -16625,7 +16630,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   rc_fc_id: null,
                   rc_gsol_id: null,
                   rc_recon_id: null
-                };
+                }, _defineProperty(_request2, "show_on_main", _this6.show_on_main), _defineProperty(_request2, "show_on_chill", _this6.show_on_chill), _defineProperty(_request2, "show_on_rc_move", _this6.show_on_rc_move), _defineProperty(_request2, "show_rc", _this6.show_rc), _request2);
                 _context3.next = 4;
                 return axios({
                   method: "put",

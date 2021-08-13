@@ -301,7 +301,8 @@ export default {
             },
             show_on_main: 0,
             show_on_chill: 0,
-            show_on_rc_move: 0
+            show_on_rc_move: 0,
+            show_rc: 0
         };
     },
 
@@ -437,7 +438,11 @@ export default {
                 rc_id: null,
                 rc_fc_id: null,
                 rc_gsol_id: null,
-                rc_recon_id: null
+                rc_recon_id: null,
+                show_on_main: this.show_on_main,
+                show_on_chill: this.show_on_chill,
+                show_on_rc_move: this.show_on_rc_move,
+                show_rc: this.show_rc
             };
 
             await axios({
@@ -497,7 +502,11 @@ export default {
                 rc_id: null,
                 rc_fc_id: null,
                 rc_gsol_id: null,
-                rc_recon_id: null
+                rc_recon_id: null,
+                show_on_main: this.show_on_main,
+                show_on_chill: this.show_on_chill,
+                show_on_rc_move: this.show_on_rc_move,
+                show_rc: this.show_rc
             };
 
             await axios({
