@@ -193,28 +193,28 @@
                 </button>
             </template>
 
-            <template
-                v-slot:[`item.actions2`]="{ item }"
-                class="d-inline-flex align-center"
-            >
-                <EditStation :item="item" v-if="$can('super')"> </EditStation>
-                <v-btn
-                    v-if="show()"
-                    @click="removeStationGood(item)"
-                    icon
-                    color="green"
-                >
-                    <v-icon> fas fa-check-circle</v-icon>
-                </v-btn>
+            <template v-slot:[`item.actions2`]="{ item }">
+                <div class="d-inline-flex align-center">
+                    <EditStation :item="item" v-if="$can('super')">
+                    </EditStation>
+                    <v-btn
+                        v-if="show()"
+                        @click="removeStationGood(item)"
+                        icon
+                        color="green"
+                    >
+                        <v-icon> fas fa-check-circle</v-icon>
+                    </v-btn>
 
-                <v-btn
-                    v-if="show()"
-                    @click="removeStationBad(item)"
-                    icon
-                    color="red"
-                >
-                    <v-icon> fas fa-times-circle</v-icon>
-                </v-btn>
+                    <v-btn
+                        v-if="show()"
+                        @click="removeStationBad(item)"
+                        icon
+                        color="red"
+                    >
+                        <v-icon> fas fa-times-circle</v-icon>
+                    </v-btn>
+                </div>
             </template>
         </v-data-table>
 

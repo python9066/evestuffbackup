@@ -48636,7 +48636,7 @@ var render = function() {
                     _vm._g(
                       _vm._b(
                         {
-                          attrs: { color: "pink darken-2", dark: "" },
+                          attrs: { color: "cyan darken-1", dark: "" },
                           on: {
                             click: function($event) {
                               return _vm.open()
@@ -59229,41 +59229,48 @@ var render = function() {
                 fn: function(ref) {
                   var item = ref.item
                   return [
-                    _vm.$can("super")
-                      ? _c("EditStation", { attrs: { item: item } })
-                      : _vm._e(),
-                    _vm._v(" "),
-                    _vm.show()
-                      ? _c(
-                          "v-btn",
-                          {
-                            attrs: { icon: "", color: "green" },
-                            on: {
-                              click: function($event) {
-                                return _vm.removeStationGood(item)
-                              }
-                            }
-                          },
-                          [_c("v-icon", [_vm._v(" fas fa-check-circle")])],
-                          1
-                        )
-                      : _vm._e(),
-                    _vm._v(" "),
-                    _vm.show()
-                      ? _c(
-                          "v-btn",
-                          {
-                            attrs: { icon: "", color: "red" },
-                            on: {
-                              click: function($event) {
-                                return _vm.removeStationBad(item)
-                              }
-                            }
-                          },
-                          [_c("v-icon", [_vm._v(" fas fa-times-circle")])],
-                          1
-                        )
-                      : _vm._e()
+                    _c(
+                      "div",
+                      { staticClass: "d-inline-flex align-center" },
+                      [
+                        _vm.$can("super")
+                          ? _c("EditStation", { attrs: { item: item } })
+                          : _vm._e(),
+                        _vm._v(" "),
+                        _vm.show()
+                          ? _c(
+                              "v-btn",
+                              {
+                                attrs: { icon: "", color: "green" },
+                                on: {
+                                  click: function($event) {
+                                    return _vm.removeStationGood(item)
+                                  }
+                                }
+                              },
+                              [_c("v-icon", [_vm._v(" fas fa-check-circle")])],
+                              1
+                            )
+                          : _vm._e(),
+                        _vm._v(" "),
+                        _vm.show()
+                          ? _c(
+                              "v-btn",
+                              {
+                                attrs: { icon: "", color: "red" },
+                                on: {
+                                  click: function($event) {
+                                    return _vm.removeStationBad(item)
+                                  }
+                                }
+                              },
+                              [_c("v-icon", [_vm._v(" fas fa-times-circle")])],
+                              1
+                            )
+                          : _vm._e()
+                      ],
+                      1
+                    )
                   ]
                 }
               }

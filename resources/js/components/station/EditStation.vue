@@ -8,7 +8,7 @@
         >
             <template v-slot:activator="{ on, attrs }">
                 <v-icon
-                    color="pink darken-2"
+                    color="cyan darken-1"
                     dark
                     v-bind="attrs"
                     v-on="on"
