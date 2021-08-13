@@ -142,7 +142,8 @@ class StationController extends Controller
                 $stationCheck = station::where('name', $name)->get();
                 $check = $stationCheck->count();
                 if ($check > null) {
-                    $data = [];
+
+                    return "hi there";
                 } else {
                     $data = [
                         'state' => 2,
