@@ -22,6 +22,7 @@ import Recon from "./views/Recon";
 import StartCampaign from "./views/StartCampaignSystem"
 import KillList from "./views/RCsheet.vue"
 import RCMOVETIMER from "./views/RCMove.vue"
+import FleetKeys from "./views/FleetKeyPannel.vue"
 
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
@@ -155,6 +156,20 @@ export default new Router({
             component: RCMOVETIMER,
               beforeEnter(to, from, next) {
                 if(Permissions.indexOf('view_move_timers' )!== -1){
+                    next()
+                }else{
+                   next("/notifications")
+                }
+
+              }
+        },
+
+        {
+            path: "/fleetkeys",
+            name: "fleetkeys",
+            component: FleetKeys,
+              beforeEnter(to, from, next) {
+                if(Permissions.indexOf('super' )!== -1){
                     next()
                 }else{
                    next("/notifications")
