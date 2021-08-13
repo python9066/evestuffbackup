@@ -184,9 +184,9 @@
                                 <h5><strong>Station Timer</strong></h5>
                                 <v-text-field
                                     v-model="refTime"
-                                    label="Ref Time d hh:mm:ss"
-                                    v-mask="'#d ##:##:##'"
-                                    placeholder="d:hh:mm:ss"
+                                    label="Reinforced unit YYYY.MM.DD hh:mm:ss"
+                                    v-mask="'####-##-## ##:##:##'"
+                                    placeholder="YYYY.MM.DD HH:mm:ss"
                                     @keyup.enter="
                                         (timerShown = false), addHacktime()
                                     "
@@ -396,9 +396,7 @@ export default {
             //     .add(sec, "seconds")
             //     .format("YYYY-MM-DD HH:mm:ss");
 
-            var outTime = moment(full)
-                .utc()
-                .format("YYYY-MM-DD HH:mm:ss");
+            var outTime = moment(full).format("YYYY-MM-DD HH:mm:ss");
             console.log(full + " - - - - " + outTime);
             var request = {
                 name: this.stationName,

@@ -16389,7 +16389,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 //     .add(sec, "seconds")
                 //     .format("YYYY-MM-DD HH:mm:ss");
 
-                outTime = moment__WEBPACK_IMPORTED_MODULE_2___default()(full).utc().format("YYYY-MM-DD HH:mm:ss");
+                outTime = moment__WEBPACK_IMPORTED_MODULE_2___default()(full).format("YYYY-MM-DD HH:mm:ss");
                 console.log(full + " - - - - " + outTime);
                 request = {
                   name: _this5.stationName,
@@ -47976,13 +47976,13 @@ var render = function() {
                                   {
                                     name: "mask",
                                     rawName: "v-mask",
-                                    value: "#d ##:##:##",
-                                    expression: "'#d ##:##:##'"
+                                    value: "####-##-## ##:##:##",
+                                    expression: "'####-##-## ##:##:##'"
                                   }
                                 ],
                                 attrs: {
-                                  label: "Ref Time d hh:mm:ss",
-                                  placeholder: "d:hh:mm:ss"
+                                  label: "Reinforced unit YYYY.MM.DD hh:mm:ss",
+                                  placeholder: "YYYY.MM.DD HH:mm:ss"
                                 },
                                 on: {
                                   keyup: [
