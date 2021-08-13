@@ -312,7 +312,7 @@ export default {
 
             await axios({
                 method: "put", //you can set what request you want to be
-                url: "api/updatetimerinfo/" + item.id,
+                url: "api/updatetimerinfo/" + this.item.id,
                 data: request,
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
