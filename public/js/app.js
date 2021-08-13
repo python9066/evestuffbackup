@@ -16538,7 +16538,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   show_on_main: _this5.show_on_main,
                   show_on_chill: _this5.show_on_chill,
                   show_on_rc_move: _this5.show_on_rc_move,
-                  timer_image_link: _this5.imageLink
+                  timer_image_link: _this5.imageLink,
+                  show_on_rc: 0,
+                  rc_id: null,
+                  rc_fc_id: null,
+                  rc_gsol_id: null,
+                  rc_recon_id: null
                 };
                 _context2.next = 11;
                 return axios({
@@ -16585,7 +16590,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   show_on_main: _this6.show_on_main,
                   show_on_chill: _this6.show_on_chill,
                   show_on_rc_move: _this6.show_on_rc_move,
-                  timer_image_link: _this6.imageLink
+                  timer_image_link: _this6.imageLink,
+                  show_on_rc: 0,
+                  rc_id: null,
+                  rc_fc_id: null,
+                  rc_gsol_id: null,
+                  rc_recon_id: null
                 };
                 _context3.next = 11;
                 return axios({

@@ -409,7 +409,12 @@ export default {
                 show_on_main: this.show_on_main,
                 show_on_chill: this.show_on_chill,
                 show_on_rc_move: this.show_on_rc_move,
-                timer_image_link: this.imageLink
+                timer_image_link: this.imageLink,
+                show_on_rc: 0,
+                rc_id: null,
+                rc_fc_id: null,
+                rc_gsol_id: null,
+                rc_recon_id: null
             };
 
             await axios({
@@ -460,7 +465,12 @@ export default {
                 show_on_main: this.show_on_main,
                 show_on_chill: this.show_on_chill,
                 show_on_rc_move: this.show_on_rc_move,
-                timer_image_link: this.imageLink
+                timer_image_link: this.imageLink,
+                show_on_rc: 0,
+                rc_id: null,
+                rc_fc_id: null,
+                rc_gsol_id: null,
+                rc_recon_id: null
             };
 
             await axios({
