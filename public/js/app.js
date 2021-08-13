@@ -59245,7 +59245,9 @@ var render = function() {
                 fn: function(ref) {
                   var item = ref.item
                   return [
-                    _c("EditStation", { attrs: { item: item } }),
+                    _vm.$can("super")
+                      ? _c("EditStation", { attrs: { item: item } })
+                      : _vm._e(),
                     _vm._v(" "),
                     _vm.show()
                       ? _c(
