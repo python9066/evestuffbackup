@@ -249,15 +249,7 @@ export default {
             var s = this.refTime.substr(17, 2);
             var full = y + "-" + mo + "-" + d + " " + h + ":" + m + ":" + s;
 
-            var outTimecheck = moment(full).format("YYYY-MM-DD HH:mm:ss");
-            var itemOutTime = moment(this.item.out_time).format(
-                "YYYY-MM-DD HH:mm:ss"
-            );
-            if (outTimecheck != null && outTimecheck != itemOutTime) {
-                var outTime = outTimecheck;
-            } else {
-                var outTime = itemOutTime;
-            }
+            var outTime = moment(full).format("YYYY-MM-DD HH:mm:ss");
 
             if (
                 this.sysSelect != null &&
@@ -303,15 +295,24 @@ export default {
             } else {
                 var timer_image_link = this.item.timer_image_link;
             }
-
-            var request = {
-                system_id: system_id,
-                corp_id: corp_id,
-                item_id: item_id,
-                station_status_id: station_status_id,
-                out_time: outTime,
-                timer_image_link: timer_image_link
-            };
+            if (this.refTime != null) {
+                var request = {
+                    system_id: system_id,
+                    corp_id: corp_id,
+                    item_id: item_id,
+                    station_status_id: station_status_id,
+                    out_time: outTime,
+                    timer_image_link: timer_image_link
+                };
+            } else {
+                var request = {
+                    system_id: system_id,
+                    corp_id: corp_id,
+                    item_id: item_id,
+                    station_status_id: station_status_id,
+                    timer_image_link: timer_image_link
+                };
+            }
 
             await axios({
                 method: "put", //you can set what request you want to be

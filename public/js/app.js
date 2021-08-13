@@ -16891,7 +16891,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var _this4 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
-        var y, mo, d, h, m, s, full, outTimecheck, itemOutTime, outTime, system_id, corp_id, item_id, station_status_id, timer_image_link, request;
+        var y, mo, d, h, m, s, full, outTime, system_id, corp_id, item_id, station_status_id, timer_image_link, request;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
@@ -16903,14 +16903,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 m = _this4.refTime.substr(14, 2);
                 s = _this4.refTime.substr(17, 2);
                 full = y + "-" + mo + "-" + d + " " + h + ":" + m + ":" + s;
-                outTimecheck = moment__WEBPACK_IMPORTED_MODULE_2___default()(full).format("YYYY-MM-DD HH:mm:ss");
-                itemOutTime = moment__WEBPACK_IMPORTED_MODULE_2___default()(_this4.item.out_time).format("YYYY-MM-DD HH:mm:ss");
-
-                if (outTimecheck != null && outTimecheck != itemOutTime) {
-                  outTime = outTimecheck;
-                } else {
-                  outTime = itemOutTime;
-                }
+                outTime = moment__WEBPACK_IMPORTED_MODULE_2___default()(full).format("YYYY-MM-DD HH:mm:ss");
 
                 if (_this4.sysSelect != null && _this4.sysSelect != _this4.item.system_id) {
                   system_id = _this4.sysSelect;
@@ -16942,15 +16935,26 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   timer_image_link = _this4.item.timer_image_link;
                 }
 
-                request = {
-                  system_id: system_id,
-                  corp_id: corp_id,
-                  item_id: item_id,
-                  station_status_id: station_status_id,
-                  out_time: outTime,
-                  timer_image_link: timer_image_link
-                };
-                _context2.next = 18;
+                if (_this4.refTime != null) {
+                  request = {
+                    system_id: system_id,
+                    corp_id: corp_id,
+                    item_id: item_id,
+                    station_status_id: station_status_id,
+                    out_time: outTime,
+                    timer_image_link: timer_image_link
+                  };
+                } else {
+                  request = {
+                    system_id: system_id,
+                    corp_id: corp_id,
+                    item_id: item_id,
+                    station_status_id: station_status_id,
+                    timer_image_link: timer_image_link
+                  };
+                }
+
+                _context2.next = 16;
                 return axios({
                   method: "put",
                   //you can set what request you want to be
@@ -16963,7 +16967,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   }
                 }).then(_this4.showStationTimer = false, _this4.refType = null, _this4.refTime = null, _this4.structItems = [], _this4.structSearch = null, _this4.structSelect = null, _this4.sysItems = [], _this4.sysSearch = null, _this4.sysSelect = null, _this4.systems = [], _this4.tickItems = [], _this4.tickSearch = null, _this4.tickSelect = null, _this4.state = 1, _this4.showStationTimer = false);
 
-              case 18:
+              case 16:
               case "end":
                 return _context2.stop();
             }
