@@ -186,7 +186,7 @@
                 class="d-inline-flex align-center"
             >
                 <button
-                    v-clipboard="() => fixTimestamp(item)"
+                    v-clipboard="() => this.fixTimestamp(item)"
                     v-clipboard:success="Timecopied"
                 >
                     {{ item.out_time }}

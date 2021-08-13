@@ -59193,6 +59193,7 @@ var render = function() {
               {
                 key: "item.timestamp",
                 fn: function(ref) {
+                  var this$1 = this
                   var item = ref.item
                   return [
                     _c(
@@ -59203,9 +59204,9 @@ var render = function() {
                             name: "clipboard",
                             rawName: "v-clipboard",
                             value: function() {
-                              return _vm.fixTimestamp(item)
+                              return this$1.fixTimestamp(item)
                             },
-                            expression: "() => fixTimestamp(item)"
+                            expression: "() => this.fixTimestamp(item)"
                           },
                           {
                             name: "clipboard",
