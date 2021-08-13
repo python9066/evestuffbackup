@@ -142,7 +142,7 @@ class RCSheet extends Controller
                             $station->update(['station_status_id' => $statusID, 'out_time' => $timer, 'show_on_rc' => 1]);
                         } else {
                             if ($skip == 0) {
-                                $station->update(['show_on_rc' => 1]);
+                                $station->update(['show_on_rc' => 1, 'station_status_id' => $statusID]);
                             }
                         }
 
