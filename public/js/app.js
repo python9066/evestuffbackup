@@ -47765,13 +47765,13 @@ var render = function() {
                                   {
                                     name: "mask",
                                     rawName: "v-mask",
-                                    value: "#d ##:##:##",
-                                    expression: "'#d ##:##:##'"
+                                    value: "YYYY-MM-DD HH:mm:ss",
+                                    expression: "'YYYY-MM-DD HH:mm:ss'"
                                   }
                                 ],
                                 attrs: {
-                                  label: "Ref Time d hh:mm:ss",
-                                  placeholder: "d:hh:mm:ss"
+                                  label: "Reinforced unit YYYY.MM.DD hh:mm:ss",
+                                  placeholder: "YYYY.MM.DD hh:mm:ss"
                                 },
                                 on: {
                                   keyup: [

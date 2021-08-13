@@ -127,9 +127,9 @@
                                 <h5><strong>Station Timer</strong></h5>
                                 <v-text-field
                                     v-model="refTime"
-                                    label="Ref Time d hh:mm:ss"
-                                    v-mask="'#d ##:##:##'"
-                                    placeholder="d:hh:mm:ss"
+                                    label="Reinforced unit YYYY.MM.DD hh:mm:ss"
+                                    v-mask="'YYYY-MM-DD HH:mm:ss'"
+                                    placeholder="YYYY.MM.DD hh:mm:ss"
                                     @keyup.enter="
                                         (timerShown = false), addHacktime()
                                     "
