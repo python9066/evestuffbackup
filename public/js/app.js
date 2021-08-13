@@ -27521,13 +27521,6 @@ function sleep(ms) {
     fixStatusText: function fixStatusText(item) {
       var ret = item.station_status_name.replace("Upcoming - ", "");
       return ret;
-    },
-    fixTimeStamp: function fixTimeStamp(item) {
-      var str = item.out_time.replace(/\s+/g, "");
-      str = str.replace(/[:]/g, "");
-      str = str.replace(/[-]/g, "");
-      str = str.substring(2);
-      return str;
     }
   },
   computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapState"])(["stations"])), {}, {
@@ -59088,7 +59081,7 @@ var render = function() {
                     item.standing > 0
                       ? _c(
                           "span",
-                          { staticClass: " blue--text pl-3" },
+                          { staticClass: " blue--text " },
                           [
                             _c("RcMoveCopyButton", {
                               attrs: { item: item, type: "alliance" }
@@ -59099,7 +59092,7 @@ var render = function() {
                       : item.standing < 0
                       ? _c(
                           "span",
-                          { staticClass: "red--text pl-3" },
+                          { staticClass: "red--text " },
                           [
                             _c("RcMoveCopyButton", {
                               attrs: { item: item, type: "alliance" }
@@ -59109,7 +59102,7 @@ var render = function() {
                         )
                       : _c(
                           "span",
-                          { staticClass: "pl-3" },
+                          {},
                           [
                             _c("RcMoveCopyButton", {
                               attrs: { item: item, type: "alliance" }

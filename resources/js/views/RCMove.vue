@@ -116,19 +116,19 @@
                 v-slot:[`item.alliance_ticker`]="{ item }"
                 class="d-inline-flex align-center"
             >
-                <span v-if="item.standing > 0" class=" blue--text pl-3">
+                <span v-if="item.standing > 0" class=" blue--text ">
                     <RcMoveCopyButton
                         :item="item"
                         type="alliance"
                     ></RcMoveCopyButton>
                 </span>
-                <span v-else-if="item.standing < 0" class="red--text pl-3"
+                <span v-else-if="item.standing < 0" class="red--text "
                     ><RcMoveCopyButton
                         :item="item"
                         type="alliance"
                     ></RcMoveCopyButton>
                 </span>
-                <span v-else class="pl-3"
+                <span v-else class=""
                     ><RcMoveCopyButton
                         :item="item"
                         type="alliance"
@@ -544,14 +544,6 @@ export default {
         fixStatusText(item) {
             var ret = item.station_status_name.replace("Upcoming - ", "");
             return ret;
-        },
-
-        fixTimeStamp(item) {
-            var str = item.out_time.replace(/\s+/g, "");
-            str = str.replace(/[:]/g, "");
-            str = str.replace(/[-]/g, "");
-            str = str.substring(2);
-            return str;
         }
     },
     computed: {
