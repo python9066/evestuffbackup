@@ -793,7 +793,7 @@ class Notifications
 
         $checks = Station::where('status_update', '<', $now5hour)->where('station_status_id', 1)->get(); //New
         foreach ($checks as $check) {
-            if ($check->show_on_rc != 1 || $check->show_on_rc_move != 1) {
+            if ($check->show_on_rc != 1 || $check->show_on_rc_move != 1 || $check->show_on_rc != 2) {
                 $check->update(['station_status_id' => 10, 'user_id' => null, 'text' => null, 'gunner_id' => null, 'out_time' => null]);
                 $stationID = $check->id;
                 $flag = null;
@@ -806,7 +806,7 @@ class Notifications
 
         $checks = Station::where('status_update', '<', $now5hour)->where('station_status_id', 2)->get(); //On They way
         foreach ($checks as $check) {
-            if ($check->show_on_rc != 1 || $check->show_on_rc_move != 1) {
+            if ($check->show_on_rc != 1 || $check->show_on_rc_move != 1 || $check->show_on_rc != 2) {
                 $check->update(['station_status_id' => 10, 'user_id' => null, 'text' => null, 'gunner_id' => null, 'out_time' => null]);
                 $stationID = $check->id;
                 $flag = null;
@@ -819,7 +819,7 @@ class Notifications
 
         $checks = Station::where('status_update', '<', $now5hour)->where('station_status_id', 3)->get(); //Gunning
         foreach ($checks as $check) {
-            if ($check->show_on_rc != 1 || $check->show_on_rc_move != 1) {
+            if ($check->show_on_rc != 1 || $check->show_on_rc_move != 1 || $check->show_on_rc != 2) {
                 $check->update(['station_status_id' => 10, 'user_id' => null, 'text' => null, 'gunner_id' => null, 'out_time' => null]);
                 $stationID = $check->id;
                 $flag = null;
@@ -833,7 +833,7 @@ class Notifications
 
         $checks = Station::where('status_update', '<', $now10min)->where('station_status_id', 4)->get(); //Saved
         foreach ($checks as $check) {
-            if ($check->show_on_rc != 1 || $check->show_on_rc_move != 1) {
+            if ($check->show_on_rc != 1 || $check->show_on_rc_move != 1 || $check->show_on_rc != 2) {
                 $check->update(['station_status_id' => 10, 'user_id' => null, 'text' => null, 'gunner_id' => null, 'out_time' => null]);
                 $stationID = $check->id;
                 $flag = null;
@@ -846,7 +846,7 @@ class Notifications
 
         $checks = Station::where('out_time', "<=", $now)->where('station_status_id', 5)->get(); //Upcoming
         foreach ($checks as $check) {
-            if ($check->show_on_rc != 1 || $check->show_on_rc_move != 1) {
+            if ($check->show_on_rc != 1 || $check->show_on_rc_move != 1 || $check->show_on_rc != 2) {
                 $check->update(['station_status_id' => 6, 'status_update' => now(), 'out_time' => null, 'timestamp' => now()]);
                 $message = StationRecords::where('id', $check->id)->first();
                 $flag = null;
@@ -859,7 +859,7 @@ class Notifications
 
         $checks = Station::where('out_time', "<=", $now)->where('station_status_id', 13)->get(); //Upcoming
         foreach ($checks as $check) {
-            if ($check->show_on_rc != 1 || $check->show_on_rc_move != 1) {
+            if ($check->show_on_rc != 1 || $check->show_on_rc_move != 1 || $check->show_on_rc != 2) {
                 $check->update(['station_status_id' => 6, 'status_update' => now(), 'out_time' => null, 'timestamp' => now()]);
                 $message = StationRecords::where('id', $check->id)->first();
                 $flag = null;
@@ -872,7 +872,7 @@ class Notifications
 
         $checks = Station::where('out_time', "<=", $now)->where('station_status_id', 14)->get(); //Upcoming
         foreach ($checks as $check) {
-            if ($check->show_on_rc != 1 || $check->show_on_rc_move != 1) {
+            if ($check->show_on_rc != 1 || $check->show_on_rc_move != 1 || $check->show_on_rc != 2) {
                 $check->update(['station_status_id' => 15, 'status_update' => now(), 'out_time' => null, 'timestamp' => now()]);
                 $message = StationRecords::where('id', $check->id)->first();
                 $flag = null;
@@ -896,7 +896,7 @@ class Notifications
 
         $checks = Station::where('out_time', '<', $now10min)->where('station_status_id', 15)->get(); //Out
         foreach ($checks as $check) {
-            if ($check->show_on_rc != 1 || $check->show_on_rc_move != 1) {
+            if ($check->show_on_rc != 1 || $check->show_on_rc_move != 1 || $check->show_on_rc != 2) {
                 $check->update(['station_status_id' => 10, 'user_id' => null, 'text' => null, 'gunner_id' => null, 'out_time' => null]);
                 $stationID = $check->id;
                 $flag = null;
@@ -909,7 +909,7 @@ class Notifications
 
         $checks = Station::where('status_update', '<', $now10min)->where('station_status_id', 7)->get(); //Destoryed
         foreach ($checks as $check) {
-            if ($check->show_on_rc != 1 || $check->show_on_rc_move != 1) {
+            if ($check->show_on_rc != 1 || $check->show_on_rc_move != 1 || $check->show_on_rc != 2) {
                 $stationID = $check->id;
                 $flag = null;
                 $flag = collect([
@@ -926,7 +926,7 @@ class Notifications
 
         $checks = Station::where('status_update', '<', $now10min)->where('station_status_id', 8)->get(); //Reffed - Shield
         foreach ($checks as $check) {
-            if ($check->show_on_rc != 1 || $check->show_on_rc_move != 1) {
+            if ($check->show_on_rc != 1 || $check->show_on_rc_move != 1 || $check->show_on_rc != 2) {
                 $check->update(['station_status_id' => 5, 'user_id' => null, 'text' => null, 'gunner_id' => null, 'status_update' => now(), 'gunner_id' => null, 'attack_notes' => null, 'attack_adash_link' => null]);
                 $stationID = $check->id;
                 $message = StationRecords::where('id', $check->id)->first();
@@ -940,7 +940,7 @@ class Notifications
 
         $checks = Station::where('status_update', '<', $now10min)->where('station_status_id', 9)->get(); //Reffed - Armor
         foreach ($checks as $check) {
-            if ($check->show_on_rc != 1 || $check->show_on_rc_move != 1) {
+            if ($check->show_on_rc != 1 || $check->show_on_rc_move != 1 || $check->show_on_rc != 2) {
                 $check->update(['station_status_id' => 13, 'user_id' => null, 'text' => null, 'gunner_id' => null, 'status_update' => now(), 'gunner_id' => null, 'attack_notes' => null, 'attack_adash_link' => null]);
                 $message = StationRecords::where('id', $check->id)->first();
                 $flag = null;
