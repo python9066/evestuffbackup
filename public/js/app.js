@@ -16784,16 +16784,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     item: Object
   },
   created: function created() {
-    var _this = this;
-
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              _this.setShow();
-
-            case 1:
             case "end":
               return _context.stop();
           }
@@ -16840,39 +16835,39 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   methods: {
     tickQuerySelections: function tickQuerySelections(v) {
-      var _this2 = this;
+      var _this = this;
 
       this.tickLoading = true; // Simulated ajax query
 
       setTimeout(function () {
-        _this2.tickItems = _this2.tickList.filter(function (e) {
+        _this.tickItems = _this.tickList.filter(function (e) {
           return (e.text || "").toLowerCase().indexOf((v || "").toLowerCase()) > -1;
         });
-        _this2.tickLoading = false;
+        _this.tickLoading = false;
       }, 500);
     },
     structQuerySelections: function structQuerySelections(v) {
-      var _this3 = this;
+      var _this2 = this;
 
       this.structLoading = true; // Simulated ajax query
 
       setTimeout(function () {
-        _this3.structItems = _this3.structureList.filter(function (e) {
+        _this2.structItems = _this2.structureList.filter(function (e) {
           return (e.text || "").toLowerCase().indexOf((v || "").toLowerCase()) > -1;
         });
-        _this3.structLoading = false;
+        _this2.structLoading = false;
       }, 500);
     },
     sysQuerySelections: function sysQuerySelections(v) {
-      var _this4 = this;
+      var _this3 = this;
 
       this.sysLoading = true; // Simulated ajax query
 
       setTimeout(function () {
-        _this4.sysItems = _this4.systemList.filter(function (e) {
+        _this3.sysItems = _this3.systemList.filter(function (e) {
           return (e.text || "").toLowerCase().indexOf((v || "").toLowerCase()) > -1;
         });
-        _this4.sysLoading = false;
+        _this3.sysLoading = false;
       }, 500);
     },
     close: function close() {
@@ -16893,7 +16888,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       this.showStationTimer = false;
     },
     submit: function submit() {
-      var _this5 = this;
+      var _this4 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
         var y, mo, d, h, m, s, full, outTimecheck, outTime, system_id, corp_id, item_id, station_status_id, timer_image_link, request;
@@ -16901,12 +16896,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                y = _this5.refTime.substr(0, 4);
-                mo = _this5.refTime.substr(5, 2);
-                d = _this5.refTime.substr(8, 2);
-                h = _this5.refTime.substr(11, 2);
-                m = _this5.refTime.substr(14, 2);
-                s = _this5.refTime.substr(17, 2);
+                y = _this4.refTime.substr(0, 4);
+                mo = _this4.refTime.substr(5, 2);
+                d = _this4.refTime.substr(8, 2);
+                h = _this4.refTime.substr(11, 2);
+                m = _this4.refTime.substr(14, 2);
+                s = _this4.refTime.substr(17, 2);
                 full = y + "-" + mo + "-" + d + " " + h + ":" + m + ":" + s;
                 outTimecheck = moment__WEBPACK_IMPORTED_MODULE_2___default()(full).format("YYYY-MM-DD HH:mm:ss");
 
@@ -16916,32 +16911,32 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   outTime = item.out_time;
                 }
 
-                if (_this5.sysSelect != null && _this5.sysSelect != item.system_id) {
-                  system_id = _this5.sysSelect;
+                if (_this4.sysSelect != null && _this4.sysSelect != item.system_id) {
+                  system_id = _this4.sysSelect;
                 } else {
                   system_id = item.system_id;
                 }
 
-                if (_this5.tickSelect != null && _this5.tickSelect != item.corp_id) {
-                  corp_id = _this5.tickSelect;
+                if (_this4.tickSelect != null && _this4.tickSelect != item.corp_id) {
+                  corp_id = _this4.tickSelect;
                 } else {
                   corp_id = item.corp_id;
                 }
 
-                if (_this5.structSelect != null && _this5.structSelect != item.item_id) {
-                  item_id = _this5.structSelect;
+                if (_this4.structSelect != null && _this4.structSelect != item.item_id) {
+                  item_id = _this4.structSelect;
                 } else {
                   item_id = item.item_id;
                 }
 
-                if (_this5.refType != null && _this5.refType != item.station_status_id) {
-                  station_status_id = _this5.refType;
+                if (_this4.refType != null && _this4.refType != item.station_status_id) {
+                  station_status_id = _this4.refType;
                 } else {
                   station_status_id = item.station_status_id;
                 }
 
-                if (_this5.imageLink != null && _this5.imageLink != item.timer_image_link) {
-                  timer_image_link = _this5.imageLink;
+                if (_this4.imageLink != null && _this4.imageLink != item.timer_image_link) {
+                  timer_image_link = _this4.imageLink;
                 } else {
                   timer_image_link = item.timer_image_link;
                 }
@@ -16961,11 +16956,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   url: "api/updatetimerinfo/" + item.id,
                   data: request,
                   headers: {
-                    Authorization: "Bearer " + _this5.$store.state.token,
+                    Authorization: "Bearer " + _this4.$store.state.token,
                     Accept: "application/json",
                     "Content-Type": "application/json"
                   }
-                }).then(_this5.showStationTimer = false, _this5.refType = null, _this5.refTime = null, _this5.structItems = [], _this5.structSearch = null, _this5.structSelect = null, _this5.sysItems = [], _this5.sysSearch = null, _this5.sysSelect = null, _this5.systems = [], _this5.tickItems = [], _this5.tickSearch = null, _this5.tickSelect = null, _this5.state = 1, _this5.showStationTimer = false);
+                }).then(_this4.showStationTimer = false, _this4.refType = null, _this4.refTime = null, _this4.structItems = [], _this4.structSearch = null, _this4.structSelect = null, _this4.sysItems = [], _this4.sysSearch = null, _this4.sysSelect = null, _this4.systems = [], _this4.tickItems = [], _this4.tickSearch = null, _this4.tickSelect = null, _this4.state = 1, _this4.showStationTimer = false);
 
               case 17:
               case "end":
@@ -16976,7 +16971,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }))();
     },
     open: function open() {
-      var _this6 = this;
+      var _this5 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
@@ -16984,15 +16979,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context3.prev = _context3.next) {
               case 0:
                 _context3.next = 2;
-                return _this6.$store.dispatch("getSystemList");
+                return _this5.$store.dispatch("getSystemList");
 
               case 2:
                 _context3.next = 4;
-                return _this6.$store.dispatch("getTickList");
+                return _this5.$store.dispatch("getTickList");
 
               case 4:
                 _context3.next = 6;
-                return _this6.$store.dispatch("getStructureList");
+                return _this5.$store.dispatch("getStructureList");
 
               case 6:
               case "end":
@@ -48825,32 +48820,26 @@ var render = function() {
                         1
                       ),
                       _vm._v(" "),
-                      this.type == 3
-                        ? _c(
-                            "div",
-                            [
-                              _c("h5", [
-                                _c("strong", [_vm._v("Image Link 2")])
-                              ]),
-                              _vm._v(" "),
-                              _c("v-img", {
-                                attrs: { src: "../image/info.png" }
-                              }),
-                              _vm._v(" "),
-                              _c("v-text-field", {
-                                attrs: { label: "Selected Items Screen Shot" },
-                                model: {
-                                  value: _vm.imageLink,
-                                  callback: function($$v) {
-                                    _vm.imageLink = $$v
-                                  },
-                                  expression: "imageLink"
-                                }
-                              })
-                            ],
-                            1
-                          )
-                        : _vm._e(),
+                      _c(
+                        "div",
+                        [
+                          _c("h5", [_c("strong", [_vm._v("Image Link 2")])]),
+                          _vm._v(" "),
+                          _c("v-img", { attrs: { src: "../image/info.png" } }),
+                          _vm._v(" "),
+                          _c("v-text-field", {
+                            attrs: { label: "Selected Items Screen Shot" },
+                            model: {
+                              value: _vm.imageLink,
+                              callback: function($$v) {
+                                _vm.imageLink = $$v
+                              },
+                              expression: "imageLink"
+                            }
+                          })
+                        ],
+                        1
+                      ),
                       _vm._v(" "),
                       _c(
                         "div",

@@ -79,7 +79,7 @@
                                     <v-radio label="Hull" value="13"></v-radio>
                                 </v-radio-group>
                             </div>
-                            <div v-if="this.type == 3">
+                            <div>
                                 <h5><strong>Image Link 2</strong></h5>
                                 <v-img src="../image/info.png"> </v-img>
                                 <v-text-field
@@ -134,9 +134,7 @@ export default {
         item: Object
     },
 
-    async created() {
-        this.setShow();
-    },
+    async created() {},
     data() {
         return {
             imageLink: null,
