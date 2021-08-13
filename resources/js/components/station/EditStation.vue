@@ -243,7 +243,7 @@ export default {
         async submit() {
             var outTime = null;
             console.log(typeof this.refTime);
-            console.log("DANCE");
+
             if (this.refTime != null) {
                 var y = this.refTime.substr(0, 4);
                 var mo = this.refTime.substr(5, 2);
@@ -252,7 +252,7 @@ export default {
                 var m = this.refTime.substr(14, 2);
                 var s = this.refTime.substr(17, 2);
                 var full = y + "-" + mo + "-" + d + " " + h + ":" + m + ":" + s;
-
+                console.log("DANCE");
                 var outTime = moment(full).format("YYYY-MM-DD HH:mm:ss");
             }
 
