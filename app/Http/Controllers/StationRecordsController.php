@@ -23,7 +23,7 @@ class StationRecordsController extends Controller
     public function indexById()
     {
 
-        return ['stations' => StationRecords::where('added_by_user_id', Auth::id())];
+        return ['stations' => StationRecords::where('added_by_user_id', Auth::id())->get()];
     }
 
     /**
