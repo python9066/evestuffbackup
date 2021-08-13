@@ -398,13 +398,18 @@ export default {
         },
 
         async submit() {
-            var y = this.refTime.substr(0, 4);
-            var mo = this.refTime.substr(5, 2);
-            var d = this.refTime.substr(8, 2);
-            var h = this.refTime.substr(11, 2);
-            var m = this.refTime.substr(14, 2);
-            var s = this.refTime.substr(17, 2);
-            var full = y + "-" + mo + "-" + d + " " + h + ":" + m + ":" + s;
+            if (this.type != 1) {
+                var y = this.refTime.substr(0, 4);
+                var mo = this.refTime.substr(5, 2);
+                var d = this.refTime.substr(8, 2);
+                var h = this.refTime.substr(11, 2);
+                var m = this.refTime.substr(14, 2);
+                var s = this.refTime.substr(17, 2);
+                var full = y + "-" + mo + "-" + d + " " + h + ":" + m + ":" + s;
+                var outTime = moment(full).format("YYYY-MM-DD HH:mm:ss");
+            } else {
+                var outTime = moment.utc().format("YYYY-MM-DD HH:mm:ss");
+            }
 
             // var ds = d * 24 * 60 * 60;
             // var hs = h * 60 * 60;
@@ -415,7 +420,6 @@ export default {
             //     .add(sec, "seconds")
             //     .format("YYYY-MM-DD HH:mm:ss");
 
-            var outTime = moment(full).format("YYYY-MM-DD HH:mm:ss");
             var request = {
                 name: this.stationName,
                 system_id: this.sysSelect,
@@ -468,14 +472,18 @@ export default {
         },
 
         async submit3() {
-            var y = this.refTime.substr(0, 4);
-            var mo = this.refTime.substr(5, 2);
-            var d = this.refTime.substr(8, 2);
-            var h = this.refTime.substr(11, 2);
-            var m = this.refTime.substr(14, 2);
-            var s = this.refTime.substr(17, 2);
-            var full = y + "-" + mo + "-" + d + " " + h + ":" + m + ":" + s;
-            var outTime = moment(full).format("YYYY-MM-DD HH:mm:ss");
+            if (this.type != 1) {
+                var y = this.refTime.substr(0, 4);
+                var mo = this.refTime.substr(5, 2);
+                var d = this.refTime.substr(8, 2);
+                var h = this.refTime.substr(11, 2);
+                var m = this.refTime.substr(14, 2);
+                var s = this.refTime.substr(17, 2);
+                var full = y + "-" + mo + "-" + d + " " + h + ":" + m + ":" + s;
+                var outTime = moment(full).format("YYYY-MM-DD HH:mm:ss");
+            } else {
+                var outTime = moment.utc().format("YYYY-MM-DD HH:mm:ss");
+            }
 
             var request = {
                 station_status_id: this.refType,

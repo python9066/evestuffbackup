@@ -16529,13 +16529,18 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                y = _this5.refTime.substr(0, 4);
-                mo = _this5.refTime.substr(5, 2);
-                d = _this5.refTime.substr(8, 2);
-                h = _this5.refTime.substr(11, 2);
-                m = _this5.refTime.substr(14, 2);
-                s = _this5.refTime.substr(17, 2);
-                full = y + "-" + mo + "-" + d + " " + h + ":" + m + ":" + s; // var ds = d * 24 * 60 * 60;
+                if (_this5.type != 1) {
+                  y = _this5.refTime.substr(0, 4);
+                  mo = _this5.refTime.substr(5, 2);
+                  d = _this5.refTime.substr(8, 2);
+                  h = _this5.refTime.substr(11, 2);
+                  m = _this5.refTime.substr(14, 2);
+                  s = _this5.refTime.substr(17, 2);
+                  full = y + "-" + mo + "-" + d + " " + h + ":" + m + ":" + s;
+                  outTime = moment__WEBPACK_IMPORTED_MODULE_2___default()(full).format("YYYY-MM-DD HH:mm:ss");
+                } else {
+                  outTime = moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc().format("YYYY-MM-DD HH:mm:ss");
+                } // var ds = d * 24 * 60 * 60;
                 // var hs = h * 60 * 60;
                 // var ms = m * 60;
                 // var sec = ds + hs + ms + s;
@@ -16544,7 +16549,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 //     .add(sec, "seconds")
                 //     .format("YYYY-MM-DD HH:mm:ss");
 
-                outTime = moment__WEBPACK_IMPORTED_MODULE_2___default()(full).format("YYYY-MM-DD HH:mm:ss");
+
                 request = {
                   name: _this5.stationName,
                   system_id: _this5.sysSelect,
@@ -16564,7 +16569,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   rc_gsol_id: null,
                   rc_recon_id: null
                 };
-                _context2.next = 11;
+                _context2.next = 4;
                 return axios({
                   method: "put",
                   //you can set what request you want to be
@@ -16577,7 +16582,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   }
                 }).then(_this5.stationNameEdit = null, _this5.showStationTimer = false, _this5.refType = null, _this5.refTime = null, _this5.stationName = null, _this5.stationNameEdit = null, _this5.structItems = [], _this5.structSearch = null, _this5.structSelect = null, _this5.sysItems = [], _this5.sysSearch = null, _this5.sysSelect = null, _this5.systems = [], _this5.tickItems = [], _this5.tickSearch = null, _this5.tickSelect = null, _this5.state = 1, _this5.showStationTimer = false);
 
-              case 11:
+              case 4:
               case "end":
                 return _context2.stop();
             }
@@ -16594,14 +16599,19 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context3.prev = _context3.next) {
               case 0:
-                y = _this6.refTime.substr(0, 4);
-                mo = _this6.refTime.substr(5, 2);
-                d = _this6.refTime.substr(8, 2);
-                h = _this6.refTime.substr(11, 2);
-                m = _this6.refTime.substr(14, 2);
-                s = _this6.refTime.substr(17, 2);
-                full = y + "-" + mo + "-" + d + " " + h + ":" + m + ":" + s;
-                outTime = moment__WEBPACK_IMPORTED_MODULE_2___default()(full).format("YYYY-MM-DD HH:mm:ss");
+                if (_this6.type != 1) {
+                  y = _this6.refTime.substr(0, 4);
+                  mo = _this6.refTime.substr(5, 2);
+                  d = _this6.refTime.substr(8, 2);
+                  h = _this6.refTime.substr(11, 2);
+                  m = _this6.refTime.substr(14, 2);
+                  s = _this6.refTime.substr(17, 2);
+                  full = y + "-" + mo + "-" + d + " " + h + ":" + m + ":" + s;
+                  outTime = moment__WEBPACK_IMPORTED_MODULE_2___default()(full).format("YYYY-MM-DD HH:mm:ss");
+                } else {
+                  outTime = moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc().format("YYYY-MM-DD HH:mm:ss");
+                }
+
                 request = {
                   station_status_id: _this6.refType,
                   out_time: outTime,
@@ -16616,7 +16626,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   rc_gsol_id: null,
                   rc_recon_id: null
                 };
-                _context3.next = 11;
+                _context3.next = 4;
                 return axios({
                   method: "put",
                   //you can set what request you want to be
@@ -16629,7 +16639,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   }
                 }).then(_this6.stationNameEdit = null, _this6.showStationTimer = false, _this6.refType = null, _this6.refTime = null, _this6.stationName = null, _this6.stationNameEdit = null, _this6.structItems = [], _this6.structSearch = null, _this6.structSelect = null, _this6.sysItems = [], _this6.sysSearch = null, _this6.sysSelect = null, _this6.systems = [], _this6.tickItems = [], _this6.tickSearch = null, _this6.tickSelect = null, _this6.state = 1, _this6.showStationTimer = false);
 
-              case 11:
+              case 4:
               case "end":
                 return _context3.stop();
             }
