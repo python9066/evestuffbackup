@@ -16941,7 +16941,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   timer_image_link = _this4.item.timer_image_link;
                 }
 
-                if (outTime != null) {
+                if (outTime != null || outTime != "Invalid date") {
                   request = {
                     system_id: system_id,
                     corp_id: corp_id,
