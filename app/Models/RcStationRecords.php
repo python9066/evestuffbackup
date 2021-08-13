@@ -24,6 +24,10 @@ class RcStationRecords extends Model
         'show_on_chill' => 'integer',
         'show_on_main' => 'integer',
         'show_on_fc_move' => 'integer',
+        'id' => 'integer',
+        'added_by_user_id' => 'integer',
+        'corp_id' => 'integer',
+
 
     ];
 }
