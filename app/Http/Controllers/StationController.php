@@ -139,8 +139,9 @@ class StationController extends Controller
         $stationdata = Utils::jsonDecode($response->getBody(), true);
         if ($response->getStatusCode() == 200) {
             if ($stationdata == "Error, Structure Not Found") {
-                $stationCheck = station::where('name', $name)->first();
-                if ($stationCheck != null) {
+                $stationCheck = station::where('name', $name)->get();
+                $check = $stationCheck->count();
+                if ($check > null) {
                     $data = [];
                 } else {
                     $data = [
