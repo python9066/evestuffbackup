@@ -197,6 +197,7 @@
                 v-slot:[`item.actions2`]="{ item }"
                 class="d-inline-flex align-center"
             >
+                <EditStation :item="item"> </EditStation>
                 <v-btn
                     v-if="show()"
                     @click="removeStationGood(item)"

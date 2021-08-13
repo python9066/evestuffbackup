@@ -155,6 +155,8 @@ Route::middleware('auth:api')->group(function () {
     Route::get('/loadstationdata', 'StationController@loadStationData');
     Route::post('/taskrequest', 'StationController@taskRequest');
     Route::put('/updatestationnotification/{id}', 'StationController@update');
+    Route::put('/updatetimerinfo/{id}', 'StationController@editUpdate');
+
     Route::put('/stationname', 'StationController@reconPullbyname');
     Route::put('/stationnew', 'StationController@store');
     Route::put('/stationattackmessage/{id}', 'StationController@updateAttackMessage');

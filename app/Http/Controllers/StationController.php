@@ -378,6 +378,18 @@ class StationController extends Controller
         $logNew = Logging::Create(['structure_id' => $message->id, 'user_id' => Auth::id(), 'logging_type_id' => 18, 'text' => $text]);
     }
 
+    public function editUpdate(Request $request, $id)
+    {
+        dd($request);
+        Station::find('id', $id)->update([$request->all()]);
+        $message = StationRecords::where('id', $id)->first();
+        $flag = collect([
+            'message' => $message
+        ]);
+        broadcast(new StationNotificationUpdate($flag));
+        broadcast(new RcMoveUpdate($flag));
+    }
+
 
     /**
      * Remove the specified resource from storage.

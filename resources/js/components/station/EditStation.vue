@@ -280,23 +280,51 @@ export default {
                 var system_id = item.system_id;
             }
 
+            if (this.tickSelect != null && this.tickSelect != item.corp_id) {
+                var corp_id = this.tickSelect;
+            } else {
+                var corp_id = item.corp_id;
+            }
+
+            if (
+                this.structSelect != null &&
+                this.structSelect != item.item_id
+            ) {
+                var item_id = this.structSelect;
+            } else {
+                var item_id = item.item_id;
+            }
+
+            if (
+                this.refType != null &&
+                this.refType != item.station_status_id
+            ) {
+                var station_status_id = this.refType;
+            } else {
+                var station_status_id = item.station_status_id;
+            }
+
+            if (
+                this.imageLink != null &&
+                this.imageLink != item.timer_image_link
+            ) {
+                var timer_image_link = this.imageLink;
+            } else {
+                var timer_image_link = item.timer_image_link;
+            }
+
             var request = {
                 system_id: system_id,
-                corp_id: this.tickSelect,
-                item_id: this.structSelect,
-                station_status_id: this.refType,
+                corp_id: corp_id,
+                item_id: item_id,
+                station_status_id: station_status_id,
                 out_time: outTime,
-                status_update: moment.utc().format("YYYY-MM-DD HH:mm:ss"),
-                timestamp: moment.utc().format("YYYY-MM-DD HH:mm:ss"),
-                show_on_main: this.show_on_main,
-                show_on_chill: this.show_on_chill,
-                show_on_rc_move: this.show_on_rc_move,
-                timer_image_link: this.imageLink
+                timer_image_link: timer_image_link
             };
 
             await axios({
                 method: "put", //you can set what request you want to be
-                url: "api/stationnew",
+                url: "api/updatetimerinfo/" + item.id,
                 data: request,
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,

@@ -26647,6 +26647,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 
@@ -58389,6 +58390,8 @@ var render = function() {
                 fn: function(ref) {
                   var item = ref.item
                   return [
+                    _c("EditStation", { attrs: { item: item } }),
+                    _vm._v(" "),
                     _vm.show()
                       ? _c(
                           "v-btn",
