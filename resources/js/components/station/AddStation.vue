@@ -116,7 +116,7 @@
                                 </v-radio-group>
                             </div>
                             <div v-if="this.type == 3">
-                                <h5><strong>Image Link 2</strong></h5>
+                                <h5><strong>Image Link</strong></h5>
                                 <v-img src="../image/info.png"> </v-img>
                                 <v-text-field
                                     v-model="imageLink"
@@ -124,7 +124,11 @@
                                 ></v-text-field>
                             </div>
                             <div>
-                                <h5><strong>Station Timer</strong></h5>
+                                <h5>
+                                    <strong
+                                        >Enter Reninforced untill timer</strong
+                                    >
+                                </h5>
                                 <v-text-field
                                     v-model="refTime"
                                     label="Reinforced unit YYYY.MM.DD hh:mm:ss"
@@ -181,7 +185,11 @@
                                 ></v-text-field>
                             </div>
                             <div>
-                                <h5><strong>Station Timer</strong></h5>
+                                <h5>
+                                    <strong
+                                        >Enter Reninforced untill timer</strong
+                                    >
+                                </h5>
                                 <v-text-field
                                     v-model="refTime"
                                     label="Reinforced unit YYYY.MM.DD hh:mm:ss"
