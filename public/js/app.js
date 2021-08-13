@@ -47773,8 +47773,8 @@ var render = function() {
                                   {
                                     name: "mask",
                                     rawName: "v-mask",
-                                    value: "####-##-## ##:##:##",
-                                    expression: "'####-##-## ##:##:##'"
+                                    value: "####.##.## ##:##:##",
+                                    expression: "'####.##.## ##:##:##'"
                                   }
                                 ],
                                 attrs: {
@@ -47976,8 +47976,8 @@ var render = function() {
                                   {
                                     name: "mask",
                                     rawName: "v-mask",
-                                    value: "####-##-## ##:##:##",
-                                    expression: "'####-##-## ##:##:##'"
+                                    value: "####.##.## ##:##:##",
+                                    expression: "'####.##.## ##:##:##'"
                                   }
                                 ],
                                 attrs: {

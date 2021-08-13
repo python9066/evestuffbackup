@@ -128,7 +128,7 @@
                                 <v-text-field
                                     v-model="refTime"
                                     label="Reinforced unit YYYY.MM.DD hh:mm:ss"
-                                    v-mask="'####-##-## ##:##:##'"
+                                    v-mask="'####.##.## ##:##:##'"
                                     placeholder="YYYY.MM.DD HH:mm:ss"
                                     @keyup.enter="
                                         (timerShown = false), addHacktime()
@@ -185,7 +185,7 @@
                                 <v-text-field
                                     v-model="refTime"
                                     label="Reinforced unit YYYY.MM.DD hh:mm:ss"
-                                    v-mask="'####-##-## ##:##:##'"
+                                    v-mask="'####.##.## ##:##:##'"
                                     placeholder="YYYY.MM.DD HH:mm:ss"
                                     @keyup.enter="
                                         (timerShown = false), addHacktime()
