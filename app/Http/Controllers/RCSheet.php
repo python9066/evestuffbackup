@@ -204,7 +204,7 @@ class RCSheet extends Controller
                 }
             }
         }
-
+        Station::where('show_on_rc', 5)->update(['show_on_rc' => 0]);
 
         $flag = collect([
             'flag' => 2
