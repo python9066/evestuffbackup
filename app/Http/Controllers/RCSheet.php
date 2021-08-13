@@ -82,6 +82,7 @@ class RCSheet extends Controller
 
                 ) {
                     // dd($input);
+                    $newStation = 0;
                     $skip = 0;
                     $corpIDID = 0;
                     $allianceIDID = 0;
@@ -109,58 +110,36 @@ class RCSheet extends Controller
                     // dd($allianceIDID, $corpIDID);
 
                     if ($input['timer_type'] == "Armor") {
-                        $statusID = 2;
+                        $statusID = 5;
                     }
 
                     if ($input['timer_type'] == "Hull") {
-                        $statusID = 1;
+                        $statusID = 13;
                     }
                     if ($input['timer_type'] == "Anchoring") {
-                        $statusID = 3;
+                        $statusID = 14;
                     }
 
                     if ($input['timer_type'] == "Unanchoring") {
-                        $statusID = 4;
+                        $statusID = 17;
                     }
 
-                    $check = null;
-                    $check = Station::where('rc_id', $input['id'])->get();
-                    $count = $check->count();
 
+                    $check = Station::where('rc_id', $input['id'])->first();
 
+                    if (!$check) {
 
-                    if ($count == 0) {
-                        $check = Station::where('name', $input['structure_name'])->get();
-                        $count = $check->count();
-                        if ($count > 0) {
+                        $check = Station::where('name', $input['structure_name'])->frist();
+                        if ($check) {
                             Station::where('name', $input['structure_name'])->update(['rc_id' => $input['id']]);
+                        } else {
+                            $newStation = 1;
                         }
                     }
-
-
-                    if ($count > 0) {
-                        if ($check[0]['station_status_id'] > 4) {
-                            $statusID = 5;
-                        }
-
-
-
-                        if ($check[0]['rc_id'] != null) {
-                            // if ($statusID == 5) {
-
-                            //     Station::where('rc_id', $input['id'])->update(['station_status_id' => $statusID, 'show_on_rc' => 2]);
-                            // } else {
-                            //     Station::where('rc_id', $input['id'])->update(['station_status_id' => $statusID, 'out_time' => $timer, 'show_on_rc' => 1]);
-                            // }
-                            Station::where('rc_id', $input['id'])->update(['station_status_id' => $statusID, 'out_time' => $timer, 'show_on_rc' => 1]);
-                        } else {
-
-                            // if ($statusID == 5) {
-
-                            //     Station::where('name', $input['structure_name'])->update(['station_status_id' => $statusID, 'show_on_rc' => 2]);
-                            // } else {
-                            // }
-                            Station::where('name', $input['structure_name'])->update(['station_status_id' => $statusID, 'out_time' => $timer, 'show_on_rc' => 1]);
+                    if ($newStation == 0) {
+                        $station = Station::where('rc_id', $input['id'])->first();
+                        if ($timer != $station->out_time) {
+                            $station->update(['station_status_id' => $statusID, 'out_time' => $timer, 'show_on_rc' => 1]);
                         }
 
                         // dd($check->id);
@@ -204,7 +183,7 @@ class RCSheet extends Controller
                 }
             }
         }
-        Station::where('show_on_rc', 5)->update(['show_on_rc' => 0, 'station_status_id' => 1]);
+
 
         $flag = collect([
             'flag' => 2
