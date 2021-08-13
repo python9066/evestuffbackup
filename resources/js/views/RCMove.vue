@@ -585,7 +585,7 @@ export default {
         },
 
         show() {
-            if (this.$can("finsish_move_timer")) {
+            if (this.$can("finish_move_timer")) {
                 return true;
             } else {
                 return false;
