@@ -16369,7 +16369,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var _this5 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
-        var y, mo, d, h, m, s, sting, outTime, request;
+        var y, mo, d, h, m, s, full, outTime, request;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
@@ -16380,7 +16380,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 h = _this5.refTime.substr(11, 2);
                 m = _this5.refTime.substr(14, 2);
                 s = _this5.refTime.substr(17, 2);
-                sting = y + "-" + mo + "-" + d + " " + h + ":" + d + ":" + s; // var ds = d * 24 * 60 * 60;
+                full = y + "-" + mo + "-" + d + " " + h + ":" + d + ":" + s; // var ds = d * 24 * 60 * 60;
                 // var hs = h * 60 * 60;
                 // var ms = m * 60;
                 // var sec = ds + hs + ms + s;
@@ -16389,8 +16389,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 //     .add(sec, "seconds")
                 //     .format("YYYY-MM-DD HH:mm:ss");
 
-                outTime = moment__WEBPACK_IMPORTED_MODULE_2___default()(sting).utc().format("YYYY-MM-DD HH:mm:ss");
-                console.log(string + " - - - - " + outTime);
+                outTime = moment__WEBPACK_IMPORTED_MODULE_2___default()(full).utc().format("YYYY-MM-DD HH:mm:ss");
+                console.log(full + " - - - - " + outTime);
                 request = {
                   name: _this5.stationName,
                   system_id: _this5.sysSelect,

@@ -385,7 +385,7 @@ export default {
             var h = this.refTime.substr(11, 2);
             var m = this.refTime.substr(14, 2);
             var s = this.refTime.substr(17, 2);
-            var sting = y + "-" + mo + "-" + d + " " + h + ":" + d + ":" + s;
+            var full = y + "-" + mo + "-" + d + " " + h + ":" + d + ":" + s;
 
             // var ds = d * 24 * 60 * 60;
             // var hs = h * 60 * 60;
@@ -396,10 +396,10 @@ export default {
             //     .add(sec, "seconds")
             //     .format("YYYY-MM-DD HH:mm:ss");
 
-            var outTime = moment(sting)
+            var outTime = moment(full)
                 .utc()
                 .format("YYYY-MM-DD HH:mm:ss");
-            console.log(string + " - - - - " + outTime);
+            console.log(full + " - - - - " + outTime);
             var request = {
                 name: this.stationName,
                 system_id: this.sysSelect,
