@@ -339,7 +339,6 @@ export default {
             Echo.private("rcmovesheet")
                 .listen("RcMoveUpdate", e => {
                     if (e.flag.message != null) {
-                        console.log(e.flag.message.added_by_user_id);
                         this.$store.dispatch(
                             "updateStationNotification",
                             e.flag.message
@@ -360,7 +359,11 @@ export default {
         } else {
             Echo.private("rcmovesheet")
                 .listen("RcMoveUpdate", e => {
-                    if (e.flag.message != null) {
+                    if (
+                        e.flag.message != null &&
+                        e.flag.message.added_by_user_id ==
+                            this.$store.state.user_name
+                    ) {
                         this.$store.dispatch(
                             "updateStationNotification",
                             e.flag.message

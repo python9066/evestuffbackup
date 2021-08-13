@@ -55,6 +55,7 @@ class CreateOrReplaceStationRecordsViewCommand extends Command
        if(stations.out_time IS NULL,stations.timestamp, stations.out_time) AS 'timestamp',
        stations.out_time AS 'out_time',
        corps.ticker AS 'corp_ticker',
+       stations.corp_id AS 'corp_id',
        alliances.name AS 'alliance_name',
        alliances.ticker AS 'alliance_ticker',
        stations.text AS 'text',

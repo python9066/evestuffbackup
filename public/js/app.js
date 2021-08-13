@@ -26750,8 +26750,6 @@ function sleep(ms) {
               if (_this.$can("finish_move_timer")) {
                 Echo["private"]("rcmovesheet").listen("RcMoveUpdate", function (e) {
                   if (e.flag.message != null) {
-                    console.log(e.flag.message.added_by_user_id);
-
                     _this.$store.dispatch("updateStationNotification", e.flag.message);
                   }
                 }).listen("RcMoveDelete", function (e) {
@@ -26765,7 +26763,7 @@ function sleep(ms) {
                 });
               } else {
                 Echo["private"]("rcmovesheet").listen("RcMoveUpdate", function (e) {
-                  if (e.flag.message != null) {
+                  if (e.flag.message != null && e.flag.message.added_by_user_id == _this.$store.state.user_name) {
                     _this.$store.dispatch("updateStationNotification", e.flag.message);
                   }
                 }).listen("RcMoveDelete", function (e) {
