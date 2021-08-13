@@ -135,6 +135,7 @@
                                     >
                                 </h5>
                                 <v-text-field
+                                    v-if="this.type != 1"
                                     v-model="refTime"
                                     label="Reinforced unit YYYY.MM.DD hh:mm:ss"
                                     v-mask="'####.##.## ##:##:##'"

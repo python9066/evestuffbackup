@@ -16371,6 +16371,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -49038,63 +49039,66 @@ var render = function() {
                                 ])
                               ]),
                               _vm._v(" "),
-                              _c("v-text-field", {
-                                directives: [
-                                  {
-                                    name: "mask",
-                                    rawName: "v-mask",
-                                    value: "####.##.## ##:##:##",
-                                    expression: "'####.##.## ##:##:##'"
-                                  }
-                                ],
-                                attrs: {
-                                  label: "Reinforced unit YYYY.MM.DD hh:mm:ss",
-                                  placeholder: "YYYY.MM.DD HH:mm:ss"
-                                },
-                                on: {
-                                  keyup: [
-                                    function($event) {
-                                      if (
-                                        !$event.type.indexOf("key") &&
-                                        _vm._k(
-                                          $event.keyCode,
-                                          "enter",
-                                          13,
-                                          $event.key,
-                                          "Enter"
-                                        )
-                                      ) {
-                                        return null
+                              this.type != 1
+                                ? _c("v-text-field", {
+                                    directives: [
+                                      {
+                                        name: "mask",
+                                        rawName: "v-mask",
+                                        value: "####.##.## ##:##:##",
+                                        expression: "'####.##.## ##:##:##'"
                                       }
-                                      ;(_vm.timerShown = false),
-                                        _vm.addHacktime()
+                                    ],
+                                    attrs: {
+                                      label:
+                                        "Reinforced unit YYYY.MM.DD hh:mm:ss",
+                                      placeholder: "YYYY.MM.DD HH:mm:ss"
                                     },
-                                    function($event) {
-                                      if (
-                                        !$event.type.indexOf("key") &&
-                                        _vm._k(
-                                          $event.keyCode,
-                                          "esc",
-                                          27,
-                                          $event.key,
-                                          ["Esc", "Escape"]
-                                        )
-                                      ) {
-                                        return null
-                                      }
-                                      ;(_vm.timerShown = false),
-                                        (_vm.hackTime = null)
+                                    on: {
+                                      keyup: [
+                                        function($event) {
+                                          if (
+                                            !$event.type.indexOf("key") &&
+                                            _vm._k(
+                                              $event.keyCode,
+                                              "enter",
+                                              13,
+                                              $event.key,
+                                              "Enter"
+                                            )
+                                          ) {
+                                            return null
+                                          }
+                                          ;(_vm.timerShown = false),
+                                            _vm.addHacktime()
+                                        },
+                                        function($event) {
+                                          if (
+                                            !$event.type.indexOf("key") &&
+                                            _vm._k(
+                                              $event.keyCode,
+                                              "esc",
+                                              27,
+                                              $event.key,
+                                              ["Esc", "Escape"]
+                                            )
+                                          ) {
+                                            return null
+                                          }
+                                          ;(_vm.timerShown = false),
+                                            (_vm.hackTime = null)
+                                        }
+                                      ]
+                                    },
+                                    model: {
+                                      value: _vm.refTime,
+                                      callback: function($$v) {
+                                        _vm.refTime = $$v
+                                      },
+                                      expression: "refTime"
                                     }
-                                  ]
-                                },
-                                model: {
-                                  value: _vm.refTime,
-                                  callback: function($$v) {
-                                    _vm.refTime = $$v
-                                  },
-                                  expression: "refTime"
-                                }
-                              })
+                                  })
+                                : _vm._e()
                             ],
                             1
                           )
