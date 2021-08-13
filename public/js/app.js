@@ -27181,7 +27181,11 @@ function sleep(ms) {
               } else {
                 Echo["private"]("rcmovesheet").listen("RcMoveUpdate", function (e) {
                   if (e.flag.message != null) {
+                    console.log("got ping");
+
                     if (e.flag.message.added_by_user_id == user_id()) {
+                      console.log("belongs to me");
+
                       _this.$store.dispatch("updateStationNotification", e.flag.message);
                     }
                   }
