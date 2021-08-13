@@ -51,7 +51,7 @@
                         link
                         to="/addtimer"
                     >
-                        Move To RC
+                        ADD TIMER
                     </v-tab>
 
                     <v-tab v-if="$can('view_recon')" link to="/recon">

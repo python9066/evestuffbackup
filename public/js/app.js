@@ -54466,7 +54466,7 @@ var render = function() {
                     : _vm.$can("view_move_timers  ")
                     ? _c("v-tab", { attrs: { link: "", to: "/addtimer" } }, [
                         _vm._v(
-                          "\n                    Move To RC\n                "
+                          "\n                    ADD TIMER\n                "
                         )
                       ])
                     : _vm._e(),
