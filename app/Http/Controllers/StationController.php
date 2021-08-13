@@ -380,7 +380,7 @@ class StationController extends Controller
 
     public function editUpdate(Request $request, $id)
     {
-        dd($request);
+        // dd($request);
         Station::find('id', $id)->update([$request->all()]);
         $message = StationRecords::where('id', $id)->first();
         $flag = collect([
