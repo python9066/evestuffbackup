@@ -250,49 +250,55 @@ export default {
             var full = y + "-" + mo + "-" + d + " " + h + ":" + m + ":" + s;
 
             var outTimecheck = moment(full).format("YYYY-MM-DD HH:mm:ss");
-            if (outTimecheck != null && outTimecheck != item.out_time) {
+            if (outTimecheck != null && outTimecheck != this.item.out_time) {
                 var outTime = outTimecheck;
             } else {
-                var outTime = item.out_time;
+                var outTime = this.item.out_time;
             }
 
-            if (this.sysSelect != null && this.sysSelect != item.system_id) {
+            if (
+                this.sysSelect != null &&
+                this.sysSelect != this.item.system_id
+            ) {
                 var system_id = this.sysSelect;
             } else {
-                var system_id = item.system_id;
+                var system_id = this.item.system_id;
             }
 
-            if (this.tickSelect != null && this.tickSelect != item.corp_id) {
+            if (
+                this.tickSelect != null &&
+                this.tickSelect != this.item.corp_id
+            ) {
                 var corp_id = this.tickSelect;
             } else {
-                var corp_id = item.corp_id;
+                var corp_id = this.item.corp_id;
             }
 
             if (
                 this.structSelect != null &&
-                this.structSelect != item.item_id
+                this.structSelect != this.item.item_id
             ) {
                 var item_id = this.structSelect;
             } else {
-                var item_id = item.item_id;
+                var item_id = this.item.item_id;
             }
 
             if (
                 this.refType != null &&
-                this.refType != item.station_status_id
+                this.refType != this.item.station_status_id
             ) {
                 var station_status_id = this.refType;
             } else {
-                var station_status_id = item.station_status_id;
+                var station_status_id = this.item.station_status_id;
             }
 
             if (
                 this.imageLink != null &&
-                this.imageLink != item.timer_image_link
+                this.imageLink != this.item.timer_image_link
             ) {
                 var timer_image_link = this.imageLink;
             } else {
-                var timer_image_link = item.timer_image_link;
+                var timer_image_link = this.item.timer_image_link;
             }
 
             var request = {

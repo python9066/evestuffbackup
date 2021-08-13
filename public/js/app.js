@@ -16905,40 +16905,40 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 full = y + "-" + mo + "-" + d + " " + h + ":" + m + ":" + s;
                 outTimecheck = moment__WEBPACK_IMPORTED_MODULE_2___default()(full).format("YYYY-MM-DD HH:mm:ss");
 
-                if (outTimecheck != null && outTimecheck != item.out_time) {
+                if (outTimecheck != null && outTimecheck != _this4.item.out_time) {
                   outTime = outTimecheck;
                 } else {
-                  outTime = item.out_time;
+                  outTime = _this4.item.out_time;
                 }
 
-                if (_this4.sysSelect != null && _this4.sysSelect != item.system_id) {
+                if (_this4.sysSelect != null && _this4.sysSelect != _this4.item.system_id) {
                   system_id = _this4.sysSelect;
                 } else {
-                  system_id = item.system_id;
+                  system_id = _this4.item.system_id;
                 }
 
-                if (_this4.tickSelect != null && _this4.tickSelect != item.corp_id) {
+                if (_this4.tickSelect != null && _this4.tickSelect != _this4.item.corp_id) {
                   corp_id = _this4.tickSelect;
                 } else {
-                  corp_id = item.corp_id;
+                  corp_id = _this4.item.corp_id;
                 }
 
-                if (_this4.structSelect != null && _this4.structSelect != item.item_id) {
+                if (_this4.structSelect != null && _this4.structSelect != _this4.item.item_id) {
                   item_id = _this4.structSelect;
                 } else {
-                  item_id = item.item_id;
+                  item_id = _this4.item.item_id;
                 }
 
-                if (_this4.refType != null && _this4.refType != item.station_status_id) {
+                if (_this4.refType != null && _this4.refType != _this4.item.station_status_id) {
                   station_status_id = _this4.refType;
                 } else {
-                  station_status_id = item.station_status_id;
+                  station_status_id = _this4.item.station_status_id;
                 }
 
-                if (_this4.imageLink != null && _this4.imageLink != item.timer_image_link) {
+                if (_this4.imageLink != null && _this4.imageLink != _this4.item.timer_image_link) {
                   timer_image_link = _this4.imageLink;
                 } else {
-                  timer_image_link = item.timer_image_link;
+                  timer_image_link = _this4.item.timer_image_link;
                 }
 
                 request = {
