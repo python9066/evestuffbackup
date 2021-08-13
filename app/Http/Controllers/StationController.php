@@ -238,10 +238,11 @@ class StationController extends Controller
                 return $data;
             }
         } else {
-            dd('here');
+
             $stationCheck = station::where('name', $name)->get();
             $check = $stationCheck->count();
             if ($check > null) {
+                dd('here');
             } else {
                 $data = [
                     'state' => 2,
