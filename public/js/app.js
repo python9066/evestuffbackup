@@ -58833,6 +58833,20 @@ var render = function() {
                               var item = ref.item
                               return [
                                 _c(
+                                  "v-btn",
+                                  {
+                                    attrs: {
+                                      href: _vm.link(item),
+                                      target: "_blank",
+                                      icon: "",
+                                      color: "green"
+                                    }
+                                  },
+                                  [_c("v-icon", [_vm._v(" fas fa-map fa-xs")])],
+                                  1
+                                ),
+                                _vm._v(" "),
+                                _c(
                                   "button",
                                   {
                                     directives: [
@@ -58858,20 +58872,6 @@ var render = function() {
                                         "\n                        "
                                     )
                                   ]
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "v-btn",
-                                  {
-                                    attrs: {
-                                      href: _vm.link(item),
-                                      target: "_blank",
-                                      icon: "",
-                                      color: "green"
-                                    }
-                                  },
-                                  [_c("v-icon", [_vm._v(" fas fa-map fa-xs")])],
-                                  1
                                 )
                               ]
                             }

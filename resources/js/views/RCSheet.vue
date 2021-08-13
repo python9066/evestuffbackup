@@ -151,12 +151,6 @@
                             v-slot:[`item.system_name`]="{ item }"
                             class="d-inline-flex align-center"
                         >
-                            <button
-                                v-clipboard="item.system_name"
-                                v-clipboard:success="Systemcopied"
-                            >
-                                {{ item.system_name }}
-                            </button>
                             <v-btn
                                 :href="link(item)"
                                 target="_blank"
@@ -165,6 +159,12 @@
                             >
                                 <v-icon> fas fa-map fa-xs</v-icon>
                             </v-btn>
+                            <button
+                                v-clipboard="item.system_name"
+                                v-clipboard:success="Systemcopied"
+                            >
+                                {{ item.system_name }}
+                            </button>
                         </template>
                         <template v-slot:[`item.count`]="{ item }">
                             <CountDowntimer
