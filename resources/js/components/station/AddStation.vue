@@ -175,7 +175,7 @@
                                     <v-radio label="Armor" value="5"></v-radio>
                                     <v-radio label="Hull" value="13"></v-radio>
                                     <v-radio
-                                        v-if="type == 1"
+                                        v-if="this.type == 1"
                                         label="Online"
                                         value="16"
                                     ></v-radio>
