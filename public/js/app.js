@@ -16380,7 +16380,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 h = _this5.refTime.substr(11, 2);
                 m = _this5.refTime.substr(14, 2);
                 s = _this5.refTime.substr(17, 2);
-                full = y + "-" + mo + "-" + d + " " + h + ":" + d + ":" + s; // var ds = d * 24 * 60 * 60;
+                full = y + "-" + mo + "-" + d + " " + h + ":" + m + ":" + s; // var ds = d * 24 * 60 * 60;
                 // var hs = h * 60 * 60;
                 // var ms = m * 60;
                 // var sec = ds + hs + ms + s;
