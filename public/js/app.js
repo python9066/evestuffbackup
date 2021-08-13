@@ -26636,6 +26636,17 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -26995,6 +27006,13 @@ function sleep(ms) {
         }
       });
     },
+    show: function show() {
+      if (this.$can("finsish_move_timer")) {
+        return true;
+      } else {
+        return false;
+      }
+    },
     sec: function sec(item) {
       var a = moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc();
       var b = moment__WEBPACK_IMPORTED_MODULE_2___default()(item.timestamp);
@@ -27017,7 +27035,6 @@ function sleep(ms) {
       str = str.replace(/[:]/g, "");
       str = str.replace(/[-]/g, "");
       str = str.substring(2);
-      console.log(str);
       return str;
     }
   },
@@ -58313,19 +58330,21 @@ var render = function() {
                           attrs: { station: item }
                         }),
                         _vm._v(" "),
-                        _c(
-                          "v-btn",
-                          {
-                            attrs: {
-                              href: item.timer_image_link,
-                              target: "_blank",
-                              icon: "",
-                              color: "green"
-                            }
-                          },
-                          [_c("v-icon", [_vm._v(" far fa-images")])],
-                          1
-                        )
+                        _vm.show()
+                          ? _c(
+                              "v-btn",
+                              {
+                                attrs: {
+                                  href: item.timer_image_link,
+                                  target: "_blank",
+                                  icon: "",
+                                  color: "green"
+                                }
+                              },
+                              [_c("v-icon", [_vm._v(" far fa-images")])],
+                              1
+                            )
+                          : _vm._e()
                       ],
                       1
                     )
@@ -58372,33 +58391,37 @@ var render = function() {
                 fn: function(ref) {
                   var item = ref.item
                   return [
-                    _c(
-                      "v-btn",
-                      {
-                        attrs: { icon: "", color: "green" },
-                        on: {
-                          click: function($event) {
-                            return _vm.removeStationGood(item)
-                          }
-                        }
-                      },
-                      [_c("v-icon", [_vm._v(" fas fa-check-circle")])],
-                      1
-                    ),
+                    _vm.show()
+                      ? _c(
+                          "v-btn",
+                          {
+                            attrs: { icon: "", color: "green" },
+                            on: {
+                              click: function($event) {
+                                return _vm.removeStationGood(item)
+                              }
+                            }
+                          },
+                          [_c("v-icon", [_vm._v(" fas fa-check-circle")])],
+                          1
+                        )
+                      : _vm._e(),
                     _vm._v(" "),
-                    _c(
-                      "v-btn",
-                      {
-                        attrs: { icon: "", color: "red" },
-                        on: {
-                          click: function($event) {
-                            return _vm.removeStationBad(item)
-                          }
-                        }
-                      },
-                      [_c("v-icon", [_vm._v(" fas fa-times-circle")])],
-                      1
-                    )
+                    _vm.show()
+                      ? _c(
+                          "v-btn",
+                          {
+                            attrs: { icon: "", color: "red" },
+                            on: {
+                              click: function($event) {
+                                return _vm.removeStationBad(item)
+                              }
+                            }
+                          },
+                          [_c("v-icon", [_vm._v(" fas fa-times-circle")])],
+                          1
+                        )
+                      : _vm._e()
                   ]
                 }
               }

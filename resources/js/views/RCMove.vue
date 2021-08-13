@@ -170,6 +170,7 @@
                         :station="item"
                     ></RcStationMessage>
                     <v-btn
+                        v-if="show()"
                         :href="item.timer_image_link"
                         target="_blank"
                         icon
@@ -196,11 +197,21 @@
                 v-slot:[`item.actions2`]="{ item }"
                 class="d-inline-flex align-center"
             >
-                <v-btn @click="removeStationGood(item)" icon color="green">
+                <v-btn
+                    v-if="show()"
+                    @click="removeStationGood(item)"
+                    icon
+                    color="green"
+                >
                     <v-icon> fas fa-check-circle</v-icon>
                 </v-btn>
 
-                <v-btn @click="removeStationBad(item)" icon color="red">
+                <v-btn
+                    v-if="show()"
+                    @click="removeStationBad(item)"
+                    icon
+                    color="red"
+                >
                     <v-icon> fas fa-times-circle</v-icon>
                 </v-btn>
             </template>
@@ -573,6 +584,14 @@ export default {
             });
         },
 
+        show() {
+            if (this.$can("finsish_move_timer")) {
+                return true;
+            } else {
+                return false;
+            }
+        },
+
         sec(item) {
             var a = moment.utc();
             var b = moment(item.timestamp);
@@ -605,7 +624,6 @@ export default {
             str = str.replace(/[:]/g, "");
             str = str.replace(/[-]/g, "");
             str = str.substring(2);
-            console.log(str);
             return str;
         }
     },
