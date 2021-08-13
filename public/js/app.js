@@ -27064,11 +27064,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
 
 
 
@@ -27185,7 +27180,7 @@ function sleep(ms) {
                 });
               } else {
                 Echo["private"]("rcmovesheet").listen("RcMoveUpdate", function (e) {
-                  if (e.flag.message != null && e.flag.message.added_by_user_id == _this.$store.state.user_name) {
+                  if (e.flag.message != null) {
                     _this.$store.dispatch("updateStationNotification", e.flag.message);
                   }
                 }).listen("RcMoveDelete", function (e) {
@@ -59248,21 +59243,19 @@ var render = function() {
                             )
                           : _vm._e(),
                         _vm._v(" "),
-                        _vm.show()
-                          ? _c(
-                              "v-btn",
-                              {
-                                attrs: { icon: "", color: "red" },
-                                on: {
-                                  click: function($event) {
-                                    return _vm.removeStationBad(item)
-                                  }
-                                }
-                              },
-                              [_c("v-icon", [_vm._v(" fas fa-times-circle")])],
-                              1
-                            )
-                          : _vm._e()
+                        _c(
+                          "v-btn",
+                          {
+                            attrs: { icon: "", color: "red" },
+                            on: {
+                              click: function($event) {
+                                return _vm.removeStationBad(item)
+                              }
+                            }
+                          },
+                          [_c("v-icon", [_vm._v(" fas fa-times-circle")])],
+                          1
+                        )
                       ],
                       1
                     )

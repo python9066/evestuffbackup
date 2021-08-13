@@ -205,12 +205,7 @@
                         <v-icon> fas fa-check-circle</v-icon>
                     </v-btn>
 
-                    <v-btn
-                        v-if="show()"
-                        @click="removeStationBad(item)"
-                        icon
-                        color="red"
-                    >
+                    <v-btn @click="removeStationBad(item)" icon color="red">
                         <v-icon> fas fa-times-circle</v-icon>
                     </v-btn>
                 </div>
@@ -359,11 +354,7 @@ export default {
         } else {
             Echo.private("rcmovesheet")
                 .listen("RcMoveUpdate", e => {
-                    if (
-                        e.flag.message != null &&
-                        e.flag.message.added_by_user_id ==
-                            this.$store.state.user_name
-                    ) {
+                    if (e.flag.message != null) {
                         this.$store.dispatch(
                             "updateStationNotification",
                             e.flag.message
