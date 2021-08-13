@@ -13464,6 +13464,78 @@ __webpack_require__.r(__webpack_exports__);
         this.snackText = "Absolute Time Copied";
         return str;
       }
+
+      if (this.type == "status") {
+        this.snack = true;
+        this.snackColor = "success";
+        this.snackText = "Station Status Copied";
+        return this.station_status_name;
+      }
+
+      if (this.type == "name") {
+        this.snack = true;
+        this.snackColor = "success";
+        this.snackText = "Station Name Copied";
+        return this.station_name;
+      }
+
+      if (this.type == "corp") {
+        this.snack = true;
+        this.snackColor = "success";
+        this.snackText = "Corp Ticker Copied";
+        return this.corp_ticker;
+      }
+
+      if (this.type == "system") {
+        this.snack = true;
+        this.snackColor = "success";
+        this.snackText = "System Name Copied";
+        return this.system_name;
+      }
+
+      if (this.type == "station") {
+        this.snack = true;
+        this.snackColor = "success";
+        this.snackText = "Station Type Copied";
+        return this.item_name;
+      }
+
+      if (this.type == "alliance") {
+        this.snack = true;
+        this.snackColor = "success";
+        this.snackText = "Alliance ticker Copied";
+        return this.alliance_ticker;
+      }
+    },
+    buttontext: function buttontext() {
+      if (this.type == "outtime") {
+        var str = this.item.out_time;
+      }
+
+      if (this.type == "status") {
+        var ret = item.station_status_name.replace("Upcoming - ", "");
+        return ret;
+      }
+
+      if (this.type == "name") {
+        return this.station_name;
+      }
+
+      if (this.type == "corp") {
+        return this.corp_ticker;
+      }
+
+      if (this.type == "system") {
+        return this.system_name;
+      }
+
+      if (this.type == "station") {
+        return this.item_name;
+      }
+
+      if (this.type == "alliance") {
+        return this.alliance_ticker;
+      }
     }
   },
   beforeDestroy: function beforeDestroy() {}
@@ -27098,31 +27170,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -27407,41 +27454,6 @@ function sleep(ms) {
     campaignStart: function campaignStart(item) {
       item.station_status_id = 6;
       this.$store.dispatch("updateStationNotification", item);
-    },
-    Statuscopied: function Statuscopied() {
-      this.snack = true;
-      this.snackColor = "success";
-      this.snackText = "Status Copied";
-    },
-    Systemcopied: function Systemcopied() {
-      this.snack = true;
-      this.snackColor = "success";
-      this.snackText = "System Copied";
-    },
-    Corpcopied: function Corpcopied() {
-      this.snack = true;
-      this.snackColor = "success";
-      this.snackText = "Corp Ticker Copied";
-    },
-    Alliancecopied: function Alliancecopied() {
-      this.snack = true;
-      this.snackColor = "success";
-      this.snackText = "Alliance Ticker Copied";
-    },
-    Stationcopied: function Stationcopied() {
-      this.snack = true;
-      this.snackColor = "success";
-      this.snackText = "Station Type Copied";
-    },
-    Namecopied: function Namecopied() {
-      this.snack = true;
-      this.snackColor = "success";
-      this.snackText = "Station Name Copied";
-    },
-    Timecopied: function Timecopied() {
-      this.snack = true;
-      this.snackColor = "success";
-      this.snackText = "Absolute Time Copied";
     },
     itemRowBackground: function itemRowBackground(item) {
       if (item.under_attack == 1) {
@@ -45516,7 +45528,7 @@ var render = function() {
             }
           ]
         },
-        [_vm._v("\n        " + _vm._s(_vm.item.out_time) + "\n    ")]
+        [_vm._v("\n        " + _vm._s(_vm.buttontext) + "\n    ")]
       ),
       _vm._v(" "),
       _c(
@@ -59008,33 +59020,9 @@ var render = function() {
                                     )
                                   ]),
                                   _vm._v(" "),
-                                  _c(
-                                    "button",
-                                    {
-                                      directives: [
-                                        {
-                                          name: "clipboard",
-                                          rawName: "v-clipboard",
-                                          value: _vm.fixStatusText(item),
-                                          expression: "fixStatusText(item)"
-                                        },
-                                        {
-                                          name: "clipboard",
-                                          rawName: "v-clipboard:success",
-                                          value: _vm.Statuscopied,
-                                          expression: "Statuscopied",
-                                          arg: "success"
-                                        }
-                                      ]
-                                    },
-                                    [
-                                      _vm._v(
-                                        "\n                                " +
-                                          _vm._s(_vm.fixStatusText(item)) +
-                                          "\n                            "
-                                      )
-                                    ]
-                                  )
+                                  _c("RcMoveCopyButton", {
+                                    attrs: { item: item, type: "status" }
+                                  })
                                 ],
                                 1
                               )
@@ -59053,33 +59041,9 @@ var render = function() {
                 fn: function(ref) {
                   var item = ref.item
                   return [
-                    _c(
-                      "button",
-                      {
-                        directives: [
-                          {
-                            name: "clipboard",
-                            rawName: "v-clipboard",
-                            value: item.station_name,
-                            expression: "item.station_name"
-                          },
-                          {
-                            name: "clipboard",
-                            rawName: "v-clipboard:success",
-                            value: _vm.Namecopied,
-                            expression: "Namecopied",
-                            arg: "success"
-                          }
-                        ]
-                      },
-                      [
-                        _vm._v(
-                          "\n                " +
-                            _vm._s(item.station_name) +
-                            "\n            "
-                        )
-                      ]
-                    )
+                    _c("RcMoveCopyButton", {
+                      attrs: { item: item, type: "name" }
+                    })
                   ]
                 }
               },
@@ -59088,33 +59052,9 @@ var render = function() {
                 fn: function(ref) {
                   var item = ref.item
                   return [
-                    _c(
-                      "button",
-                      {
-                        directives: [
-                          {
-                            name: "clipboard",
-                            rawName: "v-clipboard",
-                            value: item.corp_ticker,
-                            expression: "item.corp_ticker"
-                          },
-                          {
-                            name: "clipboard",
-                            rawName: "v-clipboard:success",
-                            value: _vm.Corpcopied,
-                            expression: "Corpcopied",
-                            arg: "success"
-                          }
-                        ]
-                      },
-                      [
-                        _vm._v(
-                          "\n                " +
-                            _vm._s(item.corp_ticker) +
-                            "\n            "
-                        )
-                      ]
-                    )
+                    _c("RcMoveCopyButton", {
+                      attrs: { item: item, type: "corp" }
+                    })
                   ]
                 }
               },
@@ -59123,33 +59063,9 @@ var render = function() {
                 fn: function(ref) {
                   var item = ref.item
                   return [
-                    _c(
-                      "button",
-                      {
-                        directives: [
-                          {
-                            name: "clipboard",
-                            rawName: "v-clipboard",
-                            value: item.system_name,
-                            expression: "item.system_name"
-                          },
-                          {
-                            name: "clipboard",
-                            rawName: "v-clipboard:success",
-                            value: _vm.Systemcopied,
-                            expression: "Systemcopied",
-                            arg: "success"
-                          }
-                        ]
-                      },
-                      [
-                        _vm._v(
-                          "\n                " +
-                            _vm._s(item.system_name) +
-                            "\n            "
-                        )
-                      ]
-                    )
+                    _c("RcMoveCopyButton", {
+                      attrs: { item: item, type: "system" }
+                    })
                   ]
                 }
               },
@@ -59158,33 +59074,9 @@ var render = function() {
                 fn: function(ref) {
                   var item = ref.item
                   return [
-                    _c(
-                      "button",
-                      {
-                        directives: [
-                          {
-                            name: "clipboard",
-                            rawName: "v-clipboard",
-                            value: item.item_name,
-                            expression: "item.item_name"
-                          },
-                          {
-                            name: "clipboard",
-                            rawName: "v-clipboard:success",
-                            value: _vm.Stationcopied,
-                            expression: "Stationcopied",
-                            arg: "success"
-                          }
-                        ]
-                      },
-                      [
-                        _vm._v(
-                          "\n                " +
-                            _vm._s(item.item_name) +
-                            "\n            "
-                        )
-                      ]
-                    )
+                    _c("RcMoveCopyButton", {
+                      attrs: { item: item, type: "station" }
+                    })
                   ]
                 }
               },
@@ -59194,94 +59086,37 @@ var render = function() {
                   var item = ref.item
                   return [
                     item.standing > 0
-                      ? _c("span", { staticClass: " blue--text pl-3" }, [
-                          _c(
-                            "button",
-                            {
-                              directives: [
-                                {
-                                  name: "clipboard",
-                                  rawName: "v-clipboard",
-                                  value: item.alliance_ticker,
-                                  expression: "item.alliance_ticker"
-                                },
-                                {
-                                  name: "clipboard",
-                                  rawName: "v-clipboard:success",
-                                  value: _vm.Alliancecopied,
-                                  expression: "Alliancecopied",
-                                  arg: "success"
-                                }
-                              ]
-                            },
-                            [
-                              _vm._v(
-                                "\n                    " +
-                                  _vm._s(item.alliance_ticker) +
-                                  "\n                "
-                              )
-                            ]
-                          )
-                        ])
+                      ? _c(
+                          "span",
+                          { staticClass: " blue--text pl-3" },
+                          [
+                            _c("RcMoveCopyButton", {
+                              attrs: { item: item, type: "alliance" }
+                            })
+                          ],
+                          1
+                        )
                       : item.standing < 0
-                      ? _c("span", { staticClass: "red--text pl-3" }, [
-                          _c(
-                            "button",
-                            {
-                              directives: [
-                                {
-                                  name: "clipboard",
-                                  rawName: "v-clipboard",
-                                  value: item.alliance_ticker,
-                                  expression: "item.alliance_ticker"
-                                },
-                                {
-                                  name: "clipboard",
-                                  rawName: "v-clipboard:success",
-                                  value: _vm.Alliancecopied,
-                                  expression: "Alliancecopied",
-                                  arg: "success"
-                                }
-                              ]
-                            },
-                            [
-                              _vm._v(
-                                "\n                    " +
-                                  _vm._s(item.alliance_ticker) +
-                                  "\n                "
-                              )
-                            ]
-                          )
-                        ])
-                      : _c("span", { staticClass: "pl-3" }, [
-                          _c(
-                            "button",
-                            {
-                              directives: [
-                                {
-                                  name: "clipboard",
-                                  rawName: "v-clipboard",
-                                  value: item.alliance_ticker,
-                                  expression: "item.alliance_ticker"
-                                },
-                                {
-                                  name: "clipboard",
-                                  rawName: "v-clipboard:success",
-                                  value: _vm.Alliancecopied,
-                                  expression: "Alliancecopied",
-                                  arg: "success"
-                                }
-                              ]
-                            },
-                            [
-                              _vm._v(
-                                "\n                    " +
-                                  _vm._s(item.alliance_ticker) +
-                                  "\n                "
-                              )
-                            ]
-                          )
-                        ])
+                      ? _c(
+                          "span",
+                          { staticClass: "red--text pl-3" },
+                          [
+                            _c("RcMoveCopyButton", {
+                              attrs: { item: item, type: "alliance" }
+                            })
+                          ],
+                          1
+                        )
+                      : _c(
+                          "span",
+                          { staticClass: "pl-3" },
+                          [
+                            _c("RcMoveCopyButton", {
+                              attrs: { item: item, type: "alliance" }
+                            })
+                          ],
+                          1
+                        )
                   ]
                 }
               },

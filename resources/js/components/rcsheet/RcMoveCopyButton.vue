@@ -1,7 +1,7 @@
 <template>
     <div>
         <button v-clipboard="() => button">
-            {{ item.out_time }}
+            {{ buttontext }}
         </button>
         <v-snackbar v-model="snack" :timeout="3000" :color="snackColor">
             {{ snackText }}
@@ -44,6 +44,85 @@ export default {
                 this.snackColor = "success";
                 this.snackText = "Absolute Time Copied";
                 return str;
+            }
+
+            if (this.type == "status") {
+                this.snack = true;
+                this.snackColor = "success";
+                this.snackText = "Station Status Copied";
+
+                return this.station_status_name;
+            }
+
+            if (this.type == "name") {
+                this.snack = true;
+                this.snackColor = "success";
+                this.snackText = "Station Name Copied";
+
+                return this.station_name;
+            }
+
+            if (this.type == "corp") {
+                this.snack = true;
+                this.snackColor = "success";
+                this.snackText = "Corp Ticker Copied";
+
+                return this.corp_ticker;
+            }
+
+            if (this.type == "system") {
+                this.snack = true;
+                this.snackColor = "success";
+                this.snackText = "System Name Copied";
+
+                return this.system_name;
+            }
+
+            if (this.type == "station") {
+                this.snack = true;
+                this.snackColor = "success";
+                this.snackText = "Station Type Copied";
+
+                return this.item_name;
+            }
+
+            if (this.type == "alliance") {
+                this.snack = true;
+                this.snackColor = "success";
+                this.snackText = "Alliance ticker Copied";
+
+                return this.alliance_ticker;
+            }
+        },
+
+        buttontext() {
+            if (this.type == "outtime") {
+                var str = this.item.out_time;
+            }
+
+            if (this.type == "status") {
+                var ret = item.station_status_name.replace("Upcoming - ", "");
+                return ret;
+            }
+
+            if (this.type == "name") {
+                return this.station_name;
+            }
+
+            if (this.type == "corp") {
+                return this.corp_ticker;
+            }
+
+            if (this.type == "system") {
+                return this.system_name;
+            }
+
+            if (this.type == "station") {
+                return this.item_name;
+            }
+
+            if (this.type == "alliance") {
+                return this.alliance_ticker;
             }
         }
     },

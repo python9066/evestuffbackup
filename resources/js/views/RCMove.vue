@@ -75,12 +75,10 @@
                                 <v-icon left>{{
                                     pillIcon(item.station_status_id)
                                 }}</v-icon>
-                                <button
-                                    v-clipboard="fixStatusText(item)"
-                                    v-clipboard:success="Statuscopied"
-                                >
-                                    {{ fixStatusText(item) }}
-                                </button>
+                                <RcMoveCopyButton
+                                    :item="item"
+                                    type="status"
+                                ></RcMoveCopyButton>
                             </v-chip>
                         </div>
                     </template>
@@ -91,74 +89,51 @@
                 v-slot:[`item.station_name`]="{ item }"
                 class="d-inline-flex align-center"
             >
-                <button
-                    v-clipboard="item.station_name"
-                    v-clipboard:success="Namecopied"
-                >
-                    {{ item.station_name }}
-                </button>
+                <RcMoveCopyButton :item="item" type="name"></RcMoveCopyButton>
             </template>
             <template
                 v-slot:[`item.corp_ticker`]="{ item }"
                 class="d-inline-flex align-center"
             >
-                <button
-                    v-clipboard="item.corp_ticker"
-                    v-clipboard:success="Corpcopied"
-                >
-                    {{ item.corp_ticker }}
-                </button>
+                <RcMoveCopyButton :item="item" type="corp"></RcMoveCopyButton>
             </template>
             <template
                 v-slot:[`item.system_name`]="{ item }"
                 class="d-inline-flex align-center"
             >
-                <button
-                    v-clipboard="item.system_name"
-                    v-clipboard:success="Systemcopied"
-                >
-                    {{ item.system_name }}
-                </button>
+                <RcMoveCopyButton :item="item" type="system"></RcMoveCopyButton>
             </template>
             <template
                 v-slot:[`item.item_name`]="{ item }"
                 class="d-inline-flex align-center"
             >
-                <button
-                    v-clipboard="item.item_name"
-                    v-clipboard:success="Stationcopied"
-                >
-                    {{ item.item_name }}
-                </button>
+                <RcMoveCopyButton
+                    :item="item"
+                    type="station"
+                ></RcMoveCopyButton>
             </template>
             <template
                 v-slot:[`item.alliance_ticker`]="{ item }"
                 class="d-inline-flex align-center"
             >
-                <span v-if="item.standing > 0" class=" blue--text pl-3"
-                    ><button
-                        v-clipboard="item.alliance_ticker"
-                        v-clipboard:success="Alliancecopied"
-                    >
-                        {{ item.alliance_ticker }}
-                    </button>
+                <span v-if="item.standing > 0" class=" blue--text pl-3">
+                    <RcMoveCopyButton
+                        :item="item"
+                        type="alliance"
+                    ></RcMoveCopyButton>
                 </span>
                 <span v-else-if="item.standing < 0" class="red--text pl-3"
-                    ><button
-                        v-clipboard="item.alliance_ticker"
-                        v-clipboard:success="Alliancecopied"
-                    >
-                        {{ item.alliance_ticker }}
-                    </button>
+                    ><RcMoveCopyButton
+                        :item="item"
+                        type="alliance"
+                    ></RcMoveCopyButton>
                 </span>
                 <span v-else class="pl-3"
-                    ><button
-                        v-clipboard="item.alliance_ticker"
-                        v-clipboard:success="Alliancecopied"
-                    >
-                        {{ item.alliance_ticker }}
-                    </button></span
-                >
+                    ><RcMoveCopyButton
+                        :item="item"
+                        type="alliance"
+                    ></RcMoveCopyButton
+                ></span>
             </template>
 
             <template v-slot:[`item.actions`]="{ item }">
@@ -490,48 +465,6 @@ export default {
         campaignStart(item) {
             item.station_status_id = 6;
             this.$store.dispatch("updateStationNotification", item);
-        },
-
-        Statuscopied() {
-            this.snack = true;
-            this.snackColor = "success";
-            this.snackText = "Status Copied";
-        },
-
-        Systemcopied() {
-            this.snack = true;
-            this.snackColor = "success";
-            this.snackText = "System Copied";
-        },
-
-        Corpcopied() {
-            this.snack = true;
-            this.snackColor = "success";
-            this.snackText = "Corp Ticker Copied";
-        },
-
-        Alliancecopied() {
-            this.snack = true;
-            this.snackColor = "success";
-            this.snackText = "Alliance Ticker Copied";
-        },
-
-        Stationcopied() {
-            this.snack = true;
-            this.snackColor = "success";
-            this.snackText = "Station Type Copied";
-        },
-
-        Namecopied() {
-            this.snack = true;
-            this.snackColor = "success";
-            this.snackText = "Station Name Copied";
-        },
-
-        Timecopied() {
-            this.snack = true;
-            this.snackColor = "success";
-            this.snackText = "Absolute Time Copied";
         },
 
         itemRowBackground: function(item) {
