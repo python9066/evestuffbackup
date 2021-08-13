@@ -241,7 +241,15 @@ class StationController extends Controller
 
             $stationCheck = station::where('name', $name)->first();;
             if ($stationCheck) {
-                dd('here');
+                $station = StationRecords::where('id', $stationCheck->id)->first();
+                $data = [
+                    'state' => 3,
+                    'station_id' => $station->id,
+                    'station_name' => $station->name,
+                    'structure_name' => $station->item_name,
+                    'system_name' => $station->system_name,
+                    'corp_ticker' => $station->ticker,
+                ];
             } else {
                 $data = [
                     'state' => 2,
