@@ -27181,7 +27181,9 @@ function sleep(ms) {
               } else {
                 Echo["private"]("rcmovesheet").listen("RcMoveUpdate", function (e) {
                   if (e.flag.message != null) {
-                    _this.$store.dispatch("updateStationNotification", e.flag.message);
+                    if (e.flag.message.added_by_user_id == user_id()) {
+                      _this.$store.dispatch("updateStationNotification", e.flag.message);
+                    }
                   }
                 }).listen("RcMoveDelete", function (e) {
                   _this.$store.dispatch("deleteStationNotification", e.flag.id);
@@ -27461,6 +27463,9 @@ function sleep(ms) {
     },
     user_name: function user_name() {
       return this.$store.state.user_name;
+    },
+    user_id: function user_id() {
+      return this.$store.state.user_id;
     }
   }),
   beforeDestroy: function beforeDestroy() {

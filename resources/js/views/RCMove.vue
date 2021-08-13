@@ -355,10 +355,12 @@ export default {
             Echo.private("rcmovesheet")
                 .listen("RcMoveUpdate", e => {
                     if (e.flag.message != null) {
-                        this.$store.dispatch(
-                            "updateStationNotification",
-                            e.flag.message
-                        );
+                        if (e.flag.message.added_by_user_id == user_id()) {
+                            this.$store.dispatch(
+                                "updateStationNotification",
+                                e.flag.message
+                            );
+                        }
                     }
                 })
                 .listen("RcMoveDelete", e => {
@@ -629,6 +631,10 @@ export default {
         },
         user_name() {
             return this.$store.state.user_name;
+        },
+
+        user_id() {
+            return this.$store.state.user_id;
         }
     },
     beforeDestroy() {
