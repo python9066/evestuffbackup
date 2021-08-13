@@ -381,7 +381,12 @@ class StationController extends Controller
     public function editUpdate(Request $request, $id)
     {
         // dd($id);
-        Station::find($id)->update($request->all());
+        if ($request->out_time == "Invalid date") {
+            Station::find($id)->update(['corp_id' => $request->corp_id, 'item_id' => $request->item_id, 'station_status_id' => $request->station_status_id, 'timer_image_link' => $request->timer_image_link]);
+        } else {
+            Station::find($id)->update($request->all());
+        }
+
         $message = StationRecords::where('id', $id)->first();
         $flag = collect([
             'message' => $message
