@@ -53,7 +53,7 @@
                         }"
                         class="elevation-5"
                     >
-                        <template v-slot:[`item.roles`]="{ item }">
+                        <template v-slot:[`item.keys`]="{ item }">
                             <div class=" d-inline-flex">
                                 <v-menu>
                                     <template v-slot:activator="{ on, attrs }">
@@ -74,12 +74,12 @@
                                         <v-list-item
                                             v-for="(list,
                                             index) in filterDropdownList(
-                                                item.roles
+                                                item.keys
                                             )"
                                             :key="index"
                                             @click="
-                                                (userAddRoleText = list.id),
-                                                    userAddRole(item)
+                                                (userAddKeyText = list.id),
+                                                    userAddKey(item)
                                             "
                                         >
                                             <v-list-item-title>{{
@@ -92,7 +92,7 @@
 
                             <div class=" d-inline-flex">
                                 <div
-                                    v-for="(key, index) in filterRoles(
+                                    v-for="(key, index) in filterKeys(
                                         item.keys
                                     )"
                                     :key="index"
@@ -104,8 +104,8 @@
                                         :close="pillClose(key.name)"
                                         dark
                                         @click:close="
-                                            (userRemoveRoleText = key.id),
-                                                userRemoveRole(item)
+                                            (userRemoveKeyText = key.id),
+                                                userRemoveKey(item)
                                         "
                                     >
                                         <span> {{ key.name }}</span>
@@ -156,9 +156,9 @@ export default {
             toggle_exclusive: 0,
             search: "",
             addShown: false,
-            userAddRoleText: "",
-            userRemoveRoleText: "",
-            roleflag: 10,
+            userAddKeyText: "",
+            userRemoveKeyText: "",
+            keyflag: 10,
             logs: false
         };
     },
@@ -175,7 +175,7 @@ export default {
     },
 
     methods: {
-        filterRoles(keys) {
+        filterKeys(keys) {
             // console.log(roles);
             return keys;
         },
@@ -186,8 +186,8 @@ export default {
         },
 
         filterDropdownList(item) {
-            let roleID = item.map(i => i.id);
-            const filter = this.keysList.filter(r => !roleID.includes(r.id));
+            let keyID = item.map(i => i.id);
+            const filter = this.keysList.filter(r => !keyID.includes(r.id));
             if (this.$can("edit_fleet_keys")) {
                 return filter;
             }
@@ -201,9 +201,9 @@ export default {
             }
         },
 
-        async userAddRole(item) {
+        async userAddKey(item) {
             var request = {
-                roleId: this.userAddRoleText,
+                keyId: this.userAddKeyText,
                 userId: item.id
             };
 
@@ -220,7 +220,7 @@ export default {
             this.$store.dispatch("getUsers");
             request = null;
             request = {
-                roleId: this.userAddRoleText,
+                keyId: this.userAddkeyText,
                 userId: item.id,
                 user_id: this.$store.state.user_id,
                 type: 15
@@ -250,9 +250,9 @@ export default {
             }
         },
 
-        async userRemoveRole(item) {
+        async userRemoveKey(item) {
             var request = {
-                roleId: this.userRemoveRoleText,
+                keyId: this.userRemoveKeyText,
                 userId: item.id
             };
 
@@ -270,7 +270,7 @@ export default {
 
             request = null;
             request = {
-                roleId: this.userAddRoleText,
+                keyId: this.userAddKeyText,
                 userId: item.id,
                 user_id: this.$store.state.user_id,
                 type: 16

@@ -25090,9 +25090,9 @@ function sleep(ms) {
       toggle_exclusive: 0,
       search: "",
       addShown: false,
-      userAddRoleText: "",
-      userRemoveRoleText: "",
-      roleflag: 10,
+      userAddKeyText: "",
+      userRemoveKeyText: "",
+      keyflag: 10,
       logs: false
     };
   },
@@ -25140,7 +25140,7 @@ function sleep(ms) {
     }))();
   },
   methods: {
-    filterRoles: function filterRoles(keys) {
+    filterKeys: function filterKeys(keys) {
       // console.log(roles);
       return keys;
     },
@@ -25168,11 +25168,11 @@ function sleep(ms) {
       }))();
     },
     filterDropdownList: function filterDropdownList(item) {
-      var roleID = item.map(function (i) {
+      var keyID = item.map(function (i) {
         return i.id;
       });
       var filter = this.keysList.filter(function (r) {
-        return !roleID.includes(r.id);
+        return !keyID.includes(r.id);
       });
 
       if (this.$can("edit_fleet_keys")) {
@@ -25186,7 +25186,7 @@ function sleep(ms) {
         return false;
       }
     },
-    userAddRole: function userAddRole(item) {
+    userAddKey: function userAddKey(item) {
       var _this4 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
@@ -25196,7 +25196,7 @@ function sleep(ms) {
             switch (_context4.prev = _context4.next) {
               case 0:
                 request = {
-                  roleId: _this4.userAddRoleText,
+                  keyId: _this4.userAddKeyText,
                   userId: item.id
                 };
                 _context4.next = 3;
@@ -25217,7 +25217,7 @@ function sleep(ms) {
 
                 request = null;
                 request = {
-                  roleId: _this4.userAddRoleText,
+                  keyId: _this4.userAddkeyText,
                   userId: item.id,
                   user_id: _this4.$store.state.user_id,
                   type: 15
@@ -25259,7 +25259,7 @@ function sleep(ms) {
         return;
       }
     },
-    userRemoveRole: function userRemoveRole(item) {
+    userRemoveKey: function userRemoveKey(item) {
       var _this5 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee5() {
@@ -25269,7 +25269,7 @@ function sleep(ms) {
             switch (_context5.prev = _context5.next) {
               case 0:
                 request = {
-                  roleId: _this5.userRemoveRoleText,
+                  keyId: _this5.userRemoveKeyText,
                   userId: item.id
                 };
                 _context5.next = 3;
@@ -25290,7 +25290,7 @@ function sleep(ms) {
 
                 request = null;
                 request = {
-                  roleId: _this5.userAddRoleText,
+                  keyId: _this5.userAddKeyText,
                   userId: item.id,
                   user_id: _this5.$store.state.user_id,
                   type: 16
@@ -57686,7 +57686,7 @@ var render = function() {
                       scopedSlots: _vm._u(
                         [
                           {
-                            key: "item.roles",
+                            key: "item.keys",
                             fn: function(ref) {
                               var item = ref.item
                               return [
@@ -57749,7 +57749,7 @@ var render = function() {
                                         _c(
                                           "v-list",
                                           _vm._l(
-                                            _vm.filterDropdownList(item.roles),
+                                            _vm.filterDropdownList(item.keys),
                                             function(list, index) {
                                               return _c(
                                                 "v-list-item",
@@ -57757,9 +57757,9 @@ var render = function() {
                                                   key: index,
                                                   on: {
                                                     click: function($event) {
-                                                      ;(_vm.userAddRoleText =
+                                                      ;(_vm.userAddKeyText =
                                                         list.id),
-                                                        _vm.userAddRole(item)
+                                                        _vm.userAddKey(item)
                                                     }
                                                   }
                                                 },
@@ -57784,7 +57784,7 @@ var render = function() {
                                 _c(
                                   "div",
                                   { staticClass: " d-inline-flex" },
-                                  _vm._l(_vm.filterRoles(item.keys), function(
+                                  _vm._l(_vm.filterKeys(item.keys), function(
                                     key,
                                     index
                                   ) {
@@ -57803,9 +57803,9 @@ var render = function() {
                                             },
                                             on: {
                                               "click:close": function($event) {
-                                                ;(_vm.userRemoveRoleText =
+                                                ;(_vm.userRemoveKeyText =
                                                   key.id),
-                                                  _vm.userRemoveRole(item)
+                                                  _vm.userRemoveKey(item)
                                               }
                                             }
                                           },
