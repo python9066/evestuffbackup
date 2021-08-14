@@ -92,8 +92,8 @@
 
                             <div class=" d-inline-flex">
                                 <div
-                                    v-for="(role, index) in filterRoles(
-                                        item.roles
+                                    v-for="(key, index) in filterRoles(
+                                        item.keys
                                     )"
                                     :key="index"
                                     class=" pr-2"
@@ -101,21 +101,14 @@
                                     <v-chip
                                         pill
                                         :class="mittin(item)"
-                                        :close="pillClose(role.name)"
+                                        :close="pillClose(key.name)"
                                         dark
                                         @click:close="
-                                            (userRemoveRoleText = role.id),
+                                            (userRemoveRoleText = key.id),
                                                 userRemoveRole(item)
                                         "
                                     >
-                                        <v-icon
-                                            v-if="role.name == 'Wizard'"
-                                            small
-                                            left
-                                        >
-                                            faSvg fa-hat-wizard
-                                        </v-icon>
-                                        <span> {{ role.name }}</span>
+                                        <span> {{ key.name }}</span>
                                     </v-chip>
                                 </div>
                             </div>
@@ -182,9 +175,9 @@ export default {
     },
 
     methods: {
-        filterRoles(roles) {
+        filterRoles(keys) {
             // console.log(roles);
-            return roles.filter(r => r.name != "Super Admin");
+            return keys;
         },
 
         async refresh() {

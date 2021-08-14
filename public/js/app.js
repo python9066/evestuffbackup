@@ -25058,13 +25058,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -25147,11 +25140,9 @@ function sleep(ms) {
     }))();
   },
   methods: {
-    filterRoles: function filterRoles(roles) {
+    filterRoles: function filterRoles(keys) {
       // console.log(roles);
-      return roles.filter(function (r) {
-        return r.name != "Super Admin";
-      });
+      return keys;
     },
     refresh: function refresh() {
       var _this3 = this;
@@ -57793,8 +57784,8 @@ var render = function() {
                                 _c(
                                   "div",
                                   { staticClass: " d-inline-flex" },
-                                  _vm._l(_vm.filterRoles(item.roles), function(
-                                    role,
+                                  _vm._l(_vm.filterRoles(item.keys), function(
+                                    key,
                                     index
                                   ) {
                                     return _c(
@@ -57807,40 +57798,22 @@ var render = function() {
                                             class: _vm.mittin(item),
                                             attrs: {
                                               pill: "",
-                                              close: _vm.pillClose(role.name),
+                                              close: _vm.pillClose(key.name),
                                               dark: ""
                                             },
                                             on: {
                                               "click:close": function($event) {
                                                 ;(_vm.userRemoveRoleText =
-                                                  role.id),
+                                                  key.id),
                                                   _vm.userRemoveRole(item)
                                               }
                                             }
                                           },
                                           [
-                                            role.name == "Wizard"
-                                              ? _c(
-                                                  "v-icon",
-                                                  {
-                                                    attrs: {
-                                                      small: "",
-                                                      left: ""
-                                                    }
-                                                  },
-                                                  [
-                                                    _vm._v(
-                                                      "\n                                        faSvg fa-hat-wizard\n                                    "
-                                                    )
-                                                  ]
-                                                )
-                                              : _vm._e(),
-                                            _vm._v(" "),
                                             _c("span", [
-                                              _vm._v(" " + _vm._s(role.name))
+                                              _vm._v(" " + _vm._s(key.name))
                                             ])
-                                          ],
-                                          1
+                                          ]
                                         )
                                       ],
                                       1
