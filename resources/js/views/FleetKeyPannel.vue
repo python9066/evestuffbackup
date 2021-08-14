@@ -202,9 +202,14 @@ export default {
         },
 
         buttonList() {
-            console.log(this.keysList);
+            var list = this.keysList;
+            date = {
+                id: 0,
+                name: "All"
+            };
+            list.push(data);
 
-            return this.keysList;
+            return list;
         },
 
         pillClose(name) {

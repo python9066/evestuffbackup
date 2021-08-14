@@ -25187,8 +25187,13 @@ function sleep(ms) {
       }
     },
     buttonList: function buttonList() {
-      console.log(this.keysList);
-      return this.keysList;
+      var list = this.keysList;
+      date = {
+        id: 0,
+        name: "All"
+      };
+      list.push(data);
+      return list;
     },
     pillClose: function pillClose(name) {
       if (this.$can("edit_fleet_keys")) {
