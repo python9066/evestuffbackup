@@ -25111,7 +25111,7 @@ function sleep(ms) {
       addShown: false,
       userAddKeyText: "",
       userRemoveKeyText: "",
-      keyflag: 10,
+      keyflag: 0,
       logs: false
     };
   },
