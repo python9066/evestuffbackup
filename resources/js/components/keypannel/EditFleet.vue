@@ -66,7 +66,10 @@
                                             autofocus
                                         ></v-text-field>
 
-                                        <v-btn color="success" class="mr-4"
+                                        <v-btn
+                                            color="success"
+                                            class="mr-4"
+                                            @click="newFleetForm()"
                                             >submit</v-btn
                                         >
                                         <v-btn
