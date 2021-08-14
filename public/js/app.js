@@ -30997,6 +30997,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 
@@ -62866,6 +62867,18 @@ var render = function() {
               )
             ],
             1
+          ),
+          _vm._v(" "),
+          _c(
+            "v-btn",
+            {
+              on: {
+                click: function($event) {
+                  return _vm.load()
+                }
+              }
+            },
+            [_vm._v("test")]
           )
         ],
         1

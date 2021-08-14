@@ -17,6 +17,7 @@
                     3 of 3
                 </v-card>
             </v-col>
+            <v-btn @click="load()">test</v-btn>
             <!-- </v-col> -->
         </v-row>
     </div>
