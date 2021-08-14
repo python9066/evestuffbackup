@@ -25247,7 +25247,7 @@ function sleep(ms) {
                 });
 
               case 3:
-                _this5.$store.dispatch("getUsers");
+                _this5.$store.dispatch("getUse rs");
 
                 request = null;
                 request = {
