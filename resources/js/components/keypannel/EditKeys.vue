@@ -17,7 +17,7 @@
                 >
             </template>
 
-            <v-card tile max-width="500px" min-height="200px">
+            <v-card tile max-width="1200px" min-height="200px">
                 <v-card-title
                     class="d-flex justify-space-between align-center "
                 >
