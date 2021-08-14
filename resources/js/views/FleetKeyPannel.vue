@@ -262,10 +262,11 @@ export default {
     computed: {
         ...mapState(["userkeys", "keysList"]),
         filteredItems() {
+            var keyid = this.keyflag;
             if (this.keyflag != 0) {
                 return this.userkeys.filter(function(u) {
                     return u.keys.some(function(key) {
-                        return key.id == this.keyflag;
+                        return key.id == keyid;
                     });
                 });
             } else {

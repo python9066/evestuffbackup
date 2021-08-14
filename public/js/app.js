@@ -25279,10 +25279,12 @@ function sleep(ms) {
   },
   computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapState"])(["userkeys", "keysList"])), {}, {
     filteredItems: function filteredItems() {
+      var keyid = this.keyflag;
+
       if (this.keyflag != 0) {
         return this.userkeys.filter(function (u) {
           return u.keys.some(function (key) {
-            return key.id == this.keyflag;
+            return key.id == keyid;
           });
         });
       } else {
