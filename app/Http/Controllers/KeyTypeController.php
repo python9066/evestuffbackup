@@ -15,7 +15,7 @@ class KeyTypeController extends Controller
      */
     public function index()
     {
-        return ['keys' => KeyType::all()->select('id', 'name')->orderBy('name', 'asc')->get()];
+        return ['keys' => KeyType::where('id', '>', 0)->select('id', 'name')->orderBy('name', 'asc')->get()];
     }
 
     public function getAllUsersKeys()
