@@ -25057,6 +25057,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -57576,6 +57585,30 @@ var render = function() {
             "v-col",
             { staticClass: " d-inline-flex", attrs: { cols: "9" } },
             [
+              _c(
+                "v-list",
+                _vm._l(_vm.filterDropdownList(_vm.item.keys), function(
+                  list,
+                  index
+                ) {
+                  return _c(
+                    "v-list-item",
+                    {
+                      key: index,
+                      on: {
+                        click: function($event) {
+                          ;(_vm.userAddKeyText = list.id),
+                            _vm.userAddKey(_vm.item)
+                        }
+                      }
+                    },
+                    [_c("v-list-item-title", [_vm._v(_vm._s(list.name))])],
+                    1
+                  )
+                }),
+                1
+              ),
+              _vm._v(" "),
               _c("v-spacer"),
               _vm._v(" "),
               _c("v-card", {

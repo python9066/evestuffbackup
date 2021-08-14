@@ -30,6 +30,15 @@
         </v-row>
         <v-row no-gutters justify="center">
             <v-col class=" d-inline-flex" cols="9">
+                <v-list>
+                    <v-list-item
+                        v-for="(list, index) in filterDropdownList(item.keys)"
+                        :key="index"
+                        @click="(userAddKeyText = list.id), userAddKey(item)"
+                    >
+                        <v-list-item-title>{{ list.name }}</v-list-item-title>
+                    </v-list-item>
+                </v-list>
                 <v-spacer></v-spacer>
                 <v-card tile flat color="#121212" class="align-end"> </v-card>
             </v-col>
