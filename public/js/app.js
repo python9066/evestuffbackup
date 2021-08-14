@@ -25279,7 +25279,11 @@ function sleep(ms) {
   },
   computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapState"])(["userkeys", "keysList"])), {}, {
     filteredItems: function filteredItems() {
-      return this.userkeys;
+      var _this6 = this;
+
+      return this.userkeys.filter(function (k) {
+        return k.id = _this6.keyflag;
+      });
     },
     buttonList: function buttonList() {
       var list = this.keysList;
