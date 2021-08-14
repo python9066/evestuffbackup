@@ -103,6 +103,8 @@ Route::middleware('auth:api')->group(function () {
     Route::get('/roles', 'RoleController@index');
     Route::get('/allusersroles', 'RoleController@getAllUsersRoles');
     Route::put('/rolesadd', 'RoleController@addRole');
+    Route::put('/keysadd', 'KeyTypeController@store');
+
     Route::put('/rolesremove', 'RoleController@removeRole');
 
     Route::post('/campaignsystemusers/{campid}', 'CampaignSystemUsersController@store');

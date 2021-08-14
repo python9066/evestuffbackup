@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\KeyType;
 use App\Models\User;
+use App\Models\UserKeyJoin;
 use Illuminate\Http\Request;
 
 class KeyTypeController extends Controller
@@ -31,7 +32,7 @@ class KeyTypeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        UserKeyJoin::create($request->all());
     }
 
     /**

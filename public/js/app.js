@@ -25203,7 +25203,7 @@ function sleep(ms) {
                 return axios({
                   method: "put",
                   //you can set what request you want to be
-                  url: "/api/rolesadd",
+                  url: "/api/keysadd",
                   data: request,
                   headers: {
                     Authorization: "Bearer " + _this4.$store.state.token,
@@ -25213,51 +25213,12 @@ function sleep(ms) {
                 });
 
               case 3:
-                _this4.$store.dispatch("getUsers");
-
-                request = null;
-                request = {
-                  keyId: _this4.userAddkeyText,
-                  userId: item.id,
-                  user_id: _this4.$store.state.user_id,
-                  type: 15
-                };
-                _context4.next = 8;
-                return axios({
-                  method: "put",
-                  //you can set what request you want to be
-                  url: "/api/checkroleaddremove",
-                  data: request,
-                  headers: {
-                    Authorization: "Bearer " + _this4.$store.state.token,
-                    Accept: "application/json",
-                    "Content-Type": "application/json"
-                  }
-                });
-
-              case 8:
-                if (!_this4.$can("view_admin_logs")) {
-                  _context4.next = 11;
-                  break;
-                }
-
-                _context4.next = 11;
-                return _this4.$store.dispatch("getLoggingAdmin");
-
-              case 11:
               case "end":
                 return _context4.stop();
             }
           }
         }, _callee4);
       }))();
-    },
-    mittin: function mittin(item) {
-      if (item.id == 92) {
-        return "rainbow-2";
-      } else {
-        return;
-      }
     },
     userRemoveKey: function userRemoveKey(item) {
       var _this5 = this;

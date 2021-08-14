@@ -187,6 +187,7 @@ export default {
 
         filterDropdownList(item) {
             let keyID = item.map(i => i.id);
+
             const filter = this.keysList.filter(r => !keyID.includes(r.id));
             if (this.$can("edit_fleet_keys")) {
                 return filter;
@@ -209,7 +210,7 @@ export default {
 
             await axios({
                 method: "put", //you can set what request you want to be
-                url: "/api/rolesadd",
+                url: "/api/keysadd",
                 data: request,
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
@@ -217,37 +218,6 @@ export default {
                     "Content-Type": "application/json"
                 }
             });
-            this.$store.dispatch("getUsers");
-            request = null;
-            request = {
-                keyId: this.userAddkeyText,
-                userId: item.id,
-                user_id: this.$store.state.user_id,
-                type: 15
-            };
-
-            await axios({
-                method: "put", //you can set what request you want to be
-                url: "/api/checkroleaddremove",
-                data: request,
-                headers: {
-                    Authorization: "Bearer " + this.$store.state.token,
-                    Accept: "application/json",
-                    "Content-Type": "application/json"
-                }
-            });
-
-            if (this.$can("view_admin_logs")) {
-                await this.$store.dispatch("getLoggingAdmin");
-            }
-        },
-
-        mittin(item) {
-            if (item.id == 92) {
-                return "rainbow-2";
-            } else {
-                return;
-            }
         },
 
         async userRemoveKey(item) {
