@@ -24,7 +24,7 @@ class testController extends Controller
     public function key()
     {
 
-        dd(['userskeys' => User::find(25107)->with('keys')->select('id', 'name')->get()]);
+        dd(User::find(25107)->with('keys')->select('id', 'name')->get());
         // $user = User::find(25107);
         // foreach ($user->keys as $key) {
         //     echo $key->name;
