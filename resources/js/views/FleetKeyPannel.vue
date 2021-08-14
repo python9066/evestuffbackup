@@ -147,7 +147,7 @@ function sleep(ms) {
 
 export default {
     title() {
-        return `EVE — Admin`;
+        return `EVE — Fleet Keys`;
     },
     data() {
         return {
@@ -155,7 +155,7 @@ export default {
 
             headers: [
                 { text: "Name", value: "name" },
-                { text: "Roles", value: "roles", width: "80%" }
+                { text: "Keys", value: "keys", width: "80%" }
             ],
             loadingr: false,
             loadingf: false,
@@ -177,7 +177,7 @@ export default {
     },
 
     async mounted() {
-        await this.$store.dispatch("getUsers");
+        await this.$store.dispatch("getUserKeys");
         await this.$store.dispatch("getKeys");
     },
 
@@ -188,107 +188,23 @@ export default {
         },
 
         async refresh() {
-            await this.$store.dispatch("getUsers");
+            await this.$store.dispatch("getUserKeys");
             await this.$store.dispatch("getKeys");
         },
 
         filterDropdownList(item) {
             let roleID = item.map(i => i.id);
             const filter = this.rolesList.filter(r => !roleID.includes(r.id));
-            let chill = [];
-            let fc = [];
-            let gsfoeFC = [];
-            let gunner = [];
-            let recon = [];
-            let scout = [];
-            let superChilled = [];
-            let start = [];
-            let topChill = [];
-            let megaSheet = [];
-            if (this.$can("edit_all_users")) {
+            if (this.$can("edit_fleet_keys")) {
                 return filter;
             }
-            if (this.$can("edit_chill_users")) {
-                chill = filter.filter(f => f.name == "Chilled");
-            }
-            if (this.$can("edit_fc_users")) {
-                fc = filter.filter(f => f.name == "FC");
-            }
-            if (this.$can("edit_gsfoe_fc")) {
-                gsfoeFC = filter.filter(f => f.name == "GSFOE FC");
-            }
-            if (this.$can("edit_gunner_users")) {
-                gunner = filter.filter(f => f.name == "Gunner");
-            }
-            if (this.$can("edit_recon_users")) {
-                recon = filter.filter(f => f.name == "Recon");
-            }
-            if (this.$can("edit_scout_users")) {
-                scout = filter.filter(f => f.name == "Scout");
-            }
-            if (this.$can("edit_super_chilled_users")) {
-                superChilled = filter.filter(f => f.name == "Super Chilled");
-            }
-            if (this.$can("edit_top_chill_users")) {
-                topChill = filter.filter(f => f.name == "Top Chill");
-            }
-
-            if (this.$can("edit_mega_sheet_user")) {
-                megaSheet = filter.filter(f => f.name == "Mega Sheet");
-            }
-
-            return start.concat(
-                chill,
-                fc,
-                gsfoeFC,
-                gunner,
-                recon,
-                scout,
-                superChilled,
-                topChill,
-                megaSheet
-            );
         },
 
         pillClose(name) {
-            if (this.$can("edit_all_users")) {
-                if (name == "Wizard") {
-                    return false;
-                } else {
-                    return true;
-                }
-            } else if (
-                this.$can("edit_gsfoe_fc") &&
-                this.$can("edit_recon_users") &&
-                this.$can("edit_scout_users") &&
-                this.$can("edit_mega_sheet_user")
-            ) {
-                if (name == "Coord" || name == "Director" || name == "Wizard") {
-                    return false;
-                } else {
-                    return true;
-                }
-            } else if (
-                this.$can("edit_recon_users") &&
-                this.$can("edit_scout_users")
-            ) {
-                if (name == "Recon" || name == "Scout") {
-                    return true;
-                } else {
-                    return false;
-                }
-            } else if (this.$can("edit_gsfoe_fc")) {
-                if (name == "GSFOE FC") {
-                    return true;
-                } else {
-                    return false;
-                }
-            } else if (this.$can("edit_scout_users")) {
-                if (name == "Scout") {
-                    return true;
-                } else {
-                    return false;
-                }
+            if (this.$can("edit_fleet_keys")) {
+                return true;
+            } else {
+                return false;
             }
         },
 

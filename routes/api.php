@@ -220,4 +220,5 @@ Route::middleware('auth:api')->group(function () {
     Route::delete('/rcmovedonebad/{id}', 'StationController@destroy');
 
     Route::get('/alluserskeys', 'KeyTypeController@getAllUsersKeys');
+    Route::get('/keys', 'KeyTypeController@index');
 });

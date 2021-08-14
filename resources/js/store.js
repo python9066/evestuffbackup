@@ -25,7 +25,8 @@ export default new Vuex.Store({
         constellationlist:[],
         cores:[],
         delveLink: "",
-        items:[],
+        items: [],
+        keysList:[],
         loggingAdmin:[],
         loggingcampaign: [],
         loggingRcSheet: [],
@@ -60,6 +61,7 @@ export default new Vuex.Store({
         user_id: 0,
         user_name:"",
         userschars: [],
+        userkeys:[]
     },
     mutations: {
         SET_AMMO_REQUEST(state, ammorequest) {
@@ -246,6 +248,12 @@ export default new Vuex.Store({
             state.users = users;
         },
 
+        SET_USER_KEYS(state, userskeys) {
+            state.userkeys = userskeys;
+        },
+
+
+
         SET_USERS_CHARS(state, data) {
             state.userschars = data;
         },
@@ -270,6 +278,12 @@ export default new Vuex.Store({
         SET_ROLES(state, roles) {
             state.rolesList = roles;
         },
+
+         SET_KEYS(state, keys) {
+            state.keysList = keys;
+        },
+
+
 
         SET_CAMPAIGNS(state, campaigns) {
             state.campaigns = campaigns;
@@ -784,6 +798,24 @@ export default new Vuex.Store({
             // commit("SET_USER_ROLES", userRoles.map(u => ({id: u.id, name: u.name})));
         },
 
+        async getUserKeys({ commit, state }) {
+            if(state.token == ""){
+                 await sleep(500)
+            }
+            let res = await axios({
+                method: "get",
+                url: "/api/alluserskeys",
+                headers: {
+                    Authorization: "Bearer " + state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                }
+            });
+            // debugger
+            commit("SET_USER_KEYS",res.data.userskeys)
+            // commit("SET_USER_ROLES", userRoles.map(u => ({id: u.id, name: u.name})));
+        },
+
         async getRoles({ commit, state }) {
             let res = await axios({
                 method: "get",
@@ -795,6 +827,20 @@ export default new Vuex.Store({
                 }
             });
             commit("SET_ROLES",res.data.roles)
+            // commit("SET_USER_ROLES", userRoles.map(u => ({id: u.id, name: u.name})));
+        },
+
+        async getKeys({ commit, state }) {
+            let res = await axios({
+                method: "get",
+                url: "/api/keys",
+                headers: {
+                    Authorization: "Bearer " + state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                }
+            });
+            commit("SET_KEYS",res.data.keys)
             // commit("SET_USER_ROLES", userRoles.map(u => ({id: u.id, name: u.name})));
         },
 

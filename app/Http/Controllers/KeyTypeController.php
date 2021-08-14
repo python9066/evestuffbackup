@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\KeyType;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,7 @@ class KeyTypeController extends Controller
      */
     public function index()
     {
-        //
+        return ['keys' => KeyType::all()->select('id', 'name')->orderBy('name', 'asc')->get()];
     }
 
     public function getAllUsersKeys()
