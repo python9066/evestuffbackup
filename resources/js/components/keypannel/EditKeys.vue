@@ -169,6 +169,7 @@ export default {
             ],
             loadingr: false,
             loadingf: false,
+            overlay: false,
             loading: false,
             toggle_exclusive: 0,
             search: "",
