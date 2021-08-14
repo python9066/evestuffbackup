@@ -106,7 +106,7 @@
                         class="elevation-24"
                     >
                         <template slot="no-data">
-                            No FCs
+                            No Fleets
                         </template>
                         <!-- :color="pillColor(item)" -->
                         <template v-slot:[`item.addRemove`]="{ item }">
@@ -163,7 +163,7 @@ export default {
 
         newFleetClose() {
             this.addShown = false;
-            this.newFCName = null;
+            this.newFleetName = null;
         },
 
         async pillDelete(item) {

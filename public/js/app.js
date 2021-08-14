@@ -7689,7 +7689,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
     newFleetClose: function newFleetClose() {
       this.addShown = false;
-      this.newFCName = null;
+      this.newFleetName = null;
     },
     pillDelete: function pillDelete(item) {
       var _this = this;
@@ -40112,7 +40112,7 @@ var render = function() {
                     [
                       _c("template", { slot: "no-data" }, [
                         _vm._v(
-                          "\n                        No FCs\n                    "
+                          "\n                        No Fleets\n                    "
                         )
                       ])
                     ],
