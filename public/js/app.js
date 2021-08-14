@@ -25187,6 +25187,7 @@ function sleep(ms) {
       }
     },
     buttonList: function buttonList() {
+      console.log(this.keysList);
       return this.keysList;
     },
     pillClose: function pillClose(name) {

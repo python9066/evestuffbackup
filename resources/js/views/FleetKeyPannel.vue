@@ -202,6 +202,8 @@ export default {
         },
 
         buttonList() {
+            console.log(this.keysList);
+
             return this.keysList;
         },
 
