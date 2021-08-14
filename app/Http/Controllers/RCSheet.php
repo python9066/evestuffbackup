@@ -20,29 +20,8 @@ class RCSheet extends Controller
 {
     public function RCInput(Request $request)
     {
-        // $stations = StationItemJoin::where("id", ">", 1)->get();
-        // foreach ($stations as $station) {
-        //     $items = StationItemJoin::where('station_id', $station->station_id)->get();
-        //     foreach ($items as $item) {
-        //         StationItemJoin::where('station_item_id', $item->station_item_id)->where('station_id', $station->station_id)->delete();
-        //         StationItemJoin::Create(['station_item_id' => $item->station_item_id, 'station_id' => $station->station_id]);
-        //     }
-        // }
-
-
-
-
-        // dd("stop");
 
         Station::where('show_on_rc', 1)->update(['show_on_rc' => 5]);
-        // $inputs = $request->all();
-        // foreach ($inputs as $input) {
-
-        //     dd($input['created_by'], $input);
-        // }
-        // $arry1 = (json_decode(utf8_encode($request), true));
-        // $array = json_decode($request, TRUE);
-        // dd($array, $arry1, $request[0], $request);
 
         $inputs = $request->all();
         foreach ($inputs as $input) {
@@ -142,7 +121,7 @@ class RCSheet extends Controller
                             $station->update(['station_status_id' => $statusID, 'out_time' => $timer, 'show_on_rc' => 1]);
                         } else {
                             if ($skip == 0) {
-                                $station->update(['show_on_rc' => 1, 'station_status_id' => $statusID]);
+                                $station->update(['show_on_rc' => 1]);
                             }
                         }
 
