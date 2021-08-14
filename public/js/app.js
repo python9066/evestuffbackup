@@ -7778,6 +7778,449 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/keypannel/EditKeys.vue?vue&type=script&lang=js&":
+/*!*****************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/keypannel/EditKeys.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var querystring__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! querystring */ "./node_modules/querystring-es3/index.js");
+/* harmony import */ var querystring__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(querystring__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
+
+function sleep(ms) {
+  return new Promise(function (resolve) {
+    return setTimeout(resolve, ms);
+  });
+}
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  title: function title() {
+    return "EVE \u2014 Fleet Keys";
+  },
+  data: function data() {
+    return {
+      //timersAll: [],
+      headers: [{
+        text: "Name",
+        value: "name"
+      }, {
+        text: "Keys",
+        value: "keys",
+        width: "80%"
+      }],
+      loadingr: false,
+      loadingf: false,
+      loading: false,
+      toggle_exclusive: 0,
+      search: "",
+      addShown: false,
+      userAddKeyText: "",
+      userRemoveKeyText: "",
+      keyflag: 0,
+      logs: false
+    };
+  },
+  created: function created() {
+    var _this = this;
+
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              Echo["private"]("fleetkeys").listen("fleetkeysupdate", function (e) {
+                _this.refresh();
+              });
+
+            case 1:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    }))();
+  },
+  mounted: function mounted() {
+    var _this2 = this;
+
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              _context2.next = 2;
+              return _this2.$store.dispatch("getUserKeys");
+
+            case 2:
+              _context2.next = 4;
+              return _this2.$store.dispatch("getKeys");
+
+            case 4:
+              _context2.next = 6;
+              return _this2.$store.dispatch("getFleets");
+
+            case 6:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      }, _callee2);
+    }))();
+  },
+  methods: {
+    filterKeys: function filterKeys(keys) {
+      // console.log(roles);
+      return keys;
+    },
+    refresh: function refresh() {
+      var _this3 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                _context3.next = 2;
+                return _this3.$store.dispatch("getUserKeys");
+
+              case 2:
+                _context3.next = 4;
+                return _this3.$store.dispatch("getKeys");
+
+              case 4:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3);
+      }))();
+    },
+    filterDropdownList: function filterDropdownList(item) {
+      var keyID = item.map(function (i) {
+        return i.id;
+      });
+      var filter = this.keysList.filter(function (r) {
+        return !keyID.includes(r.id);
+      });
+      filter = filter.filter(function (r) {
+        return r.name != "All";
+      });
+
+      if (this.$can("edit_fleet_keys")) {
+        return filter;
+      }
+    },
+    pillClose: function pillClose(name) {
+      if (this.$can("edit_fleet_keys")) {
+        return true;
+      } else {
+        return false;
+      }
+    },
+    userAddKey: function userAddKey(item) {
+      var _this4 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
+        var request;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
+          while (1) {
+            switch (_context4.prev = _context4.next) {
+              case 0:
+                request = {
+                  key_type_id: _this4.userAddKeyText,
+                  user_id: item.id
+                };
+                _context4.next = 3;
+                return axios({
+                  method: "put",
+                  //you can set what request you want to be
+                  url: "/api/keysadd",
+                  data: request,
+                  headers: {
+                    Authorization: "Bearer " + _this4.$store.state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                  }
+                });
+
+              case 3:
+              case "end":
+                return _context4.stop();
+            }
+          }
+        }, _callee4);
+      }))();
+    },
+    userRemoveKey: function userRemoveKey(item) {
+      var _this5 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee5() {
+        var request;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee5$(_context5) {
+          while (1) {
+            switch (_context5.prev = _context5.next) {
+              case 0:
+                request = {
+                  key_type_id: _this5.userRemoveKeyText,
+                  user_id: item.id
+                };
+                _context5.next = 3;
+                return axios({
+                  method: "put",
+                  //you can set what request you want to be
+                  url: "/api/keysremove",
+                  data: request,
+                  headers: {
+                    Authorization: "Bearer " + _this5.$store.state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                  }
+                });
+
+              case 3:
+              case "end":
+                return _context5.stop();
+            }
+          }
+        }, _callee5);
+      }))();
+    }
+  },
+  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapState"])(["userkeys", "keysList"])), {}, {
+    filteredItems: function filteredItems() {
+      var keyid = this.keyflag;
+
+      if (this.keyflag != 0) {
+        return this.userkeys.filter(function (u) {
+          return u.keys.some(function (key) {
+            return key.id == keyid;
+          });
+        });
+      } else {
+        return this.userkeys;
+      }
+    },
+    buttonList: function buttonList() {
+      var list = this.keysList;
+      var data = {
+        id: 0,
+        name: "All"
+      };
+      list.push(data);
+      list.sort(function (a, b) {
+        return a.id - b.id || a.name.localeCompare(b.name);
+      });
+      return list;
+    }
+  }),
+  beforeDestroy: function beforeDestroy() {
+    Echo.leave("fleetkeys");
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/logging/adminpanel/AdminLogging.vue?vue&type=script&lang=js&":
 /*!******************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/logging/adminpanel/AdminLogging.vue?vue&type=script&lang=js& ***!
@@ -25349,12 +25792,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
-//
 
 
 
@@ -40112,6 +40549,447 @@ var render = function() {
           )
         ],
         1
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/keypannel/EditKeys.vue?vue&type=template&id=605955e1&":
+/*!*********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/keypannel/EditKeys.vue?vue&type=template&id=605955e1& ***!
+  \*********************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    [
+      _c(
+        "v-dialog",
+        {
+          attrs: {
+            "max-width": "500px",
+            "max-hight": "1200px",
+            "z-index": "0"
+          },
+          on: {
+            "click:outside": function($event) {
+              return _vm.close()
+            }
+          },
+          scopedSlots: _vm._u([
+            {
+              key: "activator",
+              fn: function(ref) {
+                var on = ref.on
+                var attrs = ref.attrs
+                return [
+                  _c(
+                    "v-btn",
+                    _vm._g(
+                      _vm._b(
+                        {
+                          staticClass: "mr-4",
+                          attrs: { color: "green lighten-1" }
+                        },
+                        "v-btn",
+                        attrs,
+                        false
+                      ),
+                      on
+                    ),
+                    [_vm._v("Edit Fleets")]
+                  )
+                ]
+              }
+            }
+          ]),
+          model: {
+            value: _vm.overlay,
+            callback: function($$v) {
+              _vm.overlay = $$v
+            },
+            expression: "overlay"
+          }
+        },
+        [
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "pr-16 pl-16" },
+            [
+              _c("errorMessage"),
+              _vm._v(" "),
+              _c(
+                "v-row",
+                { attrs: { "no-gutters": "", justify: "center" } },
+                [
+                  _c(
+                    "v-col",
+                    { staticClass: " d-inline-flex", attrs: { cols: "9" } },
+                    [
+                      _c(
+                        "v-card",
+                        {
+                          staticClass: "d-inline-flex align-content-start",
+                          attrs: { tile: "", flat: "", color: "#121212" }
+                        },
+                        [_c("v-card-title", [_vm._v("Add/Remove Keys")])],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-card",
+                        {
+                          staticClass: "align-start",
+                          attrs: {
+                            width: "500",
+                            tile: "",
+                            flat: "",
+                            color: "#121212"
+                          }
+                        },
+                        [
+                          _c("v-text-field", {
+                            attrs: {
+                              "append-icon": "mdi-magnify",
+                              label: "Search for Users",
+                              "single-line": "",
+                              "hide-details": ""
+                            },
+                            model: {
+                              value: _vm.search,
+                              callback: function($$v) {
+                                _vm.search = $$v
+                              },
+                              expression: "search"
+                            }
+                          })
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c("EditFleets")
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-row",
+                { attrs: { "no-gutters": "", justify: "center" } },
+                [
+                  _c(
+                    "v-col",
+                    { staticClass: " d-inline-flex", attrs: { cols: "9" } },
+                    [
+                      _c("v-spacer"),
+                      _vm._v(" "),
+                      _c(
+                        "v-card",
+                        {
+                          staticClass: "align-end",
+                          attrs: { tile: "", flat: "", color: "#121212" }
+                        },
+                        [
+                          _c(
+                            "v-btn-toggle",
+                            {
+                              attrs: { right: "", mandatory: "", value: 0 },
+                              model: {
+                                value: _vm.toggle_exclusive,
+                                callback: function($$v) {
+                                  _vm.toggle_exclusive = $$v
+                                },
+                                expression: "toggle_exclusive"
+                              }
+                            },
+                            _vm._l(_vm.buttonList, function(list, index) {
+                              return _c(
+                                "v-btn",
+                                {
+                                  key: index,
+                                  attrs: {
+                                    loading: _vm.loadingf,
+                                    disabled: _vm.loadingf
+                                  },
+                                  on: {
+                                    click: function($event) {
+                                      ;(_vm.keyflag = list.id),
+                                        (_vm.toggle_exclusive = list.id)
+                                    }
+                                  }
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                                " +
+                                      _vm._s(list.name) +
+                                      "\n                            "
+                                  )
+                                ]
+                              )
+                            }),
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-row",
+                { attrs: { "no-gutters": "", justify: "center" } },
+                [
+                  _c(
+                    "v-col",
+                    {
+                      staticClass:
+                        " d-inline-flex justify-content-center w-auto",
+                      attrs: { cols: "9" }
+                    },
+                    [
+                      _c(
+                        "v-card",
+                        { attrs: { width: "100%" } },
+                        [
+                          _c(
+                            "v-data-table",
+                            {
+                              staticClass: "elevation-5",
+                              attrs: {
+                                headers: _vm.headers,
+                                items: _vm.filteredItems,
+                                "item-key": "id",
+                                loading: _vm.loading,
+                                "sort-by": ["name"],
+                                "items-per-page": 20,
+                                search: _vm.search,
+                                "footer-props": {
+                                  "items-per-page-options": [
+                                    10,
+                                    20,
+                                    50,
+                                    100,
+                                    -1
+                                  ]
+                                }
+                              },
+                              scopedSlots: _vm._u(
+                                [
+                                  {
+                                    key: "item.keys",
+                                    fn: function(ref) {
+                                      var item = ref.item
+                                      return [
+                                        _c(
+                                          "div",
+                                          { staticClass: " d-inline-flex" },
+                                          [
+                                            _c(
+                                              "v-menu",
+                                              {
+                                                scopedSlots: _vm._u(
+                                                  [
+                                                    {
+                                                      key: "activator",
+                                                      fn: function(ref) {
+                                                        var on = ref.on
+                                                        var attrs = ref.attrs
+                                                        return [
+                                                          _c(
+                                                            "div",
+                                                            [
+                                                              _c(
+                                                                "v-btn",
+                                                                _vm._g(
+                                                                  _vm._b(
+                                                                    {
+                                                                      attrs: {
+                                                                        icon:
+                                                                          "",
+                                                                        color:
+                                                                          "success"
+                                                                      }
+                                                                    },
+                                                                    "v-btn",
+                                                                    attrs,
+                                                                    false
+                                                                  ),
+                                                                  on
+                                                                ),
+                                                                [
+                                                                  _c("v-icon", [
+                                                                    _vm._v(
+                                                                      "fas fa-plus"
+                                                                    )
+                                                                  ])
+                                                                ],
+                                                                1
+                                                              )
+                                                            ],
+                                                            1
+                                                          )
+                                                        ]
+                                                      }
+                                                    }
+                                                  ],
+                                                  null,
+                                                  true
+                                                )
+                                              },
+                                              [
+                                                _vm._v(" "),
+                                                _c(
+                                                  "v-list",
+                                                  _vm._l(
+                                                    _vm.filterDropdownList(
+                                                      item.keys
+                                                    ),
+                                                    function(list, index) {
+                                                      return _c(
+                                                        "v-list-item",
+                                                        {
+                                                          key: index,
+                                                          on: {
+                                                            click: function(
+                                                              $event
+                                                            ) {
+                                                              ;(_vm.userAddKeyText =
+                                                                list.id),
+                                                                _vm.userAddKey(
+                                                                  item
+                                                                )
+                                                            }
+                                                          }
+                                                        },
+                                                        [
+                                                          _c(
+                                                            "v-list-item-title",
+                                                            [
+                                                              _vm._v(
+                                                                _vm._s(
+                                                                  list.name
+                                                                )
+                                                              )
+                                                            ]
+                                                          )
+                                                        ],
+                                                        1
+                                                      )
+                                                    }
+                                                  ),
+                                                  1
+                                                )
+                                              ],
+                                              1
+                                            )
+                                          ],
+                                          1
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "div",
+                                          { staticClass: " d-inline-flex" },
+                                          _vm._l(
+                                            _vm.filterKeys(item.keys),
+                                            function(key, index) {
+                                              return _c(
+                                                "div",
+                                                {
+                                                  key: index,
+                                                  staticClass: " pr-2"
+                                                },
+                                                [
+                                                  _c(
+                                                    "v-chip",
+                                                    {
+                                                      attrs: {
+                                                        pill: "",
+                                                        close: _vm.pillClose(
+                                                          key.name
+                                                        ),
+                                                        dark: ""
+                                                      },
+                                                      on: {
+                                                        "click:close": function(
+                                                          $event
+                                                        ) {
+                                                          ;(_vm.userRemoveKeyText =
+                                                            key.id),
+                                                            _vm.userRemoveKey(
+                                                              item
+                                                            )
+                                                        }
+                                                      }
+                                                    },
+                                                    [
+                                                      _c("span", [
+                                                        _vm._v(
+                                                          " " + _vm._s(key.name)
+                                                        )
+                                                      ])
+                                                    ]
+                                                  )
+                                                ],
+                                                1
+                                              )
+                                            }
+                                          ),
+                                          0
+                                        )
+                                      ]
+                                    }
+                                  }
+                                ],
+                                null,
+                                true
+                              )
+                            },
+                            [
+                              _vm._v(" "),
+                              _c("template", { slot: "no-data" }, [
+                                _vm._v(
+                                  "\n                                No Active or Upcoming Campaigns\n                            "
+                                )
+                              ])
+                            ],
+                            2
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          )
+        ]
       )
     ],
     1
@@ -58235,7 +59113,9 @@ var render = function() {
                 1
               ),
               _vm._v(" "),
-              _c("EditFleets")
+              _c("EditFleets"),
+              _vm._v(" "),
+              _c("EditKeys")
             ],
             1
           )
@@ -58489,7 +59369,7 @@ var render = function() {
                       _vm._v(" "),
                       _c("template", { slot: "no-data" }, [
                         _vm._v(
-                          "\n                        No Active or Upcoming Campaigns\n                    "
+                          "\n                        Nothing matches your filters\n                    "
                         )
                       ])
                     ],
@@ -58501,23 +59381,6 @@ var render = function() {
             ],
             1
           )
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "v-overlay",
-        { attrs: { "z-index": "0", value: _vm.logs } },
-        [
-          _vm.$can("view_admin_logs")
-            ? _c("AdminLogging", {
-                on: {
-                  closeLog: function($event) {
-                    _vm.logs = false
-                  }
-                }
-              })
-            : _vm._e()
         ],
         1
       )
@@ -63580,6 +64443,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('RcInfo', __webpack_require
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('EditStation', __webpack_require__(/*! ./components/station/EditStation.vue */ "./resources/js/components/station/EditStation.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('RcMoveCopyButton', __webpack_require__(/*! ./components/rcsheet/RcMoveCopyButton.vue */ "./resources/js/components/rcsheet/RcMoveCopyButton.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('EditFleets', __webpack_require__(/*! ./components/keypannel/EditFleet.vue */ "./resources/js/components/keypannel/EditFleet.vue")["default"]);
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('EditKeys', __webpack_require__(/*! ./components/keypannel/EditKeys.vue */ "./resources/js/components/keypannel/EditKeys.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.prototype.moment = moment__WEBPACK_IMPORTED_MODULE_11___default.a; // import '@fortawesome/fontawesome-f      ree/css/all.css'
 
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(v_clipboard__WEBPACK_IMPORTED_MODULE_18___default.a);
@@ -66269,6 +67133,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EditFleet_vue_vue_type_template_id_667cb431___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EditFleet_vue_vue_type_template_id_667cb431___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/keypannel/EditKeys.vue":
+/*!********************************************************!*\
+  !*** ./resources/js/components/keypannel/EditKeys.vue ***!
+  \********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _EditKeys_vue_vue_type_template_id_605955e1___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./EditKeys.vue?vue&type=template&id=605955e1& */ "./resources/js/components/keypannel/EditKeys.vue?vue&type=template&id=605955e1&");
+/* harmony import */ var _EditKeys_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./EditKeys.vue?vue&type=script&lang=js& */ "./resources/js/components/keypannel/EditKeys.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _EditKeys_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _EditKeys_vue_vue_type_template_id_605955e1___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _EditKeys_vue_vue_type_template_id_605955e1___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/keypannel/EditKeys.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/keypannel/EditKeys.vue?vue&type=script&lang=js&":
+/*!*********************************************************************************!*\
+  !*** ./resources/js/components/keypannel/EditKeys.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_EditKeys_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./EditKeys.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/keypannel/EditKeys.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_EditKeys_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/keypannel/EditKeys.vue?vue&type=template&id=605955e1&":
+/*!***************************************************************************************!*\
+  !*** ./resources/js/components/keypannel/EditKeys.vue?vue&type=template&id=605955e1& ***!
+  \***************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EditKeys_vue_vue_type_template_id_605955e1___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./EditKeys.vue?vue&type=template&id=605955e1& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/keypannel/EditKeys.vue?vue&type=template&id=605955e1&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EditKeys_vue_vue_type_template_id_605955e1___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EditKeys_vue_vue_type_template_id_605955e1___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

@@ -27,6 +27,7 @@
                     ></v-text-field>
                 </v-card>
                 <EditFleets></EditFleets>
+                <EditKeys></EditKeys>
             </v-col>
         </v-row>
         <v-row no-gutters justify="center">
@@ -134,19 +135,12 @@
                             </div>
                         </template>
                         <template slot="no-data">
-                            No Active or Upcoming Campaigns
+                            Nothing matches your filters
                         </template>
                     </v-data-table>
                 </v-card>
             </v-col>
         </v-row>
-        <v-overlay z-index="0" :value="logs">
-            <AdminLogging
-                v-if="$can('view_admin_logs')"
-                @closeLog="logs = false"
-            >
-            </AdminLogging>
-        </v-overlay>
     </div>
 </template>
 <script>
