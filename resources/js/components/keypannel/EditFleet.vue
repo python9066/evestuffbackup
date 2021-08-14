@@ -226,7 +226,7 @@ export default {
     },
 
     computed: {
-        ...mapState(["keyfleets"]),
+        ...mapState(["keyfleets", "fleetList"]),
         filteredItems() {
             return this.keyfleets;
         }
