@@ -25195,8 +25195,8 @@ function sleep(ms) {
             switch (_context4.prev = _context4.next) {
               case 0:
                 request = {
-                  keyId: _this4.userAddKeyText,
-                  userId: item.id
+                  key_type_id: _this4.userAddKeyText,
+                  user_id: item.id
                 };
                 _context4.next = 3;
                 return axios({
@@ -25229,8 +25229,8 @@ function sleep(ms) {
             switch (_context5.prev = _context5.next) {
               case 0:
                 request = {
-                  keyId: _this5.userRemoveKeyText,
-                  userId: item.id
+                  key_type_id: _this5.userRemoveKeyText,
+                  user_id: item.id
                 };
                 _context5.next = 3;
                 return axios({
@@ -25246,29 +25246,6 @@ function sleep(ms) {
                 });
 
               case 3:
-                _this5.$store.dispatch("getUsers");
-
-                request = null;
-                request = {
-                  keyId: _this5.userAddKeyText,
-                  userId: item.id,
-                  user_id: _this5.$store.state.user_id,
-                  type: 16
-                };
-                _context5.next = 8;
-                return axios({
-                  method: "put",
-                  //you can set what request you want to be
-                  url: "/api/checkroleaddremove",
-                  data: request,
-                  headers: {
-                    Authorization: "Bearer " + _this5.$store.state.token,
-                    Accept: "application/json",
-                    "Content-Type": "application/json"
-                  }
-                });
-
-              case 8:
               case "end":
                 return _context5.stop();
             }

@@ -203,8 +203,8 @@ export default {
 
         async userAddKey(item) {
             var request = {
-                keyId: this.userAddKeyText,
-                userId: item.id
+                key_type_id: this.userAddKeyText,
+                user_id: item.id
             };
 
             await axios({
@@ -221,33 +221,13 @@ export default {
 
         async userRemoveKey(item) {
             var request = {
-                keyId: this.userRemoveKeyText,
-                userId: item.id
+                key_type_id: this.userRemoveKeyText,
+                user_id: item.id
             };
 
             await axios({
                 method: "put", //you can set what request you want to be
                 url: "/api/rolesremove",
-                data: request,
-                headers: {
-                    Authorization: "Bearer " + this.$store.state.token,
-                    Accept: "application/json",
-                    "Content-Type": "application/json"
-                }
-            });
-            this.$store.dispatch("getUsers");
-
-            request = null;
-            request = {
-                keyId: this.userAddKeyText,
-                userId: item.id,
-                user_id: this.$store.state.user_id,
-                type: 16
-            };
-
-            await axios({
-                method: "put", //you can set what request you want to be
-                url: "/api/checkroleaddremove",
                 data: request,
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
