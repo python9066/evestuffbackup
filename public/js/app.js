@@ -40615,7 +40615,7 @@ var render = function() {
                 [
                   _c(
                     "v-col",
-                    { staticClass: " d-inline-flex", attrs: { cols: "9" } },
+                    { staticClass: " d-inline-flex" },
                     [
                       _c(
                         "v-card",
@@ -40623,7 +40623,7 @@ var render = function() {
                           staticClass: "d-inline-flex align-content-start",
                           attrs: { tile: "", flat: "", color: "#121212" }
                         },
-                        [_c("v-card-title", [_vm._v("Add/Remove Keys")])],
+                        [_c("v-card-title", [_vm._v("Edit Keys")])],
                         1
                       ),
                       _vm._v(" "),

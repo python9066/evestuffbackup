@@ -20,14 +20,14 @@
             <div class="pr-16 pl-16">
                 <errorMessage></errorMessage>
                 <v-row no-gutters justify="center">
-                    <v-col class=" d-inline-flex" cols="9">
+                    <v-col class=" d-inline-flex">
                         <v-card
                             tile
                             flat
                             color="#121212"
                             class="d-inline-flex align-content-start"
                         >
-                            <v-card-title>Add/Remove Keys</v-card-title>
+                            <v-card-title>Edit Keys</v-card-title>
                         </v-card>
                         <v-card
                             width="500"
