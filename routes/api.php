@@ -222,6 +222,7 @@ Route::middleware('auth:api')->group(function () {
     Route::delete('/rcmovedonebad/{id}', 'StationController@destroy');
 
     Route::get('/alluserskeys', 'KeyTypeController@getAllUsersKeys');
+    Route::get('/allkeyfleets', 'FleetTypeController@getAllKeyFleets');
     Route::get('/keys', 'KeyTypeController@index');
     Route::put('/keysremove', 'KeyTypeController@removeKey');
     Route::get('/fleets', 'FleetTypeController@index');

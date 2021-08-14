@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\FleetType;
 use App\Models\KeyFleetJoin;
+use App\Models\KeyType;
 use Illuminate\Http\Request;
 
 class FleetTypeController extends Controller
@@ -27,6 +28,11 @@ class FleetTypeController extends Controller
     public function store(Request $request)
     {
         FleetType::create($request->all());
+    }
+
+    public function getAllKeyFleets()
+    {
+        return ['keyfleets' => KeyType::with('fleets')->select('id', 'name')->get()];
     }
 
     /**

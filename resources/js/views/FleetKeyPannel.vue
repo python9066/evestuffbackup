@@ -187,6 +187,7 @@ export default {
         await this.$store.dispatch("getUserKeys");
         await this.$store.dispatch("getKeys");
         await this.$store.dispatch("getFleets");
+        await this.$store.dispatch("getKeyFleets");
     },
 
     methods: {

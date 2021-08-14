@@ -27,7 +27,8 @@ export default new Vuex.Store({
         delveLink: "",
         fleets: [],
         items: [],
-        keysList:[],
+        keysList: [],
+        keyfleets:[],
         loggingAdmin:[],
         loggingcampaign: [],
         loggingRcSheet: [],
@@ -252,6 +253,13 @@ export default new Vuex.Store({
         SET_USER_KEYS(state, userskeys) {
             state.userkeys = userskeys;
         },
+
+        SET_KEY_FLEETS(state, keyfleets) {
+            state.keyfleets = keyfleets;
+        },
+
+
+
 
 
 
@@ -823,6 +831,29 @@ export default new Vuex.Store({
             commit("SET_USER_KEYS",res.data.userskeys)
             // commit("SET_USER_ROLES", userRoles.map(u => ({id: u.id, name: u.name})));
         },
+
+
+        async getKeyFleets({ commit, state }) {
+            if(state.token == ""){
+                 await sleep(500)
+            }
+            let res = await axios({
+                method: "get",
+                url: "/api/allkeyfleets",
+                headers: {
+                    Authorization: "Bearer " + state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                }
+            });
+            // debugger
+            commit("SET_KEY_FLEETS",res.data.keyfleets)
+            // commit("SET_USER_ROLES", userRoles.map(u => ({id: u.id, name: u.name})));
+        },
+
+
+
+
 
         async getRoles({ commit, state }) {
             let res = await axios({
