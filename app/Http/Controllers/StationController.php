@@ -330,16 +330,7 @@ class StationController extends Controller
     public function rcMoveDone($id)
     {
         $statusID = Station::where('id', $id)->value('station_status_id');
-        if ($statusID == 5 || $statusID == 8) {
-            $statusID = 2;
-        };
-        if ($statusID == 9 || $statusID == 13) {
-            $statusID = 1;
-        };
-        if ($statusID == 14) {
-            $statusID = 3;
-        };
-        Station::where('id', $id)->update(['show_on_rc_move' => 0, 'show_on_rc' => 1, 'station_status_id' => $statusID, 'notes' => null]);
+        Station::where('id', $id)->update(['show_on_rc_move' => 0, 'show_on_rc' => 1, 'station_status_id' => $statusID, 'notes' => null, 'timer_image_link' => null]);
         $message = StationRecords::where('id', $id)->first();
         $flag = collect([
             'message' => $message
