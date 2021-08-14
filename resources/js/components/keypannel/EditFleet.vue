@@ -179,9 +179,9 @@ export default {
             var request = {
                 name: this.newFleetName
             };
-            console.log(this.$store.state.token);
+
             await axios({
-                method: "PUT",
+                method: "put",
                 url: "/api/fleetnew",
                 data: request,
                 headers: {
@@ -190,7 +190,7 @@ export default {
                     "Content-Type": "application/json"
                 }
             });
-            this.$store.dispatch("getRcFcs");
+
             this.addShown = false;
             this.newFCName = null;
         },

@@ -7728,10 +7728,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 request = {
                   name: _this2.newFleetName
                 };
-                console.log(_this2.$store.state.token);
-                _context2.next = 4;
+                _context2.next = 3;
                 return axios({
-                  method: "PUT",
+                  method: "put",
                   url: "/api/fleetnew",
                   data: request,
                   headers: {
@@ -7741,13 +7740,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   }
                 });
 
-              case 4:
-                _this2.$store.dispatch("getRcFcs");
-
+              case 3:
                 _this2.addShown = false;
                 _this2.newFCName = null;
 
-              case 7:
+              case 5:
               case "end":
                 return _context2.stop();
             }
