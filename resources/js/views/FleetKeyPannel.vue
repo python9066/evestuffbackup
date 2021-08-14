@@ -26,6 +26,7 @@
                         hide-details
                     ></v-text-field>
                 </v-card>
+                <EditFleets></EditFleets>
             </v-col>
         </v-row>
         <v-row no-gutters justify="center">

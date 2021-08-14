@@ -109,6 +109,7 @@ Vue.component('RcMoveMessage', require('./components/rcsheet/RcMoveMessage.vue')
 Vue.component('RcInfo', require('./components/rcsheet/RcInfo.vue').default);
 Vue.component('EditStation', require('./components/station/EditStation.vue').default);
 Vue.component('RcMoveCopyButton', require('./components/rcsheet/RcMoveCopyButton.vue').default);
+Vue.component('EditFleets', require('./components/keypannel/EditFleet.vue').default);
 
 
 

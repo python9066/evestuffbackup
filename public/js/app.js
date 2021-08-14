@@ -7501,6 +7501,304 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/keypannel/EditFleet.vue?vue&type=script&lang=js&":
+/*!******************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/keypannel/EditFleet.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: {
+    station: Object
+  },
+  data: function data() {
+    return {
+      headers: [{
+        text: "Name",
+        value: "name"
+      }, {
+        text: "",
+        value: "addRemove",
+        align: "end"
+      } // { text: "Vulernable End Time", value: "vulnerable_end_time" }
+      ],
+      newCharName: null,
+      addShown: false,
+      overlay: false,
+      search: ""
+    };
+  },
+  methods: {
+    close: function close() {
+      this.overlay = false;
+    },
+    newFleetClose: function newFleetClose() {
+      this.addShown = false;
+      this.newFCName = null;
+    },
+    pillDelete: function pillDelete(item) {
+      var _this = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.next = 2;
+                return axios({
+                  method: "DELETE",
+                  url: "/api/rcfcdelete/" + item.id,
+                  headers: {
+                    Authorization: "Bearer " + _this.$store.state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                  }
+                });
+
+              case 2:
+                _this.$store.dispatch("getRcFcs");
+
+              case 3:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }))();
+    },
+    newFleetForm: function newFleetForm() {
+      var _this2 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+        var request;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                request = {
+                  name: _this2.newFleetName
+                };
+                _context2.next = 3;
+                return axios({
+                  method: "PUT",
+                  url: "/api/rcfcnew",
+                  data: request,
+                  headers: {
+                    Authorization: "Bearer " + _this2.$store.state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                  }
+                });
+
+              case 3:
+                _this2.$store.dispatch("getRcFcs");
+
+                _this2.addShown = false;
+                _this2.newFCName = null;
+
+              case 6:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2);
+      }))();
+    },
+    removeFleet: function removeFleet(item) {
+      var _this3 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                _context3.next = 2;
+                return axios({
+                  method: "DELETE",
+                  url: "/api/campaignusers/" + item.id + "/" + _this3.campaign_id + "/" + _this3.$store.state.user_id,
+                  headers: {
+                    Authorization: "Bearer " + _this3.$store.state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                  }
+                });
+
+              case 2:
+                _this3.$store.dispatch("getCampaignSystemsRecords");
+
+              case 3:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3);
+      }))();
+    }
+  },
+  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapState"])(["fleets"])), {}, {
+    filteredItems: function filteredItems() {
+      return this.fleets;
+    }
+  })
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/logging/adminpanel/AdminLogging.vue?vue&type=script&lang=js&":
 /*!******************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/logging/adminpanel/AdminLogging.vue?vue&type=script&lang=js& ***!
@@ -25077,6 +25375,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 
@@ -39487,6 +39786,365 @@ var render = function() {
         1
       )
     ]
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/keypannel/EditFleet.vue?vue&type=template&id=667cb431&":
+/*!**********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/keypannel/EditFleet.vue?vue&type=template&id=667cb431& ***!
+  \**********************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    [
+      _c(
+        "v-dialog",
+        {
+          attrs: {
+            "max-width": "500px",
+            "max-hight": "1200px",
+            "z-index": "0"
+          },
+          on: {
+            "click:outside": function($event) {
+              return _vm.close()
+            }
+          },
+          scopedSlots: _vm._u([
+            {
+              key: "activator",
+              fn: function(ref) {
+                var on = ref.on
+                var attrs = ref.attrs
+                return [
+                  _c(
+                    "v-btn",
+                    _vm._g(
+                      _vm._b(
+                        {
+                          staticClass: "mr-4",
+                          attrs: { color: "green lighten-1" }
+                        },
+                        "v-btn",
+                        attrs,
+                        false
+                      ),
+                      on
+                    ),
+                    [_vm._v("Edit Fleets")]
+                  )
+                ]
+              }
+            }
+          ]),
+          model: {
+            value: _vm.overlay,
+            callback: function($$v) {
+              _vm.overlay = $$v
+            },
+            expression: "overlay"
+          }
+        },
+        [
+          _vm._v(" "),
+          _c(
+            "v-card",
+            {
+              attrs: { tile: "", "max-width": "500px", "min-height": "200px" }
+            },
+            [
+              _c(
+                "v-card-title",
+                { staticClass: "d-flex justify-space-between align-center " },
+                [
+                  _c("div", [_vm._v("Table of Fleets")]),
+                  _vm._v(" "),
+                  _c(
+                    "v-card",
+                    {
+                      staticClass: "align-start",
+                      attrs: {
+                        width: "500",
+                        tile: "",
+                        flat: "",
+                        color: "#121212"
+                      }
+                    },
+                    [
+                      _c("v-text-field", {
+                        attrs: {
+                          "append-icon": "mdi-magnify",
+                          label: "Search",
+                          "single-line": "",
+                          filled: "",
+                          "hide-details": ""
+                        },
+                        model: {
+                          value: _vm.search,
+                          callback: function($$v) {
+                            _vm.search = $$v
+                          },
+                          expression: "search"
+                        }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    [
+                      _c(
+                        "v-menu",
+                        {
+                          attrs: {
+                            "close-on-content-click": false,
+                            value: _vm.addShown,
+                            transition: "fab-transition",
+                            origin: "100% -30%"
+                          },
+                          scopedSlots: _vm._u([
+                            {
+                              key: "activator",
+                              fn: function(ref) {
+                                var on = ref.on
+                                var attrs = ref.attrs
+                                return [
+                                  _c(
+                                    "v-btn",
+                                    _vm._g(
+                                      _vm._b(
+                                        {
+                                          attrs: { text: "", color: "success" },
+                                          on: {
+                                            click: function($event) {
+                                              _vm.addShown = true
+                                            }
+                                          }
+                                        },
+                                        "v-btn",
+                                        attrs,
+                                        false
+                                      ),
+                                      on
+                                    ),
+                                    [
+                                      _c(
+                                        "v-icon",
+                                        { attrs: { left: "", small: "" } },
+                                        [_vm._v("fas fa-plus")]
+                                      ),
+                                      _vm._v(
+                                        "\n                                Fleet"
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ]
+                              }
+                            }
+                          ])
+                        },
+                        [
+                          _vm._v(" "),
+                          _c("v-row", { attrs: { "no-gutters": "" } }, [
+                            _c(
+                              "div",
+                              [
+                                _c(
+                                  "v-card",
+                                  {
+                                    staticClass: "pa-2",
+                                    attrs: { tile: "", width: "100%" }
+                                  },
+                                  [
+                                    _c(
+                                      "v-form",
+                                      {
+                                        on: {
+                                          submit: function($event) {
+                                            $event.preventDefault()
+                                            new _vm.newFleetForm()
+                                          }
+                                        }
+                                      },
+                                      [
+                                        _c("v-text-field", {
+                                          attrs: {
+                                            label: "Fleet Name",
+                                            required: "",
+                                            autofocus: ""
+                                          },
+                                          model: {
+                                            value: _vm.newFleetName,
+                                            callback: function($$v) {
+                                              _vm.newFleetName = $$v
+                                            },
+                                            expression: "newFleetName"
+                                          }
+                                        }),
+                                        _vm._v(" "),
+                                        _c(
+                                          "v-btn",
+                                          {
+                                            staticClass: "mr-4",
+                                            attrs: {
+                                              color: "success",
+                                              type: "submit"
+                                            }
+                                          },
+                                          [_vm._v("submit")]
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "v-btn",
+                                          {
+                                            staticClass: "mr-4",
+                                            attrs: { color: "warning" },
+                                            on: {
+                                              click: function($event) {
+                                                ;(_vm.addShown = false),
+                                                  (this.newFleetName = null)
+                                              }
+                                            }
+                                          },
+                                          [_vm._v("Close")]
+                                        )
+                                      ],
+                                      1
+                                    )
+                                  ],
+                                  1
+                                )
+                              ],
+                              1
+                            )
+                          ])
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-card-text",
+                [
+                  _c(
+                    "v-data-table",
+                    {
+                      staticClass: "elevation-24",
+                      attrs: {
+                        headers: _vm.headers,
+                        items: _vm.filteredItems,
+                        search: _vm.search,
+                        height: "500px",
+                        "item-key": "id",
+                        "sort-by": ["name"],
+                        "disable-pagination": "",
+                        "fixed-header": "",
+                        "hide-default-footer": ""
+                      },
+                      scopedSlots: _vm._u(
+                        [
+                          {
+                            key: "item.addRemove",
+                            fn: function(ref) {
+                              var item = ref.item
+                              return [
+                                _c(
+                                  "span",
+                                  [
+                                    _c(
+                                      "v-icon",
+                                      {
+                                        attrs: {
+                                          rounded: "",
+                                          outlined: true,
+                                          "x-small": ""
+                                        },
+                                        on: {
+                                          click: function($event) {
+                                            return _vm.pillDelete(item)
+                                          }
+                                        }
+                                      },
+                                      [
+                                        _vm._v(
+                                          "\n                                fas fa-trash-alt\n                            "
+                                        )
+                                      ]
+                                    )
+                                  ],
+                                  1
+                                )
+                              ]
+                            }
+                          }
+                        ],
+                        null,
+                        true
+                      )
+                    },
+                    [
+                      _c("template", { slot: "no-data" }, [
+                        _vm._v(
+                          "\n                        No FCs\n                    "
+                        )
+                      ])
+                    ],
+                    2
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-card-actions",
+                [
+                  _c(
+                    "v-btn",
+                    {
+                      staticClass: "white--text",
+                      attrs: { color: "teal" },
+                      on: {
+                        click: function($event) {
+                          return _vm.close()
+                        }
+                      }
+                    },
+                    [_vm._v("\n                    Close\n                ")]
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          )
+        ],
+        1
+      )
+    ],
+    1
   )
 }
 var staticRenderFns = []
@@ -57605,7 +58263,9 @@ var render = function() {
                   })
                 ],
                 1
-              )
+              ),
+              _vm._v(" "),
+              _c("EditFleets")
             ],
             1
           )
@@ -62949,6 +63609,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('RcMoveMessage', __webpack_
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('RcInfo', __webpack_require__(/*! ./components/rcsheet/RcInfo.vue */ "./resources/js/components/rcsheet/RcInfo.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('EditStation', __webpack_require__(/*! ./components/station/EditStation.vue */ "./resources/js/components/station/EditStation.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('RcMoveCopyButton', __webpack_require__(/*! ./components/rcsheet/RcMoveCopyButton.vue */ "./resources/js/components/rcsheet/RcMoveCopyButton.vue")["default"]);
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('EditFleets', __webpack_require__(/*! ./components/keypannel/EditFleet.vue */ "./resources/js/components/keypannel/EditFleet.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.prototype.moment = moment__WEBPACK_IMPORTED_MODULE_11___default.a; // import '@fortawesome/fontawesome-f      ree/css/all.css'
 
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(v_clipboard__WEBPACK_IMPORTED_MODULE_18___default.a);
@@ -65569,6 +66230,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AmmoStocker_vue_vue_type_template_id_d862ae0c___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AmmoStocker_vue_vue_type_template_id_d862ae0c___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/keypannel/EditFleet.vue":
+/*!*********************************************************!*\
+  !*** ./resources/js/components/keypannel/EditFleet.vue ***!
+  \*********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _EditFleet_vue_vue_type_template_id_667cb431___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./EditFleet.vue?vue&type=template&id=667cb431& */ "./resources/js/components/keypannel/EditFleet.vue?vue&type=template&id=667cb431&");
+/* harmony import */ var _EditFleet_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./EditFleet.vue?vue&type=script&lang=js& */ "./resources/js/components/keypannel/EditFleet.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _EditFleet_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _EditFleet_vue_vue_type_template_id_667cb431___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _EditFleet_vue_vue_type_template_id_667cb431___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/keypannel/EditFleet.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/keypannel/EditFleet.vue?vue&type=script&lang=js&":
+/*!**********************************************************************************!*\
+  !*** ./resources/js/components/keypannel/EditFleet.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_EditFleet_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./EditFleet.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/keypannel/EditFleet.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_EditFleet_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/keypannel/EditFleet.vue?vue&type=template&id=667cb431&":
+/*!****************************************************************************************!*\
+  !*** ./resources/js/components/keypannel/EditFleet.vue?vue&type=template&id=667cb431& ***!
+  \****************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EditFleet_vue_vue_type_template_id_667cb431___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./EditFleet.vue?vue&type=template&id=667cb431& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/keypannel/EditFleet.vue?vue&type=template&id=667cb431&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EditFleet_vue_vue_type_template_id_667cb431___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EditFleet_vue_vue_type_template_id_667cb431___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
@@ -70368,6 +71098,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
     constellationlist: [],
     cores: [],
     delveLink: "",
+    fleets: [],
     items: [],
     keysList: [],
     loggingAdmin: [],
@@ -70786,6 +71517,9 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
     },
     SET_RC_FCS: function SET_RC_FCS(state, fcs) {
       state.rcfcs = fcs;
+    },
+    SET_FLEETS: function SET_FLEETS(state, rcfcs) {
+      state.rcfcs = rcfcs;
     },
     UPDATE_RECON_TASK_SYSTEMS: function UPDATE_RECON_TASK_SYSTEMS(state, data) {
       var item = state.recontasksystems.find(function (c) {
@@ -72419,7 +73153,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
         }, _callee45);
       }))();
     },
-    getConstellationList: function getConstellationList(_ref83) {
+    getFleets: function getFleets(_ref83) {
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee46() {
         var commit, state, res;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee46$(_context46) {
@@ -72428,6 +73162,41 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
               case 0:
                 commit = _ref83.commit, state = _ref83.state;
                 _context46.next = 3;
+                return axios({
+                  method: "get",
+                  //you can set what request you want to be
+                  url: "/api/fleets",
+                  headers: {
+                    Authorization: "Bearer " + state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                  }
+                });
+
+              case 3:
+                res = _context46.sent;
+
+                if (res.data.length != 0) {
+                  commit("SET_FLEETS", res.data.fleets);
+                }
+
+              case 5:
+              case "end":
+                return _context46.stop();
+            }
+          }
+        }, _callee46);
+      }))();
+    },
+    getConstellationList: function getConstellationList(_ref84) {
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee47() {
+        var commit, state, res;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee47$(_context47) {
+          while (1) {
+            switch (_context47.prev = _context47.next) {
+              case 0:
+                commit = _ref84.commit, state = _ref84.state;
+                _context47.next = 3;
                 return axios({
                   method: "get",
                   //you can set what request you want to be
@@ -72440,31 +73209,31 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
                 });
 
               case 3:
-                res = _context46.sent;
+                res = _context47.sent;
                 commit("SET_CONSTELLATION_LIST", res.data.constellationlist);
 
               case 5:
               case "end":
-                return _context46.stop();
+                return _context47.stop();
             }
           }
-        }, _callee46);
+        }, _callee47);
       }))();
     },
-    loadCampaignSystemData: function loadCampaignSystemData(_ref84, payload) {
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee47() {
+    loadCampaignSystemData: function loadCampaignSystemData(_ref85, payload) {
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee48() {
         var commit, state, request, res;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee47$(_context47) {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee48$(_context48) {
           while (1) {
-            switch (_context47.prev = _context47.next) {
+            switch (_context48.prev = _context48.next) {
               case 0:
-                commit = _ref84.commit, state = _ref84.state;
+                commit = _ref85.commit, state = _ref85.state;
                 request = {
                   user_id: payload.user_id,
                   campaign_id: payload.campaign_id,
                   type: payload.type
                 };
-                _context47.next = 4;
+                _context48.next = 4;
                 return axios({
                   method: "post",
                   //you can set what request you want to be
@@ -72478,7 +73247,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
                 });
 
               case 4:
-                res = _context47.sent;
+                res = _context48.sent;
 
                 if (res.data.length != 0) {
                   commit("SET_CAMPAIGN_SOLA_SYSTEMS", res.data.sola);
@@ -72491,50 +73260,13 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
 
               case 6:
               case "end":
-                return _context47.stop();
-            }
-          }
-        }, _callee47);
-      }))();
-    },
-    loadStationInfo: function loadStationInfo(_ref85) {
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee48() {
-        var commit, state, res;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee48$(_context48) {
-          while (1) {
-            switch (_context48.prev = _context48.next) {
-              case 0:
-                commit = _ref85.commit, state = _ref85.state;
-                _context48.next = 3;
-                return axios({
-                  method: "get",
-                  //you can set what request you want to be
-                  url: "/api/loadstationdata",
-                  headers: {
-                    Authorization: "Bearer " + state.token,
-                    Accept: "application/json",
-                    "Content-Type": "application/json"
-                  }
-                });
-
-              case 3:
-                res = _context48.sent;
-
-                if (res.data.length != 0) {
-                  commit("SET_CORES", res.data.cores);
-                  commit("SET_ITEMS", res.data.items);
-                  commit("SET_STATIONS_FIT", res.data.fit);
-                }
-
-              case 5:
-              case "end":
                 return _context48.stop();
             }
           }
         }, _callee48);
       }))();
     },
-    loadAmmoRequestInfo: function loadAmmoRequestInfo(_ref86) {
+    loadStationInfo: function loadStationInfo(_ref86) {
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee49() {
         var commit, state, res;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee49$(_context49) {
@@ -72546,7 +73278,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
                 return axios({
                   method: "get",
                   //you can set what request you want to be
-                  url: "/api/loadammorequestdata",
+                  url: "/api/loadstationdata",
                   headers: {
                     Authorization: "Bearer " + state.token,
                     Accept: "application/json",
@@ -72561,7 +73293,6 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
                   commit("SET_CORES", res.data.cores);
                   commit("SET_ITEMS", res.data.items);
                   commit("SET_STATIONS_FIT", res.data.fit);
-                  commit("SET_AMMO_REQUEST", res.data.ammorequest);
                 }
 
               case 5:
@@ -72570,6 +73301,44 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
             }
           }
         }, _callee49);
+      }))();
+    },
+    loadAmmoRequestInfo: function loadAmmoRequestInfo(_ref87) {
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee50() {
+        var commit, state, res;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee50$(_context50) {
+          while (1) {
+            switch (_context50.prev = _context50.next) {
+              case 0:
+                commit = _ref87.commit, state = _ref87.state;
+                _context50.next = 3;
+                return axios({
+                  method: "get",
+                  //you can set what request you want to be
+                  url: "/api/loadammorequestdata",
+                  headers: {
+                    Authorization: "Bearer " + state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                  }
+                });
+
+              case 3:
+                res = _context50.sent;
+
+                if (res.data.length != 0) {
+                  commit("SET_CORES", res.data.cores);
+                  commit("SET_ITEMS", res.data.items);
+                  commit("SET_STATIONS_FIT", res.data.fit);
+                  commit("SET_AMMO_REQUEST", res.data.ammorequest);
+                }
+
+              case 5:
+              case "end":
+                return _context50.stop();
+            }
+          }
+        }, _callee50);
       }))();
     }
   },

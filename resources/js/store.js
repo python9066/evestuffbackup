@@ -25,6 +25,7 @@ export default new Vuex.Store({
         constellationlist:[],
         cores:[],
         delveLink: "",
+        fleets: [],
         items: [],
         keysList:[],
         loggingAdmin:[],
@@ -452,6 +453,13 @@ export default new Vuex.Store({
         SET_RC_FCS(state, fcs) {
             state.rcfcs = fcs;
         },
+
+         SET_FLEETS(state, rcfcs) {
+            state.rcfcs = rcfcs;
+        },
+
+
+
 
 
 
@@ -1301,6 +1309,24 @@ export default new Vuex.Store({
                 commit("SET_RC_FCS", res.data.fcs);
             }
         },
+
+        async getFleets({ commit, state }) {
+            let res = await axios({
+                method: "get", //you can set what request you want to be
+                url: "/api/fleets",
+                headers: {
+                    Authorization: "Bearer " + state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                }
+            });
+            if (res.data.length != 0) {
+                commit("SET_FLEETS", res.data.fleets);
+            }
+        },
+
+
+
 
 
 
