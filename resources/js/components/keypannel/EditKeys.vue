@@ -98,7 +98,7 @@
                         hide-default-footer
                         class="elevation-24"
                     >
-                      <template v-slot:[`item.keys`]="{ item }">
+                        <template v-slot:[`item.keys`]="{ item }">
                             <div class=" d-inline-flex">
                                 <v-menu>
                                     <template v-slot:activator="{ on, attrs }">
@@ -160,6 +160,7 @@
                         <template slot="no-data">
                             Nothing matches your filters
                         </template>
+                    </v-data-table>
                 </v-card-text>
                 <v-card-actions>
                     <v-btn class="white--text" color="teal" @click="close()">
