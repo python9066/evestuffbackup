@@ -70,7 +70,7 @@ export default {
     methods: {
         async load() {
             await axios({
-                method: "get",
+                method: "put",
                 url: "/api/test",
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
@@ -82,7 +82,6 @@ export default {
     },
 
     async created() {
-        this.load;
         this.test = 2;
         this.test2 = 1;
         this.navdrawer = true;

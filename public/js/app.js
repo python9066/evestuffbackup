@@ -31059,7 +31059,7 @@ function sleep(ms) {
               case 0:
                 _context2.next = 2;
                 return axios({
-                  method: "get",
+                  method: "put",
                   url: "/api/test",
                   headers: {
                     Authorization: "Bearer " + _this2.$store.state.token,
@@ -31085,12 +31085,11 @@ function sleep(ms) {
         while (1) {
           switch (_context3.prev = _context3.next) {
             case 0:
-              _this3.load;
               _this3.test = 2;
               _this3.test2 = 1;
               _this3.navdrawer = true;
 
-            case 4:
+            case 3:
             case "end":
               return _context3.stop();
           }
