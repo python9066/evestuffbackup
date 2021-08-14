@@ -101,13 +101,13 @@
                         <template slot="no-data">
                             No Fleets
                         </template>
-                        <!-- :color="pillColor(item)" -->
+                        <!-- :color="p   illColor(item)" -->
                         <template v-slot:[`item.addRemove`]="{ item }">
                             <span>
                                 <v-icon
                                     rounded
                                     :outlined="true"
-                                    x-small
+                                    small
                                     @click="pillDelete(item)"
                                 >
                                     fas fa-trash-alt
