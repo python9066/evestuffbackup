@@ -23,7 +23,7 @@ class testController extends Controller
 
     public function key()
     {
-        $test = User::where('id', 25107);
+        $test = User::where('id', 25107)->first();
         dd($test);
     }
 
