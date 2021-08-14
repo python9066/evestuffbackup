@@ -203,7 +203,7 @@ export default {
 
         buttonList() {
             var list = this.keysList;
-            date = {
+            var data = {
                 id: 0,
                 name: "All"
             };
