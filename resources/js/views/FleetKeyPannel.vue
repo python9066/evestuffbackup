@@ -262,7 +262,11 @@ export default {
     computed: {
         ...mapState(["userkeys", "keysList"]),
         filteredItems() {
-            return this.userkeys.filter(k => (k.id = this.keyflag));
+            if (this.keyflag != 0) {
+                return this.userkeys.filter(k => (k.id = this.keyflag));
+            } else {
+                return this.userkeys;
+            }
         },
 
         buttonList() {

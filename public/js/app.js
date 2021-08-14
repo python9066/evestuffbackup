@@ -25281,9 +25281,13 @@ function sleep(ms) {
     filteredItems: function filteredItems() {
       var _this6 = this;
 
-      return this.userkeys.filter(function (k) {
-        return k.id = _this6.keyflag;
-      });
+      if (this.keyflag != 0) {
+        return this.userkeys.filter(function (k) {
+          return k.id = _this6.keyflag;
+        });
+      } else {
+        return this.userkeys;
+      }
     },
     buttonList: function buttonList() {
       var list = this.keysList;
