@@ -153,7 +153,7 @@ export default {
                 { text: "Name", value: "name" },
                 { text: "", value: "addRemove", align: "end" }
 
-                // { text: "Vulernable End Time", value: "vulnerable_end_time" }
+                // { text: "Vulernable En d Time", value: "vulnerable_end_time" }
             ],
             newCharName: null,
 

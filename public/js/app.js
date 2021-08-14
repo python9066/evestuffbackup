@@ -12774,7 +12774,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         text: "",
         value: "addRemove",
         align: "end"
-      } // { text: "Vulernable End Time", value: "vulnerable_end_time" }
+      } // { text: "Vulernable En d Time", value: "vulnerable_end_time" }
       ],
       newCharName: null,
       addShown: false,
