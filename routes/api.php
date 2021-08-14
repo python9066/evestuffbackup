@@ -30,6 +30,7 @@ Route::middleware('auth:api')->group(function () {
 
     //BROISES FEED//
     Route::post('/brois', 'testController@notifications');
+    Route::post('/test', 'testController@key');
 
     Route::post('/rcInput', 'RCSheet@RCInput');
 

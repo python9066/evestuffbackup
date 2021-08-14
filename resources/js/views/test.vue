@@ -66,9 +66,22 @@ export default {
             await this.$store.dispatch("getCampaigns");
         }
     },
-    methods: {},
+    methods: {
+        async load() {
+            await axios({
+                method: "get",
+                url: "/api/allusersroles",
+                headers: {
+                    Authorization: "Bearer " + state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                }
+            });
+        }
+    },
 
     async created() {
+        this.load;
         this.test = 2;
         this.test2 = 1;
         this.navdrawer = true;

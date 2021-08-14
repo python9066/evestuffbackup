@@ -21,6 +21,12 @@ class testController extends Controller
         return view('test2');
     }
 
+    public function key()
+    {
+        $test = User::where('id', 25107)->with('keys');
+        dd($test);
+    }
+
     public function notifications(Request $request)
     {
 
