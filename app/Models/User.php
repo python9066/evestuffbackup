@@ -83,7 +83,7 @@ class User extends Authenticatable
 
     public function keys()
     {
-        return $this->hasManyThrough(KeyType::class, UserKeyJoin::class);
+        return $this->belongsToMany(KeyType::class, 'UserKeyJoin');
     }
 
 
