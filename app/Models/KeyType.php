@@ -12,11 +12,11 @@ class KeyType extends Model
 
     public function fleets()
     {
-        return $this->hasManyThrough(fleets::class, KeyFleetJoin::class);
+        return $this->belongsToMany(fleets::class, 'key_fleet_join');
     }
 
     public function users()
     {
-        return $this->hasManyThrough(User::class, UserKeyJoin::class);
+        return $this->belongsToMany(KeyType::class, 'user_key_joins');
     }
 }

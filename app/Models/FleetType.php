@@ -10,8 +10,9 @@ class FleetType extends Model
     use HasFactory;
     protected $guarded = [];
 
-    public function key()
+
+    public function keys()
     {
-        return $this->hasManyThrough(KeyType::class, KeyFleetJoin::class);
+        return $this->belongsToMany(KeyType::class, 'key_fleet_join');
     }
 }
