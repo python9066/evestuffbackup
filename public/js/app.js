@@ -31050,6 +31050,8 @@ function sleep(ms) {
   },
   methods: {
     load: function load() {
+      var _this2 = this;
+
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
           while (1) {
@@ -31060,7 +31062,7 @@ function sleep(ms) {
                   method: "get",
                   url: "/api/test",
                   headers: {
-                    Authorization: "Bearer " + state.token,
+                    Authorization: "Bearer " + _this2.$store.state.token,
                     Accept: "application/json",
                     "Content-Type": "application/json"
                   }
@@ -31076,17 +31078,17 @@ function sleep(ms) {
     }
   },
   created: function created() {
-    var _this2 = this;
+    var _this3 = this;
 
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
         while (1) {
           switch (_context3.prev = _context3.next) {
             case 0:
-              _this2.load;
-              _this2.test = 2;
-              _this2.test2 = 1;
-              _this2.navdrawer = true;
+              _this3.load;
+              _this3.test = 2;
+              _this3.test2 = 1;
+              _this3.navdrawer = true;
 
             case 4:
             case "end":
