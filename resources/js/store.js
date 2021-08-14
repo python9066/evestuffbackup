@@ -454,8 +454,8 @@ export default new Vuex.Store({
             state.rcfcs = fcs;
         },
 
-         SET_FLEETS(state, rcfcs) {
-            state.rcfcs = rcfcs;
+         SET_FLEETS(state, fleets) {
+            state.fleets = fleets;
         },
 
 

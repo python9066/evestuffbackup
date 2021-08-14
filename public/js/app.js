@@ -71520,8 +71520,8 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
     SET_RC_FCS: function SET_RC_FCS(state, fcs) {
       state.rcfcs = fcs;
     },
-    SET_FLEETS: function SET_FLEETS(state, rcfcs) {
-      state.rcfcs = rcfcs;
+    SET_FLEETS: function SET_FLEETS(state, fleets) {
+      state.fleets = fleets;
     },
     UPDATE_RECON_TASK_SYSTEMS: function UPDATE_RECON_TASK_SYSTEMS(state, data) {
       var item = state.recontasksystems.find(function (c) {
