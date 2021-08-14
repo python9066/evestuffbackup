@@ -594,6 +594,10 @@ export default {
             return this.systemlist;
         },
 
+        count() {
+            return this.stationNameEdit.length();
+        },
+
         stationReadonly() {
             if (this.state == 1) {
                 return false;
