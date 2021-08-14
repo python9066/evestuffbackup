@@ -24,7 +24,7 @@ class testController extends Controller
     public function key()
     {
 
-        return User::find(25107)->with('keys')->select('id', 'name')->first();
+        return User::where('id', 25107)->with('keys')->select('id', 'name')->first();
         // $user = User::find(25107);
         // foreach ($user->keys as $key) {
         //     echo $key->name;
