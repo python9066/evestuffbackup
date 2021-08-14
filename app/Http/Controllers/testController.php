@@ -23,7 +23,7 @@ class testController extends Controller
 
     public function key()
     {
-        $test = User::find('id', 25107)->keys()->first();
+        $test = User::find(25107)->keys()->first();
         dd($test);
     }
 
