@@ -17,7 +17,7 @@
                 >
             </template>
 
-            <div class="pr-16 pl-16">
+            <div>
                 <errorMessage></errorMessage>
                 <v-row no-gutters justify="center">
                     <v-col class=" d-inline-flex">

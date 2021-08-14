@@ -40605,7 +40605,6 @@ var render = function() {
           _vm._v(" "),
           _c(
             "div",
-            { staticClass: "pr-16 pl-16" },
             [
               _c("errorMessage"),
               _vm._v(" "),
