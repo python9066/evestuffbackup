@@ -40417,7 +40417,7 @@ var render = function() {
         "v-dialog",
         {
           attrs: {
-            "max-width": "500px",
+            "max-width": "1200px",
             "max-hight": "1200px",
             "z-index": "0"
           },
@@ -40473,7 +40473,7 @@ var render = function() {
                 "v-card-title",
                 { staticClass: "d-flex justify-space-between align-center " },
                 [
-                  _c("div", [_vm._v("Table of Fleets")]),
+                  _c("div", [_vm._v("Table of Keys")]),
                   _vm._v(" "),
                   _c(
                     "v-card",

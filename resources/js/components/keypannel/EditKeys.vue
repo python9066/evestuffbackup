@@ -2,7 +2,7 @@
     <div>
         <v-dialog
             v-model="overlay"
-            max-width="500px"
+            max-width="1200px"
             max-hight="1200px"
             z-index="0"
             @click:outside="close()"
@@ -21,7 +21,7 @@
                 <v-card-title
                     class="d-flex justify-space-between align-center "
                 >
-                    <div>Table of Fleets</div>
+                    <div>Table of Keys</div>
                     <v-card
                         width="500"
                         tile
