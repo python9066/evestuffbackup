@@ -31059,7 +31059,7 @@ function sleep(ms) {
               case 0:
                 _context2.next = 2;
                 return axios({
-                  method: "put",
+                  method: "get",
                   url: "/api/test",
                   headers: {
                     Authorization: "Bearer " + _this2.$store.state.token,

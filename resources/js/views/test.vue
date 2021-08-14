@@ -70,7 +70,7 @@ export default {
     methods: {
         async load() {
             await axios({
-                method: "put",
+                method: "get",
                 url: "/api/test",
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
