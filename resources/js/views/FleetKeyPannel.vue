@@ -263,7 +263,11 @@ export default {
         ...mapState(["userkeys", "keysList"]),
         filteredItems() {
             if (this.keyflag != 0) {
-                return this.userkeys.filter(k => (k.id = this.keyflag));
+                return this.userkeys.filter(function(u) {
+                    return u.keys.some(function(key) {
+                        return key.id == this.keyflag;
+                    });
+                });
             } else {
                 return this.userkeys;
             }
