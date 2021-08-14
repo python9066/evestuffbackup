@@ -57621,7 +57621,7 @@ var render = function() {
                     "v-btn-toggle",
                     {
                       key: index,
-                      attrs: { right: "", mandatory: "", value: 0 },
+                      attrs: { right: "", mandatory: "", value: 1 },
                       model: {
                         value: _vm.toggle_exclusive,
                         callback: function($$v) {
