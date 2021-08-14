@@ -236,7 +236,7 @@ export default {
                     "Content-Type": "application/json"
                 }
             });
-            this.$store.dispatch("getUse rs");
+            this.$store.dispatch("getUsers");
 
             request = null;
             request = {
