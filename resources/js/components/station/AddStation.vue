@@ -54,6 +54,7 @@
                             autofocus
                             placeholder="1DQ1-A - Thetastar of Dickbutt"
                             :label="stationLable"
+                            :rules="[rules.required]"
                             class=" shrink"
                             style="width:600px"
                         ></v-text-field>
@@ -76,6 +77,7 @@
                                     v-model="structSelect"
                                     :loading="structLoading"
                                     :items="structItems"
+                                    :rules="[rules.required]"
                                     :search-input.sync="structSearch"
                                     clearable
                                     autofocus
@@ -87,6 +89,7 @@
                                 <v-autocomplete
                                     v-model="sysSelect"
                                     :loading="sysLoading"
+                                    :rules="[rules.required]"
                                     clearable
                                     :items="sysItems"
                                     :search-input.sync="sysSearch"
@@ -97,6 +100,7 @@
                                     class=" ml-2"
                                     v-model="tickSelect"
                                     :loading="tickLoading"
+                                    :rules="[rules.required]"
                                     clearable
                                     :items="tickItems"
                                     :search-input.sync="tickSearch"
@@ -106,7 +110,11 @@
                             </div>
                             <div>
                                 <h5><strong>Timer Type</strong></h5>
-                                <v-radio-group v-model="refType" row>
+                                <v-radio-group
+                                    v-model="refType"
+                                    row
+                                    :rules="[rules.required]"
+                                >
                                     <v-radio
                                         label="Anchoring"
                                         value="14"
@@ -124,6 +132,7 @@
                                 <h5><strong>Image Link</strong></h5>
                                 <v-img src="../image/info.png"> </v-img>
                                 <v-text-field
+                                    :rules="[rules.required]"
                                     v-model="imageLink"
                                     label="Selected Items Screen Shot"
                                 ></v-text-field>
@@ -135,6 +144,7 @@
                                     >
                                 </h5>
                                 <v-text-field
+                                    :rules="[rules.required]"
                                     v-if="this.type != 1"
                                     v-model="refTime"
                                     label="Reinforced unit YYYY.MM.DD hh:mm:ss"
@@ -173,7 +183,11 @@
                             </div>
                             <div>
                                 <h5><strong>Timer Type</strong></h5>
-                                <v-radio-group v-model="refType" row>
+                                <v-radio-group
+                                    v-model="refType"
+                                    row
+                                    :rules="[rules.required]"
+                                >
                                     <v-radio
                                         label="Anchoring"
                                         value="14"
@@ -191,6 +205,7 @@
                                 <h5><strong>Image Link 1</strong></h5>
                                 <v-img src="../image/info.png"> </v-img>
                                 <v-text-field
+                                    :rules="[rules.required]"
                                     v-model="imageLink"
                                     label="Selected Items Screen Shot"
                                 ></v-text-field>
@@ -203,6 +218,7 @@
                                 </h5>
                                 <v-text-field
                                     v-model="refTime"
+                                    :rules="[rules.required]"
                                     label="Reinforced unit YYYY.MM.DD hh:mm:ss"
                                     v-mask="'####.##.## ##:##:##'"
                                     placeholder="YYYY.MM.DD HH:mm:ss"
@@ -442,7 +458,10 @@ export default {
                 show_on_main: this.show_on_main,
                 show_on_chill: this.show_on_chill,
                 show_on_rc_move: this.show_on_rc_move,
-                show_on_rc: this.show_rc
+                show_on_rc: this.show_rc,
+                rules: {
+                    required: value => !!value || "Required"
+                }
             };
 
             await axios({

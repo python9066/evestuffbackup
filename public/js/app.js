@@ -16372,6 +16372,22 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -16571,7 +16587,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   rc_fc_id: null,
                   rc_gsol_id: null,
                   rc_recon_id: null
-                }, _defineProperty(_request, "show_on_main", _this5.show_on_main), _defineProperty(_request, "show_on_chill", _this5.show_on_chill), _defineProperty(_request, "show_on_rc_move", _this5.show_on_rc_move), _defineProperty(_request, "show_on_rc", _this5.show_rc), _request);
+                }, _defineProperty(_request, "show_on_main", _this5.show_on_main), _defineProperty(_request, "show_on_chill", _this5.show_on_chill), _defineProperty(_request, "show_on_rc_move", _this5.show_on_rc_move), _defineProperty(_request, "show_on_rc", _this5.show_rc), _defineProperty(_request, "rules", {
+                  required: function required(value) {
+                    return !!value || "Required";
+                  }
+                }), _request);
                 _context2.next = 4;
                 return axios({
                   method: "put",
@@ -48821,7 +48841,8 @@ var render = function() {
                               outlined: _vm.stationOutlined,
                               autofocus: "",
                               placeholder: "1DQ1-A - Thetastar of Dickbutt",
-                              label: _vm.stationLable
+                              label: _vm.stationLable,
+                              rules: [_vm.rules.required]
                             },
                             model: {
                               value: _vm.stationNameEdit,
@@ -48876,6 +48897,7 @@ var render = function() {
                                 attrs: {
                                   loading: _vm.structLoading,
                                   items: _vm.structItems,
+                                  rules: [_vm.rules.required],
                                   "search-input": _vm.structSearch,
                                   clearable: "",
                                   autofocus: "",
@@ -48912,6 +48934,7 @@ var render = function() {
                               _c("v-autocomplete", {
                                 attrs: {
                                   loading: _vm.sysLoading,
+                                  rules: [_vm.rules.required],
                                   clearable: "",
                                   items: _vm.sysItems,
                                   "search-input": _vm.sysSearch,
@@ -48939,6 +48962,7 @@ var render = function() {
                                 staticClass: " ml-2",
                                 attrs: {
                                   loading: _vm.tickLoading,
+                                  rules: [_vm.rules.required],
                                   clearable: "",
                                   items: _vm.tickItems,
                                   "search-input": _vm.tickSearch,
@@ -48973,7 +48997,10 @@ var render = function() {
                               _c(
                                 "v-radio-group",
                                 {
-                                  attrs: { row: "" },
+                                  attrs: {
+                                    row: "",
+                                    rules: [_vm.rules.required]
+                                  },
                                   model: {
                                     value: _vm.refType,
                                     callback: function($$v) {
@@ -49021,6 +49048,7 @@ var render = function() {
                                   _vm._v(" "),
                                   _c("v-text-field", {
                                     attrs: {
+                                      rules: [_vm.rules.required],
                                       label: "Selected Items Screen Shot"
                                     },
                                     model: {
@@ -49056,6 +49084,7 @@ var render = function() {
                                       }
                                     ],
                                     attrs: {
+                                      rules: [_vm.rules.required],
                                       label:
                                         "Reinforced unit YYYY.MM.DD hh:mm:ss",
                                       placeholder: "YYYY.MM.DD HH:mm:ss"
@@ -49187,7 +49216,10 @@ var render = function() {
                               _c(
                                 "v-radio-group",
                                 {
-                                  attrs: { row: "" },
+                                  attrs: {
+                                    row: "",
+                                    rules: [_vm.rules.required]
+                                  },
                                   model: {
                                     value: _vm.refType,
                                     callback: function($$v) {
@@ -49235,6 +49267,7 @@ var render = function() {
                                   _vm._v(" "),
                                   _c("v-text-field", {
                                     attrs: {
+                                      rules: [_vm.rules.required],
                                       label: "Selected Items Screen Shot"
                                     },
                                     model: {
@@ -49269,6 +49302,7 @@ var render = function() {
                                   }
                                 ],
                                 attrs: {
+                                  rules: [_vm.rules.required],
                                   label: "Reinforced unit YYYY.MM.DD hh:mm:ss",
                                   placeholder: "YYYY.MM.DD HH:mm:ss"
                                 },
