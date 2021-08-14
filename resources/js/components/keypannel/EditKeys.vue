@@ -2,7 +2,7 @@
     <div>
         <v-dialog
             v-model="overlay"
-            max-width="1200px"
+            max-width="500px"
             max-hight="1200px"
             z-index="0"
             @click:outside="close()"
@@ -17,212 +17,151 @@
                 >
             </template>
 
-            <div>
-                <v-row no-gutters justify="center">
-                    <v-col class=" d-inline-flex">
-                        <v-card
-                            width="100%"
-                            tile
-                            flat
-                            color="#121212"
-                            class="d-inline-flex align-content-start"
+            <v-card tile max-width="500px" min-height="200px">
+                <v-card-title
+                    class="d-flex justify-space-between align-center "
+                >
+                    <div>Table of Fleets</div>
+                    <v-card
+                        width="500"
+                        tile
+                        flat
+                        color="#121212"
+                        class="align-start"
+                    >
+                        <v-text-field
+                            v-model="search"
+                            append-icon="mdi-magnify"
+                            label="Search"
+                            single-line
+                            filled
+                            hide-details
+                        ></v-text-field>
+                    </v-card>
+                    <div>
+                        <v-menu
+                            :close-on-content-click="false"
+                            :value="addShown"
+                            transition="fab-transition"
+                            origin="100% -30%"
                         >
-                            <v-card-title>Edit Keys</v-card-title>
-                        </v-card>
-                        <v-card tile flat color="#121212" class="align-start">
-                            <v-text-field
-                                v-model="search"
-                                append-icon="mdi-magnify"
-                                label="Search for Users"
-                                single-line
-                                hide-details
-                            ></v-text-field>
-                        </v-card>
-                    </v-col>
-                </v-row>
-                <v-row no-gutters justify="center">
-                    <v-col class=" d-inline-flex justify-content-center w-auto">
-                        <v-card width="100%">
-                            <v-data-table
-                                :headers="headers"
-                                :items="filteredItems"
-                                item-key="id"
-                                :loading="loading"
-                                :sort-by="['name']"
-                                :items-per-page="20"
-                                :search="search"
-                                :footer-props="{
-                                    'items-per-page-options': [
-                                        10,
-                                        20,
-                                        50,
-                                        100,
-                                        -1
-                                    ]
-                                }"
-                                class="elevation-5"
-                            >
-                                <template v-slot:[`item.keys`]="{ item }">
-                                    <div class=" d-inline-flex">
-                                        <v-menu>
-                                            <template
-                                                v-slot:activator="{ on, attrs }"
-                                            >
-                                                <div>
-                                                    <v-btn
-                                                        icon
-                                                        v-bind="attrs"
-                                                        v-on="on"
-                                                        color="success"
-                                                        ><v-icon
-                                                            >fas fa-plus</v-icon
-                                                        ></v-btn
-                                                    >
-                                                </div>
-                                            </template>
+                            <template v-slot:activator="{ on, attrs }">
+                                <v-btn
+                                    text
+                                    v-bind="attrs"
+                                    v-on="on"
+                                    @click="addShown = true"
+                                    color="success"
+                                    ><v-icon left small>fas fa-plus</v-icon>
+                                    Fleet</v-btn
+                                >
+                            </template>
+                            <v-row no-gutters>
+                                <div>
+                                    <v-card class="pa-2" tile width="100%">
+                                        <v-text-field
+                                            v-model="newFleetName"
+                                            label="Fleet Name"
+                                            required
+                                            autofocus
+                                        ></v-text-field>
 
-                                            <v-list>
-                                                <v-list-item
-                                                    v-for="(list,
-                                                    index) in filterDropdownList(
-                                                        item.keys
-                                                    )"
-                                                    :key="index"
-                                                    @click="
-                                                        (userAddKeyText =
-                                                            list.id),
-                                                            userAddKey(item)
-                                                    "
-                                                >
-                                                    <v-list-item-title>{{
-                                                        list.name
-                                                    }}</v-list-item-title>
-                                                </v-list-item>
-                                            </v-list>
-                                        </v-menu>
-                                    </div>
-
-                                    <div class=" d-inline-flex">
-                                        <div
-                                            v-for="(key, index) in filterKeys(
-                                                item.keys
-                                            )"
-                                            :key="index"
-                                            class=" pr-2"
+                                        <v-btn
+                                            color="success"
+                                            class="mr-4"
+                                            @click="NewFleetSubmit()"
+                                            >submit</v-btn
                                         >
-                                            <v-chip
-                                                pill
-                                                :close="pillClose(key.name)"
-                                                dark
-                                                @click:close="
-                                                    (userRemoveKeyText =
-                                                        key.id),
-                                                        userRemoveKey(item)
-                                                "
-                                            >
-                                                <span> {{ key.name }}</span>
-                                            </v-chip>
-                                        </div>
-                                    </div>
-                                </template>
-                                <template slot="no-data">
-                                    No Active or Upcoming Campaigns
-                                </template>
-                            </v-data-table>
-                        </v-card>
-                    </v-col>
-                </v-row>
-            </div>
+                                        <v-btn
+                                            color="warning"
+                                            class="mr-4"
+                                            @click="closeAdd()"
+                                            >Close</v-btn
+                                        >
+                                        <!-- <v-btn @click="clear">clear</v-btn> -->
+                                    </v-card>
+                                </div>
+                            </v-row>
+                        </v-menu>
+                    </div>
+                </v-card-title>
+                <v-card-text>
+                    <v-data-table
+                        :headers="headers"
+                        :items="filteredItems"
+                        :search="search"
+                        height="500px"
+                        item-key="id"
+                        :sort-by="['name']"
+                        disable-pagination
+                        fixed-header
+                        hide-default-footer
+                        class="elevation-24"
+                    >
+                        <template slot="no-data">
+                            No Fleets
+                        </template>
+                        <!-- :color="pillColor(item)" -->
+                        <template v-slot:[`item.addRemove`]="{ item }">
+                            <span>
+                                <v-icon
+                                    rounded
+                                    :outlined="true"
+                                    x-small
+                                    @click="pillDelete(item)"
+                                >
+                                    fas fa-trash-alt
+                                </v-icon>
+                            </span>
+                        </template>
+                    </v-data-table>
+                </v-card-text>
+                <v-card-actions>
+                    <v-btn class="white--text" color="teal" @click="close()">
+                        Close
+                    </v-btn>
+                </v-card-actions>
+            </v-card>
         </v-dialog>
     </div>
 </template>
 
 <script>
-import Axios from "axios";
-import moment, { now, utc } from "moment";
-import { stringify } from "querystring";
+import axios from "axios";
+import { mapGetters } from "vuex";
 import { mapState } from "vuex";
-function sleep(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
-}
-
 export default {
-    title() {
-        return `EVE — Fleet Keys`;
-    },
+    props: {},
     data() {
         return {
-            //timersAll: [],
-
             headers: [
                 { text: "Name", value: "name" },
-                { text: "Keys", value: "keys", width: "80%" }
+                { text: "", value: "addRemove", align: "end" }
+
+                // { text: "Vulernable End Time", value: "vulnerable_end_time" }
             ],
-            loadingr: false,
-            loadingf: false,
-            overlay: false,
-            loading: false,
-            toggle_exclusive: 0,
-            search: "",
+            newFleetName: null,
+
             addShown: false,
-            userAddKeyText: "",
-            userRemoveKeyText: "",
-            keyflag: 0,
-            logs: false
+            overlay: false,
+            search: ""
         };
     },
 
-    async created() {
-        Echo.private("fleetkeys").listen("fleetkeysupdate", e => {
-            this.refresh();
-        });
-    },
-
-    async mounted() {
-        await this.$store.dispatch("getUserKeys");
-        await this.$store.dispatch("getKeys");
-        await this.$store.dispatch("getFleets");
-    },
-
     methods: {
-        filterKeys(keys) {
-            // console.log(roles);
-            return keys;
+        close() {
+            this.overlay = false;
         },
 
-        async refresh() {
-            await this.$store.dispatch("getUserKeys");
-            await this.$store.dispatch("getKeys");
+        newFleetClose() {
+            this.addShown = false;
+            this.newFleetName = null;
         },
 
-        filterDropdownList(item) {
-            let keyID = item.map(i => i.id);
-
-            var filter = this.keysList.filter(r => !keyID.includes(r.id));
-            filter = filter.filter(r => r.name != "All");
-            if (this.$can("edit_fleet_keys")) {
-                return filter;
-            }
-        },
-
-        pillClose(name) {
-            if (this.$can("edit_fleet_keys")) {
-                return true;
-            } else {
-                return false;
-            }
-        },
-
-        async userAddKey(item) {
-            var request = {
-                key_type_id: this.userAddKeyText,
-                user_id: item.id
-            };
-
+        async pillDelete(item) {
             await axios({
-                method: "put", //you can set what request you want to be
-                url: "/api/keysadd",
-                data: request,
+                method: "DELETE",
+                url: "/api/fleetdelete/" + item.id,
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
                     Accept: "application/json",
@@ -231,56 +170,39 @@ export default {
             });
         },
 
-        async userRemoveKey(item) {
+        async NewFleetSubmit() {
             var request = {
-                key_type_id: this.userRemoveKeyText,
-                user_id: item.id
+                name: this.newFleetName
             };
 
+            console.log(this.newFleetName);
+
             await axios({
-                method: "put", //you can set what request you want to be
-                url: "/api/keysremove",
+                method: "PUT",
+                url: "/api/fleetnew",
                 data: request,
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
                     Accept: "application/json",
-                    "Content-Type": "application/json"
+                    "Contect-Type": "application/json"
                 }
             });
+
+            this.addShown = false;
+            this.newFleetName = null;
+        },
+
+        async closeAdd() {
+            this.addShown = false;
+            this.newFleetName = null;
         }
     },
 
     computed: {
-        ...mapState(["userkeys", "keysList"]),
+        ...mapState(["fleets"]),
         filteredItems() {
-            var keyid = this.keyflag;
-            if (this.keyflag != 0) {
-                return this.userkeys.filter(function(u) {
-                    return u.keys.some(function(key) {
-                        return key.id == keyid;
-                    });
-                });
-            } else {
-                return this.userkeys;
-            }
-        },
-
-        buttonList() {
-            var list = this.keysList;
-            var data = {
-                id: 0,
-                name: "All"
-            };
-            list.push(data);
-            list.sort(function(a, b) {
-                return a.id - b.id || a.name.localeCompare(b.name);
-            });
-
-            return list;
+            return this.fleets;
         }
-    },
-    beforeDestroy() {
-        Echo.leave("fleetkeys");
     }
 };
 </script>

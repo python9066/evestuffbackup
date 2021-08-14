@@ -7791,11 +7791,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
-/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var querystring__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! querystring */ "./node_modules/querystring-es3/index.js");
-/* harmony import */ var querystring__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(querystring__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
@@ -7936,109 +7932,101 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
-
-
-
-function sleep(ms) {
-  return new Promise(function (resolve) {
-    return setTimeout(resolve, ms);
-  });
-}
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  title: function title() {
-    return "EVE \u2014 Fleet Keys";
-  },
+  props: {},
   data: function data() {
     return {
-      //timersAll: [],
       headers: [{
         text: "Name",
         value: "name"
       }, {
-        text: "Keys",
-        value: "keys",
-        width: "80%"
-      }],
-      loadingr: false,
-      loadingf: false,
-      overlay: false,
-      loading: false,
-      toggle_exclusive: 0,
-      search: "",
+        text: "",
+        value: "addRemove",
+        align: "end"
+      } // { text: "Vulernable End Time", value: "vulnerable_end_time" }
+      ],
+      newFleetName: null,
       addShown: false,
-      userAddKeyText: "",
-      userRemoveKeyText: "",
-      keyflag: 0,
-      logs: false
+      overlay: false,
+      search: ""
     };
   },
-  created: function created() {
-    var _this = this;
-
-    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
-        while (1) {
-          switch (_context.prev = _context.next) {
-            case 0:
-              Echo["private"]("fleetkeys").listen("fleetkeysupdate", function (e) {
-                _this.refresh();
-              });
-
-            case 1:
-            case "end":
-              return _context.stop();
-          }
-        }
-      }, _callee);
-    }))();
-  },
-  mounted: function mounted() {
-    var _this2 = this;
-
-    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
-        while (1) {
-          switch (_context2.prev = _context2.next) {
-            case 0:
-              _context2.next = 2;
-              return _this2.$store.dispatch("getUserKeys");
-
-            case 2:
-              _context2.next = 4;
-              return _this2.$store.dispatch("getKeys");
-
-            case 4:
-              _context2.next = 6;
-              return _this2.$store.dispatch("getFleets");
-
-            case 6:
-            case "end":
-              return _context2.stop();
-          }
-        }
-      }, _callee2);
-    }))();
-  },
   methods: {
-    filterKeys: function filterKeys(keys) {
-      // console.log(roles);
-      return keys;
+    close: function close() {
+      this.overlay = false;
     },
-    refresh: function refresh() {
+    newFleetClose: function newFleetClose() {
+      this.addShown = false;
+      this.newFleetName = null;
+    },
+    pillDelete: function pillDelete(item) {
+      var _this = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.next = 2;
+                return axios__WEBPACK_IMPORTED_MODULE_1___default()({
+                  method: "DELETE",
+                  url: "/api/fleetdelete/" + item.id,
+                  headers: {
+                    Authorization: "Bearer " + _this.$store.state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                  }
+                });
+
+              case 2:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }))();
+    },
+    NewFleetSubmit: function NewFleetSubmit() {
+      var _this2 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+        var request;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                request = {
+                  name: _this2.newFleetName
+                };
+                console.log(_this2.newFleetName);
+                _context2.next = 4;
+                return axios__WEBPACK_IMPORTED_MODULE_1___default()({
+                  method: "PUT",
+                  url: "/api/fleetnew",
+                  data: request,
+                  headers: {
+                    Authorization: "Bearer " + _this2.$store.state.token,
+                    Accept: "application/json",
+                    "Contect-Type": "application/json"
+                  }
+                });
+
+              case 4:
+                _this2.addShown = false;
+                _this2.newFleetName = null;
+
+              case 6:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2);
+      }))();
+    },
+    closeAdd: function closeAdd() {
       var _this3 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
@@ -8046,142 +8034,23 @@ function sleep(ms) {
           while (1) {
             switch (_context3.prev = _context3.next) {
               case 0:
-                _context3.next = 2;
-                return _this3.$store.dispatch("getUserKeys");
+                _this3.addShown = false;
+                _this3.newFleetName = null;
 
               case 2:
-                _context3.next = 4;
-                return _this3.$store.dispatch("getKeys");
-
-              case 4:
               case "end":
                 return _context3.stop();
             }
           }
         }, _callee3);
       }))();
-    },
-    filterDropdownList: function filterDropdownList(item) {
-      var keyID = item.map(function (i) {
-        return i.id;
-      });
-      var filter = this.keysList.filter(function (r) {
-        return !keyID.includes(r.id);
-      });
-      filter = filter.filter(function (r) {
-        return r.name != "All";
-      });
-
-      if (this.$can("edit_fleet_keys")) {
-        return filter;
-      }
-    },
-    pillClose: function pillClose(name) {
-      if (this.$can("edit_fleet_keys")) {
-        return true;
-      } else {
-        return false;
-      }
-    },
-    userAddKey: function userAddKey(item) {
-      var _this4 = this;
-
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
-        var request;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
-          while (1) {
-            switch (_context4.prev = _context4.next) {
-              case 0:
-                request = {
-                  key_type_id: _this4.userAddKeyText,
-                  user_id: item.id
-                };
-                _context4.next = 3;
-                return axios({
-                  method: "put",
-                  //you can set what request you want to be
-                  url: "/api/keysadd",
-                  data: request,
-                  headers: {
-                    Authorization: "Bearer " + _this4.$store.state.token,
-                    Accept: "application/json",
-                    "Content-Type": "application/json"
-                  }
-                });
-
-              case 3:
-              case "end":
-                return _context4.stop();
-            }
-          }
-        }, _callee4);
-      }))();
-    },
-    userRemoveKey: function userRemoveKey(item) {
-      var _this5 = this;
-
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee5() {
-        var request;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee5$(_context5) {
-          while (1) {
-            switch (_context5.prev = _context5.next) {
-              case 0:
-                request = {
-                  key_type_id: _this5.userRemoveKeyText,
-                  user_id: item.id
-                };
-                _context5.next = 3;
-                return axios({
-                  method: "put",
-                  //you can set what request you want to be
-                  url: "/api/keysremove",
-                  data: request,
-                  headers: {
-                    Authorization: "Bearer " + _this5.$store.state.token,
-                    Accept: "application/json",
-                    "Content-Type": "application/json"
-                  }
-                });
-
-              case 3:
-              case "end":
-                return _context5.stop();
-            }
-          }
-        }, _callee5);
-      }))();
     }
   },
-  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapState"])(["userkeys", "keysList"])), {}, {
+  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapState"])(["fleets"])), {}, {
     filteredItems: function filteredItems() {
-      var keyid = this.keyflag;
-
-      if (this.keyflag != 0) {
-        return this.userkeys.filter(function (u) {
-          return u.keys.some(function (key) {
-            return key.id == keyid;
-          });
-        });
-      } else {
-        return this.userkeys;
-      }
-    },
-    buttonList: function buttonList() {
-      var list = this.keysList;
-      var data = {
-        id: 0,
-        name: "All"
-      };
-      list.push(data);
-      list.sort(function (a, b) {
-        return a.id - b.id || a.name.localeCompare(b.name);
-      });
-      return list;
+      return this.fleets;
     }
-  }),
-  beforeDestroy: function beforeDestroy() {
-    Echo.leave("fleetkeys");
-  }
+  })
 });
 
 /***/ }),
@@ -40548,7 +40417,7 @@ var render = function() {
         "v-dialog",
         {
           attrs: {
-            "max-width": "1200px",
+            "max-width": "500px",
             "max-hight": "1200px",
             "z-index": "0"
           },
@@ -40595,53 +40464,165 @@ var render = function() {
         [
           _vm._v(" "),
           _c(
-            "div",
+            "v-card",
+            {
+              attrs: { tile: "", "max-width": "500px", "min-height": "200px" }
+            },
             [
               _c(
-                "v-row",
-                { attrs: { "no-gutters": "", justify: "center" } },
+                "v-card-title",
+                { staticClass: "d-flex justify-space-between align-center " },
                 [
+                  _c("div", [_vm._v("Table of Fleets")]),
+                  _vm._v(" "),
                   _c(
-                    "v-col",
-                    { staticClass: " d-inline-flex" },
+                    "v-card",
+                    {
+                      staticClass: "align-start",
+                      attrs: {
+                        width: "500",
+                        tile: "",
+                        flat: "",
+                        color: "#121212"
+                      }
+                    },
+                    [
+                      _c("v-text-field", {
+                        attrs: {
+                          "append-icon": "mdi-magnify",
+                          label: "Search",
+                          "single-line": "",
+                          filled: "",
+                          "hide-details": ""
+                        },
+                        model: {
+                          value: _vm.search,
+                          callback: function($$v) {
+                            _vm.search = $$v
+                          },
+                          expression: "search"
+                        }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
                     [
                       _c(
-                        "v-card",
+                        "v-menu",
                         {
-                          staticClass: "d-inline-flex align-content-start",
                           attrs: {
-                            width: "100%",
-                            tile: "",
-                            flat: "",
-                            color: "#121212"
-                          }
-                        },
-                        [_c("v-card-title", [_vm._v("Edit Keys")])],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "v-card",
-                        {
-                          staticClass: "align-start",
-                          attrs: { tile: "", flat: "", color: "#121212" }
+                            "close-on-content-click": false,
+                            value: _vm.addShown,
+                            transition: "fab-transition",
+                            origin: "100% -30%"
+                          },
+                          scopedSlots: _vm._u([
+                            {
+                              key: "activator",
+                              fn: function(ref) {
+                                var on = ref.on
+                                var attrs = ref.attrs
+                                return [
+                                  _c(
+                                    "v-btn",
+                                    _vm._g(
+                                      _vm._b(
+                                        {
+                                          attrs: { text: "", color: "success" },
+                                          on: {
+                                            click: function($event) {
+                                              _vm.addShown = true
+                                            }
+                                          }
+                                        },
+                                        "v-btn",
+                                        attrs,
+                                        false
+                                      ),
+                                      on
+                                    ),
+                                    [
+                                      _c(
+                                        "v-icon",
+                                        { attrs: { left: "", small: "" } },
+                                        [_vm._v("fas fa-plus")]
+                                      ),
+                                      _vm._v(
+                                        "\n                                Fleet"
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ]
+                              }
+                            }
+                          ])
                         },
                         [
-                          _c("v-text-field", {
-                            attrs: {
-                              "append-icon": "mdi-magnify",
-                              label: "Search for Users",
-                              "single-line": "",
-                              "hide-details": ""
-                            },
-                            model: {
-                              value: _vm.search,
-                              callback: function($$v) {
-                                _vm.search = $$v
-                              },
-                              expression: "search"
-                            }
-                          })
+                          _vm._v(" "),
+                          _c("v-row", { attrs: { "no-gutters": "" } }, [
+                            _c(
+                              "div",
+                              [
+                                _c(
+                                  "v-card",
+                                  {
+                                    staticClass: "pa-2",
+                                    attrs: { tile: "", width: "100%" }
+                                  },
+                                  [
+                                    _c("v-text-field", {
+                                      attrs: {
+                                        label: "Fleet Name",
+                                        required: "",
+                                        autofocus: ""
+                                      },
+                                      model: {
+                                        value: _vm.newFleetName,
+                                        callback: function($$v) {
+                                          _vm.newFleetName = $$v
+                                        },
+                                        expression: "newFleetName"
+                                      }
+                                    }),
+                                    _vm._v(" "),
+                                    _c(
+                                      "v-btn",
+                                      {
+                                        staticClass: "mr-4",
+                                        attrs: { color: "success" },
+                                        on: {
+                                          click: function($event) {
+                                            return _vm.NewFleetSubmit()
+                                          }
+                                        }
+                                      },
+                                      [_vm._v("submit")]
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "v-btn",
+                                      {
+                                        staticClass: "mr-4",
+                                        attrs: { color: "warning" },
+                                        on: {
+                                          click: function($event) {
+                                            return _vm.closeAdd()
+                                          }
+                                        }
+                                      },
+                                      [_vm._v("Close")]
+                                    )
+                                  ],
+                                  1
+                                )
+                              ],
+                              1
+                            )
+                          ])
                         ],
                         1
                       )
@@ -40653,228 +40634,92 @@ var render = function() {
               ),
               _vm._v(" "),
               _c(
-                "v-row",
-                { attrs: { "no-gutters": "", justify: "center" } },
+                "v-card-text",
                 [
                   _c(
-                    "v-col",
+                    "v-data-table",
                     {
-                      staticClass:
-                        " d-inline-flex justify-content-center w-auto"
-                    },
-                    [
-                      _c(
-                        "v-card",
-                        { attrs: { width: "100%" } },
+                      staticClass: "elevation-24",
+                      attrs: {
+                        headers: _vm.headers,
+                        items: _vm.filteredItems,
+                        search: _vm.search,
+                        height: "500px",
+                        "item-key": "id",
+                        "sort-by": ["name"],
+                        "disable-pagination": "",
+                        "fixed-header": "",
+                        "hide-default-footer": ""
+                      },
+                      scopedSlots: _vm._u(
                         [
-                          _c(
-                            "v-data-table",
-                            {
-                              staticClass: "elevation-5",
-                              attrs: {
-                                headers: _vm.headers,
-                                items: _vm.filteredItems,
-                                "item-key": "id",
-                                loading: _vm.loading,
-                                "sort-by": ["name"],
-                                "items-per-page": 20,
-                                search: _vm.search,
-                                "footer-props": {
-                                  "items-per-page-options": [
-                                    10,
-                                    20,
-                                    50,
-                                    100,
-                                    -1
-                                  ]
-                                }
-                              },
-                              scopedSlots: _vm._u(
-                                [
-                                  {
-                                    key: "item.keys",
-                                    fn: function(ref) {
-                                      var item = ref.item
-                                      return [
-                                        _c(
-                                          "div",
-                                          { staticClass: " d-inline-flex" },
-                                          [
-                                            _c(
-                                              "v-menu",
-                                              {
-                                                scopedSlots: _vm._u(
-                                                  [
-                                                    {
-                                                      key: "activator",
-                                                      fn: function(ref) {
-                                                        var on = ref.on
-                                                        var attrs = ref.attrs
-                                                        return [
-                                                          _c(
-                                                            "div",
-                                                            [
-                                                              _c(
-                                                                "v-btn",
-                                                                _vm._g(
-                                                                  _vm._b(
-                                                                    {
-                                                                      attrs: {
-                                                                        icon:
-                                                                          "",
-                                                                        color:
-                                                                          "success"
-                                                                      }
-                                                                    },
-                                                                    "v-btn",
-                                                                    attrs,
-                                                                    false
-                                                                  ),
-                                                                  on
-                                                                ),
-                                                                [
-                                                                  _c("v-icon", [
-                                                                    _vm._v(
-                                                                      "fas fa-plus"
-                                                                    )
-                                                                  ])
-                                                                ],
-                                                                1
-                                                              )
-                                                            ],
-                                                            1
-                                                          )
-                                                        ]
-                                                      }
-                                                    }
-                                                  ],
-                                                  null,
-                                                  true
-                                                )
-                                              },
-                                              [
-                                                _vm._v(" "),
-                                                _c(
-                                                  "v-list",
-                                                  _vm._l(
-                                                    _vm.filterDropdownList(
-                                                      item.keys
-                                                    ),
-                                                    function(list, index) {
-                                                      return _c(
-                                                        "v-list-item",
-                                                        {
-                                                          key: index,
-                                                          on: {
-                                                            click: function(
-                                                              $event
-                                                            ) {
-                                                              ;(_vm.userAddKeyText =
-                                                                list.id),
-                                                                _vm.userAddKey(
-                                                                  item
-                                                                )
-                                                            }
-                                                          }
-                                                        },
-                                                        [
-                                                          _c(
-                                                            "v-list-item-title",
-                                                            [
-                                                              _vm._v(
-                                                                _vm._s(
-                                                                  list.name
-                                                                )
-                                                              )
-                                                            ]
-                                                          )
-                                                        ],
-                                                        1
-                                                      )
-                                                    }
-                                                  ),
-                                                  1
-                                                )
-                                              ],
-                                              1
-                                            )
-                                          ],
-                                          1
-                                        ),
-                                        _vm._v(" "),
-                                        _c(
-                                          "div",
-                                          { staticClass: " d-inline-flex" },
-                                          _vm._l(
-                                            _vm.filterKeys(item.keys),
-                                            function(key, index) {
-                                              return _c(
-                                                "div",
-                                                {
-                                                  key: index,
-                                                  staticClass: " pr-2"
-                                                },
-                                                [
-                                                  _c(
-                                                    "v-chip",
-                                                    {
-                                                      attrs: {
-                                                        pill: "",
-                                                        close: _vm.pillClose(
-                                                          key.name
-                                                        ),
-                                                        dark: ""
-                                                      },
-                                                      on: {
-                                                        "click:close": function(
-                                                          $event
-                                                        ) {
-                                                          ;(_vm.userRemoveKeyText =
-                                                            key.id),
-                                                            _vm.userRemoveKey(
-                                                              item
-                                                            )
-                                                        }
-                                                      }
-                                                    },
-                                                    [
-                                                      _c("span", [
-                                                        _vm._v(
-                                                          " " + _vm._s(key.name)
-                                                        )
-                                                      ])
-                                                    ]
-                                                  )
-                                                ],
-                                                1
-                                              )
-                                            }
-                                          ),
-                                          0
+                          {
+                            key: "item.addRemove",
+                            fn: function(ref) {
+                              var item = ref.item
+                              return [
+                                _c(
+                                  "span",
+                                  [
+                                    _c(
+                                      "v-icon",
+                                      {
+                                        attrs: {
+                                          rounded: "",
+                                          outlined: true,
+                                          "x-small": ""
+                                        },
+                                        on: {
+                                          click: function($event) {
+                                            return _vm.pillDelete(item)
+                                          }
+                                        }
+                                      },
+                                      [
+                                        _vm._v(
+                                          "\n                                fas fa-trash-alt\n                            "
                                         )
                                       ]
-                                    }
-                                  }
-                                ],
-                                null,
-                                true
-                              )
-                            },
-                            [
-                              _vm._v(" "),
-                              _c("template", { slot: "no-data" }, [
-                                _vm._v(
-                                  "\n                                No Active or Upcoming Campaigns\n                            "
+                                    )
+                                  ],
+                                  1
                                 )
-                              ])
-                            ],
-                            2
-                          )
+                              ]
+                            }
+                          }
                         ],
-                        1
+                        null,
+                        true
                       )
+                    },
+                    [
+                      _c("template", { slot: "no-data" }, [
+                        _vm._v(
+                          "\n                        No Fleets\n                    "
+                        )
+                      ])
                     ],
-                    1
+                    2
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-card-actions",
+                [
+                  _c(
+                    "v-btn",
+                    {
+                      staticClass: "white--text",
+                      attrs: { color: "teal" },
+                      on: {
+                        click: function($event) {
+                          return _vm.close()
+                        }
+                      }
+                    },
+                    [_vm._v("\n                    Close\n                ")]
                   )
                 ],
                 1
@@ -40882,7 +40727,8 @@ var render = function() {
             ],
             1
           )
-        ]
+        ],
+        1
       )
     ],
     1
