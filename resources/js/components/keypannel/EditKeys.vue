@@ -199,7 +199,7 @@ export default {
         filterDropdownList(item) {
             let fleetID = item.map(i => i.id);
 
-            var filter = this.fleetList.filter(r => !fleetID.includes(r.id));
+            var filter = this.fleets.filter(r => !fleetID.includes(r.id));
             filter = filter.filter(r => r.name != "All");
             if (this.$can("edit_fleet_keys")) {
                 return filter;

@@ -8006,7 +8006,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var fleetID = item.map(function (i) {
         return i.id;
       });
-      var filter = this.fleetList.filter(function (r) {
+      var filter = this.fleets.filter(function (r) {
         return !fleetID.includes(r.id);
       });
       filter = filter.filter(function (r) {
