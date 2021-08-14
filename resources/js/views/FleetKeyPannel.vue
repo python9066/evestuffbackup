@@ -202,6 +202,10 @@ export default {
             }
         },
 
+        buttonList() {
+            return this.keysList;
+        },
+
         pillClose(name) {
             if (this.$can("edit_fleet_keys")) {
                 return true;

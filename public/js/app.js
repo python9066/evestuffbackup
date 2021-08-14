@@ -25187,6 +25187,9 @@ function sleep(ms) {
         return filter;
       }
     },
+    buttonList: function buttonList() {
+      return this.keysList;
+    },
     pillClose: function pillClose(name) {
       if (this.$can("edit_fleet_keys")) {
         return true;
