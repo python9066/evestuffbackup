@@ -16543,19 +16543,20 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
         var _request;
 
-        var y, mo, d, h, m, s, full, outTime, request;
+        var full, outTime, request;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
                 if (_this5.type != 1) {
-                  y = _this5.refTime.substr(0, 4);
-                  mo = _this5.refTime.substr(5, 2);
-                  d = _this5.refTime.substr(8, 2);
-                  h = _this5.refTime.substr(11, 2);
-                  m = _this5.refTime.substr(14, 2);
-                  s = _this5.refTime.substr(17, 2);
-                  full = y + "-" + mo + "-" + d + " " + h + ":" + m + ":" + s;
+                  full = _this5.refTime.replace(".", "-"); // var y = this.refTime.substr(0, 4);
+                  // var mo = this.refTime.substr(5, 2);
+                  // var d = this.refTime.substr(8, 2);
+                  // var h = this.refTime.substr(11, 2);
+                  // var m = this.refTime.substr(14, 2);
+                  // var s = this.refTime.substr(17, 2);
+                  // var full = y + "-" + mo + "-" + d + " " + h + ":" + m + ":" + s;
+
                   outTime = moment__WEBPACK_IMPORTED_MODULE_2___default()(full).format("YYYY-MM-DD HH:mm:ss");
                 } else {
                   outTime = moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc().format("YYYY-MM-DD HH:mm:ss");
@@ -16619,19 +16620,20 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
         var _request2;
 
-        var y, mo, d, h, m, s, full, outTime, request;
+        var full, outTime, request;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
           while (1) {
             switch (_context3.prev = _context3.next) {
               case 0:
                 if (_this6.type != 1) {
-                  y = _this6.refTime.substr(0, 4);
-                  mo = _this6.refTime.substr(5, 2);
-                  d = _this6.refTime.substr(8, 2);
-                  h = _this6.refTime.substr(11, 2);
-                  m = _this6.refTime.substr(14, 2);
-                  s = _this6.refTime.substr(17, 2);
-                  full = y + "-" + mo + "-" + d + " " + h + ":" + m + ":" + s;
+                  full = _this6.refTime.replace(".", "-"); // var y = this.refTime.substr(0, 4);
+                  // var mo = this.refTime.substr(5, 2);
+                  // var d = this.refTime.substr(8, 2);
+                  // var h = this.refTime.substr(11, 2);
+                  // var m = this.refTime.substr(14, 2);
+                  // var s = this.refTime.substr(17, 2);
+                  // var full = y + "-" + mo + "-" + d + " " + h + ":" + m + ":" + s;
+
                   outTime = moment__WEBPACK_IMPORTED_MODULE_2___default()(full).format("YYYY-MM-DD HH:mm:ss");
                 } else {
                   outTime = moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc().format("YYYY-MM-DD HH:mm:ss");
