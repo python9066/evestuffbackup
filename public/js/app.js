@@ -40480,7 +40480,7 @@ var render = function() {
                     {
                       staticClass: "align-start",
                       attrs: {
-                        width: "500",
+                        width: "1200px",
                         tile: "",
                         flat: "",
                         color: "#121212"

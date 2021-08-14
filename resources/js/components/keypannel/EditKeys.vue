@@ -23,7 +23,7 @@
                 >
                     <div>Table of Keys</div>
                     <v-card
-                        width="500"
+                        width="1200px"
                         tile
                         flat
                         color="#121212"
