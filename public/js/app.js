@@ -25065,7 +25065,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
 
 
 
@@ -57590,21 +57589,10 @@ var render = function() {
             [
               _c(
                 "v-list",
-                _vm._l(_vm.filterDropdownList(_vm.item.keys), function(
-                  list,
-                  index
-                ) {
+                _vm._l(_vm.buttonList(), function(list, index) {
                   return _c(
                     "v-list-item",
-                    {
-                      key: index,
-                      on: {
-                        click: function($event) {
-                          ;(_vm.userAddKeyText = list.id),
-                            _vm.userAddKey(_vm.item)
-                        }
-                      }
-                    },
+                    { key: index },
                     [_c("v-list-item-title", [_vm._v(_vm._s(list.name))])],
                     1
                   )

@@ -32,9 +32,8 @@
             <v-col class=" d-inline-flex" cols="9">
                 <v-list>
                     <v-list-item
-                        v-for="(list, index) in filterDropdownList(item.keys)"
+                        v-for="(list, index) in buttonList()"
                         :key="index"
-                        @click="(userAddKeyText = list.id), userAddKey(item)"
                     >
                         <v-list-item-title>{{ list.name }}</v-list-item-title>
                     </v-list-item>
