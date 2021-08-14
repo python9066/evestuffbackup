@@ -53,7 +53,7 @@
                                     @click="addShown = true"
                                     color="success"
                                     ><v-icon left small>fas fa-plus</v-icon>
-                                    Fleet</v-btn
+                                    Keys</v-btn
                                 >
                             </template>
                             <v-row no-gutters>
