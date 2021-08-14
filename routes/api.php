@@ -226,4 +226,5 @@ Route::middleware('auth:api')->group(function () {
     Route::put('/keysremove', 'KeyTypeController@removeKey');
     Route::get('/fleets', 'FleetTypeController@index');
     Route::delete('/fleetdelete/{id}', 'FleetTypeController@destroy');
+    Route::put('/fleetnew', 'FleetTypeController@store');
 });
