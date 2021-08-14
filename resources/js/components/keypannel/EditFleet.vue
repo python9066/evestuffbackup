@@ -78,10 +78,7 @@
                                             <v-btn
                                                 color="warning"
                                                 class="mr-4"
-                                                @click="
-                                                    (addShown = false),
-                                                        (this.newFleetName = null)
-                                                "
+                                                @click="closeAdd()"
                                                 >Close</v-btn
                                             >
                                             <!-- <v-btn @click="clear">clear</v-btn> -->
@@ -196,6 +193,11 @@ export default {
             this.$store.dispatch("getRcFcs");
             this.addShown = false;
             this.newFCName = null;
+        },
+
+        async closeAdd() {
+            this.addShown = false;
+            this.newFleetName = null;
         },
 
         async removeFleet(item) {

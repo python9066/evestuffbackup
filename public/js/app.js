@@ -7657,9 +7657,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -7757,7 +7754,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee2);
       }))();
     },
-    removeFleet: function removeFleet(item) {
+    closeAdd: function closeAdd() {
       var _this3 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
@@ -7765,26 +7762,45 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context3.prev = _context3.next) {
               case 0:
-                _context3.next = 2;
+                _this3.addShown = false;
+                _this3.newFleetName = null;
+
+              case 2:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3);
+      }))();
+    },
+    removeFleet: function removeFleet(item) {
+      var _this4 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
+          while (1) {
+            switch (_context4.prev = _context4.next) {
+              case 0:
+                _context4.next = 2;
                 return axios({
                   method: "DELETE",
-                  url: "/api/campaignusers/" + item.id + "/" + _this3.campaign_id + "/" + _this3.$store.state.user_id,
+                  url: "/api/campaignusers/" + item.id + "/" + _this4.campaign_id + "/" + _this4.$store.state.user_id,
                   headers: {
-                    Authorization: "Bearer " + _this3.$store.state.token,
+                    Authorization: "Bearer " + _this4.$store.state.token,
                     Accept: "application/json",
                     "Content-Type": "application/json"
                   }
                 });
 
               case 2:
-                _this3.$store.dispatch("getCampaignSystemsRecords");
+                _this4.$store.dispatch("getCampaignSystemsRecords");
 
               case 3:
               case "end":
-                return _context3.stop();
+                return _context4.stop();
             }
           }
-        }, _callee3);
+        }, _callee4);
       }))();
     }
   },
@@ -40021,8 +40037,7 @@ var render = function() {
                                             attrs: { color: "warning" },
                                             on: {
                                               click: function($event) {
-                                                ;(_vm.addShown = false),
-                                                  (this.newFleetName = null)
+                                                return _vm.closeAdd()
                                               }
                                             }
                                           },
