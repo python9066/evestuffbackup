@@ -585,29 +585,17 @@ export default {
             return moment.utc(item.end_time).unix();
         },
         pillColor(item) {
-            if (item.status_id == 1) {
+            if (item.status_id == 13) {
                 return "deep-orange lighten-1";
             }
-            if (item.status_id == 2) {
+            if (item.status_id == 5) {
                 return "lime darken-4";
             }
-            if (item.status_id == 3 || item.status_id == 8) {
-                return "green darken-3";
-            }
-            if (item.status_id == 4) {
+            if (item.status_id == 14) {
                 return "green accent-4";
             }
-            if (item.status_id == 5) {
-                return "red darken-4";
-            }
-            if (item.status_id == 6) {
+            if (item.status_id == 17) {
                 return "#FF5EEA";
-            }
-            if (item.status_id == 7) {
-                return "#801916";
-            }
-            if (item.status_id == 9) {
-                return "#9C9C9C";
             }
         },
         numberDay(day) {
