@@ -7932,6 +7932,51 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -40406,336 +40451,8 @@ render._withStripped = true
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _c(
-        "v-dialog",
-        {
-          attrs: {
-            "max-width": "1200px",
-            "max-hight": "1200px",
-            "z-index": "0"
-          },
-          on: {
-            "click:outside": function($event) {
-              return _vm.close()
-            }
-          },
-          scopedSlots: _vm._u([
-            {
-              key: "activator",
-              fn: function(ref) {
-                var on = ref.on
-                var attrs = ref.attrs
-                return [
-                  _c(
-                    "v-btn",
-                    _vm._g(
-                      _vm._b(
-                        {
-                          staticClass: "mr-4",
-                          attrs: { color: "green lighten-1" }
-                        },
-                        "v-btn",
-                        attrs,
-                        false
-                      ),
-                      on
-                    ),
-                    [_vm._v("Edit Keys")]
-                  )
-                ]
-              }
-            }
-          ]),
-          model: {
-            value: _vm.overlay,
-            callback: function($$v) {
-              _vm.overlay = $$v
-            },
-            expression: "overlay"
-          }
-        },
-        [
-          _vm._v(" "),
-          _c(
-            "v-card",
-            {
-              attrs: { tile: "", "max-width": "1200px", "min-height": "200px" }
-            },
-            [
-              _c(
-                "v-card-title",
-                { staticClass: "d-flex justify-space-between align-center " },
-                [
-                  _c("div", [_vm._v("Table of Keys")]),
-                  _vm._v(" "),
-                  _c(
-                    "v-card",
-                    {
-                      staticClass: "align-start",
-                      attrs: {
-                        width: "1200px",
-                        tile: "",
-                        flat: "",
-                        color: "#121212"
-                      }
-                    },
-                    [
-                      _c("v-text-field", {
-                        attrs: {
-                          "append-icon": "mdi-magnify",
-                          label: "Search",
-                          "single-line": "",
-                          filled: "",
-                          "hide-details": ""
-                        },
-                        model: {
-                          value: _vm.search,
-                          callback: function($$v) {
-                            _vm.search = $$v
-                          },
-                          expression: "search"
-                        }
-                      })
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    [
-                      _c(
-                        "v-menu",
-                        {
-                          attrs: {
-                            "close-on-content-click": false,
-                            value: _vm.addShown,
-                            transition: "fab-transition",
-                            origin: "100% -30%"
-                          },
-                          scopedSlots: _vm._u([
-                            {
-                              key: "activator",
-                              fn: function(ref) {
-                                var on = ref.on
-                                var attrs = ref.attrs
-                                return [
-                                  _c(
-                                    "v-btn",
-                                    _vm._g(
-                                      _vm._b(
-                                        {
-                                          attrs: { text: "", color: "success" },
-                                          on: {
-                                            click: function($event) {
-                                              _vm.addShown = true
-                                            }
-                                          }
-                                        },
-                                        "v-btn",
-                                        attrs,
-                                        false
-                                      ),
-                                      on
-                                    ),
-                                    [
-                                      _c(
-                                        "v-icon",
-                                        { attrs: { left: "", small: "" } },
-                                        [_vm._v("fas fa-plus")]
-                                      ),
-                                      _vm._v(
-                                        "\n                                Fleet"
-                                      )
-                                    ],
-                                    1
-                                  )
-                                ]
-                              }
-                            }
-                          ])
-                        },
-                        [
-                          _vm._v(" "),
-                          _c("v-row", { attrs: { "no-gutters": "" } }, [
-                            _c(
-                              "div",
-                              [
-                                _c(
-                                  "v-card",
-                                  {
-                                    staticClass: "pa-2",
-                                    attrs: { tile: "", width: "100%" }
-                                  },
-                                  [
-                                    _c("v-text-field", {
-                                      attrs: {
-                                        label: "Fleet Name",
-                                        required: "",
-                                        autofocus: ""
-                                      },
-                                      model: {
-                                        value: _vm.newFleetName,
-                                        callback: function($$v) {
-                                          _vm.newFleetName = $$v
-                                        },
-                                        expression: "newFleetName"
-                                      }
-                                    }),
-                                    _vm._v(" "),
-                                    _c(
-                                      "v-btn",
-                                      {
-                                        staticClass: "mr-4",
-                                        attrs: { color: "success" },
-                                        on: {
-                                          click: function($event) {
-                                            return _vm.NewFleetSubmit()
-                                          }
-                                        }
-                                      },
-                                      [_vm._v("submit")]
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "v-btn",
-                                      {
-                                        staticClass: "mr-4",
-                                        attrs: { color: "warning" },
-                                        on: {
-                                          click: function($event) {
-                                            return _vm.closeAdd()
-                                          }
-                                        }
-                                      },
-                                      [_vm._v("Close")]
-                                    )
-                                  ],
-                                  1
-                                )
-                              ],
-                              1
-                            )
-                          ])
-                        ],
-                        1
-                      )
-                    ],
-                    1
-                  )
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "v-card-text",
-                [
-                  _c(
-                    "v-data-table",
-                    {
-                      staticClass: "elevation-24",
-                      attrs: {
-                        headers: _vm.headers,
-                        items: _vm.filteredItems,
-                        search: _vm.search,
-                        height: "500px",
-                        "item-key": "id",
-                        "sort-by": ["name"],
-                        "disable-pagination": "",
-                        "fixed-header": "",
-                        "hide-default-footer": ""
-                      },
-                      scopedSlots: _vm._u(
-                        [
-                          {
-                            key: "item.addRemove",
-                            fn: function(ref) {
-                              var item = ref.item
-                              return [
-                                _c(
-                                  "span",
-                                  [
-                                    _c(
-                                      "v-icon",
-                                      {
-                                        attrs: {
-                                          rounded: "",
-                                          outlined: true,
-                                          "x-small": ""
-                                        },
-                                        on: {
-                                          click: function($event) {
-                                            return _vm.pillDelete(item)
-                                          }
-                                        }
-                                      },
-                                      [
-                                        _vm._v(
-                                          "\n                                fas fa-trash-alt\n                            "
-                                        )
-                                      ]
-                                    )
-                                  ],
-                                  1
-                                )
-                              ]
-                            }
-                          }
-                        ],
-                        null,
-                        true
-                      )
-                    },
-                    [
-                      _c("template", { slot: "no-data" }, [
-                        _vm._v(
-                          "\n                        No Fleets\n                    "
-                        )
-                      ])
-                    ],
-                    2
-                  )
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "v-card-actions",
-                [
-                  _c(
-                    "v-btn",
-                    {
-                      staticClass: "white--text",
-                      attrs: { color: "teal" },
-                      on: {
-                        click: function($event) {
-                          return _vm.close()
-                        }
-                      }
-                    },
-                    [_vm._v("\n                    Close\n                ")]
-                  )
-                ],
-                1
-              )
-            ],
-            1
-          )
-        ],
-        1
-      )
-    ],
-    1
-  )
-}
+var render = function () {}
 var staticRenderFns = []
-render._withStripped = true
 
 
 

@@ -98,23 +98,68 @@
                         hide-default-footer
                         class="elevation-24"
                     >
-                        <template slot="no-data">
-                            No Fleets
-                        </template>
-                        <!-- :color="pillColor(item)" -->
-                        <template v-slot:[`item.addRemove`]="{ item }">
-                            <span>
-                                <v-icon
-                                    rounded
-                                    :outlined="true"
-                                    x-small
-                                    @click="pillDelete(item)"
+                      <template v-slot:[`item.keys`]="{ item }">
+                            <div class=" d-inline-flex">
+                                <v-menu>
+                                    <template v-slot:activator="{ on, attrs }">
+                                        <div>
+                                            <v-btn
+                                                icon
+                                                v-bind="attrs"
+                                                v-on="on"
+                                                color="success"
+                                                ><v-icon
+                                                    >fas fa-plus</v-icon
+                                                ></v-btn
+                                            >
+                                        </div>
+                                    </template>
+
+                                    <v-list>
+                                        <v-list-item
+                                            v-for="(list,
+                                            index) in filterDropdownList(
+                                                item.keys
+                                            )"
+                                            :key="index"
+                                            @click="
+                                                (userAddKeyText = list.id),
+                                                    userAddKey(item)
+                                            "
+                                        >
+                                            <v-list-item-title>{{
+                                                list.name
+                                            }}</v-list-item-title>
+                                        </v-list-item>
+                                    </v-list>
+                                </v-menu>
+                            </div>
+
+                            <div class=" d-inline-flex">
+                                <div
+                                    v-for="(key, index) in filterKeys(
+                                        item.keys
+                                    )"
+                                    :key="index"
+                                    class=" pr-2"
                                 >
-                                    fas fa-trash-alt
-                                </v-icon>
-                            </span>
+                                    <v-chip
+                                        pill
+                                        :close="pillClose(key.name)"
+                                        dark
+                                        @click:close="
+                                            (userRemoveKeyText = key.id),
+                                                userRemoveKey(item)
+                                        "
+                                    >
+                                        <span> {{ key.name }}</span>
+                                    </v-chip>
+                                </div>
+                            </div>
                         </template>
-                    </v-data-table>
+                        <template slot="no-data">
+                            Nothing matches your filters
+                        </template>
                 </v-card-text>
                 <v-card-actions>
                     <v-btn class="white--text" color="teal" @click="close()">
