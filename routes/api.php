@@ -223,4 +223,5 @@ Route::middleware('auth:api')->group(function () {
 
     Route::get('/alluserskeys', 'KeyTypeController@getAllUsersKeys');
     Route::get('/keys', 'KeyTypeController@index');
+    Route::put('/keysremove', 'KeyTypeController@removeKey');
 });

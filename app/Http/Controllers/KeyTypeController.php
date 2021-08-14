@@ -35,6 +35,11 @@ class KeyTypeController extends Controller
         UserKeyJoin::create($request->all());
     }
 
+    public function removeKey(Request $request)
+    {
+        UserKeyJoin::where('key_type_id', $request->key_type_id)->where('user_id', $request->user_id)->delete();
+    }
+
     /**
      * Display the specified resource.
      *

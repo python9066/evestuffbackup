@@ -25256,7 +25256,7 @@ function sleep(ms) {
                 return axios({
                   method: "put",
                   //you can set what request you want to be
-                  url: "/api/rolesremove",
+                  url: "/api/keysremove",
                   data: request,
                   headers: {
                     Authorization: "Bearer " + _this5.$store.state.token,
@@ -57620,7 +57620,7 @@ var render = function() {
                   _c(
                     "v-btn-toggle",
                     {
-                      attrs: { right: "", mandatory: "", value: 1 },
+                      attrs: { right: "", mandatory: "", value: 0 },
                       model: {
                         value: _vm.toggle_exclusive,
                         callback: function($$v) {

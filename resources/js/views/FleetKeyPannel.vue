@@ -36,7 +36,7 @@
                         right
                         v-model="toggle_exclusive"
                         mandatory
-                        :value="1"
+                        :value="0"
                     >
                         <v-btn
                             v-for="(list, index) in buttonList"
@@ -247,7 +247,7 @@ export default {
 
             await axios({
                 method: "put", //you can set what request you want to be
-                url: "/api/rolesremove",
+                url: "/api/keysremove",
                 data: request,
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
