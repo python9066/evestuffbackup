@@ -30,21 +30,13 @@
         </v-row>
         <v-row no-gutters justify="center">
             <v-col class=" d-inline-flex" cols="9">
-                <v-list>
-                    <v-list-item
-                        v-for="(list, index) in buttonList"
-                        :key="index"
-                    >
-                        <v-list-item-title>{{ list.name }}</v-list-item-title>
-                    </v-list-item>
-                </v-list>
                 <v-spacer></v-spacer>
                 <v-card tile flat color="#121212" class="align-end">
                     <v-btn-toggle
                         right
                         v-model="toggle_exclusive"
                         mandatory
-                        :value="1"
+                        :value="0"
                         v-for="(list, index) in buttonList"
                         :key="index"
                     >

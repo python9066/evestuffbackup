@@ -25077,14 +25077,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -57616,19 +57608,6 @@ var render = function() {
             "v-col",
             { staticClass: " d-inline-flex", attrs: { cols: "9" } },
             [
-              _c(
-                "v-list",
-                _vm._l(_vm.buttonList, function(list, index) {
-                  return _c(
-                    "v-list-item",
-                    { key: index },
-                    [_c("v-list-item-title", [_vm._v(_vm._s(list.name))])],
-                    1
-                  )
-                }),
-                1
-              ),
-              _vm._v(" "),
               _c("v-spacer"),
               _vm._v(" "),
               _c(
@@ -57642,7 +57621,7 @@ var render = function() {
                     "v-btn-toggle",
                     {
                       key: index,
-                      attrs: { right: "", mandatory: "", value: 1 },
+                      attrs: { right: "", mandatory: "", value: 0 },
                       model: {
                         value: _vm.toggle_exclusive,
                         callback: function($$v) {
