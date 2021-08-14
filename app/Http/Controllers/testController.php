@@ -24,7 +24,7 @@ class testController extends Controller
     public function key()
     {
         $test = User::where('id', 25107)->with('keys');
-        dd("yoyo");
+        dd($test);
     }
 
     public function notifications(Request $request)
