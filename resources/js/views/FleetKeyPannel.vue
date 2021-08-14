@@ -100,7 +100,6 @@
                                 >
                                     <v-chip
                                         pill
-                                        :class="mittin(item)"
                                         :close="pillClose(key.name)"
                                         dark
                                         @click:close="

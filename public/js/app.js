@@ -25057,7 +25057,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
 
 
 
@@ -57756,7 +57755,6 @@ var render = function() {
                                         _c(
                                           "v-chip",
                                           {
-                                            class: _vm.mittin(item),
                                             attrs: {
                                               pill: "",
                                               close: _vm.pillClose(key.name),
