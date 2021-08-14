@@ -23,13 +23,15 @@ class testController extends Controller
 
     public function key()
     {
-        $user = User::find(25107);
-        foreach ($user->keys as $key) {
-            echo $key->name;
-            foreach ($key->fleets as $fleet) {
-                echo $fleet->name;
-            }
-        }
+
+        dd(['userskeys' => User::find(25107)->with('keys')->select('id', 'name')->get()]);
+        // $user = User::find(25107);
+        // foreach ($user->keys as $key) {
+        //     echo $key->name;
+        //     foreach ($key->fleets as $fleet) {
+        //         echo $fleet->name;
+        //     }
+        // }
     }
 
     public function notifications(Request $request)
