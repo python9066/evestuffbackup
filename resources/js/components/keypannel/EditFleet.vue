@@ -69,7 +69,7 @@
                                         <v-btn
                                             color="success"
                                             class="mr-4"
-                                            @click="newFleetForm()"
+                                            @click="NewFleetSubmit()"
                                             >submit</v-btn
                                         >
                                         <v-btn
@@ -127,6 +127,7 @@
 </template>
 
 <script>
+import axios from "axios";
 import { mapGetters } from "vuex";
 import { mapState } from "vuex";
 export default {
@@ -165,6 +166,25 @@ export default {
                     Authorization: "Bearer " + this.$store.state.token,
                     Accept: "application/json",
                     "Content-Type": "application/json"
+                }
+            });
+        },
+
+        async NewFleetSubmit() {
+            var request = {
+                name: this.newFleetName
+            };
+
+            console.log(this.newFleetName);
+
+            await axios({
+                method: "PUT",
+                url: "/api/fleetnew",
+                data: request,
+                headers: {
+                    Authorization: "Bearer " + this.$store.state.token,
+                    Accept: "application/json",
+                    "Contect-Type": "application/json"
                 }
             });
         },

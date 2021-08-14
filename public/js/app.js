@@ -7512,7 +7512,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
@@ -7655,6 +7657,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {},
   data: function data() {
@@ -7691,7 +7694,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context.prev = _context.next) {
               case 0:
                 _context.next = 2;
-                return axios({
+                return axios__WEBPACK_IMPORTED_MODULE_1___default()({
                   method: "DELETE",
                   url: "/api/fleetdelete/" + item.id,
                   headers: {
@@ -7709,7 +7712,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee);
       }))();
     },
-    newFleetForm: function newFleetForm() {
+    NewFleetSubmit: function NewFleetSubmit() {
       var _this2 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
@@ -7719,27 +7722,22 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context2.prev = _context2.next) {
               case 0:
                 request = {
-                  name: _this2.newfleetName
+                  name: _this2.newFleetName
                 };
-                _context2.next = 3;
-                return axios({
+                console.log(_this2.newFleetName);
+                _context2.next = 4;
+                return axios__WEBPACK_IMPORTED_MODULE_1___default()({
                   method: "PUT",
                   url: "/api/fleetnew",
                   data: request,
                   headers: {
                     Authorization: "Bearer " + _this2.$store.state.token,
                     Accept: "application/json",
-                    "Content-Type": "application/json"
+                    "Contect-Type": "application/json"
                   }
                 });
 
-              case 3:
-                _this2.$store.dispatch("getRcFcs");
-
-                _this2.addShown = false;
-                _this2.newFCName = null;
-
-              case 6:
+              case 4:
               case "end":
                 return _context2.stop();
             }
@@ -7747,27 +7745,65 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee2);
       }))();
     },
-    closeAdd: function closeAdd() {
+    newFleetForm: function newFleetForm() {
       var _this3 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
+        var request;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
           while (1) {
             switch (_context3.prev = _context3.next) {
               case 0:
-                _this3.addShown = false;
-                _this3.newFleetName = null;
+                request = {
+                  name: _this3.newfleetName
+                };
+                _context3.next = 3;
+                return axios__WEBPACK_IMPORTED_MODULE_1___default()({
+                  method: "PUT",
+                  url: "/api/fleetnew",
+                  data: request,
+                  headers: {
+                    Authorization: "Bearer " + _this3.$store.state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                  }
+                });
 
-              case 2:
+              case 3:
+                _this3.$store.dispatch("getRcFcs");
+
+                _this3.addShown = false;
+                _this3.newFCName = null;
+
+              case 6:
               case "end":
                 return _context3.stop();
             }
           }
         }, _callee3);
       }))();
+    },
+    closeAdd: function closeAdd() {
+      var _this4 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
+          while (1) {
+            switch (_context4.prev = _context4.next) {
+              case 0:
+                _this4.addShown = false;
+                _this4.newFleetName = null;
+
+              case 2:
+              case "end":
+                return _context4.stop();
+            }
+          }
+        }, _callee4);
+      }))();
     }
   },
-  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapState"])(["fleets"])), {}, {
+  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapState"])(["fleets"])), {}, {
     filteredItems: function filteredItems() {
       return this.fleets;
     }
@@ -39977,7 +40013,7 @@ var render = function() {
                                         attrs: { color: "success" },
                                         on: {
                                           click: function($event) {
-                                            return _vm.newFleetForm()
+                                            return _vm.NewFleetSubmit()
                                           }
                                         }
                                       },
