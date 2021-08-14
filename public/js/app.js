@@ -25195,7 +25195,7 @@ function sleep(ms) {
       var filter = this.keysList.filter(function (r) {
         return !keyID.includes(r.id);
       });
-      filter = (_readOnlyError("filter"), filter(function (r) {
+      filter = (_readOnlyError("filter"), filter.filter(function (r) {
         return r.name != "All";
       }));
 

@@ -208,7 +208,7 @@ export default {
             let keyID = item.map(i => i.id);
 
             const filter = this.keysList.filter(r => !keyID.includes(r.id));
-            filter = filter(r => r.name != "All");
+            filter = filter.filter(r => r.name != "All");
             if (this.$can("edit_fleet_keys")) {
                 return filter;
             }
