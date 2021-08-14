@@ -28619,6 +28619,10 @@ function sleep(ms) {
 
       return false;
     },
+    buttontext: function buttontext(item) {
+      var ret = item.station_status_name.replace("Upcoming - ", "");
+      return ret;
+    },
     link: function link(item) {
       if (item.region_name == "Black Rise") {
         return "https://evemaps.dotlan.net/map/Black_Rise/" + item.system_name + "#const";
@@ -60893,7 +60897,7 @@ var render = function() {
                                       [
                                         _vm._v(
                                           "\n                            " +
-                                            _vm._s(item.status_name) +
+                                            _vm._s(_vm.buttontext(item)) +
                                             " - Done?\n                        "
                                         )
                                       ]

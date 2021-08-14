@@ -246,7 +246,7 @@
                                 small
                                 :color="pillColor(item)"
                             >
-                                {{ item.status_name }} - Done?
+                                {{ buttontext(item) }} - Done?
                             </v-chip>
 
                             <v-chip
@@ -390,6 +390,11 @@ export default {
             }
 
             return false;
+        },
+
+        buttontext(item) {
+            var ret = item.station_status_name.replace("Upcoming - ", "");
+            return ret;
         },
 
         link(item) {
