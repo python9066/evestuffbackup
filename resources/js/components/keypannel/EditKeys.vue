@@ -207,7 +207,7 @@ export default {
         },
 
         pillClose(name) {
-            if (this.$can("edit_fleet_keys")) {
+            if (this.$can("edit_f  leet_keys")) {
                 return true;
             } else {
                 return false;
