@@ -259,6 +259,9 @@ export default {
                 name: "All"
             };
             list.push(data);
+            list.sort(function(a, b) {
+                return a.id - b.id || a.name.localeCompare(b.name);
+            });
 
             return list;
         }
