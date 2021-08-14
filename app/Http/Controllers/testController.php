@@ -23,8 +23,10 @@ class testController extends Controller
 
     public function key()
     {
-        $test = User::find(25107)->keys()->first();
-        dd($test);
+        $user = User::find(25107);
+        foreach ($user->keys as $key) {
+            echo $key->pivot->name;
+        }
     }
 
     public function notifications(Request $request)
