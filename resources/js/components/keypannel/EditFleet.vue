@@ -13,7 +13,7 @@
                     color="green lighten-1"
                     v-bind="attrs"
                     v-on="on"
-                    >Edit Fleets RTEST</v-btn
+                    >Edit Fleets</v-btn
                 >
             </template>
 
@@ -187,26 +187,9 @@ export default {
                     "Contect-Type": "application/json"
                 }
             });
-        },
 
-        async newFleetForm() {
-            var request = {
-                name: this.newfleetName
-            };
-
-            await axios({
-                method: "PUT",
-                url: "/api/fleetnew",
-                data: request,
-                headers: {
-                    Authorization: "Bearer " + this.$store.state.token,
-                    Accept: "application/json",
-                    "Content-Type": "application/json"
-                }
-            });
-            this.$store.dispatch("getRcFcs");
             this.addShown = false;
-            this.newFCName = null;
+            this.newFleetName = null;
         },
 
         async closeAdd() {

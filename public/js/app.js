@@ -7738,6 +7738,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 });
 
               case 4:
+                _this2.addShown = false;
+                _this2.newFleetName = null;
+
+              case 6:
               case "end":
                 return _context2.stop();
             }
@@ -7745,61 +7749,23 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee2);
       }))();
     },
-    newFleetForm: function newFleetForm() {
+    closeAdd: function closeAdd() {
       var _this3 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
-        var request;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
           while (1) {
             switch (_context3.prev = _context3.next) {
               case 0:
-                request = {
-                  name: _this3.newfleetName
-                };
-                _context3.next = 3;
-                return axios__WEBPACK_IMPORTED_MODULE_1___default()({
-                  method: "PUT",
-                  url: "/api/fleetnew",
-                  data: request,
-                  headers: {
-                    Authorization: "Bearer " + _this3.$store.state.token,
-                    Accept: "application/json",
-                    "Content-Type": "application/json"
-                  }
-                });
-
-              case 3:
-                _this3.$store.dispatch("getRcFcs");
-
                 _this3.addShown = false;
-                _this3.newFCName = null;
+                _this3.newFleetName = null;
 
-              case 6:
+              case 2:
               case "end":
                 return _context3.stop();
             }
           }
         }, _callee3);
-      }))();
-    },
-    closeAdd: function closeAdd() {
-      var _this4 = this;
-
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
-          while (1) {
-            switch (_context4.prev = _context4.next) {
-              case 0:
-                _this4.addShown = false;
-                _this4.newFleetName = null;
-
-              case 2:
-              case "end":
-                return _context4.stop();
-            }
-          }
-        }, _callee4);
       }))();
     }
   },
@@ -39864,7 +39830,7 @@ var render = function() {
                       ),
                       on
                     ),
-                    [_vm._v("Edit Fleets RTEST")]
+                    [_vm._v("Edit Fleets")]
                   )
                 ]
               }
