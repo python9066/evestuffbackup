@@ -192,6 +192,7 @@ export default {
     async mounted() {
         await this.$store.dispatch("getUserKeys");
         await this.$store.dispatch("getKeys");
+        await this.$store.dispatch("getFleets");
     },
 
     methods: {

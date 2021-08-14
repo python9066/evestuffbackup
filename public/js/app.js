@@ -25450,6 +25450,10 @@ function sleep(ms) {
               return _this2.$store.dispatch("getKeys");
 
             case 4:
+              _context2.next = 6;
+              return _this2.$store.dispatch("getFleets");
+
+            case 6:
             case "end":
               return _context2.stop();
           }
