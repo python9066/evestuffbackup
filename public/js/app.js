@@ -8017,6 +8017,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         return filter;
       }
     },
+    pillClose: function pillClose(name) {
+      if (this.$can("edit_fleet_keys")) {
+        return true;
+      } else {
+        return false;
+      }
+    },
     fliterFleets: function fliterFleets(fleets) {
       // console.log(roles);
       return fleets;

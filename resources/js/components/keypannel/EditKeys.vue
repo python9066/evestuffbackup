@@ -206,6 +206,14 @@ export default {
             }
         },
 
+        pillClose(name) {
+            if (this.$can("edit_fleet_keys")) {
+                return true;
+            } else {
+                return false;
+            }
+        },
+
         fliterFleets(fleets) {
             // console.log(roles);
             return fleets;
