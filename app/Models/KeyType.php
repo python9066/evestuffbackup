@@ -12,7 +12,7 @@ class KeyType extends Model
 
     public function fleets()
     {
-        return $this->belongsToMany(fleets::class, 'key_fleet_join');
+        return $this->belongsToMany(FleetType::class, 'key_fleet_join');
     }
 
     public function users()
