@@ -28801,7 +28801,7 @@ function sleep(ms) {
     },
     pillColor: function pillColor(item) {
       if (item.status_id == 13) {
-        return "deep-orange lighten-1";
+        return "red darken-4";
       }
 
       if (item.status_id == 5) {
