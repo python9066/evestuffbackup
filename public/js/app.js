@@ -59018,7 +59018,9 @@ var render = function() {
                 1
               ),
               _vm._v(" "),
-              _c("EditFleets")
+              _c("EditFleets"),
+              _vm._v(" "),
+              _c("EditKeys")
             ],
             1
           )
