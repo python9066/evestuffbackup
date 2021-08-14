@@ -119,12 +119,12 @@
                                         <v-list-item
                                             v-for="(list,
                                             index) in filterDropdownList(
-                                                item.keys
+                                                item.fleets
                                             )"
                                             :key="index"
                                             @click="
-                                                (userAddKeyText = list.id),
-                                                    userAddKey(item)
+                                                (userAddFleetText = list.id),
+                                                    userAddFleet(item)
                                             "
                                         >
                                             <v-list-item-title>{{
@@ -195,6 +195,15 @@ export default {
     },
 
     methods: {
+        filterDropdownList(item) {
+            let keyID = item.map(i => i.id);
+
+            var filter = this.fleetList.filter(r => !keyID.includes(r.id));
+            filter = filter.filter(r => r.name != "All");
+            if (this.$can("edit_fleet_keys")) {
+                return filter;
+            }
+        },
         close() {
             this.overlay = false;
         },
@@ -245,7 +254,7 @@ export default {
     },
 
     computed: {
-        ...mapState(["fleets"]),
+        ...mapState(["fleets", "fleetList"]),
         filteredItems() {
             return this.fleets;
         }
