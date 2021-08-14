@@ -138,7 +138,7 @@
 
                             <div class=" d-inline-flex">
                                 <div
-                                    v-for="(fleet, index) in filterKeys(
+                                    v-for="(fleet, index) in fliterfleets(
                                         item.fleets
                                     )"
                                     :key="index"
@@ -204,6 +204,11 @@ export default {
             if (this.$can("edit_fleet_keys")) {
                 return filter;
             }
+        },
+
+        filterFleets(fleets) {
+            // console.log(roles);
+            return fleets;
         },
         close() {
             this.overlay = false;

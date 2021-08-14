@@ -8017,6 +8017,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         return filter;
       }
     },
+    filterFleets: function filterFleets(fleets) {
+      // console.log(roles);
+      return fleets;
+    },
     close: function close() {
       this.overlay = false;
     },
@@ -40819,40 +40823,44 @@ var render = function() {
                                 _c(
                                   "div",
                                   { staticClass: " d-inline-flex" },
-                                  _vm._l(_vm.filterKeys(item.fleets), function(
-                                    fleet,
-                                    index
-                                  ) {
-                                    return _c(
-                                      "div",
-                                      { key: index, staticClass: " pr-2" },
-                                      [
-                                        _c(
-                                          "v-chip",
-                                          {
-                                            attrs: {
-                                              pill: "",
-                                              close: _vm.pillClose(fleet.name),
-                                              dark: ""
-                                            },
-                                            on: {
-                                              "click:close": function($event) {
-                                                ;(_vm.userRemoveFleetText =
-                                                  fleet.id),
-                                                  _vm.userRemoveKey(item)
+                                  _vm._l(
+                                    _vm.fliterfleets(item.fleets),
+                                    function(fleet, index) {
+                                      return _c(
+                                        "div",
+                                        { key: index, staticClass: " pr-2" },
+                                        [
+                                          _c(
+                                            "v-chip",
+                                            {
+                                              attrs: {
+                                                pill: "",
+                                                close: _vm.pillClose(
+                                                  fleet.name
+                                                ),
+                                                dark: ""
+                                              },
+                                              on: {
+                                                "click:close": function(
+                                                  $event
+                                                ) {
+                                                  ;(_vm.userRemoveFleetText =
+                                                    fleet.id),
+                                                    _vm.userRemoveKey(item)
+                                                }
                                               }
-                                            }
-                                          },
-                                          [
-                                            _c("span", [
-                                              _vm._v(" " + _vm._s(fleet.name))
-                                            ])
-                                          ]
-                                        )
-                                      ],
-                                      1
-                                    )
-                                  }),
+                                            },
+                                            [
+                                              _c("span", [
+                                                _vm._v(" " + _vm._s(fleet.name))
+                                              ])
+                                            ]
+                                          )
+                                        ],
+                                        1
+                                      )
+                                    }
+                                  ),
                                   0
                                 )
                               ]
