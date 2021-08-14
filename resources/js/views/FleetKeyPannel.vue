@@ -194,7 +194,7 @@ export default {
 
         filterDropdownList(item) {
             let roleID = item.map(i => i.id);
-            const filter = this.rolesList.filter(r => !roleID.includes(r.id));
+            const filter = this.keysList.filter(r => !roleID.includes(r.id));
             if (this.$can("edit_fleet_keys")) {
                 return filter;
             }
@@ -297,7 +297,7 @@ export default {
     },
 
     computed: {
-        ...mapState(["userkeys", "rolesList"]),
+        ...mapState(["userkeys", "keysList"]),
         filteredItems() {
             return this.userkeys;
         }

@@ -25180,7 +25180,7 @@ function sleep(ms) {
       var roleID = item.map(function (i) {
         return i.id;
       });
-      var filter = this.rolesList.filter(function (r) {
+      var filter = this.keysList.filter(function (r) {
         return !roleID.includes(r.id);
       });
 
@@ -25326,7 +25326,7 @@ function sleep(ms) {
       }))();
     }
   },
-  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapState"])(["userkeys", "rolesList"])), {}, {
+  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapState"])(["userkeys", "keysList"])), {}, {
     filteredItems: function filteredItems() {
       return this.userkeys;
     }
