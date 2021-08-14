@@ -25186,15 +25186,6 @@ function sleep(ms) {
         return filter;
       }
     },
-    buttonList: function buttonList() {
-      var list = this.keysList;
-      var data = {
-        id: 0,
-        name: "All"
-      };
-      list.push(data);
-      return list;
-    },
     pillClose: function pillClose(name) {
       if (this.$can("edit_fleet_keys")) {
         return true;
@@ -25274,6 +25265,15 @@ function sleep(ms) {
   computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapState"])(["userkeys", "keysList"])), {}, {
     filteredItems: function filteredItems() {
       return this.userkeys;
+    },
+    buttonList: function buttonList() {
+      var list = this.keysList;
+      var data = {
+        id: 0,
+        name: "All"
+      };
+      list.push(data);
+      return list;
     }
   }),
   beforeDestroy: function beforeDestroy() {
@@ -57595,7 +57595,7 @@ var render = function() {
             [
               _c(
                 "v-list",
-                _vm._l(_vm.buttonList(), function(list, index) {
+                _vm._l(_vm.buttonList, function(list, index) {
                   return _c(
                     "v-list-item",
                     { key: index },

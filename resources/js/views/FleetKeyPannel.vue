@@ -32,7 +32,7 @@
             <v-col class=" d-inline-flex" cols="9">
                 <v-list>
                     <v-list-item
-                        v-for="(list, index) in buttonList()"
+                        v-for="(list, index) in buttonList"
                         :key="index"
                     >
                         <v-list-item-title>{{ list.name }}</v-list-item-title>
@@ -201,17 +201,6 @@ export default {
             }
         },
 
-        buttonList() {
-            var list = this.keysList;
-            var data = {
-                id: 0,
-                name: "All"
-            };
-            list.push(data);
-
-            return list;
-        },
-
         pillClose(name) {
             if (this.$can("edit_fleet_keys")) {
                 return true;
@@ -261,6 +250,17 @@ export default {
         ...mapState(["userkeys", "keysList"]),
         filteredItems() {
             return this.userkeys;
+        },
+
+        buttonList() {
+            var list = this.keysList;
+            var data = {
+                id: 0,
+                name: "All"
+            };
+            list.push(data);
+
+            return list;
         }
     },
     beforeDestroy() {
