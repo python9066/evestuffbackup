@@ -170,7 +170,8 @@ export default {
 
             addShown: false,
             overlay: false,
-            search: ""
+            search: "",
+            toggle_exclusive: 0
         };
     },
 
@@ -228,6 +229,20 @@ export default {
         ...mapState(["fleets"]),
         filteredItems() {
             return this.fleets;
+        },
+
+        buttonList() {
+            var list = this.keysList;
+            var data = {
+                id: 0,
+                name: "All"
+            };
+            list.push(data);
+            list.sort(function(a, b) {
+                return a.id - b.id || a.name.localeCompare(b.name);
+            });
+
+            return list;
         }
     }
 };

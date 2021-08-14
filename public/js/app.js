@@ -7700,7 +7700,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       newFleetName: null,
       addShown: false,
       overlay: false,
-      search: ""
+      search: "",
+      toggle_exclusive: 0
     };
   },
   methods: {
@@ -7798,6 +7799,18 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapState"])(["fleets"])), {}, {
     filteredItems: function filteredItems() {
       return this.fleets;
+    },
+    buttonList: function buttonList() {
+      var list = this.keysList;
+      var data = {
+        id: 0,
+        name: "All"
+      };
+      list.push(data);
+      list.sort(function (a, b) {
+        return a.id - b.id || a.name.localeCompare(b.name);
+      });
+      return list;
     }
   })
 });
