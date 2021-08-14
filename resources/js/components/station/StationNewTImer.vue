@@ -60,8 +60,8 @@
                                         label="Anchoring"
                                         value="14"
                                     ></v-radio>
-                                    <v-radio label="Armor" value="8"></v-radio>
-                                    <v-radio label="Hull" value="9"></v-radio>
+                                    <v-radio label="Armor" value="5"></v-radio>
+                                    <v-radio label="Hull" value="13"></v-radio>
                                 </v-radio-group>
                             </div>
                             <div>
