@@ -218,4 +218,6 @@ Route::middleware('auth:api')->group(function () {
     Route::get('/rcadminlogs', 'LoggingController@rcSheetLogging');
     Route::put('/rcmovedone/{id}', 'StationController@rcMoveDone');
     Route::delete('/rcmovedonebad/{id}', 'StationController@destroy');
+
+    Route::get('/alluserskeys', 'KeyTypeController@getAllUsersKeys');
 });
