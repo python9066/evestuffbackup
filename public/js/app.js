@@ -7956,33 +7956,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -40583,7 +40556,7 @@ var render = function() {
         "v-dialog",
         {
           attrs: {
-            "max-width": "500px",
+            "max-width": "1200px",
             "max-hight": "1200px",
             "z-index": "0"
           },
@@ -40680,74 +40653,6 @@ var render = function() {
                               expression: "search"
                             }
                           })
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c("EditFleets")
-                    ],
-                    1
-                  )
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "v-row",
-                { attrs: { "no-gutters": "", justify: "center" } },
-                [
-                  _c(
-                    "v-col",
-                    { staticClass: " d-inline-flex", attrs: { cols: "9" } },
-                    [
-                      _c("v-spacer"),
-                      _vm._v(" "),
-                      _c(
-                        "v-card",
-                        {
-                          staticClass: "align-end",
-                          attrs: { tile: "", flat: "", color: "#121212" }
-                        },
-                        [
-                          _c(
-                            "v-btn-toggle",
-                            {
-                              attrs: { right: "", mandatory: "", value: 0 },
-                              model: {
-                                value: _vm.toggle_exclusive,
-                                callback: function($$v) {
-                                  _vm.toggle_exclusive = $$v
-                                },
-                                expression: "toggle_exclusive"
-                              }
-                            },
-                            _vm._l(_vm.buttonList, function(list, index) {
-                              return _c(
-                                "v-btn",
-                                {
-                                  key: index,
-                                  attrs: {
-                                    loading: _vm.loadingf,
-                                    disabled: _vm.loadingf
-                                  },
-                                  on: {
-                                    click: function($event) {
-                                      ;(_vm.keyflag = list.id),
-                                        (_vm.toggle_exclusive = list.id)
-                                    }
-                                  }
-                                },
-                                [
-                                  _vm._v(
-                                    "\n                                " +
-                                      _vm._s(list.name) +
-                                      "\n                            "
-                                  )
-                                ]
-                              )
-                            }),
-                            1
-                          )
                         ],
                         1
                       )

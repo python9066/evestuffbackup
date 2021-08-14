@@ -2,7 +2,7 @@
     <div>
         <v-dialog
             v-model="overlay"
-            max-width="500px"
+            max-width="1200px"
             max-hight="1200px"
             z-index="0"
             @click:outside="close()"
@@ -43,33 +43,6 @@
                                 single-line
                                 hide-details
                             ></v-text-field>
-                        </v-card>
-                        <EditFleets></EditFleets>
-                    </v-col>
-                </v-row>
-                <v-row no-gutters justify="center">
-                    <v-col class=" d-inline-flex" cols="9">
-                        <v-spacer></v-spacer>
-                        <v-card tile flat color="#121212" class="align-end">
-                            <v-btn-toggle
-                                right
-                                v-model="toggle_exclusive"
-                                mandatory
-                                :value="0"
-                            >
-                                <v-btn
-                                    v-for="(list, index) in buttonList"
-                                    :key="index"
-                                    :loading="loadingf"
-                                    :disabled="loadingf"
-                                    @click="
-                                        (keyflag = list.id),
-                                            (toggle_exclusive = list.id)
-                                    "
-                                >
-                                    {{ list.name }}
-                                </v-btn>
-                            </v-btn-toggle>
                         </v-card>
                     </v-col>
                 </v-row>
