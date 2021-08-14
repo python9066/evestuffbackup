@@ -25,7 +25,7 @@ class testController extends Controller
     {
         $user = User::find(25107);
         foreach ($user->keys as $key) {
-            echo $key->name;
+            // echo $key->name;
             dd($key);
         }
     }
