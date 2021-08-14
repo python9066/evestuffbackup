@@ -8017,7 +8017,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         return filter;
       }
     },
-    filterFleets: function filterFleets(fleets) {
+    fliterFleets: function fliterFleets(fleets) {
       // console.log(roles);
       return fleets;
     },
@@ -40824,7 +40824,7 @@ var render = function() {
                                   "div",
                                   { staticClass: " d-inline-flex" },
                                   _vm._l(
-                                    _vm.fliterfleets(item.fleets),
+                                    _vm.fliterFleets(item.fleets),
                                     function(fleet, index) {
                                       return _c(
                                         "div",

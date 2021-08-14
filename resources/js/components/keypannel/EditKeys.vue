@@ -138,7 +138,7 @@
 
                             <div class=" d-inline-flex">
                                 <div
-                                    v-for="(fleet, index) in fliterfleets(
+                                    v-for="(fleet, index) in fliterFleets(
                                         item.fleets
                                     )"
                                     :key="index"
@@ -206,7 +206,7 @@ export default {
             }
         },
 
-        filterFleets(fleets) {
+        fliterFleets(fleets) {
             // console.log(roles);
             return fleets;
         },
