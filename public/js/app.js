@@ -7650,13 +7650,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -39959,59 +39952,42 @@ var render = function() {
                                     attrs: { tile: "", width: "100%" }
                                   },
                                   [
+                                    _c("v-text-field", {
+                                      attrs: {
+                                        label: "Fleet Name",
+                                        required: "",
+                                        autofocus: ""
+                                      },
+                                      model: {
+                                        value: _vm.newFleetName,
+                                        callback: function($$v) {
+                                          _vm.newFleetName = $$v
+                                        },
+                                        expression: "newFleetName"
+                                      }
+                                    }),
+                                    _vm._v(" "),
                                     _c(
-                                      "v-form",
+                                      "v-btn",
                                       {
+                                        staticClass: "mr-4",
+                                        attrs: { color: "success" }
+                                      },
+                                      [_vm._v("submit")]
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "v-btn",
+                                      {
+                                        staticClass: "mr-4",
+                                        attrs: { color: "warning" },
                                         on: {
-                                          submit: function($event) {
-                                            $event.preventDefault()
-                                            new _vm.newFleetForm()
+                                          click: function($event) {
+                                            return _vm.closeAdd()
                                           }
                                         }
                                       },
-                                      [
-                                        _c("v-text-field", {
-                                          attrs: {
-                                            label: "Fleet Name",
-                                            required: "",
-                                            autofocus: ""
-                                          },
-                                          model: {
-                                            value: _vm.newFleetName,
-                                            callback: function($$v) {
-                                              _vm.newFleetName = $$v
-                                            },
-                                            expression: "newFleetName"
-                                          }
-                                        }),
-                                        _vm._v(" "),
-                                        _c(
-                                          "v-btn",
-                                          {
-                                            staticClass: "mr-4",
-                                            attrs: {
-                                              color: "success",
-                                              type: "submit"
-                                            }
-                                          },
-                                          [_vm._v("submit")]
-                                        ),
-                                        _vm._v(" "),
-                                        _c(
-                                          "v-btn",
-                                          {
-                                            staticClass: "mr-4",
-                                            attrs: { color: "warning" },
-                                            on: {
-                                              click: function($event) {
-                                                return _vm.closeAdd()
-                                              }
-                                            }
-                                          },
-                                          [_vm._v("Close")]
-                                        )
-                                      ],
-                                      1
+                                      [_vm._v("Close")]
                                     )
                                   ],
                                   1

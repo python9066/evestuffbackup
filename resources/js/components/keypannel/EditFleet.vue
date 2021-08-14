@@ -59,30 +59,23 @@
                             <v-row no-gutters>
                                 <div>
                                     <v-card class="pa-2" tile width="100%">
-                                        <v-form
-                                            @submit.prevent="new newFleetForm()"
-                                        >
-                                            <v-text-field
-                                                v-model="newFleetName"
-                                                label="Fleet Name"
-                                                required
-                                                autofocus
-                                            ></v-text-field>
+                                        <v-text-field
+                                            v-model="newFleetName"
+                                            label="Fleet Name"
+                                            required
+                                            autofocus
+                                        ></v-text-field>
 
-                                            <v-btn
-                                                color="success"
-                                                class="mr-4"
-                                                type="submit"
-                                                >submit</v-btn
-                                            >
-                                            <v-btn
-                                                color="warning"
-                                                class="mr-4"
-                                                @click="closeAdd()"
-                                                >Close</v-btn
-                                            >
-                                            <!-- <v-btn @click="clear">clear</v-btn> -->
-                                        </v-form>
+                                        <v-btn color="success" class="mr-4"
+                                            >submit</v-btn
+                                        >
+                                        <v-btn
+                                            color="warning"
+                                            class="mr-4"
+                                            @click="closeAdd()"
+                                            >Close</v-btn
+                                        >
+                                        <!-- <v-btn @click="clear">clear</v-btn> -->
                                     </v-card>
                                 </div>
                             </v-row>
