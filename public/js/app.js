@@ -25065,6 +25065,23 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -57611,10 +57628,54 @@ var render = function() {
               _vm._v(" "),
               _c("v-spacer"),
               _vm._v(" "),
-              _c("v-card", {
-                staticClass: "align-end",
-                attrs: { tile: "", flat: "", color: "#121212" }
-              })
+              _c(
+                "v-card",
+                {
+                  staticClass: "align-end",
+                  attrs: { tile: "", flat: "", color: "#121212" }
+                },
+                _vm._l(_vm.buttonList, function(list, index) {
+                  return _c(
+                    "v-btn-toggle",
+                    {
+                      key: index,
+                      attrs: { right: "", mandatory: "", value: 1 },
+                      model: {
+                        value: _vm.toggle_exclusive,
+                        callback: function($$v) {
+                          _vm.toggle_exclusive = $$v
+                        },
+                        expression: "toggle_exclusive"
+                      }
+                    },
+                    [
+                      _c(
+                        "v-btn",
+                        {
+                          attrs: {
+                            loading: _vm.loadingf,
+                            disabled: _vm.loadingf
+                          },
+                          on: {
+                            click: function($event) {
+                              _vm.roleflag = list.id
+                            }
+                          }
+                        },
+                        [
+                          _vm._v(
+                            "\n                        " +
+                              _vm._s(list.name) +
+                              "\n                    "
+                          )
+                        ]
+                      )
+                    ],
+                    1
+                  )
+                }),
+                1
+              )
             ],
             1
           )

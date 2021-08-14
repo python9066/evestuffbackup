@@ -39,7 +39,24 @@
                     </v-list-item>
                 </v-list>
                 <v-spacer></v-spacer>
-                <v-card tile flat color="#121212" class="align-end"> </v-card>
+                <v-card tile flat color="#121212" class="align-end">
+                    <v-btn-toggle
+                        right
+                        v-model="toggle_exclusive"
+                        mandatory
+                        :value="1"
+                        v-for="(list, index) in buttonList"
+                        :key="index"
+                    >
+                        <v-btn
+                            :loading="loadingf"
+                            :disabled="loadingf"
+                            @click="roleflag = list.id"
+                        >
+                            {{ list.name }}
+                        </v-btn>
+                    </v-btn-toggle>
+                </v-card>
             </v-col>
         </v-row>
         <v-row no-gutters justify="center">
