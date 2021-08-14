@@ -51,7 +51,10 @@
                         <v-btn
                             :loading="loadingf"
                             :disabled="loadingf"
-                            @click="roleflag = list.id"
+                            @click="
+                                (keyflag = list.id),
+                                    (toggle_exclusive = list.id)
+                            "
                         >
                             {{ list.name }}
                         </v-btn>

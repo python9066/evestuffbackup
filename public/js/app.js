@@ -25082,6 +25082,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
 
 
 
@@ -57658,7 +57661,8 @@ var render = function() {
                           },
                           on: {
                             click: function($event) {
-                              _vm.roleflag = list.id
+                              ;(_vm.keyflag = list.id),
+                                (_vm.toggle_exclusive = list.id)
                             }
                           }
                         },
