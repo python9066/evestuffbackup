@@ -246,7 +246,7 @@
                                 small
                                 :color="pillColor(item)"
                             >
-                                {{ buttontext(item) }} - Done?
+                                {{ item.status_name }} - Done?
                             </v-chip>
 
                             <v-chip

@@ -60897,7 +60897,7 @@ var render = function() {
                                       [
                                         _vm._v(
                                           "\n                            " +
-                                            _vm._s(_vm.buttontext(item)) +
+                                            _vm._s(item.status_name) +
                                             " - Done?\n                        "
                                         )
                                       ]
