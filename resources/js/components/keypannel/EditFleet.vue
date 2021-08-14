@@ -137,9 +137,7 @@
 import { mapGetters } from "vuex";
 import { mapState } from "vuex";
 export default {
-    props: {
-        station: Object
-    },
+    props: {},
     data() {
         return {
             headers: [
