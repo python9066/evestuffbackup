@@ -171,8 +171,6 @@ export default {
                     "Content-Type": "application/json"
                 }
             });
-
-            this.$store.dispatch("getRcFcs");
         },
 
         async newFleetForm() {

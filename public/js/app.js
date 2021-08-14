@@ -7706,9 +7706,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 });
 
               case 2:
-                _this.$store.dispatch("getRcFcs");
-
-              case 3:
               case "end":
                 return _context.stop();
             }
