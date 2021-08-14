@@ -7948,14 +7948,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -40556,11 +40548,7 @@ var render = function() {
       _c(
         "v-dialog",
         {
-          attrs: {
-            "max-width": "1200px",
-            "max-hight": "1200px",
-            "z-index": "0"
-          },
+          attrs: { "max-hight": "1200px", "z-index": "0" },
           on: {
             "click:outside": function($event) {
               return _vm.close()
@@ -40606,8 +40594,6 @@ var render = function() {
           _c(
             "div",
             [
-              _c("errorMessage"),
-              _vm._v(" "),
               _c(
                 "v-row",
                 { attrs: { "no-gutters": "", justify: "center" } },
@@ -40630,12 +40616,7 @@ var render = function() {
                         "v-card",
                         {
                           staticClass: "align-start",
-                          attrs: {
-                            width: "500",
-                            tile: "",
-                            flat: "",
-                            color: "#121212"
-                          }
+                          attrs: { tile: "", flat: "", color: "#121212" }
                         },
                         [
                           _c("v-text-field", {

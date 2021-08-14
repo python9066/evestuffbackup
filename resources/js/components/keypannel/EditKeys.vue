@@ -2,7 +2,6 @@
     <div>
         <v-dialog
             v-model="overlay"
-            max-width="1200px"
             max-hight="1200px"
             z-index="0"
             @click:outside="close()"
@@ -18,7 +17,6 @@
             </template>
 
             <div>
-                <errorMessage></errorMessage>
                 <v-row no-gutters justify="center">
                     <v-col class=" d-inline-flex">
                         <v-card
@@ -29,13 +27,7 @@
                         >
                             <v-card-title>Edit Keys</v-card-title>
                         </v-card>
-                        <v-card
-                            width="500"
-                            tile
-                            flat
-                            color="#121212"
-                            class="align-start"
-                        >
+                        <v-card tile flat color="#121212" class="align-start">
                             <v-text-field
                                 v-model="search"
                                 append-icon="mdi-magnify"
