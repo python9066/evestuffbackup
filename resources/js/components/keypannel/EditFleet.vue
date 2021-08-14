@@ -179,7 +179,7 @@ export default {
             var request = {
                 name: this.newFleetName
             };
-
+            console.log(this.$store.state.token);
             await axios({
                 method: "PUT",
                 url: "/api/fleetnew",
