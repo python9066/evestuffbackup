@@ -16447,7 +16447,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       },
       rules: {
         required: function required(value) {
-          return !!value || "Required.";
+          return !!value || "Required";
         }
       },
       show_on_main: 0,
@@ -16588,11 +16588,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   rc_fc_id: null,
                   rc_gsol_id: null,
                   rc_recon_id: null
-                }, _defineProperty(_request, "show_on_main", _this5.show_on_main), _defineProperty(_request, "show_on_chill", _this5.show_on_chill), _defineProperty(_request, "show_on_rc_move", _this5.show_on_rc_move), _defineProperty(_request, "show_on_rc", _this5.show_rc), _defineProperty(_request, "rules", {
-                  required: function required(value) {
-                    return !!value || "Required";
-                  }
-                }), _request);
+                }, _defineProperty(_request, "show_on_main", _this5.show_on_main), _defineProperty(_request, "show_on_chill", _this5.show_on_chill), _defineProperty(_request, "show_on_rc_move", _this5.show_on_rc_move), _defineProperty(_request, "show_on_rc", _this5.show_rc), _request);
                 _context2.next = 4;
                 return axios({
                   method: "put",

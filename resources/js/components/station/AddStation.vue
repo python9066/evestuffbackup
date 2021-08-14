@@ -312,8 +312,9 @@ export default {
                 mm: "",
                 ss: ""
             },
+
             rules: {
-                required: value => !!value || "Required."
+                required: value => !!value || "Required"
             },
             show_on_main: 0,
             show_on_chill: 0,
@@ -459,10 +460,7 @@ export default {
                 show_on_main: this.show_on_main,
                 show_on_chill: this.show_on_chill,
                 show_on_rc_move: this.show_on_rc_move,
-                show_on_rc: this.show_rc,
-                rules: {
-                    required: value => !!value || "Required"
-                }
+                show_on_rc: this.show_rc
             };
 
             await axios({
