@@ -7674,8 +7674,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       newFleetName: null,
       addShown: false,
       overlay: false,
-      search: "",
-      toggle_exclusive: 0
+      search: ""
     };
   },
   methods: {
@@ -7770,9 +7769,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }))();
     }
   },
-  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapState"])(["keyfleets", "fleetList"])), {}, {
+  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapState"])(["fleets"])), {}, {
     filteredItems: function filteredItems() {
-      return this.keyfleets;
+      return this.fleets;
     }
   })
 });
@@ -40387,7 +40386,7 @@ var render = function() {
                                         attrs: {
                                           rounded: "",
                                           outlined: true,
-                                          small: ""
+                                          "x-small": ""
                                         },
                                         on: {
                                           click: function($event) {

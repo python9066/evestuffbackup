@@ -101,13 +101,13 @@
                         <template slot="no-data">
                             No Fleets
                         </template>
-                        <!-- :color="p   illColor(item)" -->
+                        <!-- :color="pillColor(item)" -->
                         <template v-slot:[`item.addRemove`]="{ item }">
                             <span>
                                 <v-icon
                                     rounded
                                     :outlined="true"
-                                    small
+                                    x-small
                                     @click="pillDelete(item)"
                                 >
                                     fas fa-trash-alt
@@ -144,8 +144,7 @@ export default {
 
             addShown: false,
             overlay: false,
-            search: "",
-            toggle_exclusive: 0
+            search: ""
         };
     },
 
@@ -200,9 +199,9 @@ export default {
     },
 
     computed: {
-        ...mapState(["keyfleets", "fleetList"]),
+        ...mapState(["fleets"]),
         filteredItems() {
-            return this.keyfleets;
+            return this.fleets;
         }
     }
 };
