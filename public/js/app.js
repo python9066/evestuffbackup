@@ -31057,7 +31057,7 @@ function sleep(ms) {
                 _context2.next = 2;
                 return axios({
                   method: "get",
-                  url: "/api/allusersroles",
+                  url: "/api/test",
                   headers: {
                     Authorization: "Bearer " + state.token,
                     Accept: "application/json",

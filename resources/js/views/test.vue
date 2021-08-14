@@ -70,7 +70,7 @@ export default {
         async load() {
             await axios({
                 method: "get",
-                url: "/api/allusersroles",
+                url: "/api/test",
                 headers: {
                     Authorization: "Bearer " + state.token,
                     Accept: "application/json",
