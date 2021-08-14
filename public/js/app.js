@@ -8003,11 +8003,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   methods: {
     filterDropdownList: function filterDropdownList(item) {
-      var keyID = item.map(function (i) {
+      var fleetID = item.map(function (i) {
         return i.id;
       });
       var filter = this.fleetList.filter(function (r) {
-        return !keyID.includes(r.id);
+        return !fleetID.includes(r.id);
       });
       filter = filter.filter(function (r) {
         return r.name != "All";
