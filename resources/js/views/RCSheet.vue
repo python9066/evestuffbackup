@@ -246,7 +246,7 @@
                                 small
                                 :color="pillColor(item)"
                             >
-                                {{ item.status_name }} - Done?
+                                {{ buttontext(item) }} - Done?
                             </v-chip>
 
                             <v-chip
@@ -255,11 +255,11 @@
                                 small
                                 :color="pillColor(item)"
                             >
-                                {{ item.status_name }} - out
+                                {{ buttontext(item) }} - out
                             </v-chip>
 
                             <v-chip v-else pill small :color="pillColor(item)">
-                                {{ item.status_name }}
+                                {{ buttontext(item) }}
                             </v-chip>
                         </template>
 
@@ -393,7 +393,7 @@ export default {
         },
 
         buttontext(item) {
-            var ret = item.station_status_name.replace("Upcoming - ", "");
+            var ret = item.status_name.replace("Upcoming - ", "");
             return ret;
         },
 

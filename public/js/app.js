@@ -28620,7 +28620,7 @@ function sleep(ms) {
       return false;
     },
     buttontext: function buttontext(item) {
-      var ret = item.station_status_name.replace("Upcoming - ", "");
+      var ret = item.status_name.replace("Upcoming - ", "");
       return ret;
     },
     link: function link(item) {
@@ -60897,7 +60897,7 @@ var render = function() {
                                       [
                                         _vm._v(
                                           "\n                            " +
-                                            _vm._s(item.status_name) +
+                                            _vm._s(_vm.buttontext(item)) +
                                             " - Done?\n                        "
                                         )
                                       ]
@@ -60915,7 +60915,7 @@ var render = function() {
                                       [
                                         _vm._v(
                                           "\n                            " +
-                                            _vm._s(item.status_name) +
+                                            _vm._s(_vm.buttontext(item)) +
                                             " - out\n                        "
                                         )
                                       ]
@@ -60932,7 +60932,7 @@ var render = function() {
                                       [
                                         _vm._v(
                                           "\n                            " +
-                                            _vm._s(item.status_name) +
+                                            _vm._s(_vm.buttontext(item)) +
                                             "\n                        "
                                         )
                                       ]
