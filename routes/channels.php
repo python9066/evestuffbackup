@@ -114,6 +114,10 @@ Broadcast::channel('rcmovesheet', function () {
     return Auth::check();
 });
 
+Broadcast::channel('fleetkeys', function () {
+    return Auth::check();
+});
+
 
 
 

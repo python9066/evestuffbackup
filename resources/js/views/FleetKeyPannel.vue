@@ -297,9 +297,9 @@ export default {
     },
 
     computed: {
-        ...mapState(["users", "rolesList"]),
+        ...mapState(["userkeys", "rolesList"]),
         filteredItems() {
-            return this.users;
+            return this.userkeys;
         }
     },
     beforeDestroy() {
