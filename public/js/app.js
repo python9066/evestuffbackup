@@ -7946,9 +7946,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
 
 
 
@@ -40657,8 +40654,7 @@ var render = function() {
                     "v-col",
                     {
                       staticClass:
-                        " d-inline-flex justify-content-center w-auto",
-                      attrs: { cols: "9" }
+                        " d-inline-flex justify-content-center w-auto"
                     },
                     [
                       _c(

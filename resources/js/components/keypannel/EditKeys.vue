@@ -40,10 +40,7 @@
                     </v-col>
                 </v-row>
                 <v-row no-gutters justify="center">
-                    <v-col
-                        class=" d-inline-flex justify-content-center w-auto"
-                        cols="9"
-                    >
+                    <v-col class=" d-inline-flex justify-content-center w-auto">
                         <v-card width="100%">
                             <v-data-table
                                 :headers="headers"
