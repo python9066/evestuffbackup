@@ -177,11 +177,11 @@ export default {
 
         async newFleetForm() {
             var request = {
-                name: this.newFleetName
+                name: this.newfleetName
             };
 
             await axios({
-                method: "put",
+                method: "PUT",
                 url: "/api/fleetnew",
                 data: request,
                 headers: {
@@ -190,7 +190,7 @@ export default {
                     "Content-Type": "application/json"
                 }
             });
-
+            this.$store.dispatch("getRcFcs");
             this.addShown = false;
             this.newFCName = null;
         },

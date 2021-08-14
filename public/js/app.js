@@ -7726,11 +7726,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context2.prev = _context2.next) {
               case 0:
                 request = {
-                  name: _this2.newFleetName
+                  name: _this2.newfleetName
                 };
                 _context2.next = 3;
                 return axios({
-                  method: "put",
+                  method: "PUT",
                   url: "/api/fleetnew",
                   data: request,
                   headers: {
@@ -7741,10 +7741,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 });
 
               case 3:
+                _this2.$store.dispatch("getRcFcs");
+
                 _this2.addShown = false;
                 _this2.newFCName = null;
 
-              case 5:
+              case 6:
               case "end":
                 return _context2.stop();
             }
