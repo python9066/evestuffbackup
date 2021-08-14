@@ -23,8 +23,11 @@ class testController extends Controller
 
     public function key()
     {
-        $test = User::where('id', 25107)->keys()->get();
-        dd($test);
+        $test = User::find(25107);
+        foreach ($test->keys as $key) {
+
+            dd($key);
+        }
     }
 
     public function notifications(Request $request)
