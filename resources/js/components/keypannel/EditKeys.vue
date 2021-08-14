@@ -89,16 +89,17 @@
                     <v-data-table
                         :headers="headers"
                         :items="filteredItems"
-                        :search="search"
-                        height="500px"
                         item-key="id"
+                        :loading="loading"
                         :sort-by="['name']"
-                        disable-pagination
-                        fixed-header
-                        hide-default-footer
-                        class="elevation-24"
+                        :items-per-page="20"
+                        :search="search"
+                        :footer-props="{
+                            'items-per-page-options': [10, 20, 50, 100, -1]
+                        }"
+                        class="elevation-5"
                     >
-                        <template v-slot:[`item.keys`]="{ item }">
+                        <template v-slot:[`item.fleets`]="{ item }">
                             <div class=" d-inline-flex">
                                 <v-menu>
                                     <template v-slot:activator="{ on, attrs }">
@@ -137,22 +138,22 @@
 
                             <div class=" d-inline-flex">
                                 <div
-                                    v-for="(key, index) in filterKeys(
-                                        item.keys
+                                    v-for="(fleet, index) in filterKeys(
+                                        item.fleets
                                     )"
                                     :key="index"
                                     class=" pr-2"
                                 >
                                     <v-chip
                                         pill
-                                        :close="pillClose(key.name)"
+                                        :close="pillClose(fleet.name)"
                                         dark
                                         @click:close="
-                                            (userRemoveKeyText = key.id),
+                                            (userRemoveFleetText = fleet.id),
                                                 userRemoveKey(item)
                                         "
                                     >
-                                        <span> {{ key.name }}</span>
+                                        <span> {{ fleet.name }}</span>
                                     </v-chip>
                                 </div>
                             </div>
@@ -182,7 +183,7 @@ export default {
         return {
             headers: [
                 { text: "Name", value: "name" },
-                { text: "", value: "addRemove", align: "end" }
+                { text: "Fleets", value: "fleets", width: "80%" }
 
                 // { text: "Vulernable End Time", value: "vulnerable_end_time" }
             ],
@@ -254,9 +255,9 @@ export default {
     },
 
     computed: {
-        ...mapState(["fleets", "fleetList"]),
+        ...mapState(["keyfleets", "fleetList"]),
         filteredItems() {
-            return this.fleets;
+            return this.keyfleets;
         }
     }
 };

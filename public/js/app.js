@@ -7978,6 +7978,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 
@@ -7989,9 +7990,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         text: "Name",
         value: "name"
       }, {
-        text: "",
-        value: "addRemove",
-        align: "end"
+        text: "Fleets",
+        value: "fleets",
+        width: "80%"
       } // { text: "Vulernable End Time", value: "vulnerable_end_time" }
       ],
       newFleetName: null,
@@ -8107,9 +8108,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }))();
     }
   },
-  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapState"])(["fleets", "fleetList"])), {}, {
+  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapState"])(["keyfleets", "fleetList"])), {}, {
     filteredItems: function filteredItems() {
-      return this.fleets;
+      return this.keyfleets;
     }
   })
 });
@@ -40704,22 +40705,23 @@ var render = function() {
                   _c(
                     "v-data-table",
                     {
-                      staticClass: "elevation-24",
+                      staticClass: "elevation-5",
                       attrs: {
                         headers: _vm.headers,
                         items: _vm.filteredItems,
-                        search: _vm.search,
-                        height: "500px",
                         "item-key": "id",
+                        loading: _vm.loading,
                         "sort-by": ["name"],
-                        "disable-pagination": "",
-                        "fixed-header": "",
-                        "hide-default-footer": ""
+                        "items-per-page": 20,
+                        search: _vm.search,
+                        "footer-props": {
+                          "items-per-page-options": [10, 20, 50, 100, -1]
+                        }
                       },
                       scopedSlots: _vm._u(
                         [
                           {
-                            key: "item.keys",
+                            key: "item.fleets",
                             fn: function(ref) {
                               var item = ref.item
                               return [
@@ -40817,8 +40819,8 @@ var render = function() {
                                 _c(
                                   "div",
                                   { staticClass: " d-inline-flex" },
-                                  _vm._l(_vm.filterKeys(item.keys), function(
-                                    key,
+                                  _vm._l(_vm.filterKeys(item.fleets), function(
+                                    fleet,
                                     index
                                   ) {
                                     return _c(
@@ -40830,20 +40832,20 @@ var render = function() {
                                           {
                                             attrs: {
                                               pill: "",
-                                              close: _vm.pillClose(key.name),
+                                              close: _vm.pillClose(fleet.name),
                                               dark: ""
                                             },
                                             on: {
                                               "click:close": function($event) {
-                                                ;(_vm.userRemoveKeyText =
-                                                  key.id),
+                                                ;(_vm.userRemoveFleetText =
+                                                  fleet.id),
                                                   _vm.userRemoveKey(item)
                                               }
                                             }
                                           },
                                           [
                                             _c("span", [
-                                              _vm._v(" " + _vm._s(key.name))
+                                              _vm._v(" " + _vm._s(fleet.name))
                                             ])
                                           ]
                                         )
