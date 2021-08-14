@@ -37,10 +37,10 @@
                         v-model="toggle_exclusive"
                         mandatory
                         :value="1"
-                        v-for="(list, index) in buttonList"
-                        :key="index"
                     >
                         <v-btn
+                            v-for="(list, index) in buttonList"
+                            :key="index"
                             :loading="loadingf"
                             :disabled="loadingf"
                             @click="

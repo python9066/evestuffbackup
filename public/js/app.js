@@ -57616,11 +57616,10 @@ var render = function() {
                   staticClass: "align-end",
                   attrs: { tile: "", flat: "", color: "#121212" }
                 },
-                _vm._l(_vm.buttonList, function(list, index) {
-                  return _c(
+                [
+                  _c(
                     "v-btn-toggle",
                     {
-                      key: index,
                       attrs: { right: "", mandatory: "", value: 1 },
                       model: {
                         value: _vm.toggle_exclusive,
@@ -57630,10 +57629,11 @@ var render = function() {
                         expression: "toggle_exclusive"
                       }
                     },
-                    [
-                      _c(
+                    _vm._l(_vm.buttonList, function(list, index) {
+                      return _c(
                         "v-btn",
                         {
+                          key: index,
                           attrs: {
                             loading: _vm.loadingf,
                             disabled: _vm.loadingf
@@ -57653,10 +57653,10 @@ var render = function() {
                           )
                         ]
                       )
-                    ],
+                    }),
                     1
                   )
-                }),
+                ],
                 1
               )
             ],
