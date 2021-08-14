@@ -7946,6 +7946,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 
@@ -40608,7 +40609,12 @@ var render = function() {
                         "v-card",
                         {
                           staticClass: "d-inline-flex align-content-start",
-                          attrs: { tile: "", flat: "", color: "#121212" }
+                          attrs: {
+                            width: "100%",
+                            tile: "",
+                            flat: "",
+                            color: "#121212"
+                          }
                         },
                         [_c("v-card-title", [_vm._v("Edit Keys")])],
                         1

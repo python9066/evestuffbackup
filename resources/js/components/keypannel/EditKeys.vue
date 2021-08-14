@@ -21,6 +21,7 @@
                 <v-row no-gutters justify="center">
                     <v-col class=" d-inline-flex">
                         <v-card
+                            width="100%"
                             tile
                             flat
                             color="#121212"
