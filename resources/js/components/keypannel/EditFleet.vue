@@ -164,7 +164,7 @@ export default {
         async pillDelete(item) {
             await axios({
                 method: "DELETE",
-                url: "/api/rcfcdelete/" + item.id,
+                url: "/api/fleetdelete/" + item.id,
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
                     Accept: "application/json",
@@ -182,7 +182,7 @@ export default {
 
             await axios({
                 method: "PUT",
-                url: "/api/rcfcnew",
+                url: "/api/fleetnew",
                 data: request,
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
@@ -198,25 +198,6 @@ export default {
         async closeAdd() {
             this.addShown = false;
             this.newFleetName = null;
-        },
-
-        async removeFleet(item) {
-            await axios({
-                method: "DELETE",
-                url:
-                    "/api/campaignusers/" +
-                    item.id +
-                    "/" +
-                    this.campaign_id +
-                    "/" +
-                    this.$store.state.user_id,
-                headers: {
-                    Authorization: "Bearer " + this.$store.state.token,
-                    Accept: "application/json",
-                    "Content-Type": "application/json"
-                }
-            });
-            this.$store.dispatch("getCampaignSystemsRecords");
         }
     },
 

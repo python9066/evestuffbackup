@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\FleetType;
+use App\Models\KeyFleetJoin;
 use Illuminate\Http\Request;
 
 class FleetTypeController extends Controller
@@ -25,7 +26,7 @@ class FleetTypeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        FleetType::create($request->all());
     }
 
     /**
@@ -59,6 +60,7 @@ class FleetTypeController extends Controller
      */
     public function destroy($id)
     {
-        //
+        FleetType::find($id)->delete();
+        KeyFleetJoin::where('fleet_type_id', $id)->delete();
     }
 }

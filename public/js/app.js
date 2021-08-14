@@ -7697,7 +7697,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 _context.next = 2;
                 return axios({
                   method: "DELETE",
-                  url: "/api/rcfcdelete/" + item.id,
+                  url: "/api/fleetdelete/" + item.id,
                   headers: {
                     Authorization: "Bearer " + _this.$store.state.token,
                     Accept: "application/json",
@@ -7731,7 +7731,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 _context2.next = 3;
                 return axios({
                   method: "PUT",
-                  url: "/api/rcfcnew",
+                  url: "/api/fleetnew",
                   data: request,
                   headers: {
                     Authorization: "Bearer " + _this2.$store.state.token,
@@ -7771,36 +7771,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             }
           }
         }, _callee3);
-      }))();
-    },
-    removeFleet: function removeFleet(item) {
-      var _this4 = this;
-
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
-          while (1) {
-            switch (_context4.prev = _context4.next) {
-              case 0:
-                _context4.next = 2;
-                return axios({
-                  method: "DELETE",
-                  url: "/api/campaignusers/" + item.id + "/" + _this4.campaign_id + "/" + _this4.$store.state.user_id,
-                  headers: {
-                    Authorization: "Bearer " + _this4.$store.state.token,
-                    Accept: "application/json",
-                    "Content-Type": "application/json"
-                  }
-                });
-
-              case 2:
-                _this4.$store.dispatch("getCampaignSystemsRecords");
-
-              case 3:
-              case "end":
-                return _context4.stop();
-            }
-          }
-        }, _callee4);
       }))();
     }
   },
