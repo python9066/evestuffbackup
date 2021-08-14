@@ -207,7 +207,7 @@ export default {
         filterDropdownList(item) {
             let keyID = item.map(i => i.id);
 
-            const filter = this.keysList.filter(r => !keyID.includes(r.id));
+            var filter = this.keysList.filter(r => !keyID.includes(r.id));
             filter = filter.filter(r => r.name != "All");
             if (this.$can("edit_fleet_keys")) {
                 return filter;
