@@ -195,7 +195,7 @@ export default {
         return {
             headers: [
                 { text: "Name", value: "name" },
-                { text: "Fleets", value: "fleets", width: "80%" }
+                { text: "Fleets", value: "fleets", width: "80%" },
                 { text: "", value: "addRemove", align: "end" }
 
                 // { text: "Vulernable End Time", value: "vulnerable_end_time" }
@@ -209,7 +209,7 @@ export default {
             overlay: false,
             search: "",
             fleetAddKeyText: "",
-            fleetRemoveKeyText: "",
+            fleetRemoveKeyText: ""
         };
     },
 
