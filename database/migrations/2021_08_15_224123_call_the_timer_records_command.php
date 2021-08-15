@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Schema;
 class CallTheTimerRecordsCommand extends Migration
 {
     /**
-     * Run the migrations.
+     * Run thfffff migrations.
      *
      * @return void
      */
