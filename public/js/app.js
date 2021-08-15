@@ -8019,8 +8019,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       addShown: false,
       overlay: false,
       search: "",
-      keyAddKeyText: "",
-      keyRemoveKeyText: ""
+      keyAddFleetText: "",
+      keyRemoveFletText: ""
     };
   },
   methods: {
@@ -8053,22 +8053,25 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     close: function close() {
       this.overlay = false;
     },
-    newKeyClose: function newKeyClose() {
-      this.addShown = false;
-      this.newFleetName = null;
-    },
-    pillDelete: function pillDelete(item) {
+    keyAddfleet: function keyAddfleet(item) {
       var _this = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        var request;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                _context.next = 2;
+                request = {
+                  fleet_type_id: _this.keyAddFleetText,
+                  key_type_id: item.id
+                };
+                _context.next = 3;
                 return axios__WEBPACK_IMPORTED_MODULE_1___default()({
-                  method: "DELETE",
-                  url: "/api/keydelete/" + item.id,
+                  method: "put",
+                  //you can set what request you want to be
+                  url: "/api/fleetssadd",
+                  data: request,
                   headers: {
                     Authorization: "Bearer " + _this.$store.state.token,
                     Accept: "application/json",
@@ -8076,7 +8079,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   }
                 });
 
-              case 2:
+              case 3:
               case "end":
                 return _context.stop();
             }
@@ -8084,35 +8087,30 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee);
       }))();
     },
-    NewKeySubmit: function NewKeySubmit() {
+    newKeyClose: function newKeyClose() {
+      this.addShown = false;
+      this.newFleetName = null;
+    },
+    pillDelete: function pillDelete(item) {
       var _this2 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
-        var request;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                request = {
-                  name: _this2.newKeyName
-                };
-                _context2.next = 3;
+                _context2.next = 2;
                 return axios__WEBPACK_IMPORTED_MODULE_1___default()({
-                  method: "PUT",
-                  url: "/api/keynew",
-                  data: request,
+                  method: "DELETE",
+                  url: "/api/keydelete/" + item.id,
                   headers: {
                     Authorization: "Bearer " + _this2.$store.state.token,
                     Accept: "application/json",
-                    "Contect-Type": "application/json"
+                    "Content-Type": "application/json"
                   }
                 });
 
-              case 3:
-                _this2.addShown = false;
-                _this2.newKeyName = null;
-
-              case 5:
+              case 2:
               case "end":
                 return _context2.stop();
             }
@@ -8120,23 +8118,59 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee2);
       }))();
     },
-    closeAdd: function closeAdd() {
+    NewKeySubmit: function NewKeySubmit() {
       var _this3 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
+        var request;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
           while (1) {
             switch (_context3.prev = _context3.next) {
               case 0:
-                _this3.addShown = false;
-                _this3.newFleetName = null;
+                request = {
+                  name: _this3.newKeyName
+                };
+                _context3.next = 3;
+                return axios__WEBPACK_IMPORTED_MODULE_1___default()({
+                  method: "PUT",
+                  url: "/api/keynew",
+                  data: request,
+                  headers: {
+                    Authorization: "Bearer " + _this3.$store.state.token,
+                    Accept: "application/json",
+                    "Contect-Type": "application/json"
+                  }
+                });
 
-              case 2:
+              case 3:
+                _this3.addShown = false;
+                _this3.newKeyName = null;
+
+              case 5:
               case "end":
                 return _context3.stop();
             }
           }
         }, _callee3);
+      }))();
+    },
+    closeAdd: function closeAdd() {
+      var _this4 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
+          while (1) {
+            switch (_context4.prev = _context4.next) {
+              case 0:
+                _this4.addShown = false;
+                _this4.newFleetName = null;
+
+              case 2:
+              case "end":
+                return _context4.stop();
+            }
+          }
+        }, _callee4);
       }))();
     }
   },
@@ -40824,7 +40858,7 @@ var render = function() {
                                                   key: index,
                                                   on: {
                                                     click: function($event) {
-                                                      ;(_vm.keyAddText =
+                                                      ;(_vm.keyAddFleetText =
                                                         list.id),
                                                         _vm.keyAddFleet(item)
                                                     }

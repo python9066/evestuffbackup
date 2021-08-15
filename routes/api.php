@@ -231,4 +231,5 @@ Route::middleware('auth:api')->group(function () {
     Route::put('/keynew', 'KeyTypeController@store');
     Route::put('/keysadd', 'UserKeyJoinControllerController@store');
     Route::delete('/keydelete/{id}', 'KeyTypeController@destroy');
+    Route::put('/fleetssadd', 'KeyFleetJoinControllerController@store');
 });

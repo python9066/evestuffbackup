@@ -124,7 +124,7 @@
                                             )"
                                             :key="index"
                                             @click="
-                                                (keyAddText = list.id),
+                                                (keyAddFleetText = list.id),
                                                     keyAddFleet(item)
                                             "
                                         >
@@ -208,8 +208,8 @@ export default {
             addShown: false,
             overlay: false,
             search: "",
-            keyAddKeyText: "",
-            keyRemoveKeyText: ""
+            keyAddFleetText: "",
+            keyRemoveFletText: ""
         };
     },
 
@@ -238,6 +238,24 @@ export default {
         },
         close() {
             this.overlay = false;
+        },
+
+        async keyAddfleet(item) {
+            var request = {
+                fleet_type_id: this.keyAddFleetText,
+                key_type_id: item.id
+            };
+
+            await axios({
+                method: "put", //you can set what request you want to be
+                url: "/api/fleetssadd",
+                data: request,
+                headers: {
+                    Authorization: "Bearer " + this.$store.state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                }
+            });
         },
 
         newKeyClose() {
