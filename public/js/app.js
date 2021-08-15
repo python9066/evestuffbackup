@@ -56670,7 +56670,7 @@ var render = function() {
                     : _vm._e(),
                   _vm._v(" "),
                   _vm.$can("view_fleet_key")
-                    ? _c("v-tab", { attrs: { link: "", to: "/pannel" } }, [
+                    ? _c("v-tab", { attrs: { link: "", to: "/fleetkeys" } }, [
                         _vm._v(
                           "\n                    Fleet Keys\n                "
                         )
