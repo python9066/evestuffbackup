@@ -60,8 +60,8 @@
                                 <div>
                                     <v-card class="pa-2" tile width="100%">
                                         <v-text-field
-                                            v-model="newFleetName"
-                                            label="Fleet Name"
+                                            v-model="newKeyName"
+                                            label="Key name"
                                             required
                                             autofocus
                                         ></v-text-field>
@@ -69,7 +69,7 @@
                                         <v-btn
                                             color="success"
                                             class="mr-4"
-                                            @click="NewFleetSubmit()"
+                                            @click="NewKeySubmit()"
                                             >submit</v-btn
                                         >
                                         <v-btn
@@ -124,8 +124,8 @@
                                             )"
                                             :key="index"
                                             @click="
-                                                (userAddFleetText = list.id),
-                                                    userAddFleet(item)
+                                                (keyAddText = list.id),
+                                                    keyAddFleet(item)
                                             "
                                         >
                                             <v-list-item-title>{{
@@ -158,6 +158,18 @@
                                 </div>
                             </div>
                         </template>
+                        <template v-slot:[`item.addRemove`]="{ item }">
+                            <span>
+                                <v-icon
+                                    rounded
+                                    :outlined="true"
+                                    x-small
+                                    @click="pillDelete(item)"
+                                >
+                                    fas fa-trash-alt
+                                </v-icon>
+                            </span>
+                        </template>
                         <template slot="no-data">
                             Nothing matches your filters
                         </template>
@@ -184,14 +196,20 @@ export default {
             headers: [
                 { text: "Name", value: "name" },
                 { text: "Fleets", value: "fleets", width: "80%" }
+                { text: "", value: "addRemove", align: "end" }
 
                 // { text: "Vulernable End Time", value: "vulnerable_end_time" }
             ],
             newFleetName: null,
-
+            loadingr: false,
+            loadingf: false,
+            loading: false,
+            toggle_exclusive: 0,
             addShown: false,
             overlay: false,
-            search: ""
+            search: "",
+            fleetAddKeyText: "",
+            fleetRemoveKeyText: "",
         };
     },
 
@@ -222,7 +240,7 @@ export default {
             this.overlay = false;
         },
 
-        newFleetClose() {
+        newKeyClose() {
             this.addShown = false;
             this.newFleetName = null;
         },
@@ -230,7 +248,7 @@ export default {
         async pillDelete(item) {
             await axios({
                 method: "DELETE",
-                url: "/api/fleetdelete/" + item.id,
+                url: "/api/keydelete/" + item.id,
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
                     Accept: "application/json",
@@ -239,16 +257,14 @@ export default {
             });
         },
 
-        async NewFleetSubmit() {
+        async NewKeySubmit() {
             var request = {
-                name: this.newFleetName
+                name: this.newKeyName
             };
-
-            console.log(this.newFleetName);
 
             await axios({
                 method: "PUT",
-                url: "/api/fleetnew",
+                url: "/api/keynew",
                 data: request,
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
@@ -258,7 +274,7 @@ export default {
             });
 
             this.addShown = false;
-            this.newFleetName = null;
+            this.newKeyName = null;
         },
 
         async closeAdd() {

@@ -7783,348 +7783,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/keypannel/EditKeys.vue?vue&type=script&lang=js& ***!
   \*****************************************************************************************************************************************************************************/
 /*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports) {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
-
-
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-  props: {},
-  data: function data() {
-    return {
-      headers: [{
-        text: "Name",
-        value: "name"
-      }, {
-        text: "Fleets",
-        value: "fleets",
-        width: "80%"
-      } // { text: "Vulernable End Time", value: "vulnerable_end_time" }
-      ],
-      newFleetName: null,
-      addShown: false,
-      overlay: false,
-      search: ""
-    };
-  },
-  methods: {
-    filterDropdownList: function filterDropdownList(item) {
-      var fleetID = item.map(function (i) {
-        return i.id;
-      });
-      var filter = this.fleets.filter(function (r) {
-        return !fleetID.includes(r.id);
-      });
-      filter = filter.filter(function (r) {
-        return r.name != "All";
-      });
-
-      if (this.$can("edit_fleet_keys")) {
-        return filter;
-      }
-    },
-    pillClose: function pillClose(name) {
-      if (this.$can("edit_fleet_keys")) {
-        return true;
-      } else {
-        return false;
-      }
-    },
-    fliterFleets: function fliterFleets(fleets) {
-      // console.log(roles);
-      return fleets;
-    },
-    close: function close() {
-      this.overlay = false;
-    },
-    newFleetClose: function newFleetClose() {
-      this.addShown = false;
-      this.newFleetName = null;
-    },
-    pillDelete: function pillDelete(item) {
-      var _this = this;
-
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
-          while (1) {
-            switch (_context.prev = _context.next) {
-              case 0:
-                _context.next = 2;
-                return axios__WEBPACK_IMPORTED_MODULE_1___default()({
-                  method: "DELETE",
-                  url: "/api/fleetdelete/" + item.id,
-                  headers: {
-                    Authorization: "Bearer " + _this.$store.state.token,
-                    Accept: "application/json",
-                    "Content-Type": "application/json"
-                  }
-                });
-
-              case 2:
-              case "end":
-                return _context.stop();
-            }
-          }
-        }, _callee);
-      }))();
-    },
-    NewFleetSubmit: function NewFleetSubmit() {
-      var _this2 = this;
-
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
-        var request;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
-          while (1) {
-            switch (_context2.prev = _context2.next) {
-              case 0:
-                request = {
-                  name: _this2.newFleetName
-                };
-                console.log(_this2.newFleetName);
-                _context2.next = 4;
-                return axios__WEBPACK_IMPORTED_MODULE_1___default()({
-                  method: "PUT",
-                  url: "/api/fleetnew",
-                  data: request,
-                  headers: {
-                    Authorization: "Bearer " + _this2.$store.state.token,
-                    Accept: "application/json",
-                    "Contect-Type": "application/json"
-                  }
-                });
-
-              case 4:
-                _this2.addShown = false;
-                _this2.newFleetName = null;
-
-              case 6:
-              case "end":
-                return _context2.stop();
-            }
-          }
-        }, _callee2);
-      }))();
-    },
-    closeAdd: function closeAdd() {
-      var _this3 = this;
-
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
-          while (1) {
-            switch (_context3.prev = _context3.next) {
-              case 0:
-                _this3.addShown = false;
-                _this3.newFleetName = null;
-
-              case 2:
-              case "end":
-                return _context3.stop();
-            }
-          }
-        }, _callee3);
-      }))();
-    }
-  },
-  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapState"])(["keyfleets", "fleets"])), {}, {
-    filteredItems: function filteredItems() {
-      return this.keyfleets;
-    }
-  })
-});
+throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: G:\\code\\eve\\resources\\js\\components\\keypannel\\EditKeys.vue: Unexpected token, expected \",\" (199:16)\n\n\u001b[0m \u001b[90m 197 | \u001b[39m                { text\u001b[33m:\u001b[39m \u001b[32m\"Name\"\u001b[39m\u001b[33m,\u001b[39m value\u001b[33m:\u001b[39m \u001b[32m\"name\"\u001b[39m }\u001b[33m,\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 198 | \u001b[39m                { text\u001b[33m:\u001b[39m \u001b[32m\"Fleets\"\u001b[39m\u001b[33m,\u001b[39m value\u001b[33m:\u001b[39m \u001b[32m\"fleets\"\u001b[39m\u001b[33m,\u001b[39m width\u001b[33m:\u001b[39m \u001b[32m\"80%\"\u001b[39m }\u001b[0m\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 199 | \u001b[39m                { text\u001b[33m:\u001b[39m \u001b[32m\"\"\u001b[39m\u001b[33m,\u001b[39m value\u001b[33m:\u001b[39m \u001b[32m\"addRemove\"\u001b[39m\u001b[33m,\u001b[39m align\u001b[33m:\u001b[39m \u001b[32m\"end\"\u001b[39m }\u001b[0m\n\u001b[0m \u001b[90m     | \u001b[39m                \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 200 | \u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 201 | \u001b[39m                \u001b[90m// { text: \"Vulernable End Time\", value: \"vulnerable_end_time\" }\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 202 | \u001b[39m            ]\u001b[33m,\u001b[39m\u001b[0m\n    at Parser._raise (G:\\code\\eve\\node_modules\\@babel\\parser\\lib\\index.js:790:17)\n    at Parser.raiseWithData (G:\\code\\eve\\node_modules\\@babel\\parser\\lib\\index.js:783:17)\n    at Parser.raise (G:\\code\\eve\\node_modules\\@babel\\parser\\lib\\index.js:777:17)\n    at Parser.unexpected (G:\\code\\eve\\node_modules\\@babel\\parser\\lib\\index.js:9095:16)\n    at Parser.expect (G:\\code\\eve\\node_modules\\@babel\\parser\\lib\\index.js:9081:28)\n    at Parser.parseExprList (G:\\code\\eve\\node_modules\\@babel\\parser\\lib\\index.js:11229:14)\n    at Parser.parseArrayLike (G:\\code\\eve\\node_modules\\@babel\\parser\\lib\\index.js:11133:26)\n    at Parser.parseExprAtom (G:\\code\\eve\\node_modules\\@babel\\parser\\lib\\index.js:10434:23)\n    at Parser.parseExprSubscripts (G:\\code\\eve\\node_modules\\@babel\\parser\\lib\\index.js:10094:23)\n    at Parser.parseUpdate (G:\\code\\eve\\node_modules\\@babel\\parser\\lib\\index.js:10074:21)\n    at Parser.parseMaybeUnary (G:\\code\\eve\\node_modules\\@babel\\parser\\lib\\index.js:10063:17)\n    at Parser.parseExprOps (G:\\code\\eve\\node_modules\\@babel\\parser\\lib\\index.js:9933:23)\n    at Parser.parseMaybeConditional (G:\\code\\eve\\node_modules\\@babel\\parser\\lib\\index.js:9907:23)\n    at Parser.parseMaybeAssign (G:\\code\\eve\\node_modules\\@babel\\parser\\lib\\index.js:9870:21)\n    at G:\\code\\eve\\node_modules\\@babel\\parser\\lib\\index.js:9837:39\n    at Parser.allowInAnd (G:\\code\\eve\\node_modules\\@babel\\parser\\lib\\index.js:11510:12)\n    at Parser.parseMaybeAssignAllowIn (G:\\code\\eve\\node_modules\\@babel\\parser\\lib\\index.js:9837:17)\n    at Parser.parseObjectProperty (G:\\code\\eve\\node_modules\\@babel\\parser\\lib\\index.js:11055:101)\n    at Parser.parseObjPropValue (G:\\code\\eve\\node_modules\\@babel\\parser\\lib\\index.js:11080:100)\n    at Parser.parsePropertyDefinition (G:\\code\\eve\\node_modules\\@babel\\parser\\lib\\index.js:11004:10)\n    at Parser.parseObjectLike (G:\\code\\eve\\node_modules\\@babel\\parser\\lib\\index.js:10894:25)\n    at Parser.parseExprAtom (G:\\code\\eve\\node_modules\\@babel\\parser\\lib\\index.js:10445:23)\n    at Parser.parseExprSubscripts (G:\\code\\eve\\node_modules\\@babel\\parser\\lib\\index.js:10094:23)\n    at Parser.parseUpdate (G:\\code\\eve\\node_modules\\@babel\\parser\\lib\\index.js:10074:21)\n    at Parser.parseMaybeUnary (G:\\code\\eve\\node_modules\\@babel\\parser\\lib\\index.js:10063:17)\n    at Parser.parseExprOps (G:\\code\\eve\\node_modules\\@babel\\parser\\lib\\index.js:9933:23)\n    at Parser.parseMaybeConditional (G:\\code\\eve\\node_modules\\@babel\\parser\\lib\\index.js:9907:23)\n    at Parser.parseMaybeAssign (G:\\code\\eve\\node_modules\\@babel\\parser\\lib\\index.js:9870:21)\n    at Parser.parseExpressionBase (G:\\code\\eve\\node_modules\\@babel\\parser\\lib\\index.js:9815:23)\n    at G:\\code\\eve\\node_modules\\@babel\\parser\\lib\\index.js:9809:39\n    at Parser.allowInAnd (G:\\code\\eve\\node_modules\\@babel\\parser\\lib\\index.js:11504:16)\n    at Parser.parseExpression (G:\\code\\eve\\node_modules\\@babel\\parser\\lib\\index.js:9809:17)\n    at Parser.parseReturnStatement (G:\\code\\eve\\node_modules\\@babel\\parser\\lib\\index.js:12008:28)\n    at Parser.parseStatementContent (G:\\code\\eve\\node_modules\\@babel\\parser\\lib\\index.js:11687:21)\n    at Parser.parseStatement (G:\\code\\eve\\node_modules\\@babel\\parser\\lib\\index.js:11639:17)\n    at Parser.parseBlockOrModuleBlockBody (G:\\code\\eve\\node_modules\\@babel\\parser\\lib\\index.js:12221:25)");
 
 /***/ }),
 
@@ -40653,16 +40314,16 @@ var render = function() {
                                   [
                                     _c("v-text-field", {
                                       attrs: {
-                                        label: "Fleet Name",
+                                        label: "Key name",
                                         required: "",
                                         autofocus: ""
                                       },
                                       model: {
-                                        value: _vm.newFleetName,
+                                        value: _vm.newKeyName,
                                         callback: function($$v) {
-                                          _vm.newFleetName = $$v
+                                          _vm.newKeyName = $$v
                                         },
-                                        expression: "newFleetName"
+                                        expression: "newKeyName"
                                       }
                                     }),
                                     _vm._v(" "),
@@ -40673,7 +40334,7 @@ var render = function() {
                                         attrs: { color: "success" },
                                         on: {
                                           click: function($event) {
-                                            return _vm.NewFleetSubmit()
+                                            return _vm.NewKeySubmit()
                                           }
                                         }
                                       },
@@ -40803,9 +40464,9 @@ var render = function() {
                                                   key: index,
                                                   on: {
                                                     click: function($event) {
-                                                      ;(_vm.userAddFleetText =
+                                                      ;(_vm.keyAddText =
                                                         list.id),
-                                                        _vm.userAddFleet(item)
+                                                        _vm.keyAddFleet(item)
                                                     }
                                                   }
                                                 },
@@ -40872,6 +40533,40 @@ var render = function() {
                                 )
                               ]
                             }
+                          },
+                          {
+                            key: "item.addRemove",
+                            fn: function(ref) {
+                              var item = ref.item
+                              return [
+                                _c(
+                                  "span",
+                                  [
+                                    _c(
+                                      "v-icon",
+                                      {
+                                        attrs: {
+                                          rounded: "",
+                                          outlined: true,
+                                          "x-small": ""
+                                        },
+                                        on: {
+                                          click: function($event) {
+                                            return _vm.pillDelete(item)
+                                          }
+                                        }
+                                      },
+                                      [
+                                        _vm._v(
+                                          "\n                                fas fa-trash-alt\n                            "
+                                        )
+                                      ]
+                                    )
+                                  ],
+                                  1
+                                )
+                              ]
+                            }
                           }
                         ],
                         null,
@@ -40879,6 +40574,7 @@ var render = function() {
                       )
                     },
                     [
+                      _vm._v(" "),
                       _vm._v(" "),
                       _c("template", { slot: "no-data" }, [
                         _vm._v(

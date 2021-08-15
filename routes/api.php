@@ -103,7 +103,7 @@ Route::middleware('auth:api')->group(function () {
     Route::get('/roles', 'RoleController@index');
     Route::get('/allusersroles', 'RoleController@getAllUsersRoles');
     Route::put('/rolesadd', 'RoleController@addRole');
-    Route::put('/keysadd', 'KeyTypeController@store');
+
 
     Route::put('/rolesremove', 'RoleController@removeRole');
 
@@ -228,4 +228,7 @@ Route::middleware('auth:api')->group(function () {
     Route::get('/fleets', 'FleetTypeController@index');
     Route::delete('/fleetdelete/{id}', 'FleetTypeController@destroy');
     Route::put('/fleetnew', 'FleetTypeController@store');
+    Route::put('/keynew', 'KeyTypeController@store');
+    Route::put('/keysadd', 'UserKeyJoinControllerController@store');
+    Route::delete('/keydelete/{id}', 'KeyTypeController@destroy');
 });

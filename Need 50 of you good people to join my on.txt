@@ -30,6 +30,8 @@ Doctrine: Torp Bombers (Purifier > Hound > Astero)
 
 /usr/bin/php7.4-cli artisan
 
+ ps aux --sort -rss
+ kill 40157
 
 
 tidi = 100-[input_tidi]
@@ -71,6 +73,10 @@ notification_id":1379941956,
 "gsf_entity_id":null,
 "gsf_entity_type":null,
 "gsf_token_id":null
+
+
+
+ John Python
 
 <IfModule mod_rewrite.c>
     <IfModule mod_negotiation.c>

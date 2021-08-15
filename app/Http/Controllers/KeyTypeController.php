@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\KeyFleetJoin;
 use App\Models\KeyType;
 use App\Models\User;
 use App\Models\UserKeyJoin;
@@ -32,7 +33,7 @@ class KeyTypeController extends Controller
      */
     public function store(Request $request)
     {
-        UserKeyJoin::create($request->all());
+        KeyType::create($request->all());
     }
 
     public function removeKey(Request $request)
@@ -71,6 +72,8 @@ class KeyTypeController extends Controller
      */
     public function destroy($id)
     {
-        //
+        KeyType::find($id)->delete();
+        UserKeyJoin::where('key_type_id', $id)->delete();
+        KeyFleetJoin::where('key_type_id', $id)->delete();
     }
 }
