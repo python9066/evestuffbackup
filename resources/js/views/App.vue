@@ -88,6 +88,10 @@
                         Users
                     </v-tab>
 
+                    <v-tab v-if="$can('view_fleet_key')" link to="/pannel">
+                        Fleet Keys
+                    </v-tab>
+
                     <v-tab v-if="$can('super')" link to="/feedback">
                         FeedBack
                     </v-tab>

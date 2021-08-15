@@ -22920,6 +22920,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
 // import { EventBus } from "../event-bus";
 
 
@@ -56665,6 +56669,14 @@ var render = function() {
                       ])
                     : _vm._e(),
                   _vm._v(" "),
+                  _vm.$can("view_fleet_key")
+                    ? _c("v-tab", { attrs: { link: "", to: "/pannel" } }, [
+                        _vm._v(
+                          "\n                    Fleet Keys\n                "
+                        )
+                      ])
+                    : _vm._e(),
+                  _vm._v(" "),
                   _vm.$can("super")
                     ? _c("v-tab", { attrs: { link: "", to: "/feedback" } }, [
                         _vm._v(
@@ -71840,7 +71852,7 @@ vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(vue_router__WEBPACK_IMPORTED_MODU
     name: "fleetkeys",
     component: _views_FleetKeyPannel_vue__WEBPACK_IMPORTED_MODULE_24__["default"],
     beforeEnter: function beforeEnter(to, from, next) {
-      if (Permissions.indexOf('super') !== -1) {
+      if (Permissions.indexOf('view_fleet_key') !== -1) {
         next();
       } else {
         next("/notifications");

@@ -169,7 +169,7 @@ export default new Router({
             name: "fleetkeys",
             component: FleetKeys,
               beforeEnter(to, from, next) {
-                if(Permissions.indexOf('super' )!== -1){
+                if(Permissions.indexOf('view_fleet_key' )!== -1){
                     next()
                 }else{
                    next("/notifications")
