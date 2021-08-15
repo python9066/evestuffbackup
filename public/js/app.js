@@ -8011,7 +8011,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         align: "end"
       } // { text: "Vulernable End Time", value: "vulnerable_end_time" }
       ],
-      newFleetName: null,
+      newKeyName: null,
       loadingr: false,
       loadingf: false,
       loading: false,
@@ -8019,8 +8019,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       addShown: false,
       overlay: false,
       search: "",
-      fleetAddKeyText: "",
-      fleetRemoveKeyText: ""
+      keyAddKeyText: "",
+      keyRemoveKeyText: ""
     };
   },
   methods: {

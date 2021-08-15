@@ -200,7 +200,7 @@ export default {
 
                 // { text: "Vulernable End Time", value: "vulnerable_end_time" }
             ],
-            newFleetName: null,
+            newKeyName: null,
             loadingr: false,
             loadingf: false,
             loading: false,
@@ -208,8 +208,8 @@ export default {
             addShown: false,
             overlay: false,
             search: "",
-            fleetAddKeyText: "",
-            fleetRemoveKeyText: ""
+            keyAddKeyText: "",
+            keyRemoveKeyText: ""
         };
     },
 
