@@ -29,6 +29,11 @@ class KeyFleetJoinControllerController extends Controller
         KeyFleetJoin::create($request->all());
     }
 
+    public function removeFleet(Request $request)
+    {
+        KeyFleetJoin::where('fleet_type_id', $request->fleet_type_id)->where('key_type_id', $request->key_type_id)->delete();
+    }
+
     /**
      * Display the specified resource.
      *
