@@ -25,7 +25,7 @@ relationships:
   database: "mysqldb:mysql"
 
 # The size of the persistent disk of the application (in MB).
-disk: 4084
+disk: 2048
 
 # The mounts that will be performed when the package is deployed.
 mounts:
@@ -35,8 +35,6 @@ mounts:
   "storage/framework/cache": "shared:files/cache"
   "storage/framework/": "shared:files/framework"
   "storage/logs": "shared:files/logs"
-  "storage/package_payments": "shared:files/package_payments"
-  "storage/hitlist": "shared:files/hitlist"
   "bootstrap/cache": "shared:files/bootstrap/cache"
   "/.config": "shared:files/config"
   "storage": "shared:files/storage"
@@ -44,10 +42,6 @@ mounts:
   "logs": "shared:files/esi/logs"
   "public/cache": "shared:files/esi/cache"
   "public/logs": "shared:files/esi/logs"
-  "public/upload/users": "shared:files/uploads/users"
-  "storage/app/GSF-Recon-Tools": "shared:files/storage/app/GSF-Recon-Tools"
-  "storage/app/temp": "shared:files/storage/app/temp"
-  "public/assets/js/d3/alliances": "shared:files/public/assets/js/d3"
 # The configuration of app when it is exposed to the web.
 web:
   locations:
