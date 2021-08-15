@@ -2,11 +2,11 @@
 
 namespace App\Listeners;
 
-use App\Events\updateFleetKeys;
+use App\Events\FleetKeysUpdate;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 
-class SendupdateFleetKeys
+class SendFleetKeysUpdate
 {
     /**
      * Create the event listener.
@@ -21,10 +21,10 @@ class SendupdateFleetKeys
     /**
      * Handle the event.
      *
-     * @param  updateFleetKeys  $event
+     * @param  FleetKeysUpdate  $event
      * @return void
      */
-    public function handle(updateFleetKeys $event)
+    public function handle(FleetKeysUpdate $event)
     {
         //
     }

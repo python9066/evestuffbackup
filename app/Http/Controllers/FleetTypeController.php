@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\FleetKeysUpdate;
 use App\Models\FleetType;
 use App\Models\KeyFleetJoin;
 use App\Models\KeyType;
@@ -28,6 +29,10 @@ class FleetTypeController extends Controller
     public function store(Request $request)
     {
         FleetType::create($request->all());
+        $flag = collect([
+            'id' => 1
+        ]);
+        broadcast(new FleetKeysUpdate($flag));
     }
 
     public function getAllKeyFleets()
@@ -68,5 +73,9 @@ class FleetTypeController extends Controller
     {
         FleetType::find($id)->delete();
         KeyFleetJoin::where('fleet_type_id', $id)->delete();
+        $flag = collect([
+            'id' => 1
+        ]);
+        broadcast(new FleetKeysUpdate($flag));
     }
 }

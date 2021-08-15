@@ -25788,6 +25788,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
 
 
 
@@ -25834,7 +25837,7 @@ function sleep(ms) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              Echo["private"]("fleetkeys").listen("fleetkeysupdate", function (e) {
+              Echo["private"]("fleetkeys").listen("FleetKeysUpdate", function (e) {
                 _this.refresh();
               });
 
@@ -25898,6 +25901,14 @@ function sleep(ms) {
                 return _this3.$store.dispatch("getKeys");
 
               case 4:
+                _context3.next = 6;
+                return _this3.$store.dispatch("getFleets");
+
+              case 6:
+                _context3.next = 8;
+                return _this3.$store.dispatch("getKeyFleets");
+
+              case 8:
               case "end":
                 return _context3.stop();
             }
@@ -59163,9 +59174,9 @@ var render = function() {
                 1
               ),
               _vm._v(" "),
-              _c("EditFleets"),
+              _vm.$can("edit_fleet_keys") ? _c("EditFleets") : _vm._e(),
               _vm._v(" "),
-              _c("EditKeys")
+              _vm.$can("edit_fleet_keys") ? _c("EditKeys") : _vm._e()
             ],
             1
           )
@@ -59277,96 +59288,105 @@ var render = function() {
                             fn: function(ref) {
                               var item = ref.item
                               return [
-                                _c(
-                                  "div",
-                                  { staticClass: " d-inline-flex" },
-                                  [
-                                    _c(
-                                      "v-menu",
-                                      {
-                                        scopedSlots: _vm._u(
-                                          [
-                                            {
-                                              key: "activator",
-                                              fn: function(ref) {
-                                                var on = ref.on
-                                                var attrs = ref.attrs
-                                                return [
-                                                  _c(
-                                                    "div",
-                                                    [
+                                _vm.$can("edit_fleet_keys")
+                                  ? _c(
+                                      "div",
+                                      { staticClass: " d-inline-flex" },
+                                      [
+                                        _c(
+                                          "v-menu",
+                                          {
+                                            scopedSlots: _vm._u(
+                                              [
+                                                {
+                                                  key: "activator",
+                                                  fn: function(ref) {
+                                                    var on = ref.on
+                                                    var attrs = ref.attrs
+                                                    return [
                                                       _c(
-                                                        "v-btn",
-                                                        _vm._g(
-                                                          _vm._b(
-                                                            {
-                                                              attrs: {
-                                                                icon: "",
-                                                                color: "success"
-                                                              }
-                                                            },
-                                                            "v-btn",
-                                                            attrs,
-                                                            false
-                                                          ),
-                                                          on
-                                                        ),
+                                                        "div",
                                                         [
-                                                          _c("v-icon", [
-                                                            _vm._v(
-                                                              "fas fa-plus"
-                                                            )
-                                                          ])
+                                                          _c(
+                                                            "v-btn",
+                                                            _vm._g(
+                                                              _vm._b(
+                                                                {
+                                                                  attrs: {
+                                                                    icon: "",
+                                                                    color:
+                                                                      "success"
+                                                                  }
+                                                                },
+                                                                "v-btn",
+                                                                attrs,
+                                                                false
+                                                              ),
+                                                              on
+                                                            ),
+                                                            [
+                                                              _c("v-icon", [
+                                                                _vm._v(
+                                                                  "fas fa-plus"
+                                                                )
+                                                              ])
+                                                            ],
+                                                            1
+                                                          )
                                                         ],
                                                         1
                                                       )
+                                                    ]
+                                                  }
+                                                }
+                                              ],
+                                              null,
+                                              true
+                                            )
+                                          },
+                                          [
+                                            _vm._v(" "),
+                                            _c(
+                                              "v-list",
+                                              _vm._l(
+                                                _vm.filterDropdownList(
+                                                  item.keys
+                                                ),
+                                                function(list, index) {
+                                                  return _c(
+                                                    "v-list-item",
+                                                    {
+                                                      key: index,
+                                                      on: {
+                                                        click: function(
+                                                          $event
+                                                        ) {
+                                                          ;(_vm.userAddKeyText =
+                                                            list.id),
+                                                            _vm.userAddKey(item)
+                                                        }
+                                                      }
+                                                    },
+                                                    [
+                                                      _c("v-list-item-title", [
+                                                        _vm._v(
+                                                          _vm._s(list.name)
+                                                        )
+                                                      ])
                                                     ],
                                                     1
                                                   )
-                                                ]
-                                              }
-                                            }
+                                                }
+                                              ),
+                                              1
+                                            )
                                           ],
-                                          null,
-                                          true
-                                        )
-                                      },
-                                      [
-                                        _vm._v(" "),
-                                        _c(
-                                          "v-list",
-                                          _vm._l(
-                                            _vm.filterDropdownList(item.keys),
-                                            function(list, index) {
-                                              return _c(
-                                                "v-list-item",
-                                                {
-                                                  key: index,
-                                                  on: {
-                                                    click: function($event) {
-                                                      ;(_vm.userAddKeyText =
-                                                        list.id),
-                                                        _vm.userAddKey(item)
-                                                    }
-                                                  }
-                                                },
-                                                [
-                                                  _c("v-list-item-title", [
-                                                    _vm._v(_vm._s(list.name))
-                                                  ])
-                                                ],
-                                                1
-                                              )
-                                            }
-                                          ),
                                           1
                                         )
                                       ],
                                       1
                                     )
-                                  ],
-                                  1
-                                ),
+                                  : _vm._e(),
                                 _vm._v(" "),
                                 _c(
                                   "div",

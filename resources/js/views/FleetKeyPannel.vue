@@ -26,8 +26,8 @@
                         hide-details
                     ></v-text-field>
                 </v-card>
-                <EditFleets></EditFleets>
-                <EditKeys></EditKeys>
+                <EditFleets v-if="$can('edit_fleet_keys')"></EditFleets>
+                <EditKeys v-if="$can('edit_fleet_keys')"></EditKeys>
             </v-col>
         </v-row>
         <v-row no-gutters justify="center">
@@ -76,7 +76,10 @@
                         class="elevation-5"
                     >
                         <template v-slot:[`item.keys`]="{ item }">
-                            <div class=" d-inline-flex">
+                            <div
+                                class=" d-inline-flex"
+                                v-if="$can('edit_fleet_keys')"
+                            >
                                 <v-menu>
                                     <template v-slot:activator="{ on, attrs }">
                                         <div>
@@ -178,7 +181,7 @@ export default {
     },
 
     async created() {
-        Echo.private("fleetkeys").listen("fleetkeysupdate", e => {
+        Echo.private("fleetkeys").listen("FleetKeysUpdate", e => {
             this.refresh();
         });
     },
@@ -199,6 +202,8 @@ export default {
         async refresh() {
             await this.$store.dispatch("getUserKeys");
             await this.$store.dispatch("getKeys");
+            await this.$store.dispatch("getFleets");
+            await this.$store.dispatch("getKeyFleets");
         },
 
         filterDropdownList(item) {

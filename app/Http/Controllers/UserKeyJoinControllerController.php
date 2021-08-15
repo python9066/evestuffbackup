@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\FleetKeysUpdate;
 use App\Models\UserKeyJoin;
 use App\Models\UserKeyJoinController;
 use Illuminate\Http\Request;
@@ -27,6 +28,10 @@ class UserKeyJoinControllerController extends Controller
     public function store(Request $request)
     {
         UserKeyJoin::create($request->all());
+        $flag = collect([
+            'id' => 1
+        ]);
+        broadcast(new FleetKeysUpdate($flag));
     }
 
     /**

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\FleetKeysUpdate;
 use App\Models\KeyFleetJoin;
 use App\Models\KeyFleetJoinController;
 use Illuminate\Http\Request;
@@ -27,11 +28,19 @@ class KeyFleetJoinControllerController extends Controller
     public function store(Request $request)
     {
         KeyFleetJoin::create($request->all());
+        $flag = collect([
+            'id' => 1
+        ]);
+        broadcast(new FleetKeysUpdate($flag));
     }
 
     public function removeFleet(Request $request)
     {
         KeyFleetJoin::where('fleet_type_id', $request->fleet_type_id)->where('key_type_id', $request->key_type_id)->delete();
+        $flag = collect([
+            'id' => 1
+        ]);
+        broadcast(new FleetKeysUpdate($flag));
     }
 
     /**
