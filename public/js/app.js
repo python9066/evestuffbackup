@@ -8020,7 +8020,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       overlay: false,
       search: "",
       keyAddFleetText: "",
-      keyRemoveFletText: ""
+      keyRemoveFleetText: ""
     };
   },
   methods: {
@@ -8091,18 +8091,25 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       this.addShown = false;
       this.newFleetName = null;
     },
-    pillDelete: function pillDelete(item) {
+    keyRemoveFleet: function keyRemoveFleet(item) {
       var _this2 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+        var request;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                _context2.next = 2;
+                request = {
+                  fleet_type_id: _this2.keyRemoveFleetText,
+                  key_type_id: item.id
+                };
+                _context2.next = 3;
                 return axios__WEBPACK_IMPORTED_MODULE_1___default()({
-                  method: "DELETE",
-                  url: "/api/keydelete/" + item.id,
+                  method: "put",
+                  //you can set what request you want to be
+                  url: "/api/fleetsremove",
+                  data: request,
                   headers: {
                     Authorization: "Bearer " + _this2.$store.state.token,
                     Accept: "application/json",
@@ -8110,7 +8117,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   }
                 });
 
-              case 2:
+              case 3:
               case "end":
                 return _context2.stop();
             }
@@ -8118,35 +8125,26 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee2);
       }))();
     },
-    NewKeySubmit: function NewKeySubmit() {
+    pillDelete: function pillDelete(item) {
       var _this3 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
-        var request;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
           while (1) {
             switch (_context3.prev = _context3.next) {
               case 0:
-                request = {
-                  name: _this3.newKeyName
-                };
-                _context3.next = 3;
+                _context3.next = 2;
                 return axios__WEBPACK_IMPORTED_MODULE_1___default()({
-                  method: "PUT",
-                  url: "/api/keynew",
-                  data: request,
+                  method: "DELETE",
+                  url: "/api/keydelete/" + item.id,
                   headers: {
                     Authorization: "Bearer " + _this3.$store.state.token,
                     Accept: "application/json",
-                    "Contect-Type": "application/json"
+                    "Content-Type": "application/json"
                   }
                 });
 
-              case 3:
-                _this3.addShown = false;
-                _this3.newKeyName = null;
-
-              case 5:
+              case 2:
               case "end":
                 return _context3.stop();
             }
@@ -8154,23 +8152,59 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee3);
       }))();
     },
-    closeAdd: function closeAdd() {
+    NewKeySubmit: function NewKeySubmit() {
       var _this4 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
+        var request;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
           while (1) {
             switch (_context4.prev = _context4.next) {
               case 0:
-                _this4.addShown = false;
-                _this4.newFleetName = null;
+                request = {
+                  name: _this4.newKeyName
+                };
+                _context4.next = 3;
+                return axios__WEBPACK_IMPORTED_MODULE_1___default()({
+                  method: "PUT",
+                  url: "/api/keynew",
+                  data: request,
+                  headers: {
+                    Authorization: "Bearer " + _this4.$store.state.token,
+                    Accept: "application/json",
+                    "Contect-Type": "application/json"
+                  }
+                });
 
-              case 2:
+              case 3:
+                _this4.addShown = false;
+                _this4.newKeyName = null;
+
+              case 5:
               case "end":
                 return _context4.stop();
             }
           }
         }, _callee4);
+      }))();
+    },
+    closeAdd: function closeAdd() {
+      var _this5 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee5() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee5$(_context5) {
+          while (1) {
+            switch (_context5.prev = _context5.next) {
+              case 0:
+                _this5.addShown = false;
+                _this5.newFleetName = null;
+
+              case 2:
+              case "end":
+                return _context5.stop();
+            }
+          }
+        }, _callee5);
       }))();
     }
   },
@@ -40908,7 +40942,7 @@ var render = function() {
                                                 ) {
                                                   ;(_vm.userRemoveFleetText =
                                                     fleet.id),
-                                                    _vm.userRemoveKey(item)
+                                                    _vm.keyRemoveFleet(item)
                                                 }
                                               }
                                             },

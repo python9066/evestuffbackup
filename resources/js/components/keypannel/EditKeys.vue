@@ -150,7 +150,7 @@
                                         dark
                                         @click:close="
                                             (userRemoveFleetText = fleet.id),
-                                                userRemoveKey(item)
+                                                keyRemoveFleet(item)
                                         "
                                     >
                                         <span> {{ fleet.name }}</span>
@@ -209,7 +209,7 @@ export default {
             overlay: false,
             search: "",
             keyAddFleetText: "",
-            keyRemoveFletText: ""
+            keyRemoveFleetText: ""
         };
     },
 
@@ -261,6 +261,24 @@ export default {
         newKeyClose() {
             this.addShown = false;
             this.newFleetName = null;
+        },
+
+        async keyRemoveFleet(item) {
+            var request = {
+                fleet_type_id: this.keyRemoveFleetText,
+                key_type_id: item.id
+            };
+
+            await axios({
+                method: "put", //you can set what request you want to be
+                url: "/api/fleetsremove",
+                data: request,
+                headers: {
+                    Authorization: "Bearer " + this.$store.state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                }
+            });
         },
 
         async pillDelete(item) {
