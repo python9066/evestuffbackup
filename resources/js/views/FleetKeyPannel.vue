@@ -26,8 +26,8 @@
                         hide-details
                     ></v-text-field>
                 </v-card>
-                <EditKeys v-if="$can('edit_fleet_keys')"></EditKeys>
                 <EditFleets v-if="$can('edit_fleet_keys')"></EditFleets>
+                <EditKeys v-if="$can('edit_fleet_keys')"></EditKeys>
             </v-col>
         </v-row>
         <v-row no-gutters justify="center">
