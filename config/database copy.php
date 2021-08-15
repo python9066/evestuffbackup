@@ -1,26 +1,6 @@
 <?php
 
-/*
-    |--------------------------------------------------------------------------
-    | Platform.sh configuration
-    |--------------------------------------------------------------------------
-    */
-
-$relationships = getenv("PLATFORM_RELATIONSHIPS");
-$database = false;
-$redis = false;
-if ($relationships) {
-    $relationships = json_decode(base64_decode($relationships), true);
-    foreach ($relationships['database'] as $endpoint) {
-        if (empty($endpoint['query']['is_master'])) {
-            continue;
-        }
-        $database = $endpoint;
-    }
-    if (array_key_exists('redis', $relationships)) {
-        $redis = $relationships['redis'][0];
-    }
-}
+use Illuminate\Support\Str;
 
 return [
 
@@ -35,7 +15,7 @@ return [
     |
     */
 
-    'default' => env('DB_CONNECTION', ($database) ? $database['scheme'] : 'mysql'),
+    'default' => env('DB_CONNECTION', 'mysql'),
 
     /*
     |--------------------------------------------------------------------------
@@ -56,23 +36,32 @@ return [
     'connections' => [
 
         'sqlite' => [
-            'driver'   => 'sqlite',
+            'driver' => 'sqlite',
+            'url' => env('DATABASE_URL'),
             'database' => env('DB_DATABASE', database_path('database.sqlite')),
-            'prefix'   => env('DB_PREFIX', ''),
+            'prefix' => '',
+            'foreign_key_constraints' => env('DB_FOREIGN_KEYS', true),
         ],
+
         'mysql' => [
-            'driver'    => 'mysql',
-            'host'      => env('DB_HOST', ($database) ? $database['host'] : 'localhost'),
-            'port'      => env('DB_PORT', ($database) ? $database['port'] : '3306'),
-            'database'  => env('DB_DATABASE', ($database) ? $database['path'] : 'forge'),
-            'username'  => env('DB_USERNAME', ($database) ? $database['username'] : 'forge'),
-            'password'  => env('DB_PASSWORD', ($database) ? $database['password'] : 'forge'),
+            'driver' => 'mysql',
+            'url' => env('DATABASE_URL'),
+            'host' => env('DB_HOST', '127.0.0.1'),
+            'port' => env('DB_PORT', '3306'),
+            'database' => env('DB_DATABASE', 'forge'),
+            'username' => env('DB_USERNAME', 'forge'),
+            'password' => env('DB_PASSWORD', ''),
             'unix_socket' => env('DB_SOCKET', ''),
-            'charset'   => 'utf8mb4',
+            'charset' => 'utf8mb4',
             'collation' => 'utf8mb4_unicode_ci',
-            'prefix'    => env('DB_PREFIX', ''),
-            'strict'    => false,
-            'engine'    => 'InnoDB'
+            'prefix' => '',
+            'prefix_indexes' => true,
+            'strict' => true,
+            'engine' => null,
+            'options' => extension_loaded('pdo_mysql') ? array_filter([
+                PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
+                PDO::ATTR_EMULATE_PREPARES => true
+            ]) : [],
         ],
 
         'pgsql' => [
@@ -131,19 +120,29 @@ return [
 
     'redis' => [
 
-        'client' => 'predis',
+        'client' => env('REDIS_CLIENT', 'phpredis'),
 
-        'cluster' => false,
+        'options' => [
+            'cluster' => env('REDIS_CLUSTER', 'redis'),
+            'prefix' => env('REDIS_PREFIX', Str::slug(env('APP_NAME', 'laravel'), '_').'_database_'),
+        ],
 
         'default' => [
-            'host'     => env('REDIS_HOST', ($redis) ? $redis['host'] : 'localhost'),
+            'url' => env('REDIS_URL'),
+            'host' => env('REDIS_HOST', '127.0.0.1'),
             'password' => env('REDIS_PASSWORD', null),
-            'port'     => env('REDIS_PORT', ($redis) ? $redis['port'] : 6379),
-            'database' => 0,
+            'port' => env('REDIS_PORT', '6379'),
+            'database' => env('REDIS_DB', '0'),
+        ],
+
+        'cache' => [
+            'url' => env('REDIS_URL'),
+            'host' => env('REDIS_HOST', '127.0.0.1'),
+            'password' => env('REDIS_PASSWORD', null),
+            'port' => env('REDIS_PORT', '6379'),
+            'database' => env('REDIS_CACHE_DB', '1'),
         ],
 
     ],
-
-
 
 ];
