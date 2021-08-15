@@ -26,8 +26,8 @@
                         hide-details
                     ></v-text-field>
                 </v-card>
-                <EditFleets v-if="$can('edit_fleet_keys')"></EditFleets>
-                <EditKeys v-if="$can('edit_fleet_keys')"></EditKeys>
+                <EditFleets v-if="$can('edit_fleet_key')"></EditFleets>
+                <EditKeys v-if="$can('edit_fleet_key')"></EditKeys>
             </v-col>
         </v-row>
         <v-row no-gutters justify="center">
@@ -78,7 +78,7 @@
                         <template v-slot:[`item.keys`]="{ item }">
                             <div
                                 class=" d-inline-flex"
-                                v-if="$can('edit_fleet_keys')"
+                                v-if="$can('edit_fleet_key')"
                             >
                                 <v-menu>
                                     <template v-slot:activator="{ on, attrs }">
@@ -211,13 +211,13 @@ export default {
 
             var filter = this.keysList.filter(r => !keyID.includes(r.id));
             filter = filter.filter(r => r.name != "All");
-            if (this.$can("edit_fleet_keys")) {
+            if (this.$can("edit_fleet_key")) {
                 return filter;
             }
         },
 
         pillClose(name) {
-            if (this.$can("edit_fleet_keys")) {
+            if (this.$can("edit_fleet_key")) {
                 return true;
             } else {
                 return false;
