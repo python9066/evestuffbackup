@@ -34,7 +34,7 @@ return [
     |
     */
 
-    'env' => env('APP_ENV', 'production'),
+    'env' => env('APP_ENV', ($variables && array_key_exists('APP_ENV', $variables)) ? $variables['APP_ENV'] : 'production'),
 
     /*
     |--------------------------------------------------------------------------
@@ -47,7 +47,7 @@ return [
     |
     */
 
-    'debug' => (bool) env('APP_DEBUG', false),
+    'debug' => env('APP_DEBUG', ($variables && array_key_exists('APP_DEBUG', $variables)) ? $variables['APP_DEBUG'] : false),
 
     /*
     |--------------------------------------------------------------------------
@@ -60,9 +60,11 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'http://localhost'),
+    'url' => env('APP_URL', ($variables && array_key_exists('APP_URL', $variables)) ? $variables['APP_URL'] : 'https://evestiff.online'),
 
-    'asset_url' => env('ASSET_URL', null),
+    // 'url' => env('APP_URL', 'http://localhost'),
+
+    // 'asset_url' => env('ASSET_URL', null),
 
     /*
     |--------------------------------------------------------------------------
@@ -88,7 +90,7 @@ return [
     |
     */
 
-    'locale' => 'en',
+    'locale' => env('APP_LOCALE', 'en'),
 
     /*
     |--------------------------------------------------------------------------
@@ -127,7 +129,7 @@ return [
     |
     */
 
-    'key' => env('APP_KEY'),
+    'key' => env('APP_KEY', ($variables && array_key_exists('APP_KEY', $variables)) ? $variables['APP_KEY'] : ''),
 
     'cipher' => 'AES-256-CBC',
 
