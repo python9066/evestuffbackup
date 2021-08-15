@@ -59186,9 +59186,9 @@ var render = function() {
                 1
               ),
               _vm._v(" "),
-              _vm.$can("edit_fleet_keys") ? _c("EditFleets") : _vm._e(),
+              _vm.$can("edit_fleet_keys") ? _c("EditKeys") : _vm._e(),
               _vm._v(" "),
-              _vm.$can("edit_fleet_keys") ? _c("EditKeys") : _vm._e()
+              _vm.$can("edit_fleet_keys") ? _c("EditFleets") : _vm._e()
             ],
             1
           )
