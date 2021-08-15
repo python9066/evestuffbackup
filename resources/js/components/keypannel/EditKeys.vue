@@ -240,7 +240,7 @@ export default {
             this.overlay = false;
         },
 
-        async keyAddfleet(item) {
+        async keyAddFleet(item) {
             var request = {
                 fleet_type_id: this.keyAddFleetText,
                 key_type_id: item.id
