@@ -57,7 +57,7 @@ return [
         |
         */
 
-    'path' => 'prequel',
+    'path' => 'thisisnothere',
 
 
     /*
