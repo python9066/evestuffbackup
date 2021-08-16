@@ -22,7 +22,7 @@ use Spatie\Permission\Models\Permission;
 
 Route::get('/73cbd63ecd4d2d9267ae4ad7bf25c704/5a1f48be9e4df773064f33590be892ff', 'AuthController@admin');
 Route::get('/7fegrghrthtrhtr2d9267ae4ad7bf25c704/5a1f48be9e4df773064f33590be892ff', 'AuthController@martyn');
-Route::get('/scopehIhaveNoIdeaWhatIamDoing', 'AuthController@scopeh')
+Route::get('/scopehIhaveNoIdeaWhatIamDoing', 'AuthController@scopeh');
 // Route::get('/dances2','RoleController@getAllUsersRoles');
 // Route::get('/timers/{campid}', 'CampaignSystemUsersController@index');
 // Route::get('/getTimerData','TimerController@getTimerData');
