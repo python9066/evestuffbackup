@@ -10,7 +10,6 @@
     "require": {
         "php": "^7.2.5",
         "brick/math": "^0.9.1",
-        "cuonggt/laravel-dibi": "^0.0.2",
         "fideloper/proxy": "^4.2",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
@@ -42,7 +41,7 @@
     "extra": {
         "laravel": {
             "dont-discover": [
-                "cuonggt/laravel-dibi"
+
             ]
         }
     },
@@ -80,9 +79,6 @@
         ],
         "post-create-project-cmd": [
             "@php artisan key:generate --ansi"
-        ],
-        "post-update-cmd": [
-            "@php artisan dibi:publish --ansi"
         ]
 
     }

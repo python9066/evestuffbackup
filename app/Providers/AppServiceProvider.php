@@ -14,10 +14,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        if ($this->app->environment('local', 'develop', 'staging', 'production')) {
-            $this->app->register(\Cuonggt\Dibi\DibiServiceProvider::class);
-            $this->app->register(DibiServiceProvider::class);
-        }
     }
 
     /**
