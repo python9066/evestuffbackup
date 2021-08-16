@@ -97,7 +97,7 @@ return [
         | Prequel Database Configuration : array
         |--------------------------------------------------------------------------
         |
-        | This enables you to fully configure your database connection for Prequel.
+        | This enables you to fffully configure your database connection for Prequel.
         |
         */
 
