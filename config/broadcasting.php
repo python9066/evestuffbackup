@@ -1,5 +1,5 @@
 <?php
-
+$variables = json_decode(base64_decode(getenv("PLATFORM_VARIABLES")), true);
 return [
 
     /*
@@ -43,13 +43,36 @@ return [
         //     ],
         // ],
 
+        // 'pusher' => [
+        //     'driver' => 'pusher',
+        //     'key' => env('PUSHER_APP_KEY'),
+        //     'secret' => env('PUSHER_APP_SECRET'),
+        //     'app_id' => env('PUSHER_APP_ID'),
+        //     'options' => [
+        //         'cluster' => env('PUSHER_APP_CLUSTER'),
+        //         'encrypted' => true,
+        //         'useTLS' => true,
+        //         'host' => 'https://socket.evestuff.online',
+        //         'port' => 443,
+        //         'scheme' => 'https',
+        //         // 'curl_options' => [
+        //         //     CURLOPT_SSL_VERIFYHOST => 0,
+        //         //     CURLOPT_SSL_VERIFYPEER => 0,
+        //         // ]
+        //     ],
+        // ],
+
         'pusher' => [
             'driver' => 'pusher',
-            'key' => env('PUSHER_APP_KEY'),
-            'secret' => env('PUSHER_APP_SECRET'),
+            // 'key' => env('PUSHER_APP_KEY'),
+            'key' => env('PUSHER_APP_KEY', ($variables && array_key_exists('PUSHER_APP_KEY', $variables)) ? $variables['PUSHER_APP_KEY'] : 'null'),
+            // 'secret' => env('PUSHER_APP_SECRET'),
+            'secret' => env('PUSHER_APP_SECRET', ($variables && array_key_exists('PUSHER_APP_SECRET', $variables)) ? $variables['PUSHER_APP_SECRET'] : 'null'),
             'app_id' => env('PUSHER_APP_ID'),
+            'app_id' => env('PUSHER_APP_ID', ($variables && array_key_exists('PUSHER_APP_ID', $variables)) ? $variables['PUSHER_APP_ID'] : 'null'),
             'options' => [
-                'cluster' => env('PUSHER_APP_CLUSTER'),
+                // 'cluster' => env('PUSHER_APP_CLUSTER'),
+                'cluster' => env('PUSHER_APP_CLUSTER', ($variables && array_key_exists('PUSHER_APP_CLUSTER', $variables)) ? $variables['PUSHER_APP_CLUSTER'] : 'null'),
                 'encrypted' => true,
                 'useTLS' => true,
                 'host' => 'https://socket.evestuff.online',
