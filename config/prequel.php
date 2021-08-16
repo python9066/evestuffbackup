@@ -30,8 +30,8 @@ return [
         |
         */
 
-    'enabled' => env('PREQUEL_ENABLED', true),
-    // 'enabled' => env('PREQUEL_ENABLED', ($variables && array_key_exists('PREQUEL_ENABLED', $variables)) ? $variables['PREQUEL_ENABLED'] : 'null'),
+    // 'enabled' => env('PREQUEL_ENABLED', true),
+    'enabled' => env('PREQUEL_ENABLED', ($variables && array_key_exists('PREQUEL_ENABLED', $variables)) ? $variables['PREQUEL_ENABLED'] : 'null'),
 
 
     /*
