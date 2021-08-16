@@ -28,7 +28,9 @@ class DibiServiceProvider extends ServiceProvider
     {
         Gate::define('viewDibi', function ($user = null) {
             return in_array(optional($user)->name, [
-                'JohnMonty'
+                'JohnMonty',
+                'admin',
+                'Admin'
             ]);
         });
     }
