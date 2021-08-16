@@ -14,6 +14,8 @@ if ($relationships) {
         $redis = $relationships['redis'][0];
     }
 }
+
+$variables = json_decode(base64_decode(getenv("PLATFORM_VARIABLES")), true);
 return [
 
 
@@ -102,7 +104,8 @@ return [
         */
 
     'database' => [
-        'connection' => env('DB_CONNECTION', ($database) ? $database['connection'] : 'localhost'),
+
+        'connection' => env('DB_CONNECTION', ($variables && array_key_exists('DB_CONNECTION', $variables)) ? $variables['DB_CONNECTION'] : 'mysql'),
         'host'      => env('DB_HOST', ($database) ? $database['host'] : 'localhost'),
         'port'      => env('DB_PORT', ($database) ? $database['port'] : '3306'),
         'database'  => env('DB_DATABASE', ($database) ? $database['path'] : 'forge'),
