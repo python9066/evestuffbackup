@@ -49,4 +49,4 @@ Route::get('/test2', 'testController@userinfo');
 // Route::get('/367448c2da9ee714f64d0bce9dfd219fabf8969afea0d814c7e8d144/66cedf66cf2a6472c0c169f66','CronController@timers');
 //  Route::get('/3714f64d0bce9dfd219fabf03dbccb1948969afea0d814c7e8d144/66cedf66cf26e006172c0c169f66', 'CronController@alliances');
 //  NOTHING BELOW THIS LINE
-Route::get('/{any}', 'AppController@index')->where('any', '.*');
+// Route::get('/{any}', 'AppController@index')->where('any', '.*');
