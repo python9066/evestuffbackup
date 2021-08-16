@@ -9,3 +9,13 @@
 "http://{default}/":
   type: redirect
   to: "https://{default}/"
+"http://{default}/ws":
+  type: upstream
+  upstream: "app:http"
+  cache:
+    enabled: false
+"https://{default}/wss":
+  type: upstream
+  upstream: "app:http"
+  cache:
+    enabled: false
