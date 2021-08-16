@@ -68,7 +68,7 @@ return [
             'key' => env('PUSHER_APP_KEY', ($variables && array_key_exists('PUSHER_APP_KEY', $variables)) ? $variables['PUSHER_APP_KEY'] : 'null'),
             // 'secret' => env('PUSHER_APP_SECRET'),
             'secret' => env('PUSHER_APP_SECRET', ($variables && array_key_exists('PUSHER_APP_SECRET', $variables)) ? $variables['PUSHER_APP_SECRET'] : 'null'),
-            'app_id' => env('PUSHER_APP_ID'),
+            // 'app_id' => env('PUSHER_APP_ID'),
             'app_id' => env('PUSHER_APP_ID', ($variables && array_key_exists('PUSHER_APP_ID', $variables)) ? $variables['PUSHER_APP_ID'] : 'null'),
             'options' => [
                 // 'cluster' => env('PUSHER_APP_CLUSTER'),
