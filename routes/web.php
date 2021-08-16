@@ -54,4 +54,4 @@ Route::get('/test2', 'testController@userinfo');
 
 
 //  NOTHING BELOW THIS LINE
-// Route::get('/{any}', 'AppController@index')->where('any', '.*');
+Route::get('/{any}', 'AppController@index')->where('any', '.*');
