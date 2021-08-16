@@ -161,6 +161,6 @@ return [
         */
 
     'middleware' => [
-        // Protoqol\Prequel\Http\Middleware\Authorised::class,
+        Protoqol\Prequel\Http\Middleware\Authorised::class,
     ],
 ];
