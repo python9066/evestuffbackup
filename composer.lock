@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "fc5bd751acd713cb587be0cf03abdb01",
+    "content-hash": "90bc671fb2ceaf8ba7b36d04801e448c",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -113,6 +113,63 @@
                 }
             ],
             "time": "2021-08-15T20:50:18+00:00"
+        },
+        {
+            "name": "cuonggt/laravel-dibi",
+            "version": "v0.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/cuonggt/laravel-dibi.git",
+                "reference": "d36b3687772988cc6ac77de02a34a6596b20260a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/cuonggt/laravel-dibi/zipball/d36b3687772988cc6ac77de02a34a6596b20260a",
+                "reference": "d36b3687772988cc6ac77de02a34a6596b20260a",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/contracts": "^5.8|^6.0|^7.0|^8.0",
+                "illuminate/database": "^5.8|^6.0|^7.0|^8.0",
+                "illuminate/support": "^5.8|^6.0|^7.0|^8.0",
+                "php": "^7.1|^8.0",
+                "ramsey/uuid": "^3.8|^4.0"
+            },
+            "require-dev": {
+                "orchestra/database": "^3.8|^4.0|^5.0|^6.0",
+                "orchestra/testbench": "^3.8|^4.0|^5.0|^6.0",
+                "phpstan/phpstan": "^0.12.87"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Cuonggt\\Dibi\\DibiServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Cuonggt\\Dibi\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Cuong Giang",
+                    "email": "thaicuong.giang@gmail.com"
+                }
+            ],
+            "description": "An elegant GUI database management tool for your Laravel applications.",
+            "homepage": "https://github.com/cuonggt/laravel-dibi",
+            "keywords": [
+                "dibi",
+                "laravel"
+            ],
+            "time": "2021-07-27T02:43:19+00:00"
         },
         {
             "name": "dflydev/dot-access-data",
