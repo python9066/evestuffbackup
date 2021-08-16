@@ -47,7 +47,7 @@ class Kernel extends HttpKernel
         ],
 
         'adminer' => [
-            \Illuminate\Auth\Middleware\Authenticate::class,
+            // \Illuminate\Auth\Middleware\Authenticate::class,
         ]
     ];
 
