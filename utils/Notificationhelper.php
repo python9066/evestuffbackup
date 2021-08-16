@@ -31,12 +31,15 @@ class Notifications
 {
     public static function reconPull($id)
     {
+        $variables = json_decode(base64_decode(getenv("PLATFORM_VARIABLES")), true);
         $url = "https://recon.gnf.lt/api/structure/" . $id;
 
         $client = new GuzzleHttpClient();
         $headers = [
-            'x-gsf-user' => env('RECON_USER', 'DANCE2'),
-            'token' =>  env('RECON_TOKEN', "DANCE")
+            // 'x-gsf-user' => env('RECON_USER', 'DANCE2'),
+            'x-gsf-user' => env('RECON_USER', ($variables && array_key_exists('RECON_USER', $variables)) ? $variables['RECON_USER'] : 'DANCE2'),
+            // 'token' =>  env('RECON_TOKEN', "DANCE")
+            'token' => env('RECON_TOKEN', ($variables && array_key_exists('RECON_TOKEN', $variables)) ? $variables['RECON_TOKEN'] : 'DANCE2'),
 
         ];
         $response = $client->request('GET', $url, [
@@ -55,15 +58,17 @@ class Notifications
 
     public static function reconUpdate()
     {
-
+        $variables = json_decode(base64_decode(getenv("PLATFORM_VARIABLES")), true);
 
         $stations = Station::where('id', '>=', 1000000000);
         foreach ($stations as $station) {
             $url = "https://recon.gnf.lt/api/structure/" . $station->id;
             $client = new GuzzleHttpClient();
             $headers = [
-                'x-gsf-user' => env('RECON_USER', 'DANCE2'),
-                'token' =>  env('RECON_TOKEN', "DANCE")
+                // 'x-gsf-user' => env('RECON_USER', 'DANCE2'),
+                'x-gsf-user' => env('RECON_USER', ($variables && array_key_exists('RECON_USER', $variables)) ? $variables['RECON_USER'] : 'DANCE2'),
+                // 'token' =>  env('RECON_TOKEN', "DANCE")
+                'token' => env('RECON_TOKEN', ($variables && array_key_exists('RECON_TOKEN', $variables)) ? $variables['RECON_TOKEN'] : 'DANCE2'),
 
             ];
             $response = $client->request('GET', $url, [
@@ -125,8 +130,10 @@ class Notifications
             $url = "https://recon.gnf.lt/api/structure/" . $station->name;
             $client = new GuzzleHttpClient();
             $headers = [
-                'x-gsf-user' => env('RECON_USER', 'DANCE2'),
-                'token' =>  env('RECON_TOKEN', "DANCE")
+                // 'x-gsf-user' => env('RECON_USER', 'DANCE2'),
+                'x-gsf-user' => env('RECON_USER', ($variables && array_key_exists('RECON_USER', $variables)) ? $variables['RECON_USER'] : 'DANCE2'),
+                // 'token' =>  env('RECON_TOKEN', "DANCE")
+                'token' => env('RECON_TOKEN', ($variables && array_key_exists('RECON_TOKEN', $variables)) ? $variables['RECON_TOKEN'] : 'DANCE2'),
 
             ];
             $response = $client->request('GET', $url, [

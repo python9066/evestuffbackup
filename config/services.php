@@ -1,5 +1,5 @@
 <?php
-
+$variables = json_decode(base64_decode(getenv("PLATFORM_VARIABLES")), true);
 return [
 
     /*
@@ -30,9 +30,12 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
     'gice' => [
-        'client_id' => env('GOON_CLIENT_ID'),
-        'client_secret' => env('GOON_CLIENT_SECRET'),
-        'redirect' => env('GOON_REDIRECT_URL'),
+        // 'client_id' => env('GOON_CLIENT_ID'),
+        'client_id' => env('GOON_CLIENT_ID', ($variables && array_key_exists('GOON_CLIENT_ID', $variables)) ? $variables['GOON_CLIENT_ID'] : 'null'),
+        // 'client_secret' => env('GOON_CLIENT_SECRET'),
+        'client_secret' => env('GOON_CLIENT_SECRET', ($variables && array_key_exists('GOON_CLIENT_SECRET', $variables)) ? $variables['GOON_CLIENT_SECRET'] : 'null'),
+        // 'redirect' => env('GOON_REDIRECT_URL'),
+        'redirect' => env('GOON_REDIRECT_URL', ($variables && array_key_exists('GOON_REDIRECT_URL', $variables)) ? $variables['GOON_REDIRECT_URL'] : 'null'),
 
 
     ],
