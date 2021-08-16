@@ -57,7 +57,7 @@ return [
         |
         */
 
-    'path' => 'thisisnothere',
+    'path' => 'things/thisisnothere',
 
 
     /*
