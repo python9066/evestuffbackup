@@ -25863,6 +25863,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 
@@ -26104,20 +26110,7 @@ function sleep(ms) {
         return a.id - b.id || a.name.localeCompare(b.name);
       });
       return list;
-    } // tableList() {
-    //     var list = this.keysList;
-    //     var data = {
-    //         id: 0,
-    //         name: "All"
-    //     };
-    //     list.push(data);
-    //     list.sort(function(a, b) {
-    //         return a.id - b.id || a.name.localeCompare(b.name);
-    //     });
-    //     list.filter(l => l.name != "All");
-    //     return list;
-    // }
-
+    }
   }),
   beforeDestroy: function beforeDestroy() {
     Echo.leave("fleetkeys");
@@ -59614,10 +59607,27 @@ var render = function() {
                     },
                     _vm._l(_vm.buttonList, function(list, index) {
                       return _c(
-                        "v-card",
-                        { key: index },
-                        [_c("v-card-text", [_vm._v(" " + _vm._s(list.name))])],
-                        1
+                        "v-btn",
+                        {
+                          key: index,
+                          attrs: {
+                            loading: _vm.loadingf,
+                            disabled: _vm.loadingf
+                          },
+                          on: {
+                            click: function($event) {
+                              ;(_vm.keyflag = list.id),
+                                (_vm.toggle_exclusive = list.id)
+                            }
+                          }
+                        },
+                        [
+                          _vm._v(
+                            "\n                        " +
+                              _vm._s(list.name) +
+                              "\n                    "
+                          )
+                        ]
                       )
                     }),
                     1

@@ -149,12 +149,18 @@
                         mandatory
                         :value="0"
                     >
-                        <v-card
+                        <v-btn
                             v-for="(list, index) in buttonList"
                             :key="index"
+                            :loading="loadingf"
+                            :disabled="loadingf"
+                            @click="
+                                (keyflag = list.id),
+                                    (toggle_exclusive = list.id)
+                            "
                         >
-                            <v-card-text> {{ list.name }}</v-card-text>
-                        </v-card>
+                            {{ list.name }}
+                        </v-btn>
                     </v-btn-toggle>
                 </v-card>
             </v-col>
@@ -304,20 +310,6 @@ export default {
 
             return list;
         }
-
-        // tableList() {
-        //     var list = this.keysList;
-        //     var data = {
-        //         id: 0,
-        //         name: "All"
-        //     };
-        //     list.push(data);
-        //     list.sort(function(a, b) {
-        //         return a.id - b.id || a.name.localeCompare(b.name);
-        //     });
-        //     list.filter(l => l.name != "All");
-        //     return list;
-        // }
     },
     beforeDestroy() {
         Echo.leave("fleetkeys");
