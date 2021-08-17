@@ -149,7 +149,9 @@
                         <v-card-text>
                             <div class=" d-inline-flex">
                                 <div
-                                    v-for="(fleet, index) in fliterFleets(list)"
+                                    v-for="(fleet, index) in fliterFleets(
+                                        list.id
+                                    )"
                                     :key="index"
                                     class=" pr-2"
                                 >
@@ -244,6 +246,7 @@ export default {
 
         fliterFleets(fleets) {
             console.log(fleets);
+
             return fleets;
         },
 
@@ -285,7 +288,7 @@ export default {
     },
 
     computed: {
-        ...mapState(["userkeys", "keysList"]),
+        ...mapState(["userkeys", "keysList", "keyfleets"]),
         filteredItems() {
             var keyid = this.keyflag;
             if (this.keyflag != 0) {
@@ -314,7 +317,7 @@ export default {
         },
 
         tableList() {
-            return this.buttonList.filter(i => i.name != "All");
+            return this.keyfleets;
         }
     },
     beforeDestroy() {

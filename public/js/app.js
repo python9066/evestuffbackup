@@ -25860,6 +25860,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
 
 
 
@@ -26076,7 +26078,7 @@ function sleep(ms) {
       }))();
     }
   },
-  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapState"])(["userkeys", "keysList"])), {}, {
+  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapState"])(["userkeys", "keysList", "keyfleets"])), {}, {
     filteredItems: function filteredItems() {
       var keyid = this.keyflag;
 
@@ -26103,9 +26105,7 @@ function sleep(ms) {
       return list;
     },
     tableList: function tableList() {
-      return this.buttonList.filter(function (i) {
-        return i.name != "All";
-      });
+      return this.keyfleets;
     }
   }),
   beforeDestroy: function beforeDestroy() {
@@ -59579,7 +59579,7 @@ var render = function() {
                           _c(
                             "div",
                             { staticClass: " d-inline-flex" },
-                            _vm._l(_vm.fliterFleets(list), function(
+                            _vm._l(_vm.fliterFleets(list.id), function(
                               fleet,
                               index
                             ) {
