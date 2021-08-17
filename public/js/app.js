@@ -25845,9 +25845,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
 
 
 
@@ -41137,17 +41134,13 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c(
-    "div",
+    "v-card",
     [
-      _c(
-        "v-card",
-        [
-          _c("v-card-text", [
-            _vm._v("\n            " + _vm._s(_vm.item.name) + "\n        ")
-          ])
-        ],
-        1
-      )
+      _c("v-card-title", [
+        _vm._v("\n        " + _vm._s(_vm.item.name) + "\n    ")
+      ]),
+      _vm._v(" "),
+      _c("v-card-text")
     ],
     1
   )
@@ -59551,9 +59544,18 @@ var render = function() {
                   )
                 ],
                 1
-              )
+              ),
+              _vm._v(" "),
+              _vm._l(_vm.tableList, function(list, index) {
+                return _c(
+                  "v-div",
+                  { key: index },
+                  [_c("ViewKeys", { attrs: { item: list } })],
+                  1
+                )
+              })
             ],
-            1
+            2
           )
         ],
         1

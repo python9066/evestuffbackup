@@ -143,12 +143,9 @@
                     </v-data-table>
                 </v-card>
 
-                <!-- <div>
-                    <div v-for="(list, index) in tableList" :key="index">
-                        {{ item.name }}
-                    </div>
-                    <ViewKeys item:list></ViewKeys>
-                </div> -->
+                <v-div v-for="(list, index) in tableList" :key="index">
+                    <ViewKeys :item="list"></ViewKeys>
+                </v-div>
             </v-col>
         </v-row>
     </div>

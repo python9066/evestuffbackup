@@ -1,11 +1,11 @@
 <template>
-    <div>
-        <v-card>
-            <v-card-text>
-                {{ item.name }}
-            </v-card-text>
-        </v-card>
-    </div>
+    <v-card>
+        <v-card-title>
+            {{ item.name }}
+        </v-card-title>
+
+        <v-card-text> </v-card-text>
+    </v-card>
 </template>
 
 <script>
