@@ -149,9 +149,7 @@
                         <v-card-text>
                             <div class=" d-inline-flex">
                                 <div
-                                    v-for="(fleet, index) in fliterFleets(
-                                        list.id
-                                    )"
+                                    v-for="(fleet, index) in fliterFleets(list)"
                                     :key="index"
                                     class=" pr-2"
                                 >
