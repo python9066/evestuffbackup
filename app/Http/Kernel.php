@@ -45,10 +45,6 @@ class Kernel extends HttpKernel
 
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],
-
-        'adminer' => [
-            // \Illuminate\Auth\Middleware\Authenticate::class,
-        ]
     ];
 
     /**
