@@ -59551,20 +59551,6 @@ var render = function() {
                   )
                 ],
                 1
-              ),
-              _vm._v(" "),
-              _c(
-                "div",
-                _vm._l(_vm.tableList, function(list, index) {
-                  return _c("div", { key: index }, [
-                    _vm._v(
-                      "\n                    " +
-                        _vm._s(_vm.item.name) +
-                        "\n                "
-                    )
-                  ])
-                }),
-                0
               )
             ],
             1
