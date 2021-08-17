@@ -25690,8 +25690,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 
 
-var _methods;
-
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -25702,6 +25700,19 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -25907,22 +25918,8 @@ function sleep(ms) {
               Echo["private"]("fleetkeys").listen("FleetKeysUpdate", function (e) {
                 _this.refresh();
               });
-              _context.next = 3;
-              return _this.$store.dispatch("getUserKeys");
 
-            case 3:
-              _context.next = 5;
-              return _this.$store.dispatch("getKeys");
-
-            case 5:
-              _context.next = 7;
-              return _this.$store.dispatch("getFleets");
-
-            case 7:
-              _context.next = 9;
-              return _this.$store.dispatch("getKeyFleets");
-
-            case 9:
+            case 1:
             case "end":
               return _context.stop();
           }
@@ -25931,11 +25928,29 @@ function sleep(ms) {
     }))();
   },
   mounted: function mounted() {
+    var _this2 = this;
+
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
         while (1) {
           switch (_context2.prev = _context2.next) {
             case 0:
+              _context2.next = 2;
+              return _this2.$store.dispatch("getUserKeys");
+
+            case 2:
+              _context2.next = 4;
+              return _this2.$store.dispatch("getKeys");
+
+            case 4:
+              _context2.next = 6;
+              return _this2.$store.dispatch("getFleets");
+
+            case 6:
+              _context2.next = 8;
+              return _this2.$store.dispatch("getKeyFleets");
+
+            case 8:
             case "end":
               return _context2.stop();
           }
@@ -25943,13 +25958,13 @@ function sleep(ms) {
       }, _callee2);
     }))();
   },
-  methods: (_methods = {
+  methods: {
     filterKeys: function filterKeys(keys) {
       // console.log(roles);
       return keys;
     },
     refresh: function refresh() {
-      var _this2 = this;
+      var _this3 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
@@ -25957,19 +25972,19 @@ function sleep(ms) {
             switch (_context3.prev = _context3.next) {
               case 0:
                 _context3.next = 2;
-                return _this2.$store.dispatch("getUserKeys");
+                return _this3.$store.dispatch("getUserKeys");
 
               case 2:
                 _context3.next = 4;
-                return _this2.$store.dispatch("getKeys");
+                return _this3.$store.dispatch("getKeys");
 
               case 4:
                 _context3.next = 6;
-                return _this2.$store.dispatch("getFleets");
+                return _this3.$store.dispatch("getFleets");
 
               case 6:
                 _context3.next = 8;
-                return _this2.$store.dispatch("getKeyFleets");
+                return _this3.$store.dispatch("getKeyFleets");
 
               case 8:
               case "end":
@@ -25993,85 +26008,83 @@ function sleep(ms) {
       if (this.$can("edit_fleet_keys")) {
         return filter;
       }
-    }
-  }, _defineProperty(_methods, "filterDropdownList", function filterDropdownList() {
-    var filter = this.keysList.filter(function (r) {
-      return r.name != "All";
-    });
-    return filter;
-  }), _defineProperty(_methods, "tableList", function tableList(name) {
-    if (this.$can("edit_fleet_keys")) {
-      return true;
-    } else {
-      return false;
-    }
-  }), _defineProperty(_methods, "userAddKey", function userAddKey(item) {
-    var _this3 = this;
+    },
+    pillClose: function pillClose(name) {
+      if (this.$can("edit_fleet_keys")) {
+        return true;
+      } else {
+        return false;
+      }
+    },
+    userAddKey: function userAddKey(item) {
+      var _this4 = this;
 
-    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
-      var request;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
-        while (1) {
-          switch (_context4.prev = _context4.next) {
-            case 0:
-              request = {
-                key_type_id: _this3.userAddKeyText,
-                user_id: item.id
-              };
-              _context4.next = 3;
-              return axios({
-                method: "put",
-                //you can set what request you want to be
-                url: "/api/keysadd",
-                data: request,
-                headers: {
-                  Authorization: "Bearer " + _this3.$store.state.token,
-                  Accept: "application/json",
-                  "Content-Type": "application/json"
-                }
-              });
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
+        var request;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
+          while (1) {
+            switch (_context4.prev = _context4.next) {
+              case 0:
+                request = {
+                  key_type_id: _this4.userAddKeyText,
+                  user_id: item.id
+                };
+                _context4.next = 3;
+                return axios({
+                  method: "put",
+                  //you can set what request you want to be
+                  url: "/api/keysadd",
+                  data: request,
+                  headers: {
+                    Authorization: "Bearer " + _this4.$store.state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                  }
+                });
 
-            case 3:
-            case "end":
-              return _context4.stop();
+              case 3:
+              case "end":
+                return _context4.stop();
+            }
           }
-        }
-      }, _callee4);
-    }))();
-  }), _defineProperty(_methods, "userRemoveKey", function userRemoveKey(item) {
-    var _this4 = this;
+        }, _callee4);
+      }))();
+    },
+    userRemoveKey: function userRemoveKey(item) {
+      var _this5 = this;
 
-    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee5() {
-      var request;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee5$(_context5) {
-        while (1) {
-          switch (_context5.prev = _context5.next) {
-            case 0:
-              request = {
-                key_type_id: _this4.userRemoveKeyText,
-                user_id: item.id
-              };
-              _context5.next = 3;
-              return axios({
-                method: "put",
-                //you can set what request you want to be
-                url: "/api/keysremove",
-                data: request,
-                headers: {
-                  Authorization: "Bearer " + _this4.$store.state.token,
-                  Accept: "application/json",
-                  "Content-Type": "application/json"
-                }
-              });
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee5() {
+        var request;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee5$(_context5) {
+          while (1) {
+            switch (_context5.prev = _context5.next) {
+              case 0:
+                request = {
+                  key_type_id: _this5.userRemoveKeyText,
+                  user_id: item.id
+                };
+                _context5.next = 3;
+                return axios({
+                  method: "put",
+                  //you can set what request you want to be
+                  url: "/api/keysremove",
+                  data: request,
+                  headers: {
+                    Authorization: "Bearer " + _this5.$store.state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                  }
+                });
 
-            case 3:
-            case "end":
-              return _context5.stop();
+              case 3:
+              case "end":
+                return _context5.stop();
+            }
           }
-        }
-      }, _callee5);
-    }))();
-  }), _methods),
+        }, _callee5);
+      }))();
+    }
+  },
   computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapState"])(["userkeys", "keysList"])), {}, {
     filteredItems: function filteredItems() {
       var keyid = this.keyflag;
@@ -26093,13 +26106,6 @@ function sleep(ms) {
         name: "All"
       };
       list.push(data);
-      list.sort(function (a, b) {
-        return a.id - b.id || a.name.localeCompare(b.name);
-      });
-      return list;
-    },
-    tableList: function tableList() {
-      var list = this.keysList;
       list.sort(function (a, b) {
         return a.id - b.id || a.name.localeCompare(b.name);
       });
@@ -59580,7 +59586,55 @@ var render = function() {
                 1
               ),
               _vm._v(" "),
-              _c("v-card")
+              _c(
+                "v-card",
+                {
+                  staticClass: "align-end",
+                  attrs: { tile: "", flat: "", color: "#121212" }
+                },
+                [
+                  _c(
+                    "v-btn-toggle",
+                    {
+                      attrs: { right: "", mandatory: "", value: 0 },
+                      model: {
+                        value: _vm.toggle_exclusive,
+                        callback: function($$v) {
+                          _vm.toggle_exclusive = $$v
+                        },
+                        expression: "toggle_exclusive"
+                      }
+                    },
+                    _vm._l(_vm.buttonList, function(list, index) {
+                      return _c(
+                        "v-btn",
+                        {
+                          key: index,
+                          attrs: {
+                            loading: _vm.loadingf,
+                            disabled: _vm.loadingf
+                          },
+                          on: {
+                            click: function($event) {
+                              ;(_vm.keyflag = list.id),
+                                (_vm.toggle_exclusive = list.id)
+                            }
+                          }
+                        },
+                        [
+                          _vm._v(
+                            "\n                        " +
+                              _vm._s(list.name) +
+                              "\n                    "
+                          )
+                        ]
+                      )
+                    }),
+                    1
+                  )
+                ],
+                1
+              )
             ],
             1
           )

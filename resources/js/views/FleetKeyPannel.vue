@@ -142,18 +142,31 @@
                         </template>
                     </v-data-table>
                 </v-card>
-                <v-card>
-                    <!-- <v-card-text>
-                        <span v-for="(list, index) in buttonList" :key="index">
-                            <ViewKeys></ViewKeys>
-                        </span>
-                    </v-card-text> -->
+                <v-card tile flat color="#121212" class="align-end">
+                    <v-btn-toggle
+                        right
+                        v-model="toggle_exclusive"
+                        mandatory
+                        :value="0"
+                    >
+                        <v-btn
+                            v-for="(list, index) in buttonList"
+                            :key="index"
+                            :loading="loadingf"
+                            :disabled="loadingf"
+                            @click="
+                                (keyflag = list.id),
+                                    (toggle_exclusive = list.id)
+                            "
+                        >
+                            {{ list.name }}
+                        </v-btn>
+                    </v-btn-toggle>
                 </v-card>
             </v-col>
         </v-row>
     </div>
 </template>
-
 <script>
 import Axios from "axios";
 import moment, { now, utc } from "moment";
@@ -192,13 +205,14 @@ export default {
         Echo.private("fleetkeys").listen("FleetKeysUpdate", e => {
             this.refresh();
         });
+    },
+
+    async mounted() {
         await this.$store.dispatch("getUserKeys");
         await this.$store.dispatch("getKeys");
         await this.$store.dispatch("getFleets");
         await this.$store.dispatch("getKeyFleets");
     },
-
-    async mounted() {},
 
     methods: {
         filterKeys(keys) {
@@ -223,13 +237,7 @@ export default {
             }
         },
 
-        filterDropdownList() {
-            var filter = this.keysList.filter(r => r.name != "All");
-
-            return filter;
-        },
-
-        tableList(name) {
+        pillClose(name) {
             if (this.$can("edit_fleet_keys")) {
                 return true;
             } else {
@@ -296,15 +304,6 @@ export default {
                 name: "All"
             };
             list.push(data);
-            list.sort(function(a, b) {
-                return a.id - b.id || a.name.localeCompare(b.name);
-            });
-
-            return list;
-        },
-
-        tableList() {
-            var list = this.keysList;
             list.sort(function(a, b) {
                 return a.id - b.id || a.name.localeCompare(b.name);
             });
