@@ -20,7 +20,6 @@
         "laravel/ui": "^2.1",
         "mavinoo/laravel-batch": "^2.1",
         "moontoast/math": "1.1.2 as 1.999.999",
-        "onecentlin/laravel-adminer": "^5.3",
         "protoqol/prequel": "^1.22",
         "pusher/pusher-php-server": "~3.0",
         "spatie/laravel-permission": "^3.17",
@@ -81,6 +80,13 @@
             "@php artisan key:generate --ansi"
         ]
 
+    },
+
+    "repositories": [
+    {
+        "type": "vcs",
+        "url": "https://github.com/python9066/laravel-adminer"
     }
+]
 
 }
