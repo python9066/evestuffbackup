@@ -5,7 +5,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Schema;
 
-class CallTheAmmoRequestCommand extends Migration
+class CallTheAmmoRequestRecordsCommand extends Migration
 {
     /**
      * Run the migrations.
