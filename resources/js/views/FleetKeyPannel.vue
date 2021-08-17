@@ -142,17 +142,19 @@
                         </template>
                     </v-data-table>
                 </v-card>
-                <v-card
-                    ><v-card-text
-                        ><ViewKeys
-                            v-for="(list, index) in tableList"
-                            :key="index"
-                        ></ViewKeys> </v-card-text
-                ></v-card>
+                <v-card>
+                    <v-card-text
+                        v-for="(list, index) in tableList"
+                        :key="index"
+                    >
+                        <ViewKeys></ViewKeys>
+                    </v-card-text>
+                </v-card>
             </v-col>
         </v-row>
     </div>
 </template>
+
 <script>
 import Axios from "axios";
 import moment, { now, utc } from "moment";
