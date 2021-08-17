@@ -84,7 +84,7 @@ class StationController extends Controller
 
     public function taskRequest(Request $request)
     {
-
+        $variables = json_decode(base64_decode(getenv("PLATFORM_VARIABLES")), true);
         $message = [
             'station_id' => $request->station_id,
             'task_flag' => 1
@@ -99,8 +99,11 @@ class StationController extends Controller
         $url = "https://recon.gnf.lt/api/task/add";
         $client = new GuzzleHttpClient();
         $headers = [
-            'x-gsf-user' => env('RECON_USER', 'DANCE2'),
-            'token' =>  env('RECON_TASK_TOKEN', "DANCE")
+            // 'x-gsf-user' => env('RECON_USER', 'DANCE2'),
+            'x-gsf-user' => env('RECON_USER', ($variables && array_key_exists('RECON_USER', $variables)) ? $variables['RECON_USER'] : 'DANCE2'),
+            // 'token' =>  env('RECON_TOKEN', "DANCE")
+            'token' => env('RECON_TOKEN', ($variables && array_key_exists('RECON_TOKEN', $variables)) ? $variables['RECON_TOKEN'] : 'DANCE2'),
+
         ];
 
         $body = [
@@ -118,7 +121,7 @@ class StationController extends Controller
 
     public static function reconPullbyname(Request $request)
     {
-
+        $variables = json_decode(base64_decode(getenv("PLATFORM_VARIABLES")), true);
 
         $name = preg_replace("/\([^\)]+\)(\R|$)/", "$1", $request->stationName);
         $name = rtrim($name);
@@ -127,8 +130,10 @@ class StationController extends Controller
 
         $client = new GuzzleHttpClient();
         $headers = [
-            'x-gsf-user' => env('RECON_USER', 'DANCE2'),
-            'token' =>  env('RECON_TOKEN', "DANCE")
+            // 'x-gsf-user' => env('RECON_USER', 'DANCE2'),
+            'x-gsf-user' => env('RECON_USER', ($variables && array_key_exists('RECON_USER', $variables)) ? $variables['RECON_USER'] : 'DANCE2'),
+            // 'token' =>  env('RECON_TOKEN', "DANCE")
+            'token' => env('RECON_TOKEN', ($variables && array_key_exists('RECON_TOKEN', $variables)) ? $variables['RECON_TOKEN'] : 'DANCE2'),
 
         ];
         $response = $client->request('GET', $url, [

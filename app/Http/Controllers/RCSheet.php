@@ -1,5 +1,7 @@
 <?php
 
+
+
 namespace App\Http\Controllers;
 
 use App\Events\RcSheetUpdate;
@@ -238,13 +240,15 @@ class RCSheet extends Controller
 
     public static function reconPullbyname($stationName, $rcid)
     {
-
+        $variables = json_decode(base64_decode(getenv("PLATFORM_VARIABLES")), true);
         $url = "https://recon.gnf.lt/api/structure/" . $stationName;
 
         $client = new GuzzleHttpClient();
         $headers = [
-            'x-gsf-user' => env('RECON_USER', 'DANCE2'),
-            'token' =>  env('RECON_TOKEN', "DANCE")
+            // 'x-gsf-user' => env('RECON_USER', 'DANCE2'),
+            'x-gsf-user' => env('RECON_USER', ($variables && array_key_exists('RECON_USER', $variables)) ? $variables['RECON_USER'] : 'DANCE2'),
+            // 'token' =>  env('RECON_TOKEN', "DANCE")
+            'token' => env('RECON_TOKEN', ($variables && array_key_exists('RECON_TOKEN', $variables)) ? $variables['RECON_TOKEN'] : 'DANCE2'),
 
         ];
         $response = $client->request('GET', $url, [
