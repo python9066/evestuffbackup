@@ -59580,19 +59580,7 @@ var render = function() {
                 1
               ),
               _vm._v(" "),
-              _c(
-                "v-card",
-                [
-                  _c(
-                    "v-card-text",
-                    _vm._l(_vm.buttonList, function(list, index) {
-                      return _c("span", { key: index }, [_c("ViewKeys")], 1)
-                    }),
-                    0
-                  )
-                ],
-                1
-              )
+              _c("v-card")
             ],
             1
           )
