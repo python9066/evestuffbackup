@@ -224,7 +224,7 @@ export default {
         },
 
         filterDropdownList() {
-            var filter = filter.filter(r => r.name != "All");
+            var filter = this.keysList.filter(r => r.name != "All");
 
             return filter;
         },

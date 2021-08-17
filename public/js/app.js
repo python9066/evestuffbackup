@@ -25995,7 +25995,7 @@ function sleep(ms) {
       }
     }
   }, _defineProperty(_methods, "filterDropdownList", function filterDropdownList() {
-    var filter = filter.filter(function (r) {
+    var filter = this.keysList.filter(function (r) {
       return r.name != "All";
     });
     return filter;
