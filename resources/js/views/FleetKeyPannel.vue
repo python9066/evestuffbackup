@@ -144,9 +144,7 @@
                 </v-card>
 
                 <div v-for="(list, index) in tableList" :key="index">
-                    <div>
-                        {{ list.name }}
-                    </div>
+                    <ViewKeys :items="list"></ViewKeys>
                 </div>
             </v-col>
         </v-row>
