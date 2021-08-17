@@ -26096,7 +26096,9 @@ function sleep(ms) {
       return list;
     },
     tableList: function tableList() {
-      return this.buttonList.filter(i = i.name != "All");
+      return this.buttonList.filter(function (i) {
+        return i.name != "All";
+      });
     }
   }),
   beforeDestroy: function beforeDestroy() {

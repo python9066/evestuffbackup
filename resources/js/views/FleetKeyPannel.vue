@@ -296,7 +296,7 @@ export default {
         },
 
         tableList() {
-            return this.buttonList.filter((i = i.name != "All"));
+            return this.buttonList.filter(i => i.name != "All");
         }
     },
     beforeDestroy() {
