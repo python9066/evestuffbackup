@@ -25860,8 +25860,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
 
 
 
@@ -59581,7 +59579,7 @@ var render = function() {
                           _c(
                             "div",
                             { staticClass: " d-inline-flex" },
-                            _vm._l(_vm.fliterFleets(list.fleets), function(
+                            _vm._l(_vm.fliterFleets(list), function(
                               fleet,
                               index
                             ) {
