@@ -26094,6 +26094,13 @@ function sleep(ms) {
         return a.id - b.id || a.name.localeCompare(b.name);
       });
       return list;
+    },
+    tableList: function tableList() {
+      var list = this.keysList;
+      list.sort(function (a, b) {
+        return a.id - b.id || a.name.localeCompare(b.name);
+      });
+      return list;
     }
   }),
   beforeDestroy: function beforeDestroy() {
@@ -59576,7 +59583,7 @@ var render = function() {
                   staticClass: "align-end",
                   attrs: { tile: "", flat: "", color: "#121212" }
                 },
-                _vm._l(_vm.buttonList, function(list, index) {
+                _vm._l(_vm.tableList, function(list, index) {
                   return _c(
                     "v-card",
                     { key: index },
