@@ -26006,7 +26006,7 @@ function sleep(ms) {
       }
     },
     fliterFleets: function fliterFleets(fleets) {
-      // console.log(roles);
+      console.log(roles);
       return fleets;
     },
     userAddKey: function userAddKey(item) {
