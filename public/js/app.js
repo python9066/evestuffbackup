@@ -25690,6 +25690,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 
 
+var _methods;
+
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -25941,7 +25943,7 @@ function sleep(ms) {
       }, _callee2);
     }))();
   },
-  methods: {
+  methods: (_methods = {
     filterKeys: function filterKeys(keys) {
       // console.log(roles);
       return keys;
@@ -25991,83 +25993,85 @@ function sleep(ms) {
       if (this.$can("edit_fleet_keys")) {
         return filter;
       }
-    },
-    pillClose: function pillClose(name) {
-      if (this.$can("edit_fleet_keys")) {
-        return true;
-      } else {
-        return false;
-      }
-    },
-    userAddKey: function userAddKey(item) {
-      var _this3 = this;
-
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
-        var request;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
-          while (1) {
-            switch (_context4.prev = _context4.next) {
-              case 0:
-                request = {
-                  key_type_id: _this3.userAddKeyText,
-                  user_id: item.id
-                };
-                _context4.next = 3;
-                return axios({
-                  method: "put",
-                  //you can set what request you want to be
-                  url: "/api/keysadd",
-                  data: request,
-                  headers: {
-                    Authorization: "Bearer " + _this3.$store.state.token,
-                    Accept: "application/json",
-                    "Content-Type": "application/json"
-                  }
-                });
-
-              case 3:
-              case "end":
-                return _context4.stop();
-            }
-          }
-        }, _callee4);
-      }))();
-    },
-    userRemoveKey: function userRemoveKey(item) {
-      var _this4 = this;
-
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee5() {
-        var request;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee5$(_context5) {
-          while (1) {
-            switch (_context5.prev = _context5.next) {
-              case 0:
-                request = {
-                  key_type_id: _this4.userRemoveKeyText,
-                  user_id: item.id
-                };
-                _context5.next = 3;
-                return axios({
-                  method: "put",
-                  //you can set what request you want to be
-                  url: "/api/keysremove",
-                  data: request,
-                  headers: {
-                    Authorization: "Bearer " + _this4.$store.state.token,
-                    Accept: "application/json",
-                    "Content-Type": "application/json"
-                  }
-                });
-
-              case 3:
-              case "end":
-                return _context5.stop();
-            }
-          }
-        }, _callee5);
-      }))();
     }
-  },
+  }, _defineProperty(_methods, "filterDropdownList", function filterDropdownList() {
+    var filter = filter.filter(function (r) {
+      return r.name != "All";
+    });
+    return filter;
+  }), _defineProperty(_methods, "tableList", function tableList(name) {
+    if (this.$can("edit_fleet_keys")) {
+      return true;
+    } else {
+      return false;
+    }
+  }), _defineProperty(_methods, "userAddKey", function userAddKey(item) {
+    var _this3 = this;
+
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
+      var request;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
+        while (1) {
+          switch (_context4.prev = _context4.next) {
+            case 0:
+              request = {
+                key_type_id: _this3.userAddKeyText,
+                user_id: item.id
+              };
+              _context4.next = 3;
+              return axios({
+                method: "put",
+                //you can set what request you want to be
+                url: "/api/keysadd",
+                data: request,
+                headers: {
+                  Authorization: "Bearer " + _this3.$store.state.token,
+                  Accept: "application/json",
+                  "Content-Type": "application/json"
+                }
+              });
+
+            case 3:
+            case "end":
+              return _context4.stop();
+          }
+        }
+      }, _callee4);
+    }))();
+  }), _defineProperty(_methods, "userRemoveKey", function userRemoveKey(item) {
+    var _this4 = this;
+
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee5() {
+      var request;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee5$(_context5) {
+        while (1) {
+          switch (_context5.prev = _context5.next) {
+            case 0:
+              request = {
+                key_type_id: _this4.userRemoveKeyText,
+                user_id: item.id
+              };
+              _context5.next = 3;
+              return axios({
+                method: "put",
+                //you can set what request you want to be
+                url: "/api/keysremove",
+                data: request,
+                headers: {
+                  Authorization: "Bearer " + _this4.$store.state.token,
+                  Accept: "application/json",
+                  "Content-Type": "application/json"
+                }
+              });
+
+            case 3:
+            case "end":
+              return _context5.stop();
+          }
+        }
+      }, _callee5);
+    }))();
+  }), _methods),
   computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapState"])(["userkeys", "keysList"])), {}, {
     filteredItems: function filteredItems() {
       var keyid = this.keyflag;

@@ -223,7 +223,13 @@ export default {
             }
         },
 
-        pillClose(name) {
+        filterDropdownList() {
+            var filter = filter.filter(r => r.name != "All");
+
+            return filter;
+        },
+
+        tableList(name) {
             if (this.$can("edit_fleet_keys")) {
                 return true;
             } else {
