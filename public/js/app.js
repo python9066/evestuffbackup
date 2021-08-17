@@ -26096,8 +26096,7 @@ function sleep(ms) {
       return list;
     },
     tableList: function tableList() {
-      var list = this.keysList;
-      return list;
+      return this.buttonList.filter(i = i.name != "All");
     }
   }),
   beforeDestroy: function beforeDestroy() {

@@ -296,9 +296,7 @@ export default {
         },
 
         tableList() {
-            var list = this.keysList;
-
-            return list;
+            return this.buttonList.filter((i = i.name != "All"));
         }
     },
     beforeDestroy() {
