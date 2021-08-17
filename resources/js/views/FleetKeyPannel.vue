@@ -149,18 +149,12 @@
                         mandatory
                         :value="0"
                     >
-                        <v-btn
+                        <v-card
                             v-for="(list, index) in buttonList"
                             :key="index"
-                            :loading="loadingf"
-                            :disabled="loadingf"
-                            @click="
-                                (keyflag = list.id),
-                                    (toggle_exclusive = list.id)
-                            "
                         >
-                            {{ list.name }}
-                        </v-btn>
+                            <v-card-text> {{ list.name }}</v-card-text>
+                        </v-card>
                     </v-btn-toggle>
                 </v-card>
             </v-col>
