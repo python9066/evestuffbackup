@@ -8237,11 +8237,21 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: {},
+  props: {
+    item: Object
+  },
   data: function data() {},
   methods: {},
   computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapState"])(["keyfleets", "fleets"])), {}, {
@@ -25835,7 +25845,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
 
 
 
@@ -41128,7 +41137,21 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div")
+  return _c(
+    "div",
+    [
+      _c(
+        "v-card",
+        [
+          _c("v-card-text", [
+            _vm._v("\n            " + _vm._s(_vm.item.name) + "\n        ")
+          ])
+        ],
+        1
+      )
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -59531,24 +59554,16 @@ var render = function() {
                 1
               ),
               _vm._v(" "),
-              _c(
-                "v-card",
-                {
-                  staticClass: "align-end",
-                  attrs: { tile: "", flat: "", color: "#121212" }
-                },
-                _vm._l(_vm.tableList, function(list, index) {
-                  return _c(
-                    "v-card",
-                    { key: index },
-                    [_c("ViewKeys", { attrs: { "item:list": "" } })],
-                    1
-                  )
-                }),
-                1
-              )
+              _vm._l(_vm.tableList, function(list, index) {
+                return _c(
+                  "div",
+                  { key: index },
+                  [_c("ViewKeys", { attrs: { "item:list": "" } })],
+                  1
+                )
+              })
             ],
-            1
+            2
           )
         ],
         1

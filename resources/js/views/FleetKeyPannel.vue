@@ -142,11 +142,10 @@
                         </template>
                     </v-data-table>
                 </v-card>
-                <v-card tile flat color="#121212" class="align-end">
-                    <v-card v-for="(list, index) in tableList" :key="index">
-                        <ViewKeys item:list></ViewKeys>
-                    </v-card>
-                </v-card>
+
+                <div v-for="(list, index) in tableList" :key="index">
+                    <ViewKeys item:list></ViewKeys>
+                </div>
             </v-col>
         </v-row>
     </div>

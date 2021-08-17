@@ -1,11 +1,21 @@
-<template> </template>
+<template>
+    <div>
+        <v-card>
+            <v-card-text>
+                {{ item.name }}
+            </v-card-text>
+        </v-card>
+    </div>
+</template>
 
 <script>
 import axios from "axios";
 import { mapGetters } from "vuex";
 import { mapState } from "vuex";
 export default {
-    props: {},
+    props: {
+        item: Object
+    },
     data() {},
 
     methods: {},
