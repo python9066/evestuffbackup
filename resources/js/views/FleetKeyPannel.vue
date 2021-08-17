@@ -143,12 +143,10 @@
                     </v-data-table>
                 </v-card>
                 <v-card>
-                    <v-card-text
-                        v-for="(list, index) in tableList"
-                        :key="index"
-                    >
-                        fefefe
-                        <!-- <ViewKeys></ViewKeys> -->
+                    <v-card-text>
+                        <span v-for="(list, index) in tableList" :key="index">
+                            <ViewKeys></ViewKeys>
+                        </span>
                     </v-card-text>
                 </v-card>
             </v-col>
