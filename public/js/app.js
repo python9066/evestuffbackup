@@ -59585,7 +59585,7 @@ var render = function() {
                 [
                   _c(
                     "v-card-text",
-                    _vm._l(_vm.tableList, function(list, index) {
+                    _vm._l(_vm.keysList, function(list, index) {
                       return _c("span", { key: index }, [_c("ViewKeys")], 1)
                     }),
                     0
