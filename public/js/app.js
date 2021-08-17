@@ -59551,12 +59551,13 @@ var render = function() {
               _c(
                 "v-div",
                 _vm._l(_vm.tableList, function(list, index) {
-                  return _c(
-                    "v-div",
-                    { key: index },
-                    [_c("ViewKeys", { attrs: { item: list } })],
-                    1
-                  )
+                  return _c("v-div", { key: index }, [
+                    _vm._v(
+                      "\n                    " +
+                        _vm._s(list.name) +
+                        "\n                "
+                    )
+                  ])
                 }),
                 1
               )

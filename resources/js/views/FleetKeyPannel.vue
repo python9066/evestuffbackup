@@ -145,7 +145,7 @@
 
                 <v-div>
                     <v-div v-for="(list, index) in tableList" :key="index">
-                        <ViewKeys :item="list"></ViewKeys>
+                        {{ list.name }}
                     </v-div>
                 </v-div>
             </v-col>
