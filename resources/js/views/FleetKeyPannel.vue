@@ -190,14 +190,13 @@ export default {
         Echo.private("fleetkeys").listen("FleetKeysUpdate", e => {
             this.refresh();
         });
-    },
-
-    async mounted() {
         await this.$store.dispatch("getUserKeys");
         await this.$store.dispatch("getKeys");
         await this.$store.dispatch("getFleets");
         await this.$store.dispatch("getKeyFleets");
     },
+
+    async mounted() {},
 
     methods: {
         filterKeys(keys) {
