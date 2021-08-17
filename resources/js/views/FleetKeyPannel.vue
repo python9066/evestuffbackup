@@ -144,7 +144,7 @@
                 </v-card>
                 <v-card tile flat color="#121212" class="align-end">
                     <v-card v-for="(list, index) in tableList" :key="index">
-                        <v-card-text> {{ list.name }}</v-card-text>
+                        <ViewKeys item:list></ViewKeys>
                     </v-card>
                 </v-card>
             </v-col>

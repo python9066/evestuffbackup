@@ -8237,23 +8237,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -41145,34 +41128,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _c(
-        "v-card",
-        { attrs: { tile: "", "max-width": "1200px", "min-height": "200px" } },
-        [
-          _c(
-            "v-card-title",
-            { staticClass: "d-flex justify-space-between align-center " },
-            [
-              _c("div", [_vm._v("Table of Keys fefefe")]),
-              _vm._v(" "),
-              _c("v-card", {
-                staticClass: "align-start",
-                attrs: { width: "1200px", tile: "", flat: "", color: "#121212" }
-              })
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c("v-card-text")
-        ],
-        1
-      )
-    ],
-    1
-  )
+  return _c("div")
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -59585,7 +59541,7 @@ var render = function() {
                   return _c(
                     "v-card",
                     { key: index },
-                    [_c("v-card-text", [_vm._v(" " + _vm._s(list.name))])],
+                    [_c("ViewKeys", { attrs: { "item:list": "" } })],
                     1
                   )
                 }),
