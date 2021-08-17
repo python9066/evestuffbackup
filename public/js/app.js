@@ -8226,22 +8226,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
-
-
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 //
 //
@@ -8267,219 +8259,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {},
-  data: function data() {
-    return {
-      headers: [{
-        text: "Name",
-        value: "name"
-      }, {
-        text: "Fleets",
-        value: "fleets",
-        width: "80%"
-      }, {
-        text: "",
-        value: "addRemove",
-        align: "end"
-      } // { text: "Vulernable End Time", value: "vulnerable_end_time" }
-      ],
-      newKeyName: null,
-      loadingr: false,
-      loadingf: false,
-      loading: false,
-      toggle_exclusive: 0,
-      addShown: false,
-      overlay: false,
-      search: "",
-      keyAddFleetText: "",
-      keyRemoveFleetText: ""
-    };
-  },
-  methods: {
-    filterDropdownList: function filterDropdownList(item) {
-      var fleetID = item.map(function (i) {
-        return i.id;
-      });
-      var filter = this.fleets.filter(function (r) {
-        return !fleetID.includes(r.id);
-      });
-      filter = filter.filter(function (r) {
-        return r.name != "All";
-      });
-
-      if (this.$can("edit_fleet_keys")) {
-        return filter;
-      }
-    },
-    pillClose: function pillClose(name) {
-      if (this.$can("edit_fleet_keys")) {
-        return true;
-      } else {
-        return false;
-      }
-    },
-    fliterFleets: function fliterFleets(fleets) {
-      // console.log(roles);
-      return fleets;
-    },
-    close: function close() {
-      this.overlay = false;
-    },
-    keyAddFleet: function keyAddFleet(item) {
-      var _this = this;
-
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-        var request;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
-          while (1) {
-            switch (_context.prev = _context.next) {
-              case 0:
-                request = {
-                  fleet_type_id: _this.keyAddFleetText,
-                  key_type_id: item.id
-                };
-                _context.next = 3;
-                return axios__WEBPACK_IMPORTED_MODULE_1___default()({
-                  method: "put",
-                  //you can set what request you want to be
-                  url: "/api/fleetssadd",
-                  data: request,
-                  headers: {
-                    Authorization: "Bearer " + _this.$store.state.token,
-                    Accept: "application/json",
-                    "Content-Type": "application/json"
-                  }
-                });
-
-              case 3:
-              case "end":
-                return _context.stop();
-            }
-          }
-        }, _callee);
-      }))();
-    },
-    newKeyClose: function newKeyClose() {
-      this.addShown = false;
-      this.newFleetName = null;
-    },
-    keyRemoveFleet: function keyRemoveFleet(item) {
-      var _this2 = this;
-
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
-        var request;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
-          while (1) {
-            switch (_context2.prev = _context2.next) {
-              case 0:
-                request = {
-                  fleet_type_id: _this2.keyRemoveFleetText,
-                  key_type_id: item.id
-                };
-                _context2.next = 3;
-                return axios__WEBPACK_IMPORTED_MODULE_1___default()({
-                  method: "put",
-                  //you can set what request you want to be
-                  url: "/api/fleetsremove",
-                  data: request,
-                  headers: {
-                    Authorization: "Bearer " + _this2.$store.state.token,
-                    Accept: "application/json",
-                    "Content-Type": "application/json"
-                  }
-                });
-
-              case 3:
-              case "end":
-                return _context2.stop();
-            }
-          }
-        }, _callee2);
-      }))();
-    },
-    pillDelete: function pillDelete(item) {
-      var _this3 = this;
-
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
-          while (1) {
-            switch (_context3.prev = _context3.next) {
-              case 0:
-                _context3.next = 2;
-                return axios__WEBPACK_IMPORTED_MODULE_1___default()({
-                  method: "DELETE",
-                  url: "/api/keydelete/" + item.id,
-                  headers: {
-                    Authorization: "Bearer " + _this3.$store.state.token,
-                    Accept: "application/json",
-                    "Content-Type": "application/json"
-                  }
-                });
-
-              case 2:
-              case "end":
-                return _context3.stop();
-            }
-          }
-        }, _callee3);
-      }))();
-    },
-    NewKeySubmit: function NewKeySubmit() {
-      var _this4 = this;
-
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
-        var request;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
-          while (1) {
-            switch (_context4.prev = _context4.next) {
-              case 0:
-                request = {
-                  name: _this4.newKeyName
-                };
-                _context4.next = 3;
-                return axios__WEBPACK_IMPORTED_MODULE_1___default()({
-                  method: "PUT",
-                  url: "/api/keynew",
-                  data: request,
-                  headers: {
-                    Authorization: "Bearer " + _this4.$store.state.token,
-                    Accept: "application/json",
-                    "Contect-Type": "application/json"
-                  }
-                });
-
-              case 3:
-                _this4.addShown = false;
-                _this4.newKeyName = null;
-
-              case 5:
-              case "end":
-                return _context4.stop();
-            }
-          }
-        }, _callee4);
-      }))();
-    },
-    closeAdd: function closeAdd() {
-      var _this5 = this;
-
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee5() {
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee5$(_context5) {
-          while (1) {
-            switch (_context5.prev = _context5.next) {
-              case 0:
-                _this5.addShown = false;
-                _this5.newFleetName = null;
-
-              case 2:
-              case "end":
-                return _context5.stop();
-            }
-          }
-        }, _callee5);
-      }))();
-    }
-  },
-  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapState"])(["keyfleets", "fleets"])), {}, {
+  data: function data() {},
+  methods: {},
+  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapState"])(["keyfleets", "fleets"])), {}, {
     filteredItems: function filteredItems() {
       return this.keyfleets;
     }
@@ -25918,6 +25700,7 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
+//
 //
 //
 //
@@ -59802,7 +59585,9 @@ var render = function() {
               _c(
                 "v-card",
                 _vm._l(_vm.tableList, function(list, index) {
-                  return _c("v-card-text", { key: index }, [_c("ViewKeys")], 1)
+                  return _c("v-card-text", { key: index }, [
+                    _vm._v("\n                    fefefe\n                    ")
+                  ])
                 }),
                 1
               )
