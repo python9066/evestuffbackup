@@ -144,7 +144,24 @@
                 </v-card>
 
                 <div v-for="(list, index) in tableList" :key="index">
-                    <ViewKeys :items="list"></ViewKeys>
+                    <v-card>
+                        <v-card-title>{{ list.name }}</v-card-title>
+                        <v-card-text>
+                            <div class=" d-inline-flex">
+                                <div
+                                    v-for="(fleet, index) in fliterFleets(
+                                        item.fleets
+                                    )"
+                                    :key="index"
+                                    class=" pr-2"
+                                >
+                                    <v-chip pill dark>
+                                        <span> {{ fleet.name }}</span>
+                                    </v-chip>
+                                </div>
+                            </div>
+                        </v-card-text>
+                    </v-card>
                 </div>
             </v-col>
         </v-row>
@@ -225,6 +242,11 @@ export default {
             } else {
                 return false;
             }
+        },
+
+        fliterFleets(fleets) {
+            // console.log(roles);
+            return fleets;
         },
 
         async userAddKey(item) {

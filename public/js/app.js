@@ -25845,6 +25845,23 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -25987,6 +26004,10 @@ function sleep(ms) {
       } else {
         return false;
       }
+    },
+    fliterFleets: function fliterFleets(fleets) {
+      // console.log(roles);
+      return fleets;
     },
     userAddKey: function userAddKey(item) {
       var _this3 = this;
@@ -59550,7 +59571,44 @@ var render = function() {
                 return _c(
                   "div",
                   { key: index },
-                  [_c("ViewKeys", { attrs: { items: list } })],
+                  [
+                    _c(
+                      "v-card",
+                      [
+                        _c("v-card-title", [_vm._v(_vm._s(list.name))]),
+                        _vm._v(" "),
+                        _c("v-card-text", [
+                          _c(
+                            "div",
+                            { staticClass: " d-inline-flex" },
+                            _vm._l(_vm.fliterFleets(_vm.item.fleets), function(
+                              fleet,
+                              index
+                            ) {
+                              return _c(
+                                "div",
+                                { key: index, staticClass: " pr-2" },
+                                [
+                                  _c(
+                                    "v-chip",
+                                    { attrs: { pill: "", dark: "" } },
+                                    [
+                                      _c("span", [
+                                        _vm._v(" " + _vm._s(fleet.name))
+                                      ])
+                                    ]
+                                  )
+                                ],
+                                1
+                              )
+                            }),
+                            0
+                          )
+                        ])
+                      ],
+                      1
+                    )
+                  ],
                   1
                 )
               })
