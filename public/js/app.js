@@ -25905,8 +25905,22 @@ function sleep(ms) {
               Echo["private"]("fleetkeys").listen("FleetKeysUpdate", function (e) {
                 _this.refresh();
               });
+              _context.next = 3;
+              return _this.$store.dispatch("getUserKeys");
 
-            case 1:
+            case 3:
+              _context.next = 5;
+              return _this.$store.dispatch("getKeys");
+
+            case 5:
+              _context.next = 7;
+              return _this.$store.dispatch("getFleets");
+
+            case 7:
+              _context.next = 9;
+              return _this.$store.dispatch("getKeyFleets");
+
+            case 9:
             case "end":
               return _context.stop();
           }
@@ -25915,29 +25929,11 @@ function sleep(ms) {
     }))();
   },
   mounted: function mounted() {
-    var _this2 = this;
-
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
         while (1) {
           switch (_context2.prev = _context2.next) {
             case 0:
-              _context2.next = 2;
-              return _this2.$store.dispatch("getUserKeys");
-
-            case 2:
-              _context2.next = 4;
-              return _this2.$store.dispatch("getKeys");
-
-            case 4:
-              _context2.next = 6;
-              return _this2.$store.dispatch("getFleets");
-
-            case 6:
-              _context2.next = 8;
-              return _this2.$store.dispatch("getKeyFleets");
-
-            case 8:
             case "end":
               return _context2.stop();
           }
@@ -25951,7 +25947,7 @@ function sleep(ms) {
       return keys;
     },
     refresh: function refresh() {
-      var _this3 = this;
+      var _this2 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
@@ -25959,19 +25955,19 @@ function sleep(ms) {
             switch (_context3.prev = _context3.next) {
               case 0:
                 _context3.next = 2;
-                return _this3.$store.dispatch("getUserKeys");
+                return _this2.$store.dispatch("getUserKeys");
 
               case 2:
                 _context3.next = 4;
-                return _this3.$store.dispatch("getKeys");
+                return _this2.$store.dispatch("getKeys");
 
               case 4:
                 _context3.next = 6;
-                return _this3.$store.dispatch("getFleets");
+                return _this2.$store.dispatch("getFleets");
 
               case 6:
                 _context3.next = 8;
-                return _this3.$store.dispatch("getKeyFleets");
+                return _this2.$store.dispatch("getKeyFleets");
 
               case 8:
               case "end":
@@ -26004,7 +26000,7 @@ function sleep(ms) {
       }
     },
     userAddKey: function userAddKey(item) {
-      var _this4 = this;
+      var _this3 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
         var request;
@@ -26013,7 +26009,7 @@ function sleep(ms) {
             switch (_context4.prev = _context4.next) {
               case 0:
                 request = {
-                  key_type_id: _this4.userAddKeyText,
+                  key_type_id: _this3.userAddKeyText,
                   user_id: item.id
                 };
                 _context4.next = 3;
@@ -26023,7 +26019,7 @@ function sleep(ms) {
                   url: "/api/keysadd",
                   data: request,
                   headers: {
-                    Authorization: "Bearer " + _this4.$store.state.token,
+                    Authorization: "Bearer " + _this3.$store.state.token,
                     Accept: "application/json",
                     "Content-Type": "application/json"
                   }
@@ -26038,7 +26034,7 @@ function sleep(ms) {
       }))();
     },
     userRemoveKey: function userRemoveKey(item) {
-      var _this5 = this;
+      var _this4 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee5() {
         var request;
@@ -26047,7 +26043,7 @@ function sleep(ms) {
             switch (_context5.prev = _context5.next) {
               case 0:
                 request = {
-                  key_type_id: _this5.userRemoveKeyText,
+                  key_type_id: _this4.userRemoveKeyText,
                   user_id: item.id
                 };
                 _context5.next = 3;
@@ -26057,7 +26053,7 @@ function sleep(ms) {
                   url: "/api/keysremove",
                   data: request,
                   headers: {
-                    Authorization: "Bearer " + _this5.$store.state.token,
+                    Authorization: "Bearer " + _this4.$store.state.token,
                     Accept: "application/json",
                     "Content-Type": "application/json"
                   }
