@@ -59548,21 +59548,19 @@ var render = function() {
                 1
               ),
               _vm._v(" "),
-              _c(
-                "v-div",
-                _vm._l(_vm.tableList, function(list, index) {
-                  return _c("v-div", { key: index }, [
+              _vm._l(_vm.tableList, function(list, index) {
+                return _c("div", { key: index }, [
+                  _c("div", [
                     _vm._v(
                       "\n                    " +
                         _vm._s(list.name) +
                         "\n                "
                     )
                   ])
-                }),
-                1
-              )
+                ])
+              })
             ],
-            1
+            2
           )
         ],
         1
