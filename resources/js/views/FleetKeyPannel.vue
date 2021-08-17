@@ -149,10 +149,7 @@
                         mandatory
                         :value="0"
                     >
-                        <v-card
-                            v-for="(list, index) in buttonList"
-                            :key="index"
-                        >
+                        <v-card v-for="(list, index) in tableList" :key="index">
                             <v-card-text> {{ list.name }}</v-card-text>
                         </v-card>
                     </v-btn-toggle>
@@ -298,6 +295,15 @@ export default {
                 name: "All"
             };
             list.push(data);
+            list.sort(function(a, b) {
+                return a.id - b.id || a.name.localeCompare(b.name);
+            });
+
+            return list;
+        },
+
+        tableList() {
+            var list = this.keysList;
             list.sort(function(a, b) {
                 return a.id - b.id || a.name.localeCompare(b.name);
             });

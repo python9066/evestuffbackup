@@ -25860,9 +25860,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
 
 
 
@@ -26100,6 +26097,13 @@ function sleep(ms) {
         name: "All"
       };
       list.push(data);
+      list.sort(function (a, b) {
+        return a.id - b.id || a.name.localeCompare(b.name);
+      });
+      return list;
+    },
+    tableList: function tableList() {
+      var list = this.keysList;
       list.sort(function (a, b) {
         return a.id - b.id || a.name.localeCompare(b.name);
       });
@@ -59599,7 +59603,7 @@ var render = function() {
                         expression: "toggle_exclusive"
                       }
                     },
-                    _vm._l(_vm.buttonList, function(list, index) {
+                    _vm._l(_vm.tableList, function(list, index) {
                       return _c(
                         "v-card",
                         { key: index },
