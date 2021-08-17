@@ -59577,10 +59577,7 @@ var render = function() {
                           _c(
                             "div",
                             { staticClass: " d-inline-flex" },
-                            _vm._l(_vm.fliterFleets(list), function(
-                              fleet,
-                              index
-                            ) {
+                            _vm._l(list.fleets, function(fleet, index) {
                               return _c(
                                 "div",
                                 { key: index, staticClass: " pr-2" },
