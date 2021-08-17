@@ -150,7 +150,7 @@
                             <div class=" d-inline-flex">
                                 <div
                                     v-for="(fleet, index) in fliterFleets(
-                                        item.fleets
+                                        list.fleets
                                     )"
                                     :key="index"
                                     class=" pr-2"
