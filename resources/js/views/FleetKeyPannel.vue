@@ -143,25 +143,9 @@
                     </v-data-table>
                 </v-card>
                 <v-card tile flat color="#121212" class="align-end">
-                    <v-btn-toggle
-                        right
-                        v-model="toggle_exclusive"
-                        mandatory
-                        :value="0"
-                    >
-                        <v-btn
-                            v-for="(list, index) in buttonList"
-                            :key="index"
-                            :loading="loadingf"
-                            :disabled="loadingf"
-                            @click="
-                                (keyflag = list.id),
-                                    (toggle_exclusive = list.id)
-                            "
-                        >
-                            {{ list.name }}
-                        </v-btn>
-                    </v-btn-toggle>
+                    <v-card v-for="(list, index) in buttonList" :key="index">
+                        <v-card-text> {{ list.name }}</v-card-text>
+                    </v-card>
                 </v-card>
             </v-col>
         </v-row>

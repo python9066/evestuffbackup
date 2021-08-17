@@ -25853,22 +25853,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -59592,47 +59576,14 @@ var render = function() {
                   staticClass: "align-end",
                   attrs: { tile: "", flat: "", color: "#121212" }
                 },
-                [
-                  _c(
-                    "v-btn-toggle",
-                    {
-                      attrs: { right: "", mandatory: "", value: 0 },
-                      model: {
-                        value: _vm.toggle_exclusive,
-                        callback: function($$v) {
-                          _vm.toggle_exclusive = $$v
-                        },
-                        expression: "toggle_exclusive"
-                      }
-                    },
-                    _vm._l(_vm.buttonList, function(list, index) {
-                      return _c(
-                        "v-btn",
-                        {
-                          key: index,
-                          attrs: {
-                            loading: _vm.loadingf,
-                            disabled: _vm.loadingf
-                          },
-                          on: {
-                            click: function($event) {
-                              ;(_vm.keyflag = list.id),
-                                (_vm.toggle_exclusive = list.id)
-                            }
-                          }
-                        },
-                        [
-                          _vm._v(
-                            "\n                        " +
-                              _vm._s(list.name) +
-                              "\n                    "
-                          )
-                        ]
-                      )
-                    }),
+                _vm._l(_vm.buttonList, function(list, index) {
+                  return _c(
+                    "v-card",
+                    { key: index },
+                    [_c("v-card-text", [_vm._v(" " + _vm._s(list.name))])],
                     1
                   )
-                ],
+                }),
                 1
               )
             ],
