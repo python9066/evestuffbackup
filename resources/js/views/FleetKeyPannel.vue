@@ -142,6 +142,13 @@
                         </template>
                     </v-data-table>
                 </v-card>
+                <v-card
+                    ><v-card-text
+                        ><ViewKeys
+                            v-for="(list, index) in tableList"
+                            :key="index"
+                        ></ViewKeys> </v-card-text
+                ></v-card>
             </v-col>
         </v-row>
     </div>
@@ -283,6 +290,15 @@ export default {
                 name: "All"
             };
             list.push(data);
+            list.sort(function(a, b) {
+                return a.id - b.id || a.name.localeCompare(b.name);
+            });
+
+            return list;
+        },
+
+        tableList() {
+            var list = this.keysList;
             list.sort(function(a, b) {
                 return a.id - b.id || a.name.localeCompare(b.name);
             });
