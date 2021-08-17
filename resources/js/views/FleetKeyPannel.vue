@@ -149,7 +149,10 @@
                         mandatory
                         :value="0"
                     >
-                        <v-card v-for="(list, index) in tableList" :key="index">
+                        <v-card
+                            v-for="(list, index) in buttonList"
+                            :key="index"
+                        >
                             <v-card-text> {{ list.name }}</v-card-text>
                         </v-card>
                     </v-btn-toggle>
@@ -300,21 +303,21 @@ export default {
             });
 
             return list;
-        },
-
-        tableList() {
-            var list = this.keysList;
-            var data = {
-                id: 0,
-                name: "All"
-            };
-            list.push(data);
-            list.sort(function(a, b) {
-                return a.id - b.id || a.name.localeCompare(b.name);
-            });
-            list.filter(l => l.name != "All");
-            return list;
         }
+
+        // tableList() {
+        //     var list = this.keysList;
+        //     var data = {
+        //         id: 0,
+        //         name: "All"
+        //     };
+        //     list.push(data);
+        //     list.sort(function(a, b) {
+        //         return a.id - b.id || a.name.localeCompare(b.name);
+        //     });
+        //     list.filter(l => l.name != "All");
+        //     return list;
+        // }
     },
     beforeDestroy() {
         Echo.leave("fleetkeys");

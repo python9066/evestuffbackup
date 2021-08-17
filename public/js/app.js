@@ -25860,6 +25860,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
 
 
 
@@ -26101,22 +26104,20 @@ function sleep(ms) {
         return a.id - b.id || a.name.localeCompare(b.name);
       });
       return list;
-    },
-    tableList: function tableList() {
-      var list = this.keysList;
-      var data = {
-        id: 0,
-        name: "All"
-      };
-      list.push(data);
-      list.sort(function (a, b) {
-        return a.id - b.id || a.name.localeCompare(b.name);
-      });
-      list.filter(function (l) {
-        return l.name != "All";
-      });
-      return list;
-    }
+    } // tableList() {
+    //     var list = this.keysList;
+    //     var data = {
+    //         id: 0,
+    //         name: "All"
+    //     };
+    //     list.push(data);
+    //     list.sort(function(a, b) {
+    //         return a.id - b.id || a.name.localeCompare(b.name);
+    //     });
+    //     list.filter(l => l.name != "All");
+    //     return list;
+    // }
+
   }),
   beforeDestroy: function beforeDestroy() {
     Echo.leave("fleetkeys");
@@ -59611,7 +59612,7 @@ var render = function() {
                         expression: "toggle_exclusive"
                       }
                     },
-                    _vm._l(_vm.tableList, function(list, index) {
+                    _vm._l(_vm.buttonList, function(list, index) {
                       return _c(
                         "v-card",
                         { key: index },
