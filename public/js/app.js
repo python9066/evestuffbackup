@@ -25845,6 +25845,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 
@@ -59555,12 +59556,13 @@ var render = function() {
               ),
               _vm._v(" "),
               _vm._l(_vm.tableList, function(list, index) {
-                return _c(
-                  "div",
-                  { key: index },
-                  [_c("ViewKeys", { attrs: { "item:list": "" } })],
-                  1
-                )
+                return _c("div", { key: index }, [
+                  _vm._v(
+                    "\n                " +
+                      _vm._s(_vm.item.name) +
+                      "\n            "
+                  )
+                ])
               })
             ],
             2
