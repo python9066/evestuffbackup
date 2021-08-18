@@ -59497,7 +59497,7 @@ var render = function() {
                 "v-card",
                 {
                   key: index,
-                  staticClass: "col-md-6 ma-10",
+                  staticClass: "col-md-12 ma-10",
                   attrs: { elevation: "10" }
                 },
                 [

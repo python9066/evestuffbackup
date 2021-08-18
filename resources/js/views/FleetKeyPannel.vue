@@ -146,7 +146,7 @@
                     v-for="(list, index) in tableList"
                     :key="index"
                     elevation="10"
-                    class="col-md-6 ma-10"
+                    class="col-md-12 ma-10"
                 >
                     <v-card>
                         <v-card-title class="justify-center" elevation="10">{{
