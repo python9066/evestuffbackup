@@ -55,7 +55,7 @@
                 </v-card>
             </v-col>
         </v-row>
-        <v-row no-gutters justify="center" class=" d-inline-block">
+        <v-row no-gutters>
             <v-col class="col-xs-6 col-md-6">
                 <v-card>
                     <v-data-table
@@ -142,25 +142,28 @@
             <v-col class="col-md-1"></v-col>
 
             <v-col class="col-md-4">
-                <v-card
-                    v-for="(list, index) in tableList"
-                    :key="index"
-                    elevation="10"
-                >
-                    <v-card-title class="justify-center">{{
-                        list.name
-                    }}</v-card-title>
-                    <v-card outlined>
-                        <v-card-text class="justify-center">
-                            <p
-                                v-for="(fleet, index) in list.fleets"
-                                :key="index"
-                            >
-                                {{ fleet.name }}
-                            </p>
-                        </v-card-text>
+                <row>
+                    <v-card
+                        v-for="(list, index) in tableList"
+                        :key="index"
+                        elevation="10"
+                        class="col-md-2"
+                    >
+                        <v-card-title class="justify-center">{{
+                            list.name
+                        }}</v-card-title>
+                        <v-card outlined>
+                            <v-card-text class="justify-center">
+                                <p
+                                    v-for="(fleet, index) in list.fleets"
+                                    :key="index"
+                                >
+                                    {{ fleet.name }}
+                                </p>
+                            </v-card-text>
+                        </v-card>
                     </v-card>
-                </v-card>
+                </row>
             </v-col>
             <v-col class="col-md-1"></v-col>
         </v-row>

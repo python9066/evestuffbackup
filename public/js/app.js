@@ -25861,6 +25861,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
 
 
 
@@ -59365,10 +59368,7 @@ var render = function() {
       _vm._v(" "),
       _c(
         "v-row",
-        {
-          staticClass: " d-inline-block",
-          attrs: { "no-gutters": "", justify: "center" }
-        },
+        { attrs: { "no-gutters": "" } },
         [
           _c(
             "v-col",
@@ -59569,40 +59569,50 @@ var render = function() {
           _c(
             "v-col",
             { staticClass: "col-md-4" },
-            _vm._l(_vm.tableList, function(list, index) {
-              return _c(
-                "v-card",
-                { key: index, attrs: { elevation: "10" } },
-                [
-                  _c("v-card-title", { staticClass: "justify-center" }, [
-                    _vm._v(_vm._s(list.name))
-                  ]),
-                  _vm._v(" "),
-                  _c(
+            [
+              _c(
+                "row",
+                _vm._l(_vm.tableList, function(list, index) {
+                  return _c(
                     "v-card",
-                    { attrs: { outlined: "" } },
+                    {
+                      key: index,
+                      staticClass: "col-md-2",
+                      attrs: { elevation: "10" }
+                    },
                     [
+                      _c("v-card-title", { staticClass: "justify-center" }, [
+                        _vm._v(_vm._s(list.name))
+                      ]),
+                      _vm._v(" "),
                       _c(
-                        "v-card-text",
-                        { staticClass: "justify-center" },
-                        _vm._l(list.fleets, function(fleet, index) {
-                          return _c("p", { key: index }, [
-                            _vm._v(
-                              "\n                            " +
-                                _vm._s(fleet.name) +
-                                "\n                        "
-                            )
-                          ])
-                        }),
-                        0
+                        "v-card",
+                        { attrs: { outlined: "" } },
+                        [
+                          _c(
+                            "v-card-text",
+                            { staticClass: "justify-center" },
+                            _vm._l(list.fleets, function(fleet, index) {
+                              return _c("p", { key: index }, [
+                                _vm._v(
+                                  "\n                                " +
+                                    _vm._s(fleet.name) +
+                                    "\n                            "
+                                )
+                              ])
+                            }),
+                            0
+                          )
+                        ],
+                        1
                       )
                     ],
                     1
                   )
-                ],
+                }),
                 1
               )
-            }),
+            ],
             1
           ),
           _vm._v(" "),
