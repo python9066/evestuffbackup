@@ -59577,7 +59577,7 @@ var render = function() {
                     "v-card",
                     {
                       key: index,
-                      staticClass: "col-md-2",
+                      staticClass: "col-md-6 pa-4",
                       attrs: { elevation: "10" }
                     },
                     [
@@ -59591,7 +59591,7 @@ var render = function() {
                         [
                           _c(
                             "v-card-text",
-                            { staticClass: "justify-center" },
+                            { staticClass: "text-center" },
                             _vm._l(list.fleets, function(fleet, index) {
                               return _c("p", { key: index }, [
                                 _vm._v(

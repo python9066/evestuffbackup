@@ -147,13 +147,13 @@
                         v-for="(list, index) in tableList"
                         :key="index"
                         elevation="10"
-                        class="col-md-2"
+                        class="col-md-6 pa-4"
                     >
                         <v-card-title class="justify-center">{{
                             list.name
                         }}</v-card-title>
                         <v-card outlined>
-                            <v-card-text class="justify-center">
+                            <v-card-text class="text-center">
                                 <p
                                     v-for="(fleet, index) in list.fleets"
                                     :key="index"
