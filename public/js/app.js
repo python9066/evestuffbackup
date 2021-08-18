@@ -59570,10 +59570,11 @@ var render = function() {
                   [
                     _c(
                       "v-card",
+                      { attrs: { elevation: "24" } },
                       [
                         _c("v-card-title", [_vm._v(_vm._s(list.name))]),
                         _vm._v(" "),
-                        _c("v-card-text", [
+                        _c("v-card-text", { attrs: { elevation: "12" } }, [
                           _c(
                             "div",
                             { staticClass: " d-inline-flex" },

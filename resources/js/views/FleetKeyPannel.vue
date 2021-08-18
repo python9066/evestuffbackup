@@ -144,9 +144,9 @@
                 </v-card>
 
                 <div v-for="(list, index) in tableList" :key="index">
-                    <v-card>
+                    <v-card elevation="24">
                         <v-card-title>{{ list.name }}</v-card-title>
-                        <v-card-text>
+                        <v-card-text elevation="12">
                             <div class=" d-inline-flex">
                                 <div
                                     v-for="(fleet, index) in list.fleets"
