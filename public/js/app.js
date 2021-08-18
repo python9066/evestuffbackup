@@ -25857,6 +25857,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
 
 
 
@@ -59568,9 +59570,16 @@ var render = function() {
                     [
                       _c(
                         "v-card",
-                        { staticClass: " pa-2", attrs: { elevation: "10" } },
+                        {
+                          staticClass: " pa-2 cols-2 col",
+                          attrs: { elevation: "10" }
+                        },
                         [
-                          _c("v-card-title", [_vm._v(_vm._s(list.name))]),
+                          _c(
+                            "v-card-title",
+                            { staticClass: "justify-center" },
+                            [_vm._v(_vm._s(list.name))]
+                          ),
                           _vm._v(" "),
                           _c(
                             "v-card",
