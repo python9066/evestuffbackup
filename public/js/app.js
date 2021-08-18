@@ -25818,6 +25818,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
 
 
 
@@ -59492,44 +59495,60 @@ var render = function() {
             [
               _c(
                 "v-row",
-                _vm._l(_vm.tableList, function(list, index) {
-                  return _c(
+                [
+                  _c(
                     "v-card",
-                    {
-                      key: index,
-                      staticClass: "col-md-6 pa-4",
-                      attrs: { elevation: "10" }
-                    },
-                    [
-                      _c("v-card-title", { staticClass: "justify-center" }, [
-                        _vm._v(_vm._s(list.name))
-                      ]),
-                      _vm._v(" "),
-                      _c(
+                    { attrs: { flat: "" } },
+                    _vm._l(_vm.tableList, function(list, index) {
+                      return _c(
                         "v-card",
-                        { attrs: { outlined: "" } },
+                        {
+                          key: index,
+                          staticClass: "col-md-6 pa-4",
+                          attrs: { elevation: "24" }
+                        },
                         [
                           _c(
-                            "v-card-text",
-                            { staticClass: "text-center" },
-                            _vm._l(list.fleets, function(fleet, index) {
-                              return _c("span", { key: index }, [
-                                _vm._v(
-                                  "\n                                " +
-                                    _vm._s(fleet.name) +
-                                    "\n                            "
-                                )
-                              ])
-                            }),
-                            0
+                            "v-card-title",
+                            { staticClass: "justify-center" },
+                            [_vm._v(_vm._s(list.name))]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-card",
+                            { attrs: { outlined: "" } },
+                            [
+                              _c(
+                                "v-card-text",
+                                { staticClass: "text-center" },
+                                _vm._l(list.fleets, function(fleet, index) {
+                                  return _c(
+                                    "p",
+                                    {
+                                      key: index,
+                                      staticClass: "font-weight-light"
+                                    },
+                                    [
+                                      _vm._v(
+                                        "\n                                    " +
+                                          _vm._s(fleet.name) +
+                                          "\n                                "
+                                      )
+                                    ]
+                                  )
+                                }),
+                                0
+                              )
+                            ],
+                            1
                           )
                         ],
                         1
                       )
-                    ],
+                    }),
                     1
                   )
-                }),
+                ],
                 1
               )
             ],

@@ -143,24 +143,27 @@
 
             <v-col class="col-md-4">
                 <v-row>
-                    <v-card
-                        v-for="(list, index) in tableList"
-                        :key="index"
-                        elevation="10"
-                        class="col-md-6 pa-4"
-                    >
-                        <v-card-title class="justify-center">{{
-                            list.name
-                        }}</v-card-title>
-                        <v-card outlined>
-                            <v-card-text class="text-center">
-                                <span
-                                    v-for="(fleet, index) in list.fleets"
-                                    :key="index"
-                                >
-                                    {{ fleet.name }}
-                                </span>
-                            </v-card-text>
+                    <v-card flat>
+                        <v-card
+                            v-for="(list, index) in tableList"
+                            :key="index"
+                            elevation="24"
+                            class="col-md-6 pa-4"
+                        >
+                            <v-card-title class="justify-center">{{
+                                list.name
+                            }}</v-card-title>
+                            <v-card outlined>
+                                <v-card-text class="text-center">
+                                    <p
+                                        class="font-weight-light"
+                                        v-for="(fleet, index) in list.fleets"
+                                        :key="index"
+                                    >
+                                        {{ fleet.name }}
+                                    </p>
+                                </v-card-text>
+                            </v-card>
                         </v-card>
                     </v-card>
                 </v-row>
