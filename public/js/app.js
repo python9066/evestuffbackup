@@ -25859,7 +25859,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
 
 
 
@@ -59306,12 +59305,10 @@ var render = function() {
             "v-col",
             { staticClass: " d-inline-flex", attrs: { cols: "9" } },
             [
-              _c("v-spacer"),
-              _vm._v(" "),
               _c(
                 "v-card",
                 {
-                  staticClass: "align-end",
+                  staticClass: "align-start",
                   attrs: { tile: "", flat: "", color: "#121212" }
                 },
                 [
@@ -59574,31 +59571,33 @@ var render = function() {
                       [
                         _c("v-card-title", [_vm._v(_vm._s(list.name))]),
                         _vm._v(" "),
-                        _c("v-card-text", { attrs: { elevation: "12" } }, [
-                          _c(
-                            "div",
-                            { staticClass: " d-inline-flex" },
-                            _vm._l(list.fleets, function(fleet, index) {
-                              return _c(
-                                "div",
-                                { key: index, staticClass: " pr-2" },
-                                [
-                                  _c(
-                                    "v-chip",
-                                    { attrs: { pill: "", dark: "" } },
-                                    [
-                                      _c("span", [
-                                        _vm._v(" " + _vm._s(fleet.name))
-                                      ])
-                                    ]
-                                  )
-                                ],
-                                1
-                              )
-                            }),
-                            0
-                          )
-                        ])
+                        _c(
+                          "v-card-text",
+                          { attrs: { elevation: "12" } },
+                          [
+                            _c(
+                              "v-list",
+                              _vm._l(list.fleets, function(fleet, index) {
+                                return _c(
+                                  "v-list-item",
+                                  { key: index, staticClass: " pr-2" },
+                                  [
+                                    _c("v-list-item-title", [
+                                      _vm._v(
+                                        "\n                                    " +
+                                          _vm._s(fleet.name) +
+                                          "\n                                "
+                                      )
+                                    ])
+                                  ],
+                                  1
+                                )
+                              }),
+                              1
+                            )
+                          ],
+                          1
+                        )
                       ],
                       1
                     )

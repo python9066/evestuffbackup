@@ -32,8 +32,7 @@
         </v-row>
         <v-row no-gutters justify="center">
             <v-col class=" d-inline-flex" cols="9">
-                <v-spacer></v-spacer>
-                <v-card tile flat color="#121212" class="align-end">
+                <v-card tile flat color="#121212" class="align-start">
                     <v-btn-toggle
                         right
                         v-model="toggle_exclusive"
@@ -147,17 +146,17 @@
                     <v-card elevation="24">
                         <v-card-title>{{ list.name }}</v-card-title>
                         <v-card-text elevation="12">
-                            <div class=" d-inline-flex">
-                                <div
+                            <v-list>
+                                <v-list-item
                                     v-for="(fleet, index) in list.fleets"
                                     :key="index"
                                     class=" pr-2"
                                 >
-                                    <v-chip pill dark>
-                                        <span> {{ fleet.name }}</span>
-                                    </v-chip>
-                                </div>
-                            </div>
+                                    <v-list-item-title>
+                                        {{ fleet.name }}
+                                    </v-list-item-title>
+                                </v-list-item>
+                            </v-list>
                         </v-card-text>
                     </v-card>
                 </div>
