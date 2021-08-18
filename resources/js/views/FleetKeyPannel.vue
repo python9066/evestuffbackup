@@ -142,23 +142,26 @@
                     </v-data-table>
                 </v-card>
                 <div class="cols-4 col">
-                    <div v-for="(list, index) in tableList" :key="index">
-                        <v-card elevation="10" class=" pa-2 cols-2 col">
-                            <v-card-title class="justify-center">{{
-                                list.name
-                            }}</v-card-title>
-                            <v-card outlined>
-                                <v-card-text>
-                                    <p
-                                        v-for="(fleet, index) in list.fleets"
-                                        :key="index"
-                                    >
-                                        {{ fleet.name }}
-                                    </p>
-                                </v-card-text>
-                            </v-card>
+                    <v-card
+                        v-for="(list, index) in tableList"
+                        :key="index"
+                        elevation="10"
+                        class=" pa-2 cols-1 col"
+                    >
+                        <v-card-title class="justify-center">{{
+                            list.name
+                        }}</v-card-title>
+                        <v-card outlined>
+                            <v-card-text>
+                                <p
+                                    v-for="(fleet, index) in list.fleets"
+                                    :key="index"
+                                >
+                                    {{ fleet.name }}
+                                </p>
+                            </v-card-text>
                         </v-card>
-                    </div>
+                    </v-card>
                 </div>
             </v-col>
         </v-row>
