@@ -59372,7 +59372,7 @@ var render = function() {
             [
               _c(
                 "v-card",
-                { attrs: { cols: "8" } },
+                { staticClass: "col cols-8" },
                 [
                   _c(
                     "v-data-table",
@@ -59560,7 +59560,7 @@ var render = function() {
               _vm._v(" "),
               _c(
                 "div",
-                { attrs: { cols: "4" } },
+                { staticClass: "cols-4 col" },
                 _vm._l(_vm.tableList, function(list, index) {
                   return _c(
                     "div",

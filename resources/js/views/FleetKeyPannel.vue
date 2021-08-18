@@ -60,7 +60,7 @@
                 class=" d-inline-flex justify-content-center w-auto"
                 cols="12"
             >
-                <v-card cols="8">
+                <v-card class="col cols-8">
                     <v-data-table
                         :headers="headers"
                         :items="filteredItems"
@@ -141,7 +141,7 @@
                         </template>
                     </v-data-table>
                 </v-card>
-                <div cols="4">
+                <div class="cols-4 col">
                     <div v-for="(list, index) in tableList" :key="index">
                         <v-card elevation="10" class=" pa-2">
                             <v-card-title>{{ list.name }}</v-card-title>
