@@ -59366,7 +59366,10 @@ var render = function() {
       _vm._v(" "),
       _c(
         "v-row",
-        { attrs: { "no-gutters": "", justify: "center" } },
+        {
+          staticClass: " d-inline-block",
+          attrs: { "no-gutters": "", justify: "center" }
+        },
         [
           _c(
             "v-col",

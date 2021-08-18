@@ -55,7 +55,7 @@
                 </v-card>
             </v-col>
         </v-row>
-        <v-row no-gutters justify="center">
+        <v-row no-gutters justify="center" class=" d-inline-block">
             <v-col
                 class=" d-inline-flex justify-content-center w-auto"
                 cols="12"
