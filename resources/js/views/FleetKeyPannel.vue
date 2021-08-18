@@ -142,7 +142,7 @@
             <v-col class="col-md-1"></v-col>
 
             <v-col class="col-md-4">
-                <row>
+                <v-row>
                     <v-card
                         v-for="(list, index) in tableList"
                         :key="index"
@@ -163,7 +163,7 @@
                             </v-card-text>
                         </v-card>
                     </v-card>
-                </row>
+                </v-row>
             </v-col>
             <v-col class="col-md-1"></v-col>
         </v-row>

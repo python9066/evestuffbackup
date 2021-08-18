@@ -59571,7 +59571,7 @@ var render = function() {
             { staticClass: "col-md-4" },
             [
               _c(
-                "row",
+                "v-row",
                 _vm._l(_vm.tableList, function(list, index) {
                   return _c(
                     "v-card",
