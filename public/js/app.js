@@ -59375,12 +59375,11 @@ var render = function() {
             "v-col",
             {
               staticClass: " d-inline-flex justify-content-center w-auto",
-              attrs: { cols: "12" }
+              attrs: { cols: "8" }
             },
             [
               _c(
                 "v-card",
-                { staticClass: "col cols-8" },
                 [
                   _c(
                     "v-data-table",
@@ -59571,7 +59570,7 @@ var render = function() {
           _vm._v(" "),
           _c(
             "v-col",
-            { staticClass: "cols-2 col" },
+            { attrs: { cols: "4" } },
             _vm._l(_vm.tableList, function(list, index) {
               return _c(
                 "v-card",
