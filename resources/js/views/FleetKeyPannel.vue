@@ -151,10 +151,15 @@
                         class="col-md-5 ma-4"
                     >
                         <v-card>
-                            <v-card-title
-                                class="justify-center"
-                                elevation="24"
-                                >{{ list.name }}</v-card-title
+                            <v-card-title class="justify-center" elevation="24"
+                                ><v-btn
+                                    text
+                                    @click="
+                                        (keyflag = list.id),
+                                            (toggle_exclusive = list.id)
+                                    "
+                                    >{{ list.name }}</v-btn
+                                ></v-card-title
                             >
                         </v-card>
                         <v-card>

@@ -25826,6 +25826,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 
@@ -59519,7 +59524,22 @@ var render = function() {
                               staticClass: "justify-center",
                               attrs: { elevation: "24" }
                             },
-                            [_vm._v(_vm._s(list.name))]
+                            [
+                              _c(
+                                "v-btn",
+                                {
+                                  attrs: { text: "" },
+                                  on: {
+                                    click: function($event) {
+                                      ;(_vm.keyflag = list.id),
+                                        (_vm.toggle_exclusive = list.id)
+                                    }
+                                  }
+                                },
+                                [_vm._v(_vm._s(list.name))]
+                              )
+                            ],
+                            1
                           )
                         ],
                         1
