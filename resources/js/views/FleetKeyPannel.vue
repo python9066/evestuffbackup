@@ -146,18 +146,15 @@
                     v-for="(list, index) in tableList"
                     :key="index"
                     elevation="10"
-                    class="col-md-6 pa-4"
+                    class="col-md-6 ma-10"
                 >
                     <v-card>
-                        <v-card-title
-                            class="justify-center"
-                            elevation="10"
-                            width="80%"
-                            >{{ list.name }}</v-card-title
-                        >
+                        <v-card-title class="justify-center" elevation="10">{{
+                            list.name
+                        }}</v-card-title>
                     </v-card>
                     <v-card>
-                        <v-card outlined width="80%">
+                        <v-card outlined>
                             <v-card-text class="text-center">
                                 <p
                                     class="font-weight-light"

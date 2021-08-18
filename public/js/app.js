@@ -25821,9 +25821,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
 
 
 
@@ -59500,7 +59497,7 @@ var render = function() {
                 "v-card",
                 {
                   key: index,
-                  staticClass: "col-md-6 pa-4",
+                  staticClass: "col-md-6 ma-10",
                   attrs: { elevation: "10" }
                 },
                 [
@@ -59511,7 +59508,7 @@ var render = function() {
                         "v-card-title",
                         {
                           staticClass: "justify-center",
-                          attrs: { elevation: "10", width: "80%" }
+                          attrs: { elevation: "10" }
                         },
                         [_vm._v(_vm._s(list.name))]
                       )
@@ -59524,7 +59521,7 @@ var render = function() {
                     [
                       _c(
                         "v-card",
-                        { attrs: { outlined: "", width: "80%" } },
+                        { attrs: { outlined: "" } },
                         [
                           _c(
                             "v-card-text",
