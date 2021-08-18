@@ -2,7 +2,7 @@
     <div class="pr-16 pl-16">
         <errorMessage></errorMessage>
         <v-row no-gutters>
-            <v-col class="col-xs-12 col-md-12">
+            <v-col class="col-xs-12 col-md-12 d-inline-flex">
                 <v-card
                     tile
                     flat

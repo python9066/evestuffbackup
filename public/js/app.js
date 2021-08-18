@@ -59182,7 +59182,7 @@ var render = function() {
         [
           _c(
             "v-col",
-            { staticClass: "col-xs-12 col-md-12" },
+            { staticClass: "col-xs-12 col-md-12 d-inline-flex" },
             [
               _c(
                 "v-card",
